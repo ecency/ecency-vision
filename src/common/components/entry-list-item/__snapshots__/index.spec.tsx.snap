@@ -107,30 +107,34 @@ exports[`(1) Default render 1`] = `
     <div
       className="item-controls"
     >
-      <div>
-        <div
-          className="entry-vote-btn"
-          onClick={[Function]}
-        >
+      <div
+        onClick={[Function]}
+      >
+        <div>
           <div
-            className="btn-vote btn-up-vote"
+            className="entry-vote-btn"
+            onClick={[Function]}
           >
             <div
-              className=""
+              className="btn-vote btn-up-vote"
             >
-              <span
-                className="btn-inner "
+              <div
+                className=""
               >
-                <svg
-                  className="vote-svg"
-                  viewBox="6 8 12 7.41"
+                <span
+                  className="btn-inner "
                 >
-                  <path
-                    d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
+                  <svg
+                    className="vote-svg"
+                    viewBox="6 8 12 7.41"
+                  >
+                    <path
+                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -342,30 +346,34 @@ exports[`(2) Grid view 1`] = `
     <div
       className="item-controls"
     >
-      <div>
-        <div
-          className="entry-vote-btn"
-          onClick={[Function]}
-        >
+      <div
+        onClick={[Function]}
+      >
+        <div>
           <div
-            className="btn-vote btn-up-vote"
+            className="entry-vote-btn"
+            onClick={[Function]}
           >
             <div
-              className=""
+              className="btn-vote btn-up-vote"
             >
-              <span
-                className="btn-inner "
+              <div
+                className=""
               >
-                <svg
-                  className="vote-svg"
-                  viewBox="6 8 12 7.41"
+                <span
+                  className="btn-inner "
                 >
-                  <path
-                    d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
+                  <svg
+                    className="vote-svg"
+                    viewBox="6 8 12 7.41"
+                  >
+                    <path
+                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -584,30 +592,34 @@ exports[`(3) Nsfw 1`] = `
     <div
       className="item-controls"
     >
-      <div>
-        <div
-          className="entry-vote-btn"
-          onClick={[Function]}
-        >
+      <div
+        onClick={[Function]}
+      >
+        <div>
           <div
-            className="btn-vote btn-up-vote"
+            className="entry-vote-btn"
+            onClick={[Function]}
           >
             <div
-              className=""
+              className="btn-vote btn-up-vote"
             >
-              <span
-                className="btn-inner "
+              <div
+                className=""
               >
-                <svg
-                  className="vote-svg"
-                  viewBox="6 8 12 7.41"
+                <span
+                  className="btn-inner "
                 >
-                  <path
-                    d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
+                  <svg
+                    className="vote-svg"
+                    viewBox="6 8 12 7.41"
+                  >
+                    <path
+                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -828,29 +840,31 @@ exports[`(4) Nsfw with active user 1`] = `
       className="item-controls"
     >
       <div>
-        <div
-          className="entry-vote-btn"
-          onClick={[Function]}
-        >
+        <div>
           <div
-            className="btn-vote btn-up-vote"
+            className="entry-vote-btn"
+            onClick={[Function]}
           >
             <div
-              className=""
+              className="btn-vote btn-up-vote"
             >
-              <span
-                className="btn-inner "
+              <div
+                className=""
               >
-                <svg
-                  className="vote-svg"
-                  viewBox="6 8 12 7.41"
+                <span
+                  className="btn-inner "
                 >
-                  <path
-                    d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
+                  <svg
+                    className="vote-svg"
+                    viewBox="6 8 12 7.41"
+                  >
+                    <path
+                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -1063,30 +1077,34 @@ exports[`(5) Nsfw but allowed 1`] = `
     <div
       className="item-controls"
     >
-      <div>
-        <div
-          className="entry-vote-btn"
-          onClick={[Function]}
-        >
+      <div
+        onClick={[Function]}
+      >
+        <div>
           <div
-            className="btn-vote btn-up-vote"
+            className="entry-vote-btn"
+            onClick={[Function]}
           >
             <div
-              className=""
+              className="btn-vote btn-up-vote"
             >
-              <span
-                className="btn-inner "
+              <div
+                className=""
               >
-                <svg
-                  className="vote-svg"
-                  viewBox="6 8 12 7.41"
+                <span
+                  className="btn-inner "
                 >
-                  <path
-                    d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
+                  <svg
+                    className="vote-svg"
+                    viewBox="6 8 12 7.41"
+                  >
+                    <path
+                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -1331,30 +1349,34 @@ exports[`(6) Cross post. Bottom menu 1`] = `
     <div
       className="item-controls"
     >
-      <div>
-        <div
-          className="entry-vote-btn"
-          onClick={[Function]}
-        >
+      <div
+        onClick={[Function]}
+      >
+        <div>
           <div
-            className="btn-vote btn-up-vote"
+            className="entry-vote-btn"
+            onClick={[Function]}
           >
             <div
-              className=""
+              className="btn-vote btn-up-vote"
             >
-              <span
-                className="btn-inner "
+              <div
+                className=""
               >
-                <svg
-                  className="vote-svg"
-                  viewBox="6 8 12 7.41"
+                <span
+                  className="btn-inner "
                 >
-                  <path
-                    d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
+                  <svg
+                    className="vote-svg"
+                    viewBox="6 8 12 7.41"
+                  >
+                    <path
+                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>
