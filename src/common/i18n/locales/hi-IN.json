@@ -121,6 +121,7 @@
     "error-public-key": "आपने सार्वजनिक कुंजी डाला| पासवर्ड/डब्लूएआईएफ की जरुरत है",
     "error-user-fetch": "उपयोगकर्ता डेटा प्राप्त नहीं किया जा सका",
     "error-user-not-found": "उपयोगकर्ता उपलब्ध नहीं है",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "पोस्टिंग की अनुमति नहीं मिल सकी",
     "error-authenticate": "गलत निजी कुंजी। मास्टर या सक्रिय या निजी कुंजी पोस्ट करना आवश्यक है।",
     "with-hive-signer": "हाइवेसाईनर के साथ लॉगिन करें",
@@ -262,6 +263,7 @@
     "comment-entry-go-parent": "सीधा मूल जनक को देखें",
     "hidden-warning": "इस सामग्री को लोगों द्वारा कम रेटिंग मिली है। सावधानी के साथ आगे बढ़ें।",
     "muted-warning": "इस सामग्री को {{community}} मॉडरेटर द्वारा सामुदायिक दिशानिर्देशों का पालन न करने के कारण म्यूट कर दिया गया था।",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "पोस्ट पता कापी करे",
     "address-copied": "क्लिपबोर्ड पर पोस्ट पता कॉपी किया गया।",
     "browse-original": "मूल पोस्ट खोलें",
@@ -697,6 +699,7 @@
     "gallery": "चित्रशाला",
     "emoji": "इमोजी",
     "image-error": "चित्र अपलोड नहीं किया जा सका।",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "छवि का आकार बहुत बड़ा है, फिर से छोटे आकार की छवि आज़माएं।",
     "fragments": "स्निपेट्स"
   },

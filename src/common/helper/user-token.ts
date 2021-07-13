@@ -1,25 +1,31 @@
+import { history } from "../store";
+import { setActiveUser } from "../store/active-user";
 import {User} from "../store/users/types";
 
 import {decodeObj} from "../util/encoder";
 
 import * as ls from "../util/local-storage";
 
-export const getUser = (username: string): User => {
+export const getUser = (username: string) : User | undefined => {
     const raw = ls.get(`user_${username}`);
     if (!raw) {
-        throw "User is not exists!";
+        console.log("User does not exist!");
+        setActiveUser(null);
+        return undefined;
     }
 
     try {
         return decodeObj(raw) as User;
     } catch (e) {
-        throw "User is not exists!";
+        console.log("User does not exist!");
+        setActiveUser(null)
+        return decodeObj(username) as User;
     }
 }
 
-export const getAccessToken = (username: string): string => getUser(username).accessToken;
+export const getAccessToken = (username: string) : string | undefined => getUser(username) &&  getUser(username)!.accessToken;
 
-export const getPostingKey = (username: string): null | undefined | string => getUser(username).postingKey;
+export const getPostingKey = (username: string): null | undefined | string => getUser(username) && getUser(username)!.postingKey;
 
-export const getRefreshToken = (username: string): string => getUser(username).refreshToken;
+export const getRefreshToken = (username: string): string | undefined => getUser(username) && getUser(username)!.refreshToken;
 

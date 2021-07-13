@@ -121,6 +121,7 @@
     "error-public-key": "Du hast einen öffentlichen Schlüssel verwendet. Passwort/WIF erforderlich",
     "error-user-fetch": "Benutzerdaten konnten nicht abgerufen werden",
     "error-user-not-found": "Benutzer existiert nicht",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "Konnte keine Beitragsberechtigung erhalten",
     "error-authenticate": "Wrong private key. Master or active or posting private key required.",
     "with-hive-signer": "Mit Hivesigner anmelden",
@@ -262,6 +263,7 @@
     "comment-entry-go-parent": "Übergeordneten Beitrag ansehen",
     "hidden-warning": "This content got low rating by people. Proceed with caution.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "Adresse des Post kopieren",
     "address-copied": "Post Adresse in die Zwischenablage kopiert.",
     "browse-original": "Open original post",
@@ -697,6 +699,7 @@
     "gallery": "Galerie",
     "emoji": "Emoji",
     "image-error": "Das Bild konnte nicht hochgeladen werden.",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Dateigröße überschritten, bitte kleineres Bild hochladen.",
     "fragments": "Snippets"
   },

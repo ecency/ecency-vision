@@ -267,7 +267,11 @@ export class Login extends BaseComponent<LoginProps, State> {
 
         getAccount(user.username)
             .then((account) => {
-                return doLogin(getRefreshToken(user.username), user.postingKey, account);
+                let token = getRefreshToken(user.username);
+                if(!token){
+                    error(`${_t("login.error-user-not-found-cache")}`)
+                }
+                return token ? doLogin(token, user.postingKey, account) : this.userDelete(user)
             })
             .then(() => {
                 this.hide();

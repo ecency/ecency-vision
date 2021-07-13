@@ -121,6 +121,7 @@
     "error-public-key": "Ai introdus o cheie publică. Este necesară parola/WIF",
     "error-user-fetch": "Date utilizator nu au putut fi încărcate",
     "error-user-not-found": "Utilizatorul nu există",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "Couldn't get posting permission",
     "error-authenticate": "Wrong private key. Master or active or posting private key required.",
     "with-hive-signer": "Autentificare cu hivesigner",
@@ -262,6 +263,7 @@
     "comment-entry-go-parent": "Vizualizează postarea principală",
     "hidden-warning": "This content got low rating by people. Proceed with caution.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
     "browse-original": "Open original post",
@@ -697,6 +699,7 @@
     "gallery": "Galerie",
     "emoji": "Emoji",
     "image-error": "Nu s-a putut încărca imaginea.",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Image size is too large, try smaller size image again.",
     "fragments": "Snippets"
   },

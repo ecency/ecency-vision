@@ -48,8 +48,10 @@ export default class UploadButton extends BaseComponent<UploadButtonProps, Uploa
         onBegin();
 
         this.stateSet({inProgress: true});
+        let token = getAccessToken(activeUser.username);
 
-        uploadImage(file, getAccessToken(activeUser.username)).then(r => {
+        if(token){
+            uploadImage(file, token).then(r => {
             onEnd(r.url);
             success(_t('image-upload-button.uploaded'));
         }).catch(() => {
@@ -57,6 +59,10 @@ export default class UploadButton extends BaseComponent<UploadButtonProps, Uploa
         }).finally(() => {
             this.stateSet({inProgress: false});
         });
+    }
+    else {
+        error(_t("editor-toolbar.image-error-cache"))
+    }
     };
 
     render() {
