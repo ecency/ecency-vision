@@ -17,6 +17,7 @@
     "days": "дні(ів)",
     "finish": "Завершити",
     "next": "Далі",
+    "previous": "Previous",
     "back": "Назад",
     "load-more": "Завантажити ще",
     "empty-list": "Тут порожньо",
@@ -31,6 +32,7 @@
     "hot": "feed",
     "trending": "feed",
     "created": "feed",
+    "muted": "feed",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
@@ -39,6 +41,7 @@
     "replies": "replies",
     "done": "Виконано",
     "apply": "Apply",
+    "warning": "Warning",
     "close": "Close"
   },
   "confirm": {
@@ -58,8 +61,11 @@
     "filter-feed-subscriptions": "Спільноти",
     "filter-global": "Global",
     "filter-global-part1": "This feed contains ",
-    "filter-global-part2": " content on entire platform.",
-    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Відкрийте для себе",
@@ -152,6 +158,8 @@
     "pinned": "Закріплена публікація",
     "replies": "1 відповідь. Натисніть, щоб відповісти.",
     "replies-n": "{{n}} відповідей. Натисніть, щоб відповісти.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Ще немає відповідей. Натисніть, щоб відповісти."
   },
   "nsfw": {
@@ -254,6 +262,7 @@
     "comment-entry-go-parent": "Дивитись батьківський коментар",
     "hidden-warning": "This content got low rating by people. Proceed with caution.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "Скопіювати адресу",
     "address-copied": "Адреса скопійована в буфер обміну.",
     "browse-original": "Open original post",
@@ -428,6 +437,7 @@
     "profile-image": "Зображення профілю",
     "website": "Веб-сторінка",
     "location": "Місцеперебування",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Профіль успішно оновлено!"
   },
   "image-upload-button": {
@@ -439,6 +449,7 @@
     "currency": "Валюта",
     "language": "Мова",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Налаштування оновлено!"
   },
   "wallet": {
@@ -611,22 +622,33 @@
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
     "group-rewards": "Rewards",
-    "type-curation_reward": "Кураторська Винагорода",
-    "type-author_reward": "Авторська Винагорода",
-    "type-comment_benefactor_reward": "Винагорода бенефіціару за коментар",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Отримати винагороди",
     "type-transfer": "Переказ",
-    "type-transfer_to_vesting": "Підвищення сили",
-    "type-withdraw_vesting": "Зменшення сили",
+    "type-transfer_to_vesting": "Power up",
+    "type-withdraw_vesting": "Power down",
+    "type-fill_vesting_withdraw": "Partial Power down occurred",
     "type-fill_order": "Заповніть замовлення",
     "type-producer_reward": "Producer reward",
     "type-interest": "Interest",
     "type-transfer_to_savings": "Transfer to savings",
-    "type-fill_convert_request": "Fill convert request",
+    "type-fill_convert_request": "Convert fulfilled",
     "type-cancel_transfer_from_savings": "Cancel transfer from savings",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
-    "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-return_vesting_delegation": "Return delegations",
+    "type-proposal_pay": "Proposal pay",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-recurrent_transfer": "Recurring transfer",
+    "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
+    "type-fill_recurrent_transfer": "Recurring transfer occurred",
+    "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
+    "type-collateralized_convert": "Collateralized convert",
+    "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
+    "type-limit_order_create": "New trade",
+    "type-effective_comment_vote": "Effective vote"
   },
   "key-or-hot": {
     "sign": "Підписати",
@@ -644,7 +666,7 @@
   "friends": {
     "followers": "Читачів ({{n}})",
     "following": "Cлідкують ({{n}})",
-    "search-placeholder": "Пошук користувачів"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Слідкувати",
@@ -931,6 +953,18 @@
     "validation-password": "Password is invalid.",
     "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Add Image",

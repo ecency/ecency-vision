@@ -17,6 +17,7 @@
     "days": "hari",
     "finish": "Selesai",
     "next": "Lanjut",
+    "previous": "Sebelumnya",
     "back": "Kembali",
     "load-more": "Muat Lebih Banyak",
     "empty-list": "Tidak ada apa-apa di sini",
@@ -31,6 +32,7 @@
     "hot": "Umpan",
     "trending": "Umpan",
     "created": "umpan",
+    "muted": "umpan",
     "found": "ditemukan",
     "feed": "umpan",
     "blog": "blog",
@@ -39,6 +41,7 @@
     "replies": "balasan",
     "done": "Selesai",
     "apply": "Terapkan",
+    "warning": "Peringatan",
     "close": "Tutup"
   },
   "confirm": {
@@ -57,9 +60,12 @@
     "filter-feed-friends": "Teman",
     "filter-feed-subscriptions": "Komunitas",
     "filter-global": "Global",
-    "filter-global-part1": "This feed contains ",
-    "filter-global-part2": " content on entire platform.",
-    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
+    "filter-global-part1": "Umpan ini berisi ",
+    "filter-global-part2": " diskusi pada seluruh platform.",
+    "filter-global-part3": " diskusi dari komunitas langganan Anda. Anda dapat bergabung dengan lebih banyak komunitas untuk mengisi umpan ini.",
+    "filter-global-part4": " diskusi dari orang yang Anda ikuti. Anda dapat mengikuti lebih banyak orang untuk mengisi umpan ini.",
+    "filter-global-discover": "Temukan Orang",
+    "filter-global-join-communities": "Bergabunglah dengan Komunitas"
   },
   "navbar": {
     "discover": "Jelajahi",
@@ -152,6 +158,8 @@
     "pinned": "Postingan Disematkan",
     "replies": "1 respon, Klik untuk merespon.",
     "replies-n": "{{n}} respon. Klik untuk merespon.",
+    "vote-error": "Nilai sebelumnya tidak dapat diterima. Pilih dengan nilai yang berbeda.",
+    "vote-warning": "Voting 0% membatalkan vote konten ini.",
     "no-replies": "Belum ada respon. Klik untuk merespon."
   },
   "nsfw": {
@@ -254,6 +262,7 @@
     "comment-entry-go-parent": "Lihat sumber utamanya",
     "hidden-warning": "Konten ini mendapat peringkat rendah oleh pengguna lain. Lanjutkan dengan hati hati.",
     "muted-warning": "Konten ini dibisukan oleh moderator {{community}} karena tidak mengikuti pedoman komunitas.",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "Salin alamat postingan",
     "address-copied": "Tempel alamat yang disalin ke papan klip.",
     "browse-original": "Tampilan tulisan asli",
@@ -428,6 +437,7 @@
     "profile-image": "Gambar Profil",
     "website": "Website",
     "location": "Lokasi",
+    "copied": "Link referral sudah tersalin.",
     "updated": "Profil diperbaharui dengan sukses!"
   },
   "image-upload-button": {
@@ -439,6 +449,7 @@
     "currency": "Mata uang",
     "language": "Bahasa",
     "nsfw": "Perlihatkan konten NSFW",
+    "referral-link": "Link referral",
     "updated": "Preferensi diperbaharui!"
   },
   "wallet": {
@@ -611,22 +622,33 @@
     "group-interests": "Bunga",
     "group-stake-operations": "Operasi Stake",
     "group-rewards": "Reward",
-    "type-curation_reward": "Reward Kurasi",
-    "type-author_reward": "Reward Penulis",
-    "type-comment_benefactor_reward": "Reward Komentar Distributor",
+    "type-curation_reward": "Hadiah kurasi",
+    "type-author_reward": "Hadiah Penulis",
+    "type-comment_benefactor_reward": "Hadiah komentar kontributor",
     "type-claim_reward_balance": "Klaim reward",
     "type-transfer": "Transfer",
-    "type-transfer_to_vesting": "Transfer ke vesting",
-    "type-withdraw_vesting": "Menarik vesting",
+    "type-transfer_to_vesting": "Peningkatan kekuatan",
+    "type-withdraw_vesting": "Menurunkan kekuatan",
+    "type-fill_vesting_withdraw": "Penurunan kekuatan sedang berlangsung sebagian",
     "type-fill_order": "Isi pesanan",
     "type-producer_reward": "Reward produser",
     "type-interest": "Bunga",
     "type-transfer_to_savings": "Transfer untuk tabungan",
-    "type-fill_convert_request": "Isi permintaan konversi",
+    "type-fill_convert_request": "Konversi sudah terjadi",
     "type-cancel_transfer_from_savings": "Batalkan transfer untuk tabungan",
     "type-cancel_transfer_from_savings-detail": "Dari: <strong>@{{from}}</strong> <br/> Permintaan id: <strong>{{request}}</strong>",
-    "type-return_vesting_delegation": "Pengembalian vesting delegasi",
-    "type-proposal_pay": "Pembayaran proposal"
+    "type-return_vesting_delegation": "Mengembalikan delegasi",
+    "type-proposal_pay": "Pembayaran proposal",
+    "type-comment_payout_update": "Update pembayaran konten",
+    "type-comment_reward": "Hadiah konten",
+    "type-recurrent_transfer": "Transfer sedang berlangsung",
+    "type-recurrent_transfer-detail": "{{executions}} transfer, berlangsung setiap jam {{recurrence}}",
+    "type-fill_recurrent_transfer": "Transfer sedang terus berjalan",
+    "type-fill_recurrent_transfer-detail": "Transfer {{remaining_executions}} yang tersisa",
+    "type-collateralized_convert": "Konversi yang dijamin",
+    "type-collateralized_convert-detail": "Permintaan id: <strong>{{request}}</strong>",
+    "type-limit_order_create": "Perdagangan baru",
+    "type-effective_comment_vote": "Vote efektif"
   },
   "key-or-hot": {
     "sign": "Masuk",
@@ -644,7 +666,7 @@
   "friends": {
     "followers": "Pengikut ({{n}})",
     "following": "Mengikuti ({{n}})",
-    "search-placeholder": "Cari pengguna"
+    "search-placeholder": "Mencari"
   },
   "follow-controls": {
     "follow": "Ikuti",
@@ -931,6 +953,18 @@
     "validation-password": "Kata sandi tidak valid.",
     "validation-label": "Centang kotak ini untuk melanjutkan.",
     "updated": "Kata Sandi berhasil diperbaharui!"
+  },
+  "view-keys": {
+    "title": "Lihat Kunci Pribadi",
+    "account": "Akun",
+    "cur-pass": "Password terkini",
+    "owner": "Pemilik",
+    "active": "Aktif",
+    "posting": "Postingan",
+    "memo": "Memo",
+    "view-keys": "Klik untuk melihat kunci",
+    "copied": "Kunci pribadi telah disalin",
+    "error": "Password sepertinya salah, tolong periksa kembali!"
   },
   "add-image": {
     "title": "Tambahkan gambar",

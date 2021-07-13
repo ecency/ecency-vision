@@ -28,7 +28,9 @@ export default (value: number | string, options: Options | undefined = undefined
   let out = "";
 
   if (prefix) out += prefix + " ";
-  out += numeral(value).format(format);
+  // turn too small values to zero. Bug: https://github.com/adamwdraper/Numeral-js/issues/563
+  const av = Math.abs(parseFloat(value.toString())) < 0.0001 ? 0 : value;
+  out += numeral(av).format(format);
   if (suffix) out += " " + suffix;
 
   return out;

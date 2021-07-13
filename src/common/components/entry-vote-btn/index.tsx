@@ -66,7 +66,7 @@ interface VoteDialogState {
 export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   state: VoteDialogState = {
     upSliderVal: getVoteValue("up", this.props.activeUser?.username! + '-' + this.props.entry.post_id, 100),
-    downSliderVal: getVoteValue("down", this.props.activeUser?.username! + '-' + this.props.entry.post_id, -100),
+    downSliderVal: getVoteValue("down", this.props.activeUser?.username! + '-' + this.props.entry.post_id, -1),
     estimated: 0,
     mode: this.props.downVoted ? "down" : "up",
     wrongValueUp: false,
@@ -74,7 +74,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     showWarning: false,
     initialVoteValues: {
       up: getVoteValue("up", this.props.activeUser?.username! + '-' + this.props.entry.post_id, 100),
-      down: getVoteValue("down", this.props.activeUser?.username!+ '-' + this.props.entry.post_id, -100),
+      down: getVoteValue("down", this.props.activeUser?.username!+ '-' + this.props.entry.post_id, -1),
     },
   };
 
@@ -303,10 +303,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   custom={true}
                   step={0.1}
                   min={-100}
-                  max={-0.1}
+                  max={-1}
                   value={downSliderVal}
                   onChange={this.downSliderChanged}
                   id={post_id.toString()}
+                  className="reverse-range"
                 />
               </div>
               <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>

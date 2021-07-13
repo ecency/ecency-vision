@@ -8,7 +8,7 @@ import entryIndexHandler from "./handlers/entry-index";
 import communityHandler from "./handlers/community";
 import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
-import fallbackHandler, {healthCheck, appURI} from "./handlers/fallback";
+import fallbackHandler, {healthCheck, iosURI, androidURI} from "./handlers/fallback";
 import {entryRssHandler, authorRssHandler} from "./handlers/rss";
 import * as authApi from "./handlers/auth-api";
 import config from "../config";
@@ -19,7 +19,7 @@ const entryFilters = Object.values(EntryFilter);
 const profileFilters = Object.values(ProfileFilter);
 
 const lowerCase = (req: any, res: any, next: any) => {
-    if (req.url !== req.url.toLowerCase()) {
+    if (req.url !== req.url.toLowerCase() && !req.url.includes('auth?code')) {
         res.redirect(301, req.url.toLowerCase());
     }
     else {
@@ -40,7 +40,7 @@ const authCheck = (req: any, res: any, next: any) => {
     if (config.hsClientSecret && config.usePrivate !== "1") {
         next();
     } else {
-        res.json({error: "Define HIVESIGNER_SECRET ENV variable or USE_PRIVATE"});
+        res.json({error: "Define HIVESIGNER_SECRET ENV variable or set USE_PRIVATE=1"});
     }
 }
 
@@ -97,9 +97,11 @@ server
         entryHandler
     )
     // apple-app-site-association
-    .get("^/apple-app-site-association$", appURI)
+    .get("^/apple-app-site-association$", iosURI)
+    // android assetlinks
+    .get("^/.well-known/assetlinks.json$", androidURI)
 
-    // Auth Api only 
+    // Auth Api
     .post("^/auth-api/hs-token-refresh$", authCheck, authApi.hsTokenRefresh)
 
     // Health check script for docker swarm

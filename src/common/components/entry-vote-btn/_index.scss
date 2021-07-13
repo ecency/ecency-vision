@@ -440,3 +440,7 @@ p {
 .primary-btn-vote svg {
   transform: rotate(0deg) !important;
 }
+
+.reverse-range {
+  transform: rotateY(180deg);
+}

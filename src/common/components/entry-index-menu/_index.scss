@@ -143,3 +143,10 @@
   border-width: 0 0.4rem 0.4rem;
   border-bottom-color: #c2d4f5;
 }
+
+.overlay-for-introduction {
+  background-color: rgba(0, 0, 0, 0.48);
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+}

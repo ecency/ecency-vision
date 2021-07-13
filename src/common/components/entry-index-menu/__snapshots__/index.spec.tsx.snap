@@ -3,6 +3,11 @@
 exports[`(1) No active user. Default filter 1`] = `
 <div>
   <div
+    className="d-none"
+    id="overlay"
+    onClick={[Function]}
+  />
+  <div
     className="entry-index-menu"
   >
     <div
@@ -15,7 +20,7 @@ exports[`(1) No active user. Default filter 1`] = `
           className="main-menu d-none d-lg-flex"
         >
           <div
-            className="sm-menu"
+            className="sm-menu position-relative"
           >
             <div
               className="custom-dropdown float-left"
@@ -47,39 +52,42 @@ exports[`(1) No active user. Default filter 1`] = `
             </div>
           </div>
           <div
-            className="lg-menu"
+            className="lg-menu position-relative"
           >
             <ul
               className="nav nav-pills nav-fill"
             >
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-trending"
                   href="/trending"
+                  id="trending"
                   onClick={[Function]}
                 >
                   Trending
                 </a>
               </li>
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-hot active"
                   href="/hot"
+                  id="hot"
                   onClick={[Function]}
                 >
                   Hot
                 </a>
               </li>
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-created"
                   href="/created"
+                  id="created"
                   onClick={[Function]}
                 >
                   New
@@ -92,7 +100,7 @@ exports[`(1) No active user. Default filter 1`] = `
           className="main-menu d-flex d-lg-none"
         >
           <div
-            className="sm-menu"
+            className="sm-menu position-relative"
           >
             <div
               className="custom-dropdown float-left"
@@ -124,7 +132,7 @@ exports[`(1) No active user. Default filter 1`] = `
             </div>
           </div>
           <div
-            className="lg-menu"
+            className="lg-menu position-relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -172,10 +180,7 @@ exports[`(1) No active user. Default filter 1`] = `
     >
       <span
         className="info-icon mr-0 mr-md-2"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
+        onClick={[Function]}
       >
         <svg
           viewBox="0 0 24 24"
@@ -208,6 +213,11 @@ exports[`(1) No active user. Default filter 1`] = `
 exports[`(2) No active user. Trending filter 1`] = `
 <div>
   <div
+    className="d-none"
+    id="overlay"
+    onClick={[Function]}
+  />
+  <div
     className="entry-index-menu"
   >
     <div
@@ -220,7 +230,7 @@ exports[`(2) No active user. Trending filter 1`] = `
           className="main-menu d-none d-lg-flex"
         >
           <div
-            className="sm-menu"
+            className="sm-menu position-relative"
           >
             <div
               className="custom-dropdown float-left"
@@ -252,39 +262,42 @@ exports[`(2) No active user. Trending filter 1`] = `
             </div>
           </div>
           <div
-            className="lg-menu"
+            className="lg-menu position-relative"
           >
             <ul
               className="nav nav-pills nav-fill"
             >
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-trending active"
                   href="/trending"
+                  id="trending"
                   onClick={[Function]}
                 >
                   Trending
                 </a>
               </li>
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-hot"
                   href="/hot"
+                  id="hot"
                   onClick={[Function]}
                 >
                   Hot
                 </a>
               </li>
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-created"
                   href="/created"
+                  id="created"
                   onClick={[Function]}
                 >
                   New
@@ -297,7 +310,7 @@ exports[`(2) No active user. Trending filter 1`] = `
           className="main-menu d-flex d-lg-none"
         >
           <div
-            className="sm-menu"
+            className="sm-menu position-relative"
           >
             <div
               className="custom-dropdown float-left"
@@ -329,7 +342,7 @@ exports[`(2) No active user. Trending filter 1`] = `
             </div>
           </div>
           <div
-            className="lg-menu"
+            className="lg-menu position-relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -377,10 +390,7 @@ exports[`(2) No active user. Trending filter 1`] = `
     >
       <span
         className="info-icon mr-0 mr-md-2"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
+        onClick={[Function]}
       >
         <svg
           viewBox="0 0 24 24"
@@ -413,6 +423,11 @@ exports[`(2) No active user. Trending filter 1`] = `
 exports[`(3) Active user. Trending filter 1`] = `
 <div>
   <div
+    className="overlay-for-introduction"
+    id="overlay"
+    onClick={[Function]}
+  />
+  <div
     className="entry-index-menu"
   >
     <div
@@ -422,19 +437,108 @@ exports[`(3) Active user. Trending filter 1`] = `
         className="sub-menu mt-3 mt-md-0"
       >
         <ul
-          className="nav nav-pills nav-fill"
+          className="nav nav-pills position-relative nav-fill flash"
         >
           <li
             className="nav-item"
           >
             <a
-              className="nav-link my-link"
+              className="nav-link my-link active"
               href="/@foo/feed"
+              id="feed"
               onClick={[Function]}
             >
               Friends
             </a>
           </li>
+          <div
+            className="intro-popup p-4 p-lg-0"
+            style={
+              Object {
+                "left": undefined,
+              }
+            }
+          >
+            <div
+              className="h-100 container"
+            >
+              <button
+                className="close position-absolute close-btn"
+                id="close-btn"
+                onClick={[Function]}
+                type="button"
+              >
+                <span
+                  aria-hidden="true"
+                >
+                  ×
+                </span>
+              </button>
+              <div
+                className="justify-content-center h-100 align-items-center mt-4 mt-md-0 row"
+              >
+                <div
+                  className="p-0 px-md-3 col-md-3 col-12"
+                >
+                  <img
+                    className="media-intro"
+                    id="media"
+                    src="https://ecency.com/assets/our-vision.png"
+                    width="100%"
+                  />
+                </div>
+                <div
+                  className="p-0 px-md-3 col-md-5 col-12"
+                >
+                  <h1
+                    className="mb-2 mb-md-4 text-dark font-weight-bold title"
+                    id="title"
+                  >
+                    Friends
+                  </h1>
+                  <p
+                    className="text-muted paragraph mt-2 mt-md-0"
+                    id="description"
+                  >
+                    This feed contains 
+                    <span
+                      className="text-capitalize"
+                    >
+                      Friends
+                    </span>
+                     discussions from people you follow. You can follow more people to fill up this feed.
+                    <a
+                      href="/discover"
+                      onClick={[Function]}
+                    >
+                       
+                      Discover People
+                    </a>
+                  </p>
+                  <div
+                    className="d-flex flex-column flex-md-row"
+                  >
+                    <button
+                      className="mr-0 mr-md-3 w-100 w-md-50 intro-btn mb-3 mb-md-0 btn btn-outline-primary btn-lg"
+                      disabled={false}
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      Previous
+                    </button>
+                    <button
+                      className="w-50 w-100 w-md-50 intro-btn btn btn-primary btn-lg"
+                      disabled={false}
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </ul>
       </div>
       <div
@@ -444,7 +548,7 @@ exports[`(3) Active user. Trending filter 1`] = `
           className="main-menu d-none d-lg-flex"
         >
           <div
-            className="sm-menu"
+            className="sm-menu position-relative"
           >
             <div
               className="custom-dropdown float-left"
@@ -476,39 +580,42 @@ exports[`(3) Active user. Trending filter 1`] = `
             </div>
           </div>
           <div
-            className="lg-menu"
+            className="lg-menu position-relative"
           >
             <ul
               className="nav nav-pills nav-fill"
             >
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
-                  className="nav-link link-trending active"
+                  className="nav-link link-trending"
                   href="/trending"
+                  id="trending"
                   onClick={[Function]}
                 >
                   Trending
                 </a>
               </li>
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-hot"
                   href="/hot"
+                  id="hot"
                   onClick={[Function]}
                 >
                   Hot
                 </a>
               </li>
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-created"
                   href="/created"
+                  id="created"
                   onClick={[Function]}
                 >
                   New
@@ -521,7 +628,7 @@ exports[`(3) Active user. Trending filter 1`] = `
           className="main-menu d-flex d-lg-none"
         >
           <div
-            className="sm-menu"
+            className="sm-menu position-relative"
           >
             <div
               className="custom-dropdown float-left"
@@ -551,9 +658,97 @@ exports[`(3) Active user. Trending filter 1`] = `
                 </div>
               </div>
             </div>
+            <div
+              className="intro-popup p-4 p-lg-0"
+              style={
+                Object {
+                  "left": undefined,
+                }
+              }
+            >
+              <div
+                className="h-100 container"
+              >
+                <button
+                  className="close position-absolute close-btn"
+                  id="close-btn"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  <span
+                    aria-hidden="true"
+                  >
+                    ×
+                  </span>
+                </button>
+                <div
+                  className="justify-content-center h-100 align-items-center mt-4 mt-md-0 row"
+                >
+                  <div
+                    className="p-0 px-md-3 col-md-3 col-12"
+                  >
+                    <img
+                      className="media-intro"
+                      id="media"
+                      src="https://ecency.com/assets/our-vision.png"
+                      width="100%"
+                    />
+                  </div>
+                  <div
+                    className="p-0 px-md-3 col-md-5 col-12"
+                  >
+                    <h1
+                      className="mb-2 mb-md-4 text-dark font-weight-bold title"
+                      id="title"
+                    >
+                      Friends
+                    </h1>
+                    <p
+                      className="text-muted paragraph mt-2 mt-md-0"
+                      id="description"
+                    >
+                      This feed contains 
+                      <span
+                        className="text-capitalize"
+                      >
+                        Friends
+                      </span>
+                       discussions from people you follow. You can follow more people to fill up this feed.
+                      <a
+                        href="/discover"
+                        onClick={[Function]}
+                      >
+                         
+                        Discover People
+                      </a>
+                    </p>
+                    <div
+                      className="d-flex flex-column flex-md-row"
+                    >
+                      <button
+                        className="mr-0 mr-md-3 w-100 w-md-50 intro-btn mb-3 mb-md-0 btn btn-outline-primary btn-lg"
+                        disabled={false}
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        Previous
+                      </button>
+                      <button
+                        className="w-50 w-100 w-md-50 intro-btn btn btn-primary btn-lg"
+                        disabled={false}
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div
-            className="lg-menu"
+            className="lg-menu position-relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -632,10 +827,7 @@ exports[`(3) Active user. Trending filter 1`] = `
     >
       <span
         className="info-icon mr-0 mr-md-2"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
+        onClick={[Function]}
       >
         <svg
           viewBox="0 0 24 24"
@@ -668,6 +860,11 @@ exports[`(3) Active user. Trending filter 1`] = `
 exports[`(4) Active user. Friends 1`] = `
 <div>
   <div
+    className="d-none"
+    id="overlay"
+    onClick={[Function]}
+  />
+  <div
     className="entry-index-menu"
   >
     <div
@@ -677,7 +874,7 @@ exports[`(4) Active user. Friends 1`] = `
         className="sub-menu mt-3 mt-md-0"
       >
         <ul
-          className="nav nav-pills nav-fill"
+          className="nav nav-pills position-relative nav-fill "
         >
           <li
             className="nav-item"
@@ -685,6 +882,7 @@ exports[`(4) Active user. Friends 1`] = `
             <a
               className="nav-link my-link active"
               href="/@foo/feed"
+              id="feed"
               onClick={[Function]}
             >
               Friends
@@ -699,7 +897,7 @@ exports[`(4) Active user. Friends 1`] = `
           className="main-menu d-none d-lg-flex"
         >
           <div
-            className="sm-menu"
+            className="sm-menu position-relative"
           >
             <div
               className="custom-dropdown float-left"
@@ -731,39 +929,42 @@ exports[`(4) Active user. Friends 1`] = `
             </div>
           </div>
           <div
-            className="lg-menu"
+            className="lg-menu position-relative"
           >
             <ul
               className="nav nav-pills nav-fill"
             >
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-trending"
                   href="/trending"
+                  id="trending"
                   onClick={[Function]}
                 >
                   Trending
                 </a>
               </li>
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-hot"
                   href="/hot"
+                  id="hot"
                   onClick={[Function]}
                 >
                   Hot
                 </a>
               </li>
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-created"
                   href="/created"
+                  id="created"
                   onClick={[Function]}
                 >
                   New
@@ -776,7 +977,7 @@ exports[`(4) Active user. Friends 1`] = `
           className="main-menu d-flex d-lg-none"
         >
           <div
-            className="sm-menu"
+            className="sm-menu position-relative"
           >
             <div
               className="custom-dropdown float-left"
@@ -808,7 +1009,7 @@ exports[`(4) Active user. Friends 1`] = `
             </div>
           </div>
           <div
-            className="lg-menu"
+            className="lg-menu position-relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -867,10 +1068,7 @@ exports[`(4) Active user. Friends 1`] = `
     >
       <span
         className="info-icon mr-0 mr-md-2"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
+        onClick={[Function]}
       >
         <svg
           viewBox="0 0 24 24"
@@ -903,6 +1101,11 @@ exports[`(4) Active user. Friends 1`] = `
 exports[`(5) Active user. Communities 1`] = `
 <div>
   <div
+    className="d-none"
+    id="overlay"
+    onClick={[Function]}
+  />
+  <div
     className="entry-index-menu"
   >
     <div
@@ -912,7 +1115,7 @@ exports[`(5) Active user. Communities 1`] = `
         className="sub-menu mt-3 mt-md-0"
       >
         <ul
-          className="nav nav-pills nav-fill"
+          className="nav nav-pills position-relative nav-fill "
         >
           <li
             className="nav-item"
@@ -920,6 +1123,7 @@ exports[`(5) Active user. Communities 1`] = `
             <a
               className="nav-link my-link"
               href="/@foo/feed"
+              id="feed"
               onClick={[Function]}
             >
               Friends
@@ -934,7 +1138,7 @@ exports[`(5) Active user. Communities 1`] = `
           className="main-menu d-none d-lg-flex"
         >
           <div
-            className="sm-menu"
+            className="sm-menu position-relative"
           >
             <div
               className="custom-dropdown float-left"
@@ -966,39 +1170,42 @@ exports[`(5) Active user. Communities 1`] = `
             </div>
           </div>
           <div
-            className="lg-menu"
+            className="lg-menu position-relative"
           >
             <ul
               className="nav nav-pills nav-fill"
             >
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-trending active"
                   href="/trending"
+                  id="trending"
                   onClick={[Function]}
                 >
                   Trending
                 </a>
               </li>
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-hot"
                   href="/hot"
+                  id="hot"
                   onClick={[Function]}
                 >
                   Hot
                 </a>
               </li>
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-created"
                   href="/created"
+                  id="created"
                   onClick={[Function]}
                 >
                   New
@@ -1011,7 +1218,7 @@ exports[`(5) Active user. Communities 1`] = `
           className="main-menu d-flex d-lg-none"
         >
           <div
-            className="sm-menu"
+            className="sm-menu position-relative"
           >
             <div
               className="custom-dropdown float-left"
@@ -1043,7 +1250,7 @@ exports[`(5) Active user. Communities 1`] = `
             </div>
           </div>
           <div
-            className="lg-menu"
+            className="lg-menu position-relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -1122,10 +1329,7 @@ exports[`(5) Active user. Communities 1`] = `
     >
       <span
         className="info-icon mr-0 mr-md-2"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
+        onClick={[Function]}
       >
         <svg
           viewBox="0 0 24 24"
@@ -1158,6 +1362,11 @@ exports[`(5) Active user. Communities 1`] = `
 exports[`(6) No active user. Communities 1`] = `
 <div>
   <div
+    className="d-none"
+    id="overlay"
+    onClick={[Function]}
+  />
+  <div
     className="entry-index-menu"
   >
     <div
@@ -1170,7 +1379,7 @@ exports[`(6) No active user. Communities 1`] = `
           className="main-menu d-none d-lg-flex"
         >
           <div
-            className="sm-menu"
+            className="sm-menu position-relative"
           >
             <div
               className="custom-dropdown float-left"
@@ -1202,39 +1411,42 @@ exports[`(6) No active user. Communities 1`] = `
             </div>
           </div>
           <div
-            className="lg-menu"
+            className="lg-menu position-relative"
           >
             <ul
               className="nav nav-pills nav-fill"
             >
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-trending active"
                   href="/trending"
+                  id="trending"
                   onClick={[Function]}
                 >
                   Trending
                 </a>
               </li>
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-hot"
                   href="/hot"
+                  id="hot"
                   onClick={[Function]}
                 >
                   Hot
                 </a>
               </li>
               <li
-                className="nav-item"
+                className="nav-item "
               >
                 <a
                   className="nav-link link-created"
                   href="/created"
+                  id="created"
                   onClick={[Function]}
                 >
                   New
@@ -1247,7 +1459,7 @@ exports[`(6) No active user. Communities 1`] = `
           className="main-menu d-flex d-lg-none"
         >
           <div
-            className="sm-menu"
+            className="sm-menu position-relative"
           >
             <div
               className="custom-dropdown float-left"
@@ -1279,7 +1491,7 @@ exports[`(6) No active user. Communities 1`] = `
             </div>
           </div>
           <div
-            className="lg-menu"
+            className="lg-menu position-relative"
           >
             <ul
               className="nav nav-pills nav-fill"
@@ -1327,10 +1539,7 @@ exports[`(6) No active user. Communities 1`] = `
     >
       <span
         className="info-icon mr-0 mr-md-2"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
+        onClick={[Function]}
       >
         <svg
           viewBox="0 0 24 24"

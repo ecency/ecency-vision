@@ -1,3 +1,5 @@
+import { SMTAsset } from '@hiveio/dhive';
+
 interface BaseTransaction {
     num: number;
     type: string;
@@ -123,6 +125,49 @@ export interface CommentReward extends BaseTransaction {
     payout: string
 }
 
+export interface CollateralizedConvert extends BaseTransaction {
+    type: "collateralized_convert"
+    owner: string
+    requestid: number
+    amount: string
+}
+
+export interface RecurrentTransfers extends BaseTransaction {
+    type: "recurrent_transfer"
+    amount: string;
+    memo: string;
+    from: string;
+    to: string;
+    recurrence: number;
+    executions: number;
+}
+
+export interface FillRecurrentTransfers extends BaseTransaction {
+    type: "fill_recurrent_transfer"
+    amount: SMTAsset;
+    memo: string;
+    from: string;
+    to: string;
+    remaining_executions: number;
+}
+
+export interface LimitOrderCreate extends BaseTransaction {
+    type: "limit_order_create";
+    owner: string;
+    orderid: number;
+    amount_to_sell: string;
+    min_to_receive: string;
+    expiration: string;
+}
+
+export interface FillVestingWithdraw extends BaseTransaction {
+    type: "fill_vesting_withdraw";
+    from_account: string;
+    to_account: string;
+    withdrawn: string;
+    deposited: string;
+}
+
 export interface EffectiveCommentVote extends BaseTransaction {
     type: "effective_comment_vote"
     voter: string
@@ -152,6 +197,11 @@ export type Transaction =
     | ProposalPay
     | CommentPayoutUpdate
     | CommentReward
+    | CollateralizedConvert
+    | RecurrentTransfers
+    | FillRecurrentTransfers
+    | LimitOrderCreate
+    | FillVestingWithdraw
     | EffectiveCommentVote;
 
 export type OperationGroup = "transfers" | "market-orders" | "interests" | "stake-operations" | "rewards";

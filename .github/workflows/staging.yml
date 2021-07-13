@@ -67,6 +67,5 @@ jobs:
           export USE_PRIVATE=$USE_PRIVATE
           cd ~/vision-staging
           git pull origin development
-          docker system prune -f
           docker pull ecency/vision:development
           docker stack deploy -c docker-compose.yml vision

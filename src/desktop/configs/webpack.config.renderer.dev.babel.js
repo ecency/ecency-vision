@@ -72,9 +72,7 @@ export default merge(baseConfig, {
           },
           {
             loader: 'css-loader',
-            options: {
-              sourceMap: true,
-            },
+            options: { modules: true, importLoaders: 1, sourceMap: true },
           },
         ],
       },
@@ -91,6 +89,7 @@ export default merge(baseConfig, {
               modules: {
                 localIdentName: '[local]'
               },
+              importLoaders: 1,
               sourceMap: true
             },
           },

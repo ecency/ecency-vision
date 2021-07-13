@@ -17,6 +17,7 @@
     "days": "días",
     "finish": "Finalizado",
     "next": "Siguiente",
+    "previous": "Anterior",
     "back": "Regresar",
     "load-more": "Cargar más",
     "empty-list": "Nada por aquí",
@@ -31,6 +32,7 @@
     "hot": "inicio",
     "trending": "inicio",
     "created": "inicio",
+    "muted": "inicio",
     "found": "encontrado",
     "feed": "inicio",
     "blog": "blogs",
@@ -39,6 +41,7 @@
     "replies": "respuestas",
     "done": "Completado",
     "apply": "Aplicar",
+    "warning": "Advertencia",
     "close": "Cerrar"
   },
   "confirm": {
@@ -58,8 +61,11 @@
     "filter-feed-subscriptions": "Comunidades",
     "filter-global": "Global",
     "filter-global-part1": "Este feed contiene ",
-    "filter-global-part2": " contenido en toda la plataforma.",
-    "filter-global-part3": " contenido de tus comunidades. Puedes unirte a las comunidades que te interesen para llenar esta fuente."
+    "filter-global-part2": " discusiones en toda la plataforma.",
+    "filter-global-part3": " discusiones de tus comunidades suscritas. Puedes unirte a más comunidades para llenar esta fuente.",
+    "filter-global-part4": " discusiones de personas que sigues. Puedes seguir a más personas para llenar esta fuente.",
+    "filter-global-discover": "Descubre a más personas",
+    "filter-global-join-communities": "Únete a la Comunidad"
   },
   "navbar": {
     "discover": "Descubrir",
@@ -152,6 +158,8 @@
     "pinned": "Publicación fijada",
     "replies": "1 respuesta. Haga clic para responder.",
     "replies-n": "{{n}} respuestas. Haga clic para responder.",
+    "vote-error": "El valor anterior no es aceptable. Votar con un valor diferente.",
+    "vote-warning": "Votar 0% desvota el contenido.",
     "no-replies": "Aún no hay respuestas. Haga clic para responder."
   },
   "nsfw": {
@@ -254,6 +262,7 @@
     "comment-entry-go-parent": "Ver el comentario relacionado",
     "hidden-warning": "Este contenido obtuvo baja calificación por la gente. Proceda con precaución.",
     "muted-warning": "Este contenido fue silenciado por los moderadores de {{community}} por no seguir las pautas de la comunidad.",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "Copiar la dirección de la Publicación",
     "address-copied": "Dirección de publicación copiada al portapapeles.",
     "browse-original": "Abrir publicación original",
@@ -428,6 +437,7 @@
     "profile-image": "Imagen de perfil",
     "website": "Página Web",
     "location": "Localización",
+    "copied": "El enlace de referencia se ha copiado en el portapapeles.",
     "updated": "¡Perfil actualizado exitosamente!"
   },
   "image-upload-button": {
@@ -439,6 +449,7 @@
     "currency": "Divisa",
     "language": "Idioma",
     "nsfw": "Mostrar contenido NSFW",
+    "referral-link": "Enlace de referencia",
     "updated": "Preferencias actualizadas!"
   },
   "wallet": {
@@ -613,20 +624,31 @@
     "group-rewards": "Recompensas",
     "type-curation_reward": "Recompensa de curación",
     "type-author_reward": "Recompensa de autor",
-    "type-comment_benefactor_reward": "Recompensas de benefactor del comentario",
+    "type-comment_benefactor_reward": "Recompensa del benefactor del comentario",
     "type-claim_reward_balance": "Reclamar recompensas",
     "type-transfer": "Transferir",
-    "type-transfer_to_vesting": "Transferir a ahorros",
-    "type-withdraw_vesting": "Retirar ahorros",
+    "type-transfer_to_vesting": "Power up",
+    "type-withdraw_vesting": "Apagar",
+    "type-fill_vesting_withdraw": "Se ha producido un apagado parcial",
     "type-fill_order": "Completar orden",
     "type-producer_reward": "Recompensa del productor",
     "type-interest": "Interés",
     "type-transfer_to_savings": "Transferir a ahorros",
-    "type-fill_convert_request": "Rellenar solicitud de conversión",
+    "type-fill_convert_request": "Conversión completada",
     "type-cancel_transfer_from_savings": "Cancelar transferencia de ahorros",
     "type-cancel_transfer_from_savings-detail": "De: <strong>@{{from}}</strong> <br/> Solicitud id: <strong>{{request}}</strong>",
-    "type-return_vesting_delegation": "Devolución de la delegación",
-    "type-proposal_pay": "Propuesta de pago"
+    "type-return_vesting_delegation": "Delegaciones de retorno",
+    "type-proposal_pay": "Propuesta de pago",
+    "type-comment_payout_update": "Actualización de pago de contenido",
+    "type-comment_reward": "Recompensa de contenido",
+    "type-recurrent_transfer": "Transferencia recurrente",
+    "type-recurrent_transfer-detail": "{{executions}} transferencias, cada una cada {{recurrence}} horas",
+    "type-fill_recurrent_transfer": "Se ha producido una transferencia recurrence",
+    "type-fill_recurrent_transfer-detail": "{{remaining_executions}} transferencias restantes",
+    "type-collateralized_convert": "Conversión Collateralizada",
+    "type-collateralized_convert-detail": "Identificación de solicitud: <strong>{{request}}</strong>",
+    "type-limit_order_create": "Nueva operación",
+    "type-effective_comment_vote": "Voto efectivo"
   },
   "key-or-hot": {
     "sign": "Firmar",
@@ -644,7 +666,7 @@
   "friends": {
     "followers": "Seguidores ({{n}})",
     "following": "Siguiendo ({{n}})",
-    "search-placeholder": "Buscar usuarios"
+    "search-placeholder": "Buscar"
   },
   "follow-controls": {
     "follow": "Seguir",
@@ -931,6 +953,18 @@
     "validation-password": "Contraseña no válida.",
     "validation-label": "Marque esta casilla para continuar.",
     "updated": "¡Contraseña actualizada correctamente!"
+  },
+  "view-keys": {
+    "title": "Ver claves privadas",
+    "account": "Cuenta",
+    "cur-pass": "Contraseña actual",
+    "owner": "Propietario",
+    "active": "Activa",
+    "posting": "Publicación",
+    "memo": "Memo",
+    "view-keys": "Haga clic para ver las llaves",
+    "copied": "Clave privada copiada en el portapapeles",
+    "error": "La contraseña parece incorrecta, ¡por favor compruébela!"
   },
   "add-image": {
     "title": "Añadir imagen",

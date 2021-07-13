@@ -1,0 +1,115 @@
+.flash {
+  -webkit-box-shadow: 0 2px 24px $white;
+  box-shadow: 0px 2px 24px $white;
+  z-index: 5;
+  border-radius: 24px;
+}
+
+.intro-popup {
+  position: absolute;
+  height: 55vh;
+  width: 55vw;
+  background-color: $white;
+  left: 50%;
+  top: 100px;
+  z-index: 5;
+  @media screen and (max-width: $lg-break) {
+    height: 64vh;
+  }
+  @media screen and (max-width: $md-break) {
+    height: auto;
+    width: 70vw;
+    left: 20% !important;
+  }
+  @media screen and (max-width: $sm-break) {
+    width: 90vw;
+    left: 10% !important;
+    top: 65px;
+  }
+  @media screen and (max-width: 510px) {
+    left: 6% !important;
+  }
+  @media screen and (max-width: 410px) {
+    left: 0% !important;
+  }
+  @media screen and (max-width: 375px) {
+    left: -5% !important;
+  }
+  @media screen and (max-width: $xsm-break) {
+    left: -6% !important;
+  }
+}
+
+.intro-popup:before {
+  border-left: 0px solid $transparent;
+  border-right: 43px solid $transparent;
+  border-bottom: 83px solid $white;
+  content: "";
+  position: absolute;
+  top: -70px;
+  margin-left: 5%;
+  transform: rotateZ(-15deg);
+
+  @media screen and (max-width: $sm-break) {
+    border-left: 0px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 40px solid #ffffff;
+    content: "";
+    position: absolute;
+    top: -32px;
+    margin-left: 0%;
+    -webkit-transform: rotateZ(-15deg);
+    transform: rotateZ(11deg);
+  }
+}
+
+.paragraph {
+  font-weight: 300;
+  margin-bottom: 35px;
+  line-height: 26px;
+
+  @media screen and (max-width: $md-break) {
+    margin-bottom: 16px;
+  }
+
+  @media screen and (max-width: $sm-break) {
+    margin-bottom: 16px;
+    line-height: 19px;
+    font-size: 12px;
+  }
+}
+
+.close-btn {
+  right: 14px;
+  top: 7px;
+}
+
+.intro-btn {
+  border-radius: 25px !important;
+  @media screen and (max-width: $sm-break) {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+}
+
+.media-intro {
+  width: 100%;
+  @media screen and (max-width: $md-break) {
+    width: 25%;
+  }
+}
+
+.sm-menu {
+  position: relative;
+}
+
+.lg-menu {
+  position: relative;
+}
+
+.title {
+  @media screen and (max-width: $sm-break) {
+    font-size: 20px;
+  }
+}

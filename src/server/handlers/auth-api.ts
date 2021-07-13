@@ -12,3 +12,4 @@ export const hsTokenRefresh = async (req: express.Request, res: express.Response
 
     pipe(baseApiRequest(getTokenUrl(code, config.hsClientSecret), "GET"), res);
 };
+	

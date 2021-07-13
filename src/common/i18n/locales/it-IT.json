@@ -17,6 +17,7 @@
     "days": "giorni",
     "finish": "Termina",
     "next": "Avanti",
+    "previous": "Previous",
     "back": "Indietro",
     "load-more": "Carica Altro",
     "empty-list": "Pagina vuota",
@@ -31,6 +32,7 @@
     "hot": "feed",
     "trending": "feed",
     "created": "feed",
+    "muted": "feed",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
@@ -39,6 +41,7 @@
     "replies": "replies",
     "done": "Fatto",
     "apply": "Applica",
+    "warning": "Warning",
     "close": "Chiudi"
   },
   "confirm": {
@@ -58,8 +61,11 @@
     "filter-feed-subscriptions": "Community",
     "filter-global": "Global",
     "filter-global-part1": "This feed contains ",
-    "filter-global-part2": " content on entire platform.",
-    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Scopri",
@@ -152,6 +158,8 @@
     "pinned": "Post Fissato",
     "replies": "1 risposta. Clicca per rispondere.",
     "replies-n": "{{n}} risposte. Clicca per rispondere.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Ancora nessuna risposta. Clicca per rispondere."
   },
   "nsfw": {
@@ -254,6 +262,7 @@
     "comment-entry-go-parent": "Vedi commento genitore",
     "hidden-warning": "This content got low rating by people. Proceed with caution.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "Copia l'indirizzo del Post",
     "address-copied": "Indirizzo del post copiato negli appunti.",
     "browse-original": "Apri post originale",
@@ -428,6 +437,7 @@
     "profile-image": "Immagine del profilo",
     "website": "Sito web",
     "location": "Posizione/Provenienza",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profilo aggiornato con successo!"
   },
   "image-upload-button": {
@@ -439,6 +449,7 @@
     "currency": "Valuta",
     "language": "Lingua",
     "nsfw": "Mostra Contenuti NSFW",
+    "referral-link": "Referral link",
     "updated": "Preferenza aggiornata!"
   },
   "wallet": {
@@ -611,22 +622,33 @@
     "group-interests": "Interessi",
     "group-stake-operations": "Operazioni di investimento",
     "group-rewards": "Ricompense",
-    "type-curation_reward": "Ricompensa da curatore",
-    "type-author_reward": "Ricompensa come autore",
-    "type-comment_benefactor_reward": "Ricompense come beneficiario del commento",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Richiedi ricompense",
     "type-transfer": "Trasferisci",
-    "type-transfer_to_vesting": "Trasferisci nelle Maturazioni",
-    "type-withdraw_vesting": "Trasferisci maturazione",
+    "type-transfer_to_vesting": "Power up",
+    "type-withdraw_vesting": "Power down",
+    "type-fill_vesting_withdraw": "Partial Power down occurred",
     "type-fill_order": "Completa l'ordine",
     "type-producer_reward": "Ricompense da produttore",
     "type-interest": "Interessi",
     "type-transfer_to_savings": "Trasferisci nei risparmi",
-    "type-fill_convert_request": "Inserisci la richiesta di conversione",
+    "type-fill_convert_request": "Convert fulfilled",
     "type-cancel_transfer_from_savings": "Rimuovi i trasferiti dai risparmi",
     "type-cancel_transfer_from_savings-detail": "Da: <strong>@{{from}}</strong> <br/> IDentificativo di richiesta: <strong>{{request}}</strong>",
-    "type-return_vesting_delegation": "Richiama la delega investita",
-    "type-proposal_pay": "Pagamento della proposta"
+    "type-return_vesting_delegation": "Return delegations",
+    "type-proposal_pay": "Pagamento della proposta",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-recurrent_transfer": "Recurring transfer",
+    "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
+    "type-fill_recurrent_transfer": "Recurring transfer occurred",
+    "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
+    "type-collateralized_convert": "Collateralized convert",
+    "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
+    "type-limit_order_create": "New trade",
+    "type-effective_comment_vote": "Effective vote"
   },
   "key-or-hot": {
     "sign": "Accesso",
@@ -644,7 +666,7 @@
   "friends": {
     "followers": "({{n}}) Seguaci",
     "following": "({{n}}) Seguiti",
-    "search-placeholder": "Cerca utenti"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Segui",
@@ -931,6 +953,18 @@
     "validation-password": "Password is invalid.",
     "validation-label": "Please tick this box to proceed.",
     "updated": "Chiave d'accesso aggiornata con successo!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Aggiungi immagine",
