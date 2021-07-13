@@ -121,6 +121,7 @@
     "error-public-key": "You entered a public key. Password/WIF required",
     "error-user-fetch": "User data could not be fetched",
     "error-user-not-found": "User does not exist",
+    "error-user-not-found-cache": "User deleted as it no more exists in our history. Please retry with credentials.",
     "error-permission": "Couldn't get posting permission",
     "error-authenticate": "Wrong private key. Master or active or posting private key required.",
     "with-hive-signer": "Login with hivesigner",
