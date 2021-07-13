@@ -121,6 +121,7 @@
     "error-public-key": "Je gebruikte de openbare sleutel. Wachtwoord/ WIF benodigd",
     "error-user-fetch": "Gebruikersgegevens konden niet worden opgehaald",
     "error-user-not-found": "Gebruiker bestaat niet",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "Kon geen toestemming krijgen voor publiceren",
     "error-authenticate": "Wrong private key. Master or active or posting private key required.",
     "with-hive-signer": "Aanmelden via HiveSigner",
@@ -698,6 +699,7 @@
     "gallery": "Gallery",
     "emoji": "Emoji",
     "image-error": "Couldn't upload image.",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Image size is too large, try smaller size image again.",
     "fragments": "Snippets"
   },
