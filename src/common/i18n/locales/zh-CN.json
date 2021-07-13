@@ -121,6 +121,7 @@
     "error-public-key": "您输入的是公钥。但这里需要 密码 / WIF。",
     "error-user-fetch": "无法获取用户数据",
     "error-user-not-found": "用户不存在",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "无法获得发布权限",
     "error-authenticate": "私钥错误。需要主密钥或激活密钥或发贴私钥。",
     "with-hive-signer": "使用 hivesigner 登录",
@@ -698,6 +699,7 @@
     "gallery": "图库",
     "emoji": "表情",
     "image-error": "无法上传图像。",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "图像大小过大，请重新尝试较小的图像。",
     "fragments": "预设内容"
   },
