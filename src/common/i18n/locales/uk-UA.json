@@ -121,6 +121,7 @@
     "error-public-key": "Ви ввели публічний ключ. Потрібен пароль/WIF",
     "error-user-fetch": "Не вдалося отримати дані користувача",
     "error-user-not-found": "Користувач не існує",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "Не вдалося отримати дозвіл на публікацію",
     "error-authenticate": "Неправильний приватний ключ. Необхідно вказати активний або постінг приватний ключ.",
     "with-hive-signer": "Увійти за допомогою hivesigner",
@@ -698,6 +699,7 @@
     "gallery": "Галерея",
     "emoji": "Емоджі",
     "image-error": "Не вдалося додати зображення.",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Зображення завелике. Спробуйте зменшити його розмір.",
     "fragments": "Snippets"
   },
