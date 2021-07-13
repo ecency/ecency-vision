@@ -121,6 +121,7 @@
     "error-public-key": "Sisestasid avaliku võtme. Parool/WIF nõutud",
     "error-user-fetch": "Kasutaja infot ei saadud kätte",
     "error-user-not-found": "Kasutajat ei eksisteeri",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "Ei saanud postitamiseks luba",
     "error-authenticate": "Wrong private key. Master or active or posting private key required.",
     "with-hive-signer": "Sisene hivesigneriga",
@@ -698,6 +699,7 @@
     "gallery": "Gallery",
     "emoji": "Emoji",
     "image-error": "Couldn't upload image.",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Image size is too large, try smaller size image again.",
     "fragments": "Snippets"
   },
