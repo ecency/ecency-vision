@@ -95,7 +95,7 @@ export default merge(baseConfig, {
                 localIdentName: '[local]'
               },
               importLoaders: 1,
-              // sourceMap: true,
+              sourceMap: true,
               url: false
             },
           },
