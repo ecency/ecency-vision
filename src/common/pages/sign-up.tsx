@@ -93,6 +93,9 @@ class SignUpPage extends Component<PageProps, State> {
     render() {
         const {global} = this.props;
 
+        const signupSvg = global.isElectron ? "../../common/img/signup.svg" : require("../img/signup.svg");
+        const logoCircle = global.isElectron ? "../../common/img/logo-circle.svg" : require("../img/logo-circle.svg");
+
         //  Meta config
         const metaProps = {
             title: _t('sign-up.header')

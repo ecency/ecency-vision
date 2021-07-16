@@ -32,8 +32,6 @@ import _c from "../../util/fix-class-names";
 
 import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg} from "../../img/svg";
 
-const logo = require('../../img/logo-circle.svg');
-
 interface Props {
     history: History;
     location: Location;
@@ -152,6 +150,7 @@ export class NavBar extends Component<Props, State> {
 
     render() {
         const {global, activeUser, ui, step, setStepOne} = this.props;
+        const logo = global.isElectron? "../../common/img/logo-circle.svg" : require('../../img/logo-circle.svg');
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
