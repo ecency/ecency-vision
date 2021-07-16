@@ -121,6 +121,7 @@
     "error-public-key": "Hai inserito una chiave pubblica. Password o WIF richiesta",
     "error-user-fetch": "I dati dell'utente non possono essere recuperati",
     "error-user-not-found": "L'utente non esiste",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "Non hai l'autorizzazione per pubblicare",
     "error-authenticate": "Chiave Privata Errata. Richiesta chiave maestra o chiave attiva o chiave privata di pubblicazione.",
     "with-hive-signer": "Accedi tramite hivesigner",
@@ -262,6 +263,7 @@
     "comment-entry-go-parent": "Vedi commento genitore",
     "hidden-warning": "This content got low rating by people. Proceed with caution.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "Copia l'indirizzo del Post",
     "address-copied": "Indirizzo del post copiato negli appunti.",
     "browse-original": "Apri post originale",
@@ -697,6 +699,7 @@
     "gallery": "Galleria",
     "emoji": "Emoji",
     "image-error": "Impossibile caricare l'immagine.",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Le dimensioni dell'immagine sono troppo grandi, prova di nuovo con un'immagine più piccola.",
     "fragments": "Ritagli"
   },

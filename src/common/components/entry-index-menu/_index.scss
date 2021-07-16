@@ -147,6 +147,10 @@
 .overlay-for-introduction {
   background-color: rgba(0, 0, 0, 0.48);
   position: absolute;
-  inset: 0;
+  inset: 0px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
   z-index: 4;
 }

@@ -121,6 +121,7 @@
     "error-public-key": "Droeneuh peutameung gunci umum. Nyang perlee password/WIF",
     "error-user-fetch": "Data nyang neu pakek hana jeut cok",
     "error-user-not-found": "Hana nyang pakek",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "Hana meureumpok izin untuk posting",
     "error-authenticate": "Wrong private key. Master or active or posting private key required.",
     "with-hive-signer": "Tamong ngon hivesigner",
@@ -262,6 +263,7 @@
     "comment-entry-go-parent": "Kalon ureung chik langsong",
     "hidden-warning": "Konten nyoe ubeut nilai bak gop. Cilanjut beuhati hati.",
     "muted-warning": "Konten nyoe ka ipeu im le Moderator {{Komunitas}} Karna hana ipateh haba komunitas.",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "Salen alamat posting",
     "address-copied": "Alamat post di salen u clipboard.",
     "browse-original": "Open original post",
@@ -697,6 +699,7 @@
     "gallery": "Gallery",
     "emoji": "Emoji",
     "image-error": "Couldn't upload image.",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Image size is too large, try smaller size image again.",
     "fragments": "Snippets"
   },

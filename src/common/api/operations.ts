@@ -111,10 +111,12 @@ const broadcastPostingJSON = (username: string, id: string, json: {}): Promise<T
     }
 
     // With hivesigner access token
-    return new hs.Client({
-        accessToken: getAccessToken(username),
+
+    let token = getAccessToken(username);
+    return token ? new hs.Client({
+        accessToken: token,
     }).customJson([], [username], id, JSON.stringify(json))
-        .then((r: any) => r.result);
+        .then((r: any) => r.result) : Promise.resolve(0);
 }
 
 const broadcastPostingOperations = (username: string, operations: Operation[]): Promise<TransactionConfirmation> => {
@@ -128,10 +130,11 @@ const broadcastPostingOperations = (username: string, operations: Operation[]): 
     }
 
     // With hivesigner access token
-    return new hs.Client({
-        accessToken: getAccessToken(username),
+    let token = getAccessToken(username);
+    return token ? new hs.Client({
+        accessToken: token,
     }).broadcast(operations)
-        .then((r: any) => r.result);
+        .then((r: any) => r.result) : Promise.resolve(0);
 }
 
 export const reblog = (username: string, author: string, permlink: string, _delete: boolean = false): Promise<TransactionConfirmation> => {

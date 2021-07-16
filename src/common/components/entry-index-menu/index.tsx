@@ -41,7 +41,7 @@ interface States {
 
 export const isMyPage = (global: Global, activeUser: ActiveUser | null) => {
     const {filter, tag} = global;
-    return activeUser !== null &&
+    return activeUser && activeUser !== null &&
         (
             (activeUser.username === tag.replace("@", "") && filter === "feed") ||
             tag === "my"
@@ -130,6 +130,9 @@ export class EntryIndexMenu extends Component<Props, States> {
             showInitialIntroductionJourney = true;
             ls.set(`${activeUser.username}HadTutorial`, 'true');
             this.setState({introduction: showInitialIntroductionJourney ? IntroductionType.FRIENDS : IntroductionType.NONE})
+        }
+        if(prevProps.activeUser !== activeUser && !activeUser && !isActiveUser(activeUser) && ls.get(`${prevProps.activeUser!.username}HadTutorial`)){
+            this.setState({introduction: IntroductionType.NONE})
         }
     }
 
@@ -285,7 +288,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                             {!isGlobal && introduction !== IntroductionType.FRIENDS && _t('entry-filter.filter-global-part3')}
                                             {!isGlobal && introduction !== IntroductionType.FRIENDS && <Link to='/communities'> {_t('entry-filter.filter-global-join-communities')}</Link>}
                                         </>;
-        const introductionOverlayClass = (isMounted && introduction === IntroductionType.NONE) ? "d-none" : "overlay-for-introduction"
+        const introductionOverlayClass = isMounted && (introduction === IntroductionType.NONE ? "d-none" : "overlay-for-introduction") || 'd-none';
         return isMounted ? <div>
                     <div className={introductionOverlayClass} id="overlay" onClick={this.onClosePopup}/>
                     <div className="entry-index-menu">

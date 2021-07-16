@@ -121,6 +121,7 @@
     "error-public-key": "Вы ввели публичный ключ, а нужен приватный или пароль",
     "error-user-fetch": "Не удалось получить данные пользователя",
     "error-user-not-found": "Такого пользователя не существует",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "Не удалось получить разрешение на запись",
     "error-authenticate": "Неверный закрытый ключ. Требуется мастер-пароль, активный или закрытый постинг ключ.",
     "with-hive-signer": "Войти с помощью hivesigner",
@@ -262,6 +263,7 @@
     "comment-entry-go-parent": "Просмотр прямого родителя",
     "hidden-warning": "Этот контент получил низкий рейтинг со стороны людей. Будьте осторожны.",
     "muted-warning": "Этот контент был заблокирован модераторами {{community}} за несоблюдение правил сообщества.",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "Скопировать адрес поста",
     "address-copied": "Адрес поста скопирован в буфер обмена.",
     "browse-original": "Открыть оригинальный пост",
@@ -697,6 +699,7 @@
     "gallery": "Галерея",
     "emoji": "Эмодзи",
     "image-error": "Не удалось загрузить изображение.",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Слишком большой размер изображения. Попробуйте уменьшить его.",
     "fragments": "Snippets"
   },
