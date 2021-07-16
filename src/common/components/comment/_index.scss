@@ -25,16 +25,12 @@
       resize: none;
       line-height: 1.5;
       border-radius: 0 0;
-      height: 60px;
+      min-height: 60px;
       padding: 4px;
       transition: height .3s;
 
       @include themify(night) {
         color: $silver;
-      }
-
-      &.expanded {
-        height: 120px;
       }
     }
   }
