@@ -65,6 +65,8 @@ import {version} from "../../../package.json";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import defaults from "../constants/defaults.json";
+import { EntryDeleteBtn } from "../components/entry-delete-btn";
+import { pencilOutlineSvg } from "../img/svg";
 
 setProxyBase(defaults.imageServer);
 
@@ -83,6 +85,7 @@ interface State {
     replying: boolean;
     showIfNsfw: boolean;
     editHistory: boolean;
+    edit: boolean;
     showProfileBox: boolean;
 }
 
@@ -92,6 +95,7 @@ class EntryPage extends BaseComponent<Props, State> {
         replying: false,
         showIfNsfw: false,
         editHistory: false,
+        edit: false,
         showProfileBox: false
     };
     
@@ -308,9 +312,52 @@ class EntryPage extends BaseComponent<Props, State> {
         this.ensureEntry();
     }
 
+    updateReply = (text: string) => {
+        const entry = this.getEntry();
+        const {activeUser, updateReply} = this.props;
+
+        if(entry){
+            const {permlink, parent_author: parentAuthor, parent_permlink: parentPermlink} = entry;
+        const jsonMeta = makeJsonMetaDataReply(
+            entry.json_metadata.tags || ['ecency'],
+            version
+        );
+
+        this.stateSet({loading: true});
+
+        comment(
+            activeUser?.username!,
+            parentAuthor!,
+            parentPermlink!,
+            permlink,
+            '',
+            text,
+            jsonMeta,
+            null,
+        ).then(() => {
+            const nReply: Entry = {
+                ...entry,
+                body: text
+            }
+
+            updateReply(nReply); // update store
+            this.toggleEdit(); // close comment box
+        }).catch((e) => {
+            error(formatError(e));
+        }).finally(() => {
+            this.stateSet({loading: false});
+        });
+    }
+    }
+
+    toggleEdit = () => {
+        const {edit} = this.state;
+        this.stateSet({edit: !edit});
+    }
+
     render() {
-        const {loading, replying, showIfNsfw, editHistory} = this.state;
-        const {global, history} = this.props;
+        const { loading, replying, showIfNsfw, editHistory, edit } = this.state;
+        const { global, history } = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
@@ -374,7 +421,7 @@ class EntryPage extends BaseComponent<Props, State> {
             tag: isCommunity(tags[0]) ? tags[1] : tags[0],
             keywords: tags.join(", "),
         };
-
+        
         return (
             <>
                 <Meta {...metaProps} />
@@ -499,6 +546,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                             </div>
                                                         </div>
                                                         <span className="flex-spacer"/>
+                                                        
                                                         {global.usePrivate && BookmarkBtn({
                                                             ...this.props,
                                                             entry: originalEntry
@@ -516,6 +564,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                         const renderedBody = {__html: renderPostBody(entry.body, false, global.canUseWebp)};
                                         const ctitle = entry.community ? entry.community_title : "";
+                                        debugger
                                         return <>
                                             <div className="entry-header">
                                                 {isMuted && (<div className="hidden-warning">
@@ -533,7 +582,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 {isComment && (
                                                     <div className="comment-entry-header">
                                                         <div className="comment-entry-header-title">RE: {entry.title}</div>
-                                                        <div className="comment-entry-header-info">{_t("entry.comment-entry-title")}</div>
+                                                        <div className="comment-entry-header-info">  {_t("entry.comment-entry-title")}</div>
                                                         <p className="comment-entry-root-title">{entry.title}</p>
                                                         <ul className="comment-entry-opts">
                                                             <li>
@@ -600,6 +649,23 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         </div>
                                                     </div>
                                                     <span className="flex-spacer"/>
+                                                    {ownEntry &&  (
+                                                            <>
+                                                                <a title={_t('g.edit')} className={'edit-btn'} onClick={this.toggleEdit}>
+                                                                    {pencilOutlineSvg}
+                                                                </a>
+                                                                {edit && Comment({
+                                                                    ...this.props,
+                                                                    defText: entry.body,
+                                                                    submitText: _t('g.update'),
+                                                                    cancellable: true,
+                                                                    onSubmit: this.updateReply,
+                                                                    onCancel: this.toggleEdit,
+                                                                    inProgress: loading,
+                                                                    autoFocus: true
+                                                                })}
+                                                            </>
+                                                        )}
                                                     {global.usePrivate && BookmarkBtn({
                                                         ...this.props,
                                                         entry
