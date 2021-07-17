@@ -65,9 +65,8 @@ import {version} from "../../../package.json";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import defaults from "../constants/defaults.json";
-import { EntryDeleteBtn } from "../components/entry-delete-btn";
-import { pencilOutlineSvg } from "../img/svg";
-import { fetchEntries } from "../store/entries";
+import entryDeleteBtn from "../components/entry-delete-btn";
+import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
 
 setProxyBase(defaults.imageServer);
 
@@ -88,6 +87,7 @@ interface State {
     editHistory: boolean;
     edit: boolean;
     showProfileBox: boolean;
+    comment: string;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -97,18 +97,21 @@ class EntryPage extends BaseComponent<Props, State> {
         showIfNsfw: false,
         editHistory: false,
         edit: false,
-        showProfileBox: false
+        showProfileBox: false,
+        comment: ""
     };
     
     viewElement: HTMLDivElement | undefined;
 
     componentDidMount() {
         this.ensureEntry();
+        let entry = this.getEntry();
 
         const {location, global} = this.props;
         if (global.usePrivate && location.search === "?history") {
             this.toggleEditHistory();
         }
+        entry && this.setState({comment: this.getEntry()!.body || ""})
 
         window.addEventListener("scroll", this.detect);
         window.addEventListener("resize", this.detect);
@@ -134,7 +137,6 @@ class EntryPage extends BaseComponent<Props, State> {
 
     // detects distance between title and comments section sets visibility of profile card
     detect = () => {
-
        const infoCard:HTMLElement | null = document.getElementById("avatar-fixed");
        const top = this?.viewElement?.getBoundingClientRect()?.top;
 
@@ -148,7 +150,6 @@ class EntryPage extends BaseComponent<Props, State> {
 
     }
     
-
     toggleEditHistory = () => {
         const {editHistory} = this.state;
         this.stateSet({editHistory: !editHistory});
@@ -203,7 +204,6 @@ class EntryPage extends BaseComponent<Props, State> {
 
     getEntry = (): Entry | undefined => {
         const {entries, match} = this.props;
-        debugger
         const {username, permlink} = match.params;
         const author = username.replace("@", "");
 
@@ -341,9 +341,10 @@ class EntryPage extends BaseComponent<Props, State> {
                 ...entry,
                 body: text
             }
-
+            this.setState({comment: text})
             updateReply(nReply); // update store
             this.toggleEdit(); // close comment box
+            this.reload()
         
         }).catch((e) => {
             error(formatError(e));
@@ -351,15 +352,24 @@ class EntryPage extends BaseComponent<Props, State> {
             this.stateSet({loading: false});
         });
     }
-    }
+}
 
     toggleEdit = () => {
         const {edit} = this.state;
         this.stateSet({edit: !edit});
     }
 
+    deleted = async () => {
+        const { deleteReply, updateEntry, global } = this.props;
+        let entry = this.getEntry();
+        entry && updateEntry(entry)
+        debugger
+        entry && deleteReply(entry);
+        this.ensureEntry();
+    }
+
     render() {
-        const { loading, replying, showIfNsfw, editHistory, edit } = this.state;
+        const { loading, replying, showIfNsfw, editHistory, edit, comment } = this.state;
         const { global, history } = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
@@ -567,7 +577,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                         const renderedBody = {__html: renderPostBody(entry.body, false, global.canUseWebp)};
                                         const ctitle = entry.community ? entry.community_title : "";
-                                        debugger
+
                                         return <>
                                             <div className="entry-header">
                                                 {isMuted && (<div className="hidden-warning">
@@ -655,6 +665,14 @@ class EntryPage extends BaseComponent<Props, State> {
                                                                 <a title={_t('g.edit')} className={'edit-btn'} onClick={this.toggleEdit}>
                                                                     {pencilOutlineSvg}
                                                                 </a>
+
+                                                                {entryDeleteBtn({
+                                                                    ...this.props,
+                                                                    entry,
+                                                                    setDeleteInProgress: value=> this.setState({loading:value}),
+                                                                    onSuccess: this.deleted,
+                                                                    children: <a title={_t('g.delete')} className="edit-btn">{deleteForeverSvg}</a>
+                                                                })}
                                                             </>
                                                         )}
                                                     {global.usePrivate && BookmarkBtn({
@@ -673,7 +691,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/> :
                                                 Comment({
                                                     ...this.props,
-                                                    defText: entry.body,
+                                                    defText: comment,
                                                     submitText: _t('g.update'),
                                                     cancellable: true,
                                                     onSubmit: this.updateReply,

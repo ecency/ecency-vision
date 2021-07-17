@@ -16,7 +16,8 @@ interface Props {
     children: JSX.Element;
     entry: Entry;
     activeUser: ActiveUser | null;
-    onSuccess: () => void
+    onSuccess: () => void;
+    setDeleteInProgress?: (value: boolean) => void
 }
 
 interface State {
@@ -29,17 +30,20 @@ export class EntryDeleteBtn extends BaseComponent<Props> {
     };
 
     delete = () => {
-        const {entry, activeUser, onSuccess} = this.props;
+        const {entry, activeUser, onSuccess, setDeleteInProgress} = this.props;
+        setDeleteInProgress && setDeleteInProgress(true);
 
         this.stateSet({inProgress: true});
         deleteComment(activeUser?.username!, entry.author, entry.permlink)
             .then(() => {
                 onSuccess();
                 this.stateSet({inProgress: false});
+                setDeleteInProgress && setDeleteInProgress(false);
             })
             .catch((e) => {
                 error(formatError(e));
                 this.stateSet({inProgress: false});
+                setDeleteInProgress && setDeleteInProgress(false);
             })
     };
 
@@ -71,7 +75,8 @@ export default (props: Props) => {
         children: props.children,
         entry: props.entry,
         activeUser: props.activeUser,
-        onSuccess: props.onSuccess
+        onSuccess: props.onSuccess,
+        setDeleteInProgress: props.setDeleteInProgress
     }
 
     return <EntryDeleteBtn {...p} />
