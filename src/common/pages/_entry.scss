@@ -29,6 +29,10 @@
   @include themify(night) {
     color: lighten($steel-grey, 4);
   }
+
+  &:hover {
+    color: $dark-sky-blue;
+  }
 }
 
 .bookmark-btn {

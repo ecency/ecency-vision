@@ -67,6 +67,7 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import defaults from "../constants/defaults.json";
 import { EntryDeleteBtn } from "../components/entry-delete-btn";
 import { pencilOutlineSvg } from "../img/svg";
+import { fetchEntries } from "../store/entries";
 
 setProxyBase(defaults.imageServer);
 
@@ -202,6 +203,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
     getEntry = (): Entry | undefined => {
         const {entries, match} = this.props;
+        debugger
         const {username, permlink} = match.params;
         const author = username.replace("@", "");
 
@@ -342,6 +344,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
             updateReply(nReply); // update store
             this.toggleEdit(); // close comment box
+        
         }).catch((e) => {
             error(formatError(e));
         }).finally(() => {
@@ -612,8 +615,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         })}</div>
                                                     })}
 
-                                                    
-
                                                     <div className="entry-info-inner">
                                                         <div className="info-line-1">
                                                             {ProfileLink({
@@ -654,16 +655,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                                                 <a title={_t('g.edit')} className={'edit-btn'} onClick={this.toggleEdit}>
                                                                     {pencilOutlineSvg}
                                                                 </a>
-                                                                {edit && Comment({
-                                                                    ...this.props,
-                                                                    defText: entry.body,
-                                                                    submitText: _t('g.update'),
-                                                                    cancellable: true,
-                                                                    onSubmit: this.updateReply,
-                                                                    onCancel: this.toggleEdit,
-                                                                    inProgress: loading,
-                                                                    autoFocus: true
-                                                                })}
                                                             </>
                                                         )}
                                                     {global.usePrivate && BookmarkBtn({
@@ -678,7 +669,18 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 </div>
                                             </div>
                                             <meta itemProp="headline name" content={entry.title}/>
-                                            <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/>
+                                            {!edit ? 
+                                                <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/> :
+                                                Comment({
+                                                    ...this.props,
+                                                    defText: entry.body,
+                                                    submitText: _t('g.update'),
+                                                    cancellable: true,
+                                                    onSubmit: this.updateReply,
+                                                    onCancel: this.toggleEdit,
+                                                    inProgress: loading,
+                                                    autoFocus: true
+                                                })}
                                             <meta itemProp="image" content={metaProps.image}/>
                                         </>
                                     })()}
