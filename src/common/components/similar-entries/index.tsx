@@ -25,9 +25,6 @@ import {_t} from "../../i18n";
 import parseDate from "../../helper/parse-date";
 import isCommunity from "../../helper/is-community";
 
-const fallbackImage = require("../../img/fallback.png");
-const noImage = require("../../img/noimage.svg");
-
 interface Props {
     history: History;
     location: Location;
@@ -124,6 +121,8 @@ export class SimilarEntries extends BaseComponent<Props, State> {
     render() {
         const {global} = this.props
         const {entries} = this.state;
+        const fallbackImage = global.isElectron ? "../../common/img/fallback.png" : require("../../img/fallback.png");
+        const noImage = global.isElectron ? "../../common/img/noimage.svg" : require("../../img/noimage.svg");
         if (entries.length !== 3) {
             return null;
         }

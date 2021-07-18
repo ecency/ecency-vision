@@ -98,9 +98,9 @@ export class TagLink extends Component<Props> {
 
         // temporarily assign a value to avoid multiple requests
         // skip this testing environment
-        if (typeof jest === "undefined") {
-            comTagSet(tag, tag);
-        }
+        // if (typeof jest === "undefined") {
+        //     comTagSet(tag, tag);
+        // }
 
         const {communities} = this.props;
 

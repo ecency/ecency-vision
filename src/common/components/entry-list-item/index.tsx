@@ -41,10 +41,6 @@ import truncate from "../../util/truncate";
 
 import {repeatSvg, pinSvg, commentSvg} from "../../img/svg";
 
-const fallbackImage = require("../../img/fallback.png");
-const noImage = require("../../img/noimage.svg");
-const nsfwImage = require("../../img/nsfw.png");
-
 import defaults from "../../constants/defaults.json";
 
 setProxyBase(defaults.imageServer);
@@ -130,6 +126,10 @@ export default class EntryListItem extends Component<Props, State> {
 
     render() {
         const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order} = this.props;
+
+        const fallbackImage = global.isElectron ? "../../common/img/fallback.png" : require("../../img/fallback.png");
+        const noImage = global.isElectron ? "../../common/img/noimage.svg" : require("../../img/noimage.svg");
+        const nsfwImage = global.isElectron ? "../../common/img/nsfw.png" : require("../../img/nsfw.png");
         const crossPost = !!(theEntry.original_entry);
 
         const entry = theEntry.original_entry || theEntry;

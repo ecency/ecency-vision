@@ -29,10 +29,6 @@ import {SearchResult} from "../../api/search-api";
 
 import {peopleSvg, commentSvg} from "../../img/svg";
 
-const fallbackImage = require("../../img/fallback.png");
-const noImage = require("../../img/noimage.svg");
-
-
 interface Props {
     history: History;
     global: Global;
@@ -60,6 +56,8 @@ class SearchListItem extends Component<Props> {
 
     render() {
         const {global, res} = this.props;
+        const fallbackImage = global.isElectron ? "../../common/img/fallback.png" : require("../../img/fallback.png");
+        const noImage = global.isElectron ? "../../common/img/noimage.svg" : require("../../img/noimage.svg");
 
         const entry = {
             category: res.category,

@@ -363,7 +363,7 @@ export class NavBar extends Component<Props, State> {
                     <div className="nav-bar-inner">
                         <div className="brand">
                             <Link to={logoHref}>
-                                <img src={logo} className="logo" alt="Logo"/>
+                                <img src={'../../common/img/logo-circle.svg'} className="logo" alt="Logo"/>
                             </Link>
                         </div>
 

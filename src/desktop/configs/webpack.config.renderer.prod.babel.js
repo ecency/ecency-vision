@@ -63,16 +63,16 @@ export default merge(baseConfig, {
             loader: MiniCssExtractPlugin.loader,
           },
           {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
             loader: 'css-loader',
             options: {
               sourceMap: true,
               importLoaders: 1,
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
             },
           },
         ],

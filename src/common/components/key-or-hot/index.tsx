@@ -14,9 +14,6 @@ import {_t} from "../../i18n";
 
 import {keySvg} from "../../img/svg";
 
-const hsLogo = require("../../img/hive-signer.svg");
-const keyChainLogo = require("../../img/keychain.png");
-
 interface Props {
     global: Global;
     activeUser: ActiveUser;
@@ -85,6 +82,8 @@ export class KeyOrHot extends Component<Props, State> {
     render() {
         const {inProgress, global} = this.props;
         const {key} = this.state;
+        const hsLogo = global.isElectron ? "../../common/img/hive-signer.svg" : require("../../img/hive-signer.svg");
+        const keyChainLogo = global.isElectron ? "../../common/img/keychain.png" : require("../../img/keychain.png");
 
         return (
             <>

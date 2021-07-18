@@ -17,7 +17,7 @@ exports[`(1) Default render 1`] = `
         <img
           alt="Logo"
           className="logo"
-          src="logo-circle.svg"
+          src="../../common/img/logo-circle.svg"
         />
       </a>
     </div>
@@ -254,7 +254,7 @@ Array [
           <img
             alt="Logo"
             className="logo"
-            src="logo-circle.svg"
+            src="../../common/img/logo-circle.svg"
           />
         </a>
       </div>
@@ -522,7 +522,7 @@ exports[`(3) Night Theme 1`] = `
         <img
           alt="Logo"
           className="logo"
-          src="logo-circle.svg"
+          src="../../common/img/logo-circle.svg"
         />
       </a>
     </div>
@@ -758,7 +758,7 @@ exports[`(4) With active user 1`] = `
         <img
           alt="Logo"
           className="logo"
-          src="logo-circle.svg"
+          src="../../common/img/logo-circle.svg"
         />
       </a>
     </div>
@@ -1046,7 +1046,7 @@ exports[`(5) With active user && usePrivate = false 1`] = `
         <img
           alt="Logo"
           className="logo"
-          src="logo-circle.svg"
+          src="../../common/img/logo-circle.svg"
         />
       </a>
     </div>

@@ -11,7 +11,7 @@
   .editor-panel,
   .preview-panel,
   .advanced-panel {
-    border-radius: $input-border-radius / 2;
+    border-radius: $input-border-radius * 0.5;
     flex-basis: 49%;
     display: flex;
     flex-direction: column;
