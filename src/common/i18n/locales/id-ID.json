@@ -42,7 +42,7 @@
     "done": "Selesai",
     "apply": "Terapkan",
     "warning": "Peringatan",
-    "payout": "Payout",
+    "payout": "Bayaran",
     "close": "Tutup"
   },
   "confirm": {
@@ -122,7 +122,7 @@
     "error-public-key": "Anda memasukkan Public Key. Password/WIF yang diperlukan",
     "error-user-fetch": "Data pengguna tidak dapat diambil",
     "error-user-not-found": "Pengguna tidak ada",
-    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
+    "error-user-not-found-cache": "Cache unkonsistensi terdeteksi. Silakan coba lagi login dengan kredensial Anda.",
     "error-permission": "Tidak ditemukan ijin postingan",
     "error-authenticate": "Kunci pribadi salah. Kunci pribadi posting atau kunci pribadi aktif atau kunci utama diperlukan.",
     "with-hive-signer": "Masuk dengan hivesigner",
@@ -700,7 +700,7 @@
     "gallery": "Galeri",
     "emoji": "Emoji",
     "image-error": "Tidak dapat mengunggah gambar.",
-    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
+    "image-error-cache": "Tidak dapat memasukkan gambar. Anda sepertinya sudah keluar dari akun Anda. Coba masuk kembali.",
     "image-error-size": "Ukuran gambar terlalu besar, coba masukkan ukuran gambar yang lebih kecil.",
     "fragments": "Cuplikan"
   },
