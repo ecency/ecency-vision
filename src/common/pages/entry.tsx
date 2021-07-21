@@ -386,7 +386,6 @@ class EntryPage extends BaseComponent<Props, State> {
         const entry = this.getEntry();
 
         if (!entry) {
-            debugger
             return NotFound({...this.props});
         }
 

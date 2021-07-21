@@ -423,7 +423,7 @@ export class List extends Component<ListProps> {
 
         const {list} = discussion;
         let deletedPostID = ls.get('deletedComment')
-debugger
+
         const filtered = list.filter(
             (x) => x.parent_author === parent.author && x.parent_permlink === parent.permlink && x.post_id !== deletedPostID
         );
