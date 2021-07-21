@@ -17,7 +17,8 @@ interface Props {
     entry: Entry;
     activeUser: ActiveUser | null;
     onSuccess: () => void;
-    setDeleteInProgress?: (value: boolean) => void
+    setDeleteInProgress?: (value: boolean) => void;
+    isComment?: boolean;
 }
 
 interface State {

@@ -29,7 +29,7 @@ import Comment from "../components/comment"
 import SimilarEntries from "../components/similar-entries";
 import BookmarkBtn from "../components/bookmark-btn";
 import EditHistory from "../components/edit-history";
-import {error} from "../components/feedback";
+import {error, success} from "../components/feedback";
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import Feedback from "../components/feedback";
@@ -65,8 +65,9 @@ import {version} from "../../../package.json";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import defaults from "../constants/defaults.json";
-import entryDeleteBtn from "../components/entry-delete-btn";
+import EntryDeleteBtn from "../components/entry-delete-btn";
 import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
+import { history } from "../store";
 
 setProxyBase(defaults.imageServer);
 
@@ -209,14 +210,13 @@ class EntryPage extends BaseComponent<Props, State> {
 
         const groupKeys = Object.keys(entries);
         let entry: Entry | undefined = undefined;
-
+        
         for (const k of groupKeys) {
             entry = entries[k].entries.find((x) => x.author === author && x.permlink === permlink);
             if (entry) {
                 break;
             }
         }
-
         return entry;
     };
 
@@ -360,12 +360,13 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     deleted = async () => {
-        const { deleteReply, updateEntry, global } = this.props;
+        const { deleteReply } = this.props;
         let entry = this.getEntry();
-        entry && updateEntry(entry)
-        debugger
         entry && deleteReply(entry);
-        this.ensureEntry();
+        ls.set(`deletedComment`,entry?.post_id);
+        this.reload();
+        window.location.reload();
+        history?.goBack();
     }
 
     render() {
@@ -385,6 +386,7 @@ class EntryPage extends BaseComponent<Props, State> {
         const entry = this.getEntry();
 
         if (!entry) {
+            debugger
             return NotFound({...this.props});
         }
 
@@ -660,16 +662,16 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         </div>
                                                     </div>
                                                     <span className="flex-spacer"/>
-                                                    {ownEntry &&  (
+                                                    {ownEntry && isComment &&  (
                                                             <>
                                                                 <a title={_t('g.edit')} className={'edit-btn'} onClick={this.toggleEdit}>
                                                                     {pencilOutlineSvg}
                                                                 </a>
 
-                                                                {entryDeleteBtn({
+                                                                {EntryDeleteBtn({
                                                                     ...this.props,
                                                                     entry,
-                                                                    setDeleteInProgress: value=> this.setState({loading:value}),
+                                                                    setDeleteInProgress: value=> this.setState({loading: value}),
                                                                     onSuccess: this.deleted,
                                                                     children: <a title={_t('g.delete')} className="edit-btn">{deleteForeverSvg}</a>
                                                                 })}
