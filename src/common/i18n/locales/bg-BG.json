@@ -121,6 +121,7 @@
     "error-public-key": "Вие въведохте публичен ключ. Нужна е парола/WIF",
     "error-user-fetch": "Данните за потребителят немогат да бъдат заредени",
     "error-user-not-found": "Потребителят не съществува",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "Неможахме да получим право да публикуваме",
     "error-authenticate": "Грешен личен ключ. Нужен е главен или активен личен ключ.",
     "with-hive-signer": "Влез чрез hivesigner",
@@ -262,6 +263,7 @@
     "comment-entry-go-parent": "Покажи коментара",
     "hidden-warning": "This content got low rating by people. Proceed with caution.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "Копирай адреса",
     "address-copied": "Адресът е копиран в клипборда.",
     "browse-original": "Open original post",
@@ -697,6 +699,7 @@
     "gallery": "Галерия",
     "emoji": "Емоджи",
     "image-error": "Изображението не можа да бъде качено.",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Размера на снимката е прекалено голям, опитай отново с по-малка.",
     "fragments": "Откъси"
   },

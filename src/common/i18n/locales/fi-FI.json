@@ -121,6 +121,7 @@
     "error-public-key": "Lisäsit public keyn. Vaaditaan salasana/WIF",
     "error-user-fetch": "Käyttäjätietoja ei voitu ladata",
     "error-user-not-found": "Käyttäjää ei ole olemassa",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "Julkaisulupaa ei voitu hakea",
     "error-authenticate": "Väärä yksityinen avain. Pää tai aktiivinen yksityinen avain vaaditaan.",
     "with-hive-signer": "Kirjaudu sisään hivesignerilla",
@@ -262,6 +263,7 @@
     "comment-entry-go-parent": "Näytä vanhempi",
     "hidden-warning": "This content got low rating by people. Proceed with caution.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "Kopioi osoite",
     "address-copied": "Osoite kopioitu leikepöydälle.",
     "browse-original": "Näytä alkuperäinen julkaisu",
@@ -697,6 +699,7 @@
     "gallery": "Galleria",
     "emoji": "Emoji",
     "image-error": "Kuvaa ei voitu ladata.",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Kuvan koko on liian suuri, kokeile pienempää kuvaa.",
     "fragments": "Katkelmat"
   },

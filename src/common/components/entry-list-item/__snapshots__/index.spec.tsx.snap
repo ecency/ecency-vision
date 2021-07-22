@@ -54,7 +54,7 @@ exports[`(1) Default render 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 8:53 AM"
+        title="Monday, June 1, 2020 10:53 AM"
       >
         5 days
       </span>
@@ -107,30 +107,34 @@ exports[`(1) Default render 1`] = `
     <div
       className="item-controls"
     >
-      <div>
-        <div
-          className="entry-vote-btn"
-          onClick={[Function]}
-        >
+      <div
+        onClick={[Function]}
+      >
+        <div>
           <div
-            className="btn-vote btn-up-vote"
+            className="entry-vote-btn"
+            onClick={[Function]}
           >
             <div
-              className=""
+              className="btn-vote btn-up-vote"
             >
-              <span
-                className="btn-inner "
+              <div
+                className=""
               >
-                <svg
-                  className="vote-svg"
-                  viewBox="6 8 12 7.41"
+                <span
+                  className="btn-inner "
                 >
-                  <path
-                    d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
+                  <svg
+                    className="vote-svg"
+                    viewBox="6 8 12 7.41"
+                  >
+                    <path
+                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -290,7 +294,7 @@ exports[`(2) Grid view 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 8:53 AM"
+        title="Monday, June 1, 2020 10:53 AM"
       >
         5 days
       </span>
@@ -342,30 +346,34 @@ exports[`(2) Grid view 1`] = `
     <div
       className="item-controls"
     >
-      <div>
-        <div
-          className="entry-vote-btn"
-          onClick={[Function]}
-        >
+      <div
+        onClick={[Function]}
+      >
+        <div>
           <div
-            className="btn-vote btn-up-vote"
+            className="entry-vote-btn"
+            onClick={[Function]}
           >
             <div
-              className=""
+              className="btn-vote btn-up-vote"
             >
-              <span
-                className="btn-inner "
+              <div
+                className=""
               >
-                <svg
-                  className="vote-svg"
-                  viewBox="6 8 12 7.41"
+                <span
+                  className="btn-inner "
                 >
-                  <path
-                    d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
+                  <svg
+                    className="vote-svg"
+                    viewBox="6 8 12 7.41"
+                  >
+                    <path
+                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -525,7 +533,7 @@ exports[`(3) Nsfw 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 8:53 AM"
+        title="Monday, June 1, 2020 10:53 AM"
       >
         5 days
       </span>
@@ -584,30 +592,34 @@ exports[`(3) Nsfw 1`] = `
     <div
       className="item-controls"
     >
-      <div>
-        <div
-          className="entry-vote-btn"
-          onClick={[Function]}
-        >
+      <div
+        onClick={[Function]}
+      >
+        <div>
           <div
-            className="btn-vote btn-up-vote"
+            className="entry-vote-btn"
+            onClick={[Function]}
           >
             <div
-              className=""
+              className="btn-vote btn-up-vote"
             >
-              <span
-                className="btn-inner "
+              <div
+                className=""
               >
-                <svg
-                  className="vote-svg"
-                  viewBox="6 8 12 7.41"
+                <span
+                  className="btn-inner "
                 >
-                  <path
-                    d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
+                  <svg
+                    className="vote-svg"
+                    viewBox="6 8 12 7.41"
+                  >
+                    <path
+                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -767,7 +779,7 @@ exports[`(4) Nsfw with active user 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 8:53 AM"
+        title="Monday, June 1, 2020 10:53 AM"
       >
         5 days
       </span>
@@ -828,29 +840,31 @@ exports[`(4) Nsfw with active user 1`] = `
       className="item-controls"
     >
       <div>
-        <div
-          className="entry-vote-btn"
-          onClick={[Function]}
-        >
+        <div>
           <div
-            className="btn-vote btn-up-vote"
+            className="entry-vote-btn"
+            onClick={[Function]}
           >
             <div
-              className=""
+              className="btn-vote btn-up-vote"
             >
-              <span
-                className="btn-inner "
+              <div
+                className=""
               >
-                <svg
-                  className="vote-svg"
-                  viewBox="6 8 12 7.41"
+                <span
+                  className="btn-inner "
                 >
-                  <path
-                    d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
+                  <svg
+                    className="vote-svg"
+                    viewBox="6 8 12 7.41"
+                  >
+                    <path
+                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -1010,7 +1024,7 @@ exports[`(5) Nsfw but allowed 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 8:53 AM"
+        title="Monday, June 1, 2020 10:53 AM"
       >
         5 days
       </span>
@@ -1063,30 +1077,34 @@ exports[`(5) Nsfw but allowed 1`] = `
     <div
       className="item-controls"
     >
-      <div>
-        <div
-          className="entry-vote-btn"
-          onClick={[Function]}
-        >
+      <div
+        onClick={[Function]}
+      >
+        <div>
           <div
-            className="btn-vote btn-up-vote"
+            className="entry-vote-btn"
+            onClick={[Function]}
           >
             <div
-              className=""
+              className="btn-vote btn-up-vote"
             >
-              <span
-                className="btn-inner "
+              <div
+                className=""
               >
-                <svg
-                  className="vote-svg"
-                  viewBox="6 8 12 7.41"
+                <span
+                  className="btn-inner "
                 >
-                  <path
-                    d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
+                  <svg
+                    className="vote-svg"
+                    viewBox="6 8 12 7.41"
+                  >
+                    <path
+                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -1278,7 +1296,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
       />
       <span
         className="date"
-        title="Wednesday, March 24, 2021 6:14 PM"
+        title="Wednesday, March 24, 2021 9:14 PM"
       >
         10 months
       </span>
@@ -1331,30 +1349,34 @@ exports[`(6) Cross post. Bottom menu 1`] = `
     <div
       className="item-controls"
     >
-      <div>
-        <div
-          className="entry-vote-btn"
-          onClick={[Function]}
-        >
+      <div
+        onClick={[Function]}
+      >
+        <div>
           <div
-            className="btn-vote btn-up-vote"
+            className="entry-vote-btn"
+            onClick={[Function]}
           >
             <div
-              className=""
+              className="btn-vote btn-up-vote"
             >
-              <span
-                className="btn-inner "
+              <div
+                className=""
               >
-                <svg
-                  className="vote-svg"
-                  viewBox="6 8 12 7.41"
+                <span
+                  className="btn-inner "
                 >
-                  <path
-                    d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
+                  <svg
+                    className="vote-svg"
+                    viewBox="6 8 12 7.41"
+                  >
+                    <path
+                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>

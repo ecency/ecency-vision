@@ -142,30 +142,34 @@ exports[`(1) Dialog (2) Down vote 1`] = `
 `;
 
 exports[`(2) Btn - No active user (1) Render 1`] = `
-<div>
-  <div
-    className="entry-vote-btn"
-    onClick={[Function]}
-  >
+<div
+  onClick={[Function]}
+>
+  <div>
     <div
-      className="btn-vote btn-up-vote"
+      className="entry-vote-btn"
+      onClick={[Function]}
     >
       <div
-        className=""
+        className="btn-vote btn-up-vote"
       >
-        <span
-          className="btn-inner "
+        <div
+          className=""
         >
-          <svg
-            className="vote-svg"
-            viewBox="6 8 12 7.41"
+          <span
+            className="btn-inner "
           >
-            <path
-              d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
+            <svg
+              className="vote-svg"
+              viewBox="6 8 12 7.41"
+            >
+              <path
+                d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -174,29 +178,31 @@ exports[`(2) Btn - No active user (1) Render 1`] = `
 
 exports[`(3) Btn - Up voted (1) Render 1`] = `
 <div>
-  <div
-    className="entry-vote-btn"
-    onClick={[Function]}
-  >
+  <div>
     <div
-      className="btn-vote btn-up-vote primary-btn-done voted"
+      className="entry-vote-btn"
+      onClick={[Function]}
     >
       <div
-        className=""
+        className="btn-vote btn-up-vote primary-btn-done voted"
       >
-        <span
-          className="btn-inner "
+        <div
+          className=""
         >
-          <svg
-            className="vote-svg"
-            viewBox="6 8 12 7.41"
+          <span
+            className="btn-inner "
           >
-            <path
-              d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
+            <svg
+              className="vote-svg"
+              viewBox="6 8 12 7.41"
+            >
+              <path
+                d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
       </div>
     </div>
   </div>
