@@ -90,7 +90,7 @@
     "razzle-plugin-scss": "^4.0.5",
     "razzle-plugin-typescript": "^3.0.0",
     "react-test-renderer": "^16.13.1",
-    "ts-jest": "^27.0.3",
+    "ts-jest": "^26.4.2",
     "tslint": "^5.18.0",
     "tslint-react": "^4.0.0",
     "typescript": "^3.5.3",
