@@ -17,7 +17,7 @@
     "days": "दिनों",
     "finish": "समाप्त करें",
     "next": "अगला",
-    "previous": "Previous",
+    "previous": "पिछला",
     "back": "वापस जाएँ।",
     "load-more": "अधिक लोड करे",
     "empty-list": "कुछ नहीं है",
@@ -32,7 +32,7 @@
     "hot": "फ़ीड",
     "trending": "फ़ीड",
     "created": "फ़ीड",
-    "muted": "feed",
+    "muted": "फीड",
     "found": "मिला",
     "feed": "फ़ीड",
     "blog": "ब्लॉगस",
@@ -41,8 +41,8 @@
     "replies": "जवाब",
     "done": "पूर्ण हुवा",
     "apply": "लागू करें",
-    "warning": "Warning",
-    "payout": "Payout",
+    "warning": "चेतावनी",
+    "payout": "भुगतान",
     "close": "बंद करें"
   },
   "confirm": {
@@ -62,11 +62,11 @@
     "filter-feed-subscriptions": "समुदाय",
     "filter-global": "ग्लोबल",
     "filter-global-part1": "इस फ़ीड में शामिल हैं ",
-    "filter-global-part2": " discussions on entire platform.",
-    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
-    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
-    "filter-global-discover": "Discover People",
-    "filter-global-join-communities": "Join Communities"
+    "filter-global-part2": " पूरे मंच पर चर्चा",
+    "filter-global-part3": " आपके सब्सक्राइब किए गए समुदायों से चर्चा। इस फ़ीड को भरने के लिए आप और समुदायों में शामिल हो सकते हैं।",
+    "filter-global-part4": " आपके द्वारा अनुसरण किए जाने वाले लोगों से चर्चा। इस फ़ीड को भरने के लिए आप और लोगों को फ़ॉलो कर सकते हैं।",
+    "filter-global-discover": "लोगों को खोजें",
+    "filter-global-join-communities": "समुदायों में शामिल हों"
   },
   "navbar": {
     "discover": "खोजिए",
@@ -122,7 +122,7 @@
     "error-public-key": "आपने सार्वजनिक कुंजी डाला| पासवर्ड/डब्लूएआईएफ की जरुरत है",
     "error-user-fetch": "उपयोगकर्ता डेटा प्राप्त नहीं किया जा सका",
     "error-user-not-found": "उपयोगकर्ता उपलब्ध नहीं है",
-    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
+    "error-user-not-found-cache": "कैश असंगतता का पता चला। कृपया अपने क्रेडेंशियल्स के साथ लॉगिन करने का पुनः प्रयास करें।",
     "error-permission": "पोस्टिंग की अनुमति नहीं मिल सकी",
     "error-authenticate": "गलत निजी कुंजी। मास्टर या सक्रिय या निजी कुंजी पोस्ट करना आवश्यक है।",
     "with-hive-signer": "हाइवेसाईनर के साथ लॉगिन करें",
@@ -160,8 +160,8 @@
     "pinned": "पिन की गई पोस्ट",
     "replies": "१ प्रतिक्रिया| क्लिक करें जबाब के लिए|",
     "replies-n": "{{n}} प्रतिक्रियाएं। जवाब देने के लिए क्लिक करें।",
-    "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-error": "पिछला मूल्य स्वीकार्य नहीं है। एक अलग मूल्य के साथ वोट करें।",
+    "vote-warning": "0% वोटिंग सामग्री को अस्वीकृत कर देता है।",
     "no-replies": "अभी तक कोई प्रतिक्रिया नहीं। जवाब देने के लिए क्लिक करें।"
   },
   "nsfw": {
@@ -264,7 +264,7 @@
     "comment-entry-go-parent": "सीधा मूल जनक को देखें",
     "hidden-warning": "इस सामग्री को लोगों द्वारा कम रेटिंग मिली है। सावधानी के साथ आगे बढ़ें।",
     "muted-warning": "इस सामग्री को {{community}} मॉडरेटर द्वारा सामुदायिक दिशानिर्देशों का पालन न करने के कारण म्यूट कर दिया गया था।",
-    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
+    "lowrep-warning": "इस पोस्ट के लेखक की प्रतिष्ठा कम है। सावधानी के साथ आगे बढ़ें।",
     "address-copy": "पोस्ट पता कापी करे",
     "address-copied": "क्लिपबोर्ड पर पोस्ट पता कॉपी किया गया।",
     "browse-original": "मूल पोस्ट खोलें",
@@ -439,7 +439,7 @@
     "profile-image": "प्रोफ़ाइल तसवीर",
     "website": "वेबसाइट",
     "location": "स्थान",
-    "copied": "Referral link copied to clipboard.",
+    "copied": "रेफ़रल लिंक क्लिपबोर्ड पर कॉपी किया गया।",
     "updated": "प्रोफाइल को सफलतापूर्वक अपडेट किया गया!"
   },
   "image-upload-button": {
@@ -451,7 +451,7 @@
     "currency": "करेंसी",
     "language": "भाषा",
     "nsfw": "NSFW सामग्री दिखाएं",
-    "referral-link": "Referral link",
+    "referral-link": "रेफ़रल लिंक",
     "updated": "वरीयता अद्यतन!"
   },
   "wallet": {
