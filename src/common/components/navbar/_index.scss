@@ -111,6 +111,8 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
+    padding: 21px;
+    padding-left: 0px;
 
     @media (min-width: $md-break) {
       height: 100%;
@@ -343,4 +345,21 @@ body.medium-zoom--opened {
   padding: 0;
   margin: 0;
   background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.icon {
+  width: 21px;
+  height: 21px;
+}
+
+.text-15 {
+  font-size: 17px;
+}
+
+.list-item {
+  &:hover {
+    background-color: $powder-blue;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+  }
 }

@@ -30,7 +30,7 @@ import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg} from "../../img/svg";
+import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg} from "../../img/svg";
 
 const logo = require('../../img/logo-circle.svg');
 
@@ -194,6 +194,60 @@ export class NavBar extends Component<Props, State> {
                 )}
                 <div ref={this.nav} className={_c(`nav-bar ${(!transparentVerify && step === 1 ? "transparent" : "")} ${(smVisible ? "visible-sm" : "")}`)}>
                     <div className="nav-bar-inner">
+                        <div className="mt-5 pt-5 w-100">
+                            <Link to="/search">
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                    <div className="icon">{magnifySvg}</div>
+                                    <div className="ml-3 text-15">Search</div>
+                                </div>
+                            </Link>
+
+
+                            <Link to="/search">
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                    <div className="icon">{pencilOutlineSvg}</div>
+                                    <div className="ml-3 text-15">Write a post</div>
+                                </div>
+                            </Link>
+
+
+                            <Link to="/search">
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                    <div className="icon">{accountOutlineSvg}</div>
+                                    <div className="ml-3 text-15">Profile menu</div>
+                                    <div className="ml-3 text-15">{chevronDownSvgForSlider}</div>
+                                </div>
+                            </Link>
+
+                            <Link to="/search">
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                    <div className="icon">{moonSvg}</div>
+                                    <div className="ml-3 text-15">Switch to dark theme</div>
+                                </div>
+                            </Link>
+
+                            <Link to="/search">
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                    <div className="icon">{globeSvg}</div>
+                                    <div className="ml-3 text-15">Language</div>
+                                </div>
+                            </Link>
+
+                            <Link to="/search">
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                    <div className="icon text-dark">{walletSvg}</div>
+                                    <div className="ml-3 text-15">Wallet</div>
+                                </div>
+                            </Link>
+
+                            <Link to="/search">
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                    <div className="icon text-dark">{notificationSvg}</div>
+                                    <div className="ml-3 text-15">Notifications</div>
+                                </div>
+                            </Link>
+                        </div>
+                        
                         {/* <div className="brand">
                             {
                                 activeUser !== null ? (
