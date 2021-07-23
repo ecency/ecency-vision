@@ -45,7 +45,7 @@ it("(1) Default render", async () => {
 
 it("(2) Empty list", async () => {
     MOCK_MODE = 2;
-    const component = renderer.create(<List {...defaultProps} />);
+    const component = renderer && renderer.create(<List {...defaultProps} />);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });

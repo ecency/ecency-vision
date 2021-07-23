@@ -115,7 +115,7 @@ it('(3) Favorites - No data.', async () => {
         }
     };
 
-    const component = renderer.create(<Favorites {...props}/>);
+    const component = renderer && renderer.create(<Favorites {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
