@@ -61,6 +61,7 @@ interface Props {
     unMuteNotifications: () => void;
     setLang: (lang: string) => void;
     setStepOne?:() => void;
+    sticky?: boolean
 }
 
 interface State {
@@ -151,7 +152,7 @@ export class NavBar extends Component<Props, State> {
     }
 
     render() {
-        const {global, activeUser, ui, step, setStepOne} = this.props;
+        const {global, activeUser, ui, step, setStepOne, sticky} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
@@ -171,11 +172,11 @@ export class NavBar extends Component<Props, State> {
         </div>
 
         return (
-            <>
+            <div className={sticky ? "position-relative sticky-container" : ""}>
                 {floating && (<div className="nav-bar-rep"/>)}
-                <div className="nav-bar-toggle" onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
+                <div className={`nav-bar-toggle ${sticky ? "position-fixed" : "position-absolute"}`} onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
                 {!smVisible && (
-                    <div className="nav-bar-sm">
+                    <div className={`nav-bar-sm ${sticky ? "sticky" : ""}`}>
                         <div className="brand">
                             {
                                 activeUser !== null ? (
@@ -191,6 +192,7 @@ export class NavBar extends Component<Props, State> {
 
                         {textMenu}
                     </div>
+                  
                 )}
                 <div ref={this.nav} className={_c(`nav-bar ${(smVisible ? "visible-sm" : "")} ${(!transparentVerify && step === 1 ? "transparent" : "")}`)}>
                     <div className="nav-bar-inner">
@@ -271,7 +273,7 @@ export class NavBar extends Component<Props, State> {
                     {ui.login && <Login {...this.props} />}
                     {global.usePrivate && <NotificationHandler {...this.props} />}
                 </div>
-            </>
+            </div>
         );
     }
 }
@@ -304,6 +306,7 @@ export default (p: Props) => {
         unMuteNotifications: p.unMuteNotifications,
         setLang: p.setLang,
         setStepOne: p.setStepOne,
+        sticky: p.sticky
     }
 
     return <NavBar {...props} />;
