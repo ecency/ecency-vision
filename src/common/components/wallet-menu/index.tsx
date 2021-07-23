@@ -4,8 +4,6 @@ import {Link} from "react-router-dom";
 
 import {Global} from "../../store/global/types";
 
-const logo = require('../../img/logo-small-transparent.png');
-
 import _c from "../../util/fix-class-names";
 
 import {hiveSvg} from "../../img/svg";
@@ -20,6 +18,7 @@ interface Props {
 export default class WalletMenu extends Component<Props> {
     render() {
         const {global, username, active} = this.props;
+        const logo = global.isElectron ? "../../common/img/logo-small-transparent.png" : require('../../img/logo-small-transparent.png');
 
         return (
             <div className="wallet-menu">
