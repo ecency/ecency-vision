@@ -84,7 +84,7 @@
     "jest": "^26.0.0",
     "mini-css-extract-plugin": "0.9.0",
     "mockdate": "^3.0.2",
-    "postcss": "8.2.4",
+    "postcss": "8.2.10",
     "razzle": "^4.0.5",
     "razzle-dev-utils": "^4.0.5",
     "razzle-plugin-scss": "^4.0.5",
