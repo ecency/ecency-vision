@@ -151,7 +151,7 @@ export class NavBar extends Component<Props, State> {
     }
 
     render() {
-        const {global, activeUser, ui, step, setStepOne} = this.props;
+        const {global, activeUser, ui, step} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
@@ -172,10 +172,10 @@ export class NavBar extends Component<Props, State> {
 
         return (
             <>
-                {floating && (<div className="nav-bar-rep"/>)}
+                {floating && smVisible && (<div className="nav-bar-rep"/>)}
                 <div className="nav-bar-toggle" onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
-                {!smVisible && (
-                    <div className="nav-bar-sm">
+
+                <div className="nav-bar-sm">
                         <div className="brand">
                             {
                                 activeUser !== null ? (
@@ -191,8 +191,86 @@ export class NavBar extends Component<Props, State> {
 
                         {textMenu}
                     </div>
+                    
+                {!smVisible && (
+                    <div className={`nav-bar ${(!transparentVerify && step === 1 ? "transparent" : "")}`}>
+                        <div className="nav-bar-inner">
+                            <div className="brand">
+                                    {
+                                        activeUser !== null ? (
+                                            <Link to={logoHref}>
+                                                <img src={logo} className="logo" alt="Logo" />
+                                            </Link>
+                                        ) :
+                                        (
+                                            <img src={logo} className="logo" alt="Logo" onClick={this.handleIconClick}/>
+                                        )
+                                    }
+                                </div>
+                                {textMenu}
+                                <div className="flex-spacer"/>
+                                {
+                                    (step !== 1 || transparentVerify) &&
+                                        <div className="search-bar">
+                                            {Search({...this.props})}
+                                        </div>
+                                }
+                                <div className="switch-menu">
+                                    {SwitchLang({...this.props})}
+                                    {
+                                        (step !== 1 || transparentVerify) &&
+                                            <ToolTip content={themeText}>
+                                                <div className="switch-theme" onClick={this.changeTheme}>
+                                                    {brightnessSvg}
+                                                </div>
+                                            </ToolTip>
+                                    }
+                                    {
+                                        (step !== 1 || transparentVerify) && (
+                                            <ToolTip content={_t("navbar.post")}>
+                                                <Link className="switch-theme pencil" to="/submit">
+                                                    {pencilOutlineSvg}
+                                                </Link>
+                                            </ToolTip>
+                                    )}
+                                </div>
+                                <div className="btn-menu">
+                                    {!activeUser && (
+                                        <div>
+                                            <div className="login-required">
+                                                <Button className="btn-login btn-primary" onClick={() => {
+                                                    const {toggleUIProp} = this.props;
+                                                    toggleUIProp('login');
+                                                }}>{_t("g.login")}</Button>
+
+                                                <Link className="btn btn-primary" to="/signup">{_t("g.signup")}</Link>
+                                            </div>
+                                            <div className="submit-post">
+                                                <ToolTip content={_t("navbar.post")}>
+                                                    <Link className="btn btn-outline-primary" to="/submit">
+                                                        {pencilOutlineSvg}
+                                                    </Link>
+                                                </ToolTip>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                                {activeUser && (
+                                    <div>
+                                        <UserNav {...this.props} activeUser={activeUser}/>
+                                        <div className="submit-post">
+                                            <ToolTip content={_t("navbar.post")}>
+                                                <Link className="btn btn-outline-primary" to="/submit">
+                                                    {pencilOutlineSvg}
+                                                </Link>
+                                            </ToolTip>
+                                        </div>
+                                    </div>
+                                )}
+                    </div>
+                </div>
                 )}
-                <div ref={this.nav} className={_c(`nav-bar ${(!transparentVerify && step === 1 ? "transparent" : "")} ${(smVisible ? "visible-sm" : "")}`)}>
+                <div ref={this.nav} className={_c(`nav-bar ${(!transparentVerify && step === 1 ? "transparent" : "")} ${(smVisible ? "visible-sm" : "d-none")}`)}>
                     <div className="nav-bar-inner">
                         <div className="mt-5 pt-5 w-100">
                             <Link to="/search">
@@ -247,80 +325,6 @@ export class NavBar extends Component<Props, State> {
                                 </div>
                             </Link>
                         </div>
-                        
-                        {/* <div className="brand">
-                            {
-                                activeUser !== null ? (
-                                    <Link to={logoHref}>
-                                        <img src={logo} className="logo" alt="Logo" />
-                                    </Link>
-                                ) :
-                                (
-                                    <img src={logo} className="logo" alt="Logo" onClick={this.handleIconClick}/>
-                                )
-                            }
-                        </div>
-                        {textMenu}
-                        <div className="flex-spacer"/>
-                        {
-                            (step !== 1 || transparentVerify) &&
-                                <div className="search-bar">
-                                    {Search({...this.props})}
-                                </div>
-                        }
-                        <div className="switch-menu">
-                            {SwitchLang({...this.props})}
-                            {
-                                (step !== 1 || transparentVerify) &&
-                                    <ToolTip content={themeText}>
-                                        <div className="switch-theme" onClick={this.changeTheme}>
-                                            {brightnessSvg}
-                                        </div>
-                                    </ToolTip>
-                            }
-                            {
-                                (step !== 1 || transparentVerify) && (
-                                    <ToolTip content={_t("navbar.post")}>
-                                        <Link className="switch-theme pencil" to="/submit">
-                                            {pencilOutlineSvg}
-                                        </Link>
-                                    </ToolTip>
-                            )}
-                        </div>
-                        <div className="btn-menu">
-                            {!activeUser && (
-                                <div>
-                                    <div className="login-required">
-                                        <Button className="btn-login btn-primary" onClick={() => {
-                                            const {toggleUIProp} = this.props;
-                                            toggleUIProp('login');
-                                        }}>{_t("g.login")}</Button>
-
-                                        <Link className="btn btn-primary" to="/signup">{_t("g.signup")}</Link>
-                                    </div>
-                                    <div className="submit-post">
-                                        <ToolTip content={_t("navbar.post")}>
-                                            <Link className="btn btn-outline-primary" to="/submit">
-                                                {pencilOutlineSvg}
-                                            </Link>
-                                        </ToolTip>
-                                    </div>
-                                </div>
-                            )}
-                            
-                        </div>
-                        {activeUser && (
-                            <div>
-                                <UserNav {...this.props} activeUser={activeUser}/>
-                                <div className="submit-post">
-                                    <ToolTip content={_t("navbar.post")}>
-                                        <Link className="btn btn-outline-primary" to="/submit">
-                                            {pencilOutlineSvg}
-                                        </Link>
-                                    </ToolTip>
-                                </div>
-                            </div>
-                        )} */}
                     </div>
                     {ui.login && <Login {...this.props} />}
                     {global.usePrivate && <NotificationHandler {...this.props} />}
