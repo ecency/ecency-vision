@@ -1324,11 +1324,15 @@
             background-image: url("https://ecency.com/assets/download-algae-dark.png");
             background-position-y: bottom;
             background-repeat: no-repeat;
+            background-position-x: center;
+            background-size: cover;
           }
           @include themify(day) {
             background-image: url("https://ecency.com/assets/download-algae.png");
             background-position-y: bottom;
             background-repeat: no-repeat;
+            background-position-x: center;
+            background-size: cover;
           }
         }
       }
@@ -1604,7 +1608,7 @@
     }
 
     @media (max-width: 766px) {
-      height: 1800px;
+      height: 1395px;
       margin: 0;
       -ms-flex-pack: distribute;
       justify-content: space-around;
@@ -1620,10 +1624,14 @@
           flex-direction: column-reverse;
           -ms-flex-pack: distribute;
           justify-content: space-around;
+          @media (max-width: $md-break)  {
+            height: auto;
+          }
+
           .text-group {
             width: 100%;
             max-width: unset;
-            margin: 2rem 1rem 22rem;
+            margin: 2rem 1rem;
             padding: 1rem;
             height: auto;
             max-width: unset;
@@ -1634,7 +1642,7 @@
                     align-items: center;
             text-align: center;
             @media (max-width: $sm-break) {
-              margin-top: -1rem;
+              margin: 2rem 1rem 22rem;
             }
             
           }
@@ -1644,6 +1652,10 @@
             height: auto;
             @media (max-width: $sm-break) {
               width: 100%;
+            }
+            @media (max-width: $md-break) and (min-width: $sm-break){
+              width: 70%;
+              margin-top: 2rem;
             }
           }
         }
@@ -1673,6 +1685,18 @@
                 -ms-flex-align: center;
                     align-items: center;
             text-align: center;            
+          }
+
+          @media (max-width: $md-break) and (min-width: $sm-break) {
+            height: 100%;
+            .our-vision {
+              margin: 0;
+              margin-top: 3rem;
+            }
+            .text-group {
+              margin: 0;
+              margin-top: 2rem;     
+            }
           }
         }
       }
@@ -1704,6 +1728,9 @@
       }
       .part-bottom {
         height: 500px;
+        @media (max-width: $sm-break) {
+          margin-top: 10rem;;
+        }
       }
     }
   }

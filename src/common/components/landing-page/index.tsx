@@ -301,7 +301,7 @@ const LandingPage = (props: any) => {
           <div className="inner">
             <img className="our-vision" src={OurVision} alt="Our Vision" loading="lazy" />
 
-            <div className="text-group">
+            <div className="text-group pb-0 pb-sm-5 pb-md-0">
               <h2>{_t("landing-page.our-vision")}</h2>
               <p>{htmlParse(_t('landing-page.our-vision-p-one'))}</p>
               <p>{htmlParse(_t('landing-page.our-vision-p-two'))}</p>
