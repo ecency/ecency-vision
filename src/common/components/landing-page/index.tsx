@@ -140,7 +140,7 @@ const LandingPage = (props: any) => {
       </div>
 
       <div className="sections third-section">
-        <div className="part-top">
+        <div className="part-top pt-sm-5 pt-lg-0">
           <div className="inner">
             <div className="img-wrapper">
               <img
@@ -289,7 +289,7 @@ const LandingPage = (props: any) => {
       <div className="sections fifth-section" id="about">
         <div className="part-top pt-5 pt-sm-0">
           <div className="inner">
-            <div className="text-group">
+            <div className="text-group mt-sm-5 mt-lg-0">
               <h2>{_t("landing-page.our-history")}</h2>
               <p>{htmlParse(_t('landing-page.our-history-p-one'))}</p>
               <p>{_t("landing-page.our-history-p-two")}</p>

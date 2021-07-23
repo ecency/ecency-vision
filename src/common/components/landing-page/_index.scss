@@ -442,7 +442,7 @@
       background-color: $faded-blue;
     }
     @media (max-width: $lg-break) {
-      height: 700px;
+      height: 700px !important;
     }
     .inner {
       display: -webkit-box;
@@ -1640,8 +1640,7 @@
           }
           .our-history {
             width: 250px;
-            margin-top: 13rem;
-            max-width: 90%;
+            margin-top: 17rem;
             height: auto;
             @media (max-width: $sm-break) {
               width: 100%;
