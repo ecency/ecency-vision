@@ -333,3 +333,14 @@ body.medium-zoom--opened {
     display: none;
   }
 }
+
+.visible-sm {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  padding: 0;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}

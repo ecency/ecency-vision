@@ -192,9 +192,9 @@ export class NavBar extends Component<Props, State> {
                         {textMenu}
                     </div>
                 )}
-                <div ref={this.nav} className={_c(`nav-bar ${(smVisible ? "visible-sm" : "")} ${(!transparentVerify && step === 1 ? "transparent" : "")}`)}>
+                <div ref={this.nav} className={_c(`nav-bar ${(!transparentVerify && step === 1 ? "transparent" : "")} ${(smVisible ? "visible-sm" : "")}`)}>
                     <div className="nav-bar-inner">
-                        <div className="brand">
+                        {/* <div className="brand">
                             {
                                 activeUser !== null ? (
                                     <Link to={logoHref}>
@@ -266,7 +266,7 @@ export class NavBar extends Component<Props, State> {
                                     </ToolTip>
                                 </div>
                             </div>
-                        )}
+                        )} */}
                     </div>
                     {ui.login && <Login {...this.props} />}
                     {global.usePrivate && <NotificationHandler {...this.props} />}
