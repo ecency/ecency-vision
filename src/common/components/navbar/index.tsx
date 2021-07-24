@@ -381,7 +381,7 @@ export class NavBar extends Component<Props, State> {
                                             <div className="item-text">Schedules</div>
                                         </div>
 
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({schedules: !schedules})}>
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({fragments: !fragments})}>
                                             <div className="item-text">Snippets</div>
                                         </div>
 
@@ -414,12 +414,20 @@ export class NavBar extends Component<Props, State> {
                                 </div>
 
                             {activeUser && 
-                            <Link to={`/@${activeUser?.username}/wallet`}>
-                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                    <div className="icon-stroke text-dark">{walletSvg}</div>
-                                    <div className="ml-3 text-15 d-flex">Wallet <div className="dot align-self-start ml-1"/></div>
-                                </div>
-                            </Link>}
+                            <>
+                                <Link to={`/@${activeUser?.username}/wallet`}>
+                                    <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                        <div className="icon-stroke text-dark">{walletSvg}</div>
+                                        <div className="ml-3 text-15 d-flex">Wallet <div className="dot align-self-start ml-1"/></div>
+                                    </div>
+                                </Link>
+                                <Link to="/points">
+                                    <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                        <div className="icon text-dark">{notificationSvg}</div>
+                                        <div className="ml-3 text-15">Points</div>
+                                    </div>
+                                </Link>
+                            </>}
 
                             <Link to="/search">
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
@@ -427,6 +435,7 @@ export class NavBar extends Component<Props, State> {
                                     <div className="ml-3 text-15">Notifications</div>
                                 </div>
                             </Link>
+
                         </div>
                     </div>
                     {ui.login && <Login {...this.props} />}

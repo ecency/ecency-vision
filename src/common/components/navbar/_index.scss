@@ -211,11 +211,6 @@
         right: auto;
       }
 
-      .menu-list {
-        max-height: 400px;
-        overflow-y: auto;
-      }
-
       .switch-theme {
         cursor: pointer;
         margin: 0 14px;
@@ -398,6 +393,12 @@ body.medium-zoom--opened {
 
 .list-item {
   .switch-menu {
+    
+    .menu-list {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
     top: 11px !important;
     right: unset !important;
     left: 55px !important;
