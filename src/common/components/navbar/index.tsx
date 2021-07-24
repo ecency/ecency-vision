@@ -81,6 +81,7 @@ interface State {
     bookmarks: boolean,
     schedules: boolean,
     fragments: boolean,
+    notifications: boolean
 }
 
 export class NavBar extends Component<Props, State> {
@@ -94,6 +95,7 @@ export class NavBar extends Component<Props, State> {
         bookmarks: false,
         schedules: false,
         fragments: false,
+        notifications: false,
     }
 
     timer: any = null;
@@ -184,7 +186,7 @@ export class NavBar extends Component<Props, State> {
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
         
 
-        const {smVisible, floating, showMobileSearch, showProfileMenu, drafts, bookmarks, fragments, gallery, schedules} = this.state;
+        const { smVisible, floating, showMobileSearch, showProfileMenu, drafts, bookmarks, fragments, gallery, schedules, notifications } = this.state;
 
         const transparentVerify = this.props?.location?.pathname?.startsWith("/hot")
         || this.props?.location?.pathname?.startsWith("/created")
@@ -429,19 +431,17 @@ export class NavBar extends Component<Props, State> {
                                 </Link>
                             </>}
 
-                            <Link to="/search">
-                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={() => toggleUIProp('notifications')}>
                                     <div className="icon text-dark">{notificationSvg}</div>
                                     <div className="ml-3 text-15">Notifications</div>
                                 </div>
-                            </Link>
 
                         </div>
                     </div>
                     {ui.login && <Login {...this.props} />}
                     {global.usePrivate && <NotificationHandler {...this.props}/>}
-                    {ui.notifications && activeUser && <UserNotifications {...this.props} activeUser={activeUser} />}
                     {gallery && <Gallery {...this.props} onHide={() => this.setState({gallery:!gallery})} />}
+                    {ui.notifications && activeUser && <UserNotifications {...this.props} activeUser={activeUser} />}
                     {drafts && activeUser && <Drafts {...this.props} onHide={() => this.setState({drafts:!drafts})} activeUser={activeUser as ActiveUser} />}
                     {bookmarks && activeUser && <Bookmarks {...this.props} onHide={() => this.setState({bookmarks:!bookmarks})} activeUser={activeUser as ActiveUser} />}
                     {schedules && activeUser && <Schedules {...this.props} onHide={() => this.setState({schedules:!schedules})} activeUser={activeUser as ActiveUser} />}
