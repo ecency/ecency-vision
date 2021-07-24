@@ -30,7 +30,7 @@ import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg} from "../../img/svg";
+import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg, chevronUpSvg, upArrowSvg} from "../../img/svg";
 
 const logo = require('../../img/logo-circle.svg');
 
@@ -67,12 +67,14 @@ interface State {
     smVisible: boolean,
     floating: boolean,
     showMobileSearch: boolean,
+    showProfileMenu: boolean,
 }
 
 export class NavBar extends Component<Props, State> {
     state: State = {
         smVisible: false,
         floating: false,
+        showProfileMenu: false,
         showMobileSearch: false
     }
 
@@ -107,6 +109,12 @@ export class NavBar extends Component<Props, State> {
             || !isEqual(this.props.location, nextProps.location)
             || !isEqual(this.props.step, nextProps.step)
             || !isEqual(this.state, nextState)
+    }
+
+    componentDidUpdate(prevProps: Props, prevStates: State) {
+        if(prevStates.smVisible !== this.state.smVisible){
+            document.getElementsByTagName('body')[0].classList.toggle("overflow-hidden")
+        }
     }
 
     scrollChanged = () => {
@@ -157,7 +165,7 @@ export class NavBar extends Component<Props, State> {
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
-        const {smVisible, floating, showMobileSearch} = this.state;
+        const {smVisible, floating, showMobileSearch, showProfileMenu} = this.state;
 
         const transparentVerify = this.props?.location?.pathname?.startsWith("/hot")
         || this.props?.location?.pathname?.startsWith("/created")
@@ -303,10 +311,75 @@ export class NavBar extends Component<Props, State> {
                                 </div>
                             </Link>
 
-                            <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                            <div>
+                            <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark" onClick={() => this.setState({showProfileMenu: !showProfileMenu})}>
                                 <div className="icon">{userOutlineSvg}</div>
                                 <div className="ml-3 text-15">Profile menu</div>
-                                <div className="ml-3 text-15">{downArrowSvg}</div>
+                                <div className="ml-3 text-15 icon">{showProfileMenu ? upArrowSvg : downArrowSvg}</div>
+                            </div>
+
+                            {showProfileMenu ? 
+                            <div className="pl-3 position-relative menu-container">
+                                <div className="menu-container-inner">
+                                    <Link to='/profile'>
+                                        <div className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0">
+                                            <img src="https://images.ecency.com/webp/u/ghazanfar89/avatar/medium" className="rounded-circle"/>
+                                            <div className="ml-2">
+                                                <b>@zetrix</b>
+                                                <div className="mt-1 text-white">Vote power <span>{upArrowSvg}</span> 80%  <span>{downArrowSvg}</span> 34%</div>
+                                            </div>
+                                        </div>
+                                    </Link>
+
+                                    <div className="p-1 menu-item">
+                                        <Link to='/drafts'>
+                                            <div className="item-text">Drafts</div>
+                                        </Link>
+                                    </div>
+
+                                    <div className="p-1 menu-item">
+                                        <Link to='/drafts'>
+                                            <div className="item-text">Gallery</div>
+                                        </Link>
+                                    </div>
+
+                                    <div className="p-1 menu-item">
+                                        <Link to='/drafts'>
+                                            <div className="item-text">Bookmarks</div>
+                                        </Link>
+                                    </div>
+
+                                    <div className="p-1 menu-item">
+                                        <Link to='/drafts'>
+                                            <div className="item-text">Schedules</div>
+                                        </Link>
+                                    </div>
+
+                                    <div className="p-1 menu-item">
+                                        <Link to='/drafts'>
+                                            <div className="item-text">Snippets</div>
+                                        </Link>
+                                    </div>
+
+                                    <div className="p-1 menu-item">
+                                        <Link to='/drafts'>
+                                            <div className="item-text">Settings</div>
+                                        </Link>
+                                    </div>
+
+                                    <div className="p-1 menu-item">
+                                        <Link to='/drafts'>
+                                            <div className="item-text">Login As</div>
+                                        </Link>
+                                    </div>
+
+                                    <div className="p-1 menu-item">
+                                        <Link to='/drafts'>
+                                            <div className="item-text">Logout</div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div> : null}
                             </div>
 
                             <Link to="/search">
@@ -326,7 +399,7 @@ export class NavBar extends Component<Props, State> {
                             <Link to="/search">
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                                     <div className="icon text-dark">{walletSvg}</div>
-                                    <div className="ml-3 text-15">Wallet</div>
+                                    <div className="ml-3 text-15 d-flex">Wallet <div className="dot align-self-start ml-1"/></div>
                                 </div>
                             </Link>
 

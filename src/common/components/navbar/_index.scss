@@ -114,6 +114,11 @@
     padding: 21px;
     padding-left: 0px;
 
+    @media (max-width: $md-break){
+      max-height: 94vh;
+      overflow-y: auto;
+    }
+
     @media (min-width: $md-break) {
       height: 100%;
       padding: 0 10px;
@@ -361,5 +366,50 @@ body.medium-zoom--opened {
     background-color: $powder-blue;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
+  }
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  background-color: $pink;
+  border-radius: 50%;
+}
+
+.menu-container {
+  min-height: 441px;
+  margin-top: 0.75rem;
+  .menu-container-inner {
+    position: absolute;
+    right: -22px;
+    width: 100%;
+  }
+}
+
+.text-white {
+  path {
+    stroke: $white;
+  }
+}
+
+.menu-item {
+  margin-top: 19px;
+  .item-text {
+    color: $black;
+    margin-left: 64px;
+  }
+}
+
+.menu-item-profile {
+  border-radius: 50rem;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  background-color: $dark-sky-blue;
+  img {
+    width: 56px;
+    height: 56px;
+  }
+  svg {
+    width: 10px;
   }
 }
