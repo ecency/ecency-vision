@@ -403,12 +403,10 @@ export class NavBar extends Component<Props, State> {
                                 
                             </div>
 
-                            <Link to="/search">
-                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={this.changeTheme}>
                                     <div className="icon">{moonSvg}</div>
                                     <div className="ml-3 text-15">Switch to dark theme</div>
                                 </div>
-                            </Link>
 
                             <Link to="/search">
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
@@ -417,12 +415,13 @@ export class NavBar extends Component<Props, State> {
                                 </div>
                             </Link>
 
-                            <Link to="/search">
+                            {activeUser && 
+                            <Link to={`/@${activeUser?.username}/wallet`}>
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                                     <div className="icon text-dark">{walletSvg}</div>
                                     <div className="ml-3 text-15 d-flex">Wallet <div className="dot align-self-start ml-1"/></div>
                                 </div>
-                            </Link>
+                            </Link>}
 
                             <Link to="/search">
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
