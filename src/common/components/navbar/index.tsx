@@ -59,7 +59,6 @@ interface Props {
     unMuteNotifications: () => void;
     setLang: (lang: string) => void;
     setStepOne?:() => void;
-    sticky?: boolean
 }
 
 interface State {
@@ -305,7 +304,6 @@ export default (p: Props) => {
         unMuteNotifications: p.unMuteNotifications,
         setLang: p.setLang,
         setStepOne: p.setStepOne,
-        sticky: p.sticky
     }
 
     return <NavBar {...props} />;

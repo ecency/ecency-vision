@@ -718,7 +718,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                     NavBarElectron({
                         ...this.props,
                     }) :
-                    NavBar({ ...this.props, sticky: isMobile })}
+                    NavBar({ ...this.props })}
 
                 <div className={_c(`app-content submit-page ${editingEntry !== null ? "editing" : ""}`)}>
                     <div className="editor-panel">
