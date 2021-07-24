@@ -12,7 +12,7 @@ import queryString from "query-string";
 
 import {Global, Theme} from "../../store/global/types";
 import {TrendingTags} from "../../store/trending-tags/types";
-import {Account} from "../../store/accounts/types";
+import {Account, FullAccount} from "../../store/accounts/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {UI, ToggleType} from "../../store/ui/types";
@@ -31,6 +31,8 @@ import {_t} from "../../i18n";
 import _c from "../../util/fix-class-names";
 
 import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg, chevronUpSvg, upArrowSvg} from "../../img/svg";
+import userAvatar, { UserAvatar } from "../user-avatar";
+import { downVotingPower, votingPower } from "../../api/hive";
 
 const logo = require('../../img/logo-circle.svg');
 
@@ -164,6 +166,7 @@ export class NavBar extends Component<Props, State> {
         const {global, activeUser, ui, step} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
+        
 
         const {smVisible, floating, showMobileSearch, showProfileMenu} = this.state;
 
@@ -312,74 +315,75 @@ export class NavBar extends Component<Props, State> {
                             </Link>
 
                             <div>
-                            <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark" onClick={() => this.setState({showProfileMenu: !showProfileMenu})}>
-                                <div className="icon">{userOutlineSvg}</div>
-                                <div className="ml-3 text-15">Profile menu</div>
-                                <div className="ml-3 text-15 icon">{showProfileMenu ? upArrowSvg : downArrowSvg}</div>
-                            </div>
-
-                            {showProfileMenu ? 
-                            <div className="pl-3 position-relative menu-container">
-                                <div className="menu-container-inner">
-                                    <Link to='/profile'>
-                                        <div className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0">
-                                            <img src="https://images.ecency.com/webp/u/ghazanfar89/avatar/medium" className="rounded-circle"/>
-                                            <div className="ml-2">
-                                                <b>@zetrix</b>
-                                                <div className="mt-1 text-white">Vote power <span>{upArrowSvg}</span> 80%  <span>{downArrowSvg}</span> 34%</div>
-                                            </div>
-                                        </div>
-                                    </Link>
-
-                                    <div className="p-1 menu-item">
-                                        <Link to='/drafts'>
-                                            <div className="item-text">Drafts</div>
-                                        </Link>
-                                    </div>
-
-                                    <div className="p-1 menu-item">
-                                        <Link to='/drafts'>
-                                            <div className="item-text">Gallery</div>
-                                        </Link>
-                                    </div>
-
-                                    <div className="p-1 menu-item">
-                                        <Link to='/drafts'>
-                                            <div className="item-text">Bookmarks</div>
-                                        </Link>
-                                    </div>
-
-                                    <div className="p-1 menu-item">
-                                        <Link to='/drafts'>
-                                            <div className="item-text">Schedules</div>
-                                        </Link>
-                                    </div>
-
-                                    <div className="p-1 menu-item">
-                                        <Link to='/drafts'>
-                                            <div className="item-text">Snippets</div>
-                                        </Link>
-                                    </div>
-
-                                    <div className="p-1 menu-item">
-                                        <Link to='/drafts'>
-                                            <div className="item-text">Settings</div>
-                                        </Link>
-                                    </div>
-
-                                    <div className="p-1 menu-item">
-                                        <Link to='/drafts'>
-                                            <div className="item-text">Login As</div>
-                                        </Link>
-                                    </div>
-
-                                    <div className="p-1 menu-item">
-                                        <Link to='/drafts'>
-                                            <div className="item-text">Logout</div>
-                                        </Link>
-                                    </div>
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark" onClick={() => this.setState({showProfileMenu: !showProfileMenu})}>
+                                    <div className="icon">{userOutlineSvg}</div>
+                                    <div className="ml-3 text-15">Profile menu</div>
+                                    <div className="ml-3 text-15 icon">{showProfileMenu ? upArrowSvg : downArrowSvg}</div>
                                 </div>
-                            </div> : null}
+
+                                {activeUser && showProfileMenu ? 
+                                <div className="pl-3 position-relative menu-container">
+                                    <div className="menu-container-inner">
+                                        <Link to='/profile'>
+                                            <div className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0">
+                                                {userAvatar({...this.props, username: activeUser.username, size:"large"})}
+                                                <div className="ml-2">
+                                                    <b>@{activeUser.username}</b>
+                                                    <div className="mt-1 text-white">Vote power <span>{upArrowSvg}</span> {votingPower(activeUser.data as FullAccount).toFixed(0)}%  <span>{downArrowSvg}</span> {downVotingPower(activeUser.data as FullAccount).toFixed(0)}%</div>
+                                                </div>
+                                            </div>
+                                        </Link>
+
+                                        <div className="p-1 menu-item">
+                                            <Link to='/drafts'>
+                                                <div className="item-text">Drafts</div>
+                                            </Link>
+                                        </div>
+
+                                        <div className="p-1 menu-item">
+                                            <Link to='/drafts'>
+                                                <div className="item-text">Gallery</div>
+                                            </Link>
+                                        </div>
+
+                                        <div className="p-1 menu-item">
+                                            <Link to='/drafts'>
+                                                <div className="item-text">Bookmarks</div>
+                                            </Link>
+                                        </div>
+
+                                        <div className="p-1 menu-item">
+                                            <Link to='/drafts'>
+                                                <div className="item-text">Schedules</div>
+                                            </Link>
+                                        </div>
+
+                                        <div className="p-1 menu-item">
+                                            <Link to='/drafts'>
+                                                <div className="item-text">Snippets</div>
+                                            </Link>
+                                        </div>
+
+                                        <div className="p-1 menu-item">
+                                            <Link to='/drafts'>
+                                                <div className="item-text">Settings</div>
+                                            </Link>
+                                        </div>
+
+                                        <div className="p-1 menu-item">
+                                            <Link to='/drafts'>
+                                                <div className="item-text">Login As</div>
+                                            </Link>
+                                        </div>
+
+                                        <div className="p-1 menu-item">
+                                            <Link to='/drafts'>
+                                                <div className="item-text">Logout</div>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div> : null}
+                                
                             </div>
 
                             <Link to="/search">

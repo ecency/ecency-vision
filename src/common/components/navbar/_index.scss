@@ -78,6 +78,11 @@
   }
 }
 
+.user-avatar {
+  width: 56px !important;
+  height: 56px !important;
+}
+
 .nav-bar {
   user-select: none;
   margin-bottom: 20px;
@@ -117,6 +122,7 @@
     @media (max-width: $md-break){
       max-height: 94vh;
       overflow-y: auto;
+      overflow-x: hidden;
     }
 
     @media (min-width: $md-break) {
@@ -405,10 +411,7 @@ body.medium-zoom--opened {
   border-top-right-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
   background-color: $dark-sky-blue;
-  img {
-    width: 56px;
-    height: 56px;
-  }
+
   svg {
     width: 10px;
   }
