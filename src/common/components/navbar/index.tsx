@@ -408,12 +408,10 @@ export class NavBar extends Component<Props, State> {
                                     <div className="ml-3 text-15">Switch to {global.theme == Theme.day ?"dark" : 'light'} theme</div>
                                 </div>
 
-                            <Link to="/search">
-                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative">
                                     <div className="icon">{globeSvg}</div>
-                                    <div className="ml-3 text-15">Language</div>
+                                    <div className="text-15 switch-menu">{SwitchLang({...this.props, label: "Language"})}</div>
                                 </div>
-                            </Link>
 
                             {activeUser && 
                             <Link to={`/@${activeUser?.username}/wallet`}>

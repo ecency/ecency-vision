@@ -392,6 +392,35 @@ body.medium-zoom--opened {
 }
 
 .list-item {
+  .switch-menu {
+    top: 11px !important;
+    right: unset !important;
+    left: 55px !important;
+
+    .label {
+      font-size: 17px !important;
+      font-weight: unset !important;
+      @include themify(night) {
+        color: $light-grey !important;
+      }
+      @include themify(day) {
+        color: $dark !important;
+      }
+    }
+
+    .dropdown-btn {
+      opacity: 1 !important;
+    }
+
+    svg {
+      display: none;
+    }
+
+    .menu-down {
+      display: none !important;
+    }
+  }
+
   &:hover {
     background-color: $powder-blue;
     border-top-right-radius: 25px;
