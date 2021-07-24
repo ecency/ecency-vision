@@ -355,7 +355,7 @@ export class NavBar extends Component<Props, State> {
                                 {activeUser && showProfileMenu ? 
                                 <div className="pl-3 position-relative menu-container">
                                     <div className="menu-container-inner">
-                                        <Link to='/profile'>
+                                        <Link to={`/@${activeUser.username}`}>
                                             <div className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0">
                                                 {userAvatar({...this.props, username: activeUser.username, size:"large"})}
                                                 <div className="ml-2">

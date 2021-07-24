@@ -116,7 +116,7 @@
     padding-left: 0px;
 
     @media (max-width: $md-break){
-      max-height: 94vh;
+      height: 94vh;
       overflow-y: auto;
       overflow-x: hidden;
     }
@@ -209,6 +209,11 @@
         position: relative;
         top: auto;
         right: auto;
+      }
+
+      .menu-list {
+        max-height: 400px;
+        overflow-y: auto;
       }
 
       .switch-theme {
