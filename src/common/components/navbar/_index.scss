@@ -78,10 +78,6 @@
   }
 }
 
-.user-avatar {
-  width: 56px !important;
-  height: 56px !important;
-}
 
 .nav-bar {
   user-select: none;
@@ -381,6 +377,16 @@ body.medium-zoom--opened {
   }
 }
 
+.icon-stroke {
+  width: 21px;
+  height: 21px;
+  svg, path, rect {
+    @include themify(night) {
+      stroke: $light-grey !important;
+    }
+  }
+}
+
 .text-15 {
   font-size: 17px;
 }
@@ -390,6 +396,11 @@ body.medium-zoom--opened {
     background-color: $powder-blue;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
+
+    @include themify(night) {
+      background-color: $transparent !important;
+      background-image: linear-gradient(270deg,#081c36,#43638e);
+    }
   }
 }
 
@@ -432,6 +443,10 @@ body.medium-zoom--opened {
   border-top-right-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
   background-color: $dark-sky-blue;
+  .user-avatar {
+    width: 56px !important;
+    height: 56px !important;
+  }
 
   svg {
     width: 10px;

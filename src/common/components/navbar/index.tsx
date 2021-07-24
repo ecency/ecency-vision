@@ -37,7 +37,7 @@ import {_t} from "../../i18n";
 import _c from "../../util/fix-class-names";
 
 import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg, chevronUpSvg, upArrowSvg, keySvg, sunSvg} from "../../img/svg";
-import userAvatar, { UserAvatar } from "../user-avatar";
+import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
 
 const logo = require('../../img/logo-circle.svg');
@@ -349,7 +349,7 @@ export class NavBar extends Component<Props, State> {
                                 {activeUser && <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark" onClick={() => this.setState({showProfileMenu: !showProfileMenu})}>
                                     <div className="icon">{userOutlineSvg}</div>
                                     <div className="ml-3 text-15">Profile menu</div>
-                                    <div className="ml-3 text-15 icon">{showProfileMenu ? upArrowSvg : downArrowSvg}</div>
+                                    <div className="ml-3 text-15 icon-stroke">{showProfileMenu ? upArrowSvg : downArrowSvg}</div>
                                 </div>}
 
                                 {activeUser && showProfileMenu ? 
@@ -418,7 +418,7 @@ export class NavBar extends Component<Props, State> {
                             {activeUser && 
                             <Link to={`/@${activeUser?.username}/wallet`}>
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                    <div className="icon text-dark">{walletSvg}</div>
+                                    <div className="icon-stroke text-dark">{walletSvg}</div>
                                     <div className="ml-3 text-15 d-flex">Wallet <div className="dot align-self-start ml-1"/></div>
                                 </div>
                             </Link>}
