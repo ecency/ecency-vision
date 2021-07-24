@@ -36,7 +36,7 @@ import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg, chevronUpSvg, upArrowSvg, keySvg} from "../../img/svg";
+import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg, chevronUpSvg, upArrowSvg, keySvg, sunSvg} from "../../img/svg";
 import userAvatar, { UserAvatar } from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
 
@@ -404,8 +404,8 @@ export class NavBar extends Component<Props, State> {
                             </div>
 
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={this.changeTheme}>
-                                    <div className="icon">{moonSvg}</div>
-                                    <div className="ml-3 text-15">Switch to dark theme</div>
+                                    <div className="icon">{global.theme == Theme.day ? moonSvg : sunSvg}</div>
+                                    <div className="ml-3 text-15">Switch to {global.theme == Theme.day ?"dark" : 'light'} theme</div>
                                 </div>
 
                             <Link to="/search">
