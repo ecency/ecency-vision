@@ -63,6 +63,11 @@ export default merge(baseConfig, {
 
   module: {
     rules: [
+      {
+      test: /\.tsx?$/,
+      use: 'ts-loader',
+      exclude: /node_modules/
+    },
       // CSS
       {
         test: /\.*\.css$/,
@@ -72,7 +77,7 @@ export default merge(baseConfig, {
           },
           {
             loader: 'css-loader',
-            options: { modules: true, importLoaders: 1, sourceMap: true },
+            options: { modules: true, importLoaders: 1, sourceMap: true, url: false },
           },
         ],
       },
@@ -90,7 +95,8 @@ export default merge(baseConfig, {
                 localIdentName: '[local]'
               },
               importLoaders: 1,
-              sourceMap: true
+              sourceMap: true,
+              url: false
             },
           },
           {
@@ -187,7 +193,7 @@ export default merge(baseConfig, {
     },
     historyApiFallback: {
       verbose: true,
-      disableDotRule: false,
+      disableDotRule: true,
     },
     before() {
       if (process.env.START_HOT) {

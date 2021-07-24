@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    "allowJs": false,
     "allowUnreachableCode": false,
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
@@ -36,6 +36,9 @@
     "scripts",
     "acceptance-tests",
     "webpack",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/*.spec.tsx",
     "jest",
     "razzle.config.js",
     "healthCheck.js",
@@ -44,6 +47,7 @@
   "types": [
     "typePatches",
     "node",
+    "jest",
     "webpack-env"
   ]
 }

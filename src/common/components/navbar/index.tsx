@@ -32,8 +32,6 @@ import _c from "../../util/fix-class-names";
 
 import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg} from "../../img/svg";
 
-const logo = require('../../img/logo-circle.svg');
-
 interface Props {
     history: History;
     location: Location;
@@ -152,7 +150,8 @@ export class NavBar extends Component<Props, State> {
     }
 
     render() {
-        const {global, activeUser, ui, step, setStepOne, sticky} = this.props;
+        const {global, activeUser, ui, step, setStepOne} = this.props;
+        const logo = global.isElectron? "../../common/img/logo-circle.svg" : require('../../img/logo-circle.svg');
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
@@ -172,11 +171,11 @@ export class NavBar extends Component<Props, State> {
         </div>
 
         return (
-            <div className={sticky ? "position-relative sticky-container" : ""}>
+            <div className={"position-relative sticky-container"}>
                 {floating && (<div className="nav-bar-rep"/>)}
-                <div className={`nav-bar-toggle ${sticky ? "position-fixed" : "position-absolute"}`} onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
+                <div className={`nav-bar-toggle ${"position-fixed"}`} onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
                 {!smVisible && (
-                    <div className={`nav-bar-sm ${sticky ? "sticky" : ""}`}>
+                    <div className={`nav-bar-sm ${"sticky"}`}>
                         <div className="brand">
                             {
                                 activeUser !== null ? (
