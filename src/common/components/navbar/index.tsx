@@ -25,12 +25,18 @@ import ToolTip from "../tooltip";
 import Search from "../search";
 import Login from "../login";
 import UserNav from "../user-nav";
+import UserNotifications from "../notifications";
+import Gallery from "../gallery";
+import Drafts from "../drafts";
+import Bookmarks from "../bookmarks";
+import Schedules from "../schedules";
+import Fragments from "../fragments";
 
 import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg, chevronUpSvg, upArrowSvg} from "../../img/svg";
+import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg, chevronUpSvg, upArrowSvg, keySvg} from "../../img/svg";
 import userAvatar, { UserAvatar } from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
 
@@ -70,6 +76,11 @@ interface State {
     floating: boolean,
     showMobileSearch: boolean,
     showProfileMenu: boolean,
+    gallery: boolean,
+    drafts: boolean,
+    bookmarks: boolean,
+    schedules: boolean,
+    fragments: boolean,
 }
 
 export class NavBar extends Component<Props, State> {
@@ -77,7 +88,12 @@ export class NavBar extends Component<Props, State> {
         smVisible: false,
         floating: false,
         showProfileMenu: false,
-        showMobileSearch: false
+        showMobileSearch: false,
+        gallery: false,
+        drafts: false,
+        bookmarks: false,
+        schedules: false,
+        fragments: false,
     }
 
     timer: any = null;
@@ -163,12 +179,12 @@ export class NavBar extends Component<Props, State> {
     }
 
     render() {
-        const {global, activeUser, ui, step} = this.props;
+        const { global, activeUser, ui, step, toggleUIProp, setActiveUser } = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
         
 
-        const {smVisible, floating, showMobileSearch, showProfileMenu} = this.state;
+        const {smVisible, floating, showMobileSearch, showProfileMenu, drafts, bookmarks, fragments, gallery, schedules} = this.state;
 
         const transparentVerify = this.props?.location?.pathname?.startsWith("/hot")
         || this.props?.location?.pathname?.startsWith("/created")
@@ -307,6 +323,21 @@ export class NavBar extends Component<Props, State> {
                                 </div>
                             </div>
 
+                            {!activeUser &&
+                            <>
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={()=>toggleUIProp("login")}>
+                                        <div className="icon">{userOutlineSvg}</div>
+                                        <div className="ml-3 text-15">Login</div>
+                                </div>
+                                <Link to="/signup">
+                                    <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                            <div className="icon">{keySvg}</div>
+                                            <div className="ml-3 text-15">Signup</div>
+                                    </div>
+                                </Link>
+                            </>
+                            }
+
                             <Link to="/submit">
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                                     <div className="icon">{pencilOutlinedSvg}</div>
@@ -315,11 +346,11 @@ export class NavBar extends Component<Props, State> {
                             </Link>
 
                             <div>
-                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark" onClick={() => this.setState({showProfileMenu: !showProfileMenu})}>
+                                {activeUser && <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark" onClick={() => this.setState({showProfileMenu: !showProfileMenu})}>
                                     <div className="icon">{userOutlineSvg}</div>
                                     <div className="ml-3 text-15">Profile menu</div>
                                     <div className="ml-3 text-15 icon">{showProfileMenu ? upArrowSvg : downArrowSvg}</div>
-                                </div>
+                                </div>}
 
                                 {activeUser && showProfileMenu ? 
                                 <div className="pl-3 position-relative menu-container">
@@ -334,52 +365,38 @@ export class NavBar extends Component<Props, State> {
                                             </div>
                                         </Link>
 
-                                        <div className="p-1 menu-item">
-                                            <Link to='/drafts'>
-                                                <div className="item-text">Drafts</div>
-                                            </Link>
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({drafts: !drafts})}>
+                                            <div className="item-text">Drafts</div>
+                                        </div>
+
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({gallery: !gallery})}>
+                                            <div className="item-text">Gallery</div>
+                                        </div>
+
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({bookmarks: !bookmarks})}>
+                                            <div className="item-text">Bookmarks</div>
+                                        </div>
+
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({schedules: !schedules})}>
+                                            <div className="item-text">Schedules</div>
+                                        </div>
+
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({schedules: !schedules})}>
+                                            <div className="item-text">Snippets</div>
                                         </div>
 
                                         <div className="p-1 menu-item">
-                                            <Link to='/drafts'>
-                                                <div className="item-text">Gallery</div>
-                                            </Link>
-                                        </div>
-
-                                        <div className="p-1 menu-item">
-                                            <Link to='/drafts'>
-                                                <div className="item-text">Bookmarks</div>
-                                            </Link>
-                                        </div>
-
-                                        <div className="p-1 menu-item">
-                                            <Link to='/drafts'>
-                                                <div className="item-text">Schedules</div>
-                                            </Link>
-                                        </div>
-
-                                        <div className="p-1 menu-item">
-                                            <Link to='/drafts'>
-                                                <div className="item-text">Snippets</div>
-                                            </Link>
-                                        </div>
-
-                                        <div className="p-1 menu-item">
-                                            <Link to='/drafts'>
+                                            <Link to={`/@${activeUser.username}/settings`}>
                                                 <div className="item-text">Settings</div>
                                             </Link>
                                         </div>
 
-                                        <div className="p-1 menu-item">
-                                            <Link to='/drafts'>
-                                                <div className="item-text">Login As</div>
-                                            </Link>
+                                        <div className="p-1 menu-item" onClick={() => toggleUIProp('login')}>
+                                            <div className="item-text">Login As</div>
                                         </div>
 
-                                        <div className="p-1 menu-item">
-                                            <Link to='/drafts'>
-                                                <div className="item-text">Logout</div>
-                                            </Link>
+                                        <div className="p-1 menu-item" onClick={() => setActiveUser(null)}>
+                                            <div className="item-text">Logout</div>
                                         </div>
                                     </div>
                                 </div> : null}
@@ -416,7 +433,13 @@ export class NavBar extends Component<Props, State> {
                         </div>
                     </div>
                     {ui.login && <Login {...this.props} />}
-                    {global.usePrivate && <NotificationHandler {...this.props} />}
+                    {global.usePrivate && <NotificationHandler {...this.props}/>}
+                    {ui.notifications && activeUser && <UserNotifications {...this.props} activeUser={activeUser} />}
+                    {gallery && <Gallery {...this.props} onHide={() => this.setState({gallery:!gallery})} />}
+                    {drafts && activeUser && <Drafts {...this.props} onHide={() => this.setState({drafts:!drafts})} activeUser={activeUser as ActiveUser} />}
+                    {bookmarks && activeUser && <Bookmarks {...this.props} onHide={() => this.setState({bookmarks:!bookmarks})} activeUser={activeUser as ActiveUser} />}
+                    {schedules && activeUser && <Schedules {...this.props} onHide={() => this.setState({schedules:!schedules})} activeUser={activeUser as ActiveUser} />}
+                    {fragments && activeUser && <Fragments {...this.props} onHide={() => this.setState({fragments:!fragments})} activeUser={activeUser as ActiveUser} />}
                 </div>
             </>
         );
