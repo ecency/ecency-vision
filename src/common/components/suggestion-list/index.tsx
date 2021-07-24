@@ -3,6 +3,7 @@ import React, {Component} from "react";
 interface Props {
     items: any[];
     header?: string;
+    containerClassName?: string;
     renderer?: (item: any) => JSX.Element;
     onSelect?: (item: any) => void;
     children: JSX.Element;
@@ -120,11 +121,12 @@ export default class SuggestionList extends Component<Props> {
     };
 
     render() {
-        const {children, items, header, renderer} = this.props;
+        const {children, items, header, renderer, containerClassName} = this.props;
         const {showList} = this.state;
+        
         return (
             <>
-                <div className="suggestion" ref={this.parent}>
+                <div className={containerClassName ? `suggestion ${containerClassName}` : "suggestion"} ref={this.parent}>
                     {children}
 
                     {showList && items.length > 0 && (

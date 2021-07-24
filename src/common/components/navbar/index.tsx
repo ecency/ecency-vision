@@ -30,7 +30,7 @@ import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg} from "../../img/svg";
+import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg} from "../../img/svg";
 
 const logo = require('../../img/logo-circle.svg');
 
@@ -66,12 +66,14 @@ interface Props {
 interface State {
     smVisible: boolean,
     floating: boolean,
+    showMobileSearch: boolean,
 }
 
 export class NavBar extends Component<Props, State> {
     state: State = {
         smVisible: false,
-        floating: false
+        floating: false,
+        showMobileSearch: false
     }
 
     timer: any = null;
@@ -155,7 +157,7 @@ export class NavBar extends Component<Props, State> {
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
-        const {smVisible, floating} = this.state;
+        const {smVisible, floating, showMobileSearch} = this.state;
 
         const transparentVerify = this.props?.location?.pathname?.startsWith("/hot")
         || this.props?.location?.pathname?.startsWith("/created")
@@ -273,29 +275,39 @@ export class NavBar extends Component<Props, State> {
                 <div ref={this.nav} className={_c(`nav-bar ${(!transparentVerify && step === 1 ? "transparent" : "")} ${(smVisible ? "visible-sm" : "d-none")}`)}>
                     <div className="nav-bar-inner">
                         <div className="mt-5 pt-5 w-100">
-                            <Link to="/search">
+                            <div onClick={() => !showMobileSearch && this.setState({ showMobileSearch: true })}>
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                    <div className="icon">{magnifySvg}</div>
-                                    <div className="ml-3 text-15">Search</div>
+                                    
+                                    {showMobileSearch ? 
+                                        <>
+                                            {Search({...this.props, containerClassName:'w-100'})}
+                                            <div
+                                                onClick={() => this.setState({showMobileSearch:false})}
+                                                className="icon text-secondary ml-2"
+                                            >
+                                                {closeSvg}
+                                            </div>
+                                        </> : 
+                                        <>
+                                            <div className="icon">{magnifySvg}</div>
+                                            <div className="ml-3 text-15">Search</div>
+                                        </>
+                                    }
                                 </div>
-                            </Link>
+                            </div>
 
-
-                            <Link to="/search">
+                            <Link to="/submit">
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                    <div className="icon">{pencilOutlineSvg}</div>
+                                    <div className="icon">{pencilOutlinedSvg}</div>
                                     <div className="ml-3 text-15">Write a post</div>
                                 </div>
                             </Link>
 
-
-                            <Link to="/search">
-                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                    <div className="icon">{accountOutlineSvg}</div>
-                                    <div className="ml-3 text-15">Profile menu</div>
-                                    <div className="ml-3 text-15">{chevronDownSvgForSlider}</div>
-                                </div>
-                            </Link>
+                            <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                <div className="icon">{userOutlineSvg}</div>
+                                <div className="ml-3 text-15">Profile menu</div>
+                                <div className="ml-3 text-15">{downArrowSvg}</div>
+                            </div>
 
                             <Link to="/search">
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
