@@ -401,7 +401,7 @@ body.medium-zoom--opened {
 
     top: 11px !important;
     right: unset !important;
-    left: 55px !important;
+    left: 54px !important;
 
     .label {
       font-size: 17px !important;
@@ -463,6 +463,7 @@ body.medium-zoom--opened {
 }
 
 .menu-item {
+  margin-top: 19px;
   .item-text {
     color: $black;
     margin-left: 64px;
