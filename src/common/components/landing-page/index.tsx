@@ -231,7 +231,7 @@ const LandingPage = (props: any) => {
             </ul>
           </div>
         </div>
-        <div className="part-bottom">
+        <div className="part-bottom" id="download">
           <div className="inner">
             <span />
             <span />

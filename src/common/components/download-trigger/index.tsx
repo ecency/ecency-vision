@@ -7,6 +7,7 @@ import BaseComponent from "../base";
 import {geLatestDesktopTag} from "../../api/misc";
 
 import platform from '../../util/platform';
+import { history } from '../../store';
 
 interface ContentState {
     desktopTag: string;
@@ -77,6 +78,28 @@ export default class DownloadTrigger extends Component <Props, State> {
 
         this.setState({modal: !modal});
     };
+
+    componentDidMount(){
+        if(history?.location.hash === "#download"){
+            this.toggle()
+        }
+    }
+
+    componentDidUpdate(prevProps:Props, prevStates: State){
+        if(prevStates.modal !== this.state.modal){
+            if(!this.state.modal){
+                let scrollToTop: any = document.getElementsByClassName("overlay-for-introduction");
+                debugger
+                scrollToTop = scrollToTop.length > 0;;
+                
+                if(scrollToTop){
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });}
+        }
+    }
+    }
 
     render() {
         const {children} = this.props;
