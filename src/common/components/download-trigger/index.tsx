@@ -89,7 +89,7 @@ export default class DownloadTrigger extends Component <Props, State> {
         if(prevStates.modal !== this.state.modal){
             if(!this.state.modal){
                 let scrollToTop: any = document.getElementsByClassName("overlay-for-introduction");
-                debugger
+                
                 scrollToTop = scrollToTop.length > 0;;
                 
                 if(scrollToTop){
