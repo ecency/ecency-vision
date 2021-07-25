@@ -117,3 +117,78 @@
     padding-top: 30px;
   }
 }
+
+.title {
+  font-weight: 700;
+  font-size: 59px;
+  color: $black;
+  line-height: 68px;
+
+  @include themify(night) {
+    color: $white;
+  }
+  
+}
+
+.descriptive-list {
+  color: $dark-sky-blue;
+  font-weight: 300;
+  font-size: 24px;
+
+  li {
+    line-height: 50.4px;
+  }
+
+  @include themify(night) {
+    color: $warm-grey;
+  }
+
+}
+
+.learn-more {
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 27px;
+
+  a {
+    color: $dark-sky-blue;
+  }
+
+  @include themify(night) {
+    color: $warm-grey;
+  }
+
+}
+
+.community-form {
+
+  input {
+    padding: 1.675rem 0.75rem !important;
+    font-size: 18px !important;
+    background-color: $light-powder-blue !important;
+
+    @include themify(night) {
+      background-color: $transparent !important;
+      color: $warm-grey !important;
+      border-color: $dark-three !important;
+    }
+
+    &:hover, &:focus {
+      @include themify(night) {
+        background-color: $dark-two !important;
+        border-color: $dark-sky-blue !important;
+      }
+    }
+
+  }
+
+  button {
+    font-size: 18px !important;
+
+    @include themify(night) {
+      background-color: $dark-grey-blue !important;
+      border-color: $dark-grey-blue !important;
+    }
+
+  }
+}

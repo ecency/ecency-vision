@@ -33,7 +33,7 @@ import LoginRequired from "../components/login-required";
 import Feedback from "../components/feedback";
 import {error} from "../components/feedback";
 import ScrollToTop from "../components/scroll-to-top";
-
+import communityImage from '../img/community-img.svg'
 import {_t} from "../i18n";
 
 import {getAccount} from "../api/hive";
@@ -515,7 +515,88 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                     }) :
                     NavBar({...this.props})}
 
-                <div className="app-content communities-page">
+                <div className="container-fluid">
+                    <div className="row align-items-center">
+                        <div className="col-12 col-md-6">
+                            <img src={communityImage} className="w-100"/>
+                        </div>
+                        <div className="col-12 col-md-5">
+                            <div>
+                                <h1 className="title">Create a community that is:</h1>
+                                <ul className="descriptive-list">
+                                    <li>Have true ownership</li>
+                                    <li>Permanent</li>
+                                    <li>Powered by blockchain technology</li>
+                                </ul>
+                                <div className="learn-more">Learn more in our <Link to="/faq">FAQ</Link></div>
+
+                        <Form ref={this.form} className={`community-form mt-3 ${inProgress ? "in-progress" : ""}`} onSubmit={(e: React.FormEvent) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        if (!this.form.current?.checkValidity()) {
+                            return;
+                        }
+
+                        const {wif} = this.state;
+                        if (wif === '') {
+                            this.genCredentials();
+                            return;
+                        }
+
+                        this.toggleKeyDialog();
+                    }}
+                    >
+                            <Form.Group>
+                                <Form.Control
+                                    type="text"
+                                    autoComplete="off"
+                                    autoFocus={true}
+                                    value={title}
+                                    minLength={3}
+                                    maxLength={20}
+                                    onChange={this.onInput}
+                                    required={true}
+                                    onInvalid={(e: any) => handleInvalid(e, 'communities-create.', 'title-validation')}
+                                    onInput={(e:any) => e.target.setCustomValidity("")}
+                                    name="title"
+                                    isValid={title.length > 2 && title.length < 21}
+                                    placeholder={_t("communities-create.title")}
+                                />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Control
+                                    type="text"
+                                    autoComplete="off"
+                                    value={about}
+                                    maxLength={120}
+                                    onChange={this.onInput}
+                                    name="about"
+                                    placeholder={_t("communities-create.about")}
+                                />
+                            </Form.Group>
+                            {(()=>{
+                                if (activeUser) {
+                                    return <Form.Group>
+                                        <Button type="submit" className="w-100 p-3">{_t('g.next')}</Button>
+                                    </Form.Group>
+                                }
+
+                                return <Form.Group>
+                                    {LoginRequired({
+                                        ...this.props,
+                                        children: <Button type="button" className="w-100 p-3">{_t('g.next')}</Button>
+                                    })}
+                                </Form.Group>
+                            })()}
+                        </Form>
+                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* <div className="app-content communities-page">
                     <Form ref={this.form} className={`community-form ${inProgress ? "in-progress" : ""}`} onSubmit={(e: React.FormEvent) => {
                         e.preventDefault();
                         e.stopPropagation();
@@ -667,7 +748,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                             })}
                         </Modal.Body>
                     </Modal>
-                )}
+                )} */}
             </>
         )
     }
