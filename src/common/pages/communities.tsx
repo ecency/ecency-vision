@@ -33,7 +33,6 @@ import LoginRequired from "../components/login-required";
 import Feedback from "../components/feedback";
 import {error} from "../components/feedback";
 import ScrollToTop from "../components/scroll-to-top";
-import communityImage from '../img/community-img.svg'
 import {_t} from "../i18n";
 
 import {getAccount} from "../api/hive";
@@ -55,6 +54,7 @@ import {checkSvg, alertCircleSvg} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import { handleInvalid, handleOnInput } from "../util/input-util";
+
 
 interface State {
     list: Community[];
@@ -501,6 +501,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         };
 
         const {activeUser, global} = this.props;
+        const communityImage = global.isElectron ? "../../common/img/community-img.svg" : require("../img/community-img.svg");
 
         const {fee, title, about, username, wif, usernameStatus, keyDialog, done, inProgress, progress} = this.state;
 
@@ -523,30 +524,47 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                         <div className="col-12 col-md-5">
                             <div>
                                 <h1 className="title">Create a community that is:</h1>
-                                <ul className="descriptive-list">
-                                    <li>Have true ownership</li>
-                                    <li>Permanent</li>
-                                    <li>Powered by blockchain technology</li>
-                                </ul>
-                                <div className="learn-more">Learn more in our <Link to="/faq">FAQ</Link></div>
+                                {!wif && <>
+                                                    <ul className="descriptive-list">
+                                                        <li>Have true ownership</li>
+                                                        <li>Permanent</li>
+                                                        <li>Powered by blockchain technology</li>
+                                                    </ul>
+                                                    <div className="learn-more">Learn more in our <Link to="/faq">FAQ</Link></div>
+                                                </>
+                                }
+                        <Form 
+                            ref={this.form} 
+                            className={`community-form mt-3 ${inProgress ? "in-progress" : ""}`} 
+                            onSubmit={(e: React.FormEvent) => {
+                                e.preventDefault();
+                                e.stopPropagation();
 
-                        <Form ref={this.form} className={`community-form mt-3 ${inProgress ? "in-progress" : ""}`} onSubmit={(e: React.FormEvent) => {
-                        e.preventDefault();
-                        e.stopPropagation();
+                                if (!this.form.current?.checkValidity()) {
+                                    return;
+                                }
 
-                        if (!this.form.current?.checkValidity()) {
-                            return;
-                        }
+                                const {wif} = this.state;
+                                if (wif === '') {
+                                    this.genCredentials();
+                                    return;
+                                }
 
-                        const {wif} = this.state;
-                        if (wif === '') {
-                            this.genCredentials();
-                            return;
-                        }
+                                this.toggleKeyDialog();
+                            }}
+                        >
+                        {(() => {
+                            if (done) {
+                                const url = `/created/${username}`;
+                                return <div className="done">
+                                    <p>{_t("communities-create.done")}</p>
+                                    <p><strong><Link to={url}>{_t("communities-create.done-link-label")}</Link></strong></p>
+                                </div>
+                            }
 
-                        this.toggleKeyDialog();
-                    }}
-                    >
+                            return <>
+                               {!wif && 
+                        <>
                             <Form.Group>
                                 <Form.Control
                                     type="text"
@@ -575,85 +593,9 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                     placeholder={_t("communities-create.about")}
                                 />
                             </Form.Group>
-                            {(()=>{
-                                if (activeUser) {
-                                    return <Form.Group>
-                                        <Button type="submit" className="w-100 p-3">{_t('g.next')}</Button>
-                                    </Form.Group>
-                                }
-
-                                return <Form.Group>
-                                    {LoginRequired({
-                                        ...this.props,
-                                        children: <Button type="button" className="w-100 p-3">{_t('g.next')}</Button>
-                                    })}
-                                </Form.Group>
-                            })()}
-                        </Form>
-                    
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* <div className="app-content communities-page">
-                    <Form ref={this.form} className={`community-form ${inProgress ? "in-progress" : ""}`} onSubmit={(e: React.FormEvent) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        if (!this.form.current?.checkValidity()) {
-                            return;
-                        }
-
-                        const {wif} = this.state;
-                        if (wif === '') {
-                            this.genCredentials();
-                            return;
-                        }
-
-                        this.toggleKeyDialog();
-                    }}
-                    >
-                        <h1 className="form-title">{_t("communities-create.page-title")}</h1>
-                        {(() => {
-                            if (done) {
-                                const url = `/created/${username}`;
-                                return <div className="done">
-                                    <p>{_t("communities-create.done")}</p>
-                                    <p><strong><Link to={url}>{_t("communities-create.done-link-label")}</Link></strong></p>
-                                </div>
-                            }
-
-                            return <>
-                                <Form.Group>
-                                    <Form.Label>{_t("communities-create.title")}</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        autoComplete="off"
-                                        autoFocus={true}
-                                        value={title}
-                                        minLength={3}
-                                        maxLength={20}
-                                        onChange={this.onInput}
-                                        required={true}
-                                        onInvalid={(e: any) => handleInvalid(e, 'communities-create.', 'title-validation')}
-                                        onInput={(e:any) => e.target.setCustomValidity("")}
-                                        name="title"
-                                        isValid={title.length > 2 && title.length < 21}
-                                    />
-                                </Form.Group>
-                                <Form.Group>
-                                    <Form.Label>{_t("communities-create.about")}</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        autoComplete="off"
-                                        value={about}
-                                        maxLength={120}
-                                        onChange={this.onInput}
-                                        name="about"
-                                    />
-                                </Form.Group>
-                                {(() => {
+                            </>}
+                               {(() => {
+                                   debugger
                                     if (activeUser && wif) {
                                         return <>
                                             <Form.Group>
@@ -697,58 +639,42 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                                     /> {_t("communities-create.confirmation")}</label>
                                             </Form.Group>
                                             <Form.Group>
-                                                <Button type="submit" disabled={inProgress}>
+                                                <Button className="w-100 p-3 bg-white text-primary" onClick={() => this.setState({ wif: "" })}>
+                                                    {_t("g.back")}
+                                                </Button>
+                                            </Form.Group>
+                                            <Form.Group>
+                                                <Button type="submit" disabled={inProgress} className="w-100 p-3">
                                                     {inProgress && (<Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>)}
-                                                    {_t("communities-create.submit")}</Button>
+                                                    {_t("communities-create.submit")}
+                                                </Button>
                                             </Form.Group>
                                             {inProgress && <p>{progress}</p>}
                                         </>
                                     }
 
-                                    if (activeUser) {
+                                    if (!wif && activeUser) {
                                         return <Form.Group>
-                                            <Button type="submit">{_t('g.next')}</Button>
-                                        </Form.Group>
+                                                    <Button type="submit" className="w-100 p-3">{_t('g.next')}</Button>
+                                                </Form.Group>
                                     }
 
-                                    return <Form.Group>
+                                    return !wif && <Form.Group>
                                         {LoginRequired({
                                             ...this.props,
-                                            children: <Button type="button">{_t('g.next')}</Button>
+                                            children: <Button type="button" className="w-100 p-3">{_t('g.next')}</Button>
                                         })}
                                     </Form.Group>
                                 })()}
                             </>
                         })()}
-                    </Form>
+                            
+                        </Form>
+                    
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                {keyDialog && (
-                    <Modal animation={false} show={true} centered={true} onHide={this.toggleKeyDialog} keyboard={false} className="community-key-modal modal-thin-header">
-                        <Modal.Header closeButton={true}/>
-                        <Modal.Body>
-                            {KeyOrHot({
-                                ...this.props,
-                                activeUser: activeUser!,
-                                inProgress: false,
-                                onKey: (key) => {
-                                    this.toggleKeyDialog();
-                                    this.stateSet({creatorKey: key}, () => {
-                                        this.submit().then();
-                                    });
-                                },
-                                onHot: () => {
-                                    this.toggleKeyDialog();
-                                    this.submitHot();
-                                },
-                                onKc: () => {
-                                    this.toggleKeyDialog();
-                                    this.submitKc().then();
-                                }
-                            })}
-                        </Modal.Body>
-                    </Modal>
-                )} */}
             </>
         )
     }
