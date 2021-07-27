@@ -534,7 +534,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                         </div>
                         <div className="col-12 col-sm-8 col-lg-5 p-0 p-sm-3">
                             <div>
-                                <h1 className="community-title">Create a community that is:</h1>
+                                <h1 className={`community-title ${wif ? "mb-5" : ""} d-none d-lg-block`}>Create a community that is:</h1>
+                                <h1 className={`community-title ${wif ? "mb-5" : ""} d-lg-none`}>Create a community {!wif ? "that is":""}</h1>
                                 {(!wif || !activeUser) && <>
                                                     <ul className="descriptive-list">
                                                         <li>Have true ownership</li>
@@ -545,9 +546,9 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                                 </>
                                 }
 
-                        <div className="col-12 d-lg-none p-0">
+                        {!wif && <div className="col-12 d-lg-none p-0">
                             <img src={communityImage} className="w-100"/>
-                        </div>
+                        </div>}
                         <Form 
                             ref={this.form} 
                             className={`community-form ${inProgress ? "in-progress" : ""}`} 

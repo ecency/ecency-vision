@@ -281,4 +281,8 @@
 
 .community-form {
   margin-top: 1rem;
+
+  @media (max-width: $sm-break) {
+    margin-top: -2rem;
+  }
 }
