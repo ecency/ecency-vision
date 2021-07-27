@@ -5,7 +5,7 @@
   width: 30px;
   height: 30px;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 1000000;
 
   svg {
     height: 30px;
@@ -332,4 +332,16 @@ body.medium-zoom--opened {
   @media (max-width: $md-break) {
     display: none;
   }
+}
+
+.sticky {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 20000;
+}
+
+.sticky-container {
+  height: 86px
 }

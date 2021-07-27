@@ -170,11 +170,11 @@ export class NavBar extends Component<Props, State> {
         </div>
 
         return (
-            <>
+            <div className={"position-relative sticky-container"}>
                 {floating && (<div className="nav-bar-rep"/>)}
-                <div className="nav-bar-toggle" onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
+                <div className={`nav-bar-toggle ${"position-fixed"}`} onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
                 {!smVisible && (
-                    <div className="nav-bar-sm">
+                    <div className={`nav-bar-sm ${"sticky"}`}>
                         <div className="brand">
                             {
                                 activeUser !== null ? (
@@ -190,6 +190,7 @@ export class NavBar extends Component<Props, State> {
 
                         {textMenu}
                     </div>
+                  
                 )}
                 <div ref={this.nav} className={_c(`nav-bar ${(smVisible ? "visible-sm" : "")} ${(!transparentVerify && step === 1 ? "transparent" : "")}`)}>
                     <div className="nav-bar-inner">
@@ -270,7 +271,7 @@ export class NavBar extends Component<Props, State> {
                     {ui.login && <Login {...this.props} />}
                     {global.usePrivate && <NotificationHandler {...this.props} />}
                 </div>
-            </>
+            </div>
         );
     }
 }

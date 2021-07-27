@@ -706,7 +706,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         const {global, activeUser} = this.props;
 
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
-
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 570;
         return (
             <>
                 <Meta {...metaProps} />
@@ -718,7 +718,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                     NavBarElectron({
                         ...this.props,
                     }) :
-                    NavBar({...this.props})}
+                    NavBar({ ...this.props })}
 
                 <div className={_c(`app-content submit-page ${editingEntry !== null ? "editing" : ""}`)}>
                     <div className="editor-panel">
@@ -765,7 +765,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 placeholder={_t("submit.body-placeholder")}
                                 value={body}
                                 onChange={this.bodyChanged}
-                                rows={10}
+                                rows={isMobile ? 20 : 10}
                             />
                         </div>
                         {editingEntry === null && (
