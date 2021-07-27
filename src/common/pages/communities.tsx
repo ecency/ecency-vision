@@ -619,7 +619,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                                         placement={'bottom'}
                                                         overlay={
                                                             <Tooltip id={`tooltip-bottom`}>
-                                                                Tooltip on <strong>{'bottom'}</strong>.
+                                                                {_t("communities-create.reason-four")}
                                                             </Tooltip>
                                                         }
                                                         >
