@@ -85,6 +85,7 @@
 
     .fee, .creator {
       font-weight: 500;
+      color: $dark-sky-blue !important;
     }
 
     .password {
@@ -118,7 +119,7 @@
   }
 }
 
-.title {
+.community-title {
   font-weight: 700;
   font-size: 59px;
   color: $black;
@@ -127,7 +128,6 @@
   @include themify(night) {
     color: $white;
   }
-  
 }
 
 .descriptive-list {
@@ -179,22 +179,69 @@
         border-color: $dark-sky-blue !important;
       }
     }
+  }
 
+  input#copy-to-clipboard {
+    color: $red2 !important
   }
 
   button {
     font-size: 18px !important;
+    :disabled {
+      background-color: $pastel-blue !important;
+    }
 
     @include themify(night) {
       background-color: $dark-grey-blue !important;
       border-color: $dark-grey-blue !important;
+      :disabled {
+        background-color: $dusky-blue !important;
+      }
     }
-
   }
+
+  button#black-on-night {
+    @include themify(night) {
+      background-color: $dark-two !important;
+      border-color: $dark-two !important;
+      color: $white !important;
+    }
+  }
+
+  button.btn-primary {
+    @include themify(night) {
+      background-color: $dark-sky-blue !important;
+      border-color: $dark-sky-blue !important;
+    }
+  }
+
   .form-text {
     svg {
       height: 14px;
       margin-right: 4px;
     }
   }
+}
+
+.info-icon {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $gunmetal;
+  border: 1.17px solid $gunmetal;
+  font-size: 10px;
+}
+
+.form-label {
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 600;
+}
+
+.label-text {
+  font-size: 18px;
+  font-weight: 400;
 }

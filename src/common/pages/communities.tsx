@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 import {Link} from "react-router-dom";
 
-import {Button, Form, FormControl, Modal, Spinner} from "react-bootstrap";
+import { Button, Form, FormControl, Modal, Spinner, OverlayTrigger, Tooltip, InputGroup } from "react-bootstrap";
 
 import base58 from "bs58";
 
@@ -30,7 +30,7 @@ import CommunityListItem from "../components/community-list-item";
 import SearchBox from "../components/search-box";
 import KeyOrHot from "../components/key-or-hot";
 import LoginRequired from "../components/login-required";
-import Feedback from "../components/feedback";
+import Feedback, { success } from "../components/feedback";
 import {error} from "../components/feedback";
 import ScrollToTop from "../components/scroll-to-top";
 import {_t} from "../i18n";
@@ -50,7 +50,7 @@ import defaults from "../constants/defaults.json";
 
 import random from "../util/rnd";
 
-import {checkSvg, alertCircleSvg} from "../img/svg";
+import {checkSvg, alertCircleSvg, informationVariantSvg, copyContent} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import { handleInvalid, handleOnInput } from "../util/input-util";
@@ -493,6 +493,16 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         });
     }
 
+    copyToClipboard = (text: string) => {
+        const textField = document.createElement('textarea');
+        textField.innerText = text;
+        document.body.appendChild(textField);
+        textField.select();
+        document.execCommand('copy');
+        textField.remove();
+        success(_t('profile-edit.copied'));
+    }
+
     render() {
         //  Meta config
         const metaProps = {
@@ -523,7 +533,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                         </div>
                         <div className="col-12 col-md-5">
                             <div>
-                                <h1 className="title">Create a community that is:</h1>
+                                <h1 className="community-title">Create a community that is:</h1>
                                 {!wif && <>
                                                     <ul className="descriptive-list">
                                                         <li>Have true ownership</li>
@@ -539,7 +549,6 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                             onSubmit={(e: React.FormEvent) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-
                                 if (!this.form.current?.checkValidity()) {
                                     return;
                                 }
@@ -595,16 +604,29 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                             </Form.Group>
                             </>}
                                {(() => {
-                                   debugger
                                     if (activeUser && wif) {
                                         return <>
                                             <Form.Group>
-                                                <Form.Label>{_t("communities-create.fee")}</Form.Label>
+                                                <div className="d-flex align-items-center">
+                                                    <Form.Label className="mb-0 mr-2">{_t("communities-create.fee")}</Form.Label>
+                                                    <OverlayTrigger
+                                                        placement={'bottom'}
+                                                        overlay={
+                                                            <Tooltip id={`tooltip-bottom`}>
+                                                                Tooltip on <strong>{'bottom'}</strong>.
+                                                            </Tooltip>
+                                                        }
+                                                        >
+                                                        <span className="info-icon">{informationVariantSvg}</span>
+                                                    </OverlayTrigger>
+                                                </div>
                                                 <div className="fee">{fee}</div>
                                             </Form.Group>
                                             <Form.Group>
-                                                <Form.Label>{_t("communities-create.creator")}</Form.Label>
-                                                <div className="creator">@{activeUser.username}</div>
+                                                <Form.Label className="mb-0">{_t("communities-create.creator")}</Form.Label>
+                                                <div>
+                                                    <Link className="creator" to={`/@${activeUser.username}`}>@{activeUser.username}</Link>
+                                                </div>
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label>{_t("communities-create.username")}</Form.Label>
@@ -627,10 +649,33 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label>{_t("communities-create.password")}</Form.Label>
-                                                <pre className="password"><span>{wif}</span></pre>
+                                                <Form.Group>
+                                                    <InputGroup 
+                                                        className="mb-3"
+                                                        onClick={() => this.copyToClipboard(wif)}
+                                                    >
+                                                        <Form.Control 
+                                                            value={wif} 
+                                                            disabled={true}
+                                                            className="pointer"
+                                                            id="copy-to-clipboard"
+                                                        />
+                                                        <InputGroup.Append>
+                                                            <Button
+                                                                variant="primary"
+                                                                size="sm"
+                                                                className="copy-to-clipboard"
+                                                                onClick={() => this.copyToClipboard(`${wif}`)}
+                                                            >
+                                                                {copyContent}
+                                                            </Button>
+                                                        </InputGroup.Append>
+                                                    </InputGroup>
+                                                </Form.Group>
+                                                
                                             </Form.Group>
                                             <Form.Group>
-                                                <label>
+                                                <label className="label-text">
                                                     <input
                                                         type="checkbox"
                                                         required={true} 
@@ -639,12 +684,12 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                                     /> {_t("communities-create.confirmation")}</label>
                                             </Form.Group>
                                             <Form.Group>
-                                                <Button className="w-100 p-3 bg-white text-primary" onClick={() => this.setState({ wif: "" })}>
+                                                <Button className="w-100 p-3 bg-white text-primary" onClick={() => this.setState({ wif: "" })} id="black-on-night">
                                                     {_t("g.back")}
                                                 </Button>
                                             </Form.Group>
                                             <Form.Group>
-                                                <Button type="submit" disabled={inProgress} className="w-100 p-3">
+                                                <Button type="submit" disabled={inProgress} className="w-100 p-3" variant="primary">
                                                     {inProgress && (<Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>)}
                                                     {_t("communities-create.submit")}
                                                 </Button>
@@ -671,7 +716,32 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                             
                         </Form>
                     
-                            </div>
+                            </div>{keyDialog && (
+                    <Modal animation={false} show={true} centered={true} onHide={this.toggleKeyDialog} keyboard={false} className="community-key-modal modal-thin-header">
+                        <Modal.Header closeButton={true}/>
+                        <Modal.Body>
+                            {KeyOrHot({
+                                ...this.props,
+                                activeUser: activeUser!,
+                                inProgress: false,
+                                onKey: (key) => {
+                                    this.toggleKeyDialog();
+                                    this.stateSet({creatorKey: key}, () => {
+                                        this.submit().then();
+                                    });
+                                },
+                                onHot: () => {
+                                    this.toggleKeyDialog();
+                                    this.submitHot();
+                                },
+                                onKc: () => {
+                                    this.toggleKeyDialog();
+                                    this.submitKc().then();
+                                }
+                            })}
+                        </Modal.Body>
+                    </Modal>
+                )}
                         </div>
                     </div>
                 </div>
