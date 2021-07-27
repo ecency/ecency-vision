@@ -2,6 +2,7 @@
   "g": {
     "add": "Add",
     "edit": "Edit",
+    "that-is": "that is",
     "search": "Search",
     "downloads": "Downloads",
     "login": "Login",
@@ -43,6 +44,8 @@
     "apply": "Apply",
     "warning": "Warning",
     "payout": "Payout",
+    "learn-more": "Learn more in our",
+    "faq": "FAQ",
     "close": "Close"
   },
   "confirm": {
@@ -383,6 +386,9 @@
     "progress-role": "Setting @{{u}} as admin...",
     "progress-props": "Updating community settings...",
     "done": "Your community was created 🎉",
+    "reason-one": "Have true ownership",
+    "reason-two": "Permanent",
+    "reason-three": "Powered by blockchain technology",
     "done-link-label": "Get started."
   },
   "community-rewards-registration": {

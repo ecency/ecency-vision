@@ -534,15 +534,15 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                         </div>
                         <div className="col-12 col-sm-8 col-lg-5 p-0 p-sm-3">
                             <div>
-                                <h1 className={`community-title ${wif ? "mb-5" : ""} d-none d-lg-block`}>Create a community that is:</h1>
-                                <h1 className={`community-title ${wif ? "mb-5" : ""} d-lg-none`}>Create a community {!wif ? "that is":""}</h1>
+                                <h1 className={`community-title ${wif ? "mb-5" : ""} d-none d-lg-block`}>{_t("communities-create.page-title")} {_t("g.that-is")}:</h1>
+                                <h1 className={`community-title ${wif ? "mb-5" : ""} d-lg-none`}>{_t("communities-create.page-title")} {!wif ? _t("g.that-is") : ""}</h1>
                                 {(!wif || !activeUser) && <>
                                                     <ul className="descriptive-list">
-                                                        <li>Have true ownership</li>
-                                                        <li>Permanent</li>
-                                                        <li>Powered by blockchain technology</li>
+                                                        <li>{_t("communities-create.reason-one")}</li>
+                                                        <li>{_t("communities-create.reason-two")}</li>
+                                                        <li>{_t("communities-create.reason-three")}</li>
                                                     </ul>
-                                                    <div className="learn-more">Learn more in our <Link to="/faq">FAQ</Link></div>
+                                                    <div className="learn-more">{_t("g.learn-more")} <Link to="/faq">{_t("g.faq")}</Link></div>
                                                 </>
                                 }
 
