@@ -534,7 +534,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                         <div className="col-12 col-md-5">
                             <div>
                                 <h1 className="community-title">Create a community that is:</h1>
-                                {!wif && <>
+                                {(!wif || !activeUser) && <>
                                                     <ul className="descriptive-list">
                                                         <li>Have true ownership</li>
                                                         <li>Permanent</li>
