@@ -511,7 +511,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         };
 
         const {activeUser, global} = this.props;
-        const communityImage = global.isElectron ? "../../common/img/community-img.svg" : require("../img/community-img.svg");
+        let communityImage = global.isElectron ? "../../common/img/community-img.svg" : require("../img/community-img.svg");
+
 
         const {fee, title, about, username, wif, usernameStatus, keyDialog, done, inProgress, progress} = this.state;
 
@@ -544,7 +545,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                                 </>
                                 }
 
-                        <div className="col-12 d-lg-none">
+                        <div className="col-12 d-lg-none p-0">
                             <img src={communityImage} className="w-100"/>
                         </div>
                         <Form 

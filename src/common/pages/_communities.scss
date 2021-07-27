@@ -133,6 +133,11 @@
     font-size: 46px;
     line-height: 59px;
   }
+
+  @media (max-width: $sm-break) {
+    font-size: 31px;
+    line-height: 37px;
+  }
 }
 
 .descriptive-list {
@@ -145,6 +150,11 @@
 
     @media (max-width: $lg-break) {
       line-height: 38px;
+    }
+
+    @media (max-width: $sm-break) {
+      font-size: 18px;
+      line-height: 25px;
     }
   }
 
@@ -174,6 +184,11 @@
 
   @media (max-width: $lg-break) {
     font-size: 16px;
+  }
+
+  @media (max-width: $sm-break) {
+    font-size: 15px;
+    line-height: 25px;
   }
 
 }
