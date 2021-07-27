@@ -527,11 +527,11 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                     NavBar({...this.props})}
 
                 <div className="container-fluid">
-                    <div className="row align-items-center">
-                        <div className="col-12 col-md-6">
+                    <div className="row align-items-center justify-content-center m-0">
+                        <div className="col-6 d-none d-lg-block">
                             <img src={communityImage} className="w-100"/>
                         </div>
-                        <div className="col-12 col-md-5">
+                        <div className="col-12 col-sm-8 col-lg-5 p-0 p-sm-3">
                             <div>
                                 <h1 className="community-title">Create a community that is:</h1>
                                 {(!wif || !activeUser) && <>
@@ -543,9 +543,13 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                                     <div className="learn-more">Learn more in our <Link to="/faq">FAQ</Link></div>
                                                 </>
                                 }
+
+                        <div className="col-12 d-lg-none">
+                            <img src={communityImage} className="w-100"/>
+                        </div>
                         <Form 
                             ref={this.form} 
-                            className={`community-form mt-3 ${inProgress ? "in-progress" : ""}`} 
+                            className={`community-form ${inProgress ? "in-progress" : ""}`} 
                             onSubmit={(e: React.FormEvent) => {
                                 e.preventDefault();
                                 e.stopPropagation();
