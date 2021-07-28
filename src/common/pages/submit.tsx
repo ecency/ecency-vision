@@ -66,6 +66,7 @@ import {version} from "../../../package.json";
 import {contentSaveSvg} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import ModalConfirm from "../components/modal-confirm";
 
 interface PostBase {
     title: string;
@@ -141,6 +142,7 @@ interface State extends PostBase, Advanced {
     saving: boolean;
     editingDraft: Draft | null;
     advanced: boolean;
+    clearModal: boolean;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -157,6 +159,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         beneficiaries: [],
         schedule: null,
         reblogSwitch: false,
+        clearModal: false,
         preview: {
             title: "",
             tags: [],
@@ -404,7 +407,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     clear = (): void => {
-        this.stateSet({title: "", tags: [], body: "", advanced: false, reward: "default", beneficiaries: [], schedule: null, reblogSwitch: false}, () => {
+        this.stateSet({title: "", tags: [], body: "", advanced: false, reward: "default", beneficiaries: [], schedule: null, reblogSwitch: false, clearModal: false}, () => {
             this.updatePreview();
             this.saveAdvanced();
         });
@@ -695,7 +698,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch} = this.state;
+        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch, clearModal} = this.state;
 
         //  Meta config
         const metaProps = {
@@ -713,6 +716,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                 <FullHeight/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
+                {clearModal && <ModalConfirm onConfirm={this.clear} onCancel={() => this.setState({clearModal:false})}/>}
                 {global.isElectron && <MdHandler global={this.props.global} history={this.props.history}/>}
                 {global.isElectron ?
                     NavBarElectron({
@@ -770,7 +774,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                         </div>
                         {editingEntry === null && (
                             <div className="bottom-toolbar">
-                                <Button variant="outline-info" onClick={this.clear}>
+                                <Button variant="outline-info" onClick={()=>this.setState({clearModal: true})}>
                                     {_t("submit.clear")}
                                 </Button>
                                 <Button variant="outline-primary" onClick={this.toggleAdvanced}>
