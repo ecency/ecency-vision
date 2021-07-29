@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(1) Default render 1`] = `
-Array [
+<div
+  className="position-relative sticky-container"
+>
   <div
-    className="nav-bar-toggle"
+    className="nav-bar-toggle position-fixed"
     onClick={[Function]}
   >
     <svg
@@ -14,9 +16,9 @@ Array [
         fill="currentColor"
       />
     </svg>
-  </div>,
+  </div>
   <div
-    className="nav-bar-sm"
+    className="nav-bar-sm sticky"
   >
     <div
       className="brand"
@@ -46,7 +48,7 @@ Array [
         Communities
       </a>
     </div>
-  </div>,
+  </div>
   <div
     className="nav-bar "
   >
@@ -490,14 +492,16 @@ Array [
         }
       }
     />
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`(2) Night Theme 1`] = `
-Array [
+<div
+  className="position-relative sticky-container"
+>
   <div
-    className="nav-bar-toggle"
+    className="nav-bar-toggle position-fixed"
     onClick={[Function]}
   >
     <svg
@@ -508,9 +512,9 @@ Array [
         fill="currentColor"
       />
     </svg>
-  </div>,
+  </div>
   <div
-    className="nav-bar-sm"
+    className="nav-bar-sm sticky"
   >
     <div
       className="brand"
@@ -540,7 +544,7 @@ Array [
         Communities
       </a>
     </div>
-  </div>,
+  </div>
   <div
     className="nav-bar "
   >
@@ -1031,14 +1035,16 @@ Array [
         }
       }
     />
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`(3) With active user 1`] = `
-Array [
+<div
+  className="position-relative sticky-container"
+>
   <div
-    className="nav-bar-toggle"
+    className="nav-bar-toggle position-fixed"
     onClick={[Function]}
   >
     <svg
@@ -1049,9 +1055,9 @@ Array [
         fill="currentColor"
       />
     </svg>
-  </div>,
+  </div>
   <div
-    className="nav-bar-sm"
+    className="nav-bar-sm sticky"
   >
     <div
       className="brand"
@@ -1085,7 +1091,7 @@ Array [
         Communities
       </a>
     </div>
-  </div>,
+  </div>
   <div
     className="nav-bar "
   >
@@ -1647,14 +1653,16 @@ Array [
         }
       }
     />
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`(4) With active user && usePrivate = false 1`] = `
-Array [
+<div
+  className="position-relative sticky-container"
+>
   <div
-    className="nav-bar-toggle"
+    className="nav-bar-toggle position-fixed"
     onClick={[Function]}
   >
     <svg
@@ -1665,9 +1673,9 @@ Array [
         fill="currentColor"
       />
     </svg>
-  </div>,
+  </div>
   <div
-    className="nav-bar-sm"
+    className="nav-bar-sm sticky"
   >
     <div
       className="brand"
@@ -1701,7 +1709,7 @@ Array [
         Communities
       </a>
     </div>
-  </div>,
+  </div>
   <div
     className="nav-bar "
   >
@@ -1900,6 +1908,7 @@ Array [
         </div>
       </div>
     </div>
+<<<<<<< HEAD
   </div>,
   <div
     className="nav-bar d-none"
@@ -2217,4 +2226,8 @@ Array [
     </div>
   </div>,
 ]
+=======
+  </div>
+</div>
+>>>>>>> bc04f652527be18a04c5dc3a261b193206b7e5fd
 `;

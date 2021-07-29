@@ -11,10 +11,6 @@ import defaults from "../../constants/defaults.json"
 
 import {_t} from "../../i18n";
 
-const notificationSound = require("../../img/notification.mp3");
-
-const logo = require('../../img/logo-circle.svg');
-
 declare var window: AppWindow;
 
 export const notificationBody = (data: WsNotification): string => {
@@ -97,6 +93,8 @@ export default class NotificationHandler extends Component<Props> {
 
         window.nws.onmessage = (evt: MessageEvent) => {
             const {global} = this.props;
+            const logo = global.isElectron ? "../../common/img/logo-circle.svg" :  require('../../img/logo-circle.svg');
+
 
             const data = JSON.parse(evt.data);
             const msg = notificationBody(data);
@@ -166,6 +164,9 @@ export default class NotificationHandler extends Component<Props> {
     }
 
     render() {
+
+        const notificationSound = this.props.global.isElectron ? "../../common/img/notification.mp3" :  require("../../img/notification.mp3");
+        
         return <audio id="notification-audio" autoPlay={false} src={notificationSound} muted={true} style={{display: 'none'}}/>;
     }
 }

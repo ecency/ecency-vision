@@ -32,9 +32,6 @@ import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-help
 
 setProxyBase(defaults.imageServer);
 
-const fallbackImage = require("../../img/fallback.png");
-const noImage = require("../../img/noimage.svg");
-
 
 interface ItemProps {
     history: History;
@@ -48,6 +45,10 @@ interface ItemProps {
 export class ListItem extends Component<ItemProps> {
     render() {
         const {activeUser, post, deleteFn, moveFn, global} = this.props;
+
+        const fallbackImage = global.isElectron ? "../../common/img/fallback.png" : require("../../img/fallback.png");
+        const noImage = global.isElectron ? "../../common/img/noimage.svg" : require("../../img/noimage.svg");
+        
         if (!activeUser.data.__loaded) {
             return null;
         }

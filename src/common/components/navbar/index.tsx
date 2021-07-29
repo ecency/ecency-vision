@@ -39,7 +39,6 @@ import _c from "../../util/fix-class-names";
 import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg, chevronUpSvg, upArrowSvg, keySvg, sunSvg, gifCardSvg} from "../../img/svg";
 import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
-
 const logo = require('../../img/logo-circle.svg');
 
 interface Props {
@@ -186,7 +185,7 @@ export class NavBar extends Component<Props, State> {
     }
 
     render() {
-        const { global, activeUser, ui, step, toggleUIProp, setActiveUser } = this.props;
+        const { global, activeUser, ui, step, toggleUIProp, setActiveUser, setStepOne } = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
         
@@ -207,11 +206,11 @@ export class NavBar extends Component<Props, State> {
         </div>
 
         return (
-            <>
-                {floating && smVisible && (<div className="nav-bar-rep"/>)}
-                <div className="nav-bar-toggle" onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
+            <div className={"position-relative sticky-container"}>
+                {floating && smVisible && (<div className="nav-bar-rep" />)}
+                <div className={`nav-bar-toggle ${"position-fixed"}`} onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
 
-                <div className="nav-bar-sm">
+                    <div className={`nav-bar-sm ${"sticky"}`}>
                         <div className="brand">
                             {
                                 activeUser !== null ? (
@@ -455,7 +454,7 @@ export class NavBar extends Component<Props, State> {
                     {schedules && activeUser && <Schedules {...this.props} onHide={() => this.setState({schedules:!schedules})} activeUser={activeUser as ActiveUser} />}
                     {fragments && activeUser && <Fragments {...this.props} onHide={() => this.setState({fragments:!fragments})} activeUser={activeUser as ActiveUser} />}
                 </div>
-            </>
+            </div>
         );
     }
 }
