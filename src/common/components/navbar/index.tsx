@@ -200,7 +200,7 @@ export class NavBar extends Component<Props, State> {
                 {_t("navbar.communities")}
             </Link>
         </div>
-debugger
+
         return (
             <>
                 {floating && smVisible && (<div className="nav-bar-rep"/>)}
