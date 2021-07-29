@@ -133,7 +133,12 @@ export class NavBar extends Component<Props, State> {
 
     componentDidUpdate(prevProps: Props, prevStates: State) {
         if(prevStates.smVisible !== this.state.smVisible){
-            document.getElementsByTagName('body')[0].classList.toggle("overflow-hidden")
+            if(this.state.smVisible) {
+                document.getElementsByTagName('body')[0].classList.add("overflow-hidden")
+            }
+            if(!this.state.smVisible) {
+                document.getElementsByTagName('body')[0].classList.remove("overflow-hidden")
+            }
         }
     }
 

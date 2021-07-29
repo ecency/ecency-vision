@@ -8,10 +8,17 @@ interface Props {
 export default (props: Props) => {
     useEffect(() => {
         if (['day', 'night'].includes(props.global.theme)) {
-            const body = document.querySelector('body');
+            let body: any = document.getElementsByTagName('body');
             if (!body) return;
-
-            body.className = `theme-${props.global.theme}`;
+            body = body[0];
+            if(body.classList.contains("theme-day")){
+                body.classList.remove("theme-day")
+                body.classList.add("theme-night")
+            }
+            else {
+                body.classList.remove("theme-night")
+                body.classList.add("theme-day")
+            }
         }
 
     }, [props.global.theme]);
