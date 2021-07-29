@@ -352,7 +352,7 @@ debugger
                             </>
                             }
 
-                            <Link to="/submit">
+                            <Link to="/submit" onClick={() => this.setState({ smVisible: false} )}>
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                                     <div className="icon">{pencilOutlinedSvg}</div>
                                     <div className="ml-3 text-15">{_t("g.submit")}</div>
@@ -391,7 +391,7 @@ debugger
                                         </div>
 
                                         <div className="p-1 menu-item">
-                                            <Link to={`/@${activeUser.username}/settings`}>
+                                            <Link to={`/@${activeUser.username}/settings`} onClick={() => this.setState({ smVisible: false} )}>
                                                 <div className="item-text">{_t("user-nav.settings")}</div>
                                             </Link>
                                         </div>
@@ -420,13 +420,13 @@ debugger
 
                             {activeUser && 
                             <>
-                                <Link to={`/@${activeUser?.username}/wallet`}>
+                                <Link to={`/@${activeUser?.username}/wallet`} onClick={() => this.setState({ smVisible: false} )}>
                                     <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                                         <div className="icon-stroke text-dark">{walletSvg}</div>
                                         <div className="ml-3 text-15 d-flex">{_t("user-nav.wallet")} <div className="dot align-self-start ml-1"/></div>
                                     </div>
                                 </Link>
-                                <Link to={`/@${activeUser.username}/points`}>
+                                <Link to={`/@${activeUser.username}/points`} onClick={() => this.setState({ smVisible: false} )}>
                                     <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                                         <div className="icon text-dark">{gifCardSvg}</div>
                                         <div className="ml-3 text-15">{_t("user-nav.points")}</div>
