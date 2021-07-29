@@ -408,16 +408,6 @@ export class NavBar extends Component<Props, State> {
                                 
                             </div>
 
-                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={this.changeTheme}>
-                                    <div className="icon">{global.theme == Theme.day ? moonSvg : sunSvg}</div>
-                                    <div className="ml-3 text-15">{_t("user-nav.switch-to")} {global.theme == Theme.day ? _t("user-nav.dark") : _t("user-nav.light")} {_t("user-nav.theme")}</div>
-                                </div>
-
-                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative">
-                                    <div className="icon">{globeSvg}</div>
-                                    <div className="text-15 switch-menu">{SwitchLang({...this.props, label: _t("community-settings.lang")})}</div>
-                                </div>
-
                             {activeUser && 
                             <>
                                 <Link to={`/@${activeUser?.username}/wallet`} onClick={() => this.setState({ smVisible: false} )}>
@@ -437,6 +427,16 @@ export class NavBar extends Component<Props, State> {
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={() => toggleUIProp('notifications')}>
                                     <div className="icon text-dark">{notificationSvg}</div>
                                     <div className="ml-3 text-15">{_t("user-nav.notifications")}</div>
+                                </div>
+
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={this.changeTheme}>
+                                    <div className="icon">{global.theme == Theme.day ? moonSvg : sunSvg}</div>
+                                    <div className="ml-3 text-15">{_t("user-nav.switch-to")} {global.theme == Theme.day ? _t("user-nav.dark") : _t("user-nav.light")} {_t("user-nav.theme")}</div>
+                                </div>
+
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative">
+                                    <div className="icon">{globeSvg}</div>
+                                    <div className="text-15 switch-menu">{SwitchLang({...this.props, label: _t("community-settings.lang")})}</div>
                                 </div>
 
                         </div>
