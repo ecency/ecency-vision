@@ -115,8 +115,8 @@
     padding: 21px;
     padding-left: 0px;
 
-    @media (max-width: $md-break){
-      height: 94vh;
+    @media (max-width: 765px){
+      height: 100vh;
       overflow-y: auto;
       overflow-x: hidden;
     }
@@ -129,6 +129,15 @@
 
     @media (min-width: $lg-break) {
       padding: 0 20px;
+    }
+
+    @include themify(day) {
+      background: $white-two;
+      box-shadow: 0 0 2px 1px $white-six;
+    }
+  
+    @include themify(night) {
+      background: $dark-two;
     }
 
     .brand {
@@ -351,6 +360,7 @@ body.medium-zoom--opened {
   bottom: 0px;
   padding: 0;
   margin: 0;
+  z-index: 40000 !important;
 
   @include themify(day) {
     background-color: rgba(255, 255, 255, 0.95) !important;
