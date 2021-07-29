@@ -200,7 +200,7 @@ export class NavBar extends Component<Props, State> {
                 {_t("navbar.communities")}
             </Link>
         </div>
-
+debugger
         return (
             <>
                 {floating && smVisible && (<div className="nav-bar-rep"/>)}
@@ -302,8 +302,20 @@ export class NavBar extends Component<Props, State> {
                 </div>
                 )}
                 <div ref={this.nav} className={_c(`nav-bar ${(!transparentVerify && step === 1 ? "transparent" : "")} ${(smVisible ? "visible-sm" : "d-none")}`)}>
+
                     <div className="nav-bar-inner">
-                        <div className="mt-5 pt-5 w-100">
+                        <div className="mt-2 pt-5 w-100">
+                            {activeUser && 
+                                <Link to={`/@${activeUser.username}`}>
+                                    <div className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0 mb-3 position-relative">
+                                        {userAvatar({...this.props, username: activeUser.username, size:"large"})}
+                                        <div className="ml-2">
+                                            <b>@{activeUser.username}</b>
+                                            <div className="mt-1 text-white">{_t("user-nav.vote-power")} <span>{upArrowSvg}</span> {(activeUser.data as FullAccount).active && votingPower(activeUser.data as FullAccount).toFixed(0)}%  <span>{downArrowSvg}</span> {(activeUser.data as FullAccount).active && downVotingPower(activeUser.data as FullAccount).toFixed(0)}%</div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            }
                             <div onClick={() => !showMobileSearch && this.setState({ showMobileSearch: true })}>
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                                     
@@ -357,15 +369,6 @@ export class NavBar extends Component<Props, State> {
                                 {activeUser && showProfileMenu ? 
                                 <div className="pl-3 position-relative menu-container">
                                     <div className="menu-container-inner">
-                                        <Link to={`/@${activeUser.username}`}>
-                                            <div className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0">
-                                                {userAvatar({...this.props, username: activeUser.username, size:"large"})}
-                                                <div className="ml-2">
-                                                    <b>@{activeUser.username}</b>
-                                                    <div className="mt-1 text-white">{_t("user-nav.vote-power")} <span>{upArrowSvg}</span> {votingPower(activeUser.data as FullAccount).toFixed(0)}%  <span>{downArrowSvg}</span> {downVotingPower(activeUser.data as FullAccount).toFixed(0)}%</div>
-                                                </div>
-                                            </div>
-                                        </Link>
 
                                         <div className="p-1 menu-item" onClick={()=>this.setState({drafts: !drafts})}>
                                             <div className="item-text">{_t("user-nav.drafts")}</div>
