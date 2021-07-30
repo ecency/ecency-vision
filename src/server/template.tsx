@@ -51,7 +51,7 @@ export const render = (req: express.Request, state: AppState) => {
     helmet.meta.toString() + helmet.title.toString() + helmet.link.toString();
 
   return `<!DOCTYPE html>
-            <html lang="en">
+            <html lang="en" style="scroll-behavior: smooth;">
             <head>
                 <meta charset="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
