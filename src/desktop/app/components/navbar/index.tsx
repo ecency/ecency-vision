@@ -197,6 +197,22 @@ export class NavControls extends Component<NavControlsProps> {
         const {history} = this.props;
 
         history.goBack();
+
+        // scroll to anchor element
+        let href = (history as any).entries[1].pathname.split('/');
+        if(href){
+            href = href[href.length - 1]
+        }
+        
+        setTimeout(() => {
+            let el: any = document.getElementById(href);
+            if (el) {
+                el = el.previousSibling;
+                if(el) {
+                    el.scrollIntoView(true);
+                }
+            }
+            }, 300);
     };
 
     goForward = () => {

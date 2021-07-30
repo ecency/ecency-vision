@@ -189,7 +189,7 @@ export default class EntryListItem extends Component<Props, State> {
         const cls = `entry-list-item ${promoted ? "promoted-item" : ""}`;
 
         return (
-            <div className={_c(cls)}>
+            <div className={_c(cls)} id={entry.permlink.replace(/[0-9]/g, '')}>
 
                 {(() => {
                     if (crossPost) {
