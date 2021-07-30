@@ -216,7 +216,7 @@ export class NavControls extends Component<NavControlsProps> {
                     element!.scrollIntoView!();
                 }
             }
-            }, 100);
+            }, 50);
     };
 
     goForward = () => {
