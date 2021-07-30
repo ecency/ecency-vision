@@ -59,6 +59,7 @@ interface Props {
     unMuteNotifications: () => void;
     setLang: (lang: string) => void;
     setStepOne?:() => void;
+    setStepTwo?:() => void;
 }
 
 interface State {
@@ -105,6 +106,18 @@ export class NavBar extends Component<Props, State> {
             || !isEqual(this.state, nextState)
     }
 
+    componentDidUpdate(prevProps:Props, prevStates: State){
+        if(prevProps.location.pathname !== this.props.location.pathname || prevProps.activeUser !== this.props.activeUser){
+            if(this.props.location.pathname === "/" && !this.props.activeUser){
+                this.props.setStepOne!();
+            }
+            else {
+                this.props.setStepTwo!();
+            }
+
+        }
+    }
+
     scrollChanged = () => {
         clearTimeout(this.timer);
         this.timer = setTimeout(this.detect, 100);
@@ -149,11 +162,10 @@ export class NavBar extends Component<Props, State> {
     }
 
     render() {
-        const {global, activeUser, ui, step, setStepOne} = this.props;
+        const {global, activeUser, ui, step} = this.props;
         const logo = global.isElectron? "../../common/img/logo-circle.svg" : require('../../img/logo-circle.svg');
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
-
         const {smVisible, floating} = this.state;
 
         const transparentVerify = this.props?.location?.pathname?.startsWith("/hot")
@@ -217,7 +229,7 @@ export class NavBar extends Component<Props, State> {
                         <div className="switch-menu">
                             {SwitchLang({...this.props})}
                             {
-                                (step !== 1 || transparentVerify) &&
+                                (step !== 1) &&
                                     <ToolTip content={themeText}>
                                         <div className="switch-theme" onClick={this.changeTheme}>
                                             {brightnessSvg}
@@ -225,7 +237,7 @@ export class NavBar extends Component<Props, State> {
                                     </ToolTip>
                             }
                             {
-                                (step !== 1 || transparentVerify) && (
+                                (step !== 1) && (
                                     <ToolTip content={_t("navbar.post")}>
                                         <Link className="switch-theme pencil" to="/submit">
                                             {pencilOutlineSvg}
@@ -304,6 +316,7 @@ export default (p: Props) => {
         unMuteNotifications: p.unMuteNotifications,
         setLang: p.setLang,
         setStepOne: p.setStepOne,
+        setStepTwo: p.setStepTwo
     }
 
     return <NavBar {...props} />;
