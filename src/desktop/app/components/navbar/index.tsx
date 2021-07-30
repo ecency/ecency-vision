@@ -205,14 +205,18 @@ export class NavControls extends Component<NavControlsProps> {
         }
         
         setTimeout(() => {
-            let el: any = document.getElementById(href);
-            if (el) {
-                el = el.previousSibling;
-                if(el) {
-                    el.scrollIntoView(true);
+            if(href.length > 0){
+                href = href.replace(/[0-9]/g, '')
+                let element = document.getElementById(href);
+                let elementSibling = element!.previousElementSibling;
+                if (elementSibling) {
+                    elementSibling!.scrollIntoView!();
+                }
+                else {
+                    element!.scrollIntoView!();
                 }
             }
-            }, 300);
+            }, 100);
     };
 
     goForward = () => {
