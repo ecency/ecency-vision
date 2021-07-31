@@ -17,9 +17,6 @@ import FollowControls from "../follow-controls";
 import FavoriteBtn from "../favorite-btn";
 import ProfileInfo from "../profile-info";
 
-const coverFallbackDay = require("../../img/cover-fallback-day.png");
-const coverFallbackNight = require("../../img/cover-fallback-night.png");
-
 interface Props {
     global: Global;
     dynamicProps: DynamicProps;
@@ -36,6 +33,8 @@ interface Props {
 export class ProfileCover extends Component<Props> {
     render() {
         const {global, account, activeUser} = this.props;
+        const coverFallbackDay = global.isElectron ? "../../common/img/cover-fallback-day.png" : require("../../img/cover-fallback-day.png");
+        const coverFallbackNight = global.isElectron ? "../../common/img/cover-fallback-night.png" : require("../../img/cover-fallback-night.png");
         let bgImage = "";
 
         if (account.__loaded) {

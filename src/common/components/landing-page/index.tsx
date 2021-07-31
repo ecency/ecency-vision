@@ -58,7 +58,7 @@ const LandingPage = (props: any) => {
   const DevopsImg = apiBase(`/assets/talhasch.${global.canUseWebp?"webp":"jpeg"}`);
   const DesignGuru = apiBase(`/assets/dunsky.${global.canUseWebp?"webp":"jpeg"}`);;
 
-  const LogoCircle = require("../../img/logo-circle.svg");
+  const LogoCircle = global.isElectron ? "../../common/img/logo-circle.svg" : require("../../img/logo-circle.svg");
 
   const handleSubsccribe = async (e: FormEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -220,7 +220,7 @@ const LandingPage = (props: any) => {
             </ul>
           </div>
         </div>
-        <div className="part-bottom">
+        <div className="part-bottom" id="download">
           <div className="inner">
             <span />
             <span />

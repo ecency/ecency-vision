@@ -32,8 +32,6 @@ import _c from "../../util/fix-class-names";
 
 import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg} from "../../img/svg";
 
-const logo = require('../../img/logo-circle.svg');
-
 interface Props {
     history: History;
     location: Location;
@@ -61,6 +59,7 @@ interface Props {
     unMuteNotifications: () => void;
     setLang: (lang: string) => void;
     setStepOne?:() => void;
+    setStepTwo?:() => void;
 }
 
 interface State {
@@ -107,6 +106,18 @@ export class NavBar extends Component<Props, State> {
             || !isEqual(this.state, nextState)
     }
 
+    componentDidUpdate(prevProps:Props, prevStates: State){
+        if(prevProps.location.pathname !== this.props.location.pathname || prevProps.activeUser !== this.props.activeUser){
+            if(this.props.location.pathname === "/" && !this.props.activeUser){
+                this.props.setStepOne!();
+            }
+            else {
+                this.props.setStepTwo!();
+            }
+
+        }
+    }
+
     scrollChanged = () => {
         clearTimeout(this.timer);
         this.timer = setTimeout(this.detect, 100);
@@ -151,10 +162,10 @@ export class NavBar extends Component<Props, State> {
     }
 
     render() {
-        const {global, activeUser, ui, step, setStepOne} = this.props;
+        const {global, activeUser, ui, step} = this.props;
+        const logo = global.isElectron? "../../common/img/logo-circle.svg" : require('../../img/logo-circle.svg');
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
-
         const {smVisible, floating} = this.state;
 
         const transparentVerify = this.props?.location?.pathname?.startsWith("/hot")
@@ -171,11 +182,11 @@ export class NavBar extends Component<Props, State> {
         </div>
 
         return (
-            <>
+            <div className={"position-relative sticky-container"}>
                 {floating && (<div className="nav-bar-rep"/>)}
-                <div className="nav-bar-toggle" onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
+                <div className={`nav-bar-toggle ${"position-fixed"}`} onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
                 {!smVisible && (
-                    <div className="nav-bar-sm">
+                    <div className={`nav-bar-sm ${"sticky"}`}>
                         <div className="brand">
                             {
                                 activeUser !== null ? (
@@ -191,6 +202,7 @@ export class NavBar extends Component<Props, State> {
 
                         {textMenu}
                     </div>
+                  
                 )}
                 <div ref={this.nav} className={_c(`nav-bar ${(smVisible ? "visible-sm" : "")} ${(!transparentVerify && step === 1 ? "transparent" : "")}`)}>
                     <div className="nav-bar-inner">
@@ -217,7 +229,7 @@ export class NavBar extends Component<Props, State> {
                         <div className="switch-menu">
                             {SwitchLang({...this.props})}
                             {
-                                (step !== 1 || transparentVerify) &&
+                                (step !== 1) &&
                                     <ToolTip content={themeText}>
                                         <div className="switch-theme" onClick={this.changeTheme}>
                                             {brightnessSvg}
@@ -225,7 +237,7 @@ export class NavBar extends Component<Props, State> {
                                     </ToolTip>
                             }
                             {
-                                (step !== 1 || transparentVerify) && (
+                                (step !== 1) && (
                                     <ToolTip content={_t("navbar.post")}>
                                         <Link className="switch-theme pencil" to="/submit">
                                             {pencilOutlineSvg}
@@ -271,7 +283,7 @@ export class NavBar extends Component<Props, State> {
                     {ui.login && <Login {...this.props} />}
                     {global.usePrivate && <NotificationHandler {...this.props} />}
                 </div>
-            </>
+            </div>
         );
     }
 }
@@ -304,6 +316,7 @@ export default (p: Props) => {
         unMuteNotifications: p.unMuteNotifications,
         setLang: p.setLang,
         setStepOne: p.setStepOne,
+        setStepTwo: p.setStepTwo
     }
 
     return <NavBar {...props} />;
