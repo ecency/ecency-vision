@@ -180,6 +180,10 @@ export class NavBar extends Component<Props, State> {
     toggleSmVisible = () => {
         const {smVisible} = this.state;
         this.setState({smVisible: !smVisible})
+        if(!smVisible){
+            let rootElement = document.getElementById("root");
+            rootElement && rootElement.scrollIntoView()
+        }
     }
 
     handleIconClick = () => {
