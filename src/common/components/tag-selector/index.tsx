@@ -62,6 +62,24 @@ export class TagSelector extends Component<Props, State> {
         this.setState({value});
     };
 
+    handlePaste = (e:any) => {
+        var clipboardData, pastedData;
+
+        e.stopPropagation();
+        e.preventDefault();
+        clipboardData = e.clipboardData;
+        pastedData = clipboardData.getData('Text');
+        this.setState({value: ""});
+        
+        let isMultiTagsWithSpace = pastedData.split(' ').join(",").split(",")
+        if(isMultiTagsWithSpace.length > 1 ){
+            isMultiTagsWithSpace.forEach((item:any) => {
+                setTimeout(() => this.add(item), 250)
+            })
+        }
+
+    }
+
     onKeyDown = (e: React.KeyboardEvent) => {
         if ([13, 32, 188].includes(e.keyCode)) {
             e.preventDefault();
@@ -88,7 +106,6 @@ export class TagSelector extends Component<Props, State> {
 
         const newTags = [...tags, value];
         onChange(newTags);
-
         this.setState({value: ""});
         return true;
     };
@@ -154,6 +171,7 @@ export class TagSelector extends Component<Props, State> {
                             onChange={this.onChange}
                             value={value}
                             maxLength={24}
+                            onPaste={this.handlePaste}
                             placeholder={placeholder}
                             autoComplete="off"
                             id="the-tag-input"
