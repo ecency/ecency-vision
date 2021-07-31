@@ -510,3 +510,11 @@ body.medium-zoom--opened {
 .sticky-container {
   height: 86px
 }
+
+.modal-backdrop{
+  z-index: 100000 !important;
+}
+
+.modal {
+  z-index: 100001 !important;
+}

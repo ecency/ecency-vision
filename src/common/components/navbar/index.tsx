@@ -357,7 +357,7 @@ export class NavBar extends Component<Props, State> {
                                         <div className="icon">{userOutlineSvg}</div>
                                         <div className="ml-3 text-15">{_t("g.login")}</div>
                                 </div>
-                                <Link to="/signup">
+                                <Link to="/signup" onClick={() => !showMobileSearch && this.setState({ smVisible: false })}>
                                     <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                                             <div className="icon">{keySvg}</div>
                                             <div className="ml-3 text-15">{_t("g.signup")}</div>
@@ -422,13 +422,13 @@ export class NavBar extends Component<Props, State> {
                                 
                             </div>
 
-                            <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={() => toggleUIProp('notifications')}>
-                                <div className="icon text-dark">{notificationSvg}</div>
-                                <div className="ml-3 text-15">{_t("user-nav.notifications")}</div>
-                            </div>
-
                             {activeUser && 
                             <>
+
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={() => toggleUIProp('notifications')}>
+                                    <div className="icon text-dark">{notificationSvg}</div>
+                                    <div className="ml-3 text-15">{_t("user-nav.notifications")}</div>
+                                </div>
                                 <Link to={`/@${activeUser.username}/points`} onClick={() => this.setState({ smVisible: false} )}>
                                     <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                                         <div className="icon text-dark">{gifCardSvg}</div>
