@@ -1,8 +1,7 @@
 .landing-wrapper {
   position: relative;
   width: 100%;
-  height: 1100px;
-  margin-top: -200px;
+  height: 100vh;
   z-index: 0;
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -52,7 +51,7 @@
     right: 0;
     pointer-events: none;
     width: 100%;
-    height: 1100px;
+    height: 100%;
     @media (max-width: $md-break) {
       height: 1100px;
     }
@@ -232,8 +231,8 @@
   }
   .first-section {
     background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
+    background-size: cover;
+    background-position: top;
     @include themify(day) {
       color: $dark-sky-blue;
       background-image: url('https://ecency.com/assets/illustration-hero-day.webp');
@@ -244,15 +243,6 @@
   }
   @media (max-width: $lg-break) {
     background-image: none !important;
-  }
-  @media (max-width: $xxl-break) and (min-width: $xl-break) {
-    background-position: 0% 28%;
-  }
-  @media (max-width: $xl-break) and (min-width: $lg-break) {
-    background-position: 0% 20%;
-  }
-  @media (max-width: $md-break) {
-    margin-top: -400px;
   }
 
     p {
@@ -1521,6 +1511,9 @@
   }
 
   .fifth-section {
+    @include themify(day){
+      margin-top: 9rem;
+    }
     .part-top {
       @include themify(night) {
         background-color: #171e26;
@@ -1737,6 +1730,7 @@
 
   .sixth-section {
     height: auto;
+    margin-top: 9rem;
     @include themify(night) {
       background-color: #171e26;
     }
