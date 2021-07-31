@@ -751,6 +751,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 autoFocus={true}
                                 value={title}
                                 onChange={this.titleChanged}
+                                spellCheck={true}
                             />
                         </div>
                         <div className="tag-input">
@@ -770,6 +771,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 value={body}
                                 onChange={this.bodyChanged}
                                 rows={isMobile ? 20 : 10}
+                                spellCheck={true}
                             />
                         </div>
                         {editingEntry === null && (
