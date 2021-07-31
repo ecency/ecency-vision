@@ -157,6 +157,7 @@ export class TagSelector extends Component<Props, State> {
                             placeholder={placeholder}
                             autoComplete="off"
                             id="the-tag-input"
+                            spellCheck={true}
                         />
                     </SuggestionList>
                     {tags.length > 0 && (
