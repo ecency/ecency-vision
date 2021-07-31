@@ -112,7 +112,7 @@ export class NavBar extends Component<Props, State> {
                 this.props.setStepOne!();
             }
             else {
-                this.props.setStepTwo!();
+                this.props.setStepTwo && this.props.setStepTwo();
             }
 
         }
