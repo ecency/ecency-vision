@@ -2,7 +2,7 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="position-relative sticky-container"
+  className="sticky-container position-relative"
 >
   <div
     className="nav-bar-toggle position-fixed"
@@ -18,7 +18,7 @@ exports[`(1) Default render 1`] = `
     </svg>
   </div>
   <div
-    className="nav-bar-sm sticky"
+    className="nav-bar-sm sticky "
   >
     <div
       className="brand"
@@ -246,7 +246,7 @@ exports[`(1) Default render 1`] = `
 
 exports[`(2) Night Theme 1`] = `
 <div
-  className="position-relative sticky-container"
+  className="sticky-container position-relative"
 >
   <div
     className="nav-bar-toggle position-fixed"
@@ -262,7 +262,7 @@ exports[`(2) Night Theme 1`] = `
     </svg>
   </div>
   <div
-    className="nav-bar-sm sticky"
+    className="nav-bar-sm sticky "
   >
     <div
       className="brand"
@@ -490,7 +490,7 @@ exports[`(2) Night Theme 1`] = `
 
 exports[`(3) With active user 1`] = `
 <div
-  className="position-relative sticky-container"
+  className="sticky-container position-relative"
 >
   <div
     className="nav-bar-toggle position-fixed"
@@ -506,7 +506,7 @@ exports[`(3) With active user 1`] = `
     </svg>
   </div>
   <div
-    className="nav-bar-sm sticky"
+    className="nav-bar-sm sticky "
   >
     <div
       className="brand"
@@ -793,7 +793,7 @@ exports[`(3) With active user 1`] = `
 
 exports[`(4) With active user && usePrivate = false 1`] = `
 <div
-  className="position-relative sticky-container"
+  className="sticky-container position-relative"
 >
   <div
     className="nav-bar-toggle position-fixed"
@@ -809,7 +809,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
     </svg>
   </div>
   <div
-    className="nav-bar-sm sticky"
+    className="nav-bar-sm sticky "
   >
     <div
       className="brand"
