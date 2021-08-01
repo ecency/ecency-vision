@@ -60,13 +60,13 @@
     "filter-feed": "Feed",
     "filter-feed-friends": "Amici",
     "filter-feed-subscriptions": "Community",
-    "filter-global": "Global",
-    "filter-global-part1": "This feed contains ",
-    "filter-global-part2": " discussions on entire platform.",
-    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
-    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
-    "filter-global-discover": "Discover People",
-    "filter-global-join-communities": "Join Communities"
+    "filter-global": "Complessivo",
+    "filter-global-part1": "Questo feed contiene ",
+    "filter-global-part2": " discussioni sull'intera piattaforma.",
+    "filter-global-part3": " discussioni dalle community a cui sei iscritto. Puoi iscriverti a più community per riempire questo feed.",
+    "filter-global-part4": " discussioni dalle persone che segui. Puoi seguire più persone per riempire questo feed.",
+    "filter-global-discover": "Scopri Persone",
+    "filter-global-join-communities": "Iscriviti alle community"
   },
   "navbar": {
     "discover": "Scopri",
@@ -84,8 +84,8 @@
     "header-community": "Communities"
   },
   "tag": {
-    "unmoderated": "Unmoderated topics",
-    "moderated": "Moderated community"
+    "unmoderated": "Argomenti non moderati",
+    "moderated": "Community moderate"
   },
   "switch-lang": {
     "contributors": "Hanno collaborato"
@@ -122,7 +122,7 @@
     "error-public-key": "Hai inserito una chiave pubblica. Password o WIF richiesta",
     "error-user-fetch": "I dati dell'utente non possono essere recuperati",
     "error-user-not-found": "L'utente non esiste",
-    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
+    "error-user-not-found-cache": "Rilevata incoerenza nella cache. Riprova ad accedere con le tue credenziali.",
     "error-permission": "Non hai l'autorizzazione per pubblicare",
     "error-authenticate": "Chiave Privata Errata. Richiesta chiave maestra o chiave attiva o chiave privata di pubblicazione.",
     "with-hive-signer": "Accedi tramite hivesigner",
@@ -139,8 +139,8 @@
     "email": "Inserisci il tuo indirizzo email",
     "ref": "Utente raccomandante (opzionale)",
     "submit": "Continua",
-    "validation-username": "Username is required.",
-    "validation-email": "Email is required.",
+    "validation-username": "Il nome utente è obbligatorio.",
+    "validation-email": "Indirizzo email obbligatorio.",
     "success": "Abbiamo inviato un'email a {{email}}.",
     "success-2": "Segui le istruzioni per completare il processo di registrazione.",
     "login-text-1": "Hai già un account?",
@@ -155,13 +155,13 @@
   "entry-list-item": {
     "cross-posted": "postato trasversalmente",
     "cross-posted-to": "a",
-    "reblogged": "{{n}} Reblogged",
-    "promoted": "Promoted",
+    "reblogged": "{{n}} Rebloggati",
+    "promoted": "Promossi",
     "pinned": "Post Fissato",
     "replies": "1 risposta. Clicca per rispondere.",
     "replies-n": "{{n}} risposte. Clicca per rispondere.",
-    "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-error": "Il precedente valore non è accettabile. Vota con un valore differente.",
+    "vote-warning": "Votando 0% non stai votando il contenuto.",
     "no-replies": "Ancora nessuna risposta. Clicca per rispondere."
   },
   "nsfw": {
@@ -226,7 +226,7 @@
     "payout-date": "Ricompensa",
     "beneficiary": "Beneficiari",
     "breakdown": "Guadagni Ripartiti",
-    "max-accepted": "Max accepted"
+    "max-accepted": "Massimo accettato"
   },
   "entry-index": {
     "feed": "Feed",
@@ -258,13 +258,13 @@
   },
   "entry": {
     "via-app": "attraverso <span class=\"app-name\">{{app}}</span>",
-    "author-reputation": "Author's reputation",
+    "author-reputation": "Reputazione dell'autore",
     "comment-entry-title": "Stai guardando un singolo thread del commento da: ",
     "comment-entry-go-root": "Vedi l'intero Post",
     "comment-entry-go-parent": "Vedi commento genitore",
-    "hidden-warning": "This content got low rating by people. Proceed with caution.",
-    "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
-    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
+    "hidden-warning": "Questo contenuto ha ottenuto una bassa valutazione dalle persone. Procedi con cautela.",
+    "muted-warning": "Questo contenuto è stato silenziato dalla {{community}} dei moderatori poiché non segue le linee guida della community.",
+    "lowrep-warning": "L'autore di questo post ha una bassa reputazione. Procedi con cautela.",
     "address-copy": "Copia l'indirizzo del Post",
     "address-copied": "Indirizzo del post copiato negli appunti.",
     "browse-original": "Apri post originale",
@@ -278,7 +278,7 @@
     "version": "Versione {{n}}"
   },
   "similar-entries": {
-    "title": "Read next"
+    "title": "Leggi il prossimo"
   },
   "comment": {
     "body-placeholder": "Scrivi la tua risposta qui",
@@ -327,7 +327,7 @@
     "edit": "Modifica impostazioni",
     "edit-team": "Modifica Ruoli",
     "community-rewards": "Ricompense della community",
-    "profile-image": "Profile image",
+    "profile-image": "Immagine del profilo",
     "profile-image-edit": "Modifica immagine del profilo",
     "profile-image-updated": "Immagine del Profilo aggiornata!"
   },
@@ -346,7 +346,7 @@
     "description": "Descrizione",
     "rules": "Regole",
     "rules-help": "Uno per fila",
-    "validation-title": "Title is required."
+    "validation-title": "Il titolo è obbligatorio."
   },
   "communities": {
     "title": "Community",
@@ -373,8 +373,8 @@
     "username-available": "Disponibile.",
     "username-not-available": "Non Disponibile.",
     "username-wrong-format": "Non è un formato valido. Richiesto il formato hive-1xxxxx.",
-    "checkbox-validation": "Please tick this box if you want to proceed.",
-    "title-validation": "Please fill in this field.",
+    "checkbox-validation": "Spunta questo riquadro se vuoi procedere.",
+    "title-validation": "Riempi questo spazio.",
     "password": "Chiave maestra",
     "confirmation": "Ho salvato in un luogo sicuro nome utente e chiave proprietaria della community.",
     "submit": "Crea Community",
@@ -427,9 +427,9 @@
     "rc-power": "Crediti di Riserva: {{n}}%",
     "recharge-time": "(completamente ricaricato {{n}})",
     "down-vote-power": "Potenza di Disapprovazione: {{n}}%",
-    "no-posts": "Here you will see your posts, looks like no content exists.",
-    "create-posts": "Let's create a new post",
-    "no-posts-found": "Found nothing!"
+    "no-posts": "Qui vedrai i tuoi post, sembra che attualmente non ci siano contenuti.",
+    "create-posts": "Inizia a creare un nuovo post",
+    "no-posts-found": "Non abbiamo trovato nulla!"
   },
   "profile-edit": {
     "title": "Profilo",
@@ -439,7 +439,7 @@
     "profile-image": "Immagine del profilo",
     "website": "Sito web",
     "location": "Posizione/Provenienza",
-    "copied": "Referral link copied to clipboard.",
+    "copied": "Link di affiliazione copiato negli appunti.",
     "updated": "Profilo aggiornato con successo!"
   },
   "image-upload-button": {
@@ -451,7 +451,7 @@
     "currency": "Valuta",
     "language": "Lingua",
     "nsfw": "Mostra Contenuti NSFW",
-    "referral-link": "Referral link",
+    "referral-link": "Link di affiliazione",
     "updated": "Preferenza aggiornata!"
   },
   "wallet": {
@@ -488,8 +488,8 @@
     "title": "Account beneficianti delle ricompense assegnate",
     "account": "Account",
     "percent": "Percentuale",
-    "validation-account": "Account is required.",
-    "validation-percent": "Percentage is required.",
+    "validation-account": "Un account è obbligatorio.",
+    "validation-percent": "Una percentuale è obbligatoria.",
     "auto-power-up": "Potenzia automaticamente"
   },
   "points": {
@@ -624,22 +624,22 @@
     "group-interests": "Interessi",
     "group-stake-operations": "Operazioni di investimento",
     "group-rewards": "Ricompense",
-    "type-curation_reward": "Curation reward",
-    "type-author_reward": "Author reward",
-    "type-comment_benefactor_reward": "Comment benefactor reward",
+    "type-curation_reward": "Ricompensa da curatore",
+    "type-author_reward": "Ricompensa d'autore",
+    "type-comment_benefactor_reward": "Ricompense come beneficiario del commento",
     "type-claim_reward_balance": "Richiedi ricompense",
     "type-transfer": "Trasferisci",
-    "type-transfer_to_vesting": "Power up",
+    "type-transfer_to_vesting": "Power Up",
     "type-withdraw_vesting": "Power down",
-    "type-fill_vesting_withdraw": "Partial Power down occurred",
+    "type-fill_vesting_withdraw": "Si è verificato un parziale power down",
     "type-fill_order": "Completa l'ordine",
     "type-producer_reward": "Ricompense da produttore",
     "type-interest": "Interessi",
     "type-transfer_to_savings": "Trasferisci nei risparmi",
-    "type-fill_convert_request": "Convert fulfilled",
+    "type-fill_convert_request": "Conversione eseguita",
     "type-cancel_transfer_from_savings": "Rimuovi i trasferiti dai risparmi",
     "type-cancel_transfer_from_savings-detail": "Da: <strong>@{{from}}</strong> <br/> IDentificativo di richiesta: <strong>{{request}}</strong>",
-    "type-return_vesting_delegation": "Return delegations",
+    "type-return_vesting_delegation": "Richiama deleghe",
     "type-proposal_pay": "Pagamento della proposta",
     "type-comment_payout_update": "Content payout update",
     "type-comment_reward": "Content reward",
