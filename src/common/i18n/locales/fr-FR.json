@@ -2,6 +2,7 @@
   "g": {
     "add": "Ajouter",
     "edit": "Éditer",
+    "submit": "Write a post",
     "search": "Rechercher",
     "downloads": "Téléchargements",
     "login": "Connexion",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "Vous avez des récompenses non réclamées",
     "notifications": "Notifications",
     "profile": "Profil",
+    "profile-menu": "Profile menu",
     "gallery": "Gallerie",
     "drafts": "Brouillons",
     "bookmarks": "Signets",
@@ -104,6 +106,10 @@
     "fragments": "Extraits de texte",
     "settings": "Paramètres",
     "logout": "Déconnexion",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Puissance de vote:"
   },
   "intro": {
