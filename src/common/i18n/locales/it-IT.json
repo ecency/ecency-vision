@@ -641,16 +641,16 @@
     "type-cancel_transfer_from_savings-detail": "Da: <strong>@{{from}}</strong> <br/> IDentificativo di richiesta: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Richiama deleghe",
     "type-proposal_pay": "Pagamento della proposta",
-    "type-comment_payout_update": "Content payout update",
-    "type-comment_reward": "Content reward",
-    "type-recurrent_transfer": "Recurring transfer",
-    "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
-    "type-fill_recurrent_transfer": "Recurring transfer occurred",
-    "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
-    "type-collateralized_convert": "Collateralized convert",
-    "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
-    "type-limit_order_create": "New trade",
-    "type-effective_comment_vote": "Effective vote"
+    "type-comment_payout_update": "Aggiornamento della ricompensa dal contenuto",
+    "type-comment_reward": "Ricompensa dal contenuto",
+    "type-recurrent_transfer": "Transazione ricorrente",
+    "type-recurrent_transfer-detail": "{{executions}} transazioni, ognuna ogni {{recurrence}} ore",
+    "type-fill_recurrent_transfer": "Transazione ricorrente eseguita",
+    "type-fill_recurrent_transfer-detail": "Rimanenti {{remaining_executions}} transazioni",
+    "type-collateralized_convert": "Conversione collateralizzata",
+    "type-collateralized_convert-detail": "Id obbligatorio: <strong>{{request}}</strong>",
+    "type-limit_order_create": "Nuova operazione",
+    "type-effective_comment_vote": "Voto reale"
   },
   "key-or-hot": {
     "sign": "Accesso",
@@ -668,7 +668,7 @@
   "friends": {
     "followers": "({{n}}) Seguaci",
     "following": "({{n}}) Seguiti",
-    "search-placeholder": "Search"
+    "search-placeholder": "Cerca"
   },
   "follow-controls": {
     "follow": "Segui",
@@ -700,7 +700,7 @@
     "gallery": "Galleria",
     "emoji": "Emoji",
     "image-error": "Impossibile caricare l'immagine.",
-    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
+    "image-error-cache": "Impossibile caricare l'immagine. Sembra che tu sia disconnesso. Prova a connetterti di nuovo.",
     "image-error-size": "Le dimensioni dell'immagine sono troppo grandi, prova di nuovo con un'immagine più piccola.",
     "fragments": "Ritagli"
   },
@@ -766,8 +766,8 @@
     "username": "Nome utente",
     "reward": "Ricompensa",
     "user-error": "{{n}} non è un utente valido.",
-    "validation-percentage": "Percentage is required.",
-    "validation-username": "Username is required.",
+    "validation-percentage": "Obbligatorio scegliere una percentuale.",
+    "validation-username": "Il nome utente è obbligatorio.",
     "user-exists-error": "{{n}} è già nella lista"
   },
   "post-scheduler": {
@@ -812,8 +812,8 @@
     "unmute": "Attiva gli avvisi di notifica"
   },
   "leaderboard": {
-    "title-stars": "Most active",
-    "title-curators": "Curators",
+    "title-stars": "Più attivo",
+    "title-curators": "Curatori",
     "title-day": "Daily leaders",
     "title-week": "Weekly leaders",
     "title-month": "Monthly leaders",
