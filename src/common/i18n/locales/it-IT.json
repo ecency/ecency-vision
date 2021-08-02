@@ -814,17 +814,17 @@
   "leaderboard": {
     "title-stars": "Più attivo",
     "title-curators": "Curatori",
-    "title-day": "Daily leaders",
-    "title-week": "Weekly leaders",
-    "title-month": "Monthly leaders",
+    "title-day": "Il meglio del giorno",
+    "title-week": "Il meglio della settimana",
+    "title-month": "Il meglio del mese",
     "period-day": "Di giornata",
     "period-week": "Della settimana",
     "period-month": "Del mese",
     "header-score": "Attività",
     "header-score-tip": "Post + commenti fatti da un utente nel periodo selezionato",
     "header-reward": "Ricompensa",
-    "header-votes": "Votes",
-    "header-votes-tip": "Number of votes in this period"
+    "header-votes": "Voti",
+    "header-votes-tip": "Numero di voti in questo periodo"
   },
   "popular-users": {
     "title": "Utenti popolari"
@@ -855,9 +855,9 @@
     "tags": "Etichette",
     "tags-placeholder": "etichette separate da virgole",
     "date": "Data",
-    "date-week": "Last Week",
-    "date-month": "Last Month",
-    "date-year": "Last Year",
+    "date-week": "Scorsa settimana",
+    "date-month": "Scorso mese",
+    "date-year": "Scorso anno",
     "date-all": "Sempre",
     "sort": "Ordina",
     "sort-popularity": "Popolarità",
@@ -939,10 +939,10 @@
     "create-first": "Crea il tuo primo ritaglio",
     "filter": "Cerca per titolo",
     "form-title": "Titolo",
-    "validation-title": "Title is required.",
-    "validation-value": "Value is required.",
-    "validation-body": "Body is required.",
-    "form-body": "Corpo"
+    "validation-title": "Titolo obbligatorio.",
+    "validation-value": "Valore obbligatorio.",
+    "validation-body": "Corpo del testo obbligatorio.",
+    "form-body": "Corpo del testo"
   },
   "password-update": {
     "title": "Cambia Chiave d'Accesso",
@@ -953,28 +953,28 @@
     "error-new2": "Le chiavi d'accesso devono essere le stesse",
     "pass-gen": "Clicca per generare chiave d'accesso",
     "label-check": "Ho salvato correttamente e in maniera sicura la mia chiave d'accesso",
-    "validation-password": "Password is invalid.",
-    "validation-label": "Please tick this box to proceed.",
+    "validation-password": "Password non valida.",
+    "validation-label": "Spunta questo riquadro per procedere.",
     "updated": "Chiave d'accesso aggiornata con successo!"
   },
   "view-keys": {
-    "title": "View Private keys",
+    "title": "Mostra le chiavi private",
     "account": "Account",
-    "cur-pass": "Current password",
-    "owner": "Owner",
-    "active": "Active",
-    "posting": "Posting",
+    "cur-pass": "Password attuale",
+    "owner": "Proprietario",
+    "active": "Attiva",
+    "posting": "Di pubblicazione",
     "memo": "Memo",
-    "view-keys": "Click to view keys",
-    "copied": "Private key copied into clipboard",
-    "error": "Password seem incorrect, please double check!"
+    "view-keys": "Clicca per vedere le chiavi",
+    "copied": "Chiave privata copiata negli appunti",
+    "error": "La password sembra errata, controlla che sia corretta."
   },
   "add-image": {
     "title": "Aggiungi immagine",
     "text-label": "Testo dell'immagine",
     "link-label": "Collegamento all'immagine",
-    "validation-text": "Text is required.",
-    "validation-image": "Image is required."
+    "validation-text": "Testo obbligatorio.",
+    "validation-image": "Immagine obbligatoria."
   },
   "add-image-mobile": {
     "title": "Aggiungi immagine",
@@ -986,8 +986,8 @@
     "title": "Aggiungi Link",
     "text-label": "Testo",
     "link-label": "https://",
-    "validation-text": "Text is required.",
-    "validation-link": "Link is required."
+    "validation-text": "Testo obbligatorio.",
+    "validation-link": "Link obbligatorio."
   },
   "scroll-to-top": {
     "title": "Scorri verso l'alto"
@@ -1084,13 +1084,13 @@
     "paid-out-post-forbidden": "Non è disponibile il voto per contenuti già pagati."
   },
   "landing-page": {
-    "welcome-text": "Welcome to Ecency!",
-    "what-is-ecency": "Blockchain-based social network",
-    "powered-by-hive": "powered by Hive",
-    "get-started": "Get started",
-    "earn-money": "Earn money",
-    "earn-money-block-chain-based": "Blockchain-based social network, ",
-    "join-us": "join-us",
+    "welcome-text": "Benvenuto in Ecency!",
+    "what-is-ecency": "Rete sociale basata su blockchain",
+    "powered-by-hive": "sostenuta attraverso Hive",
+    "get-started": "Inizia",
+    "earn-money": "Guadagna ricompense",
+    "earn-money-block-chain-based": "Rete sociale basata su blockchain, ",
+    "join-us": "unisciti a noi",
     "various-digital-tokens": " and earn various digital tokens, reward others and build a rewarding community.",
     "read-more": "Read more",
     "true-ownership": "True ownership",
