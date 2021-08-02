@@ -2,6 +2,7 @@
   "g": {
     "add": "Add",
     "edit": "Modifică",
+    "submit": "Write a post",
     "search": "Caută",
     "downloads": "Descărcări",
     "login": "Logare",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "Ai recompense necolectate",
     "notifications": "Notificări",
     "profile": "Profil",
+    "profile-menu": "Profile menu",
     "gallery": "Galerie",
     "drafts": "Schițe",
     "bookmarks": "Bookmarks",
@@ -104,6 +106,10 @@
     "fragments": "Snippets",
     "settings": "Settings",
     "logout": "Deconectare",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Vote Power:"
   },
   "intro": {
