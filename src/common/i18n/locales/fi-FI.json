@@ -2,6 +2,7 @@
   "g": {
     "add": "Lisää",
     "edit": "Muokkaa",
+    "submit": "Write a post",
     "search": "Haku",
     "downloads": "Lataukset",
     "login": "Kirjaudu sisään",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "Sinulla on lunastamattomia pisteitä",
     "notifications": "Ilmoitukset",
     "profile": "Profiili",
+    "profile-menu": "Profile menu",
     "gallery": "Galleria",
     "drafts": "Luonnokset",
     "bookmarks": "Kirjanmerkit",
@@ -104,6 +106,10 @@
     "fragments": "Katkelmat",
     "settings": "Asetukset",
     "logout": "Kirjaudu ulos",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Äänivalta:"
   },
   "intro": {
