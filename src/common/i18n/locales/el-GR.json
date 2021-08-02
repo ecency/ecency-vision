@@ -2,6 +2,7 @@
   "g": {
     "add": "Προσθήκη",
     "edit": "Επεξεργασία",
+    "submit": "Write a post",
     "search": "Αναζήτηση",
     "downloads": "Λήψεις",
     "login": "Σύνδεση",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "Έχετε αζήτητους πόντους",
     "notifications": "Ειδοποιήσεις",
     "profile": "Προφίλ",
+    "profile-menu": "Profile menu",
     "gallery": "Γκαλερί",
     "drafts": "Πρόχειρα",
     "bookmarks": "Σελιδοδείκτες",
@@ -104,6 +106,10 @@
     "fragments": "Snippets",
     "settings": "Settings",
     "logout": "Αποσύνδεση",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Δύναμη ψήφου:"
   },
   "intro": {
