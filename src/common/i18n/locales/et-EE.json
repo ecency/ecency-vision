@@ -2,6 +2,7 @@
   "g": {
     "add": "Lisa",
     "edit": "Muuda",
+    "submit": "Write a post",
     "search": "Otsi",
     "downloads": "Allalaadimised",
     "login": "Logi sisse",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "Sul on punktid lunastamata",
     "notifications": "Teavitused",
     "profile": "Profiil",
+    "profile-menu": "Profile menu",
     "gallery": "Galerii",
     "drafts": "Mustandid",
     "bookmarks": "Järjehoidjad",
@@ -104,6 +106,10 @@
     "fragments": "Lõiked",
     "settings": "Seaded",
     "logout": "Välju",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Hääletamise jõud:"
   },
   "intro": {
