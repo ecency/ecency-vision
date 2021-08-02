@@ -2,6 +2,7 @@
   "g": {
     "add": "Добавить",
     "edit": "Изменить",
+    "submit": "Write a post",
     "search": "Поиск",
     "downloads": "Загрузки",
     "login": "Войти",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "У вас есть невостребованные баллы",
     "notifications": "Уведомления",
     "profile": "Профиль",
+    "profile-menu": "Profile menu",
     "gallery": "Галерея",
     "drafts": "Черновики",
     "bookmarks": "Закладки",
@@ -104,6 +106,10 @@
     "fragments": "Источники",
     "settings": "Настройки",
     "logout": "Выйти",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Сила голоса:"
   },
   "intro": {
