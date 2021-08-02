@@ -2,6 +2,7 @@
   "g": {
     "add": "Dodaj",
     "edit": "Uredite",
+    "submit": "Write a post",
     "search": "Pretraži",
     "downloads": "Preuzimanja",
     "login": "Prijava",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "Imate nepotvrđene poene",
     "notifications": "Obaveštenja",
     "profile": "Profil",
+    "profile-menu": "Profile menu",
     "gallery": "Galerija",
     "drafts": "Skice",
     "bookmarks": "Obeleživači",
@@ -104,6 +106,10 @@
     "fragments": "Snippets",
     "settings": "Settings",
     "logout": "Odjavi se",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Snaga glasa:"
   },
   "intro": {
