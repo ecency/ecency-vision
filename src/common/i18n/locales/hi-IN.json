@@ -2,6 +2,7 @@
   "g": {
     "add": "जोड़ें",
     "edit": "संपादित करें",
+    "submit": "Write a post",
     "search": "खोजें",
     "downloads": "डाउनलोड",
     "login": "लॉग इन करें",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "आपके पास लावारिस पुरस्कार हैं",
     "notifications": "सूचनाएँ",
     "profile": "प्रोफाइल",
+    "profile-menu": "Profile menu",
     "gallery": "चित्रशाला",
     "drafts": "प्रारूप",
     "bookmarks": "पृष्टस्मृतियाँ",
@@ -104,6 +106,10 @@
     "fragments": "स्निपेट्स",
     "settings": "सेटिंग्स",
     "logout": "लॉग आउट",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "वोट पावर:"
   },
   "intro": {
