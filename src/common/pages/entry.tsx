@@ -722,11 +722,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                         </div>
                                     )}
 
-                                    {(!originalEntry && !isComment) && SimilarEntries({
-                                        ...this.props,
-                                        entry
-                                    })}
-
                                     {activeUser && Comment({
                                         ...this.props,
                                         defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
@@ -736,7 +731,27 @@ class EntryPage extends BaseComponent<Props, State> {
                                         inProgress: replying
                                     })}
 
-                                    {Discussion({
+                                    {activeUser && Discussion({
+                                        ...this.props,
+                                        parent: entry,
+                                        community
+                                    })}
+
+                                    {(!originalEntry && !isComment) && SimilarEntries({
+                                        ...this.props,
+                                        entry
+                                    })}
+
+                                    {!activeUser && Comment({
+                                        ...this.props,
+                                        defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
+                                        submitText: _t('g.reply'),
+                                        onChange: this.replyTextChanged,
+                                        onSubmit: this.replySubmitted,
+                                        inProgress: replying
+                                    })}
+
+                                    {!activeUser && Discussion({
                                         ...this.props,
                                         parent: entry,
                                         community
