@@ -2,6 +2,7 @@
   "g": {
     "add": "添加",
     "edit": "编辑",
+    "submit": "Write a post",
     "search": "搜索",
     "downloads": "下载",
     "login": "登录",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "您有未认领的积分",
     "notifications": "通知",
     "profile": "个人信息",
+    "profile-menu": "Profile menu",
     "gallery": "相册",
     "drafts": "草稿",
     "bookmarks": "书签",
@@ -104,6 +106,10 @@
     "fragments": "预设内容",
     "settings": "设置",
     "logout": "注销",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "投票能量："
   },
   "intro": {
