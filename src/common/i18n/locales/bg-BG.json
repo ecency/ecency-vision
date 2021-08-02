@@ -2,6 +2,7 @@
   "g": {
     "add": "Добави",
     "edit": "Редактиране",
+    "submit": "Write a post",
     "search": "Търси",
     "downloads": "Изтегли",
     "login": "Вход",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "Имате точки за взимане",
     "notifications": "Известия",
     "profile": "Профил",
+    "profile-menu": "Profile menu",
     "gallery": "Галерия",
     "drafts": "Чернови",
     "bookmarks": "Отметки",
@@ -104,6 +106,10 @@
     "fragments": "Откъси",
     "settings": "Настройки",
     "logout": "Изход",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Сила на гласа:"
   },
   "intro": {
