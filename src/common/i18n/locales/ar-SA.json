@@ -2,6 +2,7 @@
   "g": {
     "add": "اضف",
     "edit": "تعديل",
+    "submit": "Write a post",
     "search": "بحث",
     "downloads": "التنزيلات",
     "login": "تسجيل الدخول",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "لديك نقاط معلقة",
     "notifications": "الإشعارات",
     "profile": "الملف الشّخصي",
+    "profile-menu": "Profile menu",
     "gallery": "معرض الصور",
     "drafts": "المسودات",
     "bookmarks": "محفوظات",
@@ -104,6 +106,10 @@
     "fragments": "Snippets",
     "settings": "Settings",
     "logout": "Logout",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Vote Power:"
   },
   "intro": {
