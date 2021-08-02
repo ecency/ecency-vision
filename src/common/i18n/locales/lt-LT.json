@@ -2,6 +2,7 @@
   "g": {
     "add": "Add",
     "edit": "Redaguoti",
+    "submit": "Write a post",
     "search": "Paieška",
     "downloads": "Atsisiuntimai",
     "login": "Prisijungti",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "Jūs turite neatsiimtų taškų",
     "notifications": "Pranešimai",
     "profile": "Profilis",
+    "profile-menu": "Profile menu",
     "gallery": "Galerija",
     "drafts": "Juodraščiai",
     "bookmarks": "Žymės",
@@ -104,6 +106,10 @@
     "fragments": "Snippets",
     "settings": "Settings",
     "logout": "Atsijungti",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Vote Power:"
   },
   "intro": {
