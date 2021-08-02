@@ -2,6 +2,7 @@
   "g": {
     "add": "Tamah",
     "edit": "Peugot",
+    "submit": "Write a post",
     "search": "Mita",
     "downloads": "Unduh",
     "login": "Tameng",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "You have unclaimed points\n\nNa poin nyang goh lom neu cok",
     "notifications": "Bry thei",
     "profile": "Profil",
+    "profile-menu": "Profile menu",
     "gallery": "Album",
     "drafts": "Konsep",
     "bookmarks": "Peutanda",
@@ -104,6 +106,10 @@
     "fragments": "Snippets",
     "settings": "Atoe",
     "logout": "Teubiet",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Teunaga untuk pileeh:"
   },
   "intro": {
