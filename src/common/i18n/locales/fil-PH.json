@@ -2,6 +2,7 @@
   "g": {
     "add": "Magdagdag",
     "edit": "Baguhin",
+    "submit": "Write a post",
     "search": "Maghanap",
     "downloads": "I-download",
     "login": "Pumasok",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "Meron kang mga puntos na hindi pa nakukuha",
     "notifications": "Mga abiso",
     "profile": "Pagkakakilanlan",
+    "profile-menu": "Profile menu",
     "gallery": "Galeriya",
     "drafts": "Mga banghay",
     "bookmarks": "Mga talaan",
@@ -104,6 +106,10 @@
     "fragments": "Snippets",
     "settings": "Mga Settings",
     "logout": "Umalis",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Puwersa ng Boto"
   },
   "intro": {
