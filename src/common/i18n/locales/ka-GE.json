@@ -2,6 +2,7 @@
   "g": {
     "add": "დამატება",
     "edit": "რედაქტირება",
+    "submit": "Write a post",
     "search": "ძებნა",
     "downloads": "ჩამოტვირთვა",
     "login": "ავტორიზაცია",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "You have unclaimed points",
     "notifications": "Notifications",
     "profile": "Profile",
+    "profile-menu": "Profile menu",
     "gallery": "Gallery",
     "drafts": "Drafts",
     "bookmarks": "Bookmarks",
@@ -104,6 +106,10 @@
     "fragments": "Snippets",
     "settings": "Settings",
     "logout": "Logout",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Vote Power:"
   },
   "intro": {
