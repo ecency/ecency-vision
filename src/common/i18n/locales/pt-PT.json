@@ -2,6 +2,7 @@
   "g": {
     "add": "Adicionar",
     "edit": "Editar",
+    "submit": "Write a post",
     "search": "Procurar",
     "downloads": "Transferências",
     "login": "Entrar",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "Tem pontos não reclamados",
     "notifications": "Notificações",
     "profile": "Perfil",
+    "profile-menu": "Profile menu",
     "gallery": "Galeria",
     "drafts": "Rascunhos",
     "bookmarks": "Favoritos",
@@ -104,6 +106,10 @@
     "fragments": "Trechos",
     "settings": "Configurações",
     "logout": "Sair",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Força do Voto:"
   },
   "intro": {
