@@ -2,6 +2,7 @@
   "g": {
     "add": "Hozzáad",
     "edit": "Szerkesztés",
+    "submit": "Write a post",
     "search": "Keresés",
     "downloads": "Letöltések",
     "login": "Bejelentkezés",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "Árvételre váró pontjaid vannak",
     "notifications": "Értesítések",
     "profile": "Profil",
+    "profile-menu": "Profile menu",
     "gallery": "Galéria",
     "drafts": "Piszkozatok",
     "bookmarks": "Könyvjelzők",
@@ -104,6 +106,10 @@
     "fragments": "Snippets",
     "settings": "Settings",
     "logout": "Kijelentkezés",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Vote Power:"
   },
   "intro": {
