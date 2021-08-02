@@ -2,6 +2,7 @@
   "g": {
     "add": "Toevoegen",
     "edit": "Bewerken",
+    "submit": "Write a post",
     "search": "Zoeken",
     "downloads": "Downloads",
     "login": "Aanmelden",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "Je hebt niet-opgeëiste punten",
     "notifications": "Meldingen",
     "profile": "Profiel",
+    "profile-menu": "Profile menu",
     "gallery": "Gallerij",
     "drafts": "Concepten",
     "bookmarks": "Bladwijzers",
@@ -104,6 +106,10 @@
     "fragments": "Fragmenten",
     "settings": "Instellingen",
     "logout": "Afmelden",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Stem Kracht:"
   },
   "intro": {
