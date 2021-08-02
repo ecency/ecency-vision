@@ -2,6 +2,7 @@
   "g": {
     "add": "Əlavə et",
     "edit": "Düzəliş et",
+    "submit": "Write a post",
     "search": "Axtar",
     "downloads": "Endirmələr",
     "login": "Giriş et",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "Götürülməmiş xallarınız var",
     "notifications": "Bildirişlər",
     "profile": "Profil",
+    "profile-menu": "Profile menu",
     "gallery": "Qalereya",
     "drafts": "Qaralamalar",
     "bookmarks": "Əlfəcinlər",
@@ -104,6 +106,10 @@
     "fragments": "Snippets",
     "settings": "Tənzimləmələr",
     "logout": "Çıxış",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Səsvermə gücü:"
   },
   "intro": {
