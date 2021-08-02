@@ -2,6 +2,7 @@
   "g": {
     "add": "Tambahkan",
     "edit": "Edit",
+    "submit": "Write a post",
     "search": "Cari",
     "downloads": "Download",
     "login": "Masuk",
@@ -97,6 +98,7 @@
     "unclaimed-points-notice": "Anda memiliki poin yang belum diambil",
     "notifications": "Notifikasi",
     "profile": "Profil",
+    "profile-menu": "Profile menu",
     "gallery": "Galeri",
     "drafts": "Konsep",
     "bookmarks": "Tandai",
@@ -104,6 +106,10 @@
     "fragments": "Cuplikan",
     "settings": "Pengaturan",
     "logout": "Keluar",
+    "theme": "theme",
+    "light": "light",
+    "dark": "dark",
+    "switch-to": "Switch",
     "vote-power": "Kekuatan Vote:"
   },
   "intro": {
