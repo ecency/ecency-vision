@@ -731,12 +731,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                         inProgress: replying
                                     })}
 
-                                    {activeUser && Discussion({
-                                        ...this.props,
-                                        parent: entry,
-                                        community
-                                    })}
-
                                     {(!originalEntry && !isComment) && SimilarEntries({
                                         ...this.props,
                                         entry
@@ -751,7 +745,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                         inProgress: replying
                                     })}
 
-                                    {!activeUser && Discussion({
+                                    {Discussion({
                                         ...this.props,
                                         parent: entry,
                                         community
