@@ -722,12 +722,21 @@ class EntryPage extends BaseComponent<Props, State> {
                                         </div>
                                     )}
 
+                                    {activeUser && Comment({
+                                        ...this.props,
+                                        defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
+                                        submitText: _t('g.reply'),
+                                        onChange: this.replyTextChanged,
+                                        onSubmit: this.replySubmitted,
+                                        inProgress: replying
+                                    })}
+
                                     {(!originalEntry && !isComment) && SimilarEntries({
                                         ...this.props,
                                         entry
                                     })}
 
-                                    {activeUser && Comment({
+                                    {!activeUser && Comment({
                                         ...this.props,
                                         defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
                                         submitText: _t('g.reply'),
