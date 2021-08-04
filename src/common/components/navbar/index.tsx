@@ -342,13 +342,13 @@ export class NavBar extends Component<Props, State> {
                                             {Search({...this.props, containerClassName:'w-100'})}
                                             <div
                                                 onClick={() => this.setState({showMobileSearch:false})}
-                                                className="icon text-secondary ml-2"
+                                                className="navbar-icon text-secondary ml-2"
                                             >
                                                 {closeSvg}
                                             </div>
                                         </> : 
                                         <>
-                                            <div className="icon">{magnifySvg}</div>
+                                            <div className="navbar-icon">{magnifySvg}</div>
                                             <div className="ml-3 text-15">{_t("g.search")}</div>
                                         </>
                                     }
@@ -358,12 +358,12 @@ export class NavBar extends Component<Props, State> {
                             {!activeUser &&
                             <>
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={()=>toggleUIProp("login")}>
-                                        <div className="icon">{userOutlineSvg}</div>
+                                        <div className="navbar-icon">{userOutlineSvg}</div>
                                         <div className="ml-3 text-15">{_t("g.login")}</div>
                                 </div>
                                 <Link to="/signup" onClick={() => !showMobileSearch && this.setState({ smVisible: false })}>
                                     <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                            <div className="icon">{keySvg}</div>
+                                            <div className="navbar-icon">{keySvg}</div>
                                             <div className="ml-3 text-15">{_t("g.signup")}</div>
                                     </div>
                                 </Link>
@@ -372,14 +372,14 @@ export class NavBar extends Component<Props, State> {
 
                             <Link to="/submit" onClick={() => this.setState({ smVisible: false} )}>
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                    <div className="icon">{pencilOutlinedSvg}</div>
+                                    <div className="navbar-icon">{pencilOutlinedSvg}</div>
                                     <div className="ml-3 text-15">{_t("g.submit")}</div>
                                 </div>
                             </Link>
 
                             <div>
                                 {activeUser && <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark" onClick={() => this.setState({showProfileMenu: !showProfileMenu})}>
-                                    <div className="icon">{userOutlineSvg}</div>
+                                    <div className="navbar-icon">{userOutlineSvg}</div>
                                     <div className="ml-3 text-15">{_t("user-nav.profile-menu")}</div>
                                     <div className="ml-3 text-15 icon-stroke">{showProfileMenu ? upArrowSvg : downArrowSvg}</div>
                                 </div>}
@@ -430,12 +430,12 @@ export class NavBar extends Component<Props, State> {
                             <>
 
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={() => toggleUIProp('notifications')}>
-                                    <div className="icon text-dark">{notificationSvg}</div>
+                                    <div className="navbar-icon text-dark">{notificationSvg}</div>
                                     <div className="ml-3 text-15">{_t("user-nav.notifications")}</div>
                                 </div>
                                 <Link to={`/@${activeUser.username}/points`} onClick={() => this.setState({ smVisible: false} )}>
                                     <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                        <div className="icon text-dark">{gifCardSvg}</div>
+                                        <div className="navbar-icon text-dark">{gifCardSvg}</div>
                                         <div className="ml-3 text-15">{_t("user-nav.points")}</div>
                                     </div>
                                 </Link>
@@ -448,12 +448,12 @@ export class NavBar extends Component<Props, State> {
                             </>}
 
                             <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative">
-                                <div className="icon">{globeSvg}</div>
+                                <div className="navbar-icon">{globeSvg}</div>
                                 <div className="text-15 switch-menu">{SwitchLang({...this.props, label: _t("community-settings.lang")})}</div>
                             </div>
 
                             <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={this.changeTheme}>
-                                <div className="icon">{global.theme == Theme.day ? moonSvg : sunSvg}</div>
+                                <div className="navbar-icon">{global.theme == Theme.day ? moonSvg : sunSvg}</div>
                                 <div className="ml-3 text-15">{_t("user-nav.switch-to")} {global.theme == Theme.day ? _t("user-nav.dark") : _t("user-nav.light")}</div>
                             </div>
 
