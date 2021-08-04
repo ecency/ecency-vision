@@ -2,7 +2,7 @@
   "g": {
     "add": "Tambahkan",
     "edit": "Edit",
-    "submit": "Write a post",
+    "submit": "Tulislah sebuah postingan",
     "search": "Cari",
     "downloads": "Download",
     "login": "Masuk",
@@ -98,7 +98,7 @@
     "unclaimed-points-notice": "Anda memiliki poin yang belum diambil",
     "notifications": "Notifikasi",
     "profile": "Profil",
-    "profile-menu": "Profile menu",
+    "profile-menu": "Menu profil",
     "gallery": "Galeri",
     "drafts": "Konsep",
     "bookmarks": "Tandai",
@@ -106,10 +106,10 @@
     "fragments": "Cuplikan",
     "settings": "Pengaturan",
     "logout": "Keluar",
-    "theme": "theme",
-    "light": "light",
-    "dark": "dark",
-    "switch-to": "Switch",
+    "theme": "tema",
+    "light": "terang",
+    "dark": "gelap",
+    "switch-to": "Beralih",
     "vote-power": "Kekuatan Vote:"
   },
   "intro": {
