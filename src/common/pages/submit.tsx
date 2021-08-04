@@ -67,6 +67,7 @@ import {contentSaveSvg} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import ModalConfirm from "../components/modal-confirm";
+import ResizableTextarea from "../components/resizable-text-area";
 
 interface PostBase {
     title: string;
@@ -763,16 +764,25 @@ class SubmitPage extends BaseComponent<Props, State> {
                             })}
                         </div>
                         <div className="body-input">
-                            <Form.Control
+                           {isMobile ? <ResizableTextarea
+                                id="the-editor-xs"
+                                className="the-editor accepts-emoji form-control"
+                                placeholder={_t("submit.body-placeholder")}
+                                value={body}
+                                onChange={this.bodyChanged}
+                                minRows={10}
+                                maxRows={100}
+                                spellCheck={true}
+                                /> : <Form.Control
                                 id="the-editor"
                                 className="the-editor accepts-emoji"
                                 as="textarea"
                                 placeholder={_t("submit.body-placeholder")}
                                 value={body}
                                 onChange={this.bodyChanged}
-                                rows={isMobile ? 20 : 10}
+                                rows={10}
                                 spellCheck={true}
-                            />
+                            />}
                         </div>
                         {editingEntry === null && (
                             <div className="bottom-toolbar">
