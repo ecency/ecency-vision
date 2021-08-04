@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  style={
+    Object {
+      "width": 300,
+    }
+  }
+>
+  <textarea
+    className="the-editor accepts-emoji form-control"
+    id="the-editor-xs"
+    maxRows={100}
+    minRows={1}
+    onChange={[Function]}
+    rows={1}
+    value="ResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextArea"
+  />
+</div>
+`;
