@@ -184,7 +184,7 @@ export default class EntryListItem extends Component<Props, State> {
                 </picture>
             );
         }
-        const nsfw = entry.json_metadata.tags && entry.json_metadata.tags.includes("nsfw");
+        const nsfw = entry.json_metadata.tags && Array.isArray(entry.json_metadata.tags) && entry.json_metadata.tags.includes("nsfw");
 
         const cls = `entry-list-item ${promoted ? "promoted-item" : ""}`;
 
