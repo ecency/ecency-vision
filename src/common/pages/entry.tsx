@@ -516,6 +516,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                         const renderedBody = {__html: renderPostBody(entry.body, false, global.canUseWebp)};
                                         const ctitle = entry.community ? entry.community_title : "";
+                                        console.log(tags)
                                         return <>
                                             <div className="entry-header">
                                                 {isMuted && (<div className="hidden-warning">
@@ -623,30 +624,34 @@ class EntryPage extends BaseComponent<Props, State> {
                                     <div className="entry-footer">
                                         <div className="entry-tags">
                                             {tags.map((t) => {
-                                                if (entry.community && entry.community_title && t === entry.community) {
-                                                    return <Fragment key={t}>
-                                                        {Tag({
-                                                            ...this.props,
-                                                            tag: {
-                                                                name: entry.community,
-                                                                title: entry.community_title
-                                                            },
-                                                            type: "link",
-                                                            children: <div className="entry-tag">{t}</div>
-                                                        })}
-                                                    </Fragment>
+                                                if (typeof t === "string") {
+                                                    if (entry.community && entry.community_title && t === entry.community) {
+                                                        return <Fragment key={t}>
+                                                            {Tag({
+                                                                ...this.props,
+                                                                tag: {
+                                                                    name: entry.community,
+                                                                    title: entry.community_title
+                                                                },
+                                                                type: "link",
+                                                                children: <div className="entry-tag">{t}</div>
+                                                            })}
+                                                        </Fragment>
+                                                    }
+    
+                                                    return (
+                                                        <Fragment key={t}>
+                                                            {Tag({
+                                                                ...this.props,
+                                                                tag: t.trim(),
+                                                                type: "link",
+                                                                children: <div className="entry-tag">{t}</div>
+                                                            })}
+                                                        </Fragment>
+                                                    )    
+                                                } else {
+                                                    return
                                                 }
-
-                                                return (
-                                                    <Fragment key={t}>
-                                                        {Tag({
-                                                            ...this.props,
-                                                            tag: t.trim(),
-                                                            type: "link",
-                                                            children: <div className="entry-tag">{t}</div>
-                                                        })}
-                                                    </Fragment>
-                                                )
                                             })}
                                         </div>
                                         <div className="entry-info">
