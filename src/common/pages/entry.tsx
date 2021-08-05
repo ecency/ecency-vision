@@ -516,7 +516,6 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                         const renderedBody = {__html: renderPostBody(entry.body, false, global.canUseWebp)};
                                         const ctitle = entry.community ? entry.community_title : "";
-                                        console.log(tags)
                                         return <>
                                             <div className="entry-header">
                                                 {isMuted && (<div className="hidden-warning">

@@ -246,7 +246,7 @@ exports[`(1) Default render 1`] = `
             className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
           >
             <div
-              className="icon"
+              className="navbar-icon"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -269,7 +269,7 @@ exports[`(1) Default render 1`] = `
           onClick={[Function]}
         >
           <div
-            className="icon"
+            className="navbar-icon"
           >
             <svg
               fill="none"
@@ -318,7 +318,7 @@ exports[`(1) Default render 1`] = `
             className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
           >
             <div
-              className="icon"
+              className="navbar-icon"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -344,7 +344,7 @@ exports[`(1) Default render 1`] = `
             className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
           >
             <div
-              className="icon"
+              className="navbar-icon"
             >
               <svg
                 fill="none"
@@ -371,7 +371,7 @@ exports[`(1) Default render 1`] = `
           className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative"
         >
           <div
-            className="icon"
+            className="navbar-icon"
           >
             <svg
               fill="none"
@@ -428,7 +428,7 @@ exports[`(1) Default render 1`] = `
           onClick={[Function]}
         >
           <div
-            className="icon"
+            className="navbar-icon"
           >
             <svg
               fill="none"
@@ -714,7 +714,7 @@ exports[`(2) Night Theme 1`] = `
             className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
           >
             <div
-              className="icon"
+              className="navbar-icon"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -737,7 +737,7 @@ exports[`(2) Night Theme 1`] = `
           onClick={[Function]}
         >
           <div
-            className="icon"
+            className="navbar-icon"
           >
             <svg
               fill="none"
@@ -786,7 +786,7 @@ exports[`(2) Night Theme 1`] = `
             className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
           >
             <div
-              className="icon"
+              className="navbar-icon"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -812,7 +812,7 @@ exports[`(2) Night Theme 1`] = `
             className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
           >
             <div
-              className="icon"
+              className="navbar-icon"
             >
               <svg
                 fill="none"
@@ -839,7 +839,7 @@ exports[`(2) Night Theme 1`] = `
           className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative"
         >
           <div
-            className="icon"
+            className="navbar-icon"
           >
             <svg
               fill="none"
@@ -896,7 +896,7 @@ exports[`(2) Night Theme 1`] = `
           onClick={[Function]}
         >
           <div
-            className="icon"
+            className="navbar-icon"
           >
             <svg
               fill="none"
@@ -1353,7 +1353,7 @@ exports[`(3) With active user 1`] = `
             className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
           >
             <div
-              className="icon"
+              className="navbar-icon"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -1379,7 +1379,7 @@ exports[`(3) With active user 1`] = `
             className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
           >
             <div
-              className="icon"
+              className="navbar-icon"
             >
               <svg
                 fill="none"
@@ -1407,7 +1407,7 @@ exports[`(3) With active user 1`] = `
             onClick={[Function]}
           >
             <div
-              className="icon"
+              className="navbar-icon"
             >
               <svg
                 fill="none"
@@ -1471,7 +1471,7 @@ exports[`(3) With active user 1`] = `
           onClick={[Function]}
         >
           <div
-            className="icon text-dark"
+            className="navbar-icon text-dark"
           >
             <svg
               fill="none"
@@ -1500,7 +1500,7 @@ exports[`(3) With active user 1`] = `
             className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
           >
             <div
-              className="icon text-dark"
+              className="navbar-icon text-dark"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -1567,7 +1567,7 @@ exports[`(3) With active user 1`] = `
           className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative"
         >
           <div
-            className="icon"
+            className="navbar-icon"
           >
             <svg
               fill="none"
@@ -1624,7 +1624,7 @@ exports[`(3) With active user 1`] = `
           onClick={[Function]}
         >
           <div
-            className="icon"
+            className="navbar-icon"
           >
             <svg
               fill="none"
@@ -1997,7 +1997,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
             className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
           >
             <div
-              className="icon"
+              className="navbar-icon"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -2023,7 +2023,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
             className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
           >
             <div
-              className="icon"
+              className="navbar-icon"
             >
               <svg
                 fill="none"
@@ -2051,7 +2051,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
             onClick={[Function]}
           >
             <div
-              className="icon"
+              className="navbar-icon"
             >
               <svg
                 fill="none"
@@ -2115,7 +2115,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           onClick={[Function]}
         >
           <div
-            className="icon text-dark"
+            className="navbar-icon text-dark"
           >
             <svg
               fill="none"
@@ -2144,7 +2144,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
             className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
           >
             <div
-              className="icon text-dark"
+              className="navbar-icon text-dark"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -2211,7 +2211,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative"
         >
           <div
-            className="icon"
+            className="navbar-icon"
           >
             <svg
               fill="none"
@@ -2268,7 +2268,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           onClick={[Function]}
         >
           <div
-            className="icon"
+            className="navbar-icon"
           >
             <svg
               fill="none"
