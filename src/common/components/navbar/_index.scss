@@ -508,7 +508,10 @@ body.medium-zoom--opened {
 }
 
 .sticky-container {
-  height: 86px
+  height: 86px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
 }
 
 .modal-backdrop{

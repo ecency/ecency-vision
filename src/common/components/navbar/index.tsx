@@ -224,7 +224,7 @@ export class NavBar extends Component<Props, State> {
                 {floating && smVisible && (<div className="nav-bar-rep" />)}
                 <div className={`nav-bar-toggle ${"position-fixed"}`} onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
 
-                    <div className={`nav-bar-sm ${"sticky"}`}>
+                    <div className={`nav-bar-sm ${"sticky"} ${step === 1 ? "transparent" : ""}`}>
                         <div className="brand">
                             {
                                 activeUser !== null ? (
