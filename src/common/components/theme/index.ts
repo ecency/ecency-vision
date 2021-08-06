@@ -8,11 +8,13 @@ interface Props {
 export default (props: Props) => {
     useEffect(() => {
         if (['day', 'night'].includes(props.global.theme)) {
+       if(!props.global.isMobile) {
             const body = document.querySelector('body');
-            if (!body) return;
+        if (!body) return;
 
-            body.className = `theme-${props.global.theme}`;
+        body.className = `theme-${props.global.theme}`;
         }
+    }
 
     }, [props.global.theme]);
 

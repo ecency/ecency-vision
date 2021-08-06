@@ -33,11 +33,10 @@ const handleClick = (e: Event) => {
             if (Object.values(routes).find(p => pathToRegexp(p).test(route))) {
                 e.preventDefault();
 
-                let delay = 100;
+                let delay = 75;
 
                 if (history!.location.pathname !== route) {
                     history!.push(href);
-                    delay = 400;
                 }
 
                 // scroll to anchor element

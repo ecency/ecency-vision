@@ -10,6 +10,9 @@
   height: 55vh;
   width: 55vw;
   background-color: $white;
+  @include themify(night){
+    background-color: $dark;
+  }
   left: 50%;
   top: 100px;
   z-index: 5;
@@ -43,7 +46,9 @@
 .intro-popup:before {
   border-left: 0px solid $transparent;
   border-right: 43px solid $transparent;
-  border-bottom: 83px solid $white;
+  @include themify(night){
+    border-bottom: 83px solid $dark;
+  }
   content: "";
   position: absolute;
   top: -70px;
