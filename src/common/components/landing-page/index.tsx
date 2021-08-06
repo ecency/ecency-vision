@@ -7,8 +7,6 @@ import { error, success } from "../feedback";
 import LinearProgress from "../linear-progress";
 import { apiBase } from "../../api/helper";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
-import mobileImgTiny from '../../img/phone-download-tiny.png'
-import mobileImgRegular from '../../img/phone-download.png'
 
 const LandingPage = (props: any) => {
 
@@ -43,9 +41,6 @@ const LandingPage = (props: any) => {
   const FooterTwitter = apiBase(`/assets/footer-twitter.svg`);
   const FooterTelegram = apiBase(`/assets/footer-telegram.svg`);
   const FooterDiscord = apiBase(`/assets/footer-discord.svg`);
-
-  const PhoneDarkTablet = apiBase(`/assets/phone-dark-tablet.${global.canUseWebp?"webp":"png"}`);
-  const PhoneLightTablet = apiBase(`/assets/phone-light-tablet.${global.canUseWebp?"webp":"png"}`);
   const PhoneDarkPc = apiBase(`/assets/phone-download-tiny.${global.canUseWebp?"webp":"png"}`);
 
   const BubbleLeftTop = apiBase(`/assets/bubble-left-top.${global.canUseWebp?"webp":"png"}`);
@@ -225,10 +220,10 @@ const LandingPage = (props: any) => {
           <div className="inner">
             <span />
             <span />
-            <img src={mobileImgRegular} alt="dark phone image" className="phone-bg phone-dark-pc" loading="lazy" />
-            <img src={mobileImgRegular} alt="dark phone image" className="phone-bg phone-dark-tablet" loading="lazy" />
-            <img src={mobileImgRegular} alt="light phone image" className="phone-bg phone-light-pc" loading="lazy" />
-            <img src={mobileImgRegular} alt="light phone image" className="phone-bg phone-light-tablet"  loading="lazy"/>
+            <img src={PhoneDarkPc} alt="dark phone image" className="phone-bg phone-dark-pc" loading="lazy" />
+            <img src={PhoneDarkPc} alt="dark phone image" className="phone-bg phone-dark-tablet" loading="lazy" />
+            <img src={PhoneDarkPc} alt="light phone image" className="phone-bg phone-light-pc" loading="lazy" />
+            <img src={PhoneDarkPc} alt="light phone image" className="phone-bg phone-light-tablet"  loading="lazy"/>
 
             <img src={BubbleLeftTop} alt="bubble" className="bubble-bg bubble-left-top" loading="lazy" />
             <img src={BubbleLeftBottom} alt="bubble" className="bubble-bg bubble-left-bottom" loading="lazy" />
