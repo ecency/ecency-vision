@@ -8,7 +8,7 @@ import entryIndexHandler from "./handlers/entry-index";
 import communityHandler from "./handlers/community";
 import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
-import fallbackHandler, {healthCheck, iosURI, androidURI} from "./handlers/fallback";
+import fallbackHandler, {healthCheck, iosURI, androidURI, nodeList} from "./handlers/fallback";
 import {entryRssHandler, authorRssHandler} from "./handlers/rss";
 import * as authApi from "./handlers/auth-api";
 import config from "../config";
@@ -100,7 +100,8 @@ server
     .get("^/apple-app-site-association$", iosURI)
     // android assetlinks
     .get("^/.well-known/assetlinks.json$", androidURI)
-
+    // get public nodes list
+    .get("^/public-nodes.json$", nodeList)   
     // Auth Api
     .post("^/auth-api/hs-token-refresh$", authCheck, authApi.hsTokenRefresh)
 
