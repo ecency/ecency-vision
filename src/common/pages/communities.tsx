@@ -886,7 +886,7 @@ class CommunityCreateHSPage extends BaseComponent<PageProps, CreateHsState> {
                         return <div>
                             <p className="text-danger">{_t('g.server-error')}</p>
                             <p><Button size="sm" onClick={() => {
-                                window.location.reload();
+                                this.handle().then()
                             }}>{_t('g.try-again')}</Button></p>
                         </div>
                     })()}
