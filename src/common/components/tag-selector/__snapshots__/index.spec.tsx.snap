@@ -16,7 +16,9 @@ exports[`(1) No tags 1`] = `
       onChange={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
+      onPaste={[Function]}
       placeholder="Tags. First tag is main category. Sortable."
+      spellCheck={true}
       type="text"
       value=""
     />
@@ -40,7 +42,9 @@ exports[`(2) With tags 1`] = `
       onChange={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
+      onPaste={[Function]}
       placeholder="Add More"
+      spellCheck={true}
       type="text"
       value=""
     />
@@ -118,7 +122,9 @@ exports[`(3) No tags with focus 1`] = `
       onChange={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
+      onPaste={[Function]}
       placeholder="Enter tag"
+      spellCheck={true}
       type="text"
       value=""
     />

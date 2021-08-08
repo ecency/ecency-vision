@@ -623,30 +623,34 @@ class EntryPage extends BaseComponent<Props, State> {
                                     <div className="entry-footer">
                                         <div className="entry-tags">
                                             {tags.map((t) => {
-                                                if (entry.community && entry.community_title && t === entry.community) {
-                                                    return <Fragment key={t}>
-                                                        {Tag({
-                                                            ...this.props,
-                                                            tag: {
-                                                                name: entry.community,
-                                                                title: entry.community_title
-                                                            },
-                                                            type: "link",
-                                                            children: <div className="entry-tag">{t}</div>
-                                                        })}
-                                                    </Fragment>
+                                                if (typeof t === "string") {
+                                                    if (entry.community && entry.community_title && t === entry.community) {
+                                                        return <Fragment key={t}>
+                                                            {Tag({
+                                                                ...this.props,
+                                                                tag: {
+                                                                    name: entry.community,
+                                                                    title: entry.community_title
+                                                                },
+                                                                type: "link",
+                                                                children: <div className="entry-tag">{t}</div>
+                                                            })}
+                                                        </Fragment>
+                                                    }
+    
+                                                    return (
+                                                        <Fragment key={t}>
+                                                            {Tag({
+                                                                ...this.props,
+                                                                tag: t.trim(),
+                                                                type: "link",
+                                                                children: <div className="entry-tag">{t}</div>
+                                                            })}
+                                                        </Fragment>
+                                                    )    
+                                                } else {
+                                                    return
                                                 }
-
-                                                return (
-                                                    <Fragment key={t}>
-                                                        {Tag({
-                                                            ...this.props,
-                                                            tag: t.trim(),
-                                                            type: "link",
-                                                            children: <div className="entry-tag">{t}</div>
-                                                        })}
-                                                    </Fragment>
-                                                )
                                             })}
                                         </div>
                                         <div className="entry-info">
@@ -722,12 +726,21 @@ class EntryPage extends BaseComponent<Props, State> {
                                         </div>
                                     )}
 
+                                    {activeUser && Comment({
+                                        ...this.props,
+                                        defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
+                                        submitText: _t('g.reply'),
+                                        onChange: this.replyTextChanged,
+                                        onSubmit: this.replySubmitted,
+                                        inProgress: replying
+                                    })}
+
                                     {(!originalEntry && !isComment) && SimilarEntries({
                                         ...this.props,
                                         entry
                                     })}
 
-                                    {activeUser && Comment({
+                                    {!activeUser && Comment({
                                         ...this.props,
                                         defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
                                         submitText: _t('g.reply'),

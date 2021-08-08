@@ -474,7 +474,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         this.stateSet({inProgress: false, done: true});
     }
 
-    submitHot = () => {
+    submitHot = async () => {
         const {username, title, about} = this.state;
 
         const keys = this.makePrivateKeys();
@@ -486,11 +486,13 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
             const hash = cryptoUtils.sha256(message);
             return new Promise<string>((resolve) => resolve(keys.activeKey.sign(hash).toString()));
         }
-        const code = makeHsCode(username, signer);
-        const callback = `${window.location.origin}/communities/create-hs?code=${code}&title=${encodeURIComponent(title)}&about=${encodeURIComponent(about)}`;
+        const code = await makeHsCode(username, signer);
+        if(code){
+            const callback = `${window.location.origin}/communities/create-hs?code=${code}&title=${encodeURIComponent(title)}&about=${encodeURIComponent(about)}`;
+            hs.sendOperation(operation, {callback}, () => {
+            });
 
-        hs.sendOperation(operation, {callback}, () => {
-        });
+        }
     }
 
     copyToClipboard = (text: string) => {

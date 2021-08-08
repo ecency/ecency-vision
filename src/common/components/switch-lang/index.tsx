@@ -21,20 +21,21 @@ import * as ls from "../../util/local-storage";
 interface Props {
     history: History;
     global: Global;
+    label?: string;
     setLang: (lang: string) => void;
 }
 
 export class SwitchLang extends Component<Props> {
 
     render() {
-        const {global, setLang} = this.props;
+        const { global, setLang, label } = this.props;
 
         const languageFromLS = ls && ls.get("lang");
         const lang = languageFromLS !== null ? languageFromLS.slice(0, 2).toUpperCase() : "EN";
 
         const langMenuConfig = {
             history: this.props.history,
-            label: lang,
+            label: label || lang,
             items: langOptions.map((f => {
                 return {
                     label: f.name,
@@ -54,7 +55,7 @@ export class SwitchLang extends Component<Props> {
 
         return (
             <div className="switch-language">
-                <DropDown {...langMenuConfig} float="right"/>
+                <DropDown {...langMenuConfig} float={label ? "left" : "right"}/>
             </div>
         );
     }
@@ -64,6 +65,7 @@ export default (p: Props) => {
     const props = {
         history: p.history,
         global: p.global,
+        label: p.label,
         setLang: p.setLang
     }
 

@@ -293,7 +293,7 @@ export const transferHot = (from: string, to: string, amount: string, memo: stri
 
 export const transferKc = (from: string, to: string, amount: string, memo: string) => {
     const asset = parseAsset(amount);
-    return keychain.transfer(from, to, asset.amount.toString(), memo, asset.symbol, true);
+    return keychain.transfer(from, to, asset.amount.toFixed(3).toString(), memo, asset.symbol, true);
 }
 
 export const transferPoint = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {

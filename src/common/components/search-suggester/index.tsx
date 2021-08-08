@@ -27,6 +27,7 @@ interface Props {
     trendingTags: TrendingTags;
     value: string;
     children: JSX.Element;
+    containerClassName?: string;
 }
 
 interface State {
@@ -147,7 +148,7 @@ export class SearchSuggester extends BaseComponent<Props, State> {
     };
 
     render() {
-        const {global, value, children} = this.props;
+        const {global, value, children, containerClassName} = this.props;
         const {suggestions, mode} = this.state;
 
         let suggestionProps = {};
@@ -191,9 +192,10 @@ export class SearchSuggester extends BaseComponent<Props, State> {
                 break;
         }
 
+        
         return (
             <>
-                <SuggestionList items={suggestions} {...suggestionProps}>{children}</SuggestionList>
+                <SuggestionList items={suggestions} {...suggestionProps} containerClassName={containerClassName}>{children}</SuggestionList>
             </>
         );
     }
@@ -206,7 +208,8 @@ export default (p: Props) => {
         global: p.global,
         value: p.value,
         trendingTags: p.trendingTags,
-        children: p.children
+        children: p.children,
+        containerClassName: p.containerClassName
     }
 
     return <SearchSuggester {...props} />

@@ -15,8 +15,6 @@ const LandingPage = (props: any) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const BgHeroDark = apiBase(`/assets/illustration-hero.${global.canUseWebp?"webp":"png"}`);
-  const BgHeroLight = apiBase(`/assets/illustration-hero-day.${global.canUseWebp?"webp":"png"}`);
   const EarnMoney = apiBase(`/assets/illustration-earn-money.${global.canUseWebp?"webp":"png"}`);
   const WhaleCatchsFish = apiBase(`/assets/illustration-true-ownership.${global.canUseWebp?"webp":"png"}`);
   const Decentralization = apiBase(`/assets/illustration-decentralization.${global.canUseWebp?"webp":"png"}`);
@@ -43,11 +41,7 @@ const LandingPage = (props: any) => {
   const FooterTwitter = apiBase(`/assets/footer-twitter.svg`);
   const FooterTelegram = apiBase(`/assets/footer-telegram.svg`);
   const FooterDiscord = apiBase(`/assets/footer-discord.svg`);
-
-  const PhoneDarkTablet = apiBase(`/assets/phone-dark-tablet.${global.canUseWebp?"webp":"png"}`);
-  const PhoneLightTablet = apiBase(`/assets/phone-light-tablet.${global.canUseWebp?"webp":"png"}`);
-  const PhoneDarkPc = apiBase(`/assets/phone-dark-pc.${global.canUseWebp?"webp":"png"}`);
-  const PhoneLightPc = apiBase(`/assets/phone-light-pc.${global.canUseWebp?"webp":"png"}`);
+  const PhoneDarkPc = apiBase(`/assets/phone-download-tiny.${global.canUseWebp?"webp":"png"}`);
 
   const BubbleLeftTop = apiBase(`/assets/bubble-left-top.${global.canUseWebp?"webp":"png"}`);
   const BubbleLeftBottom = apiBase(`/assets/bubble-left-bottom.${global.canUseWebp?"webp":"png"}`);
@@ -81,41 +75,33 @@ const LandingPage = (props: any) => {
   return (
     <div className="landing-wrapper">
       <div className="top-bg" />
-      <img 
-        className="tob-bg-illustration-light" 
-        src={BgHeroLight}
-        alt="algaes"
-        loading="lazy"/>
-      <img 
-        className="tob-bg-illustration-dark" 
-        src={BgHeroDark}
-        alt="algaes"
-        loading="lazy"/>
       <div className="tob-bg-algae" />
       <div className="tob-bg-fishes" />
       <div className="sections first-section">
-        <h1>{_t("landing-page.welcome-text")}</h1>
-        <div>
-          <p>{_t("landing-page.what-is-ecency")}</p>
-          <p>{_t("landing-page.powered-by-hive")}</p>
+        <div className="text-container text-center">
+          <h1>{_t("landing-page.welcome-text")}</h1>
+          <div className="d-flex flex-wrap justify-content-center align-items-center">
+            <p className="mb-3">{_t("landing-page.what-is-ecency")}</p>
+            <p className="ml-1 mb-3">{_t("landing-page.powered-by-hive")}</p>
+          </div>
+          <button
+            className="get-started mx-auto"
+            onClick={() => props.changeState({ step: 2 })}
+          >
+            {_t("landing-page.get-started")}
+          </button>
+          <a className="scroll-down" href="#earn-money">
+            {scrollDown}
+          </a>
         </div>
-        <button
-          className="get-started"
-          onClick={() => props.changeState({ step: 2 })}
-        >
-          {_t("landing-page.get-started")}
-        </button>
-        <a className="scroll-down" href="#earn-money">
-          {scrollDown}
-        </a>
       </div>
       <div className="sections second-section" id="earn-money">
         <div className="part-top">
           <div className="inner">
-            <img src={EarnMoney} alt="earn-money" loading="lazy" />
+            <img src={EarnMoney} alt="earn-money" loading="lazy" className="mx-auto m-sm-0" />
             <div className="text-group visible">
               <h2>{_t("landing-page.earn-money")}</h2>
-              <p>
+              <p className="mt-2 w-88 mb-5 mb-sm-0">
                 {_t("landing-page.earn-money-block-chain-based")}
                 <span>
                   <a href="/signup?referral=ecency">
@@ -135,7 +121,7 @@ const LandingPage = (props: any) => {
           <div className="inner">
             <div className="text-group">
               <h2>{_t("landing-page.true-ownership")}</h2>
-              <p>{_t("landing-page.true-ownership-desc")}</p>
+              <p className="mt-2 w-88">{_t("landing-page.true-ownership-desc")}</p>
             </div>
             <div className="image-wrapper">
               <img
@@ -150,7 +136,7 @@ const LandingPage = (props: any) => {
       </div>
 
       <div className="sections third-section">
-        <div className="part-top">
+        <div className="part-top pt-sm-5 pt-lg-0">
           <div className="inner">
             <div className="img-wrapper">
               <img
@@ -160,7 +146,7 @@ const LandingPage = (props: any) => {
                 loading="lazy"
               />
             </div>
-            <div className="text-group visible">
+            <div className="text-group visible mw-100">
               <h2>{_t("landing-page.decentralization")}</h2>
               <p>
                 <span>
@@ -198,7 +184,6 @@ const LandingPage = (props: any) => {
 
       <div className="sections fourth-section">
         <div className="part-top">
-          <span className="mask" />
           <div className="inner">
             <div className="fish-container">
               <img className="fish three" src={FishThree} alt="earn-money" loading="lazy" />
@@ -231,14 +216,14 @@ const LandingPage = (props: any) => {
             </ul>
           </div>
         </div>
-        <div className="part-bottom">
+        <div className="part-bottom" id="download">
           <div className="inner">
             <span />
             <span />
             <img src={PhoneDarkPc} alt="dark phone image" className="phone-bg phone-dark-pc" loading="lazy" />
-            <img src={PhoneDarkTablet} alt="dark phone image" className="phone-bg phone-dark-tablet" loading="lazy" />
-            <img src={PhoneLightPc} alt="light phone image" className="phone-bg phone-light-pc" loading="lazy" />
-            <img src={PhoneLightTablet} alt="light phone image" className="phone-bg phone-light-tablet"  loading="lazy"/>
+            <img src={PhoneDarkPc} alt="dark phone image" className="phone-bg phone-dark-tablet" loading="lazy" />
+            <img src={PhoneDarkPc} alt="light phone image" className="phone-bg phone-light-pc" loading="lazy" />
+            <img src={PhoneDarkPc} alt="light phone image" className="phone-bg phone-light-tablet"  loading="lazy"/>
 
             <img src={BubbleLeftTop} alt="bubble" className="bubble-bg bubble-left-top" loading="lazy" />
             <img src={BubbleLeftBottom} alt="bubble" className="bubble-bg bubble-left-bottom" loading="lazy" />
@@ -253,7 +238,8 @@ const LandingPage = (props: any) => {
 
             <div className="text-group">
               <h2>{_t("landing-page.download-our-application")}</h2>
-              <p>{_t("landing-page.download-our-application-desc")}</p>
+              <p className="mt-4">{_t("landing-page.download-our-application-desc-1")}</p>
+              <p>{_t("landing-page.download-our-application-desc-2")}</p>
               <a
                 className="windows"
                 href="https://desktop.ecency.com/"
@@ -297,9 +283,9 @@ const LandingPage = (props: any) => {
       </div>
 
       <div className="sections fifth-section" id="about">
-        <div className="part-top">
+        <div className="part-top pt-5 pt-sm-0">
           <div className="inner">
-            <div className="text-group">
+            <div className="text-group mt-sm-5 mt-lg-0">
               <h2>{_t("landing-page.our-history")}</h2>
               <p>{htmlParse(_t('landing-page.our-history-p-one'))}</p>
               <p>{_t("landing-page.our-history-p-two")}</p>
@@ -311,7 +297,7 @@ const LandingPage = (props: any) => {
           <div className="inner">
             <img className="our-vision" src={OurVision} alt="Our Vision" loading="lazy" />
 
-            <div className="text-group">
+            <div className="text-group pb-0 pb-sm-5 pb-md-0">
               <h2>{_t("landing-page.our-vision")}</h2>
               <p>{htmlParse(_t('landing-page.our-vision-p-one'))}</p>
               <p>{htmlParse(_t('landing-page.our-vision-p-two'))}</p>
@@ -370,7 +356,7 @@ const LandingPage = (props: any) => {
             </div>
           </div>
         </div>
-        <div className="part-bottom">
+        <div className="part-bottom pt-sm-5 pt-lg-auto">
           <span className="left-fishes" />
           <img src={FooterMainFish} alt="Big fish" loading="lazy" className="main-fish" />
           <div className="inner">
@@ -405,6 +391,7 @@ const LandingPage = (props: any) => {
                   </li>
                 </ul>
               </div>
+              
               <div className="subscribe-form" onSubmit={handleSubsccribe}>
                 <h2>{_t("landing-page.subscribe-us")}</h2>
                 <form>
@@ -419,9 +406,12 @@ const LandingPage = (props: any) => {
                   />
                   <button disabled={loading}>{loading ? <span><LinearProgress /></span>  : _t("landing-page.send")}</button>
                 </form>
-                <div className="socials">
-                  <p>{_t("landing-page.subscribe-paragraph")}</p>
-                  <ul>
+
+                <p>{_t("landing-page.subscribe-paragraph")}</p>
+
+
+            <div className="socials w-100 d-none d-lg-block">
+                  <ul className="p-0 m-0 d-flex justify-content-between w-50">
                     <li>
                       <a href="https://youtube.com/ecency">
                         <img src={FooterYoutube} alt="youtube" />
@@ -444,9 +434,9 @@ const LandingPage = (props: any) => {
                     </li>
                   </ul>
                 </div>
-              </div>
-            </div>
-            <div className="site-icon">
+            
+                </div>
+            </div><div className="site-icon">
               <a href="#">
                 <img src={LogoCircle} alt="ecency logo" />
               </a>

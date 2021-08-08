@@ -299,7 +299,7 @@ export const getWithdrawRoutes = (account: string): Promise<WithdrawRoute[]> =>
 
 export const votingPower = (account: FullAccount): number => {
     // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"
-    const calc = client.rc.calculateVPMana(account);
+    const calc = account && client.rc.calculateVPMana(account);
     const {percentage} = calc;
 
     return percentage / 100;

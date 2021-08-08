@@ -233,7 +233,6 @@
       top: 0;
       height: 64px;
       width: 100%;
-      animation: anim-fadein 0.3s;
 
       @include themify(day) {
         background: $white-two;

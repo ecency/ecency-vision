@@ -66,6 +66,8 @@ import {version} from "../../../package.json";
 import {contentSaveSvg} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import ModalConfirm from "../components/modal-confirm";
+import ResizableTextarea from "../components/resizable-text-area";
 
 interface PostBase {
     title: string;
@@ -141,6 +143,7 @@ interface State extends PostBase, Advanced {
     saving: boolean;
     editingDraft: Draft | null;
     advanced: boolean;
+    clearModal: boolean;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -157,6 +160,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         beneficiaries: [],
         schedule: null,
         reblogSwitch: false,
+        clearModal: false,
         preview: {
             title: "",
             tags: [],
@@ -404,7 +408,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     clear = (): void => {
-        this.stateSet({title: "", tags: [], body: "", advanced: false, reward: "default", beneficiaries: [], schedule: null, reblogSwitch: false}, () => {
+        this.stateSet({title: "", tags: [], body: "", advanced: false, reward: "default", beneficiaries: [], schedule: null, reblogSwitch: false, clearModal: false}, () => {
             this.updatePreview();
             this.saveAdvanced();
         });
@@ -695,7 +699,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch} = this.state;
+        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch, clearModal} = this.state;
 
         //  Meta config
         const metaProps = {
@@ -706,19 +710,20 @@ class SubmitPage extends BaseComponent<Props, State> {
         const {global, activeUser} = this.props;
 
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
-
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 570;
         return (
             <>
                 <Meta {...metaProps} />
                 <FullHeight/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
+                {clearModal && <ModalConfirm onConfirm={this.clear} onCancel={() => this.setState({clearModal:false})}/>}
                 {global.isElectron && <MdHandler global={this.props.global} history={this.props.history}/>}
                 {global.isElectron ?
                     NavBarElectron({
                         ...this.props,
                     }) :
-                    NavBar({...this.props})}
+                    NavBar({ ...this.props })}
 
                 <div className={_c(`app-content submit-page ${editingEntry !== null ? "editing" : ""}`)}>
                     <div className="editor-panel">
@@ -747,6 +752,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 autoFocus={true}
                                 value={title}
                                 onChange={this.titleChanged}
+                                spellCheck={true}
                             />
                         </div>
                         <div className="tag-input">
@@ -758,7 +764,16 @@ class SubmitPage extends BaseComponent<Props, State> {
                             })}
                         </div>
                         <div className="body-input">
-                            <Form.Control
+                           {isMobile ? <ResizableTextarea
+                                id="the-editor-xs"
+                                className="the-editor accepts-emoji form-control"
+                                placeholder={_t("submit.body-placeholder")}
+                                value={body}
+                                onChange={this.bodyChanged}
+                                minRows={10}
+                                maxRows={100}
+                                spellCheck={true}
+                                /> : <Form.Control
                                 id="the-editor"
                                 className="the-editor accepts-emoji"
                                 as="textarea"
@@ -766,11 +781,12 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 value={body}
                                 onChange={this.bodyChanged}
                                 rows={10}
-                            />
+                                spellCheck={true}
+                            />}
                         </div>
                         {editingEntry === null && (
                             <div className="bottom-toolbar">
-                                <Button variant="outline-info" onClick={this.clear}>
+                                <Button variant="outline-info" onClick={()=>this.setState({clearModal: true})}>
                                     {_t("submit.clear")}
                                 </Button>
                                 <Button variant="outline-primary" onClick={this.toggleAdvanced}>
