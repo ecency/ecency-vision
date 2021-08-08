@@ -220,7 +220,7 @@ export class NavBar extends Component<Props, State> {
         </div>
 
         return (
-            <div className={"position-fixed sticky-container"}>
+            <div className={"sticky-container"} id='sticky-container'>
                 {floating && smVisible && (<div className="nav-bar-rep" />)}
                 <div className={`nav-bar-toggle ${"position-fixed"}`} onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
 
@@ -242,8 +242,8 @@ export class NavBar extends Component<Props, State> {
                     </div>
                     
                 {!smVisible && (
-                    <div className={`nav-bar ${(!transparentVerify && step === 1 ? "transparent" : "")}`}>
-                        <div className={`nav-bar-inner ${(!transparentVerify && step === 1 ? "transparent" : "mb-3")}`}>
+                    <div className={`nav-bar ${(!transparentVerify && step === 1 ? "transparent" : "")} mb-0`}>
+                        <div className={`nav-bar-inner ${(!transparentVerify && step === 1 ? "transparent" : "")}`}>
                             <div className="brand">
                                     {
                                         activeUser !== null ? (

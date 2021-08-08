@@ -526,3 +526,14 @@ body.medium-zoom--opened {
 .modal {
   z-index: 100001 !important;
 }
+
+.can-float {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  height: 64px;
+  width: 100%;
+  -webkit-animation: anim-fadein .3s;
+  animation: anim-fadein .3s;
+}

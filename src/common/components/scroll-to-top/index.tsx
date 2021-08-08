@@ -31,16 +31,20 @@ export default class ScrollToTop extends Component {
     }
 
     detect = () => {
+        let navbar = document.getElementById("sticky-container");
+
         if (!this.button.current) {
             return;
         }
 
         if (this.shouldShow()) {
             this.button.current.classList.add('visible');
+            navbar?.classList.add("can-float")
             return;
         }
 
         this.button.current.classList.remove('visible');
+        navbar?.classList.remove("can-float")
     }
 
     clicked = () => {
