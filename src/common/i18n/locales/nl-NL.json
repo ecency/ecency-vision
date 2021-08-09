@@ -44,6 +44,8 @@
     "apply": "Toepassen",
     "warning": "Warning",
     "payout": "Payout",
+    "learn-more": "Learn more in our",
+    "faq": "FAQ",
     "close": "Sluiten"
   },
   "confirm": {
@@ -373,15 +375,15 @@
     "title": "Titel",
     "about": "Over",
     "description": "Maak een beste, gedecentraliseerde, onveranderbare, belonende gemeenschap",
-    "fee": "Handeling kosten",
+    "fee": "Creation fee",
     "creator": "Maker",
-    "username": "Gebruikersnaam eigenaar",
+    "username": "Community username",
     "username-available": "Beschikbaar.",
     "username-not-available": "Niet beschikbaar.",
     "username-wrong-format": "Ongeldig formaat. hive-1xxxx formaat nodig.",
     "checkbox-validation": "Please tick this box if you want to proceed.",
     "title-validation": "Please fill in this field.",
-    "password": "Master password",
+    "password": "Community password",
     "confirmation": "Ik heb mijn gebruikersnaam en wachtwoord veilig opgeslagen.",
     "submit": "Maak gemeenschap aan",
     "progress-account": "Maak lidmaatschap aan...",
@@ -389,6 +391,10 @@
     "progress-role": "@{{u}} ingesteld als beheerder...",
     "progress-props": "Instellingen gemeenschap bijwerken...",
     "done": "Jouw gemeenschap is aangemaakt 🎉",
+    "reason-one": "True ownership",
+    "reason-two": "Permanent, rewarding",
+    "reason-three": "Powered by blockchain technology",
+    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Aan de slag."
   },
   "community-rewards-registration": {
