@@ -44,6 +44,8 @@
     "apply": "Apply",
     "warning": "Warning",
     "payout": "Payout",
+    "learn-more": "Learn more in our",
+    "faq": "FAQ",
     "close": "Close"
   },
   "confirm": {
@@ -373,15 +375,15 @@
     "title": "Naslov",
     "about": "O Nama",
     "description": "Napravite najbolje mrežne, decentralizovane, nepromenljive zajednice koje nagrađuju",
-    "fee": "Operativna naknada",
+    "fee": "Creation fee",
     "creator": "Kreator",
-    "username": "Korisničko ime vlasnika",
+    "username": "Community username",
     "username-available": "Dostupno.",
     "username-not-available": "Nedostupno.",
     "username-wrong-format": "Nije važeći format. Potreban hive-1xxxxx format.",
     "checkbox-validation": "Please tick this box if you want to proceed.",
     "title-validation": "Please fill in this field.",
-    "password": "Master password",
+    "password": "Community password",
     "confirmation": "Sigurno sam sačuvao svoje korisničko ime i lozinku vlasnika.",
     "submit": "Napravi Zajednicu",
     "progress-account": "Pravljenje naloga...",
@@ -389,6 +391,10 @@
     "progress-role": "Postavljanje @{{u}} kao administratora...",
     "progress-props": "Ažuriranje podešavanja zajednice...",
     "done": "Vaša zajednica je kreirana 🎉",
+    "reason-one": "True ownership",
+    "reason-two": "Permanent, rewarding",
+    "reason-three": "Powered by blockchain technology",
+    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Počni."
   },
   "community-rewards-registration": {
