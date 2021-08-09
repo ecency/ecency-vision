@@ -44,6 +44,8 @@
     "apply": "Apply",
     "warning": "Warning",
     "payout": "Payout",
+    "learn-more": "Learn more in our",
+    "faq": "FAQ",
     "close": "Close"
   },
   "confirm": {
@@ -373,15 +375,15 @@
     "title": "Τίτλος",
     "about": "Σχετικά",
     "description": "Δημιουργήστε μια καλύτερη, αποκεντρωμένη, αμετάβλητη που επιβραβεύει κοινότητα",
-    "fee": "Χρέωση λειτουργίας",
+    "fee": "Creation fee",
     "creator": "Δημιουργός",
-    "username": "Όνομα ιδιοκτήτη",
+    "username": "Community username",
     "username-available": "Διαθέσιμο.",
     "username-not-available": "Μη διαθέσιμο.",
     "username-wrong-format": "Μή έγκυρη μορφή. hive-1xxxxx μορφή απαιτείται.",
     "checkbox-validation": "Please tick this box if you want to proceed.",
     "title-validation": "Please fill in this field.",
-    "password": "Master password",
+    "password": "Community password",
     "confirmation": "Έχω αποθηκεύσει το όνομα ιδιοκτήτη και τον κωδικό μου σε ασφαλές μέρος.",
     "submit": "Δημιουργήστε κοινότητα",
     "progress-account": "Δημιουργία λογαριασμού...",
@@ -389,6 +391,10 @@
     "progress-role": "Ορίστε τον @{{u}} ως διαχειριστή...",
     "progress-props": "Ενημέρωση ρυθμίσεων κοινότητας...",
     "done": "Η κοινότητα σας δημιουργήθηκε 🎉",
+    "reason-one": "True ownership",
+    "reason-two": "Permanent, rewarding",
+    "reason-three": "Powered by blockchain technology",
+    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Ξεκινήστε."
   },
   "community-rewards-registration": {
