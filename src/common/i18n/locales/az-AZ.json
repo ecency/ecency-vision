@@ -44,6 +44,8 @@
     "apply": "Tətbiq et",
     "warning": "Xəbərdarlıq",
     "payout": "Payout",
+    "learn-more": "Learn more in our",
+    "faq": "FAQ",
     "close": "Bağla"
   },
   "confirm": {
@@ -373,15 +375,15 @@
     "title": "Başlıq",
     "about": "Haqqında",
     "description": "Create a best, decentralized, immutable, rewarding communities",
-    "fee": "Əməliyyat haqqı",
+    "fee": "Creation fee",
     "creator": "Yaradıcı",
-    "username": "Sahib istifadəçi adı",
+    "username": "Community username",
     "username-available": "Mövcud.",
     "username-not-available": "Mövcud deyil.",
     "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
     "checkbox-validation": "Please tick this box if you want to proceed.",
     "title-validation": "Bu sahəni doldurun.",
-    "password": "Usta şifrəsi",
+    "password": "Community password",
     "confirmation": "Sahib istifadəçi adımı və şifrəmi təhlükəsiz olaraq yaddaşa yazdım.",
     "submit": "Cəmiyyət yarat",
     "progress-account": "Hesab yaradılır...",
@@ -389,6 +391,10 @@
     "progress-role": "@{{u}} admin olaraq tənzimlənir...",
     "progress-props": "Cəmiyyət tənzimləmələri yenilənir...",
     "done": "Cəmiyyətiniz yaradıldı 🎉",
+    "reason-one": "True ownership",
+    "reason-two": "Permanent, rewarding",
+    "reason-three": "Powered by blockchain technology",
+    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Başlayaq."
   },
   "community-rewards-registration": {
