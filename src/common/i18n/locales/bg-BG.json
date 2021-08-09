@@ -44,6 +44,8 @@
     "apply": "Потвърди",
     "warning": "Warning",
     "payout": "Payout",
+    "learn-more": "Learn more in our",
+    "faq": "FAQ",
     "close": "Затвори"
   },
   "confirm": {
@@ -373,15 +375,15 @@
     "title": "Заглавие",
     "about": "Относно",
     "description": "Създай най-добрите, децентрализирани, не-заглушаващи, награждаващи общности",
-    "fee": "Такса за действието",
+    "fee": "Creation fee",
     "creator": "Създател",
-    "username": "Потребителско име на собственика",
+    "username": "Community username",
     "username-available": "Достъпно.",
     "username-not-available": "Не е достъпно.",
     "username-wrong-format": "Не е валиден формат. hive-1xxxxx формат е задължителен.",
     "checkbox-validation": "Please tick this box if you want to proceed.",
     "title-validation": "Please fill in this field.",
-    "password": "Главна парола",
+    "password": "Community password",
     "confirmation": "Безопасно си запазих потребителското име на собственика и паролата.",
     "submit": "Създаване на общност",
     "progress-account": "Създаване на акаунт...",
@@ -389,6 +391,10 @@
     "progress-role": "Назначаване на @{{u}} като администратор...",
     "progress-props": "Обновяване на настройките на общността...",
     "done": "Коментарът ви беше създаден 🎉",
+    "reason-one": "True ownership",
+    "reason-two": "Permanent, rewarding",
+    "reason-three": "Powered by blockchain technology",
+    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Започнете."
   },
   "community-rewards-registration": {
