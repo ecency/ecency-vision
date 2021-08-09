@@ -44,6 +44,8 @@
     "apply": "Apply",
     "warning": "Warning",
     "payout": "Payout",
+    "learn-more": "Learn more in our",
+    "faq": "FAQ",
     "close": "Close"
   },
   "confirm": {
@@ -373,15 +375,15 @@
     "title": "Cím",
     "about": "Rólunk",
     "description": "Create a best, decentralized, immutable, rewarding communities",
-    "fee": "Üzemeltetési díj",
+    "fee": "Creation fee",
     "creator": "Létrehozó",
-    "username": "Tulajdonos felhasználóneve",
+    "username": "Community username",
     "username-available": "Elérhető.",
     "username-not-available": "Nem elérhető.",
     "username-wrong-format": "Nem érvényes formátum. hive-1xxxxx formátum szükséges.",
     "checkbox-validation": "Please tick this box if you want to proceed.",
     "title-validation": "Please fill in this field.",
-    "password": "Master password",
+    "password": "Community password",
     "confirmation": "I have securely saved my owner username and password.",
     "submit": "Közösség létrehozása",
     "progress-account": "Fiók létrehozása...",
@@ -389,6 +391,10 @@
     "progress-role": "Setting @{{u}} as admin...",
     "progress-props": "Közösségi beállítások frissítése...",
     "done": "A közösséged létrejött 🎉",
+    "reason-one": "True ownership",
+    "reason-two": "Permanent, rewarding",
+    "reason-three": "Powered by blockchain technology",
+    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Kezdés."
   },
   "community-rewards-registration": {
