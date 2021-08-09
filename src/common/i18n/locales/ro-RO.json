@@ -44,6 +44,8 @@
     "apply": "Apply",
     "warning": "Warning",
     "payout": "Payout",
+    "learn-more": "Learn more in our",
+    "faq": "FAQ",
     "close": "Close"
   },
   "confirm": {
@@ -373,15 +375,15 @@
     "title": "Titlu",
     "about": "Despre",
     "description": "Create a best, decentralized, immutable, rewarding communities",
-    "fee": "Operation fee",
+    "fee": "Creation fee",
     "creator": "Creator",
-    "username": "Nume utilizator proprietar",
+    "username": "Community username",
     "username-available": "Disponibil.",
     "username-not-available": "Indisponibil.",
     "username-wrong-format": "Nu este un format valid. Format Hive-1xxxxx este necesar.",
     "checkbox-validation": "Please tick this box if you want to proceed.",
     "title-validation": "Please fill in this field.",
-    "password": "Master password",
+    "password": "Community password",
     "confirmation": "I have securely saved my owner username and password.",
     "submit": "Creeare comunitate",
     "progress-account": "Se creează contul...",
@@ -389,6 +391,10 @@
     "progress-role": "Setare @{{u}} ca administrator...",
     "progress-props": "Actualizarea setărilor comunității...",
     "done": "Comunitatea ta a fost creată 🎉",
+    "reason-one": "True ownership",
+    "reason-two": "Permanent, rewarding",
+    "reason-three": "Powered by blockchain technology",
+    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Începe."
   },
   "community-rewards-registration": {
