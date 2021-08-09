@@ -44,6 +44,8 @@
     "apply": "Apply",
     "warning": "Warning",
     "payout": "Payout",
+    "learn-more": "Learn more in our",
+    "faq": "FAQ",
     "close": "Close"
   },
   "confirm": {
@@ -373,15 +375,15 @@
     "title": "Заголовок",
     "about": "Про спільноту",
     "description": "Створіть найкращу, децентралізовану, незмінну, винагороду громад",
-    "fee": "Комісія",
+    "fee": "Creation fee",
     "creator": "Засновник",
-    "username": "Ім'я користувача власника",
+    "username": "Community username",
     "username-available": "Доступний.",
     "username-not-available": "Не доступний.",
     "username-wrong-format": "Не припустимий формат. Потрібен формат hive-1xxxx.",
     "checkbox-validation": "Please tick this box if you want to proceed.",
     "title-validation": "Please fill in this field.",
-    "password": "Головний пароль",
+    "password": "Community password",
     "confirmation": "Я безпечно зберіг(-ла) ім'я користувача і пароль власника.",
     "submit": "Створити спільноту",
     "progress-account": "Створення облікового запису...",
@@ -389,6 +391,10 @@
     "progress-role": "Встановлення @{{u}} як адміністратора...",
     "progress-props": "Оновлення налаштувань спільноти...",
     "done": "Ваша спільнота була створена 🎉",
+    "reason-one": "True ownership",
+    "reason-two": "Permanent, rewarding",
+    "reason-three": "Powered by blockchain technology",
+    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Почати."
   },
   "community-rewards-registration": {
