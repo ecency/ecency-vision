@@ -44,6 +44,8 @@
     "apply": "Apply",
     "warning": "Warning",
     "payout": "Payout",
+    "learn-more": "Learn more in our",
+    "faq": "FAQ",
     "close": "Close"
   },
   "confirm": {
@@ -373,15 +375,15 @@
     "title": "Pavadinimas",
     "about": "Apie",
     "description": "Sukurkite geriausią viešą, decentralizuotą, nepaliečiamą, atlyginamą bendruomenę",
-    "fee": "Kūrimo mokestis",
+    "fee": "Creation fee",
     "creator": "Kūrėjas",
-    "username": "Savininko vartotojo vardas",
+    "username": "Community username",
     "username-available": "Galimas.",
     "username-not-available": "Negalimas.",
     "username-wrong-format": "Netinkamas formatas. reikalingas hive-1xxxxx formatas.",
     "checkbox-validation": "Please tick this box if you want to proceed.",
     "title-validation": "Please fill in this field.",
-    "password": "Master password",
+    "password": "Community password",
     "confirmation": "Aš saugiai išsisaugojau savo vartotojo vardą ir slaptažodį.",
     "submit": "Sukurti Bendruomenę",
     "progress-account": "Kuriama paskyra...",
@@ -389,6 +391,10 @@
     "progress-role": "@{{u}} nustatomas kaip administratorius...",
     "progress-props": "Atnaujinami bendruomenės nustatymai...",
     "done": "Tavo bendruomenė sukurta 🎉",
+    "reason-one": "True ownership",
+    "reason-two": "Permanent, rewarding",
+    "reason-three": "Powered by blockchain technology",
+    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Pradėkite."
   },
   "community-rewards-registration": {
