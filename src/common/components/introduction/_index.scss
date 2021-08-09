@@ -46,8 +46,9 @@
 .intro-popup:before {
   border-left: 0px solid $transparent;
   border-right: 43px solid $transparent;
+  border-bottom: 83px solid $white;
   @include themify(night){
-    border-bottom: 83px solid $dark;
+    border-bottom-color: $dark;
   }
   content: "";
   position: absolute;
@@ -58,13 +59,17 @@
   @media screen and (max-width: $sm-break) {
     border-left: 0px solid transparent;
     border-right: 30px solid transparent;
-    border-bottom: 40px solid #ffffff;
+    border-bottom: 40px solid $white;
+    @include themify(night){
+      border-bottom-color: $dark;
+    }
     content: "";
     position: absolute;
     top: -32px;
     margin-left: 0%;
     -webkit-transform: rotateZ(-15deg);
     transform: rotateZ(11deg);
+    
   }
 }
 
