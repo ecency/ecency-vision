@@ -44,6 +44,8 @@
     "apply": "应用",
     "warning": "警告",
     "payout": "Payout",
+    "learn-more": "Learn more in our",
+    "faq": "FAQ",
     "close": "关闭"
   },
   "confirm": {
@@ -373,15 +375,15 @@
     "title": "标题",
     "about": "关于",
     "description": "创建一个最佳的，去中心化的，不可变的，有社区奖励的",
-    "fee": "操作费用",
+    "fee": "Creation fee",
     "creator": "创建者",
-    "username": "所有者用户名",
+    "username": "Community username",
     "username-available": "可用的。",
     "username-not-available": "不可用的。",
     "username-wrong-format": "无效格式，需要 hive-lxxxxx 格式。",
     "checkbox-validation": "如果您想要继续，请勾选此项。",
     "title-validation": "请填写此字段。",
-    "password": "主密码",
+    "password": "Community password",
     "confirmation": "我已安全地保存我的所有者用户名和密码。",
     "submit": "创建社区",
     "progress-account": "正在创建帐户...",
@@ -389,6 +391,10 @@
     "progress-role": "设置@{{u}} 为管理员...",
     "progress-props": "正在更新社区设置...",
     "done": "您的社区已创建 🎉",
+    "reason-one": "True ownership",
+    "reason-two": "Permanent, rewarding",
+    "reason-three": "Powered by blockchain technology",
+    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "开始。"
   },
   "community-rewards-registration": {
