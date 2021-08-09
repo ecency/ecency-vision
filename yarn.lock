@@ -998,10 +998,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@ecency/render-helper@^2.1.19":
-  version "2.1.19"
-  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.1.19.tgz#63a6438e1abce5f6ee1b4e964cacb1d96dac203a"
-  integrity sha512-t4DLI8DQqzpqlMPMPPwrtvaVqsBDQA9OmX8+4kTrz6F3DStDsKWpjSZxGR21Gic7YbwiwD2WfNRLJb28dee3XA==
+"@ecency/render-helper@^2.1.24":
+  version "2.1.24"
+  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.1.24.tgz#ade7511d715c11bc26faac07b7de8974f3ad8701"
+  integrity sha512-X12CheyClvaidAs95hU3qqWlIhRghXtmqVtPXTqbokBer5CdT0nTKxKzsUeFpuu3L6WPGJg7onNYoUhK0UrCKg==
   dependencies:
     he "^1.2.0"
     lru-cache "^5.1.1"
