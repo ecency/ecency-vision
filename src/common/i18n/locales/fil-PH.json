@@ -44,6 +44,8 @@
     "apply": "I-apply",
     "warning": "Warning",
     "payout": "Payout",
+    "learn-more": "Learn more in our",
+    "faq": "FAQ",
     "close": "Isarado"
   },
   "confirm": {
@@ -373,15 +375,15 @@
     "title": "Pamagat",
     "about": "Tungkol",
     "description": "Gumawa ng pinakamahusay, sentralisado, hindi nababago, magantimpalang pamayanan",
-    "fee": "Bayad ng operasyon",
+    "fee": "Creation fee",
     "creator": "May likha",
-    "username": "Bansag ng may-ari",
+    "username": "Community username",
     "username-available": "Umiiral.",
     "username-not-available": "Hindi available.",
     "username-wrong-format": "Hindi wastong balangkas. hive-1xxxxx na balangkas ang kailangan.",
     "checkbox-validation": "Please tick this box if you want to proceed.",
     "title-validation": "Please fill in this field.",
-    "password": "Master password",
+    "password": "Community password",
     "confirmation": "Maingat at ligtas kong naiimbak ang aking bansag ng may-ari.",
     "submit": "Gumawa ng pamayanan",
     "progress-account": "Gumagawa ng account...",
@@ -389,6 +391,10 @@
     "progress-role": "Setting @{{u}} bilang admin...",
     "progress-props": "Binabago ang settings ng komunidad...",
     "done": "Ang pamayanan mo ay nagawa na",
+    "reason-one": "True ownership",
+    "reason-two": "Permanent, rewarding",
+    "reason-three": "Powered by blockchain technology",
+    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Magsimula."
   },
   "community-rewards-registration": {
