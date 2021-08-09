@@ -44,6 +44,8 @@
     "apply": "Applica",
     "warning": "Attenzione",
     "payout": "Ricompensa",
+    "learn-more": "Learn more in our",
+    "faq": "FAQ",
     "close": "Chiudi"
   },
   "confirm": {
@@ -373,15 +375,15 @@
     "title": "Qualifica",
     "about": "A riguardo",
     "description": "Crea le migliori community ricompensate, immutabili e decentralizzate",
-    "fee": "Costo dell'operazione",
+    "fee": "Creation fee",
     "creator": "Fondatore",
-    "username": "Nome Utente della Community",
+    "username": "Community username",
     "username-available": "Disponibile.",
     "username-not-available": "Non Disponibile.",
     "username-wrong-format": "Non è un formato valido. Richiesto il formato hive-1xxxxx.",
     "checkbox-validation": "Spunta questo riquadro se vuoi procedere.",
     "title-validation": "Riempi questo spazio.",
-    "password": "Chiave maestra",
+    "password": "Community password",
     "confirmation": "Ho salvato in un luogo sicuro nome utente e chiave proprietaria della community.",
     "submit": "Crea Community",
     "progress-account": "Account in creazione...",
@@ -389,6 +391,10 @@
     "progress-role": "Sto impostando @{{u}} come amministratore...",
     "progress-props": "Sto aggiornando le impostazioni della community...",
     "done": "La tua community è stata creata con successo 🎉",
+    "reason-one": "True ownership",
+    "reason-two": "Permanent, rewarding",
+    "reason-three": "Powered by blockchain technology",
+    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Inizia."
   },
   "community-rewards-registration": {
