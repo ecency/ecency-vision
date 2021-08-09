@@ -392,8 +392,8 @@
     "progress-role": "Setting @{{u}} as admin...",
     "progress-props": "Updating community settings...",
     "done": "Your community was created 🎉",
-    "reason-one": "Have true ownership",
-    "reason-two": "Permanent",
+    "reason-one": "True ownership",
+    "reason-two": "Permanent, rewarding",
     "reason-three": "Powered by blockchain technology",
     "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Get started."

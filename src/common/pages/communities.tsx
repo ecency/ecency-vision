@@ -536,8 +536,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                         </div>
                         <div className="col-12 col-sm-8 col-lg-5 p-0 p-sm-3">
                             <div>
-                                <h1 className={`community-title ${wif ? "mb-5" : ""} d-none d-lg-block`}>{_t("communities-create.page-title")} {_t("g.that-is")}:</h1>
-                                <h1 className={`community-title ${wif ? "mb-5" : ""} d-lg-none`}>{_t("communities-create.page-title")} {!wif ? _t("g.that-is") : ""}</h1>
+                                <h1 className={`community-title ${wif ? "mb-5" : ""} d-none d-lg-block`}>{_t("communities-create.page-title")}</h1>
+                                <h1 className={`community-title ${wif ? "mb-5" : ""} d-lg-none`}>{_t("communities-create.page-title")}</h1>
                                 {(!wif || !activeUser) && <>
                                                     <ul className="descriptive-list">
                                                         <li>{_t("communities-create.reason-one")}</li>
