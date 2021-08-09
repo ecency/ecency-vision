@@ -44,6 +44,8 @@
     "apply": "Terapkan",
     "warning": "Peringatan",
     "payout": "Bayaran",
+    "learn-more": "Learn more in our",
+    "faq": "FAQ",
     "close": "Tutup"
   },
   "confirm": {
@@ -373,15 +375,15 @@
     "title": "Judul",
     "about": "Tentang",
     "description": "Ciptakan sebuah komunitas terbaik yang dihargai, terdesentralisasi, tidak berubah, dan bermanfaat",
-    "fee": "Biaya operasional",
+    "fee": "Creation fee",
     "creator": "Kreator",
-    "username": "Nama pengguna pemilik",
+    "username": "Community username",
     "username-available": "Tersedia.",
     "username-not-available": "Tidak tersedia.",
     "username-wrong-format": "Bukan format yang valid. format hive-1xxxxx yang diperlukan.",
     "checkbox-validation": "Centang kotak ini untuk melanjutkan.",
     "title-validation": "Silahkan isi dalam kolom ini.",
-    "password": "Password Utama",
+    "password": "Community password",
     "confirmation": "Saya telah menyimpan nama pengguna dan kata sandi saya dengan aman.",
     "submit": "Buatlah komunitas",
     "progress-account": "Sedang menciptakan akun...",
@@ -389,6 +391,10 @@
     "progress-role": "Seting @{{u}} sebagai admin...",
     "progress-props": "Sedang memperbaharui pengaturan komunitas...",
     "done": "Komunitas Anda sudah dibuat 🎉",
+    "reason-one": "True ownership",
+    "reason-two": "Permanent, rewarding",
+    "reason-three": "Powered by blockchain technology",
+    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Mulai."
   },
   "community-rewards-registration": {
