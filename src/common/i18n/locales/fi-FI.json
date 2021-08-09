@@ -44,6 +44,8 @@
     "apply": "Käytä",
     "warning": "Warning",
     "payout": "Payout",
+    "learn-more": "Learn more in our",
+    "faq": "FAQ",
     "close": "Sulje"
   },
   "confirm": {
@@ -373,15 +375,15 @@
     "title": "Otsikko",
     "about": "Tietoa",
     "description": "Luo netin parhaat hajautetut, sensuurivapaat ja palkitsevat yhteisöt",
-    "fee": "Tapahtuman maksu",
+    "fee": "Creation fee",
     "creator": "Tekijä",
-    "username": "Omistajan käyttäjätunnus",
+    "username": "Community username",
     "username-available": "Saatavilla.",
     "username-not-available": "Ei saatavilla.",
     "username-wrong-format": "Muoto ei kelpaa. hive-1xxxxx muoto vaaditaan.",
     "checkbox-validation": "Please tick this box if you want to proceed.",
     "title-validation": "Please fill in this field.",
-    "password": "Pääsalasana",
+    "password": "Community password",
     "confirmation": "Olen tallentanut turvallisesti omistajan käyttäjätunnuksen ja salasanan.",
     "submit": "Luo yhteisö",
     "progress-account": "Luodaan tiliä...",
@@ -389,6 +391,10 @@
     "progress-role": "Asetetaan @{{u}} ylläpitäjäksi...",
     "progress-props": "Päivitetään yhteisöasetuksia...",
     "done": "Yhteisösi luotiin 🎉",
+    "reason-one": "True ownership",
+    "reason-two": "Permanent, rewarding",
+    "reason-three": "Powered by blockchain technology",
+    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Aloitetaan."
   },
   "community-rewards-registration": {
