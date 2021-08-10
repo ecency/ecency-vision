@@ -360,7 +360,7 @@ body.medium-zoom--opened {
   bottom: 0px;
   padding: 0;
   margin: 0;
-  z-index: 40000 !important;
+  z-index: $zindex-navbar-overlay-sm !important;
 
   @include themify(day) {
     background-color: rgba(255, 255, 255, 0.95) !important;
@@ -504,7 +504,7 @@ body.medium-zoom--opened {
   top: 0px;
   left: 0px;
   right: 0px;
-  z-index: 20000;
+  z-index: $zindex-navbar-sm;
 }
 
 .sticky-container {
@@ -519,11 +519,11 @@ body.medium-zoom--opened {
 }
 
 .modal-backdrop{
-  z-index: 100000 !important;
+  z-index: $zindex-navbar-overlay-backdrop-sm !important;
 }
 
 .modal {
-  z-index: 100001 !important;
+  z-index: $zindex-navbar-overlay-backdrop-sm !important;
 }
 
 .can-float {
