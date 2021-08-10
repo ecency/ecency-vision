@@ -154,7 +154,7 @@ export class NavBar extends Component<Props, State> {
 
     scrollChanged = () => {
         clearTimeout(this.timer);
-        this.timer = setTimeout(this.detect, 100);
+        this.timer = setTimeout(this.detect, 10);
     }
 
     detect = () => {
@@ -167,6 +167,7 @@ export class NavBar extends Component<Props, State> {
         if (floating) {
             nav.classList.add("can-float");
         } else {
+            
             nav.classList.remove("can-float");
         }
 
@@ -242,7 +243,7 @@ export class NavBar extends Component<Props, State> {
                     </div>
                     
                 {!smVisible && (
-                    <div className={`nav-bar ${(!transparentVerify && step === 1 ? "transparent" : "")} mb-0`}>
+                    <div className={`nav-bar ${(!transparentVerify && step === 1 ? "transparent" : "")} `}>
                         <div className={`nav-bar-inner ${(!transparentVerify && step === 1 ? "transparent" : "")}`}>
                             <div className="brand">
                                     {
