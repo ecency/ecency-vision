@@ -213,13 +213,14 @@ class EntryPage extends BaseComponent<Props, State> {
 
         const groupKeys = Object.keys(entries);
         let entry: Entry | undefined = undefined;
-        
+
         for (const k of groupKeys) {
             entry = entries[k].entries.find((x) => x.author === author && x.permlink === permlink);
             if (entry) {
                 break;
             }
         }
+
         return entry;
     };
 
@@ -438,7 +439,7 @@ class EntryPage extends BaseComponent<Props, State> {
             tag: isCommunity(tags[0]) ? tags[1] : tags[0],
             keywords: tags.join(", "),
         };
-        
+
         return (
             <>
                 <Meta {...metaProps} />
@@ -511,7 +512,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                             const published = moment(parseDate(originalEntry.created));
                                             const reputation = accountReputation(originalEntry.author_reputation);
                                             const renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 && comment || originalEntry.body: originalEntry.body, false, global.canUseWebp)};
-                                            
+
                                             return <>
                                                 <div className="entry-header">
                                                     <h1 className="entry-title">
@@ -563,7 +564,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                                             </div>
                                                         </div>
                                                         <span className="flex-spacer"/>
-                                                        
                                                         {global.usePrivate && BookmarkBtn({
                                                             ...this.props,
                                                             entry: originalEntry
