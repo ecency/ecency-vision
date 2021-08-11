@@ -473,7 +473,9 @@ body.medium-zoom--opened {
 }
 
 .menu-item {
-  margin-top: 19px;
+  @media (max-width: $sm-break) {
+    margin-top: 19px;
+  }
   .item-text {
     color: $black;
     margin-left: 64px;
