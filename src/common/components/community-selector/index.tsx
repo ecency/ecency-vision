@@ -87,7 +87,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
         const {subscriptions, results, query} = this.state;
 
         const search = <div className="search">
-            <FormControl type="text" size="sm" placeholder={_t("community-selector.search-placeholder")} value={query} onChange={this.queryChanged} id="search-communities-input" />
+            <FormControl type="text" size="sm" placeholder={_t("community-selector.search-placeholder")} value={query} onChange={this.queryChanged} id="search-communities-input" spellCheck={true} />
         </div>
 
         if (query) {

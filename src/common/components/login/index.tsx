@@ -45,13 +45,10 @@ import {deleteForeverSvg} from "../../img/svg";
 
 declare var window: AppWindow;
 
-const logo = require('../../img/logo-circle.svg');
-const hsLogo = require("../../img/hive-signer.svg");
-const keyChainLogo = require("../../img/keychain.png");
-
 interface LoginKcProps {
     toggleUIProp: (what: ToggleType) => void;
     doLogin: (hsCode: string, postingKey: null | undefined | string, account: Account) => Promise<void>;
+    global: Global;
 }
 
 interface LoginKcState {
@@ -155,6 +152,9 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
 
     render() {
         const {username, inProgress} = this.state;
+        const {global} = this.props;
+
+        const keyChainLogo = global.isElectron ? "../../common/img/keychain.png" : require("../../img/keychain.png");
 
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
 
@@ -454,6 +454,9 @@ export class Login extends BaseComponent<LoginProps, State> {
     render() {
         const {username, key, inProgress} = this.state;
         const {users, activeUser, global} = this.props;
+        const logo = global.isElectron ? "../../common/img/logo-circle.svg" : require('../../img/logo-circle.svg');
+        const hsLogo = global.isElectron ? "../../common/img/hive-signer.svg" : require("../../img/hive-signer.svg");
+        const keyChainLogo = global.isElectron ? "../../common/img/keychain.png" : require("../../img/keychain.png");
 
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
 
@@ -518,7 +521,7 @@ export class Login extends BaseComponent<LoginProps, State> {
                 <OrDivider/>
                 <div className="hs-login">
                     <a className={_c(`btn btn-outline-primary ${inProgress ? "disabled" : ""}`)} onClick={this.hsLogin}>
-                        <img src={hsLogo} className="hs-logo" alt="hivesigner"/> {_t("login.with-hive-signer")}
+                        <img src={global.isElectron ? "../../common/img/hive-signer.svg" : hsLogo} className="hs-logo" alt="hivesigner"/> {_t("login.with-hive-signer")}
                     </a>
                 </div>
                 {global.hasKeyChain && (

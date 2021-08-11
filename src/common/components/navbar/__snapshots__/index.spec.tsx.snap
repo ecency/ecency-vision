@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(1) Default render 1`] = `
-Array [
+<div
+  className="position-relative sticky-container"
+>
   <div
-    className="nav-bar-toggle"
+    className="nav-bar-toggle position-fixed"
     onClick={[Function]}
   >
     <svg
@@ -14,9 +16,9 @@ Array [
         fill="currentColor"
       />
     </svg>
-  </div>,
+  </div>
   <div
-    className="nav-bar-sm"
+    className="nav-bar-sm sticky "
   >
     <div
       className="brand"
@@ -32,23 +34,23 @@ Array [
       className="text-menu"
     >
       <a
-        className="menu-item"
+        className="menu-item mt-0"
         href="/discover"
         onClick={[Function]}
       >
         Discover
       </a>
       <a
-        className="menu-item"
+        className="menu-item mt-0"
         href="/communities"
         onClick={[Function]}
       >
         Communities
       </a>
     </div>
-  </div>,
+  </div>
   <div
-    className="nav-bar"
+    className="nav-bar "
   >
     <div
       className="nav-bar-inner"
@@ -67,14 +69,14 @@ Array [
         className="text-menu"
       >
         <a
-          className="menu-item"
+          className="menu-item mt-0"
           href="/discover"
           onClick={[Function]}
         >
           Discover
         </a>
         <a
-          className="menu-item"
+          className="menu-item mt-0"
           href="/communities"
           onClick={[Function]}
         >
@@ -227,6 +229,230 @@ Array [
         </div>
       </div>
     </div>
+  </div>
+  <div
+    className="nav-bar d-none"
+  >
+    <div
+      className="nav-bar-inner"
+    >
+      <div
+        className="mt-2 pt-5 w-100"
+      >
+        <div
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="navbar-icon"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Search
+            </div>
+          </div>
+        </div>
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          onClick={[Function]}
+        >
+          <div
+            className="navbar-icon"
+          >
+            <svg
+              fill="none"
+              height="18"
+              viewBox="0 0 18 18"
+              width="18"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                clipPath="url(#clip0)"
+              >
+                <path
+                  d="M8.8744 10.0522C3.88219 10.0522 1.13281 12.4139 1.13281 16.7023C1.13281 17.0373 1.40427 17.3087 1.7392 17.3087H16.0096C16.3445 17.3087 16.616 17.0373 16.616 16.7023C16.616 12.4142 13.8666 10.0522 8.8744 10.0522ZM2.36765 16.0959C2.60617 12.8896 4.79219 11.265 8.8744 11.265C12.9566 11.265 15.1427 12.8896 15.3814 16.0959H2.36765Z"
+                  fill="#202020"
+                />
+                <path
+                  d="M8.87394 0.692871C6.58077 0.692871 4.85156 2.45686 4.85156 4.79592C4.85156 7.20348 6.65599 9.16192 8.87394 9.16192C11.0919 9.16192 12.8963 7.20348 12.8963 4.79611C12.8963 2.45686 11.1671 0.692871 8.87394 0.692871ZM8.87394 7.94934C7.32462 7.94934 6.06433 6.53482 6.06433 4.79611C6.06433 3.12127 7.24599 1.90564 8.87394 1.90564C10.4758 1.90564 11.6835 3.14814 11.6835 4.79611C11.6835 6.53482 10.4233 7.94934 8.87394 7.94934Z"
+                  fill="#202020"
+                />
+              </g>
+              <defs>
+                <clipPath
+                  id="clip0"
+                >
+                  <rect
+                    fill="white"
+                    height="17.343"
+                    transform="translate(0.203125 0.328613)"
+                    width="17.343"
+                  />
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+          <div
+            className="ml-3 text-15"
+          >
+            Login
+          </div>
+        </div>
+        <a
+          href="/signup"
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="navbar-icon"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7,14A2,2 0 0,1 5,12A2,2 0 0,1 7,10A2,2 0 0,1 9,12A2,2 0 0,1 7,14M12.65,10C11.83,7.67 9.61,6 7,6A6,6 0 0,0 1,12A6,6 0 0,0 7,18C9.61,18 11.83,16.33 12.65,14H17V18H21V14H23V10H12.65Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Signup
+            </div>
+          </div>
+        </a>
+        <a
+          href="/submit"
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="navbar-icon"
+            >
+              <svg
+                fill="none"
+                height="20"
+                viewBox="0 0 20 20"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.8494 3.51574L16.3082 1.97442C15.604 1.27023 14.4583 1.27026 13.7541 1.97442C13.0911 2.63749 2.96437 12.765 2.28761 13.4418C2.21553 13.5139 2.16723 13.6097 2.15002 13.7034L1.37943 17.865C1.34957 18.0263 1.40099 18.192 1.51702 18.3081C1.63318 18.4242 1.79894 18.4756 1.96008 18.4457L6.12129 17.675C6.21746 17.6571 6.312 17.6083 6.38288 17.5374L17.8494 6.06999C18.5552 5.36417 18.5553 4.22166 17.8494 3.51574ZM2.49124 17.3337L2.95739 14.8163L5.00848 16.8676L2.49124 17.3337ZM6.03057 16.4803L3.34458 13.7942L13.1509 3.98708L15.8369 6.67327L6.03057 16.4803ZM17.1447 5.36533L16.5415 5.96861L13.8555 3.28242L14.4588 2.67914C14.7744 2.36351 15.2879 2.36347 15.6036 2.67914L17.1447 4.22047C17.4612 4.53687 17.4612 5.0489 17.1447 5.36533Z"
+                  fill="black"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Write a post
+            </div>
+          </div>
+        </a>
+        <div />
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative"
+        >
+          <div
+            className="navbar-icon"
+          >
+            <svg
+              fill="none"
+              height="19"
+              viewBox="0 0 19 19"
+              width="19"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.875 0.53125C14.8374 0.53125 18.875 4.56888 18.875 9.53125C18.875 14.4936 14.8374 18.5312 9.875 18.5312C4.91263 18.5312 0.875 14.4936 0.875 9.53125C0.875 4.56888 4.91263 0.53125 9.875 0.53125ZM3.503 4.92213C4.47275 5.30688 5.4695 5.61175 6.49212 5.812C6.92638 4.38212 7.616 3.013 8.56325 1.77437C6.48875 2.12538 4.691 3.28525 3.503 4.92213ZM7.328 11.9838C9.01775 11.752 10.7334 11.752 12.4231 11.9838C12.7696 10.3705 12.7708 8.701 12.4254 7.08663C11.5861 7.20138 10.7379 7.28125 9.875 7.28125C9.01213 7.28125 8.165 7.20138 7.32575 7.08663C6.98038 8.701 6.9815 10.3705 7.328 11.9838ZM7.61938 5.98637C9.11675 6.17987 10.6344 6.17987 12.1318 5.98637C11.6705 4.53963 10.9167 3.16825 9.875 1.95325C8.83325 3.16825 8.08062 4.53963 7.61938 5.98637ZM11.189 1.77437C12.1363 3.013 12.8247 4.38212 13.259 5.812C14.2805 5.61175 15.2773 5.30688 16.247 4.92213C15.0601 3.28525 13.2624 2.12538 11.189 1.77437ZM17.75 9.53125C17.75 8.2195 17.4226 6.98425 16.8534 5.89525C15.7779 6.33738 14.6743 6.685 13.5391 6.91337C13.9002 8.6425 13.9002 10.4279 13.538 12.1581C14.672 12.3842 15.7801 12.7296 16.8534 13.1706C17.4226 12.0794 17.75 10.8441 17.75 9.53125ZM16.247 14.1404C15.2773 13.7556 14.2805 13.4507 13.259 13.2505C12.8247 14.6804 12.1351 16.0495 11.1879 17.2881C13.2624 16.9371 15.0601 15.7773 16.247 14.1404ZM12.1306 13.0761C10.6344 12.8826 9.11675 12.8826 7.61938 13.0761C8.08062 14.5229 8.83438 15.8942 9.875 17.1092C10.9167 15.8942 11.6694 14.5229 12.1306 13.0761ZM8.56325 17.2881C7.616 16.0495 6.92638 14.6804 6.49212 13.2505C5.47062 13.4507 4.47275 13.7568 3.503 14.1404C4.691 15.7773 6.48875 16.9371 8.56325 17.2881ZM6.21313 12.1559C5.85087 10.4268 5.84975 8.64137 6.212 6.91225C5.07688 6.68388 3.97213 6.33738 2.89662 5.89412C2.32738 6.98425 2 8.2195 2 9.53125C2 10.8441 2.32738 12.0794 2.89662 13.1684C3.96988 12.7285 5.078 12.3831 6.21313 12.1559Z"
+                fill="#202020"
+              />
+            </svg>
+          </div>
+          <div
+            className="text-15 switch-menu"
+          >
+            <div
+              className="switch-language"
+            >
+              <div
+                className="custom-dropdown float-left"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Language
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          onClick={[Function]}
+        >
+          <div
+            className="navbar-icon"
+          >
+            <svg
+              fill="none"
+              height="16"
+              viewBox="0 0 17 16"
+              width="17"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.5982 9.10563C16.4244 9.06459 16.2506 9.10563 16.0985 9.20822C15.5336 9.65964 14.8819 10.029 14.1649 10.2752C13.4914 10.5214 12.7528 10.6446 11.9707 10.6446C10.2109 10.6446 8.60323 9.96742 7.45179 8.87992C6.30035 7.79241 5.58341 6.27401 5.58341 4.61197C5.58341 3.91433 5.71376 3.2372 5.93102 2.62163C6.17 1.96503 6.5176 1.36998 6.97383 0.857004C7.16936 0.631295 7.12591 0.302991 6.88693 0.118321C6.73486 0.0157259 6.56105 -0.0253121 6.38725 0.0157259C4.5406 0.487662 2.93292 1.53413 1.78148 2.92942C0.673485 4.30419 0 6.00726 0 7.87449C0 10.1111 0.955915 12.1424 2.52014 13.6198C4.08436 15.0972 6.23517 16 8.60323 16C10.602 16 12.4486 15.3434 13.9259 14.2559C15.425 13.1479 16.5113 11.5679 16.9675 9.76223C17.0761 9.45445 16.9023 9.16718 16.5982 9.10563ZM13.2742 13.3941C12.0141 14.338 10.4064 14.9125 8.64668 14.9125C6.58278 14.9125 4.7144 14.1123 3.36743 12.8401C2.02046 11.5679 1.17317 9.80327 1.17317 7.85397C1.17317 6.23297 1.73803 4.75561 2.71567 3.56551C3.38915 2.74475 4.23644 2.06762 5.21408 1.59569C5.10545 1.82139 4.99683 2.0471 4.90993 2.29333C4.6275 3.03201 4.49715 3.81173 4.49715 4.63249C4.49715 6.58179 5.34443 8.36695 6.6914 9.63912C8.03837 10.9113 9.92848 11.7115 11.9924 11.7115C12.9049 11.7115 13.7739 11.5679 14.5777 11.2806C14.8601 11.178 15.1426 11.0754 15.4033 10.9523C14.8819 11.8962 14.1649 12.7375 13.2742 13.3941Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+          <div
+            className="ml-3 text-15"
+          >
+            Switch
+             
+            dark
+          </div>
+        </div>
+      </div>
+    </div>
     <audio
       autoPlay={false}
       id="notification-audio"
@@ -238,14 +464,16 @@ Array [
         }
       }
     />
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`(2) Night Theme 1`] = `
-Array [
+<div
+  className="position-relative sticky-container"
+>
   <div
-    className="nav-bar-toggle"
+    className="nav-bar-toggle position-fixed"
     onClick={[Function]}
   >
     <svg
@@ -256,9 +484,9 @@ Array [
         fill="currentColor"
       />
     </svg>
-  </div>,
+  </div>
   <div
-    className="nav-bar-sm"
+    className="nav-bar-sm sticky "
   >
     <div
       className="brand"
@@ -274,23 +502,23 @@ Array [
       className="text-menu"
     >
       <a
-        className="menu-item"
+        className="menu-item mt-0"
         href="/discover"
         onClick={[Function]}
       >
         Discover
       </a>
       <a
-        className="menu-item"
+        className="menu-item mt-0"
         href="/communities"
         onClick={[Function]}
       >
         Communities
       </a>
     </div>
-  </div>,
+  </div>
   <div
-    className="nav-bar"
+    className="nav-bar "
   >
     <div
       className="nav-bar-inner"
@@ -309,14 +537,14 @@ Array [
         className="text-menu"
       >
         <a
-          className="menu-item"
+          className="menu-item mt-0"
           href="/discover"
           onClick={[Function]}
         >
           Discover
         </a>
         <a
-          className="menu-item"
+          className="menu-item mt-0"
           href="/communities"
           onClick={[Function]}
         >
@@ -469,6 +697,277 @@ Array [
         </div>
       </div>
     </div>
+  </div>
+  <div
+    className="nav-bar d-none"
+  >
+    <div
+      className="nav-bar-inner"
+    >
+      <div
+        className="mt-2 pt-5 w-100"
+      >
+        <div
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="navbar-icon"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Search
+            </div>
+          </div>
+        </div>
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          onClick={[Function]}
+        >
+          <div
+            className="navbar-icon"
+          >
+            <svg
+              fill="none"
+              height="18"
+              viewBox="0 0 18 18"
+              width="18"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                clipPath="url(#clip0)"
+              >
+                <path
+                  d="M8.8744 10.0522C3.88219 10.0522 1.13281 12.4139 1.13281 16.7023C1.13281 17.0373 1.40427 17.3087 1.7392 17.3087H16.0096C16.3445 17.3087 16.616 17.0373 16.616 16.7023C16.616 12.4142 13.8666 10.0522 8.8744 10.0522ZM2.36765 16.0959C2.60617 12.8896 4.79219 11.265 8.8744 11.265C12.9566 11.265 15.1427 12.8896 15.3814 16.0959H2.36765Z"
+                  fill="#202020"
+                />
+                <path
+                  d="M8.87394 0.692871C6.58077 0.692871 4.85156 2.45686 4.85156 4.79592C4.85156 7.20348 6.65599 9.16192 8.87394 9.16192C11.0919 9.16192 12.8963 7.20348 12.8963 4.79611C12.8963 2.45686 11.1671 0.692871 8.87394 0.692871ZM8.87394 7.94934C7.32462 7.94934 6.06433 6.53482 6.06433 4.79611C6.06433 3.12127 7.24599 1.90564 8.87394 1.90564C10.4758 1.90564 11.6835 3.14814 11.6835 4.79611C11.6835 6.53482 10.4233 7.94934 8.87394 7.94934Z"
+                  fill="#202020"
+                />
+              </g>
+              <defs>
+                <clipPath
+                  id="clip0"
+                >
+                  <rect
+                    fill="white"
+                    height="17.343"
+                    transform="translate(0.203125 0.328613)"
+                    width="17.343"
+                  />
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+          <div
+            className="ml-3 text-15"
+          >
+            Login
+          </div>
+        </div>
+        <a
+          href="/signup"
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="navbar-icon"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7,14A2,2 0 0,1 5,12A2,2 0 0,1 7,10A2,2 0 0,1 9,12A2,2 0 0,1 7,14M12.65,10C11.83,7.67 9.61,6 7,6A6,6 0 0,0 1,12A6,6 0 0,0 7,18C9.61,18 11.83,16.33 12.65,14H17V18H21V14H23V10H12.65Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Signup
+            </div>
+          </div>
+        </a>
+        <a
+          href="/submit"
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="navbar-icon"
+            >
+              <svg
+                fill="none"
+                height="20"
+                viewBox="0 0 20 20"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.8494 3.51574L16.3082 1.97442C15.604 1.27023 14.4583 1.27026 13.7541 1.97442C13.0911 2.63749 2.96437 12.765 2.28761 13.4418C2.21553 13.5139 2.16723 13.6097 2.15002 13.7034L1.37943 17.865C1.34957 18.0263 1.40099 18.192 1.51702 18.3081C1.63318 18.4242 1.79894 18.4756 1.96008 18.4457L6.12129 17.675C6.21746 17.6571 6.312 17.6083 6.38288 17.5374L17.8494 6.06999C18.5552 5.36417 18.5553 4.22166 17.8494 3.51574ZM2.49124 17.3337L2.95739 14.8163L5.00848 16.8676L2.49124 17.3337ZM6.03057 16.4803L3.34458 13.7942L13.1509 3.98708L15.8369 6.67327L6.03057 16.4803ZM17.1447 5.36533L16.5415 5.96861L13.8555 3.28242L14.4588 2.67914C14.7744 2.36351 15.2879 2.36347 15.6036 2.67914L17.1447 4.22047C17.4612 4.53687 17.4612 5.0489 17.1447 5.36533Z"
+                  fill="black"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Write a post
+            </div>
+          </div>
+        </a>
+        <div />
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative"
+        >
+          <div
+            className="navbar-icon"
+          >
+            <svg
+              fill="none"
+              height="19"
+              viewBox="0 0 19 19"
+              width="19"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.875 0.53125C14.8374 0.53125 18.875 4.56888 18.875 9.53125C18.875 14.4936 14.8374 18.5312 9.875 18.5312C4.91263 18.5312 0.875 14.4936 0.875 9.53125C0.875 4.56888 4.91263 0.53125 9.875 0.53125ZM3.503 4.92213C4.47275 5.30688 5.4695 5.61175 6.49212 5.812C6.92638 4.38212 7.616 3.013 8.56325 1.77437C6.48875 2.12538 4.691 3.28525 3.503 4.92213ZM7.328 11.9838C9.01775 11.752 10.7334 11.752 12.4231 11.9838C12.7696 10.3705 12.7708 8.701 12.4254 7.08663C11.5861 7.20138 10.7379 7.28125 9.875 7.28125C9.01213 7.28125 8.165 7.20138 7.32575 7.08663C6.98038 8.701 6.9815 10.3705 7.328 11.9838ZM7.61938 5.98637C9.11675 6.17987 10.6344 6.17987 12.1318 5.98637C11.6705 4.53963 10.9167 3.16825 9.875 1.95325C8.83325 3.16825 8.08062 4.53963 7.61938 5.98637ZM11.189 1.77437C12.1363 3.013 12.8247 4.38212 13.259 5.812C14.2805 5.61175 15.2773 5.30688 16.247 4.92213C15.0601 3.28525 13.2624 2.12538 11.189 1.77437ZM17.75 9.53125C17.75 8.2195 17.4226 6.98425 16.8534 5.89525C15.7779 6.33738 14.6743 6.685 13.5391 6.91337C13.9002 8.6425 13.9002 10.4279 13.538 12.1581C14.672 12.3842 15.7801 12.7296 16.8534 13.1706C17.4226 12.0794 17.75 10.8441 17.75 9.53125ZM16.247 14.1404C15.2773 13.7556 14.2805 13.4507 13.259 13.2505C12.8247 14.6804 12.1351 16.0495 11.1879 17.2881C13.2624 16.9371 15.0601 15.7773 16.247 14.1404ZM12.1306 13.0761C10.6344 12.8826 9.11675 12.8826 7.61938 13.0761C8.08062 14.5229 8.83438 15.8942 9.875 17.1092C10.9167 15.8942 11.6694 14.5229 12.1306 13.0761ZM8.56325 17.2881C7.616 16.0495 6.92638 14.6804 6.49212 13.2505C5.47062 13.4507 4.47275 13.7568 3.503 14.1404C4.691 15.7773 6.48875 16.9371 8.56325 17.2881ZM6.21313 12.1559C5.85087 10.4268 5.84975 8.64137 6.212 6.91225C5.07688 6.68388 3.97213 6.33738 2.89662 5.89412C2.32738 6.98425 2 8.2195 2 9.53125C2 10.8441 2.32738 12.0794 2.89662 13.1684C3.96988 12.7285 5.078 12.3831 6.21313 12.1559Z"
+                fill="#202020"
+              />
+            </svg>
+          </div>
+          <div
+            className="text-15 switch-menu"
+          >
+            <div
+              className="switch-language"
+            >
+              <div
+                className="custom-dropdown float-left"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Language
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          onClick={[Function]}
+        >
+          <div
+            className="navbar-icon"
+          >
+            <svg
+              fill="none"
+              height="20"
+              viewBox="0 0 20 20"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                clipPath="url(#clip0)"
+              >
+                <path
+                  d="M9.99889 16.6946C9.62198 16.6946 9.31641 17.0002 9.31641 17.3771V19.3175C9.31641 19.6944 9.62198 20 9.99889 20C10.3759 20 10.6814 19.6944 10.6814 19.3175V17.3771C10.6814 17.0001 10.3758 16.6946 9.99889 16.6946Z"
+                  fill="#A6ACAF"
+                />
+                <path
+                  d="M9.99889 3.30582C10.3759 3.30582 10.6814 3.00025 10.6814 2.62334V0.682726C10.6814 0.305814 10.3759 0.000244141 9.99889 0.000244141C9.62198 0.000244141 9.31641 0.305814 9.31641 0.682726V2.62334C9.31641 3.00025 9.62198 3.30582 9.99889 3.30582Z"
+                  fill="#A6ACAF"
+                />
+                <path
+                  d="M4.30116 14.7337L2.92855 16.1055C2.66193 16.372 2.66184 16.8041 2.92828 17.0707C3.06159 17.204 3.23631 17.2707 3.41102 17.2707C3.58565 17.2707 3.76018 17.2041 3.89349 17.0709L5.2661 15.6991C5.53272 15.4326 5.53281 15.0005 5.26637 14.7339C4.99975 14.4673 4.56769 14.4673 4.30116 14.7337Z"
+                  fill="#A6ACAF"
+                />
+                <path
+                  d="M15.2156 5.46545C15.3903 5.46545 15.5649 5.39884 15.6982 5.26562L17.0706 3.89374C17.3372 3.62721 17.3372 3.19515 17.0708 2.92853C16.8043 2.66191 16.3722 2.66181 16.1056 2.92844L14.7332 4.30032C14.4666 4.56676 14.4665 4.99891 14.733 5.26544C14.8662 5.39884 15.0409 5.46545 15.2156 5.46545Z"
+                  fill="#A6ACAF"
+                />
+                <path
+                  d="M3.3054 10.0003C3.3054 9.62344 2.99983 9.31787 2.62292 9.31787H0.682482C0.30557 9.31787 0 9.62344 0 10.0003C0 10.3773 0.30557 10.6828 0.682482 10.6828H2.62292C2.99983 10.6828 3.3054 10.3773 3.3054 10.0003Z"
+                  fill="#A6ACAF"
+                />
+                <path
+                  d="M19.3172 9.31787H17.3758C16.9988 9.31787 16.6934 9.62344 16.6934 10.0003C16.6934 10.3773 16.9988 10.6828 17.3758 10.6828H19.3172C19.6942 10.6828 19.9997 10.3773 19.9997 10.0003C19.9997 9.62353 19.6942 9.31787 19.3172 9.31787Z"
+                  fill="#A6ACAF"
+                />
+                <path
+                  d="M4.30225 5.26551C4.43547 5.39873 4.61018 5.46534 4.78481 5.46534C4.95943 5.46534 5.13415 5.39873 5.26737 5.26551C5.5339 4.99898 5.5339 4.56683 5.26737 4.3003L3.89549 2.92842C3.62896 2.66188 3.19681 2.66188 2.93037 2.92842C2.66384 3.19495 2.66384 3.6271 2.93037 3.89354L4.30225 5.26551Z"
+                  fill="#A6ACAF"
+                />
+                <path
+                  d="M15.6984 14.7327C15.4319 14.4661 14.9997 14.466 14.7332 14.7326C14.4666 14.9991 14.4666 15.4312 14.7331 15.6977L16.1048 17.0696C16.2381 17.2029 16.4127 17.2695 16.5874 17.2695C16.7621 17.2695 16.9368 17.2029 17.07 17.0697C17.3366 16.8031 17.3366 16.371 17.0701 16.1045L15.6984 14.7327Z"
+                  fill="#A6ACAF"
+                />
+                <path
+                  d="M9.9993 5.00024C7.07036 5.00024 5 7.07201 5 10.0011C5 12.9302 7.07036 15.0002 9.9993 15.0002C12.9285 15.0002 15 12.9302 15 10.0011C15 7.07201 12.9284 5.00024 9.9993 5.00024ZM9.9993 13.9482C7.823 13.9482 6.05246 12.1775 6.05246 10.0011C6.05246 7.82465 7.823 6.05393 9.9993 6.05393C12.1759 6.05393 13.9466 7.82465 13.9466 10.0011C13.9466 12.1775 12.1759 13.9482 9.9993 13.9482Z"
+                  fill="#A6ACAF"
+                />
+              </g>
+              <defs>
+                <clipPath
+                  id="clip0"
+                >
+                  <rect
+                    fill="white"
+                    height="20"
+                    width="20"
+                  />
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+          <div
+            className="ml-3 text-15"
+          >
+            Switch
+             
+            light
+          </div>
+        </div>
+      </div>
+    </div>
     <audio
       autoPlay={false}
       id="notification-audio"
@@ -480,14 +979,16 @@ Array [
         }
       }
     />
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`(3) With active user 1`] = `
-Array [
+<div
+  className="position-relative sticky-container"
+>
   <div
-    className="nav-bar-toggle"
+    className="nav-bar-toggle position-fixed"
     onClick={[Function]}
   >
     <svg
@@ -498,9 +999,9 @@ Array [
         fill="currentColor"
       />
     </svg>
-  </div>,
+  </div>
   <div
-    className="nav-bar-sm"
+    className="nav-bar-sm sticky "
   >
     <div
       className="brand"
@@ -520,23 +1021,23 @@ Array [
       className="text-menu"
     >
       <a
-        className="menu-item"
+        className="menu-item mt-0"
         href="/discover"
         onClick={[Function]}
       >
         Discover
       </a>
       <a
-        className="menu-item"
+        className="menu-item mt-0"
         href="/communities"
         onClick={[Function]}
       >
         Communities
       </a>
     </div>
-  </div>,
+  </div>
   <div
-    className="nav-bar"
+    className="nav-bar "
   >
     <div
       className="nav-bar-inner"
@@ -559,14 +1060,14 @@ Array [
         className="text-menu"
       >
         <a
-          className="menu-item"
+          className="menu-item mt-0"
           href="/discover"
           onClick={[Function]}
         >
           Discover
         </a>
         <a
-          className="menu-item"
+          className="menu-item mt-0"
           href="/communities"
           onClick={[Function]}
         >
@@ -770,6 +1271,384 @@ Array [
         </div>
       </div>
     </div>
+  </div>
+  <div
+    className="nav-bar d-none"
+  >
+    <div
+      className="nav-bar-inner"
+    >
+      <div
+        className="mt-2 pt-5 w-100"
+      >
+        <a
+          href="/@foo"
+          onClick={[Function]}
+        >
+          <div
+            className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0 mb-3 position-relative"
+          >
+            <span
+              className="user-avatar large"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+            <div
+              className="ml-2"
+            >
+              <b>
+                @
+                foo
+              </b>
+              <div
+                className="mt-1 text-white"
+              >
+                Vote Power:
+                 
+                <span>
+                  <svg
+                    fill="none"
+                    height="8"
+                    viewBox="0 0 13 8"
+                    width="13"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.623 6.59424L6.43483 1.40602L1.24661 6.59424"
+                      stroke="#535E65"
+                      strokeLinecap="square"
+                    />
+                  </svg>
+                </span>
+                 
+                %  
+                <span>
+                  <svg
+                    fill="none"
+                    height="8"
+                    viewBox="0 0 13 8"
+                    width="13"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
+                      stroke="#535E65"
+                      strokeLinecap="square"
+                    />
+                  </svg>
+                </span>
+                 
+                %
+              </div>
+            </div>
+          </div>
+        </a>
+        <div
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="navbar-icon"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Search
+            </div>
+          </div>
+        </div>
+        <a
+          href="/submit"
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="navbar-icon"
+            >
+              <svg
+                fill="none"
+                height="20"
+                viewBox="0 0 20 20"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.8494 3.51574L16.3082 1.97442C15.604 1.27023 14.4583 1.27026 13.7541 1.97442C13.0911 2.63749 2.96437 12.765 2.28761 13.4418C2.21553 13.5139 2.16723 13.6097 2.15002 13.7034L1.37943 17.865C1.34957 18.0263 1.40099 18.192 1.51702 18.3081C1.63318 18.4242 1.79894 18.4756 1.96008 18.4457L6.12129 17.675C6.21746 17.6571 6.312 17.6083 6.38288 17.5374L17.8494 6.06999C18.5552 5.36417 18.5553 4.22166 17.8494 3.51574ZM2.49124 17.3337L2.95739 14.8163L5.00848 16.8676L2.49124 17.3337ZM6.03057 16.4803L3.34458 13.7942L13.1509 3.98708L15.8369 6.67327L6.03057 16.4803ZM17.1447 5.36533L16.5415 5.96861L13.8555 3.28242L14.4588 2.67914C14.7744 2.36351 15.2879 2.36347 15.6036 2.67914L17.1447 4.22047C17.4612 4.53687 17.4612 5.0489 17.1447 5.36533Z"
+                  fill="black"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Write a post
+            </div>
+          </div>
+        </a>
+        <div>
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark"
+            onClick={[Function]}
+          >
+            <div
+              className="navbar-icon"
+            >
+              <svg
+                fill="none"
+                height="18"
+                viewBox="0 0 18 18"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  clipPath="url(#clip0)"
+                >
+                  <path
+                    d="M8.8744 10.0522C3.88219 10.0522 1.13281 12.4139 1.13281 16.7023C1.13281 17.0373 1.40427 17.3087 1.7392 17.3087H16.0096C16.3445 17.3087 16.616 17.0373 16.616 16.7023C16.616 12.4142 13.8666 10.0522 8.8744 10.0522ZM2.36765 16.0959C2.60617 12.8896 4.79219 11.265 8.8744 11.265C12.9566 11.265 15.1427 12.8896 15.3814 16.0959H2.36765Z"
+                    fill="#202020"
+                  />
+                  <path
+                    d="M8.87394 0.692871C6.58077 0.692871 4.85156 2.45686 4.85156 4.79592C4.85156 7.20348 6.65599 9.16192 8.87394 9.16192C11.0919 9.16192 12.8963 7.20348 12.8963 4.79611C12.8963 2.45686 11.1671 0.692871 8.87394 0.692871ZM8.87394 7.94934C7.32462 7.94934 6.06433 6.53482 6.06433 4.79611C6.06433 3.12127 7.24599 1.90564 8.87394 1.90564C10.4758 1.90564 11.6835 3.14814 11.6835 4.79611C11.6835 6.53482 10.4233 7.94934 8.87394 7.94934Z"
+                    fill="#202020"
+                  />
+                </g>
+                <defs>
+                  <clipPath
+                    id="clip0"
+                  >
+                    <rect
+                      fill="white"
+                      height="17.343"
+                      transform="translate(0.203125 0.328613)"
+                      width="17.343"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Profile menu
+            </div>
+            <div
+              className="ml-3 text-15 icon-stroke"
+            >
+              <svg
+                fill="none"
+                height="8"
+                viewBox="0 0 13 8"
+                width="13"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
+                  stroke="#535E65"
+                  strokeLinecap="square"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          onClick={[Function]}
+        >
+          <div
+            className="navbar-icon text-dark"
+          >
+            <svg
+              fill="none"
+              height="21"
+              viewBox="0 0 17 21"
+              width="17"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.4616 16.4474C16.4028 16.4092 15.9603 16.0993 15.5173 15.1616C14.7037 13.4396 14.5329 11.0139 14.5329 9.28223C14.5329 9.27469 14.5327 9.26723 14.5325 9.25973C14.5236 6.97109 13.1532 4.9982 11.1921 4.11301V2.75922C11.1921 1.5307 10.1943 0.53125 8.96777 0.53125H8.78343C7.55695 0.53125 6.55913 1.5307 6.55913 2.75922V4.11293C4.59148 5.00098 3.21831 6.98394 3.21831 9.28223C3.21831 11.0139 3.04753 13.4396 2.2339 15.1616C1.79089 16.0992 1.34843 16.4092 1.2896 16.4474C1.04187 16.562 0.919721 16.8269 0.976713 17.0953C1.03425 17.3663 1.28761 17.5532 1.56429 17.5532H5.8591C5.88308 19.1993 7.2266 20.5312 8.87562 20.5312C10.5246 20.5312 11.8682 19.1993 11.8921 17.5532H16.1869C16.4636 17.5532 16.717 17.3663 16.7745 17.0953C16.8314 16.8269 16.7093 16.562 16.4616 16.4474ZM7.73105 2.75922C7.73105 2.17793 8.20316 1.70504 8.78347 1.70504H8.96781C9.54812 1.70504 10.0202 2.17793 10.0202 2.75922V3.73254C9.65038 3.65609 9.26753 3.61586 8.87546 3.61586C8.48351 3.61586 8.10078 3.65605 7.73109 3.73242V2.75922H7.73105ZM8.87562 19.3575C7.87277 19.3575 7.05476 18.5521 7.03097 17.5532H10.7202C10.6965 18.5521 9.87847 19.3575 8.87562 19.3575ZM11.235 16.3794C11.2349 16.3794 2.89964 16.3794 2.89964 16.3794C3.00101 16.2214 3.10417 16.0425 3.20671 15.8404C3.99203 14.2918 4.39023 12.0854 4.39023 9.28223C4.39023 6.805 6.4023 4.78965 8.87542 4.78965C11.3485 4.78965 13.3606 6.805 13.3606 9.28418C13.3606 9.29141 13.3607 9.29859 13.361 9.30578C13.3632 12.0977 13.7614 14.2962 14.5445 15.8404C14.6471 16.0426 14.7503 16.2214 14.8516 16.3794H11.235Z"
+                fill="#202020"
+              />
+            </svg>
+          </div>
+          <div
+            className="ml-3 text-15"
+          >
+            Notifications
+          </div>
+        </div>
+        <a
+          href="/@foo/points"
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="navbar-icon text-dark"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M20,14H4V8H9.08L7,10.83L8.62,12L11,8.76L12,7.4L13,8.76L15.38,12L17,10.83L14.92,8H20M20,19H4V17H20M9,4A1,1 0 0,1 10,5A1,1 0 0,1 9,6A1,1 0 0,1 8,5A1,1 0 0,1 9,4M15,4A1,1 0 0,1 16,5A1,1 0 0,1 15,6A1,1 0 0,1 14,5A1,1 0 0,1 15,4M20,6H17.82C17.93,5.69 18,5.35 18,5A3,3 0 0,0 15,2C13.95,2 13.04,2.54 12.5,3.35L12,4L11.5,3.34C10.96,2.54 10.05,2 9,2A3,3 0 0,0 6,5C6,5.35 6.07,5.69 6.18,6H4C2.89,6 2,6.89 2,8V19C2,20.11 2.89,21 4,21H20C21.11,21 22,20.11 22,19V8C22,6.89 21.11,6 20,6Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Points
+            </div>
+          </div>
+        </a>
+        <a
+          href="/@foo/wallet"
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="icon-stroke text-dark"
+            >
+              <svg
+                fill="none"
+                height="15"
+                viewBox="0 0 20 15"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  height="12.3505"
+                  rx="1.5"
+                  stroke="#202020"
+                  width="18.3451"
+                  x="0.703125"
+                  y="1.3623"
+                />
+                <path
+                  d="M1.85352 4.93359L17.8971 4.93359"
+                  stroke="#202020"
+                  strokeLinecap="square"
+                  strokeLinejoin="round"
+                  strokeWidth="3"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15 d-flex"
+            >
+              Wallet
+               
+              <div
+                className="dot align-self-start ml-1"
+              />
+            </div>
+          </div>
+        </a>
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative"
+        >
+          <div
+            className="navbar-icon"
+          >
+            <svg
+              fill="none"
+              height="19"
+              viewBox="0 0 19 19"
+              width="19"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.875 0.53125C14.8374 0.53125 18.875 4.56888 18.875 9.53125C18.875 14.4936 14.8374 18.5312 9.875 18.5312C4.91263 18.5312 0.875 14.4936 0.875 9.53125C0.875 4.56888 4.91263 0.53125 9.875 0.53125ZM3.503 4.92213C4.47275 5.30688 5.4695 5.61175 6.49212 5.812C6.92638 4.38212 7.616 3.013 8.56325 1.77437C6.48875 2.12538 4.691 3.28525 3.503 4.92213ZM7.328 11.9838C9.01775 11.752 10.7334 11.752 12.4231 11.9838C12.7696 10.3705 12.7708 8.701 12.4254 7.08663C11.5861 7.20138 10.7379 7.28125 9.875 7.28125C9.01213 7.28125 8.165 7.20138 7.32575 7.08663C6.98038 8.701 6.9815 10.3705 7.328 11.9838ZM7.61938 5.98637C9.11675 6.17987 10.6344 6.17987 12.1318 5.98637C11.6705 4.53963 10.9167 3.16825 9.875 1.95325C8.83325 3.16825 8.08062 4.53963 7.61938 5.98637ZM11.189 1.77437C12.1363 3.013 12.8247 4.38212 13.259 5.812C14.2805 5.61175 15.2773 5.30688 16.247 4.92213C15.0601 3.28525 13.2624 2.12538 11.189 1.77437ZM17.75 9.53125C17.75 8.2195 17.4226 6.98425 16.8534 5.89525C15.7779 6.33738 14.6743 6.685 13.5391 6.91337C13.9002 8.6425 13.9002 10.4279 13.538 12.1581C14.672 12.3842 15.7801 12.7296 16.8534 13.1706C17.4226 12.0794 17.75 10.8441 17.75 9.53125ZM16.247 14.1404C15.2773 13.7556 14.2805 13.4507 13.259 13.2505C12.8247 14.6804 12.1351 16.0495 11.1879 17.2881C13.2624 16.9371 15.0601 15.7773 16.247 14.1404ZM12.1306 13.0761C10.6344 12.8826 9.11675 12.8826 7.61938 13.0761C8.08062 14.5229 8.83438 15.8942 9.875 17.1092C10.9167 15.8942 11.6694 14.5229 12.1306 13.0761ZM8.56325 17.2881C7.616 16.0495 6.92638 14.6804 6.49212 13.2505C5.47062 13.4507 4.47275 13.7568 3.503 14.1404C4.691 15.7773 6.48875 16.9371 8.56325 17.2881ZM6.21313 12.1559C5.85087 10.4268 5.84975 8.64137 6.212 6.91225C5.07688 6.68388 3.97213 6.33738 2.89662 5.89412C2.32738 6.98425 2 8.2195 2 9.53125C2 10.8441 2.32738 12.0794 2.89662 13.1684C3.96988 12.7285 5.078 12.3831 6.21313 12.1559Z"
+                fill="#202020"
+              />
+            </svg>
+          </div>
+          <div
+            className="text-15 switch-menu"
+          >
+            <div
+              className="switch-language"
+            >
+              <div
+                className="custom-dropdown float-left"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Language
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          onClick={[Function]}
+        >
+          <div
+            className="navbar-icon"
+          >
+            <svg
+              fill="none"
+              height="16"
+              viewBox="0 0 17 16"
+              width="17"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.5982 9.10563C16.4244 9.06459 16.2506 9.10563 16.0985 9.20822C15.5336 9.65964 14.8819 10.029 14.1649 10.2752C13.4914 10.5214 12.7528 10.6446 11.9707 10.6446C10.2109 10.6446 8.60323 9.96742 7.45179 8.87992C6.30035 7.79241 5.58341 6.27401 5.58341 4.61197C5.58341 3.91433 5.71376 3.2372 5.93102 2.62163C6.17 1.96503 6.5176 1.36998 6.97383 0.857004C7.16936 0.631295 7.12591 0.302991 6.88693 0.118321C6.73486 0.0157259 6.56105 -0.0253121 6.38725 0.0157259C4.5406 0.487662 2.93292 1.53413 1.78148 2.92942C0.673485 4.30419 0 6.00726 0 7.87449C0 10.1111 0.955915 12.1424 2.52014 13.6198C4.08436 15.0972 6.23517 16 8.60323 16C10.602 16 12.4486 15.3434 13.9259 14.2559C15.425 13.1479 16.5113 11.5679 16.9675 9.76223C17.0761 9.45445 16.9023 9.16718 16.5982 9.10563ZM13.2742 13.3941C12.0141 14.338 10.4064 14.9125 8.64668 14.9125C6.58278 14.9125 4.7144 14.1123 3.36743 12.8401C2.02046 11.5679 1.17317 9.80327 1.17317 7.85397C1.17317 6.23297 1.73803 4.75561 2.71567 3.56551C3.38915 2.74475 4.23644 2.06762 5.21408 1.59569C5.10545 1.82139 4.99683 2.0471 4.90993 2.29333C4.6275 3.03201 4.49715 3.81173 4.49715 4.63249C4.49715 6.58179 5.34443 8.36695 6.6914 9.63912C8.03837 10.9113 9.92848 11.7115 11.9924 11.7115C12.9049 11.7115 13.7739 11.5679 14.5777 11.2806C14.8601 11.178 15.1426 11.0754 15.4033 10.9523C14.8819 11.8962 14.1649 12.7375 13.2742 13.3941Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+          <div
+            className="ml-3 text-15"
+          >
+            Switch
+             
+            dark
+          </div>
+        </div>
+      </div>
+    </div>
     <audio
       autoPlay={false}
       id="notification-audio"
@@ -781,14 +1660,16 @@ Array [
         }
       }
     />
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`(4) With active user && usePrivate = false 1`] = `
-Array [
+<div
+  className="position-relative sticky-container"
+>
   <div
-    className="nav-bar-toggle"
+    className="nav-bar-toggle position-fixed"
     onClick={[Function]}
   >
     <svg
@@ -799,9 +1680,9 @@ Array [
         fill="currentColor"
       />
     </svg>
-  </div>,
+  </div>
   <div
-    className="nav-bar-sm"
+    className="nav-bar-sm sticky "
   >
     <div
       className="brand"
@@ -821,23 +1702,23 @@ Array [
       className="text-menu"
     >
       <a
-        className="menu-item"
+        className="menu-item mt-0"
         href="/discover"
         onClick={[Function]}
       >
         Discover
       </a>
       <a
-        className="menu-item"
+        className="menu-item mt-0"
         href="/communities"
         onClick={[Function]}
       >
         Communities
       </a>
     </div>
-  </div>,
+  </div>
   <div
-    className="nav-bar"
+    className="nav-bar "
   >
     <div
       className="nav-bar-inner"
@@ -860,14 +1741,14 @@ Array [
         className="text-menu"
       >
         <a
-          className="menu-item"
+          className="menu-item mt-0"
           href="/discover"
           onClick={[Function]}
         >
           Discover
         </a>
         <a
-          className="menu-item"
+          className="menu-item mt-0"
           href="/communities"
           onClick={[Function]}
         >
@@ -1034,6 +1915,384 @@ Array [
         </div>
       </div>
     </div>
-  </div>,
-]
+  </div>
+  <div
+    className="nav-bar d-none"
+  >
+    <div
+      className="nav-bar-inner"
+    >
+      <div
+        className="mt-2 pt-5 w-100"
+      >
+        <a
+          href="/@foo"
+          onClick={[Function]}
+        >
+          <div
+            className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0 mb-3 position-relative"
+          >
+            <span
+              className="user-avatar large"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+            <div
+              className="ml-2"
+            >
+              <b>
+                @
+                foo
+              </b>
+              <div
+                className="mt-1 text-white"
+              >
+                Vote Power:
+                 
+                <span>
+                  <svg
+                    fill="none"
+                    height="8"
+                    viewBox="0 0 13 8"
+                    width="13"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.623 6.59424L6.43483 1.40602L1.24661 6.59424"
+                      stroke="#535E65"
+                      strokeLinecap="square"
+                    />
+                  </svg>
+                </span>
+                 
+                %  
+                <span>
+                  <svg
+                    fill="none"
+                    height="8"
+                    viewBox="0 0 13 8"
+                    width="13"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
+                      stroke="#535E65"
+                      strokeLinecap="square"
+                    />
+                  </svg>
+                </span>
+                 
+                %
+              </div>
+            </div>
+          </div>
+        </a>
+        <div
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="navbar-icon"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Search
+            </div>
+          </div>
+        </div>
+        <a
+          href="/submit"
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="navbar-icon"
+            >
+              <svg
+                fill="none"
+                height="20"
+                viewBox="0 0 20 20"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.8494 3.51574L16.3082 1.97442C15.604 1.27023 14.4583 1.27026 13.7541 1.97442C13.0911 2.63749 2.96437 12.765 2.28761 13.4418C2.21553 13.5139 2.16723 13.6097 2.15002 13.7034L1.37943 17.865C1.34957 18.0263 1.40099 18.192 1.51702 18.3081C1.63318 18.4242 1.79894 18.4756 1.96008 18.4457L6.12129 17.675C6.21746 17.6571 6.312 17.6083 6.38288 17.5374L17.8494 6.06999C18.5552 5.36417 18.5553 4.22166 17.8494 3.51574ZM2.49124 17.3337L2.95739 14.8163L5.00848 16.8676L2.49124 17.3337ZM6.03057 16.4803L3.34458 13.7942L13.1509 3.98708L15.8369 6.67327L6.03057 16.4803ZM17.1447 5.36533L16.5415 5.96861L13.8555 3.28242L14.4588 2.67914C14.7744 2.36351 15.2879 2.36347 15.6036 2.67914L17.1447 4.22047C17.4612 4.53687 17.4612 5.0489 17.1447 5.36533Z"
+                  fill="black"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Write a post
+            </div>
+          </div>
+        </a>
+        <div>
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark"
+            onClick={[Function]}
+          >
+            <div
+              className="navbar-icon"
+            >
+              <svg
+                fill="none"
+                height="18"
+                viewBox="0 0 18 18"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  clipPath="url(#clip0)"
+                >
+                  <path
+                    d="M8.8744 10.0522C3.88219 10.0522 1.13281 12.4139 1.13281 16.7023C1.13281 17.0373 1.40427 17.3087 1.7392 17.3087H16.0096C16.3445 17.3087 16.616 17.0373 16.616 16.7023C16.616 12.4142 13.8666 10.0522 8.8744 10.0522ZM2.36765 16.0959C2.60617 12.8896 4.79219 11.265 8.8744 11.265C12.9566 11.265 15.1427 12.8896 15.3814 16.0959H2.36765Z"
+                    fill="#202020"
+                  />
+                  <path
+                    d="M8.87394 0.692871C6.58077 0.692871 4.85156 2.45686 4.85156 4.79592C4.85156 7.20348 6.65599 9.16192 8.87394 9.16192C11.0919 9.16192 12.8963 7.20348 12.8963 4.79611C12.8963 2.45686 11.1671 0.692871 8.87394 0.692871ZM8.87394 7.94934C7.32462 7.94934 6.06433 6.53482 6.06433 4.79611C6.06433 3.12127 7.24599 1.90564 8.87394 1.90564C10.4758 1.90564 11.6835 3.14814 11.6835 4.79611C11.6835 6.53482 10.4233 7.94934 8.87394 7.94934Z"
+                    fill="#202020"
+                  />
+                </g>
+                <defs>
+                  <clipPath
+                    id="clip0"
+                  >
+                    <rect
+                      fill="white"
+                      height="17.343"
+                      transform="translate(0.203125 0.328613)"
+                      width="17.343"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Profile menu
+            </div>
+            <div
+              className="ml-3 text-15 icon-stroke"
+            >
+              <svg
+                fill="none"
+                height="8"
+                viewBox="0 0 13 8"
+                width="13"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.623 1.40576L6.43483 6.59398L1.24661 1.40576"
+                  stroke="#535E65"
+                  strokeLinecap="square"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          onClick={[Function]}
+        >
+          <div
+            className="navbar-icon text-dark"
+          >
+            <svg
+              fill="none"
+              height="21"
+              viewBox="0 0 17 21"
+              width="17"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.4616 16.4474C16.4028 16.4092 15.9603 16.0993 15.5173 15.1616C14.7037 13.4396 14.5329 11.0139 14.5329 9.28223C14.5329 9.27469 14.5327 9.26723 14.5325 9.25973C14.5236 6.97109 13.1532 4.9982 11.1921 4.11301V2.75922C11.1921 1.5307 10.1943 0.53125 8.96777 0.53125H8.78343C7.55695 0.53125 6.55913 1.5307 6.55913 2.75922V4.11293C4.59148 5.00098 3.21831 6.98394 3.21831 9.28223C3.21831 11.0139 3.04753 13.4396 2.2339 15.1616C1.79089 16.0992 1.34843 16.4092 1.2896 16.4474C1.04187 16.562 0.919721 16.8269 0.976713 17.0953C1.03425 17.3663 1.28761 17.5532 1.56429 17.5532H5.8591C5.88308 19.1993 7.2266 20.5312 8.87562 20.5312C10.5246 20.5312 11.8682 19.1993 11.8921 17.5532H16.1869C16.4636 17.5532 16.717 17.3663 16.7745 17.0953C16.8314 16.8269 16.7093 16.562 16.4616 16.4474ZM7.73105 2.75922C7.73105 2.17793 8.20316 1.70504 8.78347 1.70504H8.96781C9.54812 1.70504 10.0202 2.17793 10.0202 2.75922V3.73254C9.65038 3.65609 9.26753 3.61586 8.87546 3.61586C8.48351 3.61586 8.10078 3.65605 7.73109 3.73242V2.75922H7.73105ZM8.87562 19.3575C7.87277 19.3575 7.05476 18.5521 7.03097 17.5532H10.7202C10.6965 18.5521 9.87847 19.3575 8.87562 19.3575ZM11.235 16.3794C11.2349 16.3794 2.89964 16.3794 2.89964 16.3794C3.00101 16.2214 3.10417 16.0425 3.20671 15.8404C3.99203 14.2918 4.39023 12.0854 4.39023 9.28223C4.39023 6.805 6.4023 4.78965 8.87542 4.78965C11.3485 4.78965 13.3606 6.805 13.3606 9.28418C13.3606 9.29141 13.3607 9.29859 13.361 9.30578C13.3632 12.0977 13.7614 14.2962 14.5445 15.8404C14.6471 16.0426 14.7503 16.2214 14.8516 16.3794H11.235Z"
+                fill="#202020"
+              />
+            </svg>
+          </div>
+          <div
+            className="ml-3 text-15"
+          >
+            Notifications
+          </div>
+        </div>
+        <a
+          href="/@foo/points"
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="navbar-icon text-dark"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M20,14H4V8H9.08L7,10.83L8.62,12L11,8.76L12,7.4L13,8.76L15.38,12L17,10.83L14.92,8H20M20,19H4V17H20M9,4A1,1 0 0,1 10,5A1,1 0 0,1 9,6A1,1 0 0,1 8,5A1,1 0 0,1 9,4M15,4A1,1 0 0,1 16,5A1,1 0 0,1 15,6A1,1 0 0,1 14,5A1,1 0 0,1 15,4M20,6H17.82C17.93,5.69 18,5.35 18,5A3,3 0 0,0 15,2C13.95,2 13.04,2.54 12.5,3.35L12,4L11.5,3.34C10.96,2.54 10.05,2 9,2A3,3 0 0,0 6,5C6,5.35 6.07,5.69 6.18,6H4C2.89,6 2,6.89 2,8V19C2,20.11 2.89,21 4,21H20C21.11,21 22,20.11 22,19V8C22,6.89 21.11,6 20,6Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15"
+            >
+              Points
+            </div>
+          </div>
+        </a>
+        <a
+          href="/@foo/wallet"
+          onClick={[Function]}
+        >
+          <div
+            className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          >
+            <div
+              className="icon-stroke text-dark"
+            >
+              <svg
+                fill="none"
+                height="15"
+                viewBox="0 0 20 15"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  height="12.3505"
+                  rx="1.5"
+                  stroke="#202020"
+                  width="18.3451"
+                  x="0.703125"
+                  y="1.3623"
+                />
+                <path
+                  d="M1.85352 4.93359L17.8971 4.93359"
+                  stroke="#202020"
+                  strokeLinecap="square"
+                  strokeLinejoin="round"
+                  strokeWidth="3"
+                />
+              </svg>
+            </div>
+            <div
+              className="ml-3 text-15 d-flex"
+            >
+              Wallet
+               
+              <div
+                className="dot align-self-start ml-1"
+              />
+            </div>
+          </div>
+        </a>
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative"
+        >
+          <div
+            className="navbar-icon"
+          >
+            <svg
+              fill="none"
+              height="19"
+              viewBox="0 0 19 19"
+              width="19"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.875 0.53125C14.8374 0.53125 18.875 4.56888 18.875 9.53125C18.875 14.4936 14.8374 18.5312 9.875 18.5312C4.91263 18.5312 0.875 14.4936 0.875 9.53125C0.875 4.56888 4.91263 0.53125 9.875 0.53125ZM3.503 4.92213C4.47275 5.30688 5.4695 5.61175 6.49212 5.812C6.92638 4.38212 7.616 3.013 8.56325 1.77437C6.48875 2.12538 4.691 3.28525 3.503 4.92213ZM7.328 11.9838C9.01775 11.752 10.7334 11.752 12.4231 11.9838C12.7696 10.3705 12.7708 8.701 12.4254 7.08663C11.5861 7.20138 10.7379 7.28125 9.875 7.28125C9.01213 7.28125 8.165 7.20138 7.32575 7.08663C6.98038 8.701 6.9815 10.3705 7.328 11.9838ZM7.61938 5.98637C9.11675 6.17987 10.6344 6.17987 12.1318 5.98637C11.6705 4.53963 10.9167 3.16825 9.875 1.95325C8.83325 3.16825 8.08062 4.53963 7.61938 5.98637ZM11.189 1.77437C12.1363 3.013 12.8247 4.38212 13.259 5.812C14.2805 5.61175 15.2773 5.30688 16.247 4.92213C15.0601 3.28525 13.2624 2.12538 11.189 1.77437ZM17.75 9.53125C17.75 8.2195 17.4226 6.98425 16.8534 5.89525C15.7779 6.33738 14.6743 6.685 13.5391 6.91337C13.9002 8.6425 13.9002 10.4279 13.538 12.1581C14.672 12.3842 15.7801 12.7296 16.8534 13.1706C17.4226 12.0794 17.75 10.8441 17.75 9.53125ZM16.247 14.1404C15.2773 13.7556 14.2805 13.4507 13.259 13.2505C12.8247 14.6804 12.1351 16.0495 11.1879 17.2881C13.2624 16.9371 15.0601 15.7773 16.247 14.1404ZM12.1306 13.0761C10.6344 12.8826 9.11675 12.8826 7.61938 13.0761C8.08062 14.5229 8.83438 15.8942 9.875 17.1092C10.9167 15.8942 11.6694 14.5229 12.1306 13.0761ZM8.56325 17.2881C7.616 16.0495 6.92638 14.6804 6.49212 13.2505C5.47062 13.4507 4.47275 13.7568 3.503 14.1404C4.691 15.7773 6.48875 16.9371 8.56325 17.2881ZM6.21313 12.1559C5.85087 10.4268 5.84975 8.64137 6.212 6.91225C5.07688 6.68388 3.97213 6.33738 2.89662 5.89412C2.32738 6.98425 2 8.2195 2 9.53125C2 10.8441 2.32738 12.0794 2.89662 13.1684C3.96988 12.7285 5.078 12.3831 6.21313 12.1559Z"
+                fill="#202020"
+              />
+            </svg>
+          </div>
+          <div
+            className="text-15 switch-menu"
+          >
+            <div
+              className="switch-language"
+            >
+              <div
+                className="custom-dropdown float-left"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Language
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+          onClick={[Function]}
+        >
+          <div
+            className="navbar-icon"
+          >
+            <svg
+              fill="none"
+              height="16"
+              viewBox="0 0 17 16"
+              width="17"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.5982 9.10563C16.4244 9.06459 16.2506 9.10563 16.0985 9.20822C15.5336 9.65964 14.8819 10.029 14.1649 10.2752C13.4914 10.5214 12.7528 10.6446 11.9707 10.6446C10.2109 10.6446 8.60323 9.96742 7.45179 8.87992C6.30035 7.79241 5.58341 6.27401 5.58341 4.61197C5.58341 3.91433 5.71376 3.2372 5.93102 2.62163C6.17 1.96503 6.5176 1.36998 6.97383 0.857004C7.16936 0.631295 7.12591 0.302991 6.88693 0.118321C6.73486 0.0157259 6.56105 -0.0253121 6.38725 0.0157259C4.5406 0.487662 2.93292 1.53413 1.78148 2.92942C0.673485 4.30419 0 6.00726 0 7.87449C0 10.1111 0.955915 12.1424 2.52014 13.6198C4.08436 15.0972 6.23517 16 8.60323 16C10.602 16 12.4486 15.3434 13.9259 14.2559C15.425 13.1479 16.5113 11.5679 16.9675 9.76223C17.0761 9.45445 16.9023 9.16718 16.5982 9.10563ZM13.2742 13.3941C12.0141 14.338 10.4064 14.9125 8.64668 14.9125C6.58278 14.9125 4.7144 14.1123 3.36743 12.8401C2.02046 11.5679 1.17317 9.80327 1.17317 7.85397C1.17317 6.23297 1.73803 4.75561 2.71567 3.56551C3.38915 2.74475 4.23644 2.06762 5.21408 1.59569C5.10545 1.82139 4.99683 2.0471 4.90993 2.29333C4.6275 3.03201 4.49715 3.81173 4.49715 4.63249C4.49715 6.58179 5.34443 8.36695 6.6914 9.63912C8.03837 10.9113 9.92848 11.7115 11.9924 11.7115C12.9049 11.7115 13.7739 11.5679 14.5777 11.2806C14.8601 11.178 15.1426 11.0754 15.4033 10.9523C14.8819 11.8962 14.1649 12.7375 13.2742 13.3941Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+          <div
+            className="ml-3 text-15"
+          >
+            Switch
+             
+            dark
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 `;

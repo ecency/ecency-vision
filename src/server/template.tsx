@@ -15,12 +15,21 @@ import { AppState } from "../common/store/index";
 
 import configureStore from "../common/store/configure";
 
-let assets: any;
+let assets: any = require(process.env.RAZZLE_ASSETS_MANIFEST || "");
 
-const syncLoadAssets = () => {
-  assets = require(process.env.RAZZLE_ASSETS_MANIFEST!);
+const cssLinksFromAssets = (assets:any, entrypoint:string) => {
+  return assets[entrypoint] ? assets[entrypoint].css ?
+  assets[entrypoint].css.map((asset:any)=>
+    `<link rel="stylesheet" href="${asset}">`
+  ).join('') : '' : '';
 };
-syncLoadAssets();
+
+const jsScriptTagsFromAssets = (assets: any, entrypoint: any, extra = '') => {
+  return assets[entrypoint] ? assets[entrypoint].js ?
+  assets[entrypoint].js.map((asset:any)=>
+    `<script src="${asset}"${extra}></script>`
+  ).join('') : '' : '';
+};
 
 export const render = (req: express.Request, state: AppState) => {
   const store = configureStore(state);
@@ -50,35 +59,32 @@ export const render = (req: express.Request, state: AppState) => {
                 <meta name="theme-color" content="#000000" />
                 <link rel="apple-touch-icon" href="/logo192.png" />
                 <link rel="manifest" href="/manifest.json" />
-                <script type="application/ld+json">
-                {
-                  "@context": "https://schema.org",
-                  "@type": "WebSite",
-                  "url": "https://ecency.com/",
-                  "potentialAction": {
-                    "@type": "SearchAction",
-                    "target": "https://ecency.com/search/?q={search_term_string}",
-                    "query-input": "required name=search_term_string"
-                  }
-                }
-                </script>
                 ${headHelmet}
-                ${
-                  assets.client.css
-                    ? `<link rel="stylesheet" href="${assets.client.css}">`
-                    : ""
-                }
-                ${
-                  process.env.NODE_ENV === "production"
-                    ? `<script src="${assets.client.js}" defer></script>`
-                    : `<script src="${assets.client.js}" defer crossorigin></script>`
-                }
+                ${cssLinksFromAssets(assets, 'client')}
             </head>
-            <body class="${`theme-${state.global.theme}`}">
-                <div id="root">${markup}</div>
+            <body class="${`theme-${state.global.theme}`}" style="display: none;">
+                <div id="root">${markup}</div>  
+                ${jsScriptTagsFromAssets(assets, 'client', ' defer crossorigin')}
+                <script type="application/ld+json">
+                  {
+                    "@context": "https://schema.org",
+                    "@type": "WebSite",
+                    "url": "https://ecency.com/",
+                    "potentialAction": {
+                      "@type": "SearchAction",
+                      "target": "https://ecency.com/search/?q={search_term_string}",
+                      "query-input": "required name=search_term_string"
+                    }
+                  }
+                </script>
                 <script>
                   window.__PRELOADED_STATE__ = ${serialize(finalState)}
                 </script>
+                <style>
+                    body {
+                      display: block !important;
+                    }
+                </style>
             </body>
         </html>`;
 };

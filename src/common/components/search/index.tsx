@@ -24,6 +24,7 @@ interface Props {
     global: Global;
     trendingTags: TrendingTags;
     fetchTrendingTags: () => void;
+    containerClassName?: string
 }
 
 interface State {
@@ -88,16 +89,17 @@ export class Search extends BaseComponent<Props, State> {
     };
 
     render() {
-        const {global} = this.props;
+        const {global, containerClassName} = this.props;
         const {query} = this.state;
 
         const placeholder = global.searchIndexCount > 0 ?
             _t("search.placeholder-count", {n: numeral(global.searchIndexCount).format('0,0')}) :
             _t("search.placeholder");
 
+
         return (
             <>
-                <SearchSuggester {...this.props} value={query}>
+                <SearchSuggester {...this.props} value={query} containerClassName={containerClassName}>
                     <SearchBox
                         placeholder={placeholder}
                         value={query}
@@ -117,8 +119,8 @@ export default (p: Props) => {
         location: p.location,
         global: p.global,
         trendingTags: p.trendingTags,
-        fetchTrendingTags: p.fetchTrendingTags
+        fetchTrendingTags: p.fetchTrendingTags,
+        containerClassName: p.containerClassName,
     }
-
     return <Search {...props} />
 }

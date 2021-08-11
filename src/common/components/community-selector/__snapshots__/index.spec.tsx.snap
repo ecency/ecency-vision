@@ -159,6 +159,7 @@ exports[`(6) Browser 1`] = `
       id="search-communities-input"
       onChange={[Function]}
       placeholder="Search Communities"
+      spellCheck={true}
       type="text"
       value=""
     />

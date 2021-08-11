@@ -5,7 +5,7 @@
   width: 30px;
   height: 30px;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 100000;
 
   svg {
     height: 30px;
@@ -78,6 +78,7 @@
   }
 }
 
+
 .nav-bar {
   user-select: none;
   margin-bottom: 20px;
@@ -111,6 +112,14 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
+    padding: 21px;
+    padding-left: 0px;
+
+    @media (max-width: 765px){
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
 
     @media (min-width: $md-break) {
       height: 100%;
@@ -120,6 +129,15 @@
 
     @media (min-width: $lg-break) {
       padding: 0 20px;
+    }
+
+    @include themify(day) {
+      background: $white-two;
+      box-shadow: 0 0 2px 1px $white-six;
+    }
+  
+    @include themify(night) {
+      background: $dark-two;
     }
 
     .brand {
@@ -332,4 +350,174 @@ body.medium-zoom--opened {
   @media (max-width: $md-break) {
     display: none;
   }
+}
+
+.visible-sm {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  padding: 0;
+  margin: 0;
+  z-index: 40000 !important;
+
+  @include themify(day) {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  @include themify(night) {
+    background-color: $dark-two !important;
+  }
+}
+
+.text-dark {
+  @include themify(night) {
+    color: $light-grey !important;
+  }
+}
+
+.navbar-icon {
+  width: 21px;
+  height: 21px;
+  svg, path, rect {
+    @include themify(night) {
+      fill: $light-grey !important;
+    }
+  }
+}
+
+.icon-stroke {
+  width: 21px;
+  height: 21px;
+  svg, path, rect {
+    @include themify(night) {
+      stroke: $light-grey !important;
+    }
+  }
+}
+
+.text-15 {
+  font-size: 17px;
+}
+
+.list-item {
+  .switch-menu {
+
+    .menu-list {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    top: 11px !important;
+    right: unset !important;
+    left: 54px !important;
+
+    .label {
+      font-size: 17px !important;
+      font-weight: unset !important;
+      @include themify(night) {
+        color: $light-grey !important;
+      }
+      @include themify(day) {
+        color: $dark !important;
+      }
+    }
+
+    .dropdown-btn {
+      opacity: 1 !important;
+    }
+
+    svg {
+      display: none;
+    }
+
+    .menu-down {
+      display: none !important;
+    }
+  }
+
+  &:hover {
+    background-color: $powder-blue;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+    @include themify(night) {
+      background-color: $transparent !important;
+      background-image: linear-gradient(270deg, $dark-indigo, $dusky-blue);
+    }
+  }
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  background-color: $pink;
+  border-radius: 50%;
+}
+
+.menu-container {
+  min-height: 441px;
+  margin-top: 0.75rem;
+  .menu-container-inner {
+    position: absolute;
+    right: -22px;
+    width: 100%;
+  }
+}
+
+.text-white {
+  path {
+    stroke: $white;
+  }
+}
+
+.menu-item {
+  margin-top: 19px;
+  .item-text {
+    color: $black;
+    margin-left: 64px;
+    @include themify(night) {
+      color: $light-grey !important;
+    }
+  }
+}
+
+.menu-item-profile {
+  border-radius: 50rem;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  background-color: $dark-sky-blue;
+  right: -22px;
+  .user-avatar {
+    width: 56px !important;
+    height: 56px !important;
+  }
+
+  svg {
+    width: 10px;
+  }
+}
+
+.sticky {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 20000;
+}
+
+.sticky-container {
+  height: 86px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+.modal-backdrop{
+  z-index: 100000 !important;
+}
+
+.modal {
+  z-index: 100001 !important;
 }
