@@ -131,6 +131,7 @@ export const deleteReply = (reply: Entry) => (dispatch: Dispatch, getState: () =
     const newList = list.filter((x: Entry) => {
         return !(x.author === reply.author && x.permlink === reply.permlink)
     });
+
     dispatch(fetchedAct(newList));
 }
 
