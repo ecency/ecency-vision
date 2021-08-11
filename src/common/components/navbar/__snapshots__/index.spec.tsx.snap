@@ -2,7 +2,7 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="sticky-container position-relative"
+  className="position-relative sticky-container"
 >
   <div
     className="nav-bar-toggle position-fixed"
@@ -470,7 +470,7 @@ exports[`(1) Default render 1`] = `
 
 exports[`(2) Night Theme 1`] = `
 <div
-  className="sticky-container position-relative"
+  className="position-relative sticky-container"
 >
   <div
     className="nav-bar-toggle position-fixed"
@@ -985,7 +985,7 @@ exports[`(2) Night Theme 1`] = `
 
 exports[`(3) With active user 1`] = `
 <div
-  className="sticky-container position-relative"
+  className="position-relative sticky-container"
 >
   <div
     className="nav-bar-toggle position-fixed"
@@ -1666,7 +1666,7 @@ exports[`(3) With active user 1`] = `
 
 exports[`(4) With active user && usePrivate = false 1`] = `
 <div
-  className="sticky-container position-relative"
+  className="position-relative sticky-container"
 >
   <div
     className="nav-bar-toggle position-fixed"
