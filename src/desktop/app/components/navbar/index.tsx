@@ -338,12 +338,6 @@ export class NavBar extends Component<Props, State> {
         const limit = nav.clientHeight * 2;
         const floating = window.scrollY >= limit;
 
-        if (floating) {
-            nav.classList.add("can-float");
-        } else {
-            nav.classList.remove("can-float");
-        }
-
         this.setState({floating});
     }
 

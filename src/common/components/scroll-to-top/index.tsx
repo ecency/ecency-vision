@@ -40,19 +40,10 @@ export default class ScrollToTop extends Component {
 
         if (this.shouldShow()) {
             this.button.current.classList.add('visible');
-            
-            navbar?.classList.add("can-float")
-            if(landingWrapper){
-                landingWrapper?.classList.add("mt-0")
-            }
             return;
         }
 
         this.button.current.classList.remove('visible');
-        navbar?.classList.remove("can-float")
-        if(landingWrapper){
-            landingWrapper?.classList.remove("mt-0")
-        }
     }
 
     clicked = () => {
