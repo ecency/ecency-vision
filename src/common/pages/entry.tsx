@@ -124,6 +124,7 @@ class EntryPage extends BaseComponent<Props, State> {
         if (location.pathname !== prevProps.location.pathname && entry) {
             this.ensureEntry();
             if(entry.parent_author){
+                let entry = this.getEntry();
                 this.setState({ comment: entry && entry.body || "" })
             }
         }
