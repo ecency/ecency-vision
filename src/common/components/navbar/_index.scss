@@ -44,6 +44,9 @@
   @media (min-width: $md-break) {
     display: none;
   }
+  @media (max-width: $sm-break) {
+    margin-bottom: 23px;
+  }
 
   .brand {
     height: 40px;
@@ -514,6 +517,9 @@ body.medium-zoom--opened {
   top: 0px;
   left: 0px;
   right: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 
   .nav-bar-inner {
     box-shadow: none !important;
