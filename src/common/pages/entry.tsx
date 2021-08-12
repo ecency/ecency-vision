@@ -665,21 +665,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         </div>
                                                     </div>
                                                     <span className="flex-spacer"/>
-                                                    {ownEntry && isComment &&  (
-                                                            <>
-                                                                <a title={_t('g.edit')} className={'edit-btn'} onClick={this.toggleEdit}>
-                                                                    {pencilOutlineSvg}
-                                                                </a>
-
-                                                                {EntryDeleteBtn({
-                                                                    ...this.props,
-                                                                    entry,
-                                                                    setDeleteInProgress: value=> this.setState({loading: value}),
-                                                                    onSuccess: this.deleted,
-                                                                    children: <a title={_t('g.delete')} className="edit-btn">{deleteForeverSvg}</a>
-                                                                })}
-                                                            </>
-                                                        )}
                                                     {global.usePrivate && BookmarkBtn({
                                                         ...this.props,
                                                         entry
@@ -687,7 +672,24 @@ class EntryPage extends BaseComponent<Props, State> {
                                                     {EntryMenu({
                                                         ...this.props,
                                                         entry,
-                                                        separatedSharing: true
+                                                        separatedSharing: true,
+                                                        extraMenuItems : ownEntry && isComment ? [{
+                                                            label: _t("g.edit"),
+                                                            onClick: this.toggleEdit,
+                                                            icon: pencilOutlineSvg
+                                                        },
+                                                        {
+                                                            label: "",
+                                                            onClick: ()=>{},
+                                                            icon: EntryDeleteBtn({
+                                                                ...this.props,
+                                                                entry,
+                                                                setDeleteInProgress: value=> this.setState({loading: value}),
+                                                                onSuccess: this.deleted,
+                                                                children: <a title={_t('g.delete')} className="edit-btn">{deleteForeverSvg} {_t("g.delete")}</a>
+                                                            })
+                                                        }
+                                                    ] : []
                                                     })}
                                                 </div>
                                             </div>

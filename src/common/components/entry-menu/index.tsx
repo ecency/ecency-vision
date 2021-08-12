@@ -48,6 +48,7 @@ interface Props {
     dynamicProps: DynamicProps;
     activeUser: ActiveUser | null;
     entry: Entry;
+    extraMenuItems?: any[];
     communities: Communities;
     entryPinTracker: EntryPinTracker;
     separatedSharing?: boolean;
@@ -231,7 +232,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, activeUser, entry, entryPinTracker, alignBottom, separatedSharing} = this.props;
+        const {global, activeUser, entry, entryPinTracker, alignBottom, separatedSharing, extraMenuItems} = this.props;
        
         const isComment = !!entry.parent_author;
 
@@ -348,6 +349,13 @@ export class EntryMenu extends BaseComponent<Props, State> {
             ]
         }
 
+        if(extraMenuItems){
+            menuItems = [
+                ...menuItems,
+                ...extraMenuItems
+            ]
+        }
+
         const menuConfig = {
             history: this.props.history,
             label: '',
@@ -357,7 +365,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
         const {cross, share, editHistory, delete_, pin, unpin, mute, promote, boost} = this.state;
         const community = this.getCommunity();
-        
+        debugger
         return <div className="entry-menu">
             {separatedSharing && (
                 <div className="separated-share">
@@ -439,6 +447,7 @@ export default (p: Props) => {
         separatedSharing: p.separatedSharing,
         alignBottom: p.alignBottom,
         signingKey: p.signingKey,
+        extraMenuItems: p.extraMenuItems,
         setSigningKey: p.setSigningKey,
         updateActiveUser: p.updateActiveUser,
         updateEntry: p.updateEntry,
