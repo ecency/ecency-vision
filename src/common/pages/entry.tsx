@@ -119,10 +119,11 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {location} = this.props;
-        if (location.pathname !== prevProps.location.pathname) {
+        const { location } = this.props;
+        let entry = this.getEntry();
+        if (location.pathname !== prevProps.location.pathname && entry) {
             this.ensureEntry();
-            if(location.pathname.includes('re-')){
+            if(entry.parent_author){
                 let entry = this.getEntry();
                 this.setState({ comment: entry && entry.body || "" })
             }
