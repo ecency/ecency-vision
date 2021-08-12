@@ -109,6 +109,7 @@
       font-weight: 500;
       border-top-right-radius: 25px;
       border-bottom-right-radius: 25px;
+      margin-top: 0px !important;
 
       @include themify(day) {
         color: $warm-grey;

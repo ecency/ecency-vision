@@ -365,7 +365,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
         const {cross, share, editHistory, delete_, pin, unpin, mute, promote, boost} = this.state;
         const community = this.getCommunity();
-        debugger
+        
         return <div className="entry-menu">
             {separatedSharing && (
                 <div className="separated-share">
