@@ -16,6 +16,8 @@ import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 import MessageNoData from "../message-no-data";
 import { Link } from "react-router-dom";
 import { _t } from "../../i18n";
+import { threadId } from "worker_threads";
+import { getFollowing } from "../../api/hive";
 
 interface Props {
     history: History;
@@ -48,15 +50,41 @@ interface Props {
     setEntryPin: (entry: Entry, pin: boolean) => void;
 }
 
-export class EntryListContent extends Component<Props> {
+interface State {
+    data: string[];
+}
+
+export class EntryListContent extends Component<Props, State> {
+    state = {
+        data: []
+    }
+
+    fetchMutedUsers = () => {
+        const { activeUser } = this.props;
+        if(activeUser){
+            getFollowing(activeUser.username, "", "ignore", 100).then(r => {
+                if (r) {
+                    let filterList = r.map(user=>user.following);
+                    this.setState({data: filterList })
+                }
+                return []
+            })
+        }
+    }
+
+    componentDidMount(){
+        this.fetchMutedUsers()
+    }
+
     render() {
         const {entries, promotedEntries, global, activeUser, loading } = this.props;
         const {filter} = global;
-
+        const {data} = this.state;
+        let dataToRender = data.length > 0 ? entries.filter(item=> !data.includes(item.author)) : entries;
          
-        return entries.length > 0 ? (
+        return  dataToRender.length > 0 ? (
               <>
-                {entries.map((e, i) => {
+                {dataToRender.map((e, i) => {
                     const l = [];
 
                     if (i % 4 === 0 && i > 0) {
@@ -65,7 +93,7 @@ export class EntryListContent extends Component<Props> {
                         if (promotedEntries[ix]) {
                             const p = promotedEntries[ix];
 
-                            if (!entries.find(x => x.author === p.author && x.permlink === p.permlink)) {
+                            if (!dataToRender.find(x => x.author === p.author && x.permlink === p.permlink)) {
                                 l.push(
                                     <EntryListItem
                                         key={`${p.author}-${p.permlink}`}
