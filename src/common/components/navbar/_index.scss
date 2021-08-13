@@ -44,6 +44,9 @@
   @media (min-width: $md-break) {
     display: none;
   }
+  @media (max-width: $sm-break) {
+    margin-bottom: 23px;
+  }
 
   .brand {
     height: 40px;
@@ -360,7 +363,7 @@ body.medium-zoom--opened {
   bottom: 0px;
   padding: 0;
   margin: 0;
-  z-index: 40000 !important;
+  z-index: $zindex-navbar-overlay-sm !important;
 
   @include themify(day) {
     background-color: rgba(255, 255, 255, 0.95) !important;
@@ -473,7 +476,9 @@ body.medium-zoom--opened {
 }
 
 .menu-item {
-  margin-top: 19px;
+  @media (max-width: $sm-break) {
+    margin-top: 19px;
+  }
   .item-text {
     color: $black;
     margin-left: 64px;
@@ -500,24 +505,44 @@ body.medium-zoom--opened {
 }
 
 .sticky {
-  position: fixed;
+  position: sticky;
   top: 0px;
   left: 0px;
   right: 0px;
-  z-index: 20000;
+  z-index: $zindex-navbar-sm;
 }
 
 .sticky-container {
+  z-index: 2;
+  position: fixed;
   height: 86px;
   top: 0px;
   left: 0px;
   right: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .nav-bar-inner {
+    box-shadow: none !important;
+  }
 }
 
 .modal-backdrop{
-  z-index: 100000 !important;
+  z-index: $zindex-navbar-overlay-backdrop-sm !important;
 }
 
 .modal {
-  z-index: 100001 !important;
+  z-index: $zindex-navbar-overlay-backdrop-sm !important;
+}
+
+.can-float {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  height: 64px;
+  width: 100%;
+  -webkit-animation: anim-fadein .3s;
+  animation: anim-fadein .3s;
 }
