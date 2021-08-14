@@ -149,6 +149,7 @@ class EntryIndexPage extends Component<PageProps, State> {
         || location?.pathname?.startsWith("/created")
         || location?.pathname?.startsWith("/trending")
         || location?.pathname?.startsWith("/payout")
+        || location?.pathname?.startsWith("/payout_comments")
     
 
         return (
