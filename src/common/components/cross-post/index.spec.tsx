@@ -55,7 +55,7 @@ it("(2) No subscription", async () => {
         }
     };
 
-    const renderer = TestRenderer.create(<CrossPost {...props} />);
+    const renderer = TestRenderer && TestRenderer.create(<CrossPost {...props} />);
     await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 });
