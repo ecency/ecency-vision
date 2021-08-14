@@ -85,6 +85,7 @@ interface State {
     loading: boolean;
     replying: boolean;
     showIfNsfw: boolean;
+    currentEntry: Entry | undefined;
     editHistory: boolean;
     edit: boolean;
     showProfileBox: boolean;
@@ -99,7 +100,8 @@ class EntryPage extends BaseComponent<Props, State> {
         editHistory: false,
         edit: false,
         showProfileBox: false,
-        comment: ""
+        comment: "",
+        currentEntry: undefined
     };
     
     viewElement: HTMLDivElement | undefined;
@@ -121,6 +123,9 @@ class EntryPage extends BaseComponent<Props, State> {
     componentDidUpdate(prevProps: Readonly<Props>): void {
         const { location } = this.props;
         let entry = this.getEntry();
+        if(location.pathname !== prevProps.location.pathname){
+            this.setState({currentEntry: undefined})
+        }
         if (location.pathname !== prevProps.location.pathname && entry) {
             this.ensureEntry();
             if(entry.parent_author){
@@ -209,6 +214,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
     getEntry = (): Entry | undefined => {
         const {entries, match} = this.props;
+        const {currentEntry} = this.state;
         const {username, permlink} = match.params;
         const author = username.replace("@", "");
 
@@ -216,13 +222,22 @@ class EntryPage extends BaseComponent<Props, State> {
         let entry: Entry | undefined = undefined;
 
         for (const k of groupKeys) {
-            entry = entries[k].entries.find((x) => x.author === author && x.permlink === permlink);
+            entry = entries[k].entries.find((x) => (x.author === author && x.permlink === permlink));
             if (entry) {
                 break;
             }
         }
-
-        return entry;
+        if(!entry){
+            let entryItem = this.props.history && this.props.discussion && this.props.discussion.list && this.props.discussion.list.find(item=>{
+                let entryItem = this.props.history!.location.pathname.includes(item.permlink) && item;
+                return entryItem;
+            })
+            if(entryItem){
+                entry = entryItem;
+                !currentEntry && this.setState({currentEntry: entry || currentEntry})
+            }
+        }
+        return entry || currentEntry;
     };
 
     getCommunity = (): Community | null => {
@@ -369,8 +384,6 @@ class EntryPage extends BaseComponent<Props, State> {
         let entry = this.getEntry();
         entry && deleteReply(entry);
         ls.set(`deletedComment`,entry?.post_id);
-        this.reload();
-        window.location.reload();
         history?.goBack();
     }
 
@@ -388,9 +401,11 @@ class EntryPage extends BaseComponent<Props, State> {
             return <>{navBar}<LinearProgress/></>;
         }
 
-        const entry = this.getEntry();
+        let entry = this.getEntry();
 
         if (!entry) {
+            debugger
+
             return NotFound({...this.props});
         }
 
@@ -718,13 +733,13 @@ class EntryPage extends BaseComponent<Props, State> {
                                         <div className="entry-tags">
                                             {tags.map((t) => {
                                                 if (typeof t === "string") {
-                                                    if (entry.community && entry.community_title && t === entry.community) {
+                                                    if (entry!.community && entry!.community_title && t === entry!.community) {
                                                         return <Fragment key={t}>
                                                             {Tag({
                                                                 ...this.props,
                                                                 tag: {
-                                                                    name: entry.community,
-                                                                    title: entry.community_title
+                                                                    name: entry!.community,
+                                                                    title: entry!.community_title
                                                                 },
                                                                 type: "link",
                                                                 children: <div className="entry-tag">{t}</div>
