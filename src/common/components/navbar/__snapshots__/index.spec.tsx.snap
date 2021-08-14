@@ -2,7 +2,8 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="position-relative sticky-container"
+  className="sticky-container"
+  id="sticky-container"
 >
   <div
     className="nav-bar-toggle position-fixed"
@@ -50,10 +51,10 @@ exports[`(1) Default render 1`] = `
     </div>
   </div>
   <div
-    className="nav-bar "
+    className="nav-bar  "
   >
     <div
-      className="nav-bar-inner"
+      className="nav-bar-inner "
     >
       <div
         className="brand"
@@ -470,7 +471,8 @@ exports[`(1) Default render 1`] = `
 
 exports[`(2) Night Theme 1`] = `
 <div
-  className="position-relative sticky-container"
+  className="sticky-container"
+  id="sticky-container"
 >
   <div
     className="nav-bar-toggle position-fixed"
@@ -518,10 +520,10 @@ exports[`(2) Night Theme 1`] = `
     </div>
   </div>
   <div
-    className="nav-bar "
+    className="nav-bar  "
   >
     <div
-      className="nav-bar-inner"
+      className="nav-bar-inner "
     >
       <div
         className="brand"
@@ -985,7 +987,8 @@ exports[`(2) Night Theme 1`] = `
 
 exports[`(3) With active user 1`] = `
 <div
-  className="position-relative sticky-container"
+  className="sticky-container"
+  id="sticky-container"
 >
   <div
     className="nav-bar-toggle position-fixed"
@@ -1037,10 +1040,10 @@ exports[`(3) With active user 1`] = `
     </div>
   </div>
   <div
-    className="nav-bar "
+    className="nav-bar  "
   >
     <div
-      className="nav-bar-inner"
+      className="nav-bar-inner "
     >
       <div
         className="brand"
@@ -1666,7 +1669,8 @@ exports[`(3) With active user 1`] = `
 
 exports[`(4) With active user && usePrivate = false 1`] = `
 <div
-  className="position-relative sticky-container"
+  className="sticky-container"
+  id="sticky-container"
 >
   <div
     className="nav-bar-toggle position-fixed"
@@ -1718,10 +1722,10 @@ exports[`(4) With active user && usePrivate = false 1`] = `
     </div>
   </div>
   <div
-    className="nav-bar "
+    className="nav-bar  "
   >
     <div
-      className="nav-bar-inner"
+      className="nav-bar-inner "
     >
       <div
         className="brand"
