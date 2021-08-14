@@ -277,17 +277,18 @@ export class EntryIndexMenu extends Component<Props, States> {
             id: 'feed'
         }, ...menuConfig.items]}
 
-        const introductionDescription = <>
-                                            {_t('entry-filter.filter-global-part1')}
-                                            <span className="text-capitalize">
-                                                {_t(`${this.getPopupTitle()}`)}
-                                            </span>
-                                            {(introduction === IntroductionType.FRIENDS) && _t('entry-filter.filter-global-part4')}
-                                            {(introduction === IntroductionType.FRIENDS) && <Link to='/discover'> {_t('entry-filter.filter-global-discover')}</Link>}
-                                            {(isGlobal && introduction !== IntroductionType.FRIENDS) && _t('entry-filter.filter-global-part2')}
-                                            {!isGlobal && introduction !== IntroductionType.FRIENDS && _t('entry-filter.filter-global-part3')}
-                                            {!isGlobal && introduction !== IntroductionType.FRIENDS && <Link to='/communities'> {_t('entry-filter.filter-global-join-communities')}</Link>}
-                                        </>;
+        const introductionDescription = (
+        <>
+            {_t('entry-filter.filter-global-part1')}
+            <span className="text-capitalize">
+                {_t(`${this.getPopupTitle()}`)}
+            </span>
+            {(introduction === IntroductionType.FRIENDS) && _t('entry-filter.filter-global-part4')}
+            {(introduction === IntroductionType.FRIENDS) && <Link to='/discover'> {_t('entry-filter.filter-global-discover')}</Link>}
+            {(isGlobal && introduction !== IntroductionType.FRIENDS) && _t('entry-filter.filter-global-part2')}
+            {!isGlobal && introduction !== IntroductionType.FRIENDS && _t('entry-filter.filter-global-part3')}
+            {!isGlobal && introduction !== IntroductionType.FRIENDS && <Link to='/communities'> {_t('entry-filter.filter-global-join-communities')}</Link>}
+        </>);
         const introductionOverlayClass = isMounted && (introduction === IntroductionType.NONE ? "d-none" : "overlay-for-introduction") || 'd-none';
         return isMounted ? <div>
                     <div className={introductionOverlayClass} id="overlay" onClick={this.onClosePopup}/>

@@ -148,6 +148,8 @@ class EntryIndexPage extends Component<PageProps, State> {
         || location?.pathname?.startsWith("/hot")
         || location?.pathname?.startsWith("/created")
         || location?.pathname?.startsWith("/trending")
+        || location?.pathname?.startsWith("/payout")
+        || location?.pathname?.startsWith("/payout_comments")
     
 
         return (
@@ -185,7 +187,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                             {loading && entryList.length === 0 ? <LinearProgress/> : ""}
                             <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                                 <div className={_c(`entry-list-body limited-area ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
-                                    {loading && entryList.length === 0 && <EntryListLoadingItem/>}
+                                    {loading && entryList.length === 0 && <EntryListLoadingItem />}
                                     {EntryListContent({...this.props, entries: entryList, promotedEntries: promoted, loading})}
                                 </div>
                             </div>
