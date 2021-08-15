@@ -1028,10 +1028,10 @@
     verror "^1.10.0"
     whatwg-fetch "^3.0.0"
 
-"@hiveio/hivescript@^1.2.2":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@hiveio/hivescript/-/hivescript-1.2.3.tgz#d36a77fc79d82b96da745849cb9dee5fd7b20ef7"
-  integrity sha512-QTsOCGT7daYmyg3+2Wo6L1b6tfCPelmWYCfzLaG85mZ4P0BvwWWFd3j0MKBhGk57IsjQ6m6af988SGDuHi1DJg==
+"@hiveio/hivescript@^1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@hiveio/hivescript/-/hivescript-1.2.4.tgz#22bfa6ce3d3f6d70d5460b5aa10ddd7b63bca7aa"
+  integrity sha512-xMq9JI2E6qiXUGNvpMXy6Xzt7SH3PGneqCTt81esZCxqJXK6ZO34CngWPlsDY0xLEHk5FOCF1FLl+WyxQ4MS0g==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
