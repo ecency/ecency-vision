@@ -273,6 +273,7 @@
     "hidden-warning": "Konten ini mendapat peringkat rendah oleh pengguna lain. Lanjutkan dengan hati hati.",
     "muted-warning": "Konten ini dibisukan oleh moderator {{community}} karena tidak mengikuti pedoman komunitas.",
     "lowrep-warning": "Penulis postingan ini memiliki reputasi rendah. Lanjutkan dengan hati hati.",
+    "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Salin alamat postingan",
     "address-copied": "Tempel alamat yang disalin ke papan klip.",
     "browse-original": "Tampilan tulisan asli",
@@ -303,6 +304,7 @@
     "order-votes": "Vote",
     "order-created": "Usia",
     "read-more": "...baca balasan lainnya...",
+    "reveal-muted": "Muted author - Reveal comment",
     "reveal": "Ungkapkan komentar"
   },
   "community": {
