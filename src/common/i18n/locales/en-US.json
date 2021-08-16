@@ -273,7 +273,7 @@
     "hidden-warning": "This content got low rating by people. Proceed with caution.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
     "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
-    "comments-hidden": "Some comments are hidden by default as they're from muted accounts. You can reveal them if you desire.",
+    "comments-hidden": "Author of this post muted.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
     "browse-original": "Open original post",
