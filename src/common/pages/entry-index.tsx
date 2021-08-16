@@ -35,6 +35,9 @@ import defaults from "../constants/defaults.json";
 import {appleSvg, desktopSvg, googleSvg} from "../img/svg";
 
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
+import { getRelationshipBetweenAccounts } from "../api/bridge";
+import { User } from "../store/users/types";
+import { getFollowers, getFollowing } from "../api/hive";
 
 interface State {
     step: number;
@@ -43,7 +46,7 @@ interface State {
 class EntryIndexPage extends Component<PageProps, State> {
 
     state:State = {
-        step: 1
+        step: 1,
     }
 
     componentDidMount() {

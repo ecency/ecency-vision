@@ -65,6 +65,7 @@ import {version} from "../../../package.json";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import defaults from "../constants/defaults.json";
+import { getFollowing } from "../api/hive";
 
 setProxyBase(defaults.imageServer);
 
@@ -84,6 +85,7 @@ interface State {
     showIfNsfw: boolean;
     editHistory: boolean;
     showProfileBox: boolean;
+    entryIsMuted: boolean
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -92,13 +94,15 @@ class EntryPage extends BaseComponent<Props, State> {
         replying: false,
         showIfNsfw: false,
         editHistory: false,
-        showProfileBox: false
+        showProfileBox: false,
+        entryIsMuted: false
     };
     
     viewElement: HTMLDivElement | undefined;
 
     componentDidMount() {
         this.ensureEntry();
+        this.fetchMutedUsers()
 
         const {location, global} = this.props;
         if (global.usePrivate && location.search === "?history") {
@@ -308,8 +312,23 @@ class EntryPage extends BaseComponent<Props, State> {
         this.ensureEntry();
     }
 
+    fetchMutedUsers = () => {
+        const { activeUser } = this.props;
+        const entry = this.getEntry()!;
+        if(activeUser && entry){
+            getFollowing(activeUser.username, "", "ignore", 100).then(r => {
+                if (r) {
+                    let filterList = r.map(user=>user.following);
+                    if(!this.state.entryIsMuted){
+                    this.setState({entryIsMuted: filterList.includes(entry.author) });
+                }
+                }
+            })
+        }
+    }
+
     render() {
-        const {loading, replying, showIfNsfw, editHistory} = this.state;
+        const {loading, replying, showIfNsfw, editHistory, entryIsMuted} = this.state;
         const {global, history} = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
@@ -357,6 +376,7 @@ class EntryPage extends BaseComponent<Props, State> {
         const isHidden = entry?.net_rshares < 0;
         const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
         const isLowReputation = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
+        const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry;
 
         //  Meta config
         const url = entryCanonical(entry) || "";
@@ -528,6 +548,10 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                                 {isLowReputation && (<div className="hidden-warning">
                                                     <span>{_t('entry.lowrep-warning')}</span>
+                                                </div>)}
+
+                                                {mightContainMutedComments && (<div className="hidden-warning">
+                                                    <span>{_t('entry.comments-hidden')}</span>
                                                 </div>)}
 
                                                 {isComment && (
@@ -752,7 +776,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                     {Discussion({
                                         ...this.props,
                                         parent: entry,
-                                        community
+                                        community,
+                                        setter: (val: boolean)=>{!this.state.entryIsMuted && this.setState({entryIsMuted:val})}
                                     })}
                                 </>
                             })()}
