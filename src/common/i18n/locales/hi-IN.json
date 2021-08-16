@@ -273,6 +273,7 @@
     "hidden-warning": "इस सामग्री को लोगों द्वारा कम रेटिंग मिली है। सावधानी के साथ आगे बढ़ें।",
     "muted-warning": "इस सामग्री को {{community}} मॉडरेटर द्वारा सामुदायिक दिशानिर्देशों का पालन न करने के कारण म्यूट कर दिया गया था।",
     "lowrep-warning": "इस पोस्ट के लेखक की प्रतिष्ठा कम है। सावधानी के साथ आगे बढ़ें।",
+    "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "पोस्ट पता कापी करे",
     "address-copied": "क्लिपबोर्ड पर पोस्ट पता कॉपी किया गया।",
     "browse-original": "मूल पोस्ट खोलें",
@@ -303,6 +304,7 @@
     "order-votes": "मत",
     "order-created": "उम्र",
     "read-more": "...और पढ़ें जवाब...",
+    "reveal-muted": "Muted author - Reveal comment",
     "reveal": "आलोचना प्रत्यक्ष करो"
   },
   "community": {
