@@ -29,7 +29,7 @@ import formattedNumber from "../../util/formatted-number";
 
 import {_t} from "../../i18n";
 
-import {peopleSvg, heartSvg} from "../../img/svg";
+import {heartSvg} from "../../img/svg";
 
 export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
     const totalPayout =
