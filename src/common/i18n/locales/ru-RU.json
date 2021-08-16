@@ -273,6 +273,7 @@
     "hidden-warning": "Этот контент получил низкий рейтинг со стороны людей. Будьте осторожны.",
     "muted-warning": "Этот контент был заблокирован модераторами {{community}} за несоблюдение правил сообщества.",
     "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
+    "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Скопировать адрес поста",
     "address-copied": "Адрес поста скопирован в буфер обмена.",
     "browse-original": "Открыть оригинальный пост",
@@ -303,6 +304,7 @@
     "order-votes": "Голоса",
     "order-created": "Возраст",
     "read-more": "...больше ответов...",
+    "reveal-muted": "Muted author - Reveal comment",
     "reveal": "Показать комментарий"
   },
   "community": {
