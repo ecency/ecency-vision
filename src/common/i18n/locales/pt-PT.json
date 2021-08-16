@@ -273,6 +273,7 @@
     "hidden-warning": "Este conteúdo foi mal avaliado pelas pessoas. Proceda com cautela.",
     "muted-warning": "Este conteúdo foi silenciado pelos moderadores da {{community}} por não seguir as diretrizes da comunidade.",
     "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
+    "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copiar endereço do post",
     "address-copied": "Endereço do post copiado.",
     "browse-original": "Abrir publicação original",
@@ -303,6 +304,7 @@
     "order-votes": "Votos",
     "order-created": "Idade",
     "read-more": "...ler mais respostas...",
+    "reveal-muted": "Muted author - Reveal comment",
     "reveal": "Revelar comentário"
   },
   "community": {
