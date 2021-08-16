@@ -376,7 +376,7 @@ class EntryPage extends BaseComponent<Props, State> {
         const isHidden = entry?.net_rshares < 0;
         const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
         const isLowReputation = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
-        const mightContainMutedComments = activeUser && entryIsMuted;
+        const mightContainMutedComments = activeUser && entryIsMuted && !isComment;
         debugger
 
         //  Meta config
@@ -778,7 +778,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                         ...this.props,
                                         parent: entry,
                                         community,
-                                        setter: (val: boolean)=>{debugger;!this.state.entryIsMuted && this.setState({entryIsMuted:val})}
+                                        setter: (val: boolean)=>{!this.state.entryIsMuted && this.setState({entryIsMuted:val})}
                                     })}
                                 </>
                             })()}

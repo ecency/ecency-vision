@@ -154,7 +154,7 @@ export class NavBar extends Component<Props, State> {
 
     scrollChanged = () => {
         clearTimeout(this.timer);
-        this.timer = setTimeout(this.detect, 100);
+        this.timer = setTimeout(this.detect, 10);
     }
 
     detect = () => {
@@ -163,12 +163,6 @@ export class NavBar extends Component<Props, State> {
 
         const limit = nav.clientHeight * 2;
         const floating = window.scrollY >= limit;
-
-        if (floating) {
-            nav.classList.add("can-float");
-        } else {
-            nav.classList.remove("can-float");
-        }
 
         this.setState({floating});
     }
@@ -220,7 +214,7 @@ export class NavBar extends Component<Props, State> {
         </div>
 
         return (
-            <div className={"position-relative sticky-container"}>
+            <div className={"sticky-container"} id='sticky-container'>
                 {floating && smVisible && (<div className="nav-bar-rep" />)}
                 <div className={`nav-bar-toggle ${"position-fixed"}`} onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
 
@@ -242,8 +236,8 @@ export class NavBar extends Component<Props, State> {
                     </div>
                     
                 {!smVisible && (
-                    <div className={`nav-bar ${(!transparentVerify && step === 1 ? "transparent" : "")}`}>
-                        <div className="nav-bar-inner">
+                    <div className={`nav-bar ${(!transparentVerify && step === 1 ? "transparent" : "")} `}>
+                        <div className={`nav-bar-inner ${(!transparentVerify && step === 1 ? "transparent" : "")}`}>
                             <div className="brand">
                                     {
                                         activeUser !== null ? (

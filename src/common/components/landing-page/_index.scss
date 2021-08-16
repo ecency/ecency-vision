@@ -3,9 +3,6 @@
   width: 100%;
   height: 100vh;
   z-index: 0;
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
   .top-bg {
     @include themify(day) {
       z-index: 1;
@@ -52,9 +49,6 @@
     pointer-events: none;
     width: 100%;
     height: 100%;
-    @media (max-width: $md-break) {
-      height: 1100px;
-    }
   }
   .text-container {
     z-index: 2;
