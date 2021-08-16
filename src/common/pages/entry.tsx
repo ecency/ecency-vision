@@ -404,7 +404,6 @@ class EntryPage extends BaseComponent<Props, State> {
         let entry = this.getEntry();
 
         if (!entry) {
-            debugger
 
             return NotFound({...this.props});
         }
