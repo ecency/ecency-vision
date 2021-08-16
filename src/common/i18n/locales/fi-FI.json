@@ -273,6 +273,7 @@
     "hidden-warning": "This content got low rating by people. Proceed with caution.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
     "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
+    "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Kopioi osoite",
     "address-copied": "Osoite kopioitu leikepöydälle.",
     "browse-original": "Näytä alkuperäinen julkaisu",
@@ -303,6 +304,7 @@
     "order-votes": "Äänet",
     "order-created": "Ikä",
     "read-more": "...lue lisää vastauksia...",
+    "reveal-muted": "Muted author - Reveal comment",
     "reveal": "Näytä kommentti"
   },
   "community": {
