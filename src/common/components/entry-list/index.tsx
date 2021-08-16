@@ -56,7 +56,7 @@ interface State {
 
 export class EntryListContent extends Component<Props, State> {
     state = {
-        data: []
+        data: [] as string[]
     }
 
     fetchMutedUsers = () => {
