@@ -81,7 +81,7 @@ export class EntryListContent extends Component<Props, State> {
         const {filter} = global;
         const {data} = this.state;
         let dataToRender = entries;
-        if((filter as ProfileFilter) !== ProfileFilter.posts && (filter as ProfileFilter) !== ProfileFilter.comments){
+        if((filter as ProfileFilter) !== ProfileFilter.posts && (filter as ProfileFilter) !== ProfileFilter.comments && (filter as ProfileFilter) !== ProfileFilter.blog && (filter as ProfileFilter) !== ProfileFilter.replies){
             dataToRender =  data.length > 0 ?  entries.filter(item=> !data.includes(item.author)) : entries ;
         }
          
