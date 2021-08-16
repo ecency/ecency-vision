@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {History, Location} from "history";
 
-import {Global} from "../../store/global/types";
+import {Global, ProfileFilter} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Entry} from "../../store/entries/types";
@@ -80,7 +80,10 @@ export class EntryListContent extends Component<Props, State> {
         const {entries, promotedEntries, global, activeUser, loading } = this.props;
         const {filter} = global;
         const {data} = this.state;
-        let dataToRender = data.length > 0 ? entries.filter(item=> !data.includes(item.author)) : entries;
+        let dataToRender = entries;
+        if((filter as ProfileFilter) !== ProfileFilter.posts && (filter as ProfileFilter) !== ProfileFilter.comments){
+            dataToRender =  data.length > 0 ?  entries.filter(item=> !data.includes(item.author)) : entries ;
+        }
          
         return  dataToRender.length > 0 ? (
               <>
