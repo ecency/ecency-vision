@@ -273,6 +273,7 @@
     "hidden-warning": "This content got low rating by people. Proceed with caution.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
     "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
+    "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
     "browse-original": "Open original post",
@@ -303,6 +304,7 @@
     "order-votes": "Glasovi",
     "order-created": "Starost",
     "read-more": "...pročitajte još odgovora...",
+    "reveal-muted": "Muted author - Reveal comment",
     "reveal": "Prikaži komentar"
   },
   "community": {
