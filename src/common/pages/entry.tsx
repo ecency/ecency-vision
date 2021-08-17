@@ -65,13 +65,10 @@ import {version} from "../../../package.json";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import defaults from "../constants/defaults.json";
-<<<<<<< HEAD
 import EntryDeleteBtn from "../components/entry-delete-btn";
 import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
 import { history } from "../store";
-=======
 import { getFollowing } from "../api/hive";
->>>>>>> 3126f25fbffea3fe16bc18cf180bfea521e95f77
 
 setProxyBase(defaults.imageServer);
 
@@ -93,11 +90,8 @@ interface State {
     editHistory: boolean;
     edit: boolean;
     showProfileBox: boolean;
-<<<<<<< HEAD
     comment: string;
-=======
     entryIsMuted: boolean
->>>>>>> 3126f25fbffea3fe16bc18cf180bfea521e95f77
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -106,26 +100,19 @@ class EntryPage extends BaseComponent<Props, State> {
         replying: false,
         showIfNsfw: false,
         editHistory: false,
-<<<<<<< HEAD
         edit: false,
         showProfileBox: false,
         comment: "",
-        currentEntry: undefined
-=======
-        showProfileBox: false,
+        currentEntry: undefined,
         entryIsMuted: false
->>>>>>> 3126f25fbffea3fe16bc18cf180bfea521e95f77
     };
     
     viewElement: HTMLDivElement | undefined;
 
     componentDidMount() {
         this.ensureEntry();
-<<<<<<< HEAD
         let entry = this.getEntry();
-=======
         this.fetchMutedUsers()
->>>>>>> 3126f25fbffea3fe16bc18cf180bfea521e95f77
 
         const {location, global} = this.props;
         if (global.usePrivate && location.search === "?history") {
@@ -351,7 +338,6 @@ class EntryPage extends BaseComponent<Props, State> {
         this.ensureEntry();
     }
 
-<<<<<<< HEAD
     updateReply = (text: string) => {
         const entry = this.getEntry();
         const {activeUser, updateReply} = this.props;
@@ -404,11 +390,6 @@ class EntryPage extends BaseComponent<Props, State> {
         ls.set(`deletedComment`,entry?.post_id);
         history?.goBack();
     }
-
-    render() {
-        const { loading, replying, showIfNsfw, editHistory, edit, comment } = this.state;
-        const { global, history } = this.props;
-=======
     fetchMutedUsers = () => {
         const { activeUser } = this.props;
         const entry = this.getEntry()!;
@@ -425,9 +406,8 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfNsfw, editHistory, entryIsMuted} = this.state;
-        const {global, history} = this.props;
->>>>>>> 3126f25fbffea3fe16bc18cf180bfea521e95f77
+        const { loading, replying, showIfNsfw, editHistory, edit, comment, entryIsMuted } = this.state;
+        const { global, history } = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
