@@ -110,14 +110,21 @@ export default (state: Global = initialState, action: Actions): Global => {
 /* Actions */
 export const toggleTheme = () => (dispatch: Dispatch, getState: () => AppState) => {
     const {global} = getState();
-
-    const {theme} = global;
+    
+    const {theme, isMobile} = global;
     const newTheme = theme === Theme.day ? Theme.night : Theme.day;
 
     ls.set("theme", newTheme);
     Cookies.set("theme", newTheme);
 
     dispatch(themeChangeAct(newTheme));
+    if(isMobile) {
+        let body: any = document.getElementsByTagName('body');
+        if (!body) return;
+        body = body[0];
+        body.classList.remove(`theme-${theme}`);
+        body.classList.add(`theme-${newTheme}`);
+    }
 };
 
 export const toggleListStyle = () => (dispatch: Dispatch, getState: () => AppState) => {

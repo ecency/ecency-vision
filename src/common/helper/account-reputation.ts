@@ -1,5 +1,5 @@
 const isHumanReadable = (input: number): boolean => {
-    return input > 0 && input <= 100;
+    return Math.abs(input) > 0 && Math.abs(input) <= 100;
 }
 
 export default (input: string | number): number => {

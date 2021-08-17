@@ -35,6 +35,9 @@ import defaults from "../constants/defaults.json";
 import {appleSvg, desktopSvg, googleSvg} from "../img/svg";
 
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
+import { getRelationshipBetweenAccounts } from "../api/bridge";
+import { User } from "../store/users/types";
+import { getFollowers, getFollowing } from "../api/hive";
 
 interface State {
     step: number;
@@ -43,7 +46,7 @@ interface State {
 class EntryIndexPage extends Component<PageProps, State> {
 
     state:State = {
-        step: 1
+        step: 1,
     }
 
     componentDidMount() {
@@ -148,6 +151,8 @@ class EntryIndexPage extends Component<PageProps, State> {
         || location?.pathname?.startsWith("/hot")
         || location?.pathname?.startsWith("/created")
         || location?.pathname?.startsWith("/trending")
+        || location?.pathname?.startsWith("/payout")
+        || location?.pathname?.startsWith("/payout_comments")
     
 
         return (
@@ -162,7 +167,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                         reloadFn: this.reload,
                         reloading: loading,
                     }) :
-                    NavBar({...this.props, step:this.state.step, setStepOne:this.changeStepOne})}
+                    NavBar({...this.props, step:this.state.step, setStepOne:this.changeStepOne, setStepTwo: this.changeStepTwo})}
                 {
                     this.state.step === 1  &&
                     activeUser === null &&
@@ -185,7 +190,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                             {loading && entryList.length === 0 ? <LinearProgress/> : ""}
                             <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                                 <div className={_c(`entry-list-body limited-area ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
-                                    {loading && entryList.length === 0 && <EntryListLoadingItem/>}
+                                    {loading && entryList.length === 0 && <EntryListLoadingItem />}
                                     {EntryListContent({...this.props, entries: entryList, promotedEntries: promoted, loading})}
                                 </div>
                             </div>

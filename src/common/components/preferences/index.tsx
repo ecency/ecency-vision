@@ -96,7 +96,6 @@ export class Preferences extends BaseComponent<Props, State> {
         document.execCommand('copy');
         textField.remove();
         success(_t('profile-edit.copied'));
-
     }
 
     render() {

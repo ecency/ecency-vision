@@ -15,6 +15,7 @@ export enum EntryFilter {
     hot = "hot",
     created = "created",
     payout = "payout",
+    payout_comments = "payout_comments",
     muted = "muted"
 }
 
@@ -31,6 +32,7 @@ export enum AllFilter {
     hot = "hot",
     created = "created",
     payout = "payout",
+    payout_comments = "payout_comments",
     muted = "muted",  // To see muted accounts
     blog = "blog",  // This might be deleted
     posts = "posts",

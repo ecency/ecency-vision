@@ -54,6 +54,7 @@ import {commentSvg, pencilOutlineSvg, deleteForeverSvg} from "../../img/svg";
 
 import {version} from "../../../../package.json";
 import accountReputation from '../../helper/account-reputation';
+import { getFollowing } from "../../api/hive";
 
 
 interface ItemBodyProps {
@@ -95,6 +96,7 @@ interface ItemProps {
     addReply: (reply: Entry) => void;
     deleteReply: (reply: Entry) => void;
     toggleUIProp: (what: ToggleType) => void;
+    setter?: (what: boolean) => void;
 }
 
 interface ItemState {
@@ -102,6 +104,7 @@ interface ItemState {
     edit: boolean;
     inProgress: boolean;
     showIfHidden: boolean;
+    mutedData: string[]
 }
 
 export class Item extends BaseComponent<ItemProps, ItemState> {
@@ -109,7 +112,12 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         reply: false,
         edit: false,
         inProgress: false,
-        showIfHidden: false
+        showIfHidden: false,
+        mutedData: []
+    }
+
+    componentDidMount(){
+        this.fetchMutedUsers()
     }
 
     afterVote = (votes: EntryVote[], estimated: number) => {
@@ -253,9 +261,22 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         deleteReply(entry);
     }
 
+    fetchMutedUsers = () => {
+        const { activeUser, entry, setter } = this.props;
+        if(activeUser){
+            getFollowing(activeUser.username, "", "ignore", 100).then(r => {
+                if (r) {
+                    let filterList = r.map(user=>user.following);
+                    this.setState({mutedData: filterList });
+                    setter && setter(filterList.includes(entry.author))
+                }
+            })
+        }
+    }
+
     render() {
-        const {entry, activeUser, community, location} = this.props;
-        const {reply, edit, inProgress, showIfHidden} = this.state;
+        const { entry, activeUser, community, location } = this.props;
+        const { reply, edit, inProgress, showIfHidden, mutedData } = this.state;
 
         const created = moment(parseDate(entry.created));
         const reputation = accountReputation(entry.author_reputation);
@@ -268,7 +289,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                 [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
         }) : false;
 
-        const isHidden = !!entry.stats?.gray && !showIfHidden;
+        let isHidden = (!!entry.stats?.gray && !showIfHidden) || (activeUser && mutedData.includes(entry.author) && !showIfHidden);
 
         const anchorId = `anchor-@${entry.author}/${entry.permlink}`;
 
@@ -464,6 +485,7 @@ interface Props {
     addReply: (reply: Entry) => void;
     deleteReply: (reply: Entry) => void;
     toggleUIProp: (what: ToggleType) => void;
+    setter?: (what: boolean) => void;
 }
 
 interface State {
@@ -607,7 +629,8 @@ export default (p: Props) => {
         updateReply: p.updateReply,
         addReply: p.addReply,
         deleteReply: p.deleteReply,
-        toggleUIProp: p.toggleUIProp
+        toggleUIProp: p.toggleUIProp,
+        setter: p.setter
     }
 
     return <Discussion {...props} />;

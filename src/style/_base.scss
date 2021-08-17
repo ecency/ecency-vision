@@ -97,6 +97,7 @@ a[target="_blank"] {
 .app-content {
   padding: 0 10px;
   margin: 0 auto 30px auto;
+  margin-top: 6rem;;
   display: flex;
   max-width: 1600px;
 
@@ -199,7 +200,7 @@ a[target="_blank"] {
 // Additional libraries
 
 // Chart lib
-@import "~chartist/dist/scss/chartist";
+@import "chartist/dist/scss/chartist";
 
 // Date picker
 @import "~react-datetime/css/react-datetime.css";

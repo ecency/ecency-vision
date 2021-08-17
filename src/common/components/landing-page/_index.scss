@@ -1,50 +1,44 @@
 .landing-wrapper {
   position: relative;
   width: 100%;
-  height: 1100px;
-  margin-top: -200px;
+  height: 100vh;
   z-index: 0;
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
   .top-bg {
     @include themify(day) {
+      z-index: 1;
       background: rgb(255, 255, 255);
       background: -o-linear-gradient(
         top,
-        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 0%,
         rgba(124, 190, 241, 1) 100%
       );
       background: -webkit-gradient(
         linear,
         left top, left bottom,
-        from(rgba(255, 255, 255, 1)),
+        from(rgba(255, 255, 255, 0)),
         to(rgba(124, 190, 241, 1))
       );
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(124, 190, 241, 1) 100%
-      );
+      background: linear-gradient(180deg, #ffffff6b 0%, #7cbef1 100%);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#7cbef1",GradientType=1);
     }
     @include themify(night) {
+      z-index: 0;
       background: rgb(166, 172, 175);
       background: -o-linear-gradient(
         top,
         rgba(166, 172, 175, 1) 0%,
-        rgba(23, 40, 61, 1) 100%
+        #131a29 100%
       );
       background: -webkit-gradient(
         linear,
         left top, left bottom,
         from(rgba(166, 172, 175, 1)),
-        to(rgba(23, 40, 61, 1))
+        to(#131a29)
       );
       background: linear-gradient(
         180deg,
         rgba(166, 172, 175, 1) 0%,
-        rgba(23, 40, 61, 1) 100%
+        #131a29 100%
       );
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#a6acaf",endColorstr="#17283d",GradientType=1);
     }
@@ -54,10 +48,10 @@
     right: 0;
     pointer-events: none;
     width: 100%;
-    height: 1100px;
-    @media (max-width: $md-break) {
-      height: 1100px;
-    }
+    height: 100%;
+  }
+  .text-container {
+    z-index: 2;
   }
   .tob-bg-illustration-dark {
     @include themify(night) {
@@ -125,6 +119,7 @@
   }
   .tob-bg-fishes {
     display: none;
+    z-index: 1;
     @include themify(night) {
       background-image: url("https://ecency.com/assets/hero-fishes-dark.png");
     }
@@ -160,7 +155,7 @@
     }
 
     @include themify(night) {
-      color: $white;
+      color: $pinkish-grey;
     }
   }
   h2 {
@@ -176,13 +171,17 @@
       color: $dark-sky-blue;
     }
     @include themify(night) {
-      color: $white;
+      color: $pinkish-grey;
     }
   }
   p {
     font-weight: 300;
     font-size: 24px;
     line-height: 135%;
+    margin-bottom: 8px;
+    @include themify(night) {
+      color: $dark-grey;
+    }
     @media (max-width: $md-break) {
       font-weight: 300;
       font-size: 15px;
@@ -225,15 +224,20 @@
     position: relative;
   }
   .first-section {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
     @include themify(day) {
       color: $dark-sky-blue;
+      background-image: url('https://ecency.com/assets/illustration-hero-day.webp');
     }
     @include themify(night) {
-      color: $white;
-    }
-    @media (max-width: $md-break) {
-      margin-top: -400px;
-    }
+    background-image: url('https://ecency.com/assets/illustration-hero.webp');
+    color: $pinkish-grey;
+  }
+  @media (max-width: $lg-break) {
+    background-image: none !important;
+  }
 
     p {
       font-weight: 300;
@@ -247,7 +251,7 @@
       @media (max-width: $md-break) {
         font-size: 18px;
         display: block;
-        line-height: 140%;
+        line-height: 27px;
         &:last-child {
           padding-left: 0;
           line-height: 70%;
@@ -282,12 +286,20 @@
       outline: none;
       animation: bounce 0.7s infinite alternate;
       -webkit-animation: bounce 0.7s infinite alternate;
+      left: 48%;
+      @media (max-width: $sm-break) {
+        left: 44%
+      }
     }
   }
 
   .part-top {
     height: 650px;
     width: 100%;
+    padding-bottom: 75px;
+    @media (max-width: $md-break) {
+      padding-bottom: 0px;
+    }
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -314,9 +326,9 @@
       flex-direction: row;
       max-width: 1200px;
       width: 100%;
-      -webkit-box-pack: start;
-      -ms-flex-pack: start;
-      justify-content: flex-start;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
@@ -349,13 +361,12 @@
           -webkit-box-pack: start;
           -ms-flex-pack: start;
           justify-content: flex-start;
-          margin: auto;
           width: auto;
           height: 200px;
         }
       }
       .text-group {
-        width: 50%;
+        width: 52%;
         height: 100%;
         max-width: 455px;
         max-height: 300px;
@@ -415,7 +426,7 @@
       background-color: $faded-blue;
     }
     @media (max-width: $lg-break) {
-      height: 700px;
+      height: 700px !important;
     }
     .inner {
       display: -webkit-box;
@@ -433,7 +444,6 @@
       .text-group {
         width: 50%;
         height: 100%;
-        max-width: 455px;
         max-height: 300px;
         display: -webkit-box;
         display: -ms-flexbox;
@@ -454,6 +464,11 @@
           width: 30%;
           p {
             line-height: 140%;
+            max-width: 84%;
+            @media (max-width: $md-break) {
+              max-width: 100%;
+              line-height: 27px;
+            }
           }
         }
         @media (max-width: $md-break) {
@@ -472,34 +487,83 @@
   }
 
   .second-section {
+    .part-bottom h2 {
+      @media (max-width: $sm-break) {
+        margin-top: -7rem;
+      }
+      @include themify(night) {
+        color: $pinkish-grey;
+      }
+    }
+    p {
+      @include themify(night) {
+        color: $dark-grey;
+      }
+    }
     height: auto;
     .part-top {
       height: auto;
+      @media (max-width: $sm-break) {
+        height: 45rem;
+      }
       .inner > img {
         max-height: 330px;
+        @media (min-width: $lg-break) {
+          width: 372px !important;
+          height: 442px !important;
+          max-height: unset;
+        }
       }
       @include themify(night) {
         background-color: #131a29;
       }
+      .inner {
+        @media (max-width: $md-break) {
+          flex-direction: column;
+          .text-group {
+            margin-left: 0 !important;
+            text-align: center !important;
+            align-items: center !important;
+            h2 {
+              margin-top: 1rem;
+            }
+          }
+        }
+      }
       .inner > .text-group {
-        max-height: 234px;
         @media (min-width: $sm-break) {
           -webkit-box-align: start;
           -ms-flex-align: start;
           align-items: flex-start;
           width: 400px;
           text-align: start;
+          margin: 0px;
+          margin-left: 2rem;
+        }
+        @media (min-width: $sm-break) {
+          p {
+            width: 75%
+          }
         }
         @media (min-width: $md-break) {
-          width: auto;
+          p {
+            width: 100%
+          }
         }
         @media (max-width: $md-break) {
-          margin: 2rem 1rem 4rem 1rem !important;
           height: auto !important;
           max-height: unset;
           img {
             margin-top: 4rem;
           }
+        }
+        @media (min-width: $lg-break) {
+          margin: 0;
+          margin-left: 2rem;
+        }
+        @media (max-width: $md-break) {
+          margin: 0;
+          margin-left: 59px;
         }
       }
       @media (max-width: $sm-break) {
@@ -513,11 +577,20 @@
     }
     .part-bottom {
       height: auto;
+
+      @media (max-width: $lg-break) and (min-width: $md-break) {
+        min-height: 600px;
+        .landing-floating-image {
+          margin: -32rem 0 0 0 !important;
+          width: 499px !important;
+          height: 389px !important;
+        }
+      }
       .inner {
         height: auto;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
+        -webkit-box-pack: space-evenly;
+            -ms-flex-pack: space-evenly;
+                justify-content: space-evenly;
         .text-group {
           width: 45%;
           margin-top: 4rem;
@@ -530,10 +603,14 @@
           width: 50%;
           height: 100%;
           .landing-floating-image {
-            width: 500px;
-            height: 550px;
+            width: 577px;
+            height: 445px;
             margin-top: -10rem;
             margin-right: -5rem;
+            @media (max-width: $md-break) {
+              width: 342px;
+              height: 264px;
+            }
           }
         }
         @media (min-width: $md-break) {
@@ -544,7 +621,7 @@
           -ms-flex-direction: row;
           flex-direction: row;
           .text-group {
-            width: 45%;
+            width: 38%;
             height: auto;
             margin: 4rem 1rem;
             -webkit-box-pack: start;
@@ -569,8 +646,6 @@
             -ms-flex-pack: center;
             justify-content: center;
             .landing-floating-image {
-              max-height: 70%;
-              max-width: 70%;
               margin: -10rem 0 0 0;
             }
           }
@@ -602,7 +677,7 @@
             .landing-floating-image {
               width: 300px;
               height: 350px;
-              margin: -4rem 0 0 0;
+              margin: -2rem 0 0 0;
             }
           }
         }
@@ -612,6 +687,7 @@
             margin-top: 0;
             margin-bottom: -3rem;
             padding: 0 1rem;
+            max-height: 220px;
             -webkit-box-pack: start !important;
                 -ms-flex-pack: start !important;
                     justify-content: flex-start !important;
@@ -619,7 +695,7 @@
           .image-wrapper {
             height: 400px;
             .landing-floating-image {
-              margin: -10rem 0 0 0;
+              margin: -19rem 0 0 0;
               max-width: 80%;
               max-height: 90%;
             }
@@ -637,11 +713,18 @@
       }
       height: auto;
 
+      @media (max-width: $sm-break) {
+        height: 45rem !important;
+      }
+
       .inner > .img-wrapper {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
         width: 44%;
+        @media (max-width: $md-break) {
+          width: 40%;
+        }
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
@@ -659,7 +742,7 @@
         }
       }
       .inner > .text-group {
-        width: 50%;
+        width: 52%;
         margin: 0 1rem !important;
         -webkit-box-align: start;
             -ms-flex-align: start;
@@ -717,7 +800,7 @@
             .decentralization-img {
               max-height: 270px;
               height: auto;
-              width: 70%;
+              width: 80%;
             }
           }
           .text-group {
@@ -730,14 +813,21 @@
       width: 100%;
       height: auto;
       min-height: 400px;
+      @media (max-width: $md-break) and (min-width: $sm-break) {
+        min-height: 600px;
+      }
       .inner {
         width: 100%;
         height: auto;
         margin-bottom: 4rem;
         margin-top: 4rem;
+        @media (max-width: $md-break) {
+          margin-bottom: 0px;
+          margin-top: 0px;
+        }
         -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
         .text-group {
           max-width: 45%;
           padding: 1rem;
@@ -767,12 +857,16 @@
           -ms-flex-pack: center;
           justify-content: center;
           .mechanic {
-            width: 90%;
-            max-width: 340px !important;
-            height: auto;
-            max-height: 250px;
+            width: 571px;
+            height: 460px;
             margin: 0;
             margin-top: -240px;
+            @media (max-width: $md-break) {
+              width: 327px;
+              height: 263px;
+              margin: 0;
+              margin-top: -160px;
+            }
           }
         }
         @media (max-width: 766px) {
@@ -807,26 +901,26 @@
               margin-top: 2rem;
               width: 90%;
               height: auto;
+              max-width: 340px !important;
+              max-height: 250px;
             }
           }
         }
       }
       @media (max-width: $sm-break) {
-        height: 630px;
+        height: 369px;
         .inner {
           .text-group {
             p {
               line-height: 25px;
               font-size: 15px;
-              span {
-              }
             }
           }
           .img-wrapper {
             width: 100%;
             .mechanic {
-              margin-top: 2rem;
-              width: 60%;
+              margin-top: -9rem;
+              width: 74%;
               height: auto;
             }
           }
@@ -836,13 +930,15 @@
   }
 
   .fourth-section {
-    height: 2080px;
+    height: auto;
+
+    @media (min-width: $md-break) {
+      justify-content: flex-end;
+    }
     .part-top {
       height: 940px;
       @include themify(night) {
-        background: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-        background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5)));
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+        background-color: #161D26;
       }
       .inner {
         display: -webkit-box;
@@ -1015,17 +1111,17 @@
         }
       }
       @media (max-width: $lg-break) {
-        height: 400px;
+        height: 600px;
       }
     }
     .part-bottom {
       height: 1140px;
       overflow: hidden;
       @include themify(night) {
-        background: rgb(23,30,38);
-        background: -o-linear-gradient(273deg, rgba(23,30,38,1) 0%, rgb(105, 117, 133) 100%);
-        background: linear-gradient(177deg, rgba(23,30,38,1) 0%, rgb(105, 117, 133) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#171e26",endColorstr="#474d54",GradientType=1);  
+        background: #161d26;
+        background: -o-linear-gradient(180deg, #161d26 0%, #4d5356 100%);
+        background: linear-gradient(180deg, #161d26 0%, #4d5356 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#161d26",endColorstr="#4d5356",GradientType=1);
       }
       @include themify(day) {
         background: rgb(196,219,235);
@@ -1136,7 +1232,7 @@
           height: 450px;
           width: auto;
           padding: 3rem 1rem;
-          left: 50px;
+          left: 130px;
         }
         @media (max-width: 766px) {
           display: none !important;
@@ -1184,7 +1280,13 @@
           background: rgb(23,30,38);
           background: -o-linear-gradient(273deg, rgba(23,30,38,1) 0%, rgba(71,77,84,1) 100%);
           background: linear-gradient(177deg, rgba(23,30,38,1) 0%, rgba(71,77,84,1) 100%);
-          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#171e26",endColorstr="#474d54",GradientType=1);        
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#171e26",endColorstr="#474d54",GradientType=1); 
+          
+          @media (max-width: $sm-break) {
+            background: -o-linear-gradient(180deg, #A6ACAF 0%, #17283D 100%);
+            background: linear-gradient(180deg, #A6ACAF 0%, #17283D 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#A6ACAF",endColorstr="#17283D",GradientType=1);  
+            }       
         }
         @include themify(day) {
           background: rgb(196,219,235);
@@ -1204,9 +1306,17 @@
           height: 154px;
           @include themify(night) {
             background-image: url("https://ecency.com/assets/download-algae-dark.png");
+            background-position-y: bottom;
+            background-repeat: no-repeat;
+            background-position-x: center;
+            background-size: cover;
           }
           @include themify(day) {
             background-image: url("https://ecency.com/assets/download-algae.png");
+            background-position-y: bottom;
+            background-repeat: no-repeat;
+            background-position-x: center;
+            background-size: cover;
           }
         }
       }
@@ -1228,13 +1338,19 @@
         height: 719px;
         z-index: 2;
         .text-group {
+
+          @media (min-width: 992px) and (max-width: 1186px) {
+            position: relative;
+            left: 94px;
+          }
+
           margin: 0;
-          width: 50%;
+          width: 58%;
           max-width: 756px;
           z-index: 2;
           h2 {
             @include themify(night) {
-              color: $white;
+              color: $pinkish-grey;
             }
             @include themify(day) {
               color: $blue;
@@ -1249,7 +1365,7 @@
             align-items: center;
             line-height: 2;
             @include themify(night) {
-              color: $white;
+              color: $dark-grey;
             }
             @include themify(day) {
               color: $blue;
@@ -1272,7 +1388,7 @@
             align-items: center;
             line-height: 2;
             @include themify(night) {
-              color: $white;
+              color: $dark-grey;
             }
             @include themify(day) {
               color: $blue;
@@ -1386,19 +1502,17 @@
         }
       }
     }
-
-    @media (max-width: $lg-break) {
-      height: 800px;
-    }
   }
 
   .fifth-section {
+    @include themify(day){
+      margin-top: 9rem;
+    }
     .part-top {
       @include themify(night) {
-        background-color: #202834;
+        background-color: #171e26;
         z-index: 1;
       }
-
       .inner {
         width: 100%;
         -ms-flex-wrap: nowrap;
@@ -1423,26 +1537,49 @@
     .part-bottom {
       @include themify(night) {
         z-index: 1;
-        background-color: #131a29;
+        background-color: #202834;
       }
       .inner {
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
+
+        @media (max-width: $md-break) {
+          justify-content: space-evenly;
+        }
         -webkit-box-align: center;
             -ms-flex-align: center;
                 align-items: center;
+        h2 {
+          @include themify(night) {
+            color: $pinkish-grey;
+          }
+        }
+        p {
+          @include themify(night) {
+            color: $dark-grey;
+          }
+          b {
+            font-weight: 700;
+          }
+        }
         .our-vision {
-          height: auto;
-          width: 280px;
-          max-width: 80%;
+          width: 368px;
+          height: 425px;
           margin: 1rem ;
           padding-left: 1rem;
+          margin-top: -52px;
+
+          @media (max-width: $md-break) {
+            padding-left: 0rem;
+            width: 202px;
+            height: 245px;
+          }
         }
         .text-group {
           max-width: unset;
           margin-right: 0;
-          width: 45%;
+          width: 55%;
           max-height: unset;
           -webkit-box-align: start;
               -ms-flex-align: start;
@@ -1450,12 +1587,15 @@
           text-align: start;
           height: 100%;
           margin-right: 2rem;
+          @media (max-width: $sm-break) {
+            margin-top: 1rem !important;
+          }
         }
       }
     }
 
     @media (max-width: 766px) {
-      height: 1800px;
+      height: 1395px;
       margin: 0;
       -ms-flex-pack: distribute;
       justify-content: space-around;
@@ -1471,10 +1611,14 @@
           flex-direction: column-reverse;
           -ms-flex-pack: distribute;
           justify-content: space-around;
+          @media (max-width: $md-break)  {
+            height: auto;
+          }
+
           .text-group {
             width: 100%;
             max-width: unset;
-            margin: 2rem 1rem 22rem;
+            margin: 2rem 1rem;
             padding: 1rem;
             height: auto;
             max-width: unset;
@@ -1484,13 +1628,22 @@
                 -ms-flex-align: center;
                     align-items: center;
             text-align: center;
+            @media (max-width: $sm-break) {
+              margin: 2rem 1rem 22rem;
+            }
             
           }
           .our-history {
             width: 250px;
-            margin-top: 13rem;
-            max-width: 90%;
+            margin-top: 17rem;
             height: auto;
+            @media (max-width: $sm-break) {
+              width: 100%;
+            }
+            @media (max-width: $md-break) and (min-width: $sm-break){
+              width: 70%;
+              margin-top: 2rem;
+            }
           }
         }
       }
@@ -1520,6 +1673,18 @@
                     align-items: center;
             text-align: center;            
           }
+
+          @media (max-width: $md-break) and (min-width: $sm-break) {
+            height: 100%;
+            .our-vision {
+              margin: 0;
+              margin-top: 3rem;
+            }
+            .text-group {
+              margin: 0;
+              margin-top: 2rem;     
+            }
+          }
         }
       }
     }
@@ -1530,6 +1695,7 @@
         .inner {
           height: 800px;
           .text-group {
+            margin-top: 2rem;
             p:first-of-type {
               margin-top: 0;
             }
@@ -1537,17 +1703,34 @@
         }
       }
       .part-bottom > .inner > .our-vision {
-        width: 50%;
-        margin-top: -23rem;
+        width: 27%;
+        margin: 0;
+        margin-top: -27rem;
+        @media (max-width: 375px) {
+          width: 50% !important;
+        }
+        @media (max-width: 420px) and (min-width:375px) {
+          width: 35%;
+        }
       }
       .part-bottom {
         height: 500px;
+        @media (max-width: $sm-break) {
+          margin-top: 10rem;;
+        }
       }
     }
   }
 
   .sixth-section {
     height: auto;
+    margin-top: 9rem;
+    @include themify(night) {
+      background-color: #171e26;
+    }
+    @include themify(day) {
+      background-color: $white
+    }
     .part-top {
       height: 750px;
       .inner {
@@ -1557,7 +1740,7 @@
         height: 100%;
         .text-group {
           margin: 1rem;
-          width: 45%;
+          width: 33%;
           height: 80%;
           max-height: unset;
           h2 {
@@ -1702,8 +1885,8 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        width: 500px;
-        height: 600px;
+        width: 484px;
+        height: 575px;
       }
       .inner {
         -webkit-box-pack: center;
@@ -1726,7 +1909,12 @@
         p {
           font-size: 18px;
           line-height: 27px;
-          color: $white;
+          @include themify(night) {
+            color: $dark-grey;
+          }
+          @include themify(day) {
+            color: $white;
+          }
           margin: 0;
           cursor: pointer;
         }
@@ -1782,12 +1970,20 @@
             -webkit-box-direction: normal;
             -ms-flex-direction: column;
             flex-direction: column;
+            p{
+              @include themify(night) {
+                color: $pinkish-grey;
+              }
+              @include themify(day) {
+                color: $white;
+              }
+            }
             h2 {
               font-weight: bold;
               font-size: 43px;
               line-height: 51px;
               @include themify(night) {
-                color: $white;
+                color: $pinkish-grey;
               }
               @include themify(day) {
                 color: $blue;
@@ -1862,8 +2058,6 @@
             }
             .socials {
               margin: 1rem 0;
-              p {
-              }
               ul {
                 margin: 1rem 0;
                 padding: 0;
@@ -1886,7 +2080,7 @@
         }
         .site-icon {
           position: absolute;
-          bottom: 70px;
+          bottom: 15px;
           right: 0;
           left: 0;
           height: 95px;
@@ -2004,11 +2198,17 @@
           .text-group {
             -webkit-box-align: center;
             -ms-flex-align: center;
-            align-items: center;
+            align-items: flex-start;
             margin-right: 0;
-            height: 70%;
+            height: 55%;
             h2 {
               text-align: start;
+              @include themify(night) {
+                color: $pinkish-grey;
+              }
+              @include themify(day) {
+                color: $white;
+              }
             }
             ul {
               width: 155px;
@@ -2055,20 +2255,17 @@
             }
           }
           .image-container {
-            height: 70%;
+            height: 50%;
             display: -webkit-box;
             display: -ms-flexbox;
             display: flex;
             -webkit-box-orient: vertical;
             -webkit-box-direction: normal;
-            -ms-flex-direction: column;
-            flex-direction: column;
             -webkit-box-align: center;
             -ms-flex-align: center;
             align-items: center;
             -ms-flex-pack: distribute;
-            justify-content: space-around;
-            width: 43%;
+            width: 50%;
             margin: 0 0.5rem 0 0;
             img {
               -ms-grid-column-align: center;
@@ -2116,8 +2313,6 @@
             .subscribe-form {
               width: 100%;
               height: auto;
-              h2 {
-              }
               form {
                 width: 97%;
                 input {
@@ -2160,6 +2355,8 @@
         }
         .inner > .image-container {
           height: 340px;
+          flex-direction: column;
+          justify-content: space-around;
         }
         .inner > .image-container > .junior {
           height: 82px !important;
@@ -2175,11 +2372,15 @@
           font-weight: 800;
           font-size: 31px;
           line-height: 37px;
+          @include themify(night) {
+            color: $pinkish-grey;
+          }
         }
+
         .main-fish {
           right: -114px;
-          width: 385px;
-          height: 550px;
+          width: 330px;
+          height: 440px;
         }
       }
     }
@@ -2205,4 +2406,8 @@
       transform: translateY(-15px);
     }
   }
+}
+
+.w-88 {
+  width: 88%;
 }

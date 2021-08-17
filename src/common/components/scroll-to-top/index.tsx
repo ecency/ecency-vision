@@ -27,10 +27,13 @@ export default class ScrollToTop extends Component {
 
     scrollChanged = () => {
         clearTimeout(this.timer);
-        this.timer = setTimeout(this.detect, 200);
+        this.timer = setTimeout(this.detect, 5);
     }
 
     detect = () => {
+        let navbar = document.getElementById("sticky-container");
+        let landingWrapper = document.getElementById("landing-wrapper");
+
         if (!this.button.current) {
             return;
         }

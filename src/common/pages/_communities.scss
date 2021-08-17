@@ -85,6 +85,7 @@
 
     .fee, .creator {
       font-weight: 500;
+      color: $dark-sky-blue !important;
     }
 
     .password {
@@ -115,5 +116,173 @@
 .community-key-modal {
   .modal-body {
     padding-top: 30px;
+  }
+}
+
+.community-title {
+  font-weight: 700;
+  font-size: 59px;
+  color: $black;
+  line-height: 68px;
+
+  @include themify(night) {
+    color: $white;
+  }
+
+  @media (max-width: $lg-break) {
+    font-size: 46px;
+    line-height: 59px;
+  }
+
+  @media (max-width: $sm-break) {
+    font-size: 31px;
+    line-height: 37px;
+  }
+}
+
+.descriptive-list {
+  color: $dark-sky-blue;
+  font-weight: 300;
+  font-size: 24px;
+
+  li {
+    line-height: 50.4px;
+
+    @media (max-width: $lg-break) {
+      line-height: 38px;
+    }
+
+    @media (max-width: $sm-break) {
+      font-size: 18px;
+      line-height: 25px;
+    }
+  }
+
+  @include themify(night) {
+    color: $warm-grey;
+  }
+
+  @media (max-width: $lg-break) {
+    font-size: 21px;
+    line-height: 31px;
+  }
+
+}
+
+.learn-more {
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 27px;
+
+  a {
+    color: $dark-sky-blue;
+  }
+
+  @include themify(night) {
+    color: $warm-grey;
+  }
+
+  @media (max-width: $lg-break) {
+    font-size: 16px;
+  }
+
+  @media (max-width: $sm-break) {
+    font-size: 15px;
+    line-height: 25px;
+  }
+
+}
+
+.community-form {
+
+  input {
+    padding: 1.675rem 0.75rem !important;
+    font-size: 18px !important;
+    background-color: $light-powder-blue !important;
+
+    @include themify(night) {
+      background-color: $transparent !important;
+      color: $warm-grey !important;
+      border-color: $dark-three !important;
+    }
+
+    &:hover, &:focus {
+      @include themify(night) {
+        background-color: $dark-two !important;
+        border-color: $dark-sky-blue !important;
+      }
+    }
+  }
+
+  input#copy-to-clipboard {
+    color: $red2 !important
+  }
+
+  button {
+    font-size: 18px !important;
+    :disabled {
+      background-color: $pastel-blue !important;
+    }
+
+    @include themify(night) {
+      background-color: $dark-grey-blue !important;
+      border-color: $dark-grey-blue !important;
+      :disabled {
+        background-color: $dusky-blue !important;
+      }
+    }
+  }
+
+  button#black-on-night {
+    @include themify(night) {
+      background-color: $dark-two !important;
+      border-color: $dark-two !important;
+      color: $white !important;
+    }
+  }
+
+  button.btn-primary {
+    @include themify(night) {
+      background-color: $dark-sky-blue !important;
+      border-color: $dark-sky-blue !important;
+    }
+  }
+
+  .form-text {
+    svg {
+      height: 14px;
+      margin-right: 4px;
+    }
+  }
+}
+
+.info-icon {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $gunmetal;
+  border: 1.17px solid $gunmetal;
+  font-size: 10px;
+}
+
+.form-label {
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 600;
+}
+
+.label-text {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.community-form {
+  margin-top: 1rem;
+
+  @media (max-width: $sm-break) {
+    margin-top: -2rem;
   }
 }
