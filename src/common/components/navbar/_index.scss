@@ -244,6 +244,16 @@
       @include themify(night) {
         color: $duck-egg-blue;
       }
+
+      @media (max-width: $sm-break) {
+        width: 100%;
+        .switch-language {
+          width: 100%;
+          .custom-dropdown {
+            width: 100%;
+          }
+        }
+      }
     }
 
     .submit-post {
