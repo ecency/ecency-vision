@@ -14,8 +14,6 @@ import {_t} from "../../i18n";
 
 import {langOptions} from "../../i18n";
 
-import {translateSvg} from "../../img/svg";
-
 import * as ls from "../../util/local-storage";
 
 interface Props {

@@ -65,9 +65,13 @@ import {version} from "../../../package.json";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import defaults from "../constants/defaults.json";
+<<<<<<< HEAD
 import EntryDeleteBtn from "../components/entry-delete-btn";
 import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
 import { history } from "../store";
+=======
+import { getFollowing } from "../api/hive";
+>>>>>>> 3126f25fbffea3fe16bc18cf180bfea521e95f77
 
 setProxyBase(defaults.imageServer);
 
@@ -89,7 +93,11 @@ interface State {
     editHistory: boolean;
     edit: boolean;
     showProfileBox: boolean;
+<<<<<<< HEAD
     comment: string;
+=======
+    entryIsMuted: boolean
+>>>>>>> 3126f25fbffea3fe16bc18cf180bfea521e95f77
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -98,17 +106,26 @@ class EntryPage extends BaseComponent<Props, State> {
         replying: false,
         showIfNsfw: false,
         editHistory: false,
+<<<<<<< HEAD
         edit: false,
         showProfileBox: false,
         comment: "",
         currentEntry: undefined
+=======
+        showProfileBox: false,
+        entryIsMuted: false
+>>>>>>> 3126f25fbffea3fe16bc18cf180bfea521e95f77
     };
     
     viewElement: HTMLDivElement | undefined;
 
     componentDidMount() {
         this.ensureEntry();
+<<<<<<< HEAD
         let entry = this.getEntry();
+=======
+        this.fetchMutedUsers()
+>>>>>>> 3126f25fbffea3fe16bc18cf180bfea521e95f77
 
         const {location, global} = this.props;
         if (global.usePrivate && location.search === "?history") {
@@ -334,6 +351,7 @@ class EntryPage extends BaseComponent<Props, State> {
         this.ensureEntry();
     }
 
+<<<<<<< HEAD
     updateReply = (text: string) => {
         const entry = this.getEntry();
         const {activeUser, updateReply} = this.props;
@@ -390,6 +408,26 @@ class EntryPage extends BaseComponent<Props, State> {
     render() {
         const { loading, replying, showIfNsfw, editHistory, edit, comment } = this.state;
         const { global, history } = this.props;
+=======
+    fetchMutedUsers = () => {
+        const { activeUser } = this.props;
+        const entry = this.getEntry()!;
+        if(activeUser && entry){
+            getFollowing(activeUser.username, "", "ignore", 100).then(r => {
+                if (r) {
+                    let filterList = r.map(user=>user.following);
+                    if(!this.state.entryIsMuted){
+                    this.setState({entryIsMuted: filterList.includes(entry.author) });
+                }
+                }
+            })
+        }
+    }
+
+    render() {
+        const {loading, replying, showIfNsfw, editHistory, entryIsMuted} = this.state;
+        const {global, history} = this.props;
+>>>>>>> 3126f25fbffea3fe16bc18cf180bfea521e95f77
 
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
@@ -437,6 +475,7 @@ class EntryPage extends BaseComponent<Props, State> {
         const isHidden = entry?.net_rshares < 0;
         const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
         const isLowReputation = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
+        const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry;
 
         //  Meta config
         const url = entryCanonical(entry) || "";
@@ -610,6 +649,10 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                                 {isLowReputation && (<div className="hidden-warning">
                                                     <span>{_t('entry.lowrep-warning')}</span>
+                                                </div>)}
+
+                                                {mightContainMutedComments && (<div className="hidden-warning">
+                                                    <span>{_t('entry.comments-hidden')}</span>
                                                 </div>)}
 
                                                 {isComment && (
@@ -860,7 +903,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                     {Discussion({
                                         ...this.props,
                                         parent: entry,
-                                        community
+                                        community,
+                                        setter: (val: boolean)=>{!this.state.entryIsMuted && this.setState({entryIsMuted:val})}
                                     })}
                                 </>
                             })()}

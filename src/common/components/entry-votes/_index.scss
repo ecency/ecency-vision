@@ -86,9 +86,11 @@
   }
 
   svg {
-    height: 14px;
+    height: 12px;
+    width: 12px;
     opacity: 0.5;
     margin-right: 5px;
+    margin-top: 2px;
   }
 
   .inner-btn {
@@ -98,7 +100,7 @@
     @media(max-width: $xxsm-break){
       font-size: 12px;
       svg {
-        padding: 0 3x 0 5px;
+        padding: 0 3px 0 5px;
       }
     }
 

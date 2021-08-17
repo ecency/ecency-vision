@@ -179,7 +179,7 @@ export const getFollowers = (
     startFollowing: string,
     followType = "blog",
     limit = 100
-): Promise<Follow[]> => client.database.call("get_followers", [following, startFollowing, followType, limit]);
+): Promise<Follow[]> => client.database.call("get_followers", [following, startFollowing === "" ? null : startFollowing, followType, limit]);
 
 export const findRcAccounts = (username: string): Promise<RCAccount[]> =>
     new RCAPI(client).findRCAccounts([username])

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {History, Location} from "history";
 
-import {Global} from "../../store/global/types";
+import {Global, ProfileFilter} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Entry} from "../../store/entries/types";
@@ -16,6 +16,8 @@ import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 import MessageNoData from "../message-no-data";
 import { Link } from "react-router-dom";
 import { _t } from "../../i18n";
+import { threadId } from "worker_threads";
+import { getFollowing } from "../../api/hive";
 
 interface Props {
     history: History;
@@ -48,15 +50,44 @@ interface Props {
     setEntryPin: (entry: Entry, pin: boolean) => void;
 }
 
-export class EntryListContent extends Component<Props> {
+interface State {
+    data: string[];
+}
+
+export class EntryListContent extends Component<Props, State> {
+    state = {
+        data: [] as string[]
+    }
+
+    fetchMutedUsers = () => {
+        const { activeUser } = this.props;
+        if(activeUser){
+            getFollowing(activeUser.username, "", "ignore", 100).then(r => {
+                if (r) {
+                    let filterList = r.map(user=>user.following);
+                    this.setState({data: filterList })
+                }
+                return []
+            })
+        }
+    }
+
+    componentDidMount(){
+        this.fetchMutedUsers()
+    }
+
     render() {
         const {entries, promotedEntries, global, activeUser, loading } = this.props;
         const {filter} = global;
-
+        const {data} = this.state;
+        let dataToRender = entries;
+        if((filter as ProfileFilter) !== ProfileFilter.posts && (filter as ProfileFilter) !== ProfileFilter.comments && (filter as ProfileFilter) !== ProfileFilter.blog && (filter as ProfileFilter) !== ProfileFilter.replies){
+            dataToRender =  data.length > 0 ?  entries.filter(item=> !data.includes(item.author)) : entries ;
+        }
          
-        return entries.length > 0 ? (
+        return  dataToRender.length > 0 ? (
               <>
-                {entries.map((e, i) => {
+                {dataToRender.map((e, i) => {
                     const l = [];
 
                     if (i % 4 === 0 && i > 0) {
@@ -65,7 +96,7 @@ export class EntryListContent extends Component<Props> {
                         if (promotedEntries[ix]) {
                             const p = promotedEntries[ix];
 
-                            if (!entries.find(x => x.author === p.author && x.permlink === p.permlink)) {
+                            if (!dataToRender.find(x => x.author === p.author && x.permlink === p.permlink)) {
                                 l.push(
                                     <EntryListItem
                                         key={`${p.author}-${p.permlink}`}
