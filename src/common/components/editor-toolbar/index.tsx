@@ -296,15 +296,21 @@ export class EditorToolbar extends Component<Props> {
     };
 
     fileInputChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        const files = [...e.target.files]
+        let files = [...e.target.files]
             .filter(i => this.checkFile(i.name))
             .filter(i => i);
+
+        const {global:{isElectron}} = this.props;
 
         if (files.length > 0) {
             e.stopPropagation();
             e.preventDefault();
         }
 
+        if(files.length > 1 && isElectron){
+            files = files.reverse()
+        }
+        
         files.forEach(file => this.upload(file));
 
         // reset input
