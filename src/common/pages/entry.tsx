@@ -69,7 +69,6 @@ import EntryDeleteBtn from "../components/entry-delete-btn";
 import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
 import { history } from "../store";
 import { getFollowing } from "../api/hive";
-import MyTooltip from "../components/tooltip";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 setProxyBase(defaults.imageServer);
@@ -128,6 +127,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
         const { location } = this.props;
+        ls.set("entry_reload", false)
         let entry = this.getEntry();
         if(location.pathname !== prevProps.location.pathname){
             this.setState({currentEntry: undefined})
@@ -424,7 +424,12 @@ class EntryPage extends BaseComponent<Props, State> {
         let entry = this.getEntry();
 
         if (!entry) {
-
+            let reloadNotNeeded = ls.get("entry_reload");
+            if(!reloadNotNeeded){
+            ls.set("entry_reload", true)
+            window.location.reload();
+            return <>{navBar}<div style={{marginTop:65}}><LinearProgress/></div></>;
+            }
             return NotFound({...this.props});
         }
 
