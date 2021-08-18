@@ -271,6 +271,7 @@
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent",
     "hidden-warning": "This content got low rating by people. Proceed with caution.",
+    "delete-disabled": "Cannot be deleted. Paidout.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
     "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "comments-hidden": "Author of this post is muted by you.",

@@ -69,6 +69,8 @@ import EntryDeleteBtn from "../components/entry-delete-btn";
 import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
 import { history } from "../store";
 import { getFollowing } from "../api/hive";
+import MyTooltip from "../components/tooltip";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 setProxyBase(defaults.imageServer);
 
@@ -390,6 +392,7 @@ class EntryPage extends BaseComponent<Props, State> {
         ls.set(`deletedComment`,entry?.post_id);
         history?.goBack();
     }
+
     fetchMutedUsers = () => {
         const { activeUser } = this.props;
         const entry = this.getEntry()!;
@@ -408,7 +411,6 @@ class EntryPage extends BaseComponent<Props, State> {
     render() {
         const { loading, replying, showIfNsfw, editHistory, edit, comment, entryIsMuted } = this.state;
         const { global, history } = this.props;
-
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
             reloadFn: this.reload,
@@ -724,7 +726,18 @@ class EntryPage extends BaseComponent<Props, State> {
                                                                 entry,
                                                                 setDeleteInProgress: value=> this.setState({loading: value}),
                                                                 onSuccess: this.deleted,
-                                                                children: <a title={_t('g.delete')} className="edit-btn">{deleteForeverSvg} {_t("g.delete")}</a>
+                                                                children: entry && entry.is_paidout ? <OverlayTrigger
+                                                                delay={{ show: 0, hide: 500 }}
+                                                                key={'bottom'}
+                                                                placement={'bottom'}
+                                                                overlay={
+                                                                    <Tooltip id={`tooltip-votes-${'bottom'}`}>
+                                                                        {_t('entry.delete-disabled')}
+                                                                    </Tooltip>
+                                                                }
+                                                                >
+                                                                <a className="edit-btn text-muted">{deleteForeverSvg} {_t("g.delete")}</a>
+                                                            </OverlayTrigger> : <a title={_t('g.delete')} className="edit-btn">{deleteForeverSvg} {_t("g.delete")}</a>
                                                             })
                                                         }
                                                     ] : []
