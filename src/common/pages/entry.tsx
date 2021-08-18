@@ -428,7 +428,16 @@ class EntryPage extends BaseComponent<Props, State> {
             let reloadNotNeeded = ls.get("entry_reload");
             if(!reloadNotNeeded){
             ls.set("entry_reload", true)
-            window.location.reload();
+            if(typeof window !== "undefined") {
+                let deletedID = ls.get("deletedComment");
+                
+                if(deletedID){
+                    return NotFound({...this.props});
+                }
+                else {
+                    window.location.reload();
+                }
+            }
             let bgImage = global.theme === "day" ? '#f5f5f5' : '#2e3d51';
             let cardLoader = {backgroundColor: bgImage, height: 150, borderRadius: 5};
             return <div className="w-75 m-auto">
