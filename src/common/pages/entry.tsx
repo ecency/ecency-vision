@@ -15,6 +15,7 @@ import {FullAccount} from "../store/accounts/types";
 import EntryLink, {makePath as makeEntryPath} from "../components/entry-link";
 
 import BaseComponent from "../components/base";
+import EntryListLoadingItem from "../components/entry-list-loading-item";
 import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
 import Tag from "../components/tag";
@@ -428,7 +429,17 @@ class EntryPage extends BaseComponent<Props, State> {
             if(!reloadNotNeeded){
             ls.set("entry_reload", true)
             window.location.reload();
-            return <>{navBar}<div style={{marginTop:65}}><LinearProgress/></div></>;
+            let bgImage = global.theme === "day" ? '#f5f5f5' : '#2e3d51';
+            let cardLoader = {backgroundColor: bgImage, height: 150, borderRadius: 5};
+            return <div className="w-75 m-auto">
+                        {navBar}
+                        <div style={{ marginTop: 65 }}>
+                        <div className="mt-2 p-5 pt-0">
+                            <div style={cardLoader}/>
+                            {[1].map(item => <EntryListLoadingItem key={item} />)}
+                        </div>
+                        </div>
+                    </div>;
             }
             return NotFound({...this.props});
         }
