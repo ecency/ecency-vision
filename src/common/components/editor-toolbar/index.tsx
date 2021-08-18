@@ -301,17 +301,19 @@ export class EditorToolbar extends Component<Props> {
             .filter(i => i);
 
         const {global: { isElectron } } = this.props;
-        let isWindows = process.platform === "win32"
 
         if (files.length > 0) {
             e.stopPropagation();
             e.preventDefault();
         }
-        
-        if(files.length > 1 && isElectron && isWindows){
-            files = files.reverse()
+
+        if(files.length > 1 && isElectron){
+            let isWindows = process.platform === "win32";
+            if (isWindows) {
+                files = files.reverse()    
+            }
         }
-        
+
         files.forEach(file => this.upload(file));
 
         // reset input
