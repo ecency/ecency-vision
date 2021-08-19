@@ -236,7 +236,9 @@ class EntryPage extends BaseComponent<Props, State> {
         }
         if(!entry){
             let entryItem = this.props.history && this.props.discussion && this.props.discussion.list && this.props.discussion.list.find(item=>{
-                let entryItem = this.props.history!.location.pathname.includes(item.permlink) && item;
+                let entryPermLink: string | string[] = this.props.history!.location.pathname.split("/");
+                entryPermLink = entryPermLink[entryPermLink.length - 1]
+                let entryItem = entryPermLink === item.permlink && item;
                 return entryItem;
             })
             if(entryItem){
@@ -244,6 +246,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 !currentEntry && this.setState({currentEntry: entry || currentEntry})
             }
         }
+        
         return entry || currentEntry;
     };
 
@@ -429,9 +432,9 @@ class EntryPage extends BaseComponent<Props, State> {
             if(!reloadNotNeeded){
             ls.set("entry_reload", true)
             if(typeof window !== "undefined") {
-                let deletedID = ls.get("deletedComment");
+                let deletedID = String(ls.get("deletedComment"));
                 
-                if(deletedID){
+                if(deletedID && deletedID.length > 1){
                     return NotFound({...this.props});
                 }
                 else {
