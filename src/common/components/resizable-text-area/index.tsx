@@ -13,8 +13,8 @@ export default class ResizableTextarea extends React.Component<any, State> {
 		this.state = {
 			value: this.props.value,
 			rows: this.props.minRows || 5,
-			minRows: this.props.minRows || 5,
-			maxRows: this.props.maxRows || 20,
+			minRows: this.props.minrows || 5,
+			maxRows: this.props.maxrows || 20,
 		};
 	}
 	

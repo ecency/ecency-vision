@@ -770,8 +770,8 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 placeholder={_t("submit.body-placeholder")}
                                 value={body}
                                 onChange={this.bodyChanged}
-                                minRows={10}
-                                maxRows={100}
+                                minrows={10}
+                                maxrows={100}
                                 spellCheck={true}
                                 /> : <Form.Control
                                 id="the-editor"
