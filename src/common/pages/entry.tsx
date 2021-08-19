@@ -237,8 +237,9 @@ class EntryPage extends BaseComponent<Props, State> {
         if(!entry){
             let entryItem = this.props.history && this.props.discussion && this.props.discussion.list && this.props.discussion.list.find(item=>{
                 let entryPermLink: string | string[] = this.props.history!.location.pathname.split("/");
-                entryPermLink = entryPermLink[entryPermLink.length - 1]
+                entryPermLink = entryPermLink[entryPermLink.length - 1];
                 let entryItem = entryPermLink === item.permlink && item;
+                
                 return entryItem;
             })
             if(entryItem){
@@ -414,7 +415,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
     render() {
         const { loading, replying, showIfNsfw, editHistory, edit, comment, entryIsMuted } = this.state;
-        const { global, history } = this.props;
+        const { global, history, activeUser, location } = this.props;
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
             reloadFn: this.reload,
@@ -427,14 +428,19 @@ class EntryPage extends BaseComponent<Props, State> {
 
         let entry = this.getEntry();
 
+        let setRef = (el:HTMLDivElement) => {
+            this.viewElement = el;
+        };
+
         if (!entry) {
             let reloadNotNeeded = ls.get("entry_reload");
             if(!reloadNotNeeded){
             ls.set("entry_reload", true)
             if(typeof window !== "undefined") {
-                let deletedID = String(ls.get("deletedComment"));
+                let deletedID : any = String(ls.get("deletedComment")) 
+                deletedID = deletedID && deletedID.length > 1 && activeUser && activeUser.username && location.pathname.includes(`@${activeUser.username}`);
                 
-                if(deletedID && deletedID.length > 1){
+                if(deletedID){
                     return NotFound({...this.props});
                 }
                 else {
@@ -456,10 +462,6 @@ class EntryPage extends BaseComponent<Props, State> {
             return NotFound({...this.props});
         }
 
-        let setRef = (el:HTMLDivElement) => {
-            this.viewElement = el;
-        };
-
         const originalEntry = entry.original_entry || null;
 
         const community = this.getCommunity();
@@ -478,8 +480,6 @@ class EntryPage extends BaseComponent<Props, State> {
         const appShort = app.split('/')[0].split(' ')[0];
 
         const isComment = !!entry.parent_author;
-
-        const {activeUser} = this.props;
 
         const ownEntry = activeUser && activeUser.username === entry.author;
         const isHidden = entry?.net_rshares < 0;
