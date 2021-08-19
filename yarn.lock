@@ -998,12 +998,13 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@ecency/render-helper@^2.1.24":
-  version "2.1.24"
-  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.1.24.tgz#ade7511d715c11bc26faac07b7de8974f3ad8701"
-  integrity sha512-X12CheyClvaidAs95hU3qqWlIhRghXtmqVtPXTqbokBer5CdT0nTKxKzsUeFpuu3L6WPGJg7onNYoUhK0UrCKg==
+"@ecency/render-helper@^2.1.25":
+  version "2.1.25"
+  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.1.25.tgz#81fe210abac67f6038cf81a9828b5e66f372766c"
+  integrity sha512-SnLp873vzlJYC4a3TpXG/ojvRGdgBRSHz/E4i73K/1TMa42+Zt7zqA1ar+bTua42qOsHJUpzFSMVLKQEdhPWGA==
   dependencies:
     he "^1.2.0"
+    lolight "^1.4.0"
     lru-cache "^5.1.1"
     multihashes "0.4.13"
     path "^0.12.7"
@@ -7539,6 +7540,11 @@ loglevel@^1.6.6, loglevel@^1.6.8:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.7.1.tgz#005fde2f5e6e47068f935ff28573e125ef72f197"
   integrity sha512-Hesni4s5UkWkwCGJMQGAh71PaLUmKFM60dHvq0zi/vDhhrzuk+4GgNbTXJ12YYQJn6ZKBDNIjYcuQGKudvqrIw==
+
+lolight@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/lolight/-/lolight-1.4.0.tgz#b037957725284ebf091231ae8f794b3df63b5e17"
+  integrity sha512-d64i6wBResbga3rnM9JYG6Jq/foHDZvSCxoof4kAU48rtzffgbiJlmjs+CfMNlXH2tG3ct+2T6+ht1h4GP7DSg==
 
 long@~3:
   version "3.2.0"
