@@ -313,7 +313,7 @@ export class NavBar extends Component<Props, State> {
                                     
                                     {showMobileSearch ? 
                                         <>
-                                            {Search({...this.props, onSearch: this.toggleSmVisible, containerClassName:'w-100'})}
+                                            {Search({...this.props, containerClassName:'w-100'})}
                                             <div
                                                 onClick={() => this.setState({showMobileSearch:false})}
                                                 className="navbar-icon text-secondary ml-2"
