@@ -173,7 +173,8 @@ export class NavBar extends Component<Props, State> {
 
     toggleSmVisible = () => {
         const {smVisible} = this.state;
-        this.setState({smVisible: !smVisible})
+        this.setState({smVisible: !smVisible});
+        debugger
         if(!smVisible){
             let rootElement = document.getElementById("root");
             rootElement && rootElement.scrollIntoView()
@@ -255,7 +256,7 @@ export class NavBar extends Component<Props, State> {
                                 {
                                     (step !== 1 || transparentVerify) &&
                                         <div className="search-bar">
-                                            {Search({...this.props})}
+                                            {Search({...this.props, onSearch: this.toggleSmVisible,})}
                                         </div>
                                 }
                                 <div className="switch-menu">
@@ -333,7 +334,7 @@ export class NavBar extends Component<Props, State> {
                                     
                                     {showMobileSearch ? 
                                         <>
-                                            {Search({...this.props, containerClassName:'w-100'})}
+                                            {Search({...this.props, onSearch: this.toggleSmVisible,containerClassName:'w-100'})}
                                             <div
                                                 onClick={() => this.setState({showMobileSearch:false})}
                                                 className="navbar-icon text-secondary ml-2"

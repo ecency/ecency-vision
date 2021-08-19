@@ -24,6 +24,7 @@ interface Props {
     global: Global;
     trendingTags: TrendingTags;
     fetchTrendingTags: () => void;
+    onSearch?: () => void;
     containerClassName?: string
 }
 
@@ -77,9 +78,9 @@ export class Search extends BaseComponent<Props, State> {
 
     onKeyDown = (e: React.KeyboardEvent) => {
         if (e.keyCode === 13) {
-            const {history, location} = this.props;
+            const {history, location, onSearch} = this.props;
             const {query} = this.state;
-
+            onSearch && onSearch()
             if (["/search-more", "/search-more/"].includes(location.pathname)) {
                 history.push(`/search-more/?q=${encodeURIComponent(query)}`);
             } else {
@@ -120,6 +121,7 @@ export default (p: Props) => {
         global: p.global,
         trendingTags: p.trendingTags,
         fetchTrendingTags: p.fetchTrendingTags,
+        onSearch: p.onSearch,
         containerClassName: p.containerClassName,
     }
     return <Search {...props} />
