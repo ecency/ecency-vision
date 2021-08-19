@@ -102,10 +102,6 @@ export class NavBar extends Component<Props, State> {
     nav = React.createRef<HTMLDivElement>();
 
     componentDidMount() {
-        this.detect();
-        window.addEventListener("scroll", this.scrollChanged);
-        window.addEventListener("resize", this.scrollChanged);
-
         // referral check / redirect
         const {location, history} = this.props;
         const qs = queryString.parse(location.search);
@@ -115,8 +111,7 @@ export class NavBar extends Component<Props, State> {
     }
 
     componentWillUnmount() {
-        window.removeEventListener("scroll", this.scrollChanged);
-        window.removeEventListener("resize", this.scrollChanged);
+        document.getElementsByTagName('body')[0].classList.remove("overflow-hidden")
     }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
@@ -152,21 +147,6 @@ export class NavBar extends Component<Props, State> {
         }
     }
 
-    scrollChanged = () => {
-        clearTimeout(this.timer);
-        this.timer = setTimeout(this.detect, 10);
-    }
-
-    detect = () => {
-        const nav = this.nav.current;
-        if (!nav) return;
-
-        const limit = nav.clientHeight * 2;
-        const floating = window.scrollY >= limit;
-
-        this.setState({floating});
-    }
-
     changeTheme = () => {
         this.props.toggleTheme();
     };
@@ -174,7 +154,6 @@ export class NavBar extends Component<Props, State> {
     toggleSmVisible = () => {
         const {smVisible} = this.state;
         this.setState({smVisible: !smVisible});
-        debugger
         if(!smVisible){
             let rootElement = document.getElementById("root");
             rootElement && rootElement.scrollIntoView()
