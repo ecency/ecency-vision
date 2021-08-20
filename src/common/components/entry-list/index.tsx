@@ -94,13 +94,12 @@ export class EntryListContent extends Component<Props, State> {
         const {filter} = global;
         const { mutedUsers, loadingMutedUsers } = this.state;
         let dataToRender = entries;
-        if((filter as ProfileFilter) !== ProfileFilter.posts && (filter as ProfileFilter) !== ProfileFilter.blog && (filter as ProfileFilter) !== ProfileFilter.replies){
+        if((filter as ProfileFilter) !== ProfileFilter.posts && (filter as ProfileFilter) !== ProfileFilter.blog){
             dataToRender =  mutedUsers.length > 0 ?  entries.filter(item=> {
                 let mutedItem = mutedUsers.includes(item.author);
                 return !mutedItem && item
             }) : entries ;
         }
-        debugger;
          
         return loadingMutedUsers ? <LinearProgress /> : dataToRender.length > 0 ? (
               <>

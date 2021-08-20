@@ -39,7 +39,7 @@ import {Tsx} from "../../i18n/helper";
 import _c from "../../util/fix-class-names";
 import truncate from "../../util/truncate";
 
-import {repeatSvg, pinSvg, commentSvg} from "../../img/svg";
+import {repeatSvg, pinSvg, commentSvg, muteSvg} from "../../img/svg";
 
 import defaults from "../../constants/defaults.json";
 
@@ -79,12 +79,14 @@ interface Props {
 }
 
 interface State {
-    showNsfw: boolean
+    showNsfw: boolean;
+    showMuted: boolean;
 }
 
 export default class EntryListItem extends Component<Props, State> {
     state: State = {
-        showNsfw: false
+        showNsfw: false,
+        showMuted:false
     }
 
     public static defaultProps = {
@@ -124,8 +126,23 @@ export default class EntryListItem extends Component<Props, State> {
         this.setState({showNsfw: true});
     }
 
+    componentDidMount(){
+        const { entry } = this.props;
+        if(entry.json_metadata.tags && entry.json_metadata.tags.includes('mute')){
+            this.setState({showMuted:true})
+        }
+    }
+
+    componentDidUpdate(prevProps:Props){
+        if(this.props.entry !== prevProps.entry){
+            this.setState({showMuted:true})
+        }
+
+    }
+
     render() {
         const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order} = this.props;
+        debugger
 
         const fallbackImage = global.isElectron ? "../../common/img/fallback.png" : require("../../img/fallback.png");
         const noImage = global.isElectron ? "../../common/img/noimage.svg" : require("../../img/noimage.svg");
@@ -289,6 +306,26 @@ export default class EntryListItem extends Component<Props, State> {
                                               history.push(`/@${activeUser.username}/settings`);
                                           }}>{_t("nsfw.settings-2")}</a>{"."}
                                         </>}
+
+                                        {!activeUser && <>
+                                          <Tsx k="nsfw.signup"><span/></Tsx>{"."}
+                                        </>}
+                                    </div>
+                                </div>
+                            </>
+                        }
+                        if (this.state.showMuted) {
+                            return <>
+                                <div className="item-image item-image-nsfw">
+                                    <img src={nsfwImage} alt={title}/>
+                                </div>
+                                <div className="item-summary">
+                                    <div className="item-nsfw"><span className="nsfw-badge text-capitalize d-inline-flex align-items-center"><div>{muteSvg}</div> <div>{_t("g.muted")}</div></span></div>
+                                    <div className="item-nsfw-options">
+                                        <a href="#" onClick={(e) => {
+                                            e.preventDefault();
+                                            this.setState({ showMuted: false })
+                                        }}>{_t("g.muted-message")}</a>
 
                                         {!activeUser && <>
                                           <Tsx k="nsfw.signup"><span/></Tsx>{"."}
