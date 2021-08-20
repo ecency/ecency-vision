@@ -16,7 +16,7 @@ import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 import MessageNoData from "../message-no-data";
 import { Link } from "react-router-dom";
 import { _t } from "../../i18n";
-import { threadId } from "worker_threads";
+import LinearProgress from "../linear-progress";
 import { getFollowing } from "../../api/hive";
 
 interface Props {
@@ -51,24 +51,37 @@ interface Props {
 }
 
 interface State {
-    data: string[];
+    mutedUsers: string[];
+    loadingMutedUsers: boolean
 }
 
 export class EntryListContent extends Component<Props, State> {
     state = {
-        data: [] as string[]
+        mutedUsers: [] as string[],
+        loadingMutedUsers: false,
     }
 
     fetchMutedUsers = () => {
         const { activeUser } = this.props;
-        if(activeUser){
+        const { mutedUsers, loadingMutedUsers } = this.state;
+        if(mutedUsers.length === 0 && !loadingMutedUsers){
+            if(activeUser){
+            this.setState({ loadingMutedUsers: true });
             getFollowing(activeUser.username, "", "ignore", 100).then(r => {
                 if (r) {
-                    let filterList = r.map(user=>user.following);
-                    this.setState({data: filterList })
+                    let filterList = r.map(user => user.following);
+                    this.setState({mutedUsers: filterList })
                 }
-                return []
+            }).finally(()=>{
+                this.setState({ loadingMutedUsers: false })
             })
+        }
+        }
+    }
+
+    componentDidUpdate(prevProps:Props){
+        if(prevProps.activeUser !== this.props.activeUser){
+            this.fetchMutedUsers()
         }
     }
 
@@ -79,13 +92,17 @@ export class EntryListContent extends Component<Props, State> {
     render() {
         const {entries, promotedEntries, global, activeUser, loading } = this.props;
         const {filter} = global;
-        const {data} = this.state;
+        const { mutedUsers, loadingMutedUsers } = this.state;
         let dataToRender = entries;
-        if((filter as ProfileFilter) !== ProfileFilter.posts && (filter as ProfileFilter) !== ProfileFilter.comments && (filter as ProfileFilter) !== ProfileFilter.blog && (filter as ProfileFilter) !== ProfileFilter.replies){
-            dataToRender =  data.length > 0 ?  entries.filter(item=> !data.includes(item.author)) : entries ;
+        if((filter as ProfileFilter) !== ProfileFilter.posts && (filter as ProfileFilter) !== ProfileFilter.blog && (filter as ProfileFilter) !== ProfileFilter.replies){
+            dataToRender =  mutedUsers.length > 0 ?  entries.filter(item=> {
+                let mutedItem = mutedUsers.includes(item.author);
+                return !mutedItem && item
+            }) : entries ;
         }
+        debugger;
          
-        return  dataToRender.length > 0 ? (
+        return loadingMutedUsers ? <LinearProgress /> : dataToRender.length > 0 ? (
               <>
                 {dataToRender.map((e, i) => {
                     const l = [];
@@ -112,7 +129,7 @@ export class EntryListContent extends Component<Props, State> {
                     return [...l];
                 })}
             </>
-        ) : !loading && <MessageNoData>
+        ) : !loading &&  <MessageNoData>
                 {(global.tag===`@${activeUser?.username}` && global.filter === "posts") ? 
                 <div className='text-center'>
                     <div className="info">{_t("profile-info.no-posts")}</div>
