@@ -175,10 +175,6 @@ export class CommunityCover extends Component<Props> {
         return (
             <div className="community-cover">
                 <div className="cover-image" style={style}/>
-                <div className="controls-holder">
-                    <SubscriptionBtn {...this.props} />
-                    {CommunityPostBtn({...this.props})}
-                </div>
                 <div className="community-stats">
                     <div className="community-stat">
                         <div className="stat-value">{subscribers}</div>
@@ -204,6 +200,10 @@ export class CommunityCover extends Component<Props> {
                     )}
                 </div>
 
+                <div className="controls-holder">
+                    <SubscriptionBtn {...this.props} />
+                    {CommunityPostBtn({...this.props})}
+                </div>
                 {canUpdateCoverImage && (<EditCoverImage {...this.props} account={account as FullAccount} activeUser={activeUser!}/>)}
             </div>
         );
