@@ -167,6 +167,8 @@ class EntryIndexPage extends Component<PageProps, State> {
                         ...this.props,
                         reloadFn: this.reload,
                         reloading: loading,
+                        step:this.state.step,
+                        setStepTwo: this.changeStepTwo
                     }) :
                     NavBar({...this.props, step:this.state.step, setStepOne:this.changeStepOne, setStepTwo: this.changeStepTwo})}
                 {
