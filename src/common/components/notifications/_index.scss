@@ -237,19 +237,6 @@
         }
       }
 
-      &:not(.not-read) {
-        .item-inner {
-          &:hover {
-            @include themify(day) {
-              background: $white-three;
-            }
-
-            @include themify(night) {
-              background: darken($metallic-blue, 16);
-            }
-          }
-        }
-      }
     }
 
     .load-more {
