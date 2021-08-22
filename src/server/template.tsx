@@ -64,7 +64,7 @@ export const render = (req: express.Request, state: AppState) => {
             </head>
             <body class="${`theme-${state.global.theme}`}" style="display: none;">
                 <div id="root">${markup}</div>  
-                ${jsScriptTagsFromAssets(assets, 'client', ' defer crossorigin')}
+                ${jsScriptTagsFromAssets(assets, 'client', ' crossorigin')}
                 <script type="application/ld+json">
                   {
                     "@context": "https://schema.org",
