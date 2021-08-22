@@ -142,6 +142,7 @@ class CommunitiesPage extends BaseComponent<PageProps, State> {
             canonical: `${defaults.base}/communities`,
             description: _t("communities.description"),
         };
+        let containerClasses = global.isElectron ? "app-content communities-page mt-0" : "app-content communities-page"
 
         return (
             <>
@@ -156,7 +157,7 @@ class CommunitiesPage extends BaseComponent<PageProps, State> {
                     }) :
                     NavBar({...this.props})}
 
-                <div className="app-content communities-page">
+                <div className={containerClasses}>
                     <div className="community-list">
                         <div className="list-header">
                             <h1 className="list-title">{_t("communities.title")}</h1>
@@ -517,6 +518,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
 
 
         const {fee, title, about, username, wif, usernameStatus, keyDialog, done, inProgress, progress} = this.state;
+        let containerClasses = global.isElectron ? "app-content container-fluid mt-0" : "app-content container-fluid"
 
         return (
             <>
@@ -529,7 +531,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                     }) :
                     NavBar({...this.props})}
 
-                <div className="app-content container-fluid">
+                <div className={containerClasses}>
                     <div className="row align-items-center justify-content-center m-0">
                         <div className="col-6 d-none d-lg-block">
                             <img src={communityImage} className="w-100"/>
@@ -860,6 +862,7 @@ class CommunityCreateHSPage extends BaseComponent<PageProps, CreateHsState> {
 
         const {global} = this.props;
         const {inProgress, progress, done} = this.state;
+        let containerClasses = global.isElectron ? "app-content communities-page mt-0" : "app-content communities-page"
 
         return <>
             <Meta {...metaProps} />
@@ -871,7 +874,7 @@ class CommunityCreateHSPage extends BaseComponent<PageProps, CreateHsState> {
                 }) :
                 NavBar({...this.props})}
 
-            <div className="app-content communities-page">
+            <div className={containerClasses}>
                 <div className="community-form">
                     <h1 className="form-title">{_t("communities-create.page-title")}</h1>
                     {(() => {

@@ -253,6 +253,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                 </Tsx>
             )}
         </div>;
+        let containerClasses = global.isElectron ? " mt-0" : "";
 
         return (
             <>
@@ -267,7 +268,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                         reloading: loading,
                     }) :
                     NavBar({...this.props})}
-                <div className="app-content witnesses-page">
+                <div className={"app-content witnesses-page" + containerClasses}>
                     {(() => {
                         if (loading) {
                             return <>

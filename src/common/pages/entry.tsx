@@ -394,6 +394,7 @@ class EntryPage extends BaseComponent<Props, State> {
             tag: isCommunity(tags[0]) ? tags[1] : tags[0],
             keywords: tags.join(", "),
         };
+        let containerClasses = global.isElectron ? "app-content entry-page mt-0" : "app-content entry-page";
 
         return (
             <>
@@ -403,7 +404,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 <Feedback/>
                 <MdHandler global={this.props.global} history={this.props.history}/>
                 {navBar}
-                <div className="app-content entry-page">
+                <div className={containerClasses}>
                     <div className="the-entry">
                         {originalEntry && (
                             <div className="cross-post">
