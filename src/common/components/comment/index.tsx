@@ -141,7 +141,8 @@ export class Comment extends Component<Props, State> {
                             disabled={inProgress}
                             autoFocus={autoFocus}
                             rows={rows}
-                            onKeyPress={(e:any) => e.charCode===13 && this.setState({ rows: rows + 1})}
+                            onKeyPress={(e:any) => (e.keyCode===13 || e.charCode===13) && this.setState({ rows: rows + 1})}
+                            onPaste={() => this.setState({rows: rows + 10})}
                         />
                     </div>
                     <div className="comment-buttons">

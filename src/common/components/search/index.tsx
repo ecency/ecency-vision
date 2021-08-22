@@ -79,7 +79,6 @@ export class Search extends BaseComponent<Props, State> {
         if (e.keyCode === 13) {
             const {history, location} = this.props;
             const {query} = this.state;
-
             if (["/search-more", "/search-more/"].includes(location.pathname)) {
                 history.push(`/search-more/?q=${encodeURIComponent(query)}`);
             } else {

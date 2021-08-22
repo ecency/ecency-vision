@@ -94,6 +94,7 @@
 
       textarea {
         resize: none;
+        font-size: 21px;
 
         line-height: 1.5;
         flex-grow: 1;
@@ -141,6 +142,7 @@
     .preview-body {
       padding: 5px 12px;
       margin-top: 10px;
+      font-size: 21px;
 
       @include themify(day) {
         color: $tundora;

@@ -529,7 +529,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                     }) :
                     NavBar({...this.props})}
 
-                <div className="container-fluid">
+                <div className="app-content container-fluid">
                     <div className="row align-items-center justify-content-center m-0">
                         <div className="col-6 d-none d-lg-block">
                             <img src={communityImage} className="w-100"/>
