@@ -331,7 +331,6 @@ export class NavBar extends Component<Props, State> {
 
     componentDidUpdate(prevProps:Props){
         const {location, activeUser, setStepTwo} = this.props;
-debugger
         if (location.pathname == '/' && activeUser && activeUser.username && setStepTwo) {
             setStepTwo();
         }
@@ -382,7 +381,7 @@ debugger
             postElem: <div className="drop-down-menu-version">Ecency Surfer {version}</div>
         };
         let noMargin = step && step === 1
-        debugger
+        
         return (
             <>
                 {floating && (<div className="nav-bar-electron-rep"/>)}
