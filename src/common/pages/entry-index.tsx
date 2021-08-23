@@ -149,7 +149,8 @@ class EntryIndexPage extends Component<PageProps, State> {
         || location?.pathname?.startsWith("/created")
         || location?.pathname?.startsWith("/trending")
         || location?.pathname?.startsWith("/payout")
-        || location?.pathname?.startsWith("/payout_comments")
+        || location?.pathname?.startsWith("/payout_comments");
+        let containerClasses = global.isElectron ? "app-content entry-index-page mt-0" : "app-content entry-index-page";
     
 
         return (
@@ -163,6 +164,8 @@ class EntryIndexPage extends Component<PageProps, State> {
                         ...this.props,
                         reloadFn: this.reload,
                         reloading: loading,
+                        step:this.state.step,
+                        setStepTwo: this.changeStepTwo
                     }) :
                     NavBar({...this.props, step:this.state.step, setStepOne:this.changeStepOne, setStepTwo: this.changeStepTwo})}
                 {
@@ -172,7 +175,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                     <LandingPage {...this.props} changeState={this.changeStepTwo}/>
                 }
                 {
-                    showEntryPage && <div className="app-content entry-index-page">
+                    showEntryPage && <div className={containerClasses}>
                         <div className="tags-side">
                             {!global.isMobile && (
                                 <>

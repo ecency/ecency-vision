@@ -154,6 +154,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         if (loading) {
             return <>{navBar}<LinearProgress/></>;
         }
+        let containerClasses = global.isElectron ? "app-content proposals-page mt-0" : "app-content proposals-page";
 
         return (
             <>
@@ -162,7 +163,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                 <Theme global={this.props.global}/>
                 <Feedback/>
                 {navBar}
-                <div className="app-content proposals-page">
+                <div className={containerClasses}>
                     <div className="page-header">
                         <h1 className="header-title">
                             {_t("proposals.page-title")}
@@ -311,6 +312,7 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
             modified: moment(parseDate(entry.updated)).toISOString(),
             image: catchPostImage(entry.body, 600, 500, global.canUseWebp ? 'webp' : 'match'),
         };
+        let containerClasses = global.isElectron ? "app-content proposals-page proposals-detail-page mt-0" : "app-content proposals-page proposals-detail-page";
 
         return (
             <>
@@ -319,7 +321,7 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
                 <Theme global={this.props.global}/>
                 <Feedback/>
                 {navBar}
-                <div className="app-content proposals-page proposals-detail-page">
+                <div className={containerClasses}>
                     <div className="page-header">
                         <h1 className="header-title">
                             {_t('proposals.page-title')}
