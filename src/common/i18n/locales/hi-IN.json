@@ -651,6 +651,8 @@
     "type-interest": "ब्याज",
     "type-transfer_to_savings": "बचत खाते में स्थांतरण करें",
     "type-fill_convert_request": "कन्वर्ट पूरा हुआ",
+    "type-fill_collateralized_convert_request": "Collateralized convert fulfilled",
+    "type-fill_collateralized_convert-detail": "ID: <strong>{{request}}</strong>, Returned: {{returned}}",
     "type-cancel_transfer_from_savings": "बचत से स्थान्तरण रद्द करें",
     "type-cancel_transfer_from_savings-detail": "से: <strong>@{{from}}</strong> <br/> अनुरोध आईडी:<strong>{{request}}</strong>",
     "type-return_vesting_delegation": "वापसी प्रतिनिधिमंडल",
