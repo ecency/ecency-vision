@@ -651,6 +651,8 @@
     "type-interest": "利息",
     "type-transfer_to_savings": "转入储蓄账户",
     "type-fill_convert_request": "转换已完成",
+    "type-fill_collateralized_convert_request": "Collateralized convert fulfilled",
+    "type-fill_collateralized_convert-detail": "ID: <strong>{{request}}</strong>, Returned: {{returned}}",
     "type-cancel_transfer_from_savings": "取消从储蓄账户中的转移",
     "type-cancel_transfer_from_savings-detail": "来自： <strong>@{{from}}</strong> <br/> 请求 id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "退回派送能量",
