@@ -21,22 +21,39 @@ interface State {
 
 export class WalletHiveEngine extends BaseComponent<Props, State> {
   state: State = {
-    tokens: []
+    tokens: [],
   };
 
   componentDidMount() {
-    this.fetchTokenBalances();
+    this.fetch();
   }
 
-  fetchTokenBalances = async () => {
+  fetch = async () => {
     const { account } = this.props;
-    const tokens = await getTokenBalances(account.name);
-    if (tokens.length === 0) {
+    const items = await getTokenBalances(account.name);
+    if (items.length === 0) {
       return;
     }
 
-    this.stateSet({ tokens });
+    this.stateSet({ tokens: this.sort(items) });
   };
+
+  sort = (items: TokenBalance[]) =>
+    items.sort((a: TokenBalance, b: TokenBalance) => {
+      const balanceA = Number(a.balance);
+      const balanceB = Number(b.balance);
+      if (balanceA !== balanceB) {
+        return balanceA < balanceB ? 1 : -1;
+      }
+
+      const stakeA = Number(a.stake);
+      const stakeB = Number(b.stake);
+      if (stakeA !== stakeB) {
+        return stakeA < stakeB ? 1 : -1;
+      }
+
+      return a.symbol > b.symbol ? 1 : -1;
+    });
 
   render() {
     const { global, dynamicProps, account } = this.props;
@@ -77,14 +94,24 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
               <div className="balance-info">
                 <div className="title">{"Hive Engine Tokens"}</div>
                 <div className="description">
-                  {"Hive Engine is a smart contracts side-chain platform for the Hive blockchain."}
+                  {
+                    "Hive Engine is a smart contracts side-chain platform for the Hive blockchain."
+                  }
                 </div>
               </div>
             </div>
 
-            {tokens.length === 0 ? <div className="no-results">No tokens found</div> : <div className="table-responsive">{table}</div>}
+            {tokens.length === 0 ? (
+              <div className="no-results">No tokens found</div>
+            ) : (
+              <div className="table-responsive">{table}</div>
+            )}
           </div>
-          <WalletMenu global={global} username={account.name} active="hive-engine" />
+          <WalletMenu
+            global={global}
+            username={account.name}
+            active="hive-engine"
+          />
         </div>
       </div>
     );

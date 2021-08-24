@@ -172,17 +172,6 @@ exports[`(2) Render with some hive engine tokens 1`] = `
           <tbody>
             <tr>
               <td>
-                POB
-              </td>
-              <td>
-                0.00000000
-              </td>
-              <td>
-                8.10882833
-              </td>
-            </tr>
-            <tr>
-              <td>
                 PIZZA
               </td>
               <td>
@@ -190,6 +179,17 @@ exports[`(2) Render with some hive engine tokens 1`] = `
               </td>
               <td>
                 0.10
+              </td>
+            </tr>
+            <tr>
+              <td>
+                POB
+              </td>
+              <td>
+                0.00000000
+              </td>
+              <td>
+                8.10882833
               </td>
             </tr>
           </tbody>
