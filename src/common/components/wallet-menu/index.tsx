@@ -7,6 +7,7 @@ import {Global} from "../../store/global/types";
 import _c from "../../util/fix-class-names";
 
 import {hiveSvg} from "../../img/svg";
+import {hiveEngineSvg} from "../../img/svg";
 
 
 interface Props {
@@ -34,8 +35,12 @@ export default class WalletMenu extends Component<Props> {
                         <span className="platform-logo"><img alt="ecency" src={logo}/></span>
                     </Link>
                 )}
+                <Link className={_c(`menu-item hive-engine ${active === "hive-engine" ? "active" : ""}`)} to={`/@${username}/hive-engine`}>
+                    <span className="title">Hive Engine</span>
+                    <span className="sub-title">Wallet</span>
+                    <span className="platform-logo">{hiveEngineSvg}</span>
+                </Link>
             </div>
         );
     }
 }
-

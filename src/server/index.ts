@@ -88,7 +88,7 @@ server
     .get(
         [
             "^/@:username$", // /@esteemapp
-            `^/@:username/:section(${profileFilters.join("|")}|communities|wallet|points|settings)$`, // /@esteemapp/comments
+            `^/@:username/:section(${profileFilters.join("|")}|communities|wallet|points|hive-engine|settings)$`, // /@esteemapp/comments
         ],
         profileHandler
     )
