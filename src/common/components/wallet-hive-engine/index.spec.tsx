@@ -66,15 +66,16 @@ const defProps = {
   dynamicProps: dynamicPropsIntance1,
   users: [],
   activeUser: null,
-  account,
+  account
 };
 
-it("(1) Render an empty list when no tokens found", () => {
+it("(1) Render an empty list when no tokens found", async () => {
   const renderer = TestRenderer.create(
     <StaticRouter location="/" context={{}}>
       <Wallet {...defProps} />
     </StaticRouter>
   );
+  await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
@@ -90,7 +91,7 @@ it("(2) Render with some hive engine tokens", async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(3) usePrivate = false", () => {
+it("(3) usePrivate = false", async () => {
   const props = {
     ...defProps,
     global: {
@@ -103,5 +104,6 @@ it("(3) usePrivate = false", () => {
       <Wallet {...props} />
     </StaticRouter>
   );
+  await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });

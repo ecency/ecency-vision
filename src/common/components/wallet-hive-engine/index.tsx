@@ -5,6 +5,7 @@ import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 
 import BaseComponent from "../base";
+import LinearProgress from "../linear-progress";
 import WalletMenu from "../wallet-menu";
 
 import { TokenBalance, getTokenBalances } from "../../api/hive-engine";
@@ -17,11 +18,13 @@ interface Props {
 
 interface State {
   tokens: TokenBalance[];
+  loading: boolean;
 }
 
 export class WalletHiveEngine extends BaseComponent<Props, State> {
   state: State = {
     tokens: [],
+    loading: true,
   };
 
   componentDidMount() {
@@ -30,12 +33,10 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
   fetch = async () => {
     const { account } = this.props;
-    const items = await getTokenBalances(account.name);
-    if (items.length === 0) {
-      return;
-    }
 
-    this.stateSet({ tokens: this.sort(items) });
+    this.stateSet({ loading: true });
+    const items = await getTokenBalances(account.name);
+    this.stateSet({ tokens: this.sort(items), loading: false });
   };
 
   sort = (items: TokenBalance[]) =>
@@ -57,7 +58,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
   render() {
     const { global, dynamicProps, account } = this.props;
-    const { tokens } = this.state;
+    const { tokens, loading } = this.state;
 
     if (!account.__loaded) {
       return null;
@@ -101,7 +102,11 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
               </div>
             </div>
 
-            {tokens.length === 0 ? (
+            {loading ? (
+              <div className="dialog-placeholder">
+                <LinearProgress />
+              </div>
+            ) : tokens.length === 0 ? (
               <div className="no-results">No tokens found</div>
             ) : (
               <div className="table-responsive">{table}</div>
