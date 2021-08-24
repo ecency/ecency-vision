@@ -651,6 +651,8 @@
     "type-interest": "Odsetki",
     "type-transfer_to_savings": "Przenieś do oszczędności",
     "type-fill_convert_request": "Convert fulfilled",
+    "type-fill_collateralized_convert_request": "Collateralized convert fulfilled",
+    "type-fill_collateralized_convert-detail": "ID: <strong>{{request}}</strong>, Returned: {{returned}}",
     "type-cancel_transfer_from_savings": "Anuluj transfer z oszczędności",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return delegations",
