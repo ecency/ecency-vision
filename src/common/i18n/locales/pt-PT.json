@@ -651,6 +651,8 @@
     "type-interest": "Rendimentos",
     "type-transfer_to_savings": "Transferir para a poupança",
     "type-fill_convert_request": "Convert fulfilled",
+    "type-fill_collateralized_convert_request": "Collateralized convert fulfilled",
+    "type-fill_collateralized_convert-detail": "ID: <strong>{{request}}</strong>, Returned: {{returned}}",
     "type-cancel_transfer_from_savings": "Cancelar a transferência da poupança",
     "type-cancel_transfer_from_savings-detail": "De: <strong>@{{from}}</strong> <br/> ID da solicitação: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return delegations",
