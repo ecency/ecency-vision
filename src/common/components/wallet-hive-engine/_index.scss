@@ -1,3 +1,14 @@
 .wallet-hive-engine {
   @include wallet;
+
+  .item-image {
+    margin-right: 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: #fff;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }

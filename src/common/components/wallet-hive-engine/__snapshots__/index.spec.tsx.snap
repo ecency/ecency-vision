@@ -172,18 +172,35 @@ exports[`(2) Render with some hive engine tokens 1`] = `
           <tbody>
             <tr>
               <td>
+                <img
+                  alt="PIZZA"
+                  className="item-image"
+                  src="https://cdn.discordapp.com/attachments/829112115822198805/853854448936812574/Hive3.png"
+                />
                 PIZZA
+                 (
+                PIZZA
+                )
               </td>
               <td>
                 1.00
               </td>
               <td>
-                0.10
+                1.13
+                 (0.11 + 1.12 - 0.10)
               </td>
             </tr>
             <tr>
               <td>
+                <img
+                  alt="POB"
+                  className="item-image"
+                  src="https://images.hive.blog/DQmebUEYTFmi2g4pqExAjaQrv9E9nzNtuEDbttRBRShkVYy/brain.png"
+                />
+                Proof of Brain
+                 (
                 POB
+                )
               </td>
               <td>
                 0.00000000
@@ -313,9 +330,66 @@ exports[`(3) usePrivate = false 1`] = `
         </div>
       </div>
       <div
-        className="no-results"
+        className="table-responsive"
       >
-        No tokens found
+        <table
+          className="table"
+        >
+          <thead>
+            <tr>
+              <th>
+                Token
+              </th>
+              <th>
+                Balance
+              </th>
+              <th>
+                Staked
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <img
+                  alt="PIZZA"
+                  className="item-image"
+                  src="https://cdn.discordapp.com/attachments/829112115822198805/853854448936812574/Hive3.png"
+                />
+                PIZZA
+                 (
+                PIZZA
+                )
+              </td>
+              <td>
+                1.00
+              </td>
+              <td>
+                1.13
+                 (0.11 + 1.12 - 0.10)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img
+                  alt="POB"
+                  className="item-image"
+                  src="https://images.hive.blog/DQmebUEYTFmi2g4pqExAjaQrv9E9nzNtuEDbttRBRShkVYy/brain.png"
+                />
+                Proof of Brain
+                 (
+                POB
+                )
+              </td>
+              <td>
+                0.00000000
+              </td>
+              <td>
+                8.10882833
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <div

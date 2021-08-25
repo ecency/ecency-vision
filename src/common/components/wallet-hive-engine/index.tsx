@@ -8,7 +8,10 @@ import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import WalletMenu from "../wallet-menu";
 
-import { TokenBalance, getTokenBalances } from "../../api/hive-engine";
+import formattedNumber from "../../util/formatted-number";
+
+import { getHiveEngineTokenBalances } from "../../api/hive-engine";
+import { HiveEngineTokenBalance } from "../../helper/hive-engine-wallet";
 
 interface Props {
   global: Global;
@@ -17,7 +20,7 @@ interface Props {
 }
 
 interface State {
-  tokens: TokenBalance[];
+  tokens: HiveEngineTokenBalance[];
   loading: boolean;
 }
 
@@ -35,22 +38,18 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     const { account } = this.props;
 
     this.stateSet({ loading: true });
-    const items = await getTokenBalances(account.name);
+    const items = await getHiveEngineTokenBalances(account.name);
     this.stateSet({ tokens: this.sort(items), loading: false });
   };
 
-  sort = (items: TokenBalance[]) =>
-    items.sort((a: TokenBalance, b: TokenBalance) => {
-      const balanceA = Number(a.balance);
-      const balanceB = Number(b.balance);
-      if (balanceA !== balanceB) {
-        return balanceA < balanceB ? 1 : -1;
+  sort = (items: HiveEngineTokenBalance[]) =>
+    items.sort((a: HiveEngineTokenBalance, b: HiveEngineTokenBalance) => {
+      if (a.balance !== b.balance) {
+        return a.balance < b.balance ? 1 : -1;
       }
 
-      const stakeA = Number(a.stake);
-      const stakeB = Number(b.stake);
-      if (stakeA !== stakeB) {
-        return stakeA < stakeB ? 1 : -1;
+      if (a.stake !== b.stake) {
+        return a.stake < b.stake ? 1 : -1;
       }
 
       return a.symbol > b.symbol ? 1 : -1;
@@ -74,12 +73,24 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
           </tr>
         </thead>
         <tbody>
-          {tokens.map((row, i) => {
+          {tokens.map((b, i) => {
             return (
-              <tr key={row.symbol}>
-                <td>{row.symbol}</td>
-                <td>{row.balance}</td>
-                <td>{row.stake}</td>
+              <tr key={b.symbol}>
+                <td>
+                  <img src={b.icon} className="item-image" alt={b.symbol} />
+                  {b.name} ({b.symbol})
+                </td>
+                <td>
+                  {formattedNumber(b.balance, {
+                    fractionDigits: b.precision,
+                  })}
+                </td>
+                <td>
+                  {formattedNumber(b.stakedBalance, {
+                    fractionDigits: b.precision,
+                  })}
+                  {b.hasDelegations() && " " + b.delegations()}
+                </td>
               </tr>
             );
           })}
