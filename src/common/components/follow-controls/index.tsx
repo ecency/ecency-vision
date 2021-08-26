@@ -102,6 +102,11 @@ export default class FollowControls extends BaseComponent<Props, State> {
         this.stateSet({inProgress: true});
         try {
             await unFollow(activeUser?.username!, targetUsername);
+            let muted_list = ls.get("muted-list")
+            if(muted_list){
+                muted_list = muted_list.filter((item:string)=>item!==targetUsername);
+            }
+            ls.set("muted-list", muted_list);
             this.stateSet({following: false, muted: false});
         } catch (err) {
             error(formatError(err));
