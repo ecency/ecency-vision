@@ -56,6 +56,8 @@ const handleChainError = (strErr: string) => {
         return _t("chain-error.insufficient-resource");
     } else if (/Cannot delete a comment with net positive/.test(strErr)) {
         return _t("chain-error.delete-comment-with-vote");
+    } else if (/children == 0/.test(strErr)) {
+        return _t("chain-error.comment-children");
     } else if (/comment_cashout/.test(strErr)) {
         return _t("chain-error.comment-cashout");
     } else if (/Votes evaluating for comment that is paid out is forbidden/.test(strErr)) {
