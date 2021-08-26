@@ -377,7 +377,7 @@ class EntryPage extends BaseComponent<Props, State> {
         const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
         const isLowReputation = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
         const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry;
-        
+        debugger
         //  Meta config
         const url = entryCanonical(entry) || "";
 
@@ -777,8 +777,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                     {Discussion({
                                         ...this.props,
                                         parent: entry,
-                                        community,
-                                        setter: (val: boolean)=>{!this.state.entryIsMuted && this.setState({entryIsMuted:val})}
+                                        community
                                     })}
                                 </>
                             })()}
