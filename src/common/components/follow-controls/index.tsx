@@ -15,7 +15,7 @@ import {getRelationshipBetweenAccounts} from "../../api/bridge";
 import {follow, unFollow, ignore, formatError} from "../../api/operations";
 
 import {_t} from "../../i18n";
-
+import * as ls from "../../util/local-storage";
 
 interface Props {
     users: User[];
@@ -116,6 +116,11 @@ export default class FollowControls extends BaseComponent<Props, State> {
         this.stateSet({inProgress: true});
         try {
             await ignore(activeUser?.username!, targetUsername);
+            let muted_list = [targetUsername];
+            if(ls.get("muted-list")){
+                muted_list = ls.get("muted-list").concat(muted_list);
+            }
+            ls.set("muted-list",muted_list);
             this.stateSet({following: false, muted: true});
         } catch (err) {
             error(formatError(err));

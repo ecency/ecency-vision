@@ -16,6 +16,7 @@ import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 import MessageNoData from "../message-no-data";
 import { Link } from "react-router-dom";
 import { _t } from "../../i18n";
+import * as ls from "../../util/local-storage";
 import LinearProgress from "../linear-progress";
 import { getFollowing } from "../../api/hive";
 
@@ -94,11 +95,19 @@ export class EntryListContent extends Component<Props, State> {
         const {filter} = global;
         const { mutedUsers, loadingMutedUsers } = this.state;
         let dataToRender = entries;
-        if((filter as ProfileFilter) !== ProfileFilter.posts && (filter as ProfileFilter) !== ProfileFilter.blog){
-            dataToRender =  mutedUsers.length > 0 ?  entries.filter(item=> {
-                let mutedItem = mutedUsers.includes(item.author);
-                return !mutedItem && item
-            }) : entries ;
+        // if((filter as ProfileFilter) !== ProfileFilter.posts && (filter as ProfileFilter) !== ProfileFilter.blog){
+        //     dataToRender =  mutedUsers.length > 0 ?  entries.filter(item=> {
+        //         let mutedItem = mutedUsers.includes(item.author);
+        //         return !mutedItem && item
+        //     }) : entries ;
+        // }
+
+        let mutedList: string[] = [];
+        if(ls.get("muted-list")){
+            mutedList = mutedList.concat(mutedUsers).concat(ls.get("muted-list"))
+        }
+        else {
+            mutedList = mutedList.concat(mutedUsers)
         }
          
         return loadingMutedUsers ? <LinearProgress /> : dataToRender.length > 0 ? (
@@ -118,13 +127,15 @@ export class EntryListContent extends Component<Props, State> {
                                         key={`${p.author}-${p.permlink}`}
                                         {...Object.assign({}, this.props, {entry: p})}
                                         promoted={true} order={4}
+                                        muted={mutedList.includes(p.author)}
                                     />
                                 );
                             }
                         }
                     }
 
-                    l.push(<EntryListItem key={`${e.author}-${e.permlink}`} {...this.props} entry={e} order={i}/>);
+                    l.push(<EntryListItem key={`${e.author}-${e.permlink}`} {...this.props} entry={e} order={i}
+                    muted={mutedList.includes(e.author)}/>);
                     return [...l];
                 })}
             </>
