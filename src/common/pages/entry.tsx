@@ -435,7 +435,7 @@ class EntryPage extends BaseComponent<Props, State> {
         const appShort = app.split('/')[0].split(' ')[0];
 
         const isComment = !!entry.parent_author;
-debugger
+
         const {activeUser} = this.props;
 
         const ownEntry = activeUser && activeUser.username === entry.author;
@@ -603,6 +603,26 @@ debugger
 
                                         const renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 && comment || entry.body : entry.body, false, global.canUseWebp)};
                                         const ctitle = entry.community ? entry.community_title : "";
+                                        let extraItems = ownEntry && isComment ? [{
+                                                label: _t("g.edit"),
+                                                onClick: this.toggleEdit,
+                                                icon: pencilOutlineSvg
+                                            }
+                                        ] : [];
+                                        if(!(entry.children > 0 || entry.net_rshares > 0 || entry.is_paidout) && ownEntry && isComment){
+                                            extraItems = [...extraItems, {
+                                                label: "",
+                                                onClick: ()=>{},
+                                                icon: entryDeleteBtn({
+                                                    ...this.props,
+                                                    entry,
+                                                    setDeleteInProgress: value=> this.setState({loading: value}),
+                                                    onSuccess: this.deleted,
+                                                    children: <a title={_t('g.delete')} className="edit-btn">{deleteForeverSvg} {_t("g.delete")}</a>
+                                                })
+                                            }]
+                                            }
+
                                         return <>
                                             <div className="entry-header">
                                                 {isMuted && (<div className="hidden-warning">
@@ -697,34 +717,7 @@ debugger
                                                         ...this.props,
                                                         entry,
                                                         separatedSharing: true,
-                                                        extraMenuItems: ownEntry && isComment ? [{
-                                                            label: _t("g.edit"),
-                                                            onClick: this.toggleEdit,
-                                                            icon: pencilOutlineSvg
-                                                        },
-                                                        {
-                                                            label: "",
-                                                            onClick: ()=>{},
-                                                            icon: entryDeleteBtn({
-                                                                ...this.props,
-                                                                entry,
-                                                                setDeleteInProgress: value=> this.setState({loading: value}),
-                                                                onSuccess: this.deleted,
-                                                                children: (entry.children > 0 || entry.net_rshares > 0) ? <>{null}</> : entry && entry.is_paidout ? <OverlayTrigger
-                                                                delay={{ show: 0, hide: 500 }}
-                                                                key={'bottom'}
-                                                                placement={'bottom'}
-                                                                overlay={
-                                                                    <Tooltip id={`tooltip-votes-${'bottom'}`}>
-                                                                        {_t('entry.delete-disabled')}
-                                                                    </Tooltip>
-                                                                }
-                                                                >
-                                                                <a className="edit-btn text-muted">{deleteForeverSvg} {_t("g.delete")}</a>
-                                                            </OverlayTrigger> : <a title={_t('g.delete')} className="edit-btn">{deleteForeverSvg} {_t("g.delete")}</a>
-                                                            })
-                                                        }
-                                                    ] : []
+                                                        extraMenuItems: extraItems
                                                     })}
                                                 </div>
                                             </div>

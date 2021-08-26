@@ -282,7 +282,14 @@ export class EntryMenu extends BaseComponent<Props, State> {
                         label: _t("g.edit"),
                         onClick: this.edit,
                         icon: pencilOutlineSvg
-                    },
+                    }
+                ]
+            ];
+        }
+
+        if (!(entry.children > 0 || entry.net_rshares > 0 || entry.is_paidout)) {
+            menuItems = [...menuItems,
+                ...[
                     {
                         label: _t("g.delete"),
                         onClick: this.toggleDelete,
