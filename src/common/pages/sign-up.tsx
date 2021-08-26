@@ -103,6 +103,7 @@ class SignUpPage extends Component<PageProps, State> {
 
         const {username, email, referral, lockReferral, inProgress, done} = this.state;
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
+        let containerClasses = global.isElectron ? "app-content sign-up-page mb-lg-0 mt-0" : "app-content sign-up-page mb-lg-0";
 
         return (
             <>
@@ -115,7 +116,7 @@ class SignUpPage extends Component<PageProps, State> {
                         ...this.props,
                     }) :
                     NavBar({...this.props})}
-                <div className="app-content sign-up-page mb-lg-0">
+                <div className={containerClasses}>
 
                     <div className="sign-up">
                         <div className="left-image">

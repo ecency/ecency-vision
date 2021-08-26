@@ -711,6 +711,7 @@ class SubmitPage extends BaseComponent<Props, State> {
 
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
         const isMobile = typeof window !== 'undefined' && window.innerWidth < 570;
+        let containerClasses = global.isElectron ? " mt-0" : "";
         return (
             <>
                 <Meta {...metaProps} />
@@ -725,7 +726,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                     }) :
                     NavBar({ ...this.props })}
 
-                <div className={_c(`app-content submit-page ${editingEntry !== null ? "editing" : ""}`)}>
+                <div className={_c(`app-content submit-page ${editingEntry !== null ? "editing" : ""} ${containerClasses}`)}>
                     <div className="editor-panel">
                         {(editingEntry === null && activeUser) && <div className="community-input">
                             {CommunitySelector({

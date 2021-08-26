@@ -28,6 +28,7 @@ class DiscoverPage extends Component<PageProps> {
         };
 
         const {global} = this.props;
+        let containerClasses = global.isElectron ? "app-content discover-page mt-0" : "app-content discover-page";
 
         return (
             <>
@@ -40,7 +41,7 @@ class DiscoverPage extends Component<PageProps> {
                         ...this.props,
                     }) :
                     NavBar({...this.props})}
-                <div className="app-content discover-page">
+                <div className={containerClasses}>
                     {global.usePrivate && (<div className="top-users">
                         {LeaderBoard({...this.props})}
                     </div>)}

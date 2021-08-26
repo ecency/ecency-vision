@@ -53,6 +53,7 @@ class SearchPage extends SearchBase {
         };
 
         const {global} = this.props;
+        let containerClasses = global.isElectron ? "app-content search-page mt-0" : "app-content search-page";
 
         return (
             <>
@@ -63,7 +64,7 @@ class SearchPage extends SearchBase {
                         ...this.props,
                     }) :
                     NavBar({...this.props})}
-                <div className="app-content search-page">
+                <div className={containerClasses}>
                     <div className="search-main">
                         <SearchComment {...this.props} limit={8}/>
                     </div>
@@ -95,6 +96,7 @@ class SearchMorePage extends SearchBase {
         };
 
         const {global} = this.props;
+        let containerClasses = global.isElectron ? "app-content search-more-page mt-0" : "app-content search-more-page";
 
         return (
             <>
@@ -105,7 +107,7 @@ class SearchMorePage extends SearchBase {
                         ...this.props,
                     }) :
                     NavBar({...this.props})}
-                <div className="app-content search-more-page">
+                <div className={containerClasses}>
                     <SearchComment {...this.props}/>
                 </div>
             </>

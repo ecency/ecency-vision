@@ -54,6 +54,7 @@ class AboutPage extends Component<PageProps> {
         };
 
         const {global} = this.props;
+        let containerClasses = global.isElectron ? " mt-0" : "";
 
         return (
             <>
@@ -66,7 +67,7 @@ class AboutPage extends Component<PageProps> {
                     }) :
                     NavBar({...this.props})}
 
-                <div className="app-content static-page about-page">
+                <div className={"app-content static-page about-page" + containerClasses}>
                     <div className="about-cloud">
                         <div className="up-cloud"/>
                         <div className="about-inner">
@@ -201,6 +202,7 @@ class GuestPostPage extends Component <PageProps> {
         };
 
         const {global} = this.props;
+        let containerClasses = global.isElectron ? " mt-0" : "";
 
         return (
             <>
@@ -213,7 +215,7 @@ class GuestPostPage extends Component <PageProps> {
                     }) :
                     NavBar({...this.props})}
 
-                <div className="app-content static-page guest-post-page">
+                <div className={"app-content static-page guest-post-page" + containerClasses}>
                     <iframe
                         title="Esteem contribution form"
                         src="https://docs.google.com/forms/d/e/1FAIpQLSf3Pt8DQ79edkQK7XHrlIZkZYcueJvgJso6OXz2pgGCplLbaA/viewform?embedded=true"
@@ -239,6 +241,7 @@ class ContributePage extends Component<PageProps> {
         };
 
         const {global} = this.props;
+        let containerClasses = global.isElectron ? " mt-0" : "";
 
         return (
             <>
@@ -251,7 +254,7 @@ class ContributePage extends Component<PageProps> {
                     }) :
                     NavBar({...this.props})}
 
-                <div className="app-content static-page contribute-page">
+                <div className={"app-content static-page contribute-page" + containerClasses}>
                     <div className="static-content">
                         <h1 className="page-title">Contribute to Esteem</h1>
                         <p>
@@ -308,6 +311,7 @@ class PrivacyPage extends Component<PageProps> {
         };
 
         const {global} = this.props;
+        let containerClasses = global.isElectron ? " mt-0" : "";
 
         return (
             <>
@@ -320,7 +324,7 @@ class PrivacyPage extends Component<PageProps> {
                     }) :
                     NavBar({...this.props})}
 
-                <div className="app-content static-page privacy-page">
+                <div className={"app-content static-page privacy-page" + containerClasses}>
                     <div className="static-content">
                         <h1 className="page-title">Privacy Policy</h1>
                         <p className="static-last-updated">Effective: August 20, 2020</p>
@@ -507,6 +511,7 @@ class WhitePaperPage extends Component<PageProps> {
         };
 
         const {global} = this.props;
+        let containerClasses = global.isElectron ? " mt-0" : "";
 
         return (
             <>
@@ -519,7 +524,7 @@ class WhitePaperPage extends Component<PageProps> {
                     }) :
                     NavBar({...this.props})}
 
-                <div className="app-content static-page white-paper-page">
+                <div className={"app-content static-page white-paper-page" + containerClasses}>
                     <div className="static-content">
                         <h1 className="page-title">Whitepaper</h1>
 
@@ -552,6 +557,7 @@ class TosPage extends Component<PageProps> {
         };
 
         const {global} = this.props;
+        let containerClasses = global.isElectron ? " mt-0" : "";
 
         return (
             <>
@@ -564,7 +570,7 @@ class TosPage extends Component<PageProps> {
                     }) :
                     NavBar({...this.props})}
 
-                <div className="app-content static-page tos-page">
+                <div className={"app-content static-page tos-page" + containerClasses}>
                     <div className="static-content">
                         <h1 className="page-title">Terms Of Service</h1>
                         <p className="static-last-updated">Last Updated August 20, 2020</p>
@@ -802,6 +808,7 @@ class FaqPage extends Component<PageProps> {
 
         const {global} = this.props;
         const imgs = apiBase(`/assets/ecency-faq.${this.props.global.canUseWebp ? 'webp' : 'jpg'}`);
+        let containerClasses = global.isElectron ? " mt-0" : "";
 
         return (
             <>
@@ -814,7 +821,7 @@ class FaqPage extends Component<PageProps> {
                     }) :
                     NavBar({...this.props})}
 
-                <div className="app-content static-page faq-page" itemScope={true} itemType="https://schema.org/FAQPage">
+                <div className={"app-content static-page faq-page" + containerClasses} itemScope={true} itemType="https://schema.org/FAQPage">
                     <div className="static-content">
                         <h1 className="page-title">{_t('static.faq.page-title')}</h1>
                         <img src={imgs}/>
@@ -850,6 +857,7 @@ class ContributorsPage extends Component<PageProps> {
         };
 
         const {global} = this.props;
+        let containerClasses = global.isElectron ? " mt-0" : "";
 
         return (
             <>
@@ -862,7 +870,7 @@ class ContributorsPage extends Component<PageProps> {
                     }) :
                     NavBar({...this.props})}
 
-                <div className="app-content static-page contributors-page">
+                <div className={"app-content static-page contributors-page" + containerClasses}>
                     {Contributors({...this.props})}
                 </div>
             </>

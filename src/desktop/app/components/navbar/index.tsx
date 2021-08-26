@@ -40,6 +40,7 @@ import routes from "../../../../common/routes";
 import {version} from "../../../package.json";
 
 import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg, dotsHorizontal, translateSvg} from "../../../../common/img/svg";
+import { debug } from "webpack";
 
 // why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
 const pathToRegexp = require("path-to-regexp");
@@ -284,7 +285,9 @@ interface Props {
     setLang: (lang: string) => void;
     dismissNewVersion: () => void;
     reloadFn?: () => any,
+    setStepTwo?: () => any,
     reloading?: boolean,
+    step?: number
 }
 
 interface State {
@@ -326,6 +329,13 @@ export class NavBar extends Component<Props, State> {
             || !isEqual(this.state, nextState)
     }
 
+    componentDidUpdate(prevProps:Props){
+        const {location, activeUser, setStepTwo} = this.props;
+        if (location.pathname == '/' && activeUser && activeUser.username && setStepTwo) {
+            setStepTwo();
+        }
+    }
+
     scrollChanged = () => {
         clearTimeout(this.timer);
         this.timer = setTimeout(this.detect, 100);
@@ -346,7 +356,7 @@ export class NavBar extends Component<Props, State> {
     };
 
     render() {
-        const {global, activeUser, history, location, ui} = this.props;
+        const {global, activeUser, history, location, ui, step} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
@@ -370,11 +380,12 @@ export class NavBar extends Component<Props, State> {
             ],
             postElem: <div className="drop-down-menu-version">Ecency Surfer {version}</div>
         };
-
+        let noMargin = step && step === 1
+        
         return (
             <>
                 {floating && (<div className="nav-bar-electron-rep"/>)}
-                <div ref={this.nav} className={_c(`nav-bar-electron`)}>
+                <div ref={this.nav} className={_c(`nav-bar-electron ${noMargin ? "mb-0" : "" }`)}>
                     <div className="nav-bar-inner">
                         <div className="brand">
                             <Link to={logoHref}>
@@ -466,6 +477,8 @@ export default (p: Props) => {
         dismissNewVersion: p.dismissNewVersion,
         reloadFn: p.reloadFn,
         reloading: p.reloading,
+        step: p.step,
+        setStepTwo: p.setStepTwo
     }
 
     return <NavBar {...props} />;

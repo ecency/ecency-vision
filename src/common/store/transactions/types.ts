@@ -102,6 +102,15 @@ export interface FillConvertRequest extends BaseTransaction {
     amount_out: string,
 }
 
+export interface FillCollateralizedConvertRequest extends BaseTransaction {
+    type: "fill_collateralized_convert_request",
+    owner: string,
+    requestid: number,
+    amount_in: string,
+    amount_out: string,
+    excess_collateral: string
+}
+
 export interface ReturnVestingDelegation extends BaseTransaction {
     type: "return_vesting_delegation"
     vesting_shares: string
@@ -193,6 +202,7 @@ export type Transaction =
     | ProducerReward
     | Interest
     | FillConvertRequest
+    | FillCollateralizedConvertRequest
     | ReturnVestingDelegation
     | ProposalPay
     | CommentPayoutUpdate

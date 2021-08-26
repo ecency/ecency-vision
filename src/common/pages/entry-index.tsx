@@ -35,16 +35,12 @@ import defaults from "../constants/defaults.json";
 import {appleSvg, desktopSvg, googleSvg} from "../img/svg";
 
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
-import { getRelationshipBetweenAccounts } from "../api/bridge";
-import { User } from "../store/users/types";
-import { getFollowers, getFollowing } from "../api/hive";
 
 interface State {
     step: number;
 }
 
 class EntryIndexPage extends Component<PageProps, State> {
-
     state:State = {
         step: 1,
     }
@@ -72,13 +68,14 @@ class EntryIndexPage extends Component<PageProps, State> {
 
     bottomReached = () => {
         const {global, entries, fetchEntries} = this.props;
+        const { step } = this.state;
         const {filter, tag} = global;
         const groupKey = makeGroupKey(filter, tag);
 
         const data = entries[groupKey];
         const {loading, hasMore} = data;
 
-        if (!loading && hasMore) {
+        if (!loading && hasMore && step === 2) {
             fetchEntries(filter, tag, true);
         }
     };
@@ -152,7 +149,8 @@ class EntryIndexPage extends Component<PageProps, State> {
         || location?.pathname?.startsWith("/created")
         || location?.pathname?.startsWith("/trending")
         || location?.pathname?.startsWith("/payout")
-        || location?.pathname?.startsWith("/payout_comments")
+        || location?.pathname?.startsWith("/payout_comments");
+        let containerClasses = global.isElectron ? "app-content entry-index-page mt-0" : "app-content entry-index-page";
     
 
         return (
@@ -166,6 +164,8 @@ class EntryIndexPage extends Component<PageProps, State> {
                         ...this.props,
                         reloadFn: this.reload,
                         reloading: loading,
+                        step:this.state.step,
+                        setStepTwo: this.changeStepTwo
                     }) :
                     NavBar({...this.props, step:this.state.step, setStepOne:this.changeStepOne, setStepTwo: this.changeStepTwo})}
                 {
@@ -175,7 +175,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                     <LandingPage {...this.props} changeState={this.changeStepTwo}/>
                 }
                 {
-                    showEntryPage && <div className="app-content entry-index-page">
+                    showEntryPage && <div className={containerClasses}>
                         <div className="tags-side">
                             {!global.isMobile && (
                                 <>

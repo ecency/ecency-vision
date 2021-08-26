@@ -240,6 +240,16 @@ export class TransactionRow extends Component<RowProps> {
             numbers = <span className="number">{tr.amount_in} = {tr.amount_out}</span>
         }
 
+        if (tr.type === "fill_collateralized_convert_request") {
+            flag = true;
+            icon = reOrderHorizontalSvg;
+
+            numbers = <span className="number">{tr.amount_in} = {tr.amount_out}</span>
+            details = <Tsx k="transactions.type-fill_collateralized_convert-detail" args={{request: tr.requestid, returned: tr.excess_collateral}}>
+                <span/>
+            </Tsx>
+        }
+
         if (tr.type === "return_vesting_delegation") {
             flag = true;
             icon = powerUpSvg;
