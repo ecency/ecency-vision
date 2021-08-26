@@ -75,19 +75,19 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
         <tbody>
           {tokens.map((b, i) => {
             return (
-              <tr key={b.symbol}>
+              <tr key={i}>
                 <td>
                   <img src={b.icon} className="item-image" alt={b.symbol} />
                   {b.name} ({b.symbol})
                 </td>
                 <td>
                   {formattedNumber(b.balance, {
-                    fractionDigits: b.precision,
+                    fractionDigits: b.precision
                   })}
                 </td>
                 <td>
                   {formattedNumber(b.stakedBalance, {
-                    fractionDigits: b.precision,
+                    fractionDigits: b.precision
                   })}
                   {b.hasDelegations() && " " + b.delegations()}
                 </td>
