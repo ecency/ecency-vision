@@ -435,7 +435,7 @@ class EntryPage extends BaseComponent<Props, State> {
         const appShort = app.split('/')[0].split(' ')[0];
 
         const isComment = !!entry.parent_author;
-
+debugger
         const {activeUser} = this.props;
 
         const ownEntry = activeUser && activeUser.username === entry.author;
@@ -697,7 +697,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         ...this.props,
                                                         entry,
                                                         separatedSharing: true,
-                                                        extraMenuItems : ownEntry && isComment ? [{
+                                                        extraMenuItems: ownEntry && isComment ? [{
                                                             label: _t("g.edit"),
                                                             onClick: this.toggleEdit,
                                                             icon: pencilOutlineSvg
@@ -710,7 +710,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                                 entry,
                                                                 setDeleteInProgress: value=> this.setState({loading: value}),
                                                                 onSuccess: this.deleted,
-                                                                children: entry && entry.is_paidout ? <OverlayTrigger
+                                                                children: (entry.children > 0 || entry.net_rshares > 0) ? <>{null}</> : entry && entry.is_paidout ? <OverlayTrigger
                                                                 delay={{ show: 0, hide: 500 }}
                                                                 key={'bottom'}
                                                                 placement={'bottom'}
