@@ -45,7 +45,7 @@
     "warning": "Varoitus",
     "payout": "Palkkio",
     "learn-more": "Lue lisää meidän",
-    "faq": "FAQ",
+    "faq": "UKK:sta",
     "close": "Sulje"
   },
   "confirm": {
@@ -63,13 +63,13 @@
     "filter-feed": "Syöte",
     "filter-feed-friends": "Kaverit",
     "filter-feed-subscriptions": "Yhteisöt",
-    "filter-global": "Global",
-    "filter-global-part1": "This feed contains ",
-    "filter-global-part2": " discussions on entire platform.",
-    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
-    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
-    "filter-global-discover": "Discover People",
-    "filter-global-join-communities": "Join Communities"
+    "filter-global": "Globaali",
+    "filter-global-part1": "Tämä syöte sisältää ",
+    "filter-global-part2": " keskustelua koko alustalla.",
+    "filter-global-part3": " keskustelut tilatuista yhteisöistäsi. Voit liittyä useampiin yhteisöihin täyttääksesi tätä syötettä.",
+    "filter-global-part4": " keskustelut seuratuista ihmisistä. Voit seurata useampia käyttäjiä täyttääksesi tätä syötettä.",
+    "filter-global-discover": "Löydä uusia ihmisiä",
+    "filter-global-join-communities": "Liity yhteisöihin"
   },
   "navbar": {
     "discover": "Löydä uutta",
@@ -87,8 +87,8 @@
     "header-community": "Yhteisöt"
   },
   "tag": {
-    "unmoderated": "Unmoderated topics",
-    "moderated": "Moderated community"
+    "unmoderated": "Valvomattomat aiheet",
+    "moderated": "Valvottu yhteisö"
   },
   "switch-lang": {
     "contributors": "Osallistujat"
@@ -100,7 +100,7 @@
     "unclaimed-points-notice": "Sinulla on lunastamattomia pisteitä",
     "notifications": "Ilmoitukset",
     "profile": "Profiili",
-    "profile-menu": "Profile menu",
+    "profile-menu": "Profiilin valikko",
     "gallery": "Galleria",
     "drafts": "Luonnokset",
     "bookmarks": "Kirjanmerkit",
@@ -108,10 +108,10 @@
     "fragments": "Katkelmat",
     "settings": "Asetukset",
     "logout": "Kirjaudu ulos",
-    "theme": "theme",
-    "light": "light",
-    "dark": "dark",
-    "switch-to": "Switch",
+    "theme": "teema",
+    "light": "vaalea",
+    "dark": "tumma",
+    "switch-to": "Vaihda",
     "vote-power": "Äänivalta:"
   },
   "intro": {
@@ -130,7 +130,7 @@
     "error-public-key": "Lisäsit public keyn. Vaaditaan salasana/WIF",
     "error-user-fetch": "Käyttäjätietoja ei voitu ladata",
     "error-user-not-found": "Käyttäjää ei ole olemassa",
-    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
+    "error-user-not-found-cache": "Välimuistin epäjohdonmukaisuus havaittu. Ole hyvä ja yritä kirjautua sisään käyttäjätunnuksillasi.",
     "error-permission": "Julkaisulupaa ei voitu hakea",
     "error-authenticate": "Väärä yksityinen avain. Pää tai aktiivinen yksityinen avain vaaditaan.",
     "with-hive-signer": "Kirjaudu sisään hivesignerilla",
@@ -139,16 +139,16 @@
     "sign-up-text-2": "Rekisteröidy nyt!"
   },
   "sign-up": {
-    "header": "Welcome to Ecency",
-    "description": "Home of Free speech and Rewarding communities!",
-    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
-    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Tervetuloa Ecencyyn",
+    "description": "Vapaan sanan koti ja palkitsevat yhteisöt!",
+    "bottom-description": "Jokainen tili on luotu lohkoketjulle ja vain sinulla on määräysvalta tällä tilillä. Yhdellä tilillä voit hallita kaikkea lohkoketjussa ja Ecencyssä.",
+    "learn-more": "Lue lisää hyödyistä <a href=\"/faq#how-to-join\">UKK:sta</a>",
     "username": "Valitse käyttäjänimi",
     "email": "Syötä sähköpostiosoitteesi",
     "ref": "Suosittelija (valinnainen)",
     "submit": "Jatka",
-    "validation-username": "Username is required.",
-    "validation-email": "Email is required.",
+    "validation-username": "Käyttäjätunnus vaaditaan.",
+    "validation-email": "Sähköpostiosoite vaaditaan.",
     "success": "Olemme lähettäneet vahvistuksen sähköpostiin {{email}}.",
     "success-2": "Seuraa ohjeita suorittaaksesi rekisteröinti.",
     "login-text-1": "Onko sinulla jo käyttäjätili?",
@@ -163,13 +163,13 @@
   "entry-list-item": {
     "cross-posted": "ristiinlähetetty",
     "cross-posted-to": "saaja",
-    "reblogged": "{{n}} Reblogged",
-    "promoted": "Promoted",
+    "reblogged": "{{n}} Uudelleenjaettu",
+    "promoted": "Korostettu",
     "pinned": "Kiinnitetty julkaisu",
     "replies": "1 vastaus. Klikkaa vastataksesi.",
     "replies-n": "{{n}} vastausta. Klikkaa vastataksesi.",
-    "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-error": "Edellinen arvo ei ole hyväksyttävä. Äänestä eri arvolla.",
+    "vote-warning": "Äänestämällä 0% poistaa sisällön tukemisen.",
     "no-replies": "Ei vielä vastauksia. Klikkaa vastataksesi."
   },
   "nsfw": {
@@ -234,7 +234,7 @@
     "payout-date": "Tulot",
     "beneficiary": "Hyötyjä",
     "breakdown": "Erittely",
-    "max-accepted": "Max accepted"
+    "max-accepted": "Suurin sallittu"
   },
   "entry-index": {
     "feed": "Syöte",
@@ -266,14 +266,14 @@
   },
   "entry": {
     "via-app": "<span class=\"app-name\">{{app}}</span> kautta",
-    "author-reputation": "Author's reputation",
+    "author-reputation": "Tekijän maine",
     "comment-entry-title": "Katselet yhtä kommenttiketjua: ",
     "comment-entry-go-root": "Katso kaikki",
     "comment-entry-go-parent": "Näytä vanhempi",
-    "hidden-warning": "This content got low rating by people. Proceed with caution.",
-    "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
-    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
-    "comments-hidden": "Author of this post is muted by you.",
+    "hidden-warning": "Tämä sisältö sai alhaisen arvosanan käyttäjiltä. Jatka varoen.",
+    "muted-warning": "{{community}} valvoja mykisti tämän sisällön, koska se ei noudattanut yhteisön ohjeita.",
+    "lowrep-warning": "Tämän julkaisun tekijällä on heikko maine. Jatka varoen.",
+    "comments-hidden": "Olet mykistänyt tämän julkaisun tekijän.",
     "address-copy": "Kopioi osoite",
     "address-copied": "Osoite kopioitu leikepöydälle.",
     "browse-original": "Näytä alkuperäinen julkaisu",
@@ -287,7 +287,7 @@
     "version": "Versio {{n}}"
   },
   "similar-entries": {
-    "title": "Read next"
+    "title": "Lue seuraava"
   },
   "comment": {
     "body-placeholder": "Kirjoita vastauksesi tähän",
@@ -304,7 +304,7 @@
     "order-votes": "Äänet",
     "order-created": "Ikä",
     "read-more": "...lue lisää vastauksia...",
-    "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted": "Mykistetty tekijä - paljasta kommentti",
     "reveal": "Näytä kommentti"
   },
   "community": {
@@ -337,7 +337,7 @@
     "edit": "Muokkaa asetuksia",
     "edit-team": "Muokkaa rooleja",
     "community-rewards": "Yhteisöpalkkiot",
-    "profile-image": "Profile image",
+    "profile-image": "Profiilikuva",
     "profile-image-edit": "Muokkaa profiilikuvaa",
     "profile-image-updated": "Profiilikuva päivitetty!"
   },
@@ -356,7 +356,7 @@
     "description": "Kuvaus",
     "rules": "Säännöt",
     "rules-help": "Yksi per rivi",
-    "validation-title": "Title is required."
+    "validation-title": "Otsikko on pakollinen."
   },
   "communities": {
     "title": "Yhteisöt",
@@ -377,15 +377,15 @@
     "title": "Otsikko",
     "about": "Tietoa",
     "description": "Luo netin parhaat hajautetut, sensuurivapaat ja palkitsevat yhteisöt",
-    "fee": "Creation fee",
+    "fee": "Luontimaksu",
     "creator": "Tekijä",
-    "username": "Community username",
+    "username": "Yhteisön käyttäjätunnus",
     "username-available": "Saatavilla.",
     "username-not-available": "Ei saatavilla.",
     "username-wrong-format": "Muoto ei kelpaa. hive-1xxxxx muoto vaaditaan.",
-    "checkbox-validation": "Please tick this box if you want to proceed.",
-    "title-validation": "Please fill in this field.",
-    "password": "Community password",
+    "checkbox-validation": "Valitse tämä valintaruutu, jos haluat jatkaa.",
+    "title-validation": "Täytä tämä kenttä.",
+    "password": "Yhteisön salasana",
     "confirmation": "Olen tallentanut turvallisesti omistajan käyttäjätunnuksen ja salasanan.",
     "submit": "Luo yhteisö",
     "progress-account": "Luodaan tiliä...",
@@ -393,10 +393,10 @@
     "progress-role": "Asetetaan @{{u}} ylläpitäjäksi...",
     "progress-props": "Päivitetään yhteisöasetuksia...",
     "done": "Yhteisösi luotiin 🎉",
-    "reason-one": "True ownership",
-    "reason-two": "Permanent, rewarding",
-    "reason-three": "Powered by blockchain technology",
-    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
+    "reason-one": "Todellinen omistajuus",
+    "reason-two": "Pysyvä, palkitseva",
+    "reason-three": "Toimii lohkoketjuteknologian pohjalla",
+    "reason-four": "Maksamalla 3 HIVEä luoda voit luoda pysyvän, muuttumattoman yhteisön todellisella omistajuudella",
     "done-link-label": "Aloitetaan."
   },
   "community-rewards-registration": {
@@ -441,9 +441,9 @@
     "rc-power": "Resurssihyvitykset: {{n}}%",
     "recharge-time": "(täysin veloitettu {{n}})",
     "down-vote-power": "Äänen laskuteho: {{n}}%",
-    "no-posts": "Here you will see your posts, looks like no content exists.",
-    "create-posts": "Let's create a new post",
-    "no-posts-found": "Found nothing!"
+    "no-posts": "Täällä näet julkaisusi, näyttää siltä ettei sisältöä ole luotu.",
+    "create-posts": "Luodaan uusi julkaisu",
+    "no-posts-found": "Ei löytynyt mitään!"
   },
   "profile-edit": {
     "title": "Profiili",
@@ -453,7 +453,7 @@
     "profile-image": "Profiilikuva",
     "website": "Sivusto",
     "location": "Sijainti",
-    "copied": "Referral link copied to clipboard.",
+    "copied": "Suosituslinkki kopioitu leikepöydälle.",
     "updated": "Profiili on päivitetty onnistuneesti!"
   },
   "image-upload-button": {
@@ -465,7 +465,7 @@
     "currency": "Valuutta",
     "language": "Kieli",
     "nsfw": "Näytä NSFW-sisältö",
-    "referral-link": "Referral link",
+    "referral-link": "Suosituslinkki",
     "updated": "Asetukset päivitetty!"
   },
   "wallet": {
@@ -502,8 +502,8 @@
     "title": "Palauta tilit",
     "account": "Tili",
     "percent": "Prosentti",
-    "validation-account": "Account is required.",
-    "validation-percent": "Percentage is required.",
+    "validation-account": "Käyttäjätili vaaditaan.",
+    "validation-percent": "Prosentti vaaditaan.",
     "auto-power-up": "Automaattinen power up"
   },
   "points": {
@@ -519,7 +519,7 @@
     "reblog-desc": "Jaa haluamasi julkaisu ystävillesi ja saat 1 pisteen.",
     "login-desc": "Ensikirjauksella Ecencyyn saat automaattisesti 100 pistettä.",
     "checkin-extra-desc": "Toistuva dappin käyttö voi johtaa 10 lisäpisteeseen, ole aktiivinen ja saat enemmän.",
-    "delegation-desc": "You can earn ~100 points per day for each 1000HP delegation.",
+    "delegation-desc": "Voit ansaita ~ 100 pistettä päivässä jokaisesta 1000HP valtuutuksesta.",
     "community-desc": "Rekisteröi yhteisösi saadaksesi 20 pistettä julkaisuista Ecency-sovelluksessa.",
     "history": "Historia",
     "post-list-desc": "Pisteitä julkaisuista",
@@ -638,35 +638,35 @@
     "group-interests": "Korot",
     "group-stake-operations": "Panostustoiminnot",
     "group-rewards": "Palkkiot",
-    "type-curation_reward": "Curation reward",
-    "type-author_reward": "Author reward",
-    "type-comment_benefactor_reward": "Comment benefactor reward",
+    "type-curation_reward": "Tarkastuspalkkio",
+    "type-author_reward": "Julkaisupalkkio",
+    "type-comment_benefactor_reward": "Kommentin hyötyjäpalkkio",
     "type-claim_reward_balance": "Lunasta palkkiot",
     "type-transfer": "Siirto",
-    "type-transfer_to_vesting": "Power up",
-    "type-withdraw_vesting": "Power down",
-    "type-fill_vesting_withdraw": "Partial Power down occurred",
+    "type-transfer_to_vesting": "Tehostus",
+    "type-withdraw_vesting": "Tehonalennus",
+    "type-fill_vesting_withdraw": "Osittainen tehonalennus syntyi",
     "type-fill_order": "Täytä tilaus",
     "type-producer_reward": "Tuottajapalkkio",
     "type-interest": "Korot",
     "type-transfer_to_savings": "Siirrä säästöihin",
-    "type-fill_convert_request": "Convert fulfilled",
+    "type-fill_convert_request": "Muunnos täytetty",
     "type-fill_collateralized_convert_request": "Vakuutettu muunnos valmis",
     "type-fill_collateralized_convert-detail": "ID: <strong>{{request}}</strong>, Palautettu: {{returned}}",
     "type-cancel_transfer_from_savings": "Peruuta siirto säästöistä",
     "type-cancel_transfer_from_savings-detail": "Alkaen: <strong>@{{from}}</strong> <br/> Pyynnön id: <strong>{{request}}</strong>",
-    "type-return_vesting_delegation": "Return delegations",
+    "type-return_vesting_delegation": "Palauta valtuutus",
     "type-proposal_pay": "Ehdotusten palkkio",
-    "type-comment_payout_update": "Content payout update",
-    "type-comment_reward": "Content reward",
-    "type-recurrent_transfer": "Recurring transfer",
-    "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
-    "type-fill_recurrent_transfer": "Recurring transfer occurred",
-    "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
-    "type-collateralized_convert": "Collateralized convert",
-    "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
-    "type-limit_order_create": "New trade",
-    "type-effective_comment_vote": "Effective vote"
+    "type-comment_payout_update": "Sisällön maksupäivitys",
+    "type-comment_reward": "Sisältöpalkkio",
+    "type-recurrent_transfer": "Toistuva siirto",
+    "type-recurrent_transfer-detail": "{{executions}} siirrot, joka {{recurrence}} tunti",
+    "type-fill_recurrent_transfer": "Toistuva siirto tapahtui",
+    "type-fill_recurrent_transfer-detail": "Jäljellä olevat {{remaining_executions}} siirrot",
+    "type-collateralized_convert": "Vakuutetut muunnokset",
+    "type-collateralized_convert-detail": "Pyyntö id: <strong>{{request}}</strong>",
+    "type-limit_order_create": "Uusi vaihto",
+    "type-effective_comment_vote": "Tehokas äänestys"
   },
   "key-or-hot": {
     "sign": "Allekirjoita",
@@ -684,7 +684,7 @@
   "friends": {
     "followers": "Seuraajat ({{n}})",
     "following": "Seurataan ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Haku"
   },
   "follow-controls": {
     "follow": "Seuraa",
@@ -716,7 +716,7 @@
     "gallery": "Galleria",
     "emoji": "Emoji",
     "image-error": "Kuvaa ei voitu ladata.",
-    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
+    "image-error-cache": "Kuvaa ei voitu ladata. Näyttää siltä, että olet kirjautunut ulos. Yritä kirjautua sisään uudelleen.",
     "image-error-size": "Kuvan koko on liian suuri, kokeile pienempää kuvaa.",
     "fragments": "Katkelmat"
   },
@@ -766,7 +766,7 @@
     "error-max": "Enintään {{n}} tunnistetta"
   },
   "community-selector": {
-    "choose": "Choose a community",
+    "choose": "Valitse yhteisö",
     "my-blog": "Oma Blogi",
     "search-placeholder": "Etsi Yhteisöjä"
   },
@@ -782,8 +782,8 @@
     "username": "Käyttäjänimi",
     "reward": "Palkkio",
     "user-error": "{{n}} ei ole kelvollinen käyttäjä.",
-    "validation-percentage": "Percentage is required.",
-    "validation-username": "Username is required.",
+    "validation-percentage": "Prosentti vaaditaan.",
+    "validation-username": "Käyttäjätunnus vaaditaan.",
     "user-exists-error": "{{n}} on jo luettelossa"
   },
   "post-scheduler": {
@@ -828,19 +828,19 @@
     "unmute": "Ota ilmoitukset käyttöön"
   },
   "leaderboard": {
-    "title-stars": "Most active",
-    "title-curators": "Curators",
-    "title-day": "Daily leaders",
-    "title-week": "Weekly leaders",
-    "title-month": "Monthly leaders",
+    "title-stars": "Aktiivisin",
+    "title-curators": "Valitsijat",
+    "title-day": "Päivän johtavat",
+    "title-week": "Viikon johtajat",
+    "title-month": "Kuukauden johtajat",
     "period-day": "Päivittäin",
     "period-week": "Viikottain",
     "period-month": "Kuukausittain",
     "header-score": "Toiminnat",
     "header-score-tip": "Julkaisu + kommentit käyttäjältä valitulta ajalta",
     "header-reward": "Palkkio",
-    "header-votes": "Votes",
-    "header-votes-tip": "Number of votes in this period"
+    "header-votes": "Äänet",
+    "header-votes-tip": "Äänten määrä ajanjaksolla"
   },
   "popular-users": {
     "title": "Suositut käyttäjät"
@@ -871,9 +871,9 @@
     "tags": "Tunnisteet",
     "tags-placeholder": "pilkulla erotetut tunnisteet",
     "date": "Päivämäärä",
-    "date-week": "Last Week",
-    "date-month": "Last Month",
-    "date-year": "Last Year",
+    "date-week": "Viime viikolla",
+    "date-month": "Viime kuussa",
+    "date-year": "Viime vuosi",
     "date-all": "Kaikki",
     "sort": "Lajittele",
     "sort-popularity": "Suosio",
@@ -955,9 +955,9 @@
     "create-first": "Luo ensimmäinen katkelmasi",
     "filter": "Etsi otsikon mukaan",
     "form-title": "Otsikko",
-    "validation-title": "Title is required.",
-    "validation-value": "Value is required.",
-    "validation-body": "Body is required.",
+    "validation-title": "Otsikko on pakollinen.",
+    "validation-value": "Arvo vaaditaan.",
+    "validation-body": "Leipäteksti on pakollinen.",
     "form-body": "Sisältö"
   },
   "password-update": {
@@ -969,28 +969,28 @@
     "error-new2": "Salasanojen on oltava samat",
     "pass-gen": "Klikkaa luodaksesi salasanan",
     "label-check": "Olen tallentanut turvallisesti salasanani",
-    "validation-password": "Password is invalid.",
-    "validation-label": "Please tick this box to proceed.",
+    "validation-password": "Salasana on virheellinen.",
+    "validation-label": "Ole hyvä ja valitse tämä ruutu jatkaaksesi.",
     "updated": "Salasana on tallennettu onnistuneesti!"
   },
   "view-keys": {
-    "title": "View Private keys",
-    "account": "Account",
-    "cur-pass": "Current password",
-    "owner": "Owner",
-    "active": "Active",
-    "posting": "Posting",
-    "memo": "Memo",
-    "view-keys": "Click to view keys",
-    "copied": "Private key copied into clipboard",
-    "error": "Password seem incorrect, please double check!"
+    "title": "Näytä yksityiset avaimet",
+    "account": "Tili",
+    "cur-pass": "Nykyinen salasana",
+    "owner": "Omistaja",
+    "active": "Aktiivinen",
+    "posting": "Julkaisu",
+    "memo": "Muistio",
+    "view-keys": "Klikkaa nähdäksesi avaimet",
+    "copied": "Yksityinen avain kopioitu leikepöydälle",
+    "error": "Salasana vaikuttaa virheelliseltä, ole hyvä ja tarkista uudelleen!"
   },
   "add-image": {
     "title": "Lisää kuva",
     "text-label": "Kuvateksti",
     "link-label": "Kuvan linkki",
-    "validation-text": "Text is required.",
-    "validation-image": "Image is required."
+    "validation-text": "Teksti on pakollinen.",
+    "validation-image": "Kuva vaaditaan."
   },
   "add-image-mobile": {
     "title": "Lisää kuva",
@@ -999,11 +999,11 @@
     "upload": "Lataa kuva"
   },
   "add-link": {
-    "title": "Add Link",
-    "text-label": "Text",
+    "title": "Lisää linkki",
+    "text-label": "Teksti",
     "link-label": "https://",
-    "validation-text": "Text is required.",
-    "validation-link": "Link is required."
+    "validation-text": "Teksti on pakollinen.",
+    "validation-link": "Linkki vaaditaan."
   },
   "scroll-to-top": {
     "title": "Vieritä ylös"
@@ -1092,51 +1092,51 @@
     "restart": "Käynnistä uudelleen"
   },
   "chain-error": {
-    "min-root-comment": "You may only post once every five minutes.",
-    "identical-vote": "Your current vote on this content is identical to this vote.",
-    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
-    "delete-comment-with-vote": "Can't delete a content with votes.",
-    "comment-cashout": "Content cashout.",
-    "paid-out-post-forbidden": "Voting for paid out content is not available."
+    "min-root-comment": "Voit julkaista vain kerran viidessä minuutissa.",
+    "identical-vote": "Tämänhetkinen äänestyksenne tästä sisällöstä on sama kuin tässä äänestyksessä.",
+    "insufficient-resource": "Resurssikrediitit eivät riitä. Odota siirtoa tai hommaa lisää HIVEä.",
+    "delete-comment-with-vote": "Et voi poistaa äänestettyä sisältöä.",
+    "comment-cashout": "Sisällön kotiuttaminen.",
+    "paid-out-post-forbidden": "Äänestäminen maksetusta sisällöstä ei ole saatavilla."
   },
   "landing-page": {
-    "welcome-text": "Welcome to Ecency!",
-    "what-is-ecency": "Blockchain-based social network",
-    "powered-by-hive": " powered by Hive",
-    "get-started": "Get started",
-    "earn-money": "Earn money",
-    "earn-money-block-chain-based": "Blockchain-based social network, ",
-    "join-us": "join-us",
-    "various-digital-tokens": " and earn various digital tokens, reward others and build a rewarding community.",
-    "read-more": "Read more",
-    "true-ownership": "True ownership",
-    "true-ownership-desc": "Ecency is the next generation social network for Web 3.0. Blockchain technology gives you a real free speech, without any censorship or banning. Only you control your own account, content and communities.",
-    "decentralization": "Decentralization",
-    "hive-blockchain": "Hive blockchain",
-    "decentralization-desc": " has many social, gaming and financial apps that you can access with a single account you own. Access your social network account and content from any other 3rd party apps in decentralized way.",
-    "open-source": "Open source",
-    "open-source-desc": "Join and be part of the building team on Web 3.0. Everything that we build is blockchain-based and open source. We welcome tech talents, developers, creators and entrepreneurs.",
-    "feel-free-join": " Join and lets build together!",
-    "posts": "Posts",
-    "unique-visitors": "Unique visitors",
-    "points-distrubuted": "Points distributed",
-    "new-users": "New users",
-    "download-our-application": "Download our application",
-    "download-our-application-desc-1": "Looking for a unique experience?",
-    "download-our-application-desc-2": "The social network with real free speech experience on your mobile phone or desktop. Blockchain's powerful benefits now always under your fingertips.",
-    "download-for-windows": "Download for Computer",
-    "download-for-ios": "Download for IOS",
-    "download-for-android": "Download for Android",
-    "our-history": "Our History",
-    "our-history-p-one": "<b>Ecency</b> (previously Esteem) started out in 2016, founder <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> started implementing a mobile application that would revolutionize the way you interact and create, build, engage online. With time grew to something much bigger.",
-    "our-history-p-two": "Since then we have been continuing to build for Web 3.0 and improve our blockchain-based social network, making sure apps are as accessible as possible, secure and in many languages the world speaks.",
-    "our-vision": "Our Vision",
-    "our-vision-p-one": "We want to bring a secure and rewarding blockchain experience to all people. Social media without any limits and censorship, where only you control your own account and your communities. Secured by blockchain, powered by people.",
-    "our-vision-p-two": "<b>Our main principles: </b>Bring rewarding communities, true ownership, empowered creators, free speech into the hands of millions.",
-    "our-team": "Our Team",
-    "founder": "Founder",
+    "welcome-text": "Tervetuloa Ecencyyn!",
+    "what-is-ecency": "Lohkoketjupohjainen sosiaalinen verkosto",
+    "powered-by-hive": " Hive:n päällä",
+    "get-started": "Aloitetaan",
+    "earn-money": "Ansaitse rahaa",
+    "earn-money-block-chain-based": "Lohkoketjupohjainen sosiaalinen verkosto, ",
+    "join-us": "liity mukaan",
+    "various-digital-tokens": " ja ansaita erilaisia digitaalisia kuponkeja, palkita muita ja luoda palkitseva yhteisö.",
+    "read-more": "Lue lisää",
+    "true-ownership": "Todellinen omistajuus",
+    "true-ownership-desc": "Ecency on seuraavan sukupolven sosiaalinen verkosto Web 3.0:ssa. Lohkoketjutekniikka antaa sinulle todellisen sananvapauden, ilman sensuuria tai kieltoja. Vain sinä hallitset omaa tiliäsi, sisältöä ja yhteisöjä.",
+    "decentralization": "Hajauttaminen",
+    "hive-blockchain": "Hive-lohkoketjussa",
+    "decentralization-desc": " on monia sosiaalisia ja taloudellisia sovelluksia sekä pelejä, joita voit käyttää yhdellä omistamallasi tilillä. Käytä sosiaalisen verkon tiliäsi ja sisältöä mistä tahansa muusta kolmannen osapuolen sovelluksesta hajautetusti.",
+    "open-source": "Avoin lähdekoodi",
+    "open-source-desc": "Liity ja ole osa Web 3.0:n rakennustiimiä. Kaikki rakentamamme on lohkoketjupohjaista ja avointa lähdekoodia. Toivotamme teknologiset lahjakkuudet, kehittäjät, luojat ja yrittäjät tervetulleiksi.",
+    "feel-free-join": " Liity ja rakennetaan yhdessä!",
+    "posts": "Julkaisut",
+    "unique-visitors": "Uniikkeja vierailijoita",
+    "points-distrubuted": "Jaetut pisteet",
+    "new-users": "Uudet käyttäjät",
+    "download-our-application": "Lataa sovellus",
+    "download-our-application-desc-1": "Etsitkö ainutlaatuista kokemusta?",
+    "download-our-application-desc-2": "Sosiaalinen verkosto todellisella sananvapaudella kännykässä tai tietokoneella. Lohkoketjun hyödyt ovat aina käytettävissäsi.",
+    "download-for-windows": "Lataa tietokoneelle",
+    "download-for-ios": "Lataa IOS",
+    "download-for-android": "Lataa Androidille",
+    "our-history": "Tarinamme",
+    "our-history-p-one": "<b>Ecency</b> (aiemmin Esteem) käynnistyi 2016, kun perustaja <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> alkoi kehittämään kännysovellusta, joka mullistaisi tavat, joilla viestimme ja luomme, rakennamme ja keskustelemme netissä. Ajan myötä siitä kasvoi paljon suurempi.",
+    "our-history-p-two": "Sen jälkeen jatkoimme Web 3.0:n kehittämistä parantaen lohkoketjupohjaista sosiaalista verkostoa, varmistaen että ohjelmat ovat mahdollisimman helppokäyttöisiä ja turvallisia, sekä käännettynä useille kielille.",
+    "our-vision": "Visiomme",
+    "our-vision-p-one": "Haluamme luoda kaikille turvallisen ja palkitsevan lohkoketjukokemuksen. Sosiaalinen media ilman rajoja tai sensuuria, jossa vain sinä hallitset tiliäsi sekä yhteisöjäsi. Lohkoketjun varmuus ja ihmisten voima.",
+    "our-vision-p-two": "<b>Päätavoitteemme: </b>Luoda palkitsevia yhteisöjä, todellista omistajuutta, voimaannutettuja julkaisijoita, sekä sananvapautta miljoonille ihmisille.",
+    "our-team": "Tiimimme",
+    "founder": "Perustaja",
     "devops-guru": "Devops master",
-    "design-guru": "Design guru",
+    "design-guru": "Ulkoasumestari",
     "community-contributors": "Community Contributors",
     "blockchain-witnesses": "Blockchain Witnesses",
     "about": "About Us",
