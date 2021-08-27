@@ -31,7 +31,7 @@ exports[`(1) Render an empty list when no tokens found 1`] = `
       <div
         className="no-results"
       >
-        No tokens found
+        No tokens found.
       </div>
     </div>
     <div

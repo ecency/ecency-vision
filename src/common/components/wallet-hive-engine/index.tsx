@@ -12,6 +12,9 @@ import formattedNumber from "../../util/formatted-number";
 
 import { getHiveEngineTokenBalances } from "../../api/hive-engine";
 import { HiveEngineTokenBalance } from "../../helper/hive-engine-wallet";
+import { proxifyImageSrc } from '@ecency/render-helper';
+
+import {_t} from "../../i18n";
 
 import {_t} from "../../i18n";
 
@@ -76,10 +79,20 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
         </thead>
         <tbody>
           {tokens.map((b, i) => {
+            const imageSrc = proxifyImageSrc(b.icon, 0, 0, global?.canUseWebp ? "webp" : "match");
+            const fallbackImage = require("../../img/noimage.svg");
             return (
               <tr key={i}>
                 <td>
-                  <img src={b.icon} className="item-image" alt={b.symbol} />
+                  <img
+                      alt={b.symbol}
+                      src={imageSrc}
+                      className="item-image"
+                      onError={(e: React.SyntheticEvent) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = fallbackImage;
+                      }}
+                  />
                   {b.name} ({b.symbol})
                 </td>
                 <td>
