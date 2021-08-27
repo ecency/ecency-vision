@@ -13,6 +13,8 @@ import formattedNumber from "../../util/formatted-number";
 import { getHiveEngineTokenBalances } from "../../api/hive-engine";
 import { HiveEngineTokenBalance } from "../../helper/hive-engine-wallet";
 
+import {_t} from "../../i18n";
+
 interface Props {
   global: Global;
   dynamicProps: DynamicProps;
@@ -67,9 +69,9 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       <table className="table">
         <thead>
           <tr>
-            <th>Token</th>
-            <th>Balance</th>
-            <th>Staked</th>
+            <th>{_t("wallet-engine.token")}</th>
+            <th>{_t("wallet-engine.balance")}</th>
+            <th>{_t("wallet-engine.staked")}</th>
           </tr>
         </thead>
         <tbody>
@@ -104,12 +106,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
           <div className="wallet-info">
             <div className="balance-row alternative">
               <div className="balance-info">
-                <div className="title">{"Hive Engine Tokens"}</div>
-                <div className="description">
-                  {
-                    "Hive Engine is a smart contracts side-chain platform for the Hive blockchain."
-                  }
-                </div>
+                <div className="title">{_t("wallet-engine.title")}</div>
+                <div className="description">{_t("wallet-engine.description")}</div>
               </div>
             </div>
 
@@ -118,7 +116,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                 <LinearProgress />
               </div>
             ) : tokens.length === 0 ? (
-              <div className="no-results">No tokens found</div>
+              <div className="no-results">{_t("wallet-engine.no-results")}</div>
             ) : (
               <div className="table-responsive">{table}</div>
             )}
