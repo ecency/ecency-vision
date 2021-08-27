@@ -111,14 +111,11 @@ class EntryPage extends BaseComponent<Props, State> {
     componentDidMount() {
         this.ensureEntry();
         this.fetchMutedUsers()
-        let entry = this.getEntry();
 
         const {location, global} = this.props;
         if (global.usePrivate && location.search === "?history") {
             this.toggleEditHistory();
         }
-        entry && this.setState({comment: this.getEntry()!.body || ""})
-
         window.addEventListener("scroll", this.detect);
         window.addEventListener("resize", this.detect);
 
@@ -127,11 +124,7 @@ class EntryPage extends BaseComponent<Props, State> {
     componentDidUpdate(prevProps: Readonly<Props>): void {
         const {location} = this.props;
         if (location.pathname !== prevProps.location.pathname) {
-            this.ensureEntry();
-            let entry = this.getEntry();
-            if(entry && entry.parent_author){
-                this.setState({ comment: entry && entry.body || "" })
-            }
+            this.ensureEntry()
         }
     }
 
@@ -225,6 +218,7 @@ class EntryPage extends BaseComponent<Props, State> {
         const {category, username, permlink} = match.params;
         const author = username.replace("@", "");
 
+        
         let reducerFn = updateEntry;
 
         if (!entry) {
@@ -533,8 +527,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                         if (originalEntry) {
                                             const published = moment(parseDate(originalEntry.created));
                                             const reputation = accountReputation(originalEntry.author_reputation);
-                                            const renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 && comment || originalEntry.body : originalEntry.body, false, global.canUseWebp)};
-
+                                            const renderedBody = {__html: renderPostBody(originalEntry.body, false, global.canUseWebp)};
+                                            
                                             return <>
                                                 <div className="entry-header">
                                                     <h1 className="entry-title">
@@ -601,7 +595,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                             </>;
                                         }
 
-                                        const renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 && comment || entry.body : entry.body, false, global.canUseWebp)};
+                                        const renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 ? comment : entry.body :entry.body, false, global.canUseWebp)};
+                                        
                                         const ctitle = entry.community ? entry.community_title : "";
                                         let extraItems = ownEntry && isComment ? [{
                                                 label: _t("g.edit"),
@@ -726,7 +721,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/> :
                                                 Comment({
                                                     ...this.props,
-                                                    defText: comment,
+                                                    defText: entry.body,
                                                     submitText: _t('g.update'),
                                                     cancellable: true,
                                                     onSubmit: this.updateReply,
