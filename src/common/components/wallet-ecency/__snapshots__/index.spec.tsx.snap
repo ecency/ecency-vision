@@ -379,6 +379,30 @@ exports[`(1) Default Render 1`] = `
       className="wallet-menu"
     >
       <a
+        className="menu-item ecency active"
+        href="/@user1/points"
+        onClick={[Function]}
+      >
+        <span
+          className="title"
+        >
+          Ecency
+        </span>
+        <span
+          className="sub-title"
+        >
+          Points
+        </span>
+        <span
+          className="platform-logo"
+        >
+          <img
+            alt="ecency"
+            src="logo-small-transparent.png"
+          />
+        </span>
+      </a>
+      <a
         className="menu-item hive"
         href="/@user1/wallet"
         onClick={[Function]}
@@ -407,30 +431,6 @@ exports[`(1) Default Render 1`] = `
         </span>
       </a>
       <a
-        className="menu-item ecency active"
-        href="/@user1/points"
-        onClick={[Function]}
-      >
-        <span
-          className="title"
-        >
-          Ecency
-        </span>
-        <span
-          className="sub-title"
-        >
-          Points
-        </span>
-        <span
-          className="platform-logo"
-        >
-          <img
-            alt="ecency"
-            src="logo-small-transparent.png"
-          />
-        </span>
-      </a>
-      <a
         className="menu-item hive-engine"
         href="/@user1/hive-engine"
         onClick={[Function]}
@@ -438,7 +438,7 @@ exports[`(1) Default Render 1`] = `
         <span
           className="title"
         >
-          Hive Engine
+          Engine
         </span>
         <span
           className="sub-title"
@@ -881,6 +881,30 @@ exports[`(2) With active user 1`] = `
       className="wallet-menu"
     >
       <a
+        className="menu-item ecency active"
+        href="/@user1/points"
+        onClick={[Function]}
+      >
+        <span
+          className="title"
+        >
+          Ecency
+        </span>
+        <span
+          className="sub-title"
+        >
+          Points
+        </span>
+        <span
+          className="platform-logo"
+        >
+          <img
+            alt="ecency"
+            src="logo-small-transparent.png"
+          />
+        </span>
+      </a>
+      <a
         className="menu-item hive"
         href="/@user1/wallet"
         onClick={[Function]}
@@ -909,30 +933,6 @@ exports[`(2) With active user 1`] = `
         </span>
       </a>
       <a
-        className="menu-item ecency active"
-        href="/@user1/points"
-        onClick={[Function]}
-      >
-        <span
-          className="title"
-        >
-          Ecency
-        </span>
-        <span
-          className="sub-title"
-        >
-          Points
-        </span>
-        <span
-          className="platform-logo"
-        >
-          <img
-            alt="ecency"
-            src="logo-small-transparent.png"
-          />
-        </span>
-      </a>
-      <a
         className="menu-item hive-engine"
         href="/@user1/hive-engine"
         onClick={[Function]}
@@ -940,7 +940,7 @@ exports[`(2) With active user 1`] = `
         <span
           className="title"
         >
-          Hive Engine
+          Engine
         </span>
         <span
           className="sub-title"
@@ -1415,6 +1415,30 @@ exports[`(3) Active user with unclaimed points 1`] = `
       className="wallet-menu"
     >
       <a
+        className="menu-item ecency active"
+        href="/@user1/points"
+        onClick={[Function]}
+      >
+        <span
+          className="title"
+        >
+          Ecency
+        </span>
+        <span
+          className="sub-title"
+        >
+          Points
+        </span>
+        <span
+          className="platform-logo"
+        >
+          <img
+            alt="ecency"
+            src="logo-small-transparent.png"
+          />
+        </span>
+      </a>
+      <a
         className="menu-item hive"
         href="/@user1/wallet"
         onClick={[Function]}
@@ -1443,30 +1467,6 @@ exports[`(3) Active user with unclaimed points 1`] = `
         </span>
       </a>
       <a
-        className="menu-item ecency active"
-        href="/@user1/points"
-        onClick={[Function]}
-      >
-        <span
-          className="title"
-        >
-          Ecency
-        </span>
-        <span
-          className="sub-title"
-        >
-          Points
-        </span>
-        <span
-          className="platform-logo"
-        >
-          <img
-            alt="ecency"
-            src="logo-small-transparent.png"
-          />
-        </span>
-      </a>
-      <a
         className="menu-item hive-engine"
         href="/@user1/hive-engine"
         onClick={[Function]}
@@ -1474,7 +1474,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
         <span
           className="title"
         >
-          Hive Engine
+          Engine
         </span>
         <span
           className="sub-title"
