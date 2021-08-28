@@ -95,12 +95,6 @@ export class EntryListContent extends Component<Props, State> {
         const {filter} = global;
         const { mutedUsers, loadingMutedUsers } = this.state;
         let dataToRender = entries;
-        // if((filter as ProfileFilter) !== ProfileFilter.posts && (filter as ProfileFilter) !== ProfileFilter.blog){
-        //     dataToRender =  mutedUsers.length > 0 ?  entries.filter(item=> {
-        //         let mutedItem = mutedUsers.includes(item.author);
-        //         return !mutedItem && item
-        //     }) : entries ;
-        // }
 
         let mutedList: string[] = [];
         if(ls.get("muted-list")){
@@ -109,6 +103,7 @@ export class EntryListContent extends Component<Props, State> {
         else {
             mutedList = mutedList.concat(mutedUsers)
         }
+        
          
         return loadingMutedUsers ? <LinearProgress /> : dataToRender.length > 0 ? (
               <>
