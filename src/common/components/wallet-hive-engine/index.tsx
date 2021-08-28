@@ -97,14 +97,18 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                   {b.name} ({b.symbol})
                 </td>
                 <td>
-                  {formattedNumber(b.balance, {
-                    fractionDigits: b.precision
-                  })}
+                  {b.balance < 0.0001
+                    ? b.balance
+                    : formattedNumber(b.balance, {
+                        fractionDigits: b.precision
+                      })}
                 </td>
                 <td>
-                  {formattedNumber(b.stakedBalance, {
-                    fractionDigits: b.precision
-                  })}
+                  {b.stakedBalance < 0.0001
+                    ? b.stakedBalance
+                    : formattedNumber(b.stakedBalance, {
+                        fractionDigits: b.precision
+                      })}
                   {b.hasDelegations() && " " + b.delegations()}
                 </td>
               </tr>
