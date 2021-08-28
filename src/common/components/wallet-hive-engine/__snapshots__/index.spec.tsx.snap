@@ -175,7 +175,8 @@ exports[`(2) Render with some hive engine tokens 1`] = `
                 <img
                   alt="PIZZA"
                   className="item-image"
-                  src="https://cdn.discordapp.com/attachments/829112115822198805/853854448936812574/Hive3.png"
+                  onError={[Function]}
+                  src="https://images.ecency.com/p/3W72119s5BjVs3HydwUQEFR8AX8qeAgo5bzGeBm1Z97PoTy3MZXBcU4dHbscesjnrTfYqRnK5SzfhSYmuC72yxZ4h1S8WRzei3xyiS6WMKQuEqhbYBH45L.png?format=match&mode=fit"
                 />
                 PIZZA
                  (
@@ -195,7 +196,8 @@ exports[`(2) Render with some hive engine tokens 1`] = `
                 <img
                   alt="POB"
                   className="item-image"
-                  src="https://images.hive.blog/DQmebUEYTFmi2g4pqExAjaQrv9E9nzNtuEDbttRBRShkVYy/brain.png"
+                  onError={[Function]}
+                  src="https://images.ecency.com/p/PB8ro82ZpZP35bVGjGoE93K3E4U5KX8KtMBJ2ri7FNATqDaPEut9xHWgvGv6BTaMCo6hfe1xpWWm8boHg2sF5xFppQLrBqWLJGnp3idmz4VWXr2A.png?format=match&mode=fit"
                 />
                 Proof of Brain
                  (
@@ -354,7 +356,8 @@ exports[`(3) usePrivate = false 1`] = `
                 <img
                   alt="PIZZA"
                   className="item-image"
-                  src="https://cdn.discordapp.com/attachments/829112115822198805/853854448936812574/Hive3.png"
+                  onError={[Function]}
+                  src="https://images.ecency.com/p/3W72119s5BjVs3HydwUQEFR8AX8qeAgo5bzGeBm1Z97PoTy3MZXBcU4dHbscesjnrTfYqRnK5SzfhSYmuC72yxZ4h1S8WRzei3xyiS6WMKQuEqhbYBH45L.png?format=match&mode=fit"
                 />
                 PIZZA
                  (
@@ -374,7 +377,8 @@ exports[`(3) usePrivate = false 1`] = `
                 <img
                   alt="POB"
                   className="item-image"
-                  src="https://images.hive.blog/DQmebUEYTFmi2g4pqExAjaQrv9E9nzNtuEDbttRBRShkVYy/brain.png"
+                  onError={[Function]}
+                  src="https://images.ecency.com/p/PB8ro82ZpZP35bVGjGoE93K3E4U5KX8KtMBJ2ri7FNATqDaPEut9xHWgvGv6BTaMCo6hfe1xpWWm8boHg2sF5xFppQLrBqWLJGnp3idmz4VWXr2A.png?format=match&mode=fit"
                 />
                 Proof of Brain
                  (

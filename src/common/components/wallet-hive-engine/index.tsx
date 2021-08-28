@@ -12,9 +12,9 @@ import formattedNumber from "../../util/formatted-number";
 
 import { getHiveEngineTokenBalances } from "../../api/hive-engine";
 import { HiveEngineTokenBalance } from "../../helper/hive-engine-wallet";
-import { proxifyImageSrc } from '@ecency/render-helper';
+import { proxifyImageSrc } from "@ecency/render-helper";
 
-import {_t} from "../../i18n";
+import { _t } from "../../i18n";
 
 import {_t} from "../../i18n";
 
@@ -81,17 +81,18 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
           {tokens.map((b, i) => {
             const imageSrc = proxifyImageSrc(b.icon, 0, 0, global?.canUseWebp ? "webp" : "match");
             const fallbackImage = require("../../img/noimage.svg");
+
             return (
               <tr key={i}>
                 <td>
                   <img
-                      alt={b.symbol}
-                      src={imageSrc}
-                      className="item-image"
-                      onError={(e: React.SyntheticEvent) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = fallbackImage;
-                      }}
+                    alt={b.symbol}
+                    src={imageSrc}
+                    className="item-image"
+                    onError={(e: React.SyntheticEvent) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = fallbackImage;
+                    }}
                   />
                   {b.name} ({b.symbol})
                 </td>
@@ -120,7 +121,9 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
             <div className="balance-row alternative">
               <div className="balance-info">
                 <div className="title">{_t("wallet-engine.title")}</div>
-                <div className="description">{_t("wallet-engine.description")}</div>
+                <div className="description">
+                  {_t("wallet-engine.description")}
+                </div>
               </div>
             </div>
 
