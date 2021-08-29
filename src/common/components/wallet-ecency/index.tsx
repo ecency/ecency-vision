@@ -180,6 +180,7 @@ interface State {
     purchase: boolean;
     promote: boolean;
     boost: boolean;
+    mounted: boolean;
     transfer: boolean;
 }
 
@@ -189,6 +190,7 @@ export class WalletEcency extends BaseComponent<Props, State> {
         purchase: false,
         promote: false,
         boost: false,
+        mounted: false,
         transfer: false
     }
 
@@ -197,16 +199,23 @@ export class WalletEcency extends BaseComponent<Props, State> {
         if (!global.usePrivate) {
             history.push("/");
         }
+        this.claim()
     }
 
-    claim = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
+    claim = (e?: React.MouseEvent<HTMLAnchorElement>) => {
+        if (e) e.preventDefault();
 
         const {activeUser, fetchPoints, updateActiveUser} = this.props;
+        const {mounted} = this.state;
 
         this.stateSet({claiming: true});
         const username = activeUser?.username!
-        claimPoints(username).then(() => {
+        if(!mounted){
+            username && fetchPoints(username);
+            this.stateSet({mounted: true});
+        }
+        else {
+            claimPoints(username).then(() => {
             success(_t('points.claim-ok'));
             fetchPoints(username);
             updateActiveUser();
@@ -215,6 +224,7 @@ export class WalletEcency extends BaseComponent<Props, State> {
         }).finally(() => {
             this.setState({claiming: false});
         });
+    }
     }
 
     togglePurchase = (e?: React.MouseEvent<HTMLAnchorElement>) => {
