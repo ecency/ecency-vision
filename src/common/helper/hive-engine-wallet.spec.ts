@@ -1,43 +1,21 @@
-import { HiveEngineTokenBalance } from "./hive-engine-wallet";
+import HiveEngineToken from "./hive-engine-wallet";
 
-describe("HiveEngineTokenBalance", () => {
-  const subject: HiveEngineTokenBalance = new HiveEngineTokenBalance(
-    {
+describe("HiveEngineToken", () => {
+  const subject: HiveEngineToken = new HiveEngineToken({
       symbol: "POB",
+      name: "",
+      icon: "",
       balance: "0.00000000",
       stake: "0.00000000",
-      pendingUnstake: "0.00000000",
+      precision: 2,
       delegationsIn: "0.00000000",
       delegationsOut: "0.00000000",
-      pendingUndelegations: "0.00000000",
-    },
-    {
-      issuer: "",
-      symbol: "POB",
-      name: "Proof of Brain",
-      metadata: "",
-      precision: 2,
-      maxSupply: "0",
-      supply: "0",
-      circulatingSupply: "0",
-      stakingEnabled: true,
-      unstakingCooldown: 0,
-      delegationEnabled: true,
-      undelegationCooldown: 0,
-      numberTransactions: 0,
-      totalStaked: "0",
-    },
-    {
-      desc: "",
-      url: "",
-      icon: "",
-    }
-  );
+      stakingEnabled: false,
+      delegationEnabled: false
+    });
 
   describe("hasDelegations", () => {
     it("should return false if the token has no delegation enabled", () => {
-      subject.delegationEnabled = false;
-
       expect(subject.hasDelegations()).toBe(false);
     });
 
@@ -57,8 +35,6 @@ describe("HiveEngineTokenBalance", () => {
 
   describe("delegations", () => {
     it("should return an empty string if delegations are disabled", () => {
-      subject.delegationEnabled = false;
-
       expect(subject.delegations()).toBe("");
     });
 
@@ -77,5 +53,58 @@ describe("HiveEngineTokenBalance", () => {
 
       expect(subject.delegations()).toBe("(0.00 + 1.00 - 0.10)");
     });
+  });
+
+  describe("stakedBalance", () => {
+    const subject = new HiveEngineToken({
+      symbol: "POB",
+      balance: "12.00000000",
+      stake: "15.00000000",
+      delegationsIn: "1.0023400",
+      delegationsOut: "5.10000000",
+      precision: 2,
+      name: "",
+      icon: "",
+      stakingEnabled: true,
+      delegationEnabled: false
+    });
+
+    it("computes the staked balance", () => {
+      expect(subject.stakedBalance).toBe(10.90234);
+    })
+
+    it("formats the staked balance with the right precision", () => {
+      subject.precision = 1;
+
+      expect(subject.staked()).toBe("10.9");
+    })
+
+    it("doesn't format small balance to work around the numeric bug", () => {
+      subject.stakedBalance = 0.00001;
+      subject.delegationsIn = 0;
+      subject.delegationsOut = 0;
+
+      expect(subject.staked()).toBe("0.00001");
+    })
+
+    it("returns a '-' character if staking is not enabled", () => {
+      subject.stakingEnabled = false;
+
+      expect(subject.staked()).toBe("-");
+    })
+  });
+
+  describe("balanced", () => {
+    it("formats the balance with the right precision", () => {
+      subject.balance = 12.00001;
+      subject.precision = 1;
+
+      expect(subject.balanced()).toBe("12.0");
+    })
+    it("doesn't format small balance to work around the numeric bug", () => {
+      subject.balance = 0.00001;
+
+      expect(subject.balanced()).toBe("0.00001");
+    })
   });
 });

@@ -184,7 +184,7 @@ exports[`(2) Render with some hive engine tokens 1`] = `
                 )
               </td>
               <td>
-                1.00
+                1.0
               </td>
               <td>
                 1.13
@@ -365,7 +365,7 @@ exports[`(3) usePrivate = false 1`] = `
                 )
               </td>
               <td>
-                1.00
+                1.0
               </td>
               <td>
                 1.13

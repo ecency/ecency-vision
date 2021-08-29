@@ -1,7 +1,7 @@
 import axios from "axios";
-import { HiveEngineTokenBalance } from "../helper/hive-engine-wallet";
+import HiveEngineToken from "../helper/hive-engine-wallet";
 
-export interface TokenBalance {
+interface TokenBalance {
   symbol: string;
   balance: string;
   stake: string;
@@ -11,7 +11,7 @@ export interface TokenBalance {
   pendingUndelegations: string;
 }
 
-export interface Token {
+interface Token {
   issuer: string;
   symbol: string;
   name: string;
@@ -28,7 +28,7 @@ export interface Token {
   totalStaked: string;
 }
 
-export interface TokenMetadata {
+interface TokenMetadata {
   desc: string;
   url: string;
   icon: string;
@@ -88,6 +88,6 @@ export const getHiveEngineTokenBalances = async (
     const token = tokens.find((t) => t.symbol == balance.symbol);
     const tokenMetadata = JSON.parse(token.metadata) as TokenMetadata;
 
-    return new HiveEngineTokenBalance(balance, token, tokenMetadata);
+    return new HiveEngineToken({...balance, ...token, ...tokenMetadata});
   });
 };

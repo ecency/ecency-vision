@@ -1,67 +1,45 @@
 import formattedNumber from "../util/formatted-number";
-import { TokenBalance, Token, TokenMetadata } from "../api/hive-engine";
 
-export class HiveEngineTokenBalance {
-  symbol: string = "";
-  name: string = "";
-  desc: string = "";
-  issuer: string = "";
-  url: string = "";
-  icon: string = "";
+interface Props {
+  symbol: string;
+  name: string;
+  icon: string;
+  precision: number;
+  stakingEnabled: boolean;
+  delegationEnabled: boolean;
+  balance: string;
+  stake: string;
+  delegationsIn: string;
+  delegationsOut: string;
+}
 
-  precision: number = 0;
-  stakingEnabled: boolean = false;
-  totalStaked: number = 0;
-  unstakingCooldown: number = 0;
+export default class HiveEngineToken {
+  symbol: string;
+  name?: string;
+  icon?: string;
 
-  delegationEnabled: boolean = false;
-  undelegationCooldown: number = 0;
+  precision?: number;
+  stakingEnabled?: boolean;
+  delegationEnabled?: boolean;
+  balance: number;
+  stake: number;
+  stakedBalance: number;
+  delegationsIn: number;
+  delegationsOut: number;
 
-  supply: number = 0;
-  maxSupply: number = 0;
-  circulatingSupply: number = 0;
-  numberTransactions: number = 0;
+  constructor(props: Props) {
+    this.symbol = props.symbol;
+    this.name = props.name || "";
+    this.icon = props.icon || "";
 
-  balance: number = 0;
-  stake: number = 0;
-  stakedBalance = 0;
-  delegationsIn: number = 0;
-  delegationsOut: number = 0;
-  pendingUnstake: number = 0;
-  pendingUndelegations: number = 0;
-
-  constructor(
-    balance: TokenBalance,
-    token: Token,
-    tokenMetadata: TokenMetadata
-  ) {
-    this.symbol = balance.symbol;
-    this.name = token.name;
-    this.desc = tokenMetadata.desc;
-    this.issuer = token.issuer;
-    this.url = tokenMetadata.url;
-    this.icon = tokenMetadata.icon;
-
-    this.precision = token.precision;
-    this.stakingEnabled = token.stakingEnabled;
-    this.totalStaked = parseFloat(token.totalStaked);
-    this.unstakingCooldown = token.unstakingCooldown;
-
-    this.delegationEnabled = token.delegationEnabled;
-    this.undelegationCooldown = token.undelegationCooldown;
-
-    this.supply = parseFloat(token.supply);
-    this.maxSupply = parseFloat(token.maxSupply);
-    this.circulatingSupply = parseFloat(token.circulatingSupply);
-    this.numberTransactions = token.numberTransactions;
-
-    this.balance = parseFloat(balance.balance);
-    this.stake = parseFloat(balance.stake);
+    this.precision = props.precision || 0;
+    this.stakingEnabled = props.stakingEnabled || false;
+    this.delegationEnabled = props.delegationEnabled || false;
+    this.balance = parseFloat(props.balance) || 0;
+    this.stake = parseFloat(props.stake) || 0;
+    this.delegationsIn = parseFloat(props.delegationsIn) || 0;
+    this.delegationsOut = parseFloat(props.delegationsOut) || 0;
     this.stakedBalance = this.stake + this.delegationsIn - this.delegationsOut;
-    this.pendingUnstake = parseFloat(balance.pendingUnstake);
-    this.delegationsIn = parseFloat(balance.delegationsIn);
-    this.delegationsOut = parseFloat(balance.delegationsOut);
-    this.pendingUndelegations = parseFloat(balance.pendingUndelegations);
   }
 
   hasDelegations = (): boolean => {
@@ -85,4 +63,24 @@ export class HiveEngineTokenBalance {
       fractionDigits: this.precision,
     })})`;
   };
+
+  staked = (): string => {
+    if (!this.stakingEnabled) {
+      return "-";
+    }
+
+    if (this.stakedBalance < 0.0001) {
+      return this.stakedBalance.toString();
+    }
+
+    return formattedNumber(this.stakedBalance, {fractionDigits: this.precision});
+  }
+
+  balanced = (): string => {
+    if (this.balance < 0.0001) {
+      return this.balance.toString();
+    }
+
+    return formattedNumber(this.balance, {fractionDigits: this.precision});
+  }
 }

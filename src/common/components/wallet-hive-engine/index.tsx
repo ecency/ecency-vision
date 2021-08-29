@@ -8,15 +8,11 @@ import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import WalletMenu from "../wallet-menu";
 
-import formattedNumber from "../../util/formatted-number";
-
 import { getHiveEngineTokenBalances } from "../../api/hive-engine";
-import { HiveEngineTokenBalance } from "../../helper/hive-engine-wallet";
+import HiveEngineToken from "../../helper/hive-engine-wallet";
 import { proxifyImageSrc } from "@ecency/render-helper";
 
 import { _t } from "../../i18n";
-
-import {_t} from "../../i18n";
 
 interface Props {
   global: Global;
@@ -25,7 +21,7 @@ interface Props {
 }
 
 interface State {
-  tokens: HiveEngineTokenBalance[];
+  tokens: HiveEngineToken[];
   loading: boolean;
 }
 
@@ -47,8 +43,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     this.stateSet({ tokens: this.sort(items), loading: false });
   };
 
-  sort = (items: HiveEngineTokenBalance[]) =>
-    items.sort((a: HiveEngineTokenBalance, b: HiveEngineTokenBalance) => {
+  sort = (items: HiveEngineToken[]) =>
+    items.sort((a: HiveEngineToken, b: HiveEngineToken) => {
       if (a.balance !== b.balance) {
         return a.balance < b.balance ? 1 : -1;
       }
@@ -79,7 +75,12 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
         </thead>
         <tbody>
           {tokens.map((b, i) => {
-            const imageSrc = proxifyImageSrc(b.icon, 0, 0, global?.canUseWebp ? "webp" : "match");
+            const imageSrc = proxifyImageSrc(
+              b.icon,
+              0,
+              0,
+              global?.canUseWebp ? "webp" : "match"
+            );
             const fallbackImage = require("../../img/noimage.svg");
 
             return (
@@ -97,18 +98,10 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                   {b.name} ({b.symbol})
                 </td>
                 <td>
-                  {b.balance < 0.0001
-                    ? b.balance
-                    : formattedNumber(b.balance, {
-                        fractionDigits: b.precision
-                      })}
+                  {b.balanced()}
                 </td>
                 <td>
-                  {b.stakedBalance < 0.0001
-                    ? b.stakedBalance
-                    : formattedNumber(b.stakedBalance, {
-                        fractionDigits: b.precision
-                      })}
+                  {b.staked()}
                   {b.hasDelegations() && " " + b.delegations()}
                 </td>
               </tr>
