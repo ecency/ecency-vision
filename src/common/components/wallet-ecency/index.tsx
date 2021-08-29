@@ -199,22 +199,25 @@ export class WalletEcency extends BaseComponent<Props, State> {
         if (!global.usePrivate) {
             history.push("/");
         }
-        this.claim()
+        global.isElectron && this.initiateOnElectron()
     }
+
+    async initiateOnElectron(){
+    const {activeUser, fetchPoints, global} = this.props;
+    this.stateSet({claiming: true});
+    const username = activeUser?.username!
+    const {mounted} = this.state;
+    if(!mounted && global.isElectron){
+        let getPoints = new Promise(res=>fetchPoints(username))
+        username && getPoints.then(res=>this.stateSet({mounted: true, claiming: false}));
+    }
+}
 
     claim = (e?: React.MouseEvent<HTMLAnchorElement>) => {
         if (e) e.preventDefault();
-
-        const {activeUser, fetchPoints, updateActiveUser} = this.props;
-        const {mounted} = this.state;
-
+        const {activeUser, fetchPoints, updateActiveUser, global} = this.props;
         this.stateSet({claiming: true});
-        const username = activeUser?.username!
-        if(!mounted){
-            username && fetchPoints(username);
-            this.stateSet({mounted: true});
-        }
-        else {
+        const username = activeUser?.username!;
             claimPoints(username).then(() => {
             success(_t('points.claim-ok'));
             fetchPoints(username);
@@ -224,7 +227,6 @@ export class WalletEcency extends BaseComponent<Props, State> {
         }).finally(() => {
             this.setState({claiming: false});
         });
-    }
     }
 
     togglePurchase = (e?: React.MouseEvent<HTMLAnchorElement>) => {
