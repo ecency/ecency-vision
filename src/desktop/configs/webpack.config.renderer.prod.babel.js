@@ -37,20 +37,22 @@ export default merge(baseConfig, {
 
   module: {
     rules: [
+      {
+      test: /\.tsx?$/,
+      use: 'ts-loader',
+      exclude: /node_modules/
+    },
       // CSS
       {
         test: /\.*\.css$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: './',
-            },
+            loader: 'style-loader',
           },
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
+              modules: true, importLoaders: 1, sourceMap: true, url: false
             },
           },
         ],
@@ -60,20 +62,18 @@ export default merge(baseConfig, {
         test: /\.*\.(scss|sass)$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-            },
+            loader: 'style-loader',
           },
           {
             loader: 'css-loader',
             options: {
               sourceMap: true,
               importLoaders: 1,
+              url: false
             },
+          },
+          {
+            loader: 'sass-loader',
           },
         ],
       },
