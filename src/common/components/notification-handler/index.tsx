@@ -165,7 +165,7 @@ export default class NotificationHandler extends Component<Props> {
 
     render() {
 
-        const notificationSound = this.props.global.isElectron ? "../../common/img/notification.mp3" :  require("../../img/notification.mp3");
+        const notificationSound = this.props.global.isElectron ? process.env.NODE_ENV === 'development' ? "../../../../../../../common/img/notification.mp3" : "../../common/img/notification.mp3" :  require("../../img/notification.mp3");
         
         return <audio id="notification-audio" autoPlay={false} src={notificationSound} muted={true} style={{display: 'none'}}/>;
     }
