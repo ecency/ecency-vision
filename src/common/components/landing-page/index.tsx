@@ -54,7 +54,7 @@ const LandingPage = (props: any) => {
   const DevopsImg = apiBase(`/assets/talhasch.${global.canUseWebp?"webp":"jpeg"}`);
   const DesignGuru = apiBase(`/assets/dunsky.${global.canUseWebp?"webp":"jpeg"}`);;
 
-  const LogoCircle = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../../../../../../common/img/logo-circle.svg" : "../../common/img/logo-circle.svg" : require("../../img/logo-circle.svg");
+  const LogoCircle = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/logo-circle.svg" : "../../../../../../../common/img/logo-circle.svg" : require("../../img/logo-circle.svg");
 
   const handleSubsccribe = async (e: FormEvent<HTMLDivElement>) => {
     e.preventDefault();

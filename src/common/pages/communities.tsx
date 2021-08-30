@@ -514,7 +514,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         };
 
         const {activeUser, global} = this.props;
-        let communityImage = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../../../../../../common/img/community-img.svg" : "../../common/img/community-img.svg" : require("../img/community-img.svg");
+        let communityImage = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/community-img.svg" : "../../../../../../../common/img/community-img.svg" : require("../img/community-img.svg");
 
 
         const {fee, title, about, username, wif, usernameStatus, keyDialog, done, inProgress, progress} = this.state;

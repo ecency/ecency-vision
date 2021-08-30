@@ -45,7 +45,7 @@ import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg
 
 const pathToRegexp = require("path-to-regexp");
 
-const logo = process.env.NODE_ENV === 'development' ? "../../../../../../../common/img/logo-circle.svg" : "../../common/img/logo-circle.svg";
+const logo = process.env.NODE_ENV === 'development' ? "../../common/img/logo-circle.svg" : "../../../../../../../common/img/logo-circle.svg";
 
 
 interface AddressBarProps {

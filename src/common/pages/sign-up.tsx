@@ -90,8 +90,8 @@ class SignUpPage extends Component<PageProps, State> {
     render() {
         const {global} = this.props;
 
-        const signupSvg = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../../../../../../common/img/signup.svg" : "../../common/img/signup.svg" : require("../img/signup.svg");
-        const logoCircle = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../../../../../../common/img/logo-circle.svg" : "../../common/img/logo-circle.svg" : require("../img/logo-circle.svg");
+        const signupSvg = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/signup.svg" : "../../../../../../../common/img/signup.svg" : require("../img/signup.svg");
+        const logoCircle = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/logo-circle.svg" : "../../../../../../../common/img/logo-circle.svg" : require("../img/logo-circle.svg");
 
         //  Meta config
         const metaProps = {
