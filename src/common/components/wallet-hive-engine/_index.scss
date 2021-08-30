@@ -1,6 +1,12 @@
 .wallet-hive-engine {
   @include wallet;
 
+  .unclaimed-rewards {
+    .rewards {
+      margin-right: 10px;
+    }
+  }
+
   .item-image {
     margin-right: 10px;
     height: 40px;

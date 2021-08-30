@@ -34,6 +34,12 @@ interface TokenMetadata {
   icon: string;
 }
 
+export interface TokenStatus {
+  symbol: string;
+  pending_token: number;
+  precision: number;
+}
+
 const HIVE_ENGINE_RPC_URL = "https://api.hive-engine.com/rpc/contracts";
 
 const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
@@ -88,6 +94,14 @@ export const getHiveEngineTokenBalances = async (
     const token = tokens.find((t) => t.symbol == balance.symbol);
     const tokenMetadata = JSON.parse(token.metadata) as TokenMetadata;
 
-    return new HiveEngineToken({...balance, ...token, ...tokenMetadata});
+    return new HiveEngineToken({ ...balance, ...token, ...tokenMetadata });
   });
+};
+
+export const getUnclaimedRewards = async (account: string): Promise<TokenStatus[]> => {
+  return axios
+    .get(`https://scot-api.hive-engine.com/@${account}?hive=1`)
+    .then((r) => r.data)
+    .then((r) => Object.values(r))
+    .then((r) => r.filter((t) => t.pending_token > 0));
 };

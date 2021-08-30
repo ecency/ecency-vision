@@ -11,8 +11,9 @@ import { initialState as transactionsInitialState } from "../../store/transactio
 import {
   globalInstance,
   dynamicPropsIntance1,
-  fullAccountInstance,
+  activeUserInstance,
   allOver,
+  fullAccountInstance
 } from "../../helper/test-helper";
 import { StaticRouter } from "react-router-dom";
 import { FullAccount } from "../../store/accounts/types";
@@ -26,7 +27,7 @@ jest.mock("../../api/hive-engine", () => ({
         resolve([]);
       }
 
-      if (MOCK_MODE === 2) {
+      if (MOCK_MODE === 2 || MOCK_MODE === 3) {
         resolve([
           {
             symbol: "POB",
@@ -67,6 +68,19 @@ jest.mock("../../api/hive-engine", () => ({
         ]);
       }
     }),
+    getUnclaimedRewards: () => new Promise((resolve) => {
+      if (MOCK_MODE === 1 || MOCK_MODE === 2) {
+        resolve([]);
+      }
+
+      if (MOCK_MODE === 3) {
+        resolve([{
+          pending_token: 883586,
+          precision: 8,
+          symbol: "POB",
+        }]);
+      }
+    })
 }));
 
 const account: FullAccount = {
@@ -79,7 +93,7 @@ const defProps = {
   global: globalInstance,
   dynamicProps: dynamicPropsIntance1,
   users: [],
-  activeUser: null,
+  activeUser: {...activeUserInstance},
   account,
 };
 
@@ -105,7 +119,19 @@ it("(2) Render with some hive engine tokens", async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(3) usePrivate = false", async () => {
+it("(3) Render with an unclaimed rewards", async () => {
+  MOCK_MODE = 3;
+
+  const renderer = TestRenderer.create(
+    <StaticRouter location="/" context={{}}>
+      <Wallet {...defProps} />
+    </StaticRouter>
+  );
+  await allOver();
+  expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(4) usePrivate = false", async () => {
   const props = {
     ...defProps,
     global: {

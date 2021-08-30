@@ -3,16 +3,22 @@ import React from "react";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
+import {ActiveUser} from "../../store/active-user/types";
 
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import WalletMenu from "../wallet-menu";
 
-import { getHiveEngineTokenBalances } from "../../api/hive-engine";
+import {
+  getHiveEngineTokenBalances,
+  getUnclaimedRewards,
+  TokenStatus
+} from "../../api/hive-engine";
 import HiveEngineToken from "../../helper/hive-engine-wallet";
 import { proxifyImageSrc } from "@ecency/render-helper";
-import { informationVariantSvg } from "../../img/svg";
+import { informationVariantSvg, plusCircle } from "../../img/svg";
+import formattedNumber from "../../util/formatted-number";
 
 import { _t } from "../../i18n";
 
@@ -20,21 +26,25 @@ interface Props {
   global: Global;
   dynamicProps: DynamicProps;
   account: Account;
+  activeUser: ActiveUser | null;
 }
 
 interface State {
   tokens: HiveEngineToken[];
+  rewards: TokenStatus[];
   loading: boolean;
 }
 
 export class WalletHiveEngine extends BaseComponent<Props, State> {
   state: State = {
     tokens: [],
+    rewards: [],
     loading: true,
   };
 
   componentDidMount() {
     this.fetch();
+    this.fetchUnclaimedRewards();
   }
 
   fetch = async () => {
@@ -43,6 +53,13 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     this.stateSet({ loading: true });
     const items = await getHiveEngineTokenBalances(account.name);
     this.stateSet({ tokens: this.sort(items), loading: false });
+  };
+
+  fetchUnclaimedRewards = async () => {
+    const { account } = this.props;
+
+    const rewards = await getUnclaimedRewards(account.name);
+    this.stateSet({ rewards });
   };
 
   sort = (items: HiveEngineToken[]) =>
@@ -59,8 +76,10 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     });
 
   render() {
-    const { global, dynamicProps, account } = this.props;
-    const { tokens, loading } = this.state;
+    const { global, dynamicProps, account, activeUser } = this.props;
+    const { rewards, tokens, loading } = this.state;
+    const hasUnclaimedRewards = rewards.length > 0;
+    const isMyPage = activeUser && activeUser.username === account.name;
 
     if (!account.__loaded) {
       return null;
@@ -70,6 +89,33 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       <div className="wallet-hive-engine">
         <div className="wallet-main">
           <div className="wallet-info">
+            {hasUnclaimedRewards && (
+              <div className="unclaimed-rewards">
+                <div className="title">{_t("wallet.unclaimed-rewards")}</div>
+
+                {rewards.map((r, i) => {
+                  return (
+                    <div className="rewards" key={i}>
+                      <span className="reward-type">
+                        {formattedNumber(
+                          r.pending_token / Math.pow(10, r.precision),
+                          { fractionDigits: r.precision, suffix: r.symbol }
+                        )}
+                      </span>
+                      {isMyPage && (
+                        <a
+                          className="claim-btn"
+                          // onClick={this.claimRewardBalance}
+                        >
+                          {plusCircle}
+                        </a>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
             <div className="balance-row alternative">
               <div className="balance-info">
                 <div className="title">{_t("wallet-engine.title")}</div>
@@ -129,10 +175,18 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                               <Tooltip id={`tooltip-${b.symbol}`}>
                                 <div className="tooltip-inner">
                                   <div className="profile-info-tooltip-content">
-                                    <p>{_t("wallet-engine.token")}: {b.name}</p>
-                                    <p>{_t("wallet-engine.balance")}: {b.balanced()} {b.symbol}</p>
-                                    <p>{_t("wallet-engine.staked")}: {b.staked()}</p>
-                                    {b.hasDelegations() && `<p>${b.delegations()}</p>`}
+                                    <p>
+                                      {_t("wallet-engine.token")}: {b.name}
+                                    </p>
+                                    <p>
+                                      {_t("wallet-engine.balance")}:{" "}
+                                      {b.balanced()} {b.symbol}
+                                    </p>
+                                    <p>
+                                      {_t("wallet-engine.staked")}: {b.staked()}
+                                    </p>
+                                    {b.hasDelegations() &&
+                                      `<p>${b.delegations()}</p>`}
                                   </div>
                                 </div>
                               </Tooltip>
@@ -168,6 +222,7 @@ export default (p: Props) => {
     global: p.global,
     dynamicProps: p.dynamicProps,
     account: p.account,
+    activeUser: p.activeUser,
   };
 
   return <WalletHiveEngine {...props} />;
