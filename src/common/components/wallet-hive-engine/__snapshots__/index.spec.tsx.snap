@@ -29,9 +29,13 @@ exports[`(1) Render an empty list when no tokens found 1`] = `
         </div>
       </div>
       <div
-        className="no-results"
+        className="entry-list"
       >
-        No tokens found.
+        <div
+          className="no-results"
+        >
+          No tokens found.
+        </div>
       </div>
     </div>
     <div
@@ -151,68 +155,112 @@ exports[`(2) Render with some hive engine tokens 1`] = `
         </div>
       </div>
       <div
-        className="table-responsive"
+        className="entry-list"
       >
-        <table
-          className="table"
+        <div
+          className="entry-list-body"
         >
-          <thead>
-            <tr>
-              <th>
-                Token
-              </th>
-              <th>
-                Balance
-              </th>
-              <th>
-                Staked
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <img
-                  alt="PIZZA"
-                  className="item-image"
-                  onError={[Function]}
-                  src="https://images.ecency.com/p/3W72119s5BjVs3HydwUQEFR8AX8qeAgo5bzGeBm1Z97PoTy3MZXBcU4dHbscesjnrTfYqRnK5SzfhSYmuC72yxZ4h1S8WRzei3xyiS6WMKQuEqhbYBH45L.png?format=match&mode=fit"
-                />
-                PIZZA
-                 (
-                PIZZA
-                )
-              </td>
-              <td>
+          <div
+            className="entry-list-item"
+          >
+            <div
+              className="entry-header d-flex align-items-center "
+            >
+              <img
+                alt="PIZZA"
+                className="item-image"
+                onError={[Function]}
+                src="https://images.ecency.com/p/3W72119s5BjVs3HydwUQEFR8AX8qeAgo5bzGeBm1Z97PoTy3MZXBcU4dHbscesjnrTfYqRnK5SzfhSYmuC72yxZ4h1S8WRzei3xyiS6WMKQuEqhbYBH45L.png?format=match&mode=fit"
+              />
+              PIZZA
+            </div>
+            <div
+              className="entry-body ml-auto mr-auto d-flex align-items-center "
+            >
+              <span
+                className="item-balance"
+              >
                 1.0
-              </td>
-              <td>
-                1.13
-                 (0.11 + 1.12 - 0.10)
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img
-                  alt="POB"
-                  className="item-image"
-                  onError={[Function]}
-                  src="https://images.ecency.com/p/PB8ro82ZpZP35bVGjGoE93K3E4U5KX8KtMBJ2ri7FNATqDaPEut9xHWgvGv6BTaMCo6hfe1xpWWm8boHg2sF5xFppQLrBqWLJGnp3idmz4VWXr2A.png?format=match&mode=fit"
-                />
-                Proof of Brain
-                 (
-                POB
-                )
-              </td>
-              <td>
+                 
+                PIZZA
+              </span>
+            </div>
+            <div
+              className="d-flex align-items-center ml-auto ml-md-2"
+            >
+              <div
+                className="d-flex align-items-center"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+              >
+                <span
+                  className="info-icon mr-0 mr-md-2"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className="entry-list-item"
+          >
+            <div
+              className="entry-header d-flex align-items-center "
+            >
+              <img
+                alt="POB"
+                className="item-image"
+                onError={[Function]}
+                src="https://images.ecency.com/p/PB8ro82ZpZP35bVGjGoE93K3E4U5KX8KtMBJ2ri7FNATqDaPEut9xHWgvGv6BTaMCo6hfe1xpWWm8boHg2sF5xFppQLrBqWLJGnp3idmz4VWXr2A.png?format=match&mode=fit"
+              />
+              POB
+            </div>
+            <div
+              className="entry-body ml-auto mr-auto d-flex align-items-center "
+            >
+              <span
+                className="item-balance"
+              >
                 0
-              </td>
-              <td>
-                8.10882833
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                 
+                POB
+              </span>
+            </div>
+            <div
+              className="d-flex align-items-center ml-auto ml-md-2"
+            >
+              <div
+                className="d-flex align-items-center"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+              >
+                <span
+                  className="info-icon mr-0 mr-md-2"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div
@@ -332,68 +380,112 @@ exports[`(3) usePrivate = false 1`] = `
         </div>
       </div>
       <div
-        className="table-responsive"
+        className="entry-list"
       >
-        <table
-          className="table"
+        <div
+          className="entry-list-body"
         >
-          <thead>
-            <tr>
-              <th>
-                Token
-              </th>
-              <th>
-                Balance
-              </th>
-              <th>
-                Staked
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <img
-                  alt="PIZZA"
-                  className="item-image"
-                  onError={[Function]}
-                  src="https://images.ecency.com/p/3W72119s5BjVs3HydwUQEFR8AX8qeAgo5bzGeBm1Z97PoTy3MZXBcU4dHbscesjnrTfYqRnK5SzfhSYmuC72yxZ4h1S8WRzei3xyiS6WMKQuEqhbYBH45L.png?format=match&mode=fit"
-                />
-                PIZZA
-                 (
-                PIZZA
-                )
-              </td>
-              <td>
+          <div
+            className="entry-list-item"
+          >
+            <div
+              className="entry-header d-flex align-items-center "
+            >
+              <img
+                alt="PIZZA"
+                className="item-image"
+                onError={[Function]}
+                src="https://images.ecency.com/p/3W72119s5BjVs3HydwUQEFR8AX8qeAgo5bzGeBm1Z97PoTy3MZXBcU4dHbscesjnrTfYqRnK5SzfhSYmuC72yxZ4h1S8WRzei3xyiS6WMKQuEqhbYBH45L.png?format=match&mode=fit"
+              />
+              PIZZA
+            </div>
+            <div
+              className="entry-body ml-auto mr-auto d-flex align-items-center "
+            >
+              <span
+                className="item-balance"
+              >
                 1.0
-              </td>
-              <td>
-                1.13
-                 (0.11 + 1.12 - 0.10)
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img
-                  alt="POB"
-                  className="item-image"
-                  onError={[Function]}
-                  src="https://images.ecency.com/p/PB8ro82ZpZP35bVGjGoE93K3E4U5KX8KtMBJ2ri7FNATqDaPEut9xHWgvGv6BTaMCo6hfe1xpWWm8boHg2sF5xFppQLrBqWLJGnp3idmz4VWXr2A.png?format=match&mode=fit"
-                />
-                Proof of Brain
-                 (
-                POB
-                )
-              </td>
-              <td>
+                 
+                PIZZA
+              </span>
+            </div>
+            <div
+              className="d-flex align-items-center ml-auto ml-md-2"
+            >
+              <div
+                className="d-flex align-items-center"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+              >
+                <span
+                  className="info-icon mr-0 mr-md-2"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className="entry-list-item"
+          >
+            <div
+              className="entry-header d-flex align-items-center "
+            >
+              <img
+                alt="POB"
+                className="item-image"
+                onError={[Function]}
+                src="https://images.ecency.com/p/PB8ro82ZpZP35bVGjGoE93K3E4U5KX8KtMBJ2ri7FNATqDaPEut9xHWgvGv6BTaMCo6hfe1xpWWm8boHg2sF5xFppQLrBqWLJGnp3idmz4VWXr2A.png?format=match&mode=fit"
+              />
+              POB
+            </div>
+            <div
+              className="entry-body ml-auto mr-auto d-flex align-items-center "
+            >
+              <span
+                className="item-balance"
+              >
                 0
-              </td>
-              <td>
-                8.10882833
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                 
+                POB
+              </span>
+            </div>
+            <div
+              className="d-flex align-items-center ml-auto ml-md-2"
+            >
+              <div
+                className="d-flex align-items-center"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+              >
+                <span
+                  className="info-icon mr-0 mr-md-2"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div
