@@ -42,6 +42,7 @@ import {version} from "../../../package.json";
 import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg, dotsHorizontal, translateSvg} from "../../../../common/img/svg";
 
 // why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
+
 const pathToRegexp = require("path-to-regexp");
 
 const logo = process.env.NODE_ENV === 'development' ? "../../../../../../../common/img/logo-circle.svg" : "../../common/img/logo-circle.svg";
