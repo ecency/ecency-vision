@@ -527,7 +527,7 @@ export class Login extends BaseComponent<LoginProps, State> {
                 <OrDivider/>
                 <div className="hs-login">
                     <a className={_c(`btn btn-outline-primary ${inProgress ? "disabled" : ""}`)} onClick={this.hsLogin}>
-                        <img src={global.isElectron ? process.env.NODE_ENV === 'development' ? "../../../../../../../common/img/hive-signer.svg" : "../../common/img/hive-signer.svg" : hsLogo} className="hs-logo" alt="hivesigner"/> {_t("login.with-hive-signer")}
+                        <img src={global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/hive-signer.svg" : "../../../../../../../common/img/hive-signer.svg" : hsLogo} className="hs-logo" alt="hivesigner"/> {_t("login.with-hive-signer")}
                     </a>
                 </div>
                 {global.hasKeyChain && (
