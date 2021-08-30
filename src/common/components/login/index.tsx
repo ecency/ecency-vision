@@ -460,9 +460,9 @@ export class Login extends BaseComponent<LoginProps, State> {
     render() {
         const {username, key, inProgress} = this.state;
         const {users, activeUser, global} = this.props;
-        const logo = global.isElectron ? "../../common/img/logo-circle.svg" : require('../../img/logo-circle.svg');
-        const hsLogo = global.isElectron ? "../../common/img/hive-signer.svg" : require("../../img/hive-signer.svg");
-        const keyChainLogo = global.isElectron ? "../../common/img/keychain.png" : require("../../img/keychain.png");
+        const logo = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../../../../../../common/img/logo-circle.svg" :  "../../common/img/logo-circle.svg" : require('../../img/logo-circle.svg');
+        const hsLogo = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../../../../../../common/img/hive-signer.svg" :  "../../common/img/hive-signer.svg" : require("../../img/hive-signer.svg");
+        const keyChainLogo = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../../../../../../common/img/keychain.png" :  "../../common/img/keychain.png" : require("../../img/keychain.png");
 
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
 
@@ -527,7 +527,7 @@ export class Login extends BaseComponent<LoginProps, State> {
                 <OrDivider/>
                 <div className="hs-login">
                     <a className={_c(`btn btn-outline-primary ${inProgress ? "disabled" : ""}`)} onClick={this.hsLogin}>
-                        <img src={global.isElectron ? "../../common/img/hive-signer.svg" : hsLogo} className="hs-logo" alt="hivesigner"/> {_t("login.with-hive-signer")}
+                        <img src={global.isElectron ? process.env.NODE_ENV === 'development' ? "../../../../../../../common/img/hive-signer.svg" : "../../common/img/hive-signer.svg" : hsLogo} className="hs-logo" alt="hivesigner"/> {_t("login.with-hive-signer")}
                     </a>
                 </div>
                 {global.hasKeyChain && (

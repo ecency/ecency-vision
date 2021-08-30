@@ -93,7 +93,7 @@ export default class NotificationHandler extends Component<Props> {
 
         window.nws.onmessage = (evt: MessageEvent) => {
             const {global} = this.props;
-            const logo = global.isElectron ? "../../common/img/logo-circle.svg" :  require('../../img/logo-circle.svg');
+            const logo = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../../../../../../common/img/logo-circle.svg" :  "../../common/img/logo-circle.svg" :  require('../../img/logo-circle.svg');
 
 
             const data = JSON.parse(evt.data);
