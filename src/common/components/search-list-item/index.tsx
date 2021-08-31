@@ -70,10 +70,15 @@ class SearchListItem extends Component<Props> {
         const img: string = (global.canUseWebp ? catchPostImage(res.body, 600, 500, 'webp') : catchPostImage(res.body, 600, 500)) || noImage;
 
         let thumb = (
-            <img src={img} alt={res.title} onError={(e: React.SyntheticEvent) => {
+            <img 
+                src={img}
+                alt={res.title}
+                onError={(e: React.SyntheticEvent) => {
                 const target = e.target as HTMLImageElement;
                 target.src = fallbackImage;
-            }}/>
+                }}
+                className={img === noImage ? "no-img" : ""}
+            />
         );
 
         const date = moment(res.created_at);
