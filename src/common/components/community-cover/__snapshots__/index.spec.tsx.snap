@@ -13,26 +13,6 @@ exports[`(1) Render with loaded account object 1`] = `
     }
   />
   <div
-    className="controls-holder"
-  >
-    <button
-      className="btn btn-primary"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      Join
-    </button>
-    <button
-      className="btn btn-primary"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      New Post
-    </button>
-  </div>
-  <div
     className="community-stats"
   >
     <div
@@ -93,6 +73,26 @@ exports[`(1) Render with loaded account object 1`] = `
         language
       </div>
     </div>
+  </div>
+  <div
+    className="controls-holder"
+  >
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Join
+    </button>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      New Post
+    </button>
   </div>
 </div>
 `;
@@ -106,26 +106,6 @@ exports[`(2) Render with not loaded account object 1`] = `
     style={Object {}}
   />
   <div
-    className="controls-holder"
-  >
-    <button
-      className="btn btn-primary"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      Join
-    </button>
-    <button
-      className="btn btn-primary"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      New Post
-    </button>
-  </div>
-  <div
     className="community-stats"
   >
     <div
@@ -186,6 +166,26 @@ exports[`(2) Render with not loaded account object 1`] = `
         language
       </div>
     </div>
+  </div>
+  <div
+    className="controls-holder"
+  >
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Join
+    </button>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      New Post
+    </button>
   </div>
 </div>
 `;
@@ -203,26 +203,6 @@ exports[`(3) No bg image - Day theme 1`] = `
     }
   />
   <div
-    className="controls-holder"
-  >
-    <button
-      className="btn btn-primary"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      Join
-    </button>
-    <button
-      className="btn btn-primary"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      New Post
-    </button>
-  </div>
-  <div
     className="community-stats"
   >
     <div
@@ -283,6 +263,26 @@ exports[`(3) No bg image - Day theme 1`] = `
         language
       </div>
     </div>
+  </div>
+  <div
+    className="controls-holder"
+  >
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Join
+    </button>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      New Post
+    </button>
   </div>
 </div>
 `;
@@ -300,26 +300,6 @@ exports[`(4) No bg image - Night theme 1`] = `
     }
   />
   <div
-    className="controls-holder"
-  >
-    <button
-      className="btn btn-primary"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      Join
-    </button>
-    <button
-      className="btn btn-primary"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      New Post
-    </button>
-  </div>
-  <div
     className="community-stats"
   >
     <div
@@ -380,6 +360,26 @@ exports[`(4) No bg image - Night theme 1`] = `
         language
       </div>
     </div>
+  </div>
+  <div
+    className="controls-holder"
+  >
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Join
+    </button>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      New Post
+    </button>
   </div>
 </div>
 `;
