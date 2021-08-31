@@ -3,21 +3,24 @@ import React from "react";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
-import {ActiveUser} from "../../store/active-user/types";
+import { ActiveUser } from "../../store/active-user/types";
 
 import BaseComponent from "../base";
+import HiveEngineToken from "../../helper/hive-engine-wallet";
 import LinearProgress from "../linear-progress";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import WalletMenu from "../wallet-menu";
 
 import {
+  claimReward,
   getHiveEngineTokenBalances,
   getUnclaimedRewards,
-  TokenStatus
+  TokenStatus,
 } from "../../api/hive-engine";
-import HiveEngineToken from "../../helper/hive-engine-wallet";
 import { proxifyImageSrc } from "@ecency/render-helper";
 import { informationVariantSvg, plusCircle } from "../../img/svg";
+import { error, success } from "../feedback";
+import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
 
 import { _t } from "../../i18n";
@@ -33,6 +36,8 @@ interface State {
   tokens: HiveEngineToken[];
   rewards: TokenStatus[];
   loading: boolean;
+  claiming: boolean;
+  claimed: boolean;
 }
 
 export class WalletHiveEngine extends BaseComponent<Props, State> {
@@ -40,6 +45,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     tokens: [],
     rewards: [],
     loading: true,
+    claiming: false,
+    claimed: false,
   };
 
   componentDidMount() {
@@ -55,13 +62,6 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     this.stateSet({ tokens: this.sort(items), loading: false });
   };
 
-  fetchUnclaimedRewards = async () => {
-    const { account } = this.props;
-
-    const rewards = await getUnclaimedRewards(account.name);
-    this.stateSet({ rewards });
-  };
-
   sort = (items: HiveEngineToken[]) =>
     items.sort((a: HiveEngineToken, b: HiveEngineToken) => {
       if (a.balance !== b.balance) {
@@ -75,9 +75,38 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       return a.symbol > b.symbol ? 1 : -1;
     });
 
+  fetchUnclaimedRewards = async () => {
+    const { account } = this.props;
+
+    const rewards = await getUnclaimedRewards(account.name);
+    this.stateSet({ rewards });
+  };
+
+  claimReward = (symbol: string) => {
+    const { activeUser } = this.props;
+    const { claiming } = this.state;
+
+    if (claiming || !activeUser) {
+      return;
+    }
+
+    this.stateSet({ claiming: true });
+
+    return claimReward(activeUser.username, symbol)
+      .then((account) => {
+        success(_t("wallet.claim-reward-balance-ok"));
+      })
+      .catch((err) => {
+        error(formatError(err));
+      })
+      .finally(() => {
+        this.setState({ claiming: false });
+      });
+  };
+
   render() {
     const { global, dynamicProps, account, activeUser } = this.props;
-    const { rewards, tokens, loading } = this.state;
+    const { rewards, tokens, loading, claiming, claimed } = this.state;
     const hasUnclaimedRewards = rewards.length > 0;
     const isMyPage = activeUser && activeUser.username === account.name;
 
@@ -95,18 +124,23 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
                 {rewards.map((r, i) => {
                   const reward = r.pending_token / Math.pow(10, r.precision);
+
                   return (
                     <div className="rewards" key={i}>
                       <span className="reward-type">
-                        {reward < 0.0001 ? reward : formattedNumber(
-                          reward,
-                          { fractionDigits: r.precision, suffix: r.symbol }
-                        )}
+                        {reward < 0.0001
+                          ? `${reward} ${r.symbol}`
+                          : formattedNumber(reward, {
+                              fractionDigits: r.precision,
+                              suffix: r.symbol,
+                            })}
                       </span>
                       {isMyPage && (
                         <a
-                          className="claim-btn"
-                          // onClick={this.claimRewardBalance}
+                          className={`claim-btn ${
+                            claiming ? "in-progress" : ""
+                          }`}
+                          onClick={() => this.claimReward(r.symbol)}
                         >
                           {plusCircle}
                         </a>

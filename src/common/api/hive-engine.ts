@@ -1,5 +1,9 @@
 import axios from "axios";
 import HiveEngineToken from "../helper/hive-engine-wallet";
+import { PrivateKey, TransactionConfirmation } from "@hiveio/dhive";
+import { client as hiveClient } from "./hive";
+import { getAccessToken, getPostingKey } from "../helper/user-token";
+import hs from "hivesigner";
 
 interface TokenBalance {
   symbol: string;
@@ -98,10 +102,48 @@ export const getHiveEngineTokenBalances = async (
   });
 };
 
-export const getUnclaimedRewards = async (account: string): Promise<TokenStatus[]> => {
+export const getUnclaimedRewards = async (
+  account: string
+): Promise<TokenStatus[]> => {
   return axios
     .get(`https://scot-api.hive-engine.com/@${account}?hive=1`)
     .then((r) => r.data)
     .then((r) => Object.values(r))
     .then((r) => r.filter((t) => t.pending_token > 0));
+};
+
+export const claimReward = async (
+  account: string,
+  symbol: string
+): Promise<TransactionConfirmation> => {
+  const op: dhive.CustomJsonOperation = [
+    "custom_json",
+    {
+      id: "scot_claim_token",
+      json: JSON.stringify({ pending_tokens: [symbol] }),
+      required_auths: [],
+      required_posting_auths: [account],
+    },
+  ];
+
+  const postingKey = getPostingKey(account);
+  if (postingKey) {
+    const privateKey = PrivateKey.fromString(postingKey);
+
+    return hiveClient.broadcast.sendOperations([op], privateKey);
+  }
+
+  let token = getAccessToken(account);
+  return token
+    ? new hs.Client({
+        accessToken: token,
+      })
+        .customJson(
+          [],
+          [account],
+          "scot_claim_token",
+          JSON.stringify({ symbol })
+        )
+        .then((r: any) => r.result)
+    : Promise.resolve(0);
 };
