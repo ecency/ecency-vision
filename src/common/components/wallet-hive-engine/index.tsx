@@ -94,11 +94,12 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                 <div className="title">{_t("wallet.unclaimed-rewards")}</div>
 
                 {rewards.map((r, i) => {
+                  const reward = r.pending_token / Math.pow(10, r.precision);
                   return (
                     <div className="rewards" key={i}>
                       <span className="reward-type">
-                        {formattedNumber(
-                          r.pending_token / Math.pow(10, r.precision),
+                        {reward < 0.0001 ? reward : formattedNumber(
+                          reward,
                           { fractionDigits: r.precision, suffix: r.symbol }
                         )}
                       </span>
