@@ -93,6 +93,7 @@ export class ListItem extends Component<ItemProps> {
                                 const target = e.target as HTMLImageElement;
                                 target.src = fallbackImage;
                             }}
+                            className={img === noImage ? "no-img" : ""}
                         />
                     </div>
                 </div>
