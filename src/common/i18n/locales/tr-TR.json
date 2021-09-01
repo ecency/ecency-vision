@@ -1,6 +1,6 @@
 {
   "g": {
-    "add": "Add",
+    "add": "Ekle",
     "edit": "Edit",
     "submit": "Write a post",
     "search": "Search",
@@ -658,6 +658,7 @@
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return delegations",
     "type-proposal_pay": "Proposal pay",
+    "type-update_proposal_votes": "Proposal vote",
     "type-comment_payout_update": "Content payout update",
     "type-comment_reward": "Content reward",
     "type-recurrent_transfer": "Recurring transfer",
@@ -666,6 +667,7 @@
     "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
+    "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
     "type-limit_order_create": "New trade",
     "type-effective_comment_vote": "Effective vote"
   },
