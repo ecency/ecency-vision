@@ -96,7 +96,6 @@ interface ItemProps {
     addReply: (reply: Entry) => void;
     deleteReply: (reply: Entry) => void;
     toggleUIProp: (what: ToggleType) => void;
-    setter?: (what: boolean) => void;
 }
 
 interface ItemState {
@@ -262,13 +261,12 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
     }
 
     fetchMutedUsers = () => {
-        const { activeUser, entry, setter } = this.props;
+        const { activeUser, entry } = this.props;
         if(activeUser){
             getFollowing(activeUser.username, "", "ignore", 100).then(r => {
                 if (r) {
                     let filterList = r.map(user=>user.following);
                     this.setState({mutedData: filterList });
-                    setter && setter(filterList.includes(entry.author))
                 }
             })
         }
@@ -485,7 +483,6 @@ interface Props {
     addReply: (reply: Entry) => void;
     deleteReply: (reply: Entry) => void;
     toggleUIProp: (what: ToggleType) => void;
-    setter?: (what: boolean) => void;
 }
 
 interface State {
@@ -630,7 +627,6 @@ export default (p: Props) => {
         addReply: p.addReply,
         deleteReply: p.deleteReply,
         toggleUIProp: p.toggleUIProp,
-        setter: p.setter
     }
 
     return <Discussion {...props} />;

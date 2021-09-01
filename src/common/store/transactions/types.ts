@@ -121,6 +121,13 @@ export interface ProposalPay extends BaseTransaction {
     payment: string
 }
 
+export interface UpdateProposalVotes extends BaseTransaction {
+    type: "update_proposal_votes",
+    voter: string,
+    proposal_ids: [number],
+    approve: boolean
+}
+
 export interface CommentPayoutUpdate extends BaseTransaction {
     type: "comment_payout_update"
     author: string
@@ -205,6 +212,7 @@ export type Transaction =
     | FillCollateralizedConvertRequest
     | ReturnVestingDelegation
     | ProposalPay
+    | UpdateProposalVotes
     | CommentPayoutUpdate
     | CommentReward
     | CollateralizedConvert

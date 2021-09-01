@@ -89,6 +89,7 @@
       align-items: center;
       justify-content: space-between;
       border-radius: 6px;
+      margin-bottom: 1rem;
 
       @include themify(day) {
         background-color: $white-three;
