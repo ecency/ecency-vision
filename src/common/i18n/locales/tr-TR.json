@@ -131,35 +131,35 @@
     "error-public-key": "Halka açık bir anahtar girdiniz. Şifre/WIF gerekli",
     "error-user-fetch": "Kullanıcı bilgileri alınamadı",
     "error-user-not-found": "Bu kullanıcı mevcut değil",
-    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
-    "error-permission": "Couldn't get posting permission",
-    "error-authenticate": "Wrong private key. Master or active or posting private key required.",
-    "with-hive-signer": "Login with hivesigner",
-    "with-keychain": "Login with keychain",
-    "sign-up-text-1": "Don't have an account?",
-    "sign-up-text-2": "Sign up now!"
+    "error-user-not-found-cache": "Önbellek tutarsızlığı algılandı. Lütfen hesap bilgilerinizle yeniden oturum açmayı deneyin.",
+    "error-permission": "Yazma izniniz bulunmuyor",
+    "error-authenticate": "Yanlış anahtar girildi. Master veya aktif veya özel posting anahtarı gereklidir.",
+    "with-hive-signer": "Hivesigner ile giriş yap",
+    "with-keychain": "Keychain ile giriş yap",
+    "sign-up-text-1": "Bir hesabınız yok mu?",
+    "sign-up-text-2": "Hemen yeni hesap oluştur!"
   },
   "sign-up": {
-    "header": "Welcome to Ecency",
-    "description": "Home of Free speech and Rewarding communities!",
-    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
-    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
-    "username": "Pick a username",
-    "email": "Enter your email address",
-    "ref": "Referred user (optional)",
-    "submit": "Continue",
-    "validation-username": "Username is required.",
-    "validation-email": "Email is required.",
-    "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "header": "Ecency'ye Hoş Geldiniz",
+    "description": "İfade özgürlüğünün ve Ödüllendirilen toplulukların mekanı!",
+    "bottom-description": "Her bir hesap blok zinciri üzerinde oluşturulur ve bu hesabın kontrolü yalnızca sizin elinizdedir. Blok zinciri ve Ecency'deki her şeyi tek bir hesaptan yönetebilirsiniz.",
+    "learn-more": "<a href=\"/faq#how-to-join\">SSS</a> sayfamızdan avantajlar hakkında detaylı bilgi edinebilirsiniz",
+    "username": "Kullanıcı adı seçin",
+    "email": "E-posta adresinizi girin",
+    "ref": "Yönlendiren kullanıcı (isteğe bağlı)",
+    "submit": "Devam",
+    "validation-username": "Kullanıcı adı gereklidir.",
+    "validation-email": "E-posta adresi gereklidir.",
+    "success": "{{email}} adresine bir e-posta gönderdik.",
+    "success-2": "Hesap oluşturma işlemini tamamlamak için talimatları izleyin.",
+    "login-text-1": "Bir hesabınız var mı?",
+    "login-text-2": "Oturum aç"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Konular"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "Öne Çıkanlar"
   },
   "entry-list-item": {
     "cross-posted": "cross-posted",
