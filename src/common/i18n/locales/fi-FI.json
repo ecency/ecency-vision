@@ -658,6 +658,7 @@
     "type-cancel_transfer_from_savings-detail": "Alkaen: <strong>@{{from}}</strong> <br/> Pyynnön id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Palauta valtuutus",
     "type-proposal_pay": "Ehdotusten palkkio",
+    "type-update_proposal_votes": "Proposal vote",
     "type-comment_payout_update": "Sisällön maksupäivitys",
     "type-comment_reward": "Sisältöpalkkio",
     "type-recurrent_transfer": "Toistuva siirto",
@@ -666,6 +667,7 @@
     "type-fill_recurrent_transfer-detail": "Jäljellä olevat {{remaining_executions}} siirrot",
     "type-collateralized_convert": "Vakuutetut muunnokset",
     "type-collateralized_convert-detail": "Pyyntö id: <strong>{{request}}</strong>",
+    "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
     "type-limit_order_create": "Uusi vaihto",
     "type-effective_comment_vote": "Tehokas äänestys"
   },
