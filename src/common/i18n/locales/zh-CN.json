@@ -658,6 +658,7 @@
     "type-cancel_transfer_from_savings-detail": "来自： <strong>@{{from}}</strong> <br/> 请求 id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "退回派送能量",
     "type-proposal_pay": "建议支付",
+    "type-update_proposal_votes": "Proposal vote",
     "type-comment_payout_update": "更新内容收益",
     "type-comment_reward": "内容奖励",
     "type-recurrent_transfer": "Recurring transfer",
@@ -666,6 +667,7 @@
     "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
+    "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
     "type-limit_order_create": "New trade",
     "type-effective_comment_vote": "Effective vote"
   },
