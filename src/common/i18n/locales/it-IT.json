@@ -658,6 +658,7 @@
     "type-cancel_transfer_from_savings-detail": "Da: <strong>@{{from}}</strong> <br/> IDentificativo di richiesta: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Richiama deleghe",
     "type-proposal_pay": "Pagamento della proposta",
+    "type-update_proposal_votes": "Proposal vote",
     "type-comment_payout_update": "Aggiornamento della ricompensa dal contenuto",
     "type-comment_reward": "Ricompensa dal contenuto",
     "type-recurrent_transfer": "Transazione ricorrente",
@@ -666,6 +667,7 @@
     "type-fill_recurrent_transfer-detail": "Rimanenti {{remaining_executions}} transazioni",
     "type-collateralized_convert": "Conversione collateralizzata",
     "type-collateralized_convert-detail": "Id obbligatorio: <strong>{{request}}</strong>",
+    "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
     "type-limit_order_create": "Nuova operazione",
     "type-effective_comment_vote": "Voto reale"
   },
