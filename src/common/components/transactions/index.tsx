@@ -19,7 +19,7 @@ import {vestsToHp} from "../../helper/vesting";
 
 import formattedNumber from "../../util/formatted-number";
 
-import {ticketSvg, commentSvg, compareHorizontalSvg, cashMultiple, reOrderHorizontalSvg, pickAxeSvg, closeSvg, exchangeSvg, cashCoinSvg, powerDownSvg, powerUpSvg, starsSvg} from "../../img/svg";
+import {ticketSvg, commentSvg, compareHorizontalSvg, cashMultiple, reOrderHorizontalSvg, pickAxeSvg, closeSvg, exchangeSvg, cashCoinSvg, powerDownSvg, powerUpSvg, starsSvg, chevronUpSvgForVote, chevronDownSvgForSlider} from "../../img/svg";
 
 import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
@@ -262,6 +262,15 @@ export class TransactionRow extends Component<RowProps> {
             icon = ticketSvg;
 
             numbers = <span className="number">{tr.payment}</span>
+        }
+
+        if (tr.type === "update_proposal_votes") {
+            flag = true;
+            icon = tr.approve ? chevronUpSvgForVote : chevronDownSvgForSlider;
+
+            details = <Tsx k="transactions.type-update_proposal_vote-detail" args={{pid: tr.proposal_ids}}>
+                <span/>
+            </Tsx>
         }
 
         if (tr.type === "comment_payout_update") {

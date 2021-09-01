@@ -81,7 +81,7 @@ export class EntryListContent extends Component<Props, State> {
     }
 
     componentDidUpdate(prevProps:Props){
-        if(prevProps.activeUser !== this.props.activeUser){
+        if(prevProps.activeUser?.username !== this.props.activeUser?.username){
             this.fetchMutedUsers()
         }
     }
