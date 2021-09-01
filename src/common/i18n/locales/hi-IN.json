@@ -2,7 +2,7 @@
   "g": {
     "add": "जोड़ें",
     "edit": "संपादित करें",
-    "submit": "Write a post",
+    "submit": "एक पोस्ट लिखें",
     "search": "खोजें",
     "downloads": "डाउनलोड",
     "login": "लॉग इन करें",
@@ -13,7 +13,7 @@
     "reply": "जबाब दें",
     "update": "नवनीकरण",
     "or": "अथवा",
-    "muted-message": "Muted author, Reveal content",
+    "muted-message": "मौन लेखक, सामग्री प्रकट करें",
     "server-error": "सर्वर में त्रुटि के कारन प्रक्रिया पूरी हो न सकी",
     "day": "दिन",
     "days": "दिनों",
