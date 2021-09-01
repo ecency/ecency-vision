@@ -199,13 +199,14 @@ export class WalletEcency extends BaseComponent<Props, State> {
         if (!global.usePrivate) {
             history.push("/");
         }
-        global.isElectron && this.initiateOnElectron()
+        let user = history.location.pathname.split("/")[1];
+            user = user.replace('@','')
+        global.isElectron && this.initiateOnElectron(user)
     }
 
-    async initiateOnElectron(){
-    const {activeUser, fetchPoints, global} = this.props;
+    initiateOnElectron(username: string){
+    const { fetchPoints, global } = this.props;
     this.stateSet({claiming: true});
-    const username = activeUser?.username!
     const {mounted} = this.state;
     if(!mounted && global.isElectron){
         let getPoints = new Promise(res=>fetchPoints(username))
