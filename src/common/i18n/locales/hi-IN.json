@@ -658,6 +658,7 @@
     "type-cancel_transfer_from_savings-detail": "से: <strong>@{{from}}</strong> <br/> अनुरोध आईडी:<strong>{{request}}</strong>",
     "type-return_vesting_delegation": "वापसी प्रतिनिधिमंडल",
     "type-proposal_pay": "प्रस्ताव का भुगतान",
+    "type-update_proposal_votes": "Proposal vote",
     "type-comment_payout_update": "सामग्री पेआउट अपडेट",
     "type-comment_reward": "सामग्री इनाम",
     "type-recurrent_transfer": "आवर्ती स्थानांतरण",
@@ -666,6 +667,7 @@
     "type-fill_recurrent_transfer-detail": "बचा हुआ {{remaining_executions}} स्थानांतरण",
     "type-collateralized_convert": "संपार्श्विक रूपांतरण",
     "type-collateralized_convert-detail": "अनुरोध आईडी:<strong>{{request}}</strong>",
+    "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
     "type-limit_order_create": "नया व्यापार",
     "type-effective_comment_vote": "प्रभावी वोट"
   },
