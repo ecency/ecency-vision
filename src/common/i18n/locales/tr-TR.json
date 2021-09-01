@@ -162,22 +162,22 @@
     "title": "Öne Çıkanlar"
   },
   "entry-list-item": {
-    "cross-posted": "cross-posted",
-    "cross-posted-to": "to",
-    "reblogged": "{{n}} Reblogged",
-    "promoted": "Promoted",
-    "pinned": "Pinned Post",
-    "replies": "1 response. Click to respond.",
-    "replies-n": "{{n}} responses. Click to respond.",
-    "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
-    "no-replies": "No responses yet. Click to respond."
+    "cross-posted": "tarafından çapraz gönderildi",
+    "cross-posted-to": "topluluk",
+    "reblogged": "{{n}} blogunda paylaştı",
+    "promoted": "Sponsorlu",
+    "pinned": "Sabitlenmiş Gönderi",
+    "replies": "1 yorum. Yanıtlamak için tıklayın.",
+    "replies-n": "{{n}} yorum. Yanıtlamak için tıklayın.",
+    "vote-error": "Önceki değer kabul edilmedi. Farklı bir değerde oy verin.",
+    "vote-warning": "%0 oy vermek gönderiden oyu kaldırır.",
+    "no-replies": "Henüz yorum yapılmadı. Yorum yazmak için tıklayın."
   },
   "nsfw": {
-    "reveal": "Reveal this post",
-    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
-    "settings-1": "adjust your",
-    "settings-2": "display preferences"
+    "reveal": "Bu gönderiyi görüntüle",
+    "signup": "Tercihlerinizi kaydetmek için <a href=\"/signup\" class=\"push-link\">bir hesap oluşturun</a>",
+    "settings-1": "ayarlarınızı",
+    "settings-2": "görüntüleme tercihlerinizden düzenleyin"
   },
   "bookmark-btn": {
     "add": "Add to bookmarks",
@@ -242,7 +242,7 @@
     "tags": "Popular",
     "title": "{{f}} topics",
     "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
+    "description-tag": "{{f}} #{{t}} konuları",
     "description-user-feed": "{{u}}'s feed",
     "faq": "FAQ",
     "tos": "Terms of service",
