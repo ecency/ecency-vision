@@ -182,7 +182,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
                     return (
                       <div className="entry-list-item" key={i}>
-                        <div className="entry-header d-flex align-items-center ">
+                        <div className="entry-header">
                           <img
                             alt={b.symbol}
                             src={imageSrc}
@@ -194,14 +194,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                           />
                           {b.symbol}
                         </div>
-                        <div className="entry-body ml-auto mr-auto d-flex align-items-center ">
-                          {/* <span className="item-conversion">$9.19/</span> */}
-                          <span className="item-balance">
-                            {b.balanced()} {b.symbol}
-                          </span>
-                        </div>
 
-                        <div className="d-flex align-items-center ml-auto ml-md-2">
+                        <div className="ml-auto">
                           <OverlayTrigger
                             delay={{ show: 0, hide: 500 }}
                             key={"bottom"}
@@ -215,7 +209,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                                     </p>
                                     <p>
                                       {_t("wallet-engine.balance")}:{" "}
-                                      {b.balanced()} {b.symbol}
+                                      {b.balanced()}
                                     </p>
                                     <p>
                                       {_t("wallet-engine.staked")}: {b.staked()}
@@ -233,6 +227,12 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                               </span>
                             </div>
                           </OverlayTrigger>
+                        </div>
+
+                        <div className="entry-body mr-md-2">
+                          <span className="item-balance">
+                            {b.balanced()}
+                          </span>
                         </div>
                       </div>
                     );
