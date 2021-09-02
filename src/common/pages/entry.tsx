@@ -65,6 +65,8 @@ import {version} from "../../../package.json";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import defaults from "../constants/defaults.json";
+import dmca from '../../common/constants/dmca.json';
+
 import { getFollowing } from "../api/hive";
 
 setProxyBase(defaults.imageServer);
@@ -211,6 +213,10 @@ class EntryPage extends BaseComponent<Props, State> {
         for (const k of groupKeys) {
             entry = entries[k].entries.find((x) => x.author === author && x.permlink === permlink);
             if (entry) {
+                if (dmca.includes(`${entry.author}/${entry.permlink}`)) {
+                    entry.body = "This post is not available due to a copyright/fraudulent claim.";
+                    entry.title = "";
+                }
                 break;
             }
         }
