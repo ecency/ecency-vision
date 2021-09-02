@@ -65,15 +65,13 @@ interface Props {
 
 interface State {
     text: string,
-    preview: string,
-    rows: number
+    preview: string
 }
 
 export class Comment extends Component<Props, State> {
     state: State = {
         text: '',
         preview: '',
-        rows: 1
     }
 
     _updateTimer: any = null;
@@ -125,7 +123,7 @@ export class Comment extends Component<Props, State> {
 
     render() {
         const {inProgress, cancellable, autoFocus, submitText} = this.props;
-        const {text, preview, rows} = this.state;
+        const {text, preview} = this.state;
 
         return (
             <>
@@ -140,9 +138,7 @@ export class Comment extends Component<Props, State> {
                             onChange={this.textChanged}
                             disabled={inProgress}
                             autoFocus={autoFocus}
-                            rows={rows}
-                            onKeyPress={(e:any) => (e.keyCode===13 || e.charCode===13) && this.setState({ rows: rows + 1})}
-                            onPaste={() => this.setState({rows: rows + 10})}
+                            rows={text.split(/\r\n|\r|\n/).length}
                         />
                     </div>
                     <div className="comment-buttons">
