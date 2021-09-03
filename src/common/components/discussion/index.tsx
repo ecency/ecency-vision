@@ -329,7 +329,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                     }}>{_t("discussion.reveal")}</Button>
                                 </div>
                             }
-                            debugger
+                            
                             return <>
                                 <ItemBody global={this.props.global} entry={entry}/>
                                 <div className="item-controls">
