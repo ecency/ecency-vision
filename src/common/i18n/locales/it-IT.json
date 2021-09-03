@@ -272,6 +272,7 @@
     "comment-entry-go-root": "Vedi l'intero Post",
     "comment-entry-go-parent": "Vedi commento genitore",
     "hidden-warning": "Questo contenuto ha ottenuto una bassa valutazione dalle persone. Procedi con cautela.",
+    "delete-disabled": "Content after their payout cannot be deleted.",
     "muted-warning": "Questo contenuto è stato silenziato dalla {{community}} dei moderatori poiché non segue le linee guida della community.",
     "lowrep-warning": "L'autore di questo post ha una bassa reputazione. Procedi con cautela.",
     "comments-hidden": "Author of this post is muted by you.",
@@ -1098,8 +1099,9 @@
     "min-root-comment": "Puoi pubblicare soltanto una volta ogni cinque minuti.",
     "identical-vote": "Il tuo voto attuale sul contenuto corrente è identico a questo voto.",
     "insufficient-resource": "Crediti di Riserva insufficienti. Attendi per effettuare la transazione, oppure completa un nuovo power-up di HIVE.",
-    "delete-comment-with-vote": "Non puoi rimuovere un contenuto con voti.",
-    "comment-cashout": "Incasso del contenuto.",
+    "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
+    "comment-cashout": "Content after their payout cannot be deleted.",
+    "comment-children": "Cannot delete a content with replies.",
     "paid-out-post-forbidden": "Non è disponibile il voto per contenuti già pagati."
   },
   "landing-page": {

@@ -272,6 +272,7 @@
     "comment-entry-go-root": "पूरा संदर्भ देखें",
     "comment-entry-go-parent": "सीधा मूल जनक को देखें",
     "hidden-warning": "इस सामग्री को लोगों द्वारा कम रेटिंग मिली है। सावधानी के साथ आगे बढ़ें।",
+    "delete-disabled": "Content after their payout cannot be deleted.",
     "muted-warning": "इस सामग्री को {{community}} मॉडरेटर द्वारा सामुदायिक दिशानिर्देशों का पालन न करने के कारण म्यूट कर दिया गया था।",
     "lowrep-warning": "इस पोस्ट के लेखक की प्रतिष्ठा कम है। सावधानी के साथ आगे बढ़ें।",
     "comments-hidden": "इस पोस्ट के लेखक को आपने म्यूट कर दिया है।",
@@ -1098,8 +1099,9 @@
     "min-root-comment": "आप हर पांच मिनट में केवल एक बार पोस्ट कर सकते हैं।",
     "identical-vote": "इस सामग्री पर आपका वर्तमान वोट इस वोट के समान है।",
     "insufficient-resource": "अपर्याप्त संसाधन क्रेडिट। कृपया लेनदेन करने के लिए प्रतीक्षा करें, या HIVE को शक्ति दें।",
-    "delete-comment-with-vote": "वोटों के साथ एक सामग्री नहीं हटा सकते।",
-    "comment-cashout": "सामग्री कैशआउट।",
+    "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
+    "comment-cashout": "Content after their payout cannot be deleted.",
+    "comment-children": "Cannot delete a content with replies.",
     "paid-out-post-forbidden": "सशुल्क सामग्री के लिए मतदान उपलब्ध नहीं है।"
   },
   "landing-page": {

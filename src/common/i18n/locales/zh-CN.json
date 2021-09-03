@@ -272,6 +272,7 @@
     "comment-entry-go-root": "查看完整内容",
     "comment-entry-go-parent": "查看直接上级",
     "hidden-warning": "人们对此内容评分较低，请谨慎行事。",
+    "delete-disabled": "Content after their payout cannot be deleted.",
     "muted-warning": "此内容被 {{community}} 版主禁言，因为他们不遵守社区指南。",
     "lowrep-warning": "该帖子的作者信誉积分低。请谨慎行事。",
     "comments-hidden": "这个帖子的作者被你禁言。",
@@ -1098,8 +1099,9 @@
     "min-root-comment": "您只能每五分钟发布一次。",
     "identical-vote": "您当前对此内容的投票与本次投票完全相同。",
     "insufficient-resource": "资源积分不足。请等待交易，或提高HIVE能量。",
-    "delete-comment-with-vote": "不能删除带票的内容。",
-    "comment-cashout": "内容提现。",
+    "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
+    "comment-cashout": "Content after their payout cannot be deleted.",
+    "comment-children": "Cannot delete a content with replies.",
     "paid-out-post-forbidden": "付费内容投票不可用。"
   },
   "landing-page": {
