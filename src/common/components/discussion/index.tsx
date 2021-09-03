@@ -329,7 +329,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                     }}>{_t("discussion.reveal")}</Button>
                                 </div>
                             }
-
+                            debugger
                             return <>
                                 <ItemBody global={this.props.global} entry={entry}/>
                                 <div className="item-controls">
@@ -363,7 +363,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                             <a title={_t('g.edit')} className={_c(`edit-btn ${reply ? 'disabled' : ''}`)} onClick={this.toggleEdit}>
                                                 {pencilOutlineSvg}
                                             </a>
-                                            {entry.net_rshares > 0 || entry.children > 0 ? null : EntryDeleteBtn({
+                                            {(entry.is_paidout || entry.net_rshares > 0 || entry.children > 0) ? null : EntryDeleteBtn({
                                                 ...this.props,
                                                 entry,
                                                 onSuccess: this.deleted,
