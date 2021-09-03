@@ -14,7 +14,7 @@ services:
           cpus: "0.9"
           memory: 2048M
       update_config:
-        parallelism: 2
+        parallelism: 4
         order: start-first
         failure_action: rollback
         delay: 10s
