@@ -24,10 +24,6 @@ import {_t} from "../../i18n";
 
 import {insertOrReplace, replace} from "../../util/input-util";
 
-import {readClipboard} from "../../util/clipboard";
-
-import {parseUrl} from "../../util/misc";
-
 import {getAccessToken} from "../../helper/user-token";
 
 import _c from "../../util/fix-class-names";
@@ -107,22 +103,12 @@ export class EditorToolbar extends Component<Props> {
         this.setState({mobileImage: !mobileImage});
     }
 
-    toggleLink = async (e?: React.MouseEvent<HTMLElement>) => {
+    toggleLink = (e?: React.MouseEvent<HTMLElement>) => {
         if (e) {
             e.stopPropagation();
         }
-
-        // get url from clipboard
-        const clipboard = await readClipboard();
-        if (clipboard && clipboard.startsWith("https://")) {
-            const url = parseUrl(clipboard);
-            if (url && url.protocol === "https:") {
-                this.link("", clipboard);
-                return;
-            }
-        }
-
         const {link} = this.state;
+
         this.setState({link: !link});
     }
 
@@ -296,7 +282,7 @@ export class EditorToolbar extends Component<Props> {
     };
 
     fileInputChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        let files = [...e.target.files]
+        let files = [...e.target.files as FileList] 
             .filter(i => this.checkFile(i.name))
             .filter(i => i);
 

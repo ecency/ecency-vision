@@ -3,6 +3,10 @@ import React, {Component} from "react";
 import {Button, Form, FormControl, Modal} from "react-bootstrap";
 
 import {_t} from "../../i18n";
+
+import {readClipboard} from "../../util/clipboard";
+
+import {parseUrl} from "../../util/misc";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 
 interface Props {
@@ -19,6 +23,18 @@ export class AddLink extends Component<Props, State> {
     state: State = {
         text: "",
         link: "https://"
+    }
+
+    componentDidMount(){
+        this.handleClipboard()
+    }
+
+    handleClipboard = async() => {
+        const clipboard = await readClipboard();
+        debugger
+        if (clipboard && (clipboard.startsWith("https://") || clipboard.startsWith("http://"))) {
+            this.setState({ link: clipboard })
+        }
     }
 
     form = React.createRef<HTMLFormElement>();
