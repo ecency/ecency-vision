@@ -10,7 +10,7 @@ import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-help
 
 setProxyBase(defaults.imageServer);
 
-import {getPostsRanked, getAccountPosts} from "../../common/api/bridge";
+import {getPostsRanked, getAccountPosts, dataLimit} from "../../common/api/bridge";
 
 const feedOptions = (req: express.Request) => {
     return {
@@ -39,7 +39,7 @@ export const entryRssHandler = async (req: express.Request, res: express.Respons
     let entries: Entry[];
 
     try {
-        entries = await getPostsRanked(filter, "", "", 20, tag) || [];
+        entries = await getPostsRanked(filter, "", "", dataLimit, tag) || [];
     } catch (e) {
         // Non existent tag error handler
         if (String(e).indexOf("Invalid parameters") !== -1) {

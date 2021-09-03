@@ -4,6 +4,8 @@ import {Subscription} from "../store/subscriptions/types";
 
 import {client as hiveClient} from "./hive";
 
+export const dataLimit = typeof window !== "undefined" && window.screen.width < 540 ? 5 : 20 || 20
+
 const bridgeApiCall = <T>(endpoint: string, params: {}): Promise<T> => hiveClient.call("bridge", endpoint, params);
 
 const resolvePost = (post: Entry, observer: string): Promise<Entry> => {
@@ -39,7 +41,7 @@ export const getPostsRanked = (
     sort: string,
     start_author: string = "",
     start_permlink: string = "",
-    limit: number = 20,
+    limit: number = dataLimit,
     tag: string = "",
     observer: string = ""
 ): Promise<Entry[] | null> => {
@@ -64,9 +66,10 @@ export const getAccountPosts = (
     account: string,
     start_author: string = "",
     start_permlink: string = "",
-    limit: number = 20,
+    limit: number = dataLimit,
     observer: string = ""
 ): Promise<Entry[] | null> => {
+    
     return bridgeApiCall<Entry[] | null>("get_account_posts", {
         sort,
         account,
