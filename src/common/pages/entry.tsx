@@ -68,6 +68,10 @@ import defaults from "../constants/defaults.json";
 import dmca from '../../common/constants/dmca.json';
 
 import { getFollowing } from "../api/hive";
+import { history } from "../store";
+import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
+import entryDeleteBtn from "../components/entry-delete-btn";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 setProxyBase(defaults.imageServer);
 
@@ -85,17 +89,21 @@ interface State {
     loading: boolean;
     replying: boolean;
     showIfNsfw: boolean;
+    edit: boolean;
+    comment: string;
     editHistory: boolean;
     showProfileBox: boolean;
-    entryIsMuted: boolean
+    entryIsMuted: boolean;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
     state: State = {
         loading: false,
         replying: false,
+        edit: false,
         showIfNsfw: false,
         editHistory: false,
+        comment: "",
         showProfileBox: false,
         entryIsMuted: false
     };
@@ -110,7 +118,6 @@ class EntryPage extends BaseComponent<Props, State> {
         if (global.usePrivate && location.search === "?history") {
             this.toggleEditHistory();
         }
-
         window.addEventListener("scroll", this.detect);
         window.addEventListener("resize", this.detect);
 
@@ -119,7 +126,7 @@ class EntryPage extends BaseComponent<Props, State> {
     componentDidUpdate(prevProps: Readonly<Props>): void {
         const {location} = this.props;
         if (location.pathname !== prevProps.location.pathname) {
-            this.ensureEntry();
+            this.ensureEntry()
         }
     }
 
@@ -149,6 +156,58 @@ class EntryPage extends BaseComponent<Props, State> {
 
     }
     
+    updateReply = (text: string) => {
+        const entry = this.getEntry();
+        const {activeUser, updateReply} = this.props;
+
+        if(entry){
+            const {permlink, parent_author: parentAuthor, parent_permlink: parentPermlink} = entry;
+        const jsonMeta = makeJsonMetaDataReply(
+            entry.json_metadata.tags || ['ecency'],
+            version
+        );
+
+        this.stateSet({loading: true});
+
+        comment(
+            activeUser?.username!,
+            parentAuthor!,
+            parentPermlink!,
+            permlink,
+            '',
+            text,
+            jsonMeta,
+            null,
+        ).then(() => {
+            const nReply: Entry = {
+                ...entry,
+                body: text
+            }
+            this.setState({comment: text})
+            updateReply(nReply); // update store
+            this.toggleEdit(); // close comment box
+            this.reload()
+
+        }).catch((e) => {
+            error(formatError(e));
+        }).finally(() => {
+            this.stateSet({loading: false});
+        });
+    }
+}
+
+    toggleEdit = () => {
+        const {edit} = this.state;
+        this.stateSet({edit: !edit});
+    }
+
+    deleted = async () => {
+        const { deleteReply } = this.props;
+        let entry = this.getEntry();
+        entry && deleteReply(entry);
+        ls.set(`deletedComment`,entry?.post_id);
+        history?.goBack();
+    }
 
     toggleEditHistory = () => {
         const {editHistory} = this.state;
@@ -161,6 +220,7 @@ class EntryPage extends BaseComponent<Props, State> {
         const {category, username, permlink} = match.params;
         const author = username.replace("@", "");
 
+        
         let reducerFn = updateEntry;
 
         if (!entry) {
@@ -334,8 +394,8 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfNsfw, editHistory, entryIsMuted} = this.state;
-        const {global, history} = this.props;
+        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment} = this.state;
+        const {global, history, location} = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
@@ -474,7 +534,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                             const published = moment(parseDate(originalEntry.created));
                                             const reputation = accountReputation(originalEntry.author_reputation);
                                             const renderedBody = {__html: renderPostBody(originalEntry.body, false, global.canUseWebp)};
-
+                                            
                                             return <>
                                                 <div className="entry-header">
                                                     <h1 className="entry-title">
@@ -541,8 +601,29 @@ class EntryPage extends BaseComponent<Props, State> {
                                             </>;
                                         }
 
-                                        const renderedBody = {__html: renderPostBody(entry.body, false, global.canUseWebp)};
+                                        const renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 ? comment : entry.body :entry.body, false, global.canUseWebp)};
+                                        
                                         const ctitle = entry.community ? entry.community_title : "";
+                                        let extraItems = ownEntry && isComment ? [{
+                                                label: _t("g.edit"),
+                                                onClick: this.toggleEdit,
+                                                icon: pencilOutlineSvg
+                                            }
+                                        ] : [];
+                                        if(!(entry.children > 0 || entry.net_rshares > 0 || entry.is_paidout) && ownEntry && isComment){
+                                            extraItems = [...extraItems, {
+                                                label: "",
+                                                onClick: ()=>{},
+                                                icon: entryDeleteBtn({
+                                                    ...this.props,
+                                                    entry,
+                                                    setDeleteInProgress: value=> this.setState({loading: value}),
+                                                    onSuccess: this.deleted,
+                                                    children: <a title={_t('g.delete')} className="edit-btn">{deleteForeverSvg} {_t("g.delete")}</a>
+                                                })
+                                            }]
+                                            }
+
                                         return <>
                                             <div className="entry-header">
                                                 {isMuted && (<div className="hidden-warning">
@@ -594,8 +675,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         })}</div>
                                                     })}
 
-                                                    
-
                                                     <div className="entry-info-inner">
                                                         <div className="info-line-1">
                                                             {ProfileLink({
@@ -638,12 +717,25 @@ class EntryPage extends BaseComponent<Props, State> {
                                                     {EntryMenu({
                                                         ...this.props,
                                                         entry,
-                                                        separatedSharing: true
+                                                        separatedSharing: true,
+                                                        extraMenuItems: extraItems
                                                     })}
                                                 </div>
                                             </div>
                                             <meta itemProp="headline name" content={entry.title}/>
-                                            <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/>
+                                            {!edit ? 
+                                                <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/> :
+                                                Comment({
+                                                    ...this.props,
+                                                    defText: entry.body,
+                                                    submitText: _t('g.update'),
+                                                    cancellable: true,
+                                                    onSubmit: this.updateReply,
+                                                    onCancel: this.toggleEdit,
+                                                    inProgress: loading,
+                                                    autoFocus: true
+                                                })}
+
                                             <meta itemProp="image" content={metaProps.image}/>
                                         </>
                                     })()}
