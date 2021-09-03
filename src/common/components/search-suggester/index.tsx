@@ -18,7 +18,7 @@ import defaults from "../../constants/defaults.json";
 
 
 import {lookupAccounts} from "../../api/hive";
-import {getCommunities} from "../../api/bridge";
+import {dataLimit, getCommunities} from "../../api/bridge";
 
 interface Props {
     history: History;
@@ -101,7 +101,7 @@ export class SearchSuggester extends BaseComponent<Props, State> {
         // Community
         if (value.startsWith("$")) {
             const q = value.replace("$", "");
-            getCommunities("", 20, q)
+            getCommunities("", dataLimit, q)
                 .then((r) => {
                     if (r) {
                         this.stateSet({mode: "comm", suggestions: r});

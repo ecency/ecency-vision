@@ -22,7 +22,7 @@ import {clone} from '../util';
 
 import filterTagExtract from "../../helper/filter-tag-extract";
 
-import {getPostsRanked, getAccountPosts} from "../../api/bridge";
+import {getPostsRanked, getAccountPosts, dataLimit} from "../../api/bridge";
 
 export const makeGroupKey = (what: string, tag: string = ""): string => {
     if (tag) {
@@ -140,7 +140,7 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
     getState: () => AppState
 ) => {
     const {entries, activeUser} = getState();
-    const pageSize = 20;
+    const pageSize = dataLimit;
 
     const groupKey = makeGroupKey(what, tag);
 
@@ -169,16 +169,16 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
         // @username/posts|replies|comments|feed
         const username = tag.replace("@", "");
 
-        promise = getAccountPosts(what, username, start_author, start_permlink, 20, observer);
+        promise = getAccountPosts(what, username, start_author, start_permlink, dataLimit, observer);
     } else {
         // trending/tag
-        promise = getPostsRanked(what, start_author, start_permlink, pageSize, tag, observer);
+        promise = getPostsRanked(what, start_author, start_permlink, dataLimit, tag, observer);
     }
 
     promise
         .then((resp) => {
             if (resp) {
-                dispatch(fetchedAct(groupKey, resp, resp.length >= pageSize));
+                dispatch(fetchedAct(groupKey, resp, resp.length >= dataLimit));
             } else {
                 dispatch(fetchErrorAct(groupKey, "server error"));
             }

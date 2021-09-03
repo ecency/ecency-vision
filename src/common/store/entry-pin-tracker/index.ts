@@ -8,7 +8,7 @@ import {EntryPinTracker, Actions, ActionTypes, FetchAction, SetAction} from "./t
 
 import {CommonActionTypes} from "../common";
 
-import {getPostsRanked} from "../../api/bridge";
+import {dataLimit, getPostsRanked} from "../../api/bridge";
 
 
 export const initialState: EntryPinTracker = {};
@@ -57,7 +57,7 @@ export const trackEntryPin = (entry: Entry) => (dispatch: Dispatch, getState: ()
 
     dispatch(fetchAct(entry));
 
-    getPostsRanked("created", "", "", 20, entry.category)
+    getPostsRanked("created", "", "", dataLimit, entry.category)
         .then(r => {
             if (r) {
                 const isPinned = r.find(x => x.author === entry.author && x.permlink === entry.permlink && x.stats?.is_pinned === true) !== undefined;

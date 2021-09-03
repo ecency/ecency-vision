@@ -11,6 +11,7 @@ import {vestsToRshares} from "../helper/vesting";
 import isCommunity from "../helper/is-community";
 
 import SERVERS from "../constants/servers.json";
+import { dataLimit } from './bridge';
 
 export const client = new Client(SERVERS, {
     timeout: 4000,
@@ -368,7 +369,7 @@ export interface BlogEntry {
     reblogged_on: string
 }
 
-export const getBlogEntries = (username: string, limit: number = 50): Promise<BlogEntry[]> =>
+export const getBlogEntries = (username: string, limit: number = dataLimit): Promise<BlogEntry[]> =>
     client.call('condenser_api', 'get_blog_entries', [
         username,
         0,

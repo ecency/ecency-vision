@@ -27,7 +27,7 @@ export default async (req: express.Request, res: express.Response) => {
         let entryList: Entry[] = [];
 
         try {
-            entryList = (await bridgeApi.getAccountPosts(section, username, "", "", 10)) || [];
+            entryList = (await bridgeApi.getAccountPosts(section, username, "", "", bridgeApi.dataLimit)) || [];
         } catch (e) {
             entryList = [];
         }
