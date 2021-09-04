@@ -2,7 +2,9 @@
   padding: 0;
   margin-bottom: 30px;
   height: 64px;
-  position: relative;
+  position: fixed;
+  right: 0px;
+  left: 0px;
   z-index: 2;
   @include themify(day) {
     background: $white-two;

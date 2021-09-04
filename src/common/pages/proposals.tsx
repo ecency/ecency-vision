@@ -154,7 +154,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         if (loading) {
             return <>{navBar}<LinearProgress/></>;
         }
-        let containerClasses = global.isElectron ? "app-content proposals-page mt-0" : "app-content proposals-page";
+        let containerClasses = global.isElectron ? "app-content proposals-page mt-0 pt-6" : "app-content proposals-page";
 
         return (
             <>
@@ -312,7 +312,7 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
             modified: moment(parseDate(entry.updated)).toISOString(),
             image: catchPostImage(entry.body, 600, 500, global.canUseWebp ? 'webp' : 'match'),
         };
-        let containerClasses = global.isElectron ? "app-content proposals-page proposals-detail-page mt-0" : "app-content proposals-page proposals-detail-page";
+        let containerClasses = global.isElectron ? "app-content proposals-page proposals-detail-page mt-0 pt-6" : "app-content proposals-page proposals-detail-page";
 
         return (
             <>

@@ -73,7 +73,7 @@ const LandingPage = (props: any) => {
   };
   
   return (
-    <div className="landing-wrapper" id="landing-wrapper">
+    <div className={global.isElectron ? "landing-wrapper pt-5" : "landing-wrapper"} id="landing-wrapper">
       <div className="top-bg" />
       <div className="tob-bg-algae" />
       <div className="tob-bg-fishes" />

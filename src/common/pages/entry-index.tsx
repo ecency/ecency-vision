@@ -150,9 +150,8 @@ class EntryIndexPage extends Component<PageProps, State> {
         || location?.pathname?.startsWith("/trending")
         || location?.pathname?.startsWith("/payout")
         || location?.pathname?.startsWith("/payout_comments");
-        let containerClasses = global.isElectron ? "app-content entry-index-page mt-0" : "app-content entry-index-page";
+        let containerClasses = global.isElectron ? "app-content entry-index-page mt-0 pt-6" : "app-content entry-index-page";
     
-
         return (
             <>
                 <Meta {...metaProps} />

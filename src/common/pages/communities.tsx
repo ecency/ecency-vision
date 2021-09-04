@@ -142,7 +142,7 @@ class CommunitiesPage extends BaseComponent<PageProps, State> {
             canonical: `${defaults.base}/communities`,
             description: _t("communities.description"),
         };
-        let containerClasses = global.isElectron ? "app-content communities-page mt-0" : "app-content communities-page"
+        let containerClasses = global.isElectron ? "app-content communities-page mt-0 pt-6" : "app-content communities-page"
 
         return (
             <>
@@ -518,7 +518,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
 
 
         const {fee, title, about, username, wif, usernameStatus, keyDialog, done, inProgress, progress} = this.state;
-        let containerClasses = global.isElectron ? "app-content container-fluid mt-0" : "app-content container-fluid"
+        let containerClasses = global.isElectron ? "app-content container-fluid mt-0 pt-6" : "app-content container-fluid"
 
         return (
             <>
@@ -862,7 +862,7 @@ class CommunityCreateHSPage extends BaseComponent<PageProps, CreateHsState> {
 
         const {global} = this.props;
         const {inProgress, progress, done} = this.state;
-        let containerClasses = global.isElectron ? "app-content communities-page mt-0" : "app-content communities-page"
+        let containerClasses = global.isElectron ? "app-content communities-page mt-0 pt-6" : "app-content communities-page"
 
         return <>
             <Meta {...metaProps} />

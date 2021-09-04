@@ -31,8 +31,6 @@ export default class ScrollToTop extends Component {
     }
 
     detect = () => {
-        let navbar = document.getElementById("sticky-container");
-        let landingWrapper = document.getElementById("landing-wrapper");
 
         if (!this.button.current) {
             return;
