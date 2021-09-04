@@ -346,10 +346,6 @@ export class NavBar extends Component<Props, State> {
         const nav = this.nav.current;
         if (!nav) return;
 
-        const limit = nav.clientHeight * 2;
-        const floating = window.scrollY >= limit;
-
-        this.setState({floating});
     }
 
     changeTheme = () => {
