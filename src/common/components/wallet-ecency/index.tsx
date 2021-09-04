@@ -180,6 +180,7 @@ interface State {
     purchase: boolean;
     promote: boolean;
     boost: boolean;
+    mounted: boolean;
     transfer: boolean;
 }
 
@@ -189,6 +190,7 @@ export class WalletEcency extends BaseComponent<Props, State> {
         purchase: false,
         promote: false,
         boost: false,
+        mounted: false,
         transfer: false
     }
 
@@ -197,16 +199,27 @@ export class WalletEcency extends BaseComponent<Props, State> {
         if (!global.usePrivate) {
             history.push("/");
         }
+        let user = history.location.pathname.split("/")[1];
+            user = user.replace('@','')
+        global.isElectron && this.initiateOnElectron(user)
     }
 
-    claim = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
+    initiateOnElectron(username: string){
+    const { fetchPoints, global } = this.props;
+    this.stateSet({claiming: true});
+    const {mounted} = this.state;
+    if(!mounted && global.isElectron){
+        let getPoints = new Promise(res=>fetchPoints(username))
+        username && getPoints.then(res=>this.stateSet({mounted: true, claiming: false}));
+    }
+}
 
-        const {activeUser, fetchPoints, updateActiveUser} = this.props;
-
+    claim = (e?: React.MouseEvent<HTMLAnchorElement>) => {
+        if (e) e.preventDefault();
+        const {activeUser, fetchPoints, updateActiveUser, global} = this.props;
         this.stateSet({claiming: true});
-        const username = activeUser?.username!
-        claimPoints(username).then(() => {
+        const username = activeUser?.username!;
+            claimPoints(username).then(() => {
             success(_t('points.claim-ok'));
             fetchPoints(username);
             updateActiveUser();
