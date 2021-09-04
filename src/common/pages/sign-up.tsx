@@ -100,7 +100,7 @@ class SignUpPage extends Component<PageProps, State> {
 
         const {username, email, referral, lockReferral, inProgress, done} = this.state;
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
-        let containerClasses = global.isElectron ? "app-content sign-up-page mb-lg-0 mt-0" : "app-content sign-up-page mb-lg-0";
+        let containerClasses = global.isElectron ? "app-content sign-up-page mb-lg-0 mt-0 pt-6" : "app-content sign-up-page mb-lg-0";
 
         return (
             <>

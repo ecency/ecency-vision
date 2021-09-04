@@ -711,7 +711,7 @@ class SubmitPage extends BaseComponent<Props, State> {
 
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
         const isMobile = typeof window !== 'undefined' && window.innerWidth < 570;
-        let containerClasses = global.isElectron ? " mt-0" : "";
+        let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
         return (
             <>
                 <Meta {...metaProps} />

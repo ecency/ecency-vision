@@ -229,7 +229,7 @@ class ProfilePage extends BaseComponent<Props, State> {
         const {filter, tag} = global;
         const groupKey = makeGroupKey(filter, tag);
         const data = entries[groupKey];
-        let containerClasses = global.isElectron ? "app-content profile-page mt-0" : "app-content profile-page";
+        let containerClasses = global.isElectron ? "app-content profile-page mt-0 pt-6" : "app-content profile-page";
 
         return (
             <>

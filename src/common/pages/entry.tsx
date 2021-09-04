@@ -460,7 +460,7 @@ class EntryPage extends BaseComponent<Props, State> {
             tag: isCommunity(tags[0]) ? tags[1] : tags[0],
             keywords: tags.join(", "),
         };
-        let containerClasses = global.isElectron ? "app-content entry-page mt-0" : "app-content entry-page";
+        let containerClasses = global.isElectron ? "app-content entry-page mt-0 pt-6" : "app-content entry-page";
 
         return (
             <>

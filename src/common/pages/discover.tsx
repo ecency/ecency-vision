@@ -28,7 +28,7 @@ class DiscoverPage extends Component<PageProps> {
         };
 
         const {global} = this.props;
-        let containerClasses = global.isElectron ? "app-content discover-page mt-0" : "app-content discover-page";
+        let containerClasses = global.isElectron ? "app-content discover-page mt-0 pt-6" : "app-content discover-page";
 
         return (
             <>

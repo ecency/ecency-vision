@@ -53,7 +53,7 @@ class SearchPage extends SearchBase {
         };
 
         const {global} = this.props;
-        let containerClasses = global.isElectron ? "app-content search-page mt-0" : "app-content search-page";
+        let containerClasses = global.isElectron ? "app-content search-page mt-0 pt-6" : "app-content search-page";
 
         return (
             <>
@@ -96,7 +96,7 @@ class SearchMorePage extends SearchBase {
         };
 
         const {global} = this.props;
-        let containerClasses = global.isElectron ? "app-content search-more-page mt-0" : "app-content search-more-page";
+        let containerClasses = global.isElectron ? "app-content search-more-page mt-0 pt-6" : "app-content search-more-page";
 
         return (
             <>

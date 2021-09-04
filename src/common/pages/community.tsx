@@ -193,7 +193,7 @@ class CommunityPage extends BaseComponent<Props, State> {
         const metaProps = {title, description, url, rss, image, canonical};
 
         const promoted = entries['__promoted__'].entries;
-        let containerClasses = global.isElectron ? "app-content community-page mt-0" : "app-content community-page";
+        let containerClasses = global.isElectron ? "app-content community-page mt-0 pt-6" : "app-content community-page";
 
         return (
             <>

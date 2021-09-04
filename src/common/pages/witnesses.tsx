@@ -253,7 +253,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                 </Tsx>
             )}
         </div>;
-        let containerClasses = global.isElectron ? " mt-0" : "";
+        let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
         return (
             <>

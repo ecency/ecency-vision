@@ -54,7 +54,7 @@ class AboutPage extends Component<PageProps> {
         };
 
         const {global} = this.props;
-        let containerClasses = global.isElectron ? " mt-0" : "";
+        let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
         return (
             <>
@@ -202,7 +202,7 @@ class GuestPostPage extends Component <PageProps> {
         };
 
         const {global} = this.props;
-        let containerClasses = global.isElectron ? " mt-0" : "";
+        let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
         return (
             <>
@@ -241,7 +241,7 @@ class ContributePage extends Component<PageProps> {
         };
 
         const {global} = this.props;
-        let containerClasses = global.isElectron ? " mt-0" : "";
+        let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
         return (
             <>
@@ -311,7 +311,7 @@ class PrivacyPage extends Component<PageProps> {
         };
 
         const {global} = this.props;
-        let containerClasses = global.isElectron ? " mt-0" : "";
+        let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
         return (
             <>
@@ -511,7 +511,7 @@ class WhitePaperPage extends Component<PageProps> {
         };
 
         const {global} = this.props;
-        let containerClasses = global.isElectron ? " mt-0" : "";
+        let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
         return (
             <>
@@ -557,7 +557,7 @@ class TosPage extends Component<PageProps> {
         };
 
         const {global} = this.props;
-        let containerClasses = global.isElectron ? " mt-0" : "";
+        let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
         return (
             <>
@@ -808,7 +808,7 @@ class FaqPage extends Component<PageProps> {
 
         const {global} = this.props;
         const imgs = apiBase(`/assets/ecency-faq.${this.props.global.canUseWebp ? 'webp' : 'jpg'}`);
-        let containerClasses = global.isElectron ? " mt-0" : "";
+        let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
         return (
             <>
@@ -857,7 +857,7 @@ class ContributorsPage extends Component<PageProps> {
         };
 
         const {global} = this.props;
-        let containerClasses = global.isElectron ? " mt-0" : "";
+        let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
         return (
             <>
