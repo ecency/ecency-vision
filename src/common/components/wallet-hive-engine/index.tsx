@@ -58,8 +58,10 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     const { account } = this.props;
 
     this.stateSet({ loading: true });
-    const items = await getHiveEngineTokenBalances(account.name);
-    this.stateSet({ tokens: this.sort(items), loading: false });
+    let items = await getHiveEngineTokenBalances(account.name);
+    items = items.filter(token => token.balance !== 0 || token.stakedBalance !== 0);
+    items = this.sort(items);
+    this.stateSet({ tokens: items, loading: false });
   };
 
   sort = (items: HiveEngineToken[]) =>
@@ -195,7 +197,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                           {b.symbol}
                         </div>
 
-                        <div className="ml-auto">
+                        <div className="ml-auto mr-1">
                           <OverlayTrigger
                             delay={{ show: 0, hide: 500 }}
                             key={"bottom"}

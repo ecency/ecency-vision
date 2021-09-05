@@ -67,9 +67,33 @@ jest.mock("../../api/hive-engine", () => ({
           },
         ]);
       }
+
+      if (MOCK_MODE === 4) {
+        resolve([
+          {
+            symbol: "POB",
+            name: "Proof of Brain",
+            icon: "https://images.hive.blog/DQmebUEYTFmi2g4pqExAjaQrv9E9nzNtuEDbttRBRShkVYy/brain.png",
+            precision: 8,
+            stakingEnabled: true,
+            delegationEnabled: true,
+            undelegationCooldown: 7,
+            balance: 0.0,
+            stake: 0,
+            stakedBalance: 0,
+            delegationsIn: 0,
+            delegationsOut: 0,
+            pendingUndelegations: 0,
+            hasDelegations: () => false,
+            delegations: () => "",
+            staked: () => "0",
+            balanced: () => "0",
+          }
+        ]);
+      }
     }),
     getUnclaimedRewards: () => new Promise((resolve) => {
-      if (MOCK_MODE === 1 || MOCK_MODE === 2) {
+      if (MOCK_MODE === 1 || MOCK_MODE === 2 || MOCK_MODE === 4) {
         resolve([]);
       }
 
@@ -131,7 +155,19 @@ it("(3) Render with an unclaimed rewards", async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(4) usePrivate = false", async () => {
+it("(4) Render an empty list if tokens equals zero", async () => {
+  MOCK_MODE = 4;
+
+  const renderer = TestRenderer.create(
+    <StaticRouter location="/" context={{}}>
+      <Wallet {...defProps} />
+    </StaticRouter>
+  );
+  await allOver();
+  expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(5) usePrivate = false", async () => {
   const props = {
     ...defProps,
     global: {
