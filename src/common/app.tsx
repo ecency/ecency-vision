@@ -29,8 +29,20 @@ import {
 } from "./pages/static";
 
 import routes from "./routes";
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { pageMapDispatchToProps, pageMapStateToProps } from "./pages/common";
+import { history } from "./store";
 
-const App = () => {
+const App = ({router}:any) => {
+
+    useEffect(()=>{
+        let testUrl = router && router.location && router.location.pathname;
+        if(testUrl.includes('//')){
+            history?.push(testUrl.replaceAll("//",'/'))
+        }
+    },[router && router.location && router.location.pathname]);
+
     return (
         <>
             <Tracker/>
@@ -71,4 +83,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(App);
