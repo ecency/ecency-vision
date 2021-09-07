@@ -29,8 +29,6 @@ import {
 } from "./pages/static";
 
 import routes from "./routes";
-import { connect } from "react-redux";
-import { pageMapDispatchToProps, pageMapStateToProps } from "./pages/common";
 
 const App = () => {
     return (
@@ -73,4 +71,4 @@ const App = () => {
     );
 };
 
-export default connect(pageMapStateToProps, pageMapDispatchToProps)(App);
+export default App;
