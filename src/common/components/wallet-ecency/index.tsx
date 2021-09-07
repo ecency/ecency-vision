@@ -206,11 +206,10 @@ export class WalletEcency extends BaseComponent<Props, State> {
 
     initiateOnElectron(username: string){
     const { fetchPoints, global } = this.props;
-    this.stateSet({claiming: true});
     const {mounted} = this.state;
     if(!mounted && global.isElectron){
         let getPoints = new Promise(res=>fetchPoints(username))
-        username && getPoints.then(res=>this.stateSet({mounted: true, claiming: false}));
+        username && getPoints.then(res=>this.stateSet({mounted: true}));
     }
 }
 
