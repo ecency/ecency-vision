@@ -39,7 +39,7 @@ const App = ({router}:any) => {
     useEffect(()=>{
         let testUrl = router && router.location && router.location.pathname;
         if(testUrl.includes('//')){
-            history?.push(testUrl.replaceAll("//",'/'))
+            history?.push(testUrl.replace(new RegExp('//', 'g'),'/'))
         }
     },[router && router.location && router.location.pathname]);
 
