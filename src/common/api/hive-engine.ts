@@ -147,3 +147,39 @@ export const claimReward = async (
         .then((r: any) => r.result)
     : Promise.resolve(0);
 };
+
+export const claimRewards = async (
+  account: string,
+  tokens: string[]
+): Promise<TransactionConfirmation> => {
+  const op: dhive.CustomJsonOperation = [
+    "custom_json",
+    {
+      id: "scot_claim_token",
+      json: JSON.stringify(tokens.map(r => { return { symbol: r } })),
+      required_auths: [],
+      required_posting_auths: [account],
+    },
+  ];
+
+  const postingKey = getPostingKey(account);
+  if (postingKey) {
+    const privateKey = PrivateKey.fromString(postingKey);
+
+    return hiveClient.broadcast.sendOperations([op], privateKey);
+  }
+
+  let token = getAccessToken(account);
+  return token
+    ? new hs.Client({
+        accessToken: token,
+      })
+        .customJson(
+          [],
+          [account],
+          "scot_claim_token",
+          JSON.stringify(tokens.map(r => { return { symbol: r } })),
+        )
+        .then((r: any) => r.result)
+    : Promise.resolve(0);
+};
