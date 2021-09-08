@@ -23,6 +23,9 @@ import {Tsx} from "../i18n/helper";
 import {hiveSvg, checkSvg} from "../img/svg";
 import { handleInvalid, handleOnInput } from "../util/input-util";
 
+const signupSvg = require("../img/signup.svg");
+const logoCircle = require("../img/logo-circle.svg");
+
 interface State {
     username: string;
     email: string;
@@ -90,8 +93,8 @@ class SignUpPage extends Component<PageProps, State> {
     render() {
         const {global} = this.props;
 
-        const signupSvg = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/signup.png" : "../../../../../../../common/img/signup.png" : require("../img/signup.png");
-        const logoCircle = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/logo-circle.svg" : "../../../../../../../common/img/logo-circle.svg" : require("../img/logo-circle.svg");
+        const signupSvg = global.isElectron ? "../../common/img/signup.svg" : require("../img/signup.svg");
+        const logoCircle = global.isElectron ? "../../common/img/logo-circle.svg" : require("../img/logo-circle.svg");
 
         //  Meta config
         const metaProps = {

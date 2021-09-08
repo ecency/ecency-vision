@@ -45,7 +45,7 @@ import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg
 
 const pathToRegexp = require("path-to-regexp");
 
-const logo = process.env.NODE_ENV === 'development' ? "../../common/img/logo-circle.svg" : "../../../../../../../common/img/logo-circle.svg";
+const logo = require("../../../../common/img/logo-circle.svg");
 
 
 interface AddressBarProps {
@@ -386,7 +386,7 @@ export class NavBar extends Component<Props, State> {
                     <div className="nav-bar-inner">
                         <div className="brand">
                             <Link to={logoHref}>
-                                <img src={logo} className="logo" alt="Logo"/>
+                                <img src={'../../common/img/logo-circle.svg'} className="logo" alt="Logo"/>
                             </Link>
                         </div>
 
