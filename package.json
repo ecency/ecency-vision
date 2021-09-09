@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@ecency/render-helper": "^2.1.25",
-    "@hiveio/dhive": "^1.0.1",
-    "@hiveio/hivescript": "^1.2.4",
+    "@hiveio/dhive": "^1.1.0",
+    "@hiveio/hivescript": "^1.2.7",
     "@types/bs58": "^4.0.1",
     "@types/chartist": "^0.11.0",
     "@types/diff-match-patch": "^1.0.32",
