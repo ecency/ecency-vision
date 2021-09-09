@@ -48,8 +48,8 @@ export class ListItem extends Component<ItemProps> {
         if (!activeUser.data.__loaded) {
             return null;
         }
-        const fallbackImage = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/fallback.png" : "../../../../../../../common/img/fallback.png" : require("../../img/fallback.png");
-        const noImage = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/noimage.svg" : "../../../../../../../common/img/noimage.svg" : require("../../img/noimage.svg");
+        const fallbackImage = global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png");
+        const noImage = global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg");
 
         const account = activeUser.data as FullAccount;
 

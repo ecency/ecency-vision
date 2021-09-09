@@ -143,9 +143,9 @@ export default class EntryListItem extends Component<Props, State> {
     render() {
         const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order,} = this.props;
 
-        const fallbackImage = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/fallback.png" : "../../../../../../../common/img/fallback.png" : require("../../img/fallback.png");
-        const noImage = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/noimage.svg" : "../../../../../../../common/img/noimage.svg" : require("../../img/noimage.svg");
-        const nsfwImage = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/nsfw.png" : "../../../../../../../common/img/nsfw.png" : require("../../img/nsfw.png");
+        const fallbackImage = global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png");
+        const noImage = global.isElectron ?  "./img/noimage.svg" : require("../../img/noimage.svg");
+        const nsfwImage = global.isElectron ? "./img/nsfw.png" : require("../../img/nsfw.png");
         const crossPost = !!(theEntry.original_entry);
 
         const entry = theEntry.original_entry || theEntry;
