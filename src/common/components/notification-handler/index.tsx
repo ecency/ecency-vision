@@ -93,7 +93,7 @@ export default class NotificationHandler extends Component<Props> {
 
         window.nws.onmessage = (evt: MessageEvent) => {
             const {global} = this.props;
-            const logo = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/logo-circle.svg" :  "../../../../../../../common/img/logo-circle.svg" :  require('../../img/logo-circle.svg');
+            const logo = global.isElectron ? "./img/logo-circle.svg" :  require('../../img/logo-circle.svg');
 
 
             const data = JSON.parse(evt.data);
@@ -165,7 +165,7 @@ export default class NotificationHandler extends Component<Props> {
 
     render() {
 
-        const notificationSound = this.props.global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/notification.mp3" : "../../../../../../../common/img/notification.mp3" :  require("../../img/notification.mp3");
+        const notificationSound = this.props.global.isElectron ? "./img/notification.mp3" :  require("../../img/notification.mp3");
         
         return <audio id="notification-audio" autoPlay={false} src={notificationSound} muted={true} style={{display: 'none'}}/>;
     }

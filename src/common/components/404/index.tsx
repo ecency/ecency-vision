@@ -56,7 +56,7 @@ export class NotFound extends Component<Props, State> {
             <>
                 <Meta {...metaProps} />
                 <div className="not-found-404">
-                    <img src={global ? global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/logo-circle.svg" : "../../../../../../../common/img/logo-circle.svg" : logoCircle : logoCircle} className="logo" alt="Ecency"/>
+                    <img src={global ? global.isElectron ?  "./img/logo-circle.svg" : logoCircle : logoCircle} className="logo" alt="Ecency"/>
                     <h1>This page doesn't exist.</h1>
                     <p className="links">
                         {canGoBack && <a href="#" onClick={(e) => {

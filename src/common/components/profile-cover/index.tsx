@@ -33,8 +33,8 @@ interface Props {
 export class ProfileCover extends Component<Props> {
     render() {
         const {global, account, activeUser} = this.props;
-        const coverFallbackDay = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/cover-fallback-day.png" : "../../../../../../../common/img/cover-fallback-day.png" : require("../../img/cover-fallback-day.png");
-        const coverFallbackNight = global.isElectron ? process.env.NODE_ENV === 'development' ? "../../common/img/cover-fallback-night.png" : "../../../../../../../common/img/cover-fallback-night.png" : require("../../img/cover-fallback-night.png");
+        const coverFallbackDay = global.isElectron ? "./img/cover-fallback-day.png" : require("../../img/cover-fallback-day.png");
+        const coverFallbackNight = global.isElectron ? "./img/cover-fallback-night.png" : require("../../img/cover-fallback-night.png");
         let bgImage = "";
 
         if (account.__loaded) {
