@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "razzle start",
+    "start": "razzle start --port 8888",
     "build": "razzle build --noninteractive",
     "test": "razzle test --env=jsdom",
     "start:prod": "NODE_ENV=production node build/server.js"
@@ -80,6 +80,7 @@
     "@types/serialize-javascript": "^1.5.0",
     "@types/webpack-env": "^1.14.0",
     "babel-preset-razzle": "^4.0.5",
+    "electron": "^14.0.0",
     "html-webpack-plugin": "4.5.2",
     "jest": "^26.0.0",
     "mini-css-extract-plugin": "0.9.0",
