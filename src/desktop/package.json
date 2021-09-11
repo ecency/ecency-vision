@@ -122,6 +122,7 @@
     "@babel/preset-typescript": "^7.10.4",
     "@babel/register": "^7.10.5",
     "@teamsupercell/typings-for-css-modules-loader": "^2.2.1",
+    "@webpack-cli/serve": "^1.5.2",
     "babel-plugin-dev-expression": "^0.2.2",
     "chalk": "^4.1.0",
     "concurrently": "^5.3.0",
