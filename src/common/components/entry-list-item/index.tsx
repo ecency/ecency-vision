@@ -42,6 +42,8 @@ import truncate from "../../util/truncate";
 import {repeatSvg, pinSvg, commentSvg, muteSvg, volumeOffSvg} from "../../img/svg";
 
 import defaults from "../../constants/defaults.json";
+import { ProfilePreview } from "../profile-preview";
+import ClickAwayListener from "../clickaway-listener";
 
 setProxyBase(defaults.imageServer);
 
@@ -82,12 +84,14 @@ interface Props {
 interface State {
     showNsfw: boolean;
     showMuted: boolean;
+    showProfileDetails: boolean;
 }
 
 export default class EntryListItem extends Component<Props, State> {
     state: State = {
         showNsfw: false,
-        showMuted:false
+        showMuted: false,
+        showProfileDetails:false
     }
 
     public static defaultProps = {
@@ -142,6 +146,7 @@ export default class EntryListItem extends Component<Props, State> {
 
     render() {
         const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order,} = this.props;
+        const { showProfileDetails } = this.state;
 
         const fallbackImage = global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png");
         const noImage = global.isElectron ?  "./img/noimage.svg" : require("../../img/noimage.svg");
@@ -244,11 +249,15 @@ export default class EntryListItem extends Component<Props, State> {
                 <div className="item-header">
                     <div className="item-header-main">
                         <div className="author-part">
-                            {ProfileLink({
-                                ...this.props,
-                                username: entry.author,
-                                children: <a className="author-avatar">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
-                            })}
+                            <div onMouseEnter={()=>this.setState({showProfileDetails:true})} className="position-relative">
+                                {ProfileLink({
+                                    ...this.props,
+                                    username: entry.author,
+                                    children: <a className="author-avatar">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
+                                })}
+                                {showProfileDetails && entry.author && <ClickAwayListener onClickAway={()=>this.setState({showProfileDetails:false})}><ProfilePreview username={entry.author}/></ClickAwayListener>}
+                            </div>
+                            
                             {ProfileLink({
                                 ...this.props,
                                 username: entry.author,
