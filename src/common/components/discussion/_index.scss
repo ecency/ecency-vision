@@ -98,6 +98,9 @@
         background: lighten($dark-sky-blue, 42);
         border: 1px solid $dark-sky-blue;
         padding-left: 4px;
+        @include themify(night) {
+          background: lighten($dark-two, 10);
+      }
       }
 
       .item-anchor {
