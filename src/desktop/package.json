@@ -8,7 +8,7 @@
   "copyright": "© 2020, Ecency",
   "homepage": "https://ecency.com",
   "scripts": {
-    "build": "yarn start",
+    "build": "concurrently \"yarn build-main\" \"yarn build-renderer\"",
     "build-dll": "cross-env NODE_ENV=development webpack --config ./configs/webpack.config.renderer.dev.dll.babel.js --colors",
     "build-main": "cross-env NODE_ENV=production webpack --config ./configs/webpack.config.main.prod.babel.js --colors",
     "build-renderer": "cross-env NODE_ENV=production webpack --config ./configs/webpack.config.renderer.prod.babel.js --colors",
@@ -127,7 +127,7 @@
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
     "detect-port": "^1.3.0",
-    "electron": "^8",
+    "electron": "^14.0.0",
     "electron-builder": "^22.3.6",
     "electron-devtools-installer": "^2.2.4",
     "mini-css-extract-plugin": "^0.9.0",
@@ -137,7 +137,7 @@
     "webpack": "^4.43.0",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
+    "webpack-dev-server": "^4.2.0",
     "webpack-merge": "^5.0.9"
   },
   "dependencies": {
