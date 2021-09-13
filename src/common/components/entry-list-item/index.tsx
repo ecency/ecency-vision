@@ -249,7 +249,7 @@ export default class EntryListItem extends Component<Props, State> {
                 <div className="item-header">
                     <div className="item-header-main">
                         <div className="author-part">
-                            <div onMouseEnter={()=>this.setState({showProfileDetails:true})} className="position-relative d-flex">
+                            <div onMouseEnter={()=>this.setState({showProfileDetails:true})} className="d-flex">
                                 {ProfileLink({
                                     ...this.props,
                                     username: entry.author,

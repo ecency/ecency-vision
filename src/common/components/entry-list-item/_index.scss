@@ -1,4 +1,9 @@
 .entry-list-item {
+  position: relative;
+
+  @media (max-width: $sm-break) {
+    position: unset;
+  }
   @include entry-list-item;
 
   .cross-item {

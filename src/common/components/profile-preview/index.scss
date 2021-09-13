@@ -1,5 +1,15 @@
 .profile-container{
     top: 20px;
+    width: 38%;
+    z-index: 4;
+
+  @media (max-width: $sm-break) {
+    top: unset;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+  }
 }
 
 .profile-img{
@@ -47,4 +57,21 @@
 .loading-md {
     width: 70px;
     height: 25px;
+}
+
+.flex-grow-1 {
+    flex: 1;
+}
+
+.profile-parent {
+  @media (max-width: $sm-break) {
+    background-color: rgb(0 0 0 / 61%);
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    overflow: hidden;
+    pointer-events: none;
+  }
 }
