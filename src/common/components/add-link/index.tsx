@@ -31,7 +31,7 @@ export class AddLink extends Component<Props, State> {
 
     handleClipboard = async() => {
         const clipboard = await readClipboard();
-        debugger
+        
         if (clipboard && (clipboard.startsWith("https://") || clipboard.startsWith("http://"))) {
             this.setState({ link: clipboard })
         }

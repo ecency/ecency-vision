@@ -5,11 +5,46 @@
 .profile-img{
     height: 90px;
     width: 90px;
-    position: relative;
-    top: -60px;
     border: 5px solid #81acef;
+    background-color: $white;
+    @include themify(night) {
+        background-color: $gunmetal;
+      }
 }
 
 .cover-img {
     height: 100px;
+}
+
+.info-container {
+    position: relative;
+    top: -62px;
+    margin-bottom: -52px;
+}
+
+.no-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        height: 80px;
+        width: 80px;
+    }
+}
+
+.bg-white {
+    @include themify(night) {
+        background-color: $dark-two !important;
+      }
+    
+}
+
+.cover-img-placeholder {
+    width: 100%;
+    height: 100px;
+}
+
+.loading-md {
+    width: 70px;
+    height: 25px;
 }

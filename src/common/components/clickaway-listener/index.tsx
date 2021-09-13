@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 interface Props {
     children:any;
     onClickAway:()=>void;
+    className?:string;
 }
 export default class ClickAwayListener extends Component<Props> {
     wrapperRef: any;
@@ -41,6 +42,6 @@ export default class ClickAwayListener extends Component<Props> {
   }
 
   render() {
-    return <div ref={this.setWrapperRef}>{this.props.children}</div>;
+    return <div ref={this.setWrapperRef} className={this.props.className}>{this.props.children}</div>;
   }
 }

@@ -249,13 +249,20 @@ export default class EntryListItem extends Component<Props, State> {
                 <div className="item-header">
                     <div className="item-header-main">
                         <div className="author-part">
-                            <div onMouseEnter={()=>this.setState({showProfileDetails:true})} className="position-relative">
+                            <div onMouseEnter={()=>this.setState({showProfileDetails:true})} className="position-relative d-flex">
                                 {ProfileLink({
                                     ...this.props,
                                     username: entry.author,
                                     children: <a className="author-avatar">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
                                 })}
-                                {showProfileDetails && entry.author && <ClickAwayListener onClickAway={()=>this.setState({showProfileDetails:false})}><ProfilePreview username={entry.author}/></ClickAwayListener>}
+                                {showProfileDetails && entry.author && 
+                                    <ClickAwayListener
+                                        onClickAway={()=>this.setState({showProfileDetails:false})}
+                                        className="pb-4"
+                                    >
+                                        <ProfilePreview username={entry.author} global={global} />
+                                    </ClickAwayListener>
+                                }
                             </div>
                             
                             {ProfileLink({
