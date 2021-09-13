@@ -358,6 +358,24 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
       className="wallet-info"
     >
       <div
+        className="unclaimed-rewards"
+      >
+        <div
+          className="title"
+        >
+          Unclaimed rewards
+        </div>
+        <div
+          className="rewards"
+        >
+          <span
+            className="reward-type"
+          >
+            0.00883586 POB
+          </span>
+        </div>
+      </div>
+      <div
         className="balance-row alternative"
       >
         <div

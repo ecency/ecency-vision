@@ -87,7 +87,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     this.stateSet({ rewards });
   };
 
-  claimRewards = (tokens: string[]) => {
+  claimRewards = (tokens: HiveEngineToken[]) => {
     const { activeUser } = this.props;
     const { claiming } = this.state;
 
@@ -135,7 +135,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
   render() {
     const { global, dynamicProps, account, activeUser } = this.props;
     const { rewards, tokens, loading, claiming, claimed } = this.state;
-    const hasUnclaimedRewards = rewards.length > 1;
+    const hasUnclaimedRewards = rewards.length > 0;
     const hasMultipleUnclaimedRewards = rewards.length > 1;
     const isMyPage = activeUser && activeUser.username === account.name;
 
