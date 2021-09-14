@@ -2,7 +2,6 @@ import moment from 'moment';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getAccount } from '../../api/hive';
 import { closeSvg } from '../../img/svg';
@@ -26,9 +25,10 @@ interface Props {
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     onClose: () => void;
+    top: boolean;
 }
 
-export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
+export const ProfilePreview = ({username, global, onClose, top, ...props}:Props) => {
     const [profile, setProfile] = useState<any>(null);
     const [loading, setLoading] = useState(false);
 
@@ -47,14 +47,14 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
     
     return <div className="profile-parent">
                 <div 
-                    className={`position-absolute shadow border bg-white profile-container rounded ${global.theme === "day" ? "" : "border-dark"}`}
+                    className={`position-absolute shadow border bg-white profile-container-${top?"top":"bottom"} rounded ${global.theme === "day" ? "" : "border-dark"}`}
                 >
                 <div className="close-icon" onClick={onClose}>
                     {closeSvg}
                 </div>
                 <>
                 {loading ? <Skeleton className="cover-img-placeholder rounded-top"/> : profile && <img 
-                    src={profile.profile.cover_image || global.theme === "day" ? coverFallbackDay : coverFallbackNight}
+                    src={profile.profile.cover_image ? `https://images.ecency.com/webp/u/${username}/cover` :  global.theme === "day" ? coverFallbackDay : coverFallbackNight}
                     className="w-100 cover-img rounded-top"
                     loading="lazy"
                 />}

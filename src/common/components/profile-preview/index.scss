@@ -1,8 +1,8 @@
-.profile-container {
-    top: 10px;
+.profile-container-top {
+    top: -80px;
     left: 20px;
     width: 38%;
-    z-index: 1;
+    z-index: 4;
 
   @media (max-width: $sm-break) {
     top: unset;
@@ -11,6 +11,21 @@
     left: 0px;
     right: 0px;
   }
+}
+
+.profile-container-bottom {
+  bottom: 150px;
+  left: 20px;
+  width: 38%;
+  z-index: 4;
+
+@media (max-width: $sm-break) {
+  top: unset;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
 }
 
 .profile-img{

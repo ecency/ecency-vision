@@ -85,13 +85,15 @@ interface State {
     showNsfw: boolean;
     showMuted: boolean;
     showProfileDetails: boolean;
+    tooltipTop: boolean;
 }
 
 export default class EntryListItem extends Component<Props, State> {
     state: State = {
         showNsfw: false,
         showMuted: false,
-        showProfileDetails:false
+        showProfileDetails:false,
+        tooltipTop:false
     }
 
     public static defaultProps = {
@@ -250,9 +252,10 @@ export default class EntryListItem extends Component<Props, State> {
                     <div className="item-header-main">
                         <div className="author-part">
                             <div
-                                onMouseEnter={()=>{
-                                this.setState({showProfileDetails:true});
+                                onMouseEnter={(e)=>{
+                                this.setState({showProfileDetails:true, tooltipTop: e.screenY < (screen.height - 400) });
                                 document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
+
                                 }}
                                 onMouseLeave={()=> {
                                     setTimeout(()=>{
@@ -282,7 +285,8 @@ export default class EntryListItem extends Component<Props, State> {
                                         onClose={()=> {
                                         this.setState({showProfileDetails:false});
                                         document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden")}
-                                        } 
+                                        }
+                                        top={this.state.tooltipTop}
                                     />
                                 }
                             </div>
