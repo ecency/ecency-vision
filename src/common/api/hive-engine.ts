@@ -123,3 +123,20 @@ export const claimRewards = async (
 
   return broadcastPostingJSON(account, "scot_claim_token", json);
 };
+
+export const stakeTokens = async (
+  account: string,
+  token: string
+): Promise<TransactionConfirmation> => {
+  const json = JSON.stringify({
+    contractName: "tokens",
+    contractAction: "stake",
+    contractPayload: {
+      symbol: token,
+      to: account,
+      quantity: amount,
+    },
+  });
+
+  return broadcastPostingJSON(account, "ssc-mainnet-hive", json);
+};
