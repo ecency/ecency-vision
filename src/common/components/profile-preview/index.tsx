@@ -5,15 +5,30 @@ import { useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getAccount } from '../../api/hive';
+import { closeSvg } from '../../img/svg';
+import { Account } from '../../store/accounts/types';
+import { ActiveUser } from '../../store/active-user/types';
 import { Global } from '../../store/global/types';
+import { ToggleType, UI } from '../../store/ui/types';
+import { User } from '../../store/users/types';
+import { FavoriteBtn } from '../favorite-btn';
+import FollowControls from '../follow-controls';
 import { Skeleton } from '../skeleton';
 
 interface Props {
     username: string;
     global: Global;
+    users: User[];
+    activeUser: ActiveUser | null;
+    ui: UI;
+    setActiveUser: (username: string | null) => void;
+    updateActiveUser: (data?: Account) => void;
+    deleteUser: (username: string) => void;
+    toggleUIProp: (what: ToggleType) => void;
+    onClose: () => void;
 }
 
-export const ProfilePreview = ({username, global}:Props) => {
+export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
     const [profile, setProfile] = useState<any>(null);
     const [loading, setLoading] = useState(false);
 
@@ -33,7 +48,10 @@ export const ProfilePreview = ({username, global}:Props) => {
     return <div className="profile-parent">
                 <div 
                     className={`position-absolute shadow border bg-white profile-container rounded ${global.theme === "day" ? "" : "border-dark"}`}
-                    >
+                >
+                <div className="close-icon" onClick={onClose}>
+                    {closeSvg}
+                </div>
                 <>
                 {loading ? <Skeleton className="cover-img-placeholder rounded-top"/> : profile && <img 
                     src={profile.profile.cover_image || global.theme === "day" ? coverFallbackDay : coverFallbackNight}
@@ -46,13 +64,15 @@ export const ProfilePreview = ({username, global}:Props) => {
                             {loading ? <Skeleton className="profile-img rounded-circle" /> : profile && <img src={profile.profile.profile_image ? `https://images.ecency.com/u/${username}/avatar/medium` : noImage} alt="profile-image" className="profile-img rounded-circle" loading="lazy"/>}
                         </div>
                         <div className="d-flex flex-column align-items-center">
-                            <Link to={profile && `/@${username}`}>
+                            <Link to={profile && `/@${username}`} onClick={onClose}>
                                 <div >{loading ? <Skeleton className="loading-md mb-3" /> : profile && profile.profile.name}</div>
                                 <div>{loading ? <Skeleton className="loading-md" /> : `@${username}`}</div>
                             </Link>
                             <div className="d-flex mt-3">
-                                <Button variant="outline-primary" className="mr-2" size="sm" disabled={loading}>Follow</Button>
-                                <Button variant="outline-danger" size="sm" disabled={loading}>Mute</Button>
+                                <>
+                                    <FollowControls {...props} targetUsername={username}/>
+                                        {global.usePrivate && <FavoriteBtn {...props} targetUsername={username}/>}
+                                </>
                             </div>
                         </div>
                     </div>

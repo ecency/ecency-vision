@@ -39,7 +39,7 @@ import {Tsx} from "../../i18n/helper";
 import _c from "../../util/fix-class-names";
 import truncate from "../../util/truncate";
 
-import {repeatSvg, pinSvg, commentSvg, muteSvg, volumeOffSvg} from "../../img/svg";
+import {repeatSvg, pinSvg, commentSvg, muteSvg, volumeOffSvg, closeSvg} from "../../img/svg";
 
 import defaults from "../../constants/defaults.json";
 import { ProfilePreview } from "../profile-preview";
@@ -249,7 +249,13 @@ export default class EntryListItem extends Component<Props, State> {
                 <div className="item-header">
                     <div className="item-header-main">
                         <div className="author-part">
-                            <div onMouseEnter={()=>this.setState({showProfileDetails:true})} className="d-flex">
+                            <div
+                                onMouseEnter={()=>{
+                                this.setState({showProfileDetails:true});
+                                document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
+                                }}
+                                className="d-flex"
+                            >
                                 {ProfileLink({
                                     ...this.props,
                                     username: entry.author,
@@ -257,10 +263,20 @@ export default class EntryListItem extends Component<Props, State> {
                                 })}
                                 {showProfileDetails && entry.author && 
                                     <ClickAwayListener
-                                        onClickAway={()=>this.setState({showProfileDetails:false})}
+                                        onClickAway={()=> {
+                                            this.setState({showProfileDetails:false});
+                                            document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden")}
+                                        }
                                         className="pb-4"
                                     >
-                                        <ProfilePreview username={entry.author} global={global} />
+                                        <ProfilePreview
+                                            username={entry.author}
+                                            {...this.props}
+                                            onClose={()=> {
+                                            this.setState({showProfileDetails:false});
+                                            document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden")}
+                                            } 
+                                        />
                                     </ClickAwayListener>
                                 }
                             </div>

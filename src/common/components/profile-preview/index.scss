@@ -1,7 +1,7 @@
 .profile-container{
     top: 20px;
     width: 38%;
-    z-index: 4;
+    z-index: 1;
 
   @media (max-width: $sm-break) {
     top: unset;
@@ -71,7 +71,17 @@
     bottom: 0px;
     left: 0px;
     right: 0px;
-    overflow: hidden;
-    pointer-events: none;
+  }
+}
+
+.close-icon {
+  display: none;
+
+  @media (max-width: $sm-break) {
+    width: 30px;
+    position: absolute;
+    left: 20px;
+    top: 13px;
+    display: block;
   }
 }
