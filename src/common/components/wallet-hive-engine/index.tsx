@@ -12,7 +12,6 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import WalletMenu from "../wallet-menu";
 
 import {
-  claimReward,
   claimRewards,
   getHiveEngineTokenBalances,
   getUnclaimedRewards,
@@ -87,7 +86,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     this.stateSet({ rewards });
   };
 
-  claimRewards = (tokens: HiveEngineToken[]) => {
+  claimRewards = (tokens: TokenStatus[]) => {
     const { activeUser } = this.props;
     const { claiming } = this.state;
 
@@ -103,28 +102,6 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       })
       .catch((err) => {
         console.log(err)
-        error(formatError(err));
-      })
-      .finally(() => {
-        this.setState({ claiming: false });
-      });
-  };
-
-  claimReward = (symbol: string) => {
-    const { activeUser } = this.props;
-    const { claiming } = this.state;
-
-    if (claiming || !activeUser) {
-      return;
-    }
-
-    this.stateSet({ claiming: true });
-
-    return claimReward(activeUser.username, symbol)
-      .then((account) => {
-        success(_t("wallet.claim-reward-balance-ok"));
-      })
-      .catch((err) => {
         error(formatError(err));
       })
       .finally(() => {
@@ -184,7 +161,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                             className={`claim-btn ${
                               claiming ? "in-progress" : ""
                             }`}
-                            onClick={() => this.claimReward(r.symbol)}
+                            onClick={() => this.claimRewards([r])}
                           >
                             {plusCircle}
                           </a>
