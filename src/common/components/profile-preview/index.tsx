@@ -94,10 +94,10 @@ export const ProfilePreview = ({username, global, onClose, top, ...props}:Props)
                                 <b>Posts</b>
                                 <div>{loading ? <Skeleton className="loading-md" /> : profile && profile.post_count}</div>
                             </div>
-                            
+
                             <div className="p-3 flex-grow-1">
-                                <b>Balance</b>
-                                <div>{loading ? <Skeleton className="loading-md" /> : profile && profile.balance}</div>
+                                <b>Voting power</b>
+                                <div>{loading ? <Skeleton className="loading-md" /> : profile && profile.voting_power/100}</div>
                             </div>
                         </div>
 
@@ -106,10 +106,10 @@ export const ProfilePreview = ({username, global, onClose, top, ...props}:Props)
                                 <b>HBD</b>
                                 <div>{loading ? <Skeleton className="loading-md" /> : profile && profile.reward_hbd_balance}</div>
                             </div>
-
+                            
                             <div className="p-3 flex-grow-1">
-                                <b>Voting power</b>
-                                <div>{loading ? <Skeleton className="loading-md" /> : profile && profile.voting_power}</div>
+                                <b>Balance</b>
+                                <div>{loading ? <Skeleton className="loading-md" /> : profile && profile.balance}</div>
                             </div>
                         </div>
                     </div>

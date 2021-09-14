@@ -1,7 +1,7 @@
 .profile-container-top {
     top: -80px;
     left: 20px;
-    width: 38%;
+    width: 30%;
     z-index: 4;
 
   @media (max-width: $sm-break) {
@@ -16,7 +16,7 @@
 .profile-container-bottom {
   bottom: 150px;
   left: 20px;
-  width: 38%;
+  width: 30%;
   z-index: 4;
 
 @media (max-width: $sm-break) {
@@ -72,7 +72,7 @@
 
 .loading-md {
     width: 70px;
-    height: 25px;
+    height: 15px;
 }
 
 .flex-grow-1 {
