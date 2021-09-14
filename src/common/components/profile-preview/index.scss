@@ -102,3 +102,16 @@
     display: block;
   }
 }
+
+.overflow-sm-hidden {
+  @media (max-width: $sm-break) {
+    overflow: hidden;
+  }
+}
+
+.limited-about-text {
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

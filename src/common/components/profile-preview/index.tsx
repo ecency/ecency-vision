@@ -92,7 +92,7 @@ export const ProfilePreview = ({username, global, onClose, top, ...props}:Props)
                         <div className="flex-grow-1 d-flex border-bottom">
                             <div className="p-3 flex-grow-1">
                                 <b>Posts</b>
-                                <div>{loading ? <Skeleton className="loading-md" /> : profile && profile.post_count}</div>
+                                <div>{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/posts`}>{profile.post_count}</Link>}</div>
                             </div>
 
                             <div className="p-3 flex-grow-1">
@@ -104,18 +104,18 @@ export const ProfilePreview = ({username, global, onClose, top, ...props}:Props)
                         <div className="flex-grow-1 d-flex border-bottom">
                             <div className="p-3 flex-grow-1">
                                 <b>HBD</b>
-                                <div>{loading ? <Skeleton className="loading-md" /> : profile && profile.reward_hbd_balance}</div>
+                                <div>{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/wallet`}>{profile.reward_hbd_balance}</Link>}</div>
                             </div>
                             
                             <div className="p-3 flex-grow-1">
                                 <b>Balance</b>
-                                <div>{loading ? <Skeleton className="loading-md" /> : profile && profile.balance}</div>
+                                <div>{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/wallet`}>{profile.balance}</Link>}</div>
                             </div>
                         </div>
                     </div>
                     <div className="p-3">
                         <b>About</b>
-                        <div>{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.about}</div>
+                        <div className="limited-about-text">{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.about ? profile.profile.about.length > 150 ? <Link to={`/@${username}`}>{profile.profile.about}</Link>: profile.profile.about : "---"}</div>
                     </div>
                 </div>
                 </>

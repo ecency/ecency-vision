@@ -294,4 +294,16 @@
       }
     }
   }
+  .profile-container-top {
+    @media (min-width: $md-break) {
+      width: 45%;
+      top: -50px;
+      left: -20px
+    }
+  }
+  .profile-container-bottom {
+    @media (min-width: $md-break) {
+      width: 45%;
+      bottom: 50px;
+    }  }
 }

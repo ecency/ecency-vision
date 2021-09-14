@@ -55,6 +55,7 @@ import {commentSvg, pencilOutlineSvg, deleteForeverSvg} from "../../img/svg";
 import {version} from "../../../../package.json";
 import accountReputation from '../../helper/account-reputation';
 import { getFollowing } from "../../api/hive";
+import { ProfilePreview } from "../profile-preview";
 
 
 interface ItemBodyProps {
@@ -101,6 +102,8 @@ interface ItemProps {
 interface ItemState {
     reply: boolean;
     edit: boolean;
+    tooltipTop: boolean;
+    showProfileDetails: boolean;
     inProgress: boolean;
     showIfHidden: boolean;
     mutedData: string[]
@@ -111,6 +114,8 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         reply: false,
         edit: false,
         inProgress: false,
+        tooltipTop: false,
+        showProfileDetails: false,
         showIfHidden: false,
         mutedData: []
     }
@@ -274,7 +279,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
 
     render() {
         const { entry, activeUser, community, location } = this.props;
-        const { reply, edit, inProgress, showIfHidden, mutedData } = this.state;
+        const { reply, edit, inProgress, showIfHidden, mutedData, showProfileDetails } = this.state;
 
         const created = moment(parseDate(entry.created));
         const reputation = accountReputation(entry.author_reputation);
@@ -302,6 +307,21 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                     </div>
                     <div className="item-content">
                         <div className="item-header">
+                            <div
+                                onMouseEnter={(e)=>{
+                                if(!isHidden){
+                                    this.setState({showProfileDetails:true, tooltipTop: e.screenY < (screen.height - 400) });
+                                    document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}
+                                }}
+                                onMouseLeave={()=> {
+                                    setTimeout(()=>{
+                                        this.setState({showProfileDetails:false});
+                                        document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden")
+                                    },0)
+                                    }
+                                }
+                                className="d-flex align-items-center"
+                            >
                             {ProfileLink({
                                 ...this.props,
                                 username: entry.author,
@@ -310,6 +330,18 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                     <span className="author-reputation">{reputation}</span>
                                 </div>
                             })}
+                            {showProfileDetails && entry.author && 
+                                    <ProfilePreview
+                                        username={entry.author}
+                                        {...this.props}
+                                        onClose={()=> {
+                                        this.setState({showProfileDetails:false});
+                                        document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden")}
+                                        }
+                                        top={this.state.tooltipTop}
+                                    />
+                            }
+                            </div>
                             <span className="separator"/>
                             {EntryLink({
                                 ...this.props,

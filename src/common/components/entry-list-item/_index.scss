@@ -130,9 +130,3 @@
 .mute-icon {
   width: 20px;
 }
-
-.overflow-sm-hidden {
-  @media (max-width: $sm-break) {
-    overflow: hidden;
-  }
-}
