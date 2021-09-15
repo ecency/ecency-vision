@@ -148,7 +148,7 @@ export default class EntryListItem extends Component<Props, State> {
         e.stopPropagation()
         if(this.props.global.isMobile && e.type == "click"){
             let id = e.target.id.length > 0 ? e.target.id : e.target.parentNode.id
-            debugger
+            
             this.setState({mobilePosition: id });
             scrollTo(0,0)
         }
