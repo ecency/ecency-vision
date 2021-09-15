@@ -25,7 +25,7 @@ interface Props {
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
-    onClose: () => void;
+    onClose: (e:any) => void;
     top: boolean;
 }
 

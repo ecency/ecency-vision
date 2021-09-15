@@ -40,7 +40,6 @@ import {repeatSvg, pinSvg, commentSvg, muteSvg, volumeOffSvg, closeSvg, downArro
 
 import defaults from "../../constants/defaults.json";
 import { ProfilePreview } from "../profile-preview";
-import ClickAwayListener from "../clickaway-listener";
 
 setProxyBase(defaults.imageServer);
 
@@ -83,6 +82,7 @@ interface State {
     showMuted: boolean;
     showProfileDetails: boolean;
     tooltipTop: boolean;
+    mobilePosition: string;
 }
 
 export default class EntryListItem extends Component<Props, State> {
@@ -90,6 +90,7 @@ export default class EntryListItem extends Component<Props, State> {
         showNsfw: false,
         showMuted: false,
         showProfileDetails:false,
+        mobilePosition:'',
         tooltipTop:false
     }
 
@@ -145,14 +146,25 @@ export default class EntryListItem extends Component<Props, State> {
 
     showMiniProfile = (e: any) => {
         e.stopPropagation()
-            this.setState({showProfileDetails:true, tooltipTop: e.screenY < (screen.height - 400) });
-            document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
+        if(this.props.global.isMobile && e.type == "click"){
+            let id = e.target.id.length > 0 ? e.target.id : e.target.parentNode.id
+            debugger
+            this.setState({mobilePosition: id });
+            scrollTo(0,0)
+        }
+        this.setState({showProfileDetails:true, tooltipTop: e.screenY < (screen.height - 400) });
+        document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
     }
 
-    hideMiniProfile = () => {
+    hideMiniProfile = (e:any) => {
+        const { mobilePosition } = this.state;
+        e.stopPropagation()
         setTimeout(()=>{
                 this.setState({showProfileDetails:false});
-                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
+                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");   
+                if(this.props.global.isMobile && mobilePosition.length > 0){
+                    document!.getElementById(mobilePosition)!.scrollIntoView({block: "center"})
+                }
         },200)
     }
 
@@ -258,11 +270,12 @@ export default class EntryListItem extends Component<Props, State> {
 
                 <div className="item-header">
                     <div className="item-header-main">
-                        <div className="author-part">
+                        <div className="author-part" id={String(entry.post_id)}>
                             <div
                                 onMouseEnter={this.showMiniProfile}
                                 onMouseLeave={this.hideMiniProfile}
                                 className="d-flex align-items-center"
+                                id={String(entry.post_id)}
                             >
                                 {ProfileLink({
                                     ...this.props,
@@ -291,6 +304,7 @@ export default class EntryListItem extends Component<Props, State> {
                             <span
                                 className="author-down-arrow ml-1 bg-primary rounded text-white"
                                 onClick={this.showMiniProfile}
+                                id={String(entry.post_id)}
                             >
                                 {menuDownSvg}
                             </span>
