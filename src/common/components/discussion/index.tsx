@@ -50,7 +50,7 @@ import {error} from "../feedback";
 
 import _c from "../../util/fix-class-names"
 
-import {commentSvg, pencilOutlineSvg, deleteForeverSvg} from "../../img/svg";
+import {commentSvg, pencilOutlineSvg, deleteForeverSvg, downArrowSvg} from "../../img/svg";
 
 import {version} from "../../../../package.json";
 import { getFollowing } from "../../api/hive";
@@ -277,7 +277,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
     }
 
     render() {
-        const { entry, activeUser, community, location } = this.props;
+        const { entry, activeUser, community, location, global } = this.props;
         const { reply, edit, inProgress, showIfHidden, mutedData, showProfileDetails } = this.state;
 
         const created = moment(parseDate(entry.created));
@@ -307,14 +307,16 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                         <div className="item-header">
                             <div
                                 onMouseEnter={(e)=>{
-                                if(!isHidden){
+                                if(!isHidden && !global.isMobile){
                                     this.setState({showProfileDetails:true, tooltipTop: e.screenY < (screen.height - 400) });
                                     document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}
                                 }}
                                 onMouseLeave={()=> {
                                     setTimeout(()=>{
+                                        if(!global.isMobile){
                                         this.setState({showProfileDetails:false});
-                                        document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden")
+                                        document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
+                                        }
                                     },0)
                                     }
                                 }
@@ -323,9 +325,10 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                             {ProfileLink({
                                 ...this.props,
                                 username: entry.author,
-                                children: <div className="author notranslate">
-                                    <span className="author-name">{entry.author}</span>
-                                </div>
+                                children: <div className="author notranslate d-flex align-items-center">
+                                            <span className="author-name">{entry.author}</span>
+                                            {global.isMobile && <span className="author-down-arrow ml-1 bg-primary rounded text-white">{downArrowSvg}</span>}
+                                        </div>
                             })}
                             {showProfileDetails && entry.author && 
                                     <ProfilePreview

@@ -36,7 +36,7 @@ import {Tsx} from "../../i18n/helper";
 import _c from "../../util/fix-class-names";
 import truncate from "../../util/truncate";
 
-import {repeatSvg, pinSvg, commentSvg, muteSvg, volumeOffSvg, closeSvg} from "../../img/svg";
+import {repeatSvg, pinSvg, commentSvg, muteSvg, volumeOffSvg, closeSvg, downArrowSvg, menuDownSvg} from "../../img/svg";
 
 import defaults from "../../constants/defaults.json";
 import { ProfilePreview } from "../profile-preview";
@@ -143,6 +143,19 @@ export default class EntryListItem extends Component<Props, State> {
         }
     }
 
+    showMiniProfile = (e: any) => {
+        e.stopPropagation()
+            this.setState({showProfileDetails:true, tooltipTop: e.screenY < (screen.height - 400) });
+            document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
+    }
+
+    hideMiniProfile = () => {
+        setTimeout(()=>{
+                this.setState({showProfileDetails:false});
+                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
+        },200)
+    }
+
     render() {
         const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order,} = this.props;
         const { showProfileDetails } = this.state;
@@ -159,7 +172,6 @@ export default class EntryListItem extends Component<Props, State> {
         let svgSizeRow = imgRow === noImage ? "noImage" : "";
         let svgSizeGrid = imgGrid === noImage ? "172px" : "auto";
         
-
         const summary: string = postBodySummary(entry, 200);
 
         const date = moment(parseDate(entry.created));
@@ -248,18 +260,8 @@ export default class EntryListItem extends Component<Props, State> {
                     <div className="item-header-main">
                         <div className="author-part">
                             <div
-                                onMouseEnter={(e)=>{
-                                this.setState({showProfileDetails:true, tooltipTop: e.screenY < (screen.height - 400) });
-                                document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
-
-                                }}
-                                onMouseLeave={()=> {
-                                    setTimeout(()=>{
-                                        this.setState({showProfileDetails:false});
-                                        document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden")
-                                    },200)
-                                    }
-                                }
+                                onMouseEnter={this.showMiniProfile}
+                                onMouseLeave={this.hideMiniProfile}
                                 className="d-flex align-items-center"
                             >
                                 {ProfileLink({
@@ -272,20 +274,26 @@ export default class EntryListItem extends Component<Props, State> {
                                 {ProfileLink({
                                     ...this.props,
                                     username: entry.author,
-                                    children: <div className="author notranslate">{entry.author}</div>
+                                    children: <div className="author notranslate d-flex align-items-center">
+                                                <span>{entry.author}</span>
+                                            </div>
                                 })}
                                 {showProfileDetails && entry.author && 
                                     <ProfilePreview
                                         username={entry.author}
                                         {...this.props}
-                                        onClose={()=> {
-                                        this.setState({showProfileDetails:false});
-                                        document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden")}
-                                        }
+                                        onClose={this.hideMiniProfile}
                                         top={this.state.tooltipTop}
                                     />
                                 }
                             </div>
+                             
+                            <span
+                                className="author-down-arrow ml-1 bg-primary rounded text-white"
+                                onClick={this.showMiniProfile}
+                            >
+                                {menuDownSvg}
+                            </span>
                         </div>
                         {Tag({
                             ...this.props,

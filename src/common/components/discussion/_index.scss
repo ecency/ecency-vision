@@ -306,5 +306,17 @@
       width: 45%;
       bottom: 50px;
       left: -20px
-    }  }
+    }
+  }
+}
+
+.author-down-arrow {
+  display: none;
+  @media (max-width: $sm-break) {
+    display: inline-flex;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    align-items: center;
+  }
 }

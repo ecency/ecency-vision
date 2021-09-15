@@ -51,7 +51,7 @@ return <div className="profile-parent">
                 <div 
                     className={`position-absolute shadow border bg-white profile-container-${top?"top":"bottom"} rounded ${global.theme === "day" ? "" : "border-dark"}`}
                 >
-                <div className="close-icon" onClick={onClose}>
+                <div className="close-icon rounded" onClick={onClose}>
                     {closeSvg}
                 </div>
                 <>
@@ -67,14 +67,14 @@ return <div className="profile-parent">
                         </div>
                         <div className="d-flex flex-column align-items-center">
                             <Link to={profile && `/@${username}`} onClick={onClose}>
-                                <div >{loading ? <Skeleton className="loading-md mb-3" /> : profile && profile.profile.name}</div>
-                                <div>{loading ? <Skeleton className="loading-md" /> : `@${username}`}</div>
+                                <div >{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.name}</div>
+                                <div>{loading ? <Skeleton className="loading-md my-3" /> : `@${username}`}</div>
                                 <div>{loading ? <Skeleton className="loading-md" /> : `Reputation: ${reputation}`}</div>
                             </Link>
                             <div className="d-flex mt-3">
                                 <>
                                     <FollowControls {...props} targetUsername={username}/>
-                                        {global.usePrivate && <FavoriteBtn {...props} targetUsername={username}/>}
+                                    {global.usePrivate && <FavoriteBtn {...props} targetUsername={username}/>}
                                 </>
                             </div>
                         </div>
@@ -95,7 +95,7 @@ return <div className="profile-parent">
                         <div className="flex-grow-1 d-flex border-bottom">
                             <div className="p-3 flex-grow-1">
                                 <b>Posts</b>
-                                <div>{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/posts`}>{profile.post_count}</Link>}</div>
+                                <div>{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/posts`} onClick={onClose}>{profile.post_count}</Link>}</div>
                             </div>
 
                             <div className="p-3 flex-grow-1">
@@ -107,18 +107,18 @@ return <div className="profile-parent">
                         <div className="flex-grow-1 d-flex border-bottom">
                             <div className="p-3 flex-grow-1">
                                 <b>HBD</b>
-                                <div>{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/wallet`}>{profile.reward_hbd_balance}</Link>}</div>
+                                <div>{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/wallet`} onClick={onClose}>{profile.reward_hbd_balance}</Link>}</div>
                             </div>
                             
                             <div className="p-3 flex-grow-1">
                                 <b>Balance</b>
-                                <div>{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/wallet`}>{profile.balance}</Link>}</div>
+                                <div>{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/wallet`} onClick={onClose}>{profile.balance}</Link>}</div>
                             </div>
                         </div>
                     </div>
                     <div className="p-3">
                         <b>About</b>
-                        <div className="limited-about-text">{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.about ? profile.profile.about.length > 150 ? <Link to={`/@${username}`}>{profile.profile.about}</Link>: profile.profile.about : "---"}</div>
+                        <div className="limited-about-text">{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.about ? profile.profile.about.length > 55 ? <Link to={`/@${username}`} onClick={onClose}>{profile.profile.about}</Link>: profile.profile.about : "---"}</div>
                     </div>
                 </div>
                 </>
