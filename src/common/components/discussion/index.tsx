@@ -53,7 +53,6 @@ import _c from "../../util/fix-class-names"
 import {commentSvg, pencilOutlineSvg, deleteForeverSvg} from "../../img/svg";
 
 import {version} from "../../../../package.json";
-import accountReputation from '../../helper/account-reputation';
 import { getFollowing } from "../../api/hive";
 import { ProfilePreview } from "../profile-preview";
 
@@ -282,7 +281,6 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         const { reply, edit, inProgress, showIfHidden, mutedData, showProfileDetails } = this.state;
 
         const created = moment(parseDate(entry.created));
-        const reputation = accountReputation(entry.author_reputation);
         const readMore = entry.children > 0 && entry.depth > 5;
         const showSubList = !readMore && entry.children > 0;
         const canEdit = activeUser && activeUser.username === entry.author;
@@ -327,7 +325,6 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                 username: entry.author,
                                 children: <div className="author notranslate">
                                     <span className="author-name">{entry.author}</span>
-                                    <span className="author-reputation">{reputation}</span>
                                 </div>
                             })}
                             {showProfileDetails && entry.author && 

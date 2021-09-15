@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getAccount } from '../../api/hive';
+import accountReputation from '../../helper/account-reputation';
 import { closeSvg } from '../../img/svg';
 import { Account } from '../../store/accounts/types';
 import { ActiveUser } from '../../store/active-user/types';
@@ -44,8 +45,9 @@ export const ProfilePreview = ({username, global, onClose, top, ...props}:Props)
     const noImage = global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg");
     const coverFallbackDay = global.isElectron ? "./img/cover-fallback-day.png" : require("../../img/cover-fallback-day.png");
     const coverFallbackNight = global.isElectron ? "./img/cover-fallback-night.png" : require("../../img/cover-fallback-night.png");
-    
-    return <div className="profile-parent">
+    const reputation = profile && accountReputation(profile.reputation)
+
+return <div className="profile-parent">
                 <div 
                     className={`position-absolute shadow border bg-white profile-container-${top?"top":"bottom"} rounded ${global.theme === "day" ? "" : "border-dark"}`}
                 >
@@ -67,6 +69,7 @@ export const ProfilePreview = ({username, global, onClose, top, ...props}:Props)
                             <Link to={profile && `/@${username}`} onClick={onClose}>
                                 <div >{loading ? <Skeleton className="loading-md mb-3" /> : profile && profile.profile.name}</div>
                                 <div>{loading ? <Skeleton className="loading-md" /> : `@${username}`}</div>
+                                <div>{loading ? <Skeleton className="loading-md" /> : `Reputation: ${reputation}`}</div>
                             </Link>
                             <div className="d-flex mt-3">
                                 <>

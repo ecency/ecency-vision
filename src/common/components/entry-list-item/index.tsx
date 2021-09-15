@@ -29,10 +29,7 @@ import EntryPayout from "../entry-payout/index";
 import EntryVotes from "../entry-votes";
 import Tooltip from "../tooltip";
 import EntryMenu from "../entry-menu";
-
 import parseDate from "../../helper/parse-date";
-import accountReputation from '../../helper/account-reputation';
-
 import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
 
@@ -165,7 +162,6 @@ export default class EntryListItem extends Component<Props, State> {
 
         const summary: string = postBodySummary(entry, 200);
 
-        const reputation = accountReputation(entry.author_reputation);
         const date = moment(parseDate(entry.created));
         const dateRelative = date.fromNow(true);
         const dateFormatted = date.format("LLLL");
@@ -276,7 +272,7 @@ export default class EntryListItem extends Component<Props, State> {
                                 {ProfileLink({
                                     ...this.props,
                                     username: entry.author,
-                                    children: <div className="author notranslate">{entry.author}<span className="author-reputation" title={_t("entry.author-reputation")}>{reputation}</span></div>
+                                    children: <div className="author notranslate">{entry.author}</div>
                                 })}
                                 {showProfileDetails && entry.author && 
                                     <ProfilePreview
