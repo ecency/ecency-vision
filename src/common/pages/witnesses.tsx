@@ -242,7 +242,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
             </tbody>
         </table>;
 
-        const header = <div className="page-header">
+        const header = <div className="page-header mt-5">
             <div className="header-title">
                 {_t('witnesses.page-title')}
             </div>
