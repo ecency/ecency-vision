@@ -327,7 +327,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                 username: entry.author,
                                 children: <div className="author notranslate d-flex align-items-center">
                                             <span className="author-name">{entry.author}</span>
-                                            {global.isMobile && <span className="author-down-arrow ml-1 bg-primary rounded text-white">{downArrowSvg}</span>}
+                                            {global.isMobile && <span className="author-down-arrow mx-2">{downArrowSvg}</span>}
                                         </div>
                             })}
                             {showProfileDetails && entry.author && 

@@ -277,17 +277,21 @@ export default class EntryListItem extends Component<Props, State> {
                                 className="d-flex align-items-center"
                                 id={String(entry.post_id)}
                             >
+                                <div className="author-avatar d-sm-none" onClick={this.showMiniProfile}>{UserAvatar({...this.props, username: entry.author, size: "small"})}</div>
                                 {ProfileLink({
                                     ...this.props,
                                     username: entry.author,
-                                    children: <a className="author-avatar">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
+                                    children: <a className="author-avatar d-none d-sm-block">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
                                 })}
 
+                                <div className="author notranslate d-flex d-sm-none align-items-center" onClick={this.showMiniProfile}>
+                                    <span>{entry.author}</span>
+                                </div>
                             
                                 {ProfileLink({
                                     ...this.props,
                                     username: entry.author,
-                                    children: <div className="author notranslate d-flex align-items-center">
+                                    children: <div className="author notranslate d-none d-sm-flex align-items-center">
                                                 <span>{entry.author}</span>
                                             </div>
                                 })}
@@ -302,7 +306,7 @@ export default class EntryListItem extends Component<Props, State> {
                             </div>
                              
                             <span
-                                className="author-down-arrow ml-1 bg-primary rounded text-white"
+                                className="author-down-arrow ml-1"
                                 onClick={this.showMiniProfile}
                                 id={String(entry.post_id)}
                             >
