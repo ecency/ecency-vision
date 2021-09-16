@@ -13,6 +13,10 @@
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
   }
+
+  @media (min-width: 577px) and (max-width: 740px) {
+    width: 45%;
+  }
 }
 
 .profile-img{
