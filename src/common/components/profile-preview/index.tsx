@@ -3,8 +3,9 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getAccount } from '../../api/hive';
+import { getAccount, getFollowCount } from '../../api/hive';
 import accountReputation from '../../helper/account-reputation';
+import { _t } from '../../i18n';
 import { closeSvg } from '../../img/svg';
 import { Account } from '../../store/accounts/types';
 import { ActiveUser } from '../../store/active-user/types';
@@ -31,14 +32,21 @@ interface Props {
 export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
     const [profile, setProfile] = useState<any>(null);
     const [loading, setLoading] = useState(false);
+    const [followCount, setFollowCount] = useState<any>(null);
+    const [loadingFollowCount, setLoadingFollowCount] = useState(false);
 
     useEffect(()=>{
-        setLoading(true)
+        setLoading(true);
+        setLoadingFollowCount(true)
     },[])
 
     useEffect(()=>{
         setLoading(true)
-        getAccount(username).then(profile=>{setProfile(profile);setLoading(false)}).catch(err=>setLoading(false))
+        getAccount(username).then(profile=>{setProfile(profile);setLoading(false)}).catch(err=>setLoading(false));
+        getFollowCount(username).then(res=> {
+            setFollowCount(res);
+            setLoadingFollowCount(false)
+        }).catch(err=> setLoadingFollowCount(false))
     },[username])
 
     const noImage = global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg");
@@ -85,42 +93,42 @@ return <div className="profile-parent">
                     <div className="d-flex justify-content-between flex-wrap">
                         <div className="flex-grow-1 d-flex border-bottom">
                             <div className="p-3 flex-grow-1">
-                                <b>Joined</b>
+                                <b>{_t("profile-info.joined")}</b>
                                 <div>{loading ? <Skeleton className="loading-md" /> : profile && moment(profile.created, "YYYY-MM-DD").fromNow()}</div>
                             </div>
 
                             <div className="p-3 flex-grow-1 ">
-                                <b>Location</b>
+                                <b>{_t("profile-edit.location")}</b>
                                 <div>{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.location || "---"}</div>
                             </div>
                         </div>
 
                         <div className="flex-grow-1 d-flex border-bottom">
                             <div className="p-3 flex-grow-1">
-                                <b>Posts</b>
+                                <b>{_t("profile.section-posts")}</b>
                                 <div>{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/posts`} onClick={onClose}>{profile.post_count}</Link>}</div>
                             </div>
 
                             <div className="p-3 flex-grow-1">
-                                <b>Voting power</b>
+                                <b>{_t("profile.voting-power")}</b>
                                 <div>{loading ? <Skeleton className="loading-md" /> : profile && profile.voting_power/100}</div>
                             </div>
                         </div>
 
                         <div className="flex-grow-1 d-flex border-bottom">
                             <div className="p-3 flex-grow-1">
-                                <b>HBD</b>
-                                <div>{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/wallet`} onClick={onClose}>{profile.reward_hbd_balance}</Link>}</div>
+                                <b>{_t("profile.followers")}</b>
+                                <div>{loadingFollowCount ? <Skeleton className="loading-md" /> : followCount && followCount.follower_count}</div>
                             </div>
                             
                             <div className="p-3 flex-grow-1">
-                                <b>Balance</b>
-                                <div>{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/wallet`} onClick={onClose}>{profile.balance}</Link>}</div>
+                                <b>{_t("profile.following")}</b>
+                                <div>{loadingFollowCount ? <Skeleton className="loading-md" /> : followCount && followCount.following_count}</div>
                             </div>
                         </div>
                     </div>
                     <div className="p-3">
-                        <b>About</b>
+                        <b>{_t("profile-edit.about")}</b>
                         <div className="limited-about-text">{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.about ? profile.profile.about.length > 55 ? <Link to={`/@${username}`} onClick={onClose}>{profile.profile.about}</Link>: profile.profile.about : "---"}</div>
                     </div>
                 </div>
