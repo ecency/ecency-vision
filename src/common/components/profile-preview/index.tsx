@@ -97,7 +97,7 @@ return <div className="profile-parent">
                                 <div>{loading ? <Skeleton className="loading-md" /> : profile && moment(profile.created, "YYYY-MM-DD").fromNow()}</div>
                             </div>
 
-                            <div className="p-3 flex-grow-1 ">
+                            <div className={`p-3 flex-grow-1 ${loading ? "": profile && profile.profile.location?"":"d-none"}`}>
                                 <b>{_t("profile-edit.location")}</b>
                                 <div>{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.location || "---"}</div>
                             </div>
@@ -127,7 +127,7 @@ return <div className="profile-parent">
                             </div>
                         </div>
                     </div>
-                    <div className="p-3">
+                    <div className={`p-3 ${loading ? "": profile && profile.profile.about ? "" : "d-none"}`}>
                         <b>{_t("profile-edit.about")}</b>
                         <div className="limited-about-text">{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.about ? profile.profile.about.length > 55 ? <Link to={`/@${username}`} onClick={onClose}>{profile.profile.about}</Link>: profile.profile.about : "---"}</div>
                     </div>
