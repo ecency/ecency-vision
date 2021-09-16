@@ -101,7 +101,6 @@ interface ItemProps {
 interface ItemState {
     reply: boolean;
     edit: boolean;
-    tooltipTop: boolean;
     showProfileDetails: boolean;
     inProgress: boolean;
     showIfHidden: boolean;
@@ -113,7 +112,6 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         reply: false,
         edit: false,
         inProgress: false,
-        tooltipTop: false,
         showProfileDetails: false,
         showIfHidden: false,
         mutedData: []
@@ -308,7 +306,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                             <div
                                 onMouseEnter={(e)=>{
                                 if(!isHidden && !global.isMobile){
-                                    this.setState({showProfileDetails:true, tooltipTop: e.screenY < (screen.height - 400) });
+                                    this.setState({ showProfileDetails:true });
                                     document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}
                                 }}
                                 onMouseLeave={()=> {
@@ -338,7 +336,6 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                         this.setState({showProfileDetails:false});
                                         document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden")}
                                         }
-                                        top={this.state.tooltipTop}
                                     />
                             }
                             </div>

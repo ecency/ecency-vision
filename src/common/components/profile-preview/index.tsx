@@ -26,10 +26,9 @@ interface Props {
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     onClose: (e:any) => void;
-    top: boolean;
 }
 
-export const ProfilePreview = ({username, global, onClose, top, ...props}:Props) => {
+export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
     const [profile, setProfile] = useState<any>(null);
     const [loading, setLoading] = useState(false);
 
@@ -49,7 +48,7 @@ export const ProfilePreview = ({username, global, onClose, top, ...props}:Props)
 
 return <div className="profile-parent">
                 <div 
-                    className={`position-absolute shadow border bg-white profile-container-${top?"top":"bottom"} rounded ${global.theme === "day" ? "" : "border-dark"}`}
+                    className={`position-fixed shadow border bg-white profile-container rounded ${global.theme === "day" ? "" : "border-dark"}`}
                 >
                 <div className="close-icon rounded-circle" onClick={onClose}>
                     {closeSvg}

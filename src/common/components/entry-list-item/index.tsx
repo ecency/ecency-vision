@@ -81,7 +81,6 @@ interface State {
     showNsfw: boolean;
     showMuted: boolean;
     showProfileDetails: boolean;
-    tooltipTop: boolean;
     mobilePosition: string;
 }
 
@@ -90,8 +89,7 @@ export default class EntryListItem extends Component<Props, State> {
         showNsfw: false,
         showMuted: false,
         showProfileDetails:false,
-        mobilePosition:'',
-        tooltipTop:false
+        mobilePosition:''
     }
 
     public static defaultProps = {
@@ -152,7 +150,7 @@ export default class EntryListItem extends Component<Props, State> {
             this.setState({mobilePosition: id });
             scrollTo(0,0)
         }
-        this.setState({showProfileDetails:true, tooltipTop: e.screenY < (screen.height - 400) });
+        this.setState({showProfileDetails:true });
         document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
     }
 
@@ -300,7 +298,6 @@ export default class EntryListItem extends Component<Props, State> {
                                         username={entry.author}
                                         {...this.props}
                                         onClose={this.hideMiniProfile}
-                                        top={this.state.tooltipTop}
                                     />
                                 }
                             </div>

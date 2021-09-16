@@ -1,6 +1,6 @@
-.profile-container-top {
-    top: -80px;
-    left: 20px;
+.profile-container {
+    top: 15%;
+    left: 36%;
     width: 30%;
     z-index: 4;
 
@@ -11,21 +11,6 @@
     left: 0px;
     right: 0px;
   }
-}
-
-.profile-container-bottom {
-  bottom: 150px;
-  left: 20px;
-  width: 30%;
-  z-index: 4;
-
-@media (max-width: $sm-break) {
-  top: unset;
-  width: 100%;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-}
 }
 
 .profile-img{
@@ -62,7 +47,6 @@
     @include themify(night) {
         background-color: $dark-two !important;
       }
-    
 }
 
 .cover-img-placeholder {
