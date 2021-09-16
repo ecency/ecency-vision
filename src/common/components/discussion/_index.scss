@@ -92,7 +92,6 @@
 
   .discussion-list {
     .discussion-item {
-      position: relative;
 
       &.selected-item > .item-inner {
         background: lighten($dark-sky-blue, 42);

@@ -94,6 +94,16 @@
   @media (max-width: $sm-break) {
     overflow: hidden;
   }
+  .entry-page {
+    @media (max-width: $sm-break) {
+      position: relative;
+    }
+  }
+  .discussion {
+    @media (max-width: $sm-break) {
+      position: unset;
+    }
+  }
 }
 
 .limited-about-text {

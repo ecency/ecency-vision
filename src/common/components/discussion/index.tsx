@@ -50,7 +50,7 @@ import {error} from "../feedback";
 
 import _c from "../../util/fix-class-names"
 
-import {commentSvg, pencilOutlineSvg, deleteForeverSvg, downArrowSvg} from "../../img/svg";
+import {commentSvg, pencilOutlineSvg, deleteForeverSvg, downArrowSvg, menuDownSvg} from "../../img/svg";
 
 import {version} from "../../../../package.json";
 import { getFollowing } from "../../api/hive";
@@ -104,7 +104,8 @@ interface ItemState {
     showProfileDetails: boolean;
     inProgress: boolean;
     showIfHidden: boolean;
-    mutedData: string[]
+    mutedData: string[];
+    mobilePosition: string;
 }
 
 export class Item extends BaseComponent<ItemProps, ItemState> {
@@ -114,7 +115,8 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         inProgress: false,
         showProfileDetails: false,
         showIfHidden: false,
-        mutedData: []
+        mutedData: [],
+        mobilePosition: ""
     }
 
     componentDidMount(){
@@ -274,6 +276,36 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         }
     }
 
+    onShowProfile = (e:any) => {
+        e.stopPropagation()
+        if(this.props.global.isMobile && e.type == "click"){
+            let id = e.target.id.length > 0 ? e.target.id : e.target.parentNode.id
+            
+            this.setState({mobilePosition: id });
+            scrollTo(0,0)
+        }
+        this.setState({showProfileDetails:true });
+        document.getElementsByClassName("app-content")[0].classList.add("p-0")
+        document.getElementsByClassName("app-content")[0].classList.add("p-sm-auto")
+        document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
+
+    }
+
+    onHideProfile = (e:any) => {
+        const { mobilePosition } = this.state;
+        e.stopPropagation()
+        setTimeout(()=>{
+                this.setState({showProfileDetails:false});
+                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");   
+                if(this.props.global.isMobile && mobilePosition.length > 0){
+                    document!.getElementById(mobilePosition)!.scrollIntoView({block: "center"})
+                }
+
+        document.getElementsByClassName("app-content")[0].classList.remove("p-0")
+        document.getElementsByClassName("app-content")[0].classList.remove("p-sm-auto")
+        },200)
+    }
+
     render() {
         const { entry, activeUser, community, location, global } = this.props;
         const { reply, edit, inProgress, showIfHidden, mutedData, showProfileDetails } = this.state;
@@ -299,43 +331,33 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                 <div className="item-anchor" id={anchorId}/>
                 <div className="item-inner">
                     <div className="item-figure">
-                        {ProfileLink({...this.props, username: entry.author, children: <a>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</a>})}
+                        <div className="d-sm-none" onClick={this.onShowProfile}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
+                        {ProfileLink({...this.props, username: entry.author, children: <a className="d-none d-sm-inline-block" onMouseEnter={this.onShowProfile}
+                                onMouseLeave={this.onHideProfile}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</a>})}
                     </div>
                     <div className="item-content">
                         <div className="item-header">
                             <div
-                                onMouseEnter={(e)=>{
-                                if(!isHidden && !global.isMobile){
-                                    this.setState({ showProfileDetails:true });
-                                    document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}
-                                }}
-                                onMouseLeave={()=> {
-                                    setTimeout(()=>{
-                                        if(!global.isMobile){
-                                        this.setState({showProfileDetails:false});
-                                        document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
-                                        }
-                                    },0)
-                                    }
-                                }
+                                onMouseEnter={this.onShowProfile}
+                                onMouseLeave={this.onHideProfile}
                                 className="d-flex align-items-center"
                             >
+                            <div className="author notranslate d-flex align-items-center d-sm-none" onClick={this.onShowProfile}>
+                                <span className="author-name">{entry.author}</span>
+                                <span className="author-down-arrow mx-2">{menuDownSvg}</span>
+                            </div>
                             {ProfileLink({
                                 ...this.props,
                                 username: entry.author,
-                                children: <div className="author notranslate d-flex align-items-center">
+                                children: <div className="author notranslate d-none align-items-center d-sm-flex">
                                             <span className="author-name">{entry.author}</span>
-                                            {global.isMobile && <span className="author-down-arrow mx-2">{downArrowSvg}</span>}
                                         </div>
                             })}
                             {showProfileDetails && entry.author && 
                                     <ProfilePreview
                                         username={entry.author}
                                         {...this.props}
-                                        onClose={()=> {
-                                        this.setState({showProfileDetails:false});
-                                        document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden")}
-                                        }
+                                        onClose={this.onHideProfile}
                                     />
                             }
                             </div>
