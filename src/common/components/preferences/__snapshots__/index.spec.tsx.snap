@@ -316,7 +316,7 @@ exports[`(1) Default render 1`] = `
           <input
             className="text-primary pointer form-control"
             disabled={true}
-            value="https://ecency.com/signup?referral=foo"
+            value="https://weebecash.com/signup?referral=foo"
           />
           <div
             className="input-group-append"

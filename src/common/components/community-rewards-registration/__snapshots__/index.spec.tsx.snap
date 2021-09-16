@@ -5,7 +5,7 @@ exports[`(1) Default render 1`] = `
   className="dialog-content"
 >
   <p>
-    Register your community to get Ecency POINTS
+    Register your community to get Weebecash POINTS
   </p>
   <button
     className="btn btn-primary btn-sm"
@@ -145,7 +145,7 @@ exports[`(5) Success screen 1`] = `
   <p
     className="text-info"
   >
-    Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.
+    Registration completed. Your community will receive POINT rewards as your members publish posts with Weebecash apps.
   </p>
   <button
     className="btn btn-primary btn-sm"

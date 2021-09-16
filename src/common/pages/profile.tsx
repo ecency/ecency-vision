@@ -26,7 +26,7 @@ import ProfileCover from "../components/profile-cover";
 import ProfileCommunities from "../components/profile-communities";
 import ProfileSettings from "../components/profile-settings";
 import WalletHive from "../components/wallet-hive";
-import WalletEcency from "../components/wallet-ecency";
+import WalletWeebecash from "../components/wallet-ecency";
 import ScrollToTop from "../components/scroll-to-top";
 
 import {getAccountFull} from "../api/hive";

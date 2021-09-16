@@ -52,7 +52,7 @@ it("(1) Default Render", () => {
 
     const renderer = TestRenderer.create(
         <StaticRouter location="/" context={{}}>
-            <WalletEcency {...props} />
+            <WalletWeebecash {...props} />
         </StaticRouter>);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
@@ -65,7 +65,7 @@ it("(2) With active user", () => {
 
     const renderer = TestRenderer.create(
         <StaticRouter location="/" context={{}}>
-            <WalletEcency {...props} />
+            <WalletWeebecash {...props} />
         </StaticRouter>
     );
     expect(renderer.toJSON()).toMatchSnapshot();
@@ -87,7 +87,7 @@ it("(3) Active user with unclaimed points", () => {
 
     const renderer = TestRenderer.create(
         <StaticRouter location="/" context={{}}>
-            <WalletEcency {...props} />
+            <WalletWeebecash {...props} />
         </StaticRouter>);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
@@ -121,7 +121,7 @@ it("(5) usePrivate = false", () => {
 
     const renderer = TestRenderer.create(
         <StaticRouter location="/" context={{}}>
-            <WalletEcency {...props} />
+            <WalletWeebecash {...props} />
         </StaticRouter>);
     expect(renderer.toJSON()).toMatchSnapshot();
 });

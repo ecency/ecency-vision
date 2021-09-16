@@ -150,10 +150,10 @@ export class Preferences extends BaseComponent<Props, State> {
                             <Form.Label>{_t('preferences.referral-link')}</Form.Label>
                             <InputGroup 
                                 className="mb-3"
-                                onClick={() => this.copyToClipboard(`https://ecency.com/signup?referral=${activeUser!.username}`)}
+                                onClick={() => this.copyToClipboard(`https://weebecash.com/signup?referral=${activeUser!.username}`)}
                             >
                                 <Form.Control 
-                                    value={`https://ecency.com/signup?referral=${activeUser!.username}`} 
+                                    value={`https://weebecash.com/signup?referral=${activeUser!.username}`} 
                                     disabled={true}
                                     className="text-primary pointer"
                                 />
@@ -162,7 +162,7 @@ export class Preferences extends BaseComponent<Props, State> {
                                         variant="primary"
                                         size="sm"
                                         className="copy-to-clipboard"
-                                        onClick={() => this.copyToClipboard(`https://ecency.com/signup?referral=${activeUser!.username}`)}
+                                        onClick={() => this.copyToClipboard(`https://weebecash.com/signup?referral=${activeUser!.username}`)}
                                     >
                                         {copyContent}
                                     </Button>

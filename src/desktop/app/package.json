@@ -1,11 +1,11 @@
 {
   "name": "ecency-surfer",
   "productName": "Ecency",
-  "description": "Ecency desktop application reimagined for Windows, Mac, Linux users, start earning cryptocurrency!",
+  "description": "Weebecash desktop application reimagined for Windows, Mac, Linux users, start earning cryptocurrency!",
   "homepage": "https://ecency.com",
   "version": "3.0.19",
   "main": "./main.prod.js",
-  "author": "Ecency <hello@ecency.com>",
+  "author": "Weebecash <hello@ecency.com>",
   "scripts": {
     "electron-rebuild": "node -r ../internals/scripts/BabelRegister.js ../internals/scripts/ElectronRebuild.js",
     "postinstall": "yarn electron-rebuild"

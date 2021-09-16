@@ -404,7 +404,7 @@
   "community-rewards-registration": {
     "body-text": "注册您的社区以获取Ecency积分",
     "btn-next-label": "注册",
-    "done-body-text": "注册完成。您的成员在该社区通过Ecency App发布的帖子，将会获得积分奖励。",
+    "done-body-text": "注册完成。您的成员在该社区通过Weebecash App发布的帖子，将会获得积分奖励。",
     "conflict-body-text": "这个社区已经被注册了。",
     "min-required-body-text": "注册需要至少100个订阅者。"
   },
@@ -519,7 +519,7 @@
     "checkin-desc": "使用Ecency签到，会奖励您 0.25 积分，并帮助您保持与朋友的联系。",
     "vote-desc": "通过投票，您给予其他创作者奖励并显示了欣赏，同时也赚取投票权重 0.01倍的积分。",
     "reblog-desc": "分享您喜欢的帖子给您的朋友，能获取 1 积分。",
-    "login-desc": "您首次登录 Ecency 应用，您能自动获得 100 积分。",
+    "login-desc": "您首次登录 Weebecash 应用，您能自动获得 100 积分。",
     "checkin-extra-desc": "持续使用 Ecency，就有机会获取额外10点积分，越活跃，赚得越多。",
     "delegation-desc": "每委托 1000 HP， 您每天可获得 大约100 积分。",
     "community-desc": "在您注册的社区中，每一个使用Ecency发布的帖子都可以获得20积分。",
@@ -931,7 +931,7 @@
     "filter-all": "全部",
     "filter-active": "活跃",
     "filter-inactive": "即将开始",
-    "filter-team": "Ecency 项目",
+    "filter-team": "Weebecash 项目",
     "return-description": "这是基础返回提案。每个票数较少的提案都不会收到资金。",
     "votes-dialog-title": "对提议#{{n}} 投票",
     "see-all": "查看所有提议"
@@ -1034,11 +1034,11 @@
       "what-is-difference-header": "与其他社交网络有什么不同？",
       "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>主要区别，Ecency是基于一个区块链，这意味着内容不可变和不可分的。 你拥有你的社区和帐户，没有人，但你完全能够控制你的数据，增强真正的免费言论能力。 生态也是开放源码，奖励和创新，由用户建造和拥有。为了伟大！</p>",
       "why-choose-ecency-header": "我为什么要选择Ecency？",
-      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>调整后的功能设置为赋予您创建、激励您的受众和社区的权利。 Ecency应用程序给予您随时随地的解决方案。 使用桌面应用程序，您始终可以确保从区块链中获得未经审查的内容，网站通过搜索引擎上排名最高的内容会覆盖全球数千名读者。最先进的安全措施，因此您的密钥将始终保持加密状态，并且不会被恶意个人接触。 快速而美观的网站，可帮助您在网上被发现并获得您的内容的曝光率并获得忠实的追随者和读者。 立即使用 Ecency 建立您的社区，并利用新兴的区块链技术和未经审查的内容、真正的言论自由</p>",
+      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>调整后的功能设置为赋予您创建、激励您的受众和社区的权利。 Ecency应用程序给予您随时随地的解决方案。 使用桌面应用程序，您始终可以确保从区块链中获得未经审查的内容，网站通过搜索引擎上排名最高的内容会覆盖全球数千名读者。最先进的安全措施，因此您的密钥将始终保持加密状态，并且不会被恶意个人接触。 快速而美观的网站，可帮助您在网上被发现并获得您的内容的曝光率并获得忠实的追随者和读者。 立即使用 Weebecash 建立您的社区，并利用新兴的区块链技术和未经审查的内容、真正的言论自由</p>",
       "how-ecency-works-header": "Ecency是如何运作的？",
-      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency 存储并读取来自区块链的数据，因此数据是可以访问和未审查的。 Ecency奖励内容创建者使用内置的区块链奖励机制，包括令牌(HIVE、HIVE的美元、HIVE的能量)以及积分。 代币可以在主要加密货币交易所(如Binance, Bittrex)购买和出售。 点可以在平台内用于商品和服务交易。</p>",
+      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Weebecash 存储并读取来自区块链的数据，因此数据是可以访问和未审查的。 Ecency奖励内容创建者使用内置的区块链奖励机制，包括令牌(HIVE、HIVE的美元、HIVE的能量)以及积分。 代币可以在主要加密货币交易所(如Binance, Bittrex)购买和出售。 点可以在平台内用于商品和服务交易。</p>",
       "how-to-join-header": "如何加入Ecency？",
-      "how-to-join-body": "<p>转到 <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referal=ecency</a> 并创建一个帐户。注册后，您将收到一封含有进一步说明的电子邮件。 您的密码是您账户的主密码。 请安全存储，如果您丢失密码，您最终失去了对您账户和资金的访问权限。 账户不能被停用或删除，账户名称也不能更改。 该帐户及其所有活动都永久存储在区块链中。 没有密码，账户无法恢复，安全存储您的密钥。</p>",
+      "how-to-join-body": "<p>转到 <a class=\"push-link\" href=\"/signup?referral=internetbuilder\">https://ecency.com/signup?referal=ecency</a> 并创建一个帐户。注册后，您将收到一封含有进一步说明的电子邮件。 您的密码是您账户的主密码。 请安全存储，如果您丢失密码，您最终失去了对您账户和资金的访问权限。 账户不能被停用或删除，账户名称也不能更改。 该帐户及其所有活动都永久存储在区块链中。 没有密码，账户无法恢复，安全存储您的密钥。</p>",
       "how-to-signin-header": "如何登录Ecency？",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>您可以通过使用您的用户名和主密码或使用Active Private keys登录到Ecency系统。 我们非常认真地对待安全问题，这就是为什么我们永远不会存储你的私钥， 在移动应用程序中，他们会被您选择的额外的 PIN 码加密。在网站上，他们永远不会被存储。 您也可以使用 <a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a> 身份验证服务来方便登录、管理和执行操作。</p>",
       "how-referrals-work-header": "邀请制度如何在Ecency方面发挥作用？",
@@ -1065,14 +1065,14 @@
       "how-boost-account-body": "<p>如果您的帐户低于 <a href=\"/faq#what-are-rc\">资源信用点</a>, 你可以请求从生态中提升帐户。 您将收到临时授权，这将会提升您的帐户以在区块链上执行更多的活动。 您可以在积分选项中找到帐户提升功能。</p>",
       "what-spam-abuse-header": "什么被认为是垃圾邮件或滥用？",
       "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>拼写的帖子或复制的内容。</li><li>对多个帖子留下几乎相同或实质上相似的评论</li><li>使用与帖子无关的标签。</li><li>使用任何类型身体暴力的威胁用户</li><li>在使用他人材料时不引用消息来源。</li><li>在没有使用“nsfw”标签的情况下发布“不安全”内容。</li><li>欺诈或欺诈报价。</li></ul></p>",
-      "can-link-post-header": "我可以从Ecency 团队请求添加背链接到我的网站吗？",
-      "can-link-post-body": "<p>我们网站上的所有内容都是由我们的用户创建的，我们无法修改或添加背链接。 您可以自由地联系帖子的作者或 <a href=\"/signup?referral=ecency\" class=\"push-link\">注册</a> 来打开您自己的博客和社区。 免费发布文章创建反向链接。</p>",
+      "can-link-post-header": "我可以从Weebecash 团队请求添加背链接到我的网站吗？",
+      "can-link-post-body": "<p>我们网站上的所有内容都是由我们的用户创建的，我们无法修改或添加背链接。 您可以自由地联系帖子的作者或 <a href=\"/signup?referral=internetbuilder\" class=\"push-link\">注册</a> 来打开您自己的博客和社区。 免费发布文章创建反向链接。</p>",
       "can-guest-post-header": "是否可以在您的网站上留言？",
-      "can-guest-post-body": "<p>在生态上发布简单易用， <a href=\"/signup?referral=ecency\" class=\"push-link\">注册</a> 来打开您自己的博客和社区，开始发布您的内容。</p>",
+      "can-guest-post-body": "<p>在生态上发布简单易用， <a href=\"/signup?referral=internetbuilder\" class=\"push-link\">注册</a> 来打开您自己的博客和社区，开始发布您的内容。</p>",
       "source-label-header": "内容源标签，是什么？",
       "source-label-body": "<p>内容源帮助您了解内容是如何发布的。 在某些情况下，您可能会看到第三方客户端名称, 该名称表示内容来自非生态应用程序。 作者有时使用第三方客户端应用程序来管理他们的博客、社区。 第三方客户是作者使用的软件工具，因此与内容无关，也不反映内容。 内容可以由人类直接创建，或者在某些情况下由应用程序自动创建</p>",
       "how-to-contribute-header": "如何为生态做出贡献？",
-      "how-to-contribute-body": "<p>我们的 <a href=\"/contributors\" class=\"push-link\">个很棒的贡献者</a> 帮助我们塑造生态。 通过加入我们的翻译团队，您可以成为这个伟大运动的一部分： <a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">网站</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">移动版</a> 或贡献智力、发展、设计、社交媒体外联技能。 我们尽力支持我们的贡献者！</p>"
+      "how-to-contribute-body": "<p>我们的 <a href=\"/contributors\" class=\"push-link\">个很棒的贡献者</a> 帮助我们塑造生态。 通过加入我们的翻译团队，您可以成为这个伟大运动的一部分： <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer\">网站</a>, <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer\">移动版</a> 或贡献智力、发展、设计、社交媒体外联技能。 我们尽力支持我们的贡献者！</p>"
     }
   },
   "contributors": {

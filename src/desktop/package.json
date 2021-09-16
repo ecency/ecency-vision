@@ -1,12 +1,12 @@
 {
   "name": "ecency-surfer",
   "productName": "Ecency",
-  "description": "Ecency desktop application reimagined for Windows, Mac, Linux users, start earning cryptocurrency!",
+  "description": "Weebecash desktop application, start earning cryptocurrency!",
   "private": false,
-  "author": "Ecency <hello@ecency.com>",
+  "author": "Weebecash <hello@ecency.com>",
   "version": "3.0.19",
   "copyright": "© 2020, Ecency",
-  "homepage": "https://ecency.com",
+  "homepage": "https://weebecash.com",
   "scripts": {
     "build": "concurrently \"yarn build-main\" \"yarn build-renderer\"",
     "build-dll": "cross-env NODE_ENV=development webpack --config ./configs/webpack.config.renderer.dev.dll.babel.js --colors",

@@ -19,12 +19,12 @@ exports[`(1) Default Render 1`] = `
           <div
             className="title"
           >
-            Ecency Points
+            Weebecash Points
           </div>
           <div
             className="description"
           >
-            Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.
+            Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Weebecash apps and improve your experience.
           </div>
         </div>
         <div
@@ -127,7 +127,7 @@ exports[`(1) Default Render 1`] = `
             </div>
             <div
               className="point-reward-type"
-              title="Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends."
+              title="Checking in on Weebecash gives you 0.25 points and helps you stay connected with your friends."
             >
               <svg
                 viewBox="0 0 24 24"
@@ -145,7 +145,7 @@ exports[`(1) Default Render 1`] = `
             </div>
             <div
               className="point-reward-type"
-              title="When you login into Ecency you are entitled to earn 100 points automatically."
+              title="When you login into Weebecash you are entitled to earn 100 points automatically."
             >
               <svg
                 viewBox="0 0 24 24"
@@ -199,7 +199,7 @@ exports[`(1) Default Render 1`] = `
             </div>
             <div
               className="point-reward-type"
-              title="Register your community to get 20 points for per post published with Ecency applications."
+              title="Register your community to get 20 points for per post published with Weebecash applications."
             >
               <svg
                 viewBox="0 0 24 24"
@@ -407,7 +407,7 @@ exports[`(1) Default Render 1`] = `
         </span>
       </a>
       <a
-        className="menu-item ecency active"
+        className="menu-item Weebecash active"
         href="/@user1/points"
         onClick={[Function]}
       >
@@ -454,12 +454,12 @@ exports[`(2) With active user 1`] = `
           <div
             className="title"
           >
-            Ecency Points
+            Weebecash Points
           </div>
           <div
             className="description"
           >
-            Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.
+            Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Weebecash apps and improve your experience.
           </div>
         </div>
         <div
@@ -590,7 +590,7 @@ exports[`(2) With active user 1`] = `
             </div>
             <div
               className="point-reward-type"
-              title="Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends."
+              title="Checking in on Weebecash gives you 0.25 points and helps you stay connected with your friends."
             >
               <svg
                 viewBox="0 0 24 24"
@@ -608,7 +608,7 @@ exports[`(2) With active user 1`] = `
             </div>
             <div
               className="point-reward-type"
-              title="When you login into Ecency you are entitled to earn 100 points automatically."
+              title="When you login into Weebecash you are entitled to earn 100 points automatically."
             >
               <svg
                 viewBox="0 0 24 24"
@@ -662,7 +662,7 @@ exports[`(2) With active user 1`] = `
             </div>
             <div
               className="point-reward-type"
-              title="Register your community to get 20 points for per post published with Ecency applications."
+              title="Register your community to get 20 points for per post published with Weebecash applications."
             >
               <svg
                 viewBox="0 0 24 24"
@@ -881,7 +881,7 @@ exports[`(2) With active user 1`] = `
         </span>
       </a>
       <a
-        className="menu-item ecency active"
+        className="menu-item Weebecash active"
         href="/@user1/points"
         onClick={[Function]}
       >
@@ -960,12 +960,12 @@ exports[`(3) Active user with unclaimed points 1`] = `
           <div
             className="title"
           >
-            Ecency Points
+            Weebecash Points
           </div>
           <div
             className="description"
           >
-            Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.
+            Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Weebecash apps and improve your experience.
           </div>
         </div>
         <div
@@ -1096,7 +1096,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
             </div>
             <div
               className="point-reward-type"
-              title="Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends."
+              title="Checking in on Weebecash gives you 0.25 points and helps you stay connected with your friends."
             >
               <svg
                 viewBox="0 0 24 24"
@@ -1114,7 +1114,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
             </div>
             <div
               className="point-reward-type"
-              title="When you login into Ecency you are entitled to earn 100 points automatically."
+              title="When you login into Weebecash you are entitled to earn 100 points automatically."
             >
               <svg
                 viewBox="0 0 24 24"
@@ -1168,7 +1168,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
             </div>
             <div
               className="point-reward-type"
-              title="Register your community to get 20 points for per post published with Ecency applications."
+              title="Register your community to get 20 points for per post published with Weebecash applications."
             >
               <svg
                 viewBox="0 0 24 24"
@@ -1387,7 +1387,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
         </span>
       </a>
       <a
-        className="menu-item ecency active"
+        className="menu-item Weebecash active"
         href="/@user1/points"
         onClick={[Function]}
       >

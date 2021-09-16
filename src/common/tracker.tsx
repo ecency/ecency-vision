@@ -34,7 +34,7 @@ export default class Tracker extends Component {
         return mounted ? <>
             <script type="text/javascript" dangerouslySetInnerHTML={{__html: tracker}}/>
             <noscript>
-                <p><img src="//analytics.ecency.com/matomo.php?idsite=1&amp;rec=1" style={{border: "0"}} alt="Ecency analytics"/></p>
+                <p><img src="//analytics.ecency.com/matomo.php?idsite=1&amp;rec=1" style={{border: "0"}} alt="Weebecash analytics"/></p>
             </noscript>
         </> : null
     }

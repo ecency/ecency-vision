@@ -28,7 +28,7 @@ export default class WalletMenu extends Component<Props> {
                     <span className="platform-logo">{hiveSvg}</span>
                 </Link>
                 {global.usePrivate && (
-                    <Link className={_c(`menu-item ecency ${active === "ecency" ? "active" : ""}`)} to={`/@${username}/points`}>
+                    <Link className={_c(`menu-item Weebecash ${active === "ecency" ? "active" : ""}`)} to={`/@${username}/points`}>
                         <span className="title">Ecency</span>
                         <span className="sub-title">Points</span>
                         <span className="platform-logo"><img alt="ecency" src={logo}/></span>

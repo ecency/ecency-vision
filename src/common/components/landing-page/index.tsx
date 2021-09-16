@@ -104,7 +104,7 @@ const LandingPage = (props: any) => {
               <p className="mt-2 w-88 mb-5 mb-sm-0">
                 {_t("landing-page.earn-money-block-chain-based")}
                 <span>
-                  <a href="/signup?referral=ecency">
+                  <a href="/signup?referral=internetbuilder">
                     {_t("landing-page.join-us")}
                   </a>
                 </span>
@@ -166,7 +166,7 @@ const LandingPage = (props: any) => {
               <p>
                 {_t("landing-page.open-source-desc")}
               </p>
-              <a className="no-break" href="/signup?referral=ecency">
+              <a className="no-break" href="/signup?referral=internetbuilder">
                 {_t("landing-page.feel-free-join")}
               </a>
             </div>
@@ -242,7 +242,7 @@ const LandingPage = (props: any) => {
               <p>{_t("landing-page.download-our-application-desc-2")}</p>
               <a
                 className="windows"
-                href="https://desktop.ecency.com/"
+                href="#"
                 target="blank"
               >
                 <img
@@ -255,7 +255,7 @@ const LandingPage = (props: any) => {
                 />
                 {_t("landing-page.download-for-windows")}
               </a>
-              <a href="https://ios.ecency.com/" target="blank">
+              <a href="#" target="blank">
                 <img
                   src={
                     props?.global?.theme === "day"
@@ -266,7 +266,7 @@ const LandingPage = (props: any) => {
                 />
                 {_t("landing-page.download-for-ios")}
               </a>
-              <a href="https://android.ecency.com/" target="blank">
+              <a href="#" target="blank">
                 <img
                   src={
                     props?.global?.theme === "day"
@@ -438,7 +438,7 @@ const LandingPage = (props: any) => {
                 </div>
             </div><div className="site-icon">
               <a href="#">
-                <img src={LogoCircle} alt="ecency logo" />
+                <img src={LogoCircle} alt="Weebecash logo" />
               </a>
               <p className="copy-right">{_t("landing-page.copy-rights")}</p>
             </div>

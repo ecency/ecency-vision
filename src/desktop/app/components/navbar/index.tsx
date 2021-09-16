@@ -375,7 +375,7 @@ export class NavBar extends Component<Props, State> {
                     active: location.pathname === '/communities'
                 }
             ],
-            postElem: <div className="drop-down-menu-version">Ecency Surfer {version}</div>
+            postElem: <div className="drop-down-menu-version">Weebecash Surfer {version}</div>
         };
         let noMargin = step && step === 1
         

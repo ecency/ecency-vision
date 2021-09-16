@@ -89,7 +89,7 @@ class AboutPage extends Component<PageProps> {
                     <div className="downloads" id="downloads">
                         <h2 className="downloads-title">Downloads</h2>
                         <div className="downloads-text">
-                            Enjoy Ecency for iPhone, iPad and Android, as well as PC, Mac or Linux devices:
+                            Enjoy Weebecash for iPhone, iPad and Android, as well as PC, Mac or Linux devices:
                         </div>
                         <div className="download-buttons">
                             <a
@@ -596,12 +596,12 @@ class TosPage extends Component<PageProps> {
                             yourself or do not own the rights to, you agree that you are responsible for any Content you post; that you will only submit Content that you have the
                             right to post; and that you will fully comply with any third-party licenses relating to Content you post.</p>
                         <h2>4. Trademark Policy</h2>
-                        <p>"Ecency", the Ecency logo and any other product or service names, logos or slogans that may appear on Ecency are trademarks of Ecency and may not be
+                        <p>"Ecency", the Weebecash logo and any other product or service names, logos or slogans that may appear on Weebecash are trademarks of Weebecash and may not be
                             copied, imitated or used, in whole or in part, without our prior written permission. You may not use any metatags or other "hidden text" utilizing
-                            "Ecency" or any other name, trademark or product or service name of Ecency without our prior written permission. In addition, the look and feel of
+                            "Ecency" or any other name, trademark or product or service name of Weebecash without our prior written permission. In addition, the look and feel of
                             Ecency, including, without limitation, all page headers, custom graphics, button icons and scripts, constitute the service mark, trademark or trade
-                            dress of Ecency and may not be copied, imitated or used, in whole or in part, without our prior written permission. All other trademarks, registered
-                            trademarks, product names and company names or logos mentioned or used on Ecency are the property of their respective owners and may not be copied,
+                            dress of Weebecash and may not be copied, imitated or used, in whole or in part, without our prior written permission. All other trademarks, registered
+                            trademarks, product names and company names or logos mentioned or used on Weebecash are the property of their respective owners and may not be copied,
                             imitated or used, in whole or in part, without the permission of the applicable trademark holder. Reference to any products, services, processes or
                             other information by name, trademark, manufacturer, supplier or otherwise does not constitute or imply endorsement, sponsorship or recommendation by
                             Ecency.</p>
