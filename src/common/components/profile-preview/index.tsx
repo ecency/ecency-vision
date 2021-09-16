@@ -56,7 +56,7 @@ return <div className="profile-parent">
                 <>
                 {loading ? <Skeleton className="cover-img-placeholder rounded-top"/> : profile && <img 
                     src={profile.profile.cover_image ? `https://images.ecency.com/webp/u/${username}/cover` :  global.theme === "day" ? coverFallbackDay : coverFallbackNight}
-                    className="w-100 cover-img rounded-top"
+                    className="w-100 cover-img rounded-top border-bottom"
                     loading="lazy"
                 />}
                 <div className="p-3">

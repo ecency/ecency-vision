@@ -10,6 +10,8 @@
     bottom: 0px;
     left: 0px;
     right: 0px;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
   }
 }
 
@@ -21,16 +23,24 @@
     @include themify(night) {
         background-color: $gunmetal;
       }
+
+  @media (max-width: $sm-break) {
+    height: 120px;
+    width: 120px;
+  }
 }
 
 .cover-img {
     height: 100px;
+    @media (max-width: $sm-break) {
+      height: 130px;
+    }
 }
 
 .info-container {
     position: relative;
-    top: -62px;
-    margin-bottom: -52px;
+    top: -82px;
+    margin-bottom: -72px;
 }
 
 .no-image {
@@ -111,4 +121,11 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.rounded-top {
+  @media (max-width: $sm-break) {
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+  }
 }
