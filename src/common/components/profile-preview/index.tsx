@@ -71,13 +71,13 @@ return <div className="profile-parent">
                     <div className="d-flex align-items-center info-container flex-column text-center">
                         <div className={`rounded-circle mb-3 profile-img-container ${profile && profile.profile.profile_image ? "" : "no-image"}`}>
                             {loading ? <Skeleton className="profile-img rounded-circle" /> : profile && 
-                            <Link to={profile ? `/@${username}`:""} onClick={onClose}>
+                            <Link to={`/@${username}`} onClick={onClose}>
                                 <img src={profile.profile.profile_image ? `https://images.ecency.com/u/${username}/avatar/medium` : noImage} alt="profile-image" className="profile-img rounded-circle" loading="lazy"/>
                             </Link>
                             }
                         </div>
                         <div className="d-flex flex-column align-items-center">
-                            <Link to={profile && `/@${username}`} onClick={onClose}>
+                            <Link to={`/@${username}`} onClick={onClose}>
                                 <div >{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.name}</div>
                                 <div>{loading ? <Skeleton className="loading-md my-3" /> : `@${username}`}</div>
                                 <div>{loading ? <Skeleton className="loading-md" /> : `Reputation: ${reputation}`}</div>
