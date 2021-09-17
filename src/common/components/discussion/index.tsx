@@ -103,6 +103,7 @@ interface ItemState {
     edit: boolean;
     inProgress: boolean;
     showIfHidden: boolean;
+    isHiddenPermitted: boolean;
     mutedData: string[]
 }
 
@@ -112,6 +113,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         edit: false,
         inProgress: false,
         showIfHidden: false,
+        isHiddenPermitted:false,
         mutedData: []
     }
 
@@ -274,7 +276,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
 
     render() {
         const { entry, activeUser, community, location } = this.props;
-        const { reply, edit, inProgress, showIfHidden, mutedData } = this.state;
+        const { reply, edit, inProgress, showIfHidden, mutedData, isHiddenPermitted } = this.state;
 
         const created = moment(parseDate(entry.created));
         const reputation = accountReputation(entry.author_reputation);
@@ -292,8 +294,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         const anchorId = `anchor-@${entry.author}/${entry.permlink}`;
 
         const selected = location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`;
-
-        return (
+        let normalComponent = (
             <div className={_c(`discussion-item depth-${entry.depth} ${isHidden ? "hidden-item" : ""} ${selected ? "selected-item" : ""}`)}>
                 <div className="item-anchor" id={anchorId}/>
                 <div className="item-inner">
@@ -411,6 +412,8 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                 {showSubList && <List {...this.props} parent={entry}/>}
             </div>
         );
+
+        return  isHidden ? (!isHiddenPermitted && entry.depth === 1) ? <div onClick={()=>this.setState({isHiddenPermitted:true})} className="text-center pointer text-primary my-4">---------- Show hidden comment ----------</div> : normalComponent : normalComponent;
     }
 }
 
