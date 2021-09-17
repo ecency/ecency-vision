@@ -56,7 +56,7 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
 
 return <div className="profile-parent">
                 <div 
-                    className={`position-fixed shadow border bg-white profile-container rounded ${global.theme === "day" ? "" : "border-dark"}`}
+                    className={`position-fixed shadow bg-white profile-container rounded`}
                 >
                 <div className="close-icon rounded-circle" onClick={onClose}>
                     {closeSvg}
@@ -64,7 +64,7 @@ return <div className="profile-parent">
                 <>
                 {loading ? <Skeleton className="cover-img-placeholder rounded-top"/> : profile && <img 
                     src={profile.profile.cover_image ? `https://images.ecency.com/webp/u/${username}/cover` :  global.theme === "day" ? coverFallbackDay : coverFallbackNight}
-                    className="w-100 cover-img rounded-top border-bottom"
+                    className="w-100 cover-img rounded-top"
                     loading="lazy"
                 />}
                 <div className="p-3">
