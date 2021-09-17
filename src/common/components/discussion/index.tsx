@@ -482,7 +482,6 @@ export class List extends Component<ListProps> {
         }
 
         let mutedContent = filtered.filter(item => item.stats?.gray || (activeUser && mutedData.includes(item.author) && item.depth === 1 && item.parent_author === parent.author) );
-        // let unmutedContent = filtered.filter(item =>  filtered.includes);
         let unmutedContent = filtered.filter(md => mutedContent.every(fd => fd.post_id !== md.post_id))
         let data = isHiddenPermitted ? [...unmutedContent, ...mutedContent] : unmutedContent;
         
