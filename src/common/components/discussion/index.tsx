@@ -492,8 +492,9 @@ export class List extends Component<ListProps> {
                     <Item key={`${d.author}-${d.permlink}`} {...this.props} entry={d}/>
                 ))}
                 {!isHiddenPermitted && mutedContent.length >0 &&
-                    <div onClick={()=>this.setState({isHiddenPermitted:true})} className="text-center pointer text-primary my-4">
-                        ---------- Show hidden comment ----------
+                    <div className="hidden-warning d-flex justify-content-between flex-1 align-items-center mt-3">
+                        <div className="flex-1">{_t("discussion.reveal-muted-long-description")}</div>
+                        <div onClick={()=>this.setState({isHiddenPermitted:true})} className="pointer p-3"><b>{_t("g.show")}</b></div>
                     </div>
                 }
             </div>
