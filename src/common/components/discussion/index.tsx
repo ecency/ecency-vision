@@ -363,18 +363,22 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                 <div className="item-inner">
                     <div className="item-figure">
                         <div className="d-sm-none" id={String(entry.post_id)} onClick={this.onShowProfile}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
-                        {ProfileLink({...this.props, username: entry.author, children: 
-                            <a className="d-none d-sm-inline-block" onMouseEnter={this.onShowProfileAvatar} onMouseLeave={this.onHideProfileAvatar}>
-                                {UserAvatar({...this.props, username: entry.author, size: "medium"})}
-                                {showProfileDetailsAvatar && entry.author && 
-                                    <ProfilePreview
-                                        username={entry.author}
-                                        {...this.props}
-                                        onClose={this.onHideProfile}
-                                    />
-                                }
-                            </a>})
-                        }
+                        <div onMouseEnter={this.onShowProfileAvatar} onMouseLeave={this.onHideProfileAvatar}>
+                            {ProfileLink({...this.props, username: entry.author, children: 
+                                    <a className="d-none d-sm-inline-block">
+                                        {UserAvatar({...this.props, username: entry.author, size: "medium"})}
+                                    </a>
+                                })
+                            }
+
+                            {showProfileDetailsAvatar && entry.author && 
+                                <ProfilePreview
+                                    username={entry.author}
+                                    {...this.props}
+                                    onClose={this.onHideProfile}
+                                />
+                            }
+                        </div>
                     </div>
                     <div className="item-content">
                         <div className="item-header">
