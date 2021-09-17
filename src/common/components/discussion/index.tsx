@@ -55,6 +55,7 @@ import {commentSvg, pencilOutlineSvg, deleteForeverSvg} from "../../img/svg";
 import {version} from "../../../../package.json";
 import accountReputation from '../../helper/account-reputation';
 import { getFollowing } from "../../api/hive";
+import { iteratorStream } from "@hiveio/dhive/lib/utils";
 
 
 interface ItemBodyProps {
@@ -263,7 +264,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
     }
 
     fetchMutedUsers = () => {
-        const { activeUser, entry } = this.props;
+        const { activeUser } = this.props;
         if(activeUser){
             getFollowing(activeUser.username, "", "ignore", 100).then(r => {
                 if (r) {
@@ -413,7 +414,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
             </div>
         );
 
-        return  isHidden ? (!isHiddenPermitted && entry.depth === 1) ? <div onClick={()=>this.setState({isHiddenPermitted:true})} className="text-center pointer text-primary my-4">---------- Show hidden comment ----------</div> : normalComponent : normalComponent;
+        return normalComponent;
     }
 }
 
@@ -439,13 +440,40 @@ interface ListProps {
     toggleUIProp: (what: ToggleType) => void;
 }
 
+interface ListState {
+    isHiddenPermitted: boolean;
+    mutedData: string[]
+}
+
 export class List extends Component<ListProps> {
+    state: ListState = {
+        isHiddenPermitted: false,
+        mutedData: []
+    }
+    
+    componentDidMount(){
+        this.fetchMutedUsers()
+    }
+
+    fetchMutedUsers = () => {
+        const { activeUser } = this.props;
+        if(activeUser){
+            getFollowing(activeUser.username, "", "ignore", 100).then(r => {
+                if (r) {
+                    let filterList = r.map(user=>user.following);
+                    this.setState({mutedData: filterList });
+                }
+            })
+        }
+    }
+
     render() {
-        const {discussion, parent} = this.props;
+        const {discussion, parent, activeUser} = this.props;
+        const { isHiddenPermitted, mutedData } = this.state;
 
         const {list} = discussion;
 
-        const filtered = list.filter(
+        let filtered = list.filter(
             (x) => x.parent_author === parent.author && x.parent_permlink === parent.permlink
         );
 
@@ -453,11 +481,22 @@ export class List extends Component<ListProps> {
             return null;
         }
 
+        let mutedContent = filtered.filter(item => item.stats?.gray || (activeUser && mutedData.includes(item.author) && item.depth === 1 && item.parent_author === parent.author) );
+        // let unmutedContent = filtered.filter(item =>  filtered.includes);
+        let unmutedContent = filtered.filter(md => mutedContent.every(fd => fd.post_id !== md.post_id))
+        let data = isHiddenPermitted ? [...unmutedContent, ...mutedContent] : unmutedContent;
+        
+        
         return (
             <div className="discussion-list">
-                {filtered.map((d) => (
+                {data.map((d) => (
                     <Item key={`${d.author}-${d.permlink}`} {...this.props} entry={d}/>
                 ))}
+                {!isHiddenPermitted && mutedContent.length >0 &&
+                    <div onClick={()=>this.setState({isHiddenPermitted:true})} className="text-center pointer text-primary my-4">
+                        ---------- Show hidden comment ----------
+                    </div>
+                }
             </div>
         );
     }
