@@ -102,6 +102,7 @@ interface ItemState {
     reply: boolean;
     edit: boolean;
     showProfileDetails: boolean;
+    showProfileDetailsAvatar: boolean;
     inProgress: boolean;
     showIfHidden: boolean;
     mutedData: string[];
@@ -114,6 +115,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         edit: false,
         inProgress: false,
         showProfileDetails: false,
+        showProfileDetailsAvatar: false,
         showIfHidden: false,
         mutedData: [],
         mobilePosition: ""
@@ -288,7 +290,20 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         document.getElementsByClassName("app-content")[0].classList.add("p-0")
         document.getElementsByClassName("app-content")[0].classList.add("p-sm-auto")
         document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
+    }
 
+    onShowProfileAvatar = (e:any) => {
+        e.stopPropagation()
+        if(this.props.global.isMobile && e.type == "click"){
+            let id = e.target.id.length > 0 ? e.target.id : e.target.parentNode.id
+            
+            this.setState({mobilePosition: id });
+            scrollTo(0,0)
+        }
+        this.setState({showProfileDetailsAvatar:true });
+        document.getElementsByClassName("app-content")[0].classList.add("p-0")
+        document.getElementsByClassName("app-content")[0].classList.add("p-sm-auto")
+        document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
     }
 
     onHideProfile = (e:any) => {
@@ -306,9 +321,25 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         },200)
     }
 
+
+    onHideProfileAvatar = (e:any) => {
+        const { mobilePosition } = this.state;
+        e.stopPropagation()
+        setTimeout(()=>{
+                this.setState({showProfileDetailsAvatar:false});
+                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");   
+                if(this.props.global.isMobile && mobilePosition.length > 0){
+                    document!.getElementById(mobilePosition)!.scrollIntoView({block: "center"})
+                }
+
+        document.getElementsByClassName("app-content")[0].classList.remove("p-0")
+        document.getElementsByClassName("app-content")[0].classList.remove("p-sm-auto")
+        },200)
+    }
+
     render() {
         const { entry, activeUser, community, location, global } = this.props;
-        const { reply, edit, inProgress, showIfHidden, mutedData, showProfileDetails } = this.state;
+        const { reply, edit, inProgress, showIfHidden, mutedData, showProfileDetails, showProfileDetailsAvatar } = this.state;
 
         const created = moment(parseDate(entry.created));
         const readMore = entry.children > 0 && entry.depth > 5;
@@ -332,8 +363,18 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                 <div className="item-inner">
                     <div className="item-figure">
                         <div className="d-sm-none" id={String(entry.post_id)} onClick={this.onShowProfile}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
-                        {ProfileLink({...this.props, username: entry.author, children: <a className="d-none d-sm-inline-block" onMouseEnter={this.onShowProfile}
-                                onMouseLeave={this.onHideProfile}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</a>})}
+                        {ProfileLink({...this.props, username: entry.author, children: 
+                            <a className="d-none d-sm-inline-block" onMouseEnter={this.onShowProfileAvatar} onMouseLeave={this.onHideProfileAvatar}>
+                                {UserAvatar({...this.props, username: entry.author, size: "medium"})}
+                                {showProfileDetailsAvatar && entry.author && 
+                                    <ProfilePreview
+                                        username={entry.author}
+                                        {...this.props}
+                                        onClose={this.onHideProfile}
+                                    />
+                                }
+                            </a>})
+                        }
                     </div>
                     <div className="item-content">
                         <div className="item-header">
