@@ -331,7 +331,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                 <div className="item-anchor" id={anchorId}/>
                 <div className="item-inner">
                     <div className="item-figure">
-                        <div className="d-sm-none" onClick={this.onShowProfile}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
+                        <div className="d-sm-none" id={String(entry.post_id)} onClick={this.onShowProfile}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
                         {ProfileLink({...this.props, username: entry.author, children: <a className="d-none d-sm-inline-block" onMouseEnter={this.onShowProfile}
                                 onMouseLeave={this.onHideProfile}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</a>})}
                     </div>
@@ -341,10 +341,11 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                 onMouseEnter={this.onShowProfile}
                                 onMouseLeave={this.onHideProfile}
                                 className="d-flex align-items-center"
+                                id={String(entry.post_id)} 
                             >
-                            <div className="author notranslate d-flex align-items-center d-sm-none" onClick={this.onShowProfile}>
-                                <span className="author-name">{entry.author}</span>
-                                <span className="author-down-arrow mx-2">{menuDownSvg}</span>
+                            <div className="author notranslate d-flex align-items-center d-sm-none" id={String(entry.post_id)} onClick={this.onShowProfile}>
+                                <span className="author-name" id={String(entry.post_id)} >{entry.author}</span>
+                                <span className="author-down-arrow mx-2" id={String(entry.post_id)} >{menuDownSvg}</span>
                             </div>
                             {ProfileLink({
                                 ...this.props,

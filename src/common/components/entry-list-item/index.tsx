@@ -275,14 +275,14 @@ export default class EntryListItem extends Component<Props, State> {
                                 className="d-flex align-items-center"
                                 id={String(entry.post_id)}
                             >
-                                <div className="author-avatar d-sm-none" onClick={this.showMiniProfile}>{UserAvatar({...this.props, username: entry.author, size: "small"})}</div>
+                                <div className="author-avatar d-sm-none" onClick={this.showMiniProfile} id={String(entry.post_id)}>{UserAvatar({...this.props, username: entry.author, size: "small"})}</div>
                                 {ProfileLink({
                                     ...this.props,
                                     username: entry.author,
                                     children: <a className="author-avatar d-none d-sm-block">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
                                 })}
 
-                                <div className="author notranslate d-flex d-sm-none align-items-center" onClick={this.showMiniProfile}>
+                                <div className="author notranslate d-flex d-sm-none align-items-center" onClick={this.showMiniProfile} id={String(entry.post_id)}>
                                     <span>{entry.author}</span>
                                 </div>
                             
