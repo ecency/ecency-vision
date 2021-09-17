@@ -1,6 +1,6 @@
 .profile-container {
-    top: 15%;
-    left: 36%;
+    top: 25%;
+    left: 20%;
     width: 30%;
     z-index: 4;
 
@@ -107,10 +107,6 @@
 .overflow-sm-hidden {
   @media (max-width: $sm-break) {
     overflow: hidden;
-  }
-  .entry-page {
-    @media (max-width: $sm-break) {
-    }
   }
   .discussion {
     @media (max-width: $sm-break) {
