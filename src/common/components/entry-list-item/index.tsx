@@ -144,14 +144,15 @@ export default class EntryListItem extends Component<Props, State> {
 
     showMiniProfile = (e: any) => {
         e.stopPropagation()
-        if(this.props.global.isMobile && e.type == "click"){
+        setTimeout(()=>{
+            if(this.props.global.isMobile && e.type == "click"){
             let id = e.target.id.length > 0 ? e.target.id : e.target.parentNode.id
             
             this.setState({mobilePosition: id });
             scrollTo(0,0)
         }
         this.setState({showProfileDetails:true });
-        document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
+        document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
     }
 
     hideMiniProfile = (e:any) => {

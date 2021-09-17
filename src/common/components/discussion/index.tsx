@@ -280,7 +280,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
 
     onShowProfile = (e:any) => {
         e.stopPropagation()
-        if(this.props.global.isMobile && e.type == "click"){
+        setTimeout(()=>{if(this.props.global.isMobile && e.type == "click"){
             let id = e.target.id.length > 0 ? e.target.id : e.target.parentNode.id
             
             this.setState({mobilePosition: id });
@@ -289,12 +289,12 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         this.setState({showProfileDetails:true });
         document.getElementsByClassName("app-content")[0].classList.add("p-0")
         document.getElementsByClassName("app-content")[0].classList.add("p-sm-auto")
-        document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
+        document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
     }
 
     onShowProfileAvatar = (e:any) => {
         e.stopPropagation()
-        if(this.props.global.isMobile && e.type == "click"){
+        setTimeout(()=>{if(this.props.global.isMobile && e.type == "click"){
             let id = e.target.id.length > 0 ? e.target.id : e.target.parentNode.id
             
             this.setState({mobilePosition: id });
@@ -303,7 +303,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         this.setState({showProfileDetailsAvatar:true });
         document.getElementsByClassName("app-content")[0].classList.add("p-0")
         document.getElementsByClassName("app-content")[0].classList.add("p-sm-auto")
-        document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
+        document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")},this.props.global.isMobile ? 0 : 500)
     }
 
     onHideProfile = (e:any) => {
@@ -362,8 +362,8 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                 <div className="item-anchor" id={anchorId}/>
                 <div className="item-inner">
                     <div className="item-figure">
-                        <div className="d-sm-none" id={String(entry.post_id)} onClick={this.onShowProfile}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
-                        <div onMouseEnter={this.onShowProfileAvatar} onMouseLeave={this.onHideProfileAvatar}>
+                        <div className="d-sm-none" id={String(entry.post_id)} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
+                        <div onMouseEnter={(e) => {!isHidden && this.onShowProfileAvatar(e)}} onMouseLeave={(e) => {!isHidden && this.onHideProfileAvatar(e)}}>
                             {ProfileLink({...this.props, username: entry.author, children: 
                                     <a className="d-none d-sm-inline-block">
                                         {UserAvatar({...this.props, username: entry.author, size: "medium"})}
@@ -375,7 +375,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                 <ProfilePreview
                                     username={entry.author}
                                     {...this.props}
-                                    onClose={this.onHideProfile}
+                                    onClose={(e) => {!isHidden && this.onHideProfile(e)}}
                                 />
                             }
                         </div>
@@ -383,12 +383,12 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                     <div className="item-content">
                         <div className="item-header">
                             <div
-                                onMouseEnter={this.onShowProfile}
-                                onMouseLeave={this.onHideProfile}
+                                onMouseEnter={(e) => {!isHidden && this.onShowProfile(e)}}
+                                onMouseLeave={(e) => {!isHidden && this.onHideProfile(e)}}
                                 className="d-flex align-items-center"
                                 id={String(entry.post_id)} 
                             >
-                            <div className="author notranslate d-flex align-items-center d-sm-none" id={String(entry.post_id)} onClick={this.onShowProfile}>
+                            <div className="author notranslate d-flex align-items-center d-sm-none" id={String(entry.post_id)} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>
                                 <span className="author-name" id={String(entry.post_id)} >{entry.author}</span>
                                 <span className="author-down-arrow mx-2" id={String(entry.post_id)} >{menuDownSvg}</span>
                             </div>
@@ -403,7 +403,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                     <ProfilePreview
                                         username={entry.author}
                                         {...this.props}
-                                        onClose={this.onHideProfile}
+                                        onClose={(e) => {!isHidden && this.onHideProfile(e)}}
                                     />
                             }
                             </div>
