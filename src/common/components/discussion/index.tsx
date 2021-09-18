@@ -107,6 +107,7 @@ interface ItemState {
     showIfHidden: boolean;
     mutedData: string[];
     mobilePosition: string;
+    delayHandler: any
 }
 
 export class Item extends BaseComponent<ItemProps, ItemState> {
@@ -118,7 +119,8 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         showProfileDetailsAvatar: false,
         showIfHidden: false,
         mutedData: [],
-        mobilePosition: ""
+        mobilePosition: "",
+        delayHandler: null
     }
 
     componentDidMount(){
@@ -279,8 +281,9 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
     }
 
     onShowProfile = (e:any) => {
-        e.stopPropagation()
-        setTimeout(()=>{if(this.props.global.isMobile && e.type == "click"){
+        let timeout = setTimeout(()=>{
+            e.stopPropagation()
+            if(this.props.global.isMobile && e.type == "click"){
             let id = e.target.id.length > 0 ? e.target.id : e.target.parentNode.id
             
             this.setState({mobilePosition: id });
@@ -290,11 +293,13 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         document.getElementsByClassName("app-content")[0].classList.add("p-0")
         document.getElementsByClassName("app-content")[0].classList.add("p-sm-auto")
         document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
+        this.setState({delayHandler: timeout})
     }
 
     onShowProfileAvatar = (e:any) => {
-        e.stopPropagation()
-        setTimeout(()=>{if(this.props.global.isMobile && e.type == "click"){
+        let timeout = setTimeout(()=>{
+            e.stopPropagation()
+            if(this.props.global.isMobile && e.type == "click"){
             let id = e.target.id.length > 0 ? e.target.id : e.target.parentNode.id
             
             this.setState({mobilePosition: id });
@@ -304,10 +309,12 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         document.getElementsByClassName("app-content")[0].classList.add("p-0")
         document.getElementsByClassName("app-content")[0].classList.add("p-sm-auto")
         document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")},this.props.global.isMobile ? 0 : 500)
+        this.setState({delayHandler: timeout})
     }
 
     onHideProfile = (e:any) => {
-        const { mobilePosition } = this.state;
+        const { mobilePosition, delayHandler } = this.state;
+        clearTimeout(delayHandler)
         e.stopPropagation()
         setTimeout(()=>{
                 this.setState({showProfileDetails:false});
@@ -323,7 +330,8 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
 
 
     onHideProfileAvatar = (e:any) => {
-        const { mobilePosition } = this.state;
+        const { mobilePosition, delayHandler } = this.state;
+        clearTimeout(delayHandler)
         e.stopPropagation()
         setTimeout(()=>{
                 this.setState({showProfileDetailsAvatar:false});
