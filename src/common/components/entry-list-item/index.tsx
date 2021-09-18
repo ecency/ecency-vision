@@ -139,7 +139,8 @@ export default class EntryListItem extends Component<Props, State> {
         document.getElementsByTagName("html")[0].style.position = 'relative'
     }
 
-    componentDidUnmount(){
+    componentWillUnmount(){
+        debugger
         document.getElementsByTagName("html")[0].style.position = 'unset'
     }
 

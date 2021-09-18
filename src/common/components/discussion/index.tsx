@@ -546,7 +546,8 @@ export class List extends Component<ListProps> {
         document.getElementsByTagName("html")[0].style.position = 'relative'
     }
 
-    componentDidUnmount(){
+    componentWillUnmount(){
+        debugger
         document.getElementsByTagName("html")[0].style.position = 'unset'
     }
 
