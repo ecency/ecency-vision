@@ -79,8 +79,7 @@ return <div className="profile-parent">
                         <div className="d-flex flex-column align-items-center">
                             <Link to={`/@${username}`} onClick={onClose}>
                                 <div >{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.name}</div>
-                                <div>{loading ? <Skeleton className="loading-md my-3" /> : `@${username}`}</div>
-                                <div>{loading ? <Skeleton className="loading-md" /> : `Reputation: ${reputation}`}</div>
+                                <div>{loading ? <Skeleton className="loading-md my-3" /> : `@${username} (${reputation})`}</div>
                             </Link>
                             <div className="d-flex mt-3">
                                 <>

@@ -534,6 +534,14 @@ interface ListProps {
 }
 
 export class List extends Component<ListProps> {
+    componentDidMount(){
+        document.getElementsByTagName("html")[0].style.position = 'relative'
+    }
+
+    componentDidUnmount(){
+        document.getElementsByTagName("html")[0].style.position = 'unset'
+    }
+
     render() {
         const {discussion, parent} = this.props;
 

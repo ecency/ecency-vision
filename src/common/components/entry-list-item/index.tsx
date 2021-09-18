@@ -82,6 +82,7 @@ interface State {
     showMuted: boolean;
     showProfileDetails: boolean;
     mobilePosition: string;
+    delayHandler: any
 }
 
 export default class EntryListItem extends Component<Props, State> {
@@ -89,7 +90,8 @@ export default class EntryListItem extends Component<Props, State> {
         showNsfw: false,
         showMuted: false,
         showProfileDetails:false,
-        mobilePosition:''
+        mobilePosition:'',
+        delayHandler: null
     }
 
     public static defaultProps = {
@@ -134,6 +136,11 @@ export default class EntryListItem extends Component<Props, State> {
         if(muted){
             this.setState({ showMuted: true })
         }
+        document.getElementsByTagName("html")[0].style.position = 'relative'
+    }
+
+    componentDidUnmount(){
+        document.getElementsByTagName("html")[0].style.position = 'unset'
     }
 
     componentDidUpdate(prevProps:Props){
@@ -143,20 +150,22 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     showMiniProfile = (e: any) => {
-        e.stopPropagation()
-        setTimeout(()=>{
-            if(this.props.global.isMobile && e.type == "click"){
-            let id = e.target.id.length > 0 ? e.target.id : e.target.parentNode.id
-            
-            this.setState({mobilePosition: id });
-            scrollTo(0,0)
-        }
-        this.setState({showProfileDetails:true });
-        document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
+        const timeout =
+            setTimeout(()=>{
+                e.stopPropagation()
+                if(this.props.global.isMobile && e.type == "click"){
+                let id = e.target.id.length > 0 ? e.target.id : e.target.parentNode.id
+                this.setState({mobilePosition: id });
+                scrollTo(0,0)
+            }
+            this.setState({showProfileDetails:true });
+            document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
+        this.setState({delayHandler:timeout})
     }
 
     hideMiniProfile = (e:any) => {
-        const { mobilePosition } = this.state;
+        const { mobilePosition, delayHandler } = this.state;
+        clearTimeout(delayHandler)
         e.stopPropagation()
         setTimeout(()=>{
                 this.setState({showProfileDetails:false});
@@ -164,7 +173,7 @@ export default class EntryListItem extends Component<Props, State> {
                 if(this.props.global.isMobile && mobilePosition.length > 0){
                     document!.getElementById(mobilePosition)!.scrollIntoView({block: "center"})
                 }
-        },200)
+        },500)
     }
 
     render() {
