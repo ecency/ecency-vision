@@ -307,6 +307,7 @@
     "order-created": "Edad",
     "read-more": "... basahin pa ang ibang sagot...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Ipakita ang komento"
   },
   "community": {
