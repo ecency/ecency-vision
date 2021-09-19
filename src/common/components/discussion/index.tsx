@@ -281,6 +281,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
     }
 
     onShowProfile = (e:any) => {
+        e.persist();
         let timeout = setTimeout(()=>{
             e.stopPropagation()
             if(this.props.global.isMobile && e.type == "click"){
@@ -297,6 +298,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
     }
 
     onShowProfileAvatar = (e:any) => {
+        e.persist();
         let timeout = setTimeout(()=>{
             e.stopPropagation()
             if(this.props.global.isMobile && e.type == "click"){
@@ -547,7 +549,7 @@ export class List extends Component<ListProps> {
     }
 
     componentWillUnmount(){
-        debugger
+        
         document.getElementsByTagName("html")[0].style.position = 'unset'
     }
 

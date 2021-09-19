@@ -140,7 +140,7 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     componentWillUnmount(){
-        debugger
+        
         document.getElementsByTagName("html")[0].style.position = 'unset'
     }
 
@@ -151,6 +151,7 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     showMiniProfile = (e: any) => {
+        e.persist();
         const timeout =
             setTimeout(()=>{
                 e.stopPropagation()

@@ -34,6 +34,7 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
     const [loading, setLoading] = useState(false);
     const [followCount, setFollowCount] = useState<any>(null);
     const [loadingFollowCount, setLoadingFollowCount] = useState(false);
+    const [isMounted, setIsmounted] = useState(true);
 
     useEffect(()=>{
         setLoading(true);
@@ -41,13 +42,28 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
     },[])
 
     useEffect(()=>{
-        setLoading(true)
-        getAccount(username).then(profile=>{setProfile(profile);setLoading(false)}).catch(err=>setLoading(false));
+        if(isMounted){
+            setLoading(true)
+        getAccount(username).then(profile=>{
+            if(isMounted){
+            setProfile(profile);
+            setLoading(false)}
+        }).catch(err => 
+            setLoading(false)
+            );
         getFollowCount(username).then(res=> {
-            setFollowCount(res);
-            setLoadingFollowCount(false)
-        }).catch(err=> setLoadingFollowCount(false))
-    },[username])
+            if(isMounted){
+                setFollowCount(res);
+                setLoadingFollowCount(false);
+            }
+        }).catch(err => setLoadingFollowCount(false))
+    }
+    },[username]);
+
+    useEffect(()=>{
+        return () => setIsmounted(false)
+
+    },[])
 
     const noImage = global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg");
     const coverFallbackDay = global.isElectron ? "./img/cover-fallback-day.png" : require("../../img/cover-fallback-day.png");
