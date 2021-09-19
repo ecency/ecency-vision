@@ -307,6 +307,7 @@
     "order-created": "Възраст",
     "read-more": "...прочети още отговори...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Покажи коментара"
   },
   "community": {
