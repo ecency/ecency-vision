@@ -307,6 +307,7 @@
     "order-created": "उम्र",
     "read-more": "...और पढ़ें जवाब...",
     "reveal-muted": "मौन लेखक - टिप्पणी प्रकट करें",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "आलोचना प्रत्यक्ष करो"
   },
   "community": {
