@@ -307,6 +307,7 @@
     "order-created": "Idade",
     "read-more": "...ler mais respostas...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Revelar comentário"
   },
   "community": {
