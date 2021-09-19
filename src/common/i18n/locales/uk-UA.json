@@ -307,6 +307,7 @@
     "order-created": "Вік",
     "read-more": "...читайте більше відповідей...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Показати коментар"
   },
   "community": {
