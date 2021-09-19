@@ -307,6 +307,7 @@
     "order-created": "Régiség",
     "read-more": "...további válaszok olvasása...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Hozzászólás megjelenítése"
   },
   "community": {
