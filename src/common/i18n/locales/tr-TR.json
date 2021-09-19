@@ -307,6 +307,7 @@
     "order-created": "Yaş",
     "read-more": "...daha fazla yanıt görüntüle...",
     "reveal-muted": "Engellenmiş yazar - Yorumu görüntüle",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Yorumu görüntüle"
   },
   "community": {
