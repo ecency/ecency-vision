@@ -307,6 +307,7 @@
     "order-created": "Ηλικία",
     "read-more": "...διαβάστε περισσότερες απαντήσεις...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Εμφάνιση σχολίου"
   },
   "community": {
