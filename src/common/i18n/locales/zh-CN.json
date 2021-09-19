@@ -307,6 +307,7 @@
     "order-created": "年龄",
     "read-more": "...阅读更多回复...",
     "reveal-muted": "屏蔽作者 - 公开评论",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "显示评论"
   },
   "community": {
