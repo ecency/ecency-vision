@@ -307,6 +307,7 @@
     "order-created": "Starost",
     "read-more": "...pročitajte još odgovora...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Prikaži komentar"
   },
   "community": {
