@@ -307,6 +307,7 @@
     "order-created": "Laikas",
     "read-more": "...skaityti daugiau atsakumų...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Parodyti komentarą"
   },
   "community": {
