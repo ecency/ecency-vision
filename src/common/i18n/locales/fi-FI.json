@@ -307,6 +307,7 @@
     "order-created": "Ikä",
     "read-more": "...lue lisää vastauksia...",
     "reveal-muted": "Mykistetty tekijä - paljasta kommentti",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Näytä kommentti"
   },
   "community": {
