@@ -307,6 +307,7 @@
     "order-created": "Età",
     "read-more": "...leggi più commenti...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Mostra commento"
   },
   "community": {
