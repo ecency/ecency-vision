@@ -101,6 +101,7 @@ interface ItemProps {
 interface ItemState {
     reply: boolean;
     edit: boolean;
+    mounted: boolean;
     showProfileDetails: boolean;
     showProfileDetailsAvatar: boolean;
     inProgress: boolean;
@@ -120,11 +121,17 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         showIfHidden: false,
         mutedData: [],
         mobilePosition: "",
-        delayHandler: null
+        delayHandler: null,
+        mounted: false
     }
 
     componentDidMount(){
-        this.fetchMutedUsers()
+        this.fetchMutedUsers();
+        this.setState({ mounted: true })
+    }
+
+    componentWillUnmount(){
+        this.setState({ mounted: false })
     }
 
     afterVote = (votes: EntryVote[], estimated: number) => {
@@ -325,8 +332,8 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                     document!.getElementById(mobilePosition)!.scrollIntoView({block: "center"})
                 }
 
-        document.getElementsByClassName("app-content")[0].classList.remove("p-0")
-        document.getElementsByClassName("app-content")[0].classList.remove("p-sm-auto")
+        document.getElementsByClassName("app-content")[0] && document.getElementsByClassName("app-content")[0].classList.remove("p-0")
+        document.getElementsByClassName("app-content")[0] && document.getElementsByClassName("app-content")[0].classList.remove("p-sm-auto")
         },200)
     }
 
@@ -342,14 +349,14 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                     document!.getElementById(mobilePosition)!.scrollIntoView({block: "center"})
                 }
 
-        document.getElementsByClassName("app-content")[0].classList.remove("p-0")
-        document.getElementsByClassName("app-content")[0].classList.remove("p-sm-auto")
+        document.getElementsByClassName("app-content")[0] && document.getElementsByClassName("app-content")[0].classList.remove("p-0")
+        document.getElementsByClassName("app-content")[0] && document.getElementsByClassName("app-content")[0].classList.remove("p-sm-auto")
         },200)
     }
 
     render() {
         const { entry, activeUser, community, location, global } = this.props;
-        const { reply, edit, inProgress, showIfHidden, mutedData, showProfileDetails, showProfileDetailsAvatar } = this.state;
+        const { reply, edit, inProgress, showIfHidden, mutedData, showProfileDetails, showProfileDetailsAvatar, mounted } = this.state;
 
         const created = moment(parseDate(entry.created));
         const readMore = entry.children > 0 && entry.depth > 5;
@@ -367,7 +374,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
 
         const selected = location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`;
 
-        return (
+        return mounted ? (
             <div className={_c(`discussion-item depth-${entry.depth} ${isHidden ? "hidden-item" : ""} ${selected ? "selected-item" : ""}`)}>
                 <div className="item-anchor" id={anchorId}/>
                 <div className="item-inner">
@@ -517,7 +524,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
 
                 {showSubList && <List {...this.props} parent={entry}/>}
             </div>
-        );
+        ) : null;
     }
 }
 
@@ -549,7 +556,6 @@ export class List extends Component<ListProps> {
     }
 
     componentWillUnmount(){
-        
         document.getElementsByTagName("html")[0].style.position = 'unset'
     }
 

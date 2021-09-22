@@ -80,6 +80,7 @@ interface Props {
 interface State {
     showNsfw: boolean;
     showMuted: boolean;
+    mounted: boolean;
     showProfileDetails: boolean;
     mobilePosition: string;
     delayHandler: any
@@ -89,6 +90,7 @@ export default class EntryListItem extends Component<Props, State> {
     state: State = {
         showNsfw: false,
         showMuted: false,
+        mounted: false,
         showProfileDetails:false,
         mobilePosition:'',
         delayHandler: null
@@ -136,16 +138,17 @@ export default class EntryListItem extends Component<Props, State> {
         if(muted){
             this.setState({ showMuted: true })
         }
-        document.getElementsByTagName("html")[0].style.position = 'relative'
+        document.getElementsByTagName("html")[0].style.position = 'relative';
+        this.setState({ mounted: true })
     }
 
     componentWillUnmount(){
-        
         document.getElementsByTagName("html")[0].style.position = 'unset'
+        this.setState({ mounted: false })
     }
 
     componentDidUpdate(prevProps:Props){
-        if(this.props.entry !== prevProps.entry && this.props.muted){
+        if(this.props.entry !== prevProps.entry && this.props.muted && this.state.mounted){
             this.setState({ showMuted: true })
         }
     }
@@ -180,7 +183,7 @@ export default class EntryListItem extends Component<Props, State> {
 
     render() {
         const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order,} = this.props;
-        const { showProfileDetails } = this.state;
+        const { showProfileDetails, mounted } = this.state;
 
         const fallbackImage = global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png");
         const noImage = global.isElectron ?  "./img/noimage.svg" : require("../../img/noimage.svg");
@@ -241,7 +244,7 @@ export default class EntryListItem extends Component<Props, State> {
 
         const cls = `entry-list-item ${promoted ? "promoted-item" : ""}`;
 
-        return (
+        return mounted ? (
             <div className={_c(cls)} id={(entry.author + entry.permlink).replace(/[0-9]/g, '')}>
 
                 {(() => {
@@ -467,6 +470,6 @@ export default class EntryListItem extends Component<Props, State> {
                     </div>
                 </div>
             </div>
-        );
+        ) : null;
     }
 }

@@ -62,15 +62,13 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
 
     useEffect(()=>{
         return () => setIsmounted(false)
-
     },[])
 
-    const noImage = global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg");
     const coverFallbackDay = global.isElectron ? "./img/cover-fallback-day.png" : require("../../img/cover-fallback-day.png");
     const coverFallbackNight = global.isElectron ? "./img/cover-fallback-night.png" : require("../../img/cover-fallback-night.png");
     const reputation = profile && accountReputation(profile.reputation)
 
-return <div className="profile-parent">
+return isMounted ? <div className="profile-parent">
                 <div 
                     className={`position-fixed shadow bg-white profile-container rounded`}
                 >
@@ -88,7 +86,7 @@ return <div className="profile-parent">
                         <div className={`rounded-circle mb-3 profile-img-container ${profile && profile.profile.profile_image ? "" : "no-image"}`}>
                             {loading ? <Skeleton className="profile-img rounded-circle" /> : profile && 
                             <Link to={`/@${username}`} onClick={onClose}>
-                                <img src={profile.profile.profile_image ? `https://images.ecency.com/u/${username}/avatar/medium` : noImage} alt="profile-image" className="profile-img rounded-circle" loading="lazy"/>
+                                <img src={`https://images.ecency.com/u/${username}/avatar/medium`} alt="profile-image" className="profile-img rounded-circle bg-primary" loading="lazy"/>
                             </Link>
                             }
                         </div>
@@ -151,4 +149,4 @@ return <div className="profile-parent">
                 
                 </div>
             </div>
-    }
+    : null}
