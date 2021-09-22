@@ -998,14 +998,14 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@ecency/render-helper@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.2.0.tgz#4a848f49416be195a4b20063109512825eba8bec"
-  integrity sha512-unIybqZJi65onU5b0q9xvKDuQSxl0qLfvXMNW76BWfV0hgc2RCP3dsJAGvXWCPRrAgSgthftHkvegq9/oJlUxQ==
+"@ecency/render-helper@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.2.1.tgz#dad384b010a3c7de77bd00cdb51d62cf088f5f01"
+  integrity sha512-1p5TUVJnZt01r9zVMXXp/X3SM+kPe6mnAtKani1IB9ZP/7KjRkGTXKoMGADr2vk3jXPwbE3CrFCe7+Phu4vdww==
   dependencies:
     he "^1.2.0"
     lolight "^1.4.0"
-    lru-cache "^5.1.1"
+    lru-cache "^6.0.0"
     multihashes "0.4.13"
     path "^0.12.7"
     querystring "^0.2.0"
