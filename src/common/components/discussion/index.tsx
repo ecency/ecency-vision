@@ -107,7 +107,6 @@ interface ItemState {
     inProgress: boolean;
     showIfHidden: boolean;
     mutedData: string[];
-    mobilePosition: string;
     delayHandler: any
 }
 
@@ -120,7 +119,6 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         showProfileDetailsAvatar: false,
         showIfHidden: false,
         mutedData: [],
-        mobilePosition: "",
         delayHandler: null,
         mounted: false
     }
@@ -291,15 +289,8 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         e.persist();
         let timeout = setTimeout(()=>{
             e.stopPropagation()
-            if(this.props.global.isMobile && e.type == "click"){
-            let id = e.target.id.length > 0 ? e.target.id : e.target.parentNode.id
-            
-            this.setState({mobilePosition: id });
-            scrollTo(0,0)
-        }
+
         this.setState({showProfileDetails:true });
-        document.getElementsByClassName("app-content")[0].classList.add("p-0")
-        document.getElementsByClassName("app-content")[0].classList.add("p-sm-auto")
         document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
         this.setState({delayHandler: timeout})
     }
@@ -308,52 +299,34 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         e.persist();
         let timeout = setTimeout(()=>{
             e.stopPropagation()
-            if(this.props.global.isMobile && e.type == "click"){
-            let id = e.target.id.length > 0 ? e.target.id : e.target.parentNode.id
-            
-            this.setState({mobilePosition: id });
-            scrollTo(0,0)
-        }
         this.setState({showProfileDetailsAvatar:true });
-        document.getElementsByClassName("app-content")[0].classList.add("p-0")
-        document.getElementsByClassName("app-content")[0].classList.add("p-sm-auto")
-        document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")},this.props.global.isMobile ? 0 : 500)
+        document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
+    },this.props.global.isMobile ? 0 : 500)
         this.setState({delayHandler: timeout})
     }
 
     onHideProfile = (e:any) => {
-        const { mobilePosition, delayHandler } = this.state;
+        const { delayHandler } = this.state;
         clearTimeout(delayHandler)
         e.stopPropagation()
         if(delayHandler){
             setTimeout(()=>{
                 this.setState({showProfileDetails:false});
-                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");   
-                if(this.props.global.isMobile && mobilePosition.length > 0){
-                    document!.getElementById(mobilePosition)!.scrollIntoView({block: "center"})
-                }
-        document.getElementsByClassName("app-content")[0] && document.getElementsByClassName("app-content")[0].classList.remove("p-0")
-        document.getElementsByClassName("app-content")[0] && document.getElementsByClassName("app-content")[0].classList.remove("p-sm-auto")
+                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
         },200)
     }
     }
 
     onHideProfileAvatar = (e:any) => {
-        const { mobilePosition, delayHandler } = this.state;
+        const { delayHandler } = this.state;
         clearTimeout(delayHandler)
         e.stopPropagation()
         if(delayHandler){
             setTimeout(()=>{
                 this.setState({showProfileDetailsAvatar:false});
-                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");   
-                if(this.props.global.isMobile && mobilePosition.length > 0){
-                    document!.getElementById(mobilePosition)!.scrollIntoView({block: "center"})
-                }
-
-        document.getElementsByClassName("app-content")[0] && document.getElementsByClassName("app-content")[0].classList.remove("p-0")
-        document.getElementsByClassName("app-content")[0] && document.getElementsByClassName("app-content")[0].classList.remove("p-sm-auto")
+                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
         },200)
-    }
+        }
     }
 
     render() {

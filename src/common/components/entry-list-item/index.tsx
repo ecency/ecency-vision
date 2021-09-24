@@ -82,7 +82,6 @@ interface State {
     showMuted: boolean;
     mounted: boolean;
     showProfileDetails: boolean;
-    mobilePosition: string;
     delayHandler: any
 }
 
@@ -92,7 +91,6 @@ export default class EntryListItem extends Component<Props, State> {
         showMuted: false,
         mounted: false,
         showProfileDetails:false,
-        mobilePosition:'',
         delayHandler: null
     }
 
@@ -159,9 +157,6 @@ export default class EntryListItem extends Component<Props, State> {
             setTimeout(()=>{
                 e.stopPropagation()
                 if(this.props.global.isMobile && e.type == "click"){
-                let id = e.target.id.length > 0 ? e.target.id : e.target.parentNode.id
-                this.setState({mobilePosition: id });
-                scrollTo(0,0)
             }
             this.setState({showProfileDetails:true });
             document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
@@ -169,15 +164,12 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     hideMiniProfile = (e:any) => {
-        const { mobilePosition, delayHandler } = this.state;
+        const { delayHandler } = this.state;
         clearTimeout(delayHandler)
         e.stopPropagation()
         setTimeout(()=>{
                 this.setState({showProfileDetails:false});
-                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");   
-                if(this.props.global.isMobile && mobilePosition.length > 0){
-                    document!.getElementById(mobilePosition)!.scrollIntoView({block: "center"})
-                }
+                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
         },500)
     }
 
