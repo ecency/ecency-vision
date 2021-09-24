@@ -71,7 +71,6 @@ import { getFollowing } from "../api/hive";
 import { history } from "../store";
 import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
 import entryDeleteBtn from "../components/entry-delete-btn";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 setProxyBase(defaults.imageServer);
 
@@ -94,6 +93,7 @@ interface State {
     editHistory: boolean;
     showProfileBox: boolean;
     entryIsMuted: boolean;
+    isMounted: boolean;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -105,6 +105,7 @@ class EntryPage extends BaseComponent<Props, State> {
         editHistory: false,
         comment: "",
         showProfileBox: false,
+        isMounted: false,
         entryIsMuted: false
     };
     
@@ -120,12 +121,14 @@ class EntryPage extends BaseComponent<Props, State> {
         }
         window.addEventListener("scroll", this.detect);
         window.addEventListener("resize", this.detect);
+        this.setState({isMounted:true})
 
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
         const {location} = this.props;
         if (location.pathname !== prevProps.location.pathname) {
+            this.setState({isMounted:false})
             this.ensureEntry()
         }
     }
@@ -138,6 +141,7 @@ class EntryPage extends BaseComponent<Props, State> {
             resolve(window.removeEventListener("resize", this.detect))
         });
         Promise.all([p1, p2])
+        this.setState({isMounted:false})
     }
 
     // detects distance between title and comments section sets visibility of profile card
@@ -258,7 +262,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 }
             })
             .finally(() => {
-                this.stateSet({loading: false});
+                this.stateSet({loading: false, isMounted:true});
             });
     };
 
@@ -394,8 +398,8 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment} = this.state;
-        const {global, history, location} = this.props;
+        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, isMounted} = this.state;
+        const {global, history} = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
@@ -462,7 +466,7 @@ class EntryPage extends BaseComponent<Props, State> {
         };
         let containerClasses = global.isElectron ? "app-content entry-page mt-0 pt-6" : "app-content entry-page";
 
-        return (
+        return isMounted ? (
             <>
                 <Meta {...metaProps} />
                 <ScrollToTop/>
@@ -885,7 +889,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 {editHistory && <EditHistory entry={entry} onHide={this.toggleEditHistory}/>}
                 <EntryBodyExtra entry={entry}/>
             </>
-        );
+        ) : null;
     }
 }
 

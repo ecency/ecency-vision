@@ -325,24 +325,25 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         const { mobilePosition, delayHandler } = this.state;
         clearTimeout(delayHandler)
         e.stopPropagation()
-        setTimeout(()=>{
+        if(delayHandler){
+            setTimeout(()=>{
                 this.setState({showProfileDetails:false});
                 document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");   
                 if(this.props.global.isMobile && mobilePosition.length > 0){
                     document!.getElementById(mobilePosition)!.scrollIntoView({block: "center"})
                 }
-
         document.getElementsByClassName("app-content")[0] && document.getElementsByClassName("app-content")[0].classList.remove("p-0")
         document.getElementsByClassName("app-content")[0] && document.getElementsByClassName("app-content")[0].classList.remove("p-sm-auto")
         },200)
     }
-
+    }
 
     onHideProfileAvatar = (e:any) => {
         const { mobilePosition, delayHandler } = this.state;
         clearTimeout(delayHandler)
         e.stopPropagation()
-        setTimeout(()=>{
+        if(delayHandler){
+            setTimeout(()=>{
                 this.setState({showProfileDetailsAvatar:false});
                 document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");   
                 if(this.props.global.isMobile && mobilePosition.length > 0){
@@ -352,6 +353,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         document.getElementsByClassName("app-content")[0] && document.getElementsByClassName("app-content")[0].classList.remove("p-0")
         document.getElementsByClassName("app-content")[0] && document.getElementsByClassName("app-content")[0].classList.remove("p-sm-auto")
         },200)
+    }
     }
 
     render() {

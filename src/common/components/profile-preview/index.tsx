@@ -34,11 +34,12 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
     const [loading, setLoading] = useState(false);
     const [followCount, setFollowCount] = useState<any>(null);
     const [loadingFollowCount, setLoadingFollowCount] = useState(false);
-    const [isMounted, setIsmounted] = useState(true);
+    const [isMounted, setIsmounted] = useState(false);
 
     useEffect(()=>{
-        setLoading(true);
-        setLoadingFollowCount(true)
+        setLoadingFollowCount(true);
+        setIsmounted(true)
+        
     },[])
 
     useEffect(()=>{
@@ -58,9 +59,10 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
             }
         }).catch(err => setLoadingFollowCount(false))
     }
-    },[username]);
+    },[username, isMounted]);
 
     useEffect(()=>{
+        
         return () => setIsmounted(false)
     },[])
 
