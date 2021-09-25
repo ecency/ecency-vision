@@ -34,7 +34,7 @@
     "hot": "feed",
     "trending": "feed",
     "created": "feed",
-    "muted": "muted",
+    "muted": "заглушен/заглуши",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
@@ -65,7 +65,7 @@
     "filter-feed-friends": "Приятели",
     "filter-feed-subscriptions": "Общности",
     "filter-global": "Global",
-    "filter-global-part1": "This feed contains ",
+    "filter-global-part1": "Потока съдържа ",
     "filter-global-part2": " discussions on entire platform.",
     "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
     "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
@@ -112,7 +112,7 @@
     "theme": "theme",
     "light": "light",
     "dark": "dark",
-    "switch-to": "Switch",
+    "switch-to": "Превключи",
     "vote-power": "Сила на гласа:"
   },
   "intro": {
@@ -141,8 +141,8 @@
   },
   "sign-up": {
     "header": "Welcome to Ecency",
-    "description": "Home of Free speech and Rewarding communities!",
-    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
+    "description": "Дом на Свободната реч и Общностите които Награждават!",
+    "bottom-description": "Всеки профил е създаден в блокчейна и само Вие имате достъп до профила си! Един профил управлява всичко в Блокчейна и Ecency.",
     "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Изберете потребителско име",
     "email": "Въведете вашия имейл адрес",
