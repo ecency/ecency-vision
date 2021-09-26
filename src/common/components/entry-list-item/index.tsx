@@ -163,12 +163,12 @@ export default class EntryListItem extends Component<Props, State> {
         this.setState({delayHandler:timeout})
     }
 
-    hideMiniProfile = (e:any) => {
+    hideMiniProfile = (e:any, doNotSetState?: boolean) => {
         const { delayHandler } = this.state;
         clearTimeout(delayHandler)
         e.stopPropagation()
         setTimeout(()=>{
-                this.setState({showProfileDetails:false});
+                !doNotSetState && this.setState({showProfileDetails:false});
                 document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
         },500)
     }

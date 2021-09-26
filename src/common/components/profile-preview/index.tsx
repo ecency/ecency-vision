@@ -26,7 +26,7 @@ interface Props {
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
-    onClose: (e:any) => void;
+    onClose: (e:any, donotSetState?: boolean) => void;
 }
 
 export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
@@ -62,7 +62,6 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
     },[username, isMounted]);
 
     useEffect(()=>{
-        
         return () => setIsmounted(false)
     },[])
 
@@ -87,13 +86,13 @@ return isMounted ? <div className="profile-parent">
                     <div className="d-flex align-items-center info-container flex-column text-center">
                         <div className={`rounded-circle mb-3 profile-img-container ${profile && profile.profile.profile_image ? "" : "no-image"}`}>
                             {loading ? <Skeleton className="profile-img rounded-circle" /> : profile && 
-                            <Link to={`/@${username}`} onClick={onClose}>
+                            <Link to={`/@${username}`} onClick={(e) => onClose(e, true)}>
                                 <img src={`https://images.ecency.com/u/${username}/avatar/medium`} alt="profile-image" className="profile-img rounded-circle bg-primary" loading="lazy"/>
                             </Link>
                             }
                         </div>
                         <div className="d-flex flex-column align-items-center">
-                            <Link to={`/@${username}`} onClick={onClose}>
+                            <Link to={`/@${username}`} onClick={(e) => onClose(e, true)}>
                                 <div >{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.name}</div>
                                 <div>{loading ? <Skeleton className="loading-md my-3" /> : `@${username} (${reputation})`}</div>
                             </Link>
@@ -121,7 +120,7 @@ return isMounted ? <div className="profile-parent">
                         <div className="flex-grow-1 d-flex border-bottom">
                             <div className="p-3 flex-grow-1">
                                 <b>{_t("profile.section-posts")}</b>
-                                <div>{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/posts`} onClick={onClose}>{profile.post_count}</Link>}</div>
+                                <div>{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/posts`} onClick={(e) => onClose(e, true)}>{profile.post_count}</Link>}</div>
                             </div>
 
                             <div className="p-3 flex-grow-1">
@@ -144,7 +143,7 @@ return isMounted ? <div className="profile-parent">
                     </div>
                     <div className={`p-3 ${loading ? "": profile && profile.profile.about ? "" : "d-none"}`}>
                         <b>{_t("profile-edit.about")}</b>
-                        <div className="limited-about-text">{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.about ? profile.profile.about.length > 55 ? <Link to={`/@${username}`} onClick={onClose}>{profile.profile.about}</Link>: profile.profile.about : "---"}</div>
+                        <div className="limited-about-text">{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.about ? profile.profile.about.length > 55 ? <Link to={`/@${username}`} onClick={(e) => onClose(e, true)}>{profile.profile.about}</Link>: profile.profile.about : "---"}</div>
                     </div>
                 </div>
                 </>

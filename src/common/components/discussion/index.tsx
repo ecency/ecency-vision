@@ -50,7 +50,7 @@ import {error} from "../feedback";
 
 import _c from "../../util/fix-class-names"
 
-import {commentSvg, pencilOutlineSvg, deleteForeverSvg, downArrowSvg, menuDownSvg} from "../../img/svg";
+import {commentSvg, pencilOutlineSvg, deleteForeverSvg, menuDownSvg} from "../../img/svg";
 
 import {version} from "../../../../package.json";
 import { getFollowing } from "../../api/hive";
@@ -305,25 +305,25 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         this.setState({delayHandler: timeout})
     }
 
-    onHideProfile = (e:any) => {
+    onHideProfile = (e:any, doNotSetState?: boolean) => {
         const { delayHandler } = this.state;
         clearTimeout(delayHandler)
         e.stopPropagation()
         if(delayHandler){
             setTimeout(()=>{
-                this.setState({showProfileDetails:false});
+                !doNotSetState && this.setState({showProfileDetails:false});
                 document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
         },200)
     }
     }
 
-    onHideProfileAvatar = (e:any) => {
+    onHideProfileAvatar = (e:any, doNotSetState?: boolean) => {
         const { delayHandler } = this.state;
         clearTimeout(delayHandler)
         e.stopPropagation()
         if(delayHandler){
             setTimeout(()=>{
-                this.setState({showProfileDetailsAvatar:false});
+                !doNotSetState && this.setState({showProfileDetailsAvatar:false});
                 document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
         },200)
         }
@@ -355,7 +355,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                 <div className="item-inner">
                     <div className="item-figure">
                         <div className="d-sm-none" id={String(entry.post_id)} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
-                        <div onMouseEnter={(e) => {!isHidden && this.onShowProfileAvatar(e)}} onMouseLeave={(e) => {!isHidden && this.onHideProfileAvatar(e)}}>
+                        <div onMouseEnter={(e) => {!isHidden && this.onShowProfileAvatar(e)}} onMouseLeave={(e, ) => {!isHidden && this.onHideProfileAvatar(e)}}>
                             {ProfileLink({...this.props, username: entry.author, children: 
                                     <a className="d-none d-sm-inline-block">
                                         {UserAvatar({...this.props, username: entry.author, size: "medium"})}
@@ -367,7 +367,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                 <ProfilePreview
                                     username={entry.author}
                                     {...this.props}
-                                    onClose={(e) => {!isHidden && this.onHideProfile(e)}}
+                                    onClose={(e, doNotSetState) => {!isHidden && this.onHideProfileAvatar(e, doNotSetState)}}
                                 />
                             }
                         </div>
@@ -395,7 +395,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                     <ProfilePreview
                                         username={entry.author}
                                         {...this.props}
-                                        onClose={(e) => {!isHidden && this.onHideProfile(e)}}
+                                        onClose={(e, doNotSetState) => {!isHidden && this.onHideProfile(e, doNotSetState)}}
                                     />
                             }
                             </div>
