@@ -128,7 +128,7 @@ export class NavBar extends Component<Props, State> {
 
     componentDidUpdate(prevProps: Props, prevStates: State) {
         if(prevStates.smVisible !== this.state.smVisible){
-            if(this.state.smVisible) {
+            if(this.state.smVisible) {  
                 document.getElementsByTagName('body')[0].classList.add("overflow-hidden")
             }
             if(!this.state.smVisible) {
@@ -174,11 +174,11 @@ export class NavBar extends Component<Props, State> {
     }
 
     render() {
-        const {global, activeUser, ui, step, toggleUIProp, setActiveUser, setStepOne } = this.props;
+        const {global, activeUser, ui, step, toggleUIProp, setActiveUser } = this.props;
         const logo = global.isElectron ? "./img/logo-circle.svg" : require('../../img/logo-circle.svg');
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
-        const {smVisible, floating, showMobileSearch, showProfileMenu, drafts, bookmarks, fragments, gallery, schedules, notifications } = this.state;
+        const {smVisible, floating, showMobileSearch, showProfileMenu, drafts, bookmarks, fragments, gallery, schedules } = this.state;
 
         const transparentVerify = this.props?.location?.pathname?.startsWith("/hot")
         || this.props?.location?.pathname?.startsWith("/created")
@@ -402,7 +402,6 @@ export class NavBar extends Component<Props, State> {
 
                             {activeUser && 
                             <>
-
                                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={() => toggleUIProp('notifications')}>
                                     <div className="navbar-icon text-dark">{notificationSvg}</div>
                                     <div className="ml-3 text-15">{_t("user-nav.notifications")}</div>
