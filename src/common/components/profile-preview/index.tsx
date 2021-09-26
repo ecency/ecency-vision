@@ -39,7 +39,6 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
     useEffect(()=>{
         setLoadingFollowCount(true);
         setIsmounted(true)
-        
     },[])
 
     useEffect(()=>{

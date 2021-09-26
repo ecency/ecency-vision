@@ -290,40 +290,40 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         let timeout = setTimeout(()=>{
             e.stopPropagation()
 
-        this.setState({showProfileDetails:true });
+        this.state.mounted && this.setState({showProfileDetails:true });
         document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
-        this.setState({delayHandler: timeout})
+        this.state.mounted && this.setState({delayHandler: timeout})
     }
 
     onShowProfileAvatar = (e:any) => {
         e.persist();
         let timeout = setTimeout(()=>{
             e.stopPropagation()
-        this.setState({showProfileDetailsAvatar:true });
+        this.state.mounted && this.setState({showProfileDetailsAvatar:true });
         document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
     },this.props.global.isMobile ? 0 : 500)
-        this.setState({delayHandler: timeout})
+        this.state.mounted && this.setState({delayHandler: timeout})
     }
 
     onHideProfile = (e:any, doNotSetState?: boolean) => {
-        const { delayHandler } = this.state;
+        const { delayHandler, mounted } = this.state;
         clearTimeout(delayHandler)
         e.stopPropagation()
         if(delayHandler){
             setTimeout(()=>{
-                !doNotSetState && this.setState({showProfileDetails:false});
+                !doNotSetState && mounted && this.setState({showProfileDetails:false});
                 document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
         },200)
     }
     }
 
     onHideProfileAvatar = (e:any, doNotSetState?: boolean) => {
-        const { delayHandler } = this.state;
+        const { delayHandler, mounted } = this.state;
         clearTimeout(delayHandler)
         e.stopPropagation()
         if(delayHandler){
             setTimeout(()=>{
-                !doNotSetState && this.setState({showProfileDetailsAvatar:false});
+                !doNotSetState && mounted && this.setState({showProfileDetailsAvatar:false});
                 document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
         },200)
         }
@@ -605,7 +605,7 @@ export class Discussion extends Component<Props, State> {
         if (parent.url !== prevProps.parent.url) { // url changed
             this.fetch();
         }
-        debugger
+        
         const {discussion} = this.props;
         if (prevProps.discussion.list.length === 0 && discussion.list.length > 0) {
             const {location} = this.props;
