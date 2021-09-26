@@ -349,9 +349,11 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
 
         const selected = location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`;
 
-        return mounted ? (
+        return (
             <div className={_c(`discussion-item depth-${entry.depth} ${isHidden ? "hidden-item" : ""} ${selected ? "selected-item" : ""}`)}>
-                <div className="item-anchor" id={anchorId}/>
+                <div className="position-relative">
+                    <div className="item-anchor" id={anchorId}/>
+                </div>
                 <div className="item-inner">
                     <div className="item-figure">
                         <div className="d-sm-none" id={String(entry.post_id)} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
@@ -499,7 +501,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
 
                 {showSubList && <List {...this.props} parent={entry}/>}
             </div>
-        ) : null;
+        );
     }
 }
 
@@ -603,7 +605,7 @@ export class Discussion extends Component<Props, State> {
         if (parent.url !== prevProps.parent.url) { // url changed
             this.fetch();
         }
-
+        debugger
         const {discussion} = this.props;
         if (prevProps.discussion.list.length === 0 && discussion.list.length > 0) {
             const {location} = this.props;
