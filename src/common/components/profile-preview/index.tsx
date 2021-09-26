@@ -77,7 +77,7 @@ return isMounted ? <div className="profile-parent">
                 </div>
                 <>
                 {loading ? <Skeleton className="cover-img-placeholder rounded-top"/> : profile && <img 
-                    src={profile.profile.cover_image ? `https://images.ecency.com/webp/u/${username}/cover` :  global.theme === "day" ? coverFallbackDay : coverFallbackNight}
+                    src={profile.profile.cover_image ? `https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${username}/cover` :  global.theme === "day" ? coverFallbackDay : coverFallbackNight}
                     className="w-100 cover-img rounded-top"
                     loading="lazy"
                 />}

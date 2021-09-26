@@ -153,6 +153,7 @@ export default class EntryListItem extends Component<Props, State> {
 
     showMiniProfile = (e: any) => {
         e.persist();
+        // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
         const timeout =
             setTimeout(()=>{
                 e.stopPropagation()
@@ -167,10 +168,11 @@ export default class EntryListItem extends Component<Props, State> {
         const { delayHandler } = this.state;
         clearTimeout(delayHandler)
         e.stopPropagation()
+        // Add 0.2 sec delay while hiding mini-profile on web
         setTimeout(()=>{
                 !doNotSetState && this.setState({showProfileDetails:false});
                 document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
-        },500)
+        }, this.props.global.isMobile ? 0 : 200)
     }
 
     render() {
@@ -275,21 +277,21 @@ export default class EntryListItem extends Component<Props, State> {
 
                 <div className="item-header">
                     <div className="item-header-main">
-                        <div className="author-part" id={String(entry.post_id)}>
+                        <div className="author-part" id={String(entry.author+entry.permlink)}>
                             <div
                                 onMouseEnter={this.showMiniProfile}
                                 onMouseLeave={this.hideMiniProfile}
                                 className="d-flex align-items-center"
-                                id={String(entry.post_id)}
+                                id={String(entry.author+entry.permlink)}
                             >
-                                <div className="author-avatar d-sm-none" onClick={this.showMiniProfile} id={String(entry.post_id)}>{UserAvatar({...this.props, username: entry.author, size: "small"})}</div>
+                                <div className="author-avatar d-sm-none" onClick={this.showMiniProfile} id={String(entry.author+entry.permlink)}>{UserAvatar({...this.props, username: entry.author, size: "small"})}</div>
                                 {ProfileLink({
                                     ...this.props,
                                     username: entry.author,
                                     children: <a className="author-avatar d-none d-sm-block">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
                                 })}
 
-                                <div className="author notranslate d-flex d-sm-none align-items-center" onClick={this.showMiniProfile} id={String(entry.post_id)}>
+                                <div className="author notranslate d-flex d-sm-none align-items-center" onClick={this.showMiniProfile} id={String(entry.author+entry.permlink)}>
                                     <span>{entry.author}</span>
                                 </div>
                             
@@ -312,7 +314,7 @@ export default class EntryListItem extends Component<Props, State> {
                             <span
                                 className="author-down-arrow ml-1"
                                 onClick={this.showMiniProfile}
-                                id={String(entry.post_id)}
+                                id={String(entry.author+entry.permlink)}
                             >
                                 {menuDownSvg}
                             </span>

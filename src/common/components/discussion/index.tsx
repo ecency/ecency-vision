@@ -287,21 +287,22 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
 
     onShowProfile = (e:any) => {
         e.persist();
+        // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
         let timeout = setTimeout(()=>{
             e.stopPropagation()
-
-        this.state.mounted && this.setState({showProfileDetails:true });
-        document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
+            this.state.mounted && this.setState({showProfileDetails:true });
+            document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
         this.state.mounted && this.setState({delayHandler: timeout})
     }
 
     onShowProfileAvatar = (e:any) => {
         e.persist();
+        // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
         let timeout = setTimeout(()=>{
             e.stopPropagation()
-        this.state.mounted && this.setState({showProfileDetailsAvatar:true });
-        document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
-    },this.props.global.isMobile ? 0 : 500)
+            this.state.mounted && this.setState({showProfileDetailsAvatar:true });
+            document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
+    }, this.props.global.isMobile ? 0 : 500)
         this.state.mounted && this.setState({delayHandler: timeout})
     }
 
@@ -310,10 +311,11 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         clearTimeout(delayHandler)
         e.stopPropagation()
         if(delayHandler){
+            // Add 0.2 sec delay while hiding mini-profile on web
             setTimeout(()=>{
                 !doNotSetState && mounted && this.setState({showProfileDetails:false});
                 document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
-        },200)
+        },this.props.global.isMobile ? 0 : 200)
     }
     }
 
@@ -322,10 +324,11 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         clearTimeout(delayHandler)
         e.stopPropagation()
         if(delayHandler){
+            // Add 0.2 sec delay while hiding mini-profile on web
             setTimeout(()=>{
                 !doNotSetState && mounted && this.setState({showProfileDetailsAvatar:false});
                 document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
-        },200)
+        },this.props.global.isMobile ? 0 : 200)
         }
     }
 
@@ -356,7 +359,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                 </div>
                 <div className="item-inner">
                     <div className="item-figure">
-                        <div className="d-sm-none" id={String(entry.post_id)} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
+                        <div className="d-sm-none" id={entry.author.toString() + entry.permlink.toString()} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
                         <div onMouseEnter={(e) => {!isHidden && this.onShowProfileAvatar(e)}} onMouseLeave={(e, ) => {!isHidden && this.onHideProfileAvatar(e)}}>
                             {ProfileLink({...this.props, username: entry.author, children: 
                                     <a className="d-none d-sm-inline-block">
@@ -380,11 +383,11 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                 onMouseEnter={(e) => {!isHidden && this.onShowProfile(e)}}
                                 onMouseLeave={(e) => {!isHidden && this.onHideProfile(e)}}
                                 className="d-flex align-items-center"
-                                id={String(entry.post_id)} 
+                                id={entry.author.toString() + entry.permlink.toString()} 
                             >
-                            <div className="author notranslate d-flex align-items-center d-sm-none" id={String(entry.post_id)} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>
-                                <span className="author-name" id={String(entry.post_id)} >{entry.author}</span>
-                                <span className="author-down-arrow mx-2" id={String(entry.post_id)} >{menuDownSvg}</span>
+                            <div className="author notranslate d-flex align-items-center d-sm-none" id={entry.author.toString() + entry.permlink.toString()} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>
+                                <span className="author-name" id={entry.author.toString() + entry.permlink.toString()} >{entry.author}</span>
+                                <span className="author-down-arrow mx-2" id={entry.author.toString() + entry.permlink.toString()} >{menuDownSvg}</span>
                             </div>
                             {ProfileLink({
                                 ...this.props,
