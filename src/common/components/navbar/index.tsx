@@ -128,8 +128,7 @@ export class NavBar extends Component<Props, State> {
 
     componentDidUpdate(prevProps: Props, prevStates: State) {
         if(prevStates.smVisible !== this.state.smVisible){
-            if(this.state.smVisible) {
-                
+            if(this.state.smVisible) {  
                 document.getElementsByTagName('body')[0].classList.add("overflow-hidden")
             }
             if(!this.state.smVisible) {
@@ -140,11 +139,9 @@ export class NavBar extends Component<Props, State> {
 
         if(prevProps.location.pathname !== this.props.location.pathname || prevProps.activeUser !== this.props.activeUser){
             if(this.props.location.pathname === "/" && !this.props.activeUser){
-                
                 this.props.setStepOne!();
             }
             else {
-                
                 this.props.setStepTwo && this.props.setStepTwo();
             }
         }
@@ -172,7 +169,6 @@ export class NavBar extends Component<Props, State> {
             this.props.history.push("/");
         }
         if(this.props.setStepOne) {
-            
             return this.props.setStepOne()
         }
     }
