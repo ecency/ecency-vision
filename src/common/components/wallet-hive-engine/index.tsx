@@ -96,12 +96,18 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
     this.stateSet({ claiming: true });
 
-    return claimRewards(activeUser.username, tokens.map(t => t.symbol))
+    return claimRewards(
+      activeUser.username,
+      tokens.map((t) => t.symbol)
+    )
       .then((account) => {
         success(_t("wallet.claim-reward-balance-ok"));
       })
+      .then(() => {
+        this.stateSet({ rewards: []})
+      })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
         error(formatError(err));
       })
       .finally(() => {
