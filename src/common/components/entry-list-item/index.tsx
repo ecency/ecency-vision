@@ -277,21 +277,21 @@ export default class EntryListItem extends Component<Props, State> {
 
                 <div className="item-header">
                     <div className="item-header-main">
-                        <div className="author-part" id={String(entry.author+entry.permlink)}>
+                        <div className="author-part" id={`${entry.author}-${entry.permlink}`}>
                             <div
                                 onMouseEnter={this.showMiniProfile}
                                 onMouseLeave={this.hideMiniProfile}
                                 className="d-flex align-items-center"
-                                id={String(entry.author+entry.permlink)}
+                                id={`${entry.author}-${entry.permlink}`}
                             >
-                                <div className="author-avatar d-sm-none" onClick={this.showMiniProfile} id={String(entry.author+entry.permlink)}>{UserAvatar({...this.props, username: entry.author, size: "small"})}</div>
+                                <div className="author-avatar d-sm-none" onClick={this.showMiniProfile} id={`${entry.author}-${entry.permlink}`}>{UserAvatar({...this.props, username: entry.author, size: "small"})}</div>
                                 {ProfileLink({
                                     ...this.props,
                                     username: entry.author,
                                     children: <a className="author-avatar d-none d-sm-block">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
                                 })}
 
-                                <div className="author notranslate d-flex d-sm-none align-items-center" onClick={this.showMiniProfile} id={String(entry.author+entry.permlink)}>
+                                <div className="author notranslate d-flex d-sm-none align-items-center" onClick={this.showMiniProfile} id={`${entry.author}-${entry.permlink}`}>
                                     <span>{entry.author}</span>
                                 </div>
                             
@@ -314,7 +314,7 @@ export default class EntryListItem extends Component<Props, State> {
                             <span
                                 className="author-down-arrow ml-1"
                                 onClick={this.showMiniProfile}
-                                id={String(entry.author+entry.permlink)}
+                                id={`${entry.author}-${entry.permlink}`}
                             >
                                 {menuDownSvg}
                             </span>

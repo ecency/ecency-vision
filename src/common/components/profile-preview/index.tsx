@@ -44,20 +44,19 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
     useEffect(()=>{
         if(isMounted){
             setLoading(true)
-        getAccount(username).then(profile=>{
-            if(isMounted){
-            setProfile(profile);
-            setLoading(false)}
-        }).catch(err => 
-            setLoading(false)
-            );
-        getFollowCount(username).then(res=> {
-            if(isMounted){
-                setFollowCount(res);
-                setLoadingFollowCount(false);
-            }
-        }).catch(err => setLoadingFollowCount(false))
-    }
+            getAccount(username).then(profile=>{
+                if (isMounted) {
+                    setProfile(profile);
+                    setLoading(false)
+                }
+            }).catch(err => setLoading(false));
+            getFollowCount(username).then(res=> {
+                if (isMounted) {
+                    setFollowCount(res);
+                    setLoadingFollowCount(false);
+                }
+            }).catch(err => setLoadingFollowCount(false));
+        }
     },[username, isMounted]);
 
     useEffect(()=>{
@@ -68,7 +67,7 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
     const coverFallbackNight = global.isElectron ? "./img/cover-fallback-night.png" : require("../../img/cover-fallback-night.png");
     const reputation = profile && accountReputation(profile.reputation)
 
-return isMounted ? <div className="profile-parent">
+    return isMounted ? <div className="profile-parent">
                 <div 
                     className={`position-fixed shadow bg-white profile-container rounded`}
                 >
@@ -149,4 +148,5 @@ return isMounted ? <div className="profile-parent">
                 
                 </div>
             </div>
-    : null}
+    : null;
+}
