@@ -749,10 +749,10 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                     <div className="entry-footer">
                                         <div className="entry-tags">
-                                            {tags.map((t) => {
+                                            {tags.map((t,i) => {
                                                 if (typeof t === "string") {
                                                     if (entry.community && entry.community_title && t === entry.community) {
-                                                        return <Fragment key={t}>
+                                                        return <Fragment key={t+i}>
                                                             {Tag({
                                                                 ...this.props,
                                                                 tag: {
@@ -766,7 +766,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                     }
     
                                                     return (
-                                                        <Fragment key={t}>
+                                                        <Fragment key={t+i}>
                                                             {Tag({
                                                                 ...this.props,
                                                                 tag: t.trim(),
