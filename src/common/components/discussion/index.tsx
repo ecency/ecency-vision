@@ -359,7 +359,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                 </div>
                 <div className="item-inner">
                     <div className="item-figure">
-                        <div className="d-sm-none" id={entry.author.toString() + entry.permlink.toString()} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
+                        <div className="d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
                         <div onMouseEnter={(e) => {!isHidden && this.onShowProfileAvatar(e)}} onMouseLeave={(e, ) => {!isHidden && this.onHideProfileAvatar(e)}}>
                             {ProfileLink({...this.props, username: entry.author, children: 
                                     <a className="d-none d-sm-inline-block">
@@ -383,11 +383,11 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                 onMouseEnter={(e) => {!isHidden && this.onShowProfile(e)}}
                                 onMouseLeave={(e) => {!isHidden && this.onHideProfile(e)}}
                                 className="d-flex align-items-center"
-                                id={entry.author.toString() + entry.permlink.toString()} 
+                                id={`${entry.author}-${entry.permlink}`} 
                             >
-                            <div className="author notranslate d-flex align-items-center d-sm-none" id={entry.author.toString() + entry.permlink.toString()} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>
-                                <span className="author-name" id={entry.author.toString() + entry.permlink.toString()} >{entry.author}</span>
-                                <span className="author-down-arrow mx-2" id={entry.author.toString() + entry.permlink.toString()} >{menuDownSvg}</span>
+                            <div className="author notranslate d-flex align-items-center d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>
+                                <span className="author-name" id={`${entry.author}-${entry.permlink}`} >{entry.author}</span>
+                                <span className="author-down-arrow mx-2" id={`${entry.author}-${entry.permlink}`} >{menuDownSvg}</span>
                             </div>
                             {ProfileLink({
                                 ...this.props,
