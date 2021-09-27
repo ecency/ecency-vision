@@ -81,7 +81,7 @@ return isMounted ? <div className="profile-parent">
                     className="w-100 cover-img rounded-top"
                     loading="lazy"
                 />}
-                <div className="p-3">
+                <div className="p-3 upper-container">
                     <div className="d-flex align-items-center info-container flex-column text-center">
                         <div className={`rounded-circle mb-3 profile-img-container ${profile && profile.profile.profile_image ? "" : "no-image"}`}>
                             {loading ? <Skeleton className="profile-img rounded-circle" /> : profile && 
@@ -140,9 +140,9 @@ return isMounted ? <div className="profile-parent">
                             </div>
                         </div>
                     </div>
-                    <div className={`p-3 ${loading ? "": profile && profile.profile.about ? "" : "d-none"}`}>
-                        <b>{_t("profile-edit.about")}</b>
-                        <div className="limited-about-text">{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.about ? profile.profile.about.length > 55 ? <Link to={`/@${username}`} onClick={(e) => onClose(e, true)}>{profile.profile.about}</Link>: profile.profile.about : "---"}</div>
+                    <div className={`p-3 about-container`}>
+                        <b className={`${loading ? "" : profile && profile.profile.about ? "" : "d-none"}`}>{_t("profile-edit.about")}</b>
+                        <div className="limited-about-text">{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.about ? profile.profile.about.length > 55 ? <Link to={`/@${username}`} onClick={(e) => onClose(e, true)}>{profile.profile.about}</Link>: profile.profile.about : null}</div>
                     </div>
                 </div>
                 </>
