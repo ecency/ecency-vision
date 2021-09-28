@@ -46,7 +46,6 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
             setLoading(true)
             getAccount(username).then(profile=>{
                 if (isMounted) {
-                    debugger
                     setProfile(profile);
                     setLoading(false)
                 }
