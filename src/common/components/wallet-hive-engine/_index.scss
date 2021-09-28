@@ -20,7 +20,7 @@
       height: 40px;
       width: 40px;
       border-radius: 50%;
-      background: #fff;
+      background: $pinkish-grey;
       background-position: 50% 50%;
       background-repeat: no-repeat;
       background-size: cover;
@@ -51,7 +51,7 @@
 
       @include themify(night) {
         background: #283241;
-        color: white;
+        color: $pinkish-grey;
       }
     }
   }
