@@ -255,15 +255,9 @@ export class Login extends BaseComponent<LoginProps, State> {
             || !isEqual(this.state, nextState);
     }
 
-    manageUI = () => {
-        window.scrollTo(0, 0);
-        document.body.scrollTop = 0;
-    }
-
     hide = () => {
         const {toggleUIProp} = this.props;
         toggleUIProp('login');
-        this.manageUI()
     }
 
     userSelect = (user: User) => {
@@ -500,7 +494,7 @@ export class Login extends BaseComponent<LoginProps, State> {
 
                 <Form className="login-form" onSubmit={(e: React.FormEvent) => {
                     e.preventDefault();
-                }} onFocus={this.manageUI}>
+                }}>
                     <p className="login-form-text">{_t('login.with-user-pass')}</p>
                     <Form.Group>
                         <Form.Control type="text" value={username} onChange={this.usernameChanged} placeholder={_t('login.username-placeholder')} autoFocus={true}

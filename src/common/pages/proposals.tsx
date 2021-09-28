@@ -164,7 +164,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                 <Feedback/>
                 {navBar}
                 <div className={containerClasses}>
-                    <div className="page-header">
+                    <div className="page-header mt-5">
                         <h1 className="header-title">
                             {_t("proposals.page-title")}
                         </h1>
@@ -322,7 +322,7 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
                 <Feedback/>
                 {navBar}
                 <div className={containerClasses}>
-                    <div className="page-header">
+                    <div className="page-header mt-5">
                         <h1 className="header-title">
                             {_t('proposals.page-title')}
                         </h1>

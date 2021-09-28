@@ -46,21 +46,25 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
             setLoading(true)
             getAccount(username).then(profile=>{
                 if (isMounted) {
+                    debugger
                     setProfile(profile);
                     setLoading(false)
                 }
-            }).catch(err => setLoading(false));
+            }).catch(err => isMounted && setLoading(false));
             getFollowCount(username).then(res=> {
                 if (isMounted) {
                     setFollowCount(res);
                     setLoadingFollowCount(false);
                 }
-            }).catch(err => setLoadingFollowCount(false));
+            }).catch(err => isMounted && setLoadingFollowCount(false));
         }
     },[username, isMounted]);
 
     useEffect(()=>{
-        return () => setIsmounted(false)
+        if(isMounted){
+            return () => setIsmounted(false);
+        }
+        return () => {}
     },[])
 
     const coverFallbackDay = global.isElectron ? "./img/cover-fallback-day.png" : require("../../img/cover-fallback-day.png");
