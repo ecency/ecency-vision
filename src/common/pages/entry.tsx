@@ -1,10 +1,11 @@
 import React, {Fragment} from "react";
+import ReactDOM from 'react-dom'
 
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {match} from "react-router";
-
 import moment from "moment";
+
 
 import {renderPostBody, setProxyBase, catchPostImage, postBodySummary} from "@ecency/render-helper";
 
@@ -15,6 +16,7 @@ import {FullAccount} from "../store/accounts/types";
 import EntryLink, {makePath as makeEntryPath} from "../components/entry-link";
 
 import BaseComponent from "../components/base";
+import ClickAwayListener from "../components/clickaway-listener";
 import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
 import Tag from "../components/tag";
@@ -69,9 +71,10 @@ import dmca from '../../common/constants/dmca.json';
 
 import { getFollowing } from "../api/hive";
 import { history } from "../store";
-import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
+import { copyContent, deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
 import entryDeleteBtn from "../components/entry-delete-btn";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { renderToString } from 'react-dom/server'
+import { SelectionPopover } from "../components/selection-popover";
 
 setProxyBase(defaults.imageServer);
 
@@ -94,6 +97,8 @@ interface State {
     editHistory: boolean;
     showProfileBox: boolean;
     entryIsMuted: boolean;
+    selection: boolean;
+    selectionText: Range | null;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -104,9 +109,19 @@ class EntryPage extends BaseComponent<Props, State> {
         showIfNsfw: false,
         editHistory: false,
         comment: "",
+        selectionText: null,
         showProfileBox: false,
-        entryIsMuted: false
+        entryIsMuted: false,
+        selection: false
     };
+    refParagraph: React.RefObject<any>;
+    refCode: React.RefObject<any>;
+
+    constructor(props: Props) {
+      super(props);
+      this.refParagraph = React.createRef();
+      this.refCode = React.createRef();
+    }
     
     viewElement: HTMLDivElement | undefined;
 
@@ -120,13 +135,49 @@ class EntryPage extends BaseComponent<Props, State> {
         }
         window.addEventListener("scroll", this.detect);
         window.addEventListener("resize", this.detect);
-
     }
 
-    componentDidUpdate(prevProps: Readonly<Props>): void {
+    undoSurroundContent = () => {
+        let parent = document.getElementById("selectedText");
+        parent && parent.classList.remove("selectedText");
+        parent && parent.classList.add("d-inline-block");
+        let child = document.getElementById("selectedTooltip");
+        child && child.classList.remove("selectedTooltip");
+        child && child.classList.add("d-inline-block");
+        this.setState({selection:false, selectionText:null});
+    }
+
+    componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
         const {location} = this.props;
+        const {selection, selectionText} = this.state;
         if (location.pathname !== prevProps.location.pathname) {
             this.ensureEntry()
+        }
+        if (selectionText !== prevStates.selectionText) {
+            if(selection && selectionText && selectionText.toString().length > 0){
+                this.undoSurroundContent()
+                
+                const icons = <ClickAwayListener onClickAway={this.undoSurroundContent}>
+                                <div className="d-flex" onMouseLeave={this.undoSurroundContent}>
+                                    <div onClick={(e) => {e.stopPropagation(); alert("Hello")}}>{copyContent}</div>
+                                    <div className="mx-2" onClick={() => alert("Hello")}>{copyContent}</div>
+                                    <div onClick={() => alert("Hello")}>{copyContent}</div>
+                                </div>
+                            </ClickAwayListener>;
+                let parentElement = document.createElement("span");
+                parentElement.id = 'selectedText';
+                parentElement.className = 'selectedText';
+                let tooltipElement = document.createElement("span");
+                tooltipElement.id = 'selectedTooltip';
+                tooltipElement.className = 'selectedTooltip';
+                ReactDOM.render(icons, tooltipElement)
+                parentElement.appendChild(selectionText.extractContents());
+                selectionText.insertNode(parentElement);
+                parentElement.appendChild(tooltipElement);
+                debugger
+            } else {
+                this.undoSurroundContent()
+            }
         }
     }
 
@@ -394,8 +445,8 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment} = this.state;
-        const {global, history, location} = this.props;
+        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, selection} = this.state;
+        const {global, history} = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
@@ -597,11 +648,11 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         })}
                                                     </div>
                                                 </div>
-                                                <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/>
+                                                <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody} onMouseUp={(e)=>{debugger}}/>
                                             </>;
                                         }
 
-                                        const renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 ? comment : entry.body :entry.body, false, global.canUseWebp)};
+                                        let renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 ? comment : entry.body :entry.body, false, global.canUseWebp)};
                                         
                                         const ctitle = entry.community ? entry.community_title : "";
                                         let extraItems = ownEntry && isComment ? [{
@@ -724,7 +775,34 @@ class EntryPage extends BaseComponent<Props, State> {
                                             </div>
                                             <meta itemProp="headline name" content={entry.title}/>
                                             {!edit ? 
-                                                <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/> :
+                                               <>
+                                                    {/* <div
+                                                        itemProp="articleBody"
+                                                        className="entry-body markdown-view user-selectable"
+                                                        dangerouslySetInnerHTML={renderedBody}
+                                                    // onMouseUp={(e)=>{
+                                                    //     let selectionText:any = document.getSelection() || (document as any).selection!.createRange().htmlText;
+                                                    //     let selectionRange = selectionText!.getRangeAt(0);
+                                                    //     if(selectionText) {
+                                                    //         this.setState({selectionText: selectionRange, selection:true})
+                                                    //       }
+                                                    // }}
+                                                    /> */}
+                                                    <SelectionPopover>
+                                                    <div
+                                                        itemProp="articleBody"
+                                                        className="entry-body markdown-view user-selectable"
+                                                        dangerouslySetInnerHTML={renderedBody}
+                                                    // onMouseUp={(e)=>{
+                                                    //     let selectionText:any = document.getSelection() || (document as any).selection!.createRange().htmlText;
+                                                    //     let selectionRange = selectionText!.getRangeAt(0);
+                                                    //     if(selectionText) {
+                                                    //         this.setState({selectionText: selectionRange, selection:true})
+                                                    //       }
+                                                    // }}
+                                                    />
+                                                    </SelectionPopover>
+                                                </> :
                                                 Comment({
                                                     ...this.props,
                                                     defText: entry.body,
