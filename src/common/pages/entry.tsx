@@ -73,7 +73,6 @@ import { getFollowing } from "../api/hive";
 import { history } from "../store";
 import { copyContent, deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
 import entryDeleteBtn from "../components/entry-delete-btn";
-import { renderToString } from 'react-dom/server'
 import { SelectionPopover } from "../components/selection-popover";
 
 setProxyBase(defaults.imageServer);
@@ -97,8 +96,7 @@ interface State {
     editHistory: boolean;
     showProfileBox: boolean;
     entryIsMuted: boolean;
-    selection: boolean;
-    selectionText: Range | null;
+    selection: string;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -109,18 +107,13 @@ class EntryPage extends BaseComponent<Props, State> {
         showIfNsfw: false,
         editHistory: false,
         comment: "",
-        selectionText: null,
         showProfileBox: false,
         entryIsMuted: false,
-        selection: false
+        selection: ""
     };
-    refParagraph: React.RefObject<any>;
-    refCode: React.RefObject<any>;
 
     constructor(props: Props) {
       super(props);
-      this.refParagraph = React.createRef();
-      this.refCode = React.createRef();
     }
     
     viewElement: HTMLDivElement | undefined;
@@ -137,47 +130,10 @@ class EntryPage extends BaseComponent<Props, State> {
         window.addEventListener("resize", this.detect);
     }
 
-    undoSurroundContent = () => {
-        let parent = document.getElementById("selectedText");
-        parent && parent.classList.remove("selectedText");
-        parent && parent.classList.add("d-inline-block");
-        let child = document.getElementById("selectedTooltip");
-        child && child.classList.remove("selectedTooltip");
-        child && child.classList.add("d-inline-block");
-        this.setState({selection:false, selectionText:null});
-    }
-
     componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
         const {location} = this.props;
-        const {selection, selectionText} = this.state;
         if (location.pathname !== prevProps.location.pathname) {
             this.ensureEntry()
-        }
-        if (selectionText !== prevStates.selectionText) {
-            if(selection && selectionText && selectionText.toString().length > 0){
-                this.undoSurroundContent()
-                
-                const icons = <ClickAwayListener onClickAway={this.undoSurroundContent}>
-                                <div className="d-flex" onMouseLeave={this.undoSurroundContent}>
-                                    <div onClick={(e) => {e.stopPropagation(); alert("Hello")}}>{copyContent}</div>
-                                    <div className="mx-2" onClick={() => alert("Hello")}>{copyContent}</div>
-                                    <div onClick={() => alert("Hello")}>{copyContent}</div>
-                                </div>
-                            </ClickAwayListener>;
-                let parentElement = document.createElement("span");
-                parentElement.id = 'selectedText';
-                parentElement.className = 'selectedText';
-                let tooltipElement = document.createElement("span");
-                tooltipElement.id = 'selectedTooltip';
-                tooltipElement.className = 'selectedTooltip';
-                ReactDOM.render(icons, tooltipElement)
-                parentElement.appendChild(selectionText.extractContents());
-                selectionText.insertNode(parentElement);
-                parentElement.appendChild(tooltipElement);
-                debugger
-            } else {
-                this.undoSurroundContent()
-            }
         }
     }
 
@@ -776,36 +732,19 @@ class EntryPage extends BaseComponent<Props, State> {
                                             <meta itemProp="headline name" content={entry.title}/>
                                             {!edit ? 
                                                <>
-                                                    {/* <div
-                                                        itemProp="articleBody"
-                                                        className="entry-body markdown-view user-selectable"
-                                                        dangerouslySetInnerHTML={renderedBody}
-                                                    // onMouseUp={(e)=>{
-                                                    //     let selectionText:any = document.getSelection() || (document as any).selection!.createRange().htmlText;
-                                                    //     let selectionRange = selectionText!.getRangeAt(0);
-                                                    //     if(selectionText) {
-                                                    //         this.setState({selectionText: selectionRange, selection:true})
-                                                    //       }
-                                                    // }}
-                                                    /> */}
-                                                    <SelectionPopover>
-                                                    <div
-                                                        itemProp="articleBody"
-                                                        className="entry-body markdown-view user-selectable"
-                                                        dangerouslySetInnerHTML={renderedBody}
-                                                    // onMouseUp={(e)=>{
-                                                    //     let selectionText:any = document.getSelection() || (document as any).selection!.createRange().htmlText;
-                                                    //     let selectionRange = selectionText!.getRangeAt(0);
-                                                    //     if(selectionText) {
-                                                    //         this.setState({selectionText: selectionRange, selection:true})
-                                                    //       }
-                                                    // }}
-                                                    />
+                                                    <SelectionPopover onQuotesClick={(text:string) => this.setState({selection: `>${text} \
+                                                    \
+                                                    `})}>
+                                                        <div
+                                                            itemProp="articleBody"
+                                                            className="entry-body markdown-view user-selectable"
+                                                            dangerouslySetInnerHTML={renderedBody}
+                                                        />
                                                     </SelectionPopover>
                                                 </> :
                                                 Comment({
                                                     ...this.props,
-                                                    defText: entry.body,
+                                                    defText: selection || entry.body,
                                                     submitText: _t('g.update'),
                                                     cancellable: true,
                                                     onSubmit: this.updateReply,
@@ -813,7 +752,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                                     inProgress: loading,
                                                     autoFocus: true
                                                 })}
-
                                             <meta itemProp="image" content={metaProps.image}/>
                                         </>
                                     })()}
@@ -929,7 +867,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                     {activeUser && Comment({
                                         ...this.props,
-                                        defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
+                                        defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || selection),
                                         submitText: _t('g.reply'),
                                         onChange: this.replyTextChanged,
                                         onSubmit: this.replySubmitted,
@@ -943,7 +881,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                     {!activeUser && Comment({
                                         ...this.props,
-                                        defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
+                                        defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || selection),
                                         submitText: _t('g.reply'),
                                         onChange: this.replyTextChanged,
                                         onSubmit: this.replySubmitted,

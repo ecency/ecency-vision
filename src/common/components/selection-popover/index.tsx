@@ -1,21 +1,19 @@
-import ReactDOM from 'react-dom'
 import React, { useState } from 'react'
 import { Manager, Popper } from 'react-popper'
 
 import SelectionReference from './selection-reference'
-import { Button } from 'react-bootstrap'
-import { copyContent } from '../../img/svg'
+import { copyContent, quotes, twitterSvg } from '../../img/svg'
 import { success } from '../feedback'
 import { _t } from '../../i18n'
+import ClickAwayListener from '../clickaway-listener'
 
 let tooltipStyle = {
   background: 'rgb(0 0 0 / 78%)',
-  border: '1px solid green',
   maxWidth: "50%",
   borderRadius: 6,
 }
 
-export const SelectionPopover = ({children}: any) => {
+export const SelectionPopover = ({children, onQuotesClick}: any) => {
   let [selectedText, setSelectedText] = useState('')
 
 
@@ -38,7 +36,7 @@ export const SelectionPopover = ({children}: any) => {
           {(getProps: (arg0: { onMouseUp: () => void }) => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLParagraphElement> & React.HTMLAttributes<HTMLParagraphElement>) => (
             <p
               {...getProps({
-                onMouseUp: () => console.log('We still can use this callback!'),
+                onMouseUp: () => {console.log('We still can use this callback!')},
               })}
             >
               {children}
@@ -48,9 +46,13 @@ export const SelectionPopover = ({children}: any) => {
 
         <Popper placement="top" >
           {({ ref, style, placement, arrowProps }) => (
-            <div ref={ref} style={{ ...style, ...tooltipStyle }}>
-                <Button onClick={() => copyToClipboard(selectedText)}>{copyContent}</Button>
-            </div>
+            <ClickAwayListener onClickAway={() => setSelectedText("")}>
+                <div ref={ref} style={{ ...style, ...tooltipStyle }} className="p-2 d-flex icons-container align-items-center">
+                    <div onClick={() => copyToClipboard(selectedText)} className="pointer">{copyContent}</div>
+                    <a href={`https://twitter.com/intent/tweet?text=${selectedText}`} target="_blank" className="mx-2 pointer twitter">{twitterSvg}</a>
+                    <div onClick={() => {onQuotesClick(selectedText);document.getElementsByClassName("comment-box")[0].scrollIntoView({block:"center", })}} className="pointer quotes">{quotes}</div>
+                </div>
+            </ClickAwayListener>
           )}
         </Popper>
       </Manager>
