@@ -3,22 +3,33 @@ import React, { useState } from 'react'
 import { Manager, Popper } from 'react-popper'
 
 import SelectionReference from './selection-reference'
+import { Button } from 'react-bootstrap'
+import { copyContent } from '../../img/svg'
+import { success } from '../feedback'
+import { _t } from '../../i18n'
 
 let tooltipStyle = {
-  background: '#fff',
+  background: 'rgb(0 0 0 / 78%)',
   border: '1px solid green',
-  padding: 10,
-  margin: 10,
+  maxWidth: "50%",
+  borderRadius: 6,
 }
 
 export const SelectionPopover = ({children}: any) => {
   let [selectedText, setSelectedText] = useState('')
 
+
+  const copyToClipboard = (text: string) => {
+    const textField = document.createElement('textarea');
+    textField.innerText = text;
+    document.body.appendChild(textField);
+    textField.select();
+    document.execCommand('copy');
+    textField.remove();
+    success(_t('profile-edit.copied'));
+}
   return (
     <div>
-      <h1>Mediup like popup</h1>
-
-      <h2>Select some text</h2>
 
       <Manager>
         <SelectionReference
@@ -35,13 +46,10 @@ export const SelectionPopover = ({children}: any) => {
           )}
         </SelectionReference>
 
-        <Popper placement="bottom">
+        <Popper placement="top" >
           {({ ref, style, placement, arrowProps }) => (
             <div ref={ref} style={{ ...style, ...tooltipStyle }}>
-              easy 🙈
-              <p>
-                selected text: <b>{selectedText}</b>
-              </p>
+                <Button onClick={() => copyToClipboard(selectedText)}>{copyContent}</Button>
             </div>
           )}
         </Popper>
