@@ -71,7 +71,7 @@ export class Purchase extends BaseComponent<Props, State> {
     calc = () => {
         const {activeUser} = this.props;
         const {asset, amount} = this.state;
-        const sAmount = `${amount}.000 ${asset}`;
+        const sAmount = `${amount} ${asset}`;
 
         calcPoints(activeUser.username, sAmount).then(resp => {
             this.stateSet({usd: resp.usd, points: resp.estm});
@@ -86,7 +86,7 @@ export class Purchase extends BaseComponent<Props, State> {
         const {asset, amount, points, usd, submitted} = this.state;
 
         if (submitted) {
-            return <Transfer {...this.props} asset={asset} mode="transfer" amount={`${amount}.000`} to="esteem.app" memo="estm-purchase"/>
+            return <Transfer {...this.props} asset={asset} mode="transfer" amount={`${amount}`} to="esteem.app" memo="estm-purchase"/>
         }
 
         return <div className="purchase-dialog-content">
@@ -121,7 +121,7 @@ export class Purchase extends BaseComponent<Props, State> {
                     type="range"
                     autoFocus={true}
                     custom={true}
-                    step={1}
+                    step={0.001}
                     min={1}
                     max={10000}
                     value={amount}
@@ -132,8 +132,11 @@ export class Purchase extends BaseComponent<Props, State> {
             <div className="point-amount">
                 {formattedNumber(points, {fractionDigits: 3})} {'POINTS'}
             </div>
-            <div className="text-center">
+            <div className="text-center d-flex flex-column align-items-center">
                 <Button onClick={this.submit}>{_t('purchase.submit')}</Button>
+                <span className={'d-flex text-muted mt-3 align-items-center'}>
+                   <h4 className={'text-white my-0 mr-1'}>&#9432;</h4> {_t('purchase.purchase-message')}
+                </span>
             </div>
         </div>
     }

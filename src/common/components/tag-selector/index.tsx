@@ -32,16 +32,38 @@ interface Props {
 interface State {
     hasFocus: boolean;
     value: string;
+    warning:string
 }
 
 export class TagSelector extends Component<Props, State> {
     state: State = {
         hasFocus: false,
         value: "",
+        warning:''
     };
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>): boolean {
         return !isEqual(this.props.tags, nextProps.tags) || !isEqual(this.state, nextState);
+    }
+
+    filter = (cats:string[]) => {
+        cats.length > 10
+            ? this.setState({ ...this.state, warning: _t('tag-selector.limited_tags') })
+            : cats.find((c) => c.length > 24)
+                ? this.setState({ ...this.state, warning: _t('tag-selector.limited_length') })
+                : cats.find((c) => c.split('-').length > 2)
+                    ? this.setState({ ...this.state, warning: _t('tag-selector.limited_dash') })
+                    : cats.find((c) => c.indexOf(',') >= 0)
+                        ? this.setState({ ...this.state, warning: _t( 'tag-selector.limited_space') })
+                        : cats.find((c) => /[A-Z]/.test(c))
+                            ? this.setState({ ...this.state, warning: _t('tag-selector.limited_lowercase') })
+                            : cats.find((c) => !/^[a-z0-9-#]+$/.test(c))
+                                ? this.setState({ ...this.state, warning: _t('tag-selector.limited_characters') })
+                                : cats.find((c) => !/^[a-z-#]/.test(c))
+                                    ?this.setState({ ...this.state, warning: _t( 'tag-selector.limited_firstchar') })
+                                    : cats.find((c) => !/[a-z0-9]$/.test(c))
+                                        ? this.setState({ ...this.state, warning: _t( 'tag-selector.limited_lastchar') })
+                                        : this.setState({ ...this.state, warning: ''});
     }
 
     focusInput = () => {
@@ -58,8 +80,12 @@ export class TagSelector extends Component<Props, State> {
     };
 
     onChange = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-        const value = e.target.value.toLocaleLowerCase().trim();
-        this.setState({value});
+        const value = e.target.value.toLocaleLowerCase().trim().replace(/,/g, ' ').replace(/#/g, '');
+        let cats = value.split(' ');
+        if ( cats.length > 0) {
+            this.filter(cats);
+            this.setState({value: cats.join(' ')});
+        }
     };
 
     handlePaste = (e:any) => {
@@ -70,7 +96,7 @@ export class TagSelector extends Component<Props, State> {
         clipboardData = e.clipboardData;
         pastedData = clipboardData.getData('Text');
         this.setState({value: ""});
-        
+
         let isMultiTagsWithSpace = pastedData.split(' ').join(",").split(",")
         if(isMultiTagsWithSpace.length > 1 ){
             isMultiTagsWithSpace.forEach((item:any) => {
@@ -81,7 +107,7 @@ export class TagSelector extends Component<Props, State> {
     }
 
     onKeyDown = (e: React.KeyboardEvent) => {
-        if ([13, 32, 188].includes(e.keyCode)) {
+        if ([13, 32, 188].includes(e.keyCode) && this.state.warning === '') {
             e.preventDefault();
             const {value} = this.state;
             this.add(value);
@@ -178,6 +204,7 @@ export class TagSelector extends Component<Props, State> {
                             spellCheck={true}
                         />
                     </SuggestionList>
+                    {this.state.warning && <span className='warning'>{this.state.warning}</span>}
                     {tags.length > 0 && (
                         <ReactSortable
                             animation={200}
