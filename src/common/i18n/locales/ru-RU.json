@@ -2,7 +2,7 @@
   "g": {
     "add": "Добавить",
     "edit": "Изменить",
-    "submit": "Write a post",
+    "submit": "Написать пост",
     "search": "Поиск",
     "downloads": "Загрузки",
     "login": "Войти",
@@ -43,8 +43,8 @@
     "replies": "ответы",
     "done": "Готово",
     "apply": "Применить",
-    "warning": "Warning",
-    "payout": "Payout",
+    "warning": "Предупреждение",
+    "payout": "Выплата",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
     "close": "Закрыть"
