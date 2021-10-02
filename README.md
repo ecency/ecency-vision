@@ -98,3 +98,6 @@ We will evaluate the risk and make a patch available before filing the issue.
 [ecency_desktop]: https://desktop.ecency.com
 [ecency_alpha]: https://alpha.ecency.com
 [ecency_release]: https://github.com/ecency/ecency-vision/releases
+
+
+.........................................
