@@ -151,6 +151,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
                                             <img
                                                 src={img}
                                                 alt={en.title}
+                                                loading="lazy"
                                                 onError={(e: React.SyntheticEvent) => {
                                                     const target = e.target as HTMLImageElement;
                                                     target.src = fallbackImage;

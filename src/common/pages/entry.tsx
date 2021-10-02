@@ -67,7 +67,7 @@ import {version} from "../../../package.json";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import defaults from "../constants/defaults.json";
-import dmca from '../../common/constants/dmca.json';
+import dmca from '../constants/dmca.json';
 
 import { getFollowing } from "../api/hive";
 import { history } from "../store";
@@ -97,6 +97,7 @@ interface State {
     showProfileBox: boolean;
     entryIsMuted: boolean;
     selection: string;
+    isMounted: boolean;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -109,6 +110,7 @@ class EntryPage extends BaseComponent<Props, State> {
         comment: "",
         showProfileBox: false,
         entryIsMuted: false,
+        isMounted: false,
         selection: ""
     };
 
@@ -128,11 +130,13 @@ class EntryPage extends BaseComponent<Props, State> {
         }
         window.addEventListener("scroll", this.detect);
         window.addEventListener("resize", this.detect);
+        this.setState({isMounted:true})
     }
 
     componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
         const {location} = this.props;
         if (location.pathname !== prevProps.location.pathname) {
+            this.setState({isMounted:false})
             this.ensureEntry()
         }
     }
@@ -145,6 +149,7 @@ class EntryPage extends BaseComponent<Props, State> {
             resolve(window.removeEventListener("resize", this.detect))
         });
         Promise.all([p1, p2])
+        this.setState({isMounted:false})
     }
 
     // detects distance between title and comments section sets visibility of profile card
@@ -265,7 +270,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 }
             })
             .finally(() => {
-                this.stateSet({loading: false});
+                this.stateSet({loading: false, isMounted:true});
             });
     };
 
@@ -280,7 +285,7 @@ class EntryPage extends BaseComponent<Props, State> {
         for (const k of groupKeys) {
             entry = entries[k].entries.find((x) => x.author === author && x.permlink === permlink);
             if (entry) {
-                if (dmca.includes(`${entry.author}/${entry.permlink}`)) {
+                if (dmca.some((rx:string) => new RegExp(rx).test(`${entry?.author}/${entry?.permlink}`))) {
                     entry.body = "This post is not available due to a copyright/fraudulent claim.";
                     entry.title = "";
                 }
@@ -401,7 +406,7 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, selection} = this.state;
+        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, selection, isMounted} = this.state;
         const {global, history} = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
@@ -469,7 +474,7 @@ class EntryPage extends BaseComponent<Props, State> {
         };
         let containerClasses = global.isElectron ? "app-content entry-page mt-0 pt-6" : "app-content entry-page";
 
-        return (
+        return isMounted ? (
             <>
                 <Meta {...metaProps} />
                 <ScrollToTop/>
@@ -759,10 +764,10 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                     <div className="entry-footer">
                                         <div className="entry-tags">
-                                            {tags.map((t) => {
+                                            {tags.map((t,i) => {
                                                 if (typeof t === "string") {
                                                     if (entry.community && entry.community_title && t === entry.community) {
-                                                        return <Fragment key={t}>
+                                                        return <Fragment key={t+i}>
                                                             {Tag({
                                                                 ...this.props,
                                                                 tag: {
@@ -776,7 +781,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                     }
     
                                                     return (
-                                                        <Fragment key={t}>
+                                                        <Fragment key={t+i}>
                                                             {Tag({
                                                                 ...this.props,
                                                                 tag: t.trim(),
@@ -899,7 +904,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 {editHistory && <EditHistory entry={entry} onHide={this.toggleEditHistory}/>}
                 <EntryBodyExtra entry={entry}/>
             </>
-        );
+        ) : null;
     }
 }
 

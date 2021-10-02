@@ -50,11 +50,11 @@ import {error} from "../feedback";
 
 import _c from "../../util/fix-class-names"
 
-import {commentSvg, pencilOutlineSvg, deleteForeverSvg} from "../../img/svg";
+import {commentSvg, pencilOutlineSvg, deleteForeverSvg, menuDownSvg} from "../../img/svg";
 
 import {version} from "../../../../package.json";
-import accountReputation from '../../helper/account-reputation';
 import { getFollowing } from "../../api/hive";
+import { ProfilePreview } from "../profile-preview";
 import { iteratorStream } from "@hiveio/dhive/lib/utils";
 
 
@@ -76,7 +76,6 @@ export class ItemBody extends Component<ItemBodyProps> {
         return <div className="item-body markdown-view mini-markdown" dangerouslySetInnerHTML={renderedBody}/>
     }
 }
-
 
 interface ItemProps {
     history: History;
@@ -102,10 +101,14 @@ interface ItemProps {
 interface ItemState {
     reply: boolean;
     edit: boolean;
+    mounted: boolean;
+    showProfileDetails: boolean;
+    showProfileDetailsAvatar: boolean;
     inProgress: boolean;
     showIfHidden: boolean;
+    mutedData: string[];
     isHiddenPermitted: boolean;
-    mutedData: string[]
+    delayHandler: any
 }
 
 export class Item extends BaseComponent<ItemProps, ItemState> {
@@ -113,13 +116,22 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         reply: false,
         edit: false,
         inProgress: false,
+        showProfileDetails: false,
+        showProfileDetailsAvatar: false,
         showIfHidden: false,
+        mutedData: [],
+        delayHandler: null,
         isHiddenPermitted:false,
-        mutedData: []
+        mounted: false
     }
 
     componentDidMount(){
-        this.fetchMutedUsers()
+        this.fetchMutedUsers();
+        this.setState({ mounted: true })
+    }
+
+    componentWillUnmount(){
+        this.setState({ mounted: false })
     }
 
     afterVote = (votes: EntryVote[], estimated: number) => {
@@ -275,12 +287,58 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         }
     }
 
+    onShowProfile = (e:any) => {
+        e.persist();
+        // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
+        let timeout = setTimeout(()=>{
+            e.stopPropagation()
+            this.state.mounted && this.setState({showProfileDetails:true });
+            document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
+        this.state.mounted && this.setState({delayHandler: timeout})
+    }
+
+    onShowProfileAvatar = (e:any) => {
+        e.persist();
+        // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
+        let timeout = setTimeout(()=>{
+            e.stopPropagation()
+            this.state.mounted && this.setState({showProfileDetailsAvatar:true });
+            document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
+    }, this.props.global.isMobile ? 0 : 500)
+        this.state.mounted && this.setState({delayHandler: timeout})
+    }
+
+    onHideProfile = (e:any, doNotSetState?: boolean) => {
+        const { delayHandler, mounted } = this.state;
+        clearTimeout(delayHandler)
+        e.stopPropagation()
+        if(delayHandler){
+            // Add 0.2 sec delay while hiding mini-profile on web
+            setTimeout(()=>{
+                !doNotSetState && mounted && this.setState({showProfileDetails:false});
+                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
+        },this.props.global.isMobile ? 0 : 200)
+    }
+    }
+
+    onHideProfileAvatar = (e:any, doNotSetState?: boolean) => {
+        const { delayHandler, mounted } = this.state;
+        clearTimeout(delayHandler)
+        e.stopPropagation()
+        if(delayHandler){
+            // Add 0.2 sec delay while hiding mini-profile on web
+            setTimeout(()=>{
+                !doNotSetState && mounted && this.setState({showProfileDetailsAvatar:false});
+                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
+        },this.props.global.isMobile ? 0 : 200)
+        }
+    }
+
     render() {
         const { entry, activeUser, community, location } = this.props;
-        const { reply, edit, inProgress, showIfHidden, mutedData, isHiddenPermitted } = this.state;
+        const { reply, edit, inProgress, showIfHidden, mutedData, showProfileDetails, showProfileDetailsAvatar, isHiddenPermitted, mounted } = this.state;
 
         const created = moment(parseDate(entry.created));
-        const reputation = accountReputation(entry.author_reputation);
         const readMore = entry.children > 0 && entry.depth > 5;
         const showSubList = !readMore && entry.children > 0;
         const canEdit = activeUser && activeUser.username === entry.author;
@@ -297,21 +355,56 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         const selected = location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`;
         let normalComponent = (
             <div className={_c(`discussion-item depth-${entry.depth} ${isHidden ? "hidden-item" : ""} ${selected ? "selected-item" : ""}`)}>
-                <div className="item-anchor" id={anchorId}/>
+                <div className="position-relative">
+                    <div className="item-anchor" id={anchorId}/>
+                </div>
                 <div className="item-inner">
                     <div className="item-figure">
-                        {ProfileLink({...this.props, username: entry.author, children: <a>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</a>})}
+                        <div className="d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
+                        <div onMouseEnter={(e) => {!isHidden && this.onShowProfileAvatar(e)}} onMouseLeave={(e, ) => {!isHidden && this.onHideProfileAvatar(e)}}>
+                            {ProfileLink({...this.props, username: entry.author, children: 
+                                    <a className="d-none d-sm-inline-block">
+                                        {UserAvatar({...this.props, username: entry.author, size: "medium"})}
+                                    </a>
+                                })
+                            }
+
+                            {showProfileDetailsAvatar && entry.author && 
+                                <ProfilePreview
+                                    username={entry.author}
+                                    {...this.props}
+                                    onClose={(e, doNotSetState) => {!isHidden && this.onHideProfileAvatar(e, doNotSetState)}}
+                                />
+                            }
+                        </div>
                     </div>
                     <div className="item-content">
                         <div className="item-header">
+                            <div
+                                onMouseEnter={(e) => {!isHidden && this.onShowProfile(e)}}
+                                onMouseLeave={(e) => {!isHidden && this.onHideProfile(e)}}
+                                className="d-flex align-items-center"
+                                id={`${entry.author}-${entry.permlink}`} 
+                            >
+                            <div className="author notranslate d-flex align-items-center d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>
+                                <span className="author-name" id={`${entry.author}-${entry.permlink}`} >{entry.author}</span>
+                                <span className="author-down-arrow mx-2" id={`${entry.author}-${entry.permlink}`} >{menuDownSvg}</span>
+                            </div>
                             {ProfileLink({
                                 ...this.props,
                                 username: entry.author,
-                                children: <div className="author notranslate">
-                                    <span className="author-name">{entry.author}</span>
-                                    <span className="author-reputation">{reputation}</span>
-                                </div>
+                                children: <div className="author notranslate d-none align-items-center d-sm-flex">
+                                            <span className="author-name">{entry.author}</span>
+                                        </div>
                             })}
+                            {showProfileDetails && entry.author && 
+                                    <ProfilePreview
+                                        username={entry.author}
+                                        {...this.props}
+                                        onClose={(e, doNotSetState) => {!isHidden && this.onHideProfile(e, doNotSetState)}}
+                                    />
+                            }
+                            </div>
                             <span className="separator"/>
                             {EntryLink({
                                 ...this.props,
@@ -450,8 +543,13 @@ export class List extends Component<ListProps> {
         isHiddenPermitted: false,
         mutedData: []
     }
+
+    componentWillUnmount(){
+        document.getElementsByTagName("html")[0].style.position = 'unset'
+    }
     
     componentDidMount(){
+        document.getElementsByTagName("html")[0].style.position = 'relative'
         this.fetchMutedUsers()
     }
 
@@ -548,7 +646,7 @@ export class Discussion extends Component<Props, State> {
         if (parent.url !== prevProps.parent.url) { // url changed
             this.fetch();
         }
-
+        
         const {discussion} = this.props;
         if (prevProps.discussion.list.length === 0 && discussion.list.length > 0) {
             const {location} = this.props;

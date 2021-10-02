@@ -29,19 +29,17 @@ import EntryPayout from "../entry-payout/index";
 import EntryVotes from "../entry-votes";
 import Tooltip from "../tooltip";
 import EntryMenu from "../entry-menu";
-
 import parseDate from "../../helper/parse-date";
-import accountReputation from '../../helper/account-reputation';
-
 import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
 
 import _c from "../../util/fix-class-names";
 import truncate from "../../util/truncate";
 
-import {repeatSvg, pinSvg, commentSvg, muteSvg, volumeOffSvg} from "../../img/svg";
+import {repeatSvg, pinSvg, commentSvg, muteSvg, volumeOffSvg, closeSvg, downArrowSvg, menuDownSvg} from "../../img/svg";
 
 import defaults from "../../constants/defaults.json";
+import { ProfilePreview } from "../profile-preview";
 
 setProxyBase(defaults.imageServer);
 
@@ -82,12 +80,18 @@ interface Props {
 interface State {
     showNsfw: boolean;
     showMuted: boolean;
+    mounted: boolean;
+    showProfileDetails: boolean;
+    delayHandler: any
 }
 
 export default class EntryListItem extends Component<Props, State> {
     state: State = {
         showNsfw: false,
-        showMuted:false
+        showMuted: false,
+        mounted: false,
+        showProfileDetails:false,
+        delayHandler: null
     }
 
     public static defaultProps = {
@@ -132,16 +136,48 @@ export default class EntryListItem extends Component<Props, State> {
         if(muted){
             this.setState({ showMuted: true })
         }
+        document.getElementsByTagName("html")[0].style.position = 'relative';
+        this.setState({ mounted: true })
+    }
+
+    componentWillUnmount(){
+        document.getElementsByTagName("html")[0].style.position = 'unset'
+        this.setState({ mounted: false })
     }
 
     componentDidUpdate(prevProps:Props){
-        if(this.props.entry !== prevProps.entry && this.props.muted){
+        if(this.props.entry !== prevProps.entry && this.props.muted && this.state.mounted){
             this.setState({ showMuted: true })
         }
     }
 
+    showMiniProfile = (e: any) => {
+        e.persist();
+        // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
+        const timeout =
+            setTimeout(()=>{
+                e.stopPropagation()
+                if(this.props.global.isMobile && e.type == "click"){
+            }
+            this.setState({showProfileDetails:true });
+            document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
+        this.setState({delayHandler:timeout})
+    }
+
+    hideMiniProfile = (e:any, doNotSetState?: boolean) => {
+        const { delayHandler } = this.state;
+        clearTimeout(delayHandler)
+        e.stopPropagation()
+        // Add 0.2 sec delay while hiding mini-profile on web
+        setTimeout(()=>{
+                !doNotSetState && this.setState({showProfileDetails:false});
+                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
+        }, this.props.global.isMobile ? 0 : 200)
+    }
+
     render() {
         const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order,} = this.props;
+        const { showProfileDetails, mounted } = this.state;
 
         const fallbackImage = global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png");
         const noImage = global.isElectron ?  "./img/noimage.svg" : require("../../img/noimage.svg");
@@ -155,10 +191,8 @@ export default class EntryListItem extends Component<Props, State> {
         let svgSizeRow = imgRow === noImage ? "noImage" : "";
         let svgSizeGrid = imgGrid === noImage ? "172px" : "auto";
         
-
         const summary: string = postBodySummary(entry, 200);
 
-        const reputation = accountReputation(entry.author_reputation);
         const date = moment(parseDate(entry.created));
         const dateRelative = date.fromNow(true);
         const dateFormatted = date.format("LLLL");
@@ -204,7 +238,7 @@ export default class EntryListItem extends Component<Props, State> {
 
         const cls = `entry-list-item ${promoted ? "promoted-item" : ""}`;
 
-        return (
+        return mounted ? (
             <div className={_c(cls)} id={(entry.author + entry.permlink).replace(/[0-9]/g, '')}>
 
                 {(() => {
@@ -243,17 +277,47 @@ export default class EntryListItem extends Component<Props, State> {
 
                 <div className="item-header">
                     <div className="item-header-main">
-                        <div className="author-part">
-                            {ProfileLink({
-                                ...this.props,
-                                username: entry.author,
-                                children: <a className="author-avatar">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
-                            })}
-                            {ProfileLink({
-                                ...this.props,
-                                username: entry.author,
-                                children: <div className="author notranslate">{entry.author}<span className="author-reputation" title={_t("entry.author-reputation")}>{reputation}</span></div>
-                            })}
+                        <div className="author-part" id={`${entry.author}-${entry.permlink}`}>
+                            <div
+                                onMouseEnter={this.showMiniProfile}
+                                onMouseLeave={this.hideMiniProfile}
+                                className="d-flex align-items-center"
+                                id={`${entry.author}-${entry.permlink}`}
+                            >
+                                <div className="author-avatar d-sm-none" onClick={this.showMiniProfile} id={`${entry.author}-${entry.permlink}`}>{UserAvatar({...this.props, username: entry.author, size: "small"})}</div>
+                                {ProfileLink({
+                                    ...this.props,
+                                    username: entry.author,
+                                    children: <a className="author-avatar d-none d-sm-block">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
+                                })}
+
+                                <div className="author notranslate d-flex d-sm-none align-items-center" onClick={this.showMiniProfile} id={`${entry.author}-${entry.permlink}`}>
+                                    <span>{entry.author}</span>
+                                </div>
+                            
+                                {ProfileLink({
+                                    ...this.props,
+                                    username: entry.author,
+                                    children: <div className="author notranslate d-none d-sm-flex align-items-center">
+                                                <span>{entry.author}</span>
+                                            </div>
+                                })}
+                                {showProfileDetails && entry.author && 
+                                    <ProfilePreview
+                                        username={entry.author}
+                                        {...this.props}
+                                        onClose={this.hideMiniProfile}
+                                    />
+                                }
+                            </div>
+                             
+                            <span
+                                className="author-down-arrow ml-1"
+                                onClick={this.showMiniProfile}
+                                id={`${entry.author}-${entry.permlink}`}
+                            >
+                                {menuDownSvg}
+                            </span>
                         </div>
                         {Tag({
                             ...this.props,
@@ -400,6 +464,6 @@ export default class EntryListItem extends Component<Props, State> {
                     </div>
                 </div>
             </div>
-        );
+        ) : null;
     }
 }
