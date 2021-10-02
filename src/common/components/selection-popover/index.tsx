@@ -13,7 +13,7 @@ let tooltipStyle = {
   borderRadius: 6,
 }
 
-export const SelectionPopover = ({children, onQuotesClick}: any) => {
+export const SelectionPopover = ({children, onQuotesClick, postUrl}: any) => {
   let [selectedText, setSelectedText] = useState('')
 
 
@@ -45,15 +45,17 @@ export const SelectionPopover = ({children, onQuotesClick}: any) => {
         </SelectionReference>
 
         <Popper placement="top" >
-          {({ ref, style, placement, arrowProps }) => (
-            <ClickAwayListener onClickAway={() => setSelectedText("")}>
+          {({ ref, style, placement, arrowProps }) => {
+            ;
+            return selectedText.length !== 0 && (
+            <ClickAwayListener onClickAway={() => {setSelectedText(""); document.getSelection()?.removeAllRanges()}}>
                 <div ref={ref} style={{ ...style, ...tooltipStyle }} className="p-2 d-flex icons-container align-items-center">
                     <div onClick={() => copyToClipboard(selectedText)} className="pointer">{copyContent}</div>
-                    <a href={`https://twitter.com/intent/tweet?text=${selectedText}`} target="_blank" className="mx-2 pointer twitter">{twitterSvg}</a>
-                    <div onClick={() => {onQuotesClick(selectedText);document.getElementsByClassName("comment-box")[0].scrollIntoView({block:"center", })}} className="pointer quotes">{quotes}</div>
+                    <a href={`https://twitter.com/intent/tweet?text=${selectedText} ${postUrl}`} target="_blank" className="mx-2 pointer twitter">{twitterSvg}</a>
+                    <div onClick={() => {onQuotesClick(selectedText);setSelectedText("");document.getElementsByClassName("comment-box")[0].scrollIntoView({block:"center", })}} className="pointer quotes">{quotes}</div>
                 </div>
             </ClickAwayListener>
-          )}
+          )}}
         </Popper>
       </Manager>
     </div>

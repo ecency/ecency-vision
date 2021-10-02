@@ -604,7 +604,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         })}
                                                     </div>
                                                 </div>
-                                                <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody} onMouseUp={(e)=>{debugger}}/>
+                                                <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody} onMouseUp={(e)=>{}}/>
                                             </>;
                                         }
 
@@ -732,9 +732,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                             <meta itemProp="headline name" content={entry.title}/>
                                             {!edit ? 
                                                <>
-                                                    <SelectionPopover onQuotesClick={(text:string) => this.setState({selection: `>${text} \
-                                                    \
-                                                    `})}>
+                                                    <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => this.setState({selection: `>${text}\n\n`})}>
                                                         <div
                                                             itemProp="articleBody"
                                                             className="entry-body markdown-view user-selectable"

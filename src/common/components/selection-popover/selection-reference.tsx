@@ -33,7 +33,7 @@ let SelectionReference = ({ onSelect, children } :any) => (
             ref(new VirtualSelectionReference(selection))
             onSelect && onSelect(selection, ...args)
           }
-
+          
           onMouseUp && onMouseUp(...args)
         },
       }))
