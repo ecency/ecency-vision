@@ -88,8 +88,8 @@ export class TagSelector extends Component<Props, State> {
         }
     };
 
-    handlePaste = (e:any) => {
-        var clipboardData, pastedData;
+    handlePaste = async (e:any) => {
+        let clipboardData, pastedData;
 
         e.stopPropagation();
         e.preventDefault();
@@ -99,9 +99,12 @@ export class TagSelector extends Component<Props, State> {
 
         let isMultiTagsWithSpace = pastedData.split(' ').join(",").split(",")
         if(isMultiTagsWithSpace.length > 1 ){
-            isMultiTagsWithSpace.forEach((item:any) => {
-                setTimeout(() => this.add(item), 250)
-            })
+            for (const item of isMultiTagsWithSpace) {
+                await this.filter(item.split(' '));
+                if(this.state.warning === ''){
+                    setTimeout(() => this.add(item), 250)
+                }
+            }
         }
 
     }
