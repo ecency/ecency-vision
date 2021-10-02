@@ -17,3 +17,6 @@ src/config.ts
 .vscode
 
 dev.sh
+
+# Local Netlify folder
+.netlify
