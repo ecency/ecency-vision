@@ -31,5 +31,4 @@ workflows:
               only: /.*-heroku-deploy/ # Delete this line
               # only: master  # Uncomment this line
 
-orbs:
-  node: circleci/node@4.7.0
+
