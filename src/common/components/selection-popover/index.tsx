@@ -34,13 +34,13 @@ export const SelectionPopover = ({children, onQuotesClick, postUrl}: any) => {
           onSelect={(selection:any) => setSelectedText(selection.toString())}
         >
           {(getProps: (arg0: { onMouseUp: () => void }) => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLParagraphElement> & React.HTMLAttributes<HTMLParagraphElement>) => (
-            <p
+            <div
               {...getProps({
                 onMouseUp: () => {console.log('We still can use this callback!')},
               })}
             >
               {children}
-            </p>
+            </div>
           )}
         </SelectionReference>
 
