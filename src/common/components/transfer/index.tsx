@@ -65,6 +65,7 @@ import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
 
 import {arrowRightSvg} from "../../img/svg";
+import { Link } from "react-router-dom";
 
 export type TransferMode = "transfer" | "transfer-saving" | "withdraw-saving" | "convert" | "power-up" | "power-down" | "delegate";
 export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT";
@@ -561,7 +562,7 @@ export class Transfer extends BaseComponent<Props, State> {
                 .reverse()
                 .slice(0, 5)
         )]
-        
+
         const suggestionProps = {
             header: _t('transfer.recent-transfers'),
             renderer: (i: string) => {
@@ -762,7 +763,7 @@ export class Transfer extends BaseComponent<Props, State> {
                                     {asset === "HP" && (<div className="balance-hp-hint">{_t("transfer.available-hp-hint")}</div>)}
                                 </div>
                                 {recent.includes(to) && to.length > 0 && Number(amount) > 0 && 
-                                    <div className="text-warning mt-1 override-warning">{_t("transfer.override-warning" , {account:to})}</div>
+                                    <div className="text-warning mt-1 override-warning">{_t("transfer.override-warning" , {account: to})} <Link to="/faq">{_t("g.learnMore")}</Link></div>
                                 }
                                 {(() => {
                                     if (mode === "power-down") {
