@@ -561,7 +561,6 @@ export class Transfer extends BaseComponent<Props, State> {
                 .reverse()
                 .slice(0, 5)
         )]
-                debugger
         const suggestionProps = {
             header: _t('transfer.recent-transfers'),
             renderer: (i: string) => {
