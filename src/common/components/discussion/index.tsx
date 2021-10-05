@@ -353,8 +353,9 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         const anchorId = `anchor-@${entry.author}/${entry.permlink}`;
 
         const selected = location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`;
+        
         let normalComponent = (
-            <div className={_c(`discussion-item depth-${entry.depth} ${isHidden ? "hidden-item" : ""} ${selected ? "selected-item" : ""}`)}>
+            <div className={_c(`discussion-item depth-${entry.depth} ${selected ? "selected-item" : ""}`)}>
                 <div className="position-relative">
                     <div className="item-anchor" id={anchorId}/>
                 </div>
@@ -414,16 +415,11 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                 </span>
                             })}
                         </div>
-                        {(() => {
-                            if (isHidden) {
-                                return <div className="reveal-item">
-                                    <Button variant="outline-danger" size="sm" onClick={() => {
-                                        this.stateSet({showIfHidden: true});
-                                    }}>{_t("discussion.reveal")}</Button>
-                                </div>
-                            }
-                            
+                        {(() => {                            
                             return <>
+                                {entry.net_rshares < 0 && <div className="hidden-warning mt-2">
+                                    <span>{_t('entry.hidden-warning')}</span>
+                                </div>}
                                 <ItemBody global={this.props.global} entry={entry}/>
                                 <div className="item-controls">
                                     {EntryVoteBtn({
@@ -568,7 +564,7 @@ export class List extends Component<ListProps> {
     render() {
         const {discussion, parent, activeUser} = this.props;
         const { isHiddenPermitted, mutedData } = this.state;
-
+        
         const {list} = discussion;
 
         let filtered = list.filter(
@@ -583,13 +579,16 @@ export class List extends Component<ListProps> {
         let unmutedContent = filtered.filter(md => mutedContent.every(fd => fd.post_id !== md.post_id))
         let data = isHiddenPermitted ? [...unmutedContent, ...mutedContent] : unmutedContent;
         
+        if(!activeUser){
+            data = filtered
+        }
         
         return (
             <div className="discussion-list">
                 {data.map((d) => (
                     <Item key={`${d.author}-${d.permlink}`} {...this.props} entry={d}/>
                 ))}
-                {!isHiddenPermitted && mutedContent.length >0 &&
+                {!isHiddenPermitted && mutedContent.length > 0 && activeUser && activeUser.username && 
                     <div className="hidden-warning d-flex justify-content-between flex-1 align-items-center mt-3">
                         <div className="flex-1">{_t("discussion.reveal-muted-long-description")}</div>
                         <div onClick={()=>this.setState({isHiddenPermitted:true})} className="pointer p-3"><b>{_t("g.show")}</b></div>
