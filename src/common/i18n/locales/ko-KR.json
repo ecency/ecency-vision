@@ -81,11 +81,11 @@
     "address-placeholder": "enter url or search query"
   },
   "search": {
-    "placeholder": "Search",
+    "placeholder": "검색",
     "placeholder-count": "Search {{n}} posts",
-    "header-tag": "Tags",
-    "header-account": "Users",
-    "header-community": "Communities"
+    "header-tag": "태그",
+    "header-account": "사용자",
+    "header-community": "커뮤니티"
   },
   "tag": {
     "unmoderated": "Unmoderated topics",
@@ -404,9 +404,9 @@
   },
   "community-rewards-registration": {
     "body-text": "Register your community to get Ecency POINTS",
-    "btn-next-label": "Register",
+    "btn-next-label": "등록",
     "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
-    "conflict-body-text": "This community is already registered.",
+    "conflict-body-text": "이미 등록된 커뮤니티입니다.",
     "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "mute-btn": {
@@ -427,16 +427,16 @@
     "section-posts": "게시물",
     "section-comments": "댓글",
     "section-replies": "답글",
-    "section-communities": "Communities",
-    "section-wallet": "Wallet",
-    "section-settings": "Settings",
-    "communities-title": "Membership",
-    "create-community": "Create a community",
-    "witnesses": "Witnesses",
-    "proposals": "Proposals"
+    "section-communities": "커뮤니티",
+    "section-wallet": "지갑",
+    "section-settings": "설정",
+    "communities-title": "멤버쉽",
+    "create-community": "커뮤니티 만들기",
+    "witnesses": "증인",
+    "proposals": "제안"
   },
   "profile-info": {
-    "joined": "Joined: {{n}}",
+    "joined": "가입: {{n}}",
     "last-active": "Last active: {{n}}",
     "vote-value": "Vote value: {{n}}",
     "vote-value-max": "(out of max {{n}})",
@@ -449,13 +449,13 @@
     "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
-    "title": "Profile",
-    "name": "Display Name",
-    "about": "About",
-    "cover-image": "Cover Image",
-    "profile-image": "Profile Image",
-    "website": "Website",
-    "location": "Location",
+    "title": "프로필",
+    "name": "표시 이름",
+    "about": "소개",
+    "cover-image": "커버 이미지",
+    "profile-image": "프로필 사진",
+    "website": "웹사이트",
+    "location": "위치",
     "copied": "Referral link copied to clipboard.",
     "updated": "Profile updated successfully!"
   },
@@ -463,10 +463,10 @@
     "uploaded": "Image uploaded"
   },
   "preferences": {
-    "title": "Preferences",
+    "title": "환경 설정",
     "notifications": "Notification alerts",
-    "currency": "Currency",
-    "language": "Language",
+    "currency": "통화",
+    "language": "언어",
     "nsfw": "Show NSFW content",
     "referral-link": "Referral link",
     "updated": "Preference updated!"
@@ -524,7 +524,7 @@
     "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
     "delegation-desc": "You can earn ~100 points per day for each 1000HP delegation.",
     "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
-    "history": "History",
+    "history": "기록",
     "post-list-desc": "Points for post",
     "comment-list-desc": "Points for comment",
     "vote-list-desc": "Points for vote",
@@ -534,9 +534,9 @@
     "checkin-extra-list-desc": "Usage bonus",
     "transfer-sent-list-desc": "Transfer to {{n}}",
     "transfer-incoming-list-desc": "Transfer from {{n}}",
-    "delegation-list-desc": "Delegation reward",
-    "referral-list-desc": "Referral reward",
-    "community-list-desc": "Community reward",
+    "delegation-list-desc": "임대 보상",
+    "referral-list-desc": "추천인 보상",
+    "community-list-desc": "커뮤니티 보상",
     "transfer": "Gift to someone",
     "claim-ok": "Points claimed",
     "promote": "Promote",
@@ -549,21 +549,21 @@
     "filter-110": "Points for comment",
     "filter-120": "Points for vote",
     "filter-130": "Points for reblog",
-    "filter-150": "Delegation reward",
-    "filter-160": "Referral reward",
-    "filter-170": "Community reward",
+    "filter-150": "임대 보상",
+    "filter-160": "추천인 보상",
+    "filter-170": "커뮤니티 보상",
     "filter-998": "Outgoing transfer",
     "filter-999": "Incoming transfer"
   },
   "purchase": {
     "select-asset": "Select Asset",
     "slider-hint": "Drag the slider to adjust the amount.",
-    "submit": "Purchase"
+    "submit": "구매"
   },
   "promote": {
-    "title": "Promote",
+    "title": "홍보",
     "sub-title": "Promote your post",
-    "duration": "Duration"
+    "duration": "기간"
   },
   "boost": {
     "title": "Boost",
@@ -573,7 +573,7 @@
   },
   "redeem-common": {
     "balance": "Balance",
-    "post": "Post",
+    "post": "글",
     "post-hint": "Autocomplete input",
     "post-placeholder": "username/permlink",
     "post-error": "Not a valid post address",
@@ -589,32 +589,32 @@
     "withdraw-saving-title": "Savings Withdraw",
     "withdraw-saving-sub-title": "Withdraw funds after the required 3 day waiting period",
     "power-up-title": "Stake Hive as Power",
-    "convert-title": "Convert",
+    "convert-title": "전환",
     "power-up-sub-title": "Influence tokens which give you more control over post payouts and allow you to earn on curation rewards.",
     "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
-    "delegate-title": "Delegate",
-    "delegate-sub-title": "Delegate Hive Power",
-    "power-down-title": "Power Down",
-    "power-down-sub-title": "Power Down Hive Power",
+    "delegate-title": "임대",
+    "delegate-sub-title": "하이브 파워 임대",
+    "power-down-title": "파워 다운",
+    "power-down-sub-title": "하이브 파워 파워다운",
     "from": "From",
-    "to": "To",
-    "to-placeholder": "username",
+    "to": "에게",
+    "to-placeholder": "사용자 이름",
     "to-not-found": "The user that you are trying to transfer funds to does not exist!",
     "to-bad-actor": "Use caution sending to this account. Please double check your spelling for possible phishing.",
     "amount": "Amount",
     "amount-placeholder": "amount",
     "wrong-amount": "Wrong amount value",
     "amount-precision-error": "Use only 3 digits of precision",
-    "balance": "Balance",
+    "balance": "잔액",
     "power-down-estimated": "+ {{n}} Estimated Weekly",
-    "memo": "Memo",
+    "memo": "메모",
     "memo-placeholder": "enter your notes here",
     "memo-help": "This memo is public",
     "available-hp-hint": "* available hive power",
     "confirm-title": "Confirm your transaction",
     "confirm-sub-title": "Please, check if everything is correct",
-    "confirm": "Confirm",
-    "recent-transfers": "Recent transfers",
+    "confirm": "확인",
+    "recent-transfers": "최근 송금 내역",
     "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
@@ -622,9 +622,9 @@
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
-    "reset": "Reset",
+    "reset": "초기화",
     "powering-down": "You are currently powering down.",
-    "stop-power-down": "Stop"
+    "stop-power-down": "중지"
   },
   "trx-common": {
     "insufficient-funds": "Insufficient funds",
@@ -640,19 +640,19 @@
     "group-market-orders": "Market Orders",
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
-    "group-rewards": "Rewards",
-    "type-curation_reward": "Curation reward",
-    "type-author_reward": "Author reward",
-    "type-comment_benefactor_reward": "Comment benefactor reward",
-    "type-claim_reward_balance": "Claim rewards",
-    "type-transfer": "Transfer",
-    "type-transfer_to_vesting": "Power up",
-    "type-withdraw_vesting": "Power down",
+    "group-rewards": "보상",
+    "type-curation_reward": "큐레이션 보상",
+    "type-author_reward": "저자 보상",
+    "type-comment_benefactor_reward": "댓글 후원자 보상",
+    "type-claim_reward_balance": "보상 요청",
+    "type-transfer": "송금",
+    "type-transfer_to_vesting": "파워업",
+    "type-withdraw_vesting": "파워 다운",
     "type-fill_vesting_withdraw": "Partial Power down occurred",
     "type-fill_order": "Fill order",
     "type-producer_reward": "Producer reward",
     "type-interest": "Interest",
-    "type-transfer_to_savings": "Transfer to savings",
+    "type-transfer_to_savings": "금고로 전송",
     "type-fill_convert_request": "Convert fulfilled",
     "type-fill_collateralized_convert_request": "Collateralized convert fulfilled",
     "type-fill_collateralized_convert-detail": "ID: <strong>{{request}}</strong>, Returned: {{returned}}",
@@ -662,7 +662,7 @@
     "type-proposal_pay": "Proposal pay",
     "type-update_proposal_votes": "Proposal vote",
     "type-comment_payout_update": "Content payout update",
-    "type-comment_reward": "Content reward",
+    "type-comment_reward": "콘텐츠 보상",
     "type-recurrent_transfer": "Recurring transfer",
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
     "type-fill_recurrent_transfer": "Recurring transfer occurred",
@@ -674,7 +674,7 @@
     "type-effective_comment_vote": "Effective vote"
   },
   "key-or-hot": {
-    "sign": "Sign",
+    "sign": "로그인",
     "key-placeholder": "Enter active/owner/master key",
     "with-hivesigner": "Sign with hivesigner",
     "with-keychain": "Sign with keychain"
@@ -689,24 +689,24 @@
   "friends": {
     "followers": "Followers ({{n}})",
     "following": "Following ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "검색"
   },
   "follow-controls": {
-    "follow": "Follow",
-    "unFollow": "Unfollow",
-    "mute": "Mute",
-    "unMute": "Unmute"
+    "follow": "팔로우",
+    "unFollow": "팔로우 취소",
+    "mute": "뮤트",
+    "unMute": "뮤트 취소"
   },
   "favorite-btn": {
-    "add": "Add to favorites",
-    "added": "Added to favorites",
-    "delete": "Remove from favorites",
-    "deleted": "Removed from favorites"
+    "add": "즐겨찾기에 추가",
+    "added": "즐겨찾기에 추가됨",
+    "delete": "즐겨찾기에서 제거",
+    "deleted": "즐겨찾기에서 삭제됨"
   },
   "editor-toolbar": {
-    "bold": "Bold",
-    "italic": "Italic",
-    "header": "Heading",
+    "bold": "굵게",
+    "italic": "이탤릭체",
+    "header": "제목",
     "code": "Code",
     "quote": "Quote",
     "ul": "Unordered List",
@@ -726,37 +726,37 @@
     "fragments": "Snippets"
   },
   "emoji-picker": {
-    "filter-placeholder": "Filter",
-    "filter-no-match": "No match",
-    "recently-used": "Recently Used"
+    "filter-placeholder": "필터",
+    "filter-no-match": "검색 결과 없음",
+    "recently-used": "최근 사용"
   },
   "submit": {
-    "page-title": "Create a post",
+    "page-title": "글쓰기",
     "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
-    "title-placeholder": "Title",
+    "title-placeholder": "제목",
     "body-placeholder": "Post Content",
-    "reward": "Reward",
+    "reward": "보상",
     "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Default 50% / 50%",
-    "reward-sp": "Power Up 100%",
-    "reward-dp": "Decline Payout",
-    "preview": "Preview",
-    "publish": "Publish",
-    "update": "Update",
-    "save-draft": "Save Draft",
-    "draft-saved": "Draft saved",
-    "update-draft": "Update Draft",
-    "draft-updated": "Draft updated",
-    "cancel-update": "Cancel",
-    "clear": "Clear",
-    "published": "Post Published",
-    "updated": "Post Updated",
-    "advanced": "Advanced",
-    "beneficiaries": "Beneficiaries",
+    "reward-sp": "파워업 100%",
+    "reward-dp": "보상 거절",
+    "preview": "미리보기",
+    "publish": "게시하기",
+    "update": "업데이트",
+    "save-draft": "임시 저장",
+    "draft-saved": "임시 보관함에 저장했습니다",
+    "update-draft": "임시 보관함 업데이트",
+    "draft-updated": "임시 보관함 업데이트되었습니다",
+    "cancel-update": "취소",
+    "clear": "삭제",
+    "published": "글이 게시되었습니다",
+    "updated": "글이 수정되었습니다",
+    "advanced": "고급",
+    "beneficiaries": "수령인",
     "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
-    "reblog": "Reblog",
+    "reblog": "리블로그",
     "reblog-hint": "Auto share content to your blog",
-    "schedule": "Schedule",
+    "schedule": "예약",
     "schedule-hint": "Auto publish content on specific time",
     "scheduled": "Post scheduled",
     "empty-title-alert": "Enter post title",
@@ -765,14 +765,14 @@
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
-    "placeholder-focus": "Enter tag",
-    "placeholder-has-tags": "Add More",
-    "suggestion-header": "Tags",
+    "placeholder-focus": "태그 입력",
+    "placeholder-has-tags": "더 추가",
+    "suggestion-header": "태그",
     "error-max": "Max {{n}} tags"
   },
   "community-selector": {
-    "choose": "Choose a community",
-    "my-blog": "My Blog",
+    "choose": "커뮤니티 선택",
+    "my-blog": "나의 블로그",
     "search-placeholder": "Search Communities"
   },
   "word-count": {
@@ -781,11 +781,11 @@
     "read-time-n-min": "~ {{n}} min read"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
+    "title": "수령인",
     "btn-label": "Set Beneficiaries",
     "btn-label-n": "Set Beneficiaries ({{n}})",
-    "username": "Username",
-    "reward": "Reward",
+    "username": "사용자 이름",
+    "reward": "보상",
     "user-error": "{{n}} is not a valid user.",
     "validation-percentage": "Percentage is required.",
     "validation-username": "Username is required.",
@@ -826,24 +826,24 @@
     "spin-str": "Time to earn more Points, Play Spin on Ecency Mobile app",
     "inactive-str": "Be active! Write a post, continue earning",
     "referral-str": "joined with your referral, welcome them",
-    "refresh": "Refresh",
-    "mark-all-read": "Mark All as Read",
-    "mark-read": "Mark as Read",
-    "mute": "Turn off notification alerts",
-    "unmute": "Turn on notification alerts"
+    "refresh": "새로고침",
+    "mark-all-read": "모두 읽음으로 표시",
+    "mark-read": "읽음으로 표시",
+    "mute": "알림 기능 끄기",
+    "unmute": "알림 기능 켜기"
   },
   "leaderboard": {
     "title-stars": "Most active",
-    "title-curators": "Curators",
+    "title-curators": "큐레이터",
     "title-day": "Daily leaders",
     "title-week": "Weekly leaders",
     "title-month": "Monthly leaders",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Activities",
+    "period-day": "일간",
+    "period-week": "주간",
+    "period-month": "월간",
+    "header-score": "활동",
     "header-score-tip": "Post + comments made by a user for selected period",
-    "header-reward": "Reward",
+    "header-reward": "보상",
     "header-votes": "Votes",
     "header-votes-tip": "Number of votes in this period"
   },
@@ -855,60 +855,60 @@
     "description": "Discover top online users"
   },
   "search-page": {
-    "title": "Search",
+    "title": "검색",
     "description": "Find uncensored content, communities and users"
   },
   "search-comment": {
-    "title": "Results",
+    "title": "결과",
     "matches": "{{n}} matches",
     "matches-singular": "1 match",
-    "advanced": "Advanced",
-    "search": "Search",
+    "advanced": "고급",
+    "search": "검색",
     "search-placeholder": "search phrase",
-    "author": "Author",
-    "author-placeholder": "username",
-    "type": "Type",
-    "type-": "All",
-    "type-post": "Post",
-    "type-comment": "Comment",
-    "category": "Category",
-    "category-placeholder": "category",
-    "tags": "Tags",
-    "tags-placeholder": "comma separated tags",
-    "date": "Date",
-    "date-week": "Last Week",
-    "date-month": "Last Month",
-    "date-year": "Last Year",
-    "date-all": "All",
-    "sort": "Sort",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
-    "sort-newest": "Recent",
-    "hide-low": "Hide low payout content",
-    "show-more": "show more"
+    "author": "작성자",
+    "author-placeholder": "사용자 이름",
+    "type": "종류",
+    "type-": "전체",
+    "type-post": "글",
+    "type-comment": "댓글",
+    "category": "카테고리",
+    "category-placeholder": "카테고리",
+    "tags": "태그",
+    "tags-placeholder": "쉼표로 구분된 태그",
+    "date": "날짜",
+    "date-week": "지난 주",
+    "date-month": "지난달",
+    "date-year": "작년",
+    "date-all": "전체",
+    "sort": "정렬",
+    "sort-popularity": "인기 순",
+    "sort-relevance": "관련순",
+    "sort-newest": "최근",
+    "hide-low": "낮은 보상 콘텐츠 숨기기",
+    "show-more": "더 보기"
   },
   "search-people": {
-    "title": "People"
+    "title": "사용자"
   },
   "search-topics": {
-    "title": "Topics"
+    "title": "주제"
   },
   "search-communities": {
-    "title": "Communities"
+    "title": "커뮤니티"
   },
   "witnesses": {
     "page-title": "Witnesses",
     "page-description": "Consensus block producers selection",
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
     "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
-    "list-rank": "Rank",
-    "list-witness": "Witness",
+    "list-rank": "랭크",
+    "list-witness": "증인",
     "list-miss": "Miss",
     "list-url": "URL",
-    "list-fee": "Fee",
+    "list-fee": "수수료",
     "list-feed": "피드",
-    "list-version": "Version",
-    "username-placeholder": "username",
+    "list-version": "버전",
+    "username-placeholder": "사용자 이름",
     "extra-description": "Enter account name below to vote for a witness outside of Top 50",
     "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
     "proxy-btn-label": "Set Proxy",
@@ -918,7 +918,7 @@
     "proxy-votes-for": "@{{username}} votes for"
   },
   "proposals": {
-    "page-title": "Proposals",
+    "page-title": "제안",
     "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
     "by": "by",
     "for": "for",
@@ -929,40 +929,40 @@
     "status-expired": "expired",
     "status-inactive": "upcoming",
     "remaining-days": "Remaining: {{n}} days",
-    "filter-all": "All",
+    "filter-all": "전체",
     "filter-active": "Active",
-    "filter-inactive": "Upcoming",
+    "filter-inactive": "예정",
     "filter-team": "Ecency Projects",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "Votes on Proposal #{{n}}",
     "see-all": "see all proposals"
   },
   "gallery": {
-    "title": "Gallery",
-    "copied": "Copied to clipboard"
+    "title": "갤러리",
+    "copied": "클립보드에 복사되었습니다"
   },
   "drafts": {
-    "title": "Drafts",
+    "title": "임시 보관함",
     "filter": "Search by title"
   },
   "schedules": {
     "title": "Scheduled Posts",
-    "move": "Move to drafts"
+    "move": "임시 보관함으로 이동"
   },
   "bookmarks": {
-    "title": "Bookmarks"
+    "title": "즐겨찾기"
   },
   "favorites": {
-    "title": "Favorites"
+    "title": "즐겨찾기"
   },
   "fragments": {
-    "title": "Snippets",
+    "title": "스니펫",
     "create-first": "Create your first snippet",
     "filter": "Search by title",
-    "form-title": "Title",
-    "validation-title": "Title is required.",
-    "validation-value": "Value is required.",
-    "validation-body": "Body is required.",
+    "form-title": "제목",
+    "validation-title": "제목은 필수.",
+    "validation-value": "값은 필수.",
+    "validation-body": "내용 필수.",
     "form-body": "Body"
   },
   "password-update": {
@@ -980,12 +980,12 @@
   },
   "view-keys": {
     "title": "View Private keys",
-    "account": "Account",
-    "cur-pass": "Current password",
-    "owner": "Owner",
-    "active": "Active",
-    "posting": "Posting",
-    "memo": "Memo",
+    "account": "계정",
+    "cur-pass": "현재 비밀번호",
+    "owner": "소유자",
+    "active": "액티브",
+    "posting": "포스팅",
+    "memo": "메모",
     "view-keys": "Click to view keys",
     "copied": "Private key copied into clipboard",
     "error": "Password seem incorrect, please double check!"
@@ -1000,34 +1000,34 @@
   "add-image-mobile": {
     "title": "Add Image",
     "recent-title": "Recently uploaded",
-    "gallery": "Gallery",
-    "upload": "Upload image"
+    "gallery": "갤러리",
+    "upload": "이미지 업로드"
   },
   "add-link": {
-    "title": "Add Link",
-    "text-label": "Text",
+    "title": "링크 추가",
+    "text-label": "텍스트",
     "link-label": "https://",
     "validation-text": "Text is required.",
-    "validation-link": "Link is required."
+    "validation-link": "링크 필수."
   },
   "scroll-to-top": {
-    "title": "Scroll to Top"
+    "title": "맨 위로 스크롤"
   },
   "static": {
     "about": {
-      "page-title": "About",
+      "page-title": "소개",
       "intro-title": "What is <span>Ecency</span>",
       "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
-      "faq-title": "FAQ",
+      "faq-title": "자주 묻는 질문(FAQ)",
       "faqs": "All FAQs",
-      "contact-title": "Contacts",
+      "contact-title": "연락처",
       "contact-blog": "Founder's blog",
       "contact-news": "News on Hive",
-      "contact-email": "Email us"
+      "contact-email": "이메일 문의"
     },
     "faq": {
       "page-title": "Ecency FAQ",
-      "page-sub-title": "Table of Contents",
+      "page-sub-title": "목차",
       "what-is-ecency-header": "What is Ecency?",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "What is Hive blockchain?",
@@ -1081,20 +1081,20 @@
     "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
   },
   "context-menu": {
-    "cut": "Cut",
-    "copy": "Copy",
-    "paste": "Paste",
-    "open-image-browser": "Open image in browser",
-    "copy-image-url": "Copy image url"
+    "cut": "잘라내기",
+    "copy": "복사",
+    "paste": "붙여넣기",
+    "open-image-browser": "브라우저에서 이미지 열기",
+    "copy-image-url": "이미지 url 복사"
   },
   "updater": {
-    "new-version-available": "New version is available",
-    "download": "Download",
-    "update": "Update",
-    "dismiss": "Dismiss",
+    "new-version-available": "새 버전이 출시되었습니다",
+    "download": "다운로드",
+    "update": "업데이트",
+    "dismiss": "무시",
     "downloading": "Downloading new version...",
     "download-completed": "Download is completed",
-    "restart": "Restart"
+    "restart": "다시 시작"
   },
   "chain-error": {
     "min-root-comment": "You may only post once every five minutes.",
@@ -1106,15 +1106,15 @@
     "paid-out-post-forbidden": "Voting for paid out content is not available."
   },
   "landing-page": {
-    "welcome-text": "Welcome to Ecency!",
+    "welcome-text": "Ecency에 환영합니다!",
     "what-is-ecency": "Blockchain-based social network",
     "powered-by-hive": " powered by Hive",
-    "get-started": "Get started",
+    "get-started": "시작",
     "earn-money": "Earn money",
     "earn-money-block-chain-based": "Blockchain-based social network, ",
     "join-us": "join-us",
     "various-digital-tokens": " and earn various digital tokens, reward others and build a rewarding community.",
-    "read-more": "Read more",
+    "read-more": "더보기",
     "true-ownership": "True ownership",
     "true-ownership-desc": "Ecency is the next generation social network for Web 3.0. Blockchain technology gives you a real free speech, without any censorship or banning. Only you control your own account, content and communities.",
     "decentralization": "Decentralization",
