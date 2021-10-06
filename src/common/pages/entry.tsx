@@ -71,6 +71,7 @@ import { getFollowing } from "../api/hive";
 import { history } from "../store";
 import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
 import entryDeleteBtn from "../components/entry-delete-btn";
+import { commentHistory } from "../api/private-api";
 
 setProxyBase(defaults.imageServer);
 
@@ -94,6 +95,8 @@ interface State {
     showProfileBox: boolean;
     entryIsMuted: boolean;
     isMounted: boolean;
+    postIsDeleted: boolean;
+    deletedEntry: {title: string, body: string} | null;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -106,7 +109,9 @@ class EntryPage extends BaseComponent<Props, State> {
         comment: "",
         showProfileBox: false,
         isMounted: false,
-        entryIsMuted: false
+        entryIsMuted: false,
+        postIsDeleted: false,
+        deletedEntry: null
     };
     
     viewElement: HTMLDivElement | undefined;
@@ -143,6 +148,18 @@ class EntryPage extends BaseComponent<Props, State> {
         Promise.all([p1, p2])
         this.setState({isMounted:false})
     }
+
+    loadDeletedEntry = (author:string, permlink:string) => {
+        commentHistory(author, permlink)
+            .then(resp => {
+                this.stateSet({deletedEntry: { body: resp.list[0].body, title: resp.list[0].title}, loading: false});
+            })
+            .catch(() => {
+                error(_t('g.server-error'));
+            })
+            .finally(() => {
+            })
+    };
 
     // detects distance between title and comments section sets visibility of profile card
     detect = () => {
@@ -260,9 +277,18 @@ class EntryPage extends BaseComponent<Props, State> {
                 if (data) {
                     addCommunity(data);
                 }
-            })
+            }).catch(e=>{
+                let errorMessage = e.jse_info && e.jse_info
+                let arr = [];
+                for(let p in errorMessage)
+                    arr.push(errorMessage[p]);
+                    errorMessage = arr.toString().replaceAll(',','')
+                    if(errorMessage && errorMessage.length > 0 && errorMessage.includes("was deleted")){
+                    this.setState({postIsDeleted: true, loading: true});
+                    this.loadDeletedEntry(author, permlink)
+                }})
             .finally(() => {
-                this.stateSet({loading: false, isMounted:true});
+                this.stateSet({ isMounted:true});
             });
     };
 
@@ -398,8 +424,8 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, isMounted} = this.state;
-        const {global, history} = this.props;
+        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, isMounted, postIsDeleted, deletedEntry} = this.state;
+        const {global, history, match} = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
@@ -408,10 +434,49 @@ class EntryPage extends BaseComponent<Props, State> {
         }) : NavBar({...this.props});
 
         if (loading) {
-            return <>{navBar}<LinearProgress/></>;
+            
+            return <>
+                        {navBar}
+                        <div className="mt-5">
+                            <div className="pt-2">
+                                <div className="mt-1">
+                                    <LinearProgress/>
+                                </div>
+                            </div>
+                        </div>
+                    </>;
         }
 
         const entry = this.getEntry();
+
+        if(postIsDeleted){
+
+        const {username, permlink} = match.params;
+        const author = username.replace("@", "");
+        
+        return <div>
+                    {navBar}
+                    {deletedEntry && <div className="p-5 the-entry">
+
+                        <div className="p-3 bg-danger rounded text-white my-5">This post was deleted from blockchain but we're showing it from our database <u onClick={this.toggleEditHistory} className="text-primary pointer">history</u>.</div>
+                        <div className="cross-post">
+                            <div className="d-flex align-items-center mb-4">
+                                {ProfileLink({
+                                    ...this.props,
+                                    username: author,
+                                    children: <div className="cross-post-author mr-3">
+                                        {UserAvatar({...this.props, username: author, size: "medium"})}
+                                    </div>
+                                })}
+                                <h1 className="entry-title">{deletedEntry!.title}</h1>
+                            </div>
+                        </div>
+                       <div dangerouslySetInnerHTML={{__html: renderPostBody(deletedEntry!.body)}} />
+                        {editHistory && <EditHistory entry={{author, permlink} as any} onHide={this.toggleEditHistory}/>}
+                    </div>
+                }</div>
+
+        }
 
         if (!entry) {
             return NotFound({...this.props});
