@@ -105,7 +105,6 @@ interface ItemState {
     showProfileDetails: boolean;
     showProfileDetailsAvatar: boolean;
     inProgress: boolean;
-    showIfHidden: boolean;
     mutedData: string[];
     isHiddenPermitted: boolean;
     delayHandler: any
@@ -118,7 +117,6 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         inProgress: false,
         showProfileDetails: false,
         showProfileDetailsAvatar: false,
-        showIfHidden: false,
         mutedData: [],
         delayHandler: null,
         isHiddenPermitted:false,
@@ -336,7 +334,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
 
     render() {
         const { entry, activeUser, community, location } = this.props;
-        const { reply, edit, inProgress, showIfHidden, mutedData, showProfileDetails, showProfileDetailsAvatar, isHiddenPermitted, mounted } = this.state;
+        const { reply, edit, inProgress, mutedData, showProfileDetails, showProfileDetailsAvatar, isHiddenPermitted, mounted } = this.state;
 
         const created = moment(parseDate(entry.created));
         const readMore = entry.children > 0 && entry.depth > 5;
@@ -347,8 +345,6 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
             return m[0] === activeUser.username &&
                 [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
         }) : false;
-
-        let isHidden = (!!entry.stats?.gray && !showIfHidden) || (activeUser && mutedData.includes(entry.author) && !showIfHidden);
 
         const anchorId = `anchor-@${entry.author}/${entry.permlink}`;
 
@@ -361,8 +357,8 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                 </div>
                 <div className="item-inner">
                     <div className="item-figure">
-                        <div className="d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
-                        <div onMouseEnter={(e) => {!isHidden && this.onShowProfileAvatar(e)}} onMouseLeave={(e, ) => {!isHidden && this.onHideProfileAvatar(e)}}>
+                        <div className="d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {this.onShowProfile(e)}}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
+                        <div onMouseEnter={(e) => {this.onShowProfileAvatar(e)}} onMouseLeave={(e, ) => {this.onHideProfileAvatar(e)}}>
                             {ProfileLink({...this.props, username: entry.author, children: 
                                     <a className="d-none d-sm-inline-block">
                                         {UserAvatar({...this.props, username: entry.author, size: "medium"})}
@@ -374,7 +370,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                 <ProfilePreview
                                     username={entry.author}
                                     {...this.props}
-                                    onClose={(e, doNotSetState) => {!isHidden && this.onHideProfileAvatar(e, doNotSetState)}}
+                                    onClose={(e, doNotSetState) => {this.onHideProfileAvatar(e, doNotSetState)}}
                                 />
                             }
                         </div>
@@ -382,12 +378,12 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                     <div className="item-content">
                         <div className="item-header">
                             <div
-                                onMouseEnter={(e) => {!isHidden && this.onShowProfile(e)}}
-                                onMouseLeave={(e) => {!isHidden && this.onHideProfile(e)}}
+                                onMouseEnter={(e) => {this.onShowProfile(e)}}
+                                onMouseLeave={(e) => {this.onHideProfile(e)}}
                                 className="d-flex align-items-center"
                                 id={`${entry.author}-${entry.permlink}`} 
                             >
-                            <div className="author notranslate d-flex align-items-center d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>
+                            <div className="author notranslate d-flex align-items-center d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {this.onShowProfile(e)}}>
                                 <span className="author-name" id={`${entry.author}-${entry.permlink}`} >{entry.author}</span>
                                 <span className="author-down-arrow mx-2" id={`${entry.author}-${entry.permlink}`} >{menuDownSvg}</span>
                             </div>
@@ -402,7 +398,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                     <ProfilePreview
                                         username={entry.author}
                                         {...this.props}
-                                        onClose={(e, doNotSetState) => {!isHidden && this.onHideProfile(e, doNotSetState)}}
+                                        onClose={(e, doNotSetState) => {this.onHideProfile(e, doNotSetState)}}
                                     />
                             }
                             </div>
