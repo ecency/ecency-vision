@@ -457,8 +457,7 @@ class EntryPage extends BaseComponent<Props, State> {
         return <div>
                     {navBar}
                     {deletedEntry && <div className="p-5 the-entry">
-
-                        <div className="p-3 bg-danger rounded text-white my-5">This post was deleted from blockchain but we're showing it from our database <u onClick={this.toggleEditHistory} className="text-primary pointer">history</u>.</div>
+                        <div className="p-3 bg-danger rounded text-white my-5">{_t("entry.deleted-content-warning")}<u onClick={this.toggleEditHistory} className="text-primary pointer">{_t("points.history")}</u> {_t("g.logs")}.</div>
                         <div className="cross-post">
                             <div className="d-flex align-items-center mb-4">
                                 {ProfileLink({
