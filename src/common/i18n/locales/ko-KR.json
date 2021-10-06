@@ -460,7 +460,7 @@
     "updated": "Profile updated successfully!"
   },
   "image-upload-button": {
-    "uploaded": "Image uploaded"
+    "uploaded": "이미지 업로드 완료"
   },
   "preferences": {
     "title": "환경 설정",
@@ -468,12 +468,12 @@
     "currency": "통화",
     "language": "언어",
     "nsfw": "Show NSFW content",
-    "referral-link": "Referral link",
-    "updated": "Preference updated!"
+    "referral-link": "추천인 링크",
+    "updated": "설정 업데이트 완료!"
   },
   "wallet": {
     "unclaimed-rewards": "Unclaimed rewards",
-    "claim-reward-balance": "Claim reward balance",
+    "claim-reward-balance": "보상 요청",
     "claim-reward-balance-ok": "보상을 요청했습니다",
     "estimated": "계정 보유 자산 예상 가치",
     "estimated-description": "추정 가치는 7 일 간의 하이브 평균 가격을 토대로 산정합니다.",
@@ -540,12 +540,12 @@
     "transfer": "Gift to someone",
     "claim-ok": "Points claimed",
     "promote": "Promote",
-    "boost": "Boost",
-    "filter-all": "All History",
-    "filter-10": "Points for heartbeat",
-    "filter-20": "Points for login",
-    "filter-30": "Usage bonus",
-    "filter-100": "Points for post",
+    "boost": "부스트",
+    "filter-all": "전체 내역",
+    "filter-10": "체크인 포인트",
+    "filter-20": "로그인 포인트",
+    "filter-30": "사용 보너스",
+    "filter-100": "포스팅 포인트",
     "filter-110": "Points for comment",
     "filter-120": "Points for vote",
     "filter-130": "Points for reblog",
