@@ -35,7 +35,7 @@
     "trending": "피드",
     "created": "피드",
     "muted": "뮤트",
-    "found": "found",
+    "found": "찾았습니다.",
     "feed": "피드",
     "blog": "블로그",
     "posts": "게시물",
@@ -58,19 +58,19 @@
     "filter-trending": "인기",
     "filter-hot": "핫",
     "filter-created": "최신 글",
-    "filter-promoted": "Promoted",
+    "filter-promoted": "홍보",
     "filter-payout": "글보상",
     "filter-muted": "뮤트",
     "filter-feed": "피드",
     "filter-feed-friends": "친구",
     "filter-feed-subscriptions": "커뮤니티",
     "filter-global": "글로벌",
-    "filter-global-part1": "This feed contains ",
+    "filter-global-part1": "이 피드에는 다음이 포함되어 있습니다 ",
     "filter-global-part2": " discussions on entire platform.",
     "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
     "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
     "filter-global-discover": "Discover People",
-    "filter-global-join-communities": "Join Communities"
+    "filter-global-join-communities": "커뮤니티 가입"
   },
   "navbar": {
     "discover": "찾기",
@@ -96,9 +96,9 @@
   },
   "user-nav": {
     "wallet": "지갑",
-    "unclaimed-reward-notice": "You have unclaimed rewards",
+    "unclaimed-reward-notice": "요청하지 않은 보상이 있습니다",
     "points": "포인트",
-    "unclaimed-points-notice": "You have unclaimed points",
+    "unclaimed-points-notice": "요청하지 않은 포인트가 있습니다",
     "notifications": "알림",
     "profile": "프로필",
     "profile-menu": "프로필 메뉴",
@@ -124,11 +124,11 @@
     "title": "다시 돌아오신 것을 환영합니다!",
     "with-user-pass": "Login with your username and private key.",
     "username-placeholder": "사용자 이름",
-    "key-placeholder": "password / private key",
-    "login-info-1": "We don't store your private keys.",
+    "key-placeholder": "비밀번호 / 개인 키",
+    "login-info-1": "우리는 귀하의 개인 키를 저장하지 않습니다.",
     "login-info-2": "더 보기",
-    "error-fields-required": "Please enter username and private key",
-    "error-public-key": "You entered a public key. Password/WIF required",
+    "error-fields-required": "사용자 이름과 개인 키를 입력하세요",
+    "error-public-key": "공개 키를 입력했습니다. 비밀번호/WIF를 입력해주세요",
     "error-user-fetch": "User data could not be fetched",
     "error-user-not-found": "존재하지 않는 사용자입니다",
     "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
@@ -152,20 +152,20 @@
     "validation-email": "이메일이 필요합니다.",
     "success": "{{email}}로 이메일을 발송하였습니다.",
     "success-2": "Follow instructions to complete signup process.",
-    "login-text-1": "Do you have an account?",
+    "login-text-1": "계정이 없으신가요?",
     "login-text-2": "로그인"
   },
   "trending-tags": {
     "title": "주제"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "추천"
   },
   "entry-list-item": {
     "cross-posted": "cross-posted",
-    "cross-posted-to": "to",
-    "reblogged": "{{n}} Reblogged",
-    "promoted": "Promoted",
+    "cross-posted-to": "에게",
+    "reblogged": "{{n}} 리블로그 완료",
+    "promoted": "홍보",
     "pinned": "고정된 글",
     "replies": "1 response. Click to respond.",
     "replies-n": "{{n}} responses. Click to respond.",
@@ -177,13 +177,13 @@
     "reveal": "Reveal this post",
     "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
     "settings-1": "adjust your",
-    "settings-2": "display preferences"
+    "settings-2": "환경 설정 표시"
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "즐겨찾기에 추가",
+    "added": "즐겨찾기에 추가되었습니다",
+    "delete": "즐겨찾기에서 삭제",
+    "deleted": "즐겨찾기에서 삭제했습니다"
   },
   "entry-reblog": {
     "reblog": "리블로그",
@@ -284,31 +284,31 @@
     "community-in": "in"
   },
   "edit-history": {
-    "title": "Edit History",
+    "title": "편집 내역",
     "show-diff": "Show Difference",
     "version": "버전 {{n}}"
   },
   "similar-entries": {
-    "title": "Read next"
+    "title": "다음을 보기"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "여기에 댓글을 입력하세요",
+    "preview": "미리보기"
   },
   "discussion": {
-    "join": "Join the conversion now",
-    "btn-join": "Join",
-    "replies": "1 Comment",
-    "n-replies": "{{n}} Comments",
+    "join": "대화에 참여",
+    "btn-join": "가입",
+    "replies": "댓글 1개",
+    "n-replies": "{{n}} 개 댓글",
     "order": "Sort Order",
-    "order-trending": "Trending",
+    "order-trending": "인기",
     "order-reputation": "명성도순",
     "order-votes": "Votes",
-    "order-created": "Age",
+    "order-created": "나이",
     "read-more": "...read more replies...",
     "reveal-muted": "Muted author - Reveal comment",
     "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
-    "reveal": "Reveal comment"
+    "reveal": "댓글 보기"
   },
   "community": {
     "page-description": "{{f}} topics",
@@ -380,21 +380,21 @@
     "title": "제목",
     "about": "소개",
     "description": "Create a best, decentralized, immutable, rewarding communities",
-    "fee": "Creation fee",
+    "fee": "생성 수수료",
     "creator": "작성자",
-    "username": "Community username",
+    "username": "커뮤니티 명칭",
     "username-available": "사용 가능합니다.",
     "username-not-available": "사용할 수 없습니다",
-    "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
-    "checkbox-validation": "Please tick this box if you want to proceed.",
-    "title-validation": "Please fill in this field.",
+    "username-wrong-format": "유효한 형식이 아닙니다. hive-1xxxxx 형식이 필요합니다.",
+    "checkbox-validation": "계속 진행 하시려면 이 상자를 체크해 주세요.",
+    "title-validation": "이 항목을 채워주세요.",
     "password": "커뮤니티 비밀번호",
     "confirmation": "I have securely saved my owner username and password.",
     "submit": "커뮤니티 만들기",
     "progress-account": "계정 생성 중...",
-    "progress-user": "Preparing user data...",
-    "progress-role": "Setting @{{u}} as admin...",
-    "progress-props": "Updating community settings...",
+    "progress-user": "사용자 데이터 준비 중...",
+    "progress-role": "@{{u}}을 관리자로 설정하는 중...",
+    "progress-props": "커뮤니티 설정 업데이트 중...",
     "done": "커뮤니티 생성 완료 🎉",
     "reason-one": "True ownership",
     "reason-two": "Permanent, rewarding",
@@ -1072,7 +1072,7 @@
       "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, start posting your content.</p>",
       "source-label-header": "Content source labels, what are those?",
       "source-label-body": "<p>Content source helps you understand how content was published. In some cases you may see a third-party client name, which indicates the Content came from a non-Ecency application. Authors sometimes use third-party client applications to manage their blogs, communities. Third-party clients are software tools used by authors and therefore are not affiliated with, nor do they reflect the views of, the content. Content can be directly created by humans or, in some circumstances, automated by an application.</p>",
-      "how-to-contribute-header": "How to contribute to the Ecency?",
+      "how-to-contribute-header": "Ecency에 기여하는 방법?",
       "how-to-contribute-body": "<p>Our <a href=\"/contributors\" class=\"push-link\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Website</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
     }
   },
@@ -1102,7 +1102,7 @@
     "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
     "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
     "comment-cashout": "Content after their payout cannot be deleted.",
-    "comment-children": "Cannot delete a content with replies.",
+    "comment-children": "답글이 달린 콘텐츠는 삭제할 수 없습니다.",
     "paid-out-post-forbidden": "Voting for paid out content is not available."
   },
   "landing-page": {
@@ -1115,14 +1115,14 @@
     "join-us": "가입하세요",
     "various-digital-tokens": " and earn various digital tokens, reward others and build a rewarding community.",
     "read-more": "더보기",
-    "true-ownership": "True ownership",
+    "true-ownership": "진정한 소유권",
     "true-ownership-desc": "Ecency is the next generation social network for Web 3.0. Blockchain technology gives you a real free speech, without any censorship or banning. Only you control your own account, content and communities.",
     "decentralization": "탈중앙화",
     "hive-blockchain": "하이브 블록체인",
     "decentralization-desc": " has many social, gaming and financial apps that you can access with a single account you own. Access your social network account and content from any other 3rd party apps in decentralized way.",
     "open-source": "오픈소스",
     "open-source-desc": "Join and be part of the building team on Web 3.0. Everything that we build is blockchain-based and open source. We welcome tech talents, developers, creators and entrepreneurs.",
-    "feel-free-join": " Join and lets build together!",
+    "feel-free-join": " 가입하고 함께 구축합시다!",
     "posts": "게시물",
     "unique-visitors": "유일한 방분자",
     "points-distrubuted": "분배된 포인트",
