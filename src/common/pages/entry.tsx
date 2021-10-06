@@ -166,7 +166,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
        const infoCard:HTMLElement | null = document.getElementById("avatar-fixed");
        const top = this?.viewElement?.getBoundingClientRect()?.top || 120;
-        debugger
+        
        if(infoCard != null && window.scrollY > 180  && top && !(top <= 0)) {
             infoCard.classList.add('visible')
        } else if( infoCard != null && window.scrollY <= 180) {
