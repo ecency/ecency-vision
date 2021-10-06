@@ -34,7 +34,7 @@
     "hot": "피드",
     "trending": "피드",
     "created": "피드",
-    "muted": "muted",
+    "muted": "뮤트",
     "found": "found",
     "feed": "피드",
     "blog": "블로그",
@@ -52,19 +52,19 @@
   "confirm": {
     "title": "Are you sure?",
     "ok": "확인",
-    "cancel": "Cancel"
+    "cancel": "최소"
   },
   "entry-filter": {
-    "filter-trending": "Trending",
-    "filter-hot": "Hot",
-    "filter-created": "New",
+    "filter-trending": "인기",
+    "filter-hot": "핫",
+    "filter-created": "최신 글",
     "filter-promoted": "Promoted",
-    "filter-payout": "Payouts",
-    "filter-muted": "Muted",
+    "filter-payout": "글보상",
+    "filter-muted": "뮤트",
     "filter-feed": "피드",
     "filter-feed-friends": "친구",
     "filter-feed-subscriptions": "커뮤니티",
-    "filter-global": "Global",
+    "filter-global": "글로벌",
     "filter-global-part1": "This feed contains ",
     "filter-global-part2": " discussions on entire platform.",
     "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
@@ -73,11 +73,11 @@
     "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
-    "discover": "Discover",
-    "communities": "Communities",
-    "post": "Create Post",
-    "day-theme": "Day Theme",
-    "night-theme": "Night Theme",
+    "discover": "찾기",
+    "communities": "커뮤니티",
+    "post": "글쓰기",
+    "day-theme": "주간 모드",
+    "night-theme": "야간 모드",
     "address-placeholder": "enter url or search query"
   },
   "search": {
@@ -92,18 +92,18 @@
     "moderated": "Moderated community"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "기여자"
   },
   "user-nav": {
-    "wallet": "Wallet",
+    "wallet": "지갑",
     "unclaimed-reward-notice": "You have unclaimed rewards",
-    "points": "Points",
+    "points": "포인트",
     "unclaimed-points-notice": "You have unclaimed points",
-    "notifications": "Notifications",
-    "profile": "Profile",
-    "profile-menu": "Profile menu",
-    "gallery": "Gallery",
-    "drafts": "Drafts",
+    "notifications": "알림",
+    "profile": "프로필",
+    "profile-menu": "프로필 메뉴",
+    "gallery": "갤러리",
+    "drafts": "임시 보관함",
     "bookmarks": "Bookmarks",
     "schedules": "Schedules",
     "fragments": "Snippets",
