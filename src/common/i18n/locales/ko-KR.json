@@ -104,15 +104,15 @@
     "profile-menu": "프로필 메뉴",
     "gallery": "갤러리",
     "drafts": "임시 보관함",
-    "bookmarks": "Bookmarks",
-    "schedules": "Schedules",
-    "fragments": "Snippets",
+    "bookmarks": "즐겨찾기",
+    "schedules": "예약글",
+    "fragments": "스니펫",
     "settings": "설정",
     "logout": "로그아웃",
     "theme": "테마",
-    "light": "light",
-    "dark": "dark",
-    "switch-to": "Switch",
+    "light": "밝은",
+    "dark": "어두운",
+    "switch-to": "전환",
     "vote-power": "보팅 파워:"
   },
   "intro": {
@@ -126,7 +126,7 @@
     "username-placeholder": "사용자 이름",
     "key-placeholder": "password / private key",
     "login-info-1": "We don't store your private keys.",
-    "login-info-2": "More info",
+    "login-info-2": "더 보기",
     "error-fields-required": "Please enter username and private key",
     "error-public-key": "You entered a public key. Password/WIF required",
     "error-user-fetch": "User data could not be fetched",
@@ -186,32 +186,32 @@
     "deleted": "Removed from bookmarks"
   },
   "entry-reblog": {
-    "reblog": "Reblog",
+    "reblog": "리블로그",
     "confirm-title": "Reblog to @{{n}}'s blog?",
-    "confirm-ok": "Reblog",
-    "success": "Reblogged!",
-    "delete-reblog": "Undo Reblog",
-    "delete-confirm-title": "Undo reblog?",
-    "delete-confirm-ok": "Undo",
+    "confirm-ok": "리블로그",
+    "success": "리블로그 완료!",
+    "delete-reblog": "리블로그 취소",
+    "delete-confirm-title": "리블로그 취소하시겠습니까?",
+    "delete-confirm-ok": "실행취소",
     "delete-success": "Reblog removed"
   },
   "entry-tip": {
-    "title": "Tip"
+    "title": "팁"
   },
   "entry-share": {
-    "title": "Share"
+    "title": "공유"
   },
   "entry-menu": {
     "cross-post": "Cross post",
     "share": "공유",
     "edit-history": "Edit History",
     "pin": "고정",
-    "pin-success": "Post pinned",
-    "unpin": "Unpin",
-    "unpin-success": "Post Unpinned",
+    "pin-success": "게시물 고정 완료",
+    "unpin": "고정 해제",
+    "unpin-success": "게시물 고정 취소 완료",
     "mute": "뮤트",
     "mute-success": "Post muted",
-    "unmute": "Unmute",
+    "unmute": "뮤트 취소",
     "unmute-success": "Post unmuted",
     "promote": "홍보",
     "boost": "부스트"
@@ -239,17 +239,17 @@
   },
   "entry-index": {
     "feed": "피드",
-    "tags": "Popular",
+    "tags": "인기 순",
     "title": "{{f}} topics",
     "description": "{{f}} topics on a social network owned and operated by its users.",
     "description-tag": "{{f}} #{{t}} topics",
     "description-user-feed": "{{u}}의 피드",
     "faq": "자주 묻는 질문(FAQ)",
-    "tos": "Terms of service",
-    "pp": "Privacy Policy"
+    "tos": "서비스 이용약관",
+    "pp": "개인정보 취급방침"
   },
   "market-data": {
-    "title": "Market price",
+    "title": "시가",
     "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
@@ -280,13 +280,13 @@
     "address-copied": "글 주소가 클립보드에 복사되었습니다.",
     "browse-original": "원본 게시물 보기",
     "cross-post-by": "Cross post by",
-    "cross-post-community": "community",
+    "cross-post-community": "커뮤니티",
     "community-in": "in"
   },
   "edit-history": {
     "title": "Edit History",
     "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "version": "버전 {{n}}"
   },
   "similar-entries": {
     "title": "Read next"
@@ -339,7 +339,7 @@
     "team": "리더십",
     "edit": "설정 편집",
     "edit-team": "역할 편집",
-    "community-rewards": "Community Rewards",
+    "community-rewards": "커뮤니티 보상",
     "profile-image": "프로필 사진",
     "profile-image-edit": "프로필 사진 변경하기",
     "profile-image-updated": "Profile image updated!"
@@ -371,31 +371,31 @@
     "sort-hot": "인기순",
     "sort-rank": "등급",
     "sort-subs": "멤버",
-    "sort-new": "New",
-    "no-results": "No results found",
-    "create": "Create community"
+    "sort-new": "최신 글",
+    "no-results": "검색 결과가 없습니다",
+    "create": "커뮤니티 만들기"
   },
   "communities-create": {
-    "page-title": "Create a community",
-    "title": "Title",
-    "about": "About",
+    "page-title": "커뮤니티 만들기",
+    "title": "제목",
+    "about": "소개",
     "description": "Create a best, decentralized, immutable, rewarding communities",
     "fee": "Creation fee",
-    "creator": "Creator",
+    "creator": "작성자",
     "username": "Community username",
-    "username-available": "Available.",
-    "username-not-available": "Not available.",
+    "username-available": "사용 가능합니다.",
+    "username-not-available": "사용할 수 없습니다",
     "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
     "checkbox-validation": "Please tick this box if you want to proceed.",
     "title-validation": "Please fill in this field.",
-    "password": "Community password",
+    "password": "커뮤니티 비밀번호",
     "confirmation": "I have securely saved my owner username and password.",
-    "submit": "Create Community",
-    "progress-account": "Creating account...",
+    "submit": "커뮤니티 만들기",
+    "progress-account": "계정 생성 중...",
     "progress-user": "Preparing user data...",
     "progress-role": "Setting @{{u}} as admin...",
     "progress-props": "Updating community settings...",
-    "done": "Your community was created 🎉",
+    "done": "커뮤니티 생성 완료 🎉",
     "reason-one": "True ownership",
     "reason-two": "Permanent, rewarding",
     "reason-three": "Powered by blockchain technology",
