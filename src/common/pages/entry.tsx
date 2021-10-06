@@ -96,7 +96,7 @@ interface State {
     entryIsMuted: boolean;
     isMounted: boolean;
     postIsDeleted: boolean;
-    deletedEntry: {title: string, body: string} | null;
+    deletedEntry: {title: string, body: string, tags: any} | null;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -152,7 +152,7 @@ class EntryPage extends BaseComponent<Props, State> {
     loadDeletedEntry = (author:string, permlink:string) => {
         commentHistory(author, permlink)
             .then(resp => {
-                this.stateSet({deletedEntry: { body: resp.list[0].body, title: resp.list[0].title}, loading: false});
+                this.stateSet({deletedEntry: { body: resp.list[0].body, title: resp.list[0].title, tags: resp.list[0].tags}, loading: false});
             })
             .catch(() => {
                 error(_t('g.server-error'));
@@ -165,8 +165,8 @@ class EntryPage extends BaseComponent<Props, State> {
     detect = () => {
 
        const infoCard:HTMLElement | null = document.getElementById("avatar-fixed");
-       const top = this?.viewElement?.getBoundingClientRect()?.top;
-
+       const top = this?.viewElement?.getBoundingClientRect()?.top || 120;
+        debugger
        if(infoCard != null && window.scrollY > 180  && top && !(top <= 0)) {
             infoCard.classList.add('visible')
        } else if( infoCard != null && window.scrollY <= 180) {
@@ -456,25 +456,36 @@ class EntryPage extends BaseComponent<Props, State> {
         
         return <div>
                     {navBar}
-                    {deletedEntry && <div className="p-5 the-entry">
-                        <div className="p-3 bg-danger rounded text-white my-5">{_t("entry.deleted-content-warning")}<u onClick={this.toggleEditHistory} className="text-primary pointer">{_t("points.history")}</u> {_t("g.logs")}.</div>
-                        <div className="cross-post">
-                            <div className="d-flex align-items-center mb-4">
-                                {ProfileLink({
-                                    ...this.props,
-                                    username: author,
-                                    children: <div className="cross-post-author mr-3">
-                                        {UserAvatar({...this.props, username: author, size: "medium"})}
+                    {deletedEntry && 
+                    <div className="container overflow-x-hidden">
+                        <ScrollToTop/>
+                        <Theme global={this.props.global}/>
+                        <div className="row">
+                            <div className="col-12 col-sm-6 col-md-4 col-lg-2 mt-5">
+                                <div className="mb-4 mt-5">
+                                {!global.isMobile && <AuthorInfoCard {...this.props} entry={{author} as any} />}
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-6 col-md-8 col-lg-9">
+                                <div className="p-5 the-entry">
+                                    <div className="p-3 bg-danger rounded text-white my-5">{_t("entry.deleted-content-warning")}<u onClick={this.toggleEditHistory} className="text-primary pointer">{_t("points.history")}</u> {_t("g.logs")}.</div>
+                                    <div className="cross-post">
+                                        <h1 className="entry-title">{deletedEntry!.title}</h1>
                                     </div>
-                                })}
-                                <h1 className="entry-title">{deletedEntry!.title}</h1>
+                                <div dangerouslySetInnerHTML={{__html: renderPostBody(deletedEntry!.body)}} />
+                                {editHistory && <EditHistory entry={{author, permlink} as any} onHide={this.toggleEditHistory}/>}
+                                <div className="mt-3">
+                                    {SimilarEntries({
+                                        ...this.props,
+                                        entry: {permlink, author, json_metadata: { tags: deletedEntry.tags}} as any
+                                    })}
+                                </div>
                             </div>
                         </div>
-                       <div dangerouslySetInnerHTML={{__html: renderPostBody(deletedEntry!.body)}} />
-                        {editHistory && <EditHistory entry={{author, permlink} as any} onHide={this.toggleEditHistory}/>}
+                        </div>
                     </div>
-                }</div>
-
+                    }
+                </div>
         }
 
         if (!entry) {
