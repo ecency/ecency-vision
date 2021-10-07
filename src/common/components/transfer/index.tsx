@@ -16,7 +16,7 @@ import {Global} from "../../store/global/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Account} from '../../store/accounts/types'
 import {ActiveUser} from "../../store/active-user/types";
-import {Transactions} from "../../store/transactions/types";
+import {Transactions, Transfer as ITransfer} from "../../store/transactions/types";
 
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
@@ -546,7 +546,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
     render() {
         const {global, mode, activeUser, transactions, dynamicProps} = this.props;
-        const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress} = this.state;
+        const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress, toData} = this.state;
 
         const recent = [...new Set(
             transactions.list
@@ -762,8 +762,17 @@ export class Transfer extends BaseComponent<Props, State> {
                                     <span className="balance-num" onClick={this.copyBalance}>{balance}{" "}{asset}</span>
                                     {asset === "HP" && (<div className="balance-hp-hint">{_t("transfer.available-hp-hint")}</div>)}
                                 </div>
-                                {recent.includes(to) && to.length > 0 && Number(amount) > 0 && 
-                                    <div className="text-warning mt-1 override-warning">{_t("transfer.override-warning" , {account: to})} <Link to="/faq">{_t("g.learnMore")}</Link></div>
+                                {to.length > 0 && Number(amount) > 0 && toData?.__loaded && 
+                                    <div className="text-warning mt-1 override-warning">
+                                        {_t("transfer.override-warning-1")}
+                                        <br/>
+                                        {transactions && transactions.list && 
+                                            (transactions!.list!.find(item => 
+                                                (item as ITransfer).to===to) as ITransfer) &&
+                                                _t("transfer.override-warning-2",
+                                                {account: to, previousAmount: ((transactions!.list!.find(item => (item as ITransfer).to===to)! as ITransfer).amount) || ""})}
+                                                <Link to="/faq">{_t("g.learnMore")}</Link>
+                                    </div>
                                 }
                                 {(() => {
                                     if (mode === "power-down") {
