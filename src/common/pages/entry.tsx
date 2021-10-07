@@ -461,14 +461,14 @@ class EntryPage extends BaseComponent<Props, State> {
                         <ScrollToTop/>
                         <Theme global={this.props.global}/>
                         <div className="row">
-                            <div className="col-12 col-sm-6 col-md-4 col-lg-2 mt-5">
+                            <div className="col-0 col-lg-2 mt-5">
                                 <div className="mb-4 mt-5">
                                 {!global.isMobile && <AuthorInfoCard {...this.props} entry={{author} as any} />}
                                 </div>
                             </div>
-                            <div className="col-12 col-sm-6 col-md-8 col-lg-9">
-                                <div className="p-5 the-entry">
-                                    <div className="p-3 bg-danger rounded text-white my-5">{_t("entry.deleted-content-warning")}<u onClick={this.toggleEditHistory} className="text-primary pointer">{_t("points.history")}</u> {_t("g.logs")}.</div>
+                            <div className="col-12 col-lg-9">
+                                <div className="p-0 p-lg-5 the-entry">
+                                    <div className="p-3 bg-danger rounded text-white my-0 mb-4 my-lg-5">{_t("entry.deleted-content-warning")}<u onClick={this.toggleEditHistory} className="text-primary pointer">{_t("points.history")}</u> {_t("g.logs")}.</div>
                                     <div className="cross-post">
                                         <h1 className="entry-title">{deletedEntry!.title}</h1>
                                     </div>
