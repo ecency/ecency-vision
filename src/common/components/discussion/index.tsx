@@ -574,11 +574,11 @@ export class List extends Component<ListProps> {
         let mutedContent = filtered.filter(item => item.stats?.gray || (activeUser && mutedData.includes(item.author) && item.depth === 1 && item.parent_author === parent.author) );
         let unmutedContent = filtered.filter(md => mutedContent.every(fd => fd.post_id !== md.post_id))
         let data = isHiddenPermitted ? [...unmutedContent, ...mutedContent] : unmutedContent;
-        
         if(!activeUser){
             data = filtered
         }
-        
+
+        let isDataMutedByCommunity = mutedContent.some(item => item.stats?.gray);
         return (
             <div className="discussion-list">
                 {data.map((d) => (
@@ -586,8 +586,10 @@ export class List extends Component<ListProps> {
                 ))}
                 {!isHiddenPermitted && mutedContent.length > 0 && activeUser && activeUser.username && 
                     <div className="hidden-warning d-flex justify-content-between flex-1 align-items-center mt-3">
-                        <div className="flex-1">{_t("discussion.reveal-muted-long-description")}</div>
-                        <div onClick={()=>this.setState({isHiddenPermitted:true})} className="pointer p-3"><b>{_t("g.show")}</b></div>
+                        <div className="flex-1">{_t(isDataMutedByCommunity ? "entry.muted-warning" : "discussion.reveal-muted-long-description", {community:parent.community_title})}</div>
+                        <div onClick={()=>this.setState({isHiddenPermitted:true})} className="pointer p-3">
+                            <b>{_t("g.show")}</b>
+                        </div>
                     </div>
                 }
             </div>
