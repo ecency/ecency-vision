@@ -765,13 +765,15 @@ export class Transfer extends BaseComponent<Props, State> {
                                 {to.length > 0 && Number(amount) > 0 && toData?.__loaded && 
                                     <div className="text-warning mt-1 override-warning">
                                         {_t("transfer.override-warning-1")}
-                                        <br/>
                                         {transactions && transactions.list && 
                                             (transactions!.list!.find(item => 
                                                 (item as ITransfer).to===to) as ITransfer) &&
-                                                _t("transfer.override-warning-2",
-                                                {account: to, previousAmount: ((transactions!.list!.find(item => (item as ITransfer).to===to)! as ITransfer).amount) || ""})}
-                                                <Link to="/faq">{_t("g.learnMore")}</Link>
+                                                <>
+                                                    <br/>
+                                                    {_t("transfer.override-warning-2", {account: to, previousAmount: ((transactions!.list!.find(item => (item as ITransfer).to===to)! as ITransfer).amount) || ""})}
+                                                </>
+                                        }                                                
+                                        <Link to="/faq">{_t("g.learnMore")}</Link>
                                     </div>
                                 }
                                 {(() => {
