@@ -56,6 +56,7 @@ import {version} from "../../../../package.json";
 import { getFollowing } from "../../api/hive";
 import { ProfilePreview } from "../profile-preview";
 import { iteratorStream } from "@hiveio/dhive/lib/utils";
+import { Tsx } from "../../i18n/helper";
 
 
 interface ItemBodyProps {
@@ -411,11 +412,34 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                 </span>
                             })}
                         </div>
-                        {(() => {                            
+                        {(() => {   
+                            
+        
+                            const entryIsMuted = mutedData.includes(entry.author);
+                            const isComment = !!entry.parent_author;
+                            const ownEntry = activeUser && activeUser.username === entry.author;
+                            const isHidden = entry?.net_rshares < 0;
+                            const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
+                            const isLowReputation = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
+                            const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry; 
+                                                   
                             return <>
-                                {entry.net_rshares < 0 && <div className="hidden-warning mt-2">
+                                {isMuted && (<div className="hidden-warning mt-2">
+                                    <span><Tsx k="entry.muted-warning" args={{community: entry.community_title}}><span/></Tsx></span>
+                                </div>)}
+
+                                {isHidden && (<div className="hidden-warning mt-2">
                                     <span>{_t('entry.hidden-warning')}</span>
-                                </div>}
+                                </div>)}
+
+                                {isLowReputation && (<div className="hidden-warning mt-2">
+                                    <span>{_t('entry.lowrep-warning')}</span>
+                                </div>)}
+
+                                {mightContainMutedComments && (<div className="hidden-warning mt-2">
+                                    <span>{_t('entry.comments-hidden')}</span>
+                                </div>)}
+                                
                                 <ItemBody global={this.props.global} entry={entry}/>
                                 <div className="item-controls">
                                     {EntryVoteBtn({
@@ -571,14 +595,12 @@ export class List extends Component<ListProps> {
             return null;
         }
 
-        let mutedContent = filtered.filter(item => item.stats?.gray || (activeUser && mutedData.includes(item.author) && item.depth === 1 && item.parent_author === parent.author) );
+        let mutedContent = filtered.filter(item => ((activeUser && mutedData.includes(item.author) && item.depth === 1 && item.parent_author === parent.author) ));
         let unmutedContent = filtered.filter(md => mutedContent.every(fd => fd.post_id !== md.post_id))
         let data = isHiddenPermitted ? [...unmutedContent, ...mutedContent] : unmutedContent;
         if(!activeUser){
             data = filtered
         }
-
-        let isDataMutedByCommunity = mutedContent.some(item => item.stats?.gray);
         return (
             <div className="discussion-list">
                 {data.map((d) => (
@@ -586,7 +608,7 @@ export class List extends Component<ListProps> {
                 ))}
                 {!isHiddenPermitted && mutedContent.length > 0 && activeUser && activeUser.username && 
                     <div className="hidden-warning d-flex justify-content-between flex-1 align-items-center mt-3">
-                        <div className="flex-1">{_t(isDataMutedByCommunity ? "entry.muted-warning" : "discussion.reveal-muted-long-description", {community:parent.community_title})}</div>
+                        <div className="flex-1">{_t("discussion.reveal-muted-long-description")}</div>
                         <div onClick={()=>this.setState({isHiddenPermitted:true})} className="pointer p-3">
                             <b>{_t("g.show")}</b>
                         </div>

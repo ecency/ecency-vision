@@ -438,10 +438,10 @@ class EntryPage extends BaseComponent<Props, State> {
         const app = appName(entry.json_metadata.app);
         const appShort = app.split('/')[0].split(' ')[0];
 
-        const isComment = !!entry.parent_author;
-
+        
         const {activeUser} = this.props;
-
+        
+        const isComment = !!entry.parent_author;
         const ownEntry = activeUser && activeUser.username === entry.author;
         const isHidden = entry?.net_rshares < 0;
         const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
