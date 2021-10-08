@@ -16,7 +16,7 @@ import {Global} from "../../store/global/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Account} from '../../store/accounts/types'
 import {ActiveUser} from "../../store/active-user/types";
-import {Transactions, Transfer as ITransfer} from "../../store/transactions/types";
+import {DelegateVestingShares, Transactions, Transfer as ITransfer} from "../../store/transactions/types";
 
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
@@ -66,6 +66,7 @@ import {Tsx} from "../../i18n/helper";
 
 import {arrowRightSvg} from "../../img/svg";
 import { Link } from "react-router-dom";
+import formattedNumber from "../../util/formatted-number";
 
 export type TransferMode = "transfer" | "transfer-saving" | "withdraw-saving" | "convert" | "power-up" | "power-down" | "delegate";
 export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT";
@@ -277,7 +278,8 @@ export class Transfer extends BaseComponent<Props, State> {
             }
         }
 
-        if (parseFloat(amount) > this.getBalance()) {
+        let balance = Number(this.formatBalance(this.getBalance()))
+        if (parseFloat(amount) > balance) {
             this.stateSet({amountError: _t("trx-common.insufficient-funds")});
             return;
         }
@@ -547,6 +549,7 @@ export class Transfer extends BaseComponent<Props, State> {
     render() {
         const {global, mode, activeUser, transactions, dynamicProps} = this.props;
         const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress, toData} = this.state;
+        const {hivePerMVests} = dynamicProps;
 
         const recent = [...new Set(
             transactions.list
@@ -562,7 +565,7 @@ export class Transfer extends BaseComponent<Props, State> {
                 .reverse()
                 .slice(0, 5)
         )]
-
+                debugger
         const suggestionProps = {
             header: _t('transfer.recent-transfers'),
             renderer: (i: string) => {
@@ -600,7 +603,11 @@ export class Transfer extends BaseComponent<Props, State> {
         const showTo = ["transfer", "transfer-saving", "withdraw-saving", "power-up", "delegate"].includes(mode);
         const showMemo = ["transfer", "transfer-saving", "withdraw-saving"].includes(mode);
 
-        const balance = this.formatBalance(this.getBalance());
+        let balance: string | number = this.formatBalance(this.getBalance());
+        if(to.length > 0 && Number(amount) > 0 && toData?.__loaded){
+        let alreadyDelgatedAmount = Number(formattedNumber(vestsToHp(Number(parseAsset(((transactions!.list!.find(item => (item as DelegateVestingShares).delegatee===to)! as DelegateVestingShares).vesting_shares)).amount), hivePerMVests)));
+        balance = Number(balance) + alreadyDelgatedAmount
+        }
 
         const titleLngKey = (mode === "transfer" && asset === "POINT") ? _t("transfer-title-point") : `${mode}-title`;
         const subTitleLngKey = `${mode}-sub-title`;
@@ -739,7 +746,7 @@ export class Transfer extends BaseComponent<Props, State> {
                                         placeholder={_t("transfer.amount-placeholder")}
                                         value={amount}
                                         onChange={this.amountChanged}
-                                        className={amountError ? "is-invalid" : ""}
+                                        className={amount > balance && amountError ? "is-invalid" : ""}
                                         autoFocus={(mode !== 'transfer')}
                                     />
                                 </InputGroup>
@@ -753,7 +760,7 @@ export class Transfer extends BaseComponent<Props, State> {
                             </Col>
                         </Form.Group>
 
-                        {amountError && (<FormText msg={amountError} type="danger"/>)}
+                        {amountError && amount > balance && (<FormText msg={amountError} type="danger"/>)}
 
                         <Row>
                             <Col lg={{span: 10, offset: 2}}>
@@ -772,8 +779,18 @@ export class Transfer extends BaseComponent<Props, State> {
                                                     <br/>
                                                     {_t("transfer.override-warning-2", {account: to, previousAmount: ((transactions!.list!.find(item => (item as ITransfer).to===to)! as ITransfer).amount) || ""})}
                                                 </>
-                                        }                                                
-                                        <Link to="/faq">{_t("g.learnMore")}</Link>
+                                        }
+                                        {transactions && transactions.list && 
+                                            (transactions!.list!.find(item => 
+                                                (item as DelegateVestingShares).delegatee===to) as DelegateVestingShares) &&
+                                                <>
+                                                    <br/>
+                                                    {_t("transfer.override-warning-2", {account: to, previousAmount: 
+                                                        Number(formattedNumber(vestsToHp(Number(parseAsset(((transactions!.list!.find(item => (item as DelegateVestingShares).delegatee===to)! as DelegateVestingShares).vesting_shares)).amount), hivePerMVests)))
+                                                         || ""})}
+                                                </>
+                                        }                                       
+                                        {" "}<Link to="/faq">{_t("g.learnMore")}</Link>
                                     </div>
                                 }
                                 {(() => {
@@ -810,7 +827,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
                         <Form.Group as={Row}>
                             <Col sm={{span: 10, offset: 2}}>
-                                <Button onClick={this.next} disabled={!this.canSubmit()}>{_t('g.next')}</Button>
+                                <Button onClick={this.next} disabled={!this.canSubmit() && amount > balance}>{_t('g.next')}</Button>
                             </Col>
                         </Form.Group>
                     </Form>
