@@ -169,8 +169,8 @@
     "pinned": "고정된 글",
     "replies": "1 response. Click to respond.",
     "replies-n": "{{n}} responses. Click to respond.",
-    "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-error": "이전 값은 허용되지 않습니다. 다른 값으로 투표하세요.",
+    "vote-warning": "보팅 0%는 콘텐츠의 보팅을 취소합니다.",
     "no-replies": "No responses yet. Click to respond."
   },
   "nsfw": {
@@ -256,7 +256,7 @@
     "title": "Toggle list style"
   },
   "entry-votes": {
-    "title": "1 Vote",
+    "title": "1 보팅",
     "title-n": "보팅 수: {{n}}",
     "title-empty": "보팅 없음",
     "sort": "정렬",
@@ -439,7 +439,7 @@
     "joined": "가입: {{n}}",
     "last-active": "Last active: {{n}}",
     "vote-value": "보팅 가치: {{n}}",
-    "vote-value-max": "(out of max {{n}})",
+    "vote-value-max": "(최대 {{n}}에서)",
     "vote-power": "보팅 파워: {{n}}%",
     "rc-power": "Resource Credits: {{n}}%",
     "recharge-time": "(fully charged {{n}})",
@@ -660,7 +660,7 @@
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return delegations",
     "type-proposal_pay": "Proposal pay",
-    "type-update_proposal_votes": "Proposal vote",
+    "type-update_proposal_votes": "제안서 투표",
     "type-comment_payout_update": "Content payout update",
     "type-comment_reward": "콘텐츠 보상",
     "type-recurrent_transfer": "Recurring transfer",
@@ -669,7 +669,7 @@
     "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
-    "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
+    "type-update_proposal_vote-detail": "제안서 id: <strong>{{pid}}</strong>",
     "type-limit_order_create": "New trade",
     "type-effective_comment_vote": "Effective vote"
   },
@@ -797,7 +797,7 @@
   },
   "notification": {
     "popup-title": "새로운 알림이 있습니다.",
-    "voted": "{{source}} voted your post",
+    "voted": "{{source}}님이 당신 글을 보팅했습니다",
     "mention-post": "{{source}} mentioned you in a post",
     "mention-comment": "{{source}} mentioned you in a comment",
     "followed": "{{source}} followed you",
@@ -815,7 +815,7 @@
     "type-reblogs": "리블로그",
     "type-transfers": "송금",
     "group-title-recent": "최근",
-    "vote-str": "{{p}}% likes your post:",
+    "vote-str": "{{p}}님이 당신 글을 좋아합니다:",
     "reply-str": "replied to your post:",
     "mention-str": "mentioned you in:",
     "followed-str": "팔로우됨",
@@ -915,7 +915,7 @@
     "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
     "proxy-active-current": "Your current proxy is",
     "proxy-active-btn-label": "Clear Proxy",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-votes-for": "@{{username}}의 투표는"
   },
   "proposals": {
     "page-title": "제안",
@@ -934,7 +934,7 @@
     "filter-inactive": "예정",
     "filter-team": "Ecency 프로젝트",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
-    "votes-dialog-title": "Votes on Proposal #{{n}}",
+    "votes-dialog-title": "제안서 #{{n}}의 투표",
     "see-all": "see all proposals"
   },
   "gallery": {
@@ -1100,7 +1100,7 @@
     "min-root-comment": "You may only post once every five minutes.",
     "identical-vote": "Your current vote on this content is identical to this vote.",
     "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
-    "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
+    "delete-comment-with-vote": "보상이 보류 중인 콘텐츠는 삭제할 수 없습니다.",
     "comment-cashout": "Content after their payout cannot be deleted.",
     "comment-children": "답글이 달린 콘텐츠는 삭제할 수 없습니다.",
     "paid-out-post-forbidden": "Voting for paid out content is not available."
