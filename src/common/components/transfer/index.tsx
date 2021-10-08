@@ -550,8 +550,8 @@ export class Transfer extends BaseComponent<Props, State> {
 
         const recent = [...new Set(
             transactions.list
-                .filter(x => x.type === 'transfer' && x.from === activeUser.username)
-                .map(x => x.type === 'transfer' ? x.to : '')
+                .filter(x => (x.type === 'transfer' && x.from === activeUser.username) || (x.type === 'delegate_vesting_shares' && x.delegator === activeUser.username))
+                .map(x => x.type === 'transfer' ? x.to : x.type === 'delegate_vesting_shares' ? x.delegatee : '')
                 .filter(x => {
                     if (to.trim() === '') {
                         return true;
