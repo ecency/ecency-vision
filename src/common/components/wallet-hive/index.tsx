@@ -162,6 +162,8 @@ export class WalletHive extends BaseComponent<Props, State> {
         const {hivePerMVests} = dynamicProps;
         const isMyPage = activeUser && activeUser.username === account.name;
         const w = new HiveWallet(account, dynamicProps, converting);
+        const totalHP = formattedNumber(vestsToHp(w.vestingShares, hivePerMVests), {suffix: "HP"})
+        const totalDelegated = formattedNumber(vestsToHp(w.vestingSharesDelegated, hivePerMVests), {prefix: "-", suffix: "HP"})
 
         return (
             <div className="wallet-hive">
@@ -295,7 +297,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                                         }
                                         return null;
                                     })()}
-                                    {formattedNumber(vestsToHp(w.vestingShares, hivePerMVests), {suffix: "HP"})}
+                                    {totalHP}
                                 </div>
 
                                 {w.vestingSharesDelegated > 0 && (
@@ -482,7 +484,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                 {transfer && <Transfer {...this.props} activeUser={activeUser!} mode={transferMode!} asset={transferAsset!} onHide={this.closeTransferDialog}/>}
 
                 {this.state.delegatedList && (
-                    <DelegatedVesting {...this.props} account={account} onHide={this.toggleDelegatedList}/>
+                    <DelegatedVesting {...this.props} account={account} onHide={this.toggleDelegatedList} totalDelegated={totalDelegated.replace("- ","")}/>
                 )}
 
                 {this.state.receivedList && (
