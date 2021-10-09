@@ -276,7 +276,7 @@
     "delete-disabled": "Content after their payout cannot be deleted.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
     "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
-    "deleted-content-warning": "This content was deleted by the author. You can see it from our ",
+    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",

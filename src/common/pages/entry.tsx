@@ -449,12 +449,12 @@ class EntryPage extends BaseComponent<Props, State> {
 
         const entry = this.getEntry();
 
-        if(postIsDeleted){
+        if (postIsDeleted) {
 
-        const {username, permlink} = match.params;
-        const author = username.replace("@", "");
+            const {username, permlink} = match.params;
+            const author = username.replace("@", "");
         
-        return <div>
+            return <div>
                     {navBar}
                     {deletedEntry && 
                     <div className="container overflow-x-hidden">
