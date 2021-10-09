@@ -6,10 +6,6 @@ import { Dropdown, DropdownButton } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 
-import { ListStyle } from "../../store/global/types";
-
-import Tooltip from "../tooltip";
-
 import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
@@ -18,12 +14,11 @@ import {
   viewModuleSvg,
   gridViewSvg,
   listSvg,
-  viewStackedSvg,
 } from "../../img/svg";
 
 interface Props {
   global: Global;
-  toggleListStyle: () => void;
+  toggleListStyle: (view: string) => void;
 }
 
 export default class ListStyleToggle extends Component<Props> {
@@ -31,7 +26,7 @@ export default class ListStyleToggle extends Component<Props> {
     return !isEqual(this.props.global.listStyle, nextProps.global.listStyle);
   }
 
-  changeStyle = (view) => {
+  changeStyle = (view: string) => {
     const { toggleListStyle } = this.props;
 
     toggleListStyle(view);
@@ -59,33 +54,7 @@ export default class ListStyleToggle extends Component<Props> {
         <Dropdown.Item eventKey="row" onClick={() => this.changeStyle("row")}>
           {listSvg} Classic
         </Dropdown.Item>
-        {/* <Dropdown.Divider />
-        <Dropdown.Item eventKey="3">{viewStackedSvg} Compact</Dropdown.Item> */}
       </DropdownButton>
-
-      // <Dropdown>
-      //   <Dropdown.Toggle>
-      //     <span
-      //       className={_c(
-      //         `list-style-toggle ${
-      //           listStyle === ListStyle.grid ? "toggled" : ""
-      //         }`
-      //       )}
-      //       // onClick={() => {
-      //       //   this.changeStyle();
-      //       // }}
-      //     >
-      //       {viewModuleSvg}
-      //     </span>
-      //   </Dropdown.Toggle>
-
-      //   <Dropdown.Menu>
-      //     <Dropdown.Item>Action</Dropdown.Item>
-      //     <Dropdown.Item>Another action</Dropdown.Item>
-      //     <Dropdown.Item>Something else</Dropdown.Item>
-      //   </Dropdown.Menu>
-      // </Dropdown>
-      // </Tooltip>
     );
   }
 }
