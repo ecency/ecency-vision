@@ -31,3 +31,58 @@
     }
   }
 }
+
+.feed-view {
+  .dropdown-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+
+    @include themify(day) {
+      color: $light-periwinkle;
+    }
+
+    @include themify(night) {
+      color: $metallic-blue;
+    }
+
+    &:hover {
+      background: none;
+    }
+  }
+
+  .dropdown-menu {
+    left: -80px !important;
+    top: 10px !important;
+
+    @include themify(day) {
+      background: lighten($light-periwinkle, 10);
+    }
+
+    @include themify(night) {
+      background: darken($metallic-blue, 10);
+    }
+
+    .dropdown-item {
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+.dropdown-divider {
+  border-bottom: 1px solid #ddd;
+
+  @include themify(day) {
+    border-color: $light-periwinkle;
+  }
+
+  @include themify(night) {
+    border-color: $metallic-blue;
+  }
+}
