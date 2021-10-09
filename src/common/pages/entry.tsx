@@ -71,6 +71,7 @@ import { getFollowing } from "../api/hive";
 import { history } from "../store";
 import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
 import entryDeleteBtn from "../components/entry-delete-btn";
+import { commentHistory } from "../api/private-api";
 
 setProxyBase(defaults.imageServer);
 
@@ -94,6 +95,8 @@ interface State {
     showProfileBox: boolean;
     entryIsMuted: boolean;
     isMounted: boolean;
+    postIsDeleted: boolean;
+    deletedEntry: {title: string, body: string, tags: any} | null;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -106,7 +109,9 @@ class EntryPage extends BaseComponent<Props, State> {
         comment: "",
         showProfileBox: false,
         isMounted: false,
-        entryIsMuted: false
+        entryIsMuted: false,
+        postIsDeleted: false,
+        deletedEntry: null
     };
     
     viewElement: HTMLDivElement | undefined;
@@ -144,12 +149,24 @@ class EntryPage extends BaseComponent<Props, State> {
         this.setState({isMounted:false})
     }
 
+    loadDeletedEntry = (author:string, permlink:string) => {
+        commentHistory(author, permlink)
+            .then(resp => {
+                this.stateSet({deletedEntry: { body: resp.list[0].body, title: resp.list[0].title, tags: resp.list[0].tags}, loading: false});
+            })
+            .catch(() => {
+                error(_t('g.server-error'));
+            })
+            .finally(() => {
+            })
+    };
+
     // detects distance between title and comments section sets visibility of profile card
     detect = () => {
 
        const infoCard:HTMLElement | null = document.getElementById("avatar-fixed");
-       const top = this?.viewElement?.getBoundingClientRect()?.top;
-
+       const top = this?.viewElement?.getBoundingClientRect()?.top || 120;
+        
        if(infoCard != null && window.scrollY > 180  && top && !(top <= 0)) {
             infoCard.classList.add('visible')
        } else if( infoCard != null && window.scrollY <= 180) {
@@ -260,9 +277,18 @@ class EntryPage extends BaseComponent<Props, State> {
                 if (data) {
                     addCommunity(data);
                 }
-            })
+            }).catch(e=>{
+                let errorMessage = e.jse_info && e.jse_info
+                let arr = [];
+                for(let p in errorMessage)
+                    arr.push(errorMessage[p]);
+                    errorMessage = arr.toString().replaceAll(',','')
+                    if(errorMessage && errorMessage.length > 0 && errorMessage.includes("was deleted")){
+                    this.setState({postIsDeleted: true, loading: true});
+                    this.loadDeletedEntry(author, permlink)
+                }})
             .finally(() => {
-                this.stateSet({loading: false, isMounted:true});
+                this.stateSet({ isMounted:true});
             });
     };
 
@@ -398,8 +424,8 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, isMounted} = this.state;
-        const {global, history} = this.props;
+        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, isMounted, postIsDeleted, deletedEntry} = this.state;
+        const {global, history, match} = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
@@ -408,10 +434,59 @@ class EntryPage extends BaseComponent<Props, State> {
         }) : NavBar({...this.props});
 
         if (loading) {
-            return <>{navBar}<LinearProgress/></>;
+            
+            return <>
+                        {navBar}
+                        <div className="mt-5">
+                            <div className="pt-2">
+                                <div className="mt-1">
+                                    <LinearProgress/>
+                                </div>
+                            </div>
+                        </div>
+                    </>;
         }
 
         const entry = this.getEntry();
+
+        if (postIsDeleted) {
+
+            const {username, permlink} = match.params;
+            const author = username.replace("@", "");
+        
+            return <div>
+                    {navBar}
+                    {deletedEntry && 
+                    <div className="container overflow-x-hidden">
+                        <ScrollToTop/>
+                        <Theme global={this.props.global}/>
+                        <div className="row">
+                            <div className="col-0 col-lg-2 mt-5">
+                                <div className="mb-4 mt-5">
+                                {!global.isMobile && <AuthorInfoCard {...this.props} entry={{author} as any} />}
+                                </div>
+                            </div>
+                            <div className="col-12 col-lg-9">
+                                <div className="p-0 p-lg-5 the-entry">
+                                    <div className="p-3 bg-danger rounded text-white my-0 mb-4 my-lg-5">{_t("entry.deleted-content-warning")}<u onClick={this.toggleEditHistory} className="text-primary pointer">{_t("points.history")}</u> {_t("g.logs")}.</div>
+                                    <div className="cross-post">
+                                        <h1 className="entry-title">{deletedEntry!.title}</h1>
+                                    </div>
+                                <div dangerouslySetInnerHTML={{__html: renderPostBody(deletedEntry!.body)}} />
+                                {editHistory && <EditHistory entry={{author, permlink} as any} onHide={this.toggleEditHistory}/>}
+                                <div className="mt-3">
+                                    {SimilarEntries({
+                                        ...this.props,
+                                        entry: {permlink, author, json_metadata: { tags: deletedEntry.tags}} as any
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+        }
 
         if (!entry) {
             return NotFound({...this.props});
