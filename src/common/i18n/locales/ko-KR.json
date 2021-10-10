@@ -38,7 +38,7 @@
     "found": "찾았습니다.",
     "feed": "피드",
     "blog": "블로그",
-    "logs": "logs",
+    "logs": "로그",
     "posts": "게시물",
     "comments": "댓글",
     "replies": "댓글",
@@ -188,7 +188,7 @@
   },
   "entry-reblog": {
     "reblog": "리블로그",
-    "confirm-title": "Reblog to @{{n}}'s blog?",
+    "confirm-title": "@{{n}}의 블로그에 리블로그하시겠습니까?",
     "confirm-ok": "리블로그",
     "success": "리블로그 완료!",
     "delete-reblog": "리블로그 취소",
@@ -241,9 +241,9 @@
   "entry-index": {
     "feed": "피드",
     "tags": "인기 순",
-    "title": "{{f}} topics",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
+    "title": "{{f}} 주제",
+    "description": "사용자가 소유하고 운영하는 소셜 네트워크의 {{f}} 주제",
+    "description-tag": "{{f}} #{{t}} 주제",
     "description-user-feed": "{{u}}의 피드",
     "faq": "자주 묻는 질문(FAQ)",
     "tos": "서비스 이용약관",
@@ -251,10 +251,10 @@
   },
   "market-data": {
     "title": "시가",
-    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "<a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>의 데이터"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "토글 리스트 스타일"
   },
   "entry-votes": {
     "title": "1 보팅",
@@ -267,17 +267,17 @@
     "sort-percent": "비율"
   },
   "entry": {
-    "via-app": "via <span class=\"app-name\">{{app}}</span>",
+    "via-app": "<span class=\"app-name\">{{app}}</span>에서 작성되었습니다",
     "author-reputation": "작성자의 명성도",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
+    "comment-entry-title": "단일 댓글 스레드 화면을 보고 있습니다: ",
     "comment-entry-go-root": "전체 글 보기",
     "comment-entry-go-parent": "상위 글 보기",
-    "hidden-warning": "This content got low rating by people. Proceed with caution.",
-    "delete-disabled": "Content after their payout cannot be deleted.",
-    "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
+    "hidden-warning": "이 콘텐츠는 사람들로부터 낮은 평가를 받았습니다. 조심해서 진행하세요.",
+    "delete-disabled": "지불 후 콘텐츠는 삭제할 수 없습니다.",
+    "muted-warning": "이 콘텐츠는 커뮤니티 가이드라인을 따르지 않아 {{community}}의 중재자에 의해 뮤트되었습니다.",
     "lowrep-warning": "이 게시물의 작성자는 명성도가 낮습니다. 조심해서 진행하세요.",
-    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
-    "comments-hidden": "Author of this post is muted by you.",
+    "deleted-content-warning": "이 콘텐츠는 작성자에 의해 삭제되었습니다. 블록체인에서 볼 수 있습니다 ",
+    "comments-hidden": "이 게시물의 작성자는 귀하에 의해 뮤트되었습니다.",
     "address-copy": "글 주소 복사",
     "address-copied": "글 주소가 클립보드에 복사되었습니다.",
     "browse-original": "원본 게시물 보기",
@@ -309,11 +309,11 @@
     "order-created": "나이",
     "read-more": "...댓글 더 보기...",
     "reveal-muted": "뮤트된 작성자 - 댓글 공개",
-    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
+    "reveal-muted-long-description": "불쾌감을 주는 콘텐츠를 포함할 수 있는 댓글을 포함하여 추가 댓글 표시",
     "reveal": "댓글 보기"
   },
   "community": {
-    "page-description": "{{f}} topics",
+    "page-description": "{{f}} 주제",
     "subscribe": "가입",
     "subscribed": "가입 완료",
     "unsubscribe": "탈퇴",
@@ -329,7 +329,7 @@
   },
   "community-cover": {
     "rewards": "보상",
-    "authors": "posters",
+    "authors": "포스터",
     "lang": "언어",
     "cover-image": "커뮤니티 커버이미지",
     "cover-image-edit": "커버이미지 변경",
@@ -360,7 +360,7 @@
     "lang": "언어",
     "description": "설명",
     "rules": "규칙",
-    "rules-help": "One per line",
+    "rules-help": "줄마다 하나씩",
     "validation-title": "제목은 필수."
   },
   "communities": {
@@ -391,7 +391,7 @@
     "checkbox-validation": "계속 진행 하시려면 이 상자를 체크해 주세요.",
     "title-validation": "이 항목을 채워주세요.",
     "password": "커뮤니티 비밀번호",
-    "confirmation": "I have securely saved my owner username and password.",
+    "confirmation": "소유자의 사용자 이름과 비밀번호를 안전하게 저장했습니다.",
     "submit": "커뮤니티 만들기",
     "progress-account": "계정 생성 중...",
     "progress-user": "사용자 데이터 준비 중...",
@@ -407,7 +407,7 @@
   "community-rewards-registration": {
     "body-text": "Ecency 포인트를 받으려면 커뮤니티를 등록하세요.",
     "btn-next-label": "등록",
-    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "done-body-text": "등록이 완료되었습니다. 회원이 Ecency 앱으로 게시물을 게시하면 커뮤니티에서 포인트 보상을 받게 됩니다.",
     "conflict-body-text": "이미 등록된 커뮤니티입니다.",
     "min-required-body-text": "등록하려면 최소 100명의 구독자가 필요합니다."
   },
@@ -417,12 +417,12 @@
     "dialog-title-mute": "글/ 댓글 뮤트",
     "dialog-title-unmute": "글/ 댓글 뮤트 취소",
     "notes": "메모",
-    "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
-    "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
+    "note-placeholder-mute": "이 콘텐츠를 뮤트하기로 한 결정에 대한 메모를 제공하세요.",
+    "note-placeholder-unmute": "이 콘텐츠를 뮤트 취소하기로 한 결정에 대한 메모를 제공하세요."
   },
   "profile": {
     "voting-power": "보팅 파워",
-    "post-count": "Post Count",
+    "post-count": "게실물 수",
     "followers": "팔로워",
     "following": "팔로잉",
     "section-blog": "블로그",
@@ -439,11 +439,11 @@
   },
   "profile-info": {
     "joined": "가입: {{n}}",
-    "last-active": "Last active: {{n}}",
+    "last-active": "최근 접속함: {{n}}",
     "vote-value": "보팅 가치: {{n}}",
     "vote-value-max": "(최대 {{n}}에서)",
     "vote-power": "보팅 파워: {{n}}%",
-    "rc-power": "Resource Credits: {{n}}%",
+    "rc-power": "리소스 크레딧: {{n}}%",
     "recharge-time": "(fully charged {{n}})",
     "down-vote-power": "다운보팅 파워: {{n}}%",
     "no-posts": "Here you will see your posts, looks like no content exists.",
@@ -539,9 +539,9 @@
     "delegation-list-desc": "임대 보상",
     "referral-list-desc": "추천인 보상",
     "community-list-desc": "커뮤니티 보상",
-    "transfer": "Gift to someone",
-    "claim-ok": "Points claimed",
-    "promote": "Promote",
+    "transfer": "선물하기",
+    "claim-ok": "포인트 요청했습니다",
+    "promote": "홍보",
     "boost": "부스트",
     "filter-all": "전체 내역",
     "filter-10": "체크인 포인트",
@@ -550,12 +550,12 @@
     "filter-100": "포스팅 포인트",
     "filter-110": "댓글 포인트",
     "filter-120": "보팅 포인트",
-    "filter-130": "Points for reblog",
+    "filter-130": "리블로그 포인트",
     "filter-150": "임대 보상",
     "filter-160": "추천인 보상",
     "filter-170": "커뮤니티 보상",
     "filter-998": "Outgoing transfer",
-    "filter-999": "Incoming transfer"
+    "filter-999": "받은 포인트"
   },
   "purchase": {
     "select-asset": "Select Asset",
