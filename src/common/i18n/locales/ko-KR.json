@@ -331,9 +331,9 @@
     "rewards": "보상",
     "authors": "posters",
     "lang": "언어",
-    "cover-image": "Community cover image",
-    "cover-image-edit": "Edit cover image",
-    "cover-image-updated": "Cover image updated!"
+    "cover-image": "커뮤니티 커버이미지",
+    "cover-image-edit": "커버이미지 변경",
+    "cover-image-updated": "커버이미지 업데이트 완료!"
   },
   "community-card": {
     "description": "설명",
@@ -344,10 +344,10 @@
     "community-rewards": "커뮤니티 보상",
     "profile-image": "프로필 사진",
     "profile-image-edit": "프로필 사진 변경하기",
-    "profile-image-updated": "Profile image updated!"
+    "profile-image-updated": "프로파일 이미지 업데이트 완료!"
   },
   "community-role-edit": {
-    "title": "Set user role",
+    "title": "사용자 역할 설정",
     "username": "사용자 이름",
     "role": "역할",
     "user-not-found": "존재하지 않는 사용자입니다!",
