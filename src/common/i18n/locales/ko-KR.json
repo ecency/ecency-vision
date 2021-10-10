@@ -283,11 +283,11 @@
     "browse-original": "원본 게시물 보기",
     "cross-post-by": "교차 게시물 작성자",
     "cross-post-community": "커뮤니티",
-    "community-in": "in"
+    "community-in": "에서"
   },
   "edit-history": {
     "title": "편집 내역",
-    "show-diff": "Show Difference",
+    "show-diff": "변경 사항 보기",
     "version": "버전 {{n}}"
   },
   "similar-entries": {
@@ -302,13 +302,13 @@
     "btn-join": "가입",
     "replies": "댓글 1개",
     "n-replies": "{{n}} 개 댓글",
-    "order": "Sort Order",
+    "order": "정렬순서",
     "order-trending": "인기",
     "order-reputation": "명성도순",
     "order-votes": "보팅",
     "order-created": "나이",
-    "read-more": "...read more replies...",
-    "reveal-muted": "Muted author - Reveal comment",
+    "read-more": "...댓글 더 보기...",
+    "reveal-muted": "뮤트된 작성자 - 댓글 공개",
     "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "댓글 보기"
   },
