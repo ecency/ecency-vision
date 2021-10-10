@@ -161,17 +161,51 @@
     }
   }
 
-  code,
+  :not(pre) code {
+    padding: .2em .3em;
+    border-radius: 6px;
+  }
+
   pre {
-    padding: 2px;
+    padding: 15px;
+
     @include themify(day) {
-      background: rgba(210, 226, 238, 0.3);
-      color: $charcoal-grey;
+      border: 1px solid $white-five;
     }
 
     @include themify(night) {
-      background: $powder-blue;
+      border: 1px solid #30363d;
+    }
+  }
+
+  pre, code {
+    font-size: 18px;
+    font-family: $font-family-sans-serif;
+
+    @include themify(day) {
+      background: $white-six;
       color: $charcoal-grey;
+
+      .ll-nam { color: $charcoal-grey; }
+      .ll-key { color: rgb(207, 34, 46); }
+      .ll-str { color: rgb(17, 99, 41); }
+      .ll-com { color: rgb(110, 119, 129); }
+      .ll-pct { color: rgb(5, 80, 174); }
+      .ll-num { color: rgb(149, 56, 0); }
+      .ll-rex { color: rgb(130, 80, 223); }
+    }
+
+    @include themify(night) {
+      background: #283241;
+      color: $silver;
+
+      .ll-nam { color: $silver; }
+      .ll-key { color: rgb(255, 123, 114); }
+      .ll-str { color: rgb(126, 231, 135); }
+      .ll-com { color: rgb(139, 148, 158); }
+      .ll-pct { color: rgb(121, 192, 255); }
+      .ll-num { color: rgb(255, 166, 87); }
+      .ll-rex { color: rgb(210, 168, 255); }
     }
   }
 
