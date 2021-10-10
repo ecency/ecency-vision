@@ -554,29 +554,29 @@
     "filter-150": "임대 보상",
     "filter-160": "추천인 보상",
     "filter-170": "커뮤니티 보상",
-    "filter-998": "Outgoing transfer",
+    "filter-998": "보낸 포인트",
     "filter-999": "받은 포인트"
   },
   "purchase": {
-    "select-asset": "Select Asset",
-    "slider-hint": "Drag the slider to adjust the amount.",
+    "select-asset": "자산 선택",
+    "slider-hint": "슬라이드를 드래그해서 수량을 설정할 수 있습니다.",
     "submit": "구매"
   },
   "promote": {
     "title": "홍보",
-    "sub-title": "Promote your post",
+    "sub-title": "글 홍보하세요",
     "duration": "기간"
   },
   "boost": {
-    "title": "Boost",
-    "sub-title": "Boost your post",
-    "amount": "Amount",
-    "slider-hint": "Drag the slider to adjust the amount."
+    "title": "부스트",
+    "sub-title": "글 부스트하세요",
+    "amount": "수량",
+    "slider-hint": "슬라이드를 드래그해서 수량을 설정할 수 있습니다."
   },
   "redeem-common": {
     "balance": "잔액",
     "post": "글",
-    "post-hint": "Autocomplete input",
+    "post-hint": "자동완성",
     "post-placeholder": "사용자 이름/퍼머링크",
     "post-error": "Not a valid post address",
     "post-error-exists": "The post is already promoted",
