@@ -86,3 +86,24 @@
     border-color: $metallic-blue;
   }
 }
+
+.gridMenu {
+  svg {
+    margin-right: 8px;
+  }
+}
+
+.view-feed {
+  width: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  .view-layout {
+    width: 24px;
+  }
+
+  .menu-down-icon {
+    width: 20px;
+  }
+}
