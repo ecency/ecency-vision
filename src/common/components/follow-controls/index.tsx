@@ -136,7 +136,6 @@ export default class FollowControls extends BaseComponent<Props, State> {
 
     render() {
         const {following, muted, fetching, inProgress} = this.state;
-
         const followMsg = _t('follow-controls.follow');
         const unFollowMsg = _t('follow-controls.unFollow');
         const muteMsg = _t('follow-controls.mute');
