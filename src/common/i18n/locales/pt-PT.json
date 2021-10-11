@@ -504,7 +504,7 @@
     "converting-hbd-amount": "Convertendo em HIVE"
   },
   "wallet-engine": {
-    "title": "Hive Engine Tokens",
+    "title": "Tokens da Hive Engine",
     "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
     "no-results": "No tokens found.",
     "token": "Token",
