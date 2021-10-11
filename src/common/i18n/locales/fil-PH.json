@@ -503,6 +503,14 @@
     "withdraw-routes": "Ilabas ang mga ruta",
     "converting-hbd-amount": "Ipinapalit sa Hive"
   },
+  "wallet-engine": {
+    "title": "Hive Engine Tokens",
+    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
+    "no-results": "No tokens found.",
+    "token": "Token",
+    "balance": "Balance",
+    "staked": "Staked"
+  },
   "withdraw-routes": {
     "title": "Alisin ang mga account",
     "account": "Account",
