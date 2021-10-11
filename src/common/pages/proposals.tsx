@@ -28,6 +28,7 @@ import NavBarElectron from "../../desktop/app/components/navbar";
 import LinearProgress from "../components/linear-progress";
 import ProposalListItem from "../components/proposal-list-item";
 import NotFound from "../components/404";
+import SearchBox from '../components/search-box'
 
 import {_t} from "../i18n";
 import {Tsx} from "../i18n/helper";
@@ -190,6 +191,11 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                                 <div className="label">total budget</div>
                             </div>
                         </div>
+
+                        <div className='search-proposals'>
+                            <SearchBox placeholder='Search proposals' />
+                        </div>
+
                         <div className="filter-menu">
                             {Object.values(Filter).map(x => {
                                 const cls = `menu-item ${filter === x ? "active-item" : ""}`
