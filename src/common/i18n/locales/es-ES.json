@@ -38,7 +38,7 @@
     "found": "encontrado",
     "feed": "inicio",
     "blog": "blogs",
-    "logs": "logs",
+    "logs": "registros",
     "posts": "publicaciones",
     "comments": "comentarios",
     "replies": "respuestas",
@@ -276,7 +276,7 @@
     "delete-disabled": "El contenido después de su pago no puede ser eliminado.",
     "muted-warning": "Este contenido fue silenciado por los moderadores de {{community}} por no seguir las pautas de la comunidad.",
     "lowrep-warning": "El autor de esta publicación tiene baja reputación. Proceda con precaución.",
-    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
+    "deleted-content-warning": "Este contenido fue eliminado por el autor. Puedes verlo desde la Blockchain ",
     "comments-hidden": "Silenciaste al autor de esta publicación.",
     "address-copy": "Copiar la dirección de la Publicación",
     "address-copied": "Dirección de publicación copiada al portapapeles.",
@@ -504,12 +504,12 @@
     "converting-hbd-amount": "Convirtiendo a HIVE"
   },
   "wallet-engine": {
-    "title": "Hive Engine Tokens",
-    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
-    "no-results": "No tokens found.",
+    "title": "Motor de Tokens de Hive",
+    "description": "Hive Engine es una plataforma inteligente de cadena lateral para la cadena de bloques de colmenas.",
+    "no-results": "No se ha encontrado ningún token.",
     "token": "Token",
     "balance": "Balance",
-    "staked": "Staked"
+    "staked": "Depositados"
   },
   "withdraw-routes": {
     "title": "Cuentas de retirada",
