@@ -33,6 +33,8 @@ import routes from "./routes";
 const App = () => {
     return (
         <>
+            <link rel="manifest" href="/manifest.json" />
+            
             <Tracker/>
             <Switch>
                 <Route exact={true} path={routes.HOME} component={EntryIndexContainer}/>
