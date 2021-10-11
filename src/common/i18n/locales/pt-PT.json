@@ -38,7 +38,7 @@
     "found": "encontrado",
     "feed": "novidades",
     "blog": "blogs",
-    "logs": "logs",
+    "logs": "registros",
     "posts": "publicações",
     "comments": "comentários",
     "replies": "respostas",
@@ -273,10 +273,10 @@
     "comment-entry-go-root": "Ver o contexto completo",
     "comment-entry-go-parent": "Ver o comentário relacionado",
     "hidden-warning": "Este conteúdo foi mal avaliado pelas pessoas. Proceda com cautela.",
-    "delete-disabled": "Content after their payout cannot be deleted.",
+    "delete-disabled": "Após o pagamento, o conteúdo não pode ser deletado.",
     "muted-warning": "Este conteúdo foi silenciado pelos moderadores da {{community}} por não seguir as diretrizes da comunidade.",
     "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
-    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
+    "deleted-content-warning": "O conteúdo foi deletado pelo autor. Entretanto, você poderá vê-lo acessando os registros na Blockchain ",
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copiar endereço do post",
     "address-copied": "Endereço do post copiado.",
@@ -309,7 +309,7 @@
     "order-created": "Idade",
     "read-more": "...ler mais respostas...",
     "reveal-muted": "Muted author - Reveal comment",
-    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
+    "reveal-muted-long-description": "Mostrar respostas adicionais, incluindo aquelas que contém conteúdo ofensivo",
     "reveal": "Revelar comentário"
   },
   "community": {
@@ -505,11 +505,11 @@
   },
   "wallet-engine": {
     "title": "Tokens da Hive Engine",
-    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
-    "no-results": "No tokens found.",
+    "description": "Hive Engine é uma blockchain exclusiva para contratos inteligentes e paralela à Hive.",
+    "no-results": "Nenhum token encontrado.",
     "token": "Token",
-    "balance": "Balance",
-    "staked": "Staked"
+    "balance": "Balanço",
+    "staked": "Guardado"
   },
   "withdraw-routes": {
     "title": "Contas de saque",
@@ -1110,9 +1110,9 @@
     "min-root-comment": "Você só pode postar a cada 5 minutos.",
     "identical-vote": "O teu voto actual neste conteúdo é idêntico a este voto.",
     "insufficient-resource": "Créditos de Recursos insuficientes. Por favor, espere para realizar transações ou aumente o HIVE.",
-    "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
-    "comment-cashout": "Content after their payout cannot be deleted.",
-    "comment-children": "Cannot delete a content with replies.",
+    "delete-comment-with-vote": "Conteúdo com recompensas positivas não podem ser deletados.",
+    "comment-cashout": "Após o pagamento, o conteúdo não pode ser deletado.",
+    "comment-children": "Conteúdo com respostas ao pode ser deletado.",
     "paid-out-post-forbidden": "Votação de conteúdo pago não está disponível."
   },
   "landing-page": {
