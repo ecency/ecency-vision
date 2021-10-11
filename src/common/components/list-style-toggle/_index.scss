@@ -32,6 +32,14 @@
   }
 }
 
+.viewLayouts {
+  display: none;
+  
+  @media (min-width: $md-break) {
+    display: flex;
+  }
+}
+
 .feed-view {
   .dropdown-toggle {
     background: none;
