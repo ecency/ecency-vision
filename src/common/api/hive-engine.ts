@@ -91,26 +91,28 @@ const getTokens = (tokens: string[]): Promise<Token[]> => {
 
 export const getHiveEngineTokenBalances = async (
   account: string
-): Promise<HiveEngineTokenBalance[]> => {
+): Promise<HiveEngineToken[]> => {
+// commented just to try removing the non-existing unknowing HiveEngineTokenBalance type
+// ): Promise<HiveEngineTokenBalance[]> => {
   const balances = await getTokenBalances(account);
   const tokens = await getTokens(balances.map((t) => t.symbol));
 
   return balances.map((balance) => {
     const token = tokens.find((t) => t.symbol == balance.symbol);
-    const tokenMetadata = JSON.parse(token.metadata) as TokenMetadata;
+    const tokenMetadata = token && JSON.parse(token!.metadata) as TokenMetadata;
 
-    return new HiveEngineToken({ ...balance, ...token, ...tokenMetadata });
+    return new HiveEngineToken({ ...balance, ...token, ...tokenMetadata } as any);
   });
 };
 
-export const getUnclaimedRewards = async (
+export const getUnclaimedRewards = async(
   account: string
 ): Promise<TokenStatus[]> => {
-  return axios
+  return (axios
     .get(`https://scot-api.hive-engine.com/@${account}?hive=1`)
     .then((r) => r.data)
     .then((r) => Object.values(r))
-    .then((r) => r.filter((t) => t.pending_token > 0));
+    .then((r) => r.filter((t) => (t as TokenStatus).pending_token > 0)) as any);
 };
 
 export const claimRewards = async (
@@ -126,7 +128,8 @@ export const claimRewards = async (
 
 export const stakeTokens = async (
   account: string,
-  token: string
+  token: string,
+  amount: string,
 ): Promise<TransactionConfirmation> => {
   const json = JSON.stringify({
     contractName: "tokens",
