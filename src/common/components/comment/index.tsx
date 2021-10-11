@@ -1,4 +1,4 @@
-import React, {Component, KeyboardEventHandler} from "react";
+import React, {Component, KeyboardEventHandler, Ref} from "react";
 
 import {Form, FormControl, Button, Spinner} from "react-bootstrap";
 
@@ -60,7 +60,8 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
     onSubmit: (text: string) => void;
     onChange?: (text: string) => void;
-    onCancel?: () => void
+    onCancel?: () => void;
+    inputRef?: Ref<any>
 }
 
 interface State {
@@ -122,7 +123,7 @@ export class Comment extends Component<Props, State> {
     }
 
     render() {
-        const {inProgress, cancellable, autoFocus, submitText} = this.props;
+        const {inProgress, cancellable, autoFocus, submitText, inputRef} = this.props;
         const {text, preview} = this.state;
 
         return (
@@ -139,6 +140,7 @@ export class Comment extends Component<Props, State> {
                             disabled={inProgress}
                             autoFocus={autoFocus}
                             rows={text.split(/\r\n|\r|\n/).length}
+                            ref={inputRef}
                         />
                     </div>
                     <div className="comment-buttons">
@@ -176,7 +178,8 @@ export default (p: Props) => {
         toggleUIProp: p.toggleUIProp,
         onSubmit: p.onSubmit,
         onChange: p.onChange,
-        onCancel: p.onCancel
+        onCancel: p.onCancel,
+        inputRef: p.inputRef
     }
 
     return <Comment {...props} />

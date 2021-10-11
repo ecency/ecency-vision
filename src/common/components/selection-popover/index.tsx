@@ -24,7 +24,7 @@ export const SelectionPopover = ({children, onQuotesClick, postUrl}: any) => {
     textField.select();
     document.execCommand('copy');
     textField.remove();
-    success(_t('profile-edit.copied'));
+    success(_t('entry.content-copied'));
 }
   return (
     <div>
@@ -51,7 +51,7 @@ export const SelectionPopover = ({children, onQuotesClick, postUrl}: any) => {
             <ClickAwayListener onClickAway={() => {setSelectedText(""); document.getSelection()?.removeAllRanges()}}>
                 <div ref={ref} style={{ ...style, ...tooltipStyle }} className="p-2 d-flex icons-container align-items-center">
                     <div onClick={() => copyToClipboard(selectedText)} className="pointer">{copyContent}</div>
-                    <a href={`https://twitter.com/intent/tweet?text=${selectedText} ${postUrl}`} target="_blank" className="mx-2 pointer twitter">{twitterSvg}</a>
+                    <a href={`https://twitter.com/intent/tweet?text=${selectedText} https://ecency.com${postUrl}`} target="_blank" className="mx-2 pointer twitter">{twitterSvg}</a>
                     <div onClick={() => {onQuotesClick(selectedText);setSelectedText("");document.getElementsByClassName("comment-box")[0].scrollIntoView({block:"center", })}} className="pointer quotes">{quotes}</div>
                 </div>
             </ClickAwayListener>
