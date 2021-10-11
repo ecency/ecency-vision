@@ -503,6 +503,14 @@
     "withdraw-routes": "Povucite rute",
     "converting-hbd-amount": "Converting to HIVE"
   },
+  "wallet-engine": {
+    "title": "Hive Engine Tokens",
+    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
+    "no-results": "No tokens found.",
+    "token": "Token",
+    "balance": "Balance",
+    "staked": "Staked"
+  },
   "withdraw-routes": {
     "title": "Povucite račune",
     "account": "Račun",
