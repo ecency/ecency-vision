@@ -503,6 +503,14 @@
     "withdraw-routes": "निकाशी मार्ग",
     "converting-hbd-amount": "हाइव में परिवर्तित हो रहा हैं"
   },
+  "wallet-engine": {
+    "title": "Hive Engine Tokens",
+    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
+    "no-results": "No tokens found.",
+    "token": "Token",
+    "balance": "Balance",
+    "staked": "Staked"
+  },
   "withdraw-routes": {
     "title": "निकाशी खाता",
     "account": "खाता",
