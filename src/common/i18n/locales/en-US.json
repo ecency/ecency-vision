@@ -559,7 +559,7 @@
     "select-asset": "Select Asset",
     "slider-hint": "Drag the slider to adjust the amount.",
     "submit": "Purchase",
-    "purchase-message": "You can also send any amount to @esteem.app account to purchase Points."
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Promote",
