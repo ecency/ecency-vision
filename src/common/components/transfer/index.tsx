@@ -605,8 +605,11 @@ export class Transfer extends BaseComponent<Props, State> {
 
         let balance: string | number = this.formatBalance(this.getBalance());
         if(to.length > 0 && Number(amount) > 0 && toData?.__loaded){
-        let alreadyDelgatedAmount = Number(formattedNumber(vestsToHp(Number(parseAsset(((transactions!.list!.find(item => (item as DelegateVestingShares).delegatee===to)! as DelegateVestingShares).vesting_shares)).amount), hivePerMVests)));
-        balance = Number(balance) + alreadyDelgatedAmount
+            let vestShareAmount:any = transactions!.list!.find(item => (item as DelegateVestingShares).delegatee===to)! as DelegateVestingShares
+            vestShareAmount = vestShareAmount && vestShareAmount.vesting_shares
+            vestShareAmount = vestShareAmount && vestShareAmount.amount || "0"
+            let alreadyDelgatedAmount = Number(formattedNumber(vestsToHp(Number(vestShareAmount), hivePerMVests)));
+            balance = Number(balance) + alreadyDelgatedAmount
         }
 
         const titleLngKey = (mode === "transfer" && asset === "POINT") ? _t("transfer-title-point") : `${mode}-title`;
