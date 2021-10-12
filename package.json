@@ -20,7 +20,6 @@
     "@types/rss": "^0.0.28",
     "@types/sortablejs": "^1.10.6",
     "@types/speakingurl": "^13.0.2",
-    "add": "^2.0.6",
     "axios": "^0.21.1",
     "bs58": "^4.0.1",
     "chartist": "^0.11.4",
@@ -62,8 +61,7 @@
     "serialize-javascript": "^3.1.0",
     "sortablejs": "^1.13.0",
     "speakingurl": "^14.0.1",
-    "xss": "^1.0.8",
-    "yarn": "^1.22.15"
+    "xss": "^1.0.8"
   },
   "devDependencies": {
     "@types/bytebuffer": "^5.0.41",
