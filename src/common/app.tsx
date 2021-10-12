@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {Route, Switch} from "react-router-dom";
 
 import EntryIndexContainer from "./pages/entry-index";
@@ -33,8 +33,6 @@ import routes from "./routes";
 const App = () => {
     return (
         <>
-            <link rel="manifest" href="/manifest.json" />
-            
             <Tracker/>
             <Switch>
                 <Route exact={true} path={routes.HOME} component={EntryIndexContainer}/>
