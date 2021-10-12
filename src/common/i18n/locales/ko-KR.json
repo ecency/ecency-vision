@@ -507,8 +507,8 @@
     "title": "Hive Engine 토큰",
     "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
     "no-results": "토큰을 찾을 수 없습니다.",
-    "token": "Token",
-    "balance": "Balance",
+    "token": "토큰",
+    "balance": "잔액",
     "staked": "Staked"
   },
   "withdraw-routes": {
@@ -542,8 +542,8 @@
     "login-list-desc": "Points for login",
     "checkin-list-desc": "Points for heartbeat",
     "checkin-extra-list-desc": "Usage bonus",
-    "transfer-sent-list-desc": "Transfer to {{n}}",
-    "transfer-incoming-list-desc": "Transfer from {{n}}",
+    "transfer-sent-list-desc": "{{n}} 님에게 송금",
+    "transfer-incoming-list-desc": "{{n}} 님으로부터 받음",
     "delegation-list-desc": "임대 보상",
     "referral-list-desc": "추천인 보상",
     "community-list-desc": "커뮤니티 보상",
