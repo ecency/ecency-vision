@@ -568,7 +568,8 @@
   "purchase": {
     "select-asset": "자산 선택",
     "slider-hint": "슬라이드를 드래그해서 수량을 설정할 수 있습니다.",
-    "submit": "구매"
+    "submit": "구매",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "홍보",
@@ -778,7 +779,15 @@
     "placeholder-focus": "태그 입력",
     "placeholder-has-tags": "더 추가",
     "suggestion-header": "태그",
-    "error-max": "최대 {{n}} 개 태그"
+    "error-max": "최대 {{n}} 개 태그",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "커뮤니티 선택",
@@ -1171,5 +1180,9 @@
     "success-message-subscribe": "귀하의 이메일 주소로 인증 확인 링크가 전송되었습니다!",
     "validation-email": "유효한 이메일 주소를 입력하세요",
     "error-occured": "서버 오류가 발생했습니다."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }
