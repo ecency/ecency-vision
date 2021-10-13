@@ -568,7 +568,8 @@
   "purchase": {
     "select-asset": "Valitse etu",
     "slider-hint": "Siirrä liukusäädintä muuttaaksesi määrää.",
-    "submit": "Osta"
+    "submit": "Osta",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Korosta",
@@ -778,7 +779,15 @@
     "placeholder-focus": "Syötä tunniste",
     "placeholder-has-tags": "Lisää enemmän",
     "suggestion-header": "Tunnisteet",
-    "error-max": "Enintään {{n}} tunnistetta"
+    "error-max": "Enintään {{n}} tunnistetta",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Valitse yhteisö",
@@ -1171,5 +1180,9 @@
     "success-message-subscribe": "Vahvistuslinkki on lähetetty sähköpostiosoitteesesi!",
     "validation-email": "Sähköpostiosoite on pakollinen",
     "error-occured": "Palvelinvirhe on tapahtunut."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }
