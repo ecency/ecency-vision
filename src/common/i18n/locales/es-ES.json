@@ -568,7 +568,8 @@
   "purchase": {
     "select-asset": "Seleccionar activos",
     "slider-hint": "Arrastra el deslizador para ajustar la cantidad.",
-    "submit": "Comprar"
+    "submit": "Comprar",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Promocionar",
@@ -778,7 +779,15 @@
     "placeholder-focus": "Escribir una etiqueta",
     "placeholder-has-tags": "Agregar más",
     "suggestion-header": "Etiquetas",
-    "error-max": "Máximo {{n}} etiquetas"
+    "error-max": "Máximo {{n}} etiquetas",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Elige una comunidad",
@@ -1171,5 +1180,9 @@
     "success-message-subscribe": "¡Se ha enviado un enlace de verificación a tu cuenta de correo electrónico!",
     "validation-email": "Se requiere un email válido",
     "error-occured": "Se ha producido un error en el servidor."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }
