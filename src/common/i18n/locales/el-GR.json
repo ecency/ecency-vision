@@ -568,7 +568,8 @@
   "purchase": {
     "select-asset": "Επιλογή αντικειμένου",
     "slider-hint": "Σύρετε τον ολισθητή για να ρυθμίσετε το ποσό.",
-    "submit": "Αγορά"
+    "submit": "Αγορά",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Προώθηση",
@@ -778,7 +779,15 @@
     "placeholder-focus": "Εισαγωγή ετικέτας",
     "placeholder-has-tags": "Προσθέστε περισσότερα",
     "suggestion-header": "Ετικέτες",
-    "error-max": "Μέγιστες {{n}} ετικέτες"
+    "error-max": "Μέγιστες {{n}} ετικέτες",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Choose a community",
@@ -1171,5 +1180,9 @@
     "success-message-subscribe": "A verification link has been sent to your email account!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }
