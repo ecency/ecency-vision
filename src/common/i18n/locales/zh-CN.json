@@ -568,7 +568,8 @@
   "purchase": {
     "select-asset": "选择资产",
     "slider-hint": "拖动滑块来调整金额。",
-    "submit": "购买"
+    "submit": "购买",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "推广",
@@ -778,7 +779,15 @@
     "placeholder-focus": "输入标签",
     "placeholder-has-tags": "添加更多",
     "suggestion-header": "标签",
-    "error-max": "最大 {{n}} 标签"
+    "error-max": "最大 {{n}} 标签",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "选择一个社区",
@@ -1171,5 +1180,9 @@
     "success-message-subscribe": "验证链接已发送到您的电子邮件帐户！",
     "validation-email": "需要有效的电子邮件",
     "error-occured": "服务器发生错误。"
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }
