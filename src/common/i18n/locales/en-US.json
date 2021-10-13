@@ -1171,5 +1171,9 @@
     "success-message-subscribe": "A verification link has been sent to your email account!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }
