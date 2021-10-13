@@ -568,7 +568,8 @@
   "purchase": {
     "select-asset": "Выбрать актив",
     "slider-hint": "Перетащите ползунок для настройки суммы.",
-    "submit": "Купить"
+    "submit": "Купить",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Продвинуть",
@@ -778,7 +779,15 @@
     "placeholder-focus": "Введите тэг",
     "placeholder-has-tags": "Добавить еще",
     "suggestion-header": "Тэги",
-    "error-max": "Максимум {{n}} тегов"
+    "error-max": "Максимум {{n}} тегов",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Выбрать сообщество",
@@ -1171,5 +1180,9 @@
     "success-message-subscribe": "Ссылка для подтверждения была отправлена на ваш адрес электронной почты!",
     "validation-email": "Требуется действительный адрес электронной почты",
     "error-occured": "Произошла ошибка сервера."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }
