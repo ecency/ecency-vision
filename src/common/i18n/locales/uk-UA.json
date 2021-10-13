@@ -568,7 +568,8 @@
   "purchase": {
     "select-asset": "Оберіть актив",
     "slider-hint": "Перетягніть повзунок, щоб налаштувати суму.",
-    "submit": "Придбати"
+    "submit": "Придбати",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Просувати",
@@ -778,7 +779,15 @@
     "placeholder-focus": "Введіть тег",
     "placeholder-has-tags": "Додати більше",
     "suggestion-header": "Теги",
-    "error-max": "Максимум {{n}} тегів"
+    "error-max": "Максимум {{n}} тегів",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Choose a community",
@@ -1171,5 +1180,9 @@
     "success-message-subscribe": "A verification link has been sent to your email account!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }
