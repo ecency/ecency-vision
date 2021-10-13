@@ -568,7 +568,8 @@
   "purchase": {
     "select-asset": "Pilih Aset",
     "slider-hint": "Seret penggeser tersebut untuk menyesuaikan jumlahnya.",
-    "submit": "Pembelian"
+    "submit": "Pembelian",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Promosikan",
@@ -778,7 +779,15 @@
     "placeholder-focus": "Masukkan tagar",
     "placeholder-has-tags": "Tambahkan lagi",
     "suggestion-header": "Tagar",
-    "error-max": "Maksimum {{n}} tagar"
+    "error-max": "Maksimum {{n}} tagar",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Pilih sebuah komunitas",
@@ -1171,5 +1180,9 @@
     "success-message-subscribe": "Tautan verifikasi telah dikirim ke akun email Anda!",
     "validation-email": "Email valid diperlukan",
     "error-occured": "Terjadi kesalahan server."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }
