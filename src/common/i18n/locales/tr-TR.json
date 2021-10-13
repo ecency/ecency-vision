@@ -568,7 +568,8 @@
   "purchase": {
     "select-asset": "Varlık Seç",
     "slider-hint": "Miktarı ayarlamak için kaydırıcıyı sürükle.",
-    "submit": "Satın al"
+    "submit": "Satın al",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Tanıtım Yap",
@@ -778,7 +779,15 @@
     "placeholder-focus": "Etiket gir",
     "placeholder-has-tags": "Daha Fazla Ekle",
     "suggestion-header": "Etiketler",
-    "error-max": "En fazla {{n}} etiket"
+    "error-max": "En fazla {{n}} etiket",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Bir topluluk seç",
@@ -1171,5 +1180,9 @@
     "success-message-subscribe": "E-posta hesabınıza bir doğrulama bağlantısı gönderildi!",
     "validation-email": "Geçerli bir e-posta gereklidir",
     "error-occured": "Bir sunucu hatası oluştu."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }
