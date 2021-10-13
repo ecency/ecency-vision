@@ -43,12 +43,12 @@ export default class ListStyleToggle extends Component<Props> {
 
         const dropDownItems = [
             {
-                label: <span className="gridMenu">{gridViewSvg} Card</span>,
+            label: <span className="gridMenu">{gridViewSvg} {_t("layouts.grid")}</span>,
                 active: global.listStyle === "grid",
                 onClick: () => this.changeStyle("grid"),
             },
             {
-                label: <span className="gridMenu">{listSvg} Classic</span>,
+            label: <span className="gridMenu">{listSvg} {_t("layouts.classis")}</span>,
                 active: global.listStyle === "row",
                 onClick: () => this.changeStyle("row"),
             },
