@@ -48,7 +48,7 @@ export default class ListStyleToggle extends Component<Props> {
                 onClick: () => this.changeStyle("grid"),
             },
             {
-            label: <span className="gridMenu">{listSvg} {_t("layouts.classis")}</span>,
+            label: <span className="gridMenu">{listSvg} {_t("layouts.classic")}</span>,
                 active: global.listStyle === "row",
                 onClick: () => this.changeStyle("row"),
             },
