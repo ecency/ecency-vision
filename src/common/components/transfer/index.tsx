@@ -609,7 +609,8 @@ export class Transfer extends BaseComponent<Props, State> {
             vestShareAmount = vestShareAmount && Number(formattedNumber(vestsToHp(Number(parseAsset(((vestShareAmount).vesting_shares)).amount), hivePerMVests)));
             vestShareAmount = vestShareAmount || 0
             let alreadyDelgatedAmount = vestShareAmount;
-            balance = Number(balance) + alreadyDelgatedAmount
+            balance = Number(balance) + alreadyDelgatedAmount;
+            balance = Number(balance).toFixed(3)
         }
 
         const titleLngKey = (mode === "transfer" && asset === "POINT") ? _t("transfer-title-point") : `${mode}-title`;
@@ -681,6 +682,14 @@ export class Transfer extends BaseComponent<Props, State> {
                 </div>
             }
         }
+        const toAccount = transactions && transactions.list && 
+        (transactions!.list!.find(item => 
+            ((item as ITransfer).from === activeUser.username) && (item as ITransfer).to===to) as ITransfer);
+        const previousAmount = toAccount ? ((transactions!.list!.find(item => ((item as ITransfer).from===activeUser.username) && (item as ITransfer).to===to)! as ITransfer).amount) : "";
+        const delegateAccount = transactions && transactions.list && 
+        (transactions!.list!.find(item => 
+            (item as DelegateVestingShares).delegatee===to && (item as DelegateVestingShares).delegator===activeUser.username));
+        const previousAmount2 = delegateAccount ? Number(formattedNumber(vestsToHp(Number(parseAsset(((transactions!.list!.find(item => (item as DelegateVestingShares).delegatee===to && ((item as DelegateVestingShares).delegator===activeUser.username))! as DelegateVestingShares).vesting_shares)).amount), hivePerMVests))) : "";
 
         return <div className="transfer-dialog-content">
             {step === 1 && (
@@ -775,22 +784,16 @@ export class Transfer extends BaseComponent<Props, State> {
                                 {to.length > 0 && Number(amount) > 0 && toData?.__loaded && 
                                     <div className="text-warning mt-1 override-warning">
                                         {_t("transfer.override-warning-1")}
-                                        {transactions && transactions.list && 
-                                            (transactions!.list!.find(item => 
-                                                ((item as ITransfer).from === activeUser.username) && (item as ITransfer).to===to) as ITransfer) &&
+                                        {toAccount &&
                                                 <>
                                                     <br/>
-                                                    {_t("transfer.override-warning-2", {account: to, previousAmount: ((transactions!.list!.find(item => ((item as ITransfer).from===activeUser.username) && (item as ITransfer).to===to)! as ITransfer).amount) || ""})}
+                                                    {_t("transfer.override-warning-2", {account: to, previousAmount: previousAmount})}
                                                 </>
                                         }
-                                        {transactions && transactions.list && 
-                                            (transactions!.list!.find(item => 
-                                                (item as DelegateVestingShares).delegatee===to && (item as DelegateVestingShares).delegator===activeUser.username)) &&
+                                        {delegateAccount &&
                                                 <>
                                                     <br/>
-                                                    {_t("transfer.override-warning-2", {account: to, previousAmount: 
-                                                        Number(formattedNumber(vestsToHp(Number(parseAsset(((transactions!.list!.find(item => (item as DelegateVestingShares).delegatee===to && ((item as DelegateVestingShares).delegator===activeUser.username))! as DelegateVestingShares).vesting_shares)).amount), hivePerMVests)))
-                                                         || ""})}
+                                                    {_t("transfer.override-warning-2", {account: to, previousAmount: previousAmount2})}
                                                 </>
                                         }{" "}<Link to="/faq">{_t("g.learnMore")}</Link>
                                     </div>
