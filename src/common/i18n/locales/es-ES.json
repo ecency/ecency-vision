@@ -569,7 +569,7 @@
     "select-asset": "Seleccionar activos",
     "slider-hint": "Arrastra el deslizador para ajustar la cantidad.",
     "submit": "Comprar",
-    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
+    "purchase-message": "O envía cualquier cantidad a @esteem.app con `points` como nota en el memo para comprar puntos."
   },
   "promote": {
     "title": "Promocionar",
@@ -780,7 +780,7 @@
     "placeholder-has-tags": "Agregar más",
     "suggestion-header": "Etiquetas",
     "error-max": "Máximo {{n}} etiquetas",
-    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_tags": "Sólo 10 etiquetas permitidas, remueve algunas",
     "limited_length": "Maximum length of each tag should be 24",
     "limited_dash": "Use one dash in each tag",
     "limited_space": "Use space to separate tags",
