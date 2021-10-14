@@ -777,10 +777,10 @@ export class Transfer extends BaseComponent<Props, State> {
                                         {_t("transfer.override-warning-1")}
                                         {transactions && transactions.list && 
                                             (transactions!.list!.find(item => 
-                                                (item as ITransfer).to===to) as ITransfer) &&
+                                                ((item as ITransfer).from === activeUser.username) && (item as ITransfer).to===to) as ITransfer) &&
                                                 <>
                                                     <br/>
-                                                    {_t("transfer.override-warning-2", {account: to, previousAmount: ((transactions!.list!.find(item => (item as ITransfer).to===to)! as ITransfer).amount) || ""})}
+                                                    {_t("transfer.override-warning-2", {account: to, previousAmount: ((transactions!.list!.find(item => ((item as ITransfer).from===activeUser.username) && (item as ITransfer).to===to)! as ITransfer).amount) || ""})}
                                                 </>
                                         }
                                         {transactions && transactions.list && 
