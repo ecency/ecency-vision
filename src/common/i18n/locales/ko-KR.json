@@ -517,14 +517,14 @@
     "percent": "비율",
     "validation-account": "계정이 필요합니다.",
     "validation-percent": "Percentage is required.",
-    "auto-power-up": "Automatically power up"
+    "auto-power-up": "자동 파워업"
   },
   "points": {
     "get": "포인트 구매",
     "unclaimed-points": "Unclaimed points",
     "claim-reward-points": "포인트 보상 요청",
     "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
-    "earn-points": "How to earn more Points",
+    "earn-points": "더 많은 포이트를 획득 방법",
     "post-desc": "You can earn point by posting regularly. Posting gives you 15 points.",
     "comment-desc": "Each comment you make helps you to grow your audience and make friendship but also earns you 5 points.",
     "checkin-desc": "Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends.",
@@ -535,13 +535,13 @@
     "delegation-desc": "You can earn ~100 points per day for each 1000HP delegation.",
     "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "기록",
-    "post-list-desc": "Points for post",
-    "comment-list-desc": "Points for comment",
+    "post-list-desc": "포스팅 포인트",
+    "comment-list-desc": "댓글 포인트",
     "vote-list-desc": "보팅 포인트",
-    "reblog-list-desc": "Points for reblog",
-    "login-list-desc": "Points for login",
-    "checkin-list-desc": "Points for heartbeat",
-    "checkin-extra-list-desc": "Usage bonus",
+    "reblog-list-desc": "리블로그 포인트",
+    "login-list-desc": "로그인 포인트",
+    "checkin-list-desc": "체크인 포인트",
+    "checkin-extra-list-desc": "사용 보너스",
     "transfer-sent-list-desc": "{{n}} 님에게 송금",
     "transfer-incoming-list-desc": "{{n}} 님으로부터 받음",
     "delegation-list-desc": "임대 보상",
@@ -669,7 +669,7 @@
     "type-fill_collateralized_convert-detail": "ID: <strong>{{request}}</strong>, Returned: {{returned}}",
     "type-cancel_transfer_from_savings": "안전 금고에서 송금 취소",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
-    "type-return_vesting_delegation": "Return delegations",
+    "type-return_vesting_delegation": "위임 제거",
     "type-proposal_pay": "Proposal pay",
     "type-update_proposal_votes": "제안서 투표",
     "type-comment_payout_update": "Content payout update",
@@ -687,12 +687,12 @@
   "key-or-hot": {
     "sign": "로그인",
     "key-placeholder": "Enter active/owner/master key",
-    "with-hivesigner": "Sign with hivesigner",
-    "with-keychain": "Sign with keychain"
+    "with-hivesigner": "Hivesigner으로 로그인",
+    "with-keychain": "키체인으로 로그인"
   },
   "delegated-vesting": {
-    "title": "Delegated Hive Power",
-    "undelegate": "undelegate"
+    "title": "하이브 파워 임대",
+    "undelegate": "임대 취소"
   },
   "received-vesting": {
     "title": "임대받은 하이브 파워"
@@ -781,7 +781,7 @@
     "suggestion-header": "태그",
     "error-max": "최대 {{n}} 개 태그",
     "limited_tags": "Only 10 tags allowed, remove some",
-    "limited_length": "Maximum length of each tag should be 24",
+    "limited_length": "각 태그의 최대 길이는 24 입니다",
     "limited_dash": "Use one dash in each tag",
     "limited_space": "Use space to separate tags",
     "limited_lowercase": "Only use lower letters in tag",
@@ -808,7 +808,7 @@
     "user-error": "{{n}} is not a valid user.",
     "validation-percentage": "Percentage is required.",
     "validation-username": "사용자 이름이 필요합니다.",
-    "user-exists-error": "{{n}} is already in the list"
+    "user-exists-error": "{{n}} 이미 목록에 있습니다!"
   },
   "post-scheduler": {
     "title": "예약",
@@ -817,15 +817,15 @@
   "notification": {
     "popup-title": "새로운 알림이 있습니다.",
     "voted": "{{source}}님이 당신 글을 보팅했습니다",
-    "mention-post": "{{source}} mentioned you in a post",
-    "mention-comment": "{{source}} mentioned you in a comment",
-    "followed": "{{source}} followed you",
-    "replied": "{{source}} replied you",
-    "reblogged": "{{source}} reblogged your post",
-    "transfer": "{{source}} sent you {{amount}}"
+    "mention-post": "{{source}}님이 게시글에서 당신을 언급했습니다",
+    "mention-comment": "{{source}}님이 댓글에서 당신을 언급했습니다",
+    "followed": "{{source}}님이 팔로우를 시작했습니다",
+    "replied": "{{source}}님이 댓글을 남겼습니다",
+    "reblogged": "{{source}}님이 당신 글을 리블로그했습니다",
+    "transfer": "{{source}} 님이 당신에게 {{amount}}을(를) 보냈습니다"
   },
   "notifications": {
-    "type-all": "All Notifications",
+    "type-all": "모든 알림",
     "type-all-short": "전체",
     "type-rvotes": "보팅",
     "type-replies": "댓글",
@@ -835,13 +835,13 @@
     "type-transfers": "송금",
     "group-title-recent": "최근",
     "vote-str": "{{p}}님이 당신 글을 좋아합니다:",
-    "reply-str": "replied to your post:",
-    "mention-str": "mentioned you in:",
+    "reply-str": "댓글을 남겼습니다:",
+    "mention-str": "당신을 언급했습니다:",
     "followed-str": "팔로우됨",
     "unfollowed-str": "팔로우 취소",
     "ignored-str": "무시",
-    "reblog-str": "reblogged your post:",
-    "transfer-str": "sent you",
+    "reblog-str": "당신 글을 리블로그했습니다:",
+    "transfer-str": "당신에게 송금했습니다",
     "spin-str": "Time to earn more Points, Play Spin on Ecency Mobile app",
     "inactive-str": "Be active! Write a post, continue earning",
     "referral-str": "joined with your referral, welcome them",
@@ -916,7 +916,7 @@
     "title": "커뮤니티"
   },
   "witnesses": {
-    "page-title": "Witnesses",
+    "page-title": "증인",
     "page-description": "Consensus block producers selection",
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
     "remaining": "총 {{max}} 개의 투표권 중 <span>{{n}}</span> 개가 남았습니다",
@@ -930,10 +930,10 @@
     "username-placeholder": "사용자 이름",
     "extra-description": "상위 50 위 밖의 증인에게 투표하려면 아래에 계정 이름을 입력하세요",
     "proxy-description": "당신을 대신해서 증인에게 투표하는 프록시를 설정할 수도 있습니다. 프록시를 설정하면 기존 증인 투표는 초기화될 것입니다.",
-    "proxy-btn-label": "Set Proxy",
-    "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
-    "proxy-active-current": "Your current proxy is",
-    "proxy-active-btn-label": "Clear Proxy",
+    "proxy-btn-label": "프록시 설정하기",
+    "proxy-active-description": "투표 프록시를 설정했습니다. 다시 직접 투표하고 싶다면, 프록시 설정을 삭제해주세요.",
+    "proxy-active-current": "현재 프록시",
+    "proxy-active-btn-label": "프록시 삭제하기",
     "proxy-votes-for": "@{{username}}의 투표는"
   },
   "proposals": {
