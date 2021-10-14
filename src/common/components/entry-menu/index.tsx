@@ -233,7 +233,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
     render() {
         const {global, activeUser, entry, entryPinTracker, alignBottom, separatedSharing, extraMenuItems} = this.props;
-       
+
         const isComment = !!entry.parent_author;
 
         const ownEntry = activeUser && activeUser.username === entry.author;
@@ -242,7 +242,12 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
         let menuItems: MenuItem[] = [];
 
-        if (activeUser && !isComment) {
+        if(extraMenuItems){
+            menuItems = [
+                ...menuItems,
+                ...extraMenuItems
+            ]
+        } else  if (activeUser && !isComment) {
             menuItems = [
                 {
                     label: _t("entry-menu.cross-post"),
@@ -250,10 +255,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
                     icon: shuffleVariantSvg
                 }
             ]
-        }
-
-
-        if (!separatedSharing) {
+        } else  if (!separatedSharing) {
             menuItems = [
                 ...menuItems,
                 {
@@ -262,9 +264,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
                     icon: shareVariantSvg
                 }
             ]
-        }
-
-        if (global.usePrivate) {
+        } else if (global.usePrivate) {
             menuItems = [
                 ...menuItems,
                 {
@@ -273,9 +273,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
                     icon: historySvg
                 }
             ];
-        }
-
-        if (editable) {
+        } else if (editable) {
             menuItems = [...menuItems,
                 ...[
                     {
@@ -285,9 +283,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
                     }
                 ]
             ];
-        }
-
-        if (!(entry.children > 0 || entry.net_rshares > 0 || entry.is_paidout)) {
+        } else if (!(entry.children > 0 || entry.net_rshares > 0 || entry.is_paidout)) {
             menuItems = [...menuItems,
                 ...[
                     {
@@ -325,9 +321,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
                     }
                 ]
             ];
-        }
-
-        if (global.usePrivate && !isComment) {
+        } else if (global.usePrivate && !isComment) {
             menuItems = [
                 ...menuItems,
                 ...[
@@ -343,9 +337,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
                     }
                 ]
             ];
-        }
-
-        if (global.isElectron) {
+        } else if (global.isElectron) {
             menuItems = [
                 ...menuItems,
                 {
@@ -353,13 +345,6 @@ export class EntryMenu extends BaseComponent<Props, State> {
                     onClick: this.copyAddress,
                     icon: linkVariantSvg
                 }
-            ]
-        }
-
-        if(extraMenuItems){
-            menuItems = [
-                ...menuItems,
-                ...extraMenuItems
             ]
         }
 
@@ -392,13 +377,16 @@ export class EntryMenu extends BaseComponent<Props, State> {
             )}
 
             <DropDown {...menuConfig} float="right" alignBottom={alignBottom} onShow={this.onMenuShow}/>
-            {(activeUser && cross) && <CrossPost entry={entry} activeUser={activeUser} onHide={this.toggleCross}
-                                                 onSuccess={(community) => {
-                                                     this.toggleCross();
 
-                                                     const {history} = this.props;
-                                                     history.push(`/created/${community}`);
-                                                 }}/>}
+            {(activeUser && cross) && 
+                <CrossPost entry={entry} activeUser={activeUser} onHide={this.toggleCross}
+                    onSuccess={(community) => {
+                        this.toggleCross();
+
+                        const {history} = this.props;
+                        history.push(`/created/${community}`);
+                    }}/>
+            }
             {share && <EntryShare entry={entry} onHide={this.toggleShare}/>}
             {editHistory && <EditHistory entry={entry} onHide={this.toggleEditHistory}/>}
             {delete_ && <ModalConfirm onConfirm={() => {
