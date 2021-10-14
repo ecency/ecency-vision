@@ -781,13 +781,13 @@
     "suggestion-header": "Etiquetas",
     "error-max": "Máximo {{n}} etiquetas",
     "limited_tags": "Sólo 10 etiquetas permitidas, remueve algunas",
-    "limited_length": "Maximum length of each tag should be 24",
-    "limited_dash": "Use one dash in each tag",
-    "limited_space": "Use space to separate tags",
-    "limited_lowercase": "Only use lower letters in tag",
-    "limited_characters": "Use only lowercase letters, digits and one dash",
-    "limited_firstchar": "Tag must start with a letter",
-    "limited_lastchar": "Tag must end with letter or number"
+    "limited_length": "La longitud máxima de cada etiqueta debe ser de 24 caracteres",
+    "limited_dash": "Usar un guión en cada etiqueta",
+    "limited_space": "Usa espacios para separar las etiquetas",
+    "limited_lowercase": "Usa solo letras minusculas en la etiqueta",
+    "limited_characters": "Usa sólo letras minúsculas, dígitos y un guión",
+    "limited_firstchar": "La etiqueta debe comenzar con una letra",
+    "limited_lastchar": "La etiqueta debe terminar con una letra o un número"
   },
   "community-selector": {
     "choose": "Elige una comunidad",
@@ -1182,7 +1182,7 @@
     "error-occured": "Se ha producido un error en el servidor."
   },
   "layouts": {
-    "grid": "Grid",
-    "classic": "Classic"
+    "grid": "Cuadrícula",
+    "classic": "Clásico"
   }
 }
