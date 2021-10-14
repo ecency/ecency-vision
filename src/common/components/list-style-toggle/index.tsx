@@ -6,7 +6,7 @@ import isEqual from "react-fast-compare";
 // import { Dropdown, DropdownButton } from "react-bootstrap";
 import DropDown, {MenuItem} from "../dropdown";
 
-import { Global, Layouts } from "../../store/global/types";
+import { Global } from "../../store/global/types";
 
 import { _t } from "../../i18n";
 
@@ -20,8 +20,8 @@ import {
 } from "../../img/svg";
 
 interface Props {
-    global: Global;
     history: History;
+    global: Global;
     toggleListStyle: (view: string | null) => void;
 }
 

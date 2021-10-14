@@ -89,7 +89,9 @@ export class ProfileMenu extends Component<Props> {
                     )}
                 </div>
 
-                <div className="page-tools">{ProfileFilter[section] && <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>}</div>
+                <div className="page-tools">{ProfileFilter[section] && 
+                    <ListStyleToggle history={this.props.history} global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>}
+                </div>
             </div>
         );
     }

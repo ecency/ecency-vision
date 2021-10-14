@@ -152,3 +152,152 @@ exports[`(3) Should render entries 1`] = `
   </div>
 </div>
 `;
+
+exports[`(3) Should render entries 2`] = `
+<div
+  className="similar-entries-list"
+>
+  <div
+    className="similar-entries-list-header"
+  >
+    <div
+      className="list-header-text"
+    >
+      Read next
+    </div>
+  </div>
+  <div
+    className="similar-entries-list-body"
+  >
+    <div
+      className="similar-entries-list-item"
+    >
+      <a
+        href="/relevant/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+        onClick={[Function]}
+      >
+        <div
+          className="item-image"
+        >
+          <img
+            alt="Imagehoster + Hivesigner and Condenser bounty"
+            loading="lazy"
+            onError={[Function]}
+            src="noimage.svg"
+            style={
+              Object {
+                "width": "75px",
+              }
+            }
+          />
+        </div>
+        <div
+          className="item-title"
+        >
+          Imagehoster + Hivesigner and Condenser bounty
+        </div>
+        <div
+          className="item-footer"
+        >
+          <span
+            className="item-footer-author"
+          >
+            good-karma
+          </span>
+          <span
+            className="item-footer-date"
+          >
+            3 days ago
+          </span>
+        </div>
+      </a>
+    </div>
+    <div
+      className="similar-entries-list-item"
+    >
+      <a
+        href="/relevant/@ecency/ecency-vision-no-beneficiaries-drafts-gallery-bookmarks"
+        onClick={[Function]}
+      >
+        <div
+          className="item-image"
+        >
+          <img
+            alt="Ecency Vision - No beneficiaries, Drafts, Gallery, Bookmarks"
+            loading="lazy"
+            onError={[Function]}
+            src="https://images.ecency.com/p/qjrE4yyfw5pJD9LKQ1BG3BAmr5TYaANmrJEBZ9YMFm1JzaDyFrs2gybkt9EkQpcw34nTWFHD2XRVqvYde75Xjcbva4CmKgJf229A1udyqYXoE3PChHh5GC6a.png?format=match&mode=fit&width=600&height=500"
+            style={
+              Object {
+                "width": "auto",
+              }
+            }
+          />
+        </div>
+        <div
+          className="item-title"
+        >
+          Ecency Vision - No beneficiaries, Drafts, Gallery, Bookmarks
+        </div>
+        <div
+          className="item-footer"
+        >
+          <span
+            className="item-footer-author"
+          >
+            ecency
+          </span>
+          <span
+            className="item-footer-date"
+          >
+            3 days ago
+          </span>
+        </div>
+      </a>
+    </div>
+    <div
+      className="similar-entries-list-item"
+    >
+      <a
+        href="/relevant/@good-karmax/from-esteem-search-to-hivesearcher"
+        onClick={[Function]}
+      >
+        <div
+          className="item-image"
+        >
+          <img
+            alt="From Esteem Search to Hivesearcher"
+            loading="lazy"
+            onError={[Function]}
+            src="https://images.ecency.com/p/C3TZR1g81UNbFzApDTmvFYMje8p1iesaAcNjSh7JWYRiPQRX52L6rNRZipeiaBkx9daTxCyJyVvcKo3QMC9tjfRvNzgHxYuYyj6AFmCrd98w27oav6Nh8m4.png?format=match&mode=fit&width=600&height=500"
+            style={
+              Object {
+                "width": "auto",
+              }
+            }
+          />
+        </div>
+        <div
+          className="item-title"
+        >
+          From Esteem Search to Hivesearcher
+        </div>
+        <div
+          className="item-footer"
+        >
+          <span
+            className="item-footer-author"
+          >
+            good-karmax
+          </span>
+          <span
+            className="item-footer-date"
+          >
+            3 days ago
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+`;
