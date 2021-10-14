@@ -79,13 +79,13 @@ export class Comment extends Component<Props, State> {
 
     componentDidMount(): void {
         const {defText} = this.props;
-        this.setState({text: defText, preview: defText});
+        this.setState({text: defText || "", preview: defText || ""});
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
         const {defText} = this.props;
         if (defText !== prevProps.defText) {
-            this.setState({text: defText, preview: defText});
+            this.setState({text: defText || "", preview: defText || ""});
         }
     }
 
@@ -107,7 +107,7 @@ export class Comment extends Component<Props, State> {
 
         this._updateTimer = setTimeout(() => {
             const {text} = this.state;
-            this.setState({preview: text});
+            this.setState({preview: text || ""});
         }, 500);
     };
 
@@ -125,7 +125,7 @@ export class Comment extends Component<Props, State> {
     render() {
         const {inProgress, cancellable, autoFocus, submitText, inputRef} = this.props;
         const {text, preview} = this.state;
-
+        debugger
         return (
             <>
                 <div className="comment-box">
