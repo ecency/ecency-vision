@@ -792,8 +792,7 @@ export class Transfer extends BaseComponent<Props, State> {
                                                         Number(formattedNumber(vestsToHp(Number(parseAsset(((transactions!.list!.find(item => (item as DelegateVestingShares).delegatee===to && ((item as DelegateVestingShares).delegator===activeUser.username))! as DelegateVestingShares).vesting_shares)).amount), hivePerMVests)))
                                                          || ""})}
                                                 </>
-                                        }                                       
-                                        {" "}<Link to="/faq">{_t("g.learnMore")}</Link>
+                                        }{" "}<Link to="/faq">{_t("g.learnMore")}</Link>
                                     </div>
                                 }
                                 {(() => {
