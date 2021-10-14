@@ -158,8 +158,12 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
             this.setState({proposals: this.state.allProposals});
         } else {
             let results: Proposal[] = [];
-            this.state.allProposals.forEach(item => {
-                if(item.subject.toLowerCase().search(value.toLowerCase().trim()) > -1) {
+            this.state.allProposals.forEach((item, i) => {
+                if(i=1) {
+                    console.log('item: ', item)
+                }
+                if(item.subject.toLowerCase().search(value.toLowerCase().trim()) > -1 || 
+                    item.creator.toLowerCase().search(value.toLowerCase().trim()) > -1) {
                     results.push(item);
                 }
             });
@@ -208,25 +212,25 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                                 <div className="value">
                                     {numeral(dailyFunded).format("0.00,")} {"HBD"}
                                 </div>
-                                <div className="label">daily funded</div>
+                                <div className="label">{_t('daily-funded')}</div>
                             </div>
                             <div className="funding-number">
                                 <div className="value">
                                     {numeral(dailyBudget).format("0.00,")} {"HBD"}
                                 </div>
-                                <div className="label">daily budget</div>
+                                <div className="label">{_t('daily-budget')}</div>
                             </div>
 
                             <div className="funding-number">
                                 <div className="value">
                                     {numeral(totalBudget).format("0.00,")} {"HBD"}
                                 </div>
-                                <div className="label">total budget</div>
+                                <div className="label">{_t('total-budget')}</div>
                             </div>
                         </div>
 
                         <div className='search-proposals'>
-                            <SearchBox placeholder='Search proposals' onChange={this.handleChangeSearch} value={this.state.search} />
+                            <SearchBox placeholder={_t('search.placeholder-proposals')} onChange={this.handleChangeSearch} value={this.state.search} />
                         </div>
 
                         <div className="filter-menu">
