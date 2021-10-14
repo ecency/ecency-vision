@@ -26,6 +26,7 @@ import ProfileCover from "../components/profile-cover";
 import ProfileCommunities from "../components/profile-communities";
 import ProfileSettings from "../components/profile-settings";
 import WalletHive from "../components/wallet-hive";
+import WalletHiveEngine from "../components/wallet-hive-engine";
 import WalletEcency from "../components/wallet-ecency";
 import ScrollToTop from "../components/scroll-to-top";
 
@@ -264,6 +265,13 @@ class ProfilePage extends BaseComponent<Props, State> {
 
                             if (section === "wallet") {
                                 return WalletHive({
+                                    ...this.props,
+                                    account
+                                });
+                            }
+
+                            if (section === "hive-engine") {
+                                return WalletHiveEngine({
                                     ...this.props,
                                     account
                                 });

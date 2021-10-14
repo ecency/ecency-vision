@@ -64,7 +64,7 @@ exports[`(1) Purchase 1`] = `
       max={10000}
       min={1}
       onChange={[Function]}
-      step={1}
+      step={0.001}
       type="range"
       value={250}
     />
@@ -82,7 +82,7 @@ exports[`(1) Purchase 1`] = `
     POINTS
   </div>
   <div
-    className="text-center"
+    className="text-center d-flex flex-column align-items-center"
   >
     <button
       className="btn btn-primary"
@@ -92,6 +92,17 @@ exports[`(1) Purchase 1`] = `
     >
       Purchase
     </button>
+    <span
+      className="d-flex text-muted mt-3 align-items-center"
+    >
+      <h4
+        className="text-white my-0 mr-1"
+      >
+        ⓘ
+      </h4>
+       
+      Or send any amount to @esteem.app with \`points\` as a memo to purchase Points.
+    </span>
   </div>
 </div>
 `;
@@ -229,7 +240,7 @@ exports[`(2) Should switch to transfer 1`] = `
               onChange={[Function]}
               placeholder="amount"
               type="text"
-              value="250.000"
+              value="250"
             />
           </div>
           <div
@@ -310,7 +321,7 @@ exports[`(2) Should switch to transfer 1`] = `
             className="form-control"
             onChange={[Function]}
             placeholder="enter your notes here"
-            value="estm-purchase"
+            value="points"
           />
         </div>
       </div>

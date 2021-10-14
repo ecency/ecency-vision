@@ -79,7 +79,7 @@ export class ProfileMenu extends Component<Props> {
                     <Link className={_c(`profile-menu-item ${section === "communities" ? "selected-item" : ""}`)} to={`/@${username}/communities`}>
                         {_t(`profile.section-communities`)}
                     </Link>
-                    <Link className={_c(`profile-menu-item ${["wallet", "points"].includes(section) ? "selected-item" : ""}`)} to={`/@${username}/wallet`}>
+                    <Link className={_c(`profile-menu-item ${["wallet", "points", "hive-engine"].includes(section) ? "selected-item" : ""}`)} to={`/@${username}/wallet`}>
                         {_t(`profile.section-wallet`)}
                     </Link>
                     {(activeUser && activeUser.username === username) && (

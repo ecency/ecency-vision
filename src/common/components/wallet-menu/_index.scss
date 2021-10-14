@@ -1,8 +1,13 @@
 .wallet-menu {
   display: flex;
   flex-shrink: 0;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+  margin-bottom: 5px;
+
+  @media (min-width: $md-break) {
+    flex-direction: row;
+  }
 
   @media (min-width: $xl-break) {
     padding: 0 10px;
@@ -14,13 +19,17 @@
   .menu-item {
     height: 91px;
     border-radius: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 14px 20px;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 48%;
+    width: 100%;
+
+    @media (min-width: $md-break) {
+      width: 33%;
+    }
 
     @media (min-width: $xl-break) {
       width: auto;

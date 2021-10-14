@@ -86,7 +86,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
         const {permlink} = entry;
         const {retry} = this.state;
         const limit = 3;
-        if (retry > 0) {
+        if (retry > 0 && this.state.entries.length < limit) {
             this.stateSet({loading: true});
             const query = this.buildQuery(entry);
             search(query, "newest", "0", undefined, undefined).then(r => {
@@ -101,9 +101,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
                     }
                 })
                 if (entries.length < limit) {
-                    this.setState((state) => ({
-                        retry: state.retry - 1
-                    }));
+                    this.setState({retry: retry-1})
                     this.fetch();
                 } else {
                     entries = entries.slice(0, limit);
