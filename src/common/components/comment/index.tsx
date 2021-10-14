@@ -125,7 +125,6 @@ export class Comment extends Component<Props, State> {
     render() {
         const {inProgress, cancellable, autoFocus, submitText, inputRef} = this.props;
         const {text, preview} = this.state;
-        debugger
         return (
             <>
                 <div className="comment-box">

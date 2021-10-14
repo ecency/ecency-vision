@@ -36,7 +36,7 @@ export const SelectionPopover = ({children, onQuotesClick, postUrl}: any) => {
           {(getProps: (arg0: { onMouseUp: () => void }) => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLParagraphElement> & React.HTMLAttributes<HTMLParagraphElement>) => (
             <div
               {...getProps({
-                onMouseUp: () => {console.log('We still can use this callback!')},
+                onMouseUp: () => { },
               })}
             >
               {children}

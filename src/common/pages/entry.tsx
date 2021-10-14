@@ -97,6 +97,7 @@ interface State {
     showProfileBox: boolean;
     entryIsMuted: boolean;
     selection: string;
+    commentText: string;
     isMounted: boolean;
     postIsDeleted: boolean;
     deletedEntry: {title: string, body: string, tags: any} | null;
@@ -110,6 +111,7 @@ class EntryPage extends BaseComponent<Props, State> {
         showIfNsfw: false,
         editHistory: false,
         comment: "",
+        commentText: "",
         showProfileBox: false,
         entryIsMuted: false,
         isMounted: false,
@@ -140,10 +142,24 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
-        const {location} = this.props;
+        const {location, activeUser} = this.props;
+        const {selection} = this.state;
+        const entry = this.getEntry();
         if (location.pathname !== prevProps.location.pathname) {
             this.setState({isMounted:false})
             this.ensureEntry()
+        }
+        if (prevStates.selection !== selection && !prevStates.selection && entry) {
+            
+        let text = selection ? (entry.body ? entry.body + `\n` : "") + selection : entry.body ? entry.body : "";
+        if(activeUser && activeUser.username){
+            let storageText = ls.get(`reply_draft_${entry.author}_${entry.permlink}`);
+            storageText = storageText && storageText.trim()
+            text = selection ? storageText ?
+            storageText + `\n` + selection : "" + selection : storageText ? storageText : "";
+            this.replyTextChanged(text);
+            this.setState({commentText: text, selection:""})
+        }
         }
     }
 
@@ -435,7 +451,7 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, selection, isMounted, postIsDeleted, deletedEntry} = this.state;
+        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, commentText, isMounted, postIsDeleted, deletedEntry} = this.state;
         const {global, history, match} = this.props;
 
         let navBar = global.isElectron ? NavBarElectron({
@@ -824,7 +840,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 </> :
                                                 Comment({
                                                     ...this.props,
-                                                    defText: selection ? (entry.body || "") + `\n` + selection : entry.body,
+                                                    defText: commentText,
                                                     submitText: _t('g.update'),
                                                     cancellable: true,
                                                     onSubmit: this.updateReply,
@@ -948,7 +964,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                     {activeUser && Comment({
                                         ...this.props,
-                                        defText: selection ? ls.get(`reply_draft_${entry.author}_${entry.permlink}`) + `\n` + selection : ls.get(`reply_draft_${entry.author}_${entry.permlink}`),
+                                        defText: commentText,
                                         submitText: _t('g.reply'),
                                         onChange: this.replyTextChanged,
                                         onSubmit: this.replySubmitted,
@@ -963,7 +979,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                     {!activeUser && Comment({
                                         ...this.props,
-                                        defText: selection ? ls.get(`reply_draft_${entry.author}_${entry.permlink}`)  + `\n` + selection : ls.get(`reply_draft_${entry.author}_${entry.permlink}`),
+                                        defText: commentText,
                                         submitText: _t('g.reply'),
                                         onChange: this.replyTextChanged,
                                         onSubmit: this.replySubmitted,
