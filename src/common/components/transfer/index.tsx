@@ -565,7 +565,7 @@ export class Transfer extends BaseComponent<Props, State> {
                 .reverse()
                 .slice(0, 5)
         )]
-                debugger
+
         const suggestionProps = {
             header: _t('transfer.recent-transfers'),
             renderer: (i: string) => {
@@ -605,10 +605,10 @@ export class Transfer extends BaseComponent<Props, State> {
 
         let balance: string | number = this.formatBalance(this.getBalance());
         if(to.length > 0 && Number(amount) > 0 && toData?.__loaded){
-            let vestShareAmount:any = transactions!.list!.find(item => (item as DelegateVestingShares).delegatee===to)! as DelegateVestingShares
-            vestShareAmount = vestShareAmount && vestShareAmount.vesting_shares
-            vestShareAmount = vestShareAmount && vestShareAmount.amount || "0"
-            let alreadyDelgatedAmount = Number(formattedNumber(vestsToHp(Number(vestShareAmount), hivePerMVests)));
+            let vestShareAmount:any = transactions!.list!.find(item => ((item as DelegateVestingShares).delegatee===to) && ((item as DelegateVestingShares).delegator===activeUser.username))! as DelegateVestingShares            
+            vestShareAmount = vestShareAmount && Number(formattedNumber(vestsToHp(Number(parseAsset(((vestShareAmount).vesting_shares)).amount), hivePerMVests)));
+            vestShareAmount = vestShareAmount || 0
+            let alreadyDelgatedAmount = vestShareAmount;
             balance = Number(balance) + alreadyDelgatedAmount
         }
 
@@ -785,11 +785,11 @@ export class Transfer extends BaseComponent<Props, State> {
                                         }
                                         {transactions && transactions.list && 
                                             (transactions!.list!.find(item => 
-                                                (item as DelegateVestingShares).delegatee===to) as DelegateVestingShares) &&
+                                                (item as DelegateVestingShares).delegatee===to && (item as DelegateVestingShares).delegator===activeUser.username)) &&
                                                 <>
                                                     <br/>
                                                     {_t("transfer.override-warning-2", {account: to, previousAmount: 
-                                                        Number(formattedNumber(vestsToHp(Number(parseAsset(((transactions!.list!.find(item => (item as DelegateVestingShares).delegatee===to)! as DelegateVestingShares).vesting_shares)).amount), hivePerMVests)))
+                                                        Number(formattedNumber(vestsToHp(Number(parseAsset(((transactions!.list!.find(item => (item as DelegateVestingShares).delegatee===to && ((item as DelegateVestingShares).delegator===activeUser.username))! as DelegateVestingShares).vesting_shares)).amount), hivePerMVests)))
                                                          || ""})}
                                                 </>
                                         }                                       
