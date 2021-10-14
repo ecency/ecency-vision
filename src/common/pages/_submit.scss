@@ -207,3 +207,19 @@
     }
   }
 }
+
+.selection-item {
+  width: 100px;
+  height: 100px;
+  background-color: $light-grey;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border: 5px solid $light-grey;
+  border-radius: 1.25rem;
+}
+
+.selected {
+  border: 5px solid $dark-sky-blue;
+  background-color: $dark-sky-blue;
+}

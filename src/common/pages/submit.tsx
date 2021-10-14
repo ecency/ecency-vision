@@ -701,6 +701,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     render() {
         const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch, clearModal} = this.state;
 
+        debugger
         //  Meta config
         const metaProps = {
             title: _t("submit.page-title"),
@@ -916,6 +917,31 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 </Col>
                                             </Form.Group>
                                         )}
+                                        {/* {editingEntry && editingEntry.json_metadata && editingEntry.json_metadata.images.length > 0 &&  */}
+                                            <Form.Group as={Row}>
+                                                <Form.Label column={true} sm="3">
+                                                    {_t("submit.schedule")}
+                                                </Form.Label>
+                                                <div className="col-sm-9 d-flex flex-wrap">
+                                                    <div
+                                                        className="selection-item shadow selected mr-3 mb-2"
+                                                        style={{backgroundImage:`url("https://images.ecency.com/webp/u/demo.com/avatar/medium")`}}
+                                                    />
+                                                    <div
+                                                        className="selection-item shadow mr-3 mb-2"
+                                                        style={{backgroundImage:`url("https://images.ecency.com/webp/u/demo.com/avatar/medium")`}}
+                                                    />
+                                                    <div
+                                                        className="selection-item shadow mr-3 mb-2"
+                                                        style={{backgroundImage:`url("https://images.ecency.com/webp/u/demo.com/avatar/medium")`}}
+                                                    />
+                                                    <div
+                                                        className="selection-item shadow mr-3 mb-2"
+                                                        style={{backgroundImage:`url("https://images.ecency.com/webp/u/demo.com/avatar/medium")`}}
+                                                    />
+                                                </div>
+                                            </Form.Group>
+                                        {/* } */}
                                     </div>
                                 </div>
                                 {toolBar}
