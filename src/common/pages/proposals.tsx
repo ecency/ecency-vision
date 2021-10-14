@@ -8,6 +8,9 @@ import {match} from "react-router";
 
 import numeral from "numeral";
 
+// import { debounce } from 'lodash';
+import _ from 'lodash'
+
 import moment from "moment";
 
 import defaults from "../constants/defaults.json";
@@ -76,6 +79,12 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         search: ''
     }
 
+    constructor(props: any) {
+        super(props);
+        this.handleInputChange = _.debounce(this.handleInputChange.bind(this), 200);
+        this.handleChangeSearch = this.handleChangeSearch.bind(this)
+    }
+
     componentDidMount() {
         this.load();
     }
@@ -138,23 +147,24 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         }, 500);
     }
 
-    handleChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleChangeSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
         this.setState({ search: value});
+        this.handleInputChange(value)
+    }
 
-        setTimeout(() => {
-            if(value.trim() === ''){
-                this.setState({proposals: this.state.allProposals});
-            } else {
-                let results: Proposal[] = [];
-                this.state.allProposals.forEach(item => {
-                    if(item.subject.toLowerCase().search(value.toLowerCase().trim()) > -1) {
-                        results.push(item);
-                    }
-                });
-                this.setState({proposals: results})
-            }
-        }, 200);
+    handleInputChange =( value: any) => {
+        if(value.trim() === ''){
+            this.setState({proposals: this.state.allProposals});
+        } else {
+            let results: Proposal[] = [];
+            this.state.allProposals.forEach(item => {
+                if(item.subject.toLowerCase().search(value.toLowerCase().trim()) > -1) {
+                    results.push(item);
+                }
+            });
+            this.setState({proposals: results})
+        }
     }
 
     render() {
@@ -294,7 +304,6 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
                 const proposal = proposals.find(x => x.id === proposalId);
                 if (proposal) {
                     this.stateSet({proposal});
-                    this.stateSet({allProposal: proposal});
                     return getPost(proposal.creator, proposal.permlink);
                 }
 
@@ -344,7 +353,6 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
         };
         let containerClasses = global.isElectron ? "app-content proposals-page proposals-detail-page mt-0 pt-6" : "app-content proposals-page proposals-detail-page";
 
-        console.log('proposal: ', proposal);
         return (
             <>
                 <Meta {...metaProps} />
