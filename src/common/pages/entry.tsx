@@ -265,9 +265,11 @@ class EntryPage extends BaseComponent<Props, State> {
             .then((entry) => {
                 if (entry) {
                     reducerFn(entry);
+                    this.stateSet({loading: false});
                 }
 
                 if (isCommunity(category)) {
+                    this.stateSet({loading: false});
                     return bridgeApi.getCommunity(category, activeUser?.username);
                 }
 
@@ -427,15 +429,14 @@ class EntryPage extends BaseComponent<Props, State> {
         const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, isMounted, postIsDeleted, deletedEntry} = this.state;
         const {global, history, match} = this.props;
 
-        const navBar = global.isElectron ? NavBarElectron({
+        let navBar = global.isElectron ? NavBarElectron({
             ...this.props,
             reloadFn: this.reload,
             reloading: loading,
         }) : NavBar({...this.props});
 
         if (loading) {
-            
-            return <>
+            navBar =  <>
                         {navBar}
                         <div className="mt-5">
                             <div className="pt-2">
@@ -445,10 +446,10 @@ class EntryPage extends BaseComponent<Props, State> {
                             </div>
                         </div>
                     </>;
+            return navBar;
         }
 
         const entry = this.getEntry();
-
         if (postIsDeleted) {
 
             const {username, permlink} = match.params;
@@ -513,10 +514,10 @@ class EntryPage extends BaseComponent<Props, State> {
         const app = appName(entry.json_metadata.app);
         const appShort = app.split('/')[0].split(' ')[0];
 
-        const isComment = !!entry.parent_author;
-
+        
         const {activeUser} = this.props;
-
+        
+        const isComment = !!entry.parent_author;
         const ownEntry = activeUser && activeUser.username === entry.author;
         const isHidden = entry?.net_rshares < 0;
         const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
@@ -964,7 +965,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 {editHistory && <EditHistory entry={entry} onHide={this.toggleEditHistory}/>}
                 <EntryBodyExtra entry={entry}/>
             </>
-        ) : null;
+        ) : navBar;
     }
 }
 

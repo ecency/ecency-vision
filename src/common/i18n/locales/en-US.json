@@ -272,10 +272,10 @@
     "comment-entry-title": "You are viewing a single comment's thread from: ",
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent",
-    "hidden-warning": "This content got low rating by people. Proceed with caution.",
+    "hidden-warning": "This content got low rating by people.",
     "delete-disabled": "Content after their payout cannot be deleted.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
-    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
+    "lowrep-warning": "Author of this content has low reputation.",
     "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copy post address",
@@ -568,7 +568,8 @@
   "purchase": {
     "select-asset": "Select Asset",
     "slider-hint": "Drag the slider to adjust the amount.",
-    "submit": "Purchase"
+    "submit": "Purchase",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Promote",
@@ -778,7 +779,15 @@
     "placeholder-focus": "Enter tag",
     "placeholder-has-tags": "Add More",
     "suggestion-header": "Tags",
-    "error-max": "Max {{n}} tags"
+    "error-max": "Max {{n}} tags",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Choose a community",
@@ -1171,5 +1180,9 @@
     "success-message-subscribe": "A verification link has been sent to your email account!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }

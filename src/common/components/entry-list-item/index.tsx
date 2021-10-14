@@ -146,8 +146,12 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     componentDidUpdate(prevProps:Props){
-        if(this.props.entry !== prevProps.entry && this.props.muted && this.state.mounted){
-            this.setState({ showMuted: true })
+        if(this.props.activeUser !== prevProps.activeUser && !this.props.activeUser){
+            this.setState({ showMuted: false })
+        }
+        if(this.props.entry !== prevProps.entry && this.props.muted !== prevProps.muted){
+            this.setState({ showMuted: this.props.muted || false })
+
         }
     }
 
@@ -176,7 +180,7 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     render() {
-        const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order,} = this.props;
+        const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order} = this.props;
         const { showProfileDetails, mounted } = this.state;
 
         const fallbackImage = global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png");
