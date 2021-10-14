@@ -25,6 +25,7 @@ export const SelectionPopover = ({children, onQuotesClick, postUrl}: any) => {
     document.execCommand('copy');
     textField.remove();
     success(_t('entry.content-copied'));
+    setSelectedText("")
 }
   return (
     <div>
@@ -36,7 +37,7 @@ export const SelectionPopover = ({children, onQuotesClick, postUrl}: any) => {
           {(getProps: (arg0: { onMouseUp: () => void }) => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLParagraphElement> & React.HTMLAttributes<HTMLParagraphElement>) => (
             <div
               {...getProps({
-                onMouseUp: () => { },
+                onMouseUp: () => {},
               })}
             >
               {children}
@@ -51,8 +52,8 @@ export const SelectionPopover = ({children, onQuotesClick, postUrl}: any) => {
             <ClickAwayListener onClickAway={() => {setSelectedText(""); document.getSelection()?.removeAllRanges()}}>
                 <div ref={ref} style={{ ...style, ...tooltipStyle }} className="p-2 d-flex icons-container align-items-center">
                     <div onClick={() => copyToClipboard(selectedText)} className="pointer">{copyContent}</div>
-                    <a href={`https://twitter.com/intent/tweet?text=${selectedText} https://ecency.com${postUrl}`} target="_blank" className="mx-2 pointer twitter">{twitterSvg}</a>
-                    <div onClick={() => {onQuotesClick(selectedText);setSelectedText("");document.getElementsByClassName("comment-box")[0].scrollIntoView({block:"center", })}} className="pointer quotes">{quotes}</div>
+                    <a onClick={() =>setSelectedText("")}href={`https://twitter.com/intent/tweet?text=${selectedText} https://ecency.com${postUrl}`} target="_blank" className="mx-2 pointer twitter">{twitterSvg}</a>
+                    <div onClick={() => {setSelectedText("");onQuotesClick(selectedText);document.getElementsByClassName("comment-box")[0].scrollIntoView({block:"center", })}} className="pointer quotes">{quotes}</div>
                 </div>
             </ClickAwayListener>
           )}}
