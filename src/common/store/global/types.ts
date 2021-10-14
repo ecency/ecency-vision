@@ -10,6 +10,11 @@ export enum Theme {
     night = "night",
 }
 
+export enum Layouts {
+    grid = "grid",
+    classis = "classis"
+}
+
 export enum EntryFilter {
     trending = "trending",
     hot = "hot",
@@ -60,6 +65,7 @@ export interface Global {
     nsfw: boolean;
     isMobile: boolean;
     usePrivate: boolean;
+    layouts: Layouts;
 }
 
 export enum ActionTypes {
