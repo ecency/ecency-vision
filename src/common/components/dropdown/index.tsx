@@ -5,7 +5,7 @@ import {menuDownSvg} from "../../img/svg";
 
 import _c from "../../util/fix-class-names"
 export interface MenuItem {
-    label: string;
+    label: string | JSX.Element;
     href?: string;
     onClick?: () => void;
     active?: boolean;

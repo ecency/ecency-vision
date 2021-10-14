@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import {History} from "history";
 
 import isEqual from "react-fast-compare";
 
 // import { Dropdown, DropdownButton } from "react-bootstrap";
-import DropDown from "../dropdown";
+import DropDown, {MenuItem} from "../dropdown";
 
-import { Global } from "../../store/global/types";
+import { Global, Layouts } from "../../store/global/types";
 
 import { _t } from "../../i18n";
 
@@ -20,6 +21,7 @@ import {
 
 interface Props {
     global: Global;
+    history: History;
     toggleListStyle: (view: string | null) => void;
 }
 
@@ -38,19 +40,19 @@ export default class ListStyleToggle extends Component<Props> {
     };
 
     render() {
-        const { global } = this.props;
+        const { global, history } = this.props;
         const { listStyle } = global;
 
-        const dropDownItems = [
+        const dropDownItems: MenuItem[] = [
             {
-            label: <span className="gridMenu">{gridView} {_t("layouts.grid")}</span>,
+                label: <span className="gridMenu">{gridView} {_t("layouts.grid")}</span>,
                 active: global.listStyle === "grid",
-                onClick: () => this.changeStyle("grid"),
+                onClick: () => {this.changeStyle("grid")},
             },
             {
-            label: <span className="gridMenu">{listView} {_t("layouts.classic")}</span>,
+                label: <span className="gridMenu">{listView} {_t("layouts.classic")}</span>,
                 active: global.listStyle === "row",
-                onClick: () => this.changeStyle("row"),
+                onClick: () => {this.changeStyle("row")},
             },
         ];
 
@@ -63,7 +65,7 @@ export default class ListStyleToggle extends Component<Props> {
                 </span>
             ),
             items: dropDownItems,
-            //   preElem: preDropDownElem,
+            preElem: undefined,
         };
 
         return (
