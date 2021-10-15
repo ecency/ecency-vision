@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "Maghanap",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Maghanap {{n}} ng mga artikulo",
     "header-tag": "Mga palatandaan",
     "header-account": "Mga gumagamit",
@@ -280,6 +281,7 @@
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Kopyahin ang post address",
     "address-copied": "Ang post address ay nakopya na sa clipboard.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "pamayanan",
@@ -954,7 +956,10 @@
     "filter-team": "Proyektong Ecency",
     "return-description": "Ito ang basehan ng pagbabalik ng panukala. Bawat panukala na may maliit na boto ay hindi makakatanggap ng pondo.",
     "votes-dialog-title": "Mga boto sa Panukala #{{n}}",
-    "see-all": "tingnan ang lahat ng panukala"
+    "see-all": "tingnan ang lahat ng panukala",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Galeriya",
