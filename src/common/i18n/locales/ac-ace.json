@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "Mita",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Mita postingan {{n}}",
     "header-tag": "Tagging",
     "header-account": "Ureung pakek",
@@ -280,6 +281,7 @@
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Salen alamat posting",
     "address-copied": "Alamat post di salen u clipboard.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -954,7 +956,10 @@
     "filter-team": "Ecency Projects",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "Votes on Proposal #{{n}}",
-    "see-all": "see all proposals"
+    "see-all": "see all proposals",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Gallery",
