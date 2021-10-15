@@ -701,7 +701,6 @@ class SubmitPage extends BaseComponent<Props, State> {
     render() {
         const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch, clearModal} = this.state;
 
-        debugger
         //  Meta config
         const metaProps = {
             title: _t("submit.page-title"),
@@ -864,6 +863,8 @@ class SubmitPage extends BaseComponent<Props, State> {
                             </div>;
 
                         if (advanced) {
+                            const imagesArray = extractMetaData(body) && extractMetaData(body).image && extractMetaData(body)!.image || [];
+                            debugger
                             return <div className="advanced-panel">
                                 <div className="panel-header">
                                     <h2 className="panel-header-title">{_t("submit.advanced")}</h2>
@@ -917,31 +918,26 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 </Col>
                                             </Form.Group>
                                         )}
-                                        {/* {editingEntry && editingEntry.json_metadata && editingEntry.json_metadata.images.length > 0 &&  */}
+                                        {imagesArray.length > 0 && 
                                             <Form.Group as={Row}>
                                                 <Form.Label column={true} sm="3">
-                                                    {_t("submit.schedule")}
+                                                    {_t("submit.thumbnail")}
                                                 </Form.Label>
                                                 <div className="col-sm-9 d-flex flex-wrap">
-                                                    <div
-                                                        className="selection-item shadow selected mr-3 mb-2"
-                                                        style={{backgroundImage:`url("https://images.ecency.com/webp/u/demo.com/avatar/medium")`}}
-                                                    />
-                                                    <div
-                                                        className="selection-item shadow mr-3 mb-2"
-                                                        style={{backgroundImage:`url("https://images.ecency.com/webp/u/demo.com/avatar/medium")`}}
-                                                    />
-                                                    <div
-                                                        className="selection-item shadow mr-3 mb-2"
-                                                        style={{backgroundImage:`url("https://images.ecency.com/webp/u/demo.com/avatar/medium")`}}
-                                                    />
-                                                    <div
-                                                        className="selection-item shadow mr-3 mb-2"
-                                                        style={{backgroundImage:`url("https://images.ecency.com/webp/u/demo.com/avatar/medium")`}}
-                                                    />
+                                                    {imagesArray!.map((item, i)=>
+                                                        <div
+                                                            className={`selection-item shadow ${i === 0 ? "selected" : ""} mr-3 mb-2`}
+                                                            style={{backgroundImage:`url("${item}")`}}
+                                                            onClick={() => {
+                                                                extractMetaData(body) && extractMetaData(body)!.swap!(i);
+                                                                this.forceUpdate()
+                                                            }}
+                                                        />
+                                                        )
+                                                    }
                                                 </div>
                                             </Form.Group>
-                                        {/* } */}
+                                        }
                                     </div>
                                 </div>
                                 {toolBar}
@@ -963,4 +959,4 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 }
 
-export default connect(pageMapStateToProps, pageMapDispatchToProps)(SubmitPage);
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(SubmitPage as any);

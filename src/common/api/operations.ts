@@ -28,6 +28,7 @@ export interface MetaData {
     app?: string;
     format?: string;
     community?: string;
+    swap?: (index:number) => void;
 }
 
 export interface BeneficiaryRoute {

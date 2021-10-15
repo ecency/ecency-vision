@@ -214,9 +214,10 @@
   background-color: $light-grey;
   border-radius: 10px;
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   border: 5px solid $light-grey;
   border-radius: 1.25rem;
+  cursor: pointer;
 }
 
 .selected {
