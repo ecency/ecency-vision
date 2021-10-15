@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "Arama",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "{{n}} gönderide ara",
     "header-tag": "Etiketler",
     "header-account": "Kullanıcılar",
@@ -280,6 +281,7 @@
     "comments-hidden": "Bu gönderinin yazarı tarafınızdan engellenmiştir.",
     "address-copy": "Gönderi adresini kopyala",
     "address-copied": "Gönderi adresi panoya kopyalandı.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Orijinal gönderiyi görüntüle",
     "cross-post-by": "Çapraz gönderen",
     "cross-post-community": "topluluk",
@@ -954,7 +956,10 @@
     "filter-team": "Ecency Projeleri",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "#{{n}} Teklif Oylandı",
-    "see-all": "tüm teklifleri görüntüle"
+    "see-all": "tüm teklifleri görüntüle",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Galeri",
