@@ -2852,82 +2852,6 @@ exports[`(4) Show mute button, muted comment 1`] = `
     className="discussion-list"
   >
     <div
-      className="discussion-item depth-1 hidden-item"
-    >
-      <div
-        className="item-anchor"
-        id="anchor-@forykw/re-esteemapp-202067t12246786z"
-      />
-      <div
-        className="item-inner"
-      >
-        <div
-          className="item-figure"
-        >
-          <a
-            href="/@forykw"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar medium"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
-                }
-              }
-            />
-          </a>
-        </div>
-        <div
-          className="item-content"
-        >
-          <div
-            className="item-header"
-          >
-            <a
-              className="author notranslate"
-              href="/@forykw"
-              onClick={[Function]}
-            >
-              <span
-                className="author-name"
-              >
-                forykw
-              </span>
-              <span
-                className="author-reputation"
-              >
-                64
-              </span>
-            </a>
-            <span
-              className="separator"
-            />
-            <a
-              className="date"
-              href="/esteem/@forykw/re-esteemapp-202067t12246786z"
-              onClick={[Function]}
-              title="2020-01-01 23:12:00"
-            >
-              3 days ago
-            </a>
-          </div>
-          <div
-            className="reveal-item"
-          >
-            <button
-              className="btn btn-outline-danger btn-sm"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
-            >
-              Reveal comment
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
       className="discussion-item depth-1"
     >
       <div
@@ -3076,6 +3000,23 @@ exports[`(4) Show mute button, muted comment 1`] = `
             </a>
           </div>
         </div>
+      </div>
+    </div>
+    <div
+      className="hidden-warning d-flex justify-content-between flex-1 align-items-center mt-3"
+    >
+      <div
+        className="flex-1"
+      >
+        Show additional replies, including those that may contain offensive content
+      </div>
+      <div
+        className="pointer p-3"
+        onClick={[Function]}
+      >
+        <b>
+          Show
+        </b>
       </div>
     </div>
   </div>

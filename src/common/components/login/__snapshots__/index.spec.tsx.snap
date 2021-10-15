@@ -15,7 +15,6 @@ Array [
   </div>,
   <form
     className="login-form"
-    onFocus={[Function]}
     onSubmit={[Function]}
   >
     <p
@@ -204,7 +203,6 @@ Array [
   </div>,
   <form
     className="login-form"
-    onFocus={[Function]}
     onSubmit={[Function]}
   >
     <p
@@ -396,7 +394,6 @@ Array [
   </div>,
   <form
     className="login-form"
-    onFocus={[Function]}
     onSubmit={[Function]}
   >
     <p
@@ -490,7 +487,6 @@ Array [
   </div>,
   <form
     className="login-form"
-    onFocus={[Function]}
     onSubmit={[Function]}
   >
     <p

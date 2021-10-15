@@ -10,6 +10,11 @@ export enum Theme {
     night = "night",
 }
 
+export enum Layouts {
+    grid = "grid",
+    classis = "classis"
+}
+
 export enum EntryFilter {
     trending = "trending",
     hot = "hot",
@@ -60,6 +65,7 @@ export interface Global {
     nsfw: boolean;
     isMobile: boolean;
     usePrivate: boolean;
+    layouts: Layouts;
 }
 
 export enum ActionTypes {
@@ -73,11 +79,17 @@ export enum ActionTypes {
     LANG_SET = "@global/LANG_SET",
     NEW_VERSION_CHANGE = "@global/NEW_VERSION_CHANGE",
     NSFW_SET = "@global/NSFW_SET",
+    LAYOUTS_CHANGE = "@global/LAYOUTS_CHANGE",
 }
 
 export interface ThemeChangeAction {
     type: ActionTypes.THEME_CHANGE;
     theme: Theme;
+}
+
+export interface LayoutsChangeAction {
+    type: ActionTypes.LAYOUTS_CHANGE;
+    theme: Layouts;
 }
 
 export interface IntroHideAction {
@@ -134,4 +146,5 @@ export type Actions =
     | CurrencySetAction
     | LangSetAction
     | NsfwSetAction
-    | HasKeyChainAction;
+    | HasKeyChainAction
+    | LayoutsChangeAction;

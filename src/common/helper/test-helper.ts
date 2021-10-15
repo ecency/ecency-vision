@@ -1,4 +1,4 @@
-import {Global, EntryFilter, Theme, ListStyle} from "../store/global/types";
+import {Global, EntryFilter, Theme, ListStyle, Layouts} from "../store/global/types";
 import {TrendingTags} from "../store/trending-tags/types";
 import {Entry} from "../store/entries/types";
 import {Community} from "../store/communities/types";
@@ -119,7 +119,8 @@ export const globalInstance: Global = {
     notifications: true,
     nsfw: false,
     newVersion: null,
-    usePrivate: true
+    usePrivate: true,
+    layouts: Layouts.grid,
 };
 
 export const TrendingTagsInstance: TrendingTags = {
@@ -1079,6 +1080,7 @@ export const searchResponseInstance: SearchResponse = {
         "title_marked": "<mark>Ecency</mark> development update 10/07/2020",
         "body": "Hello everyone,\n\nWe are 12 days away from [official release of Ecency](https://esteem.app/ecency/@esteemapp/from-esteem-to-ecency) (22/7/2020). We have been hard at work developing website and improving tech, background services to handle new product releases. We will post some updates until release to give overview of what to expect and how things will work.\n\n![Ecency-release-logo](https://images.ecency.com/DQmdWiLkE1ccp9UYnXbz6ofsxkUhYQo1eCh9X24kKLYTk3a/ecency_announcement.png)\n\nCurrent implementation of https://esteem.app was good, it was quite fast but we wanted to push our limits to make it even more faster and beautiful to explore communities, discover better content and authors. Add login and account management on top of it.\n\nLoading time is one of the most important factor for us. We want you to enjoy website that loads really fast. Really happy with results so far, we are also experimenting with different user experience to balance speed and convenience. After release, we will gather your feedback and improve features gradually that benefits you. \n\n-----\n\nEsteem has one of the best multi-account management and login system, with Ecency website we are first rolling out Login with [Hivesigner](https://hivesigner.com). We think, you will enjoy managing your accounts and login with ease.\n\n-----\n\nWe are also using our own instance of [Imagehoster](https://esteem.app/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty).\nLast few months we have experimented with different image hosting and proxying solutions. Perhaps will make separate post about what we tried and what was outcomes of different solutions. Our team is small but we knew we could setup our own, decent imagehoster instance to keep things more decentralized. So far, from our tests, we can see that it is performing really well. We are eager to see performance of it in production once we release website.\n\n-----\n\nEsteem points (ESTM), will also be migrated into Ecency with just placeholder name Points. We have learned a lot over last few months about how points are helping you to stay active and bootstrap your social experience, etc. so Points will be part of Ecency as well.\n\nhttps://ecency.com will have all of above and more.\n\nMobile app and desktop apps will also get fresh look with our new brand images. Many more improvements, which we will talk in separate posts.\n\nStay tuned, stay excited! \n\n<center>`hello@ecency.com`\n🌐[`Ecency.com`](https://ecency.com) | ✍🏻 [`Telegram`](https://t.me/ecency) | 💬[`Discord`](https://discord.me/ecency)\n  [`Approve Hivesigner`](https://hivesigner.com/sign/update-proposal-votes?proposal_ids=%5B88%5D&approve=true) | [`Approve Hivesearcher`](https://hivesigner.com/sign/update-proposal-votes?proposal_ids=%5B114%5D&approve=true)\n[![Vote for @good-karma as a witness](https://images.ecency.com/p/o1AJ9qDyyJNSpZWhUgGYc3MngFqoAN2qn9AiTn8UpLP6Qb5TL?format=match&mode=fit)](https://hivesigner.com/sign/account-witness-vote?witness=good-karma&approve=1)\n</center>",
         "body_marked": "Esteem points (ESTM), will also be migrated into <mark>Ecency</mark> with just placeholder name Points.",
+
         "img_url": "https://images.ecency.com/DQmdWiLkE1ccp9UYnXbz6ofsxkUhYQo1eCh9X24kKLYTk3a/ecency_announcement.png",
         "payout": 140.633,
         "total_votes": 348,
