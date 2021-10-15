@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "Αναζήτηση",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Αναζήτηση {{n}} δημοσιεύσεων",
     "header-tag": "Ετικέτες",
     "header-account": "Χρήστες",
@@ -280,6 +281,7 @@
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -954,7 +956,10 @@
     "filter-team": "Ecency Projects",
     "return-description": "Αυτή είναι η βασική πρόταση επιστροφής. Κάθε πρόταση με λιγότερες ψήφους δεν θα λάβει χρήματα.",
     "votes-dialog-title": "Ψήφοι στις Προτάσεις #{{n}}",
-    "see-all": "δείτε όλες τις προτάσεις"
+    "see-all": "δείτε όλες τις προτάσεις",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Έκθεση",
