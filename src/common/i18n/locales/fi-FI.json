@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "Haku",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Etsi {{n}} viestiä",
     "header-tag": "Tunnisteet",
     "header-account": "Käyttäjät",
@@ -280,6 +281,7 @@
     "comments-hidden": "Olet mykistänyt tämän julkaisun tekijän.",
     "address-copy": "Kopioi osoite",
     "address-copied": "Osoite kopioitu leikepöydälle.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Näytä alkuperäinen julkaisu",
     "cross-post-by": "Ristilähettäjä",
     "cross-post-community": "yhteisö",
@@ -954,7 +956,10 @@
     "filter-team": "Ecency-projektit",
     "return-description": "Tämä on yleinen palautusehdotus. Jokainen ehdotus, jossa on vähemmän ääniä, ei saa rahoitusta.",
     "votes-dialog-title": "Äänet ehdotuksessa #{{n}}",
-    "see-all": "katso kaikki ehdotukset"
+    "see-all": "katso kaikki ehdotukset",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Galleria",
