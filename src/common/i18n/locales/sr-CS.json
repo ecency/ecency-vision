@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "Pretraga",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Pretražite {{n}} objave",
     "header-tag": "Oznake",
     "header-account": "Korisnici",
@@ -280,6 +281,7 @@
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -954,7 +956,10 @@
     "filter-team": "Ecency Projekti",
     "return-description": "Ovo je osnovna zarada predloga. Svaki predlog sa manje glasova neće dobiti sredstva.",
     "votes-dialog-title": "Glasovi za predloge #{{n}}",
-    "see-all": "pogledajte sve predloge"
+    "see-all": "pogledajte sve predloge",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Galerija",
