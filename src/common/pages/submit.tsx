@@ -520,7 +520,6 @@ class SubmitPage extends BaseComponent<Props, State> {
         meta.image = this.state.thumbnails
         const jsonMeta = makeJsonMetaData(meta, tags, version);
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
-debugger
         this.stateSet({posting: true});
         comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options, true)
             .then(() => {
