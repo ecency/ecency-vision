@@ -1,10 +1,11 @@
-import React, {Fragment} from "react";
+import React, {Fragment, Ref} from "react";
+import ReactDOM from 'react-dom'
 
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {match} from "react-router";
-
 import moment from "moment";
+
 
 import {renderPostBody, setProxyBase, catchPostImage, postBodySummary} from "@ecency/render-helper";
 
@@ -71,6 +72,7 @@ import { getFollowing } from "../api/hive";
 import { history } from "../store";
 import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
 import entryDeleteBtn from "../components/entry-delete-btn";
+import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
 
 setProxyBase(defaults.imageServer);
@@ -94,6 +96,8 @@ interface State {
     editHistory: boolean;
     showProfileBox: boolean;
     entryIsMuted: boolean;
+    selection: string;
+    commentText: string;
     isMounted: boolean;
     postIsDeleted: boolean;
     deletedEntry: {title: string, body: string, tags: any} | null;
@@ -107,12 +111,20 @@ class EntryPage extends BaseComponent<Props, State> {
         showIfNsfw: false,
         editHistory: false,
         comment: "",
+        commentText: "",
         showProfileBox: false,
-        isMounted: false,
         entryIsMuted: false,
+        isMounted: false,
+        selection: "",
         postIsDeleted: false,
         deletedEntry: null
     };
+
+    commentInput: Ref<HTMLInputElement>;
+    constructor(props: Props) {
+      super(props);
+      this.commentInput = React.createRef();
+    }
     
     viewElement: HTMLDivElement | undefined;
 
@@ -127,14 +139,27 @@ class EntryPage extends BaseComponent<Props, State> {
         window.addEventListener("scroll", this.detect);
         window.addEventListener("resize", this.detect);
         this.setState({isMounted:true})
-
     }
 
-    componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {location} = this.props;
+    componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
+        const {location, activeUser} = this.props;
+        const {selection} = this.state;
+        const entry = this.getEntry();
         if (location.pathname !== prevProps.location.pathname) {
             this.setState({isMounted:false})
             this.ensureEntry()
+        }
+        if (prevStates.selection !== selection && !prevStates.selection && entry) {
+            
+        let text = selection ? (entry.body ? entry.body + `\n` : "") + selection : entry.body ? entry.body : "";
+        if(activeUser && activeUser.username){
+            let storageText = ls.get(`reply_draft_${entry.author}_${entry.permlink}`);
+            storageText = storageText && storageText.trim()
+            text = selection ? storageText ?
+            storageText + `\n` + selection : "" + selection : storageText ? storageText : "";
+            this.replyTextChanged(text);
+            this.setState({commentText: text, selection:""})
+        }
         }
     }
 
@@ -426,7 +451,7 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, isMounted, postIsDeleted, deletedEntry} = this.state;
+        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, commentText, isMounted, postIsDeleted, deletedEntry} = this.state;
         const {global, history, match} = this.props;
 
         let navBar = global.isElectron ? NavBarElectron({
@@ -677,11 +702,11 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         })}
                                                     </div>
                                                 </div>
-                                                <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/>
+                                                <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody} onMouseUp={(e)=>{}}/>
                                             </>;
                                         }
 
-                                        const renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 ? comment : entry.body :entry.body, false, global.canUseWebp)};
+                                        let renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 ? comment : entry.body :entry.body, false, global.canUseWebp)};
                                         
                                         const ctitle = entry.community ? entry.community_title : "";
                                         let extraItems = ownEntry && isComment ? [{
@@ -804,18 +829,26 @@ class EntryPage extends BaseComponent<Props, State> {
                                             </div>
                                             <meta itemProp="headline name" content={entry.title}/>
                                             {!edit ? 
-                                                <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/> :
+                                               <>
+                                                    <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
+                                                        <div
+                                                            itemProp="articleBody"
+                                                            className="entry-body markdown-view user-selectable"
+                                                            dangerouslySetInnerHTML={renderedBody}
+                                                        />
+                                                    </SelectionPopover>
+                                                </> :
                                                 Comment({
                                                     ...this.props,
-                                                    defText: entry.body,
+                                                    defText: commentText,
                                                     submitText: _t('g.update'),
                                                     cancellable: true,
                                                     onSubmit: this.updateReply,
                                                     onCancel: this.toggleEdit,
                                                     inProgress: loading,
-                                                    autoFocus: true
+                                                    autoFocus: true,
+                                                    inputRef: this.commentInput
                                                 })}
-
                                             <meta itemProp="image" content={metaProps.image}/>
                                         </>
                                     })()}
@@ -931,11 +964,12 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                     {activeUser && Comment({
                                         ...this.props,
-                                        defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
+                                        defText: commentText,
                                         submitText: _t('g.reply'),
                                         onChange: this.replyTextChanged,
                                         onSubmit: this.replySubmitted,
-                                        inProgress: replying
+                                        inProgress: replying,
+                                        inputRef: this.commentInput
                                     })}
 
                                     {(!originalEntry && !isComment) && SimilarEntries({
@@ -945,11 +979,12 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                     {!activeUser && Comment({
                                         ...this.props,
-                                        defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
+                                        defText: commentText,
                                         submitText: _t('g.reply'),
                                         onChange: this.replyTextChanged,
                                         onSubmit: this.replySubmitted,
-                                        inProgress: replying
+                                        inProgress: replying,
+                                        inputRef: this.commentInput
                                     })}
 
                                     {Discussion({
@@ -970,4 +1005,4 @@ class EntryPage extends BaseComponent<Props, State> {
 }
 
 
-export default connect(pageMapStateToProps, pageMapDispatchToProps)(EntryPage);
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(EntryPage as any);

@@ -27,7 +27,7 @@ interface Props {
     match: match<MatchParams>;
     global: Global;
     community: Community;
-    toggleListStyle: () => void;
+    toggleListStyle: (view: string | null) => void;
 }
 
 export class CommunityMenu extends Component<Props> {
@@ -82,7 +82,7 @@ export class CommunityMenu extends Component<Props> {
                 </div>
 
                 {EntryFilter[filter] && <div className="page-tools">
-                    <ListStyleToggle history={this.props.history} global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
+                    <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
                 </div>}
             </div>
         );
