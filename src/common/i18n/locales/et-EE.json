@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "Otsi",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Otsi {{n}} postitust",
     "header-tag": "Sildid",
     "header-account": "Kasutajad",
@@ -280,6 +281,7 @@
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -954,7 +956,10 @@
     "filter-team": "Ecency Projects",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "Votes on Proposal #{{n}}",
-    "see-all": "see all proposals"
+    "see-all": "see all proposals",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Gallery",
