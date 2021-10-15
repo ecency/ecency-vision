@@ -272,10 +272,10 @@
     "comment-entry-title": "Вы просматриваете один комментарий ветки: ",
     "comment-entry-go-root": "Полный контекст",
     "comment-entry-go-parent": "Просмотр прямого родителя",
-    "hidden-warning": "This content got low rating by people.",
+    "hidden-warning": "Этот контент был низко оценен людьми.",
     "delete-disabled": "Контент после выплаты не может быть удален.",
     "muted-warning": "Этот контент был заблокирован модераторами {{community}} за несоблюдение правил сообщества.",
-    "lowrep-warning": "Author of this content has low reputation.",
+    "lowrep-warning": "Автор этого контента имеет низкую репутацию.",
     "deleted-content-warning": "Это содержимое было удалено автором. Вы можете увидеть его из блокчейна ",
     "comments-hidden": "Автор сообщения отключен вами.",
     "address-copy": "Скопировать адрес поста",
@@ -504,12 +504,12 @@
     "converting-hbd-amount": "Конвертация в HIVE"
   },
   "wallet-engine": {
-    "title": "Hive Engine Tokens",
-    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
-    "no-results": "No tokens found.",
-    "token": "Token",
-    "balance": "Balance",
-    "staked": "Staked"
+    "title": "Токены Hive Engine",
+    "description": "Hive Engine - это платформа боковой цепи смарт-контрактов для блокчейна Hive.",
+    "no-results": "Токены не найдены.",
+    "token": "Токен",
+    "balance": "Баланс",
+    "staked": "Заморожено"
   },
   "withdraw-routes": {
     "title": "Аккаунты для вывода",
@@ -569,7 +569,7 @@
     "select-asset": "Выбрать актив",
     "slider-hint": "Перетащите ползунок для настройки суммы.",
     "submit": "Купить",
-    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
+    "purchase-message": "Или отправьте любую сумму на @esteem.app, указав в примечании `points`, чтобы приобрести Поинты."
   },
   "promote": {
     "title": "Продвинуть",
@@ -780,14 +780,14 @@
     "placeholder-has-tags": "Добавить еще",
     "suggestion-header": "Тэги",
     "error-max": "Максимум {{n}} тегов",
-    "limited_tags": "Only 10 tags allowed, remove some",
-    "limited_length": "Maximum length of each tag should be 24",
-    "limited_dash": "Use one dash in each tag",
-    "limited_space": "Use space to separate tags",
-    "limited_lowercase": "Only use lower letters in tag",
-    "limited_characters": "Use only lowercase letters, digits and one dash",
-    "limited_firstchar": "Tag must start with a letter",
-    "limited_lastchar": "Tag must end with letter or number"
+    "limited_tags": "Допустимы только 10 тегов, удалите некоторые",
+    "limited_length": "Максимальная длина каждого тeга - 24 символа",
+    "limited_dash": "Только один дефис в каждом теге",
+    "limited_space": "Используйте пробел для разделения тегов",
+    "limited_lowercase": "Используйте для тегов только строчные буквы",
+    "limited_characters": "Используйте только строчные буквы, цифры и одно тире",
+    "limited_firstchar": "Тег должен начинаться с буквы",
+    "limited_lastchar": "Тег должен заканчиваться буквой или цифрой"
   },
   "community-selector": {
     "choose": "Выбрать сообщество",
@@ -1182,7 +1182,7 @@
     "error-occured": "Произошла ошибка сервера."
   },
   "layouts": {
-    "grid": "Grid",
-    "classic": "Classic"
+    "grid": "Сетка",
+    "classic": "Классический"
   }
 }
