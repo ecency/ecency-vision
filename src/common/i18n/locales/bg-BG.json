@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "Търси",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Търси {{n}} постове",
     "header-tag": "Тагове",
     "header-account": "Потребители",
@@ -280,6 +281,7 @@
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Копирай адреса",
     "address-copied": "Адресът е копиран в клипборда.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -954,7 +956,10 @@
     "filter-team": "Ecency Проекти",
     "return-description": "Това е мининималната стойност за осъществяване на предложение. Всяко предложение с по-малко гласове няма да получи средства.",
     "votes-dialog-title": "Гласове на Предложение #{{n}}",
-    "see-all": "виж всички предложения"
+    "see-all": "виж всички предложения",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Галерия",
