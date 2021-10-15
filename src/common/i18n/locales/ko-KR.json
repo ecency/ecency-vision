@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "검색",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "{{n}} 게시물 검색",
     "header-tag": "태그",
     "header-account": "사용자",
@@ -280,6 +281,7 @@
     "comments-hidden": "이 게시물의 작성자는 귀하에 의해 뮤트되었습니다.",
     "address-copy": "글 주소 복사",
     "address-copied": "글 주소가 클립보드에 복사되었습니다.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "원본 게시물 보기",
     "cross-post-by": "교차 게시물 작성자",
     "cross-post-community": "커뮤니티",
@@ -954,7 +956,10 @@
     "filter-team": "Ecency 프로젝트",
     "return-description": "이것은 기본 반환 제안서입니다. 투표 수가 적은 모든 제안서는 자금을 받지 못합니다.",
     "votes-dialog-title": "제안서 #{{n}}의 투표",
-    "see-all": "see all proposals"
+    "see-all": "see all proposals",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "갤러리",
