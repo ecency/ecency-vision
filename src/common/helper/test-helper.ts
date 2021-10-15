@@ -1,4 +1,4 @@
-import {Global, EntryFilter, Theme, ListStyle, Layouts} from "../store/global/types";
+import {Global, EntryFilter, Theme, ListStyle} from "../store/global/types";
 import {TrendingTags} from "../store/trending-tags/types";
 import {Entry} from "../store/entries/types";
 import {Community} from "../store/communities/types";
@@ -120,7 +120,6 @@ export const globalInstance: Global = {
     nsfw: false,
     newVersion: null,
     usePrivate: true,
-    layouts: Layouts.grid,
 };
 
 export const TrendingTagsInstance: TrendingTags = {
