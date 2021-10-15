@@ -24,7 +24,7 @@ interface Props {
     username: string;
     section: string;
     activeUser: ActiveUser | null;
-    toggleListStyle: () => void;
+    toggleListStyle: (view: string | null) => void;
 }
 
 export class ProfileMenu extends Component<Props> {

@@ -27,7 +27,7 @@ interface Props {
     match: match<MatchParams>;
     global: Global;
     community: Community;
-    toggleListStyle: () => void;
+    toggleListStyle: (view: string | null) => void;
 }
 
 export class CommunityMenu extends Component<Props> {

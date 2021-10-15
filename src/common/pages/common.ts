@@ -45,7 +45,7 @@ export interface PageProps {
     global: Global;
     toggleTheme: () => void;
     hideIntro: () => void;
-    toggleListStyle: () => void;
+    toggleListStyle: (view: string | null) => void;
     dismissNewVersion: () => void;
     muteNotifications: () => void;
     unMuteNotifications: () => void;
