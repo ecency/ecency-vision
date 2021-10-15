@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "Поиск",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Поиск {{n}} сообщений",
     "header-tag": "Теги",
     "header-account": "Пользователи",
@@ -280,6 +281,7 @@
     "comments-hidden": "Автор сообщения отключен вами.",
     "address-copy": "Скопировать адрес поста",
     "address-copied": "Адрес поста скопирован в буфер обмена.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Открыть оригинальный пост",
     "cross-post-by": "Кросс-пост от",
     "cross-post-community": "сообщество",
@@ -954,7 +956,10 @@
     "filter-team": "Проекты Ecency",
     "return-description": "Это базовое предложение возврата. Каждое предложение с меньшим количеством голосов не получит средств.",
     "votes-dialog-title": "Голосов за Предложение #{{n}}",
-    "see-all": "посмотреть все предложения"
+    "see-all": "посмотреть все предложения",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Галерея",
