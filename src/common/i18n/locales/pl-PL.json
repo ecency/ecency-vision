@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "Szukaj",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Szukaj wśród {{n}} wpisów",
     "header-tag": "Tagi",
     "header-account": "Użytkownicy",
@@ -280,6 +281,7 @@
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Kopiuj adres wpisu",
     "address-copied": "Adres wpisu został skopiowany do schowka.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Otwórz oryginalny wpis",
     "cross-post-by": "Udostępnione przez",
     "cross-post-community": "społeczność",
@@ -954,7 +956,10 @@
     "filter-team": "Ecency Projects",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "Votes on Proposal #{{n}}",
-    "see-all": "see all proposals"
+    "see-all": "see all proposals",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Gallery",
