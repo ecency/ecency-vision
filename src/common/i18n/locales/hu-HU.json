@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "Keresés",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Hozzászólások {{n}} keresése",
     "header-tag": "Címkék",
     "header-account": "Felhasználók",
@@ -280,6 +281,7 @@
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -954,7 +956,10 @@
     "filter-team": "Ecency projektek",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "#{{n}} javaslat szavazatai",
-    "see-all": "összes javaslat megtekintése"
+    "see-all": "összes javaslat megtekintése",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Galéria",
