@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "Cari",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Mencari {{n}} postingan",
     "header-tag": "Label",
     "header-account": "Pengguna",
@@ -280,6 +281,7 @@
     "comments-hidden": "Penulis konten ini diheningkan oleh Anda.",
     "address-copy": "Salin alamat postingan",
     "address-copied": "Tempel alamat yang disalin ke papan klip.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Tampilan tulisan asli",
     "cross-post-by": "Postingan bersilangan dengan",
     "cross-post-community": "komunitas",
@@ -954,7 +956,10 @@
     "filter-team": "Proyek Ecency",
     "return-description": "Ini adalah proposal pengembalian dasar. Setiap proposal dengan suara lebih sedikit tidak akan menerima dana.",
     "votes-dialog-title": "Vote pada Proposal #{{n}}",
-    "see-all": "lihat semua proposal"
+    "see-all": "lihat semua proposal",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Galeri",
