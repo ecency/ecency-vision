@@ -158,10 +158,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
             this.setState({proposals: this.state.allProposals});
         } else {
             let results: Proposal[] = [];
-            this.state.allProposals.forEach((item, i) => {
-                if(i=1) {
-                    console.log('item: ', item)
-                }
+            this.state.allProposals.forEach((item: Proposal) => {
                 if(item.subject.toLowerCase().search(value.toLowerCase().trim()) > -1 || 
                     item.creator.toLowerCase().search(value.toLowerCase().trim()) > -1) {
                     results.push(item);
