@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "Пошук",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Пошук {{n}} дописів",
     "header-tag": "Мітки",
     "header-account": "Користувачі",
@@ -280,6 +281,7 @@
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Скопіювати адресу",
     "address-copied": "Адреса скопійована в буфер обміну.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -954,7 +956,10 @@
     "filter-team": "Проєкти Ecency",
     "return-description": "Основне що пропозиції повертається. Кожна пропозиція з недостатньою кількістю голосів не отримує коштів.",
     "votes-dialog-title": "Голосів за пропозицію #{{n}}",
-    "see-all": "переглянути усі пропозиції"
+    "see-all": "переглянути усі пропозиції",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Галерея",
