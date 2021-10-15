@@ -144,6 +144,7 @@ interface State extends PostBase, Advanced {
     editingDraft: Draft | null;
     advanced: boolean;
     clearModal: boolean;
+    thumbnails: string[]
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -158,6 +159,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         editingDraft: null,
         advanced: false,
         beneficiaries: [],
+        thumbnails: [],
         schedule: null,
         reblogSwitch: false,
         clearModal: false,
@@ -439,7 +441,8 @@ class SubmitPage extends BaseComponent<Props, State> {
 
         this._updateTimer = setTimeout(() => {
             const {title, tags, body, editingEntry} = this.state;
-            this.stateSet({preview: {title, tags, body}});
+            const {image} = extractMetaData(body);
+            this.stateSet({preview: {title, tags, body}, thumbnails:image || []});
             if (editingEntry === null) {
                 this.saveLocalDraft();
             }
@@ -514,9 +517,10 @@ class SubmitPage extends BaseComponent<Props, State> {
 
         const [parentPermlink] = tags;
         const meta = extractMetaData(body);
+        meta.image = this.state.thumbnails
         const jsonMeta = makeJsonMetaData(meta, tags, version);
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
-
+debugger
         this.stateSet({posting: true});
         comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options, true)
             .then(() => {
@@ -698,8 +702,17 @@ class SubmitPage extends BaseComponent<Props, State> {
         }).finally(() => this.stateSet({posting: false}))
     }
 
+    swapThumbnails = (index:number) => {
+        const {thumbnails} = this.state;
+        if(thumbnails && thumbnails.length > 0){
+            let images = thumbnails;
+            [images[0], images[index]] = [images[index], images[0]];
+            this.setState({thumbnails:images})
+        }
+    }
+
     render() {
-        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch, clearModal} = this.state;
+        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch, clearModal, thumbnails} = this.state;
 
         //  Meta config
         const metaProps = {
@@ -863,8 +876,6 @@ class SubmitPage extends BaseComponent<Props, State> {
                             </div>;
 
                         if (advanced) {
-                            const imagesArray = extractMetaData(body) && extractMetaData(body).image && extractMetaData(body)!.image || [];
-                            debugger
                             return <div className="advanced-panel">
                                 <div className="panel-header">
                                     <h2 className="panel-header-title">{_t("submit.advanced")}</h2>
@@ -918,20 +929,18 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 </Col>
                                             </Form.Group>
                                         )}
-                                        {imagesArray.length > 0 && 
+                                        {thumbnails.length > 0 && 
                                             <Form.Group as={Row}>
                                                 <Form.Label column={true} sm="3">
                                                     {_t("submit.thumbnail")}
                                                 </Form.Label>
                                                 <div className="col-sm-9 d-flex flex-wrap">
-                                                    {imagesArray!.map((item, i)=>
+                                                    {thumbnails!.map((item, i)=>
                                                         <div
                                                             className={`selection-item shadow ${i === 0 ? "selected" : ""} mr-3 mb-2`}
                                                             style={{backgroundImage:`url("${item}")`}}
-                                                            onClick={() => {
-                                                                extractMetaData(body) && extractMetaData(body)!.swap!(i);
-                                                                this.forceUpdate()
-                                                            }}
+                                                            onClick={()=>this.swapThumbnails(i)}
+                                                            key={item}
                                                         />
                                                         )
                                                     }

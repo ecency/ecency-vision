@@ -82,14 +82,6 @@ export const extractMetaData = (body: string): MetaData => {
         out.users = matchedUsers.slice(0,10);
     }
 
-    const swapImages = (index:number) => {
-        if(out.image && out.image.length > 0){
-            [out.image[0], out.image[index]] = [out.image[index], out.image[0]];
-        }
-    }
-
-    out.swap = swapImages
-
     return out;
 };
 
