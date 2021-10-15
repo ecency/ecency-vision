@@ -95,7 +95,7 @@ export const formatError = (err: any): string => {
     return '';
 };
 
-const broadcastPostingJSON = (username: string, id: string, json: {}): Promise<TransactionConfirmation> => {
+export const broadcastPostingJSON = (username: string, id: string, json: {}): Promise<TransactionConfirmation> => {
 
     // With posting private key
     const postingKey = getPostingKey(username);

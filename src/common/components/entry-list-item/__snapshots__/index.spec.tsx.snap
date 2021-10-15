@@ -13,34 +13,75 @@ exports[`(1) Default render 1`] = `
     >
       <div
         className="author-part"
+        id="good-karma-awesome-hive"
       >
-        <a
-          className="author-avatar"
-          href="/@good-karma"
-          onClick={[Function]}
+        <div
+          className="d-flex align-items-center"
+          id="good-karma-awesome-hive"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
-          <span
-            className="user-avatar small"
-            style={
-              Object {
-                "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-              }
-            }
-          />
-        </a>
-        <a
-          className="author notranslate"
-          href="/@good-karma"
-          onClick={[Function]}
-        >
-          good-karma
-          <span
-            className="author-reputation"
-            title="Author's reputation"
+          <div
+            className="author-avatar d-sm-none"
+            id="good-karma-awesome-hive"
+            onClick={[Function]}
           >
-            76
-          </span>
-        </a>
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                }
+              }
+            />
+          </div>
+          <a
+            className="author-avatar d-none d-sm-block"
+            href="/@good-karma"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="author notranslate d-flex d-sm-none align-items-center"
+            id="good-karma-awesome-hive"
+            onClick={[Function]}
+          >
+            <span>
+              good-karma
+            </span>
+          </div>
+          <a
+            className="author notranslate d-none d-sm-flex align-items-center"
+            href="/@good-karma"
+            onClick={[Function]}
+          >
+            <span>
+              good-karma
+            </span>
+          </a>
+        </div>
+        <span
+          className="author-down-arrow ml-1"
+          id="good-karma-awesome-hive"
+          onClick={[Function]}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7,10L12,15L17,10H7Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
       </div>
       <a
         className="category"
@@ -55,7 +96,7 @@ exports[`(1) Default render 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 10:53 AM"
+        title="Monday, June 1, 2020 12:53 PM"
       >
         5 days
       </span>
@@ -258,34 +299,75 @@ exports[`(2) Grid view 1`] = `
     >
       <div
         className="author-part"
+        id="good-karma-awesome-hive"
       >
-        <a
-          className="author-avatar"
-          href="/@good-karma"
-          onClick={[Function]}
+        <div
+          className="d-flex align-items-center"
+          id="good-karma-awesome-hive"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
-          <span
-            className="user-avatar small"
-            style={
-              Object {
-                "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-              }
-            }
-          />
-        </a>
-        <a
-          className="author notranslate"
-          href="/@good-karma"
-          onClick={[Function]}
-        >
-          good-karma
-          <span
-            className="author-reputation"
-            title="Author's reputation"
+          <div
+            className="author-avatar d-sm-none"
+            id="good-karma-awesome-hive"
+            onClick={[Function]}
           >
-            76
-          </span>
-        </a>
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                }
+              }
+            />
+          </div>
+          <a
+            className="author-avatar d-none d-sm-block"
+            href="/@good-karma"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="author notranslate d-flex d-sm-none align-items-center"
+            id="good-karma-awesome-hive"
+            onClick={[Function]}
+          >
+            <span>
+              good-karma
+            </span>
+          </div>
+          <a
+            className="author notranslate d-none d-sm-flex align-items-center"
+            href="/@good-karma"
+            onClick={[Function]}
+          >
+            <span>
+              good-karma
+            </span>
+          </a>
+        </div>
+        <span
+          className="author-down-arrow ml-1"
+          id="good-karma-awesome-hive"
+          onClick={[Function]}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7,10L12,15L17,10H7Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
       </div>
       <a
         className="category"
@@ -300,7 +382,7 @@ exports[`(2) Grid view 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 10:53 AM"
+        title="Monday, June 1, 2020 12:53 PM"
       >
         5 days
       </span>
@@ -502,34 +584,75 @@ exports[`(3) Nsfw 1`] = `
     >
       <div
         className="author-part"
+        id="good-karma-awesome-hive"
       >
-        <a
-          className="author-avatar"
-          href="/@good-karma"
-          onClick={[Function]}
+        <div
+          className="d-flex align-items-center"
+          id="good-karma-awesome-hive"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
-          <span
-            className="user-avatar small"
-            style={
-              Object {
-                "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-              }
-            }
-          />
-        </a>
-        <a
-          className="author notranslate"
-          href="/@good-karma"
-          onClick={[Function]}
-        >
-          good-karma
-          <span
-            className="author-reputation"
-            title="Author's reputation"
+          <div
+            className="author-avatar d-sm-none"
+            id="good-karma-awesome-hive"
+            onClick={[Function]}
           >
-            76
-          </span>
-        </a>
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                }
+              }
+            />
+          </div>
+          <a
+            className="author-avatar d-none d-sm-block"
+            href="/@good-karma"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="author notranslate d-flex d-sm-none align-items-center"
+            id="good-karma-awesome-hive"
+            onClick={[Function]}
+          >
+            <span>
+              good-karma
+            </span>
+          </div>
+          <a
+            className="author notranslate d-none d-sm-flex align-items-center"
+            href="/@good-karma"
+            onClick={[Function]}
+          >
+            <span>
+              good-karma
+            </span>
+          </a>
+        </div>
+        <span
+          className="author-down-arrow ml-1"
+          id="good-karma-awesome-hive"
+          onClick={[Function]}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7,10L12,15L17,10H7Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
       </div>
       <a
         className="category"
@@ -544,7 +667,7 @@ exports[`(3) Nsfw 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 10:53 AM"
+        title="Monday, June 1, 2020 12:53 PM"
       >
         5 days
       </span>
@@ -753,34 +876,75 @@ exports[`(4) Nsfw with active user 1`] = `
     >
       <div
         className="author-part"
+        id="good-karma-awesome-hive"
       >
-        <a
-          className="author-avatar"
-          href="/@good-karma"
-          onClick={[Function]}
+        <div
+          className="d-flex align-items-center"
+          id="good-karma-awesome-hive"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
-          <span
-            className="user-avatar small"
-            style={
-              Object {
-                "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-              }
-            }
-          />
-        </a>
-        <a
-          className="author notranslate"
-          href="/@good-karma"
-          onClick={[Function]}
-        >
-          good-karma
-          <span
-            className="author-reputation"
-            title="Author's reputation"
+          <div
+            className="author-avatar d-sm-none"
+            id="good-karma-awesome-hive"
+            onClick={[Function]}
           >
-            76
-          </span>
-        </a>
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                }
+              }
+            />
+          </div>
+          <a
+            className="author-avatar d-none d-sm-block"
+            href="/@good-karma"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="author notranslate d-flex d-sm-none align-items-center"
+            id="good-karma-awesome-hive"
+            onClick={[Function]}
+          >
+            <span>
+              good-karma
+            </span>
+          </div>
+          <a
+            className="author notranslate d-none d-sm-flex align-items-center"
+            href="/@good-karma"
+            onClick={[Function]}
+          >
+            <span>
+              good-karma
+            </span>
+          </a>
+        </div>
+        <span
+          className="author-down-arrow ml-1"
+          id="good-karma-awesome-hive"
+          onClick={[Function]}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7,10L12,15L17,10H7Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
       </div>
       <a
         className="category"
@@ -795,7 +959,7 @@ exports[`(4) Nsfw with active user 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 10:53 AM"
+        title="Monday, June 1, 2020 12:53 PM"
       >
         5 days
       </span>
@@ -1003,34 +1167,75 @@ exports[`(5) Nsfw but allowed 1`] = `
     >
       <div
         className="author-part"
+        id="good-karma-awesome-hive"
       >
-        <a
-          className="author-avatar"
-          href="/@good-karma"
-          onClick={[Function]}
+        <div
+          className="d-flex align-items-center"
+          id="good-karma-awesome-hive"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
-          <span
-            className="user-avatar small"
-            style={
-              Object {
-                "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-              }
-            }
-          />
-        </a>
-        <a
-          className="author notranslate"
-          href="/@good-karma"
-          onClick={[Function]}
-        >
-          good-karma
-          <span
-            className="author-reputation"
-            title="Author's reputation"
+          <div
+            className="author-avatar d-sm-none"
+            id="good-karma-awesome-hive"
+            onClick={[Function]}
           >
-            76
-          </span>
-        </a>
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                }
+              }
+            />
+          </div>
+          <a
+            className="author-avatar d-none d-sm-block"
+            href="/@good-karma"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="author notranslate d-flex d-sm-none align-items-center"
+            id="good-karma-awesome-hive"
+            onClick={[Function]}
+          >
+            <span>
+              good-karma
+            </span>
+          </div>
+          <a
+            className="author notranslate d-none d-sm-flex align-items-center"
+            href="/@good-karma"
+            onClick={[Function]}
+          >
+            <span>
+              good-karma
+            </span>
+          </a>
+        </div>
+        <span
+          className="author-down-arrow ml-1"
+          id="good-karma-awesome-hive"
+          onClick={[Function]}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7,10L12,15L17,10H7Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
       </div>
       <a
         className="category"
@@ -1045,7 +1250,7 @@ exports[`(5) Nsfw but allowed 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 10:53 AM"
+        title="Monday, June 1, 2020 12:53 PM"
       >
         5 days
       </span>
@@ -1280,34 +1485,75 @@ exports[`(6) Cross post. Bottom menu 1`] = `
     >
       <div
         className="author-part"
+        id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
       >
-        <a
-          className="author-avatar"
-          href="/@regenerette"
-          onClick={[Function]}
+        <div
+          className="d-flex align-items-center"
+          id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
-          <span
-            className="user-avatar small"
-            style={
-              Object {
-                "backgroundImage": "url(https://images.ecency.com/u/regenerette/avatar/small)",
-              }
-            }
-          />
-        </a>
-        <a
-          className="author notranslate"
-          href="/@regenerette"
-          onClick={[Function]}
-        >
-          regenerette
-          <span
-            className="author-reputation"
-            title="Author's reputation"
+          <div
+            className="author-avatar d-sm-none"
+            id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
+            onClick={[Function]}
           >
-            56
-          </span>
-        </a>
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/regenerette/avatar/small)",
+                }
+              }
+            />
+          </div>
+          <a
+            className="author-avatar d-none d-sm-block"
+            href="/@regenerette"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/regenerette/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="author notranslate d-flex d-sm-none align-items-center"
+            id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
+            onClick={[Function]}
+          >
+            <span>
+              regenerette
+            </span>
+          </div>
+          <a
+            className="author notranslate d-none d-sm-flex align-items-center"
+            href="/@regenerette"
+            onClick={[Function]}
+          >
+            <span>
+              regenerette
+            </span>
+          </a>
+        </div>
+        <span
+          className="author-down-arrow ml-1"
+          id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
+          onClick={[Function]}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7,10L12,15L17,10H7Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
       </div>
       <a
         className="category"
@@ -1322,7 +1568,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
       />
       <span
         className="date"
-        title="Wednesday, March 24, 2021 9:14 PM"
+        title="Wednesday, March 24, 2021 11:14 PM"
       >
         10 months
       </span>

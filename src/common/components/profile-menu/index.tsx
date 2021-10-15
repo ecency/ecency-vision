@@ -24,7 +24,7 @@ interface Props {
     username: string;
     section: string;
     activeUser: ActiveUser | null;
-    toggleListStyle: () => void;
+    toggleListStyle: (view: string | null) => void;
 }
 
 export class ProfileMenu extends Component<Props> {
@@ -79,7 +79,7 @@ export class ProfileMenu extends Component<Props> {
                     <Link className={_c(`profile-menu-item ${section === "communities" ? "selected-item" : ""}`)} to={`/@${username}/communities`}>
                         {_t(`profile.section-communities`)}
                     </Link>
-                    <Link className={_c(`profile-menu-item ${["wallet", "points"].includes(section) ? "selected-item" : ""}`)} to={`/@${username}/wallet`}>
+                    <Link className={_c(`profile-menu-item ${["wallet", "points", "hive-engine"].includes(section) ? "selected-item" : ""}`)} to={`/@${username}/wallet`}>
                         {_t(`profile.section-wallet`)}
                     </Link>
                     {(activeUser && activeUser.username === username) && (
@@ -89,7 +89,9 @@ export class ProfileMenu extends Component<Props> {
                     )}
                 </div>
 
-                <div className="page-tools">{ProfileFilter[section] && <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>}</div>
+                <div className="page-tools">{ProfileFilter[section] && 
+                    <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>}
+                </div>
             </div>
         );
     }

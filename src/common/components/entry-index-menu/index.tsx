@@ -22,7 +22,7 @@ interface Props {
     history: History;
     global: Global;
     activeUser: ActiveUser | null;
-    toggleListStyle: () => void;
+    toggleListStyle: (view: string | null) => void;
 }
 
 export enum IntroductionType {

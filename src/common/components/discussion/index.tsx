@@ -56,6 +56,7 @@ import {version} from "../../../../package.json";
 import { getFollowing } from "../../api/hive";
 import { ProfilePreview } from "../profile-preview";
 import { iteratorStream } from "@hiveio/dhive/lib/utils";
+import { Tsx } from "../../i18n/helper";
 
 
 interface ItemBodyProps {
@@ -105,7 +106,6 @@ interface ItemState {
     showProfileDetails: boolean;
     showProfileDetailsAvatar: boolean;
     inProgress: boolean;
-    showIfHidden: boolean;
     mutedData: string[];
     isHiddenPermitted: boolean;
     delayHandler: any
@@ -118,7 +118,6 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         inProgress: false,
         showProfileDetails: false,
         showProfileDetailsAvatar: false,
-        showIfHidden: false,
         mutedData: [],
         delayHandler: null,
         isHiddenPermitted:false,
@@ -336,7 +335,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
 
     render() {
         const { entry, activeUser, community, location } = this.props;
-        const { reply, edit, inProgress, showIfHidden, mutedData, showProfileDetails, showProfileDetailsAvatar, isHiddenPermitted, mounted } = this.state;
+        const { reply, edit, inProgress, mutedData, showProfileDetails, showProfileDetailsAvatar, isHiddenPermitted, mounted } = this.state;
 
         const created = moment(parseDate(entry.created));
         const readMore = entry.children > 0 && entry.depth > 5;
@@ -348,20 +347,19 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                 [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
         }) : false;
 
-        let isHidden = (!!entry.stats?.gray && !showIfHidden) || (activeUser && mutedData.includes(entry.author) && !showIfHidden);
-
         const anchorId = `anchor-@${entry.author}/${entry.permlink}`;
 
         const selected = location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`;
+        
         let normalComponent = (
-            <div className={_c(`discussion-item depth-${entry.depth} ${isHidden ? "hidden-item" : ""} ${selected ? "selected-item" : ""}`)}>
+            <div className={_c(`discussion-item depth-${entry.depth} ${selected ? "selected-item" : ""}`)}>
                 <div className="position-relative">
                     <div className="item-anchor" id={anchorId}/>
                 </div>
                 <div className="item-inner">
                     <div className="item-figure">
-                        <div className="d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
-                        <div onMouseEnter={(e) => {!isHidden && this.onShowProfileAvatar(e)}} onMouseLeave={(e, ) => {!isHidden && this.onHideProfileAvatar(e)}}>
+                        <div className="d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {this.onShowProfile(e)}}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
+                        <div onMouseEnter={(e) => {this.onShowProfileAvatar(e)}} onMouseLeave={(e, ) => {this.onHideProfileAvatar(e)}}>
                             {ProfileLink({...this.props, username: entry.author, children: 
                                     <a className="d-none d-sm-inline-block">
                                         {UserAvatar({...this.props, username: entry.author, size: "medium"})}
@@ -373,7 +371,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                 <ProfilePreview
                                     username={entry.author}
                                     {...this.props}
-                                    onClose={(e, doNotSetState) => {!isHidden && this.onHideProfileAvatar(e, doNotSetState)}}
+                                    onClose={(e, doNotSetState) => {this.onHideProfileAvatar(e, doNotSetState)}}
                                 />
                             }
                         </div>
@@ -381,12 +379,12 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                     <div className="item-content">
                         <div className="item-header">
                             <div
-                                onMouseEnter={(e) => {!isHidden && this.onShowProfile(e)}}
-                                onMouseLeave={(e) => {!isHidden && this.onHideProfile(e)}}
+                                onMouseEnter={(e) => {this.onShowProfile(e)}}
+                                onMouseLeave={(e) => {this.onHideProfile(e)}}
                                 className="d-flex align-items-center"
                                 id={`${entry.author}-${entry.permlink}`} 
                             >
-                            <div className="author notranslate d-flex align-items-center d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {!isHidden && this.onShowProfile(e)}}>
+                            <div className="author notranslate d-flex align-items-center d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {this.onShowProfile(e)}}>
                                 <span className="author-name" id={`${entry.author}-${entry.permlink}`} >{entry.author}</span>
                                 <span className="author-down-arrow mx-2" id={`${entry.author}-${entry.permlink}`} >{menuDownSvg}</span>
                             </div>
@@ -401,7 +399,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                     <ProfilePreview
                                         username={entry.author}
                                         {...this.props}
-                                        onClose={(e, doNotSetState) => {!isHidden && this.onHideProfile(e, doNotSetState)}}
+                                        onClose={(e, doNotSetState) => {this.onHideProfile(e, doNotSetState)}}
                                     />
                             }
                             </div>
@@ -414,16 +412,34 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                 </span>
                             })}
                         </div>
-                        {(() => {
-                            if (isHidden) {
-                                return <div className="reveal-item">
-                                    <Button variant="outline-danger" size="sm" onClick={() => {
-                                        this.stateSet({showIfHidden: true});
-                                    }}>{_t("discussion.reveal")}</Button>
-                                </div>
-                            }
+                        {(() => {   
                             
+        
+                            const entryIsMuted = mutedData.includes(entry.author);
+                            const isComment = !!entry.parent_author;
+                            const ownEntry = activeUser && activeUser.username === entry.author;
+                            const isHidden = entry?.net_rshares < 0;
+                            const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
+                            const isLowReputation = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
+                            const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry; 
+                                                   
                             return <>
+                                {isMuted && (<div className="hidden-warning mt-2">
+                                    <span><Tsx k="entry.muted-warning" args={{community: entry.community_title}}><span/></Tsx></span>
+                                </div>)}
+
+                                {isHidden && (<div className="hidden-warning mt-2">
+                                    <span>{_t('entry.hidden-warning')}</span>
+                                </div>)}
+
+                                {isLowReputation && (<div className="hidden-warning mt-2">
+                                    <span>{_t('entry.lowrep-warning')}</span>
+                                </div>)}
+
+                                {mightContainMutedComments && (<div className="hidden-warning mt-2">
+                                    <span>{_t('entry.comments-hidden')}</span>
+                                </div>)}
+                                
                                 <ItemBody global={this.props.global} entry={entry}/>
                                 <div className="item-controls">
                                     {EntryVoteBtn({
@@ -568,7 +584,7 @@ export class List extends Component<ListProps> {
     render() {
         const {discussion, parent, activeUser} = this.props;
         const { isHiddenPermitted, mutedData } = this.state;
-
+        
         const {list} = discussion;
 
         let filtered = list.filter(
@@ -579,20 +595,23 @@ export class List extends Component<ListProps> {
             return null;
         }
 
-        let mutedContent = filtered.filter(item => item.stats?.gray || (activeUser && mutedData.includes(item.author) && item.depth === 1 && item.parent_author === parent.author) );
+        let mutedContent = filtered.filter(item => ((activeUser && mutedData.includes(item.author) && item.depth === 1 && item.parent_author === parent.author) ));
         let unmutedContent = filtered.filter(md => mutedContent.every(fd => fd.post_id !== md.post_id))
         let data = isHiddenPermitted ? [...unmutedContent, ...mutedContent] : unmutedContent;
-        
-        
+        if(!activeUser){
+            data = filtered
+        }
         return (
             <div className="discussion-list">
                 {data.map((d) => (
                     <Item key={`${d.author}-${d.permlink}`} {...this.props} entry={d}/>
                 ))}
-                {!isHiddenPermitted && mutedContent.length >0 &&
+                {!isHiddenPermitted && mutedContent.length > 0 && activeUser && activeUser.username && 
                     <div className="hidden-warning d-flex justify-content-between flex-1 align-items-center mt-3">
                         <div className="flex-1">{_t("discussion.reveal-muted-long-description")}</div>
-                        <div onClick={()=>this.setState({isHiddenPermitted:true})} className="pointer p-3"><b>{_t("g.show")}</b></div>
+                        <div onClick={()=>this.setState({isHiddenPermitted:true})} className="pointer p-3">
+                            <b>{_t("g.show")}</b>
+                        </div>
                     </div>
                 }
             </div>

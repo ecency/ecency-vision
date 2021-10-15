@@ -5,7 +5,7 @@ import {menuDownSvg} from "../../img/svg";
 
 import _c from "../../util/fix-class-names"
 export interface MenuItem {
-    label: string;
+    label: string | JSX.Element;
     href?: string;
     onClick?: () => void;
     active?: boolean;
@@ -15,7 +15,7 @@ export interface MenuItem {
 }
 
 interface Props {
-    history: History;
+    history: History | null;
     float: "left" | "right";
     alignBottom?: boolean,
     header?: string;
@@ -100,7 +100,7 @@ export default class MyDropDown extends Component<Props> {
         setTimeout(() => {
             if (i.href) {
                 const {history} = this.props;
-                history.push(i.href);
+                history && history.push(i.href);
             }
 
             if (i.onClick) {

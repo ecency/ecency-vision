@@ -64,8 +64,8 @@ export class EntryListContent extends Component<Props, State> {
 
     fetchMutedUsers = () => {
         const { activeUser } = this.props;
-        const { mutedUsers, loadingMutedUsers } = this.state;
-        if(mutedUsers.length === 0 && !loadingMutedUsers){
+        const { loadingMutedUsers } = this.state;
+        if(!loadingMutedUsers){
             if(activeUser){
             this.setState({ loadingMutedUsers: true });
             getFollowing(activeUser.username, "", "ignore", 100).then(r => {
@@ -84,6 +84,9 @@ export class EntryListContent extends Component<Props, State> {
         if(prevProps.activeUser?.username !== this.props.activeUser?.username){
             this.fetchMutedUsers()
         }
+        if(prevProps.activeUser !== this.props.activeUser && !this.props.activeUser){
+            this.setState({mutedUsers:[]})
+        }
     }
 
     componentDidMount(){
@@ -95,42 +98,40 @@ export class EntryListContent extends Component<Props, State> {
         const {filter} = global;
         const { mutedUsers, loadingMutedUsers } = this.state;
         let dataToRender = entries;
-
+        
         let mutedList: string[] = [];
-        if(ls.get("muted-list")){
-            mutedList = mutedList.concat(mutedUsers).concat(ls.get("muted-list"))
-        }
-        else {
+        if(mutedUsers && mutedUsers.length > 0 && activeUser && activeUser.username){
             mutedList = mutedList.concat(mutedUsers)
         }
         
-         
+        
         return loadingMutedUsers ? <LinearProgress /> : dataToRender.length > 0 ? (
-              <>
+            <>
                 {dataToRender.map((e, i) => {
                     const l = [];
-
+                    
                     if (i % 4 === 0 && i > 0) {
                         const ix = i / 4 - 1;
-
+                        
                         if (promotedEntries[ix]) {
                             const p = promotedEntries[ix];
-
+                            let isPostMuted = (activeUser && activeUser.username && mutedList.includes(p.author)) || false;
                             if (!dataToRender.find(x => x.author === p.author && x.permlink === p.permlink)) {
                                 l.push(
                                     <EntryListItem
-                                        key={`${p.author}-${p.permlink}`}
-                                        {...Object.assign({}, this.props, {entry: p})}
-                                        promoted={true} order={4}
-                                        muted={mutedList.includes(p.author)}
+                                    key={`${p.author}-${p.permlink}`}
+                                    {...Object.assign({}, this.props, {entry: p})}
+                                    promoted={true} order={4}
+                                    muted={isPostMuted}
                                     />
-                                );
+                                    );
+                                }
                             }
                         }
-                    }
-
-                    l.push(<EntryListItem key={`${e.author}-${e.permlink}`} {...this.props} entry={e} order={i}
-                    muted={mutedList.includes(e.author)}/>);
+                        
+                        let isPostMuted = (activeUser && activeUser.username && mutedList.includes(e.author)) || false;
+                        l.push(<EntryListItem key={`${e.author}-${e.permlink}`} {...this.props} entry={e} order={i}
+                    muted={isPostMuted}/>);
                     return [...l];
                 })}
             </>
