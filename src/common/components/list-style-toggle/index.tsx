@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import {History} from "history";
 
 import isEqual from "react-fast-compare";
 
@@ -20,7 +19,6 @@ import {
 } from "../../img/svg";
 
 interface Props {
-    history: History;
     global: Global;
     toggleListStyle: (view: string | null) => void;
 }
@@ -40,7 +38,7 @@ export default class ListStyleToggle extends Component<Props> {
     };
 
     render() {
-        const { global, history } = this.props;
+        const { global } = this.props;
         const { listStyle } = global;
 
         const dropDownItems: MenuItem[] = [
@@ -57,7 +55,7 @@ export default class ListStyleToggle extends Component<Props> {
         ];
 
         const dropDownConfig = {
-            history: history,
+            history: null,
             label: (
                 <span className="view-feed">
                     <span className="view-layout">{viewModuleSvg}</span>{" "}

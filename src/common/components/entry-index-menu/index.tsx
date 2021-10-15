@@ -398,7 +398,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                             >
                                 {informationVariantSvg}
                             </span>
-                            <ListStyleToggle history={this.props.history} global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
+                            <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
                         </div>
                     </div>
             </div> : null}

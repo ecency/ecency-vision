@@ -23,7 +23,6 @@ import {
   NsfwSetAction,
   Theme,
   ThemeChangeAction,
-  Layouts,
 } from "./types";
 
 import { CommonActionTypes } from "../common";
@@ -51,7 +50,6 @@ export const initialState: Global = {
   nsfw: false,
   isMobile: false,
   usePrivate: true,
-  layouts: Layouts.grid
 };
 
 export default (state: Global = initialState, action: Actions): Global => {
