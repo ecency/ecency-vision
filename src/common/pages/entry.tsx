@@ -462,14 +462,14 @@ class EntryPage extends BaseComponent<Props, State> {
                         <ScrollToTop/>
                         <Theme global={this.props.global}/>
                         <div className="row">
-                            <div className="col-0 col-lg-2 mt-5">
-                                <div className="mb-4 mt-5">
+                            <div className="mt-5 col-0 col-lg-2">
+                                <div className="mt-5 mb-4">
                                 {!global.isMobile && <AuthorInfoCard {...this.props} entry={{author} as any} />}
                                 </div>
                             </div>
                             <div className="col-12 col-lg-9">
                                 <div className="p-0 p-lg-5 the-entry">
-                                    <div className="p-3 bg-danger rounded text-white my-0 mb-4 my-lg-5">{_t("entry.deleted-content-warning")}<u onClick={this.toggleEditHistory} className="text-primary pointer">{_t("points.history")}</u> {_t("g.logs")}.</div>
+                                    <div className="p-3 my-0 mb-4 text-white rounded bg-danger my-lg-5">{_t("entry.deleted-content-warning")}<u onClick={this.toggleEditHistory} className="text-primary pointer">{_t("points.history")}</u> {_t("g.logs")}.</div>
                                     <div className="cross-post">
                                         <h1 className="entry-title">{deletedEntry!.title}</h1>
                                     </div>
@@ -607,6 +607,25 @@ class EntryPage extends BaseComponent<Props, State> {
                                     </div>
                                 }
 
+                                let extraItems = ownEntry && isComment ? [{
+                                    label: _t("g.edit"),
+                                    onClick: this.toggleEdit,
+                                    icon: pencilOutlineSvg
+                                    }] : [];
+                                if(!(entry.children > 0 || entry.net_rshares > 0 || entry.is_paidout) && ownEntry && isComment){
+                                    extraItems = [...extraItems, {
+                                        label: "",
+                                        onClick: ()=>{},
+                                        icon: entryDeleteBtn({
+                                            ...this.props,
+                                            entry,
+                                            setDeleteInProgress: value=> this.setState({loading: value}),
+                                            onSuccess: this.deleted,
+                                            children: <a title={_t('g.delete')} className="edit-btn">{deleteForeverSvg} {_t("g.delete")}</a>
+                                        })
+                                    }]
+                                }
+
                                 return <>
                                     {(() => {
                                         // Cross post body
@@ -684,25 +703,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                         const renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 ? comment : entry.body :entry.body, false, global.canUseWebp)};
                                         
                                         const ctitle = entry.community ? entry.community_title : "";
-                                        let extraItems = ownEntry && isComment ? [{
-                                                label: _t("g.edit"),
-                                                onClick: this.toggleEdit,
-                                                icon: pencilOutlineSvg
-                                            }
-                                        ] : [];
-                                        if(!(entry.children > 0 || entry.net_rshares > 0 || entry.is_paidout) && ownEntry && isComment){
-                                            extraItems = [...extraItems, {
-                                                label: "",
-                                                onClick: ()=>{},
-                                                icon: entryDeleteBtn({
-                                                    ...this.props,
-                                                    entry,
-                                                    setDeleteInProgress: value=> this.setState({loading: value}),
-                                                    onSuccess: this.deleted,
-                                                    children: <a title={_t('g.delete')} className="edit-btn">{deleteForeverSvg} {_t("g.delete")}</a>
-                                                })
-                                            }]
-                                            }
+                                        
 
                                         return <>
                                             <div className="entry-header">
@@ -908,11 +909,17 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 </>
                                             )}
                                             <span className="flex-spacer"/>
-                                            {EntryMenu({
+                                            {/* {EntryMenu({
                                                 ...this.props,
                                                 entry,
                                                 alignBottom: true,
                                                 separatedSharing: true
+                                            })} */}
+                                            {EntryMenu({
+                                                ...this.props,
+                                                entry,
+                                                separatedSharing: true,
+                                                extraMenuItems: extraItems
                                             })}
                                         </div>
                                     </div>
