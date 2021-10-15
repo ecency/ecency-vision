@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import isEqual from "react-fast-compare";
 
 // import { Dropdown, DropdownButton } from "react-bootstrap";
-import DropDown from "../dropdown";
+import DropDown, {MenuItem} from "../dropdown";
 
 import { Global } from "../../store/global/types";
 
@@ -41,21 +41,21 @@ export default class ListStyleToggle extends Component<Props> {
         const { global } = this.props;
         const { listStyle } = global;
 
-        const dropDownItems = [
+        const dropDownItems: MenuItem[] = [
             {
-            label: <span className="gridMenu">{gridView} {_t("layouts.grid")}</span>,
+                label: <span className="gridMenu">{gridView} {_t("layouts.grid")}</span>,
                 active: global.listStyle === "grid",
-                onClick: () => this.changeStyle("grid"),
+                onClick: () => {this.changeStyle("grid")},
             },
             {
-            label: <span className="gridMenu">{listView} {_t("layouts.classic")}</span>,
+                label: <span className="gridMenu">{listView} {_t("layouts.classic")}</span>,
                 active: global.listStyle === "row",
-                onClick: () => this.changeStyle("row"),
+                onClick: () => {this.changeStyle("row")},
             },
         ];
 
         const dropDownConfig = {
-            history: history,
+            history: null,
             label: (
                 <span className="view-feed">
                     <span className="view-layout">{viewModuleSvg}</span>{" "}
@@ -63,7 +63,7 @@ export default class ListStyleToggle extends Component<Props> {
                 </span>
             ),
             items: dropDownItems,
-            //   preElem: preDropDownElem,
+            preElem: undefined,
         };
 
         return (

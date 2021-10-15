@@ -24,7 +24,7 @@ interface Props {
     username: string;
     section: string;
     activeUser: ActiveUser | null;
-    toggleListStyle: () => void;
+    toggleListStyle: (view: string | null) => void;
 }
 
 export class ProfileMenu extends Component<Props> {
@@ -89,7 +89,9 @@ export class ProfileMenu extends Component<Props> {
                     )}
                 </div>
 
-                <div className="page-tools">{ProfileFilter[section] && <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>}</div>
+                <div className="page-tools">{ProfileFilter[section] && 
+                    <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>}
+                </div>
             </div>
         );
     }

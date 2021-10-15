@@ -8,6 +8,9 @@ import {match} from "react-router";
 
 import numeral from "numeral";
 
+// import { debounce } from 'lodash';
+import _ from 'lodash'
+
 import moment from "moment";
 
 import defaults from "../constants/defaults.json";
@@ -28,6 +31,7 @@ import NavBarElectron from "../../desktop/app/components/navbar";
 import LinearProgress from "../components/linear-progress";
 import ProposalListItem from "../components/proposal-list-item";
 import NotFound from "../components/404";
+import SearchBox from '../components/search-box'
 
 import {_t} from "../i18n";
 import {Tsx} from "../i18n/helper";
@@ -51,24 +55,34 @@ enum Filter {
 interface State {
     proposals_: Proposal[];
     proposals: Proposal[];
+    allProposals: Proposal[];
     totalBudget: number;
     dailyBudget: number;
     dailyFunded: number;
     filter: Filter;
     loading: boolean;
     inProgress: boolean;
+    search: string;
 }
 
 class ProposalsPage extends BaseComponent<PageProps, State> {
     state: State = {
         proposals_: [],
         proposals: [],
+        allProposals: [],
         totalBudget: 0,
         dailyBudget: 0,
         dailyFunded: 0,
         filter: Filter.ALL,
         loading: true,
         inProgress: false,
+        search: ''
+    }
+
+    constructor(props: any) {
+        super(props);
+        this.handleInputChange = _.debounce(this.handleInputChange.bind(this), 200);
+        this.handleChangeSearch = this.handleChangeSearch.bind(this)
     }
 
     componentDidMount() {
@@ -93,7 +107,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                 //  add up total votes
                 const dailyFunded = eligible.reduce((a, b) => a + Number(b.daily_pay.amount), 0) / 1000;
 
-                this.stateSet({proposals, proposals_: proposals, dailyFunded});
+                this.stateSet({proposals, proposals_: proposals, dailyFunded, allProposals: proposals});
 
                 return getAccount("hive.fund");
             })
@@ -131,6 +145,27 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         setTimeout(() => {
             this.stateSet({inProgress: false});
         }, 500);
+    }
+
+    handleChangeSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
+        this.setState({ search: value});
+        this.handleInputChange(value)
+    }
+
+    handleInputChange =( value: any) => {
+        if(value.trim() === ''){
+            this.setState({proposals: this.state.allProposals});
+        } else {
+            let results: Proposal[] = [];
+            this.state.allProposals.forEach((item: Proposal) => {
+                if(item.subject.toLowerCase().search(value.toLowerCase().trim()) > -1 || 
+                    item.creator.toLowerCase().search(value.toLowerCase().trim()) > -1) {
+                    results.push(item);
+                }
+            });
+            this.setState({proposals: results})
+        }
     }
 
     render() {
@@ -174,22 +209,27 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                                 <div className="value">
                                     {numeral(dailyFunded).format("0.00,")} {"HBD"}
                                 </div>
-                                <div className="label">daily funded</div>
+                                <div className="label">{_t('daily-funded')}</div>
                             </div>
                             <div className="funding-number">
                                 <div className="value">
                                     {numeral(dailyBudget).format("0.00,")} {"HBD"}
                                 </div>
-                                <div className="label">daily budget</div>
+                                <div className="label">{_t('daily-budget')}</div>
                             </div>
 
                             <div className="funding-number">
                                 <div className="value">
                                     {numeral(totalBudget).format("0.00,")} {"HBD"}
                                 </div>
-                                <div className="label">total budget</div>
+                                <div className="label">{_t('total-budget')}</div>
                             </div>
                         </div>
+
+                        <div className='search-proposals'>
+                            <SearchBox placeholder={_t('search.placeholder-proposals')} onChange={this.handleChangeSearch} value={this.state.search} />
+                        </div>
+
                         <div className="filter-menu">
                             {Object.values(Filter).map(x => {
                                 const cls = `menu-item ${filter === x ? "active-item" : ""}`

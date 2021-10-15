@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "Search",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Search {{n}} posts",
     "header-tag": "Tags",
     "header-account": "Users",
@@ -955,7 +956,10 @@
     "filter-team": "Ecency Projects",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "Votes on Proposal #{{n}}",
-    "see-all": "see all proposals"
+    "see-all": "see all proposals",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Gallery",
