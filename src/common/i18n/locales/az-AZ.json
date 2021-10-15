@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "Axtar",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "{{n}} göndərişdə axtar",
     "header-tag": "Etiketlər",
     "header-account": "İstifadəçilər",
@@ -280,6 +281,7 @@
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Orijinal göndərişi aç",
     "cross-post-by": "Cross post by",
     "cross-post-community": "cəmiyyət",
@@ -954,7 +956,10 @@
     "filter-team": "Ecency Projects",
     "return-description": "Bu təməl geri təklifdir. Az səs alan hər bir təklif vəsait almayacaq.",
     "votes-dialog-title": "#{{n}} təklifdəki səslər",
-    "see-all": "bütün təkliflərə bax"
+    "see-all": "bütün təkliflərə bax",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Qalereya",
