@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "搜索",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "从 {{n}} 个帖子中搜索",
     "header-tag": "标签",
     "header-account": "用户",
@@ -280,6 +281,7 @@
     "comments-hidden": "这个帖子的作者被你禁言。",
     "address-copy": "复制帖子地址",
     "address-copied": "帖子地址已复制到剪贴板。",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "打开原始帖子",
     "cross-post-by": "交叉帖子由",
     "cross-post-community": "社区",
@@ -954,7 +956,10 @@
     "filter-team": "Ecency 项目",
     "return-description": "这是基础返回提案。每个票数较少的提案都不会收到资金。",
     "votes-dialog-title": "对提议#{{n}} 投票",
-    "see-all": "查看所有提议"
+    "see-all": "查看所有提议",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "图库",
