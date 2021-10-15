@@ -83,6 +83,7 @@
   },
   "search": {
     "placeholder": "खोजें",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "पोस्ट {{n}} खोजे",
     "header-tag": "चिप्पी",
     "header-account": "उपयोगकर्ता",
@@ -280,6 +281,7 @@
     "comments-hidden": "इस पोस्ट के लेखक को आपने म्यूट कर दिया है।",
     "address-copy": "पोस्ट पता कापी करे",
     "address-copied": "क्लिपबोर्ड पर पोस्ट पता कॉपी किया गया।",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "मूल पोस्ट खोलें",
     "cross-post-by": "द्वारा क्रॉस पोस्ट",
     "cross-post-community": "समुदाय",
@@ -954,7 +956,10 @@
     "filter-team": "इसेंसी परियोजनाएं",
     "return-description": "यह आधार रिटर्न प्रस्ताव है। कम मतों वाले प्रत्येक प्रस्ताव को धन प्राप्त नहीं होगा।",
     "votes-dialog-title": "प्रस्ताव पर वोट # {{n}}",
-    "see-all": "सभी प्रस्ताव देखें"
+    "see-all": "सभी प्रस्ताव देखें",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "चित्रशाला",
