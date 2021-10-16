@@ -83,7 +83,7 @@
   },
   "search": {
     "placeholder": "Поиск",
-    "placeholder-proposals": "Search proposals",
+    "placeholder-proposals": "Искать предложения",
     "placeholder-count": "Поиск {{n}} сообщений",
     "header-tag": "Теги",
     "header-account": "Пользователи",
@@ -281,7 +281,7 @@
     "comments-hidden": "Автор сообщения отключен вами.",
     "address-copy": "Скопировать адрес поста",
     "address-copied": "Адрес поста скопирован в буфер обмена.",
-    "content-copied": "Content copied to clipboard.",
+    "content-copied": "Скопировано в буфер обмена.",
     "browse-original": "Открыть оригинальный пост",
     "cross-post-by": "Кросс-пост от",
     "cross-post-community": "сообщество",
@@ -957,9 +957,9 @@
     "return-description": "Это базовое предложение возврата. Каждое предложение с меньшим количеством голосов не получит средств.",
     "votes-dialog-title": "Голосов за Предложение #{{n}}",
     "see-all": "посмотреть все предложения",
-    "daily-funded": "daily funded",
-    "daily-budget": "daily budget",
-    "total-budget": "total budget"
+    "daily-funded": "ежедневное финансирование",
+    "daily-budget": "ежедневный бюджет",
+    "total-budget": "общий бюджет"
   },
   "gallery": {
     "title": "Галерея",
