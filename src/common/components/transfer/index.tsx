@@ -31,7 +31,7 @@ import parseAsset from "../../helper/parse-asset";
 import {vestsToHp, hpToVests} from "../../helper/vesting";
 
 
-import {getAccount, getAccountFull} from "../../api/hive";
+import {DelegatedVestingShare, getAccount, getAccountFull, getVestingDelegations} from "../../api/hive";
 
 import {
     transfer,
@@ -67,6 +67,7 @@ import {Tsx} from "../../i18n/helper";
 import {arrowRightSvg} from "../../img/svg";
 import { Link } from "react-router-dom";
 import formattedNumber from "../../util/formatted-number";
+import activeUser from "../../store/active-user";
 
 export type TransferMode = "transfer" | "transfer-saving" | "withdraw-saving" | "convert" | "power-up" | "power-down" | "delegate";
 export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT";
@@ -130,6 +131,7 @@ interface Props {
 interface State {
     step: 1 | 2 | 3 | 4;
     asset: TransferAsset;
+    delegationList: DelegateVestingShares[],
     to: string,
     toData: Account | null,
     toError: string,
@@ -159,7 +161,8 @@ const pureState = (props: Props): State => {
         amount: props.amount || "0.001",
         amountError: "",
         memo: props.memo || "",
-        inProgress: false
+        inProgress: false,
+        delegationList: []
     }
 }
 
@@ -234,11 +237,18 @@ export class Transfer extends BaseComponent<Props, State> {
             }
 
             this.stateSet({inProgress: true, toData: null});
+            const {activeUser, dynamicProps: { hivePerMVests } } = this.props;
 
             return getAccount(to)
                 .then(resp => {
                     if (resp) {
                         this.stateSet({toError: '', toData: resp});
+                        activeUser && activeUser.username && getVestingDelegations(activeUser.username, to, 1000).then(res=>{
+                            const delegateAccount = res && res.length > 0 && 
+                            (res!.find(item => (item as any).delegatee===to && (item as any).delegator===activeUser.username));
+                            const previousAmount = delegateAccount ? Number(formattedNumber(vestsToHp(Number(parseAsset((delegateAccount!.vesting_shares)).amount), hivePerMVests))) : "";
+                            this.setState({delegationList:res as any[], amount: previousAmount ? (previousAmount).toString() : "0.001" })
+                        })
                     } else {
                         this.stateSet({
                             toError: _t("transfer.to-not-found")
@@ -548,7 +558,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
     render() {
         const {global, mode, activeUser, transactions, dynamicProps} = this.props;
-        const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress, toData} = this.state;
+        const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress, toData, delegationList} = this.state;
         const {hivePerMVests} = dynamicProps;
 
         const recent = [...new Set(
@@ -602,14 +612,14 @@ export class Transfer extends BaseComponent<Props, State> {
 
         const showTo = ["transfer", "transfer-saving", "withdraw-saving", "power-up", "delegate"].includes(mode);
         const showMemo = ["transfer", "transfer-saving", "withdraw-saving"].includes(mode);
+        
+        const delegateAccount = delegationList && delegationList.length > 0 && 
+        (delegationList!.find(item => (item as DelegateVestingShares).delegatee===to && (item as DelegateVestingShares).delegator===activeUser.username));
+        const previousAmount = delegateAccount ? Number(formattedNumber(vestsToHp(Number(parseAsset((delegateAccount!.vesting_shares)).amount), hivePerMVests))) : "";
 
         let balance: string | number = this.formatBalance(this.getBalance());
-        if(to.length > 0 && Number(amount) > 0 && toData?.__loaded){
-            let vestShareAmount:any = transactions!.list!.find(item => ((item as DelegateVestingShares).delegatee===to) && ((item as DelegateVestingShares).delegator===activeUser.username))! as DelegateVestingShares            
-            vestShareAmount = vestShareAmount && Number(formattedNumber(vestsToHp(Number(parseAsset(((vestShareAmount).vesting_shares)).amount), hivePerMVests)));
-            vestShareAmount = vestShareAmount || 0
-            let alreadyDelgatedAmount = vestShareAmount;
-            balance = Number(balance) + alreadyDelgatedAmount;
+        if(previousAmount){
+            balance = Number(balance) + previousAmount;
             balance = Number(balance).toFixed(3)
         }
 
@@ -682,14 +692,6 @@ export class Transfer extends BaseComponent<Props, State> {
                 </div>
             }
         }
-        const toAccount = transactions && transactions.list && 
-        (transactions!.list!.find(item => 
-            ((item as ITransfer).from === activeUser.username) && (item as ITransfer).to===to) as ITransfer);
-        const previousAmount = toAccount ? ((transactions!.list!.find(item => ((item as ITransfer).from===activeUser.username) && (item as ITransfer).to===to)! as ITransfer).amount) : "";
-        const delegateAccount = transactions && transactions.list && 
-        (transactions!.list!.find(item => 
-            (item as DelegateVestingShares).delegatee===to && (item as DelegateVestingShares).delegator===activeUser.username));
-        const previousAmount2 = delegateAccount ? Number(formattedNumber(vestsToHp(Number(parseAsset(((transactions!.list!.find(item => (item as DelegateVestingShares).delegatee===to && ((item as DelegateVestingShares).delegator===activeUser.username))! as DelegateVestingShares).vesting_shares)).amount), hivePerMVests))) : "";
 
         return <div className="transfer-dialog-content">
             {step === 1 && (
@@ -784,16 +786,10 @@ export class Transfer extends BaseComponent<Props, State> {
                                 {to.length > 0 && Number(amount) > 0 && toData?.__loaded && 
                                     <div className="text-warning mt-1 override-warning">
                                         {_t("transfer.override-warning-1")}
-                                        {toAccount &&
-                                                <>
-                                                    <br/>
-                                                    {_t("transfer.override-warning-2", {account: to, previousAmount: previousAmount})}
-                                                </>
-                                        }
                                         {delegateAccount &&
                                                 <>
                                                     <br/>
-                                                    {_t("transfer.override-warning-2", {account: to, previousAmount: previousAmount2})}
+                                                    {_t("transfer.override-warning-2", {account: to, previousAmount: previousAmount})}
                                                 </>
                                         }{" "}<Link to="/faq">{_t("g.learnMore")}</Link>
                                     </div>
