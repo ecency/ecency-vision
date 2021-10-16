@@ -359,7 +359,8 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                 <div className="item-inner">
                     <div className="item-figure">
                         <div className="d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {this.onShowProfile(e)}}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
-                        <div onMouseEnter={(e) => {this.onShowProfileAvatar(e)}} onMouseLeave={(e, ) => {this.onHideProfileAvatar(e)}}>
+                        <div onMouseEnter={(e) => {this.onShowProfileAvatar(e)}} onMouseLeave={(e, ) => {this.onHideProfileAvatar(e)}}
+                        >
                             {ProfileLink({...this.props, username: entry.author, children: 
                                     <a className="d-none d-sm-inline-block">
                                         {UserAvatar({...this.props, username: entry.author, size: "medium"})}
