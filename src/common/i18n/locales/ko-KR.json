@@ -437,7 +437,7 @@
     "communities-title": "멤버쉽",
     "create-community": "커뮤니티 만들기",
     "witnesses": "증인",
-    "proposals": "제안"
+    "proposals": "제안서"
   },
   "profile-info": {
     "joined": "가입: {{n}}",
@@ -450,7 +450,7 @@
     "down-vote-power": "다운보팅 파워: {{n}}%",
     "no-posts": "여기에 귀하의 게시물이 표시됩니다, 콘텐츠가 없는 것 같습니다.",
     "create-posts": "새 게시물을 작성해 봅시다.",
-    "no-posts-found": "Found nothing!"
+    "no-posts-found": "검색 결과가 없습니다!"
   },
   "profile-edit": {
     "title": "프로필",
@@ -664,7 +664,7 @@
     "type-fill_vesting_withdraw": "일부 파워다운 차단이 발생했습니다",
     "type-fill_order": "주문 체결",
     "type-producer_reward": "생산자 보상",
-    "type-interest": "Interest",
+    "type-interest": "이자",
     "type-transfer_to_savings": "금고로 전송",
     "type-fill_convert_request": "전환 완료",
     "type-fill_collateralized_convert_request": "담보 전환 완료",
@@ -672,13 +672,13 @@
     "type-cancel_transfer_from_savings": "안전 금고에서 송금 취소",
     "type-cancel_transfer_from_savings-detail": "보내는 사람: <strong>@{{from}}</strong> <br/> 요청 id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "위임 제거",
-    "type-proposal_pay": "Proposal pay",
+    "type-proposal_pay": "제안서 수수료",
     "type-update_proposal_votes": "제안서 투표",
     "type-comment_payout_update": "콘텐츠 지불 업데이트",
     "type-comment_reward": "콘텐츠 보상",
-    "type-recurrent_transfer": "Recurring transfer",
+    "type-recurrent_transfer": "반복 이체",
     "type-recurrent_transfer-detail": "{{executions}} 개 거래, {{recurrence}}시간마다",
-    "type-fill_recurrent_transfer": "Recurring transfer occurred",
+    "type-fill_recurrent_transfer": "반복 이체 발생",
     "type-fill_recurrent_transfer-detail": "남은 {{remaining_executions}} 전송",
     "type-collateralized_convert": "담보 전환",
     "type-collateralized_convert-detail": "요청 ID: <strong>{{request}}</strong>",
@@ -920,7 +920,7 @@
   "witnesses": {
     "page-title": "증인",
     "page-description": "합의 블록 생산자 선택",
-    "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
+    "page-description-long": "하이브 블록체인에서 증인 또는 블록 생산자의 역할은 네트워크의 거버넌스 기관 역할을 하는 것입니다. 커뮤니티는 자신의 목소리를 대변하기 위해 그들을 선택하고 각 사용자는 최대 30명의 증인을 선택할 수 있습니다. 상위 20명의 증인은 매분 블록을 생성하고 나머지는 백업 증인으로 남아 매분 무작위 기회를 얻습니다. 이 역할은 블록체인이 실행되는 합의 메커니즘의 필수적인 부분이며 신뢰할 수 있는 증인에게 투표하기 위해 사용자 참여를 권장합니다.",
     "remaining": "총 {{max}} 개의 투표권 중 <span>{{n}}</span> 개가 남았습니다",
     "list-rank": "랭크",
     "list-witness": "증인",
@@ -939,10 +939,10 @@
     "proxy-votes-for": "@{{username}}의 투표는"
   },
   "proposals": {
-    "page-title": "제안",
+    "page-title": "제안서",
     "page-description": "DHF(Decentralized Hive Fund) 는 커뮤니티 투표가 특정 임계값을 통과하면 누구나 제안서를 제출하고 자금을 받을 수 있는 온체인 펀딩 메커니즘입니다. 자세히 알아보려면 <a href=\"/faq#how-dhf-work\">FAQ</a>를 읽어보세요.",
-    "by": "by",
-    "for": "for",
+    "by": "발신자",
+    "for": "동안",
     "duration-days": "{{n}} 일",
     "daily-pay": "매일 {{n}}",
     "votes": "보팅 수: {{n}}",
@@ -1158,7 +1158,7 @@
     "download-for-ios": "IOS용 다운로드",
     "download-for-android": "Android용 다운로드",
     "our-history": "우리 연혁",
-    "our-history-p-one": "<b>Ecency</b> (previously Esteem) started out in 2016, founder <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> started implementing a mobile application that would revolutionize the way you interact and create, build, engage online. With time grew to something much bigger.",
+    "our-history-p-one": "<b>Ecency</b> (이전의 Esteem) 는 2016년에 시작되었으며 창립자 <span><a href=\"/@good-karma\" class=\"push-link\">@good-karma </a></span>는 사용자가 상호 작용하고 온라인에서 만들고, 구축하고, 참여하는 방식에 혁명을 일으킬 모바일 애플리케이션을 구현하기 시작했습니다. 시간이 지남에 따라 훨씬 더 큰 것으로 성장했습니다.",
     "our-history-p-two": "그 이후로 우리는 웹 3.0을 위해 계속해서 구축하고 블록체인 기반 소셜 네트워크를 개선하여 앱이 가능한 한 액세스 가능하고 안전하며 전 세계에서 사용하는 많은 언어로 되어 있는지 확인했습니다.",
     "our-vision": "우리의 비젼",
     "our-vision-p-one": "우리는 모든 사람들에게 안전하고 보상 있는 블록체인 경험을 제공하고자 합니다. 제한과 검열이 없는 소셜 미디어, 오직 당신만이 당신의 계정과 커뮤니티를 통제할 수 있습니다. 사람에 의해 구동되는 블록체인으로 보호됩니다.",
