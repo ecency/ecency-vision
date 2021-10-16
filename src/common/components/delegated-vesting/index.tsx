@@ -191,7 +191,7 @@ export default class DelegatedVesting extends Component<Props> {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <List {...this.props} setSubtitle={value => this.setState({subtitle: `+${value} ${_t("delegated-vesting.subtitle")}`})}/>
+                        <List {...this.props} setSubtitle={value => this.setState({subtitle: value === 0 ? "" : `+${value} ${_t("delegated-vesting.subtitle")}`})}/>
                     </Modal.Body>
                 </Modal>
             </>

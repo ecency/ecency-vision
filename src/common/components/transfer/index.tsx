@@ -16,7 +16,7 @@ import {Global} from "../../store/global/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Account} from '../../store/accounts/types'
 import {ActiveUser} from "../../store/active-user/types";
-import {DelegateVestingShares, Transactions, Transfer as ITransfer} from "../../store/transactions/types";
+import {DelegateVestingShares, Transactions} from "../../store/transactions/types";
 
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
