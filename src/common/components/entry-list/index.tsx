@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {History, Location} from "history";
+import _ from 'lodash'
 
 import {Global, ProfileFilter} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
@@ -9,11 +10,12 @@ import {Community, Communities} from "../../store/communities/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Reblogs} from "../../store/reblogs/types";
-import {UI, ToggleType} from "../../store/ui/types";
+import {UI, ToggleType, Entry} from "../../store/ui/types";
 
 import EntryListItem from "../entry-list-item/index";
 import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 import MessageNoData from "../message-no-data";
+import SearchBox from '../search-box'
 import { Link } from "react-router-dom";
 import { _t } from "../../i18n";
 import * as ls from "../../util/local-storage";
@@ -53,13 +55,23 @@ interface Props {
 
 interface State {
     mutedUsers: string[];
-    loadingMutedUsers: boolean
+    loadingMutedUsers: boolean,
+    search: string;
+    entriesData: Entry[],
 }
 
 export class EntryListContent extends Component<Props, State> {
     state = {
         mutedUsers: [] as string[],
         loadingMutedUsers: false,
+        search: "",
+        entriesData: []
+    }
+
+    constructor(props: any) {
+        super(props);
+        this.handleInputChange = _.debounce(this.handleInputChange.bind(this), 200);
+        this.handleChangeSearch = this.handleChangeSearch.bind(this)
     }
 
     fetchMutedUsers = () => {
@@ -87,17 +99,50 @@ export class EntryListContent extends Component<Props, State> {
         if(prevProps.activeUser !== this.props.activeUser && !this.props.activeUser){
             this.setState({mutedUsers:[]})
         }
+        if(prevProps.entries !== this.props.entries) {
+            this.setState({ entriesData: this.props.entries });
+        }
     }
 
     componentDidMount(){
-        this.fetchMutedUsers()
+        this.fetchMutedUsers();
+        this.setState({ entriesData: this.props.entries });
+    }
+
+    handleChangeSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
+        this.setState({ search: value});
+        this.handleInputChange(value)
+    }
+
+    handleInputChange =( value: any) => {
+        if(value.trim() === ''){
+            this.setState({entriesData: this.props.entries});
+        } else {
+            let results: Entry[] = [];
+            this.props.entries.forEach((item: Entry) => {
+                if(
+                    item.title.toLowerCase().search(value.toLowerCase().trim()) > -1 || 
+                    item.body.toLowerCase().search(value.toLowerCase().trim()) > -1 || 
+                    item.category.toLowerCase().search(value.toLowerCase().trim()) > -1 || 
+                    (item.community && item.community.toLowerCase().search(value.toLowerCase().trim()) > -1 )|| 
+                    (item.community_title && item.community_title.toLowerCase().search(value.toLowerCase().trim()) > -1 )|| 
+                    item.author.toLowerCase().search(value.toLowerCase().trim()) > -1) {
+                    results.push(item);
+                }
+            });
+            this.setState({entriesData: results})
+        }
     }
 
     render() {
         const {entries, promotedEntries, global, activeUser, loading } = this.props;
         const {filter} = global;
-        const { mutedUsers, loadingMutedUsers } = this.state;
-        let dataToRender = entries;
+        const { mutedUsers, loadingMutedUsers, entriesData } = this.state;
+        // let dataToRender = entries;
+        let dataToRender = entriesData;
+
+        console.log('entriesData: ', entriesData)
         
         let mutedList: string[] = [];
         if(mutedUsers && mutedUsers.length > 0 && activeUser && activeUser.username){
@@ -105,44 +150,55 @@ export class EntryListContent extends Component<Props, State> {
         }
         
         
-        return loadingMutedUsers ? <LinearProgress /> : dataToRender.length > 0 ? (
+        return (
             <>
-                {dataToRender.map((e, i) => {
-                    const l = [];
-                    
-                    if (i % 4 === 0 && i > 0) {
-                        const ix = i / 4 - 1;
-                        
-                        if (promotedEntries[ix]) {
-                            const p = promotedEntries[ix];
-                            let isPostMuted = (activeUser && activeUser.username && mutedList.includes(p.author)) || false;
-                            if (!dataToRender.find(x => x.author === p.author && x.permlink === p.permlink)) {
-                                l.push(
-                                    <EntryListItem
-                                    key={`${p.author}-${p.permlink}`}
-                                    {...Object.assign({}, this.props, {entry: p})}
-                                    promoted={true} order={4}
-                                    muted={isPostMuted}
-                                    />
-                                    );
-                                }
-                            }
-                        }
-                        
-                        let isPostMuted = (activeUser && activeUser.username && mutedList.includes(e.author)) || false;
-                        l.push(<EntryListItem key={`${e.author}-${e.permlink}`} {...this.props} entry={e} order={i}
-                    muted={isPostMuted}/>);
-                    return [...l];
-                })}
+                <div className='searchProfile'>
+                    <SearchBox placeholder={_t('search.placeholder')}  onChange={this.handleChangeSearch} value={this.state.search} />
+                </div>
+                
+                {
+                    loadingMutedUsers ? <LinearProgress /> : dataToRender.length > 0 ? (
+                        <>
+                            {dataToRender.map((e, i) => {
+                                const l = [];
+                                
+                                if (i % 4 === 0 && i > 0) {
+                                    const ix = i / 4 - 1;
+                                    
+                                    if (promotedEntries[ix]) {
+                                        const p = promotedEntries[ix];
+                                        let isPostMuted = (activeUser && activeUser.username && mutedList.includes(p.author)) || false;
+                                        if (!dataToRender.find(x => x.author === p.author && x.permlink === p.permlink)) {
+                                            l.push(
+                                                <EntryListItem
+                                                key={`${p.author}-${p.permlink}`}
+                                                {...Object.assign({}, this.props, {entry: p})}
+                                                promoted={true} order={4}
+                                                muted={isPostMuted}
+                                                />
+                                                );
+                                            }
+                                        }
+                                    }
+                                    
+                                    let isPostMuted = (activeUser && activeUser.username && mutedList.includes(e.author)) || false;
+                                    l.push(<EntryListItem key={`${e.author}-${e.permlink}`} {...this.props} entry={e} order={i}
+                                muted={isPostMuted}/>);
+                                return [...l];
+                            })}
+                        </>
+                    ) : !loading &&  <MessageNoData>
+                            {(global.tag===`@${activeUser?.username}` && global.filter === "posts") ? 
+                            <div className='text-center'>
+                                <div className="info">{_t("profile-info.no-posts")}</div>
+                                <Link to='/submit' className="action"><b>{_t("profile-info.create-posts")}</b></Link>
+                            </div>:
+                            <div className="info">{`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}</div>}
+                        </MessageNoData>
+                }
+            
             </>
-        ) : !loading &&  <MessageNoData>
-                {(global.tag===`@${activeUser?.username}` && global.filter === "posts") ? 
-                <div className='text-center'>
-                    <div className="info">{_t("profile-info.no-posts")}</div>
-                    <Link to='/submit' className="action"><b>{_t("profile-info.create-posts")}</b></Link>
-                </div>:
-                <div className="info">{`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}</div>}
-            </MessageNoData>;
+        );
     }
 }
 
