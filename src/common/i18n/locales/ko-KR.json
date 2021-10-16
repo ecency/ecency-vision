@@ -98,9 +98,9 @@
   },
   "user-nav": {
     "wallet": "지갑",
-    "unclaimed-reward-notice": "요청하지 않은 보상이 있습니다",
+    "unclaimed-reward-notice": "미청구 보상이 있습니다",
     "points": "포인트",
-    "unclaimed-points-notice": "요청하지 않은 포인트가 있습니다",
+    "unclaimed-points-notice": "미청구 포인트가 있습니다",
     "notifications": "알림",
     "profile": "프로필",
     "profile-menu": "프로필 메뉴",
@@ -281,7 +281,7 @@
     "comments-hidden": "이 게시물의 작성자는 귀하에 의해 뮤트되었습니다.",
     "address-copy": "글 주소 복사",
     "address-copied": "글 주소가 클립보드에 복사되었습니다.",
-    "content-copied": "Content copied to clipboard.",
+    "content-copied": "콘텐츠 클립보드에 복사되었습니다.",
     "browse-original": "원본 게시물 보기",
     "cross-post-by": "교차 게시물 작성자",
     "cross-post-community": "커뮤니티",
@@ -404,7 +404,7 @@
     "reason-two": "Permanent, rewarding",
     "reason-three": "Powered by blockchain technology",
     "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
-    "done-link-label": "Get started."
+    "done-link-label": "시작."
   },
   "community-rewards-registration": {
     "body-text": "Ecency 포인트를 받으려면 커뮤니티를 등록하세요.",
@@ -449,7 +449,7 @@
     "recharge-time": "(fully charged {{n}})",
     "down-vote-power": "다운보팅 파워: {{n}}%",
     "no-posts": "Here you will see your posts, looks like no content exists.",
-    "create-posts": "Let's create a new post",
+    "create-posts": "새 게시물을 작성해 봅시다.",
     "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
@@ -460,15 +460,15 @@
     "profile-image": "프로필 사진",
     "website": "웹사이트",
     "location": "위치",
-    "copied": "Referral link copied to clipboard.",
-    "updated": "Profile updated successfully!"
+    "copied": "추천인 링크가 클립보드에 복사되었습니다.",
+    "updated": "프로필을 성공적으로 업데이트 하였습니다!"
   },
   "image-upload-button": {
     "uploaded": "이미지 업로드 완료"
   },
   "preferences": {
     "title": "환경 설정",
-    "notifications": "Notification alerts",
+    "notifications": "알립",
     "currency": "통화",
     "language": "언어",
     "nsfw": "성인 콘텐츠 공개",
@@ -476,7 +476,7 @@
     "updated": "설정 업데이트 완료!"
   },
   "wallet": {
-    "unclaimed-rewards": "아직 요청하지 않은 보상",
+    "unclaimed-rewards": "아직 미청구 보상",
     "claim-reward-balance": "보상 요청",
     "claim-reward-balance-ok": "보상을 요청했습니다",
     "estimated": "계정 보유 자산 예상 가치",
@@ -511,19 +511,19 @@
     "no-results": "토큰을 찾을 수 없습니다.",
     "token": "토큰",
     "balance": "잔액",
-    "staked": "Staked"
+    "staked": "스테이킹됨"
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",
     "account": "계정",
     "percent": "비율",
     "validation-account": "계정이 필요합니다.",
-    "validation-percent": "Percentage is required.",
+    "validation-percent": "비율 필요합니다.",
     "auto-power-up": "자동 파워업"
   },
   "points": {
     "get": "포인트 구매",
-    "unclaimed-points": "Unclaimed points",
+    "unclaimed-points": "미청구 포인트",
     "claim-reward-points": "포인트 보상 요청",
     "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
     "earn-points": "더 많은 포이트를 획득 방법",
@@ -534,7 +534,7 @@
     "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "When you login into Ecency you are entitled to earn 100 points automatically.",
     "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
-    "delegation-desc": "You can earn ~100 points per day for each 1000HP delegation.",
+    "delegation-desc": "1000 HP 임대 당 ~100 포인트가 매일 지급됩니다.",
     "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "기록",
     "post-list-desc": "포스팅 포인트",
@@ -619,12 +619,12 @@
     "wrong-amount": "수량이 올바르지 않습니다",
     "amount-precision-error": "Use only 3 digits of precision",
     "balance": "잔액",
-    "power-down-estimated": "+ {{n}} Estimated Weekly",
+    "power-down-estimated": "+ {{n}} 주간 예상 수량",
     "memo": "메모",
     "memo-placeholder": "메모 내용을 입력하세요",
     "memo-help": "이 메모는 누구나 볼 수 있습니다",
-    "available-hp-hint": "* available hive power",
-    "confirm-title": "Confirm your transaction",
+    "available-hp-hint": "* 사용 가능한 하이브 파워",
+    "confirm-title": "거래를 확인하세요",
     "confirm-sub-title": "정보가 맞는지 다시 한 번 확인하세요",
     "confirm": "확인",
     "recent-transfers": "최근 송금 내역",
@@ -634,7 +634,7 @@
     "convert-summary": "<span class=\"amount\">{{amount}}</span> 전환 완료되었습니다",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"from-user\">{{from}}</span>님이 <span class=\"to-user\">{{to}}</span>님에게<span class=\"amount\">{{amount}}</span>를 임대했습니다",
-    "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
+    "power-down-summary": "파워다운 <span class=\"amount\">{{amount}}</span>으로 완료되었습니다",
     "reset": "초기화",
     "powering-down": "현재 파워 다운 중입니다.",
     "stop-power-down": "중지"
@@ -651,7 +651,7 @@
     "group-all": "전체 내역",
     "group-transfers": "송금",
     "group-market-orders": "Market Orders",
-    "group-interests": "Interests",
+    "group-interests": "관심사",
     "group-stake-operations": "Stake operations",
     "group-rewards": "보상",
     "type-curation_reward": "큐레이션 보상",
