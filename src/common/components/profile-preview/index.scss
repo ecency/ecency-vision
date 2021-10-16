@@ -168,8 +168,15 @@
     }
   }
 }
+
 .upper-container .p-3 {
   @media (max-width: 320px) {
     padding-bottom: 0px !important;
+  }
+}
+
+.text-break-wrap {
+  @media (max-width: 1600px) {
+    word-break: break-all;
   }
 }
