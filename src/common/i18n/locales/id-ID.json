@@ -83,7 +83,7 @@
   },
   "search": {
     "placeholder": "Cari",
-    "placeholder-proposals": "Search proposals",
+    "placeholder-proposals": "Cari proposal",
     "placeholder-count": "Mencari {{n}} postingan",
     "header-tag": "Label",
     "header-account": "Pengguna",
@@ -273,15 +273,15 @@
     "comment-entry-title": "Anda melihat sebuah komentar tunggal dari: ",
     "comment-entry-go-root": "Lihat konteks lengkapnya",
     "comment-entry-go-parent": "Lihat sumber utamanya",
-    "hidden-warning": "This content got low rating by people.",
+    "hidden-warning": "Konten ini mendapat peringkat rendah oleh pengguna.",
     "delete-disabled": "Konten setelah pembayaran tidak bisa dihapus.",
     "muted-warning": "Konten ini dibisukan oleh moderator {{community}} karena tidak mengikuti pedoman komunitas.",
-    "lowrep-warning": "Author of this content has low reputation.",
+    "lowrep-warning": "Penulis konten ini memiliki reputasi rendah.",
     "deleted-content-warning": "Konten ini telah dihapus oleh penulis. Anda dapat melihatnya dari Blockchain ",
     "comments-hidden": "Penulis konten ini diheningkan oleh Anda.",
     "address-copy": "Salin alamat postingan",
     "address-copied": "Tempel alamat yang disalin ke papan klip.",
-    "content-copied": "Content copied to clipboard.",
+    "content-copied": "Konten disalin ke papan klip.",
     "browse-original": "Tampilan tulisan asli",
     "cross-post-by": "Postingan bersilangan dengan",
     "cross-post-community": "komunitas",
@@ -571,7 +571,7 @@
     "select-asset": "Pilih Aset",
     "slider-hint": "Seret penggeser tersebut untuk menyesuaikan jumlahnya.",
     "submit": "Pembelian",
-    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
+    "purchase-message": "Atau kirim jumlah berapa pun ke @esteem.app dengan `poin` sebagai memo untuk membeli Poin."
   },
   "promote": {
     "title": "Promosikan",
@@ -782,14 +782,14 @@
     "placeholder-has-tags": "Tambahkan lagi",
     "suggestion-header": "Tagar",
     "error-max": "Maksimum {{n}} tagar",
-    "limited_tags": "Only 10 tags allowed, remove some",
-    "limited_length": "Maximum length of each tag should be 24",
-    "limited_dash": "Use one dash in each tag",
-    "limited_space": "Use space to separate tags",
-    "limited_lowercase": "Only use lower letters in tag",
-    "limited_characters": "Use only lowercase letters, digits and one dash",
-    "limited_firstchar": "Tag must start with a letter",
-    "limited_lastchar": "Tag must end with letter or number"
+    "limited_tags": "Hanya 10 tag yang diizinkan, hapus beberapa",
+    "limited_length": "Panjang maksimum setiap tag harus 24 karakter",
+    "limited_dash": "Gunakan satu tanda hubung di setiap tag",
+    "limited_space": "Gunakan spasi untuk memisahkan tag",
+    "limited_lowercase": "Hanya gunakan huruf kecil dalam tag",
+    "limited_characters": "Gunakan hanya huruf kecil, angka, dan satu tanda hubung",
+    "limited_firstchar": "Tag harus dimulai dengan huruf",
+    "limited_lastchar": "Tag harus diakhiri dengan huruf atau angka"
   },
   "community-selector": {
     "choose": "Pilih sebuah komunitas",
@@ -1187,7 +1187,7 @@
     "error-occured": "Terjadi kesalahan server."
   },
   "layouts": {
-    "grid": "Grid",
-    "classic": "Classic"
+    "grid": "Kisi",
+    "classic": "Klasik"
   }
 }
