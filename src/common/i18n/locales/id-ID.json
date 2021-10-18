@@ -957,9 +957,9 @@
     "return-description": "Ini adalah proposal pengembalian dasar. Setiap proposal dengan suara lebih sedikit tidak akan menerima dana.",
     "votes-dialog-title": "Vote pada Proposal #{{n}}",
     "see-all": "lihat semua proposal",
-    "daily-funded": "daily funded",
-    "daily-budget": "daily budget",
-    "total-budget": "total budget"
+    "daily-funded": "didanai setiap hari",
+    "daily-budget": "anggaran harian",
+    "total-budget": "total anggaran"
   },
   "gallery": {
     "title": "Galeri",
