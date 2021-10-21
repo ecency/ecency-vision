@@ -39,7 +39,7 @@ const AuthorInfoCard = (props: Props) => {
   // For fetching authors about and display name information
   const getAuthorInfo = async () => {
     const _authorInfo = (await getAccountFull(author))?.profile;
-
+    
     setAuthorInfo({
       name: _authorInfo?.name || "",
       about: _authorInfo?.about || _authorInfo?.location || "",
