@@ -139,7 +139,7 @@ class ProfilePage extends BaseComponent<Props, State> {
         if (!account) {
             // The account isn't in reducer. Fetch it and add to reducer.
             this.stateSet({loading: true});
-            
+
             return getAccountFull(username).then(data => {
                 if (data.name === username) {
                     addAccount(data);
@@ -149,7 +149,6 @@ class ProfilePage extends BaseComponent<Props, State> {
             });
         } else {
             // The account is in reducer. Update it.
-            
             return getAccountFull(username).then(data => {
                 if (data.name === username) {
                     addAccount(data);
