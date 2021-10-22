@@ -119,8 +119,12 @@ class CommunityPage extends BaseComponent<Props, State> {
             if (data) {
                 addCommunity(data);
             }
-        })
-        .finally(() => {
+            return data
+        }).then((data) => {
+            if (data && data.name === name) {
+                addAccount(data);
+            }
+        }).finally(() => {
             this.stateSet({loading: false});
         });
     }
