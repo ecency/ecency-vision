@@ -157,10 +157,6 @@ export class TagSelector extends Component<Props, State> {
     };
 
     componentDidUpdate(prevProps: any, prevState: any) {
-      console.log('prevState: ', prevState)
-      console.log('state: ', this.state)
-      console.log('onValid: ', this.props.onValid);
-
       if(prevState.warning !== this.state.warning && this.state.warning !== '') {
         this.props.onValid(true);
       } else {

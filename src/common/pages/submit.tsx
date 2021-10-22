@@ -706,7 +706,6 @@ class SubmitPage extends BaseComponent<Props, State> {
 
     render() {
         const {disabled, title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch, clearModal} = this.state;
-        console.log('disabled: ', disabled)
         //  Meta config
         const metaProps = {
             title: _t("submit.page-title"),
