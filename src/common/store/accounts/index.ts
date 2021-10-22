@@ -26,7 +26,7 @@ export const addAccount = (data: Account) => (dispatch: Dispatch) => {
         dispatch(addAct(data));
         return;
     }
-    
+
     getAccountFull(data.name).then((a) => {
         dispatch(addAct(a));
     });
