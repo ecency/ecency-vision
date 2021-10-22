@@ -49,6 +49,7 @@ interface Props {
     users: User[];
     activeUser: ActiveUser | null;
     sm?: boolean;
+    showEmoji?: boolean;
 }
 
 interface State {
@@ -74,7 +75,15 @@ export class EditorToolbar extends Component<Props> {
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.users, nextProps.users)
             || !isEqual(this.props.activeUser, nextProps.activeUser)
+            || !isEqual(this.props.showEmoji, nextProps.showEmoji)
             || !isEqual(this.state, nextState);
+    }
+
+    componentDidUpdate(prevProps: Props, prevState: State){
+        if(this.props.showEmoji !== prevProps.showEmoji && this.props.showEmoji){
+            debugger
+            this.forceUpdate()
+        }
     }
 
     toggleGallery = () => {
@@ -352,7 +361,7 @@ export class EditorToolbar extends Component<Props> {
 
     render() {
         const {gallery, fragments, image, link, mobileImage} = this.state;
-        const {global, sm, activeUser} = this.props;
+        const {global, sm, activeUser, showEmoji} = this.props;
 
         return (
             <>
@@ -480,9 +489,9 @@ export class EditorToolbar extends Component<Props> {
                     <Tooltip content={_t("editor-toolbar.emoji")}>
                         <div className="editor-tool" role="none">
                             {emoticonHappyOutlineSvg}
-                            <EmojiPicker fallback={(e) => {
+                            {showEmoji && <EmojiPicker fallback={(e) => {
                                 this.insertText(e, '');
-                            }}/>
+                            }}/>}
                         </div>
                     </Tooltip>
                     {global.usePrivate && <Tooltip content={_t("editor-toolbar.fragments")}>
@@ -548,7 +557,8 @@ export default (props: Props) => {
         global: props.global,
         users: props.users,
         activeUser: props.activeUser,
-        sm: props.sm
+        sm: props.sm,
+        showEmoji: props.showEmoji,
     }
     return <EditorToolbar {...p} />
 }

@@ -1,4 +1,4 @@
-import React, {Component, KeyboardEventHandler, Ref} from "react";
+import React, {Component, Ref} from "react";
 
 import {Form, FormControl, Button, Spinner} from "react-bootstrap";
 
@@ -66,13 +66,15 @@ interface Props {
 
 interface State {
     text: string,
-    preview: string
+    preview: string,
+    showEmoji: boolean
 }
 
 export class Comment extends Component<Props, State> {
     state: State = {
         text: '',
         preview: '',
+        showEmoji: false
     }
 
     _updateTimer: any = null;
@@ -124,11 +126,11 @@ export class Comment extends Component<Props, State> {
 
     render() {
         const {inProgress, cancellable, autoFocus, submitText, inputRef} = this.props;
-        const {text, preview} = this.state;
+        const {text, preview, showEmoji} = this.state;
         return (
             <>
-                <div className="comment-box">
-                    {EditorToolbar({...this.props, sm: true})}
+                <div className="comment-box" onClick={() => this.setState({showEmoji: true})}>
+                    {EditorToolbar({...this.props, sm: true, showEmoji})}
                     <div className="comment-body">
                         <Form.Control
                             className={`the-editor accepts-emoji ${text.length > 20 ? 'expanded' : ''}`}
