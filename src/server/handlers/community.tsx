@@ -32,7 +32,6 @@ export default async (req: express.Request, res: express.Response) => {
 
     try {
         let account = await hiveApi.getAccountFull(name);
-        
         if (account) {
             accounts.push(account);
         }
