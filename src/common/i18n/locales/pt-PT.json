@@ -83,7 +83,7 @@
   },
   "search": {
     "placeholder": "Procurar",
-    "placeholder-proposals": "Search proposals",
+    "placeholder-proposals": "Pesquisar propostas",
     "placeholder-count": "Procurar {{n}} posts",
     "header-tag": "Etiquetas",
     "header-account": "Usuários",
@@ -281,7 +281,7 @@
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copiar endereço do post",
     "address-copied": "Endereço do post copiado.",
-    "content-copied": "Content copied to clipboard.",
+    "content-copied": "Conteúdo copiado para a área de transferência.",
     "browse-original": "Abrir publicação original",
     "cross-post-by": "Repostado por",
     "cross-post-community": "comunidade",
