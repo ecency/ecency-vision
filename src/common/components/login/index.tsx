@@ -208,6 +208,7 @@ export class UserItem extends Component<UserItemProps> {
                         const {onDelete} = this.props;
                         onDelete(user);
                     }}
+                    trigger="click"
                 >
                     <div
                         className="btn-delete"
