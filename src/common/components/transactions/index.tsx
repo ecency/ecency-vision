@@ -397,6 +397,8 @@ export class TransactionList extends Component<Props> {
         const {transactions} = this.props;
         const {list, loading, group} = transactions;
 
+        console.log('list: ', list)
+
         return (
             <div className="transaction-list">
                 <div className="transaction-list-header">

@@ -16,7 +16,6 @@ import {_t} from "../../i18n";
 
 import defaults from "../../constants/defaults.json";
 
-
 import {lookupAccounts} from "../../api/hive";
 import {dataLimit, getCommunities} from "../../api/bridge";
 

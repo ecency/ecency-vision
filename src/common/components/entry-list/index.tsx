@@ -21,6 +21,7 @@ import { _t } from "../../i18n";
 import * as ls from "../../util/local-storage";
 import LinearProgress from "../linear-progress";
 import { getFollowing } from "../../api/hive";
+import { search as searchApi } from "../../api/search-api"
 
 interface Props {
     history: History;
@@ -113,6 +114,8 @@ export class EntryListContent extends Component<Props, State> {
         const { value } = event.target;
         this.setState({ search: value});
         this.handleInputChange(value)
+
+        searchApi(`{author: ${value}}`, "popularity", "1", "2020-10-20T20:43:33");
     }
 
     handleInputChange =( value: any) => {
@@ -142,8 +145,6 @@ export class EntryListContent extends Component<Props, State> {
         // let dataToRender = entries;
         let dataToRender = entriesData;
 
-        console.log('entriesData: ', entriesData)
-        
         let mutedList: string[] = [];
         if(mutedUsers && mutedUsers.length > 0 && activeUser && activeUser.username){
             mutedList = mutedList.concat(mutedUsers)
