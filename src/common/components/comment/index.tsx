@@ -129,7 +129,7 @@ export class Comment extends Component<Props, State> {
         const {text, preview, showEmoji} = this.state;
         return (
             <>
-                <div className="comment-box" onClick={() => this.setState({showEmoji: true})}>
+                <div className="comment-box" onMouseEnter={() => !showEmoji && this.setState({showEmoji: true})}>
                     {EditorToolbar({...this.props, sm: true, showEmoji})}
                     <div className="comment-body">
                         <Form.Control

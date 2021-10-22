@@ -79,13 +79,6 @@ export class EditorToolbar extends Component<Props> {
             || !isEqual(this.state, nextState);
     }
 
-    componentDidUpdate(prevProps: Props, prevState: State){
-        if(this.props.showEmoji !== prevProps.showEmoji && this.props.showEmoji){
-            debugger
-            this.forceUpdate()
-        }
-    }
-
     toggleGallery = () => {
         const {gallery} = this.state;
         this.setState({gallery: !gallery});
@@ -361,7 +354,7 @@ export class EditorToolbar extends Component<Props> {
 
     render() {
         const {gallery, fragments, image, link, mobileImage} = this.state;
-        const {global, sm, activeUser, showEmoji} = this.props;
+        const {global, sm, activeUser, showEmoji = true} = this.props;
 
         return (
             <>
