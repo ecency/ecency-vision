@@ -4,7 +4,7 @@ import moment from "moment";
 
 import {History} from "history";
 
-import {FormControl} from "react-bootstrap";
+import {FormControl, Button} from "react-bootstrap";
 
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {OperationGroup, Transaction, Transactions} from "../../store/transactions/types";
@@ -385,17 +385,46 @@ interface Props {
     fetchTransactions: (username: string, group?: OperationGroup | "") => void;
 }
 
+interface State {
+    currentPage: number;
+    pageSize: number;
+    loadingLoadMore: boolean;
+}
+
 export class TransactionList extends Component<Props> {
+    state: State = {
+        currentPage: 1,
+        pageSize: 20,
+        loadingLoadMore: false,
+    };
+
     typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {account, fetchTransactions} = this.props;
         const group = e.target.value;
 
+        this.setState({...this.state, currentPage: 1});
+
         fetchTransactions(account.name, group as OperationGroup);
     }
 
+    loadMore = () => {
+        this.setState({...this.state, loadingLoadMore: true});
+        setTimeout(() => {
+            this.setState({
+                ...this.state, 
+                loadingLoadMore: false,
+                currentPage: this.state.currentPage + 1
+            });
+        }, 500)
+    }
+
     render() {
+        const {currentPage, pageSize, loadingLoadMore} = this.state;
         const {transactions} = this.props;
         const {list, loading, group} = transactions;
+
+        const transactionsList = list.filter((item, k)=> k < currentPage * pageSize);
+        const hasMore = !loading && list.length > currentPage * pageSize;
 
         return (
             <div className="transaction-list">
@@ -408,10 +437,11 @@ export class TransactionList extends Component<Props> {
                     </FormControl>
                 </div>
                 {loading && <LinearProgress/>}
-                {list.map((x, k) => (
+                {transactionsList.map((x, k) => (
                     <TransactionRow {...this.props} key={k} transaction={x}/>
                 ))}
                 {(!loading && list.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
+                {(!loading && hasMore) && <Button disabled={loadingLoadMore} block={true} onClick={this.loadMore} className="mt-2">{_t('g.load-more')}</Button>}
             </div>
         );
     }
