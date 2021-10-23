@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 import isEqual from "react-fast-compare";
 
-import {History} from "history";
+import {History,Location} from "history";
 
 import moment from "moment";
 
@@ -32,6 +32,7 @@ import {linkSvg} from "../../img/svg";
 
 interface Props {
     history: History;
+    location: Location;
     global: Global;
     dynamicProps: DynamicProps;
     users: User[];
@@ -173,6 +174,7 @@ export default (p: Props) => {
     const props = {
         global: p.global,
         history: p.history,
+        location: p.location,
         dynamicProps: p.dynamicProps,
         users: p.users,
         activeUser: p.activeUser,
