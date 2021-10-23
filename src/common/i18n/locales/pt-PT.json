@@ -957,9 +957,9 @@
     "return-description": "Esta é a proposta de base de retorno. Todas as propostas com menos votos não receberão fundos.",
     "votes-dialog-title": "Votos na proposta #{{n}}",
     "see-all": "ver todas as propostas",
-    "daily-funded": "daily funded",
-    "daily-budget": "daily budget",
-    "total-budget": "total budget"
+    "daily-funded": "fundo diário",
+    "daily-budget": "orçamento diário",
+    "total-budget": "orçamento total"
   },
   "gallery": {
     "title": "Galeria",
