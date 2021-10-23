@@ -211,11 +211,11 @@
 .selection-item {
   width: 100px;
   height: 100px;
-  background-color: $light-grey;
+  background-color: $light-periwinkle;
   border-radius: 10px;
   background-repeat: no-repeat;
   background-size: cover;
-  border: 5px solid $light-grey;
+  border: 5px solid $light-periwinkle;
   border-radius: 1.25rem;
   cursor: pointer;
 }
@@ -223,4 +223,22 @@
 .selected {
   border: 5px solid $dark-sky-blue;
   background-color: $dark-sky-blue;
+}
+
+.selection-container {
+  max-height: 300px;
+  overflow-y: auto;
+  @media (max-width: $sm-break) {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .check {
+    font-size: 14px;
+    top: 9px;
+    right: 25px;
+    svg {
+      width: 25px;
+    }
+  }
 }

@@ -63,7 +63,7 @@ import * as ls from "../util/local-storage";
 
 import {version} from "../../../package.json";
 
-import {contentSaveSvg} from "../img/svg";
+import {checkSvg, contentSaveSvg} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import ModalConfirm from "../components/modal-confirm";
@@ -145,6 +145,7 @@ interface State extends PostBase, Advanced {
     advanced: boolean;
     clearModal: boolean;
     thumbnails: string[]
+    selectedThumbnail: string
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -160,6 +161,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         advanced: false,
         beneficiaries: [],
         thumbnails: [],
+        selectedThumbnail: "",
         schedule: null,
         reblogSwitch: false,
         clearModal: false,
@@ -182,6 +184,11 @@ class SubmitPage extends BaseComponent<Props, State> {
         this.detectEntry().then();
 
         this.detectDraft().then();
+
+        let selectedThumbnail = ls.get('draft_selected_image');
+        if(selectedThumbnail && selectedThumbnail.length > 0){
+            this.selectThumbnails(selectedThumbnail)
+        }
     };
 
     componentDidUpdate(prevProps: Readonly<Props>) {
@@ -441,8 +448,8 @@ class SubmitPage extends BaseComponent<Props, State> {
 
         this._updateTimer = setTimeout(() => {
             const {title, tags, body, editingEntry} = this.state;
-            const {image} = extractMetaData(body);
-            this.stateSet({preview: {title, tags, body}, thumbnails:image || []});
+            const {thumbnails} = extractMetaData(body);
+            this.stateSet({preview: {title, tags, body}, thumbnails: thumbnails || []});
             if (editingEntry === null) {
                 this.saveLocalDraft();
             }
@@ -486,7 +493,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const {activeUser, history, addEntry} = this.props;
-        const {title, tags, body, reward, reblogSwitch, beneficiaries} = this.state;
+        const {title, tags, body, reward, reblogSwitch, beneficiaries, selectedThumbnail} = this.state;
 
         // make sure active user fully loaded
         if (!activeUser || !activeUser.data.__loaded) {
@@ -517,7 +524,7 @@ class SubmitPage extends BaseComponent<Props, State> {
 
         const [parentPermlink] = tags;
         const meta = extractMetaData(body);
-        meta.image = this.state.thumbnails
+        meta.image = [selectedThumbnail, ...meta.image!.splice(0,9)]
         const jsonMeta = makeJsonMetaData(meta, tags, version);
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
         this.stateSet({posting: true});
@@ -701,17 +708,13 @@ class SubmitPage extends BaseComponent<Props, State> {
         }).finally(() => this.stateSet({posting: false}))
     }
 
-    swapThumbnails = (index:number) => {
-        const {thumbnails} = this.state;
-        if(thumbnails && thumbnails.length > 0){
-            let images = thumbnails;
-            [images[0], images[index]] = [images[index], images[0]];
-            this.setState({thumbnails:images})
-        }
+    selectThumbnails = (selectedThumbnail: string) => {
+        this.setState({ selectedThumbnail });
+        ls.set('draft_selected_image', selectedThumbnail)
     }
 
     render() {
-        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch, clearModal, thumbnails} = this.state;
+        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch, clearModal, selectedThumbnail, thumbnails} = this.state;
 
         //  Meta config
         const metaProps = {
@@ -933,16 +936,30 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 <Form.Label column={true} sm="3">
                                                     {_t("submit.thumbnail")}
                                                 </Form.Label>
-                                                <div className="col-sm-9 d-flex flex-wrap">
-                                                    {thumbnails!.map((item, i)=>
-                                                        <div
-                                                            className={`selection-item shadow ${i === 0 ? "selected" : ""} mr-3 mb-2`}
-                                                            style={{backgroundImage:`url("${item}")`}}
-                                                            onClick={()=>this.swapThumbnails(i)}
-                                                            key={item}
-                                                        />
-                                                        )
-                                                    }
+                                                <div className="col-sm-9 d-flex flex-wrap selection-container">
+                                                    {thumbnails!.map((item, i)=> {
+                                                        let selectedItem = selectedThumbnail;
+                                                        switch(selectedItem){
+                                                            case '':
+                                                                selectedItem = thumbnails[0];
+                                                                break;
+                                                        }
+                                                        if(!thumbnails.includes(selectedThumbnail)){
+                                                            selectedItem = thumbnails[0];
+                                                        }
+                                                        return <div className="position-relative">
+                                                                    <div
+                                                                        className={`selection-item shadow ${selectedItem === item ? "selected" : ""} mr-3 mb-2`}
+                                                                        style={{backgroundImage:`url("${item}")`}}
+                                                                        onClick={() => this.selectThumbnails(item)}
+                                                                        key={item}
+                                                                    />
+                                                                    {selectedItem === item && <div className="text-success check position-absolute bg-white rounded-circle d-flex justify-content-center align-items-center">
+                                                                        {checkSvg}
+                                                                    </div>}
+                                                                </div>
+                                                        }
+                                                    )}
                                                 </div>
                                             </Form.Group>
                                         }
