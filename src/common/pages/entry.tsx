@@ -188,16 +188,25 @@ class EntryPage extends BaseComponent<Props, State> {
 
     // detects distance between title and comments section sets visibility of profile card
     detect = () => {
-
-       const infoCard:HTMLElement | null = document.getElementById("avatar-fixed");
+        const { showProfileBox } = this.state
+       const infoCard:HTMLElement | null = document.getElementById("avatar-fixed-container");
        const top = this?.viewElement?.getBoundingClientRect()?.top || 120;
         
        if(infoCard != null && window.scrollY > 180  && top && !(top <= 0)) {
-            infoCard.classList.add('visible')
+            infoCard.classList.replace('invisible','visible');
+            if(!showProfileBox){
+                this.setState({showProfileBox:true})
+            }
        } else if( infoCard != null && window.scrollY <= 180) {
-            infoCard.classList.remove('visible')
+            infoCard.classList.replace('visible', 'invisible')
+            if(showProfileBox){
+                this.setState({showProfileBox:false})
+            }
        } else if(top && top <= 0 && infoCard !== null){
-            infoCard.classList.remove('visible')
+            infoCard.classList.replace('visible', 'invisible')
+            if(showProfileBox){
+                this.setState({showProfileBox:false})
+            }
        } else return
 
     }
@@ -451,7 +460,7 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, commentText, isMounted, postIsDeleted, deletedEntry} = this.state;
+        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, commentText, isMounted, postIsDeleted, deletedEntry, showProfileBox} = this.state;
         const {global, history, match} = this.props;
 
         let navBar = global.isElectron ? NavBarElectron({
@@ -489,7 +498,9 @@ class EntryPage extends BaseComponent<Props, State> {
                         <div className="row">
                             <div className="col-0 col-lg-2 mt-5">
                                 <div className="mb-4 mt-5">
-                                {!global.isMobile && <AuthorInfoCard {...this.props} entry={{author} as any} />}
+                                    <div id="avatar-fixed-container" className="invisible">
+                                        {!global.isMobile && showProfileBox && <AuthorInfoCard {...this.props} entry={{author} as any} />}
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-12 col-lg-9">
@@ -854,7 +865,11 @@ class EntryPage extends BaseComponent<Props, State> {
                                     })()}
 
 
-                                    {!global.isMobile && <AuthorInfoCard {...this.props} entry={entry} />}
+                                    {!global.isMobile && 
+                                        <div id="avatar-fixed-container" className="invisible">
+                                            {showProfileBox && <AuthorInfoCard {...this.props} entry={entry} />}
+                                        </div>
+                                    }
 
                                     <div className="entry-footer">
                                         <div className="entry-tags">

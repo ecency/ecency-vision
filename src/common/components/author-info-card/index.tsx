@@ -9,6 +9,7 @@ import BookmarkBtn from "../bookmark-btn";
 import FavoriteBtn from "../favorite-btn";
 import FollowControls from "../follow-controls";
 import ProfileLink from "../profile-link";
+import { Skeleton } from "../skeleton";
 import UserAvatar from "../user-avatar";
 
 interface MatchParams {
@@ -32,22 +33,33 @@ const AuthorInfoCard = (props: Props) => {
     about: "",
   });
 
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     !props?.global?.isMobile && getAuthorInfo();
   }, []);
 
   // For fetching authors about and display name information
   const getAuthorInfo = async () => {
+    setLoading(true)
     const _authorInfo = (await getAccountFull(author))?.profile;
 
     setAuthorInfo({
       name: _authorInfo?.name || "",
       about: _authorInfo?.about || _authorInfo?.location || "",
     });
+    setLoading(false)
   };
-
-
-  return (
+  
+  return loading ? 
+  <div className="avatar-fixed">
+    <div className="d-flex align-items-center mb-3">
+      <Skeleton className="avatar-skeleton rounded-circle" />
+      <Skeleton className=" ml-2 text-skeleton" />
+    </div>
+    <Skeleton className="text-skeleton mb-2" />
+    <Skeleton className="text-skeleton" />
+  </div> : (
     <div className="avatar-fixed" id="avatar-fixed">
       <div className="first-line">
         <span className="avatar">
