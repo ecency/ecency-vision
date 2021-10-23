@@ -37,8 +37,13 @@ export class Search extends BaseComponent<Props, State> {
     };
 
     componentDidMount() {
-        const {fetchTrendingTags} = this.props;
-        fetchTrendingTags();
+        const {fetchTrendingTags, global: {filter, tag}, trendingTags} = this.props;
+        
+        if(trendingTags && trendingTags.list.length === 0 && 
+            (filter === "feed" || filter === "trending" || filter === "hot" || 
+            (tag === "my" && filter === "created"))){
+                fetchTrendingTags();
+        }
 
         this.grabSearchQuery();
     }
