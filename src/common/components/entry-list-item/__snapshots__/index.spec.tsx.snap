@@ -96,7 +96,7 @@ exports[`(1) Default render 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 12:53 PM"
+        title="Monday, June 1, 2020 10:53 AM"
       >
         5 days
       </span>
@@ -382,7 +382,7 @@ exports[`(2) Grid view 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 12:53 PM"
+        title="Monday, June 1, 2020 10:53 AM"
       >
         5 days
       </span>
@@ -667,7 +667,7 @@ exports[`(3) Nsfw 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 12:53 PM"
+        title="Monday, June 1, 2020 10:53 AM"
       >
         5 days
       </span>
@@ -959,7 +959,7 @@ exports[`(4) Nsfw with active user 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 12:53 PM"
+        title="Monday, June 1, 2020 10:53 AM"
       >
         5 days
       </span>
@@ -1250,7 +1250,7 @@ exports[`(5) Nsfw but allowed 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 12:53 PM"
+        title="Monday, June 1, 2020 10:53 AM"
       >
         5 days
       </span>
@@ -1568,7 +1568,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
       />
       <span
         className="date"
-        title="Wednesday, March 24, 2021 11:14 PM"
+        title="Wednesday, March 24, 2021 9:14 PM"
       >
         10 months
       </span>
