@@ -947,7 +947,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                         if(!thumbnails.includes(selectedThumbnail)){
                                                             selectedItem = thumbnails[0];
                                                         }
-                                                        return <div className="position-relative">
+                                                        return <div className="position-relative" key={item+i}>
                                                                     <div
                                                                         className={`selection-item shadow ${selectedItem === item ? "selected" : ""} mr-3 mb-2`}
                                                                         style={{backgroundImage:`url("${item}")`}}
