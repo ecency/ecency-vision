@@ -109,36 +109,36 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
                         <div className="flex-grow-1 d-flex border-bottom">
                             <div className="p-3 flex-grow-1">
                                 <b>{_t("profile-info.joined")}</b>
-                                <div>{loading ? <Skeleton className="loading-md" /> : profile && moment(profile.created, "YYYY-MM-DD").fromNow()}</div>
+                                <div className="text-break-wrap">{loading ? <Skeleton className="loading-md" /> : profile && moment(profile.created, "YYYY-MM-DD").fromNow()}</div>
                             </div>
 
-                            <div className={`p-3 flex-grow-1 ${loading ? "": profile && profile.profile.location?"":"d-none"}`}>
+                            <div className={`p-3 flex-grow-1 ${loading ? "": profile && profile.profile.location ? "" : "d-none"}`}>
                                 <b>{_t("profile-edit.location")}</b>
-                                <div>{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.location || "---"}</div>
+                                <div className="text-break-wrap">{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.location || "---"}</div>
                             </div>
                         </div>
 
                         <div className="flex-grow-1 d-flex border-bottom">
                             <div className="p-3 flex-grow-1">
                                 <b>{_t("profile.section-posts")}</b>
-                                <div>{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/posts`} onClick={(e) => onClose(e, true)}>{profile.post_count}</Link>}</div>
+                                <div className="text-break-wrap">{loading ? <Skeleton className="loading-md" /> : profile && <Link to={`/@${username}/posts`} onClick={(e) => onClose(e, true)}>{profile.post_count}</Link>}</div>
                             </div>
 
                             <div className="p-3 flex-grow-1">
                                 <b>{_t("profile.voting-power")}</b>
-                                <div>{loading ? <Skeleton className="loading-md" /> : profile && profile.voting_power/100}</div>
+                                <div className="text-break-wrap">{loading ? <Skeleton className="loading-md" /> : profile && profile.voting_power/100}</div>
                             </div>
                         </div>
 
                         <div className="flex-grow-1 d-flex border-bottom">
                             <div className="p-3 flex-grow-1">
                                 <b>{_t("profile.followers")}</b>
-                                <div>{loadingFollowCount ? <Skeleton className="loading-md" /> : followCount && followCount.follower_count}</div>
+                                <div className="text-break-wrap">{loadingFollowCount ? <Skeleton className="loading-md" /> : followCount && followCount.follower_count}</div>
                             </div>
                             
                             <div className="p-3 flex-grow-1">
                                 <b>{_t("profile.following")}</b>
-                                <div>{loadingFollowCount ? <Skeleton className="loading-md" /> : followCount && followCount.following_count}</div>
+                                <div className="text-break-wrap">{loadingFollowCount ? <Skeleton className="loading-md" /> : followCount && followCount.following_count}</div>
                             </div>
                         </div>
                     </div>
