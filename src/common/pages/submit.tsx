@@ -144,8 +144,9 @@ interface State extends PostBase, Advanced {
     editingDraft: Draft | null;
     advanced: boolean;
     clearModal: boolean;
-    thumbnails: string[]
-    selectedThumbnail: string
+    disabled: boolean;
+    thumbnails: string[];
+    selectedThumbnail: string;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -170,6 +171,7 @@ class SubmitPage extends BaseComponent<Props, State> {
             tags: [],
             body: "",
         },
+        disabled: true
     };
 
     _updateTimer: any = null;
@@ -210,6 +212,10 @@ class SubmitPage extends BaseComponent<Props, State> {
         if (location.pathname !== prevProps.location.pathname) {
             this.detectDraft().then();
         }
+    }
+
+    handleValidForm = (value: boolean) => {
+      this.setState({ disabled: value });
     }
 
     isEntry = (): boolean => {
@@ -714,7 +720,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch, clearModal, selectedThumbnail, thumbnails} = this.state;
+        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch, clearModal, selectedThumbnail, thumbnails, disabled} = this.state;
 
         //  Meta config
         const metaProps = {
@@ -777,6 +783,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 tags,
                                 maxItem: 10,
                                 onChange: this.tagsChanged,
+                                onValid: this.handleValidForm
                             })}
                         </div>
                         <div className="body-input">
@@ -839,7 +846,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                         <span/>
                                         <div>
                                             {global.usePrivate && (
-                                                <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={saving || posting}>
+                                                <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={disabled || saving || posting}>
                                                     {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
                                                 </Button>)}
                                             {LoginRequired({
@@ -847,7 +854,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 children: <Button
                                                     className="d-inline-flex align-items-center"
                                                     onClick={this.publish}
-                                                    disabled={posting || saving}
+                                                    disabled={disabled || posting || saving}
                                                 >
                                                     {posting && spinner}
                                                     {_t("submit.publish")}
