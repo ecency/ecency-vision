@@ -223,6 +223,83 @@ exports[`(3) No bg image - Day theme 1`] = `
 </div>
 `;
 
+exports[`(3) No bg image - Day theme 2`] = `
+<div
+  className="profile-cover"
+>
+  <div
+    className="cover-image"
+    style={
+      Object {
+        "backgroundImage": "url('cover-fallback-day.png')",
+      }
+    }
+  />
+  <div
+    className="follow-controls-holder"
+  >
+    <span
+      className="profile-info"
+    >
+      <svg
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+        }
+      }
+      type="button"
+    >
+      Follow
+    </button>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Mute
+    </button>
+    <span
+      className="favorite-btn"
+      onClick={[Function]}
+    >
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        title="Add to favorites"
+        type="button"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12,15.39L8.24,17.66L9.23,13.38L5.91,10.5L10.29,10.13L12,6.09L13.71,10.13L18.09,10.5L14.77,13.38L15.76,17.66M22,9.24L14.81,8.63L12,2L9.19,8.63L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+    </span>
+  </div>
+</div>
+`;
+
 exports[`(4) No bg image - Night theme 1`] = `
 <div
   className="profile-cover"
@@ -301,6 +378,62 @@ exports[`(4) No bg image - Night theme 1`] = `
 `;
 
 exports[`(5) usePrivate = false 1`] = `
+<div
+  className="profile-cover"
+>
+  <div
+    className="cover-image"
+    style={
+      Object {
+        "backgroundImage": "url('https://images.ecency.com/p/Y2iXpRRkNSnseh3NuL6KUBitJTXrc5K3Kfvsq9JK3SkbY.png?format=match&mode=fit')",
+      }
+    }
+  />
+  <div
+    className="follow-controls-holder"
+  >
+    <span
+      className="profile-info"
+    >
+      <svg
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+        }
+      }
+      type="button"
+    >
+      Follow
+    </button>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Mute
+    </button>
+  </div>
+</div>
+`;
+
+exports[`(5) usePrivate = false 2`] = `
 <div
   className="profile-cover"
 >

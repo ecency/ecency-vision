@@ -16,7 +16,7 @@ import moment, {Moment} from "moment";
 
 import defaults from "../constants/defaults.json";
 
-import {renderPostBody, setProxyBase} from "@ecency/render-helper";
+import {proxifyImageSrc, renderPostBody, setProxyBase} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
@@ -63,7 +63,7 @@ import * as ls from "../util/local-storage";
 
 import {version} from "../../../package.json";
 
-import {contentSaveSvg} from "../img/svg";
+import {checkSvg, contentSaveSvg} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import ModalConfirm from "../components/modal-confirm";
@@ -145,6 +145,8 @@ interface State extends PostBase, Advanced {
     advanced: boolean;
     clearModal: boolean;
     disabled: boolean;
+    thumbnails: string[];
+    selectedThumbnail: string;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -159,6 +161,8 @@ class SubmitPage extends BaseComponent<Props, State> {
         editingDraft: null,
         advanced: false,
         beneficiaries: [],
+        thumbnails: [],
+        selectedThumbnail: "",
         schedule: null,
         reblogSwitch: false,
         clearModal: false,
@@ -182,6 +186,11 @@ class SubmitPage extends BaseComponent<Props, State> {
         this.detectEntry().then();
 
         this.detectDraft().then();
+
+        let selectedThumbnail = ls.get('draft_selected_image');
+        if(selectedThumbnail && selectedThumbnail.length > 0){
+            this.selectThumbnails(selectedThumbnail)
+        }
     };
 
     componentDidUpdate(prevProps: Readonly<Props>) {
@@ -445,7 +454,8 @@ class SubmitPage extends BaseComponent<Props, State> {
 
         this._updateTimer = setTimeout(() => {
             const {title, tags, body, editingEntry} = this.state;
-            this.stateSet({preview: {title, tags, body}});
+            const {thumbnails} = extractMetaData(body);
+            this.stateSet({preview: {title, tags, body}, thumbnails: thumbnails || []});
             if (editingEntry === null) {
                 this.saveLocalDraft();
             }
@@ -489,7 +499,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const {activeUser, history, addEntry} = this.props;
-        const {title, tags, body, reward, reblogSwitch, beneficiaries} = this.state;
+        const {title, tags, body, reward, reblogSwitch, beneficiaries, selectedThumbnail} = this.state;
 
         // make sure active user fully loaded
         if (!activeUser || !activeUser.data.__loaded) {
@@ -520,9 +530,9 @@ class SubmitPage extends BaseComponent<Props, State> {
 
         const [parentPermlink] = tags;
         const meta = extractMetaData(body);
+        meta.image = [selectedThumbnail, ...meta.image!.splice(0,9)]
         const jsonMeta = makeJsonMetaData(meta, tags, version);
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
-
         this.stateSet({posting: true});
         comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options, true)
             .then(() => {
@@ -704,8 +714,14 @@ class SubmitPage extends BaseComponent<Props, State> {
         }).finally(() => this.stateSet({posting: false}))
     }
 
+    selectThumbnails = (selectedThumbnail: string) => {
+        this.setState({ selectedThumbnail });
+        ls.set('draft_selected_image', selectedThumbnail)
+    }
+
     render() {
-        const {disabled, title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch, clearModal} = this.state;
+        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch, clearModal, selectedThumbnail, thumbnails, disabled} = this.state;
+
         //  Meta config
         const metaProps = {
             title: _t("submit.page-title"),
@@ -922,6 +938,38 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 </Col>
                                             </Form.Group>
                                         )}
+                                        {thumbnails.length > 0 && 
+                                            <Form.Group as={Row}>
+                                                <Form.Label column={true} sm="3">
+                                                    {_t("submit.thumbnail")}
+                                                </Form.Label>
+                                                <div className="col-sm-9 d-flex flex-wrap selection-container">
+                                                    {thumbnails!.map((item, i)=> {
+                                                        let selectedItem = selectedThumbnail;
+                                                        switch(selectedItem){
+                                                            case '':
+                                                                selectedItem = thumbnails[0];
+                                                                break;
+                                                        }
+                                                        if(!thumbnails.includes(selectedThumbnail)){
+                                                            selectedItem = thumbnails[0];
+                                                        }
+                                                        return <div className="position-relative" key={item+i}>
+                                                                    <div
+                                                                        className={`selection-item shadow ${selectedItem === item ? "selected" : ""} mr-3 mb-2`}
+                                                                        style={{backgroundImage:`url("${proxifyImageSrc(item, 260, 200)}")`}}
+                                                                        onClick={() => this.selectThumbnails(item)}
+                                                                        key={item}
+                                                                    />
+                                                                    {selectedItem === item && <div className="text-success check position-absolute bg-white rounded-circle d-flex justify-content-center align-items-center">
+                                                                        {checkSvg}
+                                                                    </div>}
+                                                                </div>
+                                                        }
+                                                    )}
+                                                </div>
+                                            </Form.Group>
+                                        }
                                     </div>
                                 </div>
                                 {toolBar}
@@ -943,4 +991,4 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 }
 
-export default connect(pageMapStateToProps, pageMapDispatchToProps)(SubmitPage);
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(SubmitPage as any);

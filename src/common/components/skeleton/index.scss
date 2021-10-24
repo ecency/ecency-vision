@@ -1,0 +1,12 @@
+.skeleton {
+    animation: anim-fadein-out 2s infinite;
+    border-radius: 0.25rem;
+
+    @include themify(night) {
+        background-color: $dark;
+      }
+
+    @include themify(day) {
+        background-color: lighten($white-four, 4);
+    }
+}

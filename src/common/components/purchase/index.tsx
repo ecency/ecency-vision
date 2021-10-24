@@ -86,7 +86,7 @@ export class Purchase extends BaseComponent<Props, State> {
         const {asset, amount, points, usd, submitted} = this.state;
 
         if (submitted) {
-            return <Transfer {...this.props} asset={asset} mode="transfer" amount={`${amount}`} to="esteem.app" memo="estm-purchase"/>
+            return <Transfer {...this.props} asset={asset} mode="transfer" amount={`${amount}`} to="esteem.app" memo="points"/>
         }
 
         return <div className="purchase-dialog-content">

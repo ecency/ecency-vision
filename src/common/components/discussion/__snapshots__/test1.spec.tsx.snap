@@ -69,17 +69,22 @@ exports[`(1) Full render with active user 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@forykw/re-esteemapp-202067t12246786z"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@forykw/re-esteemapp-202067t12246786z"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@forykw"
+          <div
+            className="d-sm-none"
+            id="forykw-re-esteemapp-202067t12246786z"
             onClick={[Function]}
           >
             <span
@@ -90,7 +95,26 @@ exports[`(1) Full render with active user 1`] = `
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@forykw"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -98,22 +122,49 @@ exports[`(1) Full render with active user 1`] = `
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@forykw"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="forykw-re-esteemapp-202067t12246786z"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="forykw-re-esteemapp-202067t12246786z"
+                onClick={[Function]}
               >
-                forykw
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="forykw-re-esteemapp-202067t12246786z"
+                >
+                  forykw
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="forykw-re-esteemapp-202067t12246786z"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@forykw"
+                onClick={[Function]}
               >
-                64
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  forykw
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -213,17 +264,22 @@ exports[`(1) Full render with active user 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@brittandjosie/re-esteemapp-qbi6t3"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@brittandjosie/re-esteemapp-qbi6t3"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@brittandjosie"
+          <div
+            className="d-sm-none"
+            id="brittandjosie-re-esteemapp-qbi6t3"
             onClick={[Function]}
           >
             <span
@@ -234,7 +290,26 @@ exports[`(1) Full render with active user 1`] = `
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@brittandjosie"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -242,22 +317,49 @@ exports[`(1) Full render with active user 1`] = `
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@brittandjosie"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="brittandjosie-re-esteemapp-qbi6t3"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="brittandjosie-re-esteemapp-qbi6t3"
+                onClick={[Function]}
               >
-                brittandjosie
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="brittandjosie-re-esteemapp-qbi6t3"
+                >
+                  brittandjosie
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="brittandjosie-re-esteemapp-qbi6t3"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@brittandjosie"
+                onClick={[Function]}
               >
-                71
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  brittandjosie
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -359,17 +461,22 @@ exports[`(1) Full render with active user 1`] = `
           className="discussion-item depth-2"
         >
           <div
-            className="item-anchor"
-            id="anchor-@ardpien/re-brittandjosie-qbjoep"
-          />
+            className="position-relative"
+          >
+            <div
+              className="item-anchor"
+              id="anchor-@ardpien/re-brittandjosie-qbjoep"
+            />
+          </div>
           <div
             className="item-inner"
           >
             <div
               className="item-figure"
             >
-              <a
-                href="/@ardpien"
+              <div
+                className="d-sm-none"
+                id="ardpien-re-brittandjosie-qbjoep"
                 onClick={[Function]}
               >
                 <span
@@ -380,7 +487,26 @@ exports[`(1) Full render with active user 1`] = `
                     }
                   }
                 />
-              </a>
+              </div>
+              <div
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <a
+                  className="d-none d-sm-inline-block"
+                  href="/@ardpien"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="user-avatar medium"
+                    style={
+                      Object {
+                        "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                      }
+                    }
+                  />
+                </a>
+              </div>
             </div>
             <div
               className="item-content"
@@ -388,22 +514,49 @@ exports[`(1) Full render with active user 1`] = `
               <div
                 className="item-header"
               >
-                <a
-                  className="author notranslate"
-                  href="/@ardpien"
-                  onClick={[Function]}
+                <div
+                  className="d-flex align-items-center"
+                  id="ardpien-re-brittandjosie-qbjoep"
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
                 >
-                  <span
-                    className="author-name"
+                  <div
+                    className="author notranslate d-flex align-items-center d-sm-none"
+                    id="ardpien-re-brittandjosie-qbjoep"
+                    onClick={[Function]}
                   >
-                    ardpien
-                  </span>
-                  <span
-                    className="author-reputation"
+                    <span
+                      className="author-name"
+                      id="ardpien-re-brittandjosie-qbjoep"
+                    >
+                      ardpien
+                    </span>
+                    <span
+                      className="author-down-arrow mx-2"
+                      id="ardpien-re-brittandjosie-qbjoep"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M7,10L12,15L17,10H7Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                  <a
+                    className="author notranslate d-none align-items-center d-sm-flex"
+                    href="/@ardpien"
+                    onClick={[Function]}
                   >
-                    47
-                  </span>
-                </a>
+                    <span
+                      className="author-name"
+                    >
+                      ardpien
+                    </span>
+                  </a>
+                </div>
                 <span
                   className="separator"
                 />
@@ -505,17 +658,22 @@ exports[`(1) Full render with active user 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@ardpien/qbi303"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@ardpien/qbi303"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@ardpien"
+          <div
+            className="d-sm-none"
+            id="ardpien-qbi303"
             onClick={[Function]}
           >
             <span
@@ -526,7 +684,26 @@ exports[`(1) Full render with active user 1`] = `
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@ardpien"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -534,22 +711,49 @@ exports[`(1) Full render with active user 1`] = `
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@ardpien"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="ardpien-qbi303"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="ardpien-qbi303"
+                onClick={[Function]}
               >
-                ardpien
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="ardpien-qbi303"
+                >
+                  ardpien
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="ardpien-qbi303"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@ardpien"
+                onClick={[Function]}
               >
-                47
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  ardpien
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -650,17 +854,22 @@ exports[`(1) Full render with active user 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@iliyan90/re-esteemapp-202066t124616772z"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@iliyan90/re-esteemapp-202066t124616772z"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@iliyan90"
+          <div
+            className="d-sm-none"
+            id="iliyan90-re-esteemapp-202066t124616772z"
             onClick={[Function]}
           >
             <span
@@ -671,7 +880,26 @@ exports[`(1) Full render with active user 1`] = `
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@iliyan90"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -679,22 +907,49 @@ exports[`(1) Full render with active user 1`] = `
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@iliyan90"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="iliyan90-re-esteemapp-202066t124616772z"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="iliyan90-re-esteemapp-202066t124616772z"
+                onClick={[Function]}
               >
-                iliyan90
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="iliyan90-re-esteemapp-202066t124616772z"
+                >
+                  iliyan90
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="iliyan90-re-esteemapp-202066t124616772z"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@iliyan90"
+                onClick={[Function]}
               >
-                60
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  iliyan90
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -795,17 +1050,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@trincowski/re-esteemapp-202066t84137915z"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@trincowski/re-esteemapp-202066t84137915z"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@trincowski"
+          <div
+            className="d-sm-none"
+            id="trincowski-re-esteemapp-202066t84137915z"
             onClick={[Function]}
           >
             <span
@@ -816,7 +1076,26 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@trincowski"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -824,22 +1103,49 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@trincowski"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="trincowski-re-esteemapp-202066t84137915z"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="trincowski-re-esteemapp-202066t84137915z"
+                onClick={[Function]}
               >
-                trincowski
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="trincowski-re-esteemapp-202066t84137915z"
+                >
+                  trincowski
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="trincowski-re-esteemapp-202066t84137915z"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@trincowski"
+                onClick={[Function]}
               >
-                68
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  trincowski
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -940,17 +1246,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@foxkoit/re-esteemapp-202066t8590757z"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@foxkoit/re-esteemapp-202066t8590757z"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@foxkoit"
+          <div
+            className="d-sm-none"
+            id="foxkoit-re-esteemapp-202066t8590757z"
             onClick={[Function]}
           >
             <span
@@ -961,7 +1272,26 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@foxkoit"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -969,22 +1299,49 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@foxkoit"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="foxkoit-re-esteemapp-202066t8590757z"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="foxkoit-re-esteemapp-202066t8590757z"
+                onClick={[Function]}
               >
-                foxkoit
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="foxkoit-re-esteemapp-202066t8590757z"
+                >
+                  foxkoit
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="foxkoit-re-esteemapp-202066t8590757z"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@foxkoit"
+                onClick={[Function]}
               >
-                71
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  foxkoit
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -1085,17 +1442,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@irisworld/re-esteemapp-202066t14588243z"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@irisworld/re-esteemapp-202066t14588243z"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@irisworld"
+          <div
+            className="d-sm-none"
+            id="irisworld-re-esteemapp-202066t14588243z"
             onClick={[Function]}
           >
             <span
@@ -1106,7 +1468,26 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@irisworld"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -1114,22 +1495,49 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@irisworld"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="irisworld-re-esteemapp-202066t14588243z"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="irisworld-re-esteemapp-202066t14588243z"
+                onClick={[Function]}
               >
-                irisworld
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="irisworld-re-esteemapp-202066t14588243z"
+                >
+                  irisworld
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="irisworld-re-esteemapp-202066t14588243z"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@irisworld"
+                onClick={[Function]}
               >
-                65
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  irisworld
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -1230,17 +1638,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@behiver/re-esteemapp-202066t85739415z"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@behiver/re-esteemapp-202066t85739415z"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@behiver"
+          <div
+            className="d-sm-none"
+            id="behiver-re-esteemapp-202066t85739415z"
             onClick={[Function]}
           >
             <span
@@ -1251,7 +1664,26 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@behiver"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -1259,22 +1691,49 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@behiver"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="behiver-re-esteemapp-202066t85739415z"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="behiver-re-esteemapp-202066t85739415z"
+                onClick={[Function]}
               >
-                behiver
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="behiver-re-esteemapp-202066t85739415z"
+                >
+                  behiver
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="behiver-re-esteemapp-202066t85739415z"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@behiver"
+                onClick={[Function]}
               >
-                57
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  behiver
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -1480,17 +1939,22 @@ exports[`(3) With selected item 1`] = `
       className="discussion-item depth-1 selected-item"
     >
       <div
-        className="item-anchor"
-        id="anchor-@forykw/re-esteemapp-202067t12246786z"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@forykw/re-esteemapp-202067t12246786z"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@forykw"
+          <div
+            className="d-sm-none"
+            id="forykw-re-esteemapp-202067t12246786z"
             onClick={[Function]}
           >
             <span
@@ -1501,7 +1965,26 @@ exports[`(3) With selected item 1`] = `
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@forykw"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -1509,22 +1992,49 @@ exports[`(3) With selected item 1`] = `
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@forykw"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="forykw-re-esteemapp-202067t12246786z"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="forykw-re-esteemapp-202067t12246786z"
+                onClick={[Function]}
               >
-                forykw
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="forykw-re-esteemapp-202067t12246786z"
+                >
+                  forykw
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="forykw-re-esteemapp-202067t12246786z"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@forykw"
+                onClick={[Function]}
               >
-                64
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  forykw
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -1624,17 +2134,22 @@ exports[`(3) With selected item 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@brittandjosie/re-esteemapp-qbi6t3"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@brittandjosie/re-esteemapp-qbi6t3"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@brittandjosie"
+          <div
+            className="d-sm-none"
+            id="brittandjosie-re-esteemapp-qbi6t3"
             onClick={[Function]}
           >
             <span
@@ -1645,7 +2160,26 @@ exports[`(3) With selected item 1`] = `
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@brittandjosie"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -1653,22 +2187,49 @@ exports[`(3) With selected item 1`] = `
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@brittandjosie"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="brittandjosie-re-esteemapp-qbi6t3"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="brittandjosie-re-esteemapp-qbi6t3"
+                onClick={[Function]}
               >
-                brittandjosie
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="brittandjosie-re-esteemapp-qbi6t3"
+                >
+                  brittandjosie
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="brittandjosie-re-esteemapp-qbi6t3"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@brittandjosie"
+                onClick={[Function]}
               >
-                71
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  brittandjosie
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -1770,17 +2331,22 @@ exports[`(3) With selected item 1`] = `
           className="discussion-item depth-2"
         >
           <div
-            className="item-anchor"
-            id="anchor-@ardpien/re-brittandjosie-qbjoep"
-          />
+            className="position-relative"
+          >
+            <div
+              className="item-anchor"
+              id="anchor-@ardpien/re-brittandjosie-qbjoep"
+            />
+          </div>
           <div
             className="item-inner"
           >
             <div
               className="item-figure"
             >
-              <a
-                href="/@ardpien"
+              <div
+                className="d-sm-none"
+                id="ardpien-re-brittandjosie-qbjoep"
                 onClick={[Function]}
               >
                 <span
@@ -1791,7 +2357,26 @@ exports[`(3) With selected item 1`] = `
                     }
                   }
                 />
-              </a>
+              </div>
+              <div
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <a
+                  className="d-none d-sm-inline-block"
+                  href="/@ardpien"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="user-avatar medium"
+                    style={
+                      Object {
+                        "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                      }
+                    }
+                  />
+                </a>
+              </div>
             </div>
             <div
               className="item-content"
@@ -1799,22 +2384,49 @@ exports[`(3) With selected item 1`] = `
               <div
                 className="item-header"
               >
-                <a
-                  className="author notranslate"
-                  href="/@ardpien"
-                  onClick={[Function]}
+                <div
+                  className="d-flex align-items-center"
+                  id="ardpien-re-brittandjosie-qbjoep"
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
                 >
-                  <span
-                    className="author-name"
+                  <div
+                    className="author notranslate d-flex align-items-center d-sm-none"
+                    id="ardpien-re-brittandjosie-qbjoep"
+                    onClick={[Function]}
                   >
-                    ardpien
-                  </span>
-                  <span
-                    className="author-reputation"
+                    <span
+                      className="author-name"
+                      id="ardpien-re-brittandjosie-qbjoep"
+                    >
+                      ardpien
+                    </span>
+                    <span
+                      className="author-down-arrow mx-2"
+                      id="ardpien-re-brittandjosie-qbjoep"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M7,10L12,15L17,10H7Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                  <a
+                    className="author notranslate d-none align-items-center d-sm-flex"
+                    href="/@ardpien"
+                    onClick={[Function]}
                   >
-                    47
-                  </span>
-                </a>
+                    <span
+                      className="author-name"
+                    >
+                      ardpien
+                    </span>
+                  </a>
+                </div>
                 <span
                   className="separator"
                 />
@@ -1916,17 +2528,22 @@ exports[`(3) With selected item 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@ardpien/qbi303"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@ardpien/qbi303"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@ardpien"
+          <div
+            className="d-sm-none"
+            id="ardpien-qbi303"
             onClick={[Function]}
           >
             <span
@@ -1937,7 +2554,26 @@ exports[`(3) With selected item 1`] = `
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@ardpien"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -1945,22 +2581,49 @@ exports[`(3) With selected item 1`] = `
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@ardpien"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="ardpien-qbi303"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="ardpien-qbi303"
+                onClick={[Function]}
               >
-                ardpien
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="ardpien-qbi303"
+                >
+                  ardpien
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="ardpien-qbi303"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@ardpien"
+                onClick={[Function]}
               >
-                47
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  ardpien
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -2061,17 +2724,22 @@ exports[`(3) With selected item 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@iliyan90/re-esteemapp-202066t124616772z"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@iliyan90/re-esteemapp-202066t124616772z"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@iliyan90"
+          <div
+            className="d-sm-none"
+            id="iliyan90-re-esteemapp-202066t124616772z"
             onClick={[Function]}
           >
             <span
@@ -2082,7 +2750,26 @@ exports[`(3) With selected item 1`] = `
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@iliyan90"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -2090,22 +2777,49 @@ exports[`(3) With selected item 1`] = `
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@iliyan90"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="iliyan90-re-esteemapp-202066t124616772z"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="iliyan90-re-esteemapp-202066t124616772z"
+                onClick={[Function]}
               >
-                iliyan90
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="iliyan90-re-esteemapp-202066t124616772z"
+                >
+                  iliyan90
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="iliyan90-re-esteemapp-202066t124616772z"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@iliyan90"
+                onClick={[Function]}
               >
-                60
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  iliyan90
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -2206,17 +2920,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@trincowski/re-esteemapp-202066t84137915z"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@trincowski/re-esteemapp-202066t84137915z"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@trincowski"
+          <div
+            className="d-sm-none"
+            id="trincowski-re-esteemapp-202066t84137915z"
             onClick={[Function]}
           >
             <span
@@ -2227,7 +2946,26 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@trincowski"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -2235,22 +2973,49 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@trincowski"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="trincowski-re-esteemapp-202066t84137915z"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="trincowski-re-esteemapp-202066t84137915z"
+                onClick={[Function]}
               >
-                trincowski
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="trincowski-re-esteemapp-202066t84137915z"
+                >
+                  trincowski
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="trincowski-re-esteemapp-202066t84137915z"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@trincowski"
+                onClick={[Function]}
               >
-                68
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  trincowski
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -2351,17 +3116,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@foxkoit/re-esteemapp-202066t8590757z"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@foxkoit/re-esteemapp-202066t8590757z"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@foxkoit"
+          <div
+            className="d-sm-none"
+            id="foxkoit-re-esteemapp-202066t8590757z"
             onClick={[Function]}
           >
             <span
@@ -2372,7 +3142,26 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@foxkoit"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -2380,22 +3169,49 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@foxkoit"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="foxkoit-re-esteemapp-202066t8590757z"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="foxkoit-re-esteemapp-202066t8590757z"
+                onClick={[Function]}
               >
-                foxkoit
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="foxkoit-re-esteemapp-202066t8590757z"
+                >
+                  foxkoit
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="foxkoit-re-esteemapp-202066t8590757z"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@foxkoit"
+                onClick={[Function]}
               >
-                71
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  foxkoit
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -2496,17 +3312,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@irisworld/re-esteemapp-202066t14588243z"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@irisworld/re-esteemapp-202066t14588243z"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@irisworld"
+          <div
+            className="d-sm-none"
+            id="irisworld-re-esteemapp-202066t14588243z"
             onClick={[Function]}
           >
             <span
@@ -2517,7 +3338,26 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@irisworld"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -2525,22 +3365,49 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@irisworld"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="irisworld-re-esteemapp-202066t14588243z"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="irisworld-re-esteemapp-202066t14588243z"
+                onClick={[Function]}
               >
-                irisworld
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="irisworld-re-esteemapp-202066t14588243z"
+                >
+                  irisworld
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="irisworld-re-esteemapp-202066t14588243z"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@irisworld"
+                onClick={[Function]}
               >
-                65
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  irisworld
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -2641,17 +3508,22 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@behiver/re-esteemapp-202066t85739415z"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@behiver/re-esteemapp-202066t85739415z"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@behiver"
+          <div
+            className="d-sm-none"
+            id="behiver-re-esteemapp-202066t85739415z"
             onClick={[Function]}
           >
             <span
@@ -2662,7 +3534,26 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@behiver"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -2670,22 +3561,49 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@behiver"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="behiver-re-esteemapp-202066t85739415z"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="behiver-re-esteemapp-202066t85739415z"
+                onClick={[Function]}
               >
-                behiver
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="behiver-re-esteemapp-202066t85739415z"
+                >
+                  behiver
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="behiver-re-esteemapp-202066t85739415z"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@behiver"
+                onClick={[Function]}
               >
-                57
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  behiver
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -2852,20 +3770,25 @@ exports[`(4) Show mute button, muted comment 1`] = `
     className="discussion-list"
   >
     <div
-      className="discussion-item depth-1 hidden-item"
+      className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@forykw/re-esteemapp-202067t12246786z"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@forykw/re-esteemapp-202067t12246786z"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@forykw"
+          <div
+            className="d-sm-none"
+            id="forykw-re-esteemapp-202067t12246786z"
             onClick={[Function]}
           >
             <span
@@ -2876,7 +3799,26 @@ exports[`(4) Show mute button, muted comment 1`] = `
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@forykw"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -2884,22 +3826,49 @@ exports[`(4) Show mute button, muted comment 1`] = `
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@forykw"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="forykw-re-esteemapp-202067t12246786z"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="forykw-re-esteemapp-202067t12246786z"
+                onClick={[Function]}
               >
-                forykw
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="forykw-re-esteemapp-202067t12246786z"
+                >
+                  forykw
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="forykw-re-esteemapp-202067t12246786z"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@forykw"
+                onClick={[Function]}
               >
-                64
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  forykw
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />
@@ -2913,16 +3882,104 @@ exports[`(4) Show mute button, muted comment 1`] = `
             </a>
           </div>
           <div
-            className="reveal-item"
+            className="hidden-warning mt-2"
           >
-            <button
-              className="btn btn-outline-danger btn-sm"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
+            <span>
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "This content was muted by  moderators for not following community guidelines.",
+                  }
+                }
+              />
+            </span>
+          </div>
+          <div
+            className="item-body markdown-view mini-markdown"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><span>Prizes have consistently been very effective from <a class=\\"markdown-author-link\\" href=\\"/@esteemapp\\">@esteemapp</a> nicely done!</span></p>",
+              }
+            }
+          />
+          <div
+            className="item-controls"
+          >
+            <div>
+              <div>
+                <div
+                  className="entry-vote-btn"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="btn-vote btn-up-vote"
+                  >
+                    <div
+                      className=""
+                    >
+                      <span
+                        className="btn-inner "
+                      >
+                        <svg
+                          className="vote-svg"
+                          viewBox="6 8 12 7.41"
+                        >
+                          <path
+                            d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="entry-payout notranslate"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
             >
-              Reveal comment
-            </button>
+              $ 0.00
+            </div>
+            <div
+              className="entry-votes notranslate"
+            >
+              <span
+                className="inner-btn no-data"
+                title="No Votes"
+              >
+                <svg
+                  fill="currentColor"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                    fillRule="evenodd"
+                  />
+                </svg>
+                 
+                0
+              </span>
+            </div>
+            <a
+              className="reply-btn"
+              onClick={[Function]}
+            >
+              Reply
+            </a>
+            <a
+              className="mute-btn"
+              href="#"
+              onClick={[Function]}
+            >
+              Unmute
+            </a>
           </div>
         </div>
       </div>
@@ -2931,17 +3988,22 @@ exports[`(4) Show mute button, muted comment 1`] = `
       className="discussion-item depth-1"
     >
       <div
-        className="item-anchor"
-        id="anchor-@brittandjosie/re-esteemapp-qbi6t3"
-      />
+        className="position-relative"
+      >
+        <div
+          className="item-anchor"
+          id="anchor-@brittandjosie/re-esteemapp-qbi6t3"
+        />
+      </div>
       <div
         className="item-inner"
       >
         <div
           className="item-figure"
         >
-          <a
-            href="/@brittandjosie"
+          <div
+            className="d-sm-none"
+            id="brittandjosie-re-esteemapp-qbi6t3"
             onClick={[Function]}
           >
             <span
@@ -2952,7 +4014,26 @@ exports[`(4) Show mute button, muted comment 1`] = `
                 }
               }
             />
-          </a>
+          </div>
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <a
+              className="d-none d-sm-inline-block"
+              href="/@brittandjosie"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+          </div>
         </div>
         <div
           className="item-content"
@@ -2960,22 +4041,49 @@ exports[`(4) Show mute button, muted comment 1`] = `
           <div
             className="item-header"
           >
-            <a
-              className="author notranslate"
-              href="/@brittandjosie"
-              onClick={[Function]}
+            <div
+              className="d-flex align-items-center"
+              id="brittandjosie-re-esteemapp-qbi6t3"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <span
-                className="author-name"
+              <div
+                className="author notranslate d-flex align-items-center d-sm-none"
+                id="brittandjosie-re-esteemapp-qbi6t3"
+                onClick={[Function]}
               >
-                brittandjosie
-              </span>
-              <span
-                className="author-reputation"
+                <span
+                  className="author-name"
+                  id="brittandjosie-re-esteemapp-qbi6t3"
+                >
+                  brittandjosie
+                </span>
+                <span
+                  className="author-down-arrow mx-2"
+                  id="brittandjosie-re-esteemapp-qbi6t3"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <a
+                className="author notranslate d-none align-items-center d-sm-flex"
+                href="/@brittandjosie"
+                onClick={[Function]}
               >
-                71
-              </span>
-            </a>
+                <span
+                  className="author-name"
+                >
+                  brittandjosie
+                </span>
+              </a>
+            </div>
             <span
               className="separator"
             />

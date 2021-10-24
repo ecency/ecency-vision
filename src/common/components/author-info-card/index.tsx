@@ -81,7 +81,7 @@ const AuthorInfoCard = (props: Props) => {
                       <span itemProp="name">{props?.entry?.author}</span>
                     </span>
                   </span>
-                  <span className="author-reputation">({reputation})</span>
+                  {!isNaN(reputation) && <span className="author-reputation">({reputation})</span>}
                 </div>
               ),
             })}

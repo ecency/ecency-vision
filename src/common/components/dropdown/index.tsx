@@ -5,7 +5,7 @@ import {menuDownSvg} from "../../img/svg";
 
 import _c from "../../util/fix-class-names"
 export interface MenuItem {
-    label: string;
+    label: string | JSX.Element;
     href?: string;
     onClick?: () => void;
     active?: boolean;
@@ -15,7 +15,7 @@ export interface MenuItem {
 }
 
 interface Props {
-    history: History;
+    history: History | null;
     float: "left" | "right";
     alignBottom?: boolean,
     header?: string;
@@ -30,12 +30,22 @@ interface Props {
 
 interface State {
     menu: boolean;
+    mounted: boolean;
 }
 
 export default class MyDropDown extends Component<Props> {
     state: State = {
         menu: false,
+        mounted: false,
     };
+
+    componentDidMount(){
+        this.setState({mounted: true})
+    }
+
+    componentWillUnmount(){
+        this.setState({mounted: false})
+    }
 
     _timer: any = null;
 
@@ -90,7 +100,7 @@ export default class MyDropDown extends Component<Props> {
         setTimeout(() => {
             if (i.href) {
                 const {history} = this.props;
-                history.push(i.href);
+                history && history.push(i.href);
             }
 
             if (i.onClick) {
@@ -101,7 +111,7 @@ export default class MyDropDown extends Component<Props> {
 
     render() {
         const {label, icon, float, alignBottom, header, preElem, postElem, items} = this.props;
-        const {menu} = this.state;
+        const {menu, mounted} = this.state;
 
 
         const child =
@@ -116,7 +126,7 @@ export default class MyDropDown extends Component<Props> {
 
         const menuCls = _c(`custom-dropdown float-${float} ${alignBottom ? "align-bottom" : ""}`);
 
-        return (
+        return mounted ? (
             <div
                 className={menuCls}
                 onClick={this.mouseClick}
@@ -152,6 +162,6 @@ export default class MyDropDown extends Component<Props> {
                     </div>
                 )}
             </div>
-        );
+        ) : null;
     }
 }

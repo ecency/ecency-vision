@@ -23,6 +23,7 @@ import {_t} from "../i18n";
 export interface MetaData {
     links?: string[];
     image?: string[];
+    thumbnails?: string[];
     users?: string[];
     tags?: string[];
     app?: string;
@@ -95,7 +96,7 @@ export const formatError = (err: any): string => {
     return '';
 };
 
-const broadcastPostingJSON = (username: string, id: string, json: {}): Promise<TransactionConfirmation> => {
+export const broadcastPostingJSON = (username: string, id: string, json: {}): Promise<TransactionConfirmation> => {
 
     // With posting private key
     const postingKey = getPostingKey(username);

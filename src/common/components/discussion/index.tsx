@@ -50,12 +50,13 @@ import {error} from "../feedback";
 
 import _c from "../../util/fix-class-names"
 
-import {commentSvg, pencilOutlineSvg, deleteForeverSvg} from "../../img/svg";
+import {commentSvg, pencilOutlineSvg, deleteForeverSvg, menuDownSvg} from "../../img/svg";
 
 import {version} from "../../../../package.json";
-import accountReputation from '../../helper/account-reputation';
 import { getFollowing } from "../../api/hive";
+import { ProfilePreview } from "../profile-preview";
 import { iteratorStream } from "@hiveio/dhive/lib/utils";
+import { Tsx } from "../../i18n/helper";
 
 
 interface ItemBodyProps {
@@ -76,7 +77,6 @@ export class ItemBody extends Component<ItemBodyProps> {
         return <div className="item-body markdown-view mini-markdown" dangerouslySetInnerHTML={renderedBody}/>
     }
 }
-
 
 interface ItemProps {
     history: History;
@@ -102,10 +102,13 @@ interface ItemProps {
 interface ItemState {
     reply: boolean;
     edit: boolean;
+    mounted: boolean;
+    showProfileDetails: boolean;
+    showProfileDetailsAvatar: boolean;
     inProgress: boolean;
-    showIfHidden: boolean;
+    mutedData: string[];
     isHiddenPermitted: boolean;
-    mutedData: string[]
+    delayHandler: any
 }
 
 export class Item extends BaseComponent<ItemProps, ItemState> {
@@ -113,13 +116,21 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         reply: false,
         edit: false,
         inProgress: false,
-        showIfHidden: false,
+        showProfileDetails: false,
+        showProfileDetailsAvatar: false,
+        mutedData: [],
+        delayHandler: null,
         isHiddenPermitted:false,
-        mutedData: []
+        mounted: false
     }
 
     componentDidMount(){
-        this.fetchMutedUsers()
+        this.fetchMutedUsers();
+        this.setState({ mounted: true })
+    }
+
+    componentWillUnmount(){
+        this.setState({ mounted: false })
     }
 
     afterVote = (votes: EntryVote[], estimated: number) => {
@@ -275,12 +286,58 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         }
     }
 
+    onShowProfile = (e:any) => {
+        e.persist();
+        // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
+        let timeout = setTimeout(()=>{
+            e.stopPropagation()
+            this.state.mounted && this.setState({showProfileDetails:true });
+            document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
+        this.state.mounted && this.setState({delayHandler: timeout})
+    }
+
+    onShowProfileAvatar = (e:any) => {
+        e.persist();
+        // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
+        let timeout = setTimeout(()=>{
+            e.stopPropagation()
+            this.state.mounted && this.setState({showProfileDetailsAvatar:true });
+            document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
+    }, this.props.global.isMobile ? 0 : 500)
+        this.state.mounted && this.setState({delayHandler: timeout})
+    }
+
+    onHideProfile = (e:any, doNotSetState?: boolean) => {
+        const { delayHandler, mounted } = this.state;
+        clearTimeout(delayHandler)
+        e.stopPropagation()
+        if(delayHandler){
+            // Add 0.2 sec delay while hiding mini-profile on web
+            setTimeout(()=>{
+                !doNotSetState && mounted && this.setState({showProfileDetails:false});
+                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
+        },this.props.global.isMobile ? 0 : 200)
+    }
+    }
+
+    onHideProfileAvatar = (e:any, doNotSetState?: boolean) => {
+        const { delayHandler, mounted } = this.state;
+        clearTimeout(delayHandler)
+        e.stopPropagation()
+        if(delayHandler){
+            // Add 0.2 sec delay while hiding mini-profile on web
+            setTimeout(()=>{
+                !doNotSetState && mounted && this.setState({showProfileDetailsAvatar:false});
+                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
+        },this.props.global.isMobile ? 0 : 200)
+        }
+    }
+
     render() {
         const { entry, activeUser, community, location } = this.props;
-        const { reply, edit, inProgress, showIfHidden, mutedData, isHiddenPermitted } = this.state;
+        const { reply, edit, inProgress, mutedData, showProfileDetails, showProfileDetailsAvatar, isHiddenPermitted, mounted } = this.state;
 
         const created = moment(parseDate(entry.created));
-        const reputation = accountReputation(entry.author_reputation);
         const readMore = entry.children > 0 && entry.depth > 5;
         const showSubList = !readMore && entry.children > 0;
         const canEdit = activeUser && activeUser.username === entry.author;
@@ -290,28 +347,62 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                 [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
         }) : false;
 
-        let isHidden = (!!entry.stats?.gray && !showIfHidden) || (activeUser && mutedData.includes(entry.author) && !showIfHidden);
-
         const anchorId = `anchor-@${entry.author}/${entry.permlink}`;
 
         const selected = location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`;
+        
         let normalComponent = (
-            <div className={_c(`discussion-item depth-${entry.depth} ${isHidden ? "hidden-item" : ""} ${selected ? "selected-item" : ""}`)}>
-                <div className="item-anchor" id={anchorId}/>
+            <div className={_c(`discussion-item depth-${entry.depth} ${selected ? "selected-item" : ""}`)}>
+                <div className="position-relative">
+                    <div className="item-anchor" id={anchorId}/>
+                </div>
                 <div className="item-inner">
                     <div className="item-figure">
-                        {ProfileLink({...this.props, username: entry.author, children: <a>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</a>})}
+                        <div className="d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {this.onShowProfile(e)}}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
+                        <div onMouseEnter={(e) => {this.onShowProfileAvatar(e)}} onMouseLeave={(e, ) => {this.onHideProfileAvatar(e)}}>
+                            {ProfileLink({...this.props, username: entry.author, children: 
+                                    <a className="d-none d-sm-inline-block">
+                                        {UserAvatar({...this.props, username: entry.author, size: "medium"})}
+                                    </a>
+                                })
+                            }
+
+                            {showProfileDetailsAvatar && entry.author && 
+                                <ProfilePreview
+                                    username={entry.author}
+                                    {...this.props}
+                                    onClose={(e, doNotSetState) => {this.onHideProfileAvatar(e, doNotSetState)}}
+                                />
+                            }
+                        </div>
                     </div>
                     <div className="item-content">
                         <div className="item-header">
+                            <div
+                                onMouseEnter={(e) => {this.onShowProfile(e)}}
+                                onMouseLeave={(e) => {this.onHideProfile(e)}}
+                                className="d-flex align-items-center"
+                                id={`${entry.author}-${entry.permlink}`} 
+                            >
+                            <div className="author notranslate d-flex align-items-center d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {this.onShowProfile(e)}}>
+                                <span className="author-name" id={`${entry.author}-${entry.permlink}`} >{entry.author}</span>
+                                <span className="author-down-arrow mx-2" id={`${entry.author}-${entry.permlink}`} >{menuDownSvg}</span>
+                            </div>
                             {ProfileLink({
                                 ...this.props,
                                 username: entry.author,
-                                children: <div className="author notranslate">
-                                    <span className="author-name">{entry.author}</span>
-                                    <span className="author-reputation">{reputation}</span>
-                                </div>
+                                children: <div className="author notranslate d-none align-items-center d-sm-flex">
+                                            <span className="author-name">{entry.author}</span>
+                                        </div>
                             })}
+                            {showProfileDetails && entry.author && 
+                                    <ProfilePreview
+                                        username={entry.author}
+                                        {...this.props}
+                                        onClose={(e, doNotSetState) => {this.onHideProfile(e, doNotSetState)}}
+                                    />
+                            }
+                            </div>
                             <span className="separator"/>
                             {EntryLink({
                                 ...this.props,
@@ -321,16 +412,34 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                 </span>
                             })}
                         </div>
-                        {(() => {
-                            if (isHidden) {
-                                return <div className="reveal-item">
-                                    <Button variant="outline-danger" size="sm" onClick={() => {
-                                        this.stateSet({showIfHidden: true});
-                                    }}>{_t("discussion.reveal")}</Button>
-                                </div>
-                            }
+                        {(() => {   
                             
+        
+                            const entryIsMuted = mutedData.includes(entry.author);
+                            const isComment = !!entry.parent_author;
+                            const ownEntry = activeUser && activeUser.username === entry.author;
+                            const isHidden = entry?.net_rshares < 0;
+                            const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
+                            const isLowReputation = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
+                            const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry; 
+                                                   
                             return <>
+                                {isMuted && (<div className="hidden-warning mt-2">
+                                    <span><Tsx k="entry.muted-warning" args={{community: entry.community_title}}><span/></Tsx></span>
+                                </div>)}
+
+                                {isHidden && (<div className="hidden-warning mt-2">
+                                    <span>{_t('entry.hidden-warning')}</span>
+                                </div>)}
+
+                                {isLowReputation && (<div className="hidden-warning mt-2">
+                                    <span>{_t('entry.lowrep-warning')}</span>
+                                </div>)}
+
+                                {mightContainMutedComments && (<div className="hidden-warning mt-2">
+                                    <span>{_t('entry.comments-hidden')}</span>
+                                </div>)}
+                                
                                 <ItemBody global={this.props.global} entry={entry}/>
                                 <div className="item-controls">
                                     {EntryVoteBtn({
@@ -450,8 +559,13 @@ export class List extends Component<ListProps> {
         isHiddenPermitted: false,
         mutedData: []
     }
+
+    componentWillUnmount(){
+        document.getElementsByTagName("html")[0].style.position = 'unset'
+    }
     
     componentDidMount(){
+        document.getElementsByTagName("html")[0].style.position = 'relative'
         this.fetchMutedUsers()
     }
 
@@ -470,7 +584,7 @@ export class List extends Component<ListProps> {
     render() {
         const {discussion, parent, activeUser} = this.props;
         const { isHiddenPermitted, mutedData } = this.state;
-
+        
         const {list} = discussion;
 
         let filtered = list.filter(
@@ -481,20 +595,23 @@ export class List extends Component<ListProps> {
             return null;
         }
 
-        let mutedContent = filtered.filter(item => item.stats?.gray || (activeUser && mutedData.includes(item.author) && item.depth === 1 && item.parent_author === parent.author) );
+        let mutedContent = filtered.filter(item => ((activeUser && mutedData.includes(item.author) && item.depth === 1 && item.parent_author === parent.author) ));
         let unmutedContent = filtered.filter(md => mutedContent.every(fd => fd.post_id !== md.post_id))
         let data = isHiddenPermitted ? [...unmutedContent, ...mutedContent] : unmutedContent;
-        
-        
+        if(!activeUser){
+            data = filtered
+        }
         return (
             <div className="discussion-list">
                 {data.map((d) => (
                     <Item key={`${d.author}-${d.permlink}`} {...this.props} entry={d}/>
                 ))}
-                {!isHiddenPermitted && mutedContent.length >0 &&
+                {!isHiddenPermitted && mutedContent.length > 0 && activeUser && activeUser.username && 
                     <div className="hidden-warning d-flex justify-content-between flex-1 align-items-center mt-3">
                         <div className="flex-1">{_t("discussion.reveal-muted-long-description")}</div>
-                        <div onClick={()=>this.setState({isHiddenPermitted:true})} className="pointer p-3"><b>{_t("g.show")}</b></div>
+                        <div onClick={()=>this.setState({isHiddenPermitted:true})} className="pointer p-3">
+                            <b>{_t("g.show")}</b>
+                        </div>
                     </div>
                 }
             </div>
@@ -548,7 +665,7 @@ export class Discussion extends Component<Props, State> {
         if (parent.url !== prevProps.parent.url) { // url changed
             this.fetch();
         }
-
+        
         const {discussion} = this.props;
         if (prevProps.discussion.list.length === 0 && discussion.list.length > 0) {
             const {location} = this.props;
