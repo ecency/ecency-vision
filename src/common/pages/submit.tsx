@@ -16,7 +16,7 @@ import moment, {Moment} from "moment";
 
 import defaults from "../constants/defaults.json";
 
-import {renderPostBody, setProxyBase} from "@ecency/render-helper";
+import {proxifyImageSrc, renderPostBody, setProxyBase} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
@@ -950,7 +950,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                         return <div className="position-relative" key={item+i}>
                                                                     <div
                                                                         className={`selection-item shadow ${selectedItem === item ? "selected" : ""} mr-3 mb-2`}
-                                                                        style={{backgroundImage:`url("${item}")`}}
+                                                                        style={{backgroundImage:`url("${proxifyImageSrc(item, 260, 200)}")`}}
                                                                         onClick={() => this.selectThumbnails(item)}
                                                                         key={item}
                                                                     />
