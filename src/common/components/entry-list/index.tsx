@@ -22,6 +22,9 @@ import * as ls from "../../util/local-storage";
 import LinearProgress from "../linear-progress";
 import { getFollowing } from "../../api/hive";
 import { search as searchApi } from "../../api/search-api"
+import SearchQuery, {SearchType} from "../../helper/search-query";
+
+import { Row, Form, Col, FormControl, Button } from 'react-bootstrap'
 
 interface Props {
     history: History;
@@ -57,16 +60,20 @@ interface Props {
 interface State {
     mutedUsers: string[];
     loadingMutedUsers: boolean,
-    search: string;
     entriesData: Entry[],
+    search: string;
+    author: string;
+    type: SearchType;
 }
 
 export class EntryListContent extends Component<Props, State> {
     state = {
         mutedUsers: [] as string[],
         loadingMutedUsers: false,
+        entriesData: [],
         search: "",
-        entriesData: []
+        author: "",
+        type: SearchType.ALL,
     }
 
     constructor(props: any) {
@@ -110,12 +117,47 @@ export class EntryListContent extends Component<Props, State> {
         this.setState({ entriesData: this.props.entries });
     }
 
+
+    handleSubmitSearch = async () => {
+      const { search, author, type } = this.state;
+      const { global, activeUser } = this.props;
+      console.log('values: ', search, activeUser, type);
+
+      let query = `${search} author:${author}`;
+      if(global.filter === 'posts') {
+        query += ` type:post`
+      } else if(global.filter === 'comments') {
+        query += ` type:comment`
+      } 
+      console.log('query: ', query)
+      const data = await  searchApi(query, "popularity", "1");
+      console.log('data: ', data.results)
+      if(data && data.results) {
+        // this.setState({entriesData: data.results})
+      }
+    }
+
     handleChangeSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
         this.setState({ search: value});
         this.handleInputChange(value)
 
-        searchApi(`{author: ${value}}`, "popularity", "1", "2020-10-20T20:43:33");
+      //   const { global } = this.props;
+
+      //   console.log('props: ', this.props);
+
+
+      // let type = global.filter === 'posts' ? 'post' : global.filter === 'comments' ? 'comment' : null;
+      //   let query = ``;
+      //   if(global.filter === 'blog') {
+      //     query += `author:${value}`
+      //   }
+      //   if(type) {
+      //     query += ` type:${type}`
+      //   }
+      //   console.log('query: ', query);
+
+      //   searchApi(`{author: ${value}}`, "popularity", "1", "2020-10-20T20:43:33");
     }
 
     handleInputChange =( value: any) => {
@@ -138,10 +180,29 @@ export class EntryListContent extends Component<Props, State> {
         }
     }
 
+    searchChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+      this.setState({search: e.target.value});
+    }
+
+    authorChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+        this.setState({author: e.target.value.trim()});
+    }
+
+    typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+        this.setState({type: e.target.value as SearchType});
+    }
+
+
+    textInputDown = (e: React.KeyboardEvent) => {
+      if (e.keyCode === 13) {
+          this.handleSubmitSearch();
+      }
+    };
+
     render() {
         const {entries, promotedEntries, global, activeUser, loading } = this.props;
         const {filter} = global;
-        const { mutedUsers, loadingMutedUsers, entriesData } = this.state;
+        const { mutedUsers, loadingMutedUsers, entriesData, search, author, type } = this.state;
         // let dataToRender = entries;
         let dataToRender = entriesData;
 
@@ -150,11 +211,50 @@ export class EntryListContent extends Component<Props, State> {
             mutedList = mutedList.concat(mutedUsers)
         }
         
+        console.log('entries: ', entries);
+        console.log('props: ', this.props);
         
         return (
             <>
                 <div className='searchProfile'>
-                    <SearchBox placeholder={_t('search.placeholder')}  onChange={this.handleChangeSearch} value={this.state.search} />
+                    {/* <SearchBox 
+                      placeholder={_t('search.placeholder')}  
+                      onChange={this.handleChangeSearch} 
+                      value={this.state.search} 
+                    />
+                    <Button 
+                      className="btnSearch" 
+                      type="button" 
+                      onClick={this.handleSubmitSearch}
+                    >{_t("g.search")}</Button> */}
+
+                    <div className="advanced-section">
+                        <Row>
+                            <Form.Group as={Col} sm="6" controlId="form-search">
+                                <Form.Label>{_t("search-comment.search")}</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder={_t("search-comment.search-placeholder")}
+                                    value={search}
+                                    onChange={this.searchChanged}
+                                    onKeyDown={this.textInputDown}/>
+                            </Form.Group>
+                            <Form.Group as={Col} sm="4" controlId="form-author">
+                                <Form.Label>{_t("search-comment.author")}</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder={_t("search-comment.author-placeholder")}
+                                    value={author}
+                                    onChange={this.authorChanged}
+                                    onKeyDown={this.textInputDown}/>
+                            </Form.Group>
+                            
+                            <Form.Group as={Col} sm="2" controlId="form-type">
+                                <Button className="btnSearch" type="button" onClick={this.handleSubmitSearch}>{_t("g.search")}</Button>
+                            </Form.Group>
+                            
+                        </Row>
+                    </div>
                 </div>
                 
                 {

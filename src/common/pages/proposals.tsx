@@ -97,6 +97,8 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                 const expired = proposals.filter(x => x.status === "expired");
                 const others = proposals.filter(x => x.status !== "expired");
 
+                console.log('proposals: ', proposals)
+
                 return [...others, ...expired];
             })
             .then(proposals => {
@@ -177,6 +179,8 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
 
         const {global} = this.props;
         const {loading, proposals, totalBudget, dailyBudget, dailyFunded, filter, inProgress} = this.state;
+
+        console.log('proposals 1123: ', proposals);
 
         const navBar = global.isElectron ?
             NavBarElectron({

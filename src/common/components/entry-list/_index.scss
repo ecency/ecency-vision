@@ -1,15 +1,36 @@
 .info {
-    color: $tundora;
-    font-size: 36px;
-    margin-bottom: 3rem;
+  color: $tundora;
+  font-size: 36px;
+  margin-bottom: 3rem;
 }
 
 .action {
-    font-size: 22px;
-    font-weight: 500;  
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.searchProfileInline {
+  width: 50%;
+  margin: 30px auto;
+  display: flex;
+  align-items: center;
+
+  .search-box {
+    position: relative;
+    width: calc(100% - 120px);
+  }
+
+  .btnSearch {
+    margin-left: 15px;
+    width: 120px;
+  }
 }
 
 .searchProfile {
-    width: 50%;
-    margin: 30px auto;
+  width: 70%;
+  margin: 30px auto;
+
+  .btnSearch {
+    margin-top: 33px;
+  }
 }
