@@ -7,6 +7,7 @@ interface Props {
     maxItems: number,
     page?: number,
     onPageChange: (num: number) => void,
+    className?: string;
 }
 
 interface State {
@@ -31,7 +32,7 @@ export default class MyPagination extends Component<Props, State> {
     }
 
     render() {
-        const {dataLength, maxItems, pageSize} = this.props;
+        const {dataLength, maxItems, pageSize, className} = this.props;
         const {page} = this.state;
 
         const pages = Math.ceil(dataLength / pageSize);
@@ -52,7 +53,7 @@ export default class MyPagination extends Component<Props, State> {
 
         const items = allItems.slice(sliceStart, sliceEnd);
 
-        return <Pagination>
+        return <Pagination className={className}>
             <Pagination.First disabled={!(sliceStart > 0)} onClick={() => {
                 this.changePage(1);
             }}/>

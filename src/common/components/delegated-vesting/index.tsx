@@ -2,7 +2,7 @@ import React, {Component} from "react";
 
 import {History} from "history";
 
-import {Form, Modal} from "react-bootstrap";
+import {Form, Modal, Pagination} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
@@ -35,6 +35,7 @@ import parseAsset from "../../helper/parse-asset";
 import formattedNumber from "../../util/formatted-number";
 
 import _c from "../../util/fix-class-names";
+import MyPagination from "../pagination";
 
 interface Props {
     history: History;
@@ -55,6 +56,7 @@ interface State {
     data: DelegatedVestingShare[];
     searchData: DelegatedVestingShare[];
     hideList: boolean;
+    page: number;
 }
 
 export class List extends BaseComponent<Props, State> {
@@ -63,7 +65,8 @@ export class List extends BaseComponent<Props, State> {
         inProgress: false,
         data: [],
         searchData: [],
-        hideList: false
+        hideList: false,
+        page:1
     };
 
     componentDidMount() {
@@ -90,20 +93,20 @@ export class List extends BaseComponent<Props, State> {
                 });
         }
 
-        return getData(account.name, "", 1000);
+        // return getData(account.name, "", 1000);
+        return getData('ecency', "", 1000);
     }
 
     componentDidUpdate(prevProps: Props){
         if(prevProps.searchText !== this.props.searchText && this.props.searchText && this.props.searchText.length > 0){
             let filteredItems = this.state.data.filter(item => 
                 item.delegatee.toLocaleLowerCase().includes(this.props.searchText!.toLocaleLowerCase()));
-                debugger
-            this.setState({ searchData: filteredItems });
+            this.setState({ searchData: filteredItems, page: 1 });
         }
     }
 
     render() {
-        const {loading, data, hideList, inProgress, searchData} = this.state;
+        const {loading, data, hideList, inProgress, searchData, page} = this.state;
         const {dynamicProps, activeUser, account, searchText} = this.props;
         const {hivePerMVests} = dynamicProps;
 
@@ -115,12 +118,18 @@ export class List extends BaseComponent<Props, State> {
 
         let dataToShow = searchText.length > 0 ? searchData : data;
 
+        const pageSize = 8;
+        const start = (page - 1) * pageSize;
+        const end = start + pageSize;
+
+        const sliced = dataToShow.slice(start, end);
+
         return (
             <div className={_c(`delegated-vesting-content ${inProgress ? "in-progress" : ""} ${hideList ? "hidden" : ""}`)}>
                 <div className="user-list">
                     <div className="list-body">
-                        {dataToShow.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
-                        {dataToShow.map(x => {
+                        {sliced.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
+                        {sliced.map(x => {
                             const vestingShares = parseAsset(x.vesting_shares).amount;
                             const {delegatee: username} = x;
 
@@ -175,6 +184,9 @@ export class List extends BaseComponent<Props, State> {
                             </div>;
                         })}
                     </div>
+                    <MyPagination className="mt-4" dataLength={dataToShow.length} pageSize={pageSize} maxItems={4} page={page} onPageChange={(page:number) => {
+                        this.stateSet({page});
+                    }}/>
                 </div>
             </div>
         );
