@@ -143,7 +143,7 @@ export default class ReceivedVesting extends Component<Props, ReceivedVestingSta
 
     render() {
         const {onHide} = this.props;
-        const {searchText, searchTextDisabled} = this.state;
+        const {searchText} = this.state;
 
         return (
             <>
@@ -152,7 +152,7 @@ export default class ReceivedVesting extends Component<Props, ReceivedVestingSta
                         <Modal.Title>{_t("received-vesting.title")}</Modal.Title>
                     </Modal.Header>
 
-                    <Form.Group className="w-100 px-3">
+                    {/* <Form.Group className="w-100 px-3">
                         <Form.Control
                             type="text" 
                             placeholder={_t('friends.search-placeholder')} 
@@ -162,7 +162,7 @@ export default class ReceivedVesting extends Component<Props, ReceivedVestingSta
                             this.setState({ searchText: e.target.value, searchTextDisabled: text.length === 0 });
                             }}
                         />
-                    </Form.Group>
+                    </Form.Group> */}
                     <Modal.Body>
                         <List {...this.props} searchText={searchText} />
                     </Modal.Body>

@@ -2,7 +2,7 @@ import React, {Component} from "react";
 
 import {History} from "history";
 
-import {Modal} from "react-bootstrap";
+import {Form, Modal} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
@@ -46,12 +46,14 @@ interface Props {
     addAccount: (data: Account) => void;
     setSigningKey: (key: string) => void;
     onHide: () => void;
+    searchText: string;
 }
 
 interface State {
     loading: boolean;
     inProgress: boolean;
     data: DelegatedVestingShare[];
+    searchData: DelegatedVestingShare[];
     hideList: boolean;
 }
 
@@ -60,6 +62,7 @@ export class List extends BaseComponent<Props, State> {
         loading: false,
         inProgress: false,
         data: [],
+        searchData: [],
         hideList: false
     };
 
@@ -70,21 +73,38 @@ export class List extends BaseComponent<Props, State> {
     fetch = () => {
         const {account} = this.props;
         this.stateSet({loading: true});
-
-        return getVestingDelegations(account.name, "", 250)
-            .then((r) => {
-                const sorted = r.sort((a, b) => {
-                    return parseAsset(b.vesting_shares).amount - parseAsset(a.vesting_shares).amount;
+        let totalData: DelegatedVestingShare[] = [];
+        let getData = (account:string, start:string, limit:number) => {
+            return getVestingDelegations(account, start, limit)
+                .then((r) => {
+                    totalData = totalData.concat(r);
+                    if(r.length === limit){
+                        getData(account, r[limit-1].delegatee, limit)
+                    }
+                    else {
+                        const sorted: DelegatedVestingShare[] = totalData.sort((a, b) => {
+                            return parseAsset(b.vesting_shares).amount - parseAsset(a.vesting_shares).amount;
+                        });
+                        this.stateSet({loading: false, data: [... new Set(sorted)]})
+                    }
                 });
+        }
 
-                this.stateSet({data: sorted});
-            })
-            .finally(() => this.stateSet({loading: false}));
+        return getData(account.name, "", 1000);
+    }
+
+    componentDidUpdate(prevProps: Props){
+        if(prevProps.searchText !== this.props.searchText && this.props.searchText && this.props.searchText.length > 0){
+            let filteredItems = this.state.data.filter(item => 
+                item.delegatee.toLocaleLowerCase().includes(this.props.searchText!.toLocaleLowerCase()));
+                debugger
+            this.setState({ searchData: filteredItems });
+        }
     }
 
     render() {
-        const {loading, data, hideList, inProgress} = this.state;
-        const {dynamicProps, activeUser, account} = this.props;
+        const {loading, data, hideList, inProgress, searchData} = this.state;
+        const {dynamicProps, activeUser, account, searchText} = this.props;
         const {hivePerMVests} = dynamicProps;
 
         if (loading) {
@@ -93,12 +113,14 @@ export class List extends BaseComponent<Props, State> {
             </div>);
         }
 
+        let dataToShow = searchText.length > 0 ? searchData : data;
+
         return (
             <div className={_c(`delegated-vesting-content ${inProgress ? "in-progress" : ""} ${hideList ? "hidden" : ""}`)}>
                 <div className="user-list">
                     <div className="list-body">
-                        {data.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
-                        {data.map(x => {
+                        {dataToShow.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
+                        {dataToShow.map(x => {
                             const vestingShares = parseAsset(x.vesting_shares).amount;
                             const {delegatee: username} = x;
 
@@ -159,10 +181,22 @@ export class List extends BaseComponent<Props, State> {
     }
 }
 
+interface DelegatedVestingState {
+    searchText: string;
+}
 
-export default class DelegatedVesting extends Component<Props> {
+
+export default class DelegatedVesting extends Component<Props, DelegatedVestingState> {
+    constructor(props: Props){
+        super(props);
+        this.state = {
+            searchText: ''
+        }
+    }
+
     render() {
         const {onHide} = this.props;
+        const {searchText} = this.state;
 
         return (
             <>
@@ -170,8 +204,20 @@ export default class DelegatedVesting extends Component<Props> {
                     <Modal.Header closeButton={true}>
                         <Modal.Title>{_t("delegated-vesting.title")}</Modal.Title>
                     </Modal.Header>
+
+                    <Form.Group className="w-100 px-3">
+                        <Form.Control
+                            type="text" 
+                            placeholder={_t('friends.search-placeholder')} 
+                            value={searchText} 
+                            onChange={(e) => {
+                                let text = e.target.value
+                            this.setState({ searchText: e.target.value });
+                            }}
+                        />
+                    </Form.Group>
                     <Modal.Body>
-                        <List {...this.props} />
+                        <List {...this.props} searchText={searchText} />
                     </Modal.Body>
                 </Modal>
             </>
