@@ -12,6 +12,7 @@
     "cancel": "Anulează",
     "reply": "Răspunde",
     "update": "Actualizare",
+    "learnMore": "Learn more",
     "or": "SAU",
     "muted-message": "Muted author, Reveal content",
     "server-error": "Acțiunea nu a putut fi completată datorită unei erori de server",
@@ -625,6 +626,8 @@
     "memo-placeholder": "introdu comentariul tău aici",
     "memo-help": "Această notă este publică",
     "available-hp-hint": "* available hive power",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "Confirmați tranzacția",
     "confirm-sub-title": "Te rugăm să verifici dacă totul este corect",
     "confirm": "Confirmă",
@@ -681,6 +684,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
     "type-fill_recurrent_transfer": "Recurring transfer occurred",
     "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
@@ -695,7 +699,8 @@
   },
   "delegated-vesting": {
     "title": "Hive Power Delegat",
-    "undelegate": "undelegate"
+    "undelegate": "undelegate",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Hive Power Primit"
