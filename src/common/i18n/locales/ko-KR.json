@@ -12,6 +12,7 @@
     "cancel": "최소",
     "reply": "댓글 쓰기",
     "update": "업데이트",
+    "learnMore": "Learn more",
     "or": "또는",
     "muted-message": "뮤트된 작성자, 콘텐츠 공개",
     "server-error": "서버 오류로 인해 과정을 완료할 수 없습니다",
@@ -625,6 +626,8 @@
     "memo-placeholder": "메모 내용을 입력하세요",
     "memo-help": "이 메모는 누구나 볼 수 있습니다",
     "available-hp-hint": "* 사용 가능한 하이브 파워",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "거래를 확인하세요",
     "confirm-sub-title": "정보가 맞는지 다시 한 번 확인하세요",
     "confirm": "확인",
@@ -681,6 +684,7 @@
     "type-recurrent_transfer-detail": "{{executions}} 개 거래, {{recurrence}}시간마다",
     "type-fill_recurrent_transfer": "반복 이체 발생",
     "type-fill_recurrent_transfer-detail": "남은 {{remaining_executions}} 전송",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "담보 전환",
     "type-collateralized_convert-detail": "요청 ID: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "제안서 id: <strong>{{pid}}</strong>",
@@ -695,7 +699,8 @@
   },
   "delegated-vesting": {
     "title": "하이브 파워 임대",
-    "undelegate": "임대 취소"
+    "undelegate": "임대 취소",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "임대받은 하이브 파워"
