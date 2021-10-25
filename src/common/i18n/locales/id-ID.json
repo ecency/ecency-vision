@@ -12,6 +12,7 @@
     "cancel": "Batal",
     "reply": "Balas",
     "update": "Pembaruan",
+    "learnMore": "Learn more",
     "or": "ATAU",
     "muted-message": "Pengarang dibisukan, Konten diperlihatkan",
     "server-error": "Proses tidak dapat di selesaikan karena kesalahan server",
@@ -625,6 +626,8 @@
     "memo-placeholder": "tuliskan catatan Anda disini",
     "memo-help": "Memo ini adalah Publik",
     "available-hp-hint": "* hive power yang tersedia",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "Konfirmasi transaksi Anda",
     "confirm-sub-title": "Silahkan periksa apakah semuanya benar",
     "confirm": "Konfirmasi",
@@ -681,6 +684,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transfer, berlangsung setiap jam {{recurrence}}",
     "type-fill_recurrent_transfer": "Transfer sedang terus berjalan",
     "type-fill_recurrent_transfer-detail": "Transfer {{remaining_executions}} yang tersisa",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "Konversi yang dijamin",
     "type-collateralized_convert-detail": "Permintaan id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Id proposal:<strong>{{pid}}</strong>",
@@ -695,7 +699,8 @@
   },
   "delegated-vesting": {
     "title": "Hive Power yang Didelegasikan",
-    "undelegate": "hentikan delegasi"
+    "undelegate": "hentikan delegasi",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Hive Power yang Diterima"
