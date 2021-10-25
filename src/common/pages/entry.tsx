@@ -408,7 +408,8 @@ class EntryPage extends BaseComponent<Props, State> {
 
             // remove reply draft
             ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
-
+            this.stateSet({commentText:""})
+            
             if (entry.children === 0) {
                 // Activate discussion section with first comment.
                 const nEntry: Entry = {
@@ -428,6 +429,7 @@ class EntryPage extends BaseComponent<Props, State> {
     replyTextChanged = (text: string) => {
         const entry = this.getEntry()!;
         ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
+        this.setState({commentText:text})
     }
 
     reload = () => {
@@ -452,6 +454,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
     render() {
         const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, commentText, isMounted, postIsDeleted, deletedEntry} = this.state;
+        
         const {global, history, match} = this.props;
 
         let navBar = global.isElectron ? NavBarElectron({
