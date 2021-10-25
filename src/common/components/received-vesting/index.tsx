@@ -67,8 +67,7 @@ export class List extends BaseComponent<Props, State> {
         const {account} = this.props;
 
         this.stateSet({loading: true});
-        // return getReceivedVestingShares(account.name)
-        return getReceivedVestingShares('minnowbooster')
+        return getReceivedVestingShares(account.name)
             .then((r) => {
                 const sorted = r.sort((a, b) => {
                     return parseAsset(b.vesting_shares).amount - parseAsset(a.vesting_shares).amount;
