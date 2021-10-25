@@ -12,6 +12,7 @@
     "cancel": "Peruuta",
     "reply": "Vastaa",
     "update": "Päivitä",
+    "learnMore": "Learn more",
     "or": "Tai",
     "muted-message": "Muted author, Reveal content",
     "server-error": "Tapahtuma epäonnistui palvelinvirheen vuoksi",
@@ -625,6 +626,8 @@
     "memo-placeholder": "kirjoita muistio tähän",
     "memo-help": "Tämä muistio on julkinen",
     "available-hp-hint": "* hive power saatavilla",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "Vahvista siirtotapahtuma",
     "confirm-sub-title": "Varmista vielä kerran",
     "confirm": "Vahvista",
@@ -681,6 +684,7 @@
     "type-recurrent_transfer-detail": "{{executions}} siirrot, joka {{recurrence}} tunti",
     "type-fill_recurrent_transfer": "Toistuva siirto tapahtui",
     "type-fill_recurrent_transfer-detail": "Jäljellä olevat {{remaining_executions}} siirrot",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "Vakuutetut muunnokset",
     "type-collateralized_convert-detail": "Pyyntö id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
@@ -695,7 +699,8 @@
   },
   "delegated-vesting": {
     "title": "Valtuutettu Hive Power",
-    "undelegate": "poista valtuutus"
+    "undelegate": "poista valtuutus",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Vastaanotettu Hive Power"
