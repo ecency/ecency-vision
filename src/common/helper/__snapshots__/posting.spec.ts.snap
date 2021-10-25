@@ -14,11 +14,14 @@ exports[`createPermlink non-latin chars (1)  1`] = `"f38c58113ff7e"`;
 
 exports[`createPermlink random (1)  1`] = `"lorem-ipsum-dolor-sit-amet-f38c58113ff7e"`;
 
-exports[`createReplyPermlink (1)  1`] = `"re-good-karma-2018921t190500z"`;
+exports[`createReplyPermlink (1)  1`] = `"re-good-karma-2018921t170500z"`;
 
 exports[`extractMetadata (1)  1`] = `
 Object {
   "image": Array [
+    "http://www.xx.com/a.png",
+  ],
+  "thumbnails": Array [
     "http://www.xx.com/a.png",
   ],
   "users": Array [
@@ -36,6 +39,10 @@ Object {
   ],
   "links": Array [
     "http://www.google.com/foo/bar",
+  ],
+  "thumbnails": Array [
+    "http://www.xx.com/a.png",
+    "https://img.esteem.ws/h74zrad2fh.jpg",
   ],
   "users": Array [
     "lorem",

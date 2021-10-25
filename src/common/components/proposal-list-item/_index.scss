@@ -16,6 +16,10 @@
     background: lighten($dark-six, 4);
   }
 
+  &.voted-by-voter {
+    background-color: $green2;
+  }
+
   .item-content {
     @media (min-width: $md-break) {
       display: flex;

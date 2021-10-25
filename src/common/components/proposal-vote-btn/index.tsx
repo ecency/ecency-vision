@@ -61,19 +61,16 @@ export class ProposalVoteBtn extends BaseComponent<Props, State> {
     }
 
     load = () => {
-        const {proposal, activeUser, location} = this.props;
+        const {proposal, activeUser} = this.props;
 
         if (!activeUser) {
             this.stateSet({voted: false});
             return;
         }
 
-        const params = new URLSearchParams(location.search);
-        const voterParams = params.get('voter') || activeUser.username;
-
         this.stateSet({loading: true});
-        getProposalVotes(proposal,voterParams, 1).then(r => {
-            const voted = r.length > 0 && r[0].voter ===voterParams;
+        getProposalVotes(proposal,activeUser.username, 1).then(r => {
+            const voted = r.length > 0 && r[0].voter === activeUser.username;
             this.stateSet({voted});
         }).finally(() => this.stateSet({loading: false}))
     }
