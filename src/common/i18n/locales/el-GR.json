@@ -12,6 +12,7 @@
     "cancel": "Ακύρωση",
     "reply": "Απάντηση",
     "update": "Ενημέρωση",
+    "learnMore": "Learn more",
     "or": "Ή",
     "muted-message": "Muted author, Reveal content",
     "server-error": "Η διαδικασία δεν μπόρεσε να ολοκληρωθεί λόγω προβλήματος του σέρβερ",
@@ -625,6 +626,8 @@
     "memo-placeholder": "εισάγετε εδώ τις σημειώσεις σας",
     "memo-help": "Το σημείωμα είναι δημόσιο",
     "available-hp-hint": "* διαθέσιμο hive power",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "Επιβεβαίωση της συναλλαγής σας",
     "confirm-sub-title": "Παρακαλώ ελέγξτε αν όλα είναι σωστά",
     "confirm": "Επιβεβαίωση",
@@ -681,6 +684,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
     "type-fill_recurrent_transfer": "Recurring transfer occurred",
     "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
@@ -695,7 +699,8 @@
   },
   "delegated-vesting": {
     "title": "Κατ 'εξουσιοδότηση Hive Power",
-    "undelegate": "πάρε πίσω την εξουσιοδότηση"
+    "undelegate": "πάρε πίσω την εξουσιοδότηση",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Hive Power που έχει ληφθεί"
