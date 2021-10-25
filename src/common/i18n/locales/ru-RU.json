@@ -12,6 +12,7 @@
     "cancel": "Отменить",
     "reply": "Ответить",
     "update": "Обновить",
+    "learnMore": "Learn more",
     "or": "ИЛИ",
     "muted-message": "Автор отключен, раскрыть содержание",
     "server-error": "Процесс не может быть завершен из-за ошибки сервера",
@@ -625,6 +626,8 @@
     "memo-placeholder": "введите сюда свои заметки",
     "memo-help": "Эта заметка видна всем",
     "available-hp-hint": "* доступная Hive Сила",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "Подтвердите транзакцию",
     "confirm-sub-title": "Пожалуйста, убедитесь что всё верно",
     "confirm": "Подтвердить",
@@ -681,6 +684,7 @@
     "type-recurrent_transfer-detail": "{{executions}} переводов, каждые {{recurrence}} часов",
     "type-fill_recurrent_transfer": "Произошла повторяющаяся передача",
     "type-fill_recurrent_transfer-detail": "Оставшиеся переводы: {{remaining_executions}}",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "Обеспеченная конвертация",
     "type-collateralized_convert-detail": "Идентификатор запроса: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Идентификатор предложения: <strong>{{pid}}</strong>",
@@ -695,7 +699,8 @@
   },
   "delegated-vesting": {
     "title": "Делегированная Hive Сила",
-    "undelegate": "отозвать делегирование"
+    "undelegate": "отозвать делегирование",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Полученная Hive Сила"
