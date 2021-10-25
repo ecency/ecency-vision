@@ -12,6 +12,7 @@
     "cancel": "रद्द करें",
     "reply": "जबाब दें",
     "update": "नवनीकरण",
+    "learnMore": "Learn more",
     "or": "अथवा",
     "muted-message": "मौन लेखक, सामग्री प्रकट करें",
     "server-error": "सर्वर में त्रुटि के कारन प्रक्रिया पूरी हो न सकी",
@@ -625,6 +626,8 @@
     "memo-placeholder": "यहां अपने नोट्स दर्ज करें",
     "memo-help": "यह ज्ञापन सार्वजनिक है",
     "available-hp-hint": "* उपलब्ध हाइव शक्ति",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "अपने लेन-देन की पुष्टि करें",
     "confirm-sub-title": "कृपया, जांचें कि सब कुछ सही है",
     "confirm": "पुष्टी करें",
@@ -681,6 +684,7 @@
     "type-recurrent_transfer-detail": "{{executions}} स्थानान्तरण, प्रत्येक प्रत्येक{{recurrence}} घंटे",
     "type-fill_recurrent_transfer": "आवर्ती स्थानांतरण हुआ",
     "type-fill_recurrent_transfer-detail": "बचा हुआ {{remaining_executions}} स्थानांतरण",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "संपार्श्विक रूपांतरण",
     "type-collateralized_convert-detail": "अनुरोध आईडी:<strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "प्रस्ताव आईडी: <strong>{{pid}}</strong>",
@@ -695,7 +699,8 @@
   },
   "delegated-vesting": {
     "title": "प्रत्यायोजित हाइव पावर",
-    "undelegate": "अप्रत्यायोजित"
+    "undelegate": "अप्रत्यायोजित",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "हाइव पावर प्राप्त किया"
