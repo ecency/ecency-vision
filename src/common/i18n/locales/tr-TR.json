@@ -12,6 +12,7 @@
     "cancel": "İptal",
     "reply": "Cevapla",
     "update": "Güncelle",
+    "learnMore": "Learn more",
     "or": "VEYA",
     "muted-message": "Engellenen yazar, İçeriği görüntüle",
     "server-error": "Sunucu hatası nedeniyle işleminiz tamamlanamamıştır",
@@ -625,6 +626,8 @@
     "memo-placeholder": "notlarınızı buraya girin",
     "memo-help": "Bu notlar herkese açıktır",
     "available-hp-hint": "* mevcut hive power",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "İşleminizi onaylayın",
     "confirm-sub-title": "Lütfen her şeyin doğru olup olmadığını kontrol edin",
     "confirm": "Onayla",
@@ -681,6 +684,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
     "type-fill_recurrent_transfer": "Ödeme talimatı gerçekleşti",
     "type-fill_recurrent_transfer-detail": "Kalan {{remaining_executions}} aktarım",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "Teminatlı dönüştürme",
     "type-collateralized_convert-detail": "İstek kimliği: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Teklif kimliği: <strong>{{pid}}</strong>",
@@ -695,7 +699,8 @@
   },
   "delegated-vesting": {
     "title": "Delegasyon Yapılmış Hive Power",
-    "undelegate": "delegasyonu geri al"
+    "undelegate": "delegasyonu geri al",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Alınan Hive Power"
