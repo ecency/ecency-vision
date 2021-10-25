@@ -93,8 +93,7 @@ export class List extends BaseComponent<Props, State> {
                 });
         }
 
-        // return getData(account.name, "", 1000);
-        return getData('ecency', "", 1000);
+        return getData(account.name, "", 1000);
     }
 
     componentDidUpdate(prevProps: Props){
