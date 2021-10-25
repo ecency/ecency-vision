@@ -12,6 +12,7 @@
     "cancel": "Cancella",
     "reply": "Rispondi",
     "update": "Aggiorna",
+    "learnMore": "Learn more",
     "or": "Oppure",
     "muted-message": "Muted author, Reveal content",
     "server-error": "Il processo non può essere completato a causa di un errore del server",
@@ -625,6 +626,8 @@
     "memo-placeholder": "immetti qui la tua annotazione",
     "memo-help": "Questo promemoria è pubblico",
     "available-hp-hint": "* hive power disponibile",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "Conferma la tua transazione",
     "confirm-sub-title": "Prego, controlla se è tutto corretto",
     "confirm": "Conferma",
@@ -681,6 +684,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transazioni, ognuna ogni {{recurrence}} ore",
     "type-fill_recurrent_transfer": "Transazione ricorrente eseguita",
     "type-fill_recurrent_transfer-detail": "Rimanenti {{remaining_executions}} transazioni",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "Conversione collateralizzata",
     "type-collateralized_convert-detail": "Id obbligatorio: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
@@ -695,7 +699,8 @@
   },
   "delegated-vesting": {
     "title": "Delega Hive Power",
-    "undelegate": "ritira ammontare delegato"
+    "undelegate": "ritira ammontare delegato",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Ricevi Hive Power"
