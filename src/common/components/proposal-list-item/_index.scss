@@ -17,7 +17,13 @@
   }
 
   &.voted-by-voter {
-    background-color: $green2;
+    @include themify(day) {
+      background-color: $faded-blue;
+    }
+  
+    @include themify(night) {
+      background-color: $tundora;
+    }
   }
 
   .item-content {
