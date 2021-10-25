@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  plugins: ['typescript', 'scss'],
+  plugins: ['typescript', 'scss', 'eslint'],
   options: {
     buildType: 'iso'
   },
