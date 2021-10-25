@@ -65,7 +65,6 @@ import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
 
 import {arrowRightSvg} from "../../img/svg";
-import { Link } from "react-router-dom";
 import formattedNumber from "../../util/formatted-number";
 import activeUser from "../../store/active-user";
 
@@ -791,7 +790,7 @@ export class Transfer extends BaseComponent<Props, State> {
                                                     <br/>
                                                     {_t("transfer.override-warning-2", {account: to, previousAmount: previousAmount})}
                                                 </>
-                                        }{" "}<Link to="/faq">{_t("g.learnMore")}</Link>
+                                        }
                                     </div>
                                 }
                                 {(() => {

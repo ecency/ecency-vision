@@ -227,7 +227,7 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
         >
           <button
             className="btn btn-primary"
-            disabled={true}
+            disabled={false}
             onClick={[Function]}
             type="button"
           >
@@ -775,7 +775,7 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
         >
           <button
             className="btn btn-primary"
-            disabled={true}
+            disabled={false}
             onClick={[Function]}
             type="button"
           >
@@ -1206,7 +1206,7 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
         >
           <button
             className="btn btn-primary"
-            disabled={true}
+            disabled={false}
             onClick={[Function]}
             type="button"
           >
@@ -1584,6 +1584,11 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
                
               HBD
             </span>
+          </div>
+          <div
+            className="text-muted mt-1 override-warning"
+          >
+            The new amount overrides the previous one.
           </div>
         </div>
       </div>
@@ -2006,6 +2011,11 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
               HIVE
             </span>
           </div>
+          <div
+            className="text-muted mt-1 override-warning"
+          >
+            The new amount overrides the previous one.
+          </div>
         </div>
       </div>
       <div
@@ -2371,6 +2381,11 @@ exports[`(6) Convert (1) Step 1 1`] = `
               HBD
             </span>
           </div>
+          <div
+            className="text-muted mt-1 override-warning"
+          >
+            The new amount overrides the previous one.
+          </div>
         </div>
       </div>
       <div
@@ -2719,6 +2734,11 @@ exports[`(7) Power up (1) Step 1 1`] = `
                
               HIVE
             </span>
+          </div>
+          <div
+            className="text-muted mt-1 override-warning"
+          >
+            The new amount overrides the previous one.
           </div>
         </div>
       </div>
@@ -3108,7 +3128,7 @@ exports[`(8) Delegate (1) Step 1 1`] = `
         >
           <button
             className="btn btn-primary"
-            disabled={true}
+            disabled={false}
             onClick={[Function]}
             type="button"
           >
@@ -3440,6 +3460,11 @@ exports[`(9) Power down (1) Step 1 1`] = `
             >
               * available hive power
             </div>
+          </div>
+          <div
+            className="text-muted mt-1 override-warning"
+          >
+            The new amount overrides the previous one.
           </div>
           <div
             className="power-down-estimation"
