@@ -204,5 +204,11 @@
     font-size: 10px;
     margin-left: 20px;
   }
-}
 
+  .text-muted {
+    color: $steel-grey !important;
+    @include themify(night) {
+      color: $metallic-blue !important;
+    }
+  }
+}

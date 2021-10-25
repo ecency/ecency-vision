@@ -784,7 +784,7 @@ export class Transfer extends BaseComponent<Props, State> {
                                     {asset === "HP" && (<div className="balance-hp-hint">{_t("transfer.available-hp-hint")}</div>)}
                                 </div>
                                 {to.length > 0 && Number(amount) > 0 && toData?.__loaded && 
-                                    <div className="text-warning mt-1 override-warning">
+                                    <div className="text-muted mt-1 override-warning">
                                         {_t("transfer.override-warning-1")}
                                         {delegateAccount &&
                                                 <>
