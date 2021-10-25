@@ -151,7 +151,7 @@ export default class ReceivedVesting extends Component<Props, ReceivedVestingSta
                     <Modal.Header closeButton={true}>
                         <Modal.Title>{_t("received-vesting.title")}</Modal.Title>
                     </Modal.Header>
-
+                    {/* Adding snippet in case we need support for search here as well */}
                     {/* <Form.Group className="w-100 px-3">
                         <Form.Control
                             type="text" 
