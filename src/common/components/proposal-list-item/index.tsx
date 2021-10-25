@@ -4,13 +4,13 @@ import {Link} from "react-router-dom";
 
 import isEqual from "react-fast-compare";
 
-import {History} from "history";
+import {History,Location} from "history";
 
 import moment from "moment";
 
 import numeral from "numeral";
 
-import {Proposal} from "../../api/hive";
+import {Proposal, getProposalVotes} from "../../api/hive";
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
@@ -26,12 +26,15 @@ import ProposalVoteBtn from "../proposal-vote-btn"
 
 import now from "../../util/now";
 
+import _c from "../../util/fix-class-names";
+
 import {_t} from "../../i18n";
 
 import {linkSvg} from "../../img/svg";
 
 interface Props {
     history: History;
+    location: Location;
     global: Global;
     dynamicProps: DynamicProps;
     users: User[];
@@ -48,12 +51,18 @@ interface Props {
 }
 
 interface State {
-    votes: boolean
+    votes: boolean,
+    votedByVoter: boolean
 }
 
 export class ProposalListItem extends Component<Props, State> {
     state: State = {
-        votes: false
+        votes: false,
+        votedByVoter: false,
+    }
+
+    componentDidMount() {
+        this.loadProposalByVoter();
     }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
@@ -62,13 +71,27 @@ export class ProposalListItem extends Component<Props, State> {
             !isEqual(this.props.dynamicProps.hivePerMVests, nextProps.dynamicProps.hivePerMVests);
     }
 
+    loadProposalByVoter = () => {
+        const {proposal, location} = this.props;
+
+        const params = new URLSearchParams(location.search);
+        const voterParams = params.get('voter');
+        if(!!voterParams) {
+            getProposalVotes(proposal.id,voterParams, 1).then(r => {
+                const votedByVoter = r.length > 0 && r[0].voter ===voterParams;
+                this.setState({votedByVoter});
+            }).finally()
+        }
+
+    }
+
     toggleVotes = () => {
         const {votes} = this.state;
         this.setState({votes: !votes});
     }
 
     render() {
-        const {votes} = this.state;
+        const {votes, votedByVoter} = this.state;
 
         const {dynamicProps, proposal} = this.props;
 
@@ -88,7 +111,7 @@ export class ProposalListItem extends Component<Props, State> {
         const remaining = diff < 0 ? 0 : diff;
 
         return (
-            <div className="proposal-list-item">
+            <div className={_c(`proposal-list-item ${!!votedByVoter ? 'voted-by-voter' : ''}`)}>
                 <div className="item-content">
                     <div className="left-side">
                         <div className="proposal-users-card">
@@ -173,6 +196,7 @@ export default (p: Props) => {
     const props = {
         global: p.global,
         history: p.history,
+        location: p.location,
         dynamicProps: p.dynamicProps,
         users: p.users,
         activeUser: p.activeUser,
