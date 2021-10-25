@@ -16,7 +16,7 @@ import {Global} from "../../store/global/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Account} from '../../store/accounts/types'
 import {ActiveUser} from "../../store/active-user/types";
-import {Transactions} from "../../store/transactions/types";
+import {DelegateVestingShares, Transactions} from "../../store/transactions/types";
 
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
@@ -31,7 +31,7 @@ import parseAsset from "../../helper/parse-asset";
 import {vestsToHp, hpToVests} from "../../helper/vesting";
 
 
-import {getAccount, getAccountFull} from "../../api/hive";
+import {DelegatedVestingShare, getAccount, getAccountFull, getVestingDelegations} from "../../api/hive";
 
 import {
     transfer,
@@ -65,6 +65,9 @@ import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
 
 import {arrowRightSvg} from "../../img/svg";
+import { Link } from "react-router-dom";
+import formattedNumber from "../../util/formatted-number";
+import activeUser from "../../store/active-user";
 
 export type TransferMode = "transfer" | "transfer-saving" | "withdraw-saving" | "convert" | "power-up" | "power-down" | "delegate";
 export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT";
@@ -128,6 +131,7 @@ interface Props {
 interface State {
     step: 1 | 2 | 3 | 4;
     asset: TransferAsset;
+    delegationList: DelegateVestingShares[],
     to: string,
     toData: Account | null,
     toError: string,
@@ -157,7 +161,8 @@ const pureState = (props: Props): State => {
         amount: props.amount || "0.001",
         amountError: "",
         memo: props.memo || "",
-        inProgress: false
+        inProgress: false,
+        delegationList: []
     }
 }
 
@@ -232,11 +237,18 @@ export class Transfer extends BaseComponent<Props, State> {
             }
 
             this.stateSet({inProgress: true, toData: null});
+            const {activeUser, dynamicProps: { hivePerMVests } } = this.props;
 
             return getAccount(to)
                 .then(resp => {
                     if (resp) {
                         this.stateSet({toError: '', toData: resp});
+                        activeUser && activeUser.username && getVestingDelegations(activeUser.username, to, 1000).then(res=>{
+                            const delegateAccount = res && res.length > 0 && 
+                            (res!.find(item => (item as any).delegatee===to && (item as any).delegator===activeUser.username));
+                            const previousAmount = delegateAccount ? Number(formattedNumber(vestsToHp(Number(parseAsset((delegateAccount!.vesting_shares)).amount), hivePerMVests))) : "";
+                            this.setState({delegationList:res as any[], amount: previousAmount ? (previousAmount).toString() : "0.001" })
+                        })
                     } else {
                         this.stateSet({
                             toError: _t("transfer.to-not-found")
@@ -276,7 +288,8 @@ export class Transfer extends BaseComponent<Props, State> {
             }
         }
 
-        if (parseFloat(amount) > this.getBalance()) {
+        let balance = Number(this.formatBalance(this.getBalance()))
+        if (parseFloat(amount) > balance) {
             this.stateSet({amountError: _t("trx-common.insufficient-funds")});
             return;
         }
@@ -545,12 +558,13 @@ export class Transfer extends BaseComponent<Props, State> {
 
     render() {
         const {global, mode, activeUser, transactions, dynamicProps} = this.props;
-        const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress} = this.state;
+        const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress, toData, delegationList} = this.state;
+        const {hivePerMVests} = dynamicProps;
 
         const recent = [...new Set(
             transactions.list
-                .filter(x => x.type === 'transfer' && x.from === activeUser.username)
-                .map(x => x.type === 'transfer' ? x.to : '')
+                .filter(x => (x.type === 'transfer' && x.from === activeUser.username) || (x.type === 'delegate_vesting_shares' && x.delegator === activeUser.username))
+                .map(x => x.type === 'transfer' ? x.to : x.type === 'delegate_vesting_shares' ? x.delegatee : '')
                 .filter(x => {
                     if (to.trim() === '') {
                         return true;
@@ -598,8 +612,16 @@ export class Transfer extends BaseComponent<Props, State> {
 
         const showTo = ["transfer", "transfer-saving", "withdraw-saving", "power-up", "delegate"].includes(mode);
         const showMemo = ["transfer", "transfer-saving", "withdraw-saving"].includes(mode);
+        
+        const delegateAccount = delegationList && delegationList.length > 0 && 
+        (delegationList!.find(item => (item as DelegateVestingShares).delegatee===to && (item as DelegateVestingShares).delegator===activeUser.username));
+        const previousAmount = delegateAccount ? Number(formattedNumber(vestsToHp(Number(parseAsset((delegateAccount!.vesting_shares)).amount), hivePerMVests))) : "";
 
-        const balance = this.formatBalance(this.getBalance());
+        let balance: string | number = this.formatBalance(this.getBalance());
+        if(previousAmount){
+            balance = Number(balance) + previousAmount;
+            balance = Number(balance).toFixed(3)
+        }
 
         const titleLngKey = (mode === "transfer" && asset === "POINT") ? _t("transfer-title-point") : `${mode}-title`;
         const subTitleLngKey = `${mode}-sub-title`;
@@ -738,7 +760,7 @@ export class Transfer extends BaseComponent<Props, State> {
                                         placeholder={_t("transfer.amount-placeholder")}
                                         value={amount}
                                         onChange={this.amountChanged}
-                                        className={amountError ? "is-invalid" : ""}
+                                        className={amount > balance && amountError ? "is-invalid" : ""}
                                         autoFocus={(mode !== 'transfer')}
                                     />
                                 </InputGroup>
@@ -752,7 +774,7 @@ export class Transfer extends BaseComponent<Props, State> {
                             </Col>
                         </Form.Group>
 
-                        {amountError && (<FormText msg={amountError} type="danger"/>)}
+                        {amountError && amount > balance && (<FormText msg={amountError} type="danger"/>)}
 
                         <Row>
                             <Col lg={{span: 10, offset: 2}}>
@@ -761,6 +783,17 @@ export class Transfer extends BaseComponent<Props, State> {
                                     <span className="balance-num" onClick={this.copyBalance}>{balance}{" "}{asset}</span>
                                     {asset === "HP" && (<div className="balance-hp-hint">{_t("transfer.available-hp-hint")}</div>)}
                                 </div>
+                                {to.length > 0 && Number(amount) > 0 && toData?.__loaded && 
+                                    <div className="text-muted mt-1 override-warning">
+                                        {_t("transfer.override-warning-1")}
+                                        {delegateAccount &&
+                                                <>
+                                                    <br/>
+                                                    {_t("transfer.override-warning-2", {account: to, previousAmount: previousAmount})}
+                                                </>
+                                        }{" "}<Link to="/faq">{_t("g.learnMore")}</Link>
+                                    </div>
+                                }
                                 {(() => {
                                     if (mode === "power-down") {
                                         const hive = Math.round((Number(amount) / 13) * 1000) / 1000;
@@ -795,7 +828,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
                         <Form.Group as={Row}>
                             <Col sm={{span: 10, offset: 2}}>
-                                <Button onClick={this.next} disabled={!this.canSubmit()}>{_t('g.next')}</Button>
+                                <Button onClick={this.next} disabled={!this.canSubmit() && amount > balance}>{_t('g.next')}</Button>
                             </Col>
                         </Form.Group>
                     </Form>

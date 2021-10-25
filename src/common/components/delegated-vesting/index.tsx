@@ -46,6 +46,8 @@ interface Props {
     addAccount: (data: Account) => void;
     setSigningKey: (key: string) => void;
     onHide: () => void;
+    totalDelegated: string;
+    setSubtitle?: (value: number) => void;
 }
 
 interface State {
@@ -68,7 +70,7 @@ export class List extends BaseComponent<Props, State> {
     }
 
     fetch = () => {
-        const {account} = this.props;
+        const {account, dynamicProps, totalDelegated, setSubtitle} = this.props;
         this.stateSet({loading: true});
 
         return getVestingDelegations(account.name, "", 250)
@@ -76,8 +78,14 @@ export class List extends BaseComponent<Props, State> {
                 const sorted = r.sort((a, b) => {
                     return parseAsset(b.vesting_shares).amount - parseAsset(a.vesting_shares).amount;
                 });
+                const {hivePerMVests} = dynamicProps;
 
+                const totalDelegatedValue = sorted.reduce((n, item) => n + Number(formattedNumber(vestsToHp(Number(parseAsset(item.vesting_shares).amount), hivePerMVests))), 0)
                 this.stateSet({data: sorted});
+                const totalDelegatedNumbered = parseFloat(totalDelegated.replace(" HP",""));
+                const toBeReturned = totalDelegatedNumbered - totalDelegatedValue;
+                setSubtitle && setSubtitle(Number(toBeReturned.toFixed(3)))
+                
             })
             .finally(() => this.stateSet({loading: false}));
     }
@@ -92,7 +100,7 @@ export class List extends BaseComponent<Props, State> {
                 <LinearProgress/>
             </div>);
         }
-
+        
         return (
             <div className={_c(`delegated-vesting-content ${inProgress ? "in-progress" : ""} ${hideList ? "hidden" : ""}`)}>
                 <div className="user-list">
@@ -161,17 +169,29 @@ export class List extends BaseComponent<Props, State> {
 
 
 export default class DelegatedVesting extends Component<Props> {
+    state = {
+        subtitle: ""
+    }
+
     render() {
         const {onHide} = this.props;
+        const {subtitle} = this.state;
 
         return (
             <>
                 <Modal onHide={onHide} show={true} centered={true} animation={false}>
                     <Modal.Header closeButton={true}>
-                        <Modal.Title>{_t("delegated-vesting.title")}</Modal.Title>
+                        <Modal.Title>
+                            <div>
+                                <div>
+                                    {_t("delegated-vesting.title")}
+                                </div>
+                                <div className="text-muted mt-3 text-small">{subtitle}</div>
+                            </div>
+                        </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <List {...this.props} />
+                        <List {...this.props} setSubtitle={value => this.setState({subtitle: value === 0 ? "" : `+${value} ${_t("delegated-vesting.subtitle")}`})}/>
                     </Modal.Body>
                 </Modal>
             </>
