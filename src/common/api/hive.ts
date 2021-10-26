@@ -34,6 +34,7 @@ export interface DynamicGlobalProperties {
     hbd_print_rate: number;
     total_vesting_fund_hive: string;
     total_vesting_shares: string;
+    hbd_interest_rate: number;
 }
 
 export interface FeedHistory {
@@ -186,11 +187,12 @@ export const findRcAccounts = (username: string): Promise<RCAccount[]> =>
     new RCAPI(client).findRCAccounts([username])
 
 export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =>
-    client.database.getDynamicGlobalProperties().then((r: any) => ({
+    client.database.getDynamicGlobalProperties().then((r: any) => {return({
         total_vesting_fund_hive: r.total_vesting_fund_hive || r.total_vesting_fund_steem,
         total_vesting_shares: r.total_vesting_shares,
         hbd_print_rate: r.hbd_print_rate || r.sbd_print_rate,
-    }));
+        hbd_interest_rate: r.hbd_interest_rate
+    })});
 
 export const getAccountHistory = (username: string, filters: any[]): Promise<any> => {
 

@@ -26,7 +26,7 @@ import HiveWallet from "../../helper/hive-wallet";
 
 import {vestsToHp} from "../../helper/vesting";
 
-import {getAccount, getConversionRequests} from "../../api/hive";
+import {getAccount, getConversionRequests, getDynamicGlobalProperties} from "../../api/hive";
 
 import {claimRewardBalance, formatError} from "../../api/operations";
 
@@ -61,7 +61,8 @@ interface State {
     withdrawRoutes: boolean;
     transferMode: null | TransferMode;
     transferAsset: null | TransferAsset;
-    converting: number
+    converting: number;
+    aprs: { hbd:string | number, hp: string | number }
 }
 
 export class WalletHive extends BaseComponent<Props, State> {
@@ -74,7 +75,8 @@ export class WalletHive extends BaseComponent<Props, State> {
         withdrawRoutes: false,
         transferMode: null,
         transferAsset: null,
-        converting: 0
+        converting: 0,
+        aprs: { hbd:0, hp: 0 }
     };
 
     componentDidMount() {
@@ -83,6 +85,10 @@ export class WalletHive extends BaseComponent<Props, State> {
 
     fetchConvertingAmount = () => {
         const {account} = this.props;
+        const {aprs} = this.state;
+        getDynamicGlobalProperties().then(res=>{debugger;
+            this.setState({aprs: {...aprs, hbd: res.hbd_interest_rate/100}})
+        })
 
         getConversionRequests(account.name).then(r => {
             if (r.length === 0) {
@@ -153,7 +159,7 @@ export class WalletHive extends BaseComponent<Props, State> {
 
     render() {
         const {global, dynamicProps, account, activeUser} = this.props;
-        const {claiming, claimed, transfer, transferAsset, transferMode, converting} = this.state;
+        const {claiming, claimed, transfer, transferAsset, transferMode, converting, aprs: {hbd, hp}} = this.state;
 
         if (!account.__loaded) {
             return null;
@@ -260,6 +266,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                             <div className="balance-info">
                                 <div className="title">{_t("wallet.hive-power")}</div>
                                 <div className="description">{_t("wallet.hive-power-description")}</div>
+                                <div className="description font-weight-bold">{_t("wallet.hive-power-apr-rate", {value: hp})}</div>
                             </div>
 
                             <div className="balance-values">
@@ -358,6 +365,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                             <div className="balance-info">
                                 <div className="title">{_t("wallet.hive-dollars")}</div>
                                 <div className="description">{_t("wallet.hive-dollars-description")}</div>
+                                <div className="description font-weight-bold">{_t("wallet.hive-dollars-apr-rate", {value: hbd})}</div>
                             </div>
                             <div className="balance-values">
                                 <div className="amount">
