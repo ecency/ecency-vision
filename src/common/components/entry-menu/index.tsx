@@ -239,6 +239,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         const ownEntry = activeUser && activeUser.username === entry.author;
 
         const editable = ownEntry && !isComment;
+        const deletable = ownEntry && !(entry.children > 0 || entry.net_rshares > 0 || entry.is_paidout);
 
         let menuItems: MenuItem[] = [];
 
@@ -287,7 +288,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
             ];
         }
 
-        if (!(entry.children > 0 || entry.net_rshares > 0 || entry.is_paidout)) {
+        if (!deletable) {
             menuItems = [...menuItems,
                 ...[
                     {
@@ -361,6 +362,14 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 ...menuItems,
                 ...extraMenuItems
             ]
+        }
+
+        if(menuItems){
+            let deleteItems = menuItems.filter(item=>item.label===_t("g.delete"));
+            if(deleteItems.length === 1){
+                let items = menuItems.filter(item=> item.label !== "" );
+                menuItems = items;
+            }
         }
 
         const menuConfig = {

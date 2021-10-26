@@ -6,7 +6,6 @@ import {Link} from "react-router-dom";
 import {match} from "react-router";
 import moment from "moment";
 
-
 import {renderPostBody, setProxyBase, catchPostImage, postBodySummary} from "@ecency/render-helper";
 
 import {Entry, EntryVote} from "../store/entries/types";
@@ -548,7 +547,7 @@ class EntryPage extends BaseComponent<Props, State> {
         const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
         const isLowReputation = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
         const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry;
-        
+        debugger
         //  Meta config
         const url = entryCanonical(entry) || "";
 
@@ -815,11 +814,11 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         </div>
                                                     </div>
                                                     <span className="flex-spacer"/>
-                                                    {global.usePrivate && BookmarkBtn({
+                                                    {!isComment && global.usePrivate && BookmarkBtn({
                                                         ...this.props,
                                                         entry
                                                     })}
-                                                    {EntryMenu({
+                                                    {!isComment && EntryMenu({
                                                         ...this.props,
                                                         entry,
                                                         separatedSharing: true,
@@ -941,6 +940,10 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 </>
                                             )}
                                             <span className="flex-spacer"/>
+                                            {BookmarkBtn({
+                                                        ...this.props,
+                                                        entry
+                                            })}
                                             {EntryMenu({
                                                 ...this.props,
                                                 entry,
