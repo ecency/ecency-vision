@@ -111,6 +111,10 @@ export const getNotifications = (username: string, filter: NotificationFilter | 
     return axios.post(apiBase(`/private-api/notifications`), data).then(resp => resp.data);
 };
 
+export const getCurrencyTokenRate = (currency:string, token:string) => axios
+.get(apiBase(`/private-api/market-data/currency-rate/${currency}/${token}`))
+.then((resp:any) => {debugger})
+
 export const getUnreadNotificationCount = (username: string): Promise<number> => {
     const data = {code: getAccessToken(username)};
 

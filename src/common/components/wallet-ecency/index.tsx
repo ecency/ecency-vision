@@ -294,23 +294,26 @@ export class WalletEcency extends BaseComponent<Props, State> {
                     <div className="wallet-main">
                         <div className="wallet-info">
                             {points.uPoints !== '0.000' && (
-                                <div className="unclaimed-rewards">
-                                    <div className="title">
-                                        {_t('points.unclaimed-points')}
+                                <>
+                                    <div className="unclaimed-rewards">
+                                        <div className="title">
+                                            {_t('points.unclaimed-points')}
+                                        </div>
+                                        <div className="rewards">
+                                            <span className="reward-type">{`${points.uPoints}`}</span>
+                                            {isMyPage && (
+                                                <Tooltip content={_t('points.claim-reward-points')}>
+                                                    <a
+                                                        className={`claim-btn ${claiming ? 'in-progress' : ''}`}
+                                                        onClick={this.claim}>
+                                                        {plusCircle}
+                                                    </a>
+                                                </Tooltip>
+                                            )}
+                                        </div>
+                                    <div className="estimated-value">Estimated value: ~10.00</div>
                                     </div>
-                                    <div className="rewards">
-                                        <span className="reward-type">{`${points.uPoints}`}</span>
-                                        {isMyPage && (
-                                            <Tooltip content={_t('points.claim-reward-points')}>
-                                                <a
-                                                    className={`claim-btn ${claiming ? 'in-progress' : ''}`}
-                                                    onClick={this.claim}>
-                                                    {plusCircle}
-                                                </a>
-                                            </Tooltip>
-                                        )}
-                                    </div>
-                                </div>
+                                </>
                             )}
                             <div className="balance-row alternative">
                                 <div className="balance-info">
