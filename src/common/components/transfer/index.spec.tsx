@@ -30,6 +30,7 @@ const defProps = {
     },
     transactions: transactionsInitialState,
     signingKey: '',
+    totalDelegated: '',
     addAccount: () => {
     },
     updateActiveUser: () => {

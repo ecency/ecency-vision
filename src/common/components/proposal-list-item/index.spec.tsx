@@ -2,7 +2,7 @@ import React from 'react';
 
 import renderer from "react-test-renderer";
 
-import {createBrowserHistory} from "history";
+import {createBrowserHistory, createLocation} from "history";
 import {StaticRouter} from "react-router-dom";
 
 import {globalInstance, UiInstance, proposalInstance, dynamicPropsIntance1, activeUserMaker, allOver} from "../../helper/test-helper";
@@ -20,6 +20,7 @@ jest.mock("../../api/hive", () => ({
 
 const defProps = {
     history: createBrowserHistory(),
+    location: createLocation({}),
     global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
     users: [],

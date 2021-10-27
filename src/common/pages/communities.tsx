@@ -503,7 +503,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         textField.select();
         document.execCommand('copy');
         textField.remove();
-        success(_t('profile-edit.copied'));
+        success(_t('communities-create.password-copied'));
     }
 
     render() {
@@ -532,7 +532,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                     NavBar({...this.props})}
 
                 <div className={containerClasses}>
-                    <div className="row align-items-center justify-content-center m-0">
+                    <div className="row align-items-center justify-content-center m-0 w-100">
                         <div className="col-6 d-none d-lg-block">
                             <img src={communityImage} className="w-100"/>
                         </div>

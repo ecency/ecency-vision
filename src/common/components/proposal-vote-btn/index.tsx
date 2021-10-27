@@ -1,5 +1,7 @@
 import React from "react";
 
+import {History, Location} from "history";
+
 import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -20,6 +22,8 @@ import _c from "../../util/fix-class-names";
 import {chevronUpSvg} from "../../img/svg";
 
 interface Props {
+    history: History;
+    location: Location;
     global: Global;
     users: User[];
     activeUser: ActiveUser | null;
@@ -58,13 +62,14 @@ export class ProposalVoteBtn extends BaseComponent<Props, State> {
 
     load = () => {
         const {proposal, activeUser} = this.props;
+
         if (!activeUser) {
             this.stateSet({voted: false});
             return;
         }
 
         this.stateSet({loading: true});
-        getProposalVotes(proposal, activeUser.username, 1).then(r => {
+        getProposalVotes(proposal,activeUser.username, 1).then(r => {
             const voted = r.length > 0 && r[0].voter === activeUser.username;
             this.stateSet({voted});
         }).finally(() => this.stateSet({loading: false}))
@@ -126,6 +131,8 @@ export class ProposalVoteBtn extends BaseComponent<Props, State> {
 
 export default (p: Props) => {
     const props: Props = {
+        history: p.history,
+        location: p.location,
         global: p.global,
         users: p.users,
         activeUser: p.activeUser,

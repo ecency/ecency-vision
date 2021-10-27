@@ -33,6 +33,7 @@ const defaultProps = {
     dynamicProps: dynamicPropsIntance1,
     signingKey: '',
     entry: {...entryInstance1},
+    totalDelegated: '',
     addAccount: () => {
     },
     setSigningKey: () => {

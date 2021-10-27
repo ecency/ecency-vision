@@ -19,7 +19,7 @@ import {vestsToHp} from "../../helper/vesting";
 
 import formattedNumber from "../../util/formatted-number";
 
-import {ticketSvg, commentSvg, compareHorizontalSvg, cashMultiple, reOrderHorizontalSvg, pickAxeSvg, closeSvg, exchangeSvg, cashCoinSvg, powerDownSvg, powerUpSvg, starsSvg, chevronUpSvgForVote, chevronDownSvgForSlider} from "../../img/svg";
+import {ticketSvg, commentSvg, compareHorizontalSvg, cashMultiple, reOrderHorizontalSvg, pickAxeSvg, closeSvg, exchangeSvg, cashCoinSvg, powerDownSvg, powerUpSvg, starsSvg, chevronUpSvgForVote, chevronDownSvgForSlider, starSvg} from "../../img/svg";
 
 import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
@@ -184,6 +184,24 @@ export class TransactionRow extends Component<RowProps> {
             details = tr.acc ? (
                 <span>
                     <strong>@{tr.acc}</strong>
+                </span>
+            ) : null;
+        }
+        
+        if (tr.type === "delegate_vesting_shares") {
+            flag = true;
+            icon = starSvg;
+
+            const vesting_shares = parseAsset(tr.vesting_shares);
+            numbers = (
+                <span className="number">
+                    {formattedNumber(vestsToHp(vesting_shares.amount, hivePerMVests), {suffix: "HP"})}
+                </span>
+            );
+
+            details = tr.delegatee ? (
+                <span>
+                    <><strong>@{tr.delegator}</strong> -&gt; <strong>@{tr.delegatee}</strong></>
                 </span>
             ) : null;
         }
