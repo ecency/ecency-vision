@@ -67,6 +67,11 @@ export const getPost = (username: string, permlink: string): Promise<any> =>
 
 export const getActiveVotes = (author: string, permlink: string): Promise<Vote[]> =>
     client.database.call("get_active_votes", [author, permlink]);
+// TODO
+// export const getCurrencyTokenRate = (currency, token) =>
+// client.database.call
+//     .get(`/market-data/currency-rate/${currency}/${token}`)
+//     .then((resp) => resp.data)
 
 export const getTrendingTags = (afterTag: string = "", limit: number = 250): Promise<string[]> =>
     client.database
