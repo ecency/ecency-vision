@@ -26,7 +26,7 @@ import HiveWallet from "../../helper/hive-wallet";
 
 import {vestsToHp} from "../../helper/vesting";
 
-import {getAccount, getConversionRequests, getDynamicGlobalProperties} from "../../api/hive";
+import {DynamicGlobalProperties, getAccount, getConversionRequests, getDynamicGlobalProperties} from "../../api/hive";
 
 import {claimRewardBalance, formatError} from "../../api/operations";
 
@@ -83,11 +83,47 @@ export class WalletHive extends BaseComponent<Props, State> {
         this.fetchConvertingAmount();
     }
 
+    getCurrentHpApr = (gprops:DynamicGlobalProperties) => {
+        // The inflation was set to 9.5% at block 7m
+        const initialInflationRate = 9.5;
+        const initialBlock = 7000000;
+
+        // It decreases by 0.01% every 250k blocks
+        const decreaseRate = 250000;
+        const decreasePercentPerIncrement = 0.01;
+
+        // How many increments have happened since block 7m?
+        const headBlock = gprops.head_block_number;
+        const deltaBlocks = headBlock - initialBlock;
+        const decreaseIncrements = deltaBlocks / decreaseRate;
+
+        // Current inflation rate
+        let currentInflationRate =
+            initialInflationRate -
+            decreaseIncrements * decreasePercentPerIncrement;
+
+        // Cannot go lower than 0.95%
+        if (currentInflationRate < 0.95) {
+            currentInflationRate = 0.95;
+        }
+
+        // Now lets calculate the "APR"
+        const vestingRewardPercent = gprops.vesting_reward_percent / 10000;
+        const virtualSupply = gprops.virtual_supply.split(' ').shift();
+        const totalVestingFunds = gprops.total_vesting_fund_hive
+            .split(' ')
+            .shift();
+        return (
+            (parseFloat(virtualSupply || "0") * currentInflationRate * vestingRewardPercent) / parseFloat(totalVestingFunds || "0")
+        );
+    };
+
     fetchConvertingAmount = () => {
         const {account} = this.props;
         const {aprs} = this.state;
-        getDynamicGlobalProperties().then(res=>{debugger;
-            this.setState({aprs: {...aprs, hbd: res.hbd_interest_rate/100}})
+        getDynamicGlobalProperties().then(res=>{
+            let hp = this.getCurrentHpApr(res).toFixed(3);
+            this.setState({aprs: {...aprs, hbd: res.hbd_interest_rate/100, hp}})
         })
 
         getConversionRequests(account.name).then(r => {
