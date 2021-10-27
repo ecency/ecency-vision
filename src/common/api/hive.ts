@@ -192,9 +192,9 @@ export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =
         hbd_print_rate: r.hbd_print_rate || r.sbd_print_rate,
     }));
 
-export const getAccountHistory = (username: string, filters: any[]): Promise<any> => {
+export const getAccountHistory = (username: string, filters: any[], start: number = -1, limit: number = 20): Promise<any> => {
 
-    return client.call("condenser_api", "get_account_history", [username, -1, 500, ...filters]);
+    return client.call("condenser_api", "get_account_history", [username, start, limit, ...filters]);
 }
 
 export const getFeedHistory = (): Promise<FeedHistory> => client.database.call("get_feed_history");

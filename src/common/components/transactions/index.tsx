@@ -2,6 +2,8 @@ import React, {Component} from "react";
 
 import moment from "moment";
 
+import {get} from "lodash";
+
 import {History} from "history";
 
 import {FormControl, Button} from "react-bootstrap";
@@ -400,49 +402,53 @@ interface Props {
     dynamicProps: DynamicProps;
     transactions: Transactions;
     account: Account;
-    fetchTransactions: (username: string, group?: OperationGroup | "") => void;
+    fetchTransactions: (username: string, group?: OperationGroup | "", start?: number, limit?: number) => void;
 }
 
 interface State {
-    currentPage: number;
-    pageSize: number;
     loadingLoadMore: boolean;
+    transactionsList: any[];
 }
 
 export class TransactionList extends Component<Props> {
     state: State = {
-        currentPage: 1,
-        pageSize: 20,
         loadingLoadMore: false,
+        transactionsList: []
     };
+
+    componentDidUpdate(prevProps: any) {
+        const {transactionsList} = this.state;
+        const {transactions} = this.props;
+        if(prevProps.transactions.list !== transactions.list){
+            const new_transactions = [...prevProps.transactions.group === transactions.group ? transactionsList : [], ...transactions.list];
+            console.log('=====new_transactions', new_transactions)
+            this.setState({transactionsList: new_transactions});
+        }
+    }
 
     typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {account, fetchTransactions} = this.props;
         const group = e.target.value;
 
-        this.setState({...this.state, currentPage: 1});
+        this.setState({...this.state});
 
         fetchTransactions(account.name, group as OperationGroup);
     }
 
     loadMore = () => {
-        this.setState({...this.state, loadingLoadMore: true});
-        setTimeout(() => {
-            this.setState({
-                ...this.state, 
-                loadingLoadMore: false,
-                currentPage: this.state.currentPage + 1
-            });
-        }, 500)
+        const {account, fetchTransactions, transactions: {list,group}} = this.props;
+        if(list.length > 0) {
+            const last_num = list[list.length-1].num - 1;
+            fetchTransactions(account.name, group as OperationGroup, last_num);
+        }
     }
 
     render() {
-        const {currentPage, pageSize, loadingLoadMore} = this.state;
+        const {loadingLoadMore, transactionsList} = this.state;
         const {transactions} = this.props;
         const {list, loading, group} = transactions;
 
-        const transactionsList = list.filter((item, k)=> k < currentPage * pageSize);
-        const hasMore = !loading && list.length > currentPage * pageSize;
+        const hasMore = !loading && list.length > 0;
 
         return (
             <div className="transaction-list">
@@ -458,7 +464,7 @@ export class TransactionList extends Component<Props> {
                 {transactionsList.map((x, k) => (
                     <TransactionRow {...this.props} key={k} transaction={x}/>
                 ))}
-                {(!loading && list.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
+                {(!loading && transactionsList.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
                 {(!loading && hasMore) && <Button disabled={loadingLoadMore} block={true} onClick={this.loadMore} className="mt-2">{_t('g.load-more')}</Button>}
             </div>
         );
