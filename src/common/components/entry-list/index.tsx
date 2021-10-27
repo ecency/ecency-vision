@@ -10,7 +10,7 @@ import {Community, Communities} from "../../store/communities/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Reblogs} from "../../store/reblogs/types";
-import {UI, ToggleType, Entry} from "../../store/ui/types";
+import {UI, ToggleType} from "../../store/ui/types";
 
 import EntryListItem from "../entry-list-item/index";
 import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
@@ -21,10 +21,7 @@ import { _t } from "../../i18n";
 import * as ls from "../../util/local-storage";
 import LinearProgress from "../linear-progress";
 import { getFollowing } from "../../api/hive";
-import { search as searchApi } from "../../api/search-api"
-import SearchQuery, {SearchType} from "../../helper/search-query";
 
-import { Row, Form, Col, FormControl, Button } from 'react-bootstrap'
 
 interface Props {
     history: History;
@@ -60,26 +57,12 @@ interface Props {
 interface State {
     mutedUsers: string[];
     loadingMutedUsers: boolean,
-    entriesData: Entry[],
-    search: string;
-    author: string;
-    type: SearchType;
 }
 
 export class EntryListContent extends Component<Props, State> {
     state = {
         mutedUsers: [] as string[],
         loadingMutedUsers: false,
-        entriesData: [],
-        search: "",
-        author: "",
-        type: SearchType.ALL,
-    }
-
-    constructor(props: any) {
-        super(props);
-        this.handleInputChange = _.debounce(this.handleInputChange.bind(this), 200);
-        this.handleChangeSearch = this.handleChangeSearch.bind(this)
     }
 
     fetchMutedUsers = () => {
@@ -107,156 +90,26 @@ export class EntryListContent extends Component<Props, State> {
         if(prevProps.activeUser !== this.props.activeUser && !this.props.activeUser){
             this.setState({mutedUsers:[]})
         }
-        if(prevProps.entries !== this.props.entries) {
-            this.setState({ entriesData: this.props.entries });
-        }
+       
     }
 
     componentDidMount(){
         this.fetchMutedUsers();
-        this.setState({ entriesData: this.props.entries });
     }
-
-
-    handleSubmitSearch = async () => {
-      const { search, author, type } = this.state;
-      const { global, activeUser } = this.props;
-      console.log('values: ', search, activeUser, type);
-
-      let query = `${search} author:${author}`;
-      if(global.filter === 'posts') {
-        query += ` type:post`
-      } else if(global.filter === 'comments') {
-        query += ` type:comment`
-      } 
-      console.log('query: ', query)
-      const data = await  searchApi(query, "popularity", "1");
-      console.log('data: ', data.results)
-      if(data && data.results) {
-        // this.setState({entriesData: data.results})
-      }
-    }
-
-    handleChangeSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = event.target;
-        this.setState({ search: value});
-        this.handleInputChange(value)
-
-      //   const { global } = this.props;
-
-      //   console.log('props: ', this.props);
-
-
-      // let type = global.filter === 'posts' ? 'post' : global.filter === 'comments' ? 'comment' : null;
-      //   let query = ``;
-      //   if(global.filter === 'blog') {
-      //     query += `author:${value}`
-      //   }
-      //   if(type) {
-      //     query += ` type:${type}`
-      //   }
-      //   console.log('query: ', query);
-
-      //   searchApi(`{author: ${value}}`, "popularity", "1", "2020-10-20T20:43:33");
-    }
-
-    handleInputChange =( value: any) => {
-        if(value.trim() === ''){
-            this.setState({entriesData: this.props.entries});
-        } else {
-            let results: Entry[] = [];
-            this.props.entries.forEach((item: Entry) => {
-                if(
-                    item.title.toLowerCase().search(value.toLowerCase().trim()) > -1 || 
-                    item.body.toLowerCase().search(value.toLowerCase().trim()) > -1 || 
-                    item.category.toLowerCase().search(value.toLowerCase().trim()) > -1 || 
-                    (item.community && item.community.toLowerCase().search(value.toLowerCase().trim()) > -1 )|| 
-                    (item.community_title && item.community_title.toLowerCase().search(value.toLowerCase().trim()) > -1 )|| 
-                    item.author.toLowerCase().search(value.toLowerCase().trim()) > -1) {
-                    results.push(item);
-                }
-            });
-            this.setState({entriesData: results})
-        }
-    }
-
-    searchChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
-      this.setState({search: e.target.value});
-    }
-
-    authorChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
-        this.setState({author: e.target.value.trim()});
-    }
-
-    typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
-        this.setState({type: e.target.value as SearchType});
-    }
-
-
-    textInputDown = (e: React.KeyboardEvent) => {
-      if (e.keyCode === 13) {
-          this.handleSubmitSearch();
-      }
-    };
 
     render() {
         const {entries, promotedEntries, global, activeUser, loading } = this.props;
         const {filter} = global;
-        const { mutedUsers, loadingMutedUsers, entriesData, search, author, type } = this.state;
-        // let dataToRender = entries;
-        let dataToRender = entriesData;
+        const { mutedUsers, loadingMutedUsers } = this.state;
+        let dataToRender = entries;
 
         let mutedList: string[] = [];
         if(mutedUsers && mutedUsers.length > 0 && activeUser && activeUser.username){
             mutedList = mutedList.concat(mutedUsers)
         }
-        
-        console.log('entries: ', entries);
-        console.log('props: ', this.props);
-        
+
         return (
             <>
-                <div className='searchProfile'>
-                    {/* <SearchBox 
-                      placeholder={_t('search.placeholder')}  
-                      onChange={this.handleChangeSearch} 
-                      value={this.state.search} 
-                    />
-                    <Button 
-                      className="btnSearch" 
-                      type="button" 
-                      onClick={this.handleSubmitSearch}
-                    >{_t("g.search")}</Button> */}
-
-                    <div className="advanced-section">
-                        <Row>
-                            <Form.Group as={Col} sm="6" controlId="form-search">
-                                <Form.Label>{_t("search-comment.search")}</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder={_t("search-comment.search-placeholder")}
-                                    value={search}
-                                    onChange={this.searchChanged}
-                                    onKeyDown={this.textInputDown}/>
-                            </Form.Group>
-                            <Form.Group as={Col} sm="4" controlId="form-author">
-                                <Form.Label>{_t("search-comment.author")}</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder={_t("search-comment.author-placeholder")}
-                                    value={author}
-                                    onChange={this.authorChanged}
-                                    onKeyDown={this.textInputDown}/>
-                            </Form.Group>
-                            
-                            <Form.Group as={Col} sm="2" controlId="form-type">
-                                <Button className="btnSearch" type="button" onClick={this.handleSubmitSearch}>{_t("g.search")}</Button>
-                            </Form.Group>
-                            
-                        </Row>
-                    </div>
-                </div>
-                
                 {
                     loadingMutedUsers ? <LinearProgress /> : dataToRender.length > 0 ? (
                         <>
