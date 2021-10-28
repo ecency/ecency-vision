@@ -185,11 +185,12 @@ interface UserItemProps {
     disabled: boolean;
     onSelect: (user: User) => void;
     onDelete: (user: User) => void;
+    containerRef?: React.RefObject<HTMLInputElement>;
 }
 
 export class UserItem extends Component<UserItemProps> {
     render() {
-        const {user, activeUser, disabled} = this.props;
+        const {user, activeUser, disabled, containerRef} = this.props;
 
         return (
             <div
@@ -208,7 +209,9 @@ export class UserItem extends Component<UserItemProps> {
                         const {onDelete} = this.props;
                         onDelete(user);
                     }}
+                    placement="left"
                     trigger="click"
+                    containerRef={containerRef}
                 >
                     <div
                         className="btn-delete"
@@ -235,6 +238,7 @@ interface LoginProps {
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     doLogin: (hsCode: string, postingKey: null | undefined | string, account: Account) => Promise<void>;
+    userListRef?: any;
 }
 
 interface State {
@@ -454,7 +458,7 @@ export class Login extends BaseComponent<LoginProps, State> {
 
     render() {
         const {username, key, inProgress} = this.state;
-        const {users, activeUser, global} = this.props;
+        const {users, activeUser, global, userListRef} = this.props;
         const logo = global.isElectron ? "./img/logo-circle.svg" : require('../../img/logo-circle.svg');
         const hsLogo = global.isElectron ? "./img/hive-signer.svg" : require("../../img/hive-signer.svg");
         const keyChainLogo = global.isElectron ?  "./img/keychain.png" : require("../../img/keychain.png");
@@ -472,7 +476,7 @@ export class Login extends BaseComponent<LoginProps, State> {
 
                 {users.length > 0 && (
                     <>
-                        <div className="user-list">
+                        <div className="user-list" ref={userListRef}>
                             <div className="user-list-header">{_t("g.login-as")}</div>
                             <div className="user-list-body">
                                 {users.map((u) => {
@@ -484,6 +488,7 @@ export class Login extends BaseComponent<LoginProps, State> {
                                             user={u}
                                             onSelect={this.userSelect}
                                             onDelete={this.userDelete}
+                                            containerRef={userListRef}
                                         />
                                     );
                                 })}
@@ -567,6 +572,8 @@ interface Props {
 
 export default class LoginDialog extends Component<Props> {
 
+    userListRef = React.createRef();
+
     hide = () => {
         const {toggleUIProp} = this.props;
         toggleUIProp("login");
@@ -622,7 +629,7 @@ export default class LoginDialog extends Component<Props> {
             <Modal show={true} centered={true} onHide={this.hide} className="login-modal modal-thin-header" animation={false}>
                 <Modal.Header closeButton={true}/>
                 <Modal.Body>
-                    {!ui.loginKc && <Login {...this.props} doLogin={this.doLogin}/>}
+                    {!ui.loginKc && <Login {...this.props} doLogin={this.doLogin} userListRef={this.userListRef}/>}
                     {ui.loginKc && <LoginKc {...this.props} doLogin={this.doLogin}/>}
                 </Modal.Body>
             </Modal>
