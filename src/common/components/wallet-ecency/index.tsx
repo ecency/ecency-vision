@@ -29,7 +29,7 @@ import {error, success} from "../feedback";
 
 import {_t} from "../../i18n";
 
-import {claimPoints} from "../../api/private-api";
+import {claimPoints, getCurrencyTokenRate} from "../../api/private-api";
 
 import {
     accountGroupSvg,
@@ -46,6 +46,7 @@ import {
     starOutlineSvg,
     ticketSvg
 } from "../../img/svg";
+import FormattedCurrency from "../formatted-currency";
 
 
 export const formatMemo = (memo: string, history: History) => {
@@ -182,6 +183,8 @@ interface State {
     boost: boolean;
     mounted: boolean;
     transfer: boolean;
+    estimatedPointsValue: number;
+    estimatedPointsValueLoading: boolean;
 }
 
 export class WalletEcency extends BaseComponent<Props, State> {
@@ -191,7 +194,9 @@ export class WalletEcency extends BaseComponent<Props, State> {
         promote: false,
         boost: false,
         mounted: false,
-        transfer: false
+        transfer: false,
+        estimatedPointsValue: 0,
+        estimatedPointsValueLoading: false
     }
 
     componentDidMount() {
@@ -201,7 +206,14 @@ export class WalletEcency extends BaseComponent<Props, State> {
         }
         let user = history.location.pathname.split("/")[1];
             user = user.replace('@','')
-        global.isElectron && this.initiateOnElectron(user)
+        global.isElectron && this.initiateOnElectron(user);
+        this.getEstimatedPointsValue()
+    }
+
+    getEstimatedPointsValue(){
+        const {global: {currency}} = this.props;
+        this.setState({estimatedPointsValueLoading:true})
+        getCurrencyTokenRate(currency,'estm').then(res=>{this.setState({estimatedPointsValue:res, estimatedPointsValueLoading:false})})
     }
 
     initiateOnElectron(username: string){
@@ -258,7 +270,7 @@ export class WalletEcency extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {claiming, transfer, purchase, promote, boost} = this.state;
+        const {claiming, transfer, purchase, promote, boost, estimatedPointsValue, estimatedPointsValueLoading} = this.state;
         const {global, activeUser, account, points} = this.props;
 
         if (!global.usePrivate) {
@@ -311,10 +323,22 @@ export class WalletEcency extends BaseComponent<Props, State> {
                                                 </Tooltip>
                                             )}
                                         </div>
-                                    <div className="estimated-value">Estimated value: ~10.00</div>
                                     </div>
                                 </>
                             )}
+
+                             <div className="balance-row estimated alternative">
+                                <div className="balance-info">
+                                    <div className="title">{_t("wallet.estimated-points")}</div>
+                                    <div className="description">{_t("wallet.estimated-description-points")}</div>
+                                </div>
+                                <div className="balance-values">
+                                    <div className="amount amount-bold">
+                                        {estimatedPointsValueLoading ? `${_t("wallet.calculating")}...` : <FormattedCurrency {...this.props} value={estimatedPointsValue} fixAt={3} />}
+                                    </div>
+                                </div>
+                            </div>
+
                             <div className="balance-row alternative">
                                 <div className="balance-info">
                                     <div className="title">{"Ecency Points"}</div>
