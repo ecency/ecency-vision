@@ -302,7 +302,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                             <div className="balance-info">
                                 <div className="title">{_t("wallet.hive-power")}</div>
                                 <div className="description">{_t("wallet.hive-power-description")}</div>
-                                <div className="description font-weight-bold">{_t("wallet.hive-power-apr-rate", {value: hp})}</div>
+                                <div className="description font-weight-bold mt-2">{_t("wallet.hive-power-apr-rate", {value: hp})}</div>
                             </div>
 
                             <div className="balance-values">
@@ -401,7 +401,6 @@ export class WalletHive extends BaseComponent<Props, State> {
                             <div className="balance-info">
                                 <div className="title">{_t("wallet.hive-dollars")}</div>
                                 <div className="description">{_t("wallet.hive-dollars-description")}</div>
-                                <div className="description font-weight-bold">{_t("wallet.hive-dollars-apr-rate", {value: hbd})}</div>
                             </div>
                             <div className="balance-values">
                                 <div className="amount">
@@ -457,6 +456,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                             <div className="balance-info">
                                 <div className="title">{_t("wallet.savings")}</div>
                                 <div className="description">{_t("wallet.savings-description")}</div>
+                                <div className="description font-weight-bold mt-2">{_t("wallet.hive-dollars-apr-rate", {value: hbd})}</div>
                             </div>
                             <div className="balance-values">
                                 <div className="amount">
