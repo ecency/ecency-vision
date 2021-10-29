@@ -213,7 +213,9 @@ export class WalletEcency extends BaseComponent<Props, State> {
     getEstimatedPointsValue(){
         const {global: {currency}} = this.props;
         this.setState({estimatedPointsValueLoading:true})
-        getCurrencyTokenRate(currency,'estm').then(res=>{this.setState({estimatedPointsValue:res, estimatedPointsValueLoading:false})})
+        getCurrencyTokenRate(currency,'estm').then(res => {
+            this.setState({ estimatedPointsValue: res, estimatedPointsValueLoading: false })
+        })
     }
 
     initiateOnElectron(username: string){
