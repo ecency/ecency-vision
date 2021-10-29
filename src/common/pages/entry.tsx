@@ -509,7 +509,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                     <div className="cross-post">
                                         <h1 className="entry-title">{deletedEntry!.title}</h1>
                                     </div>
-                                <div dangerouslySetInnerHTML={{__html: renderPostBody(deletedEntry!.body)}} />
+                                <div dangerouslySetInnerHTML={{__html: renderPostBody(deletedEntry!.body.replace(/<(?!\s*br\s*\/?)[^>]+>/gi, '<br>'))}} />
                                 {editHistory && <EditHistory entry={{author, permlink} as any} onHide={this.toggleEditHistory}/>}
                                 <div className="mt-3">
                                     {SimilarEntries({
@@ -649,7 +649,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                         if (originalEntry) {
                                             const published = moment(parseDate(originalEntry.created));
                                             const reputation = accountReputation(originalEntry.author_reputation);
-                                            const renderedBody = {__html: renderPostBody(originalEntry.body, false, global.canUseWebp)};
+                                            const renderedBody = {__html: renderPostBody(originalEntry.body, false, global.canUseWebp).replace(/<(?!\s*br\s*\/?)[^>]+>/gi, '<br>')};
                                             
                                             return <>
                                                 <div className="entry-header">
@@ -717,7 +717,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                             </>;
                                         }
 
-                                        let renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 ? comment : entry.body :entry.body, false, global.canUseWebp)};
+                                        let renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 ? comment : entry.body :entry.body.replace(/<(?!\s*br\s*\/?)[^>]+>/gi, '<br>'), false, global.canUseWebp)};
                                         
                                         const ctitle = entry.community ? entry.community_title : "";
                                         let extraItems = ownEntry && isComment ? [{
