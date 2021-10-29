@@ -18,13 +18,12 @@ import {Tsx} from "../i18n/helper";
 
 import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSvg} from "../img/svg";
 import { apiBase } from '../api/helper';
-import {Form} from 'react-bootstrap'
+import {Button, ButtonGroup, Form} from 'react-bootstrap'
 
-const faqKeys = [
+const faqKeysGeneral = [
     'what-is-ecency',
     'what-is-difference',
     'why-choose-ecency',
-    'what-is-hive',
     'how-ecency-works',
     'how-to-join',
     'how-to-signin',
@@ -46,6 +45,7 @@ const faqKeys = [
     'what-spam-abuse',
 ]
 
+const faqKeysHive = [ 'what-is-hive']
 
 class AboutPage extends Component<PageProps> {
     render() {
@@ -802,18 +802,20 @@ class TosPage extends Component<PageProps> {
 
 interface FAQPageState {
     search: string;
+    category: 1 | 2;
 }
 
 class FaqPage extends Component<PageProps, FAQPageState> {
     constructor(props:PageProps){
         super(props);
         this.state = {
-            search: ""
+            search: "",
+            category: 1
         }
     }
 
     render() {
-        const {search} = this.state;
+        const {search, category} = this.state;
         //  Meta config
         const metaProps = {
             title: _t('static.faq.page-title')
@@ -822,6 +824,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
         const {global} = this.props;
         const imgs = apiBase(`/assets/ecency-faq.${this.props.global.canUseWebp ? 'webp' : 'jpg'}`);
         let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
+        let faqKeys = category === 1 ? faqKeysGeneral : faqKeysHive
 
         return (
             <>
@@ -840,8 +843,21 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                             <img src={imgs} className="rounded"/>
                             <div className="position-absolute search-container d-flex justify-content-center align-items-center flex-column rounded">
                                 <h1 className="text-white">{_t('static.faq.page-title')}</h1>
+                                <div className="mt-2 mb-3 d-flex justify-content-center">
+                                <ButtonGroup>
+                                    <Button
+                                        variant={category === 1 ? "primary" : "secondary"}
+                                        className="mr-3"
+                                        onClick={() => this.setState({category:1})}
+                                    >{_t("g.general")}</Button>
+                                    <Button
+                                        variant={category === 2 ? "primary" : "secondary"}
+                                        onClick={() => this.setState({category:2})}
+                                    >{_t("wallet.hive")}</Button>
+                                </ButtonGroup>
+                                </div>
                                 <Form.Control
-                                    placeholder={`${_t("g.search")} ${_t("static.faq.page-title")}`}
+                                    placeholder={`${_t("g.search")} ${_t("static.faq.page-title")} (${category === 1 ? _t("g.general") : _t("wallet.hive")})`}
                                     className="w-75"
                                     onChange={e=>this.setState({search: e.target.value})}
                                     value={search}
