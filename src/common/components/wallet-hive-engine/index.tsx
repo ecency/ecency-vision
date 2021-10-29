@@ -82,8 +82,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
   fetchUnclaimedRewards = async () => {
     const { account } = this.props;
 
-    // const rewards = await getUnclaimedRewards(account.name);
-    const rewards = await getUnclaimedRewards('ecency');
+    const rewards = await getUnclaimedRewards(account.name);
     this.stateSet({ rewards });
   };
 
