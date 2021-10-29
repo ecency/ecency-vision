@@ -18,6 +18,7 @@ import {Tsx} from "../i18n/helper";
 
 import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSvg} from "../img/svg";
 import { apiBase } from '../api/helper';
+import {Form} from 'react-bootstrap'
 
 const faqKeys = [
     'what-is-ecency',
@@ -799,8 +800,20 @@ class TosPage extends Component<PageProps> {
     }
 }
 
-class FaqPage extends Component<PageProps> {
+interface FAQPageState {
+    search: string;
+}
+
+class FaqPage extends Component<PageProps, FAQPageState> {
+    constructor(props:PageProps){
+        super(props);
+        this.state = {
+            search: ""
+        }
+    }
+
     render() {
+        const {search} = this.state;
         //  Meta config
         const metaProps = {
             title: _t('static.faq.page-title')
@@ -823,12 +836,38 @@ class FaqPage extends Component<PageProps> {
 
                 <div className={"app-content static-page faq-page" + containerClasses} itemScope={true} itemType="https://schema.org/FAQPage">
                     <div className="static-content">
-                        <h1 className="page-title">{_t('static.faq.page-title')}</h1>
-                        <img src={imgs}/>
+                        <div className="position-relative rounded">
+                            <img src={imgs} className="rounded"/>
+                            <div className="position-absolute search-container d-flex justify-content-center align-items-center flex-column rounded">
+                                <h1 className="text-white">{_t('static.faq.page-title')}</h1>
+                                <Form.Control
+                                    placeholder={`${_t("g.search")} ${_t("static.faq.page-title")}`}
+                                    className="w-75"
+                                    onChange={e=>this.setState({search: e.target.value})}
+                                    value={search}
+                                    autoFocus
+                                />
+                                {search.length > 0 && <Form.Text className="text-white mt-3">
+                                    {_t("static.faq.search", {search: `"${search}"`})}
+                                </Form.Text>}
+                            </div>
+                        </div>
                         <h3>{_t('static.faq.page-sub-title')}</h3>
                         <ul className="table-contents">
                             {faqKeys.map(x => {
-                                return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>
+                                let hasSearch = search.length > 0;
+                                if(hasSearch){
+                                    let isSearchValid = _t(`static.faq.${x}-header`).toLocaleLowerCase().includes(search.toLocaleLowerCase());
+                                    if(isSearchValid){
+                                        return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>
+                                    }
+                                    else {
+                                        return null
+                                    }
+                                }
+                                else {
+                                    return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>;
+                                }
                             })}
                         </ul>
                         <div className="faq-list">
