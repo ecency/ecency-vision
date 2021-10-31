@@ -487,6 +487,8 @@
     "hive-description": "A HIVE olyan értékesíthető token, amely bármikor átutalható. A HIVE átalakítható Hive Power-re egy olyan folyamatban, melyet powering up-nak nevezünk.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "A Hive Power olyan befolyásos token, amely több erőt bistosít hosszú távú birtoklás esetén és a bejegyzések szavazásakor. Minél több Hive Power-t birtokolsz, annál több befolyásod lehet mások jutalma fölött, és annál tőbb jutalmat biztosít a megfelelő szavazásért.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Delegált Hive Power",
     "hive-power-received": "Kapott Hive Power",
     "next-power-down-amount": "A következő power down összeg",
