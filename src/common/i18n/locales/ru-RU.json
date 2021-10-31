@@ -487,6 +487,8 @@
     "hive-description": "HIVE – это торгуемые токены, которые могут быть переданы в любое время. HIVE может быть преобразован в Hive Power операцией, называемой усилением.",
     "hive-power": "HIVE СИЛА",
     "hive-power-description": "HIVE СИЛА - это особые токены влияния, количество которых растёт по мере их хранения и при голосовании за посты. Чем больше HIVE СИЛЫ на аккаунте, тем больше его влияние на награды других и тем больше наград аккаунт получает за свое голосование.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Делегированная HIVE СИЛА",
     "hive-power-received": "Полученная HIVE СИЛА",
     "next-power-down-amount": "Следующее понижение силы",
