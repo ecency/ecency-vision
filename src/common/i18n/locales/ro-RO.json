@@ -487,6 +487,8 @@
     "hive-description": "HIVE sunt token-uri convertibile ce pot fi transferate oricând. HIVE pot fi transformați in Hive Power printr-un proces numit power up.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power sunt token-uri de influență ce câștigă mai multă putere pentru menținerea puterii de vot și votare. Cu cât deții mai mult Hive Power, cu atât poți influența recompensele altora si poti câștiga recompense pentru votare.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Hive Power Delegat",
     "hive-power-received": "Hive Power Primit",
     "next-power-down-amount": "Următoarea sumă power down",
