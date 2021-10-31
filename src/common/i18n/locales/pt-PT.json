@@ -487,6 +487,8 @@
     "hive-description": "HIVE são tokens comercializáveis que podem ser transferidos a qualquer momento. HIVE pode ser convertido para Hive Power, através do procedimento chamado Power Up.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power são tokens que representam sua participação e influência, ganhando mais força quando guardados a longo prazo junto a curadoria de posts. Quanto mais Hive Power se detém, mais se pode influenciar na rede e ganhar recompensas por trabalho de curadoria.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Hive Power Delegado",
     "hive-power-received": "Hive Power Recebido",
     "next-power-down-amount": "Próxima quantidade de power down",
