@@ -487,6 +487,8 @@
     "hive-description": "HIVE είναι διαπραγματεύσιμες μάρκες, που μπορούν να μεταφερθούν οποιαδήποτε στιγμή. τα HIVE μπορούν να μετατραπούν σε Hive Power μέσω μίας διαδικασίας που ονομάζεται powering up.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Τα Hive Power είναι μάρκες επιρροής που μπορούν να αποκτήσουν περισσότερη δύναμη, κρατώντας τις μακροπρόθεσμα και ψηφίζοντας αναρτήσεις. Όσες περισσότερες έχει στην κατοχή του κάποιος, τόσο περισσότερο μπορεί να επηρεάσει τις αμοιβές άλλων άλλα και τις δικές του.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Κατ 'εξουσιοδότηση Hive Power",
     "hive-power-received": "Hive Power που έχει ληφθεί",
     "next-power-down-amount": "Το επόμενο ποσό από το power down",
