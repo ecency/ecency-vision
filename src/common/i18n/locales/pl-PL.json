@@ -487,6 +487,8 @@
     "hive-description": "HIVE to zbywalne żetony, które mogą być przetransferowane w dowolnym momencie. HIVE można przekonwertować na Hive Power w procesie zwanym zasilaniem.",
     "hive-power": "MOC HIVE",
     "hive-power-description": "Hive Power to tokeny wpływu, które generują więcej mocy za długotrwałe ich posiadanie i głosowanie na posty. Im więcej posiada się Hive Power, tym bardziej można wpływać na inne nagrody i zdobywać nagrody za trafne głosowanie.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Deleguj Hive Power",
     "hive-power-received": "Otrzymana Moc Hive",
     "next-power-down-amount": "Następny spadek mocy jest za",
