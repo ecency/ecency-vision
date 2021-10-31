@@ -487,6 +487,8 @@
     "hive-description": "HIVE is een verhandelbare token die ieder moment overgedragen kan worden. HIVE kan worden omgezet tot HIVE Power via een Power Up.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "HIVE Power is een invloed token. Door deze vast te houden neemt het in hoeveelheid toe en geeft het meer stem invloed. Des te meer HIVE Power iemand heeft, des te meer invloed deze heeft op de beloningen van anderen. En het geeft hogere verdiensten bij het waarderen van anderen hun publicaties.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Gedelegeerde HIVE Power",
     "hive-power-received": "Ontvangen HIVE Power",
     "next-power-down-amount": "Volgende power down hoeveelheid",
