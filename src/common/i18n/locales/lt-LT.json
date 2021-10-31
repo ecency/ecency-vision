@@ -487,6 +487,8 @@
     "hive-description": "HIVE yra mainomi virtualūs žetonai, kurie gali būti pervesti bet kuriuo metu. HIVE gali būti pervestas į Hive Power, procesą vadinama jėgos kėlimu.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power yra įtakingi virtualūs žetonai, kurie įgauna daugiau galios juos kaupiant ir balsuojant. Kuo daugiau Hive Power vartotojas turi, tuo daugiau įtakos jis turi kitų vartotojų atlygiui ir gali pats gauti atlygį už tikslų balsavimą.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Deleguota Hive Power",
     "hive-power-received": "Gauta Hive Power",
     "next-power-down-amount": "Kita galios mažinimo suma",
