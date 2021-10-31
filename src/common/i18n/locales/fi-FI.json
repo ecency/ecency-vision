@@ -487,6 +487,8 @@
     "hive-description": "HIVE on vaihdettavia, milloin tahansa siirrettäviä merkkejä. HIVEä voi vaihtaa Hive Poweriin prosessissa, jota kutsutaan Voimanlisäykseksi.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Powerit ovat vaikutuskuponkeja, jotka auttavat tienaamaan ja antavat enemmän määräysvaltaa äänestyksissä. Mitä enemmän näitä omistaa, sitä enemmän on vaikutusvaltaa ja voit saada myös palkintoja.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Valtuutettu Hive Power",
     "hive-power-received": "Vastaanotettu Hive Power",
     "next-power-down-amount": "Seuraava power down määrä",
