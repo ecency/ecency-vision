@@ -487,6 +487,8 @@
     "hive-description": "HIVE са търгуеми жетони който могат да бъдат прехвърлени по всяко време.HIVE може да се преобразува в Hive стойност на гласа чрез процес наречен увеличаване на силата.",
     "hive-power": "HIVE сила/стойност",
     "hive-power-description": "Hive Power са жетони които събират повече сила като ги притежавате дългосрочно и гласувате на постове. Колкото повече Hive Power имате, толкова повече влияние имате върху наградите на останалите и печелите награди за правилно гласуване.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Делегиран Hive Power",
     "hive-power-received": "Получен Hive Power",
     "next-power-down-amount": "Следващо количество на намалената сила",
