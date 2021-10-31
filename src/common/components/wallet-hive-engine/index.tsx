@@ -146,10 +146,10 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                             overlay={
                               <Tooltip id={`tooltip-token`}>
                                 <div className="tooltip-inner rewards-container">
-                                  {rewardsToShowInTooltip.map(reward =>
-                                  <div className="d-flex py-1 border-bottom">
+                                  {rewardsToShowInTooltip.map((reward, ind) =>
+                                  <div className="d-flex py-1 border-bottom" key={reward.pending_token+ind}>
                                     <div className="mr-1 text-lowercase">{reward.symbol}: </div>
-                                    <div>{reward.pending_token}</div>
+                                    <div>{reward.pending_token / Math.pow(10, reward.precision)}</div>
                                   </div>)}
                                 </div>
                               </Tooltip>
