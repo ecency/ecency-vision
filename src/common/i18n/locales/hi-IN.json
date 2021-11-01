@@ -481,8 +481,10 @@
     "unclaimed-rewards": "बिना दावे के इनामें",
     "claim-reward-balance": "शेष इनाम हाशिल करें",
     "claim-reward-balance-ok": "इनाम की राशी ले चुके",
-    "estimated": "खाते का अनुमानित कीमत",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "अनुमानित मूल्य HIVE के 7 दिन के औसत मूल्य पर आधारित है।",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "हाइव",
     "hive-description": "हाइव परम्परागत टोकन हैं जिन्हें कभी भी स्थानांतरित किया जा सकता है। इन्हें हाइव पावर में परिवर्तित करने की प्रक्रिया में परिवर्तित किया जा सकता है।",
     "hive-power": "हाइव पावर",
@@ -507,6 +509,7 @@
     "delegate": "प्रतिनिधि",
     "power-down": "पावर नीचे करे",
     "withdraw-routes": "निकाशी मार्ग",
+    "calculating": "Calculating",
     "converting-hbd-amount": "हाइव में परिवर्तित हो रहा हैं"
   },
   "wallet-engine": {
