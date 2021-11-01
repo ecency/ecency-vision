@@ -481,8 +481,10 @@
     "unclaimed-rewards": "Не отримана винагорода",
     "claim-reward-balance": "Зарахувати винагороду на баланс",
     "claim-reward-balance-ok": "Винагорода зарахована на баланс",
-    "estimated": "Приблизна вартість обліковки",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "Орієнтовна вартість базується на 7-денній середній вартості HIVE.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE - токени вільно торгуються та можуть бути передані будь-коли. HIVE можна конвертувати в Hive Силу за допомогою дії, що зветься \"збільшення сили\" чи анг. (Power Up).",
     "hive-power": "HIVE POWER",
@@ -507,6 +509,7 @@
     "delegate": "Делегувати",
     "power-down": "Зменшення сили голосу",
     "withdraw-routes": "Маршрути виведення",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE"
   },
   "wallet-engine": {
