@@ -866,7 +866,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                             </div>
                         </div>
                         <h3>{_t('static.faq.page-sub-title')}</h3>
-                        {search.length === 0 ? <h2 className="ml-0">{"Ecency:"}</h2> : null}
+                        {search.length === 0 ? <h2 className="ml-0">{_t('g.ecency')+":"}</h2> : null}
                         {search.length > 0 && <ul className="table-contents">
                             {dataToShow.map(x => {
                                     return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>;
@@ -877,7 +877,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                                     return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>;
                             })}
                         </ul>:null}
-                        {search.length === 0 ? <h2 className="ml-0">{"Blockchain:"}</h2> : null}
+                        {search.length === 0 ? <h2 className="ml-0">{_t('g.blokcchain')+":"}</h2> : null}
                         {search.length === 0 ? <ul className="table-contents">
                             {faqKeysHive.map(x => {
                                     return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>;
