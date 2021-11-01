@@ -481,8 +481,10 @@
     "unclaimed-rewards": "Невостребованные награды",
     "claim-reward-balance": "Запросить бонусный баланс",
     "claim-reward-balance-ok": "Награда получена",
-    "estimated": "Расчетная стоимость аккаунта",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "Предполагаемая стоимость основана на 7-дневной средней стоимости HIVE.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE – это торгуемые токены, которые могут быть переданы в любое время. HIVE может быть преобразован в Hive Power операцией, называемой усилением.",
     "hive-power": "HIVE СИЛА",
@@ -507,6 +509,7 @@
     "delegate": "Делегировать",
     "power-down": "Понижение Силы",
     "withdraw-routes": "Пути вывода",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Конвертация в HIVE"
   },
   "wallet-engine": {
