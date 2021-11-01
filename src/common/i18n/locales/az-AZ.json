@@ -481,8 +481,10 @@
     "unclaimed-rewards": "Götürülməmiş mükafatlar",
     "claim-reward-balance": "Mükafat balansını götür",
     "claim-reward-balance-ok": "Mükafat balansı götürüldü",
-    "estimated": "Təxmini Hesab Dəyəri",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "Təxmini dəyər, HIVE-ın 7 günlük ortalama dəyəri əsasında hesablanır.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE, istənilən vaxt köçürə biləcəyiniz ticarət tokenləridir. HIVE, gücləndirmə adlandırılan müddətdə HIVE Power-ə çevrilə bilər.",
     "hive-power": "HIVE GÜCÜ",
@@ -507,6 +509,7 @@
     "delegate": "Nümayəndə göndər",
     "power-down": "Gücü azalt",
     "withdraw-routes": "Withdraw Routes",
+    "calculating": "Calculating",
     "converting-hbd-amount": "HIVE-a çevrilir"
   },
   "wallet-engine": {
