@@ -481,8 +481,10 @@
     "unclaimed-rewards": "Неизчистени награди",
     "claim-reward-balance": "Вземи точките от награди",
     "claim-reward-balance-ok": "Наградите са изчистени",
-    "estimated": "Предполагаема стойност на акаунта",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "Приблизителната стойност се определя от 7 дневна, средна цена на HIVE.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE са търгуеми жетони който могат да бъдат прехвърлени по всяко време.HIVE може да се преобразува в Hive стойност на гласа чрез процес наречен увеличаване на силата.",
     "hive-power": "HIVE сила/стойност",
@@ -507,6 +509,7 @@
     "delegate": "Делегирай",
     "power-down": "Намаляне на силата",
     "withdraw-routes": "Пътища за теглене",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Преобразувай HBD към HIVE"
   },
   "wallet-engine": {
