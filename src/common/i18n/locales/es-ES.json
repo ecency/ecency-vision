@@ -481,8 +481,10 @@
     "unclaimed-rewards": "Recompensas no reclamadas",
     "claim-reward-balance": "Reclamar recompensa",
     "claim-reward-balance-ok": "Recompensa reclamada",
-    "estimated": "Valor de cuenta aproximado",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "El valor estimado se basa en un valor promedio de 7 días de HIVE.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE es una moneda que puede transferirse en cualquier momento. HIVE se puede convertir a Hive Power en un proceso llamado Power Up.",
     "hive-power": "HIVE POWER",
@@ -507,6 +509,7 @@
     "delegate": "Delegar",
     "power-down": "Apagar",
     "withdraw-routes": "Rutas de Retiro",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Convirtiendo a HIVE"
   },
   "wallet-engine": {
