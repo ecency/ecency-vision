@@ -481,8 +481,10 @@
     "unclaimed-rewards": "Nepotvrđene nagrade",
     "claim-reward-balance": "Zatraži bilans nagrada",
     "claim-reward-balance-ok": "Zahtevani saldo nagrada",
-    "estimated": "Procenjena vrednost naloga",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "Procenjena vrednost se zasniva na sedmodnevnoj prosečnoj vredosti HIVE.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE su tokeni koje možete razmenjivati u svakom trenutku. HIVE se može pretvoriti u Hive snagu u procesu zvanom pojačavanje snage.",
     "hive-power": "HIVE SNAGA",
@@ -507,6 +509,7 @@
     "delegate": "Delegiraj",
     "power-down": "Smanji snagu",
     "withdraw-routes": "Povucite rute",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE"
   },
   "wallet-engine": {
