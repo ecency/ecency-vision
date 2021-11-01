@@ -481,8 +481,10 @@
     "unclaimed-rewards": "Talep edilmemiş ödüller",
     "claim-reward-balance": "Ödül bakiyesini talep et",
     "claim-reward-balance-ok": "Ödül bakiyesi talep edildi",
-    "estimated": "Tahmini Hesap Değeri",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "Tahmini değer HIVE'ın 7 günlük ortalama değerine dayanmaktadır.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE dilediğiniz zaman transfer edebileceğiniz ticari tokendır. HIVE hesap geliştirme olarak adlandırılan bir süreçte Hive Power'a dönüştürülebilir.",
     "hive-power": "HIVE POWER",
@@ -507,6 +509,7 @@
     "delegate": "Delegasyon yap",
     "power-down": "Gücü azalt",
     "withdraw-routes": "Çekim Hesapları",
+    "calculating": "Calculating",
     "converting-hbd-amount": "HIVE'a Dönüştür"
   },
   "wallet-engine": {
