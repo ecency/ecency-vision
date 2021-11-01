@@ -481,8 +481,10 @@
     "unclaimed-rewards": "Nieodebrane wynagrodzenie",
     "claim-reward-balance": "Odbierz wynagrodzenie",
     "claim-reward-balance-ok": "Wynagrodzenie odebrane",
-    "estimated": "Szacowana wartość konta",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "Wartość jest szacowana na podstawie średniej wartości HIVE z 7 dni.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE to zbywalne żetony, które mogą być przetransferowane w dowolnym momencie. HIVE można przekonwertować na Hive Power w procesie zwanym zasilaniem.",
     "hive-power": "MOC HIVE",
@@ -507,6 +509,7 @@
     "delegate": "Deleguj",
     "power-down": "Zmniejsz moc",
     "withdraw-routes": "Planowanie wypłaty na różne konta",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE"
   },
   "wallet-engine": {
