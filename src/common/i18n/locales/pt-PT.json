@@ -387,13 +387,13 @@
     "description": "Crie comunidades melhores, descentralizadas, imutáveis e recompensadoras",
     "fee": "Creation fee",
     "creator": "Criador",
-    "username": "Community username",
+    "username": "Usuário da comunidade",
     "username-available": "Disponível.",
     "username-not-available": "Não disponível.",
     "username-wrong-format": "Não é um formato válido. É necessário um formato hive-1xxxxx.",
-    "checkbox-validation": "Please tick this box if you want to proceed.",
-    "title-validation": "Please fill in this field.",
-    "password": "Community password",
+    "checkbox-validation": "Por favor, marque esta caixa se quiser prosseguir.",
+    "title-validation": "Por favor, complete este campo.",
+    "password": "Senha da comunidade",
     "confirmation": "Eu guardei seguramente o meu utilizador e password.",
     "submit": "Criar Comunidade",
     "progress-account": "Criar conta...",
@@ -402,10 +402,10 @@
     "progress-props": "Actualizando as configuraões das comunidade...",
     "done": "A sua comunidade foi criada 🎉",
     "reason-one": "Propriedade de Verdade",
-    "reason-two": "Permanent, rewarding",
+    "reason-two": "Permanente, recompensante",
     "password-copied": "Senha copiada para a área de transferência",
-    "reason-three": "Powered by blockchain technology",
-    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
+    "reason-three": "Desenvolvido em tecnologia blockchain",
+    "reason-four": "Custa 3 HIVE para criar uma comunidade. Ela será permanente, imutável. A propriedade é garantida",
     "done-link-label": "Vamos começar."
   },
   "community-rewards-registration": {
@@ -521,8 +521,8 @@
     "title": "Contas de saque",
     "account": "Conta",
     "percent": "Percentagem",
-    "validation-account": "Account is required.",
-    "validation-percent": "Percentage is required.",
+    "validation-account": "Uma Conta é necessária.",
+    "validation-percent": "Porcentagem é necessária.",
     "auto-power-up": "Aumentar poder automaticamente"
   },
   "points": {
@@ -673,7 +673,7 @@
     "type-interest": "Rendimentos",
     "type-transfer_to_savings": "Transferir para a poupança",
     "type-fill_convert_request": "Convert fulfilled",
-    "type-fill_collateralized_convert_request": "Collateralized convert fulfilled",
+    "type-fill_collateralized_convert_request": "Conversão de colateral completa",
     "type-fill_collateralized_convert-detail": "ID: <strong>{{request}}</strong>, Returned: {{returned}}",
     "type-cancel_transfer_from_savings": "Cancelar a transferência da poupança",
     "type-cancel_transfer_from_savings-detail": "De: <strong>@{{from}}</strong> <br/> ID da solicitação: <strong>{{request}}</strong>",
@@ -710,7 +710,7 @@
   "friends": {
     "followers": "Seguidores ({{n}})",
     "following": "Seguindo ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Procurar"
   },
   "follow-controls": {
     "follow": "Seguir",
@@ -742,7 +742,7 @@
     "gallery": "Galeria",
     "emoji": "Emoji",
     "image-error": "Não foi possível carregar imagem.",
-    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
+    "image-error-cache": "Não foi possível enviar a imagem. Você parece estar desconectado, tente realizar o login novamente.",
     "image-error-size": "O tamanho da imagem é muito grande, tente novamente com uma imagem mais pequena.",
     "fragments": "Trechos"
   },
@@ -772,7 +772,7 @@
     "clear": "Limpar",
     "published": "Publicação publicada",
     "updated": "Publicação atualizada",
-    "thumbnail": "Thumbnail",
+    "thumbnail": "Miniatura",
     "advanced": "Avançado",
     "beneficiaries": "Beneficiários",
     "beneficiaries-hint": "Configura beneficiários para dividir a recompensa do autor com outras contas",
@@ -791,13 +791,13 @@
     "placeholder-has-tags": "Adicionar mais",
     "suggestion-header": "Etiquetas",
     "error-max": "Máximo de etiquetas {{n}}",
-    "limited_tags": "Only 10 tags allowed, remove some",
-    "limited_length": "Maximum length of each tag should be 24",
-    "limited_dash": "Use one dash in each tag",
-    "limited_space": "Use space to separate tags",
-    "limited_lowercase": "Only use lower letters in tag",
-    "limited_characters": "Use only lowercase letters, digits and one dash",
-    "limited_firstchar": "Tag must start with a letter",
+    "limited_tags": "Apenas 10 etiquetas permitidas. Remova algumas",
+    "limited_length": "Tamanho máximo de cada etiqueta deve ser 24",
+    "limited_dash": "Use um traço em cada etiqueta",
+    "limited_space": "Usa espaços para separar as etiquetas",
+    "limited_lowercase": "Use apenas letras minúsculas na etiqueta",
+    "limited_characters": "Use apenas letras minúsculas, dígitos e um traço",
+    "limited_firstchar": "Etiqueta deve começar com uma letra",
     "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
@@ -817,8 +817,8 @@
     "username": "Usuário",
     "reward": "Recompensa",
     "user-error": "{{n}} não é um usuário válido.",
-    "validation-percentage": "Percentage is required.",
-    "validation-username": "Username is required.",
+    "validation-percentage": "Porcentagem é necessária.",
+    "validation-username": "O nome de usuário é necessário.",
     "user-exists-error": "{{n}} já está na lista"
   },
   "post-scheduler": {
@@ -993,8 +993,8 @@
     "create-first": "Crie seu primeiro fragmento de informação",
     "filter": "Pesquisar por título",
     "form-title": "Título",
-    "validation-title": "Title is required.",
-    "validation-value": "Value is required.",
+    "validation-title": "É preciso título.",
+    "validation-value": "É necessário valor.",
     "validation-body": "Corpo obrigatório.",
     "form-body": "Conteúdo"
   },
@@ -1008,18 +1008,18 @@
     "pass-gen": "Clique para gerar a senha",
     "label-check": "Eu guardei com segurança minha nova senha gerada",
     "validation-password": "Senha inválida.",
-    "validation-label": "Please tick this box to proceed.",
+    "validation-label": "Por favor, marque esta caixa para continuar.",
     "updated": "Senha atualizada com sucesso!"
   },
   "view-keys": {
-    "title": "View Private keys",
+    "title": "Ver Chaves Privadas",
     "account": "Conta",
     "cur-pass": "Current password",
-    "owner": "Owner",
+    "owner": "Proprietário",
     "active": "Active",
-    "posting": "Posting",
+    "posting": "Postagem",
     "memo": "Memo",
-    "view-keys": "Click to view keys",
+    "view-keys": "Clique para ver as chaves",
     "copied": "Private key copied into clipboard",
     "error": "Password seem incorrect, please double check!"
   },
@@ -1197,6 +1197,6 @@
   },
   "layouts": {
     "grid": "Grid",
-    "classic": "Classic"
+    "classic": "Clássico"
   }
 }
