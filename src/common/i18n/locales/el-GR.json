@@ -481,8 +481,10 @@
     "unclaimed-rewards": "Αζήτητες Ανταμοιβές",
     "claim-reward-balance": "Ζητήστε υπόλοιπο ανταμοιβής",
     "claim-reward-balance-ok": "Yπόλοιπο ανταμοιβής ζητήθηκε",
-    "estimated": "Εκτιμώμενη Αξία Λογαριασμού",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "Η εκτιμώμενη αξία βασίζεται σε έναν μέσο όρο 7 ημερών της αξίας του HIVE.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE είναι διαπραγματεύσιμες μάρκες, που μπορούν να μεταφερθούν οποιαδήποτε στιγμή. τα HIVE μπορούν να μετατραπούν σε Hive Power μέσω μίας διαδικασίας που ονομάζεται powering up.",
     "hive-power": "HIVE POWER",
@@ -507,6 +509,7 @@
     "delegate": "Εξουσιoδοτήστε",
     "power-down": "Power Down",
     "withdraw-routes": "Οδοί Ανάληψης",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE"
   },
   "wallet-engine": {
