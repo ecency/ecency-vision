@@ -481,8 +481,10 @@
     "unclaimed-rewards": "Neatsiimtas atlygis",
     "claim-reward-balance": "Atsiimti atlygį",
     "claim-reward-balance-ok": "Atlygis atsiimtas",
-    "estimated": "Apskaičiuota Paskyros Vertė",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "Apskaičiuota vertė yra grįsta vidutine 7 dienų HIVE verte.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE yra mainomi virtualūs žetonai, kurie gali būti pervesti bet kuriuo metu. HIVE gali būti pervestas į Hive Power, procesą vadinama jėgos kėlimu.",
     "hive-power": "HIVE POWER",
@@ -507,6 +509,7 @@
     "delegate": "Delegate",
     "power-down": "Power down",
     "withdraw-routes": "Withdraw Routes",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE"
   },
   "wallet-engine": {
