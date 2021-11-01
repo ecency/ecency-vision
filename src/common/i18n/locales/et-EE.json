@@ -481,8 +481,10 @@
     "unclaimed-rewards": "Unclaimed rewards",
     "claim-reward-balance": "Claim reward balance",
     "claim-reward-balance-ok": "Reward balance claimed",
-    "estimated": "Estimated Account Value",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "The estimated value is based on a 7 day average value of HIVE.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE are tradeable tokens that may be transferred at anytime.HIVE can be converted to Hive Power in a process called powering up.",
     "hive-power": "HIVE POWER",
@@ -507,6 +509,7 @@
     "delegate": "Delegate",
     "power-down": "Power down",
     "withdraw-routes": "Withdraw Routes",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Vaheta HIVEks"
   },
   "wallet-engine": {
