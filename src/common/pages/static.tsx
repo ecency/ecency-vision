@@ -826,7 +826,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
         let searchResult: string[] = [];
         if(search && search.length > 0){
             faqKeys.map(x => {
-                    let isSearchValid = _t(`static.faq.${x}-body`).toLocaleLowerCase().includes(search.toLocaleLowerCase()) || _t(`static.faq.${x}-header`).toLocaleLowerCase().includes(search.toLocaleLowerCase());
+                    let isSearchValid = _t(`static.faq.${x}-body`).toLocaleLowerCase().includes(search.toLocaleLowerCase());
                     if(isSearchValid){
                         searchResult.push(x)
                     }
@@ -866,13 +866,25 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                             </div>
                         </div>
                         <h3>{_t('static.faq.page-sub-title')}</h3>
-                        <ul className="table-contents">
+                        {search.length === 0 ? <h2 className="ml-0">{"Ecency:"}</h2> : null}
+                        {search.length > 0 && <ul className="table-contents">
                             {dataToShow.map(x => {
                                     return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>;
                             })}
-                        </ul>
+                        </ul>}
+                        {search.length === 0 ? <ul className="table-contents">
+                            {faqKeysGeneral.map(x => {
+                                    return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>;
+                            })}
+                        </ul>:null}
+                        {search.length === 0 ? <h2 className="ml-0">{"Blockchain:"}</h2> : null}
+                        {search.length === 0 ? <ul className="table-contents">
+                            {faqKeysHive.map(x => {
+                                    return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>;
+                            })}
+                        </ul>:null}
                         <div className="faq-list">
-                            {dataToShow.map(x => {
+                            {dataToShow.map((x) => {
                                 return <div key={x} className="faq-item" itemScope={true} itemProp="mainEntity" itemType="https://schema.org/Question">
                                             <span className="anchor" id={x}/>
                                             <h4 className="faq-item-header" itemProp="name">{_t(`static.faq.${x}-header`)}</h4>
