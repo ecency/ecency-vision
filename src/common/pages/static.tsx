@@ -850,8 +850,8 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                     <div className="static-content">
                         <div className="position-relative rounded">
                             <img src={imgs} className="rounded"/>
-                            <div className="position-absolute search-container d-flex justify-content-center align-items-center flex-column rounded">
-                                <h1 className="text-white">{_t('static.faq.page-title')}</h1>
+                            <div className="position-absolute search-container d-flex justify-content-center align-items-center flex-column rounded p-3">
+                                <h1 className="text-white faq-title mb-3">{_t('static.faq.page-title')}</h1>
                                 <Form.Control
                                     placeholder={`${_t("static.faq.search-placeholder")}`}
                                     className="w-75"
@@ -859,7 +859,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                                     value={search}
                                     autoFocus
                                 />
-                                {search.length > 0 && <Form.Text className="text-white mt-3 w-75 text-center">
+                                {search.length > 0 && <Form.Text className="text-white mt-2 mt-sm-3 w-75 text-center helper-text">
                                     {searchResult.length > 0 ? _t("static.faq.search", {search: `"${search}"`}) :
                                         <div>{_t("static.faq.search-not-found")}<Link to="https://discord.me/ecency" target="_blank">Discord</Link>.</div>}
                                 </Form.Text>}
