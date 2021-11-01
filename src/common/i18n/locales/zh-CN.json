@@ -481,8 +481,10 @@
     "unclaimed-rewards": "未认领的奖励",
     "claim-reward-balance": "领取奖励余额",
     "claim-reward-balance-ok": "领取奖励余额",
-    "estimated": "估计账户价值",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "估计的价值是基于HIVE价格的7日平均值",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE是可以交易的代币，可以随时传输。HIVE可以转换为Hive Power通过能力提升过程。",
     "hive-power": "Hive Power",
@@ -507,6 +509,7 @@
     "delegate": "委托",
     "power-down": "减少能量",
     "withdraw-routes": "取出到其它账户",
+    "calculating": "Calculating",
     "converting-hbd-amount": "正在转换为 HIVE"
   },
   "wallet-engine": {
