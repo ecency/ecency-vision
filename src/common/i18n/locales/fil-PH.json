@@ -481,8 +481,10 @@
     "unclaimed-rewards": "Mga hindi pa naaangkin na gantimpala",
     "claim-reward-balance": "Angkinin ang mga balanse sa gamtipala",
     "claim-reward-balance-ok": "Matagumpay na naangkin ang mga balanse",
-    "estimated": "Tinatayang Halaga ng Account",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "Ang tinatayang halaga ay nakabase sa isang 7-araw na karaniwang halaga ng {}.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "Ang HIVE ay isang token na puwedeng ikalakal na puwede din ilipat sa anumang oras. Ang HIVE ay puwedeng ipagpalit sa Hive Power sa pamamagitan ng proseso na tinatawag na powering up.",
     "hive-power": "HIVE POWER",
@@ -507,6 +509,7 @@
     "delegate": "Magpahiram",
     "power-down": "Magpahina",
     "withdraw-routes": "Ilabas ang mga ruta",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Ipinapalit sa Hive"
   },
   "wallet-engine": {
