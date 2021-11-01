@@ -481,8 +481,10 @@
     "unclaimed-rewards": "Átvételre váró jutalmak",
     "claim-reward-balance": "Jutalom egyenleg átvétele",
     "claim-reward-balance-ok": "Jutalom egyenleg átvéve",
-    "estimated": "Becs. számla érték",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "A becsült érték a HIVE 7 napos átlagértékén alapszik.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "A HIVE olyan értékesíthető token, amely bármikor átutalható. A HIVE átalakítható Hive Power-re egy olyan folyamatban, melyet powering up-nak nevezünk.",
     "hive-power": "HIVE POWER",
@@ -507,6 +509,7 @@
     "delegate": "Delegálás",
     "power-down": "Power Down",
     "withdraw-routes": "Withdraw Routes",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE"
   },
   "wallet-engine": {
