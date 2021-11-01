@@ -401,9 +401,9 @@
     "progress-role": "Definindo @{{u}} como administrador...",
     "progress-props": "Actualizando as configuraões das comunidade...",
     "done": "A sua comunidade foi criada 🎉",
-    "reason-one": "True ownership",
+    "reason-one": "Propriedade de Verdade",
     "reason-two": "Permanent, rewarding",
-    "password-copied": "Password copied to clipboard",
+    "password-copied": "Senha copiada para a área de transferência",
     "reason-three": "Powered by blockchain technology",
     "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Vamos começar."
@@ -462,7 +462,7 @@
     "profile-image": "Imagem de Perfil",
     "website": "Website",
     "location": "Localização",
-    "copied": "Referral link copied to clipboard.",
+    "copied": "Link de referência copiado para a área de transferência.",
     "updated": "Perfil atualizado com sucesso!"
   },
   "image-upload-button": {
@@ -474,7 +474,7 @@
     "currency": "Moeda",
     "language": "Língua",
     "nsfw": "Mostrar conteúdo adulto",
-    "referral-link": "Referral link",
+    "referral-link": "Link de referência",
     "updated": "Preferências atualizadas!"
   },
   "wallet": {
