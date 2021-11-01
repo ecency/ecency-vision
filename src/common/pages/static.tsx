@@ -123,7 +123,7 @@ class AboutPage extends Component<PageProps> {
                     <div className="faq">
                         <h2 className="faq-title">{_t('static.about.faq-title')}</h2>
                         <div className="faq-links">
-                            {faqKeys.slice(0, 4).map(x => {
+                            {[...faqKeysGeneral,...faqKeysHive].slice(0, 4).map(x => {
                                 return <p key={x}>
                                     <a className="faq-link" href={`/faq#${x}`}>{_t(`static.faq.${x}-header`)}</a>
                                 </p>
@@ -802,20 +802,18 @@ class TosPage extends Component<PageProps> {
 
 interface FAQPageState {
     search: string;
-    category: 1 | 2;
 }
 
 class FaqPage extends Component<PageProps, FAQPageState> {
     constructor(props:PageProps){
         super(props);
         this.state = {
-            search: "",
-            category: 1
+            search: ""
         }
     }
 
     render() {
-        const {search, category} = this.state;
+        const {search} = this.state;
         //  Meta config
         const metaProps = {
             title: _t('static.faq.page-title')
@@ -824,7 +822,18 @@ class FaqPage extends Component<PageProps, FAQPageState> {
         const {global} = this.props;
         const imgs = apiBase(`/assets/ecency-faq.${this.props.global.canUseWebp ? 'webp' : 'jpg'}`);
         let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
-        let faqKeys = category === 1 ? faqKeysGeneral : faqKeysHive
+        let faqKeys = [...faqKeysGeneral, ...faqKeysHive];
+        let searchResult: string[] = [];
+        if(search && search.length > 0){
+            faqKeys.map(x => {
+                    let isSearchValid = _t(`static.faq.${x}-body`).toLocaleLowerCase().includes(search.toLocaleLowerCase()) || _t(`static.faq.${x}-header`).toLocaleLowerCase().includes(search.toLocaleLowerCase());
+                    if(isSearchValid){
+                        searchResult.push(x)
+                    }
+                
+            })
+        }
+        let dataToShow = (search.length > 0 && searchResult.length > 0) ? searchResult : faqKeys;
 
         return (
             <>
@@ -843,58 +852,34 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                             <img src={imgs} className="rounded"/>
                             <div className="position-absolute search-container d-flex justify-content-center align-items-center flex-column rounded">
                                 <h1 className="text-white">{_t('static.faq.page-title')}</h1>
-                                <div className="mt-2 mb-3 d-flex justify-content-center">
-                                <ButtonGroup>
-                                    <Button
-                                        variant={category === 1 ? "primary" : "secondary"}
-                                        className="mr-3"
-                                        onClick={() => this.setState({category:1})}
-                                    >{_t("g.general")}</Button>
-                                    <Button
-                                        variant={category === 2 ? "primary" : "secondary"}
-                                        onClick={() => this.setState({category:2})}
-                                    >{_t("wallet.hive")}</Button>
-                                </ButtonGroup>
-                                </div>
                                 <Form.Control
-                                    placeholder={`${_t("g.search")} ${_t("static.faq.page-title")} (${category === 1 ? _t("g.general") : _t("wallet.hive")})`}
+                                    placeholder={`${_t("static.faq.search-placeholder")}`}
                                     className="w-75"
                                     onChange={e=>this.setState({search: e.target.value})}
                                     value={search}
                                     autoFocus
                                 />
-                                {search.length > 0 && <Form.Text className="text-white mt-3">
-                                    {_t("static.faq.search", {search: `"${search}"`})}
+                                {search.length > 0 && <Form.Text className="text-white mt-3 w-75 text-center">
+                                    {searchResult.length > 0 ? _t("static.faq.search", {search: `"${search}"`}) :
+                                        <div>{_t("static.faq.search-not-found")}<Link to="https://discord.me/ecency" target="_blank">Discord</Link>.</div>}
                                 </Form.Text>}
                             </div>
                         </div>
                         <h3>{_t('static.faq.page-sub-title')}</h3>
                         <ul className="table-contents">
-                            {faqKeys.map(x => {
-                                let hasSearch = search.length > 0;
-                                if(hasSearch){
-                                    let isSearchValid = _t(`static.faq.${x}-header`).toLocaleLowerCase().includes(search.toLocaleLowerCase());
-                                    if(isSearchValid){
-                                        return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>
-                                    }
-                                    else {
-                                        return null
-                                    }
-                                }
-                                else {
+                            {dataToShow.map(x => {
                                     return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>;
-                                }
                             })}
                         </ul>
                         <div className="faq-list">
-                            {faqKeys.map(x => {
+                            {dataToShow.map(x => {
                                 return <div key={x} className="faq-item" itemScope={true} itemProp="mainEntity" itemType="https://schema.org/Question">
-                                    <span className="anchor" id={x}/>
-                                    <h4 className="faq-item-header" itemProp="name">{_t(`static.faq.${x}-header`)}</h4>
-                                    <div itemScope={true} itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
-                                        <Tsx k={`static.faq.${x}-body`}><div className="faq-item-body" itemProp="text" /></Tsx>
-                                    </div>
-                                </div>
+                                            <span className="anchor" id={x}/>
+                                            <h4 className="faq-item-header" itemProp="name">{_t(`static.faq.${x}-header`)}</h4>
+                                            <div itemScope={true} itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                                                <Tsx k={`static.faq.${x}-body`}><div className="faq-item-body" itemProp="text" /></Tsx>
+                                            </div>
+                                        </div>
                             })}
                         </div>
                     </div>
