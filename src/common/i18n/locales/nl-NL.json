@@ -481,8 +481,10 @@
     "unclaimed-rewards": "Niet opgeëiste beloningen",
     "claim-reward-balance": "Eis Beloningsbalans op",
     "claim-reward-balance-ok": "Beloningsbalans opgeëist",
-    "estimated": "Geschatte accountwaarde",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "De geschatte waarde is gebaseerd op een 7-daags gemiddelde waarde van Hive.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE is een verhandelbare token die ieder moment overgedragen kan worden. HIVE kan worden omgezet tot HIVE Power via een Power Up.",
     "hive-power": "HIVE POWER",
@@ -507,6 +509,7 @@
     "delegate": "Delegeren",
     "power-down": "Power down",
     "withdraw-routes": "Opname traject",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Omzetten naar HIVE"
   },
   "wallet-engine": {
