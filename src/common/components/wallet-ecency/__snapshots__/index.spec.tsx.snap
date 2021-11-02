@@ -11,6 +11,33 @@ exports[`(1) Default Render 1`] = `
       className="wallet-info"
     >
       <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Points Value
+          </div>
+          <div
+            className="description"
+          >
+            The estimated value is based on purchase value of Points.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            Calculating...
+          </div>
+        </div>
+      </div>
+      <div
         className="balance-row alternative"
       >
         <div
@@ -473,6 +500,33 @@ exports[`(2) With active user 1`] = `
     <div
       className="wallet-info"
     >
+      <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Points Value
+          </div>
+          <div
+            className="description"
+          >
+            The estimated value is based on purchase value of Points.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            Calculating...
+          </div>
+        </div>
+      </div>
       <div
         className="balance-row alternative"
       >
@@ -1005,6 +1059,33 @@ exports[`(3) Active user with unclaimed points 1`] = `
               />
             </svg>
           </a>
+        </div>
+      </div>
+      <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Points Value
+          </div>
+          <div
+            className="description"
+          >
+            The estimated value is based on purchase value of Points.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            Calculating...
+          </div>
         </div>
       </div>
       <div

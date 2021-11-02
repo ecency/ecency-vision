@@ -58,7 +58,7 @@ it('(2) Return proposal.', async () => {
         proposal: {...proposalInstance, id: 0, proposal_id: 0}
     }
 
-    const component = renderer.create(
+    const component = await renderer.create(
         <StaticRouter location="/" context={{}}>
             <ProposalListItem {...props}/>
         </StaticRouter>);

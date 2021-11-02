@@ -118,10 +118,10 @@ export class WalletHive extends BaseComponent<Props, State> {
         );
     };
 
-    fetchConvertingAmount = () => {
+    fetchConvertingAmount = async() => {
         const {account} = this.props;
         const {aprs} = this.state;
-        getDynamicGlobalProperties().then(res=>{
+        await getDynamicGlobalProperties && getDynamicGlobalProperties() && getDynamicGlobalProperties()!.then(res=>{
             let hp = this.getCurrentHpApr(res).toFixed(3);
             this.setState({aprs: {...aprs, hbd: res.hbd_interest_rate/100, hp}})
         })
