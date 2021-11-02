@@ -38,6 +38,7 @@ import _c from "../util/fix-class-names";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import {History} from "history";
+import { ViewKeys } from "../components/view-keys";
 
 interface MatchParams {
     username: string;
@@ -195,7 +196,7 @@ class ProfilePage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, entries, accounts, match} = this.props;
+        const {global, entries, accounts, match, activeUser} = this.props;
         const {loading} = this.state;
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
@@ -296,6 +297,10 @@ class ProfilePage extends BaseComponent<Props, State> {
                                     ...this.props,
                                     account
                                 })
+                            }
+
+                            if (section === "permission" && activeUser) {
+                                return <ViewKeys activeUser={activeUser} />
                             }
 
 

@@ -15,10 +15,11 @@ import {_t} from "../../i18n";
 
 import {eyeSvg, copyContent} from "../../img/svg";
 import truncate from '../../util/truncate';
+import { Link } from "react-router-dom";
 
 interface Props {
     activeUser: ActiveUser;
-    onUpdate: () => void;
+    onUpdate?: () => void;
 }
 
 interface State {
@@ -220,9 +221,14 @@ export default class ViewKeysDialog extends BaseComponent<DialogProps, DialogSta
 
     render() {
         const {dialog} = this.state;
+        const {activeUser} = this.props;
 
         return <>
-            <Button onClick={this.toggleDialog} size="sm" className="view-keys-btn">{eyeSvg} {_t('view-keys.title')}</Button>
+            <Link to={`/@${activeUser.username}/permission`}>
+                <Button size="sm" className="view-keys-btn">
+                    {eyeSvg} {_t('view-keys.title')}
+                </Button>
+            </Link>
 
             {dialog && (
                 <Modal show={true} centered={true} onHide={this.toggleDialog} animation={false} backdrop="static" keyboard={false} className="view-keys-modal">
