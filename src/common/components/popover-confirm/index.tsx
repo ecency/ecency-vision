@@ -90,7 +90,7 @@ export default class PopoverConfirm extends Component<Props> {
 
         return (
             <>
-                <OverlayTrigger defaultShow={true} trigger={trigger || []} overlay={popover} placement={placement || "auto"} rootClose container={containerRef || null}>
+                <OverlayTrigger defaultShow={true} trigger={trigger || []} overlay={popover} placement={placement || "auto"} rootClose={true} container={containerRef || null}>
                     {children}
                 </OverlayTrigger>
             </>
