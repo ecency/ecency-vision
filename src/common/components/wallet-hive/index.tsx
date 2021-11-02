@@ -26,7 +26,7 @@ import HiveWallet from "../../helper/hive-wallet";
 
 import {vestsToHp} from "../../helper/vesting";
 
-import {DynamicGlobalProperties, getAccount, getConversionRequests, getDynamicGlobalProperties} from "../../api/hive";
+import {client, DynamicGlobalProperties, getAccount, getConversionRequests, getDynamicGlobalProperties} from "../../api/hive";
 
 import {claimRewardBalance, formatError} from "../../api/operations";
 
@@ -118,10 +118,10 @@ export class WalletHive extends BaseComponent<Props, State> {
         );
     };
 
-    fetchConvertingAmount = () => {
+    fetchConvertingAmount = async() => {
         const {account} = this.props;
         const {aprs} = this.state;
-        getDynamicGlobalProperties().then(res=>{
+        await getDynamicGlobalProperties && getDynamicGlobalProperties() && getDynamicGlobalProperties()!.then(res=>{
             let hp = this.getCurrentHpApr(res).toFixed(3);
             this.setState({aprs: {...aprs, hbd: res.hbd_interest_rate/100, hp}})
         })

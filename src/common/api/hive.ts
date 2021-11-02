@@ -191,7 +191,6 @@ export const findRcAccounts = (username: string): Promise<RCAccount[]> =>
 
 export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =>
     client.database.getDynamicGlobalProperties().then((r: any) => {
-        ;
         return({
         total_vesting_fund_hive: r.total_vesting_fund_hive || r.total_vesting_fund_steem,
         total_vesting_shares: r.total_vesting_shares,
