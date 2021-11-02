@@ -37,7 +37,7 @@ exports[`(1) Default Render 1`] = `
           <div
             className="title"
           >
-            Estimated Account Value
+            Estimated Wallet Value
           </div>
           <div
             className="description"
@@ -103,7 +103,7 @@ exports[`(1) Default Render 1`] = `
           <div
             className="description font-weight-bold mt-2"
           >
-            APR interest rate for HP is 0%
+            APR interest rate for Hive Power is 0%
           </div>
         </div>
         <div
@@ -193,7 +193,7 @@ exports[`(1) Default Render 1`] = `
           <div
             className="description font-weight-bold mt-2"
           >
-            APR interest rate for HBD is 0%
+            APR interest rate for HBD($) is 0%
           </div>
         </div>
         <div
@@ -399,7 +399,7 @@ exports[`(2) Render with converting HBD 1`] = `
           <div
             className="title"
           >
-            Estimated Account Value
+            Estimated Wallet Value
           </div>
           <div
             className="description"
@@ -465,7 +465,7 @@ exports[`(2) Render with converting HBD 1`] = `
           <div
             className="description font-weight-bold mt-2"
           >
-            APR interest rate for HP is 0%
+            APR interest rate for Hive Power is 0%
           </div>
         </div>
         <div
@@ -566,7 +566,7 @@ exports[`(2) Render with converting HBD 1`] = `
           <div
             className="description font-weight-bold mt-2"
           >
-            APR interest rate for HBD is 0%
+            APR interest rate for HBD($) is 0%
           </div>
         </div>
         <div
@@ -772,7 +772,7 @@ exports[`(3) usePrivate = false 1`] = `
           <div
             className="title"
           >
-            Estimated Account Value
+            Estimated Wallet Value
           </div>
           <div
             className="description"
@@ -838,7 +838,7 @@ exports[`(3) usePrivate = false 1`] = `
           <div
             className="description font-weight-bold mt-2"
           >
-            APR interest rate for HP is 0%
+            APR interest rate for Hive Power is 0%
           </div>
         </div>
         <div
@@ -927,7 +927,7 @@ exports[`(3) usePrivate = false 1`] = `
           <div
             className="description font-weight-bold mt-2"
           >
-            APR interest rate for HBD is 0%
+            APR interest rate for HBD($) is 0%
           </div>
         </div>
         <div
