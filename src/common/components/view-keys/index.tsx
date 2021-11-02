@@ -204,23 +204,9 @@ interface DialogProps {
 }
 
 
-interface DialogState {
-    dialog: boolean
-}
-
-
-export default class ViewKeysDialog extends BaseComponent<DialogProps, DialogState> {
-    state: DialogState = {
-        dialog: false
-    }
-
-    toggleDialog = () => {
-        const {dialog} = this.state;
-        this.stateSet({dialog: !dialog});
-    }
+export default class ViewKeysDialog extends BaseComponent<DialogProps> {
 
     render() {
-        const {dialog} = this.state;
         const {activeUser} = this.props;
 
         return <>
@@ -229,17 +215,6 @@ export default class ViewKeysDialog extends BaseComponent<DialogProps, DialogSta
                     {eyeSvg} {_t('view-keys.title')}
                 </Button>
             </Link>
-
-            {dialog && (
-                <Modal show={true} centered={true} onHide={this.toggleDialog} animation={false} backdrop="static" keyboard={false} className="view-keys-modal">
-                    <Modal.Header closeButton={true}>
-                        <Modal.Title>{_t('view-keys.title')}</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <ViewKeys {...this.props} onUpdate={this.toggleDialog}/>
-                    </Modal.Body>
-                </Modal>
-            )}
         </>
     }
 }

@@ -39,6 +39,7 @@ import _c from "../util/fix-class-names";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import {History} from "history";
 import { ViewKeys } from "../components/view-keys";
+import {Redirect} from 'react-router-dom'
 
 interface MatchParams {
     username: string;
@@ -300,7 +301,12 @@ class ProfilePage extends BaseComponent<Props, State> {
                             }
 
                             if (section === "permission" && activeUser) {
-                                return <ViewKeys activeUser={activeUser} />
+                                if(account.name === activeUser.username){
+                                    return <ViewKeys activeUser={activeUser} />
+                                }
+                                else {
+                                    return <Redirect to={`/@${account.name}`}></Redirect>
+                                }
                             }
 
 
