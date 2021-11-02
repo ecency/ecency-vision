@@ -42,6 +42,7 @@ import {_t} from "../../i18n";
 import _c from "../../util/fix-class-names";
 
 import {deleteForeverSvg} from "../../img/svg";
+import { Link } from "react-router-dom";
 
 declare var window: AppWindow;
 
@@ -514,9 +515,11 @@ export class Login extends BaseComponent<LoginProps, State> {
                             if (el) el.scrollIntoView();
                         }, 300)
                     })} href="#">{_t('login.login-info-2')}</a></p>
+
                     <Button disabled={inProgress} block={true} onClick={this.login}>
                         {(inProgress && username && key) && spinner}{_t('g.login')}
                     </Button>
+                    <center><small>{_t('recover.directing-text-1')} <Link to="/recover" onClick={this.hide}>{_t('recover.directing-text-2')}</Link></small></center>
                 </Form>
                 <OrDivider/>
                 <div className="hs-login">

@@ -10,6 +10,7 @@ export default {
     CONTRIBUTE: `/contribute`,
     FAQ: `/faq`,
     SIGN_UP: `/signup`,
+    RECOVER: `/recover`,
     WHITE_PAPER: `/whitepaper`,
     PRIVACY: `/privacy-policy`,
     TOS: `/terms-of-service`,

@@ -142,6 +142,14 @@
     "sign-up-text-1": "Don't have an account?",
     "sign-up-text-2": "Sign up now!"
   },
+  "recover": {
+    "directing-text-1": "Facing issues during login? ",
+    "directing-text-2": "Recover your account",
+    "with-user-pass": "Login with your username and private key.",
+    "username-placeholder": "username",
+    "key-placeholder": "password / private key",
+    "login-info-1": "We don't store your private keys."
+  },
   "sign-up": {
     "header": "Welcome to Ecency",
     "description": "Home of Free speech and Rewarding communities!",
