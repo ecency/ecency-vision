@@ -530,7 +530,12 @@ class SubmitPage extends BaseComponent<Props, State> {
 
         const [parentPermlink] = tags;
         const meta = extractMetaData(body);
-        meta.image = [selectedThumbnail, ...meta.image!.splice(0,9)]
+        if(meta.image){
+            meta.image = [selectedThumbnail, ...meta.image!.splice(0,9)]
+        }
+        else {
+            meta.image = [selectedThumbnail]
+        }
         const jsonMeta = makeJsonMetaData(meta, tags, version);
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
         this.stateSet({posting: true});
