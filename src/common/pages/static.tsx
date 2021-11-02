@@ -855,40 +855,30 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                                 <Form.Control
                                     placeholder={`${_t("static.faq.search-placeholder")}`}
                                     className="w-75"
-                                    onChange={e=>this.setState({search: e.target.value})}
+                                    onChange={e=>{
+                                        this.setState({search: e.target.value});
+                                }}
                                     value={search}
                                     autoFocus
                                 />
                                 {search.length > 0 && <Form.Text className="text-white mt-2 mt-sm-3 w-75 text-center helper-text">
                                     {searchResult.length > 0 ? _t("static.faq.search", {search: `"${search}"`}) :
-                                        <div>{_t("static.faq.search-not-found")}<Link to="https://discord.me/ecency" target="_blank">Discord</Link>.</div>}
+                                        <div className="text-not-found">{_t("static.faq.search-not-found")}<Link to="https://discord.me/ecency" target="_blank">Discord</Link>.</div>}
                                 </Form.Text>}
                             </div>
                         </div>
                         <h3>{_t('static.faq.page-sub-title')}</h3>
-                        {search.length === 0 ? <h2 className="ml-0">{_t('g.ecency')+":"}</h2> : null}
-                        {search.length > 0 && <ul className="table-contents">
+                        <ul className="table-contents">
                             {dataToShow.map(x => {
                                     return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>;
                             })}
-                        </ul>}
-                        {search.length === 0 ? <ul className="table-contents">
-                            {faqKeysGeneral.map(x => {
-                                    return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>;
-                            })}
-                        </ul>:null}
-                        {search.length === 0 ? <h2 className="ml-0">{_t('g.blokcchain')+":"}</h2> : null}
-                        {search.length === 0 ? <ul className="table-contents">
-                            {faqKeysHive.map(x => {
-                                    return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>;
-                            })}
-                        </ul>:null}
+                        </ul>
                         <div className="faq-list">
                             {dataToShow.map((x) => {
                                 return <div key={x} className="faq-item" itemScope={true} itemProp="mainEntity" itemType="https://schema.org/Question">
                                             <span className="anchor" id={x}/>
                                             <h4 className="faq-item-header" itemProp="name">{_t(`static.faq.${x}-header`)}</h4>
-                                            <div itemScope={true} itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                                            <div itemScope={true} itemProp="acceptedAnswer" itemType="https://schema.org/Answer" id="content">
                                                 <Tsx k={`static.faq.${x}-body`}><div className="faq-item-body" itemProp="text" /></Tsx>
                                             </div>
                                         </div>
