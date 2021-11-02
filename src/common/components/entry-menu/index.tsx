@@ -288,7 +288,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
             ];
         }
 
-        if (!deletable) {
+        if (deletable) {
             menuItems = [...menuItems,
                 ...[
                     {
@@ -370,8 +370,20 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 let items = menuItems.filter(item=> item.label !== "" );
                 menuItems = items;
             }
+            let updatedItems: MenuItem[] = [];
+            menuItems.forEach(item=> {
+                if(item.label === _t("entry-menu.promote") || item.label === _t("entry-menu.boost") || item.label === _t("entry-menu.pin") || item.label === _t("entry-menu.unpin")){
+                    updatedItems.unshift(item)
+                }
+                else {
+                    updatedItems.push(item)
+                }
+            });
+            menuItems = updatedItems;
+
         }
 
+        
         const menuConfig = {
             history: this.props.history,
             label: '',
