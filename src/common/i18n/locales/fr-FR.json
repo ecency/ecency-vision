@@ -2,7 +2,7 @@
   "g": {
     "add": "Ajouter",
     "edit": "Éditer",
-    "submit": "Write a post",
+    "submit": "Écrire une publication",
     "search": "Rechercher",
     "downloads": "Téléchargements",
     "login": "Connexion",
@@ -12,7 +12,7 @@
     "cancel": "Annuler",
     "reply": "Répondre",
     "update": "Mettre à jour",
-    "learnMore": "Learn more",
+    "learnMore": "En savoir plus",
     "or": "OU",
     "muted-message": "Muted author, Reveal content",
     "server-error": "Le processus n'a pas pu aboutir en raison d'une erreur du serveur",
