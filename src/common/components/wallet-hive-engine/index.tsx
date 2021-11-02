@@ -121,6 +121,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     const hasUnclaimedRewards = rewards.length > 0;
     const hasMultipleUnclaimedRewards = rewards.length > 1;
     const isMyPage = activeUser && activeUser.username === account.name;
+    let rewardsToShowInTooltip = [...rewards];
+    rewardsToShowInTooltip = rewardsToShowInTooltip.splice(0,10)
 
     if (!account.__loaded) {
       return null;
@@ -137,7 +139,26 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                 {hasMultipleUnclaimedRewards ? (
                   <div className="rewards">
                     <span className="reward-type">
-                      {`${rewards.length} tokens`}
+                    <OverlayTrigger
+                            delay={{ show: 0, hide: 500 }}
+                            key={"bottom"}
+                            placement={"bottom"}
+                            overlay={
+                              <Tooltip id={`tooltip-token`}>
+                                <div className="tooltip-inner rewards-container">
+                                  {rewardsToShowInTooltip.map((reward, ind) =>
+                                  <div className="d-flex py-1 border-bottom" key={reward.pending_token+ind}>
+                                    <div className="mr-1 text-lowercase">{reward.symbol}: </div>
+                                    <div>{reward.pending_token / Math.pow(10, reward.precision)}</div>
+                                  </div>)}
+                                </div>
+                              </Tooltip>
+                            }
+                          >
+                            <div className="d-flex align-items-center">
+                              {`${rewards.length} tokens`}
+                            </div>
+                          </OverlayTrigger>
                     </span>
                     {isMyPage && (
                       <a

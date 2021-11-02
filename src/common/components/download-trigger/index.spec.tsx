@@ -53,7 +53,7 @@ it('(1) Mac.', async () => {
 
 it('(2) Windows.', async () => {
     MOCK = "WindowsOS"
-    const component = renderer.create(<DialogContent/>);
+    const component = await renderer.create(<DialogContent/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });

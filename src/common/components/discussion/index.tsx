@@ -50,13 +50,14 @@ import {error} from "../feedback";
 
 import _c from "../../util/fix-class-names"
 
-import {commentSvg, pencilOutlineSvg, deleteForeverSvg, menuDownSvg} from "../../img/svg";
+import {commentSvg, pencilOutlineSvg, deleteForeverSvg, menuDownSvg, dotsHorizontal} from "../../img/svg";
 
 import {version} from "../../../../package.json";
 import { getFollowing } from "../../api/hive";
 import { ProfilePreview } from "../profile-preview";
 import { iteratorStream } from "@hiveio/dhive/lib/utils";
 import { Tsx } from "../../i18n/helper";
+import MyDropDown from "../dropdown";
 
 
 interface ItemBodyProps {
@@ -413,12 +414,38 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                             })}
                         </div>
                         {(() => {   
+                            let menuItems = [
+                                {
+                                    label: _t('g.edit'),
+                                    onClick: this.toggleEdit,
+                                    icon: pencilOutlineSvg
+                                },
+                            ];
+                            if(!(entry.is_paidout || entry.net_rshares > 0 || entry.children > 0)){
+                                let deleteItem = {
+                                    label: "",
+                                    onClick: () => {},
+                                    icon: EntryDeleteBtn({
+                                        ...this.props,
+                                        entry,
+                                        onSuccess: this.deleted,
+                                        children: <a title={_t('g.delete')} className="delete-btn ml-0 pr-3">{deleteForeverSvg} {_t('g.delete')}</a>
+                                    })
+                                };
+                                menuItems.push(deleteItem)
+                            }
+
+                            const menuConfig = {
+                                history: this.props.history,
+                                label: '',
+                                icon: dotsHorizontal,
+                                items: menuItems
+                            };
                             
-        
                             const entryIsMuted = mutedData.includes(entry.author);
                             const isComment = !!entry.parent_author;
                             const ownEntry = activeUser && activeUser.username === entry.author;
-                            const isHidden = entry?.net_rshares < 0;
+                            const isHidden = entry?.net_rshares < -500000000; // 1000 HP
                             const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
                             const isLowReputation = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
                             const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry; 
@@ -468,17 +495,9 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                         }
                                     })}
                                     {canEdit && (
-                                        <>
-                                            <a title={_t('g.edit')} className={_c(`edit-btn ${reply ? 'disabled' : ''}`)} onClick={this.toggleEdit}>
-                                                {pencilOutlineSvg}
-                                            </a>
-                                            {(entry.is_paidout || entry.net_rshares > 0 || entry.children > 0) ? null : EntryDeleteBtn({
-                                                ...this.props,
-                                                entry,
-                                                onSuccess: this.deleted,
-                                                children: <a title={_t('g.delete')} className="delete-btn">{deleteForeverSvg}</a>
-                                            })}
-                                        </>
+                                        <div className="ml-3 dropdown-container">
+                                            <MyDropDown {...menuConfig} float="right" alignBottom={true}/>
+                                        </div>
                                     )}
                                 </div>
                             </>
