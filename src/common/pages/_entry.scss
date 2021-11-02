@@ -507,3 +507,9 @@
 .markdown-img-link {
   max-width: 100%;
 }
+
+.visible {
+  .avatar-fixed {
+    opacity: 1 !important;
+  }
+}

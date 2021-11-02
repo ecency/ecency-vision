@@ -344,12 +344,15 @@ export const downVotingPower = (account: FullAccount): number => {
 
     const pow = downVotePerc * 100 + (10000 * secondsDiff / 432000);
 
-    const rv = Math.min(pow / 100, 100);
+    const rv = Math.max(pow / 100, 100);
 
     if (isNaN(rv)) {
         return 0;
     }
 
+    if (rv > 100) {
+        return 100;
+    }
     return rv;
 };
 
