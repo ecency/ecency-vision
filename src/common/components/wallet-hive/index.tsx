@@ -26,7 +26,7 @@ import HiveWallet from "../../helper/hive-wallet";
 
 import {vestsToHp} from "../../helper/vesting";
 
-import {client, DynamicGlobalProperties, getAccount, getConversionRequests, getDynamicGlobalProperties} from "../../api/hive";
+import {DynamicGlobalProperties, getAccount, getConversionRequests, getDynamicGlobalProperties} from "../../api/hive";
 
 import {claimRewardBalance, formatError} from "../../api/operations";
 
