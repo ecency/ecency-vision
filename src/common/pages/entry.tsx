@@ -6,7 +6,6 @@ import {Link} from "react-router-dom";
 import {match} from "react-router";
 import moment from "moment";
 
-
 import {renderPostBody, setProxyBase, catchPostImage, postBodySummary} from "@ecency/render-helper";
 
 import {Entry, EntryVote} from "../store/entries/types";
@@ -417,7 +416,8 @@ class EntryPage extends BaseComponent<Props, State> {
 
             // remove reply draft
             ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
-
+            this.stateSet({commentText:""})
+            
             if (entry.children === 0) {
                 // Activate discussion section with first comment.
                 const nEntry: Entry = {
@@ -437,6 +437,7 @@ class EntryPage extends BaseComponent<Props, State> {
     replyTextChanged = (text: string) => {
         const entry = this.getEntry()!;
         ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
+        this.setState({commentText:text})
     }
 
     reload = () => {
@@ -826,11 +827,11 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         </div>
                                                     </div>
                                                     <span className="flex-spacer"/>
-                                                    {global.usePrivate && BookmarkBtn({
+                                                    {!isComment && global.usePrivate && BookmarkBtn({
                                                         ...this.props,
                                                         entry
                                                     })}
-                                                    {EntryMenu({
+                                                    {!isComment && EntryMenu({
                                                         ...this.props,
                                                         entry,
                                                         separatedSharing: true,
@@ -956,6 +957,10 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 </>
                                             )}
                                             <span className="flex-spacer"/>
+                                            {BookmarkBtn({
+                                                        ...this.props,
+                                                        entry
+                                            })}
                                             {EntryMenu({
                                                 ...this.props,
                                                 entry,
