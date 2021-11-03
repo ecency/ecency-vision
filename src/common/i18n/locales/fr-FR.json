@@ -193,19 +193,19 @@
     "confirm-title": "Rebloguer sur le blog de @{{n}} ?",
     "confirm-ok": "Rebloguer",
     "success": "Reblogué!",
-    "delete-reblog": "Undo Reblog",
-    "delete-confirm-title": "Undo reblog?",
-    "delete-confirm-ok": "Undo",
-    "delete-success": "Reblog removed"
+    "delete-reblog": "Annuler le reblog",
+    "delete-confirm-title": "Annuler le reblog?",
+    "delete-confirm-ok": "Annuler",
+    "delete-success": "Reblog supprimé"
   },
   "entry-tip": {
-    "title": "Tip"
+    "title": "Pourboire"
   },
   "entry-share": {
-    "title": "Share"
+    "title": "Partager"
   },
   "entry-menu": {
-    "cross-post": "Cross post",
+    "cross-post": "Message croisé",
     "share": "Share",
     "edit-history": "Edit History",
     "pin": "Pin",
@@ -317,59 +317,59 @@
   },
   "community": {
     "page-description": "{{f}} sujets",
-    "subscribe": "Join",
+    "subscribe": "Rejoindre",
     "subscribed": "Abonné",
     "unsubscribe": "Quitter",
     "post": "Nouveau Post",
-    "posts": "Posts",
-    "subscribers": "Members",
-    "activities": "Activities",
-    "roles-title": "User Roles",
-    "roles-account": "Account",
-    "roles-role": "Role",
-    "roles-account-title": "Title",
-    "roles-add": "Add User"
+    "posts": "Publications",
+    "subscribers": "Membres",
+    "activities": "Activités",
+    "roles-title": "Rôles utilisateurs",
+    "roles-account": "Compte",
+    "roles-role": "Rôle",
+    "roles-account-title": "Titre",
+    "roles-add": "Ajouter un utilisateur"
   },
   "community-cover": {
-    "rewards": "rewards",
-    "authors": "posters",
-    "lang": "language",
-    "cover-image": "Community cover image",
-    "cover-image-edit": "Edit cover image",
-    "cover-image-updated": "Cover image updated!"
+    "rewards": "récompenses",
+    "authors": "affiches",
+    "lang": "langue",
+    "cover-image": "Image de couverture de la communauté",
+    "cover-image-edit": "Modifier l'image de couverture",
+    "cover-image-updated": "Image de couverture mise à jour !"
   },
   "community-card": {
     "description": "Description",
-    "rules": "Rules",
+    "rules": "Règles",
     "team": "Leadership",
-    "edit": "Edit settings",
-    "edit-team": "Edit roles",
-    "community-rewards": "Community Rewards",
-    "profile-image": "Profile image",
-    "profile-image-edit": "Edit profile image",
-    "profile-image-updated": "Profile image updated!"
+    "edit": "Modifier les paramètres",
+    "edit-team": "Modifier les rôles",
+    "community-rewards": "Récompenses de la communauté",
+    "profile-image": "Image du profil",
+    "profile-image-edit": "Modifier l'image du profil",
+    "profile-image-updated": "Image de profil mise à jour !"
   },
   "community-role-edit": {
-    "title": "Set user role",
-    "username": "Username",
-    "role": "Role",
-    "user-not-found": "The user does not exist!",
-    "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
+    "title": "Définir le rôle utilisateur",
+    "username": "Nom d'utilisateur",
+    "role": "Rôle",
+    "user-not-found": "L’utilisateur·rice n’existe pas !",
+    "explanations": "<h3>Permissions de rôle</h3><p><strong>Propriétaire</strong> - assigner les administrateurs</p><p><strong>Admininstrateur</strong> - éditer les paramètres, attribuer les modes</p><p><strong>Modérateur</strong> - mettre en sourdine, épingler, définir les titres des utilisateurs</p><p><strong>Membre</strong> - listé dans l'équipe de leadership</p><p><strong>Invité</strong> - par défaut; peut publier et commenter</p><p><strong>Mis en sourdine</strong> - nouvelles publications automatiquement lises en sourdine</p>"
   },
   "community-settings": {
-    "dialog-title": "Community Settings",
-    "title": "Title",
-    "about": "About",
-    "lang": "Language",
+    "dialog-title": "Paramètres de la communauté",
+    "title": "Titre",
+    "about": "A propos",
+    "lang": "Langue",
     "description": "Description",
-    "rules": "Rules",
-    "rules-help": "One per line",
-    "validation-title": "Title is required."
+    "rules": "Règles",
+    "rules-help": "Un par ligne",
+    "validation-title": "Le titre est obligatoire."
   },
   "communities": {
-    "title": "Communities",
-    "description": "Best online, decentralized, immutable, rewarding communities",
-    "n-subscribers": "{{n}} members",
+    "title": "Communautés",
+    "description": "Meilleures communautés en ligne, décentralisées, immuables et qui vous récompensent",
+    "n-subscribers": "{{n}} membres",
     "n-authors": "{{n}} posters",
     "n-posts": "{{n}} posts",
     "admins": "admins:",
