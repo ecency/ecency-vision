@@ -484,7 +484,7 @@
     "estimated": "Estimasi Nilai Dompet",
     "estimated-points": "Estimasi Nilai Poin",
     "estimated-description": "Harga estimasi berdasarkan nilai rata-rata HIVE dalam 7 hari.",
-    "estimated-description-points": "The estimated value is based on purchase value of Points.",
+    "estimated-description-points": "Nilai estimasi berdasarkan nilai pembayaran Poin.",
     "hive": "HIVE",
     "hive-description": "HIVE adalah Token yang dapat diperdagangkan juga dapat dipindahkan kapan saja. HIVE dapat pula dikonversi menjadi Hive Power yang prosesnya dinamakan Powering Up.",
     "hive-power": "KEKUATAN HIVE",
@@ -509,7 +509,7 @@
     "delegate": "Delegasikan",
     "power-down": "Power Down",
     "withdraw-routes": "Rute Penarikan",
-    "calculating": "Calculating",
+    "calculating": "Menghitung",
     "converting-hbd-amount": "Konversi ke HIVE"
   },
   "wallet-engine": {
