@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { getMarketStatistics, MarketStatistics } from '../../api/hive';
+import React from 'react';
+import { MarketStatistics } from '../../api/hive';
 import { Skeleton } from '../skeleton';
 
-export const ChartStats = () =>{
-    const [data, setData] = useState<MarketStatistics | null>(null);
-    const [loading, setLoading] = useState(false);
-
-    useEffect(()=>{
-        setLoading(true)
-        getMarketStatistics().then(res=>{
-            setLoading(false);
-            setData(res)
-        })
-    }, []);
+interface Props {
+    loading: boolean;
+    data: MarketStatistics | null;
+}
+export const ChartStats = ({loading, data}: Props) =>{
 
     return loading ? <div className="d-flex justify-content-center w-100">
                         <Skeleton className="skeleton-loading mr-5" />
@@ -46,8 +40,8 @@ export const ChartStats = () =>{
 
 
                                 <small className="d-inline-flex border ml-5">
-            <div className="p-2 font-weight-bold border-right" >Spread</div>
-            <div className="p-2">{data? ((200 * (parseFloat(data.lowest_ask) - parseFloat(data.highest_bid))) / (parseFloat(data.highest_bid) + parseFloat(data.lowest_ask))).toFixed(3) : null}%</div>
-        </small>
+                                    <div className="p-2 font-weight-bold border-right" >Spread</div>
+                                    <div className="p-2">{data? ((200 * (parseFloat(data.lowest_ask) - parseFloat(data.highest_bid))) / (parseFloat(data.highest_bid) + parseFloat(data.lowest_ask))).toFixed(3) : null}%</div>
+                                </small>
                             </div>
 } 
