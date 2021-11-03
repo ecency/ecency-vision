@@ -421,7 +421,6 @@ export class TransactionList extends Component<Props> {
         const {transactions} = this.props;
         if(prevProps.transactions.list !== transactions.list){
             const new_transactions = [...prevProps.transactions.group === transactions.group ? transactionsList : [], ...transactions.list];
-            console.log('=====new_transactions', new_transactions)
             this.setState({transactionsList: new_transactions});
         }
     }
@@ -465,7 +464,7 @@ export class TransactionList extends Component<Props> {
                     <TransactionRow {...this.props} key={k} transaction={x}/>
                 ))}
                 {(!loading && transactionsList.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
-                {(!loading && hasMore) && <Button disabled={loadingLoadMore} block={true} onClick={this.loadMore} className="mt-2">{_t('g.load-more')}</Button>}
+                {(!loading && hasMore && transactionsList.length > 0) && <Button disabled={loadingLoadMore} block={true} onClick={this.loadMore} className="mt-2">{_t('g.load-more')}</Button>}
             </div>
         );
     }
