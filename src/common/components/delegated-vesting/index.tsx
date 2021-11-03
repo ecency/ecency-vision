@@ -47,7 +47,7 @@ interface Props {
     addAccount: (data: Account) => void;
     setSigningKey: (key: string) => void;
     onHide: () => void;
-    searchText: string;
+    searchText?: string;
 }
 
 interface State {
@@ -115,7 +115,7 @@ export class List extends BaseComponent<Props, State> {
             </div>);
         }
 
-        let dataToShow = searchText.length > 0 ? searchData : data;
+        let dataToShow = searchText && searchText.length > 0 ? searchData : data;
 
         const pageSize = 8;
         const start = (page - 1) * pageSize;
