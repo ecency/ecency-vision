@@ -11,6 +11,7 @@ export default {
     FAQ: `/faq`,
     SIGN_UP: `/signup`,
     WHITE_PAPER: `/whitepaper`,
+    MARKET: `/market`,
     PRIVACY: `/privacy-policy`,
     TOS: `/terms-of-service`,
     CONTRIBUTORS: `/contributors`,
