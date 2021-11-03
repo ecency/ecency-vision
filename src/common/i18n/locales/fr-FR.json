@@ -14,7 +14,7 @@
     "update": "Mettre à jour",
     "learnMore": "En savoir plus",
     "or": "OU",
-    "muted-message": "Muted author, Reveal content",
+    "muted-message": "Auteur en sourdine, révéler le contenu",
     "server-error": "Le processus n'a pas pu aboutir en raison d'une erreur du serveur",
     "day": "jour",
     "days": "jours",
@@ -35,9 +35,9 @@
     "hot": "fil d'actualités",
     "trending": "fil d'actualités",
     "created": "fil d'actualités",
-    "muted": "muted",
+    "muted": "mis en sourdine",
     "found": "trouvé",
-    "feed": "feed",
+    "feed": "fil d'actualités",
     "blog": "blogs",
     "logs": "logs / journaux",
     "posts": "publications",
@@ -70,9 +70,9 @@
     "filter-global-part1": "Ce flux contient ",
     "filter-global-part2": " discussions sur l'ensemble de la plateforme.",
     "filter-global-part3": " discussions de vos communautés abonnées. Vous pouvez rejoindre plus de communautés pour remplir ce flux.",
-    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
-    "filter-global-discover": "Discover People",
-    "filter-global-join-communities": "Join Communities"
+    "filter-global-part4": " les discussions des personnes que vous suivez. Vous pouvez suivre d'autres personnes pour alimenter ce flux.",
+    "filter-global-discover": "Découvrir des personnes",
+    "filter-global-join-communities": "Rejoignez des communautés"
   },
   "navbar": {
     "discover": "Découvrir",
@@ -84,15 +84,15 @@
   },
   "search": {
     "placeholder": "Rechercher",
-    "placeholder-proposals": "Search proposals",
+    "placeholder-proposals": "Rechercher des propositions",
     "placeholder-count": "Rechercher {{n}} posts",
     "header-tag": "Mots-clés",
     "header-account": "Utilisateurs",
     "header-community": "Communautés"
   },
   "tag": {
-    "unmoderated": "Unmoderated topics",
-    "moderated": "Moderated community"
+    "unmoderated": "Sujets non-modérés",
+    "moderated": "Communauté animée"
   },
   "switch-lang": {
     "contributors": "Contributeurs"
@@ -104,7 +104,7 @@
     "unclaimed-points-notice": "Vous avez des récompenses non réclamées",
     "notifications": "Notifications",
     "profile": "Profil",
-    "profile-menu": "Profile menu",
+    "profile-menu": "Menu du profil",
     "gallery": "Gallerie",
     "drafts": "Brouillons",
     "bookmarks": "Signets",
@@ -112,10 +112,10 @@
     "fragments": "Extraits de texte",
     "settings": "Paramètres",
     "logout": "Déconnexion",
-    "theme": "theme",
-    "light": "light",
-    "dark": "dark",
-    "switch-to": "Switch",
+    "theme": "thème",
+    "light": "clair",
+    "dark": "foncé",
+    "switch-to": "Changer",
     "vote-power": "Puissance de vote:"
   },
   "intro": {
