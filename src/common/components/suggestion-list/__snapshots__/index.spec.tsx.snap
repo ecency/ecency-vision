@@ -18,40 +18,44 @@ exports[`(2) Show list 1`] = `
     children
   </span>
   <div
-    className="suggestion-list"
+    className="suggestion-list-parent"
   >
     <div
-      className="list-header"
+      className="suggestion-list"
     >
-      My List
-    </div>
-    <div
-      className="list-body"
-    >
-      <a
-        className="list-item"
-        href="#"
-        onClick={[Function]}
+      <div
+        className="list-header"
       >
-         
-        # foo
-      </a>
-      <a
-        className="list-item"
-        href="#"
-        onClick={[Function]}
+        My List
+      </div>
+      <div
+        className="list-body"
       >
-         
-        # bar
-      </a>
-      <a
-        className="list-item"
-        href="#"
-        onClick={[Function]}
-      >
-         
-        # baz
-      </a>
+        <a
+          className="list-item"
+          href="#"
+          onClick={[Function]}
+        >
+           
+          # foo
+        </a>
+        <a
+          className="list-item"
+          href="#"
+          onClick={[Function]}
+        >
+           
+          # bar
+        </a>
+        <a
+          className="list-item"
+          href="#"
+          onClick={[Function]}
+        >
+           
+          # baz
+        </a>
+      </div>
     </div>
   </div>
 </div>

@@ -1,8 +1,16 @@
 .suggestion {
   position: relative;
 
-  .suggestion-list {
+  .suggestion-list-parent {
     position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+  }
+
+  .suggestion-list {
+    position: initial;
+    display: block;
     left: 0;
     top: 100%;
     width: 100%;

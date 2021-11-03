@@ -2,6 +2,7 @@ import React, {Component} from "react";
 
 interface Props {
     items: any[];
+    modeItems?: any[];
     header?: string;
     containerClassName?: string;
     renderer?: (item: any) => JSX.Element;
@@ -121,7 +122,8 @@ export default class SuggestionList extends Component<Props> {
     };
 
     render() {
-        const {children, items, header, renderer, containerClassName} = this.props;
+        // const {children, items, header, renderer, containerClassName, modeItems} = this.props;
+        const {children, containerClassName, modeItems} = this.props;
         const {showList} = this.state;
         
         return (
@@ -129,32 +131,37 @@ export default class SuggestionList extends Component<Props> {
                 <div className={containerClassName ? `suggestion ${containerClassName}` : "suggestion"} ref={this.parent}>
                     {children}
 
-                    {showList && items.length > 0 && (
-                        <div className="suggestion-list">
-                            {header && <div className="list-header">{header}</div>}
-                            <div className="list-body">
-                                {items.map((x, i) => {
-                                    const content = renderer ? renderer(x) : x;
-                                    return (
-                                        <a
-                                            href="#"
-                                            key={i}
-                                            className="list-item"
-                                            onClick={(e: React.MouseEvent) => {
-                                                e.preventDefault();
-                                                const {onSelect} = this.props;
-                                                if (onSelect) {
-                                                    onSelect(x);
-                                                }
-
-                                                this.setState({showList: false});
-                                            }}
-                                        >
-                                            {content}
-                                        </a>
-                                    );
-                                })}
-                            </div>
+                    {showList && !!modeItems && modeItems.length > 0 &&  (
+                        <div className="suggestion-list-parent">
+                            {
+                                modeItems.map((modeItem, modeKey) => {
+                                    const _items = modeItem.items;
+                                    return _items.length > 0 && (
+                                        <div className="suggestion-list" key={modeKey}>
+                                            {modeItem.header && <div className="list-header">{modeItem.header}</div>}
+                                            <div className="list-body">
+                                                {_items.map((x:any, i:number) => {
+                                                    const content = modeItem.renderer ? modeItem.renderer(x) : x;
+                                                    return (
+                                                        <a
+                                                            href="#"
+                                                            key={i}
+                                                            className="list-item"
+                                                            onClick={(e: React.MouseEvent) => {
+                                                                e.preventDefault();
+                                                                modeItem.onSelect && modeItem.onSelect(x);
+                                                                this.setState({showList: false});
+                                                            }}
+                                                        >
+                                                            {content}
+                                                        </a>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     )}
                 </div>
