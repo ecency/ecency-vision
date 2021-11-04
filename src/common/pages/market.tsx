@@ -5,21 +5,26 @@ import { connect } from 'react-redux';
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from './common';
 import { ChartStats } from '../components/chart-stats';
 import { HiveBarter } from '../components/hive-barter';
-import { getMarketStatistics, MarketStatistics } from '../api/hive';
+import { getMarketStatistics, getOrderBook, MarketStatistics, OrdersData } from '../api/hive';
 import { FullAccount } from '../store/accounts/types';
 import { Orders } from '../components/buy-orders';
 
 const MarketPage = (props: PageProps) => {
     const [data, setData] = useState<MarketStatistics | null>(null);
     const [loading, setLoading] = useState(false);
+    const [tablesData, setTablesData] = useState<OrdersData | null>(null);
+    const [loadingTablesData, setLoadingTablesData] = useState(false);
 
     useEffect(()=>{
-        setLoading(true)
+        setLoading(true);
+        setLoadingTablesData(true)
         getMarketStatistics().then(res=>{
             setLoading(false);
             setData(res)
-        })
+        });
+        getOrderBook().then(res => {setLoadingTablesData(false);setTablesData(res)})
     }, []);
+    
     const {global, activeUser} = props;
 
     let navbar = global.isElectron ?
@@ -28,7 +33,7 @@ const MarketPage = (props: PageProps) => {
             reloadFn: () => {},
             reloading: false,
         }) : <NavBar {...props} />;
-        debugger
+        
     return <div className="d-flex justify-content-center">
                 <div className="w-75">
                     <div>{navbar}</div>
@@ -57,10 +62,9 @@ const MarketPage = (props: PageProps) => {
                         </div>
 
                         <div className="row mt-5">
-                            <div className="col-12 col-md-6 col-lg-4 pl-sm-0"><Orders type={1} /></div>
-                            <div className="col-12 col-md-6 col-lg-4 pl-0 pl-sm-auto"><Orders type={2} /></div>
-                            <div className="col-12 col-lg-4 px-0 px-sm-auto"><Orders type={3} /></div>
-
+                            <div className="col-12 col-lg-6 pl-sm-0"><Orders type={1} loading={loadingTablesData} data={tablesData ? tablesData!.bids : []}/></div>
+                            <div className="col-12 col-lg-6 pl-0 pl-sm-auto"><Orders type={2} loading={loadingTablesData} data={tablesData ? tablesData!.asks : []}/></div>
+                            <div className="col-12 px-0 px-sm-auto mt-5"><Orders type={3} loading={true} data={[]}/></div>
                         </div>
 
                     </div>
