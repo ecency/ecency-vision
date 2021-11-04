@@ -230,15 +230,15 @@
   },
   "entry-payout": {
     "reward": "Récompense",
-    "full-power": "Power Up 100%",
-    "pending-payout": "Pending Payout",
+    "full-power": "Montez en puissance à 100 %",
+    "pending-payout": "Paiement en attente",
     "promoted": "Mis en avant",
     "author-payout": "Gain de l'auteur",
     "curators-payout": "Gain des curateurs",
     "payout-date": "Gain",
     "beneficiary": "Bénéficiaire",
     "breakdown": "Répartition",
-    "max-accepted": "Max accepted"
+    "max-accepted": "Maximum accepté"
   },
   "entry-index": {
     "feed": "Fil d'actualités",
@@ -248,12 +248,12 @@
     "description-tag": "{{f}} #{{t}} sujets",
     "description-user-feed": "Flux de {{u}}",
     "faq": "FAQ",
-    "tos": "Terms of service",
-    "pp": "Privacy Policy"
+    "tos": "Conditions d’utilisation",
+    "pp": "Politique de Confidentialité"
   },
   "market-data": {
     "title": "Prix du marché",
-    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "données par <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "(Dés)activer le style de liste"
@@ -262,20 +262,20 @@
     "title": "1 Vote",
     "title-n": "{{n}} Votes",
     "title-empty": "Pas de vote",
-    "sort": "Sort",
-    "sort-reward": "Reward",
-    "sort-timestamp": "Time",
-    "sort-reputation": "Reputation",
-    "sort-percent": "Percentage"
+    "sort": "Trier",
+    "sort-reward": "Récompense",
+    "sort-timestamp": "Heure",
+    "sort-reputation": "Réputation",
+    "sort-percent": "Pourcentage"
   },
   "entry": {
     "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "author-reputation": "Author's reputation",
+    "author-reputation": "Réputation de l'auteur",
     "comment-entry-title": "Vous visualisez le fil de discussion d'un seul commentaire à partir de : ",
     "comment-entry-go-root": "Voir le contexte entier",
     "comment-entry-go-parent": "Voir le message parent",
-    "hidden-warning": "This content got low rating by people.",
-    "delete-disabled": "Content after their payout cannot be deleted.",
+    "hidden-warning": "Ce contenu a reçu une faible note des utilisateurs.",
+    "delete-disabled": "Le contenu après leur paiement ne peut pas être supprimé.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
     "lowrep-warning": "Author of this content has low reputation.",
     "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
