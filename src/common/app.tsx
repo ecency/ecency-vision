@@ -1,5 +1,6 @@
 import React from "react";
 import {Route, Switch} from "react-router-dom";
+import { useReactPWAInstall } from "react-pwa-install";
 
 import EntryIndexContainer from "./pages/entry-index";
 import ProfileContainer from "./pages/profile";
@@ -31,6 +32,9 @@ import {
 import routes from "./routes";
 
 const App = () => {
+    // const PWA = useReactPWAInstall();
+    // console.log('supported, isInstalled: ', PWA);
+    
     return (
         <>
             <Tracker/>

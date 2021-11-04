@@ -2,27 +2,28 @@
   "short_name": "Ecency",
   "name": "Ecency",
   "start_url": "/",
+  "scope": ".",
   "display": "standalone",
-  "scope": "/",
   "theme_color": "#000000",
   "background_color": "#ffffff",
-  "related_applications":[
+  "prefer_related_applications": true,
+  "related_applications": [
     {
-     "platform": "play",
-     "url": "https://play.google.com/store/apps/details?id=app.esteem.mobile.android",
-     "id": "app.esteem.mobile.android"
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=app.esteem.mobile.android",
+      "id": "app.esteem.mobile.android"
     },
     {
-     "platform": "itunes",
-     "url":"https://itunes.apple.com/app/ecency-app/id1451896376"
+      "platform": "itunes",
+      "url": "https://itunes.apple.com/app/ecency-app/id1451896376"
     }
   ],
   "icons": [
-   
     {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "logo512.png",
