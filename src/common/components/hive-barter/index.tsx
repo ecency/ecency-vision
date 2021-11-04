@@ -15,11 +15,11 @@ export const HiveBarter = ({type, available, peakValue, loading}: Props) => {
             <h3 className="mb-0">{type === 1 ? 'Buy' : "Sell"} Hive</h3>
             <div>
                 <small className="d-flex">
-                    <div className="mr-1 text-danger">Available:</div>
+                    <div className="mr-1 text-primary">Available:</div>
                     <div>{available}</div>
                 </small>
                 <small className="d-flex">
-                    <div className="mr-1 text-danger">{type === 1 ? 'Lowest ask' : "Highest bid"}:</div>
+                    <div className="mr-1 text-primary">{type === 1 ? 'Lowest ask' : "Highest bid"}:</div>
                     <div>{peakValue.toFixed(6)}</div>
                 </small>
             </div>

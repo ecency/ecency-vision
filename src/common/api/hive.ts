@@ -12,6 +12,7 @@ import isCommunity from "../helper/is-community";
 
 import SERVERS from "../constants/servers.json";
 import { dataLimit } from './bridge';
+import moment from "moment";
 
 export const client = new Client(SERVERS, {
     timeout: 4000,
@@ -86,9 +87,16 @@ export interface OrdersDataItem {
     real_price: string;
 }
 
+export interface TradeDataItem {
+    current_pays: string;
+    date: number;
+    open_pays: number;
+}
+
 export interface OrdersData {
     bids: OrdersDataItem[];
     asks: OrdersDataItem[];
+    trading: OrdersDataItem[];
 }
 
 export const getPost = (username: string, permlink: string): Promise<any> =>
@@ -99,6 +107,10 @@ export const getMarketStatistics = (): Promise<MarketStatistics> =>
 
 export const getOrderBook = (limit: number = 500): Promise<OrdersData> =>
     client.call("condenser_api", "get_order_book", [limit]);
+
+export const getTradeHistory = (limit: number = 1000): Promise<OrdersDataItem[]> => {
+    let today = moment(Date.now()).subtract(10, 'h').format().split('+')[0];
+    return client.call("condenser_api", "get_trade_history", [today, "1969-12-31T23:59:59",limit]);}
 
 export const getActiveVotes = (author: string, permlink: string): Promise<Vote[]> =>
     client.database.call("get_active_votes", [author, permlink]);
