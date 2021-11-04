@@ -4,7 +4,7 @@ import { Skeleton } from '../skeleton';
 
 interface Props {
     type: 1| 2 ;
-    available: number;
+    available: string;
     peakValue: number;
     loading: boolean;
 }
@@ -16,7 +16,7 @@ export const HiveBarter = ({type, available, peakValue, loading}: Props) => {
             <div>
                 <small className="d-flex">
                     <div className="mr-1 text-danger">Available:</div>
-                    <div>{available} HBD</div>
+                    <div>{available}</div>
                 </small>
                 <small className="d-flex">
                     <div className="mr-1 text-danger">{type === 1 ? 'Lowest ask' : "Highest bid"}:</div>
@@ -30,10 +30,8 @@ export const HiveBarter = ({type, available, peakValue, loading}: Props) => {
                 <Form.Label>Price</Form.Label>
                 <InputGroup hasValidation>
                     <Form.Control
-                    type="text"
-                    placeholder="0.0"
-                    aria-describedby="inputGroupPrepend"
-                    required
+                        value={peakValue.toFixed(6)}
+                        placeholder="0.0"
                     />
                     <InputGroup.Text className="rounded-left">HBD/HIVE</InputGroup.Text>
                 </InputGroup>
@@ -43,10 +41,7 @@ export const HiveBarter = ({type, available, peakValue, loading}: Props) => {
                 <Form.Label>Amount</Form.Label>
                 <InputGroup hasValidation>
                     <Form.Control
-                    type="text"
                     placeholder="0.0"
-                    aria-describedby="inputGroupPrepend"
-                    required
                     />
                     <InputGroup.Text className="rounded-left">HIVE</InputGroup.Text>
                 </InputGroup>
@@ -56,10 +51,7 @@ export const HiveBarter = ({type, available, peakValue, loading}: Props) => {
                 <Form.Label>Total</Form.Label>
                 <InputGroup hasValidation>
                     <Form.Control
-                    type="text"
                     placeholder="0.0"
-                    aria-describedby="inputGroupPrepend"
-                    required
                     />
                     <InputGroup.Text className="rounded-left">HBD($)</InputGroup.Text>
                 </InputGroup>
