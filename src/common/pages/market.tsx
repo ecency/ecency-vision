@@ -8,6 +8,7 @@ import { HiveBarter } from '../components/hive-barter';
 import { getMarketStatistics, getOrderBook, getTradeHistory, MarketStatistics, OrdersData } from '../api/hive';
 import { FullAccount } from '../store/accounts/types';
 import { Orders } from '../components/orders';
+import { OpenOrders } from '../components/open-orders';
 
 const MarketPage = (props: PageProps) => {
     const [data, setData] = useState<MarketStatistics | null>(null);
@@ -71,6 +72,9 @@ const MarketPage = (props: PageProps) => {
                             <div className="col-12 col-lg-6 pl-sm-0"><Orders type={1} loading={loadingTablesData} data={tablesData ? tablesData!.bids : []}/></div>
                             <div className="col-12 col-lg-6 pl-0 pl-sm-auto"><Orders type={2} loading={loadingTablesData} data={tablesData ? tablesData!.asks : []}/></div>
                             <div className="col-12 px-0 px-sm-auto mt-5"><Orders type={3} loading={loadingTablesData} data={tablesData ? tablesData!.trading : []}/></div>
+                            <div className="col-12 px-0 mt-5"><OpenOrders 
+                            // type={3} loading={loadingTablesData} data={tablesData ? tablesData!.trading : []}
+                            /></div>
                         </div>
 
                     </div>
