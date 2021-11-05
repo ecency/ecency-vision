@@ -9,6 +9,7 @@ import {ListStyle} from "../store/global/types";
 import {makeGroupKey} from "../store/entries";
 import {ProfileFilter} from "../store/global/types";
 import { _t } from "../i18n";
+import _ from 'lodash'
 
 import BaseComponent from "../components/base";
 import Meta from "../components/meta";
@@ -32,6 +33,7 @@ import WalletEcency from "../components/wallet-ecency";
 import ScrollToTop from "../components/scroll-to-top";
 import SearchListItem from "../components/search-list-item";
 import SearchQuery, {SearchType} from "../helper/search-query";
+import SearchBox from '../components/search-box'
 
 import {getAccountFull} from "../api/hive";
 import {search as searchApi, SearchResult} from "../api/search-api";
@@ -132,6 +134,10 @@ class ProfilePage extends BaseComponent<Props, State> {
             this.setState({isDefaultPost:true})
             history.push(`/${username}/posts`);}
         }}
+
+        if(prevProps.global.filter !== this.props.global.filter) {
+          this.setState({search: ''});
+        }
     }
 
     componentWillUnmount() {
@@ -208,28 +214,36 @@ class ProfilePage extends BaseComponent<Props, State> {
         });
     }
 
-    submitSearch = async () => {
-      const { search, author, type } = this.state;
-      const { global, activeUser } = this.props;
-
-      let query = `${search}`;
-      if(author !== '') {
-        query += ` author:${author}`;
-      }
-      if(global.filter === 'posts') {
-        query += ` type:post`
-      } else if(global.filter === 'comments') {
-        query += ` type:comment`
-      } 
-      const data = await searchApi(query, "popularity", "1");
-      if(data && data.results) {
-        this.setState({ searchData: data.results })
-      }
+    handleChangeSearch = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
+      const { value } = event.target;
+      await this.setState({ search: value});
+      this.delayedSearch(value);
     }
 
-    searchChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
-      this.setState({search: e.target.value});
+    handleInputChange = async ( value: string): Promise<void>  => {
+        if(value.trim() === ''){
+            // this.setState({proposals: this.state.allProposals});
+        } else {
+          const { search, author, type } = this.state;
+          const { global, activeUser } = this.props;
+    
+          let query = `${value} author:${global.tag.substring(1)}`;
+         
+          if(global.filter === 'posts') {
+            query += ` type:post`
+          } else if(global.filter === 'comments') {
+            query += ` type:comment`
+          } 
+          console.log('query: ', query);
+          const data: any = await searchApi(query, "popularity", "1")
+          
+          if(data && data.results) {
+            this.setState({ searchData: data.results })
+          }
+        }
     }
+
+    delayedSearch = _.debounce(this.handleInputChange, 200);
 
     authorChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.setState({author: e.target.value.trim()});
@@ -238,13 +252,6 @@ class ProfilePage extends BaseComponent<Props, State> {
     typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.setState({type: e.target.value as SearchType});
     }
-
-
-    textInputDown = (e: React.KeyboardEvent) => {
-      if (e.keyCode === 13) {
-          this.submitSearch();
-      }
-    };
 
     render() {
         const {global, entries, accounts, match} = this.props;
@@ -318,32 +325,13 @@ class ProfilePage extends BaseComponent<Props, State> {
                         {
                           (filter === 'blog' || filter === 'posts' || filter === 'comments') && (
                               <div className='searchProfile'>
-                                  <div className="advanced-section">
-                                      <Row>
-                                          <Form.Group as={Col} sm="6" controlId="form-search">
-                                              <Form.Label>{_t("search-comment.search")}</Form.Label>
-                                              <Form.Control
-                                                  type="text"
-                                                  placeholder={_t("search-comment.search-placeholder")}
-                                                  value={search}
-                                                  onChange={this.searchChanged}
-                                                  onKeyDown={this.textInputDown}/>
-                                          </Form.Group>
-                                          <Form.Group as={Col} sm="4" controlId="form-author">
-                                              <Form.Label>{_t("search-comment.author")}</Form.Label>
-                                              <Form.Control
-                                                  type="text"
-                                                  placeholder={_t("search-comment.author-placeholder")}
-                                                  value={author}
-                                                  onChange={this.authorChanged}
-                                                  onKeyDown={this.textInputDown}/>
-                                          </Form.Group>
-                                          
-                                          <Form.Group as={Col} sm="2" controlId="form-type">
-                                              <Button className="btnSearch" type="button" onClick={this.submitSearch}>{_t("g.search")}</Button>
-                                          </Form.Group>
-                                      </Row>
-                                  </div>
+                                <SearchBox
+                                  placeholder={_t("search-comment.search-placeholder")}
+                                  value={search}
+                                  onChange={this.handleChangeSearch}
+                                  // onKeyDown={this.textInputDown}
+                                  autoComplete="off"
+                                /> 
                               </div>
                           )
                         }

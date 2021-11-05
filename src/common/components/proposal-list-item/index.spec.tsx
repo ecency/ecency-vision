@@ -2,7 +2,7 @@ import React from 'react';
 
 import renderer from "react-test-renderer";
 
-import {createBrowserHistory} from "history";
+import {createBrowserHistory, createLocation} from "history";
 import {StaticRouter} from "react-router-dom";
 
 import {globalInstance, UiInstance, proposalInstance, dynamicPropsIntance1, activeUserMaker, allOver} from "../../helper/test-helper";
@@ -20,6 +20,7 @@ jest.mock("../../api/hive", () => ({
 
 const defProps = {
     history: createBrowserHistory(),
+    location: createLocation({}),
     global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
     users: [],
@@ -57,7 +58,7 @@ it('(2) Return proposal.', async () => {
         proposal: {...proposalInstance, id: 0, proposal_id: 0}
     }
 
-    const component = renderer.create(
+    const component = await renderer.create(
         <StaticRouter location="/" context={{}}>
             <ProposalListItem {...props}/>
         </StaticRouter>);

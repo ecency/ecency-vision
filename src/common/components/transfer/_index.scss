@@ -155,6 +155,10 @@
     flex-grow: 1;
     margin-left: 4px;
 
+    .selected {
+      border-width: 0px;
+    }
+
     .asset {
       border-radius: 25px;
       padding: 3px 3px;
@@ -199,5 +203,16 @@
   .tr-form-text {
     padding-left: 20px;
   }
-}
 
+  .override-warning {
+    font-size: 10px;
+    margin-left: 20px;
+  }
+
+  .text-muted {
+    color: $steel-grey !important;
+    @include themify(night) {
+      color: $metallic-blue !important;
+    }
+  }
+}

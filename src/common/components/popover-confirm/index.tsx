@@ -12,6 +12,9 @@ interface Props {
     children: JSX.Element;
     onConfirm?: () => void;
     onCancel?: () => void;
+    trigger?: any;
+    placement?: any;
+    containerRef?: React.RefObject<HTMLInputElement>;
 }
 
 interface State {
@@ -52,7 +55,7 @@ export default class PopoverConfirm extends Component<Props> {
     };
 
     render() {
-        const {titleText, okText, okVariant, cancelText, children} = this.props;
+        const {titleText, okText, okVariant, cancelText, children, trigger, containerRef, placement} = this.props;
         const {show} = this.state;
 
         const clonedChildren = React.cloneElement(children, {
@@ -87,7 +90,7 @@ export default class PopoverConfirm extends Component<Props> {
 
         return (
             <>
-                <OverlayTrigger defaultShow={true} trigger={[]} placement="bottom" overlay={popover}>
+                <OverlayTrigger defaultShow={true} trigger={trigger || []} overlay={popover} placement={placement || "auto"} rootClose={true} container={containerRef || null}>
                     {children}
                 </OverlayTrigger>
             </>

@@ -6,7 +6,6 @@ import {Link} from "react-router-dom";
 import {match} from "react-router";
 import moment from "moment";
 
-
 import {renderPostBody, setProxyBase, catchPostImage, postBodySummary} from "@ecency/render-helper";
 
 import {Entry, EntryVote} from "../store/entries/types";
@@ -188,16 +187,25 @@ class EntryPage extends BaseComponent<Props, State> {
 
     // detects distance between title and comments section sets visibility of profile card
     detect = () => {
-
-       const infoCard:HTMLElement | null = document.getElementById("avatar-fixed");
+        const { showProfileBox } = this.state
+       const infoCard:HTMLElement | null = document.getElementById("avatar-fixed-container");
        const top = this?.viewElement?.getBoundingClientRect()?.top || 120;
         
        if(infoCard != null && window.scrollY > 180  && top && !(top <= 0)) {
-            infoCard.classList.add('visible')
+            infoCard.classList.replace('invisible','visible');
+            if(!showProfileBox){
+                this.setState({showProfileBox:true})
+            }
        } else if( infoCard != null && window.scrollY <= 180) {
-            infoCard.classList.remove('visible')
+            infoCard.classList.replace('visible', 'invisible')
+            if(showProfileBox){
+                this.setState({showProfileBox:false})
+            }
        } else if(top && top <= 0 && infoCard !== null){
-            infoCard.classList.remove('visible')
+            infoCard.classList.replace('visible', 'invisible')
+            if(showProfileBox){
+                this.setState({showProfileBox:false})
+            }
        } else return
 
     }
@@ -408,7 +416,8 @@ class EntryPage extends BaseComponent<Props, State> {
 
             // remove reply draft
             ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
-
+            this.stateSet({commentText:""})
+            
             if (entry.children === 0) {
                 // Activate discussion section with first comment.
                 const nEntry: Entry = {
@@ -428,6 +437,7 @@ class EntryPage extends BaseComponent<Props, State> {
     replyTextChanged = (text: string) => {
         const entry = this.getEntry()!;
         ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
+        this.setState({commentText:text})
     }
 
     reload = () => {
@@ -451,7 +461,7 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, commentText, isMounted, postIsDeleted, deletedEntry} = this.state;
+        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, commentText, isMounted, postIsDeleted, deletedEntry, showProfileBox} = this.state;
         const {global, history, match} = this.props;
 
         let navBar = global.isElectron ? NavBarElectron({
@@ -489,7 +499,9 @@ class EntryPage extends BaseComponent<Props, State> {
                         <div className="row">
                             <div className="col-0 col-lg-2 mt-5">
                                 <div className="mb-4 mt-5">
-                                {!global.isMobile && <AuthorInfoCard {...this.props} entry={{author} as any} />}
+                                    <div id="avatar-fixed-container" className="invisible">
+                                        {!global.isMobile && showProfileBox && <AuthorInfoCard {...this.props} entry={{author} as any} />}
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-12 col-lg-9">
@@ -544,7 +556,7 @@ class EntryPage extends BaseComponent<Props, State> {
         
         const isComment = !!entry.parent_author;
         const ownEntry = activeUser && activeUser.username === entry.author;
-        const isHidden = entry?.net_rshares < 0;
+        const isHidden = entry?.net_rshares < -500000000;
         const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
         const isLowReputation = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
         const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry;
@@ -815,11 +827,11 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         </div>
                                                     </div>
                                                     <span className="flex-spacer"/>
-                                                    {global.usePrivate && BookmarkBtn({
+                                                    {!isComment && global.usePrivate && BookmarkBtn({
                                                         ...this.props,
                                                         entry
                                                     })}
-                                                    {EntryMenu({
+                                                    {!isComment && EntryMenu({
                                                         ...this.props,
                                                         entry,
                                                         separatedSharing: true,
@@ -854,7 +866,11 @@ class EntryPage extends BaseComponent<Props, State> {
                                     })()}
 
 
-                                    {!global.isMobile && <AuthorInfoCard {...this.props} entry={entry} />}
+                                    {!global.isMobile && 
+                                        <div id="avatar-fixed-container" className="invisible">
+                                            {showProfileBox && <AuthorInfoCard {...this.props} entry={entry} />}
+                                        </div>
+                                    }
 
                                     <div className="entry-footer">
                                         <div className="entry-tags">
@@ -941,6 +957,10 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 </>
                                             )}
                                             <span className="flex-spacer"/>
+                                            {BookmarkBtn({
+                                                        ...this.props,
+                                                        entry
+                                            })}
                                             {EntryMenu({
                                                 ...this.props,
                                                 entry,

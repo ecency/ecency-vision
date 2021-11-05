@@ -30,7 +30,6 @@ import CommunityRoles from "../components/community-roles";
 import ScrollToTop from "../components/scroll-to-top";
 
 import {getCommunity, getSubscriptions} from "../api/bridge";
-import {getAccountFull} from "../api/hive";
 
 import {_t} from "../i18n";
 
@@ -120,9 +119,9 @@ class CommunityPage extends BaseComponent<Props, State> {
             if (data) {
                 addCommunity(data);
             }
-            return getAccountFull(name);
+            return data
         }).then((data) => {
-            if (data.name === name) {
+            if (data && data.name === name) {
                 addAccount(data);
             }
         }).finally(() => {
