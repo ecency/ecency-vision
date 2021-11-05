@@ -403,7 +403,7 @@
     "done": "Komunitas Anda sudah dibuat 🎉",
     "reason-one": "Kepemilikan sejati",
     "reason-two": "Permanen, berhadiah",
-    "password-copied": "Password copied to clipboard",
+    "password-copied": "Kata sandi disalin ke papan klip",
     "reason-three": "Diberdayakan oleh teknologi blockchain",
     "reason-four": "Dibutuhkan 3 HIVE untuk menciptakan komunitas kepemilikan sejati yang permanen, tidak berubah",
     "done-link-label": "Mulai."
@@ -489,8 +489,8 @@
     "hive-description": "HIVE adalah Token yang dapat diperdagangkan juga dapat dipindahkan kapan saja. HIVE dapat pula dikonversi menjadi Hive Power yang prosesnya dinamakan Powering Up.",
     "hive-power": "KEKUATAN HIVE",
     "hive-power-description": "Hive Power adalah Token berpengaruh yang menghasilkan lebih banyak Kekuatan untuk disimpan dalam waktu yang lama dan dapat dipakai untuk melakukan voting pada postingan-postingan. Semakin banyak jumlah Hive Power yang dimiliki, maka semakin besar seorang mempengaruhi Rewards lain dan memperoleh Rewards untuk voting yang akurat.",
-    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
-    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
+    "hive-power-apr-rate": "Suku bunga APR untuk Hive Power adalah {{value}} %",
+    "hive-dollars-apr-rate": "Suku bunga APR untuk HBD adalah {{value}} %",
     "hive-power-delegated": "Hive Power yang Didelagasikan",
     "hive-power-received": "Hive Power yang Diterima",
     "next-power-down-amount": "Jumlah power down berikutnya",
@@ -705,7 +705,7 @@
   "delegated-vesting": {
     "title": "Hive Power yang Didelegasikan",
     "undelegate": "hentikan delegasi",
-    "subtitle": " HP Pending delegation returns"
+    "subtitle": " Delegasi HP Kembali masih tertunda"
   },
   "received-vesting": {
     "title": "Hive Power yang Diterima"
