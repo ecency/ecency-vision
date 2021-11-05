@@ -7,11 +7,28 @@ import { useState } from 'react';
 import moment from 'moment';
 import { _t } from '../../i18n';
 
-const buyColumns = [`${_t("market.total")} ${_t("market.hbd")} ($)`,`${_t("market.hbd")} ($)`,`${_t("wallet.hive")}`,`${_t("market.price")}`]
-const sellColumns = [`${_t("market.price")}`,`${_t("wallet.hive")}`,`${_t("market.hbd")} ($)`,`${_t("market.total")} ${_t("market.hbd")} ($)`]
-const tradeColumns = [`${_t("market.date")}`,`${_t("market.price")}`,`${_t("wallet.hive")}`,`${_t("market.hbd")} ($)`];
+const buyColumns = [
+    `${_t("market.total")} ${_t("market.hbd")} ($)`,
+    `${_t("market.hbd")} ($)`,
+    `${_t("wallet.hive")}`,
+    `${_t("market.price")}`
+];
 
-interface MappedData {
+const sellColumns = [
+`${_t("market.price")}`,
+`${_t("wallet.hive")}`,
+`${_t("market.hbd")} ($)`,
+`${_t("market.total")} ${_t("market.hbd")} ($)`
+];
+
+const tradeColumns = [
+`${_t("market.date")}`,
+`${_t("market.price")}`,
+`${_t("wallet.hive")}`,
+`${_t("market.hbd")} ($)`
+];
+
+export interface MappedData {
     key1:string | number,
     key2:string | number,
     key3:string | number,
