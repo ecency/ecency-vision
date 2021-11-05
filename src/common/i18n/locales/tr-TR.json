@@ -312,7 +312,7 @@
     "order-created": "Yaş",
     "read-more": "...daha fazla yanıt görüntüle...",
     "reveal-muted": "Engellenmiş yazar - Yorumu görüntüle",
-    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
+    "reveal-muted-long-description": "Rahatsız edici yanıtlar da dahil olmak üzere diğer yorumları göster",
     "reveal": "Yorumu görüntüle"
   },
   "community": {
@@ -403,7 +403,7 @@
     "done": "Topluluğunuz oluşturuldu 🎉",
     "reason-one": "Gerçek sahiplik",
     "reason-two": "Kalıcı, ödüllendirici",
-    "password-copied": "Password copied to clipboard",
+    "password-copied": "Şifre panoya kopyalandı",
     "reason-three": "Blok zinciri teknolojisi ile güçlendirilmiştir",
     "reason-four": "Kalıcı, değişmeyen, gerçekten sahibi olacağınız topluluğu oluşturmanın maliyeti 3 HIVE'dır",
     "done-link-label": "Başla."
@@ -481,8 +481,8 @@
     "unclaimed-rewards": "Talep edilmemiş ödüller",
     "claim-reward-balance": "Ödül bakiyesini talep et",
     "claim-reward-balance-ok": "Ödül bakiyesi talep edildi",
-    "estimated": "Estimated Wallet Value",
-    "estimated-points": "Estimated Points Value",
+    "estimated": "Tahmini Hesap Değeri",
+    "estimated-points": "Tahmini Puan Değeri",
     "estimated-description": "Tahmini değer HIVE'ın 7 günlük ortalama değerine dayanmaktadır.",
     "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
@@ -509,16 +509,16 @@
     "delegate": "Delegasyon yap",
     "power-down": "Gücü azalt",
     "withdraw-routes": "Çekim Hesapları",
-    "calculating": "Calculating",
+    "calculating": "Hesaplanıyor",
     "converting-hbd-amount": "HIVE'a Dönüştür"
   },
   "wallet-engine": {
-    "title": "Hive Engine Tokens",
+    "title": "Hive Engine Tokenları",
     "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
-    "no-results": "No tokens found.",
+    "no-results": "Hiç token bulunamadı.",
     "token": "Token",
-    "balance": "Balance",
-    "staked": "Staked"
+    "balance": "Bakiye",
+    "staked": "Stake edilmiş"
   },
   "withdraw-routes": {
     "title": "Çekim Hesapları",
@@ -689,7 +689,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
     "type-fill_recurrent_transfer": "Ödeme talimatı gerçekleşti",
     "type-fill_recurrent_transfer-detail": "Kalan {{remaining_executions}} aktarım",
-    "type-delegate_vesting_shares": "Delegation",
+    "type-delegate_vesting_shares": "Delegasyon",
     "type-collateralized_convert": "Teminatlı dönüştürme",
     "type-collateralized_convert-detail": "İstek kimliği: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Teklif kimliği: <strong>{{pid}}</strong>",
@@ -775,7 +775,7 @@
     "clear": "Temizle",
     "published": "Gönderi Yayınlandı",
     "updated": "Gönderi Güncellendi",
-    "thumbnail": "Thumbnail",
+    "thumbnail": "Küçük resim",
     "advanced": "Gelişmiş",
     "beneficiaries": "Hak sahipleri",
     "beneficiaries-hint": "Yazar ödülünü diğer hesaplarla paylaşmak için hak sahiplerini belirleyin",
@@ -794,14 +794,14 @@
     "placeholder-has-tags": "Daha Fazla Ekle",
     "suggestion-header": "Etiketler",
     "error-max": "En fazla {{n}} etiket",
-    "limited_tags": "Only 10 tags allowed, remove some",
-    "limited_length": "Maximum length of each tag should be 24",
-    "limited_dash": "Use one dash in each tag",
-    "limited_space": "Use space to separate tags",
-    "limited_lowercase": "Only use lower letters in tag",
-    "limited_characters": "Use only lowercase letters, digits and one dash",
-    "limited_firstchar": "Tag must start with a letter",
-    "limited_lastchar": "Tag must end with letter or number"
+    "limited_tags": "Yalnızca 10 etikete izin verilir, bazılarını silin",
+    "limited_length": "Her etiketin maksimum uzunluğu 24 olmalıdır",
+    "limited_dash": "Her etikette yalnızca bir tire kullanın",
+    "limited_space": "Etiketleri ayırmak için boşluk kullanın",
+    "limited_lowercase": "Etikette yalnızca küçük harfler kullanın",
+    "limited_characters": "Yalnızca küçük harf, rakam ve bir tire kullanın",
+    "limited_firstchar": "Etiket harf ile başlamalıdır",
+    "limited_lastchar": "Etiket harf veya sayı ile bitmelidir"
   },
   "community-selector": {
     "choose": "Bir topluluk seç",
@@ -1177,8 +1177,8 @@
     "our-vision-p-two": "<b>Our main principles: </b>Bring rewarding communities, true ownership, empowered creators, free speech into the hands of millions.",
     "our-team": "Ekibimiz",
     "founder": "Kurucu",
-    "devops-guru": "Devops master",
-    "design-guru": "Design guru",
+    "devops-guru": "Devops uzmanı",
+    "design-guru": "Tasarım gurusu",
     "community-contributors": "Topluluk Katılımcıları",
     "blockchain-witnesses": "Blok Zinciri Tanıkları",
     "about": "Hakkımızda",
@@ -1199,7 +1199,7 @@
     "error-occured": "Bir sunucu hatası oluştu."
   },
   "layouts": {
-    "grid": "Grid",
-    "classic": "Classic"
+    "grid": "Izgara",
+    "classic": "Klasik"
   }
 }
