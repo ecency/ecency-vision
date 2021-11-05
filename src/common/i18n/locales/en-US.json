@@ -255,6 +255,29 @@
     "title": "Market price",
     "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
+  "market": {
+    "last-price": "Last Price",
+    "volume": "24h volume",
+    "bid": "Bid",
+    "spread": "Spread",
+    "ask": "Ask",
+    "buy": "Buy",
+    "sell": "Sell",
+    "available": "Available",
+    "highest-bid": "Highest bid",
+    "price": "Price",
+    "amount": "Amount",
+    "total": "Total",
+    "orders": "Orders",
+    "date": "Date",
+    "open-orders": "Open Orders",
+    "date-created": "Date Created",
+    "type": "Type",
+    "hbd": "HBD",
+    "action": "Action",
+    "trade-history": "Trade History",
+    "lowest-ask": "Lowest ask"
+  },
   "list-style": {
     "title": "Toggle list style"
   },
