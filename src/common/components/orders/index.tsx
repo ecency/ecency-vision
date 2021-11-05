@@ -5,10 +5,11 @@ import { Skeleton } from '../skeleton';
 import Pagination from '../pagination';
 import { useState } from 'react';
 import moment from 'moment';
+import { _t } from '../../i18n';
 
-const buyColumns = ['Total HBD ($)','HBD ($)','Hive','Price']
-const sellColumns = ['Price','Hive' ,'HBD ($)','Total HBD ($)']
-const tradeColumns = ['Date','Price','Hive','HBD ($)'];
+const buyColumns = [`${_t("market.total")} ${_t("market.hbd")} ($)`,`${_t("market.hbd")} ($)`,`${_t("wallet.hive")}`,`${_t("market.price")}`]
+const sellColumns = [`${_t("market.price")}`,`${_t("wallet.hive")}`,`${_t("market.hbd")} ($)`,`${_t("market.total")} ${_t("market.hbd")} ($)`]
+const tradeColumns = [`${_t("market.date")}`,`${_t("market.price")}`,`${_t("wallet.hive")}`,`${_t("market.hbd")} ($)`];
 
 interface MappedData {
     key1:string | number,
@@ -26,7 +27,7 @@ interface Props {
 export const Orders = ({type, loading, data}: Props) => {
     const [page, setPage] = useState(1)
     let columns = buyColumns;
-    let title = 'Buy Orders';
+    let title = `${_t("market.buy")} ${_t("market.orders")}`;
     let mappedData: MappedData[] = [];
     switch(type){
         case 1:
@@ -41,7 +42,7 @@ export const Orders = ({type, loading, data}: Props) => {
             break;
         case 2:
             columns = sellColumns;
-            title = 'Sell Orders';
+            title = `${_t("market.sell")} ${_t("market.orders")}`;
             mappedData = data.map((item) => {
                 return {
                     key4: (item as OrdersDataItem).hbd,
@@ -53,7 +54,7 @@ export const Orders = ({type, loading, data}: Props) => {
             break;
         case 3:
             columns = tradeColumns;
-            title = "Trade History";
+            title = `${_t("market.trade-history")}`;
             mappedData = data.map((item) => {
                 return {
                     key4:(item as TradeDataItem).current_pays,
