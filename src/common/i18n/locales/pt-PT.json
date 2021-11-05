@@ -112,10 +112,10 @@
     "fragments": "Trechos",
     "settings": "Configurações",
     "logout": "Sair",
-    "theme": "theme",
+    "theme": "tema",
     "light": "light",
-    "dark": "dark",
-    "switch-to": "Switch",
+    "dark": "escuro",
+    "switch-to": "Alternar",
     "vote-power": "Força do Voto:"
   },
   "intro": {
@@ -151,8 +151,8 @@
     "email": "Insira o seu email",
     "ref": "Usuário referenciado (opcional)",
     "submit": "Continuar",
-    "validation-username": "Username is required.",
-    "validation-email": "Email is required.",
+    "validation-username": "O nome de usuário é necessário.",
+    "validation-email": "Email obrigatório.",
     "success": "Enviamos um e-mail para {{email}}.",
     "success-2": "Siga as instruções para concluir o processo de inscrição.",
     "login-text-1": "Você tem conta?",
@@ -172,8 +172,8 @@
     "pinned": "Postagem Fixada",
     "replies": "1 resposta. Clica para responder.",
     "replies-n": "{{n}} respostas. Clique para responder.",
-    "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-error": "Valor anterior não foi possível. Vote com um valor diferente.",
+    "vote-warning": "Votar com 0% retira o voto.",
     "no-replies": "Nenhuma resposta ainda. Clique para responder."
   },
   "nsfw": {
@@ -279,7 +279,7 @@
     "muted-warning": "Este conteúdo foi silenciado pelos moderadores da {{community}} por não seguir as diretrizes da comunidade.",
     "lowrep-warning": "O autor desse conteúdo tem uma baixa reputação.",
     "deleted-content-warning": "O conteúdo foi deletado pelo autor. Entretanto, você poderá vê-lo acessando os registros na Blockchain ",
-    "comments-hidden": "Author of this post is muted by you.",
+    "comments-hidden": "O autor desta publicação foi silenciado por você.",
     "address-copy": "Copiar endereço do post",
     "address-copied": "Endereço do post copiado.",
     "content-copied": "Conteúdo copiado para a área de transferência.",
@@ -345,7 +345,7 @@
     "edit": "Editar configurações",
     "edit-team": "Editar funções",
     "community-rewards": "Recompensas da Comunidade",
-    "profile-image": "Profile image",
+    "profile-image": "Imagem do perfil",
     "profile-image-edit": "Editar imagem do perfil",
     "profile-image-updated": "Imagem de perfil atualizada!"
   },
@@ -364,7 +364,7 @@
     "description": "Descrição",
     "rules": "Regras",
     "rules-help": "Um por linha",
-    "validation-title": "Title is required."
+    "validation-title": "É necessário um título."
   },
   "communities": {
     "title": "Comunidades",
@@ -1195,11 +1195,11 @@
     "subscribe-paragraph": "Seja o primeiro a saber o que está acontecendo na internet descentralizada.",
     "copy-rights": "© 2021 Ecency. Todos os direitos reservados.",
     "success-message-subscribe": "Um link de verificação foi enviado para o seu e-mail!",
-    "validation-email": "A valid email is required",
+    "validation-email": "Um email válido é necessário",
     "error-occured": "Ocorreu um erro no servidor."
   },
   "layouts": {
-    "grid": "Grid",
+    "grid": "Grade",
     "classic": "Clássico"
   }
 }
