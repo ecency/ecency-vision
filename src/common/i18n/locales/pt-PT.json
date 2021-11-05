@@ -2,7 +2,7 @@
   "g": {
     "add": "Adicionar",
     "edit": "Editar",
-    "submit": "Escrever uma postagem",
+    "submit": "Escrever uma publicação",
     "search": "Procurar",
     "downloads": "Transferências",
     "login": "Entrar",
@@ -68,11 +68,11 @@
     "filter-feed-subscriptions": "Comunidades",
     "filter-global": "Global",
     "filter-global-part1": "Este feed contém ",
-    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part2": " discussões em toda a plataforma.",
     "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
     "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
     "filter-global-discover": "Descobrir Pessoas",
-    "filter-global-join-communities": "Join Communities"
+    "filter-global-join-communities": "Junte-se à Comunidades"
   },
   "navbar": {
     "discover": "Descubra",
@@ -113,7 +113,7 @@
     "settings": "Configurações",
     "logout": "Sair",
     "theme": "tema",
-    "light": "light",
+    "light": "claro",
     "dark": "escuro",
     "switch-to": "Alternar",
     "vote-power": "Força do Voto:"
@@ -193,10 +193,10 @@
     "confirm-title": "Reblogar para o blog de @{{n}}?",
     "confirm-ok": "Reblogar",
     "success": "Reblogado!",
-    "delete-reblog": "Desfazer Repostagem",
-    "delete-confirm-title": "Desfazer repostagem?",
+    "delete-reblog": "Deixar de Reblogar",
+    "delete-confirm-title": "Deixar de reblogar?",
     "delete-confirm-ok": "Desfazer",
-    "delete-success": "Repostagem removida"
+    "delete-success": "Reblog removido"
   },
   "entry-tip": {
     "title": "Dica"
@@ -205,11 +205,11 @@
     "title": "Compartilhar"
   },
   "entry-menu": {
-    "cross-post": "Postagem cruzada",
+    "cross-post": "Públicação cruzada",
     "share": "Compartilhar",
     "edit-history": "Editar Histórico",
     "pin": "Fixar",
-    "pin-success": "Postagem fixada",
+    "pin-success": "Publicação fixada",
     "unpin": "Desafixar",
     "unpin-success": "Publicação desafixada",
     "mute": "Silenciar",
@@ -220,11 +220,11 @@
     "boost": "Impulso"
   },
   "cross-post": {
-    "title": "Postagem Cruzada",
+    "title": "Publicação Cruzada",
     "community-placeholder": "Escolha uma comunidade",
     "message-placeholder": "Iniciar a conversa com uma mensagem",
     "submit-label": "Confirmar",
-    "published": "Postagem Publicada",
+    "published": "Publicação Realizada",
     "no-subscription": "Você não segue nenhuma comunidade para cruzar post.",
     "info": "As recompensas são automaticamente recusadas para post cruzado, e as discussões serão diferentes, seguindo as diretrizes da comunidade."
   },
@@ -311,7 +311,7 @@
     "order-votes": "Votos",
     "order-created": "Idade",
     "read-more": "...ler mais respostas...",
-    "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted": "Autor silenciado - Revelar comentário",
     "reveal-muted-long-description": "Mostrar respostas adicionais, incluindo aquelas que contém conteúdo ofensivo",
     "reveal": "Revelar comentário"
   },
@@ -385,7 +385,7 @@
     "title": "Título",
     "about": "Sobre",
     "description": "Crie comunidades melhores, descentralizadas, imutáveis e recompensadoras",
-    "fee": "Creation fee",
+    "fee": "Taxa de criação",
     "creator": "Criador",
     "username": "Usuário da comunidade",
     "username-available": "Disponível.",
@@ -668,33 +668,33 @@
     "type-comment_benefactor_reward": "Recompensa por comentário",
     "type-claim_reward_balance": "Reivindicar recompensas",
     "type-transfer": "Transferir",
-    "type-transfer_to_vesting": "Power up",
-    "type-withdraw_vesting": "Power down",
-    "type-fill_vesting_withdraw": "Partial Power down occurred",
+    "type-transfer_to_vesting": "Carregar Poder",
+    "type-withdraw_vesting": "Baixar poder",
+    "type-fill_vesting_withdraw": "Ocorrência de Parcial Redução de Poder",
     "type-fill_order": "Preencher pedido",
     "type-producer_reward": "Recompensa de criador",
     "type-interest": "Rendimentos",
     "type-transfer_to_savings": "Transferir para a poupança",
-    "type-fill_convert_request": "Convert fulfilled",
+    "type-fill_convert_request": "Conversão concluída",
     "type-fill_collateralized_convert_request": "Conversão de colateral completa",
     "type-fill_collateralized_convert-detail": "ID: <strong>{{request}}</strong>, Returned: {{returned}}",
     "type-cancel_transfer_from_savings": "Cancelar a transferência da poupança",
     "type-cancel_transfer_from_savings-detail": "De: <strong>@{{from}}</strong> <br/> ID da solicitação: <strong>{{request}}</strong>",
-    "type-return_vesting_delegation": "Return delegations",
+    "type-return_vesting_delegation": "Delegações retornadas",
     "type-proposal_pay": "Proposta de pagamento",
-    "type-update_proposal_votes": "Proposal vote",
+    "type-update_proposal_votes": "Votos em propostas",
     "type-comment_payout_update": "Atualização do pagamento de conteúdo",
     "type-comment_reward": "Recompensa de conteúdo",
-    "type-recurrent_transfer": "Recurring transfer",
+    "type-recurrent_transfer": "Transferência recorrente",
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
     "type-fill_recurrent_transfer": "Recurring transfer occurred",
     "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
     "type-delegate_vesting_shares": "Delegações",
-    "type-collateralized_convert": "Collateralized convert",
+    "type-collateralized_convert": "Conversão de colateral",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
-    "type-limit_order_create": "New trade",
-    "type-effective_comment_vote": "Effective vote"
+    "type-limit_order_create": "Nova operação",
+    "type-effective_comment_vote": "Voto efetivo"
   },
   "key-or-hot": {
     "sign": "Assinar",
@@ -1017,21 +1017,21 @@
   "view-keys": {
     "title": "Ver Chaves Privadas",
     "account": "Conta",
-    "cur-pass": "Current password",
+    "cur-pass": "Senha atual",
     "owner": "Proprietário",
     "active": "Ativa",
     "posting": "Postagem",
     "memo": "Memo",
     "view-keys": "Clique para ver as chaves",
-    "copied": "Private key copied into clipboard",
-    "error": "Password seem incorrect, please double check!"
+    "copied": "Chave privada copiada para a área de transferência",
+    "error": "Senha parece incorreta. Por favor, verifique novamente!"
   },
   "add-image": {
     "title": "Adicionar imagem",
     "text-label": "Texto da Imagem",
     "link-label": "Link da Imagem",
     "validation-text": "Texto é necessário.",
-    "validation-image": "Image is required."
+    "validation-image": "Imagem é necessária."
   },
   "add-image-mobile": {
     "title": "Adicionar Imagem",
@@ -1043,8 +1043,8 @@
     "title": "Adicionar Link",
     "text-label": "Texto",
     "link-label": "https://",
-    "validation-text": "Text is required.",
-    "validation-link": "Link is required."
+    "validation-text": "Texto é necessário.",
+    "validation-link": "É necessário um link."
   },
   "scroll-to-top": {
     "title": "Ir para o topo"
@@ -1144,7 +1144,7 @@
   "landing-page": {
     "welcome-text": "Bem-vindo à Ecency!",
     "what-is-ecency": "Rede social baseada em blockchain",
-    "powered-by-hive": " powered by Hive",
+    "powered-by-hive": " tecnologia Ecossistema Hive",
     "get-started": "Comece agora",
     "earn-money": "Ganhe dinheiro",
     "earn-money-block-chain-based": "Rede social baseada em Blockchain, ",
@@ -1164,7 +1164,7 @@
     "points-distrubuted": "Pontos distribuídos",
     "new-users": "Novos usuários",
     "download-our-application": "Faça download do nosso aplicativo",
-    "download-our-application-desc-1": "Looking for a unique experience?",
+    "download-our-application-desc-1": "Procurando por uma experiência única?",
     "download-our-application-desc-2": "The social network with real free speech experience on your mobile phone or desktop. Blockchain's powerful benefits now always under your fingertips.",
     "download-for-windows": "Baixar para Computador",
     "download-for-ios": "Baixar para iOS",
@@ -1174,7 +1174,7 @@
     "our-history-p-two": "Desde então, temos continuado a construir para a Web 3.0 e melhorar nossa rede social em blockchain. Nos certificamos para que os aplicativos estejam seguros, acessíveis e traduzidos para as mais diversas línguas do mundo.",
     "our-vision": "Nossa Visão",
     "our-vision-p-one": "Queremos trazer uma experiência gratificante e segura na blockchain para todas as pessoas. Uma rede social sem qualquer limite ou censura, onde apenas você controla sua própria conta e suas comunidades. Protegido pela blockchain, com a ajuda das pessoas.",
-    "our-vision-p-two": "<b>Our main principles: </b>Bring rewarding communities, true ownership, empowered creators, free speech into the hands of millions.",
+    "our-vision-p-two": "<b>Nossos maiores princípios: </b>Possibilitar comunidades com liberdade de expressão, recompensantes para os criadores de conteúdo.",
     "our-team": "Nossa Equipe",
     "founder": "Fundador",
     "devops-guru": "Mestre do desenvolvimento",
