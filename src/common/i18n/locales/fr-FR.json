@@ -279,14 +279,14 @@
     "muted-warning": "Ce contenu a été désactivé par les modérateurs de {{community}} car il n'a pas suivi les directives de la communauté.",
     "lowrep-warning": "L'auteur de ce contenu a une faible réputation.",
     "deleted-content-warning": "Ce contenu a été supprimé par l'auteur. Vous pouvez le voir depuis la Blockchain ",
-    "comments-hidden": "Author of this post is muted by you.",
-    "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard.",
-    "content-copied": "Content copied to clipboard.",
-    "browse-original": "Open original post",
-    "cross-post-by": "Cross post by",
-    "cross-post-community": "community",
-    "community-in": "in"
+    "comments-hidden": "Vous avez mis en sourdine l'auteur de ce message.",
+    "address-copy": "Copier l'adresse de la publication",
+    "address-copied": "Adresse de la publication copiée dans le presse-papier.",
+    "content-copied": "Contenu copié dans le presse-papiers.",
+    "browse-original": "Afficher le post d'origine",
+    "cross-post-by": "Message croisé par",
+    "cross-post-community": "communauté",
+    "community-in": "dans"
   },
   "edit-history": {
     "title": "Modifier l'historique",
@@ -294,7 +294,7 @@
     "version": "Version {{n}}"
   },
   "similar-entries": {
-    "title": "Read next"
+    "title": "Lire la suite"
   },
   "comment": {
     "body-placeholder": "Écrivez votre réponse ici",
@@ -305,13 +305,13 @@
     "btn-join": "Rejoindre",
     "replies": "1 commentaire",
     "n-replies": "{{n}} commentaires",
-    "order": "Sort Order",
+    "order": "Ordre de tri",
     "order-trending": "Tendance",
     "order-reputation": "Réputation",
     "order-votes": "Votes",
     "order-created": "Age",
     "read-more": "...lire plus de réponses...",
-    "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted": "Auteur mis en sourdine - Révéler le contenu",
     "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Révéler le commentaire"
   },
