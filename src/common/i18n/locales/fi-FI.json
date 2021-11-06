@@ -1062,9 +1062,12 @@
       "contact-email": "Lähetä meille sähköpostia"
     },
     "faq": {
-      "page-title": "Ecency UKK",
+      "page-title": "How can we help you?",
       "page-sub-title": "Sisällysluettelo",
       "what-is-ecency-header": "Mikä on Ecency?",
+      "search": "Related results for {{search}} filtered below",
+      "search-not-found": "Nothing was found. To ask our community, join our ",
+      "search-placeholder": "Search our articles",
       "what-is-ecency-body": "<p>Ecency on <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">lohkoketju</a> -pohjainen sosiaalinen verkosto, jonka on mahdollistaa <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency tarjoaa sensuroimattoman, vapaan, rajattoman ja palkitsevan alustan sisällön luojille.</p><p>Hankkeen käynnisti ja perusti Elokuussa 2016 <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> vaihtoehtoiseksi sensuurivapaaksi, käyttäjän hallittavaksi avoimen lähdekoodin sosiaaliseksi verkostoksi. On <a class=\"push-link\" href=\"/contributors\"> monia itsenäisiä vapaaehtoisia osallistujia </a> jotka haluavat pitää sananvapauden vision ja hengen yllä. </p><p>Ecency auttaa ihmisiä opettelemaan Lohkoketjuteknologian käyttöä, jossa käyttäjiä palkitaan ajastaan sekä resursseista oppien lohkoketjun sosiaalisia ominaisuuksia. Käytön helppouden ansiosta käyttäjät oppivat ja tulevat samalla uuden internetin sijoittajiksi ja kehittäjiksi.</p>",
       "what-is-hive-header": "Mikä on Hive-lohkoketju?",
       "what-is-hive-body": "<p>Hive on lohkoketju, joka oli suunniteltu olemaan nopea, ilmainen, hajautettu sekä sensuroimaton alusta Web3- sovelluksineen, joissa on sisäänrakennettuja ominaisuuksia, joissa omistajat voivat ansaita palkintoja panostamalla, tarkastamalla, pelaamalla sekä vaihtamalla - ilman välikäsiä (hajautettu). Hive-lohkoketjun yleisimmät merkit ovat HIVE, HIVE DOLLARS, HIVE POWER.</p>",
