@@ -1062,9 +1062,12 @@
       "contact-email": "Contattaci via email"
     },
     "faq": {
-      "page-title": "Domande frequenti su Ecency",
+      "page-title": "How can we help you?",
       "page-sub-title": "Indice",
       "what-is-ecency-header": "Che cos'è Ecency?",
+      "search": "Related results for {{search}} filtered below",
+      "search-not-found": "Nothing was found. To ask our community, join our ",
+      "search-placeholder": "Search our articles",
       "what-is-ecency-body": "<p>Ecency è un social network basato su <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> - messo in moto dalla blockchain <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency è un luogo di ritrovo per la libertà di parola e dove le community di creatori di contenuti vengono ricompensate.</p><p>Il progetto è stato fondato da <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> nell'Agosto 2016 come un social network alternativo, incensurato, controllato dagli utenti, immutabile e a licenza open-source. Attualmente ci sono <a class=\"push-link\" href=\"/contributors\">molti collaboratori volontari e indipendenti</a> che vogliono mantenere questa visione, nello spirito di una completa libertà di parola.</p><p>Ecency tenta inoltre di aiutare i gruppi di persone che stanno muovendo i primi passi nella tecnologia blockchain, andando a ricompensare gli utenti per il loro tempo, le loro risorse, e dove si può beneficiare degli aspetti più social della tecnologia blockchain. Attraverso la semplicità di utilizzo, gli utenti non imparano soltanto, ma possono anche diventare investitori e innovatori all'interno della nuova era di internet.</p>",
       "what-is-hive-header": "Che cos'è la blockchain Hive?",
       "what-is-hive-body": "<p>Hive è una blockchain disegnata per essere una piattaforma veloce, economica, non censurabile e decentralizzata adatta alle applicazioni per il Web3.0, dotata di strumenti nativi dove i titolari dell'investimento possono guadagnare bloccando in stake, curando contenuti, postando, giocando, scambiando asset - il tutto senza alcun intermediario (concetto di decentralizzazione). I token della blockchain Hive si chiamano HIVE, HIVE DOLLARS, e HIVE POWER.</p>",
