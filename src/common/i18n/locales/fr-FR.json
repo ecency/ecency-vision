@@ -278,7 +278,7 @@
     "delete-disabled": "Le contenu après leur paiement ne peut pas être supprimé.",
     "muted-warning": "Ce contenu a été désactivé par les modérateurs de {{community}} car il n'a pas suivi les directives de la communauté.",
     "lowrep-warning": "L'auteur de ce contenu a une faible réputation.",
-    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
+    "deleted-content-warning": "Ce contenu a été supprimé par l'auteur. Vous pouvez le voir depuis la Blockchain ",
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
