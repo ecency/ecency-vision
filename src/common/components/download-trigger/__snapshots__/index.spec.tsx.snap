@@ -135,35 +135,6 @@ exports[`(3) Linux. 1`] = `
 </div>
 `;
 
-exports[`(4) Android. 1`] = `
-<div
-  className="download-dialog-content"
->
-  <h2
-    className="downloads-title"
-  >
-    Download
-  </h2>
-  <div
-    className="downloads-text"
-  >
-    Enjoy Ecency for iPhone, iPad and Android, as well as Windows, Mac or Linux devices
-  </div>
-  <div
-    className="download-buttons"
-  >
-    <a
-      className="download-button btn-android"
-      href="https://android.ecency.com"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Android
-    </a>
-  </div>
-</div>
-`;
-
 exports[`(5) iOS. 1`] = `
 <div
   className="download-dialog-content"
