@@ -409,10 +409,10 @@
     "done-link-label": "Почати."
   },
   "community-rewards-registration": {
-    "body-text": "Register your community to get Ecency POINTS",
+    "body-text": "Зареєструйте свою спільноту, щоб отримати БАЛИ на Ecency",
     "btn-next-label": "Register",
     "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
-    "conflict-body-text": "This community is already registered.",
+    "conflict-body-text": "Ця спільнота вже зареєстрована.",
     "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "mute-btn": {
@@ -538,11 +538,11 @@
     "comment-desc": "Кожен коментар допомагає вам нарощувати аудиторію, зав'язує дружбу та приносить тобі 5 балів.",
     "checkin-desc": "Періодичний вхід на Ecency дає вам 0,25 балів та допомагає залишатися на зв'язку з друзями.",
     "vote-desc": "Голосуючи, ви винагороджуєте інших авторів і показуєте свою вдячність, а також отримуєте бали у кількості 0,01 x вагу голосу.",
-    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
+    "reblog-desc": "Діліться з друзями дописами, що вам подобаються, та отримуйте 1 бал.",
     "login-desc": "При першій авторизації в додатку Ecency вам автоматично нараховується 100 балів.",
     "checkin-extra-desc": "Регулярне використання додатку дає вам шанс отримати ще 10 бонусних балів, будьте активнішим та отримуй більше.",
-    "delegation-desc": "You can earn ~100 points per day for each 1000HP delegation.",
-    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
+    "delegation-desc": "Ви можете отримувати ~100 балів щодня за кожну делегацію 1000HP.",
+    "community-desc": "Зареєструйте свою спільноту, щоб отримати 20 балів за допис, опублікований через застосунки Ecency.",
     "history": "Історія",
     "post-list-desc": "Бали за допис",
     "comment-list-desc": "Бали за коментар",
@@ -1066,8 +1066,8 @@
       "page-sub-title": "Зміст",
       "what-is-ecency-header": "Що таке Ecency?",
       "search": "Пов'язані результати за {{search}} відфільтровано нижче",
-      "search-not-found": "Nothing was found. To ask our community, join our ",
-      "search-placeholder": "Search our articles",
+      "search-not-found": "Нічого не знайдено. Зверніться до нашої спільноти, приєднуйтесь до нашої ",
+      "search-placeholder": "Пошук наших статей",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "Що таке Hive блокчейн?",
       "what-is-hive-body": "<p>Hive - це блокчейн, розроблений як швидка, безоплатна, децентралізована, нецензурована платформа для додатків Web 3.0 із вбудованими функціями, де зацікавлені сторони можуть заробляти винагороду та стекаючи їх, інвестуючи, публікуючи, граючи в ігри, торгуючи - все без будь-якої середньої людини (децентралізована). Токени на блокчейні Hive під назвою HIVE, HIVE DOLLARS, HIVE POWER(сила).</p>",
