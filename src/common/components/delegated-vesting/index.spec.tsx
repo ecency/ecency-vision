@@ -67,7 +67,7 @@ it("(3) With delegator active user", async () => {
     }
     const component = renderer.create(<List {...props} />);
     await allOver();
-    // expect(component.toJSON()).toMatchSnapshot();
+    expect(component.toJSON()).toMatchSnapshot();
 });
 
 
