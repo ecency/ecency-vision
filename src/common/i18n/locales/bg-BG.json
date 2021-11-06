@@ -1062,9 +1062,12 @@
       "contact-email": "Изпратете ни имейл"
     },
     "faq": {
-      "page-title": "Ecency FAQ",
+      "page-title": "How can we help you?",
       "page-sub-title": "Таблица на съдържанието",
       "what-is-ecency-header": "Какво е Ecency?",
+      "search": "Related results for {{search}} filtered below",
+      "search-not-found": "Nothing was found. To ask our community, join our ",
+      "search-placeholder": "Search our articles",
       "what-is-ecency-body": "<p>Ecency е <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">блокчейн</a> социална мрежа управлявана от <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency e домът на свободата на словото и награждаващите общности за създателите на съдържание.</p><p>Проектът е създаден от <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> през Август 2016 като алтернативна социална мрежа, която е нецензурирана, контролирана от потребителите, незаглушаваща и с отворен код. В момента има много <a class=\"push-link\" href=\"/contributors\">много независими и доброволни сътрудници</a> които искат да поддържата визията и духа на свободното слово.</p><p>Ecency помага да се вкарат маси от хора в Блокчейн технологиите, където на потребителите им се заплаща за времето, ресурсите, и да се учат докато се наслаждават на социалните аспекти на блокчейн. Чрез улесненото използване, потребителите не само се учат, но и също така стават инвеститори, иноватори на новият интернет.</p>",
       "what-is-hive-header": "Какво е Hive блокчейн?",
       "what-is-hive-body": "<p>Hive е блокчейн който е създаден да бъде бърза, без такси, децентрализирана, нецензурирана платформа за Web 3.0 приложения, със вградени черти където заинтересованите страни могат да залагат, гласуват, постват, играят игри, търгуват - всичко това без посредници(децентрализирано). Жетоните в Hive блокчейн се наричат HIVE, HIVE ДОЛАРИ, HIVE Стойност/сила.</p>",
