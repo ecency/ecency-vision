@@ -7911,6 +7911,11 @@ mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@^0.5.5, mkdirp@~0.5.1:
   dependencies:
     minimist "^1.2.5"
 
+mobile-device-detect@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/mobile-device-detect/-/mobile-device-detect-0.4.3.tgz#05d73b4bde7ccb5beda1c4bd0ea0986ce30b1f3f"
+  integrity sha512-SN9EBE9SoJgkb83kuUVoIp3R9OGYE5dYEnLEz2oLooh0DzgtQ72BJmpNGqrgFvmfE4iLR2CaVJ3RjUcStheVZg==
+
 mockdate@^3.0.2:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/mockdate/-/mockdate-3.0.5.tgz#789be686deb3149e7df2b663d2bc4392bc3284fb"
@@ -9726,6 +9731,13 @@ react-property@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-property/-/react-property-1.0.1.tgz#4ae4211557d0a0ae050a71aa8ad288c074bea4e6"
   integrity sha512-1tKOwxFn3dXVomH6pM9IkLkq2Y8oh+fh/lYW3MJ/B03URswUTqttgckOlbxY2XHF3vPG6uanSc4dVsLW/wk3wQ==
+
+react-pwa-install@^1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/react-pwa-install/-/react-pwa-install-1.0.12.tgz#f7203bd1ca2b2a4204bfc469ee11813d9c2567a9"
+  integrity sha512-zy1ZPfUIDTiBap1pycB6IZw+8wSRwncFwtjuUHYwRX2+285EabTcvXAwl2PdIzcXc1fh+K0ZI6Snccx5bgLpxg==
+  dependencies:
+    mobile-device-detect "^0.4.3"
 
 react-redux@^7.2.0:
   version "7.2.4"
