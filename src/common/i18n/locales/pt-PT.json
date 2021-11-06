@@ -69,8 +69,8 @@
     "filter-global": "Global",
     "filter-global-part1": "Este feed contém ",
     "filter-global-part2": " discussões em toda a plataforma.",
-    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
-    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-part3": " interações das comunidades que você segue. Você pode participar de mais comunidades para preencher sua página inicial.",
+    "filter-global-part4": " interações de quem você conhece. Você pode seguir mais pessoas para preencher sua página inicial.",
     "filter-global-discover": "Descobrir Pessoas",
     "filter-global-join-communities": "Junte-se à Comunidades"
   },
@@ -134,7 +134,7 @@
     "error-public-key": "Você inseriu uma chave pública. Senha/WIF obrigatório",
     "error-user-fetch": "Dados de usuário não foram encontrados",
     "error-user-not-found": "Usuário não existe",
-    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
+    "error-user-not-found-cache": "Inconsistência de cache detectada. Por favor, faça login novamente com suas credenciais.",
     "error-permission": "Não foi possível obter permissão de postagem",
     "error-authenticate": "Chave privada incorreta. Chave master ou ativa ou de publicar são necessárias.",
     "with-hive-signer": "Entre com o Hivesigner",
@@ -578,7 +578,7 @@
     "select-asset": "Selecionar ativo",
     "slider-hint": "Deslize o cursor para ajustar a quantidade.",
     "submit": "Compra",
-    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
+    "purchase-message": "Ou envie qualquer quantia para @esteem.app com `pontos` no memo, para comprar Pontos."
   },
   "promote": {
     "title": "Promover",
@@ -677,7 +677,7 @@
     "type-transfer_to_savings": "Transferir para a poupança",
     "type-fill_convert_request": "Conversão concluída",
     "type-fill_collateralized_convert_request": "Conversão de colateral completa",
-    "type-fill_collateralized_convert-detail": "ID: <strong>{{request}}</strong>, Returned: {{returned}}",
+    "type-fill_collateralized_convert-detail": "ID: <strong>{{request}}</strong>, Retornou: {{returned}}",
     "type-cancel_transfer_from_savings": "Cancelar a transferência da poupança",
     "type-cancel_transfer_from_savings-detail": "De: <strong>@{{from}}</strong> <br/> ID da solicitação: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Delegações retornadas",
@@ -687,7 +687,7 @@
     "type-comment_reward": "Recompensa de conteúdo",
     "type-recurrent_transfer": "Transferência recorrente",
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
-    "type-fill_recurrent_transfer": "Recurring transfer occurred",
+    "type-fill_recurrent_transfer": "Transferência recorrente ocorrida",
     "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
     "type-delegate_vesting_shares": "Delegações",
     "type-collateralized_convert": "Conversão de colateral",
@@ -801,7 +801,7 @@
     "limited_lowercase": "Use apenas letras minúsculas na etiqueta",
     "limited_characters": "Use apenas letras minúsculas, dígitos e um traço",
     "limited_firstchar": "Etiqueta deve começar com uma letra",
-    "limited_lastchar": "Tag must end with letter or number"
+    "limited_lastchar": "A etiqueta deve terminar com letra ou número"
   },
   "community-selector": {
     "choose": "Escolher uma comunidade",
@@ -1062,12 +1062,12 @@
       "contact-email": "Envie-nos um email"
     },
     "faq": {
-      "page-title": "How can we help you?",
+      "page-title": "Como podemos ajudá-lo?",
       "page-sub-title": "Tabela de conteúdos",
       "what-is-ecency-header": "O que é Ecency?",
-      "search": "Related results for {{search}} filtered below",
-      "search-not-found": "Nothing was found. To ask our community, join our ",
-      "search-placeholder": "Search our articles",
+      "search": "Resultados relacionados para {{search}} filtrados abaixo",
+      "search-not-found": "Nada foi encontrado. Para perguntar à comunidade, junte-se a nossa ",
+      "search-placeholder": "Pesquisar em nossos artigos",
       "what-is-ecency-body": "<p>A Ecency é uma <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">rede social</a> baseada em blockchain - alimentada pela rede da <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>A Ecency é a casa de recompensastes comunidades com liberdade de expressão, onde criadores de conteúdo são recompensados pelo seu trabalho.</p><p>O projeto foi fundado por <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> em agosto de 2016, como uma rede social alternativa e incensurável, controlada pelos usuários, imutável e de código aberto. Atualmente há <a class=\"push-link\" href=\"/contributors\">muitos colaboradores voluntários e independentes</a> desejando fortalecer nossa visão e contribuir para o crescimento do espírito da liberdade de expressão.</p><p>A Ecency contribui para a integração em massa da tecnologia Blockchain, para que usuários sejam pagos por seu tempo, recursos e aprendam enquanto desfrutam dos aspectos sociais derivados da blockchain. Através do uso fácil e simples, os usuários não apenas aprendem, mas também se tornam inovadores e investidores da nova internet.</p>",
       "what-is-hive-header": "O que é a Hive blockchain?",
       "what-is-hive-body": "<p>Hive é uma blockchain projetada para ser rápida, tranquila, descentralizada e não censurada para a Web3.0 aplicações, com recursos internos onde pessoas interessdas podem ganhar recompensas participando, curando, jogando, negociando - tudo sem qualquer intermediário (descentralizado). Tokens na blockchain da Hive chamado HIVE, HIVE DOLARS, HIVE POWER.</p>",
@@ -1168,7 +1168,7 @@
     "new-users": "Novos usuários",
     "download-our-application": "Faça download do nosso aplicativo",
     "download-our-application-desc-1": "Procurando por uma experiência única?",
-    "download-our-application-desc-2": "The social network with real free speech experience on your mobile phone or desktop. Blockchain's powerful benefits now always under your fingertips.",
+    "download-our-application-desc-2": "A rede social com verdadeira liberdade de expressão no seu celular ou Pc. Os poderosos benefícios da tecnologia Blockchain agora estão em suas mãos.",
     "download-for-windows": "Baixar para Computador",
     "download-for-ios": "Baixar para iOS",
     "download-for-android": "Baixar para Android",
