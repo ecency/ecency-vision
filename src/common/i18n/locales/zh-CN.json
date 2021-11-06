@@ -1062,9 +1062,12 @@
       "contact-email": "给我们发电子邮件"
     },
     "faq": {
-      "page-title": "Ecency常见问题",
+      "page-title": "How can we help you?",
       "page-sub-title": "目录",
       "what-is-ecency-header": "什么是Ecency？",
+      "search": "Related results for {{search}} filtered below",
+      "search-not-found": "Nothing was found. To ask our community, join our ",
+      "search-placeholder": "Search our articles",
       "what-is-ecency-body": "<p>Ecency是基于 <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">区块链</a> 的社交网络 - 由 <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>提供动力。</p><p>Ecency是内容创建者的言论自由和奖励社区。</p><p>项目由 <a class=\"push-link\" href=\"/@good-karma\">@hickarma</a> 于 2016 年 8 月创建，作为一个未知的社会网络， 用户控制、不可变和开源. 目前有 <a class=\"push-link\" href=\"/contributors\">许多独立和自愿的撰稿人</a> 希望保持言论自由的远见和精神。</p><p>Ecency有助于登入区块链技术，用户可以在那里获得时间的报酬。 资源和学习，同时享受区块链的社会方面。 通过便于使用，用户不仅学习，而且也成为投资者，新互联网的创新者。</p>",
       "what-is-hive-header": "区块链是什么？",
       "what-is-hive-body": "<p>Hive 是一个区块链，它被设计为快速、无费用的、去中心化的、不受审查的Web3平台。 具有内置功能的应用程序，在这种情况下，利益攸关者可以通过标记、管理、发布、游戏、交易来赚取奖励 - 没有任何中间人(去中心化)。 在 Hive 区块链上的令牌，叫做HIVE、HIVE的美元、HIVE的能量。</p>",
