@@ -26,6 +26,8 @@
     }
 
     .user-list {
+      position: relative;
+      min-height: 100px;
       max-height: 216px;
       overflow-y: auto;
 

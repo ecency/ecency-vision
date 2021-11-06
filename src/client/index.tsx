@@ -3,6 +3,8 @@ import {hydrate} from "react-dom";
 import {Provider} from "react-redux";
 import {ConnectedRouter} from "connected-react-router";
 
+import ReactPWAInstallProvider from "react-pwa-install";
+
 import configureStore from "../common/store/configure";
 
 import {hasKeyChainAct} from "../common/store/global";
@@ -26,7 +28,9 @@ const store = configureStore(window["__PRELOADED_STATE__"]);
 hydrate(
     <Provider store={store}>
         <ConnectedRouter history={history!}>
-            <App/>
+            <ReactPWAInstallProvider enableLogging={true}>
+                <App/>
+            </ReactPWAInstallProvider>
         </ConnectedRouter>
     </Provider>,
     document.getElementById("root")

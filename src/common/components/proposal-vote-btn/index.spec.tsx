@@ -1,6 +1,7 @@
 import React from 'react';
 
 import renderer from "react-test-renderer";
+import {createBrowserHistory, createLocation} from "history";
 
 import {globalInstance, UiInstance, activeUserMaker, allOver} from "../../helper/test-helper";
 
@@ -27,6 +28,8 @@ jest.mock("../../api/hive", () => ({
 }));
 
 const defProps = {
+    history: createBrowserHistory(),
+    location: createLocation({}),
     global: globalInstance,
     users: [],
     activeUser: activeUserMaker("foo"),

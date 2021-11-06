@@ -58,26 +58,6 @@ exports[`(3) Already registered 1`] = `
 </div>
 `;
 
-exports[`(3) Already registered 2`] = `
-<div
-  className="dialog-content"
->
-  <p
-    className="text-info"
-  >
-    This community is already registered.
-  </p>
-  <button
-    className="btn btn-primary btn-sm"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    Close
-  </button>
-</div>
-`;
-
 exports[`(4) Form screen 1`] = `
 <div
   className="dialog-content"

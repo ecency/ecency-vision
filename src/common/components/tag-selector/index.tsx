@@ -27,6 +27,7 @@ interface Props {
     tags: string[];
     maxItem: number;
     onChange: (tags: string[]) => void;
+    onValid: (value: boolean) => void;
 }
 
 interface State {
@@ -36,6 +37,10 @@ interface State {
 }
 
 export class TagSelector extends Component<Props, State> {
+    constructor(props:any) {
+        super(props);
+    }
+  
     state: State = {
         hasFocus: false,
         value: "",
@@ -151,6 +156,14 @@ export class TagSelector extends Component<Props, State> {
         onChange(newTags);
     };
 
+    componentDidUpdate(prevProps: any, prevState: any) {
+      if(prevState.warning !== this.state.warning && this.state.warning !== '') {
+        this.props.onValid(true);
+      } else {
+        this.props.onValid(false);
+      }
+    }
+
     render() {
         const {tags, trendingTags} = this.props;
         const {hasFocus, value} = this.state;
@@ -247,7 +260,8 @@ export default (p: Props) => {
         trendingTags: p.trendingTags,
         tags: p.tags,
         maxItem: p.maxItem,
-        onChange: p.onChange
+        onChange: p.onChange,
+        onValid: p.onValid,
     }
 
     return <TagSelector {...props} />

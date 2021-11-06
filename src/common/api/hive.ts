@@ -34,6 +34,10 @@ export interface DynamicGlobalProperties {
     hbd_print_rate: number;
     total_vesting_fund_hive: string;
     total_vesting_shares: string;
+    hbd_interest_rate: number;
+    head_block_number: number;
+    vesting_reward_percent: number;
+    virtual_supply: string;
 }
 
 export interface FeedHistory {
@@ -186,15 +190,20 @@ export const findRcAccounts = (username: string): Promise<RCAccount[]> =>
     new RCAPI(client).findRCAccounts([username])
 
 export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =>
-    client.database.getDynamicGlobalProperties().then((r: any) => ({
+    client.database.getDynamicGlobalProperties().then((r: any) => {
+        return({
         total_vesting_fund_hive: r.total_vesting_fund_hive || r.total_vesting_fund_steem,
         total_vesting_shares: r.total_vesting_shares,
         hbd_print_rate: r.hbd_print_rate || r.sbd_print_rate,
-    }));
+        hbd_interest_rate: r.hbd_interest_rate,
+        head_block_number: r.head_block_number,
+        vesting_reward_percent: r.vesting_reward_percent,
+        virtual_supply: r.virtual_supply
+    })});
 
-export const getAccountHistory = (username: string, filters: any[]): Promise<any> => {
+export const getAccountHistory = (username: string, filters: any[], start: number = -1, limit: number = 20): Promise<any> => {
 
-    return client.call("condenser_api", "get_account_history", [username, -1, 500, ...filters]);
+    return client.call("condenser_api", "get_account_history", [username, start, limit, ...filters]);
 }
 
 export const getFeedHistory = (): Promise<FeedHistory> => client.database.call("get_feed_history");
@@ -335,12 +344,15 @@ export const downVotingPower = (account: FullAccount): number => {
 
     const pow = downVotePerc * 100 + (10000 * secondsDiff / 432000);
 
-    const rv = Math.min(pow / 100, 100);
+    const rv = Math.max(pow / 100, 100);
 
     if (isNaN(rv)) {
         return 0;
     }
 
+    if (rv > 100) {
+        return 100;
+    }
     return rv;
 };
 

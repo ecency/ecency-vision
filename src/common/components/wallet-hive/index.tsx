@@ -26,7 +26,7 @@ import HiveWallet from "../../helper/hive-wallet";
 
 import {vestsToHp} from "../../helper/vesting";
 
-import {getAccount, getConversionRequests} from "../../api/hive";
+import {DynamicGlobalProperties, getAccount, getConversionRequests, getDynamicGlobalProperties} from "../../api/hive";
 
 import {claimRewardBalance, formatError} from "../../api/operations";
 
@@ -61,7 +61,8 @@ interface State {
     withdrawRoutes: boolean;
     transferMode: null | TransferMode;
     transferAsset: null | TransferAsset;
-    converting: number
+    converting: number;
+    aprs: { hbd:string | number, hp: string | number }
 }
 
 export class WalletHive extends BaseComponent<Props, State> {
@@ -74,15 +75,56 @@ export class WalletHive extends BaseComponent<Props, State> {
         withdrawRoutes: false,
         transferMode: null,
         transferAsset: null,
-        converting: 0
+        converting: 0,
+        aprs: { hbd:0, hp: 0 }
     };
 
     componentDidMount() {
         this.fetchConvertingAmount();
     }
 
-    fetchConvertingAmount = () => {
+    getCurrentHpApr = (gprops:DynamicGlobalProperties) => {
+        // The inflation was set to 9.5% at block 7m
+        const initialInflationRate = 9.5;
+        const initialBlock = 7000000;
+
+        // It decreases by 0.01% every 250k blocks
+        const decreaseRate = 250000;
+        const decreasePercentPerIncrement = 0.01;
+
+        // How many increments have happened since block 7m?
+        const headBlock = gprops.head_block_number;
+        const deltaBlocks = headBlock - initialBlock;
+        const decreaseIncrements = deltaBlocks / decreaseRate;
+
+        // Current inflation rate
+        let currentInflationRate =
+            initialInflationRate -
+            decreaseIncrements * decreasePercentPerIncrement;
+
+        // Cannot go lower than 0.95%
+        if (currentInflationRate < 0.95) {
+            currentInflationRate = 0.95;
+        }
+
+        // Now lets calculate the "APR"
+        const vestingRewardPercent = gprops.vesting_reward_percent / 10000;
+        const virtualSupply = gprops.virtual_supply.split(' ').shift();
+        const totalVestingFunds = gprops.total_vesting_fund_hive
+            .split(' ')
+            .shift();
+        return (
+            (parseFloat(virtualSupply || "0") * currentInflationRate * vestingRewardPercent) / parseFloat(totalVestingFunds || "0")
+        );
+    };
+
+    fetchConvertingAmount = async() => {
         const {account} = this.props;
+        const {aprs} = this.state;
+        await getDynamicGlobalProperties && getDynamicGlobalProperties() && getDynamicGlobalProperties()!.then(res=>{
+            let hp = this.getCurrentHpApr(res).toFixed(3);
+            this.setState({aprs: {...aprs, hbd: res.hbd_interest_rate/100, hp}})
+        })
 
         getConversionRequests(account.name).then(r => {
             if (r.length === 0) {
@@ -153,7 +195,7 @@ export class WalletHive extends BaseComponent<Props, State> {
 
     render() {
         const {global, dynamicProps, account, activeUser} = this.props;
-        const {claiming, claimed, transfer, transferAsset, transferMode, converting} = this.state;
+        const {claiming, claimed, transfer, transferAsset, transferMode, converting, aprs: {hbd, hp}} = this.state;
 
         if (!account.__loaded) {
             return null;
@@ -162,6 +204,8 @@ export class WalletHive extends BaseComponent<Props, State> {
         const {hivePerMVests} = dynamicProps;
         const isMyPage = activeUser && activeUser.username === account.name;
         const w = new HiveWallet(account, dynamicProps, converting);
+        const totalHP = formattedNumber(vestsToHp(w.vestingShares, hivePerMVests), {suffix: "HP"})
+        const totalDelegated = formattedNumber(vestsToHp(w.vestingSharesDelegated, hivePerMVests), {prefix: "-", suffix: "HP"})
 
         return (
             <div className="wallet-hive">
@@ -258,6 +302,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                             <div className="balance-info">
                                 <div className="title">{_t("wallet.hive-power")}</div>
                                 <div className="description">{_t("wallet.hive-power-description")}</div>
+                                <div className="description font-weight-bold mt-2">{_t("wallet.hive-power-apr-rate", {value: hp})}</div>
                             </div>
 
                             <div className="balance-values">
@@ -295,7 +340,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                                         }
                                         return null;
                                     })()}
-                                    {formattedNumber(vestsToHp(w.vestingShares, hivePerMVests), {suffix: "HP"})}
+                                    {totalHP}
                                 </div>
 
                                 {w.vestingSharesDelegated > 0 && (
@@ -411,6 +456,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                             <div className="balance-info">
                                 <div className="title">{_t("wallet.savings")}</div>
                                 <div className="description">{_t("wallet.savings-description")}</div>
+                                <div className="description font-weight-bold mt-2">{_t("wallet.hive-dollars-apr-rate", {value: hbd})}</div>
                             </div>
                             <div className="balance-values">
                                 <div className="amount">
@@ -482,7 +528,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                 {transfer && <Transfer {...this.props} activeUser={activeUser!} mode={transferMode!} asset={transferAsset!} onHide={this.closeTransferDialog}/>}
 
                 {this.state.delegatedList && (
-                    <DelegatedVesting {...this.props} account={account} onHide={this.toggleDelegatedList}/>
+                    <DelegatedVesting {...this.props} account={account} onHide={this.toggleDelegatedList} totalDelegated={totalDelegated.replace("- ","")}/>
                 )}
 
                 {this.state.receivedList && (

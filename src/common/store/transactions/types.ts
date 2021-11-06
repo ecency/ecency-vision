@@ -167,6 +167,13 @@ export interface FillRecurrentTransfers extends BaseTransaction {
     remaining_executions: number;
 }
 
+export interface DelegateVestingShares extends BaseTransaction {
+    type: "delegate_vesting_shares"
+    delegator: string;
+    delegatee: string;
+    vesting_shares: string;
+}
+
 export interface LimitOrderCreate extends BaseTransaction {
     type: "limit_order_create";
     owner: string;
@@ -220,7 +227,8 @@ export type Transaction =
     | FillRecurrentTransfers
     | LimitOrderCreate
     | FillVestingWithdraw
-    | EffectiveCommentVote;
+    | EffectiveCommentVote
+    | DelegateVestingShares;
 
 export type OperationGroup = "transfers" | "market-orders" | "interests" | "stake-operations" | "rewards";
 

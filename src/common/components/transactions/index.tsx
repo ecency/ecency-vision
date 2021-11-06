@@ -2,9 +2,11 @@ import React, {Component} from "react";
 
 import moment from "moment";
 
+import {get} from "lodash";
+
 import {History} from "history";
 
-import {FormControl} from "react-bootstrap";
+import {FormControl, Button} from "react-bootstrap";
 
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {OperationGroup, Transaction, Transactions} from "../../store/transactions/types";
@@ -19,7 +21,7 @@ import {vestsToHp} from "../../helper/vesting";
 
 import formattedNumber from "../../util/formatted-number";
 
-import {ticketSvg, commentSvg, compareHorizontalSvg, cashMultiple, reOrderHorizontalSvg, pickAxeSvg, closeSvg, exchangeSvg, cashCoinSvg, powerDownSvg, powerUpSvg, starsSvg, chevronUpSvgForVote, chevronDownSvgForSlider} from "../../img/svg";
+import {ticketSvg, commentSvg, compareHorizontalSvg, cashMultiple, reOrderHorizontalSvg, pickAxeSvg, closeSvg, exchangeSvg, cashCoinSvg, powerDownSvg, powerUpSvg, starsSvg, chevronUpSvgForVote, chevronDownSvgForSlider, starSvg} from "../../img/svg";
 
 import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
@@ -184,6 +186,24 @@ export class TransactionRow extends Component<RowProps> {
             details = tr.acc ? (
                 <span>
                     <strong>@{tr.acc}</strong>
+                </span>
+            ) : null;
+        }
+        
+        if (tr.type === "delegate_vesting_shares") {
+            flag = true;
+            icon = starSvg;
+
+            const vesting_shares = parseAsset(tr.vesting_shares);
+            numbers = (
+                <span className="number">
+                    {formattedNumber(vestsToHp(vesting_shares.amount, hivePerMVests), {suffix: "HP"})}
+                </span>
+            );
+
+            details = tr.delegatee ? (
+                <span>
+                    <><strong>@{tr.delegator}</strong> -&gt; <strong>@{tr.delegatee}</strong></>
                 </span>
             ) : null;
         }
@@ -382,20 +402,52 @@ interface Props {
     dynamicProps: DynamicProps;
     transactions: Transactions;
     account: Account;
-    fetchTransactions: (username: string, group?: OperationGroup | "") => void;
+    fetchTransactions: (username: string, group?: OperationGroup | "", start?: number, limit?: number) => void;
+}
+
+interface State {
+    loadingLoadMore: boolean;
+    transactionsList: any[];
 }
 
 export class TransactionList extends Component<Props> {
+    state: State = {
+        loadingLoadMore: false,
+        transactionsList: []
+    };
+
+    componentDidUpdate(prevProps: any) {
+        const {transactionsList} = this.state;
+        const {transactions} = this.props;
+        if(prevProps.transactions.list !== transactions.list){
+            const new_transactions = [...prevProps.transactions.group === transactions.group ? transactionsList : [], ...transactions.list];
+            this.setState({transactionsList: new_transactions});
+        }
+    }
+
     typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {account, fetchTransactions} = this.props;
         const group = e.target.value;
 
+        this.setState({...this.state});
+
         fetchTransactions(account.name, group as OperationGroup);
     }
 
+    loadMore = () => {
+        const {account, fetchTransactions, transactions: {list,group}} = this.props;
+        if(list.length > 0) {
+            const last_num = list[list.length-1].num - 1;
+            fetchTransactions(account.name, group as OperationGroup, last_num);
+        }
+    }
+
     render() {
+        const {loadingLoadMore, transactionsList} = this.state;
         const {transactions} = this.props;
         const {list, loading, group} = transactions;
+
+        const hasMore = !loading && list.length > 0;
 
         return (
             <div className="transaction-list">
@@ -408,10 +460,11 @@ export class TransactionList extends Component<Props> {
                     </FormControl>
                 </div>
                 {loading && <LinearProgress/>}
-                {list.map((x, k) => (
+                {transactionsList.map((x, k) => (
                     <TransactionRow {...this.props} key={k} transaction={x}/>
                 ))}
-                {(!loading && list.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
+                {(!loading && transactionsList.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
+                {(!loading && hasMore && transactionsList.length > 0) && <Button disabled={loadingLoadMore} block={true} onClick={this.loadMore} className="mt-2">{_t('g.load-more')}</Button>}
             </div>
         );
     }

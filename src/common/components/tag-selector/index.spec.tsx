@@ -16,6 +16,8 @@ it("(1) No tags", () => {
         maxItem: 10,
         onChange: () => {
         },
+        onValid: () => {            
+        },
     };
 
     const component = TestRenderer.create(<TagSelector {...props} />);
@@ -31,6 +33,8 @@ it("(2) With tags", () => {
         maxItem: 10,
         onChange: () => {
         },
+        onValid: () => {            
+        },
     };
 
     const component = TestRenderer.create(<TagSelector {...props} />);
@@ -45,6 +49,8 @@ it("(3) No tags with focus", () => {
         tags: [],
         maxItem: 10,
         onChange: () => {
+        },
+        onValid: () => {            
         },
     };
 

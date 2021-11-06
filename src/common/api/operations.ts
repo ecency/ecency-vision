@@ -23,6 +23,7 @@ import {_t} from "../i18n";
 export interface MetaData {
     links?: string[];
     image?: string[];
+    thumbnails?: string[];
     users?: string[];
     tags?: string[];
     app?: string;

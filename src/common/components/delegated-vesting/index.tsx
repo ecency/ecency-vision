@@ -48,6 +48,8 @@ interface Props {
     setSigningKey: (key: string) => void;
     onHide: () => void;
     searchText?: string;
+    totalDelegated: string;
+    setSubtitle?: (value: number) => void;
 }
 
 interface State {
@@ -74,9 +76,11 @@ export class List extends BaseComponent<Props, State> {
     }
 
     fetch = () => {
-        const {account} = this.props;
+        const {account, dynamicProps, totalDelegated, setSubtitle} = this.props;
         this.stateSet({loading: true});
         let totalData: DelegatedVestingShare[] = [];
+        const {hivePerMVests} = dynamicProps;
+
         let getData = (account:string, start:string, limit:number) => {
             return getVestingDelegations(account, start, limit)
                 .then((r) => {
@@ -88,6 +92,13 @@ export class List extends BaseComponent<Props, State> {
                         const sorted: DelegatedVestingShare[] = totalData.sort((a, b) => {
                             return parseAsset(b.vesting_shares).amount - parseAsset(a.vesting_shares).amount;
                         });
+
+                        const totalDelegatedValue = sorted.reduce((n, item) => n + Number(formattedNumber(vestsToHp(Number(parseAsset(item.vesting_shares).amount), hivePerMVests))), 0)
+
+                        const totalDelegatedNumbered = parseFloat(totalDelegated.replace(" HP",""));
+                        const toBeReturned = totalDelegatedNumbered - totalDelegatedValue;
+                        setSubtitle && setSubtitle(Number(toBeReturned.toFixed(3)))
+
                         this.stateSet({loading: false, data: [... new Set(sorted)]})
                     }
                 });
@@ -198,22 +209,27 @@ interface DelegatedVestingState {
 
 
 export default class DelegatedVesting extends Component<Props, DelegatedVestingState> {
-    constructor(props: Props){
-        super(props);
-        this.state = {
-            searchText: ''
-        }
+    state = {
+        searchText: '',
+        subtitle: ''
     }
 
     render() {
         const {onHide} = this.props;
-        const {searchText} = this.state;
+        const {subtitle, searchText} = this.state;
 
         return (
             <>
                 <Modal onHide={onHide} show={true} centered={true} animation={false}>
                     <Modal.Header closeButton={true}>
-                        <Modal.Title>{_t("delegated-vesting.title")}</Modal.Title>
+                        <Modal.Title>
+                            <div>
+                                <div>
+                                    {_t("delegated-vesting.title")}
+                                </div>
+                                <div className="text-muted mt-3 text-small">{subtitle}</div>
+                            </div>
+                        </Modal.Title>
                     </Modal.Header>
 
                     <Form.Group className="w-100 px-3">
@@ -228,7 +244,7 @@ export default class DelegatedVesting extends Component<Props, DelegatedVestingS
                         />
                     </Form.Group>
                     <Modal.Body>
-                        <List {...this.props} searchText={searchText} />
+                        <List {...this.props} searchText={searchText} setSubtitle={value => this.setState({subtitle: value === 0 ? "" : `+${value} ${_t("delegated-vesting.subtitle")}`})}/>
                     </Modal.Body>
                 </Modal>
             </>

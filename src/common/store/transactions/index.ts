@@ -18,10 +18,10 @@ import {getAccountHistory} from "../../api/hive";
 const ops = utils.operationOrders;
 
 export const ACCOUNT_OPERATION_GROUPS: Record<OperationGroup, number[]> = {
-    "transfers": [ops.transfer, ops.transfer_to_savings, ops.cancel_transfer_from_savings, ops.recurrent_transfer, ops.fill_recurrent_transfer],
+    "transfers": [ops.transfer, ops.transfer_to_savings, ops.cancel_transfer_from_savings, ops.recurrent_transfer, ops.fill_recurrent_transfer, ops.delegate_vesting_shares],
     "market-orders": [ops.fill_convert_request, ops.fill_order, ops.fill_collateralized_convert_request, ops.limit_order_create2, ops.limit_order_create, ops.limit_order_cancel],
     "interests": [ops.interest],
-    "stake-operations": [ops.return_vesting_delegation, ops.withdraw_vesting, ops.transfer_to_vesting, ops.set_withdraw_vesting_route, ops.update_proposal_votes, ops.fill_vesting_withdraw, ops.account_witness_proxy],
+    "stake-operations": [ops.return_vesting_delegation, ops.withdraw_vesting, ops.transfer_to_vesting, ops.set_withdraw_vesting_route, ops.update_proposal_votes, ops.fill_vesting_withdraw, ops.account_witness_proxy, ops.delegate_vesting_shares],
     "rewards": [ops.author_reward, ops.curation_reward, ops.producer_reward, ops.claim_reward_balance, ops.comment_benefactor_reward, ops.proposal_pay, ops.liquidity_reward, ops.comment_reward]
 }
 
@@ -66,7 +66,7 @@ export default (state: Transactions = initialState, action: Actions): Transactio
 };
 
 /* Actions */
-export const fetchTransactions = (username: string, group: OperationGroup | "" = "") => (dispatch: Dispatch) => {
+export const fetchTransactions = (username: string, group: OperationGroup | "" = "", start: number, limit: number) => (dispatch: Dispatch) => {
     dispatch(fetchAct(group));
 
     const name = username.replace("@", "");
@@ -92,7 +92,7 @@ export const fetchTransactions = (username: string, group: OperationGroup | "" =
             filters = utils.makeBitMaskFilter(ALL_ACCOUNT_OPERATIONS); // all
     }
 
-    getAccountHistory(name, filters).then(r => {
+    getAccountHistory(name, filters, start, limit).then(r => {
 
         const mapped: Transaction[] = r.map((x: any): Transaction[] | null => {
             const {op} = x[1];
