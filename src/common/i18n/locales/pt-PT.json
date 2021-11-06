@@ -1062,9 +1062,12 @@
       "contact-email": "Envie-nos um email"
     },
     "faq": {
-      "page-title": "Ecency FAQ",
+      "page-title": "How can we help you?",
       "page-sub-title": "Tabela de conteúdos",
       "what-is-ecency-header": "O que é Ecency?",
+      "search": "Related results for {{search}} filtered below",
+      "search-not-found": "Nothing was found. To ask our community, join our ",
+      "search-placeholder": "Search our articles",
       "what-is-ecency-body": "<p>A Ecency é uma <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">rede social</a> baseada em blockchain - alimentada pela rede da <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>A Ecency é a casa de recompensastes comunidades com liberdade de expressão, onde criadores de conteúdo são recompensados pelo seu trabalho.</p><p>O projeto foi fundado por <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> em agosto de 2016, como uma rede social alternativa e incensurável, controlada pelos usuários, imutável e de código aberto. Atualmente há <a class=\"push-link\" href=\"/contributors\">muitos colaboradores voluntários e independentes</a> desejando fortalecer nossa visão e contribuir para o crescimento do espírito da liberdade de expressão.</p><p>A Ecency contribui para a integração em massa da tecnologia Blockchain, para que usuários sejam pagos por seu tempo, recursos e aprendam enquanto desfrutam dos aspectos sociais derivados da blockchain. Através do uso fácil e simples, os usuários não apenas aprendem, mas também se tornam inovadores e investidores da nova internet.</p>",
       "what-is-hive-header": "O que é a Hive blockchain?",
       "what-is-hive-body": "<p>Hive é uma blockchain projetada para ser rápida, tranquila, descentralizada e não censurada para a Web3.0 aplicações, com recursos internos onde pessoas interessdas podem ganhar recompensas participando, curando, jogando, negociando - tudo sem qualquer intermediário (descentralizado). Tokens na blockchain da Hive chamado HIVE, HIVE DOLARS, HIVE POWER.</p>",
