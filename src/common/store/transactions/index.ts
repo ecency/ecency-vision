@@ -66,7 +66,7 @@ export default (state: Transactions = initialState, action: Actions): Transactio
 };
 
 /* Actions */
-export const fetchTransactions = (username: string, group: OperationGroup | "" = "", start: number, limit: number) => (dispatch: Dispatch) => {
+export const fetchTransactions = (username: string, group: OperationGroup | "" = "", start: number = -1, limit: number = 20) => (dispatch: Dispatch) => {
     dispatch(fetchAct(group));
 
     const name = username.replace("@", "");
