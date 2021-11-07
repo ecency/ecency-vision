@@ -417,3 +417,38 @@
     }
   }
 }
+
+.search-container {
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: rgba(0,0,0,70%);
+}
+
+.faq-title {
+  @media (max-width: $sm-break) {
+    font-size: 23px !important;
+    line-height: 19px !important;
+  }
+  @media (max-width: 330px) {
+    font-size: 19px !important;
+  }
+}
+
+.helper-text {
+  @media (max-width: $sm-break) {
+    font-size: 13px !important;
+    line-height: 13px !important;
+    max-height: 100px;
+    overflow-y: auto;
+  }
+  @media (max-width: 330px) {
+    font-size: 11px !important;
+    max-height: 50px;
+  }
+}
+
+.text-not-found{
+  font-size: 16px;
+}
