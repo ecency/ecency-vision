@@ -323,7 +323,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                         })}
 
                         {
-                          (filter === 'blog' || filter === 'posts' || filter === 'comments') && (
+                          (filter === 'blog' || filter === 'posts' || filter === 'comments' || filter === 'communities') && (
                               <div className='searchProfile'>
                                 <SearchBox
                                   placeholder={_t("search-comment.search-placeholder")}
