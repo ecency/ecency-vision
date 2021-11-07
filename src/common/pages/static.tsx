@@ -859,7 +859,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                                         this.setState({search: e.target.value});
                                 }}
                                     value={search}
-                                    autoFocus
+                                    autoFocus={true}
                                 />
                                 {search.length > 0 && <Form.Text className="text-white mt-2 mt-sm-3 w-75 text-center helper-text">
                                     {searchResult.length > 0 ? _t("static.faq.search", {search: `"${search}"`}) :
