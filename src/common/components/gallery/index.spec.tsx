@@ -61,8 +61,8 @@ it('(2) Test with data.', async () => {
 
     const props = {
         global: globalInstance,
-        users: [],
         activeUser: {...activeUserInstance},
+        onPick: () => {},
         onHide: () => {
         }
     };

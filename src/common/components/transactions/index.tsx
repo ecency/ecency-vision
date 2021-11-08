@@ -2,8 +2,6 @@ import React, {Component} from "react";
 
 import moment from "moment";
 
-import {get} from "lodash";
-
 import {History} from "history";
 
 import {FormControl, Button} from "react-bootstrap";

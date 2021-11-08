@@ -33,7 +33,7 @@ const defProps = {
     dynamicProps: dynamicPropsIntance1,
 }
 
-it("(1) curation_reward", () => {
+it("(1) curation_reward", async () => {
     const transaction: CurationReward = {
         trx_id: "0x14123213",
         comment_author: "user2",
@@ -50,11 +50,11 @@ it("(1) curation_reward", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(2) author_reward", () => {
+it("(2) author_reward", async () => {
     const transaction: AuthorReward = {
         trx_id: "0x14123213",
         author: "user1",
@@ -72,11 +72,11 @@ it("(2) author_reward", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(3) comment_benefactor_reward", () => {
+it("(3) comment_benefactor_reward", async () => {
     const transaction: CommentBenefactor = {
         trx_id: "0x14123213",
         author: "xxxthorxxx",
@@ -95,11 +95,11 @@ it("(3) comment_benefactor_reward", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(4) claim_reward_balance", () => {
+it("(4) claim_reward_balance", async () => {
     const transaction: ClaimRewardBalance = {
         trx_id: "0x14123213",
         account: "user1",
@@ -116,11 +116,11 @@ it("(4) claim_reward_balance", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(5) transfer", () => {
+it("(5) transfer", async () => {
     const transaction: Transfer = {
         trx_id: "0x14123213",
         amount: "192.425 HIVE",
@@ -137,11 +137,11 @@ it("(5) transfer", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(6) transfer_to_vesting", () => {
+it("(6) transfer_to_vesting", async () => {
     const transaction: TransferToVesting = {
         trx_id: "0x14123213",
         amount: "82.203 HIVE",
@@ -157,11 +157,11 @@ it("(6) transfer_to_vesting", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(7) withdraw_vesting", () => {
+it("(7) withdraw_vesting", async () => {
     const transaction: WithdrawVesting = {
         trx_id: "0x14123213",
         num: 3204242,
@@ -176,11 +176,11 @@ it("(7) withdraw_vesting", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(8) fill_order", () => {
+it("(8) fill_order", async () => {
     const transaction: FillOrder = {
         trx_id: "0x14123213",
         num: 3204242,
@@ -195,11 +195,11 @@ it("(8) fill_order", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(9) producer_reward", () => {
+it("(9) producer_reward", async () => {
     const transaction: ProducerReward = {
         trx_id: "0x14123213",
         num: 4506230,
@@ -214,11 +214,11 @@ it("(9) producer_reward", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(10) interest", () => {
+it("(10) interest", async () => {
     const transaction: Interest = {
         trx_id: "0x14123213",
         num: 4506230,
@@ -233,11 +233,11 @@ it("(10) interest", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(11) transfer_to_savings", () => {
+it("(11) transfer_to_savings", async () => {
     const transaction: TransferToSavings = {
         trx_id: "0x14123213",
         amount: "0.001 HIVE",
@@ -254,11 +254,11 @@ it("(11) transfer_to_savings", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(12) fill_convert_request", () => {
+it("(12) fill_convert_request", async () => {
     const transaction: FillConvertRequest = {
         trx_id: "0x14123213",
         amount_in: "1.507 HBD",
@@ -273,11 +273,11 @@ it("(12) fill_convert_request", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(13) cancel_transfer_from_savings", () => {
+it("(13) cancel_transfer_from_savings", async () => {
     const transaction: CancelTransferFromSavings = {
         trx_id: "0x14123213",
         from: "foo",
@@ -292,11 +292,11 @@ it("(13) cancel_transfer_from_savings", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(14) return_vesting_delegation", () => {
+it("(14) return_vesting_delegation", async () => {
     const transaction: ReturnVestingDelegation = {
         trx_id: "0x14123213",
         num: 6233,
@@ -310,11 +310,11 @@ it("(14) return_vesting_delegation", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(15) proposal_pay", () => {
+it("(15) proposal_pay", async () => {
     const transaction: ProposalPay = {
         "num": 151892,
         "type": "proposal_pay",
@@ -328,11 +328,11 @@ it("(15) proposal_pay", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(30) fallback", () => {
+it("(30) fallback", async () => {
     // @ts-ignore
     const transaction: ReturnVestingDelegation = {trx_id: "0x14123213", type: "unknown_operation"};
 
@@ -341,6 +341,6 @@ it("(30) fallback", () => {
         transaction,
     };
 
-    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    const renderer = await TestRenderer.create(<TransactionRow {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
