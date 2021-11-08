@@ -60,7 +60,7 @@ it('(1) Default render - With data.', async () => {
         }
     };
 
-    const component = renderer.create(<Activities {...props}/>);
+    const component = await renderer.create(<Activities {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
