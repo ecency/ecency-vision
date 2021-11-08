@@ -29,7 +29,7 @@ export const HiveBarter = ({type, available, peakValue, loading}: Props) => {
         <Form>
             <Form.Group>
                 <Form.Label>{_t("market.price")}</Form.Label>
-                <InputGroup hasValidation>
+                <InputGroup >
                     <Form.Control
                         value={peakValue.toFixed(6)}
                         placeholder="0.0"
@@ -40,7 +40,7 @@ export const HiveBarter = ({type, available, peakValue, loading}: Props) => {
 
             <Form.Group>
                 <Form.Label>{_t("market.amount")}</Form.Label>
-                <InputGroup hasValidation>
+                <InputGroup >
                     <Form.Control
                     placeholder="0.0"
                     />
@@ -50,7 +50,7 @@ export const HiveBarter = ({type, available, peakValue, loading}: Props) => {
 
             <Form.Group className="mb-4">
                 <Form.Label>{_t("market.total")}</Form.Label>
-                <InputGroup hasValidation>
+                <InputGroup >
                     <Form.Control
                     placeholder="0.0"
                     />
