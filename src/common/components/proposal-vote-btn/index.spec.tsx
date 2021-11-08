@@ -63,7 +63,7 @@ it('(2) Voted.', async () => {
 
     const props = {...defProps};
 
-    const component = renderer.create(<ProposalVoteBtn {...props}/>);
+    const component = await renderer.create(<ProposalVoteBtn {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });

@@ -51,7 +51,7 @@ it('(1) Default render.', async () => {
         }
     };
 
-    const component = renderer.create(<Gallery {...props}/>);
+    const component = await renderer.create(<Gallery {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
