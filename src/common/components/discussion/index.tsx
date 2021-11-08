@@ -281,7 +281,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
             getFollowing(activeUser.username, "", "ignore", 100).then(r => {
                 if (r) {
                     let filterList = r.map(user=>user.following);
-                    this.setState({ mutedData: filterList });
+                    this && this.setState({ mutedData: filterList });
                 }
             })
         }
