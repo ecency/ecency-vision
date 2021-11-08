@@ -63,6 +63,7 @@ interface State {
     loading: boolean;
     inProgress: boolean;
     search: string;
+    minVotes: number;
 }
 
 class ProposalsPage extends BaseComponent<PageProps, State> {
@@ -76,7 +77,8 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         filter: Filter.ALL,
         loading: true,
         inProgress: false,
-        search: ''
+        search: '',
+        minVotes: 0,
     }
 
     constructor(props: any) {
@@ -103,11 +105,12 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                 // get return proposal's total votes
                 const minVotes = Number(proposals.find(x => x.id === 0)?.total_votes || 0);
                 // find eligible proposals and
-                const eligible = proposals.filter(x => x.id > 0 && Number(x.total_votes) >= minVotes && x.status !== 'expired');
+                const eligible = proposals.filter(x => this.eligibleFilter(x, minVotes));
                 //  add up total votes
-                const dailyFunded = eligible.reduce((a, b) => a + Number(b.daily_pay.amount), 0) / 1000;
+                // const dailyFunded = eligible.reduce((a, b) => a + Number(b.daily_pay.amount), 0) / 1000;
+                const dailyFunded = proposals.reduce((a, b) => a + Number(b.daily_pay.amount), 0) / 1000;
 
-                this.stateSet({proposals, proposals_: proposals, dailyFunded, allProposals: proposals});
+                this.stateSet({proposals, proposals_: proposals, dailyFunded, allProposals: proposals, minVotes});
 
                 return getAccount("hive.fund");
             })
@@ -119,6 +122,10 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
             .finally(() => {
                 this.stateSet({loading: false});
             });
+    }
+
+    eligibleFilter = (proposal: Proposal, minVotes: number) => {
+        return proposal.id > 0 && Number(proposal.total_votes) >= minVotes && proposal.status !== 'expired';
     }
 
     applyFilter = (filter: Filter) => {
@@ -176,7 +183,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         };
 
         const {global} = this.props;
-        const {loading, proposals, totalBudget, dailyBudget, dailyFunded, filter, inProgress} = this.state;
+        const {loading, proposals, totalBudget, dailyBudget, dailyFunded, filter, inProgress, minVotes} = this.state;
 
         const navBar = global.isElectron ?
             NavBarElectron({
@@ -190,6 +197,8 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
             return <>{navBar}<LinearProgress/></>;
         }
         let containerClasses = global.isElectron ? "app-content proposals-page mt-0 pt-6" : "app-content proposals-page";
+
+        let daylyAmountProposalForEachItem = 0;
 
         return (
             <>
@@ -251,14 +260,17 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
 
                         return <>
                             <div className="proposal-list">
-                                {proposals.map((p) =>
-                                    <Fragment key={p.id}>
+                                {proposals.map((p) => {
+                                    this.eligibleFilter(p, minVotes) && (daylyAmountProposalForEachItem += (Number(p.daily_pay.amount)/1000))
+                                    const isReturnProposal = daylyAmountProposalForEachItem >= dailyBudget;
+                                    return <Fragment key={p.id}>
                                         {ProposalListItem({
                                             ...this.props,
-                                            proposal: p
+                                            proposal: p,
+                                            isReturnProposal
                                         })}
                                     </Fragment>
-                                )}
+                                })}
                             </div>
                         </>
                     })()}
