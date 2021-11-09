@@ -27,6 +27,17 @@
       }
     }
   }
+
+  .item-body {
+    .item-image {
+      &.noImage {
+        display: none;
+      }
+    }
+    .item-summary {
+      width: 100%;
+    }
+  }
 }
 
 .grid-view {
@@ -39,6 +50,10 @@
           border-radius: 4px;
           margin: 0 0 10px 0;
           width: 100%;
+
+          &.noImage {
+            display: flex;
+          }
 
           a {
             display: block;
