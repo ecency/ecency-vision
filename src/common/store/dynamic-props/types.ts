@@ -5,6 +5,12 @@ export interface DynamicProps {
   fundRewardBalance: number;
   fundRecentClaims: number;
   hbdPrintRate: number;
+  hbdInterestRate: number;
+  headBlock: number;
+  totalVestingFund: number;
+  totalVestingShares: number;
+  virtualSupply: number;
+  vestingRewardPercent: number;
 }
 
 export type State = DynamicProps;

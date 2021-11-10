@@ -792,6 +792,12 @@ export const dynamicPropsIntance1: DynamicProps = {
     fundRecentClaims: 413504197028183900,
     fundRewardBalance: 848692.443,
     hbdPrintRate: 10000,
+    hbdInterestRate: 1000,
+    headBlock: 59000000,
+    totalVestingFund: 147530899.832,
+    totalVestingShares: 274146627336.063918,
+    virtualSupply: 395012207.852,
+    vestingRewardPercent: 1500,
 };
 
 export const notificationsInstance1: Notifications = {
