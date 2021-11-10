@@ -77,7 +77,7 @@ export const Orders = ({type, loading, data}: Props) => {
                     key4:(item as TradeDataItem).current_pays,
                     key3: (item as TradeDataItem).open_pays,
                     key2: 'price',
-                    key1: moment((item as TradeDataItem).date).fromNow()
+                    key1: moment.utc((item as TradeDataItem).date).local().fromNow()
                 }
             }).reverse()
             break;

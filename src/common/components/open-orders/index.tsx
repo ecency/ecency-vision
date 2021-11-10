@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react';
 import { Table } from 'react-bootstrap';
 import { OpenOrdersData } from '../../api/hive';
@@ -30,12 +31,12 @@ export const OpenOrders = ({data, loading}: Props) => {
         </thead>
         <tbody>
         {data.map(item => <tr key={item.id}>
-                <td>{item.real_price}</td>
-                <td>{item.real_price}</td>
-                <td>{item.real_price}</td>
-                <td>{item.real_price}</td>
-                <td>{item.real_price}</td>
-                <td>{item.real_price}</td>
+                <td>{moment.utc(item.created).local().format()}</td>
+                <td>{item.seller ? "Sell" : "Buy"}</td>
+                <td>{parseFloat(item.real_price).toFixed(6)}</td>
+                <td>{item.sell_price.base}</td>
+                <td>{item.sell_price.quote}</td>
+                <td>Cancel</td>
             </tr>)}
         </tbody>
     </Table>
