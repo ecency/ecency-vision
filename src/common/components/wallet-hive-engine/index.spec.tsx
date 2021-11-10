@@ -130,7 +130,7 @@ it("(1) Render an empty list when no tokens found", async () => {
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
-/*
+
 it("(2) Render with some hive engine tokens", async () => {
   MOCK_MODE = 2;
 
@@ -183,4 +183,3 @@ it("(5) usePrivate = false", async () => {
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
-*/
