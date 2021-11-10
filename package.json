@@ -6,7 +6,7 @@
   "scripts": {
     "start": "razzle start",
     "build": "razzle build --noninteractive",
-    "test": "razzle test --env=jsdom --runInBand --updateSnapshot",
+    "test": "razzle test --env=jsdom",
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
@@ -102,7 +102,7 @@
     "webpack-dev-server": "3.11.0"
   },
   "resolutions": {
-    "jest": "^24.9.0",
+    "jest": "^26.0.0",
     "@types/react": "^16.8.23"
   },
   "jest": {
