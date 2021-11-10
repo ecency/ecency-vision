@@ -81,7 +81,8 @@ export const ProfilePreview = ({username, global, onClose, activeUser, ...props}
 
     const coverFallbackDay = global.isElectron ? "./img/cover-fallback-day.png" : require("../../img/cover-fallback-day.png");
     const coverFallbackNight = global.isElectron ? "./img/cover-fallback-night.png" : require("../../img/cover-fallback-night.png");
-    const reputation = profile && accountReputation(profile.reputation)
+    const reputation = profile && accountReputation(profile.reputation);
+    const loggedIn = activeUser && activeUser.username;
 
     return isMounted ? <div className="profile-parent">
                 <div 
@@ -109,12 +110,12 @@ export const ProfilePreview = ({username, global, onClose, activeUser, ...props}
                             <Link to={`/@${username}`} onClick={(e) => onClose(e, true)}>
                                 <div >{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.name}</div>
                                 <div>{loading ? <Skeleton className="loading-md my-3" /> : `@${username} (${reputation})`}</div>
-                                <div>{followsActiveUserLoading ? <Skeleton className="loading-md my-3" /> : followsActiveUser ? _t("profile.follows-you") : null}</div>
+                                <div>{loggedIn && followsActiveUserLoading ? <Skeleton className="loading-md my-3" /> : followsActiveUser ? _t("profile.follows-you") : null}</div>
                             </Link>
                             <div className="d-flex mt-3">
                                 <>
-                                    <FollowControls {...props} targetUsername={username}/>
-                                    {global.usePrivate && <FavoriteBtn {...props} targetUsername={username}/>}
+                                    <FollowControls {...props} targetUsername={username} activeUser={activeUser} />
+                                    {global.usePrivate && <FavoriteBtn {...props} targetUsername={username} activeUser={activeUser} />}
                                 </>
                             </div>
                         </div>

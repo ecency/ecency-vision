@@ -107,7 +107,7 @@ export class ProfileCard extends Component<Props, State> {
         const {account, activeUser, section} = this.props;
         const {followsActiveUser, followsActiveUserLoading} = this.state;
         const loggedIn = activeUser && activeUser.username;
-
+        
         if (!account.__loaded) {
             return <div className="profile-card">
                 <div className="profile-avatar">
@@ -115,9 +115,7 @@ export class ProfileCard extends Component<Props, State> {
                 </div>
 
                 <h1>
-                    <div className="username">{account.name}
-                            <div className="mb-2">{loggedIn && followsActiveUserLoading ? <Skeleton className="loading-follows-you" /> : followsActiveUser ? _t("profile.follows-you") : null}</div>
-                    </div>
+                    <div className="username">{account.name}</div>
                 </h1>
             </div>
         }
@@ -157,7 +155,7 @@ export class ProfileCard extends Component<Props, State> {
                         <span>{vPower.toFixed(2)}</span>
                     </Tooltip>
                 </div>
-                <div className="mb-2">{loggedIn && followsActiveUserLoading ? <Skeleton className="loading-follows-you" /> : followsActiveUser ? _t("profile.follows-you") : null}</div>
+                {loggedIn && <div className="mb-2">{followsActiveUserLoading ? <Skeleton className="loading-follows-you" /> : followsActiveUser ? _t("profile.follows-you") : null}</div>}
 
                 {(account.profile?.name || account.profile?.about) && (
                     <div className="basic-info">
