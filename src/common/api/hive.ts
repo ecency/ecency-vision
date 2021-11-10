@@ -76,6 +76,21 @@ export interface MarketStatistics {
     percent_change: string;
 }
 
+export interface OpenOrdersData {
+    id: number,
+    created: string,
+    expiration: string,
+    seller: string,
+    orderid: number,
+    for_sale: number,
+    sell_price: {
+        base: string,
+        quote: string
+    },
+    real_price: string,
+    rewarded: boolean
+}
+
 export interface OrdersDataItem {
     created: string;
     hbd: number;
@@ -108,7 +123,7 @@ export const getMarketStatistics = (): Promise<MarketStatistics> =>
 export const getOrderBook = (limit: number = 500): Promise<OrdersData> =>
     client.call("condenser_api", "get_order_book", [limit]);
 
-export const getOpenOrder = (user: string): Promise<OrdersData> =>
+export const getOpenOrder = (user: string): Promise<OpenOrdersData[]> =>
     client.call("condenser_api", "get_open_orders", [user]);
 
 export const getTradeHistory = (limit: number = 1000): Promise<OrdersDataItem[]> => {

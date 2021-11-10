@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from './common';
 import { ChartStats } from '../components/chart-stats';
 import { HiveBarter } from '../components/hive-barter';
-import { getMarketStatistics, getOpenOrder, getOrderBook, getTradeHistory, MarketStatistics, OrdersData } from '../api/hive';
+import { getMarketStatistics, getOpenOrder, getOrderBook, getTradeHistory, MarketStatistics, OpenOrdersData, OrdersData } from '../api/hive';
 import { FullAccount } from '../store/accounts/types';
 import { Orders } from '../components/orders';
 import { OpenOrders } from '../components/open-orders';
@@ -13,7 +13,7 @@ import { OpenOrders } from '../components/open-orders';
 const MarketPage = (props: PageProps) => {
     const [data, setData] = useState<MarketStatistics | null>(null);
     const [loading, setLoading] = useState(false);
-    const [openOrdersdata, setopenOrdersdata] = useState<MarketStatistics | null>(null);
+    const [openOrdersdata, setopenOrdersdata] = useState<OpenOrdersData[]>([]);
     const [openOrdersDataLoading, setopenOrdersDataLoading] = useState(false);
     const [tablesData, setTablesData] = useState<OrdersData | null>(null);
     const [loadingTablesData, setLoadingTablesData] = useState(false);

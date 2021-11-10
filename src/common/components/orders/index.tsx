@@ -48,7 +48,7 @@ export const Orders = ({type, loading, data}: Props) => {
     let mappedData: MappedData[] = [];
     switch(type){
         case 1:
-            mappedData = data.map((item) => {
+            mappedData = data.map((item:any) => {
                 return {
                     key1: (item as OrdersDataItem).hbd,
                     key2: (item as OrdersDataItem).order_price.quote,
@@ -60,7 +60,7 @@ export const Orders = ({type, loading, data}: Props) => {
         case 2:
             columns = sellColumns;
             title = `${_t("market.sell")} ${_t("market.orders")}`;
-            mappedData = data.map((item) => {
+            mappedData = data.map((item:any) => {
                 return {
                     key4: (item as OrdersDataItem).hbd,
                     key3: (item as OrdersDataItem).order_price.quote,
@@ -72,7 +72,7 @@ export const Orders = ({type, loading, data}: Props) => {
         case 3:
             columns = tradeColumns;
             title = `${_t("market.trade-history")}`;
-            mappedData = data.map((item) => {
+            mappedData = data.map((item:any) => {
                 return {
                     key4:(item as TradeDataItem).current_pays,
                     key3: (item as TradeDataItem).open_pays,
@@ -90,14 +90,14 @@ export const Orders = ({type, loading, data}: Props) => {
 
     return loading ? <Skeleton className="loading-hive" /> : <div className="rounded">
                 <h5>{title}</h5>
-                <Table striped bordered hover size="sm">
+                <Table striped={true} bordered={true} hover={true} size="sm">
                     <thead>
                     <tr>
                         {columns.map(item => <th key={item}>{item}</th>)}
                     </tr>
                     </thead>
                     <tbody>
-                    {sliced.map(item => <tr>
+                    {sliced.map(item => <tr key={item.key1}>
                             <td>{item.key1}</td>
                             <td>{item.key2}</td>
                             <td>{item.key3}</td>

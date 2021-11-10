@@ -57,7 +57,7 @@ export const HiveBarter = ({type, available, peakValue, loading}: Props) => {
                     <InputGroup.Text className="rounded-left">{_t("market.hbd")}($)</InputGroup.Text>
                 </InputGroup>
             </Form.Group>
-            <Button block>{type === 1 ? _t("market.buy") : _t("market.sell")}</Button>
+            <Button block={true}>{type === 1 ? _t("market.buy") : _t("market.sell")}</Button>
         </Form>
     </div>
 }
