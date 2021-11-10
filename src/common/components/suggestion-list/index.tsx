@@ -1,6 +1,9 @@
 import React, {Component} from "react";
+import {History, Location} from "history";
 
 interface Props {
+    history?: History;
+    location?: Location;
     items: any[];
     modeItems?: any[];
     header?: string;
@@ -8,6 +11,7 @@ interface Props {
     renderer?: (item: any) => JSX.Element;
     onSelect?: (item: any) => void;
     children: JSX.Element;
+    searchValue?: string;
 }
 
 interface State {
@@ -121,6 +125,19 @@ export default class SuggestionList extends Component<Props> {
         this.setState({showList: true});
     };
 
+    moreResultsClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        const {history, location, searchValue} = this.props;
+        this.setState({showList: false});
+        if (!!searchValue && !!history && !!location) {
+            if (["/search-more", "/search-more/"].includes(location.pathname)) {
+                history.push(`/search-more/?q=${encodeURIComponent(searchValue)}`);
+            } else {
+                history.push(`/search/?q=${encodeURIComponent(searchValue)}`);
+            }
+        }
+    };
+
     render() {
         // const {children, items, header, renderer, containerClassName, modeItems} = this.props;
         const {children, containerClassName, modeItems} = this.props;
@@ -162,6 +179,11 @@ export default class SuggestionList extends Component<Props> {
                                     )
                                 })
                             }
+                            <div className="suggestion-list mt-1">
+                                <div className="list-body">
+                                    <a href="#" className="list-item" onClick={this.moreResultsClick}>More results</a>
+                                </div>
+                            </div>
                         </div>
                     )}
                 </div>

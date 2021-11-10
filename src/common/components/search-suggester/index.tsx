@@ -243,7 +243,7 @@ export class SearchSuggester extends BaseComponent<Props, State> {
         const {suggestions, mode, suggestionWithMode} = this.state;
         return (
             <>
-                <SuggestionList items={suggestions} modeItems={suggestionWithMode} containerClassName={containerClassName}>{children}</SuggestionList>
+                <SuggestionList {...this.props} searchValue={value} items={suggestions} modeItems={suggestionWithMode} containerClassName={containerClassName}>{children}</SuggestionList>
             </>
         );
     }

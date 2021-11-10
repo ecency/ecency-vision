@@ -57,6 +57,21 @@ exports[`(2) Show list 1`] = `
         </a>
       </div>
     </div>
+    <div
+      className="suggestion-list mt-1"
+    >
+      <div
+        className="list-body"
+      >
+        <a
+          className="list-item"
+          href="#"
+          onClick={[Function]}
+        >
+          More results
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 `;
