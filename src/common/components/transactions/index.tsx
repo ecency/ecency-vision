@@ -4,7 +4,7 @@ import moment from "moment";
 
 import {History} from "history";
 
-import {FormControl} from "react-bootstrap";
+import {FormControl, Button} from "react-bootstrap";
 
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {OperationGroup, Transaction, Transactions} from "../../store/transactions/types";
@@ -400,21 +400,52 @@ interface Props {
     dynamicProps: DynamicProps;
     transactions: Transactions;
     account: Account;
-    fetchTransactions: (username: string, group?: OperationGroup | "") => void;
+    fetchTransactions: (username: string, group?: OperationGroup | "", start?: number, limit?: number) => void;
+}
+
+interface State {
+    loadingLoadMore: boolean;
+    transactionsList: any[];
 }
 
 export class TransactionList extends Component<Props> {
+    state: State = {
+        loadingLoadMore: false,
+        transactionsList: []
+    };
+
+    componentDidUpdate(prevProps: any) {
+        const {transactionsList} = this.state;
+        const {transactions} = this.props;
+        if(prevProps.transactions.list !== transactions.list){
+            const new_transactions = [...prevProps.transactions.group === transactions.group ? transactionsList : [], ...transactions.list];
+            this.setState({transactionsList: new_transactions});
+        }
+    }
 
     typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {account, fetchTransactions} = this.props;
         const group = e.target.value;
 
+        this.setState({...this.state});
+
         fetchTransactions(account.name, group as OperationGroup);
     }
 
+    loadMore = () => {
+        const {account, fetchTransactions, transactions: {list,group}} = this.props;
+        if(list.length > 0) {
+            const last_num = list[list.length-1].num - 1;
+            fetchTransactions(account.name, group as OperationGroup, last_num);
+        }
+    }
+
     render() {
+        const {loadingLoadMore, transactionsList} = this.state;
         const {transactions} = this.props;
         const {list, loading, group} = transactions;
+
+        const hasMore = !loading && list.length > 0;
 
         return (
             <div className="transaction-list">
@@ -427,10 +458,11 @@ export class TransactionList extends Component<Props> {
                     </FormControl>
                 </div>
                 {loading && <LinearProgress/>}
-                {list.map((x, k) => (
+                {transactionsList.map((x, k) => (
                     <TransactionRow {...this.props} key={k} transaction={x}/>
                 ))}
-                {(!loading && list.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
+                {(!loading && transactionsList.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
+                {(!loading && hasMore && transactionsList.length > 0) && <Button disabled={loadingLoadMore} block={true} onClick={this.loadMore} className="mt-2">{_t('g.load-more')}</Button>}
             </div>
         );
     }
