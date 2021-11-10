@@ -342,7 +342,7 @@ exports[`(1) Default Render 1`] = `
         <span
           className="sub-title"
         >
-          Wallet
+          Tokens
         </span>
         <span
           className="platform-logo"
@@ -715,7 +715,7 @@ exports[`(2) Render with converting HBD 1`] = `
         <span
           className="sub-title"
         >
-          Wallet
+          Tokens
         </span>
         <span
           className="platform-logo"
@@ -1063,7 +1063,7 @@ exports[`(3) usePrivate = false 1`] = `
         <span
           className="sub-title"
         >
-          Wallet
+          Tokens
         </span>
         <span
           className="platform-logo"
