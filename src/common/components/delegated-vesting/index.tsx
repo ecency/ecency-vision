@@ -205,6 +205,7 @@ export class List extends BaseComponent<Props, State> {
 
 interface DelegatedVestingState {
     searchText: string;
+    subtitle: string;
 }
 
 
