@@ -64,6 +64,7 @@ interface State {
     inProgress: boolean;
     search: string;
     minVotes: number;
+    isReturnProposalId: any;
 }
 
 class ProposalsPage extends BaseComponent<PageProps, State> {
@@ -79,6 +80,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         inProgress: false,
         search: '',
         minVotes: 0,
+        isReturnProposalId: null,
     }
 
     constructor(props: any) {
@@ -104,20 +106,30 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
             .then(proposals => {
                 // get return proposal's total votes
                 const minVotes = Number(proposals.find(x => x.id === 0)?.total_votes || 0);
-                // find eligible proposals and
-                const eligible = proposals.filter(x => this.eligibleFilter(x, minVotes));
-                //  add up total votes
+                // // find eligible proposals and
+                // const eligible = proposals.filter(x => this.eligibleFilter(x, minVotes));
+                // //  add up total votes
                 // const dailyFunded = eligible.reduce((a, b) => a + Number(b.daily_pay.amount), 0) / 1000;
-                const dailyFunded = proposals.reduce((a, b) => a + Number(b.daily_pay.amount), 0) / 1000;
 
-                this.stateSet({proposals, proposals_: proposals, dailyFunded, allProposals: proposals, minVotes});
+                this.stateSet({proposals, proposals_: proposals, allProposals: proposals, minVotes});
 
                 return getAccount("hive.fund");
             })
             .then(fund => {
+                const { proposals, minVotes } = this.state;
                 const totalBudget = parseAsset(fund.hbd_balance).amount;
                 const dailyBudget = totalBudget / 100;
-                this.stateSet({totalBudget, dailyBudget})
+
+                // find eligible proposals and
+                const eligible = proposals.filter(x => this.eligibleFilter(x, minVotes));
+                //  add up total votes
+                const dailyFunded = eligible.reduce((a, b) => {
+                    const _sum_amount = a + Number(b.daily_pay.amount) / 1000;
+                    _sum_amount >= dailyBudget && this.stateSet({isReturnProposalId: b.id});
+                    return _sum_amount <= dailyBudget ? _sum_amount : a;
+                }, 0);
+
+                this.stateSet({totalBudget, dailyBudget, dailyFunded})
             })
             .finally(() => {
                 this.stateSet({loading: false});
@@ -183,7 +195,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         };
 
         const {global} = this.props;
-        const {loading, proposals, totalBudget, dailyBudget, dailyFunded, filter, inProgress, minVotes} = this.state;
+        const {loading, proposals, totalBudget, dailyBudget, dailyFunded, filter, inProgress, minVotes, isReturnProposalId} = this.state;
 
         const navBar = global.isElectron ?
             NavBarElectron({
@@ -197,8 +209,6 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
             return <>{navBar}<LinearProgress/></>;
         }
         let containerClasses = global.isElectron ? "app-content proposals-page mt-0 pt-6" : "app-content proposals-page";
-
-        let daylyAmountProposalForEachItem = 0;
 
         return (
             <>
@@ -260,17 +270,13 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
 
                         return <>
                             <div className="proposal-list">
-                                {proposals.map((p) => {
-                                    this.eligibleFilter(p, minVotes) && (daylyAmountProposalForEachItem += (Number(p.daily_pay.amount)/1000))
-                                    const isReturnProposal = daylyAmountProposalForEachItem >= dailyBudget;
-                                    return <Fragment key={p.id}>
+                                {proposals.map((p) => <Fragment key={p.id}>
                                         {ProposalListItem({
                                             ...this.props,
                                             proposal: p,
-                                            isReturnProposal
+                                            isReturnProposalId
                                         })}
-                                    </Fragment>
-                                })}
+                                    </Fragment>)}
                             </div>
                         </>
                     })()}

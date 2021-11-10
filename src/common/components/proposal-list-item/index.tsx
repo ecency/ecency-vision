@@ -48,7 +48,7 @@ interface Props {
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     setSigningKey: (key: string) => void;
-    isReturnProposal?: boolean;
+    isReturnProposalId?: number;
 }
 
 interface State {
@@ -94,7 +94,7 @@ export class ProposalListItem extends Component<Props, State> {
     render() {
         const {votes, votedByVoter} = this.state;
 
-        const {dynamicProps, proposal, isReturnProposal} = this.props;
+        const {dynamicProps, proposal, isReturnProposalId} = this.props;
 
         const startDate = moment(new Date(proposal.start_date));
         const endDate = moment(new Date(proposal.end_date));
@@ -184,7 +184,7 @@ export class ProposalListItem extends Component<Props, State> {
                         </div>
                     </div>
                 </div>
-                {(proposal.id === 0 || isReturnProposal)&& (
+                {(proposal.id === isReturnProposalId)&& (
                     <div className="return-proposal">{_t("proposals.return-description")}</div>
                 )}
                 {votes && <ProposalVotes {...this.props} onHide={this.toggleVotes}/>}
@@ -210,7 +210,7 @@ export default (p: Props) => {
         toggleUIProp: p.toggleUIProp,
         setSigningKey: p.setSigningKey,
         proposal: p.proposal,
-        isReturnProposal: p.isReturnProposal
+        isReturnProposalId: p.isReturnProposalId
     }
 
     return <ProposalListItem {...props} />;
