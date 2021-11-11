@@ -15,17 +15,17 @@ const buyColumns = [
 ];
 
 const sellColumns = [
-`${_t("market.price")}`,
-`${_t("wallet.hive")}`,
-`${_t("market.hbd")} ($)`,
-`${_t("market.total")} ${_t("market.hbd")} ($)`
+    `${_t("market.price")}`,
+    `${_t("wallet.hive")}`,
+    `${_t("market.hbd")} ($)`,
+    `${_t("market.total")} ${_t("market.hbd")} ($)`
 ];
 
 const tradeColumns = [
-`${_t("market.date")}`,
-`${_t("market.price")}`,
-`${_t("wallet.hive")}`,
-`${_t("market.hbd")} ($)`
+    `${_t("market.date")}`,
+    `${_t("market.price")}`,
+    `${_t("wallet.hive")}`,
+    `${_t("market.hbd")} ($)`
 ];
 
 export interface MappedData {
@@ -87,7 +87,7 @@ export const Orders = ({type, loading, data}: Props) => {
     const start = (page - 1) * pageSize;
     const end = start + pageSize;
     const sliced = mappedData.slice(start, end);
-
+    debugger
     return loading ? <Skeleton className="loading-hive" /> : <div className="rounded">
                 <h5>{title}</h5>
                 <Table striped={true} bordered={true} hover={true} size="sm">
@@ -110,9 +110,9 @@ export const Orders = ({type, loading, data}: Props) => {
                         className="justify-content-center flex-wrap"
                         dataLength={data.length}
                         pageSize={pageSize}
-                        maxItems={10}
+                        maxItems={8}
                         page={page}
-                        onPageChange={(page) => { setPage(page); }}
+                        onPageChange={(page) => setPage(page)}
                     />}
             </div>
 }

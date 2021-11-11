@@ -120,6 +120,10 @@ export const getPost = (username: string, permlink: string): Promise<any> =>
 export const getMarketStatistics = (): Promise<MarketStatistics> =>
     client.call("condenser_api", "get_ticker", []);
 
+export const cancelOpenOrder = (username:string, orderId: string|number): Promise<MarketStatistics> =>
+    client.call("condenser_api", "broadcast_transaction", [{operations:[["limit_order_cancel",{
+        "owner":username,"orderid":orderId}]]}]);
+
 export const getOrderBook = (limit: number = 500): Promise<OrdersData> =>
     client.call("condenser_api", "get_order_book", [limit]);
 
