@@ -93,9 +93,16 @@ export class List extends BaseComponent<Props, State> {
                             return parseAsset(b.vesting_shares).amount - parseAsset(a.vesting_shares).amount;
                         });
 
-                        const totalDelegatedValue = sorted.reduce((n, item) => n + Number(formattedNumber(vestsToHp(Number(parseAsset(item.vesting_shares).amount), hivePerMVests))), 0)
+                        const totalDelegatedValue = sorted.reduce((n, item) => {
+                            let parsedValue: any = parseAsset(item.vesting_shares).amount;
+                            parsedValue = vestsToHp(parsedValue, hivePerMVests);
+                            parsedValue = formattedNumber(parsedValue);
+                            parsedValue = parsedValue.replaceAll(",",'');
+                            parsedValue = parseFloat(parsedValue);
+                            parsedValue = n + parsedValue;
+                            return parsedValue}, 0)
 
-                        const totalDelegatedNumbered = parseFloat(totalDelegated.replace(" HP",""));
+                        const totalDelegatedNumbered = parseFloat(totalDelegated.replace(" HP","").replace(",",""));
                         const toBeReturned = totalDelegatedNumbered - totalDelegatedValue;
                         setSubtitle && setSubtitle(Number(toBeReturned.toFixed(3)))
 
