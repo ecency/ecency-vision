@@ -97,7 +97,7 @@ export class List extends BaseComponent<Props, State> {
                             let parsedValue: any = parseAsset(item.vesting_shares).amount;
                             parsedValue = vestsToHp(parsedValue, hivePerMVests);
                             parsedValue = formattedNumber(parsedValue);
-                            parsedValue = parsedValue.replaceAll(",",'');
+                            parsedValue = parsedValue.replace(/,/g,'');
                             parsedValue = parseFloat(parsedValue);
                             parsedValue = n + parsedValue;
                             return parsedValue}, 0)
