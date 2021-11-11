@@ -84,7 +84,7 @@
     flex-shrink: 0;
     font-size: 12px;
     font-weight: 500;
-    margin-bottom: 24px;
+    margin-bottom: 10px;
     text-align: center;
 
     @media (min-width: $md-break) {
@@ -255,4 +255,21 @@
 .loading-follows-you{
   width: 40px;
   height: 20px;
+}
+
+
+.follow-pill {
+  background: $white-six;
+  color: #656d70;
+  border: solid 1px $white-four;
+  border-radius: 25px;
+  padding: 0.25rem;
+  margin-top: -5px;
+  font-size: 12px;
+
+  @include themify(night) {
+    background: $dark-grey-blue;
+    color: $light-grey;
+    border: solid 1px $dark-two;
+  }
 }

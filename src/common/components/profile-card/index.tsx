@@ -155,7 +155,7 @@ export class ProfileCard extends Component<Props, State> {
                         <span>{vPower.toFixed(2)}</span>
                     </Tooltip>
                 </div>
-                {loggedIn && <div className="mb-2">{followsActiveUserLoading ? <Skeleton className="loading-follows-you" /> : followsActiveUser ? _t("profile.follows-you") : null}</div>}
+                {loggedIn && <div className="mb-3">{followsActiveUserLoading ? <Skeleton className="loading-follows-you" /> : followsActiveUser ? <div className="follow-pill d-inline text-lowercase">{_t("profile.follows-you")}</div> : null}</div>}
 
                 {(account.profile?.name || account.profile?.about) && (
                     <div className="basic-info">
