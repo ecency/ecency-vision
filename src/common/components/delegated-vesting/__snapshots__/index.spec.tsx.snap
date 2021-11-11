@@ -216,6 +216,106 @@ exports[`(1) Default render 1`] = `
         </div>
       </div>
     </div>
+    <ul
+      className="mt-4 pagination"
+    >
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            «
+          </span>
+          <span
+            className="sr-only"
+          >
+            First
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            ‹
+          </span>
+          <span
+            className="sr-only"
+          >
+            Previous
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item active"
+      >
+        <span
+          className="page-link"
+          disabled={false}
+          onClick={[Function]}
+        >
+          1
+          <span
+            className="sr-only"
+          >
+            (current)
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            ›
+          </span>
+          <span
+            className="sr-only"
+          >
+            Next
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            »
+          </span>
+          <span
+            className="sr-only"
+          >
+            Last
+          </span>
+        </span>
+      </li>
+    </ul>
   </div>
 </div>
 `;
@@ -436,6 +536,106 @@ exports[`(2) With active user 1`] = `
         </div>
       </div>
     </div>
+    <ul
+      className="mt-4 pagination"
+    >
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            «
+          </span>
+          <span
+            className="sr-only"
+          >
+            First
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            ‹
+          </span>
+          <span
+            className="sr-only"
+          >
+            Previous
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item active"
+      >
+        <span
+          className="page-link"
+          disabled={false}
+          onClick={[Function]}
+        >
+          1
+          <span
+            className="sr-only"
+          >
+            (current)
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            ›
+          </span>
+          <span
+            className="sr-only"
+          >
+            Next
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            »
+          </span>
+          <span
+            className="sr-only"
+          >
+            Last
+          </span>
+        </span>
+      </li>
+    </ul>
   </div>
 </div>
 `;
@@ -691,6 +891,106 @@ exports[`(3) With delegator active user 1`] = `
         </div>
       </div>
     </div>
+    <ul
+      className="mt-4 pagination"
+    >
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            «
+          </span>
+          <span
+            className="sr-only"
+          >
+            First
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            ‹
+          </span>
+          <span
+            className="sr-only"
+          >
+            Previous
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item active"
+      >
+        <span
+          className="page-link"
+          disabled={false}
+          onClick={[Function]}
+        >
+          1
+          <span
+            className="sr-only"
+          >
+            (current)
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            ›
+          </span>
+          <span
+            className="sr-only"
+          >
+            Next
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            »
+          </span>
+          <span
+            className="sr-only"
+          >
+            Last
+          </span>
+        </span>
+      </li>
+    </ul>
   </div>
 </div>
 `;
@@ -711,6 +1011,90 @@ exports[`(4) Empty List 1`] = `
         Nothing here
       </div>
     </div>
+    <ul
+      className="mt-4 pagination"
+    >
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            «
+          </span>
+          <span
+            className="sr-only"
+          >
+            First
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            ‹
+          </span>
+          <span
+            className="sr-only"
+          >
+            Previous
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            ›
+          </span>
+          <span
+            className="sr-only"
+          >
+            Next
+          </span>
+        </span>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <span
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            »
+          </span>
+          <span
+            className="sr-only"
+          >
+            Last
+          </span>
+        </span>
+      </li>
+    </ul>
   </div>
 </div>
 `;

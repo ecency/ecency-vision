@@ -22,7 +22,7 @@ it('(1) Render with data.', async () => {
         }
     };
 
-    const component = renderer.create(<PopularUsers {...props}/>);
+    const component = await renderer.create(<PopularUsers {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });

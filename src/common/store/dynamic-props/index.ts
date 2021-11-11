@@ -11,6 +11,12 @@ export const initialState: State = {
   fundRecentClaims: 1,
   fundRewardBalance: 1,
   hbdPrintRate: 1,
+  hbdInterestRate: 1,
+  headBlock: 1,
+  totalVestingFund: 1,
+  totalVestingShares: 1,
+  virtualSupply: 1,
+  vestingRewardPercent: 1,
 };
 
 export default (state: State = initialState, action: Actions): State => {
