@@ -10,7 +10,7 @@ import {WalletEcency, formatMemo} from "./index";
 
 import {initialState as transactionsInitialState} from "../../store/transactions/index";
 
-import {globalInstance, pointTransactionsInstance, activeUserMaker, dynamicPropsIntance1} from "../../helper/test-helper";
+import {globalInstance, pointTransactionsInstance, activeUserMaker, dynamicPropsIntance1, allOver} from "../../helper/test-helper";
 
 jest.mock("moment", () => () => ({
     fromNow: () => "5 days ago",
@@ -45,34 +45,36 @@ const defProps = {
 }
 
 
-it("(1) Default Render", () => {
+it("(1) Default Render", async() => {
     const props = {
         ...defProps
     };
 
-    const renderer = TestRenderer.create(
+    const renderer = await TestRenderer.create(
         <StaticRouter location="/" context={{}}>
             <WalletEcency {...props} />
         </StaticRouter>);
+    await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(2) With active user", () => {
+it("(2) With active user", async() => {
     const props = {
         ...defProps,
         activeUser: activeUserMaker("user1"),
     };
 
-    const renderer = TestRenderer.create(
+    const renderer = await TestRenderer.create(
         <StaticRouter location="/" context={{}}>
             <WalletEcency {...props} />
         </StaticRouter>
     );
+    await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
 
-it("(3) Active user with unclaimed points", () => {
+it("(3) Active user with unclaimed points", async() => {
     const props = {
         ...defProps,
         activeUser: activeUserMaker("user1"),
@@ -85,10 +87,11 @@ it("(3) Active user with unclaimed points", () => {
         },
     };
 
-    const renderer = TestRenderer.create(
+    const renderer = await TestRenderer.create(
         <StaticRouter location="/" context={{}}>
             <WalletEcency {...props} />
         </StaticRouter>);
+    await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
@@ -110,7 +113,7 @@ it("(4) Format memo", () => {
     expect(formatMemo("lorem foo/bar ipsum", history)).toMatchSnapshot();
 });
 
-it("(5) usePrivate = false", () => {
+it("(5) usePrivate = false", async() => {
     const props = {
         ...defProps,
         global: {
@@ -119,9 +122,10 @@ it("(5) usePrivate = false", () => {
         }
     };
 
-    const renderer = TestRenderer.create(
+    const renderer = await TestRenderer.create(
         <StaticRouter location="/" context={{}}>
             <WalletEcency {...props} />
         </StaticRouter>);
+    await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 });
