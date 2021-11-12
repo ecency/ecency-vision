@@ -181,7 +181,6 @@ interface State {
     purchase: boolean;
     promote: boolean;
     boost: boolean;
-    mounted: boolean;
     transfer: boolean;
     estimatedPointsValue: number;
     estimatedPointsValueLoading: boolean;
@@ -193,46 +192,57 @@ export class WalletEcency extends BaseComponent<Props, State> {
         purchase: false,
         promote: false,
         boost: false,
-        mounted: false,
         transfer: false,
         estimatedPointsValue: 0,
         estimatedPointsValueLoading: false
     }
+    _isMounted = false;
 
     componentDidMount() {
+        this._isMounted = true;
         const {global, history} = this.props;
         if (!global.usePrivate) {
             history.push("/");
         }
         let user = history.location.pathname.split("/")[1];
             user = user.replace('@','')
-        global.isElectron && this.initiateOnElectron(user);
-        this.getEstimatedPointsValue()
+        global.isElectron && this._isMounted && this.initiateOnElectron(user);
+        this._isMounted && this.getEstimatedPointsValue()
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     getEstimatedPointsValue(){
         const {global: {currency}} = this.props;
         this.setState({estimatedPointsValueLoading:true})
         getCurrencyTokenRate(currency,'estm').then(res => {
-            this.setState({ estimatedPointsValue: res, estimatedPointsValueLoading: false })
-        })
+            this._isMounted && this.setState({ estimatedPointsValue: res, estimatedPointsValueLoading: false })
+        }).catch((error) => {
+            console.error('getCurrencyTokenRate',error);
+        });
     }
 
     initiateOnElectron(username: string){
-    const { fetchPoints, global } = this.props;
-    const {mounted} = this.state;
-    if(!mounted && global.isElectron){
-        let getPoints = new Promise(res=>fetchPoints(username))
-        username && getPoints.then(res=>this.setState({mounted: true}));
+        const { fetchPoints, global } = this.props;
+
+        if(!this._isMounted && global.isElectron){
+            let getPoints = new Promise(res=>fetchPoints(username))
+            username && getPoints.then(res=>{
+                this._isMounted=true;
+            }).catch((error) => {
+                console.error('getPoints',error);
+            });
+        }
     }
-}
 
     claim = (e?: React.MouseEvent<HTMLAnchorElement>) => {
         if (e) e.preventDefault();
         const {activeUser, fetchPoints, updateActiveUser, global} = this.props;
         this.setState({claiming: true});
         const username = activeUser?.username!;
-            claimPoints(username).then(() => {
+        claimPoints(username).then(() => {
             success(_t('points.claim-ok'));
             fetchPoints(username);
             updateActiveUser();

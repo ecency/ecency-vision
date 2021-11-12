@@ -43,9 +43,15 @@ export class Curation extends BaseComponent<Props, State> {
         period: "day",
         loading: true
     }
+    _isMounted = false;
 
     componentDidMount() {
-        this.fetch();
+        this._isMounted = true;
+        this._isMounted && this.fetch();
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     compare = (a: CurationItem, b: CurationItem) => {
@@ -67,7 +73,8 @@ export class Curation extends BaseComponent<Props, State> {
             curator.efficiency = curator.vests / effectiveVest;
         }
         dataa.sort(this.compare);
-        this.setState({data: dataa, loading: false});
+        this._isMounted && this.setState({data: dataa});
+        this.setState({loading: false});
     }
 
     render() {
@@ -82,7 +89,7 @@ export class Curation extends BaseComponent<Props, State> {
                     label: _t(`leaderboard.period-${f}`),
                     onClick: () => {
                         this.setState({period: f as CurationDuration});
-                        this.fetch();
+                        this._isMounted && this.fetch();
                     }
                 }
             }))

@@ -103,7 +103,6 @@ interface ItemProps {
 interface ItemState {
     reply: boolean;
     edit: boolean;
-    mounted: boolean;
     showProfileDetails: boolean;
     showProfileDetailsAvatar: boolean;
     inProgress: boolean;
@@ -121,17 +120,17 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         showProfileDetailsAvatar: false,
         mutedData: [],
         delayHandler: null,
-        isHiddenPermitted:false,
-        mounted: false
+        isHiddenPermitted:false
     }
+    _isMounted = false;
 
     componentDidMount(){
-        this.fetchMutedUsers();
-        this.setState({ mounted: true })
+        this._isMounted = true;
+        this._isMounted && this.fetchMutedUsers();
     }
 
     componentWillUnmount(){
-        this.setState({ mounted: false })
+        this._isMounted = false;
     }
 
     afterVote = (votes: EntryVote[], estimated: number) => {
@@ -281,7 +280,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
             getFollowing(activeUser.username, "", "ignore", 100).then(r => {
                 if (r) {
                     let filterList = r.map(user=>user.following);
-                    this && this.setState({ mutedData: filterList });
+                    this._isMounted && this.setState({ mutedData: filterList });
                 }
             })
         }
@@ -292,9 +291,9 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
         let timeout = setTimeout(()=>{
             e.stopPropagation()
-            this.state.mounted && this.setState({showProfileDetails:true });
+            this._isMounted && this.setState({showProfileDetails:true });
             document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
-        this.state.mounted && this.setState({delayHandler: timeout})
+        this._isMounted && this.setState({delayHandler: timeout})
     }
 
     onShowProfileAvatar = (e:any) => {
@@ -302,41 +301,41 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
         let timeout = setTimeout(()=>{
             e.stopPropagation()
-            this.state.mounted && this.setState({showProfileDetailsAvatar:true });
+            this._isMounted && this.setState({showProfileDetailsAvatar:true });
             document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
-    }, this.props.global.isMobile ? 0 : 500)
-        this.state.mounted && this.setState({delayHandler: timeout})
+        }, this.props.global.isMobile ? 0 : 500)
+        this._isMounted && this.setState({delayHandler: timeout})
     }
 
     onHideProfile = (e:any, doNotSetState?: boolean) => {
-        const { delayHandler, mounted } = this.state;
+        const { delayHandler } = this.state;
         clearTimeout(delayHandler)
         e.stopPropagation()
         if(delayHandler){
             // Add 0.2 sec delay while hiding mini-profile on web
             setTimeout(()=>{
-                !doNotSetState && mounted && this.setState({showProfileDetails:false});
+                !doNotSetState && this._isMounted && this.setState({showProfileDetails:false});
                 document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
-        },this.props.global.isMobile ? 0 : 200)
-    }
+            },this.props.global.isMobile ? 0 : 200)
+        }
     }
 
     onHideProfileAvatar = (e:any, doNotSetState?: boolean) => {
-        const { delayHandler, mounted } = this.state;
+        const { delayHandler } = this.state;
         clearTimeout(delayHandler)
         e.stopPropagation()
         if(delayHandler){
             // Add 0.2 sec delay while hiding mini-profile on web
             setTimeout(()=>{
-                !doNotSetState && mounted && this.setState({showProfileDetailsAvatar:false});
+                !doNotSetState && this._isMounted && this.setState({showProfileDetailsAvatar:false});
                 document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
-        },this.props.global.isMobile ? 0 : 200)
+            },this.props.global.isMobile ? 0 : 200)
         }
     }
 
     render() {
         const { entry, activeUser, community, location } = this.props;
-        const { reply, edit, inProgress, mutedData, showProfileDetails, showProfileDetailsAvatar, isHiddenPermitted, mounted } = this.state;
+        const { reply, edit, inProgress, mutedData, showProfileDetails, showProfileDetailsAvatar, isHiddenPermitted } = this.state;
 
         const created = moment(parseDate(entry.created));
         const readMore = entry.children > 0 && entry.depth > 5;
@@ -674,11 +673,13 @@ export class Discussion extends Component<Props, State> {
     state: State = {
         visible: !!this.props.activeUser
     }
+    _isMounted = false;
 
     componentDidMount() {
+        this._isMounted = true;
         const {activeUser} = this.props;
         if (activeUser) {
-            this.fetch();
+            this._isMounted && this.fetch();
         }
     }
 
@@ -705,6 +706,7 @@ export class Discussion extends Component<Props, State> {
     componentWillUnmount() {
         const {resetDiscussion} = this.props;
         resetDiscussion();
+        this._isMounted = false;
     }
 
     fetch = () => {
