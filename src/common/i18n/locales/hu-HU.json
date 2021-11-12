@@ -12,6 +12,7 @@
     "cancel": "Elvet",
     "reply": "Válasz",
     "update": "Frissítés",
+    "learnMore": "Learn more",
     "or": "VAGY",
     "muted-message": "Muted author, Reveal content",
     "server-error": "A folyamat szerver hiba miatt nem hajtható végre",
@@ -38,6 +39,7 @@
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
+    "logs": "logs",
     "posts": "posts",
     "comments": "comments",
     "replies": "replies",
@@ -82,6 +84,7 @@
   },
   "search": {
     "placeholder": "Keresés",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Hozzászólások {{n}} keresése",
     "header-tag": "Címkék",
     "header-account": "Felhasználók",
@@ -271,13 +274,15 @@
     "comment-entry-title": "Egy hozzászólásos vonal innen: ",
     "comment-entry-go-root": "Teljes kontextus megtekintése",
     "comment-entry-go-parent": "Direkt felmenő megtekintése",
-    "hidden-warning": "This content got low rating by people. Proceed with caution.",
+    "hidden-warning": "This content got low rating by people.",
     "delete-disabled": "Content after their payout cannot be deleted.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
-    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
+    "lowrep-warning": "Author of this content has low reputation.",
+    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -307,6 +312,7 @@
     "order-created": "Régiség",
     "read-more": "...további válaszok olvasása...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Hozzászólás megjelenítése"
   },
   "community": {
@@ -397,6 +403,7 @@
     "done": "A közösséged létrejött 🎉",
     "reason-one": "True ownership",
     "reason-two": "Permanent, rewarding",
+    "password-copied": "Password copied to clipboard",
     "reason-three": "Powered by blockchain technology",
     "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Kezdés."
@@ -474,12 +481,16 @@
     "unclaimed-rewards": "Átvételre váró jutalmak",
     "claim-reward-balance": "Jutalom egyenleg átvétele",
     "claim-reward-balance-ok": "Jutalom egyenleg átvéve",
-    "estimated": "Becs. számla érték",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "A becsült érték a HIVE 7 napos átlagértékén alapszik.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "A HIVE olyan értékesíthető token, amely bármikor átutalható. A HIVE átalakítható Hive Power-re egy olyan folyamatban, melyet powering up-nak nevezünk.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "A Hive Power olyan befolyásos token, amely több erőt bistosít hosszú távú birtoklás esetén és a bejegyzések szavazásakor. Minél több Hive Power-t birtokolsz, annál több befolyásod lehet mások jutalma fölött, és annál tőbb jutalmat biztosít a megfelelő szavazásért.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Delegált Hive Power",
     "hive-power-received": "Kapott Hive Power",
     "next-power-down-amount": "A következő power down összeg",
@@ -498,7 +509,16 @@
     "delegate": "Delegálás",
     "power-down": "Power Down",
     "withdraw-routes": "Withdraw Routes",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE"
+  },
+  "wallet-engine": {
+    "title": "Hive Engine Tokens",
+    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
+    "no-results": "No tokens found.",
+    "token": "Token",
+    "balance": "Balance",
+    "staked": "Staked"
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",
@@ -557,7 +577,8 @@
   "purchase": {
     "select-asset": "Tartalom kijelölése",
     "slider-hint": "A csúszka húzásával állítsd be a mennyiséget.",
-    "submit": "Vásárlás"
+    "submit": "Vásárlás",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Hirdetés",
@@ -610,6 +631,8 @@
     "memo-placeholder": "megjegyzés ide",
     "memo-help": "Ez az üzenet nyilvános",
     "available-hp-hint": "* elérhető hive power",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "Tranzakció engedélyezése ",
     "confirm-sub-title": "Kérjük ellenőrizd, hogy minden rendben",
     "confirm": "Megerősítés",
@@ -666,6 +689,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
     "type-fill_recurrent_transfer": "Recurring transfer occurred",
     "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
@@ -680,7 +704,8 @@
   },
   "delegated-vesting": {
     "title": "Delegált Hive Power",
-    "undelegate": "undelegate"
+    "undelegate": "undelegate",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Kapott Hive Power"
@@ -750,6 +775,7 @@
     "clear": "Törlés",
     "published": "Bejegyzés közzétéve",
     "updated": "Bejegyzés Frissítve",
+    "thumbnail": "Thumbnail",
     "advanced": "Advanced",
     "beneficiaries": "Beneficiaries",
     "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
@@ -767,7 +793,15 @@
     "placeholder-focus": "Címke felvétele",
     "placeholder-has-tags": "További hozzáadása",
     "suggestion-header": "Címkék",
-    "error-max": "Maximum {{n}} címke"
+    "error-max": "Maximum {{n}} címke",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Choose a community",
@@ -934,7 +968,10 @@
     "filter-team": "Ecency projektek",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "#{{n}} javaslat szavazatai",
-    "see-all": "összes javaslat megtekintése"
+    "see-all": "összes javaslat megtekintése",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Galéria",
@@ -1025,9 +1062,12 @@
       "contact-email": "Írj nekünk e-mailt"
     },
     "faq": {
-      "page-title": "Ecency GYIK",
+      "page-title": "How can we help you?",
       "page-sub-title": "Tartalomjegyzék",
       "what-is-ecency-header": "Mi az Ecency?",
+      "search": "Related results for {{search}} filtered below",
+      "search-not-found": "Nothing was found. To ask our community, join our ",
+      "search-placeholder": "Search our articles",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "Mi a Hive blokklánc?",
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
@@ -1160,5 +1200,9 @@
     "success-message-subscribe": "A verification link has been sent to your email account!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }

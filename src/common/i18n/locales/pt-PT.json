@@ -2,7 +2,7 @@
   "g": {
     "add": "Adicionar",
     "edit": "Editar",
-    "submit": "Write a post",
+    "submit": "Escrever uma publicação",
     "search": "Procurar",
     "downloads": "Transferências",
     "login": "Entrar",
@@ -12,14 +12,15 @@
     "cancel": "Cancelar",
     "reply": "Responder",
     "update": "Atualizar",
+    "learnMore": "Saiba mais",
     "or": "OU",
-    "muted-message": "Muted author, Reveal content",
+    "muted-message": "Autor silenciado, Revelar conteúdo",
     "server-error": "O processo não foi concluído devido a um erro no servidor",
     "day": "dia",
     "days": "dias",
     "finish": "Concluir",
     "next": "Seguinte",
-    "previous": "Previous",
+    "previous": "Anterior",
     "back": "Anterior",
     "load-more": "Carregar mais",
     "empty-list": "Nada aqui",
@@ -34,10 +35,11 @@
     "hot": "novidades",
     "trending": "novidades",
     "created": "novidades",
-    "muted": "muted",
+    "muted": "silenciado",
     "found": "encontrado",
     "feed": "novidades",
     "blog": "blogs",
+    "logs": "registros",
     "posts": "publicações",
     "comments": "comentários",
     "replies": "respostas",
@@ -45,8 +47,8 @@
     "apply": "Aplicar",
     "warning": "Aviso",
     "payout": "Pagamento",
-    "learn-more": "Learn more in our",
-    "faq": "FAQ",
+    "learn-more": "Saiba mais em",
+    "faq": "Perguntas Frequentes",
     "close": "Fechar"
   },
   "confirm": {
@@ -66,11 +68,11 @@
     "filter-feed-subscriptions": "Comunidades",
     "filter-global": "Global",
     "filter-global-part1": "Este feed contém ",
-    "filter-global-part2": " discussions on entire platform.",
-    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
-    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
-    "filter-global-discover": "Discover People",
-    "filter-global-join-communities": "Join Communities"
+    "filter-global-part2": " discussões em toda a plataforma.",
+    "filter-global-part3": " interações das comunidades que você segue. Você pode participar de mais comunidades para preencher sua página inicial.",
+    "filter-global-part4": " interações de quem você conhece. Você pode seguir mais pessoas para preencher sua página inicial.",
+    "filter-global-discover": "Descobrir Pessoas",
+    "filter-global-join-communities": "Junte-se à Comunidades"
   },
   "navbar": {
     "discover": "Descubra",
@@ -82,6 +84,7 @@
   },
   "search": {
     "placeholder": "Procurar",
+    "placeholder-proposals": "Pesquisar propostas",
     "placeholder-count": "Procurar {{n}} posts",
     "header-tag": "Etiquetas",
     "header-account": "Usuários",
@@ -101,7 +104,7 @@
     "unclaimed-points-notice": "Tem pontos não reclamados",
     "notifications": "Notificações",
     "profile": "Perfil",
-    "profile-menu": "Profile menu",
+    "profile-menu": "Menu do Perfil",
     "gallery": "Galeria",
     "drafts": "Rascunhos",
     "bookmarks": "Favoritos",
@@ -109,10 +112,10 @@
     "fragments": "Trechos",
     "settings": "Configurações",
     "logout": "Sair",
-    "theme": "theme",
-    "light": "light",
-    "dark": "dark",
-    "switch-to": "Switch",
+    "theme": "tema",
+    "light": "claro",
+    "dark": "escuro",
+    "switch-to": "Alternar",
     "vote-power": "Força do Voto:"
   },
   "intro": {
@@ -131,7 +134,7 @@
     "error-public-key": "Você inseriu uma chave pública. Senha/WIF obrigatório",
     "error-user-fetch": "Dados de usuário não foram encontrados",
     "error-user-not-found": "Usuário não existe",
-    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
+    "error-user-not-found-cache": "Inconsistência de cache detectada. Por favor, faça login novamente com suas credenciais.",
     "error-permission": "Não foi possível obter permissão de postagem",
     "error-authenticate": "Chave privada incorreta. Chave master ou ativa ou de publicar são necessárias.",
     "with-hive-signer": "Entre com o Hivesigner",
@@ -148,8 +151,8 @@
     "email": "Insira o seu email",
     "ref": "Usuário referenciado (opcional)",
     "submit": "Continuar",
-    "validation-username": "Username is required.",
-    "validation-email": "Email is required.",
+    "validation-username": "O nome de usuário é necessário.",
+    "validation-email": "Email obrigatório.",
     "success": "Enviamos um e-mail para {{email}}.",
     "success-2": "Siga as instruções para concluir o processo de inscrição.",
     "login-text-1": "Você tem conta?",
@@ -169,8 +172,8 @@
     "pinned": "Postagem Fixada",
     "replies": "1 resposta. Clica para responder.",
     "replies-n": "{{n}} respostas. Clique para responder.",
-    "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-error": "Valor anterior não foi possível. Vote com um valor diferente.",
+    "vote-warning": "Votar com 0% retira o voto.",
     "no-replies": "Nenhuma resposta ainda. Clique para responder."
   },
   "nsfw": {
@@ -190,10 +193,10 @@
     "confirm-title": "Reblogar para o blog de @{{n}}?",
     "confirm-ok": "Reblogar",
     "success": "Reblogado!",
-    "delete-reblog": "Desfazer Repostagem",
-    "delete-confirm-title": "Desfazer repostagem?",
+    "delete-reblog": "Deixar de Reblogar",
+    "delete-confirm-title": "Deixar de reblogar?",
     "delete-confirm-ok": "Desfazer",
-    "delete-success": "Repostagem removida"
+    "delete-success": "Reblog removido"
   },
   "entry-tip": {
     "title": "Dica"
@@ -202,11 +205,11 @@
     "title": "Compartilhar"
   },
   "entry-menu": {
-    "cross-post": "Postagem cruzada",
+    "cross-post": "Públicação cruzada",
     "share": "Compartilhar",
     "edit-history": "Editar Histórico",
     "pin": "Fixar",
-    "pin-success": "Postagem fixada",
+    "pin-success": "Publicação fixada",
     "unpin": "Desafixar",
     "unpin-success": "Publicação desafixada",
     "mute": "Silenciar",
@@ -217,11 +220,11 @@
     "boost": "Impulso"
   },
   "cross-post": {
-    "title": "Postagem Cruzada",
+    "title": "Publicação Cruzada",
     "community-placeholder": "Escolha uma comunidade",
     "message-placeholder": "Iniciar a conversa com uma mensagem",
     "submit-label": "Confirmar",
-    "published": "Postagem Publicada",
+    "published": "Publicação Realizada",
     "no-subscription": "Você não segue nenhuma comunidade para cruzar post.",
     "info": "As recompensas são automaticamente recusadas para post cruzado, e as discussões serão diferentes, seguindo as diretrizes da comunidade."
   },
@@ -271,13 +274,15 @@
     "comment-entry-title": "Está visualizando o segmento da um único comentário desde: ",
     "comment-entry-go-root": "Ver o contexto completo",
     "comment-entry-go-parent": "Ver o comentário relacionado",
-    "hidden-warning": "Este conteúdo foi mal avaliado pelas pessoas. Proceda com cautela.",
-    "delete-disabled": "Content after their payout cannot be deleted.",
+    "hidden-warning": "Esse conteúdo obteve uma baixa reputação pelas pessoas.",
+    "delete-disabled": "Após o pagamento, o conteúdo não pode ser deletado.",
     "muted-warning": "Este conteúdo foi silenciado pelos moderadores da {{community}} por não seguir as diretrizes da comunidade.",
-    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
-    "comments-hidden": "Author of this post is muted by you.",
+    "lowrep-warning": "O autor desse conteúdo tem uma baixa reputação.",
+    "deleted-content-warning": "O conteúdo foi deletado pelo autor. Entretanto, você poderá vê-lo acessando os registros na Blockchain ",
+    "comments-hidden": "O autor desta publicação foi silenciado por você.",
     "address-copy": "Copiar endereço do post",
     "address-copied": "Endereço do post copiado.",
+    "content-copied": "Conteúdo copiado para a área de transferência.",
     "browse-original": "Abrir publicação original",
     "cross-post-by": "Repostado por",
     "cross-post-community": "comunidade",
@@ -306,7 +311,8 @@
     "order-votes": "Votos",
     "order-created": "Idade",
     "read-more": "...ler mais respostas...",
-    "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted": "Autor silenciado - Revelar comentário",
+    "reveal-muted-long-description": "Mostrar respostas adicionais, incluindo aquelas que contém conteúdo ofensivo",
     "reveal": "Revelar comentário"
   },
   "community": {
@@ -339,7 +345,7 @@
     "edit": "Editar configurações",
     "edit-team": "Editar funções",
     "community-rewards": "Recompensas da Comunidade",
-    "profile-image": "Profile image",
+    "profile-image": "Imagem do perfil",
     "profile-image-edit": "Editar imagem do perfil",
     "profile-image-updated": "Imagem de perfil atualizada!"
   },
@@ -358,7 +364,7 @@
     "description": "Descrição",
     "rules": "Regras",
     "rules-help": "Um por linha",
-    "validation-title": "Title is required."
+    "validation-title": "É necessário um título."
   },
   "communities": {
     "title": "Comunidades",
@@ -379,15 +385,15 @@
     "title": "Título",
     "about": "Sobre",
     "description": "Crie comunidades melhores, descentralizadas, imutáveis e recompensadoras",
-    "fee": "Creation fee",
+    "fee": "Taxa de criação",
     "creator": "Criador",
-    "username": "Community username",
+    "username": "Usuário da comunidade",
     "username-available": "Disponível.",
     "username-not-available": "Não disponível.",
     "username-wrong-format": "Não é um formato válido. É necessário um formato hive-1xxxxx.",
-    "checkbox-validation": "Please tick this box if you want to proceed.",
-    "title-validation": "Please fill in this field.",
-    "password": "Community password",
+    "checkbox-validation": "Por favor, marque esta caixa se quiser prosseguir.",
+    "title-validation": "Por favor, complete este campo.",
+    "password": "Senha da comunidade",
     "confirmation": "Eu guardei seguramente o meu utilizador e password.",
     "submit": "Criar Comunidade",
     "progress-account": "Criar conta...",
@@ -395,10 +401,11 @@
     "progress-role": "Definindo @{{u}} como administrador...",
     "progress-props": "Actualizando as configuraões das comunidade...",
     "done": "A sua comunidade foi criada 🎉",
-    "reason-one": "True ownership",
-    "reason-two": "Permanent, rewarding",
-    "reason-three": "Powered by blockchain technology",
-    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
+    "reason-one": "Propriedade de Verdade",
+    "reason-two": "Permanente, recompensante",
+    "password-copied": "Senha copiada para a área de transferência",
+    "reason-three": "Desenvolvido em tecnologia blockchain",
+    "reason-four": "Custa 3 HIVE para criar uma comunidade. Ela será permanente, imutável. A propriedade é garantida",
     "done-link-label": "Vamos começar."
   },
   "community-rewards-registration": {
@@ -455,7 +462,7 @@
     "profile-image": "Imagem de Perfil",
     "website": "Website",
     "location": "Localização",
-    "copied": "Referral link copied to clipboard.",
+    "copied": "Link de referência copiado para a área de transferência.",
     "updated": "Perfil atualizado com sucesso!"
   },
   "image-upload-button": {
@@ -467,19 +474,23 @@
     "currency": "Moeda",
     "language": "Língua",
     "nsfw": "Mostrar conteúdo adulto",
-    "referral-link": "Referral link",
+    "referral-link": "Link de referência",
     "updated": "Preferências atualizadas!"
   },
   "wallet": {
     "unclaimed-rewards": "Recompensas não reclamadas",
     "claim-reward-balance": "Solicitar o saldo das recompensas",
     "claim-reward-balance-ok": "Saldo das recompensas resgatado",
-    "estimated": "Valor da Conta Aproximado",
+    "estimated": "Valor Estimado da Carteira",
+    "estimated-points": "Valor Estimado dos Pontos",
     "estimated-description": "O valor estimado é sobre preço médio da HIVE nos últimos 7 dias.",
+    "estimated-description-points": "O valor estimado é baseado no valor de compra dos Pontos.",
     "hive": "HIVE",
     "hive-description": "HIVE são tokens comercializáveis que podem ser transferidos a qualquer momento. HIVE pode ser convertido para Hive Power, através do procedimento chamado Power Up.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power são tokens que representam sua participação e influência, ganhando mais força quando guardados a longo prazo junto a curadoria de posts. Quanto mais Hive Power se detém, mais se pode influenciar na rede e ganhar recompensas por trabalho de curadoria.",
+    "hive-power-apr-rate": "A porcentagem de rendimento anual para Hive Power é {{value}}%",
+    "hive-dollars-apr-rate": "A porcentagem de rendimento para HBD($) é {{value}}%",
     "hive-power-delegated": "Hive Power Delegado",
     "hive-power-received": "Hive Power Recebido",
     "next-power-down-amount": "Próxima quantidade de power down",
@@ -498,14 +509,23 @@
     "delegate": "Delegar",
     "power-down": "Baixar poder",
     "withdraw-routes": "Rotas de Saque",
+    "calculating": "Calculando",
     "converting-hbd-amount": "Convertendo em HIVE"
+  },
+  "wallet-engine": {
+    "title": "Tokens da Hive Engine",
+    "description": "Hive Engine é uma blockchain exclusiva para contratos inteligentes e paralela à Hive.",
+    "no-results": "Nenhum token encontrado.",
+    "token": "Token",
+    "balance": "Balanço",
+    "staked": "Guardado"
   },
   "withdraw-routes": {
     "title": "Contas de saque",
     "account": "Conta",
     "percent": "Percentagem",
-    "validation-account": "Account is required.",
-    "validation-percent": "Percentage is required.",
+    "validation-account": "Uma Conta é necessária.",
+    "validation-percent": "Porcentagem é necessária.",
     "auto-power-up": "Aumentar poder automaticamente"
   },
   "points": {
@@ -557,7 +577,8 @@
   "purchase": {
     "select-asset": "Selecionar ativo",
     "slider-hint": "Deslize o cursor para ajustar a quantidade.",
-    "submit": "Compra"
+    "submit": "Compra",
+    "purchase-message": "Ou envie qualquer quantia para @esteem.app com `pontos` no memo, para comprar Pontos."
   },
   "promote": {
     "title": "Promover",
@@ -610,6 +631,8 @@
     "memo-placeholder": "insira aqui as suas notas",
     "memo-help": "Este memo é público",
     "available-hp-hint": "* poder de hive disponível",
+    "override-warning-1": "O novo valor sobrepõe o anterior.",
+    "override-warning-2": "A conta ({{account}}) contém {{previousAmount}} em delegações.",
     "confirm-title": "Confirme a sua transação",
     "confirm-sub-title": "Por favor, verfique se está tudo correto",
     "confirm": "Confirmar",
@@ -645,32 +668,33 @@
     "type-comment_benefactor_reward": "Recompensa por comentário",
     "type-claim_reward_balance": "Reivindicar recompensas",
     "type-transfer": "Transferir",
-    "type-transfer_to_vesting": "Power up",
-    "type-withdraw_vesting": "Power down",
-    "type-fill_vesting_withdraw": "Partial Power down occurred",
+    "type-transfer_to_vesting": "Carregar Poder",
+    "type-withdraw_vesting": "Baixar poder",
+    "type-fill_vesting_withdraw": "Ocorrência de Parcial Redução de Poder",
     "type-fill_order": "Preencher pedido",
     "type-producer_reward": "Recompensa de criador",
     "type-interest": "Rendimentos",
     "type-transfer_to_savings": "Transferir para a poupança",
-    "type-fill_convert_request": "Convert fulfilled",
-    "type-fill_collateralized_convert_request": "Collateralized convert fulfilled",
-    "type-fill_collateralized_convert-detail": "ID: <strong>{{request}}</strong>, Returned: {{returned}}",
+    "type-fill_convert_request": "Conversão concluída",
+    "type-fill_collateralized_convert_request": "Conversão de colateral completa",
+    "type-fill_collateralized_convert-detail": "ID: <strong>{{request}}</strong>, Retornou: {{returned}}",
     "type-cancel_transfer_from_savings": "Cancelar a transferência da poupança",
     "type-cancel_transfer_from_savings-detail": "De: <strong>@{{from}}</strong> <br/> ID da solicitação: <strong>{{request}}</strong>",
-    "type-return_vesting_delegation": "Return delegations",
+    "type-return_vesting_delegation": "Delegações retornadas",
     "type-proposal_pay": "Proposta de pagamento",
-    "type-update_proposal_votes": "Proposal vote",
+    "type-update_proposal_votes": "Votos em propostas",
     "type-comment_payout_update": "Atualização do pagamento de conteúdo",
     "type-comment_reward": "Recompensa de conteúdo",
-    "type-recurrent_transfer": "Recurring transfer",
-    "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
-    "type-fill_recurrent_transfer": "Recurring transfer occurred",
-    "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
-    "type-collateralized_convert": "Collateralized convert",
-    "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
-    "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
-    "type-limit_order_create": "New trade",
-    "type-effective_comment_vote": "Effective vote"
+    "type-recurrent_transfer": "Transferência recorrente",
+    "type-recurrent_transfer-detail": "{{executions}} transferências, uma a cada {{recurrence}} horas",
+    "type-fill_recurrent_transfer": "Transferência recorrente ocorrida",
+    "type-fill_recurrent_transfer-detail": "{{remaining_executions}} Transferências restantes",
+    "type-delegate_vesting_shares": "Delegações",
+    "type-collateralized_convert": "Conversão de colateral",
+    "type-collateralized_convert-detail": "Id de solicitação: <strong>{{request}}</strong>",
+    "type-update_proposal_vote-detail": "Id da proposta: <strong>{{pid}}</strong>",
+    "type-limit_order_create": "Nova operação",
+    "type-effective_comment_vote": "Voto efetivo"
   },
   "key-or-hot": {
     "sign": "Assinar",
@@ -680,7 +704,8 @@
   },
   "delegated-vesting": {
     "title": "Hive Power Delegado",
-    "undelegate": "cancelar delegação"
+    "undelegate": "cancelar delegação",
+    "subtitle": " HP Pendendo retornos de delegação"
   },
   "received-vesting": {
     "title": "Hive Power Recebido"
@@ -688,7 +713,7 @@
   "friends": {
     "followers": "Seguidores ({{n}})",
     "following": "Seguindo ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Procurar"
   },
   "follow-controls": {
     "follow": "Seguir",
@@ -720,7 +745,7 @@
     "gallery": "Galeria",
     "emoji": "Emoji",
     "image-error": "Não foi possível carregar imagem.",
-    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
+    "image-error-cache": "Não foi possível enviar a imagem. Você parece estar desconectado, tente realizar o login novamente.",
     "image-error-size": "O tamanho da imagem é muito grande, tente novamente com uma imagem mais pequena.",
     "fragments": "Trechos"
   },
@@ -750,6 +775,7 @@
     "clear": "Limpar",
     "published": "Publicação publicada",
     "updated": "Publicação atualizada",
+    "thumbnail": "Miniatura",
     "advanced": "Avançado",
     "beneficiaries": "Beneficiários",
     "beneficiaries-hint": "Configura beneficiários para dividir a recompensa do autor com outras contas",
@@ -767,7 +793,15 @@
     "placeholder-focus": "Inserir etiqueta",
     "placeholder-has-tags": "Adicionar mais",
     "suggestion-header": "Etiquetas",
-    "error-max": "Máximo de etiquetas {{n}}"
+    "error-max": "Máximo de etiquetas {{n}}",
+    "limited_tags": "Apenas 10 etiquetas permitidas. Remova algumas",
+    "limited_length": "Tamanho máximo de cada etiqueta deve ser 24",
+    "limited_dash": "Use um traço em cada etiqueta",
+    "limited_space": "Usa espaços para separar as etiquetas",
+    "limited_lowercase": "Use apenas letras minúsculas na etiqueta",
+    "limited_characters": "Use apenas letras minúsculas, dígitos e um traço",
+    "limited_firstchar": "Etiqueta deve começar com uma letra",
+    "limited_lastchar": "A etiqueta deve terminar com letra ou número"
   },
   "community-selector": {
     "choose": "Escolher uma comunidade",
@@ -786,8 +820,8 @@
     "username": "Usuário",
     "reward": "Recompensa",
     "user-error": "{{n}} não é um usuário válido.",
-    "validation-percentage": "Percentage is required.",
-    "validation-username": "Username is required.",
+    "validation-percentage": "Porcentagem é necessária.",
+    "validation-username": "O nome de usuário é necessário.",
     "user-exists-error": "{{n}} já está na lista"
   },
   "post-scheduler": {
@@ -934,7 +968,10 @@
     "filter-team": "Projetos da Ecency",
     "return-description": "Esta é a proposta de base de retorno. Todas as propostas com menos votos não receberão fundos.",
     "votes-dialog-title": "Votos na proposta #{{n}}",
-    "see-all": "ver todas as propostas"
+    "see-all": "ver todas as propostas",
+    "daily-funded": "fundo diário",
+    "daily-budget": "orçamento diário",
+    "total-budget": "orçamento total"
   },
   "gallery": {
     "title": "Galeria",
@@ -959,8 +996,8 @@
     "create-first": "Crie seu primeiro fragmento de informação",
     "filter": "Pesquisar por título",
     "form-title": "Título",
-    "validation-title": "Title is required.",
-    "validation-value": "Value is required.",
+    "validation-title": "É preciso título.",
+    "validation-value": "É necessário valor.",
     "validation-body": "Corpo obrigatório.",
     "form-body": "Conteúdo"
   },
@@ -974,27 +1011,27 @@
     "pass-gen": "Clique para gerar a senha",
     "label-check": "Eu guardei com segurança minha nova senha gerada",
     "validation-password": "Senha inválida.",
-    "validation-label": "Please tick this box to proceed.",
+    "validation-label": "Por favor, marque esta caixa para continuar.",
     "updated": "Senha atualizada com sucesso!"
   },
   "view-keys": {
-    "title": "View Private keys",
+    "title": "Ver Chaves Privadas",
     "account": "Conta",
-    "cur-pass": "Current password",
-    "owner": "Owner",
-    "active": "Active",
-    "posting": "Posting",
+    "cur-pass": "Senha atual",
+    "owner": "Proprietário",
+    "active": "Ativa",
+    "posting": "Postagem",
     "memo": "Memo",
-    "view-keys": "Click to view keys",
-    "copied": "Private key copied into clipboard",
-    "error": "Password seem incorrect, please double check!"
+    "view-keys": "Clique para ver as chaves",
+    "copied": "Chave privada copiada para a área de transferência",
+    "error": "Senha parece incorreta. Por favor, verifique novamente!"
   },
   "add-image": {
     "title": "Adicionar imagem",
     "text-label": "Texto da Imagem",
     "link-label": "Link da Imagem",
-    "validation-text": "Text is required.",
-    "validation-image": "Image is required."
+    "validation-text": "Texto é necessário.",
+    "validation-image": "Imagem é necessária."
   },
   "add-image-mobile": {
     "title": "Adicionar Imagem",
@@ -1006,8 +1043,8 @@
     "title": "Adicionar Link",
     "text-label": "Texto",
     "link-label": "https://",
-    "validation-text": "Text is required.",
-    "validation-link": "Link is required."
+    "validation-text": "Texto é necessário.",
+    "validation-link": "É necessário um link."
   },
   "scroll-to-top": {
     "title": "Ir para o topo"
@@ -1025,9 +1062,12 @@
       "contact-email": "Envie-nos um email"
     },
     "faq": {
-      "page-title": "Ecency FAQ",
+      "page-title": "Como podemos ajudá-lo?",
       "page-sub-title": "Tabela de conteúdos",
       "what-is-ecency-header": "O que é Ecency?",
+      "search": "Resultados relacionados para {{search}} filtrados abaixo",
+      "search-not-found": "Nada foi encontrado. Para perguntar à comunidade, junte-se a nossa ",
+      "search-placeholder": "Pesquisar em nossos artigos",
       "what-is-ecency-body": "<p>A Ecency é uma <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">rede social</a> baseada em blockchain - alimentada pela rede da <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>A Ecency é a casa de recompensastes comunidades com liberdade de expressão, onde criadores de conteúdo são recompensados pelo seu trabalho.</p><p>O projeto foi fundado por <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> em agosto de 2016, como uma rede social alternativa e incensurável, controlada pelos usuários, imutável e de código aberto. Atualmente há <a class=\"push-link\" href=\"/contributors\">muitos colaboradores voluntários e independentes</a> desejando fortalecer nossa visão e contribuir para o crescimento do espírito da liberdade de expressão.</p><p>A Ecency contribui para a integração em massa da tecnologia Blockchain, para que usuários sejam pagos por seu tempo, recursos e aprendam enquanto desfrutam dos aspectos sociais derivados da blockchain. Através do uso fácil e simples, os usuários não apenas aprendem, mas também se tornam inovadores e investidores da nova internet.</p>",
       "what-is-hive-header": "O que é a Hive blockchain?",
       "what-is-hive-body": "<p>Hive é uma blockchain projetada para ser rápida, tranquila, descentralizada e não censurada para a Web3.0 aplicações, com recursos internos onde pessoas interessdas podem ganhar recompensas participando, curando, jogando, negociando - tudo sem qualquer intermediário (descentralizado). Tokens na blockchain da Hive chamado HIVE, HIVE DOLARS, HIVE POWER.</p>",
@@ -1099,15 +1139,15 @@
     "min-root-comment": "Você só pode postar a cada 5 minutos.",
     "identical-vote": "O teu voto actual neste conteúdo é idêntico a este voto.",
     "insufficient-resource": "Créditos de Recursos insuficientes. Por favor, espere para realizar transações ou aumente o HIVE.",
-    "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
-    "comment-cashout": "Content after their payout cannot be deleted.",
-    "comment-children": "Cannot delete a content with replies.",
+    "delete-comment-with-vote": "Conteúdo com recompensas positivas não podem ser deletados.",
+    "comment-cashout": "Após o pagamento, o conteúdo não pode ser deletado.",
+    "comment-children": "Conteúdo com respostas ao pode ser deletado.",
     "paid-out-post-forbidden": "Votação de conteúdo pago não está disponível."
   },
   "landing-page": {
     "welcome-text": "Bem-vindo à Ecency!",
     "what-is-ecency": "Rede social baseada em blockchain",
-    "powered-by-hive": " powered by Hive",
+    "powered-by-hive": " tecnologia Ecossistema Hive",
     "get-started": "Comece agora",
     "earn-money": "Ganhe dinheiro",
     "earn-money-block-chain-based": "Rede social baseada em Blockchain, ",
@@ -1127,8 +1167,8 @@
     "points-distrubuted": "Pontos distribuídos",
     "new-users": "Novos usuários",
     "download-our-application": "Faça download do nosso aplicativo",
-    "download-our-application-desc-1": "Looking for a unique experience?",
-    "download-our-application-desc-2": "The social network with real free speech experience on your mobile phone or desktop. Blockchain's powerful benefits now always under your fingertips.",
+    "download-our-application-desc-1": "Procurando por uma experiência única?",
+    "download-our-application-desc-2": "A rede social com verdadeira liberdade de expressão no seu celular ou Pc. Os poderosos benefícios da tecnologia Blockchain agora estão em suas mãos.",
     "download-for-windows": "Baixar para Computador",
     "download-for-ios": "Baixar para iOS",
     "download-for-android": "Baixar para Android",
@@ -1137,7 +1177,7 @@
     "our-history-p-two": "Desde então, temos continuado a construir para a Web 3.0 e melhorar nossa rede social em blockchain. Nos certificamos para que os aplicativos estejam seguros, acessíveis e traduzidos para as mais diversas línguas do mundo.",
     "our-vision": "Nossa Visão",
     "our-vision-p-one": "Queremos trazer uma experiência gratificante e segura na blockchain para todas as pessoas. Uma rede social sem qualquer limite ou censura, onde apenas você controla sua própria conta e suas comunidades. Protegido pela blockchain, com a ajuda das pessoas.",
-    "our-vision-p-two": "<b>Our main principles: </b>Bring rewarding communities, true ownership, empowered creators, free speech into the hands of millions.",
+    "our-vision-p-two": "<b>Nossos maiores princípios: </b>Possibilitar comunidades com liberdade de expressão, recompensantes para os criadores de conteúdo.",
     "our-team": "Nossa Equipe",
     "founder": "Fundador",
     "devops-guru": "Mestre do desenvolvimento",
@@ -1158,7 +1198,11 @@
     "subscribe-paragraph": "Seja o primeiro a saber o que está acontecendo na internet descentralizada.",
     "copy-rights": "© 2021 Ecency. Todos os direitos reservados.",
     "success-message-subscribe": "Um link de verificação foi enviado para o seu e-mail!",
-    "validation-email": "A valid email is required",
+    "validation-email": "Um email válido é necessário",
     "error-occured": "Ocorreu um erro no servidor."
+  },
+  "layouts": {
+    "grid": "Grade",
+    "classic": "Clássico"
   }
 }
