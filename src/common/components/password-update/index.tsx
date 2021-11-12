@@ -22,7 +22,7 @@ import { handleInvalid, handleOnInput } from "../../util/input-util";
 
 interface Props {
     activeUser: ActiveUser;
-    onUpdate: () => void;
+    onUpdate?: () => void;
 }
 
 interface State {

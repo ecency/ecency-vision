@@ -12,6 +12,7 @@ import PasswordUpdate from "../password-update";
 import ViewKeys from "../view-keys";
 import { Link } from "react-router-dom";
 import { _t } from "../../i18n";
+import { keySvg } from "../../img/svg";
 
 interface Props {
     history: History;
@@ -46,7 +47,6 @@ export class ProfileSettings extends Component<Props> {
                     <h5>{_t("g.permissions")}</h5>
                 </Link>}
                 <PasswordUpdate activeUser={activeUser}/>
-                <ViewKeys activeUser={activeUser}/>
             </>
         }
 

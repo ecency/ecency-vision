@@ -40,6 +40,7 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import {History} from "history";
 import { ViewKeys } from "../components/view-keys";
 import {Redirect} from 'react-router-dom'
+import { PasswordUpdate } from "../components/password-update";
 
 interface MatchParams {
     username: string;
@@ -300,9 +301,18 @@ class ProfilePage extends BaseComponent<Props, State> {
                                 })
                             }
 
-                            if (section === "permission" && activeUser) {
+                            if (section === "permissions" && activeUser) {
                                 if(account.name === activeUser.username){
-                                    return <ViewKeys activeUser={activeUser} />
+                                    return <div className="container-fluid">
+                                        <div className="row">
+                                        <div className="col-12 col-md-6">
+                                            <ViewKeys activeUser={activeUser} />
+                                        </div>
+                                        <div className="col-12 col-md-6">
+                                            <PasswordUpdate activeUser={activeUser} />
+                                        </div>
+                                        </div>
+                                        </div>
                                 }
                                 else {
                                     return <Redirect to={`/@${account.name}`}></Redirect>
