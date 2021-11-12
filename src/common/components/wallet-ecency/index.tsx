@@ -336,7 +336,7 @@ export class WalletEcency extends BaseComponent<Props, State> {
                                 </div>
                                 <div className="balance-values">
                                     <div className="amount amount-bold">
-                                        {estimatedPointsValueLoading ? `${_t("wallet.calculating")}...` : <FormattedCurrency {...this.props} value={estimatedPointsValue} fixAt={3} />}
+                                        {estimatedPointsValueLoading ? `${_t("wallet.calculating")}...` : <FormattedCurrency {...this.props} value={estimatedPointsValue*parseFloat(points.points)} fixAt={3} />}
                                     </div>
                                 </div>
                             </div>
