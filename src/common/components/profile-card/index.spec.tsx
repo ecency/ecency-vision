@@ -9,7 +9,7 @@ import {Account} from "../../store/accounts/types";
 import ProfileCard from "./index";
 import renderer from "react-test-renderer";
 
-import {globalInstance, activeUserInstance, activeUserMaker, fullAccountInstance} from "../../helper/test-helper";
+import {globalInstance, activeUserInstance, activeUserMaker, fullAccountInstance, allOver} from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
     imageServer: "https://images.ecency.com",
@@ -46,32 +46,35 @@ const defProps = {
     history: createBrowserHistory(),
     activeUser: null,
     account,
+    section: '',
     addAccount: () => {
     },
     updateActiveUser: () => {
     }
 }
 
-it("(1) Render with not loaded data", () => {
-    const component = renderer.create(<StaticRouter location="/" context={{}}>
+it("(1) Render with not loaded data", async() => {
+    const component = await renderer.create(<StaticRouter location="/" context={{}}>
         <ProfileCard {...defProps} />
     </StaticRouter>);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
-it("(2) Render with loaded data", () => {
+it("(2) Render with loaded data", async() => {
     const props = {
         ...defProps,
         account: accountFull
     };
 
-    const component = renderer.create(<StaticRouter location="/" context={{}}>
+    const component = await renderer.create(<StaticRouter location="/" context={{}}>
         <ProfileCard {...props} />
     </StaticRouter>);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
-it("(3) Should show profile edits", () => {
+it("(3) Should show profile edits", async() => {
     const props = {
         ...defProps,
         account: accountFull,
@@ -85,8 +88,9 @@ it("(3) Should show profile edits", () => {
         },
     };
 
-    const component = renderer.create(<StaticRouter location="/" context={{}}>
+    const component = await renderer.create(<StaticRouter location="/" context={{}}>
         <ProfileCard {...props} />
     </StaticRouter>);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });

@@ -49,7 +49,7 @@ const defProps = {
 }
 
 it('(1) Default render.', async () => {
-    const component = renderer.create(<Subscribers {...defProps}/>);
+    const component = await renderer.create(<Subscribers {...defProps}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
@@ -59,7 +59,7 @@ it('(2) Active user.', async () => {
         ...defProps,
         activeUser: activeUserMaker("bluemist")
     }
-    const component = renderer.create(<Subscribers {...props}/>);
+    const component = await renderer.create(<Subscribers {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
