@@ -8,7 +8,7 @@ import renderer from "react-test-renderer";
 
 import {createBrowserHistory, createLocation} from "history";
 
-import {globalInstance, discussionInstace1, dynamicPropsIntance1, activeUserMaker, communityInstance1, UiInstance} from "../../helper/test-helper";
+import {globalInstance, discussionInstace1, dynamicPropsIntance1, activeUserMaker, communityInstance1, UiInstance, allOver} from "../../helper/test-helper";
 
 jest.mock("moment", () => () => ({
     fromNow: () => "3 days ago",
@@ -60,31 +60,34 @@ const defProps = {
     }
 };
 
-it("(1) Full render with active user", () => {
-    const component = renderer.create(<Discussion {...defProps} />);
+it("(1) Full render with active user", async() => {
+    const component = await renderer.create(<Discussion {...defProps} />);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
-it("(2) Full render with no active user", () => {
+it("(2) Full render with no active user", async() => {
     const props = {
         ...defProps,
         activeUser: null
     }
-    const component = renderer.create(<Discussion {...props} />);
+    const component = await renderer.create(<Discussion {...props} />);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
-it("(3) With selected item", () => {
+it("(3) With selected item", async() => {
     const props = {
         ...defProps,
         location: createLocation({hash: "#@forykw/re-esteemapp-202067t12246786z"}),
     }
-    const component = renderer.create(<Discussion {...props} />);
+    const component = await renderer.create(<Discussion {...props} />);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
 
-it("(4) Show mute button, muted comment", () => {
+it("(4) Show mute button, muted comment", async() => {
     let [reply] = replies;
     reply = {...reply, stats: {hide: false, gray: true, total_votes: 180, flag_weight: 0}}
 
@@ -102,6 +105,7 @@ it("(4) Show mute button, muted comment", () => {
         community: communityInstance1
     }
 
-    const component = renderer.create(<Discussion {...nProps} />);
+    const component = await renderer.create(<Discussion {...nProps} />);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });

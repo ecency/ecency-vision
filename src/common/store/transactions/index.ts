@@ -66,7 +66,7 @@ export default (state: Transactions = initialState, action: Actions): Transactio
 };
 
 /* Actions */
-export const fetchTransactions = (username: string, group: OperationGroup | "" = "") => (dispatch: Dispatch) => {
+export const fetchTransactions = (username: string, group: OperationGroup | "" = "", start: number = -1, limit: number = 20) => (dispatch: Dispatch) => {
     dispatch(fetchAct(group));
 
     const name = username.replace("@", "");
@@ -92,7 +92,7 @@ export const fetchTransactions = (username: string, group: OperationGroup | "" =
             filters = utils.makeBitMaskFilter(ALL_ACCOUNT_OPERATIONS); // all
     }
 
-    getAccountHistory(name, filters).then(r => {
+    getAccountHistory(name, filters, start, limit).then(r => {
 
         const mapped: Transaction[] = r.map((x: any): Transaction[] | null => {
             const {op} = x[1];

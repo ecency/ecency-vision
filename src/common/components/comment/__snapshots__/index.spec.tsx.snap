@@ -3,6 +3,7 @@
 exports[`(1) Default render 1`] = `
 <div
   className="comment-box"
+  onMouseEnter={[Function]}
 >
   <div
     className="editor-toolbar toolbar-sm"
@@ -271,6 +272,7 @@ exports[`(1) Default render 1`] = `
 exports[`(2) Cancellable, in progress 1`] = `
 <div
   className="comment-box"
+  onMouseEnter={[Function]}
 >
   <div
     className="editor-toolbar toolbar-sm"

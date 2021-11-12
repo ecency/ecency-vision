@@ -55,8 +55,8 @@ export const render = (req: express.Request, state: AppState) => {
             <head>
                 <meta charset="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="theme-color" content="#000000"/>
                 <link rel="icon" href="/favicon.png" />
-                <meta name="theme-color" content="#000000" />
                 <link rel="apple-touch-icon" href="/logo192.png" />
                 <link rel="manifest" href="/manifest.json" />
                 ${headHelmet}
@@ -88,23 +88,6 @@ export const render = (req: express.Request, state: AppState) => {
                     display: block !important;
                   }
                 </style>
-
-                <script>
-                  if ('serviceWorker' in navigator) {
-                    window.addEventListener('load', function() {
-                      navigator.serviceWorker.register('worker.js').then(function(registration) {
-                        console.log('Worker registration successful', registration.scope);
-                      }, function(err) {
-                        console.log('Worker registration failed', err);
-                      }).catch(function(err) {
-                        console.log(err);
-                      });
-                    });
-                  } else {
-                    console.log('Service Worker is not supported by browser.');
-                  }
-                </script>
-                
             </body>
         </html>`;
 };

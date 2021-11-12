@@ -76,8 +76,8 @@ const defProps = {
     }
 }
 
-it("(1) Default Render", () => {
-    const renderer = TestRenderer.create(
+it("(1) Default Render", async() => {
+    const renderer = await TestRenderer.create(
         <StaticRouter location="/" context={{}}>
             <Wallet {...defProps} />
         </StaticRouter>);
@@ -87,7 +87,7 @@ it("(1) Default Render", () => {
 it("(2) Render with converting HBD", async () => {
     MOCK_MODE = 2;
 
-    const renderer = TestRenderer.create(
+    const renderer = await TestRenderer.create(
         <StaticRouter location="/" context={{}}>
             <Wallet {...defProps} />
         </StaticRouter>);
@@ -95,7 +95,7 @@ it("(2) Render with converting HBD", async () => {
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(3) usePrivate = false", () => {
+it("(3) usePrivate = false", async () => {
     const props = {
         ...defProps,
         global: {
@@ -103,7 +103,7 @@ it("(3) usePrivate = false", () => {
             usePrivate: false
         }
     }
-    const renderer = TestRenderer.create(
+    const renderer = await TestRenderer.create(
         <StaticRouter location="/" context={{}}>
             <Wallet {...props} />
         </StaticRouter>);

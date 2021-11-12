@@ -37,7 +37,7 @@ export default class WalletMenu extends Component<Props> {
                 </Link>
                 <Link className={_c(`menu-item hive-engine ${active === "hive-engine" ? "active" : ""}`)} to={`/@${username}/hive-engine`}>
                     <span className="title">Engine</span>
-                    <span className="sub-title">Wallet</span>
+                    <span className="sub-title">Tokens</span>
                     <span className="platform-logo">{hiveEngineSvg}</span>
                 </Link>
             </div>

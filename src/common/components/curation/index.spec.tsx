@@ -29,7 +29,7 @@ it('(1) Render with data.', async () => {
         }
     };
 
-    const component = renderer.create(<Curation {...props}/>);
+    const component = await renderer.create(<Curation {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });

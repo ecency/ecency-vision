@@ -37,7 +37,7 @@ exports[`(1) Default Render 1`] = `
           <div
             className="title"
           >
-            Estimated Account Value
+            Estimated Wallet Value
           </div>
           <div
             className="description"
@@ -99,6 +99,11 @@ exports[`(1) Default Render 1`] = `
             className="description"
           >
             Hive Power are influence tokens that earn more power for holding long term and voting on posts. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting.
+          </div>
+          <div
+            className="description font-weight-bold mt-2"
+          >
+            APR interest rate for Hive Power is 2.980%
           </div>
         </div>
         <div
@@ -184,6 +189,11 @@ exports[`(1) Default Render 1`] = `
             className="description"
           >
             Balance subject to 3 day withdraw waiting period.
+          </div>
+          <div
+            className="description font-weight-bold mt-2"
+          >
+            APR interest rate for HBD($) is 10%
           </div>
         </div>
         <div
@@ -332,7 +342,7 @@ exports[`(1) Default Render 1`] = `
         <span
           className="sub-title"
         >
-          Wallet
+          Tokens
         </span>
         <span
           className="platform-logo"
@@ -389,7 +399,7 @@ exports[`(2) Render with converting HBD 1`] = `
           <div
             className="title"
           >
-            Estimated Account Value
+            Estimated Wallet Value
           </div>
           <div
             className="description"
@@ -451,6 +461,11 @@ exports[`(2) Render with converting HBD 1`] = `
             className="description"
           >
             Hive Power are influence tokens that earn more power for holding long term and voting on posts. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting.
+          </div>
+          <div
+            className="description font-weight-bold mt-2"
+          >
+            APR interest rate for Hive Power is 2.980%
           </div>
         </div>
         <div
@@ -548,6 +563,11 @@ exports[`(2) Render with converting HBD 1`] = `
           >
             Balance subject to 3 day withdraw waiting period.
           </div>
+          <div
+            className="description font-weight-bold mt-2"
+          >
+            APR interest rate for HBD($) is 10%
+          </div>
         </div>
         <div
           className="balance-values"
@@ -695,7 +715,7 @@ exports[`(2) Render with converting HBD 1`] = `
         <span
           className="sub-title"
         >
-          Wallet
+          Tokens
         </span>
         <span
           className="platform-logo"
@@ -752,7 +772,7 @@ exports[`(3) usePrivate = false 1`] = `
           <div
             className="title"
           >
-            Estimated Account Value
+            Estimated Wallet Value
           </div>
           <div
             className="description"
@@ -766,7 +786,7 @@ exports[`(3) usePrivate = false 1`] = `
           <div
             className="amount amount-bold"
           >
-            $ 11,264.462
+            $ 12,464.462
           </div>
         </div>
       </div>
@@ -814,6 +834,11 @@ exports[`(3) usePrivate = false 1`] = `
             className="description"
           >
             Hive Power are influence tokens that earn more power for holding long term and voting on posts. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting.
+          </div>
+          <div
+            className="description font-weight-bold mt-2"
+          >
+            APR interest rate for Hive Power is 2.980%
           </div>
         </div>
         <div
@@ -881,6 +906,17 @@ exports[`(3) usePrivate = false 1`] = `
               $ 447.514
             </span>
           </div>
+          <div
+            className="amount amount-passive converting-hbd"
+          >
+            <span
+              title="Converting to HIVE"
+            >
+              +
+               
+              $ 1,200.000
+            </span>
+          </div>
         </div>
       </div>
       <div
@@ -898,6 +934,11 @@ exports[`(3) usePrivate = false 1`] = `
             className="description"
           >
             Balance subject to 3 day withdraw waiting period.
+          </div>
+          <div
+            className="description font-weight-bold mt-2"
+          >
+            APR interest rate for HBD($) is 10%
           </div>
         </div>
         <div
@@ -1022,7 +1063,7 @@ exports[`(3) usePrivate = false 1`] = `
         <span
           className="sub-title"
         >
-          Wallet
+          Tokens
         </span>
         <span
           className="platform-logo"

@@ -2,7 +2,7 @@
   "g": {
     "add": "Добави",
     "edit": "Редактиране",
-    "submit": "Write a post",
+    "submit": "Напиши публикация",
     "search": "Търси",
     "downloads": "Изтегли",
     "login": "Вход",
@@ -12,8 +12,9 @@
     "cancel": "Отказ",
     "reply": "Отговор",
     "update": "Обновяване",
+    "learnMore": "Разберете повече",
     "or": "ИЛИ",
-    "muted-message": "Muted author, Reveal content",
+    "muted-message": "Заглушен автор, Покажи коментара",
     "server-error": "Заявката неможе да бъде завършена поради грешка в сървъра",
     "day": "ден",
     "days": "дни",
@@ -34,10 +35,11 @@
     "hot": "feed",
     "trending": "feed",
     "created": "feed",
-    "muted": "muted",
-    "found": "found",
+    "muted": "заглушен",
+    "found": "намерено",
     "feed": "feed",
-    "blog": "blogs",
+    "blog": "блогове",
+    "logs": "logs",
     "posts": "posts",
     "comments": "comments",
     "replies": "replies",
@@ -45,7 +47,7 @@
     "apply": "Потвърди",
     "warning": "Warning",
     "payout": "Payout",
-    "learn-more": "Learn more in our",
+    "learn-more": "Научи повече от нашия",
     "faq": "FAQ",
     "close": "Затвори"
   },
@@ -65,12 +67,12 @@
     "filter-feed-friends": "Приятели",
     "filter-feed-subscriptions": "Общности",
     "filter-global": "Global",
-    "filter-global-part1": "This feed contains ",
-    "filter-global-part2": " discussions on entire platform.",
-    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
-    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
-    "filter-global-discover": "Discover People",
-    "filter-global-join-communities": "Join Communities"
+    "filter-global-part1": "Потока съдържа ",
+    "filter-global-part2": " дискусии в цялата платформа.",
+    "filter-global-part3": " дискусии от общностоте, които следвате. Можете да се включите в повече общности за да се попълни потока.",
+    "filter-global-part4": " дискусии от хората които следваш. Може да следваш повече хора за да се попълни потока от статии.",
+    "filter-global-discover": "Опознай Хора",
+    "filter-global-join-communities": "Присъедини се в Общества"
   },
   "navbar": {
     "discover": "Открийте",
@@ -82,14 +84,15 @@
   },
   "search": {
     "placeholder": "Търси",
+    "placeholder-proposals": "Търси предложения",
     "placeholder-count": "Търси {{n}} постове",
     "header-tag": "Тагове",
     "header-account": "Потребители",
     "header-community": "Общности"
   },
   "tag": {
-    "unmoderated": "Unmoderated topics",
-    "moderated": "Moderated community"
+    "unmoderated": "Немоделирани теми",
+    "moderated": "Обслужвано общност"
   },
   "switch-lang": {
     "contributors": "Сътрудници"
@@ -101,7 +104,7 @@
     "unclaimed-points-notice": "Имате точки за взимане",
     "notifications": "Известия",
     "profile": "Профил",
-    "profile-menu": "Profile menu",
+    "profile-menu": "Меню на профила",
     "gallery": "Галерия",
     "drafts": "Чернови",
     "bookmarks": "Отметки",
@@ -109,10 +112,10 @@
     "fragments": "Откъси",
     "settings": "Настройки",
     "logout": "Изход",
-    "theme": "theme",
-    "light": "light",
-    "dark": "dark",
-    "switch-to": "Switch",
+    "theme": "изглед",
+    "light": "лек",
+    "dark": "тъмно",
+    "switch-to": "Превключи",
     "vote-power": "Сила на гласа:"
   },
   "intro": {
@@ -131,7 +134,7 @@
     "error-public-key": "Вие въведохте публичен ключ. Нужна е парола/WIF",
     "error-user-fetch": "Данните за потребителят немогат да бъдат заредени",
     "error-user-not-found": "Потребителят не съществува",
-    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
+    "error-user-not-found-cache": "Засечено е кеширане. Моля опитайте се отново да се впишете с вашето потребителско име и парола.",
     "error-permission": "Неможахме да получим право да публикуваме",
     "error-authenticate": "Грешен личен ключ. Нужен е главен или активен личен ключ.",
     "with-hive-signer": "Влез чрез hivesigner",
@@ -140,16 +143,16 @@
     "sign-up-text-2": "Регистрирай се сега!"
   },
   "sign-up": {
-    "header": "Welcome to Ecency",
-    "description": "Home of Free speech and Rewarding communities!",
-    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
-    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Добре дошли в Ecency",
+    "description": "Дом на Свободната реч и Общностите които Награждават!",
+    "bottom-description": "Всеки профил е създаден в блокчейна и само Вие имате достъп до профила си! Един профил управлява всичко в Блокчейна и Ecency.",
+    "learn-more": "Научете повече за ползвите от нашите <a href=\"/faq#how-to-join\">Често Задавани Въпроси</a>",
     "username": "Изберете потребителско име",
     "email": "Въведете вашия имейл адрес",
     "ref": "Кой ви покани в платформата(Опция)",
     "submit": "Продължи",
-    "validation-username": "Username is required.",
-    "validation-email": "Email is required.",
+    "validation-username": "Потребителското име е задължително.",
+    "validation-email": "Имейла е задължителен.",
     "success": "Изпратихме имейл на {{email}}.",
     "success-2": "Следвайте инструкциите за да завършите регистрирането.",
     "login-text-1": "Имате ли акаунт?",
@@ -162,22 +165,22 @@
     "title": "Избрани"
   },
   "entry-list-item": {
-    "cross-posted": "cross-posted",
+    "cross-posted": "кръстосано публикуване",
     "cross-posted-to": "to",
-    "reblogged": "{{n}} Reblogged",
-    "promoted": "Promoted",
+    "reblogged": "{{n}} Споделено",
+    "promoted": "Спонсорирано",
     "pinned": "Закачен пост",
     "replies": "1 отговор. Натисни да отговориш.",
     "replies-n": "{{n}} отговори. Натисни за да отговориш.",
-    "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-error": "Предходната стойност е неприемлива. Гласувайте с различна стойност.",
+    "vote-warning": "Гласуване с 0% отменя гласуването на съдържанието.",
     "no-replies": "Няма отговори все още. Натисни за да отговориш."
   },
   "nsfw": {
-    "reveal": "Reveal this post",
-    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
-    "settings-1": "adjust your",
-    "settings-2": "display preferences"
+    "reveal": "Върни тази публикация",
+    "signup": "<a href=\"/signup\" class=\"push-link\">създай профил</a> за да запазиш предпочитанията си",
+    "settings-1": "приспособи своят",
+    "settings-2": "предпочитания за изглед"
   },
   "bookmark-btn": {
     "add": "Добави в отметки",
@@ -190,10 +193,10 @@
     "confirm-title": "Сподели в блога на @{{n}}?",
     "confirm-ok": "Сподели",
     "success": "Споделено!",
-    "delete-reblog": "Undo Reblog",
-    "delete-confirm-title": "Undo reblog?",
+    "delete-reblog": "Отмени споделянето",
+    "delete-confirm-title": "Откажи споделянето?",
     "delete-confirm-ok": "Undo",
-    "delete-success": "Reblog removed"
+    "delete-success": "Споделянето е отменено"
   },
   "entry-tip": {
     "title": "Бакшиш"
@@ -202,24 +205,24 @@
     "title": "Share"
   },
   "entry-menu": {
-    "cross-post": "Cross post",
+    "cross-post": "Кръстосано публикуване",
     "share": "Share",
-    "edit-history": "Edit History",
-    "pin": "Pin",
-    "pin-success": "Post pinned",
-    "unpin": "Unpin",
-    "unpin-success": "Post Unpinned",
+    "edit-history": "История на Редакциите",
+    "pin": "Закачане",
+    "pin-success": "Акцентирана публикация",
+    "unpin": "Откачване",
+    "unpin-success": "Публикацията е преманхата от акцент",
     "mute": "Mute",
-    "mute-success": "Post muted",
-    "unmute": "Unmute",
-    "unmute-success": "Post unmuted",
-    "promote": "Promote",
-    "boost": "Boost"
+    "mute-success": "Публикацията е заглушена",
+    "unmute": "Премахване на заглушаване",
+    "unmute-success": "Публикацията вече не е заглушена",
+    "promote": "Рекламирай",
+    "boost": "Подсилване"
   },
   "cross-post": {
     "title": "Cross Post",
-    "community-placeholder": "Choose a community",
-    "message-placeholder": "Start the conversation with a message",
+    "community-placeholder": "Изберете Общество",
+    "message-placeholder": "Започнете комуникация със съобщение",
     "submit-label": "Confirm",
     "published": "Post Published",
     "no-subscription": "You don't have any community subscription to cross post.",
@@ -271,13 +274,15 @@
     "comment-entry-title": "Разглеждате само този коментар от поста на: ",
     "comment-entry-go-root": "Покажи целия контекст",
     "comment-entry-go-parent": "Покажи коментара",
-    "hidden-warning": "This content got low rating by people. Proceed with caution.",
+    "hidden-warning": "This content got low rating by people.",
     "delete-disabled": "Content after their payout cannot be deleted.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
-    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
+    "lowrep-warning": "Author of this content has low reputation.",
+    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Копирай адреса",
     "address-copied": "Адресът е копиран в клипборда.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -307,6 +312,7 @@
     "order-created": "Възраст",
     "read-more": "...прочети още отговори...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Покажи коментара"
   },
   "community": {
@@ -397,8 +403,9 @@
     "done": "Коментарът ви беше създаден 🎉",
     "reason-one": "True ownership",
     "reason-two": "Permanent, rewarding",
+    "password-copied": "Password copied to clipboard",
     "reason-three": "Powered by blockchain technology",
-    "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
+    "reason-four": "Струва 3 HIVE създаването на пермаментно, не заглушаемо и собствено общество",
     "done-link-label": "Започнете."
   },
   "community-rewards-registration": {
@@ -443,9 +450,9 @@
     "rc-power": "Ресурс кредити: {{n}}%",
     "recharge-time": "(напълно заредени {{n}})",
     "down-vote-power": "Сила за отрицателно гласуване: {{n}}%",
-    "no-posts": "Here you will see your posts, looks like no content exists.",
-    "create-posts": "Let's create a new post",
-    "no-posts-found": "Found nothing!"
+    "no-posts": "Тук можете да видите вашите публикации, изглежда че няма налично съдържание.",
+    "create-posts": "Нека създадем нова публикация",
+    "no-posts-found": "Не е намерено!"
   },
   "profile-edit": {
     "title": "Профил",
@@ -455,7 +462,7 @@
     "profile-image": "Профилна снимка",
     "website": "Уебсайт",
     "location": "Местоположение",
-    "copied": "Referral link copied to clipboard.",
+    "copied": "Рефералната връзка е копирана.",
     "updated": "Профила е актуализиран успешно!"
   },
   "image-upload-button": {
@@ -467,19 +474,23 @@
     "currency": "Валутa",
     "language": "Език",
     "nsfw": "Show NSFW content",
-    "referral-link": "Referral link",
+    "referral-link": "Реферална връзка",
     "updated": "Предпочитанията са обновени!"
   },
   "wallet": {
     "unclaimed-rewards": "Неизчистени награди",
     "claim-reward-balance": "Вземи точките от награди",
     "claim-reward-balance-ok": "Наградите са изчистени",
-    "estimated": "Предполагаема стойност на акаунта",
+    "estimated": "Пресметната стойност на портфейла",
+    "estimated-points": "Пресметната стойност на точките",
     "estimated-description": "Приблизителната стойност се определя от 7 дневна, средна цена на HIVE.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE са търгуеми жетони който могат да бъдат прехвърлени по всяко време.HIVE може да се преобразува в Hive стойност на гласа чрез процес наречен увеличаване на силата.",
     "hive-power": "HIVE сила/стойност",
     "hive-power-description": "Hive Power са жетони които събират повече сила като ги притежавате дългосрочно и гласувате на постове. Колкото повече Hive Power имате, толкова повече влияние имате върху наградите на останалите и печелите награди за правилно гласуване.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Делегиран Hive Power",
     "hive-power-received": "Получен Hive Power",
     "next-power-down-amount": "Следващо количество на намалената сила",
@@ -498,7 +509,16 @@
     "delegate": "Делегирай",
     "power-down": "Намаляне на силата",
     "withdraw-routes": "Пътища за теглене",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Преобразувай HBD към HIVE"
+  },
+  "wallet-engine": {
+    "title": "Hive Engine Tokens",
+    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
+    "no-results": "No tokens found.",
+    "token": "Token",
+    "balance": "Balance",
+    "staked": "Staked"
   },
   "withdraw-routes": {
     "title": "Акаунти за теглене",
@@ -557,7 +577,8 @@
   "purchase": {
     "select-asset": "Изберете актив",
     "slider-hint": "Плъзнете слайдъра за да регулирате стойноста.",
-    "submit": "Купи"
+    "submit": "Купи",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Промотирай",
@@ -610,6 +631,8 @@
     "memo-placeholder": "добави своите бележки тук",
     "memo-help": "Тази бележка е публична",
     "available-hp-hint": "* налична hive стойност на гласа",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "Потвърдете транзакцията",
     "confirm-sub-title": "Моля проверете дали всичко е точно",
     "confirm": "Потвърди",
@@ -666,6 +689,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
     "type-fill_recurrent_transfer": "Recurring transfer occurred",
     "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
@@ -680,7 +704,8 @@
   },
   "delegated-vesting": {
     "title": "Делегиран Hive сила/стойност",
-    "undelegate": "премахване на делегацията"
+    "undelegate": "премахване на делегацията",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Получен Hive сила/стойност"
@@ -750,6 +775,7 @@
     "clear": "Изчисти",
     "published": "Поста е Публикуван",
     "updated": "Публикацията е Обновена",
+    "thumbnail": "Thumbnail",
     "advanced": "Разширен режим",
     "beneficiaries": "Бенефициенти",
     "beneficiaries-hint": "Настрой бенефициентите с който да споделиш авторската награда с други акаунти",
@@ -767,7 +793,15 @@
     "placeholder-focus": "Въведи таг",
     "placeholder-has-tags": "Добави още",
     "suggestion-header": "Тагове",
-    "error-max": "Максимум {{n}} тагa"
+    "error-max": "Максимум {{n}} тагa",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Choose a community",
@@ -934,7 +968,10 @@
     "filter-team": "Ecency Проекти",
     "return-description": "Това е мининималната стойност за осъществяване на предложение. Всяко предложение с по-малко гласове няма да получи средства.",
     "votes-dialog-title": "Гласове на Предложение #{{n}}",
-    "see-all": "виж всички предложения"
+    "see-all": "виж всички предложения",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Галерия",
@@ -1025,9 +1062,12 @@
       "contact-email": "Изпратете ни имейл"
     },
     "faq": {
-      "page-title": "Ecency FAQ",
+      "page-title": "How can we help you?",
       "page-sub-title": "Таблица на съдържанието",
       "what-is-ecency-header": "Какво е Ecency?",
+      "search": "Related results for {{search}} filtered below",
+      "search-not-found": "Nothing was found. To ask our community, join our ",
+      "search-placeholder": "Search our articles",
       "what-is-ecency-body": "<p>Ecency е <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">блокчейн</a> социална мрежа управлявана от <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency e домът на свободата на словото и награждаващите общности за създателите на съдържание.</p><p>Проектът е създаден от <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> през Август 2016 като алтернативна социална мрежа, която е нецензурирана, контролирана от потребителите, незаглушаваща и с отворен код. В момента има много <a class=\"push-link\" href=\"/contributors\">много независими и доброволни сътрудници</a> които искат да поддържата визията и духа на свободното слово.</p><p>Ecency помага да се вкарат маси от хора в Блокчейн технологиите, където на потребителите им се заплаща за времето, ресурсите, и да се учат докато се наслаждават на социалните аспекти на блокчейн. Чрез улесненото използване, потребителите не само се учат, но и също така стават инвеститори, иноватори на новият интернет.</p>",
       "what-is-hive-header": "Какво е Hive блокчейн?",
       "what-is-hive-body": "<p>Hive е блокчейн който е създаден да бъде бърза, без такси, децентрализирана, нецензурирана платформа за Web 3.0 приложения, със вградени черти където заинтересованите страни могат да залагат, гласуват, постват, играят игри, търгуват - всичко това без посредници(децентрализирано). Жетоните в Hive блокчейн се наричат HIVE, HIVE ДОЛАРИ, HIVE Стойност/сила.</p>",
@@ -1160,5 +1200,9 @@
     "success-message-subscribe": "A verification link has been sent to your email account!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }
