@@ -57,13 +57,13 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
   fetch = async () => {
     const { account } = this.props;
 
-    this.stateSet({ loading: true });
+    this.setState({ loading: true });
     let items = await getHiveEngineTokenBalances(account.name);
     items = items.filter(
       (token) => token.balance !== 0 || token.stakedBalance !== 0
     );
     items = this.sort(items);
-    this.stateSet({ tokens: items, loading: false });
+    this.setState({ tokens: items, loading: false });
   };
 
   sort = (items: HiveEngineToken[]) =>
@@ -83,7 +83,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     const { account } = this.props;
 
     const rewards = await getUnclaimedRewards(account.name);
-    this.stateSet({ rewards });
+    this.setState({ rewards });
   };
 
   claimRewards = (tokens: TokenStatus[]) => {
@@ -94,7 +94,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       return;
     }
 
-    this.stateSet({ claiming: true });
+    this.setState({ claiming: true });
 
     return claimRewards(
       activeUser.username,
@@ -104,7 +104,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
         success(_t("wallet.claim-reward-balance-ok"));
       })
       .then(() => {
-        this.stateSet({ rewards: []})
+        this.setState({ rewards: []})
       })
       .catch((err) => {
         console.log(err);

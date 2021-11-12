@@ -21,7 +21,7 @@ export class DialogContent extends BaseComponent<{}, ContentState> {
 
     componentDidMount() {
         geLatestDesktopTag().then(r => {
-            this.stateSet({desktopTag: r});
+            this.setState({desktopTag: r});
         })
     }
 

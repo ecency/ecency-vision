@@ -153,7 +153,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         if (edit) {
             return;
         }
-        this.stateSet({reply: !reply});
+        this.setState({reply: !reply});
     }
 
     toggleEdit = () => {
@@ -161,7 +161,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         if (reply) {
             return;
         }
-        this.stateSet({edit: !edit});
+        this.setState({edit: !edit});
     }
 
     replyTextChanged = (text: string) => {
@@ -186,7 +186,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
             version
         );
 
-        this.stateSet({inProgress: true});
+        this.setState({inProgress: true});
 
         comment(
             author,
@@ -230,7 +230,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         }).catch((e) => {
             error(formatError(e));
         }).finally(() => {
-            this.stateSet({inProgress: false});
+            this.setState({inProgress: false});
         });
     }
 
@@ -244,7 +244,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
             version
         );
 
-        this.stateSet({inProgress: true});
+        this.setState({inProgress: true});
 
         comment(
             activeUser?.username!,
@@ -266,7 +266,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         }).catch((e) => {
             error(formatError(e));
         }).finally(() => {
-            this.stateSet({inProgress: false});
+            this.setState({inProgress: false});
         });
     }
 

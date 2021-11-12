@@ -300,11 +300,7 @@ exports[`(4) No bg image - Night theme 1`] = `
 </div>
 `;
 
-exports[`(5) usePrivate = false 1`] = `null`;
-
-exports[`(5) usePrivate = false 2`] = `null`;
-
-exports[`(5) usePrivate = false 3`] = `
+exports[`(5) usePrivate = false 1`] = `
 <div
   className="profile-cover"
 >

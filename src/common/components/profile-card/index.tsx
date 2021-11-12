@@ -70,11 +70,11 @@ export class ProfileCard extends Component<Props, State> {
         this.getFollowsInfo(this.props.account.name)
     }
 
-    componentDidUpdate(prevProps: Readonly<Props>): void {
+    componentDidUpdate(prevProps: Readonly<Props>) {
         // Hide dialogs when account change
         if (this.props.account.name !== prevProps.account.name){
             this.setState({followersList: false, followingList: false, followsActiveUserLoading: this.props.activeUser && this.props.activeUser.username ? true : false});
-            this.getFollowsInfo(this.props.account.name)
+            this.getFollowsInfo(this.props.account.name);
         }
     }
 

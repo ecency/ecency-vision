@@ -77,7 +77,7 @@ export class List extends BaseComponent<Props, State> {
 
     fetch = () => {
         const {account, dynamicProps, totalDelegated, setSubtitle} = this.props;
-        this.stateSet({loading: true});
+        this.setState({loading: true});
         let totalData: DelegatedVestingShare[] = [];
         const {hivePerMVests} = dynamicProps;
 
@@ -106,7 +106,7 @@ export class List extends BaseComponent<Props, State> {
                         const toBeReturned = totalDelegatedNumbered - totalDelegatedValue;
                         setSubtitle && setSubtitle(Number(toBeReturned.toFixed(3)))
 
-                        this.stateSet({loading: false, data: [... new Set(sorted)]})
+                        this.setState({loading: false, data: [... new Set(sorted)]})
                     }
                 });
         }
@@ -156,24 +156,24 @@ export class List extends BaseComponent<Props, State> {
                                 children: <a href="#" className="undelegate">{_t("delegated-vesting.undelegate")}</a>,
                                 onToggle: () => {
                                     const {hideList} = this.state;
-                                    this.stateSet({hideList: !hideList});
+                                    this.setState({hideList: !hideList});
                                 },
                                 onKey: (key) => {
-                                    this.stateSet({inProgress: true});
+                                    this.setState({inProgress: true});
                                     delegateVestingShares(activeUser.username, key, username, "0.000000 VESTS")
                                         .then(() => this.fetch())
                                         .catch(err => error(formatError(err)))
-                                        .finally(() => this.stateSet({inProgress: false}))
+                                        .finally(() => this.setState({inProgress: false}))
                                 },
                                 onHot: () => {
                                     delegateVestingSharesHot(activeUser.username, username, "0.000000 VESTS");
                                 },
                                 onKc: () => {
-                                    this.stateSet({inProgress: true});
+                                    this.setState({inProgress: true});
                                     delegateVestingSharesKc(activeUser.username, username, "0.000000 VESTS")
                                         .then(() => this.fetch())
                                         .catch(err => error(formatError(err)))
-                                        .finally(() => this.stateSet({inProgress: false}))
+                                        .finally(() => this.setState({inProgress: false}))
                                 }
                             }) : null;
 
@@ -202,7 +202,7 @@ export class List extends BaseComponent<Props, State> {
                         })}
                     </div>
                     <MyPagination className="mt-4" dataLength={dataToShow.length} pageSize={pageSize} maxItems={4} page={page} onPageChange={(page:number) => {
-                        this.stateSet({page});
+                        this.setState({page});
                     }}/>
                 </div>
             </div>

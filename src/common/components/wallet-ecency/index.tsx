@@ -223,14 +223,14 @@ export class WalletEcency extends BaseComponent<Props, State> {
     const {mounted} = this.state;
     if(!mounted && global.isElectron){
         let getPoints = new Promise(res=>fetchPoints(username))
-        username && getPoints.then(res=>this.stateSet({mounted: true}));
+        username && getPoints.then(res=>this.setState({mounted: true}));
     }
 }
 
     claim = (e?: React.MouseEvent<HTMLAnchorElement>) => {
         if (e) e.preventDefault();
         const {activeUser, fetchPoints, updateActiveUser, global} = this.props;
-        this.stateSet({claiming: true});
+        this.setState({claiming: true});
         const username = activeUser?.username!;
             claimPoints(username).then(() => {
             success(_t('points.claim-ok'));

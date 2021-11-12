@@ -52,24 +52,22 @@ export class Curation extends BaseComponent<Props, State> {
         return b.efficiency - a.efficiency;
     }
 
-    fetch = () => {
+    fetch = async() => {
         const {period} = this.state;
-        this.stateSet({loading: true, data: []});
+        this.setState({loading: true, data: []});
 
-        getCuration(period).then(data => {
-            const accounts = data.map((item) => item.account);
-            getAccounts(accounts).then(res => {
-                for (let index = 0; index < res.length; index++) {
-                    const element = res[index];
-                    const curator = data[index];
-                    const effectiveVest: number = parseFloat(element.vesting_shares) + parseFloat(element.received_vesting_shares) - parseFloat(element.delegated_vesting_shares) - parseFloat(element.vesting_withdraw_rate);
-                    curator.efficiency = curator.vests / effectiveVest;
-                }
-                data.sort(this.compare);
-                this.stateSet({data});
-                this.stateSet({loading: false});
-            });
-        });
+        const dataa = await getCuration(period);
+        const accounts = dataa.map((item) => item.account);
+        const ress = await getAccounts(accounts);
+
+        for (let index = 0; index < ress.length; index++) {
+            const element = ress[index];
+            const curator = dataa[index];
+            const effectiveVest: number = parseFloat(element.vesting_shares) + parseFloat(element.received_vesting_shares) - parseFloat(element.delegated_vesting_shares) - parseFloat(element.vesting_withdraw_rate);
+            curator.efficiency = curator.vests / effectiveVest;
+        }
+        dataa.sort(this.compare);
+        this.setState({data: dataa, loading: false});
     }
 
     render() {
@@ -83,7 +81,7 @@ export class Curation extends BaseComponent<Props, State> {
                 return {
                     label: _t(`leaderboard.period-${f}`),
                     onClick: () => {
-                        this.stateSet({period: f as CurationDuration});
+                        this.setState({period: f as CurationDuration});
                         this.fetch();
                     }
                 }
