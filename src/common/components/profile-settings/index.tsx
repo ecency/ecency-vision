@@ -46,7 +46,6 @@ export class ProfileSettings extends Component<Props> {
                 {activeUser && activeUser.username && <Link to={`/@${activeUser.username}/permissions`}>
                     <h5>{_t("g.permissions")}</h5>
                 </Link>}
-                <PasswordUpdate activeUser={activeUser}/>
             </>
         }
 

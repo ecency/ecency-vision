@@ -41,6 +41,7 @@ import {History} from "history";
 import { ViewKeys } from "../components/view-keys";
 import {Redirect} from 'react-router-dom'
 import { PasswordUpdate } from "../components/password-update";
+import { _t } from "../i18n";
 
 interface MatchParams {
     username: string;
@@ -304,18 +305,20 @@ class ProfilePage extends BaseComponent<Props, State> {
                             if (section === "permissions" && activeUser) {
                                 if(account.name === activeUser.username){
                                     return <div className="container-fluid">
-                                        <div className="row">
-                                        <div className="col-12 col-md-6">
-                                            <ViewKeys activeUser={activeUser} />
-                                        </div>
-                                        <div className="col-12 col-md-6">
-                                            <PasswordUpdate activeUser={activeUser} />
-                                        </div>
-                                        </div>
+                                            <div className="row">
+                                                <div className="col-12 col-md-6">
+                                                    <h6 className="border-bottom pb-3">{_t('view-keys.header')}</h6>
+                                                    <ViewKeys activeUser={activeUser} />
+                                                </div>
+                                                <div className="col-12 col-md-6">
+                                                    <h6 className="border-bottom pb-3">{_t('password-update.title')}</h6>
+                                                    <PasswordUpdate activeUser={activeUser} />
+                                                </div>
+                                            </div>
                                         </div>
                                 }
                                 else {
-                                    return <Redirect to={`/@${account.name}`}></Redirect>
+                                    return <Redirect to={`/@${account.name}`} />
                                 }
                             }
 

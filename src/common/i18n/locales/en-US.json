@@ -1018,6 +1018,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",

@@ -97,7 +97,7 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
         updatePassword(update, ownerKey)
             .then(() => {
                 success(_t("password-update.updated"));
-                onUpdate();
+                onUpdate && onUpdate();
             })
             .catch((e) => {
                 error(formatError(e));
