@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {History, Location} from "history";
+import { _t } from "../../i18n";
 
 interface Props {
     history?: History;
@@ -139,10 +140,8 @@ export default class SuggestionList extends Component<Props> {
     };
 
     render() {
-        // const {children, items, header, renderer, containerClassName, modeItems} = this.props;
         const {children, containerClassName, modeItems} = this.props;
         const {showList} = this.state;
-        
         return (
             <>
                 <div className={containerClassName ? `suggestion ${containerClassName}` : "suggestion"} ref={this.parent}>
@@ -181,7 +180,7 @@ export default class SuggestionList extends Component<Props> {
                             }
                             <div className="suggestion-list mt-1">
                                 <div className="list-body">
-                                    <a href="#" className="list-item" onClick={this.moreResultsClick}>More results</a>
+                                    <a href="#" className="list-item" onClick={this.moreResultsClick}>{_t("g.more-results")}</a>
                                 </div>
                             </div>
                         </div>
