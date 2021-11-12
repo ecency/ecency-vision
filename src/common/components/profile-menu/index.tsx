@@ -87,11 +87,6 @@ export class ProfileMenu extends Component<Props> {
                             {_t(`profile.section-settings`)}
                         </Link>
                     )}
-                    {(activeUser && activeUser.username === username) && (
-                        <Link className={_c(`profile-menu-item ${section === "permission" ? "selected-item" : ""}`)} to={`/@${username}/permission`}>
-                            {_t(`profile.section-permission`)}
-                        </Link>
-                    )}
                 </div>
 
                 <div className="page-tools">{ProfileFilter[section] && 
