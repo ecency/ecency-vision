@@ -586,7 +586,11 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
 </div>
 `;
 
-exports[`(4) Render an empty list if tokens equals zero 1`] = `
+exports[`(4) Render an empty list if tokens equals zero 1`] = `null`;
+
+exports[`(4) Render an empty list if tokens equals zero 2`] = `null`;
+
+exports[`(4) Render an empty list if tokens equals zero 3`] = `
 <div
   className="wallet-hive-engine"
 >
