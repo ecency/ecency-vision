@@ -578,14 +578,17 @@ export class List extends Component<ListProps> {
         isHiddenPermitted: false,
         mutedData: []
     }
+    _isMounted = false;
 
     componentWillUnmount(){
-        document.getElementsByTagName("html")[0].style.position = 'unset'
+        document.getElementsByTagName("html")[0].style.position = 'unset';
+        this._isMounted = false;
     }
     
     componentDidMount(){
-        document.getElementsByTagName("html")[0].style.position = 'relative'
-        this.fetchMutedUsers()
+        this._isMounted = true;
+        document.getElementsByTagName("html")[0].style.position = 'relative';
+        this._isMounted && this.fetchMutedUsers();
     }
 
     fetchMutedUsers = () => {
@@ -594,9 +597,9 @@ export class List extends Component<ListProps> {
             getFollowing(activeUser.username, "", "ignore", 100).then(r => {
                 if (r) {
                     let filterList = r.map(user=>user.following);
-                    this.setState({ mutedData: filterList });
+                    this._isMounted && this.setState({ mutedData: filterList });
                 }
-            })
+            });
         }
     }
 
