@@ -4,6 +4,8 @@ exports[`(1) No data. 1`] = `null`;
 
 exports[`(2) Less than 3 entries. Should render null 1`] = `null`;
 
+exports[`(2) Less than 3 entries. Should render null 2`] = `null`;
+
 exports[`(3) Should render entries 1`] = `
 <div
   className="similar-entries-list"
