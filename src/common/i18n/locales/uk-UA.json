@@ -2,7 +2,7 @@
   "g": {
     "add": "Додати",
     "edit": "Редагувати",
-    "submit": "Write a post",
+    "submit": "Створити допис",
     "search": "Шукати",
     "downloads": "Завантажень",
     "login": "Увійти",
@@ -12,6 +12,7 @@
     "cancel": "Скасувати",
     "reply": "Відповісти",
     "update": "Оновити",
+    "learnMore": "Докладніше",
     "or": "АБО",
     "muted-message": "Muted author, Reveal content",
     "server-error": "Не вдається завершити процес через помилку сервера",
@@ -37,16 +38,18 @@
     "muted": "muted",
     "found": "found",
     "feed": "feed",
-    "blog": "blogs",
-    "posts": "posts",
-    "comments": "comments",
-    "replies": "replies",
+    "blog": "блоги",
+    "logs": "logs",
+    "posts": "дописи",
+    "comments": "коментарі",
+    "replies": "відповіді",
     "done": "Виконано",
     "apply": "Apply",
     "warning": "Warning",
     "payout": "Payout",
     "learn-more": "Learn more in our",
-    "faq": "FAQ",
+    "faq": "ЧаПи",
+    "more-results": "More results",
     "close": "Close"
   },
   "confirm": {
@@ -82,6 +85,7 @@
   },
   "search": {
     "placeholder": "Пошук",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Пошук {{n}} дописів",
     "header-tag": "Мітки",
     "header-account": "Користувачі",
@@ -140,7 +144,7 @@
     "sign-up-text-2": "Зареєструйтеся зараз!"
   },
   "sign-up": {
-    "header": "Welcome to Ecency",
+    "header": "Вітаємо на Ecency",
     "description": "Home of Free speech and Rewarding communities!",
     "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
     "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
@@ -148,8 +152,8 @@
     "email": "Введіть свою електронну пошту",
     "ref": "Реферальний користувач (необов'язково)",
     "submit": "Продовжити",
-    "validation-username": "Username is required.",
-    "validation-email": "Email is required.",
+    "validation-username": "Ім'я користувача є обов'язковим.",
+    "validation-email": "Адреса електронної пошти є обов'язковою.",
     "success": "Ми надіслали лист на {{email}}.",
     "success-2": "Дотримуйтесь інструкцій для завершення процесу реєстрації.",
     "login-text-1": "Вже маєте обліковку?",
@@ -271,13 +275,15 @@
     "comment-entry-title": "Ви переглядаєте гілку одного коментаря з: ",
     "comment-entry-go-root": "Переглянути повний контекст",
     "comment-entry-go-parent": "Дивитись батьківський коментар",
-    "hidden-warning": "This content got low rating by people. Proceed with caution.",
+    "hidden-warning": "This content got low rating by people.",
     "delete-disabled": "Content after their payout cannot be deleted.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
-    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
+    "lowrep-warning": "Author of this content has low reputation.",
+    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Скопіювати адресу",
     "address-copied": "Адреса скопійована в буфер обміну.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -307,6 +313,7 @@
     "order-created": "Вік",
     "read-more": "...читайте більше відповідей...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Показати коментар"
   },
   "community": {
@@ -386,8 +393,8 @@
     "username-not-available": "Не доступний.",
     "username-wrong-format": "Не припустимий формат. Потрібен формат hive-1xxxx.",
     "checkbox-validation": "Please tick this box if you want to proceed.",
-    "title-validation": "Please fill in this field.",
-    "password": "Community password",
+    "title-validation": "Будь ласка, заповніть це поле.",
+    "password": "Пароль спільноти",
     "confirmation": "Я безпечно зберіг(-ла) ім'я користувача і пароль власника.",
     "submit": "Створити спільноту",
     "progress-account": "Створення облікового запису...",
@@ -397,15 +404,16 @@
     "done": "Ваша спільнота була створена 🎉",
     "reason-one": "True ownership",
     "reason-two": "Permanent, rewarding",
+    "password-copied": "Password copied to clipboard",
     "reason-three": "Powered by blockchain technology",
     "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Почати."
   },
   "community-rewards-registration": {
-    "body-text": "Register your community to get Ecency POINTS",
+    "body-text": "Зареєструйте свою спільноту, щоб отримати БАЛИ на Ecency",
     "btn-next-label": "Register",
     "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
-    "conflict-body-text": "This community is already registered.",
+    "conflict-body-text": "Ця спільнота вже зареєстрована.",
     "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "mute-btn": {
@@ -422,6 +430,7 @@
     "post-count": "Кількість дописів",
     "followers": "Підписники",
     "following": "Слідкує",
+    "follows-you": "Follows you",
     "section-blog": "Блог",
     "section-posts": "Дописи",
     "section-comments": "Коментарі",
@@ -467,7 +476,7 @@
     "currency": "Валюта",
     "language": "Мова",
     "nsfw": "Show NSFW content",
-    "referral-link": "Referral link",
+    "referral-link": "Реферальне посилання",
     "updated": "Налаштування оновлено!"
   },
   "wallet": {
@@ -475,11 +484,15 @@
     "claim-reward-balance": "Зарахувати винагороду на баланс",
     "claim-reward-balance-ok": "Винагорода зарахована на баланс",
     "estimated": "Приблизна вартість обліковки",
+    "estimated-points": "Приблизна вартість балів",
     "estimated-description": "Орієнтовна вартість базується на 7-денній середній вартості HIVE.",
+    "estimated-description-points": "Орієнтовна вартість базується на вартості купівлі Балів.",
     "hive": "HIVE",
     "hive-description": "HIVE - токени вільно торгуються та можуть бути передані будь-коли. HIVE можна конвертувати в Hive Силу за допомогою дії, що зветься \"збільшення сили\" чи анг. (Power Up).",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power - це токени які мають вплив та надають більше сили при їх довгостроковому збереженні, та голосуванні за дописи. Чим більше у вас Hive сили, тим більший ваш вплив на винагороду за пост, і більша ваша винагорода за влучне голосування.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Делегована Hive сила",
     "hive-power-received": "Отримана Hive сила",
     "next-power-down-amount": "Сума наступного зменшення сили",
@@ -498,7 +511,16 @@
     "delegate": "Делегувати",
     "power-down": "Зменшення сили голосу",
     "withdraw-routes": "Маршрути виведення",
+    "calculating": "Розрахунок",
     "converting-hbd-amount": "Converting to HIVE"
+  },
+  "wallet-engine": {
+    "title": "Hive Engine Tokens",
+    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
+    "no-results": "No tokens found.",
+    "token": "Токен",
+    "balance": "Баланс",
+    "staked": "Staked"
   },
   "withdraw-routes": {
     "title": "Рахунки виведення",
@@ -518,11 +540,11 @@
     "comment-desc": "Кожен коментар допомагає вам нарощувати аудиторію, зав'язує дружбу та приносить тобі 5 балів.",
     "checkin-desc": "Періодичний вхід на Ecency дає вам 0,25 балів та допомагає залишатися на зв'язку з друзями.",
     "vote-desc": "Голосуючи, ви винагороджуєте інших авторів і показуєте свою вдячність, а також отримуєте бали у кількості 0,01 x вагу голосу.",
-    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
+    "reblog-desc": "Діліться з друзями дописами, що вам подобаються, та отримуйте 1 бал.",
     "login-desc": "При першій авторизації в додатку Ecency вам автоматично нараховується 100 балів.",
     "checkin-extra-desc": "Регулярне використання додатку дає вам шанс отримати ще 10 бонусних балів, будьте активнішим та отримуй більше.",
-    "delegation-desc": "You can earn ~100 points per day for each 1000HP delegation.",
-    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
+    "delegation-desc": "Ви можете отримувати ~100 балів щодня за кожну делегацію 1000HP.",
+    "community-desc": "Зареєструйте свою спільноту, щоб отримати 20 балів за допис, опублікований через застосунки Ecency.",
     "history": "Історія",
     "post-list-desc": "Бали за допис",
     "comment-list-desc": "Бали за коментар",
@@ -544,9 +566,9 @@
     "filter-10": "Points for heartbeat",
     "filter-20": "Points for login",
     "filter-30": "Usage bonus",
-    "filter-100": "Points for post",
-    "filter-110": "Points for comment",
-    "filter-120": "Points for vote",
+    "filter-100": "Бали за допис",
+    "filter-110": "Бали за коментар",
+    "filter-120": "Бали за голос",
     "filter-130": "Points for reblog",
     "filter-150": "Delegation reward",
     "filter-160": "Referral reward",
@@ -557,7 +579,8 @@
   "purchase": {
     "select-asset": "Оберіть актив",
     "slider-hint": "Перетягніть повзунок, щоб налаштувати суму.",
-    "submit": "Придбати"
+    "submit": "Придбати",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Просувати",
@@ -610,6 +633,8 @@
     "memo-placeholder": "введіть сюди свої примітки",
     "memo-help": "Ця примітка є публічною",
     "available-hp-hint": "* вільна Hive сила",
+    "override-warning-1": "Нова сума замінює попередню.",
+    "override-warning-2": "Обліковий запис ({{account}}) вже делегований з {{previousAmount}}.",
     "confirm-title": "Підтвердіть ваш переказ",
     "confirm-sub-title": "Будь ласка, перевірте, чи все вірно",
     "confirm": "Підтвердити",
@@ -635,7 +660,7 @@
   "transactions": {
     "title": "Історія",
     "group-all": "All History",
-    "group-transfers": "Transfers",
+    "group-transfers": "Перекази",
     "group-market-orders": "Market Orders",
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
@@ -666,6 +691,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
     "type-fill_recurrent_transfer": "Recurring transfer occurred",
     "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
+    "type-delegate_vesting_shares": "Делегування",
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
@@ -680,7 +706,8 @@
   },
   "delegated-vesting": {
     "title": "Делегована Hive Power",
-    "undelegate": "припинити делегування"
+    "undelegate": "припинити делегування",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Отримана Hive Power"
@@ -750,6 +777,7 @@
     "clear": "Очистити",
     "published": "Допис опубліковано",
     "updated": "Допис оновлено",
+    "thumbnail": "Thumbnail",
     "advanced": "Розширений",
     "beneficiaries": "Бенефіціари (отримувачі)",
     "beneficiaries-hint": "Налаштуйте бенефіціарів (отримувачів) аби ділитися винагородою з авторами інших обліковок. Наприклад: співавторський допис, ви можете чесно розділити винагороду з іншим автором",
@@ -767,7 +795,15 @@
     "placeholder-focus": "Введіть тег",
     "placeholder-has-tags": "Додати більше",
     "suggestion-header": "Теги",
-    "error-max": "Максимум {{n}} тегів"
+    "error-max": "Максимум {{n}} тегів",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Choose a community",
@@ -934,7 +970,10 @@
     "filter-team": "Проєкти Ecency",
     "return-description": "Основне що пропозиції повертається. Кожна пропозиція з недостатньою кількістю голосів не отримує коштів.",
     "votes-dialog-title": "Голосів за пропозицію #{{n}}",
-    "see-all": "переглянути усі пропозиції"
+    "see-all": "переглянути усі пропозиції",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Галерея",
@@ -1025,9 +1064,12 @@
       "contact-email": "Напишіть нам"
     },
     "faq": {
-      "page-title": "Ecency ЧаПи",
+      "page-title": "Як ми можемо вам допомогти?",
       "page-sub-title": "Зміст",
       "what-is-ecency-header": "Що таке Ecency?",
+      "search": "Пов'язані результати за {{search}} відфільтровано нижче",
+      "search-not-found": "Нічого не знайдено. Зверніться до нашої спільноти, приєднуйтесь до нашої ",
+      "search-placeholder": "Пошук наших статей",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "Що таке Hive блокчейн?",
       "what-is-hive-body": "<p>Hive - це блокчейн, розроблений як швидка, безоплатна, децентралізована, нецензурована платформа для додатків Web 3.0 із вбудованими функціями, де зацікавлені сторони можуть заробляти винагороду та стекаючи їх, інвестуючи, публікуючи, граючи в ігри, торгуючи - все без будь-якої середньої людини (децентралізована). Токени на блокчейні Hive під назвою HIVE, HIVE DOLLARS, HIVE POWER(сила).</p>",
@@ -1150,15 +1192,19 @@
     "faq": "FAQ",
     "discover": "Discover",
     "sign-in": "Sign in",
-    "communities": "Communities",
+    "communities": "Спільноти",
     "help": "Help",
     "subscribe-us": "Subscribe Us",
     "enter-your-email-adress": "Enter your email adress",
     "send": "Send",
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
-    "copy-rights": "©2021 Ecency. All right reserved.",
-    "success-message-subscribe": "A verification link has been sent to your email account!",
+    "copy-rights": "© 2021 Ecency. Усі права застережені.",
+    "success-message-subscribe": "Посилання для підтвердження надіслано на вашу електронну пошту!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }

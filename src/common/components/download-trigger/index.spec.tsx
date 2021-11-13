@@ -46,7 +46,7 @@ jest.mock("../../api/misc", () => ({
 
 it('(1) Mac.', async () => {
     MOCK = "MacOS"
-    const component = renderer.create(<DialogContent/>);
+    const component = await renderer.create(<DialogContent/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
@@ -60,28 +60,28 @@ it('(2) Windows.', async () => {
 
 it('(3) Linux.', async () => {
     MOCK = "LinuxOS"
-    const component = renderer.create(<DialogContent/>);
+    const component = await renderer.create(<DialogContent/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
 it('(4) Android.', async () => {
     MOCK = "AndroidOS"
-    const component = renderer.create(<DialogContent/>);
+    const component = await renderer.create(<DialogContent/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
 it('(5) iOS.', async () => {
     MOCK = "iOS"
-    const component = renderer.create(<DialogContent/>);
+    const component = await renderer.create(<DialogContent/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
 it('(6) Other.', async () => {
     MOCK = ""
-    const component = renderer.create(<DialogContent/>);
+    const component = await renderer.create(<DialogContent/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });

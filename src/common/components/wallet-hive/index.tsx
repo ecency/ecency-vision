@@ -83,7 +83,7 @@ export class WalletHive extends BaseComponent<Props, State> {
         this.fetchConvertingAmount();
     }
 
-    getCurrentHpApr = (gprops:DynamicGlobalProperties) => {
+    getCurrentHpApr = (gprops:DynamicProps) => {
         // The inflation was set to 9.5% at block 7m
         const initialInflationRate = 9.5;
         const initialBlock = 7000000;
@@ -93,7 +93,7 @@ export class WalletHive extends BaseComponent<Props, State> {
         const decreasePercentPerIncrement = 0.01;
 
         // How many increments have happened since block 7m?
-        const headBlock = gprops.head_block_number;
+        const headBlock = gprops.headBlock;
         const deltaBlocks = headBlock - initialBlock;
         const decreaseIncrements = deltaBlocks / decreaseRate;
 
@@ -108,23 +108,21 @@ export class WalletHive extends BaseComponent<Props, State> {
         }
 
         // Now lets calculate the "APR"
-        const vestingRewardPercent = gprops.vesting_reward_percent / 10000;
-        const virtualSupply = gprops.virtual_supply.split(' ').shift();
-        const totalVestingFunds = gprops.total_vesting_fund_hive
-            .split(' ')
-            .shift();
+        const vestingRewardPercent = gprops.vestingRewardPercent / 10000;
+        const virtualSupply = gprops.virtualSupply;
+        const totalVestingFunds = gprops.totalVestingFund;
         return (
-            (parseFloat(virtualSupply || "0") * currentInflationRate * vestingRewardPercent) / parseFloat(totalVestingFunds || "0")
+            (virtualSupply * currentInflationRate * vestingRewardPercent) / totalVestingFunds
         );
     };
 
     fetchConvertingAmount = async() => {
-        const {account} = this.props;
+        const {account, dynamicProps} = this.props;
         const {aprs} = this.state;
-        await getDynamicGlobalProperties && getDynamicGlobalProperties() && getDynamicGlobalProperties()!.then(res=>{
-            let hp = this.getCurrentHpApr(res).toFixed(3);
-            this.setState({aprs: {...aprs, hbd: res.hbd_interest_rate/100, hp}})
-        })
+        const {hbdInterestRate} = dynamicProps;
+
+        let hp = this.getCurrentHpApr(dynamicProps).toFixed(3);
+        this.setState({aprs: {...aprs, hbd: hbdInterestRate/100, hp}})
 
         getConversionRequests(account.name).then(r => {
             if (r.length === 0) {

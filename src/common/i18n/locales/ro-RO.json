@@ -12,6 +12,7 @@
     "cancel": "Anulează",
     "reply": "Răspunde",
     "update": "Actualizare",
+    "learnMore": "Learn more",
     "or": "SAU",
     "muted-message": "Muted author, Reveal content",
     "server-error": "Acțiunea nu a putut fi completată datorită unei erori de server",
@@ -38,6 +39,7 @@
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
+    "logs": "logs",
     "posts": "posts",
     "comments": "comments",
     "replies": "replies",
@@ -47,6 +49,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Close"
   },
   "confirm": {
@@ -82,6 +85,7 @@
   },
   "search": {
     "placeholder": "Caută",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Caută {{n}} postări",
     "header-tag": "Taguri",
     "header-account": "Utilizator",
@@ -271,13 +275,15 @@
     "comment-entry-title": "Vizualizezi șirul unui singur comentariu de la: ",
     "comment-entry-go-root": "Vezi contextul complet",
     "comment-entry-go-parent": "Vizualizează postarea principală",
-    "hidden-warning": "This content got low rating by people. Proceed with caution.",
+    "hidden-warning": "This content got low rating by people.",
     "delete-disabled": "Content after their payout cannot be deleted.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
-    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
+    "lowrep-warning": "Author of this content has low reputation.",
+    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -307,6 +313,7 @@
     "order-created": "Vechime",
     "read-more": "...citește mai multe răspunsuri...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Arată comentariul"
   },
   "community": {
@@ -397,6 +404,7 @@
     "done": "Comunitatea ta a fost creată 🎉",
     "reason-one": "True ownership",
     "reason-two": "Permanent, rewarding",
+    "password-copied": "Password copied to clipboard",
     "reason-three": "Powered by blockchain technology",
     "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Începe."
@@ -422,6 +430,7 @@
     "post-count": "Număr postări",
     "followers": "Urmăritori",
     "following": "Urmărit",
+    "follows-you": "Follows you",
     "section-blog": "Blog",
     "section-posts": "Postări",
     "section-comments": "Comentarii",
@@ -474,12 +483,16 @@
     "unclaimed-rewards": "Recompense necolectate",
     "claim-reward-balance": "Colectează soldul de recompensă",
     "claim-reward-balance-ok": "Sold de recompensă colectat",
-    "estimated": "Valoarea Estimativă a Contului",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "Valoarea estimată se bazează pe o valoare medie de 7 zile de HIVE.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE sunt token-uri convertibile ce pot fi transferate oricând. HIVE pot fi transformați in Hive Power printr-un proces numit power up.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power sunt token-uri de influență ce câștigă mai multă putere pentru menținerea puterii de vot și votare. Cu cât deții mai mult Hive Power, cu atât poți influența recompensele altora si poti câștiga recompense pentru votare.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Hive Power Delegat",
     "hive-power-received": "Hive Power Primit",
     "next-power-down-amount": "Următoarea sumă power down",
@@ -498,7 +511,16 @@
     "delegate": "Delegate",
     "power-down": "Power down",
     "withdraw-routes": "Withdraw Routes",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE"
+  },
+  "wallet-engine": {
+    "title": "Hive Engine Tokens",
+    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
+    "no-results": "No tokens found.",
+    "token": "Token",
+    "balance": "Balance",
+    "staked": "Staked"
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",
@@ -557,7 +579,8 @@
   "purchase": {
     "select-asset": "Selectați Activ",
     "slider-hint": "Trage glisorul pentru a ajusta cantitatea.",
-    "submit": "Cumpărare"
+    "submit": "Cumpărare",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Promovează",
@@ -610,6 +633,8 @@
     "memo-placeholder": "introdu comentariul tău aici",
     "memo-help": "Această notă este publică",
     "available-hp-hint": "* available hive power",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "Confirmați tranzacția",
     "confirm-sub-title": "Te rugăm să verifici dacă totul este corect",
     "confirm": "Confirmă",
@@ -666,6 +691,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
     "type-fill_recurrent_transfer": "Recurring transfer occurred",
     "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
@@ -680,7 +706,8 @@
   },
   "delegated-vesting": {
     "title": "Hive Power Delegat",
-    "undelegate": "undelegate"
+    "undelegate": "undelegate",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Hive Power Primit"
@@ -750,6 +777,7 @@
     "clear": "Șterge",
     "published": "Post publicat",
     "updated": "Post actualizat",
+    "thumbnail": "Thumbnail",
     "advanced": "Advanced",
     "beneficiaries": "Beneficiaries",
     "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
@@ -767,7 +795,15 @@
     "placeholder-focus": "Introdu eticheta",
     "placeholder-has-tags": "Adauga",
     "suggestion-header": "Tags",
-    "error-max": "Maximum {{n}} tag-uri"
+    "error-max": "Maximum {{n}} tag-uri",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Choose a community",
@@ -934,7 +970,10 @@
     "filter-team": "Proiecte Ecency",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "Votes on Proposal #{{n}}",
-    "see-all": "see all proposals"
+    "see-all": "see all proposals",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Galerie",
@@ -1025,9 +1064,12 @@
       "contact-email": "Contactează-ne via e-mail"
     },
     "faq": {
-      "page-title": "Ecency FAQ",
+      "page-title": "How can we help you?",
       "page-sub-title": "Tabla de materii",
       "what-is-ecency-header": "Ce este Ecency?",
+      "search": "Related results for {{search}} filtered below",
+      "search-not-found": "Nothing was found. To ask our community, join our ",
+      "search-placeholder": "Search our articles",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "What is Hive blockchain?",
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
@@ -1160,5 +1202,9 @@
     "success-message-subscribe": "A verification link has been sent to your email account!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }

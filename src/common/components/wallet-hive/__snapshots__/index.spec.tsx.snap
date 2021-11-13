@@ -103,7 +103,7 @@ exports[`(1) Default Render 1`] = `
           <div
             className="description font-weight-bold mt-2"
           >
-            APR interest rate for Hive Power is 0%
+            APR interest rate for Hive Power is 2.980%
           </div>
         </div>
         <div
@@ -193,7 +193,7 @@ exports[`(1) Default Render 1`] = `
           <div
             className="description font-weight-bold mt-2"
           >
-            APR interest rate for HBD($) is 0%
+            APR interest rate for HBD($) is 10%
           </div>
         </div>
         <div
@@ -342,7 +342,7 @@ exports[`(1) Default Render 1`] = `
         <span
           className="sub-title"
         >
-          Wallet
+          Tokens
         </span>
         <span
           className="platform-logo"
@@ -465,7 +465,7 @@ exports[`(2) Render with converting HBD 1`] = `
           <div
             className="description font-weight-bold mt-2"
           >
-            APR interest rate for Hive Power is 0%
+            APR interest rate for Hive Power is 2.980%
           </div>
         </div>
         <div
@@ -566,7 +566,7 @@ exports[`(2) Render with converting HBD 1`] = `
           <div
             className="description font-weight-bold mt-2"
           >
-            APR interest rate for HBD($) is 0%
+            APR interest rate for HBD($) is 10%
           </div>
         </div>
         <div
@@ -715,7 +715,7 @@ exports[`(2) Render with converting HBD 1`] = `
         <span
           className="sub-title"
         >
-          Wallet
+          Tokens
         </span>
         <span
           className="platform-logo"
@@ -786,7 +786,7 @@ exports[`(3) usePrivate = false 1`] = `
           <div
             className="amount amount-bold"
           >
-            $ 11,264.462
+            $ 12,464.462
           </div>
         </div>
       </div>
@@ -838,7 +838,7 @@ exports[`(3) usePrivate = false 1`] = `
           <div
             className="description font-weight-bold mt-2"
           >
-            APR interest rate for Hive Power is 0%
+            APR interest rate for Hive Power is 2.980%
           </div>
         </div>
         <div
@@ -906,6 +906,17 @@ exports[`(3) usePrivate = false 1`] = `
               $ 447.514
             </span>
           </div>
+          <div
+            className="amount amount-passive converting-hbd"
+          >
+            <span
+              title="Converting to HIVE"
+            >
+              +
+               
+              $ 1,200.000
+            </span>
+          </div>
         </div>
       </div>
       <div
@@ -927,7 +938,7 @@ exports[`(3) usePrivate = false 1`] = `
           <div
             className="description font-weight-bold mt-2"
           >
-            APR interest rate for HBD($) is 0%
+            APR interest rate for HBD($) is 10%
           </div>
         </div>
         <div
@@ -1052,7 +1063,7 @@ exports[`(3) usePrivate = false 1`] = `
         <span
           className="sub-title"
         >
-          Wallet
+          Tokens
         </span>
         <span
           className="platform-logo"

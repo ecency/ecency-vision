@@ -52,7 +52,7 @@ it('(1) No data.', async () => {
         entry: entryInstance1
     };
 
-    const component = renderer.create(<SimilarEntries {...props}/>);
+    const component = await renderer.create(<SimilarEntries {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
@@ -68,7 +68,7 @@ it('(2) Less than 3 entries. Should render null', async () => {
         entry: entryInstance1
     };
 
-    const component = renderer.create(<SimilarEntries {...props}/>);
+    const component = await renderer.create(<SimilarEntries {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
@@ -84,7 +84,7 @@ it('(3) Should render entries', async () => {
         entry: entryInstance1
     };
 
-    const component = renderer.create(<SimilarEntries {...props}/>);
+    const component = await renderer.create(<SimilarEntries {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });

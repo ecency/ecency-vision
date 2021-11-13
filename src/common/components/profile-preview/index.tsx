@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { getRelationshipBetweenAccounts } from '../../api/bridge';
 import { getAccount, getFollowCount } from '../../api/hive';
 import accountReputation from '../../helper/account-reputation';
 import { _t } from '../../i18n';
@@ -29,33 +30,45 @@ interface Props {
     onClose: (e:any, donotSetState?: boolean) => void;
 }
 
-export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
+export const ProfilePreview = ({username, global, onClose, activeUser, ...props}:Props) => {
     const [profile, setProfile] = useState<any>(null);
     const [loading, setLoading] = useState(false);
     const [followCount, setFollowCount] = useState<any>(null);
     const [loadingFollowCount, setLoadingFollowCount] = useState(false);
     const [isMounted, setIsmounted] = useState(false);
+    const [followsActiveUser, setFollowsActiveUser] = useState(false);
+    const [followsActiveUserLoading, setFollowsActiveUserLoading] = useState(false);
 
     useEffect(()=>{
         setLoadingFollowCount(true);
-        setIsmounted(true)
+        setIsmounted(true);
+        setFollowsActiveUserLoading(true)
     },[])
 
     useEffect(()=>{
         if(isMounted){
-            setLoading(true)
+            setLoading(true);
+            setFollowsActiveUserLoading(true)
             getAccount(username).then(profile=>{
                 if (isMounted) {
                     setProfile(profile);
                     setLoading(false)
                 }
             }).catch(err => isMounted && setLoading(false));
+
             getFollowCount(username).then(res=> {
                 if (isMounted) {
                     setFollowCount(res);
                     setLoadingFollowCount(false);
                 }
             }).catch(err => isMounted && setLoadingFollowCount(false));
+            let loggedIn = activeUser && activeUser.username;
+            if(loggedIn){
+                getRelationshipBetweenAccounts(username, activeUser!.username).then(res=>{
+                    setFollowsActiveUserLoading(false);
+                    setFollowsActiveUser(res!.follows)
+                }).catch(err=> setFollowsActiveUserLoading(false))
+            }
         }
     },[username, isMounted]);
 
@@ -68,7 +81,8 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
 
     const coverFallbackDay = global.isElectron ? "./img/cover-fallback-day.png" : require("../../img/cover-fallback-day.png");
     const coverFallbackNight = global.isElectron ? "./img/cover-fallback-night.png" : require("../../img/cover-fallback-night.png");
-    const reputation = profile && accountReputation(profile.reputation)
+    const reputation = profile && accountReputation(profile.reputation);
+    const loggedIn = activeUser && activeUser.username;
 
     return isMounted ? <div className="profile-parent">
                 <div 
@@ -96,11 +110,12 @@ export const ProfilePreview = ({username, global, onClose, ...props}:Props) => {
                             <Link to={`/@${username}`} onClick={(e) => onClose(e, true)}>
                                 <div >{loading ? <Skeleton className="loading-md" /> : profile && profile.profile.name}</div>
                                 <div>{loading ? <Skeleton className="loading-md my-3" /> : `@${username} (${reputation})`}</div>
+                                <div>{loggedIn && followsActiveUserLoading ? <Skeleton className="loading-md my-3" /> : followsActiveUser ? _t("profile.follows-you") : null}</div>
                             </Link>
                             <div className="d-flex mt-3">
                                 <>
-                                    <FollowControls {...props} targetUsername={username}/>
-                                    {global.usePrivate && <FavoriteBtn {...props} targetUsername={username}/>}
+                                    <FollowControls {...props} targetUsername={username} activeUser={activeUser} />
+                                    {global.usePrivate && <FavoriteBtn {...props} targetUsername={username} activeUser={activeUser} />}
                                 </>
                             </div>
                         </div>

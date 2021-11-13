@@ -271,6 +271,13 @@ exports[`(3) Should show profile edits 1`] = `
     </span>
   </div>
   <div
+    className="d-flex justify-content-center mb-3 d-md-block"
+  >
+    <div
+      className="skeleton loading-follows-you"
+    />
+  </div>
+  <div
     className="basic-info"
   >
     <div

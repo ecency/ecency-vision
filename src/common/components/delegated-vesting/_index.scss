@@ -13,6 +13,10 @@
 
   .user-list {
     @include user-grid-list(1, 2, 2);
+    min-height: 361px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     .item-extra {
       display: flex;

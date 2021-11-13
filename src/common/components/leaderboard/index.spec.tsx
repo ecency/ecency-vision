@@ -28,7 +28,7 @@ it('(1) Render with data.', async () => {
         }
     };
 
-    const component = renderer.create(<LeaderBoard {...props}/>);
+    const component = await renderer.create(<LeaderBoard {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });

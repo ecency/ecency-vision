@@ -82,7 +82,7 @@ export interface PageProps {
     addCommunity: (data: Community) => void;
 
     transactions: Transactions;
-    fetchTransactions: (username: string, group?: OperationGroup | "") => void;
+    fetchTransactions: (username: string, group?: OperationGroup | "", start?: number, limit?: number) => void;
     resetTransactions: () => void;
 
     users: User[];

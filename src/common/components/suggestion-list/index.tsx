@@ -1,12 +1,18 @@
 import React, {Component} from "react";
+import {History, Location} from "history";
+import { _t } from "../../i18n";
 
 interface Props {
+    history?: History;
+    location?: Location;
     items: any[];
+    modeItems?: any[];
     header?: string;
     containerClassName?: string;
     renderer?: (item: any) => JSX.Element;
     onSelect?: (item: any) => void;
     children: JSX.Element;
+    searchValue?: string;
 }
 
 interface State {
@@ -120,40 +126,62 @@ export default class SuggestionList extends Component<Props> {
         this.setState({showList: true});
     };
 
+    moreResultsClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        const {history, location, searchValue} = this.props;
+        this.setState({showList: false});
+        if (!!searchValue && !!history && !!location) {
+            if (["/search-more", "/search-more/"].includes(location.pathname)) {
+                history.push(`/search-more/?q=${encodeURIComponent(searchValue)}`);
+            } else {
+                history.push(`/search/?q=${encodeURIComponent(searchValue)}`);
+            }
+        }
+    };
+
     render() {
-        const {children, items, header, renderer, containerClassName} = this.props;
+        const {children, containerClassName, modeItems} = this.props;
         const {showList} = this.state;
-        
         return (
             <>
                 <div className={containerClassName ? `suggestion ${containerClassName}` : "suggestion"} ref={this.parent}>
                     {children}
 
-                    {showList && items.length > 0 && (
-                        <div className="suggestion-list">
-                            {header && <div className="list-header">{header}</div>}
-                            <div className="list-body">
-                                {items.map((x, i) => {
-                                    const content = renderer ? renderer(x) : x;
-                                    return (
-                                        <a
-                                            href="#"
-                                            key={i}
-                                            className="list-item"
-                                            onClick={(e: React.MouseEvent) => {
-                                                e.preventDefault();
-                                                const {onSelect} = this.props;
-                                                if (onSelect) {
-                                                    onSelect(x);
-                                                }
-
-                                                this.setState({showList: false});
-                                            }}
-                                        >
-                                            {content}
-                                        </a>
-                                    );
-                                })}
+                    {showList && !!modeItems && modeItems.length > 0 &&  (
+                        <div className="suggestion-list-parent">
+                            {
+                                modeItems.map((modeItem, modeKey) => {
+                                    const _items = modeItem.items;
+                                    return _items.length > 0 && (
+                                        <div className="suggestion-list" key={modeKey}>
+                                            {modeItem.header && <div className="list-header">{modeItem.header}</div>}
+                                            <div className="list-body">
+                                                {_items.map((x:any, i:number) => {
+                                                    const content = modeItem.renderer ? modeItem.renderer(x) : x;
+                                                    return (
+                                                        <a
+                                                            href="#"
+                                                            key={i}
+                                                            className="list-item"
+                                                            onClick={(e: React.MouseEvent) => {
+                                                                e.preventDefault();
+                                                                modeItem.onSelect && modeItem.onSelect(x);
+                                                                this.setState({showList: false});
+                                                            }}
+                                                        >
+                                                            {content}
+                                                        </a>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+                            <div className="suggestion-list mt-1">
+                                <div className="list-body">
+                                    <a href="#" className="list-item" onClick={this.moreResultsClick}>{_t("g.more-results")}</a>
+                                </div>
                             </div>
                         </div>
                     )}

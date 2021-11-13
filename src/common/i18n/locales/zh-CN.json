@@ -12,6 +12,7 @@
     "cancel": "取消",
     "reply": "回复",
     "update": "更新",
+    "learnMore": "Learn more",
     "or": "其他登录方式",
     "muted-message": "Muted author, Reveal content",
     "server-error": "由于服务器出错，无法完成操作。",
@@ -38,6 +39,7 @@
     "found": "发现",
     "feed": "订阅源",
     "blog": "博客",
+    "logs": "logs",
     "posts": "帖子",
     "comments": "评论",
     "replies": "回复",
@@ -47,6 +49,7 @@
     "payout": "收益",
     "learn-more": "了解更多",
     "faq": "常见问答（FAQ）",
+    "more-results": "More results",
     "close": "关闭"
   },
   "confirm": {
@@ -82,6 +85,7 @@
   },
   "search": {
     "placeholder": "搜索",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "从 {{n}} 个帖子中搜索",
     "header-tag": "标签",
     "header-account": "用户",
@@ -271,13 +275,15 @@
     "comment-entry-title": "您正在查看的评论来自： ",
     "comment-entry-go-root": "查看完整内容",
     "comment-entry-go-parent": "查看直接上级",
-    "hidden-warning": "人们对此内容评分较低，请谨慎行事。",
+    "hidden-warning": "This content got low rating by people.",
     "delete-disabled": "Content after their payout cannot be deleted.",
     "muted-warning": "此内容被 {{community}} 版主禁言，因为他们不遵守社区指南。",
-    "lowrep-warning": "该帖子的作者信誉积分低。请谨慎行事。",
+    "lowrep-warning": "Author of this content has low reputation.",
+    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "这个帖子的作者被你禁言。",
     "address-copy": "复制帖子地址",
     "address-copied": "帖子地址已复制到剪贴板。",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "打开原始帖子",
     "cross-post-by": "交叉帖子由",
     "cross-post-community": "社区",
@@ -307,6 +313,7 @@
     "order-created": "年龄",
     "read-more": "...阅读更多回复...",
     "reveal-muted": "屏蔽作者 - 公开评论",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "显示评论"
   },
   "community": {
@@ -397,6 +404,7 @@
     "done": "您的社区已创建 🎉",
     "reason-one": "真正的所有权",
     "reason-two": "永久，奖励",
+    "password-copied": "Password copied to clipboard",
     "reason-three": "由 blockchain 技术支持",
     "reason-four": "创建永久、不可变、真正存在的社区需要花费3 HIVE。",
     "done-link-label": "开始。"
@@ -422,6 +430,7 @@
     "post-count": "帖子数目",
     "followers": "关注者",
     "following": "正在关注",
+    "follows-you": "Follows you",
     "section-blog": "博客",
     "section-posts": "帖子",
     "section-comments": "评论",
@@ -474,12 +483,16 @@
     "unclaimed-rewards": "未认领的奖励",
     "claim-reward-balance": "领取奖励余额",
     "claim-reward-balance-ok": "领取奖励余额",
-    "estimated": "估计账户价值",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "估计的价值是基于HIVE价格的7日平均值",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE是可以交易的代币，可以随时传输。HIVE可以转换为Hive Power通过能力提升过程。",
     "hive-power": "Hive Power",
     "hive-power-description": "Hive Power (HP) 是影响力的代币，通过长期持有并给文章点赞来获得更大影响力。拥有越多 Hive Power，就能对其他人的奖励产生更大影响，并通过点赞获得更多收益。",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "已委托的 Hive Power",
     "hive-power-received": "已接收的 Hive Power",
     "next-power-down-amount": "下一次 Power 释放大约是在",
@@ -498,7 +511,16 @@
     "delegate": "委托",
     "power-down": "减少能量",
     "withdraw-routes": "取出到其它账户",
+    "calculating": "Calculating",
     "converting-hbd-amount": "正在转换为 HIVE"
+  },
+  "wallet-engine": {
+    "title": "Hive Engine Tokens",
+    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
+    "no-results": "No tokens found.",
+    "token": "Token",
+    "balance": "Balance",
+    "staked": "Staked"
   },
   "withdraw-routes": {
     "title": "提取账户",
@@ -557,7 +579,8 @@
   "purchase": {
     "select-asset": "选择资产",
     "slider-hint": "拖动滑块来调整金额。",
-    "submit": "购买"
+    "submit": "购买",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "推广",
@@ -610,6 +633,8 @@
     "memo-placeholder": "在此输入您的备注",
     "memo-help": "此备忘录是公开的",
     "available-hp-hint": "* 可用的HIVE Power",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "确认您的交易",
     "confirm-sub-title": "请检查一切是否正确",
     "confirm": "确认",
@@ -666,6 +691,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
     "type-fill_recurrent_transfer": "Recurring transfer occurred",
     "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
@@ -680,7 +706,8 @@
   },
   "delegated-vesting": {
     "title": "已委托的 Hive Power",
-    "undelegate": "解除委托"
+    "undelegate": "解除委托",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "已接收的 Hive Power"
@@ -750,6 +777,7 @@
     "clear": "清除",
     "published": "发布成功",
     "updated": "内容已更新",
+    "thumbnail": "Thumbnail",
     "advanced": "高级的",
     "beneficiaries": "受益人",
     "beneficiaries-hint": "设置受益人与其他帐户分享作者奖励",
@@ -767,7 +795,15 @@
     "placeholder-focus": "输入标签",
     "placeholder-has-tags": "添加更多",
     "suggestion-header": "标签",
-    "error-max": "最大 {{n}} 标签"
+    "error-max": "最大 {{n}} 标签",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "选择一个社区",
@@ -934,7 +970,10 @@
     "filter-team": "Ecency 项目",
     "return-description": "这是基础返回提案。每个票数较少的提案都不会收到资金。",
     "votes-dialog-title": "对提议#{{n}} 投票",
-    "see-all": "查看所有提议"
+    "see-all": "查看所有提议",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "图库",
@@ -1025,9 +1064,12 @@
       "contact-email": "给我们发电子邮件"
     },
     "faq": {
-      "page-title": "Ecency常见问题",
+      "page-title": "How can we help you?",
       "page-sub-title": "目录",
       "what-is-ecency-header": "什么是Ecency？",
+      "search": "Related results for {{search}} filtered below",
+      "search-not-found": "Nothing was found. To ask our community, join our ",
+      "search-placeholder": "Search our articles",
       "what-is-ecency-body": "<p>Ecency是基于 <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">区块链</a> 的社交网络 - 由 <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>提供动力。</p><p>Ecency是内容创建者的言论自由和奖励社区。</p><p>项目由 <a class=\"push-link\" href=\"/@good-karma\">@hickarma</a> 于 2016 年 8 月创建，作为一个未知的社会网络， 用户控制、不可变和开源. 目前有 <a class=\"push-link\" href=\"/contributors\">许多独立和自愿的撰稿人</a> 希望保持言论自由的远见和精神。</p><p>Ecency有助于登入区块链技术，用户可以在那里获得时间的报酬。 资源和学习，同时享受区块链的社会方面。 通过便于使用，用户不仅学习，而且也成为投资者，新互联网的创新者。</p>",
       "what-is-hive-header": "区块链是什么？",
       "what-is-hive-body": "<p>Hive 是一个区块链，它被设计为快速、无费用的、去中心化的、不受审查的Web3平台。 具有内置功能的应用程序，在这种情况下，利益攸关者可以通过标记、管理、发布、游戏、交易来赚取奖励 - 没有任何中间人(去中心化)。 在 Hive 区块链上的令牌，叫做HIVE、HIVE的美元、HIVE的能量。</p>",
@@ -1160,5 +1202,9 @@
     "success-message-subscribe": "验证链接已发送到您的电子邮件帐户！",
     "validation-email": "需要有效的电子邮件",
     "error-occured": "服务器发生错误。"
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }

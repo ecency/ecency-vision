@@ -223,7 +223,27 @@ export const getDynamicProps = async (): Promise<DynamicProps> => {
     const fundRecentClaims = parseFloat(rewardFund.recent_claims);
     const fundRewardBalance = parseAsset(rewardFund.reward_balance).amount;
     const hbdPrintRate = globalDynamic.hbd_print_rate;
-    return {hivePerMVests, base, quote, fundRecentClaims, fundRewardBalance, hbdPrintRate};
+    const hbdInterestRate = globalDynamic.hbd_interest_rate;
+    const headBlock = globalDynamic.head_block_number;
+    const totalVestingFund = parseAsset(globalDynamic.total_vesting_fund_hive).amount;
+    const totalVestingShares = parseAsset(globalDynamic.total_vesting_shares).amount;
+    const virtualSupply = parseAsset(globalDynamic.virtual_supply).amount;
+    const vestingRewardPercent = globalDynamic.vesting_reward_percent;
+
+    return {
+        hivePerMVests,
+        base,
+        quote,
+        fundRecentClaims,
+        fundRewardBalance,
+        hbdPrintRate,
+        hbdInterestRate,
+        headBlock,
+        totalVestingFund,
+        totalVestingShares,
+        virtualSupply,
+        vestingRewardPercent
+    };
 };
 
 export const getVestingDelegations = (

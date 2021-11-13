@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Component, Fragment, useEffect, useState} from "react";
 
 import moment from "moment";
 
@@ -181,291 +181,289 @@ interface State {
     purchase: boolean;
     promote: boolean;
     boost: boolean;
-    mounted: boolean;
     transfer: boolean;
     estimatedPointsValue: number;
     estimatedPointsValueLoading: boolean;
 }
+export const WalletEcency = (props: Props) => {
 
-export class WalletEcency extends BaseComponent<Props, State> {
-    state: State = {
-        claiming: false,
-        purchase: false,
-        promote: false,
-        boost: false,
-        mounted: false,
-        transfer: false,
-        estimatedPointsValue: 0,
-        estimatedPointsValueLoading: false
-    }
+    const [claiming, setClaiming] = useState(false);
+    const [purchase, setPurchase] = useState(false);
+    const [promote, setPromote] = useState(false);
+    const [boost, setBoost] = useState(false);
+    const [transfer, setTransfer] = useState(false);
+    const [estimatedPointsValue, setEstimatedPointsValue] = useState(0);
+    const [estimatedPointsValueLoading, setEstimatedPointsValueLoading] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
 
-    componentDidMount() {
-        const {global, history} = this.props;
+    const {global, activeUser, account, points, history, fetchPoints, updateActiveUser} = props;
+
+    useEffect(() => {
+        setIsMounted(true);
         if (!global.usePrivate) {
             history.push("/");
         }
         let user = history.location.pathname.split("/")[1];
             user = user.replace('@','')
-        global.isElectron && this.initiateOnElectron(user);
-        this.getEstimatedPointsValue()
-    }
+        global.isElectron && isMounted && initiateOnElectron(user);
+        isMounted && getEstimatedPointsValue();
 
-    getEstimatedPointsValue(){
-        const {global: {currency}} = this.props;
-        this.setState({estimatedPointsValueLoading:true})
+        return () => {
+          setIsMounted(false);
+        }
+    }, []);
+
+    const getEstimatedPointsValue = () => {
+        const {global: {currency}} = props;
+        setEstimatedPointsValueLoading(true);
         getCurrencyTokenRate(currency,'estm').then(res => {
-            this.setState({ estimatedPointsValue: res, estimatedPointsValueLoading: false })
-        })
+            isMounted && setEstimatedPointsValue(res);
+            setEstimatedPointsValueLoading(false);
+        }).catch((error) => {
+            console.error('getCurrencyTokenRate',error);
+        });
     }
 
-    initiateOnElectron(username: string){
-    const { fetchPoints, global } = this.props;
-    const {mounted} = this.state;
-    if(!mounted && global.isElectron){
-        let getPoints = new Promise(res=>fetchPoints(username))
-        username && getPoints.then(res=>this.stateSet({mounted: true}));
+    const initiateOnElectron = (username: string) => {
+        if(!isMounted && global.isElectron){
+            let getPoints = new Promise(res=>fetchPoints(username))
+            username && getPoints.then(res=>{
+                setIsMounted(true)
+            }).catch((error) => {
+                console.error('getPoints',error);
+            });
+        }
     }
-}
 
-    claim = (e?: React.MouseEvent<HTMLAnchorElement>) => {
+    const claim = (e?: React.MouseEvent<HTMLAnchorElement>) => {
         if (e) e.preventDefault();
-        const {activeUser, fetchPoints, updateActiveUser, global} = this.props;
-        this.stateSet({claiming: true});
+
+        setClaiming(true);
         const username = activeUser?.username!;
-            claimPoints(username).then(() => {
+        claimPoints(username).then(() => {
             success(_t('points.claim-ok'));
             fetchPoints(username);
             updateActiveUser();
         }).catch(() => {
             error(_t('g.server-error'));
         }).finally(() => {
-            this.setState({claiming: false});
+            setClaiming(false);
         });
     }
 
-    togglePurchase = (e?: React.MouseEvent<HTMLAnchorElement>) => {
+    const togglePurchase = (e?: React.MouseEvent<HTMLAnchorElement>) => {
         if (e) e.preventDefault();
-
-        const {purchase} = this.state;
-        this.setState({purchase: !purchase});
+        setPurchase(!purchase);
     }
 
-    togglePromote = () => {
-        const {promote} = this.state;
-        this.setState({promote: !promote});
+    const togglePromote = () => {
+        setPromote(!promote);
     }
 
-    toggleTransfer = () => {
-        const {transfer} = this.state;
-        this.setState({transfer: !transfer});
+    const toggleTransfer = () => {
+        setTransfer(!transfer);
     }
 
-    toggleBoost = () => {
-        const {boost} = this.state;
-        this.setState({boost: !boost});
+    const toggleBoost = () => {
+        setBoost(!boost);
     }
 
-    filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+    const filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const filter = Number(e.target.value);
-        const {fetchPoints, account} = this.props;
+        const {fetchPoints, account} = props;
         fetchPoints(account.name, filter);
     }
+    
+    if (!global.usePrivate) {
+        return null;
+    }
 
-    render() {
-        const {claiming, transfer, purchase, promote, boost, estimatedPointsValue, estimatedPointsValueLoading} = this.state;
-        const {global, activeUser, account, points} = this.props;
+    const isMyPage = activeUser && activeUser.username === account.name;
 
-        if (!global.usePrivate) {
-            return null;
-        }
+    const dropDownConfig = {
+        history: history,
+        label: '',
+        items: [{
+            label: _t('points.transfer'),
+            onClick: toggleTransfer
+        }, {
+            label: _t('points.promote'),
+            onClick: togglePromote
+        }, {
+            label: _t('points.boost'),
+            onClick: toggleBoost
+        }]
+    };
 
-        const isMyPage = activeUser && activeUser.username === account.name;
-
-        const dropDownConfig = {
-            history: this.props.history,
-            label: '',
-            items: [{
-                label: _t('points.transfer'),
-                onClick: this.toggleTransfer
-            }, {
-                label: _t('points.promote'),
-                onClick: this.togglePromote
-            }, {
-                label: _t('points.boost'),
-                onClick: this.toggleBoost
-            }]
-        };
-
-        const txFilters = [
-            TransactionType.CHECKIN, TransactionType.LOGIN, TransactionType.CHECKIN_EXTRA,
-            TransactionType.POST, TransactionType.COMMENT, TransactionType.VOTE,
-            TransactionType.REBLOG, TransactionType.DELEGATION, TransactionType.REFERRAL,
-            TransactionType.COMMUNITY, TransactionType.TRANSFER_SENT, TransactionType.TRANSFER_INCOMING];
-
-        return (
-            <>
-                <div className="wallet-ecency">
-                    <div className="wallet-main">
-                        <div className="wallet-info">
-                            {points.uPoints !== '0.000' && (
-                                <>
-                                    <div className="unclaimed-rewards">
-                                        <div className="title">
-                                            {_t('points.unclaimed-points')}
-                                        </div>
-                                        <div className="rewards">
-                                            <span className="reward-type">{`${points.uPoints}`}</span>
-                                            {isMyPage && (
-                                                <Tooltip content={_t('points.claim-reward-points')}>
-                                                    <a
-                                                        className={`claim-btn ${claiming ? 'in-progress' : ''}`}
-                                                        onClick={this.claim}>
-                                                        {plusCircle}
-                                                    </a>
-                                                </Tooltip>
-                                            )}
-                                        </div>
+    const txFilters = [
+        TransactionType.CHECKIN, TransactionType.LOGIN, TransactionType.CHECKIN_EXTRA,
+        TransactionType.POST, TransactionType.COMMENT, TransactionType.VOTE,
+        TransactionType.REBLOG, TransactionType.DELEGATION, TransactionType.REFERRAL,
+        TransactionType.COMMUNITY, TransactionType.TRANSFER_SENT, TransactionType.TRANSFER_INCOMING];
+        
+    return (
+        <>
+            <div className="wallet-ecency">
+                <div className="wallet-main">
+                    <div className="wallet-info">
+                        {points.uPoints !== '0.000' && (
+                            <>
+                                <div className="unclaimed-rewards">
+                                    <div className="title">
+                                        {_t('points.unclaimed-points')}
                                     </div>
-                                </>
-                            )}
-
-                             <div className="balance-row estimated alternative">
-                                <div className="balance-info">
-                                    <div className="title">{_t("wallet.estimated-points")}</div>
-                                    <div className="description">{_t("wallet.estimated-description-points")}</div>
-                                </div>
-                                <div className="balance-values">
-                                    <div className="amount amount-bold">
-                                        {estimatedPointsValueLoading ? `${_t("wallet.calculating")}...` : <FormattedCurrency {...this.props} value={estimatedPointsValue} fixAt={3} />}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="balance-row alternative">
-                                <div className="balance-info">
-                                    <div className="title">{"Ecency Points"}</div>
-                                    <div className="description">{_t("points.main-description")}</div>
-                                </div>
-                                <div className="balance-values">
-                                    <div className="amount">
+                                    <div className="rewards">
+                                        <span className="reward-type">{`${points.uPoints}`}</span>
                                         {isMyPage && (
-                                            <div className="amount-actions">
-                                                <DropDown {...dropDownConfig} float="right"/>
-                                            </div>
+                                            <Tooltip content={_t('points.claim-reward-points')}>
+                                                <a
+                                                    className={`claim-btn ${claiming ? 'in-progress' : ''}`}
+                                                    onClick={claim}>
+                                                    {plusCircle}
+                                                </a>
+                                            </Tooltip>
                                         )}
-
-                                        <>{points.points} {"POINTS"}</>
                                     </div>
                                 </div>
+                            </>
+                        )}
+
+                            <div className="balance-row estimated alternative">
+                            <div className="balance-info">
+                                <div className="title">{_t("wallet.estimated-points")}</div>
+                                <div className="description">{_t("wallet.estimated-description-points")}</div>
                             </div>
-
-                            <div className="get-points">
-                                <div className="points-types">
-                                    <div className="points-types-title">{_t("points.earn-points")}</div>
-                                    <div className="points-types-list">
-                                        <Tooltip content={_t('points.post-desc')}>
-                                            <div className="point-reward-type">
-                                                {pencilOutlineSvg}
-                                                <span className="reward-num">15</span>
-                                            </div>
-                                        </Tooltip>
-                                        <Tooltip content={_t('points.comment-desc')}>
-                                            <div className="point-reward-type">
-                                                {commentSvg}
-                                                <span className="reward-num">5</span>
-                                            </div>
-                                        </Tooltip>
-                                        <Tooltip content={_t('points.vote-desc')}>
-                                            <div className="point-reward-type">
-                                                {chevronUpSvg}
-                                                <span className="reward-num">0.3</span>
-                                            </div>
-                                        </Tooltip>
-                                        <Tooltip content={_t('points.reblog-desc')}>
-                                            <div className="point-reward-type">
-                                                {repeatSvg}
-                                                <span className="reward-num">1</span>
-                                            </div>
-                                        </Tooltip>
-                                        <Tooltip content={_t('points.checkin-desc')}>
-                                            <div className="point-reward-type">
-                                                {starOutlineSvg}
-                                                <span className="reward-num">0.25</span>
-                                            </div>
-                                        </Tooltip>
-                                        <Tooltip content={_t('points.login-desc')}>
-                                            <div className="point-reward-type">
-                                                {accountOutlineSvg}
-                                                <span className="reward-num">10</span>
-                                            </div>
-                                        </Tooltip>
-                                        <Tooltip content={_t('points.checkin-extra-desc')}>
-                                            <div className="point-reward-type">
-                                                {checkAllSvg}
-                                                <span className="reward-num">10</span>
-                                            </div>
-                                        </Tooltip>
-                                        <Tooltip content={_t('points.delegation-desc')}>
-                                            <div className="point-reward-type">
-                                                {ticketSvg}
-                                                <span className="reward-num">10</span>
-                                            </div>
-                                        </Tooltip>
-                                        <Tooltip content={_t('points.community-desc')}>
-                                            <div className="point-reward-type">
-                                                {accountGroupSvg}
-                                                <span className="reward-num">20</span>
-                                            </div>
-                                        </Tooltip>
-                                    </div>
+                            <div className="balance-values">
+                                <div className="amount amount-bold">
+                                    {estimatedPointsValueLoading ? `${_t("wallet.calculating")}...` : <FormattedCurrency {...props} value={estimatedPointsValue*parseFloat(points.points)} fixAt={3} />}
                                 </div>
-                                {isMyPage && (
-                                    <div className="buy-points">
-                                        <a href="#" onClick={this.togglePurchase}> {_t('points.get')}</a>
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className="p-transaction-list">
-                                <div className="transaction-list-header">
-                                    <h2>{_t('points.history')}</h2>
-                                    <FormControl as="select" value={points.filter} onChange={this.filterChanged}>
-                                        <option value="0">{_t("points.filter-all")}</option>
-                                        {txFilters.map(x => <option key={x} value={x}>{_t(`points.filter-${x}`)}</option>)}
-                                    </FormControl>
-                                </div>
-
-                                {(() => {
-                                    if (points.loading) {
-                                        return <LinearProgress/>
-                                    }
-
-                                    return <div className="transaction-list-body">
-                                        {points.transactions.map(tr => <TransactionRow history={this.props.history} tr={tr} key={tr.id}/>)}
-                                        {(!points.loading && points.transactions.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
-                                    </div>
-                                })()}
                             </div>
                         </div>
 
-                        <WalletMenu global={global} username={account.name} active="ecency"/>
+                        <div className="balance-row alternative">
+                            <div className="balance-info">
+                                <div className="title">{"Ecency Points"}</div>
+                                <div className="description">{_t("points.main-description")}</div>
+                            </div>
+                            <div className="balance-values">
+                                <div className="amount">
+                                    {isMyPage && (
+                                        <div className="amount-actions">
+                                            <DropDown {...dropDownConfig} float="right"/>
+                                        </div>
+                                    )}
+
+                                    <>{points.points} {"POINTS"}</>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="get-points">
+                            <div className="points-types">
+                                <div className="points-types-title">{_t("points.earn-points")}</div>
+                                <div className="points-types-list">
+                                    <Tooltip content={_t('points.post-desc')}>
+                                        <div className="point-reward-type">
+                                            {pencilOutlineSvg}
+                                            <span className="reward-num">15</span>
+                                        </div>
+                                    </Tooltip>
+                                    <Tooltip content={_t('points.comment-desc')}>
+                                        <div className="point-reward-type">
+                                            {commentSvg}
+                                            <span className="reward-num">5</span>
+                                        </div>
+                                    </Tooltip>
+                                    <Tooltip content={_t('points.vote-desc')}>
+                                        <div className="point-reward-type">
+                                            {chevronUpSvg}
+                                            <span className="reward-num">0.3</span>
+                                        </div>
+                                    </Tooltip>
+                                    <Tooltip content={_t('points.reblog-desc')}>
+                                        <div className="point-reward-type">
+                                            {repeatSvg}
+                                            <span className="reward-num">1</span>
+                                        </div>
+                                    </Tooltip>
+                                    <Tooltip content={_t('points.checkin-desc')}>
+                                        <div className="point-reward-type">
+                                            {starOutlineSvg}
+                                            <span className="reward-num">0.25</span>
+                                        </div>
+                                    </Tooltip>
+                                    <Tooltip content={_t('points.login-desc')}>
+                                        <div className="point-reward-type">
+                                            {accountOutlineSvg}
+                                            <span className="reward-num">10</span>
+                                        </div>
+                                    </Tooltip>
+                                    <Tooltip content={_t('points.checkin-extra-desc')}>
+                                        <div className="point-reward-type">
+                                            {checkAllSvg}
+                                            <span className="reward-num">10</span>
+                                        </div>
+                                    </Tooltip>
+                                    <Tooltip content={_t('points.delegation-desc')}>
+                                        <div className="point-reward-type">
+                                            {ticketSvg}
+                                            <span className="reward-num">10</span>
+                                        </div>
+                                    </Tooltip>
+                                    <Tooltip content={_t('points.community-desc')}>
+                                        <div className="point-reward-type">
+                                            {accountGroupSvg}
+                                            <span className="reward-num">20</span>
+                                        </div>
+                                    </Tooltip>
+                                </div>
+                            </div>
+                            {isMyPage && (
+                                <div className="buy-points">
+                                    <a href="#" onClick={togglePurchase}> {_t('points.get')}</a>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="p-transaction-list">
+                            <div className="transaction-list-header">
+                                <h2>{_t('points.history')}</h2>
+                                <FormControl as="select" value={points.filter} onChange={filterChanged}>
+                                    <option value="0">{_t("points.filter-all")}</option>
+                                    {txFilters.map(x => <option key={x} value={x}>{_t(`points.filter-${x}`)}</option>)}
+                                </FormControl>
+                            </div>
+
+                            {(() => {
+                                if (points.loading) {
+                                    return <LinearProgress/>
+                                }
+
+                                return <div className="transaction-list-body">
+                                    {points.transactions.map(tr => <TransactionRow history={history} tr={tr} key={tr.id}/>)}
+                                    {(!points.loading && points.transactions.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
+                                </div>
+                            })()}
+                        </div>
                     </div>
 
-                    {transfer && (<Transfer
-                        {...this.props}
-                        mode="transfer"
-                        asset="POINT"
-                        activeUser={this.props.activeUser!}
-                        onHide={this.toggleTransfer}/>)
-                    }
-
-                    {purchase && (<Purchase {...this.props} activeUser={this.props.activeUser!} onHide={this.togglePurchase}/>)}
-                    {promote && (<Promote {...this.props} activeUser={this.props.activeUser!} onHide={this.togglePromote}/>)}
-                    {boost && (<Boost {...this.props} activeUser={this.props.activeUser!} onHide={this.toggleBoost}/>)}
+                    <WalletMenu global={global} username={account.name} active="ecency"/>
                 </div>
-            </>
-        );
-    }
+
+                {transfer && (<Transfer
+                    {...props}
+                    mode="transfer"
+                    asset="POINT"
+                    activeUser={activeUser!}
+                    onHide={toggleTransfer}/>)
+                }
+
+                {purchase && (<Purchase {...props} activeUser={activeUser!} onHide={togglePurchase}/>)}
+                {promote && (<Promote {...props} activeUser={activeUser!} onHide={togglePromote}/>)}
+                {boost && (<Boost {...props} activeUser={activeUser!} onHide={toggleBoost}/>)}
+            </div>
+        </>
+    );
 }
 
 export default (p: Props) => {

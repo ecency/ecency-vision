@@ -21,7 +21,7 @@ export class DialogContent extends BaseComponent<{}, ContentState> {
 
     componentDidMount() {
         geLatestDesktopTag().then(r => {
-            this.stateSet({desktopTag: r});
+            this.setState({desktopTag: r});
         })
     }
 
@@ -93,12 +93,13 @@ export default class DownloadTrigger extends Component <Props, State> {
                 scrollToTop = scrollToTop.length > 0;;
                 
                 if(scrollToTop){
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
-                });}
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth",
+                    });
+                }
+            }
         }
-    }
     }
 
     render() {

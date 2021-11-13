@@ -1,10 +1,7 @@
 import axios from "axios";
 import HiveEngineToken from "../helper/hive-engine-wallet";
-import { PrivateKey, TransactionConfirmation } from "@hiveio/dhive";
-import { client as hiveClient } from "./hive";
+import { TransactionConfirmation } from "@hiveio/dhive";
 import { broadcastPostingJSON } from "./operations";
-import { getAccessToken, getPostingKey } from "../helper/user-token";
-import hs from "hivesigner";
 
 interface TokenBalance {
   symbol: string;
@@ -65,7 +62,10 @@ const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
     .post(HIVE_ENGINE_RPC_URL, JSON.stringify(data), {
       headers: { "Content-type": "application/json" },
     })
-    .then((r) => r.data.result);
+    .then((r) => r.data.result)
+    .catch((e) => {
+      return [];
+    });
 };
 
 const getTokens = (tokens: string[]): Promise<Token[]> => {
@@ -86,7 +86,10 @@ const getTokens = (tokens: string[]): Promise<Token[]> => {
     .post(HIVE_ENGINE_RPC_URL, JSON.stringify(data), {
       headers: { "Content-type": "application/json" },
     })
-    .then((r) => r.data.result);
+    .then((r) => r.data.result)
+    .catch((e) => {
+      return [];
+    });
 };
 
 export const getHiveEngineTokenBalances = async (
@@ -112,7 +115,10 @@ export const getUnclaimedRewards = async(
     .get(`https://scot-api.hive-engine.com/@${account}?hive=1`)
     .then((r) => r.data)
     .then((r) => Object.values(r))
-    .then((r) => r.filter((t) => (t as TokenStatus).pending_token > 0)) as any);
+    .then((r) => r.filter((t) => (t as TokenStatus).pending_token > 0)) as any)
+    .catch(() => {
+      return [];
+    });
 };
 
 export const claimRewards = async (

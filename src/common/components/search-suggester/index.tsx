@@ -33,13 +33,17 @@ interface State {
     suggestions: string[] | Community[];
     loading: boolean;
     mode: string;
+    suggestionWithMode: any[];
 }
+
+const MODE__ALL = 'all';
 
 export class SearchSuggester extends BaseComponent<Props, State> {
     state: State = {
         suggestions: [],
         loading: false,
         mode: "",
+        suggestionWithMode: [],
     };
 
     _timer: any = null;
@@ -59,7 +63,7 @@ export class SearchSuggester extends BaseComponent<Props, State> {
         }
     }
 
-    fetchSuggestions = () => {
+    fetchSuggestions = async () => {
         const {value, trendingTags} = this.props;
         const {loading} = this.state;
 
@@ -76,7 +80,14 @@ export class SearchSuggester extends BaseComponent<Props, State> {
                 .map((x) => `#${x}`)
                 .slice(0, 20);
 
-            this.stateSet({mode: "tag", suggestions});
+            const suggestionWithMode = [{
+                header: _t("search.header-tag"),
+                onSelect: (i: string) => {
+                    this.tagSelected(i.replace("#", ""));
+                },
+                items: suggestions,
+            }];
+            this.stateSet({mode: "tag", suggestions, suggestionWithMode});
 
             return;
         }
@@ -88,7 +99,23 @@ export class SearchSuggester extends BaseComponent<Props, State> {
             lookupAccounts(name, 20)
                 .then((r) => {
                     const suggestions = r.map((x) => `@${x}`);
-                    this.stateSet({mode: "account", suggestions});
+                    const suggestionWithMode = [{
+                        header: _t("search.header-account"),
+                        renderer: (i: string) => {
+                            const name = i.replace("@", "");
+                            return (
+                                <>
+                                    {UserAvatar({...this.props, username: name, size: "medium"})}
+                                    <span style={{marginLeft: "8px"}}>{name}</span>
+                                </>
+                            );
+                        },
+                        onSelect: (i: string) => {
+                            this.accountSelected(i.replace("@", ""));
+                        },
+                        items: suggestions,
+                    }];
+                    this.stateSet({mode: "account", suggestions, suggestionWithMode});
                 })
                 .finally(() => {
                     this.stateSet({loading: false});
@@ -103,7 +130,17 @@ export class SearchSuggester extends BaseComponent<Props, State> {
             getCommunities("", dataLimit, q)
                 .then((r) => {
                     if (r) {
-                        this.stateSet({mode: "comm", suggestions: r});
+                        const suggestionWithMode = [{
+                            header: _t("search.header-community"),
+                            renderer: (i: Community) => {
+                                return i.title;
+                            },
+                            onSelect: (i: Community) => {
+                                this.communitySelected(i);
+                            },
+                            items: r,
+                        }];
+                        this.stateSet({mode: "comm", suggestions: r, suggestionWithMode});
                     }
                 })
                 .finally(() => {
@@ -113,7 +150,61 @@ export class SearchSuggester extends BaseComponent<Props, State> {
             return;
         }
 
-        this.stateSet({suggestions: [], mode: ""});
+        // Search ALL
+        if (!!value) {
+            const limit_result = 5;
+            // tags
+            const tags_suggestions = trendingTags.list
+                .filter((x: string) => x.toLowerCase().indexOf(value.toLowerCase()) === 0)
+                .filter((x: string) => x.indexOf("hive-") === -1)
+                .map((x) => `#${x}`)
+                .slice(0, limit_result);
+            // account
+            const lookup_accounts = await lookupAccounts(value, limit_result - 2);
+            const accounts_suggestions = lookup_accounts.map((x) => `@${x}`);
+            // Community
+            const get_communities = await getCommunities("", limit_result, value)
+            const communities_suggestions = get_communities || [];
+            const suggestionWithMode = [
+                {
+                    header: _t("search.header-tag"),
+                    onSelect: (i: string) => {
+                        this.tagSelected(i.replace("#", ""));
+                    },
+                    items: tags_suggestions
+                },
+                {
+                    header: _t("search.header-account"),
+                    renderer: (i: string) => {
+                        const name = i.replace("@", "");
+                        return (
+                            <>
+                                {UserAvatar({...this.props, username: name, size: "medium"})}
+                                <span style={{marginLeft: "8px"}}>{name}</span>
+                            </>
+                        );
+                    },
+                    onSelect: (i: string) => {
+                        this.accountSelected(i.replace("@", ""));
+                    },
+                    items: accounts_suggestions
+                },
+                {
+                    header: _t("search.header-community"),
+                    renderer: (i: Community) => {
+                        return i.title;
+                    },
+                    onSelect: (i: Community) => {
+                        this.communitySelected(i);
+                    },
+                    items: communities_suggestions
+                },
+            ];
+            this.stateSet({loading: false, mode: MODE__ALL, suggestions: [], suggestionWithMode});
+        } else {
+            this.stateSet({suggestions: [], mode: "", suggestionWithMode: []});
+        }
+
     };
 
 
@@ -148,53 +239,10 @@ export class SearchSuggester extends BaseComponent<Props, State> {
 
     render() {
         const {global, value, children, containerClassName} = this.props;
-        const {suggestions, mode} = this.state;
-
-        let suggestionProps = {};
-
-        switch (mode) {
-            case "account":
-                suggestionProps = {
-                    header: _t("search.header-account"),
-                    renderer: (i: string) => {
-                        const name = i.replace("@", "");
-                        return (
-                            <>
-                                {UserAvatar({...this.props, username: name, size: "medium"})}
-                                <span style={{marginLeft: "8px"}}>{name}</span>
-                            </>
-                        );
-                    },
-                    onSelect: (i: string) => {
-                        this.accountSelected(i.replace("@", ""));
-                    },
-                };
-                break;
-            case "tag":
-                suggestionProps = {
-                    header: _t("search.header-tag"),
-                    onSelect: (i: string) => {
-                        this.tagSelected(i.replace("#", ""));
-                    },
-                };
-                break;
-            case "comm":
-                suggestionProps = {
-                    header: _t("search.header-community"),
-                    renderer: (i: Community) => {
-                        return i.title;
-                    },
-                    onSelect: (i: Community) => {
-                        this.communitySelected(i);
-                    },
-                };
-                break;
-        }
-
-        
+        const {suggestions, mode, suggestionWithMode} = this.state;
         return (
             <>
-                <SuggestionList items={suggestions} {...suggestionProps} containerClassName={containerClassName}>{children}</SuggestionList>
+                <SuggestionList {...this.props} searchValue={value} items={suggestions} modeItems={suggestionWithMode} containerClassName={containerClassName}>{children}</SuggestionList>
             </>
         );
     }

@@ -40,7 +40,7 @@ it("(1) Default render", async () => {
         }
     };
 
-    const renderer = TestRenderer.create(<Boost {...props} />);
+    const renderer = await TestRenderer.create(<Boost {...props} />);
     await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 });
@@ -73,7 +73,7 @@ it("(2) Insufficient Funds", async () => {
         }
     };
 
-    const renderer = TestRenderer.create(<Boost {...props} />);
+    const renderer = await TestRenderer.create(<Boost {...props} />);
     await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 });
@@ -106,7 +106,7 @@ it("(2) With entry", async () => {
         }
     };
 
-    const renderer = TestRenderer.create(<Boost {...props} />);
+    const renderer = await TestRenderer.create(<Boost {...props} />);
     await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 });
