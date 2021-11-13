@@ -49,6 +49,7 @@
           a {
             display: block;
             width: 100%;
+            text-align: center;
 
             img {
               width: 100%;
@@ -81,6 +82,14 @@
           .item-image {
             @media (min-width: $xxxl-break) {
               height: 180px;
+            }
+            @media (min-width: $xs-break) {
+              height: 200px;
+              a {
+                img {
+                  width: 100% !important;
+                }
+              }
             }
           }
         }
