@@ -12,7 +12,7 @@
     "cancel": "최소",
     "reply": "댓글 쓰기",
     "update": "업데이트",
-    "learnMore": "Learn more",
+    "learnMore": "더보기",
     "or": "또는",
     "muted-message": "뮤트된 작성자, 콘텐츠 공개",
     "server-error": "서버 오류로 인해 과정을 완료할 수 없습니다",
@@ -49,7 +49,7 @@
     "payout": "보상",
     "learn-more": "더 자세히 알아보기",
     "faq": "자주 묻는 질문(FAQ)",
-    "more-results": "More results",
+    "more-results": "더 많은 결과 보기",
     "close": "닫기"
   },
   "confirm": {
@@ -404,7 +404,7 @@
     "done": "커뮤니티 생성 완료 🎉",
     "reason-one": "진정한 소유권",
     "reason-two": "영구적이고 보상하는",
-    "password-copied": "Password copied to clipboard",
+    "password-copied": "비밀번호 클립보드에 복사되었습니다",
     "reason-three": "블록체인 기술로 구동",
     "reason-four": "영구적이고 불변의 진정한 소유권 커뮤니티를 만드는 데 3 HIVE가 필요합니다.",
     "done-link-label": "시작."
@@ -483,8 +483,8 @@
     "unclaimed-rewards": "아직 미청구 보상",
     "claim-reward-balance": "보상 요청",
     "claim-reward-balance-ok": "보상을 요청했습니다",
-    "estimated": "Estimated Wallet Value",
-    "estimated-points": "Estimated Points Value",
+    "estimated": "계정 보유 자산 예상 가치",
+    "estimated-points": "계정 보유 포인트 예상 가치",
     "estimated-description": "추정 가치는 7 일 간의 하이브 평균 가격을 토대로 산정합니다.",
     "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
@@ -511,7 +511,7 @@
     "delegate": "임대",
     "power-down": "파워 다운",
     "withdraw-routes": "출금 루트",
-    "calculating": "Calculating",
+    "calculating": "계산중",
     "converting-hbd-amount": "HIVE로 전환"
   },
   "wallet-engine": {
