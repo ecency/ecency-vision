@@ -49,6 +49,7 @@
     "payout": "भुगतान",
     "learn-more": "हमारे में और जानें",
     "faq": "अकसर किये गए सवाल",
+    "more-results": "More results",
     "close": "बंद करें"
   },
   "confirm": {
@@ -429,6 +430,7 @@
     "post-count": "लेखन गिनती",
     "followers": "अनुयायी",
     "following": "अनुगामी",
+    "follows-you": "Follows you",
     "section-blog": "ब्लॉग",
     "section-posts": "पोस्ट",
     "section-comments": "टिप्पणियाँ",

@@ -49,6 +49,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Close"
   },
   "confirm": {
@@ -429,6 +430,7 @@
     "post-count": "Įrašų Skaičius",
     "followers": "Sekėjai",
     "following": "Sekama",
+    "follows-you": "Follows you",
     "section-blog": "Blog'as",
     "section-posts": "Įrašai",
     "section-comments": "Komentarai",

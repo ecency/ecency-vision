@@ -49,6 +49,7 @@
     "payout": "Ricompensa",
     "learn-more": "Scopri di più su",
     "faq": "Domande frequenti",
+    "more-results": "More results",
     "close": "Chiudi"
   },
   "confirm": {
@@ -429,6 +430,7 @@
     "post-count": "Numero di Post",
     "followers": "Seguaci",
     "following": "Seguiti",
+    "follows-you": "Follows you",
     "section-blog": "Blog",
     "section-posts": "Post",
     "section-comments": "Commenti",

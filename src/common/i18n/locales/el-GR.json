@@ -49,6 +49,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Close"
   },
   "confirm": {
@@ -429,6 +430,7 @@
     "post-count": "Πλήθος αναρτήσεων",
     "followers": "Ακόλουθοι",
     "following": "Ακολουθείτε",
+    "follows-you": "Follows you",
     "section-blog": "Ιστολόγιο",
     "section-posts": "Δημοσιεύσεις",
     "section-comments": "Σχόλια",

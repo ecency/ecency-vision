@@ -49,6 +49,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "ЧаПи",
+    "more-results": "More results",
     "close": "Close"
   },
   "confirm": {
@@ -429,6 +430,7 @@
     "post-count": "Кількість дописів",
     "followers": "Підписники",
     "following": "Слідкує",
+    "follows-you": "Follows you",
     "section-blog": "Блог",
     "section-posts": "Дописи",
     "section-comments": "Коментарі",

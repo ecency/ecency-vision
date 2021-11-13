@@ -49,6 +49,7 @@
     "payout": "收益",
     "learn-more": "了解更多",
     "faq": "常见问答（FAQ）",
+    "more-results": "More results",
     "close": "关闭"
   },
   "confirm": {
@@ -429,6 +430,7 @@
     "post-count": "帖子数目",
     "followers": "关注者",
     "following": "正在关注",
+    "follows-you": "Follows you",
     "section-blog": "博客",
     "section-posts": "帖子",
     "section-comments": "评论",

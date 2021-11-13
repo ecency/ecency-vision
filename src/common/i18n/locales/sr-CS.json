@@ -49,6 +49,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Close"
   },
   "confirm": {
@@ -429,6 +430,7 @@
     "post-count": "Broj objava",
     "followers": "Pratioci",
     "following": "Pratim",
+    "follows-you": "Follows you",
     "section-blog": "Blog",
     "section-posts": "Objave",
     "section-comments": "Komentari",

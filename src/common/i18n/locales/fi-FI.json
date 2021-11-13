@@ -49,6 +49,7 @@
     "payout": "Palkkio",
     "learn-more": "Lue lisää meidän",
     "faq": "UKK:sta",
+    "more-results": "More results",
     "close": "Sulje"
   },
   "confirm": {
@@ -429,6 +430,7 @@
     "post-count": "Julkaisujen määrä",
     "followers": "Seuraajat",
     "following": "Seuratut",
+    "follows-you": "Follows you",
     "section-blog": "Blogi",
     "section-posts": "Julkaisut",
     "section-comments": "Kommentit",

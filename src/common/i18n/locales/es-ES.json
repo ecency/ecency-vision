@@ -49,6 +49,7 @@
     "payout": "Pago",
     "learn-more": "Aprende más en nuestro",
     "faq": "Preguntas Frecuentes (FAQ)",
+    "more-results": "Más resultados",
     "close": "Cerrar"
   },
   "confirm": {
@@ -429,6 +430,7 @@
     "post-count": "Número de publicaciones",
     "followers": "Seguidores",
     "following": "Siguiendo",
+    "follows-you": "Te sigue",
     "section-blog": "Escribe",
     "section-posts": "Publicaciones",
     "section-comments": "Comentarios",

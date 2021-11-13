@@ -49,6 +49,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Sluiten"
   },
   "confirm": {
@@ -429,6 +430,7 @@
     "post-count": "Aantal artikelen",
     "followers": "Volgers",
     "following": "Volgend",
+    "follows-you": "Follows you",
     "section-blog": "Blog",
     "section-posts": "Artikelen",
     "section-comments": "Reacties",

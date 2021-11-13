@@ -49,6 +49,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Bağla"
   },
   "confirm": {
@@ -429,6 +430,7 @@
     "post-count": "Göndəriş Sayı",
     "followers": "İzləyici",
     "following": "İzlənilir",
+    "follows-you": "Follows you",
     "section-blog": "Bloq",
     "section-posts": "Göndərişlər",
     "section-comments": "Rəylər",

@@ -49,6 +49,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Close"
   },
   "confirm": {
@@ -429,6 +430,7 @@
     "post-count": "Bejegyzések száma",
     "followers": "Követők",
     "following": "Követés",
+    "follows-you": "Follows you",
     "section-blog": "Blog",
     "section-posts": "Bejegyzések",
     "section-comments": "Hozzászólások",
