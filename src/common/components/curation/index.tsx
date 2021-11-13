@@ -64,7 +64,7 @@ export const Curation = (props: Props) => {
         dataa.sort(compare);
         setData(dataa as CurationItem[]);
         setLoading(false);
-        debugger
+        
     }
 
     const {dynamicProps} = props;
