@@ -48,6 +48,13 @@ interface Props {
     updateActiveUser: (data?: Account) => void;
 }
 
+interface State {
+    followersList: boolean;
+    followingList: boolean;
+    followsActiveUser: boolean;
+    followsActiveUserLoading: boolean;
+}
+
 export const ProfileCard = (props: Props) => {
     const [followersList, setFollowersList] = useState(false);
     const [followingList, setFollowingList] = useState(false);
@@ -55,7 +62,7 @@ export const ProfileCard = (props: Props) => {
     const [followsActiveUserLoading, setFollowsActiveUserLoading] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
     const [, updateState] = useState();
-    const forceUpdate = useCallback(() => updateState({}), []);
+    const forceUpdate = useCallback(() => updateState({} as any), []);
 
     const {activeUser, account, section} = props;
 

@@ -12,6 +12,30 @@ exports[`(1) Render with data. 1`] = `
     >
       Curators
        
+      <div
+        className="custom-dropdown float-left"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <div
+          className="dropdown-btn"
+        >
+          
+          <div
+            className="menu-down"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
     </div>
     <div
       className="list-title"
