@@ -34,14 +34,13 @@ export const Curation = (props: Props) => {
     const [data, setData] = useState([] as CurationItem[]);
     const [period, setPeriod] = useState('day' as CurationDuration);
     const [loading, setLoading] = useState(true);
-
-    let _isMounted = false;
+    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        _isMounted = true;
-        _isMounted && fetch();
+        setIsMounted(true);
+        isMounted && fetch();
         return () => {
-          _isMounted = false
+          setIsMounted(false);
         }
     }, []);
 
@@ -63,7 +62,7 @@ export const Curation = (props: Props) => {
             curator.efficiency = curator.vests / effectiveVest;
         }
         dataa.sort(compare);
-        _isMounted && setData(dataa as CurationItem[]);
+        isMounted && setData(dataa as CurationItem[]);
         setLoading(false);
     }
 
