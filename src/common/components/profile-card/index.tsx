@@ -83,16 +83,14 @@ export const ProfileCard = (props: Props) => {
         setFollowersList(false);
         setFollowingList(false);
         setFollowsActiveUserLoading(activeUser && activeUser.username ? true : false);
-        setIsmounted(true);
-        getFollowsInfo(account.name);
+        isMounted && getFollowsInfo(account.name);
     }, [account.name]);
 
     const getFollowsInfo = (username: string) => {
         if(activeUser){
             getRelationshipBetweenAccounts(username, activeUser.username).then(res=>{
-                debugger
-                isMounted && setFollowsActiveUserLoading(false);
-                isMounted && setFollowsActiveUser(res?.follows || false);
+                setFollowsActiveUserLoading(false);
+                setFollowsActiveUser(res?.follows || false);
             }).catch((error) => {
                 console.log(error);
             });
