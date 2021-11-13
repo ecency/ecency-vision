@@ -217,7 +217,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
             // close comment box
             this.toggleReply();
 
-            if (entry.children === 0) {
+            if (entry.children === 0 && this._isMounted) {
                 // Update parent comment.
                 const nParentReply: Entry = {
                     ...entry,
@@ -371,7 +371,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                 <ProfilePreview
                                     username={entry.author}
                                     {...this.props}
-                                    onClose={(e, doNotSetState) => {this.onHideProfileAvatar(e, doNotSetState)}}
+                                    onClose={(e, doNotSetState) => {this._isMounted && this.onHideProfileAvatar(e, doNotSetState)}}
                                 />
                             }
                         </div>
@@ -399,7 +399,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                                     <ProfilePreview
                                         username={entry.author}
                                         {...this.props}
-                                        onClose={(e, doNotSetState) => {this.onHideProfile(e, doNotSetState)}}
+                                        onClose={(e, doNotSetState) => {this._isMounted && this.onHideProfile(e, doNotSetState)}}
                                     />
                             }
                             </div>
