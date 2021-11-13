@@ -107,17 +107,19 @@ class ProfilePage extends BaseComponent<Props, State> {
         }
 
         if(entries){
-        const { filter, tag } = global;
-        const groupKey = makeGroupKey(filter, tag);
-        const prevData = entries[groupKey];
-        if(prevData){
-        const data = this.props.entries[groupKey];
-        const { loading } = data;
-        const { loading: prevLoading } = prevData;
-        if(loading !== prevLoading && !loading && data.entries.length === 0 && groupKey === `blog-${username}` && !isDefaultPost){
-            this.setState({isDefaultPost:true})
-            history.push(`/${username}/posts`);}
-        }}
+            const { filter, tag } = global;
+            const groupKey = makeGroupKey(filter, tag);
+            const prevData = entries[groupKey];
+            if(prevData){
+                const data = this.props.entries[groupKey];
+                const { loading } = data;
+                const { loading: prevLoading } = prevData;
+                if(loading !== prevLoading && !loading && data.entries.length === 0 && groupKey === `blog-${username}` && !isDefaultPost){
+                    this.setState({isDefaultPost:true})
+                    history.push(`/${username}/posts`);
+                }
+            }
+        }
     }
 
     componentWillUnmount() {

@@ -93,12 +93,13 @@ export default class DownloadTrigger extends Component <Props, State> {
                 scrollToTop = scrollToTop.length > 0;;
                 
                 if(scrollToTop){
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
-                });}
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth",
+                    });
+                }
+            }
         }
-    }
     }
 
     render() {
