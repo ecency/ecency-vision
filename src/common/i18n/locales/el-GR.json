@@ -933,6 +933,7 @@
     "filter-inactive": "Επερχόμενα",
     "filter-team": "Ecency Projects",
     "return-description": "Αυτή είναι η βασική πρόταση επιστροφής. Κάθε πρόταση με λιγότερες ψήφους δεν θα λάβει χρήματα.",
+    "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "Ψήφοι στις Προτάσεις #{{n}}",
     "see-all": "δείτε όλες τις προτάσεις"
   },

@@ -933,6 +933,7 @@
     "filter-inactive": "À venir",
     "filter-team": "Projets Ecency",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
+    "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "Votes on Proposal #{{n}}",
     "see-all": "see all proposals"
   },

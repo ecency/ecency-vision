@@ -65,6 +65,7 @@ interface State {
     search: string;
     minVotes: number;
     isReturnProposalId: any;
+    thresholdProposalIds: any[];
 }
 
 class ProposalsPage extends BaseComponent<PageProps, State> {
@@ -81,6 +82,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         search: '',
         minVotes: 0,
         isReturnProposalId: null,
+        thresholdProposalIds: [],
     }
 
     constructor(props: any) {
@@ -119,17 +121,23 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                 const { proposals, minVotes } = this.state;
                 const totalBudget = parseAsset(fund.hbd_balance).amount;
                 const dailyBudget = totalBudget / 100;
+                
 
                 // find eligible proposals and
-                const eligible = proposals.filter(x => this.eligibleFilter(x, minVotes));
+                // const eligible = proposals.filter(x => this.eligibleFilter(x, minVotes));
+                const eligible = proposals.filter(proposal => proposal.id > 0 && proposal.status !== 'expired');
                 //  add up total votes
+                let _thresholdProposalIds : any[] = [];
                 const dailyFunded = eligible.reduce((a, b) => {
                     const _sum_amount = a + Number(b.daily_pay.amount) / 1000;
-                    _sum_amount >= dailyBudget && this.stateSet({isReturnProposalId: b.id});
+                    if (_sum_amount >= dailyBudget) {
+                        _thresholdProposalIds = _.union([b.id], _thresholdProposalIds);
+                        this.stateSet({isReturnProposalId: b.id});
+                    }
                     return _sum_amount <= dailyBudget ? _sum_amount : a;
                 }, 0);
 
-                this.stateSet({totalBudget, dailyBudget, dailyFunded})
+                this.stateSet({totalBudget, dailyBudget, dailyFunded, thresholdProposalIds: _thresholdProposalIds})
             })
             .finally(() => {
                 this.stateSet({loading: false});
@@ -195,8 +203,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         };
 
         const {global} = this.props;
-        const {loading, proposals, totalBudget, dailyBudget, dailyFunded, filter, inProgress, minVotes, isReturnProposalId} = this.state;
-
+        const {loading, proposals, totalBudget, dailyBudget, dailyFunded, filter, inProgress, minVotes, isReturnProposalId, thresholdProposalIds} = this.state;
         const navBar = global.isElectron ?
             NavBarElectron({
                 ...this.props,
@@ -274,7 +281,8 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                                         {ProposalListItem({
                                             ...this.props,
                                             proposal: p,
-                                            isReturnProposalId
+                                            isReturnProposalId,
+                                            thresholdProposalIds
                                         })}
                                     </Fragment>)}
                             </div>
