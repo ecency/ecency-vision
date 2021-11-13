@@ -38,7 +38,7 @@ export const Curation = (props: Props) => {
 
     useEffect(() => {
         setIsMounted(true);
-        isMounted && fetch();
+        fetch();
         return () => {
           setIsMounted(false);
         }
@@ -62,8 +62,9 @@ export const Curation = (props: Props) => {
             curator.efficiency = curator.vests / effectiveVest;
         }
         dataa.sort(compare);
-        isMounted && setData(dataa as CurationItem[]);
+        setData(dataa as CurationItem[]);
         setLoading(false);
+        debugger
     }
 
     const {dynamicProps} = props;
