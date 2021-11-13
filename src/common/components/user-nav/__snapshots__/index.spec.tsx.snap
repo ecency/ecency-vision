@@ -115,6 +115,21 @@ exports[`(2) Has rewards  1`] = `
       />
     </svg>
   </span>
+  <div
+    className="custom-dropdown float-right"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <span
+      className="user-avatar medium"
+      style={
+        Object {
+          "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+        }
+      }
+    />
+  </div>
 </div>
 `;
 

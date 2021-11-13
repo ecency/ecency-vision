@@ -536,7 +536,36 @@ exports[`(2) Night Theme 1`] = `
       >
         <div
           className="switch-language"
-        />
+        >
+          <div
+            className="custom-dropdown float-right"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="dropdown-btn"
+            >
+              <div
+                className="label"
+              >
+                EN
+              </div>
+              <div
+                className="menu-down"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
         <div
           className="switch-theme"
           onClick={[Function]}
@@ -774,7 +803,36 @@ exports[`(2) Night Theme 1`] = `
           >
             <div
               className="switch-language"
-            />
+            >
+              <div
+                className="custom-dropdown float-left"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Language
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div
@@ -1611,7 +1669,36 @@ exports[`(4) With active user && usePrivate = false 1`] = `
       >
         <div
           className="switch-language"
-        />
+        >
+          <div
+            className="custom-dropdown float-right"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="dropdown-btn"
+            >
+              <div
+                className="label"
+              >
+                EN
+              </div>
+              <div
+                className="menu-down"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
         <div
           className="switch-theme"
           onClick={[Function]}
@@ -1664,6 +1751,21 @@ exports[`(4) With active user && usePrivate = false 1`] = `
               />
             </svg>
           </a>
+          <div
+            className="custom-dropdown float-right"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+          </div>
         </div>
         <div
           className="submit-post"
@@ -2002,7 +2104,36 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           >
             <div
               className="switch-language"
-            />
+            >
+              <div
+                className="custom-dropdown float-left"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Language
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div

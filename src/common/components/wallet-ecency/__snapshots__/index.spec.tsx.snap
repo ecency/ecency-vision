@@ -523,7 +523,7 @@ exports[`(2) With active user 1`] = `
           <div
             className="amount amount-bold"
           >
-            $ 0.000
+            Calculating...
           </div>
         </div>
       </div>
@@ -552,7 +552,32 @@ exports[`(2) With active user 1`] = `
           >
             <div
               className="amount-actions"
-            />
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
             12.010
              
             POINTS
@@ -1059,7 +1084,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
           <div
             className="amount amount-bold"
           >
-            $ 0.000
+            Calculating...
           </div>
         </div>
       </div>
@@ -1088,7 +1113,32 @@ exports[`(3) Active user with unclaimed points 1`] = `
           >
             <div
               className="amount-actions"
-            />
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
             12.010
              
             POINTS
