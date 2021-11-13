@@ -58,10 +58,7 @@ const defProps = {
 
 it("(1) Empty list with no active user", async() => {
     // render the component
-    let component; 
-    act(() => {
-        component = create(<Discussion {...defProps}/>)
-    });
+    let component = await create(<Discussion {...defProps}/>);
 
     // make assertions on component
     expect(component.toJSON()).toMatchSnapshot();
@@ -74,10 +71,7 @@ it("(2) Empty list with active user", async() => {
         activeUser: activeUserMaker("foo")
     }
     // render the component
-    let component; 
-    act(() => {
-        component = create(<Discussion {...props}/>)
-    });
+    let component = await create(<Discussion {...props}/>);
 
     // make assertions on component
     expect(component.toJSON()).toMatchSnapshot();

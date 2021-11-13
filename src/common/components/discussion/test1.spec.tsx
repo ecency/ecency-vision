@@ -62,10 +62,7 @@ const defProps = {
 
 it("(1) Full render with active user", async() => {
     // render the component
-    let component; 
-    act(() => {
-        component = create(<Discussion {...defProps}/>)
-    });
+    let component = await create(<Discussion {...defProps}/>);
 
     // make assertions on component
     expect(component.toJSON()).toMatchSnapshot();
@@ -77,10 +74,7 @@ it("(2) Full render with no active user", async() => {
         activeUser: null
     }
     // render the component
-    let component; 
-    act(() => {
-        component = create(<Discussion {...props}/>)
-    });
+    let component = await create(<Discussion {...props}/>)
 
     // make assertions on component
     expect(component.toJSON()).toMatchSnapshot();
@@ -92,10 +86,7 @@ it("(3) With selected item", async() => {
         location: createLocation({hash: "#@forykw/re-esteemapp-202067t12246786z"}),
     }
     // render the component
-    let component; 
-    act(() => {
-        component = create(<Discussion {...props}/>)
-    });
+    let component = await create(<Discussion {...props}/>);
 
     // make assertions on component
     expect(component.toJSON()).toMatchSnapshot();
@@ -121,10 +112,7 @@ it("(4) Show mute button, muted comment", async() => {
     }
 
     // render the component
-    let component; 
-    act(() => {
-        component = create(<Discussion {...nProps}/>)
-    });
+    const component = await create(<Discussion {...nProps}/>);
 
     // make assertions on component
     expect(component.toJSON()).toMatchSnapshot();

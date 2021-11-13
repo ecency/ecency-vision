@@ -30,11 +30,7 @@ it('(1) Render with data.', async () => {
     };
 
     // render the component
-    let root;
-    act(() => {
-        root = create(<Curation {...props}/>)
-    });
-
+    const root = await create(<Curation {...props}/>)
     // make assertions on root 
     expect(root.toJSON()).toMatchSnapshot();
 });
