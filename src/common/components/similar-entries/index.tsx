@@ -87,7 +87,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
         const {retry} = this.state;
         const limit = 3;
         if (retry > 0 && this.state.entries.length < limit) {
-            this.stateSet({loading: true});
+            this.setState({loading: true});
             const query = this.buildQuery(entry);
             search(query, "newest", "0", undefined, undefined).then(r => {
 
@@ -107,9 +107,9 @@ export class SimilarEntries extends BaseComponent<Props, State> {
                     entries = entries.slice(0, limit);
                 }
 
-                this.stateSet({entries});
+                this.setState({entries});
             }).finally(() => {
-                this.stateSet({
+                this.setState({
                     loading: false,
                 })
             });

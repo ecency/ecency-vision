@@ -6,8 +6,13 @@ import renderer from "react-test-renderer";
 
 const props = {
   items: ["foo", "bar", "baz"],
-  header: "My List",
-  renderer: (i: any) => <> {`# ${i}`}</>,
+  // header: "My List",
+  // renderer: (i: any) => <> {`# ${i}`}</>,
+  modeItems: [{
+    items: ["foo", "bar", "baz"],
+    header: "My List",
+    renderer: (i: any) => <> {`# ${i}`}</>,
+  }]
 };
 
 const component = renderer.create(

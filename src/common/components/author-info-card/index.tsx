@@ -34,9 +34,14 @@ const AuthorInfoCard = (props: Props) => {
   });
 
   const [loading, setLoading] = useState(false)
+  let _isMounted = false;
 
   useEffect(() => {
+    _isMounted = true;
     !props?.global?.isMobile && getAuthorInfo();
+    return () => {
+      _isMounted = false
+    }
   }, []);
 
   // For fetching authors about and display name information
@@ -44,7 +49,7 @@ const AuthorInfoCard = (props: Props) => {
     setLoading(true)
     const _authorInfo = (await getAccountFull(author))?.profile;
 
-    setAuthorInfo({
+    _isMounted && setAuthorInfo({
       name: _authorInfo?.name || "",
       about: _authorInfo?.about || _authorInfo?.location || "",
     });

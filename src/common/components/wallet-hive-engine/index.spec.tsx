@@ -122,7 +122,7 @@ const defProps = {
 };
 
 it("(1) Render an empty list when no tokens found", async () => {
-  const renderer = TestRenderer.create(
+  const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
       <Wallet {...defProps} />
     </StaticRouter>
@@ -134,7 +134,7 @@ it("(1) Render an empty list when no tokens found", async () => {
 it("(2) Render with some hive engine tokens", async () => {
   MOCK_MODE = 2;
 
-  const renderer = TestRenderer.create(
+  const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
       <Wallet {...defProps} />
     </StaticRouter>
@@ -146,7 +146,7 @@ it("(2) Render with some hive engine tokens", async () => {
 it("(3) Render with an unclaimed rewards", async () => {
   MOCK_MODE = 3;
 
-  const renderer = TestRenderer.create(
+  const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
       <Wallet {...defProps} />
     </StaticRouter>
@@ -158,7 +158,7 @@ it("(3) Render with an unclaimed rewards", async () => {
 it("(4) Render an empty list if tokens equals zero", async () => {
   MOCK_MODE = 4;
 
-  const renderer = TestRenderer.create(
+  const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
       <Wallet {...defProps} />
     </StaticRouter>
@@ -175,7 +175,7 @@ it("(5) usePrivate = false", async () => {
       usePrivate: false,
     },
   };
-  const renderer = TestRenderer.create(
+  const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
       <Wallet {...props} />
     </StaticRouter>

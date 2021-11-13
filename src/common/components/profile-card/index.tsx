@@ -36,7 +36,9 @@ import {
     rssSvg,
 } from "../../img/svg";
 
-import { EditPic } from '../community-card'
+import { EditPic } from '../community-card';
+import { getRelationshipBetweenAccounts } from "../../api/bridge";
+import { Skeleton } from "../skeleton";
 
 interface Props {
     global: Global;
@@ -51,19 +53,43 @@ interface Props {
 interface State {
     followersList: boolean;
     followingList: boolean;
+    followsActiveUser: boolean;
+    followsActiveUserLoading: boolean;
 }
 
 export class ProfileCard extends Component<Props, State> {
     state: State = {
         followersList: false,
-        followingList: false
+        followingList: false,
+        followsActiveUser: false,
+        followsActiveUserLoading: false,
     };
+    _isMounted = false;
 
-    componentDidUpdate(prevProps: Readonly<Props>): void {
-        // Hide dialogs when account change
-        if (this.props.account.name !== prevProps.account.name) {
-            this.setState({followersList: false});
-            this.setState({followingList: false});
+    componentDidMount(){
+        this._isMounted = true;
+        this.setState({followsActiveUserLoading: this.props.activeUser && this.props.activeUser.username ? true : false});
+        this._isMounted && this.getFollowsInfo(this.props.account.name)
+    }
+
+    componentWillUnmount(){
+        this._isMounted = false;
+    }
+
+    componentDidUpdate(prevProps: Readonly<Props>){
+        if (this.props.account.name !== prevProps.account.name){
+            this.setState({followersList: false, followingList: false, followsActiveUserLoading: this.props.activeUser && this.props.activeUser.username ? true : false});
+            this.getFollowsInfo(this.props.account.name);
+        }
+    }
+
+    getFollowsInfo = (username: string) => {
+        if(this.props.activeUser){
+            getRelationshipBetweenAccounts(username, this.props.activeUser.username).then(res=>{
+                this._isMounted && this.setState({followsActiveUserLoading: false, followsActiveUser: res?.follows || false})
+            }).catch((error) => {
+                console.log(error);
+            });
         }
     }
 
@@ -86,7 +112,9 @@ export class ProfileCard extends Component<Props, State> {
 
     render() {
         const {account, activeUser, section} = this.props;
-
+        const {followsActiveUser, followsActiveUserLoading} = this.state;
+        const loggedIn = activeUser && activeUser.username;
+        
         if (!account.__loaded) {
             return <div className="profile-card">
                 <div className="profile-avatar">
@@ -102,7 +130,7 @@ export class ProfileCard extends Component<Props, State> {
         const vPower = votingPower(account);
 
         const isMyProfile = activeUser && activeUser.username === account.name && activeUser.data.__loaded && activeUser.data.profile;
-        const isSettings = section === 'settings'
+        const isSettings = section === 'settings';
 
         return (
             <div className="profile-card">
@@ -134,6 +162,7 @@ export class ProfileCard extends Component<Props, State> {
                         <span>{vPower.toFixed(2)}</span>
                     </Tooltip>
                 </div>
+                {loggedIn && <div className="d-flex justify-content-center mb-3 d-md-block">{followsActiveUserLoading ? <Skeleton className="loading-follows-you" /> : followsActiveUser ? <div className="follow-pill d-inline text-lowercase">{_t("profile.follows-you")}</div> : null}</div>}
 
                 {(account.profile?.name || account.profile?.about) && (
                     <div className="basic-info">

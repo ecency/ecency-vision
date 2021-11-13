@@ -12,6 +12,7 @@
     "cancel": "Ακύρωση",
     "reply": "Απάντηση",
     "update": "Ενημέρωση",
+    "learnMore": "Learn more",
     "or": "Ή",
     "muted-message": "Muted author, Reveal content",
     "server-error": "Η διαδικασία δεν μπόρεσε να ολοκληρωθεί λόγω προβλήματος του σέρβερ",
@@ -38,6 +39,7 @@
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
+    "logs": "logs",
     "posts": "posts",
     "comments": "comments",
     "replies": "replies",
@@ -82,6 +84,7 @@
   },
   "search": {
     "placeholder": "Αναζήτηση",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Αναζήτηση {{n}} δημοσιεύσεων",
     "header-tag": "Ετικέτες",
     "header-account": "Χρήστες",
@@ -271,13 +274,15 @@
     "comment-entry-title": "Βλέπετε ένα μοναδικό νήμα απο: ",
     "comment-entry-go-root": "Δείτε το πλήρες κείμενο",
     "comment-entry-go-parent": "Δείτε το άμεσο σχόλιο",
-    "hidden-warning": "This content got low rating by people. Proceed with caution.",
+    "hidden-warning": "This content got low rating by people.",
     "delete-disabled": "Content after their payout cannot be deleted.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
-    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
+    "lowrep-warning": "Author of this content has low reputation.",
+    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -307,6 +312,7 @@
     "order-created": "Ηλικία",
     "read-more": "...διαβάστε περισσότερες απαντήσεις...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Εμφάνιση σχολίου"
   },
   "community": {
@@ -397,6 +403,7 @@
     "done": "Η κοινότητα σας δημιουργήθηκε 🎉",
     "reason-one": "True ownership",
     "reason-two": "Permanent, rewarding",
+    "password-copied": "Password copied to clipboard",
     "reason-three": "Powered by blockchain technology",
     "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Ξεκινήστε."
@@ -474,12 +481,16 @@
     "unclaimed-rewards": "Αζήτητες Ανταμοιβές",
     "claim-reward-balance": "Ζητήστε υπόλοιπο ανταμοιβής",
     "claim-reward-balance-ok": "Yπόλοιπο ανταμοιβής ζητήθηκε",
-    "estimated": "Εκτιμώμενη Αξία Λογαριασμού",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "Η εκτιμώμενη αξία βασίζεται σε έναν μέσο όρο 7 ημερών της αξίας του HIVE.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE είναι διαπραγματεύσιμες μάρκες, που μπορούν να μεταφερθούν οποιαδήποτε στιγμή. τα HIVE μπορούν να μετατραπούν σε Hive Power μέσω μίας διαδικασίας που ονομάζεται powering up.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Τα Hive Power είναι μάρκες επιρροής που μπορούν να αποκτήσουν περισσότερη δύναμη, κρατώντας τις μακροπρόθεσμα και ψηφίζοντας αναρτήσεις. Όσες περισσότερες έχει στην κατοχή του κάποιος, τόσο περισσότερο μπορεί να επηρεάσει τις αμοιβές άλλων άλλα και τις δικές του.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Κατ 'εξουσιοδότηση Hive Power",
     "hive-power-received": "Hive Power που έχει ληφθεί",
     "next-power-down-amount": "Το επόμενο ποσό από το power down",
@@ -498,7 +509,16 @@
     "delegate": "Εξουσιoδοτήστε",
     "power-down": "Power Down",
     "withdraw-routes": "Οδοί Ανάληψης",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE"
+  },
+  "wallet-engine": {
+    "title": "Hive Engine Tokens",
+    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
+    "no-results": "No tokens found.",
+    "token": "Token",
+    "balance": "Balance",
+    "staked": "Staked"
   },
   "withdraw-routes": {
     "title": "Λογαριασμοί Ανάληψης",
@@ -557,7 +577,8 @@
   "purchase": {
     "select-asset": "Επιλογή αντικειμένου",
     "slider-hint": "Σύρετε τον ολισθητή για να ρυθμίσετε το ποσό.",
-    "submit": "Αγορά"
+    "submit": "Αγορά",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Προώθηση",
@@ -610,6 +631,8 @@
     "memo-placeholder": "εισάγετε εδώ τις σημειώσεις σας",
     "memo-help": "Το σημείωμα είναι δημόσιο",
     "available-hp-hint": "* διαθέσιμο hive power",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "Επιβεβαίωση της συναλλαγής σας",
     "confirm-sub-title": "Παρακαλώ ελέγξτε αν όλα είναι σωστά",
     "confirm": "Επιβεβαίωση",
@@ -666,6 +689,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
     "type-fill_recurrent_transfer": "Recurring transfer occurred",
     "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
@@ -680,7 +704,8 @@
   },
   "delegated-vesting": {
     "title": "Κατ 'εξουσιοδότηση Hive Power",
-    "undelegate": "πάρε πίσω την εξουσιοδότηση"
+    "undelegate": "πάρε πίσω την εξουσιοδότηση",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Hive Power που έχει ληφθεί"
@@ -750,6 +775,7 @@
     "clear": "Εκκαθάριση",
     "published": "Η ανάρτηση δημοσιεύθηκε",
     "updated": "Η δημοσίευση ενημερώθηκε",
+    "thumbnail": "Thumbnail",
     "advanced": "Advanced",
     "beneficiaries": "Δικαιούχοι",
     "beneficiaries-hint": "Ορίστε δικαιούχους για να μοιραστείτε την ανταμοιβή συγγραφέα με άλλους λογαριασμούς",
@@ -767,7 +793,15 @@
     "placeholder-focus": "Εισαγωγή ετικέτας",
     "placeholder-has-tags": "Προσθέστε περισσότερα",
     "suggestion-header": "Ετικέτες",
-    "error-max": "Μέγιστες {{n}} ετικέτες"
+    "error-max": "Μέγιστες {{n}} ετικέτες",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Choose a community",
@@ -934,7 +968,10 @@
     "filter-team": "Ecency Projects",
     "return-description": "Αυτή είναι η βασική πρόταση επιστροφής. Κάθε πρόταση με λιγότερες ψήφους δεν θα λάβει χρήματα.",
     "votes-dialog-title": "Ψήφοι στις Προτάσεις #{{n}}",
-    "see-all": "δείτε όλες τις προτάσεις"
+    "see-all": "δείτε όλες τις προτάσεις",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Έκθεση",
@@ -1025,9 +1062,12 @@
       "contact-email": "Στείλτε μας email"
     },
     "faq": {
-      "page-title": "Συχνές ερωτήσεις για την πλατφόρμα Ecency",
+      "page-title": "How can we help you?",
       "page-sub-title": "Πίνακας Περιεχομένων",
       "what-is-ecency-header": "Τι είναι η πλατφόρμα Ecency;",
+      "search": "Related results for {{search}} filtered below",
+      "search-not-found": "Nothing was found. To ask our community, join our ",
+      "search-placeholder": "Search our articles",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "Τι είναι το Hive blockchain;",
       "what-is-hive-body": "<p>Η Hive είναι μια blockchain πλατφόρμα που σχεδιάστηκε να είναι γρήγορη, χωρίς φόρους, αποκεντρωμένη, χωρίς λογοκρισία πλατφόρμα για εφαρμογές Web3.0, με ενσωματωμένες λειτουργίες όπου οι κάτοχοι μεριδίων μπορούν να κερδίσουν ανταμοιβές με staking, επιμέλεια, ανάρτηση, παίζοντας παιχνίδια, κάνοντας αγοραπωλησίες- όλα χωρίς κανένα μεσάζονται (αποκεντρωμένα). Τα Tokens στην Hive blockchain ονομάζονται HIVE, HIVE DOLLARS, HIVE POWER.</p>",
@@ -1160,5 +1200,9 @@
     "success-message-subscribe": "A verification link has been sent to your email account!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }

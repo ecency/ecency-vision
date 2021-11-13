@@ -46,14 +46,14 @@ const defProps = {
 };
 
 it("(1) Purchase", async () => {
-    const renderer = TestRenderer.create(<Purchase {...defProps} />);
+    const renderer = await TestRenderer.create(<Purchase {...defProps} />);
     await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
 
 it("(2) Should switch to transfer", async () => {
-    const component = TestRenderer.create(<Purchase {...defProps} />);
+    const component = await TestRenderer.create(<Purchase {...defProps} />);
     await allOver();
     const instance: any = component.getInstance();
 

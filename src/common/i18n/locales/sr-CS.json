@@ -12,6 +12,7 @@
     "cancel": "Otkaži",
     "reply": "Odgovori",
     "update": "Ažuriraj",
+    "learnMore": "Learn more",
     "or": "ILI",
     "muted-message": "Muted author, Reveal content",
     "server-error": "Proces nije završen zbog greške na serveru",
@@ -38,6 +39,7 @@
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
+    "logs": "logs",
     "posts": "posts",
     "comments": "comments",
     "replies": "replies",
@@ -82,6 +84,7 @@
   },
   "search": {
     "placeholder": "Pretraga",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Pretražite {{n}} objave",
     "header-tag": "Oznake",
     "header-account": "Korisnici",
@@ -271,13 +274,15 @@
     "comment-entry-title": "Gledate nit jednog komentara sa: ",
     "comment-entry-go-root": "Pogledaj ceo kontekst",
     "comment-entry-go-parent": "Pogledaj nadređeni komentar",
-    "hidden-warning": "This content got low rating by people. Proceed with caution.",
+    "hidden-warning": "This content got low rating by people.",
     "delete-disabled": "Content after their payout cannot be deleted.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
-    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
+    "lowrep-warning": "Author of this content has low reputation.",
+    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -307,6 +312,7 @@
     "order-created": "Starost",
     "read-more": "...pročitajte još odgovora...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Prikaži komentar"
   },
   "community": {
@@ -397,6 +403,7 @@
     "done": "Vaša zajednica je kreirana 🎉",
     "reason-one": "True ownership",
     "reason-two": "Permanent, rewarding",
+    "password-copied": "Password copied to clipboard",
     "reason-three": "Powered by blockchain technology",
     "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Počni."
@@ -474,12 +481,16 @@
     "unclaimed-rewards": "Nepotvrđene nagrade",
     "claim-reward-balance": "Zatraži bilans nagrada",
     "claim-reward-balance-ok": "Zahtevani saldo nagrada",
-    "estimated": "Procenjena vrednost naloga",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "Procenjena vrednost se zasniva na sedmodnevnoj prosečnoj vredosti HIVE.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE su tokeni koje možete razmenjivati u svakom trenutku. HIVE se može pretvoriti u Hive snagu u procesu zvanom pojačavanje snage.",
     "hive-power": "HIVE SNAGA",
     "hive-power-description": "Hive snaga su tokeni uticaja koji zarađuju više snage kod dugoročnog zadržavanja i glasanja na objavama. Što više Hive snage imate, više možete uticati na nagrade drugih i više ćete zaraditi na vašim glasovima.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Delegirana Hive Snaga",
     "hive-power-received": "Primljena Hive snaga",
     "next-power-down-amount": "Iznos sledećeg smanjenja snage",
@@ -498,7 +509,16 @@
     "delegate": "Delegiraj",
     "power-down": "Smanji snagu",
     "withdraw-routes": "Povucite rute",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE"
+  },
+  "wallet-engine": {
+    "title": "Hive Engine Tokens",
+    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
+    "no-results": "No tokens found.",
+    "token": "Token",
+    "balance": "Balance",
+    "staked": "Staked"
   },
   "withdraw-routes": {
     "title": "Povucite račune",
@@ -557,7 +577,8 @@
   "purchase": {
     "select-asset": "Odaberi sredstvo",
     "slider-hint": "Prevucite klizač da biste prilagodili količinu.",
-    "submit": "Kupovina"
+    "submit": "Kupovina",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Promoviši",
@@ -610,6 +631,8 @@
     "memo-placeholder": "ovde unesite svoje beleške",
     "memo-help": "Ovaj dopis je javan",
     "available-hp-hint": "* dostupna hive snaga",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "Potvrdite vašu transakciju",
     "confirm-sub-title": "Molimo, proverite da li je sve ispravno",
     "confirm": "Potvrdi",
@@ -666,6 +689,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
     "type-fill_recurrent_transfer": "Recurring transfer occurred",
     "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
@@ -680,7 +704,8 @@
   },
   "delegated-vesting": {
     "title": "Delegirana Hive Snaga",
-    "undelegate": "ne delegirajte"
+    "undelegate": "ne delegirajte",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Primljena Hive snaga"
@@ -750,6 +775,7 @@
     "clear": "Obriši",
     "published": "Post je objavljen",
     "updated": "Post je ažuriran",
+    "thumbnail": "Thumbnail",
     "advanced": "Napredno",
     "beneficiaries": "Primaoci",
     "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
@@ -767,7 +793,15 @@
     "placeholder-focus": "Unesite oznaku",
     "placeholder-has-tags": "Dodaj još",
     "suggestion-header": "Oznake",
-    "error-max": "Najviše {{n}} oznaka"
+    "error-max": "Najviše {{n}} oznaka",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Choose a community",
@@ -934,7 +968,10 @@
     "filter-team": "Ecency Projekti",
     "return-description": "Ovo je osnovna zarada predloga. Svaki predlog sa manje glasova neće dobiti sredstva.",
     "votes-dialog-title": "Glasovi za predloge #{{n}}",
-    "see-all": "pogledajte sve predloge"
+    "see-all": "pogledajte sve predloge",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Galerija",
@@ -1025,9 +1062,12 @@
       "contact-email": "Pošaljite nam e-mail"
     },
     "faq": {
-      "page-title": "Ecency često postavljana pitanja",
+      "page-title": "How can we help you?",
       "page-sub-title": "Sadržaj",
       "what-is-ecency-header": "Šta je Ecency?",
+      "search": "Related results for {{search}} filtered below",
+      "search-not-found": "Nothing was found. To ask our community, join our ",
+      "search-placeholder": "Search our articles",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "Šta je Hive blockchain?",
       "what-is-hive-body": "<p>Hive je blockchain koji je dizajniran da bude brza, besplatna, decentralizovana, necenzurisana platforma za Web3.0 aplkacije, sa ugrađenim funkcijama u kojima akteri mogu zaraditi nagrade ulaganjem, kuracijom, objavljivanjem, igranjem igara, trgovinom - sve to bez posrednika (decentralizovano). Tokeni na Hive blockchain-u zovu se HIVE, HIVE dolari, HIVE snaga.</p>",
@@ -1160,5 +1200,9 @@
     "success-message-subscribe": "A verification link has been sent to your email account!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }

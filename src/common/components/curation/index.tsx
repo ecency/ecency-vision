@@ -1,17 +1,16 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {History} from "history";
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 
-import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link"
 
 import {getCuration, CurationDuration, CurationItem} from "../../api/private-api";
 
-import {informationSvg, informationVariantSvg} from "../../img/svg";
+import {informationVariantSvg} from "../../img/svg";
 import DropDown from "../dropdown";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import LinearProgress from "../linear-progress";
@@ -30,141 +29,133 @@ interface Props {
     addAccount: (data: Account) => void;
 }
 
-interface State {
-    data: CurationItem[],
-    period: CurationDuration,
-    loading: boolean
-}
+export const Curation = (props: Props) => {
 
-export class Curation extends BaseComponent<Props, State> {
+    const [data, setData] = useState([] as CurationItem[]);
+    const [period, setPeriod] = useState('day' as CurationDuration);
+    const [loading, setLoading] = useState(true);
 
-    state: State = {
-        data: [],
-        period: "day",
-        loading: true
-    }
+    let _isMounted = false;
 
-    componentDidMount() {
-        this.fetch();
-    }
+    useEffect(() => {
+        _isMounted = true;
+        _isMounted && fetch();
+        return () => {
+          _isMounted = false
+        }
+    }, []);
 
-    compare = (a: CurationItem, b: CurationItem) => {
+    const compare = (a: CurationItem, b: CurationItem) => {
         return b.efficiency - a.efficiency;
     }
 
-    fetch = () => {
-        const {period} = this.state;
-        this.stateSet({loading: true, data: []});
+    const fetch = async() => {
+        setLoading(true);
+        setData([] as CurationItem[]);
+        const dataa = await getCuration(period);
+        const accounts = dataa.map((item) => item.account);
+        const ress = await getAccounts(accounts);
 
-        getCuration(period).then(data => {
-            const accounts = data.map((item) => item.account);
-            getAccounts(accounts).then(res => {
-                for (let index = 0; index < res.length; index++) {
-                    const element = res[index];
-                    const curator = data[index];
-                    const effectiveVest: number = parseFloat(element.vesting_shares) + parseFloat(element.received_vesting_shares) - parseFloat(element.delegated_vesting_shares) - parseFloat(element.vesting_withdraw_rate);
-                    curator.efficiency = curator.vests / effectiveVest;
-                }
-                data.sort(this.compare);
-                this.stateSet({data});
-                this.stateSet({loading: false});
-            });
-        });
+        for (let index = 0; index < ress.length; index++) {
+            const element = ress[index];
+            const curator = dataa[index];
+            const effectiveVest: number = parseFloat(element.vesting_shares) + parseFloat(element.received_vesting_shares) - parseFloat(element.delegated_vesting_shares) - parseFloat(element.vesting_withdraw_rate);
+            curator.efficiency = curator.vests / effectiveVest;
+        }
+        dataa.sort(compare);
+        _isMounted && setData(dataa as CurationItem[]);
+        setLoading(false);
     }
 
-    render() {
+    const {dynamicProps} = props;
+    const {hivePerMVests} = dynamicProps;
 
-        const {data, period, loading} = this.state;
-        const {dynamicProps} = this.props;
-        const {hivePerMVests} = dynamicProps;
-
-        const menuItems = [
-            ...["day", "week", "month"].map((f => {
-                return {
-                    label: _t(`leaderboard.period-${f}`),
-                    onClick: () => {
-                        this.stateSet({period: f as CurationDuration});
-                        this.fetch();
-                    }
+    const menuItems = [
+        ...["day", "week", "month"].map((f => {
+            return {
+                label: _t(`leaderboard.period-${f}`),
+                onClick: () => {
+                    setPeriod(f as CurationDuration);
+                    fetch();
                 }
-            }))
-        ]
+            }
+        }))
+    ];
 
-        const dropDownConfig = {
-            history: this.props.history,
-            label: '',
-            items: menuItems
-        };
+    const dropDownConfig = {
+        history: props.history,
+        label: '',
+        items: menuItems
+    };
 
-        return (
-            <div className={_c(`leaderboard-list ${loading ? "loading" : ""}`)}>
-                <div className="list-header">
-                    <div className="list-filter">
-                        {_t('leaderboard.title-curators')} <DropDown {...dropDownConfig} float="left"/>
-                    </div>
-                    <div className="list-title">
-                        {_t(`leaderboard.title-${period}`)}
-                    </div>
+    return (
+        <div className={_c(`leaderboard-list ${loading ? "loading" : ""}`)}>
+            <div className="list-header">
+                <div className="list-filter">
+                    {_t('leaderboard.title-curators')} <DropDown {...dropDownConfig} float="left"/>
                 </div>
-                {loading && <LinearProgress/>}
-                {data.length > 0 && (
-                    <div className="list-body">
-                        <div className="list-body-header">
-                            <span/>
-                            <OverlayTrigger
-                                delay={{ show: 0, hide: 500 }}
-                                key={'bottom'}
-                                placement={'bottom'}
-                                overlay={
-                                    <Tooltip id={`tooltip-votes-${'bottom'}`}>
-                                        {_t('leaderboard.header-votes-tip')}
-                                    </Tooltip>
-                                }
-                                >
-                                <div className='d-flex align-items-center'>
-                                    <span className="info-icon mr-1">{informationVariantSvg}</span>
-                                    <span className="score">
-                                        {_t('leaderboard.header-votes')}
-                                    </span>
-                                </div>
-                            </OverlayTrigger>
-                            <span className="points">
-                               {_t('leaderboard.header-reward')}
-                            </span>
-                        </div>
-
-                        {data.map((r, i) => {
-
-                            return <div className="list-item" key={i}>
-                                <div className="index">{i + 1}</div>
-                                <div className="avatar">
-                                    {ProfileLink({
-                                        ...this.props,
-                                        username: r.account,
-                                        children: <a>{UserAvatar({...this.props, size: "medium", username: r.account})}</a>
-                                    })}
-                                </div>
-                                <div className="username">
-                                    {ProfileLink({
-                                        ...this.props,
-                                        username: r.account,
-                                        children: <a>{r.account}</a>
-                                    })}
-                                </div>
-                                <div className="score">
-                                    {r.votes}
-                                </div>
-                                <div className="points">
-                                    {formattedNumber(vestsToHp(r.vests, hivePerMVests), {suffix: "HP"})}
-                                </div>
-                            </div>;
-                        })}
-                    </div>
-                )}
-
+                <div className="list-title">
+                    {_t(`leaderboard.title-${period}`)}
+                </div>
             </div>
-        );
-    }
+            {loading && <LinearProgress/>}
+            {data.length > 0 && (
+                <div className="list-body">
+                    <div className="list-body-header">
+                        <span/>
+                        <OverlayTrigger
+                            delay={{ show: 0, hide: 500 }}
+                            key={'bottom'}
+                            placement={'bottom'}
+                            overlay={
+                                <Tooltip id={`tooltip-votes-${'bottom'}`}>
+                                    {_t('leaderboard.header-votes-tip')}
+                                </Tooltip>
+                            }
+                            >
+                            <div className='d-flex align-items-center'>
+                                <span className="info-icon mr-1">{informationVariantSvg}</span>
+                                <span className="score">
+                                    {_t('leaderboard.header-votes')}
+                                </span>
+                            </div>
+                        </OverlayTrigger>
+                        <span className="points">
+                            {_t('leaderboard.header-reward')}
+                        </span>
+                    </div>
+
+                    {data.map((r, i) => {
+
+                        return <div className="list-item" key={i}>
+                            <div className="index">{i + 1}</div>
+                            <div className="avatar">
+                                {ProfileLink({
+                                    ...props,
+                                    username: r.account,
+                                    children: <a>{UserAvatar({...props, size: "medium", username: r.account})}</a>
+                                })}
+                            </div>
+                            <div className="username">
+                                {ProfileLink({
+                                    ...props,
+                                    username: r.account,
+                                    children: <a>{r.account}</a>
+                                })}
+                            </div>
+                            <div className="score">
+                                {r.votes}
+                            </div>
+                            <div className="points">
+                                {formattedNumber(vestsToHp(r.vests, hivePerMVests), {suffix: "HP"})}
+                            </div>
+                        </div>;
+                    })}
+                </div>
+            )}
+
+        </div>
+    );
 }
 
 

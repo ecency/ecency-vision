@@ -12,6 +12,7 @@
     "cancel": "İptal",
     "reply": "Cevapla",
     "update": "Güncelle",
+    "learnMore": "Daha fazla bilgi",
     "or": "VEYA",
     "muted-message": "Engellenen yazar, İçeriği görüntüle",
     "server-error": "Sunucu hatası nedeniyle işleminiz tamamlanamamıştır",
@@ -38,6 +39,7 @@
     "found": "bulundu",
     "feed": "akış",
     "blog": "blog",
+    "logs": "kayıtlar",
     "posts": "yazılar",
     "comments": "yorumlar",
     "replies": "yanıtlar",
@@ -82,6 +84,7 @@
   },
   "search": {
     "placeholder": "Arama",
+    "placeholder-proposals": "Teklif arama",
     "placeholder-count": "{{n}} gönderide ara",
     "header-tag": "Etiketler",
     "header-account": "Kullanıcılar",
@@ -271,13 +274,15 @@
     "comment-entry-title": "Tek bir yorum dizisini şuradan görüntülüyorsunuz: ",
     "comment-entry-go-root": "İçeriğin tamamını görüntüle",
     "comment-entry-go-parent": "Doğrudan kaynağı görüntüle",
-    "hidden-warning": "Bu içerik üyeler tarafından düşük puan aldı. Dikkatli olun.",
+    "hidden-warning": "İçerik üyeler tarafından düşük oy almıştır.",
     "delete-disabled": "Ödemesini almış olan içerikler silinemez.",
     "muted-warning": "Bu içerik topluluk kurallarına uymadığı için {{community}} moderatörleri tarafından engellendi.",
-    "lowrep-warning": "Bu gönderinin yazarı düşük itibar puanına sahiptir. Dikkatli olun.",
+    "lowrep-warning": "Bu içeriğin yazarı düşük itibar puanına sahiptir.",
+    "deleted-content-warning": "İçerik yazarı tarafından silinmiştir. Blockchain'den bakabilirsiniz ",
     "comments-hidden": "Bu gönderinin yazarı tarafınızdan engellenmiştir.",
     "address-copy": "Gönderi adresini kopyala",
     "address-copied": "Gönderi adresi panoya kopyalandı.",
+    "content-copied": "İçerik panoya kopyalandı.",
     "browse-original": "Orijinal gönderiyi görüntüle",
     "cross-post-by": "Çapraz gönderen",
     "cross-post-community": "topluluk",
@@ -307,6 +312,7 @@
     "order-created": "Yaş",
     "read-more": "...daha fazla yanıt görüntüle...",
     "reveal-muted": "Engellenmiş yazar - Yorumu görüntüle",
+    "reveal-muted-long-description": "Rahatsız edici yanıtlar da dahil olmak üzere diğer yorumları göster",
     "reveal": "Yorumu görüntüle"
   },
   "community": {
@@ -397,6 +403,7 @@
     "done": "Topluluğunuz oluşturuldu 🎉",
     "reason-one": "Gerçek sahiplik",
     "reason-two": "Kalıcı, ödüllendirici",
+    "password-copied": "Şifre panoya kopyalandı",
     "reason-three": "Blok zinciri teknolojisi ile güçlendirilmiştir",
     "reason-four": "Kalıcı, değişmeyen, gerçekten sahibi olacağınız topluluğu oluşturmanın maliyeti 3 HIVE'dır",
     "done-link-label": "Başla."
@@ -475,11 +482,15 @@
     "claim-reward-balance": "Ödül bakiyesini talep et",
     "claim-reward-balance-ok": "Ödül bakiyesi talep edildi",
     "estimated": "Tahmini Hesap Değeri",
+    "estimated-points": "Tahmini Puan Değeri",
     "estimated-description": "Tahmini değer HIVE'ın 7 günlük ortalama değerine dayanmaktadır.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE dilediğiniz zaman transfer edebileceğiniz ticari tokendır. HIVE hesap geliştirme olarak adlandırılan bir süreçte Hive Power'a dönüştürülebilir.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on posts. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Delegasyon Yapılmış Hive Power",
     "hive-power-received": "Alınan Hive Power",
     "next-power-down-amount": "Sonraki güç azalma miktarı",
@@ -498,7 +509,16 @@
     "delegate": "Delegasyon yap",
     "power-down": "Gücü azalt",
     "withdraw-routes": "Çekim Hesapları",
+    "calculating": "Hesaplanıyor",
     "converting-hbd-amount": "HIVE'a Dönüştür"
+  },
+  "wallet-engine": {
+    "title": "Hive Engine Tokenları",
+    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
+    "no-results": "Hiç token bulunamadı.",
+    "token": "Token",
+    "balance": "Bakiye",
+    "staked": "Stake edilmiş"
   },
   "withdraw-routes": {
     "title": "Çekim Hesapları",
@@ -557,7 +577,8 @@
   "purchase": {
     "select-asset": "Varlık Seç",
     "slider-hint": "Miktarı ayarlamak için kaydırıcıyı sürükle.",
-    "submit": "Satın al"
+    "submit": "Satın al",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Tanıtım Yap",
@@ -610,6 +631,8 @@
     "memo-placeholder": "notlarınızı buraya girin",
     "memo-help": "Bu notlar herkese açıktır",
     "available-hp-hint": "* mevcut hive power",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "İşleminizi onaylayın",
     "confirm-sub-title": "Lütfen her şeyin doğru olup olmadığını kontrol edin",
     "confirm": "Onayla",
@@ -666,6 +689,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
     "type-fill_recurrent_transfer": "Ödeme talimatı gerçekleşti",
     "type-fill_recurrent_transfer-detail": "Kalan {{remaining_executions}} aktarım",
+    "type-delegate_vesting_shares": "Delegasyon",
     "type-collateralized_convert": "Teminatlı dönüştürme",
     "type-collateralized_convert-detail": "İstek kimliği: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Teklif kimliği: <strong>{{pid}}</strong>",
@@ -680,7 +704,8 @@
   },
   "delegated-vesting": {
     "title": "Delegasyon Yapılmış Hive Power",
-    "undelegate": "delegasyonu geri al"
+    "undelegate": "delegasyonu geri al",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Alınan Hive Power"
@@ -750,6 +775,7 @@
     "clear": "Temizle",
     "published": "Gönderi Yayınlandı",
     "updated": "Gönderi Güncellendi",
+    "thumbnail": "Küçük resim",
     "advanced": "Gelişmiş",
     "beneficiaries": "Hak sahipleri",
     "beneficiaries-hint": "Yazar ödülünü diğer hesaplarla paylaşmak için hak sahiplerini belirleyin",
@@ -767,7 +793,15 @@
     "placeholder-focus": "Etiket gir",
     "placeholder-has-tags": "Daha Fazla Ekle",
     "suggestion-header": "Etiketler",
-    "error-max": "En fazla {{n}} etiket"
+    "error-max": "En fazla {{n}} etiket",
+    "limited_tags": "Yalnızca 10 etikete izin verilir, bazılarını silin",
+    "limited_length": "Her etiketin maksimum uzunluğu 24 olmalıdır",
+    "limited_dash": "Her etikette yalnızca bir tire kullanın",
+    "limited_space": "Etiketleri ayırmak için boşluk kullanın",
+    "limited_lowercase": "Etikette yalnızca küçük harfler kullanın",
+    "limited_characters": "Yalnızca küçük harf, rakam ve bir tire kullanın",
+    "limited_firstchar": "Etiket harf ile başlamalıdır",
+    "limited_lastchar": "Etiket harf veya sayı ile bitmelidir"
   },
   "community-selector": {
     "choose": "Bir topluluk seç",
@@ -934,7 +968,10 @@
     "filter-team": "Ecency Projeleri",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "#{{n}} Teklif Oylandı",
-    "see-all": "tüm teklifleri görüntüle"
+    "see-all": "tüm teklifleri görüntüle",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Galeri",
@@ -1025,9 +1062,12 @@
       "contact-email": "Bize e-posta gönderin"
     },
     "faq": {
-      "page-title": "Ecency SSS",
+      "page-title": "How can we help you?",
       "page-sub-title": "İçindekiler",
       "what-is-ecency-header": "Ecency Nedir?",
+      "search": "Related results for {{search}} filtered below",
+      "search-not-found": "Nothing was found. To ask our community, join our ",
+      "search-placeholder": "Search our articles",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "Hive blok zinciri nedir?",
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
@@ -1140,8 +1180,8 @@
     "our-vision-p-two": "<b>Our main principles: </b>Bring rewarding communities, true ownership, empowered creators, free speech into the hands of millions.",
     "our-team": "Ekibimiz",
     "founder": "Kurucu",
-    "devops-guru": "Devops master",
-    "design-guru": "Design guru",
+    "devops-guru": "Devops uzmanı",
+    "design-guru": "Tasarım gurusu",
     "community-contributors": "Topluluk Katılımcıları",
     "blockchain-witnesses": "Blok Zinciri Tanıkları",
     "about": "Hakkımızda",
@@ -1160,5 +1200,9 @@
     "success-message-subscribe": "E-posta hesabınıza bir doğrulama bağlantısı gönderildi!",
     "validation-email": "Geçerli bir e-posta gereklidir",
     "error-occured": "Bir sunucu hatası oluştu."
+  },
+  "layouts": {
+    "grid": "Izgara",
+    "classic": "Klasik"
   }
 }

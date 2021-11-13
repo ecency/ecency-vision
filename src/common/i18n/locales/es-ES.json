@@ -12,6 +12,7 @@
     "cancel": "Cancelar",
     "reply": "Responder",
     "update": "Actualizar",
+    "learnMore": "Aprende más",
     "or": "O",
     "muted-message": "Autor silenciado, Revelar contenido",
     "server-error": "El proceso no se pudo completar debido a un error del servidor",
@@ -38,6 +39,7 @@
     "found": "encontrado",
     "feed": "inicio",
     "blog": "blogs",
+    "logs": "registros",
     "posts": "publicaciones",
     "comments": "comentarios",
     "replies": "respuestas",
@@ -82,6 +84,7 @@
   },
   "search": {
     "placeholder": "Buscar",
+    "placeholder-proposals": "Buscar propuestas",
     "placeholder-count": "Buscar {{n}} publicaciones",
     "header-tag": "Etiquetas",
     "header-account": "Usuarios",
@@ -271,13 +274,15 @@
     "comment-entry-title": "Estás viendo los comentarios relacionados de: ",
     "comment-entry-go-root": "Ver los demas comentarios",
     "comment-entry-go-parent": "Ver el comentario relacionado",
-    "hidden-warning": "Este contenido obtuvo baja calificación por la gente. Proceda con precaución.",
+    "hidden-warning": "Este contenido obtuvo baja calificación por parte de la gente.",
     "delete-disabled": "El contenido después de su pago no puede ser eliminado.",
     "muted-warning": "Este contenido fue silenciado por los moderadores de {{community}} por no seguir las pautas de la comunidad.",
-    "lowrep-warning": "El autor de esta publicación tiene baja reputación. Proceda con precaución.",
+    "lowrep-warning": "El autor de este contenido tiene poca reputación.",
+    "deleted-content-warning": "Este contenido fue eliminado por el autor. Puedes verlo desde la Blockchain ",
     "comments-hidden": "Silenciaste al autor de esta publicación.",
     "address-copy": "Copiar la dirección de la Publicación",
     "address-copied": "Dirección de publicación copiada al portapapeles.",
+    "content-copied": "Contenido copiado al portapapeles.",
     "browse-original": "Abrir publicación original",
     "cross-post-by": "Publicación cruzada por",
     "cross-post-community": "comunidad",
@@ -307,6 +312,7 @@
     "order-created": "Edad",
     "read-more": "Ver más respuestas...",
     "reveal-muted": "Autor silenciado - Revelar comentario",
+    "reveal-muted-long-description": "Mostrar respuestas adicionales, incluyendo aquellas que pueden tener contenido ofensivo",
     "reveal": "Revelar comentario"
   },
   "community": {
@@ -397,6 +403,7 @@
     "done": "Tu comunidad fue creada 🎉",
     "reason-one": "Propiedad real",
     "reason-two": "Permanente, recompensa",
+    "password-copied": "Contraseña copiada al portapapeles",
     "reason-three": "Desarrollado usando tecnología blockchain",
     "reason-four": "Cuesta 3 HIVE crear una comunidad de verdadera propiedad permanente e inmutable",
     "done-link-label": "Empieza ya."
@@ -474,12 +481,16 @@
     "unclaimed-rewards": "Recompensas no reclamadas",
     "claim-reward-balance": "Reclamar recompensa",
     "claim-reward-balance-ok": "Recompensa reclamada",
-    "estimated": "Valor de cuenta aproximado",
+    "estimated": "Valor estimado de la billetera",
+    "estimated-points": "Valor de puntos estimados",
     "estimated-description": "El valor estimado se basa en un valor promedio de 7 días de HIVE.",
+    "estimated-description-points": "El valor estimado se basa en el valor de compra de los puntos.",
     "hive": "HIVE",
     "hive-description": "HIVE es una moneda que puede transferirse en cualquier momento. HIVE se puede convertir a Hive Power en un proceso llamado Power Up.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power es una moneda de influencia que permite más poder por mantenerlas a largo plazo y votar en los posts. Cuántas más tengas, más influencia tendrás en las recompensas que le das al resto de gente y más recompensas obtendrás por tus votos.",
+    "hive-power-apr-rate": "La tasa de interés APR para Hive Power es de {{value}}%",
+    "hive-dollars-apr-rate": "La tasa de interés APR para HBD($) es {{value}}%",
     "hive-power-delegated": "Hive Power delegado",
     "hive-power-received": "Hive power recibido",
     "next-power-down-amount": "Cantidad del siguiente power down",
@@ -498,7 +509,16 @@
     "delegate": "Delegar",
     "power-down": "Apagar",
     "withdraw-routes": "Rutas de Retiro",
+    "calculating": "Calculando",
     "converting-hbd-amount": "Convirtiendo a HIVE"
+  },
+  "wallet-engine": {
+    "title": "Motor de Tokens de Hive",
+    "description": "Hive Engine es una plataforma inteligente de cadena lateral para la cadena de bloques de colmenas.",
+    "no-results": "No se ha encontrado ningún token.",
+    "token": "Token",
+    "balance": "Balance",
+    "staked": "Depositados"
   },
   "withdraw-routes": {
     "title": "Cuentas de retirada",
@@ -557,7 +577,8 @@
   "purchase": {
     "select-asset": "Seleccionar activos",
     "slider-hint": "Arrastra el deslizador para ajustar la cantidad.",
-    "submit": "Comprar"
+    "submit": "Comprar",
+    "purchase-message": "O envía cualquier cantidad a @esteem.app con `points` como nota en el memo para comprar puntos."
   },
   "promote": {
     "title": "Promocionar",
@@ -610,6 +631,8 @@
     "memo-placeholder": "escribe tus notas aquí",
     "memo-help": "Este memo es público",
     "available-hp-hint": "* potencia de Hive disponible",
+    "override-warning-1": "La nueva cantidad anula la anterior.",
+    "override-warning-2": "La cuenta ({{account}}) ya ha sido delegada con {{previousAmount}}.",
     "confirm-title": "Confirme su transacción",
     "confirm-sub-title": "Por favor, revise si todo es correcto",
     "confirm": "Confirmar",
@@ -666,6 +689,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transferencias, cada una cada {{recurrence}} horas",
     "type-fill_recurrent_transfer": "Se ha producido una transferencia recurrence",
     "type-fill_recurrent_transfer-detail": "{{remaining_executions}} transferencias restantes",
+    "type-delegate_vesting_shares": "Delegación",
     "type-collateralized_convert": "Conversión Collateralizada",
     "type-collateralized_convert-detail": "Identificación de solicitud: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "ID de la propuesta: <strong>{{pid}}</strong>",
@@ -680,7 +704,8 @@
   },
   "delegated-vesting": {
     "title": "Hive Power delegado",
-    "undelegate": "retirar delegación"
+    "undelegate": "retirar delegación",
+    "subtitle": " Delegación de HP pendiente de devolución"
   },
   "received-vesting": {
     "title": "Hive power recibido"
@@ -750,6 +775,7 @@
     "clear": "Limpiar",
     "published": "La publicación fue enviada",
     "updated": "Publicación actualizada",
+    "thumbnail": "Vista en miniaturas",
     "advanced": "Avanzado",
     "beneficiaries": "Beneficiarios",
     "beneficiaries-hint": "Establecer beneficiarios para compartir la recompensa del autor con otras cuentas",
@@ -767,7 +793,15 @@
     "placeholder-focus": "Escribir una etiqueta",
     "placeholder-has-tags": "Agregar más",
     "suggestion-header": "Etiquetas",
-    "error-max": "Máximo {{n}} etiquetas"
+    "error-max": "Máximo {{n}} etiquetas",
+    "limited_tags": "Sólo 10 etiquetas permitidas, remueve algunas",
+    "limited_length": "La longitud máxima de cada etiqueta debe ser de 24 caracteres",
+    "limited_dash": "Usar un guión en cada etiqueta",
+    "limited_space": "Usa espacios para separar las etiquetas",
+    "limited_lowercase": "Usa solo letras minusculas en la etiqueta",
+    "limited_characters": "Usa sólo letras minúsculas, dígitos y un guión",
+    "limited_firstchar": "La etiqueta debe comenzar con una letra",
+    "limited_lastchar": "La etiqueta debe terminar con una letra o un número"
   },
   "community-selector": {
     "choose": "Elige una comunidad",
@@ -934,7 +968,10 @@
     "filter-team": "Proyectos de Ecency",
     "return-description": "Esta es la propuesta de devolución básica, cada propuesta con menos votos no recibirá fondos.",
     "votes-dialog-title": "Votos en la propuesta #{{n}}",
-    "see-all": "ver todas las propuestas"
+    "see-all": "ver todas las propuestas",
+    "daily-funded": "financiamiento diario",
+    "daily-budget": "presupuesto diario",
+    "total-budget": "presupuesto total"
   },
   "gallery": {
     "title": "Galería",
@@ -1025,9 +1062,12 @@
       "contact-email": "Envíanos un correo"
     },
     "faq": {
-      "page-title": "Preguntas Frecuentes de Ecency",
+      "page-title": "¿Cómo podemos ayudarte?",
       "page-sub-title": "Lista de contenidos",
       "what-is-ecency-header": "¿Qué es Ecency?",
+      "search": "Resultados relacionados para {{search}} filtrados a continuación",
+      "search-not-found": "No se encontró nada. Para preguntar a nuestra comunidad, únete a nosotros ",
+      "search-placeholder": "Buscar en nuestros artículos",
       "what-is-ecency-body": "<p>Ecency es una red social basada en <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> - alimentada por <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency es el hogar de comunidades de libre expresión y recompensa para los creadores de contenido.</p><p>El proyecto es fundado por <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> en agosto de 2016 como una red social alternativa sin censura, controlada por sus usuarios, inmutable y de código abierto. Actualmente hay <a class=\"push-link\" href=\"/contributors\">muchos colaboradores independientes y voluntarios</a> queriendo mantener la visión y el espíritu de la libertad de expresión.</p><p>Ecency ayuda a incorporar a las masas a la tecnología Blockchain donde los usuarios reciben pagos por su tiempo, y por aprender mientras disfrutan de los aspectos sociales de la cadena de bloques. A través de la facilidad de uso, los usuarios no sólo aprenden sino que también se convierten en inversores, innovadores de la nueva Internet.</p>",
       "what-is-hive-header": "¿Qué es el Blockchain de Hive?",
       "what-is-hive-body": "<p>Hive es una blockchain diseñada para ser una plataforma rápida, sin comisiones, descentralizada y sin censura para aplicaciones Web 3.0, con características incorporadas donde los poseedores de \"estacas\" pueden ganar recompensas al estacar, curar, publicar, jugar juegos, comerciar - todo sin ningún intermediario (descentralizado). Los Tokens en la blockchain de Hive tienen los nombres de HIVE, HIVE DOLLARS, HIVE POWER.</p>",
@@ -1160,5 +1200,9 @@
     "success-message-subscribe": "¡Se ha enviado un enlace de verificación a tu cuenta de correo electrónico!",
     "validation-email": "Se requiere un email válido",
     "error-occured": "Se ha producido un error en el servidor."
+  },
+  "layouts": {
+    "grid": "Cuadrícula",
+    "classic": "Clásico"
   }
 }

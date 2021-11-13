@@ -9,36 +9,7 @@ exports[`(1) Default render 1`] = `
   >
     <span
       className="d-flex d-lg-none community-menu-item selected-item"
-    >
-      <div
-        className="custom-dropdown float-left"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-      >
-        <div
-          className="dropdown-btn"
-        >
-          <div
-            className="label"
-          >
-            Posts
-          </div>
-          <div
-            className="menu-down"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7,10L12,15L17,10H7Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </span>
+    />
     <div
       className="d-none d-lg-flex align-items-center"
     >
@@ -98,44 +69,7 @@ exports[`(1) Default render 1`] = `
   >
     <div
       className="viewLayouts"
-    >
-      <div
-        className="custom-dropdown float-right"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-      >
-        <span
-          className="view-feed"
-        >
-          <span
-            className="view-layout"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
-           
-          <span
-            className="menu-down-icon"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7,10L12,15L17,10H7Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
-        </span>
-      </div>
-    </div>
+    />
   </div>
 </div>
 `;
@@ -289,36 +223,7 @@ exports[`(3) In section 1`] = `
   >
     <span
       className="d-flex d-lg-none community-menu-item selected-item"
-    >
-      <div
-        className="custom-dropdown float-left"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-      >
-        <div
-          className="dropdown-btn"
-        >
-          <div
-            className="label"
-          >
-            Hot
-          </div>
-          <div
-            className="menu-down"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7,10L12,15L17,10H7Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </span>
+    />
     <div
       className="d-none d-lg-flex align-items-center"
     >
@@ -378,44 +283,7 @@ exports[`(3) In section 1`] = `
   >
     <div
       className="viewLayouts"
-    >
-      <div
-        className="custom-dropdown float-right"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-      >
-        <span
-          className="view-feed"
-        >
-          <span
-            className="view-layout"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
-           
-          <span
-            className="menu-down-icon"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7,10L12,15L17,10H7Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
-        </span>
-      </div>
-    </div>
+    />
   </div>
 </div>
 `;
