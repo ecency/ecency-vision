@@ -125,15 +125,15 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
 
                 // find eligible proposals and
                 // const eligible = proposals.filter(x => this.eligibleFilter(x, minVotes));
-                const eligible = proposals.filter(proposal => proposal.id > 0 && proposal.status !== 'expired');
+                const eligible = proposals.filter(proposal => proposal.status !== 'expired');
                 //  add up total votes
                 let _thresholdProposalIds : any[] = [];
                 const dailyFunded = eligible.reduce((a, b) => {
                     const _sum_amount = a + Number(b.daily_pay.amount) / 1000;
                     if (_sum_amount >= dailyBudget) {
-                        _thresholdProposalIds = _.union([b.id], _thresholdProposalIds);
-                        this.stateSet({isReturnProposalId: b.id});
+                        _thresholdProposalIds = _.union([b.id], _thresholdProposalIds);    
                     }
+                    _sum_amount >= dailyBudget && this.stateSet({isReturnProposalId: b.id});
                     return _sum_amount <= dailyBudget ? _sum_amount : a;
                 }, 0);
 
