@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from "react-test-renderer";
+import {create, act} from "react-test-renderer";
 import {createBrowserHistory} from "history";
 
 import {globalInstance, allOver, dynamicPropsIntance1} from "../../helper/test-helper";
@@ -29,7 +29,12 @@ it('(1) Render with data.', async () => {
         }
     };
 
-    const component = await renderer.create(<Curation {...props}/>);
-    await allOver();
-    expect(component.toJSON()).toMatchSnapshot();
+    // render the component
+    let root;
+    act(() => {
+        root = create(<Curation {...props}/>)
+    });
+
+    // make assertions on root 
+    expect(root.toJSON()).toMatchSnapshot();
 });

@@ -5,7 +5,7 @@ import Discussion from "./index";
 import {Discussion as DiscussionType, SortOrder} from '../../store/discussion/types'
 import {allOver, UiInstance} from "../../helper/test-helper";
 
-import renderer from "react-test-renderer";
+import {create, act} from "react-test-renderer";
 
 import {createBrowserHistory, createLocation} from "history";
 
@@ -57,8 +57,13 @@ const defProps = {
 
 
 it("(1) Empty list with no active user", async() => {
-    const component = await renderer.create(<Discussion {...defProps} />);
-    await allOver();
+    // render the component
+    let component; 
+    act(() => {
+        component = create(<Discussion {...defProps}/>)
+    });
+
+    // make assertions on component
     expect(component.toJSON()).toMatchSnapshot();
 });
 
@@ -68,7 +73,12 @@ it("(2) Empty list with active user", async() => {
         ...defProps,
         activeUser: activeUserMaker("foo")
     }
-    const component = await renderer.create(<Discussion {...props} />);
-    await allOver();
+    // render the component
+    let component; 
+    act(() => {
+        component = create(<Discussion {...props}/>)
+    });
+
+    // make assertions on component
     expect(component.toJSON()).toMatchSnapshot();
 });

@@ -4,7 +4,7 @@ import Discussion from "./index";
 
 import {Discussion as DiscussionType, SortOrder} from '../../store/discussion/types';
 
-import renderer from "react-test-renderer";
+import {create, act} from "react-test-renderer";
 
 import {createBrowserHistory, createLocation} from "history";
 
@@ -61,8 +61,13 @@ const defProps = {
 };
 
 it("(1) Full render with active user", async() => {
-    const component = await renderer.create(<Discussion {...defProps} />);
-    await allOver();
+    // render the component
+    let component; 
+    act(() => {
+        component = create(<Discussion {...defProps}/>)
+    });
+
+    // make assertions on component
     expect(component.toJSON()).toMatchSnapshot();
 });
 
@@ -71,8 +76,13 @@ it("(2) Full render with no active user", async() => {
         ...defProps,
         activeUser: null
     }
-    const component = await renderer.create(<Discussion {...props} />);
-    await allOver();
+    // render the component
+    let component; 
+    act(() => {
+        component = create(<Discussion {...props}/>)
+    });
+
+    // make assertions on component
     expect(component.toJSON()).toMatchSnapshot();
 });
 
@@ -81,8 +91,13 @@ it("(3) With selected item", async() => {
         ...defProps,
         location: createLocation({hash: "#@forykw/re-esteemapp-202067t12246786z"}),
     }
-    const component = await renderer.create(<Discussion {...props} />);
-    await allOver();
+    // render the component
+    let component; 
+    act(() => {
+        component = create(<Discussion {...props}/>)
+    });
+
+    // make assertions on component
     expect(component.toJSON()).toMatchSnapshot();
 });
 
@@ -105,7 +120,12 @@ it("(4) Show mute button, muted comment", async() => {
         community: communityInstance1
     }
 
-    const component = await renderer.create(<Discussion {...nProps} />);
-    await allOver();
+    // render the component
+    let component; 
+    act(() => {
+        component = create(<Discussion {...nProps}/>)
+    });
+
+    // make assertions on component
     expect(component.toJSON()).toMatchSnapshot();
 });
