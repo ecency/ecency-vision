@@ -6,15 +6,4 @@ exports[`(2) Show menu 1`] = `null`;
 
 exports[`(3) Hide menu 1`] = `null`;
 
-exports[`(4) With custom label and header text 1`] = `
-<div
-  className="custom-dropdown float-left"
-  onClick={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
->
-  <span>
-    open menu
-  </span>
-</div>
-`;
+exports[`(4) With custom label and header text 1`] = `null`;
