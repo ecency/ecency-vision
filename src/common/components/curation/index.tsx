@@ -29,7 +29,7 @@ interface Props {
     addAccount: (data: Account) => void;
 }
 
-const Curation = (props: Props) => {
+export const Curation = (props: Props) => {
 
     const [data, setData] = useState([] as CurationItem[]);
     const [period, setPeriod] = useState('day' as CurationDuration);
