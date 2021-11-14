@@ -65,6 +65,7 @@ interface State {
     author: string;
     type: SearchType;
     searchData: SearchResult[];
+    searchDataLoading: boolean;
 }
 
 class ProfilePage extends BaseComponent<Props, State> {
@@ -81,8 +82,9 @@ class ProfilePage extends BaseComponent<Props, State> {
         }
 
         this.state = {
-            loading: searchParam.length > 0,
+            loading: false,
             isDefaultPost:false,
+            searchDataLoading: searchParam.length > 0,
             search: searchParam,
             author: "",
             type: SearchType.ALL,
@@ -230,7 +232,7 @@ class ProfilePage extends BaseComponent<Props, State> {
 
     handleChangeSearch = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
       const { value } = event.target;
-      await this.setState({ search: value});
+      this.setState({ search: value });
       this.delayedSearch(value);
     }
 
@@ -239,6 +241,7 @@ class ProfilePage extends BaseComponent<Props, State> {
             // this.setState({proposals: this.state.allProposals});
         } else {
           const { global } = this.props;
+          this.setState({  searchDataLoading: true});
     
           let query = `${value} author:${global.tag.substring(1)}`;
          
@@ -251,7 +254,7 @@ class ProfilePage extends BaseComponent<Props, State> {
           const data: any = await searchApi(query, "popularity", "1")
           
           if(data && data.results) {
-            this.setState({ searchData: data.results, loading: false })
+            this.setState({ searchData: data.results, loading: false, searchDataLoading: false })
           }
         }
     }
@@ -268,7 +271,7 @@ class ProfilePage extends BaseComponent<Props, State> {
 
     render() {
         const {global, entries, accounts, match} = this.props;
-        const {loading, author, search, type, searchData} = this.state;
+        const {loading, author, search, searchDataLoading, searchData} = this.state;
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
             reloadFn: this.reload,
@@ -358,14 +361,17 @@ class ProfilePage extends BaseComponent<Props, State> {
                         {
                           search.length > 0 ? (
                             <>  
-                              {searchData.length > 0 ? (
+                              { searchDataLoading ? 
+                                        <div className="mt-3">
+                                            <LinearProgress/>
+                                        </div> : searchData.length > 0 ? (
                                 <div className="search-list">
                                     {searchData.map(res => <Fragment key={`${res.author}-${res.permlink}`}>
                                         {SearchListItem({...this.props, res: res})}
                                     </Fragment>)}
                                 </div>
                               ) : (
-                                null
+                                _t("g.no-matches")
                               )}
                             </>
                           ) : (
