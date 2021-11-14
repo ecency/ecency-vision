@@ -254,7 +254,8 @@ class ProfilePage extends BaseComponent<Props, State> {
           const data: any = await searchApi(query, "popularity", "1")
           
           if(data && data.results) {
-            this.setState({ searchData: data.results, loading: false, searchDataLoading: false })
+            let sortedResults = data.results.sort((a: any,b: any) => Date.parse(b.created_at) - Date.parse(a.created_at))
+            this.setState({ searchData: sortedResults, loading: false, searchDataLoading: false })
           }
         }
     }
@@ -346,7 +347,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                         })}
 
                         {
-                          (filter === 'blog' || filter === 'posts' || filter === 'comments' || filter === 'communities') && (
+                          (filter === 'posts' || filter === 'comments' || filter === 'communities') && (
                               <div className='searchProfile'>
                                 <SearchBox
                                   placeholder={_t("search-comment.search-placeholder")}
