@@ -50,6 +50,7 @@ import { Row, Col, Form, Button, FormControl } from 'react-bootstrap'
 interface MatchParams {
     username: string;
     section?: string;
+    search?: string;
 }
 
 interface Props extends PageProps {
@@ -67,21 +68,34 @@ interface State {
 }
 
 class ProfilePage extends BaseComponent<Props, State> {
-    state: State = {
-        loading: false,
-        isDefaultPost:false,
-        search: "",
-        author: "",
-        type: SearchType.ALL,
-        searchData: []
-    };
+    constructor(props:Props){
+        super(props);
+
+        const {location} = props;
+        let searchParam = location.search.replace("?","")
+        searchParam = searchParam.replace("q","")
+        searchParam = searchParam.replace("=","")
+
+        if(searchParam.length){
+            this.handleInputChange(searchParam);
+        }
+
+        this.state = {
+            loading: searchParam.length > 0,
+            isDefaultPost:false,
+            search: searchParam,
+            author: "",
+            type: SearchType.ALL,
+            searchData: []
+        };
+
+    }
 
     async componentDidMount() {
         await this.ensureAccount();
 
         const {match, global, fetchEntries, fetchTransactions, fetchPoints} = this.props;
-        const {username, section} = match.params
-
+        const {username, section} = match.params;
         if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
             // fetch posts
             fetchEntries(global.filter, global.tag, false);
@@ -224,8 +238,7 @@ class ProfilePage extends BaseComponent<Props, State> {
         if(value.trim() === ''){
             // this.setState({proposals: this.state.allProposals});
         } else {
-          const { search, author, type } = this.state;
-          const { global, activeUser } = this.props;
+          const { global } = this.props;
     
           let query = `${value} author:${global.tag.substring(1)}`;
          
@@ -238,7 +251,7 @@ class ProfilePage extends BaseComponent<Props, State> {
           const data: any = await searchApi(query, "popularity", "1")
           
           if(data && data.results) {
-            this.setState({ searchData: data.results })
+            this.setState({ searchData: data.results, loading: false })
           }
         }
     }
@@ -263,7 +276,14 @@ class ProfilePage extends BaseComponent<Props, State> {
         }) : NavBar({...this.props});
 
         if (loading) {
-            return <>{navBar}<LinearProgress/></>;
+            return <>
+                    {navBar}
+                    <div className="pt-3">
+                        <div className="mt-5">
+                            <LinearProgress/>
+                        </div>
+                    </div>
+                </>;
         }
 
         const username = match.params.username.replace("@", "");
@@ -329,7 +349,6 @@ class ProfilePage extends BaseComponent<Props, State> {
                                   placeholder={_t("search-comment.search-placeholder")}
                                   value={search}
                                   onChange={this.handleChangeSearch}
-                                  // onKeyDown={this.textInputDown}
                                   autoComplete="off"
                                 /> 
                               </div>
