@@ -205,8 +205,8 @@ export const WalletEcency = (props: Props) => {
         }
         let user = history.location.pathname.split("/")[1];
             user = user.replace('@','')
-        global.isElectron && isMounted && initiateOnElectron(user);
-        isMounted && getEstimatedPointsValue();
+        global.isElectron && initiateOnElectron(user);
+        getEstimatedPointsValue();
 
         return () => {
           setIsMounted(false);
@@ -217,7 +217,7 @@ export const WalletEcency = (props: Props) => {
         const {global: {currency}} = props;
         setEstimatedPointsValueLoading(true);
         getCurrencyTokenRate(currency,'estm').then(res => {
-            isMounted && setEstimatedPointsValue(res);
+            setEstimatedPointsValue(res);
             setEstimatedPointsValueLoading(false);
         }).catch((error) => {
             console.error('getCurrencyTokenRate',error);

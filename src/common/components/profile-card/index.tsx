@@ -59,40 +59,38 @@ export const ProfileCard = (props: Props) => {
     const [followersList, setFollowersList] = useState(false);
     const [followingList, setFollowingList] = useState(false);
     const [followsActiveUser, setFollowsActiveUser] = useState(false);
+    const [isMounted, setIsmounted] = useState(false);
     const [followsActiveUserLoading, setFollowsActiveUserLoading] = useState(false);
-    const [isMounted, setIsMounted] = useState(false);
     const [, updateState] = useState();
     const forceUpdate = useCallback(() => updateState({} as any), []);
 
     const {activeUser, account, section} = props;
 
     useEffect(() => {
-        setIsMounted(true);
-        setFollowsActiveUserLoading(activeUser && activeUser.username ? true : false);
-
-        isMounted && getFollowsInfo(account.name);
-        return () => {
-          setIsMounted(false);
+        if(activeUser && activeUser.username){
+            setFollowsActiveUserLoading(activeUser && activeUser.username ? true : false);
+            getFollowsInfo(account.name);
         }
     }, 
-    [
-        account,
-        activeUser,
-        section
-    ]);
+    [account]);
+
+    useEffect(()=>{
+        setIsmounted(true);
+        return () => setIsmounted(false)
+    },[])
 
     useEffect(() => {
         setFollowersList(false);
         setFollowingList(false);
         setFollowsActiveUserLoading(activeUser && activeUser.username ? true : false);
-        getFollowsInfo(account.name);
+        isMounted && getFollowsInfo(account.name);
     }, [account.name]);
 
     const getFollowsInfo = (username: string) => {
         if(activeUser){
             getRelationshipBetweenAccounts(username, activeUser.username).then(res=>{
-                isMounted && setFollowsActiveUserLoading(false);
-                isMounted && setFollowsActiveUser(res?.follows || false);
+                setFollowsActiveUserLoading(false);
+                setFollowsActiveUser(res?.follows || false);
             }).catch((error) => {
                 console.log(error);
             });
@@ -155,7 +153,7 @@ export const ProfileCard = (props: Props) => {
                     <span>{vPower.toFixed(2)}</span>
                 </Tooltip>
             </div>
-            {loggedIn && <div className="d-flex justify-content-center mb-3 d-md-block">{followsActiveUserLoading ? <Skeleton className="loading-follows-you" /> : followsActiveUser ? <div className="follow-pill d-inline text-lowercase">{_t("profile.follows-you")}</div> : null}</div>}
+            {loggedIn && !isMyProfile && <div className="d-flex justify-content-center mb-3 d-md-block">{followsActiveUserLoading ? <Skeleton className="loading-follows-you" /> : followsActiveUser ? <div className="follow-pill d-inline text-lowercase">{_t("profile.follows-you")}</div> : null}</div>}
 
             {(account.profile?.name || account.profile?.about) && (
                 <div className="basic-info">

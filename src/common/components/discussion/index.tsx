@@ -218,6 +218,7 @@ export const Item = (props: ItemProps) => {
                 updateReply(nParentReply);
             }
         }).catch((e) => {
+            console.log(e);
             error(formatError(e));
         }).finally(() => {
             setInProgress(false);
