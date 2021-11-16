@@ -351,7 +351,7 @@ export const Item = (props: ItemProps) => {
                             <ProfilePreview
                                 username={entry.author}
                                 {...props}
-                                onClose={(e, doNotSetState) => {isMounted && onHideProfileAvatar(e, doNotSetState)}}
+                                onClose={(e, doNotSetState) => {onHideProfileAvatar(e, doNotSetState)}}
                             />
                         }
                     </div>

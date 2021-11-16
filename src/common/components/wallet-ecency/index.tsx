@@ -220,7 +220,8 @@ export const WalletEcency = (props: Props) => {
             setEstimatedPointsValue(res);
             setEstimatedPointsValueLoading(false);
         }).catch((error) => {
-            console.error('getCurrencyTokenRate',error);
+            setEstimatedPointsValueLoading(false);
+            setEstimatedPointsValue(0);
         });
     }
 

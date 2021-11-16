@@ -1,6 +1,6 @@
 import React from "react";
 
-import TestRenderer from "react-test-renderer";
+import {create, act} from "react-test-renderer";
 
 import {StaticRouter} from "react-router-dom";
 
@@ -50,12 +50,12 @@ it("(1) Default Render", async() => {
         ...defProps
     };
 
-    const renderer = await TestRenderer.create(
+    const container = create(
         <StaticRouter location="/" context={{}}>
             <WalletEcency {...props} />
         </StaticRouter>);
     await allOver();
-    expect(renderer.toJSON()).toMatchSnapshot();
+    expect(container.toJSON()).toMatchSnapshot();
 });
 
 it("(2) With active user", async() => {
@@ -63,14 +63,13 @@ it("(2) With active user", async() => {
         ...defProps,
         activeUser: activeUserMaker("user1"),
     };
-
-    const renderer = await TestRenderer.create(
-        <StaticRouter location="/" context={{}}>
-            <WalletEcency {...props} />
-        </StaticRouter>
-    );
+    const container = create(
+            <StaticRouter location="/" context={{}}>
+                <WalletEcency {...props} />
+            </StaticRouter>
+        );
     await allOver();
-    expect(renderer.toJSON()).toMatchSnapshot();
+    expect(container.toJSON()).toMatchSnapshot();
 });
 
 
@@ -86,13 +85,12 @@ it("(3) Active user with unclaimed points", async() => {
             filter: 0
         },
     };
-
-    const renderer = await TestRenderer.create(
-        <StaticRouter location="/" context={{}}>
-            <WalletEcency {...props} />
-        </StaticRouter>);
+    const container = create(
+            <StaticRouter location="/" context={{}}>
+                <WalletEcency {...props} />
+            </StaticRouter>);
     await allOver();
-    expect(renderer.toJSON()).toMatchSnapshot();
+    expect(container.toJSON()).toMatchSnapshot();
 });
 
 it("(4) Format memo", () => {
@@ -121,11 +119,10 @@ it("(5) usePrivate = false", async() => {
             usePrivate: false
         }
     };
-
-    const renderer = await TestRenderer.create(
+    const container = create(
         <StaticRouter location="/" context={{}}>
             <WalletEcency {...props} />
         </StaticRouter>);
     await allOver();
-    expect(renderer.toJSON()).toMatchSnapshot();
+    expect(container.toJSON()).toMatchSnapshot();
 });

@@ -7,7 +7,7 @@ import {StaticRouter} from "react-router-dom";
 import {Account} from "../../store/accounts/types";
 
 import ProfileCard from "./index";
-import renderer from "react-test-renderer";
+import {create} from "react-test-renderer";
 
 import {globalInstance, activeUserInstance, activeUserMaker, fullAccountInstance, allOver} from "../../helper/test-helper";
 
@@ -54,7 +54,7 @@ const defProps = {
 }
 
 it("(1) Render with not loaded data", async() => {
-    const component = await renderer.create(<StaticRouter location="/" context={{}}>
+    const component = create(<StaticRouter location="/" context={{}}>
         <ProfileCard {...defProps} />
     </StaticRouter>);
     await allOver();
@@ -67,7 +67,7 @@ it("(2) Render with loaded data", async() => {
         account: accountFull
     };
 
-    const component = await renderer.create(<StaticRouter location="/" context={{}}>
+    const component = create(<StaticRouter location="/" context={{}}>
         <ProfileCard {...props} />
     </StaticRouter>);
     await allOver();
@@ -88,7 +88,7 @@ it("(3) Should show profile edits", async() => {
         },
     };
 
-    const component = await renderer.create(<StaticRouter location="/" context={{}}>
+    const component = create(<StaticRouter location="/" context={{}}>
         <ProfileCard {...props} />
     </StaticRouter>);
     await allOver();
