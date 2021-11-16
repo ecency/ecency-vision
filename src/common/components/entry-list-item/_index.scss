@@ -3,6 +3,7 @@
   @media (max-width: $sm-break) {
     position: unset;
   }
+
   @include entry-list-item;
 
   .cross-item {
@@ -22,6 +23,7 @@
 
     .cross-item-link {
       display: none;
+
       @media (min-width: $sm-break) {
         display: inline-block;
       }
@@ -40,9 +42,14 @@
           margin: 0 0 10px 0;
           width: 100%;
 
+          &.noImage {
+            display: flex;
+          }
+
           a {
             display: block;
             width: 100%;
+            text-align: center;
 
             img {
               width: 100%;
@@ -62,6 +69,29 @@
         .item-controls {
           float: none;
           width: 100%;
+        }
+      }
+    }
+  }
+
+  .entry-list-item {
+    &.blog,
+    &.posts {
+      @media (min-width: $sm-break) {
+        .item-body {
+          .item-image {
+            @media (min-width: $xxxl-break) {
+              height: 180px;
+            }
+            @media (min-width: $xs-break) {
+              height: 200px;
+              a {
+                img {
+                  width: 100% !important;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -110,12 +140,35 @@
   }
 }
 
+.entry-list-body {
+  &.grid-view,
+  .entry-list-item {
+
+    &.comments,
+    &.replies {
+      .item-body {
+        .item-image {
+          &.noImage {
+            display: none;
+
+            &~.item-summary {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .noImage {
   display: flex;
   align-items: center;
   justify-content: center;
+
   img {
     width: 45px;
+
     @media (max-width: $sm-break) {
       width: 90px;
     }
@@ -132,6 +185,7 @@
 
 .author-down-arrow {
   display: none;
+
   @media (max-width: $sm-break) {
     display: inline-flex;
     justify-content: center;
