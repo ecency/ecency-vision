@@ -144,13 +144,14 @@ class CommunityPage extends BaseComponent<Props, State> {
 
     bottomReached = () => {
         const {match, entries, fetchEntries} = this.props;
+        const {search} = this.state;
         const {filter, name} = match.params;
         const groupKey = makeGroupKey(filter, name);
 
         const data = entries[groupKey];
         const {loading, hasMore} = data;
 
-        if (!loading && hasMore) {
+        if (!loading && hasMore && search.length === 0) {
             fetchEntries(filter, name, true);
         }
     };
@@ -311,7 +312,7 @@ class CommunityPage extends BaseComponent<Props, State> {
                                         )
                                         }
                                         {typing ? `${_t("g.typing")}...` : (search.length > 0 && searchDataLoading) ? <LinearProgress /> : (searchData.length > 0 && search.length > 0) ? <div className="search-list">
-                                            {searchData.map(res => <Fragment key={`${res.author}-${res.permlink}`}>
+                                            {searchData.map(res => <Fragment key={`${res.author}-${res.permlink}-${res.id}`}>
                                                 {SearchListItem({...this.props, res: res})}
                                             </Fragment>)}
                                         </div> : search.length === 0 ? null : _t("g.no-matches")}
@@ -321,7 +322,7 @@ class CommunityPage extends BaseComponent<Props, State> {
                                                 {EntryListContent({...this.props, entries: entryList, promotedEntries: promoted, community, loading})}
                                             </div>
                                         </div>}
-                                        {loading && entryList.length > 0 ? <LinearProgress/> : ""}
+                                        {search.length === 0 && loading && entryList.length > 0 ? <LinearProgress/> : ""}
                                         <DetectBottom onBottom={this.bottomReached}/>
                                     </>
                                 );
