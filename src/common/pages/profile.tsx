@@ -260,7 +260,7 @@ class ProfilePage extends BaseComponent<Props, State> {
         }
     }
 
-    delayedSearch = _.debounce(this.handleInputChange, 200);
+    delayedSearch = _.debounce(this.handleInputChange, 2000);
 
     authorChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.setState({author: e.target.value.trim()});

@@ -1,12 +1,14 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {connect} from "react-redux";
 import {match} from "react-router";
 
 import {Alert} from "react-bootstrap";
+import SearchListItem from "../components/search-list-item";
 
 import {ListStyle} from "../store/global/types";
 import {EntryFilter} from "../store/global/types";
 import {makeGroupKey} from "../store/entries";
+import {search as searchApi, SearchResult} from "../api/search-api";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
@@ -37,6 +39,9 @@ import _c from "../util/fix-class-names";
 import capitalize from "../util/capitalize";
 
 import defaults from "../constants/defaults.json";
+import SearchBox from "../components/search-box";
+import _ from "lodash";
+import searchListItem from "../components/search-list-item";
 
 interface MatchParams {
     filter: string;
@@ -49,11 +54,19 @@ interface Props extends PageProps {
 
 interface State {
     loading: boolean;
+    typing: boolean;
+    search: string;
+    searchDataLoading: boolean;
+    searchData: SearchResult[];
 }
 
 class CommunityPage extends BaseComponent<Props, State> {
     state: State = {
-        loading: false
+        loading: false,
+        typing: false,
+        search: "",
+        searchDataLoading: false,
+        searchData: []
     };
 
     async componentDidMount() {
@@ -155,9 +168,37 @@ class CommunityPage extends BaseComponent<Props, State> {
         });
     }
 
+    handleInputChange = async ( value: string): Promise<void>  => {
+        this.setState({ typing: false});
+        if(value.trim() === ''){
+        } else {
+          const { global } = this.props;
+          this.setState({ searchDataLoading: true});
+          
+          let query = `${value} category:${global.tag}`;
+          
+          console.log('query: ', query);
+          const data: any = await searchApi(query, "newest", "1")
+          
+          debugger
+          if(data && data.results) {
+            let sortedResults = data.results.sort((a: any,b: any) => Date.parse(b.created_at) - Date.parse(a.created_at))
+            this.setState({ searchData: sortedResults, loading: false, searchDataLoading: false })
+          }
+        }
+    }
+
+    delayedSearch = _.debounce(this.handleInputChange, 2000);
+
+    handleChangeSearch = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
+      const { value } = event.target;
+      this.setState({ search: value, typing: value.length === 0 ? false : true });
+      this.delayedSearch(value);
+    }
+
     render() {
         const {global, entries, communities, accounts, match} = this.props;
-        const {loading} = this.state;
+        const {loading, search, searchData, searchDataLoading, typing} = this.state;
 
         const navBar = global.isElectron ?
             NavBarElectron({
@@ -248,22 +289,45 @@ class CommunityPage extends BaseComponent<Props, State> {
                             if (data !== undefined) {
                                 const entryList = data?.entries;
                                 const loading = data?.loading;
+          
+                                debugger
 
                                 return (
                                     <>
                                         {!loading && entryList.length === 0 ? <Alert variant="info">{_t('g.empty-list')}</Alert> : ""}
                                         {loading && entryList.length === 0 ? <LinearProgress/> : ""}
-                                        <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
+
+
+                                        {
+                                        (filter === 'hot' || filter === 'created' || filter === 'trending') && (
+                                            <div className='searchProfile'>
+                                                <SearchBox
+                                                placeholder={_t("search-comment.search-placeholder")}
+                                                value={search}
+                                                onChange={this.handleChangeSearch}
+                                                autoComplete="off"
+                                                /> 
+                                            </div>
+                                        )
+                                        }
+                                        {typing ? `${_t("g.typing")}...` : (search.length > 0 && searchDataLoading) ? <LinearProgress /> : (searchData.length > 0 && search.length > 0) ? <div className="search-list">
+                                            {searchData.map(res => <Fragment key={`${res.author}-${res.permlink}`}>
+                                                {SearchListItem({...this.props, res: res})}
+                                            </Fragment>)}
+                                        </div> : search.length === 0 ? null : _t("g.no-matches")}
+                                        {search.length === 0 && !searchDataLoading && <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                                             <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                                                 {loading && entryList.length === 0 && <EntryListLoadingItem/>}
                                                 {EntryListContent({...this.props, entries: entryList, promotedEntries: promoted, community, loading})}
                                             </div>
-                                        </div>
+                                        </div>}
                                         {loading && entryList.length > 0 ? <LinearProgress/> : ""}
                                         <DetectBottom onBottom={this.bottomReached}/>
                                     </>
                                 );
                             }
+          
+                            debugger
 
                             return null;
                         })()}
