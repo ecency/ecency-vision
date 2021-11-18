@@ -8,6 +8,7 @@
     "login": "Bejelentkezés",
     "login-as": "Bejelentkezés mint",
     "signup": "Regisztráció",
+    "permissions": "Permissions",
     "delete": "Törlés",
     "cancel": "Elvet",
     "reply": "Válasz",
@@ -438,6 +439,7 @@
     "section-communities": "Közösségek",
     "section-wallet": "Tárca",
     "section-settings": "Beállítások",
+    "section-permission": "Permission",
     "communities-title": "Tagság",
     "create-community": "Hozz létre egy közösséget",
     "witnesses": "Tanúk",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",
