@@ -8,6 +8,7 @@
     "login": "लॉग इन करें",
     "login-as": "लॉगिन से",
     "signup": "साइनअप करें",
+    "permissions": "Permissions",
     "delete": "मिटाए",
     "cancel": "रद्द करें",
     "reply": "जबाब दें",
@@ -438,6 +439,7 @@
     "section-communities": "समुदाय",
     "section-wallet": "बटुआ",
     "section-settings": "सेटिंग्स",
+    "section-permission": "Permission",
     "communities-title": "सदस्यता",
     "create-community": "एक समुदाय बनाएँ",
     "witnesses": "गवाहों",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "निजी कुंजी देखें",
+    "header": "Manage keys",
     "account": "खाता",
     "cur-pass": "वर्तमान पासवर्ड",
     "owner": "मालिक",
