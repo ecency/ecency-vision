@@ -8,6 +8,7 @@
     "login": "تسجيل الدخول",
     "login-as": "تسجيل الدخول كـ",
     "signup": "إنشاء حساب",
+    "permissions": "Permissions",
     "delete": "حذف",
     "cancel": "إلغاء",
     "reply": "رد",
@@ -438,6 +439,7 @@
     "section-communities": "Communities",
     "section-wallet": "Wallet",
     "section-settings": "Settings",
+    "section-permission": "Permission",
     "communities-title": "Membership",
     "create-community": "Create a community",
     "witnesses": "Witnesses",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",
