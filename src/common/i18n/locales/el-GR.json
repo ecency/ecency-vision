@@ -8,6 +8,7 @@
     "login": "Σύνδεση",
     "login-as": "Είσοδος ως",
     "signup": "Εγγραφή",
+    "permissions": "Permissions",
     "delete": "Διαγραφή",
     "cancel": "Ακύρωση",
     "reply": "Απάντηση",
@@ -438,6 +439,7 @@
     "section-communities": "Κοινότητες",
     "section-wallet": "Πορτοφόλι",
     "section-settings": "Ρυθμίσεις",
+    "section-permission": "Permission",
     "communities-title": "Συμμετοχή",
     "create-community": "Δημιουργήστε μια κοινότητα",
     "witnesses": "Μάρτυρες",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",
