@@ -8,6 +8,7 @@
     "login": "Войти",
     "login-as": "Войти как",
     "signup": "Регистрация",
+    "permissions": "Permissions",
     "delete": "Удалить",
     "cancel": "Отменить",
     "reply": "Ответить",
@@ -438,6 +439,7 @@
     "section-communities": "Сообщества",
     "section-wallet": "Кошелек",
     "section-settings": "Настройки",
+    "section-permission": "Permission",
     "communities-title": "Участники",
     "create-community": "Создать сообщество",
     "witnesses": "Заверители",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "Просмотр закрытых ключей",
+    "header": "Manage keys",
     "account": "Аккаунт",
     "cur-pass": "Действующий пароль",
     "owner": "Владелец",
