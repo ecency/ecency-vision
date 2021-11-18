@@ -38,6 +38,10 @@ import _c from "../util/fix-class-names";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import {History} from "history";
+import { ViewKeys } from "../components/view-keys";
+import {Redirect} from 'react-router-dom'
+import { PasswordUpdate } from "../components/password-update";
+import { _t } from "../i18n";
 
 interface MatchParams {
     username: string;
@@ -197,7 +201,7 @@ class ProfilePage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, entries, accounts, match} = this.props;
+        const {global, entries, accounts, match, activeUser} = this.props;
         const {loading} = this.state;
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
@@ -298,6 +302,26 @@ class ProfilePage extends BaseComponent<Props, State> {
                                     ...this.props,
                                     account
                                 })
+                            }
+
+                            if (section === "permissions" && activeUser) {
+                                if(account.name === activeUser.username){
+                                    return <div className="container-fluid">
+                                            <div className="row">
+                                                <div className="col-12 col-md-6">
+                                                    <h6 className="border-bottom pb-3">{_t('view-keys.header')}</h6>
+                                                    <ViewKeys activeUser={activeUser} />
+                                                </div>
+                                                <div className="col-12 col-md-6">
+                                                    <h6 className="border-bottom pb-3">{_t('password-update.title')}</h6>
+                                                    <PasswordUpdate activeUser={activeUser} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                                else {
+                                    return <Redirect to={`/@${account.name}`} />
+                                }
                             }
 
 

@@ -15,10 +15,11 @@ import {_t} from "../../i18n";
 
 import {eyeSvg, copyContent} from "../../img/svg";
 import truncate from '../../util/truncate';
+import { Link } from "react-router-dom";
 
 interface Props {
     activeUser: ActiveUser;
-    onUpdate: () => void;
+    onUpdate?: () => void;
 }
 
 interface State {
@@ -203,37 +204,17 @@ interface DialogProps {
 }
 
 
-interface DialogState {
-    dialog: boolean
-}
-
-
-export default class ViewKeysDialog extends BaseComponent<DialogProps, DialogState> {
-    state: DialogState = {
-        dialog: false
-    }
-
-    toggleDialog = () => {
-        const {dialog} = this.state;
-        this.stateSet({dialog: !dialog});
-    }
+export default class ViewKeysDialog extends BaseComponent<DialogProps> {
 
     render() {
-        const {dialog} = this.state;
+        const {activeUser} = this.props;
 
         return <>
-            <Button onClick={this.toggleDialog} size="sm" className="view-keys-btn">{eyeSvg} {_t('view-keys.title')}</Button>
-
-            {dialog && (
-                <Modal show={true} centered={true} onHide={this.toggleDialog} animation={false} backdrop="static" keyboard={false} className="view-keys-modal">
-                    <Modal.Header closeButton={true}>
-                        <Modal.Title>{_t('view-keys.title')}</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <ViewKeys {...this.props} onUpdate={this.toggleDialog}/>
-                    </Modal.Body>
-                </Modal>
-            )}
+            <Link to={`/@${activeUser.username}/permissions`}>
+                <Button size="sm" className="view-keys-btn">
+                    {eyeSvg} {_t('view-keys.title')}
+                </Button>
+            </Link>
         </>
     }
 }
