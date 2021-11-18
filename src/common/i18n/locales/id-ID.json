@@ -8,6 +8,7 @@
     "login": "Masuk",
     "login-as": "Masuk sebagai",
     "signup": "Daftar",
+    "permissions": "Permissions",
     "delete": "Hapus",
     "cancel": "Batal",
     "reply": "Balas",
@@ -438,6 +439,7 @@
     "section-communities": "Komunitas",
     "section-wallet": "Dompet",
     "section-settings": "Pengaturan",
+    "section-permission": "Permission",
     "communities-title": "Keanggotaan",
     "create-community": "Buatlah sebuah komunitas",
     "witnesses": "Saksi",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "Lihat Kunci Pribadi",
+    "header": "Manage keys",
     "account": "Akun",
     "cur-pass": "Password terkini",
     "owner": "Pemilik",
