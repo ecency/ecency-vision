@@ -3,11 +3,8 @@ import React from "react";
 import {connect} from "react-redux";
 
 import {match} from "react-router";
-
-import {ListStyle} from "../store/global/types";
-
-import {makeGroupKey} from "../store/entries";
-import {ProfileFilter} from "../store/global/types";
+import {Redirect} from 'react-router-dom'
+import {History} from "history";
 
 import BaseComponent from "../components/base";
 import Meta from "../components/meta";
@@ -29,18 +26,17 @@ import WalletHive from "../components/wallet-hive";
 import WalletHiveEngine from "../components/wallet-hive-engine";
 import WalletEcency from "../components/wallet-ecency";
 import ScrollToTop from "../components/scroll-to-top";
+import ViewKeys from "../components/view-keys";
+import { PasswordUpdate } from "../components/password-update";
 
 import {getAccountFull} from "../api/hive";
+import {ListStyle} from "../store/global/types";
+import {makeGroupKey} from "../store/entries";
+import {ProfileFilter} from "../store/global/types";
 
 import defaults from "../constants/defaults.json";
-
 import _c from "../util/fix-class-names";
-
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-import {History} from "history";
-import { ViewKeys } from "../components/view-keys";
-import {Redirect} from 'react-router-dom'
-import { PasswordUpdate } from "../components/password-update";
 import { _t } from "../i18n";
 
 interface MatchParams {
