@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Button, Form, FormControl, InputGroup, Modal} from "react-bootstrap";
+import {Button, Form, FormControl, InputGroup} from "react-bootstrap";
 
 import {PrivateKey, KeyRole} from "@hiveio/dhive";
 
@@ -13,9 +13,8 @@ import {formatError} from "../../api/operations";
 
 import {_t} from "../../i18n";
 
-import {eyeSvg, copyContent} from "../../img/svg";
+import {copyContent} from "../../img/svg";
 import truncate from '../../util/truncate';
-import { Link } from "react-router-dom";
 
 interface Props {
     activeUser: ActiveUser;
@@ -28,7 +27,7 @@ interface State {
     inProgress: boolean,
 }
 
-export class ViewKeys extends BaseComponent<Props, State> {
+export default class ViewKeys extends BaseComponent<Props, State> {
     state: State = {
         curPass: "",
         keys: {},
@@ -60,8 +59,8 @@ export class ViewKeys extends BaseComponent<Props, State> {
                 newPrivateKeys[r] = k.toString();
                 if (r === 'memo') keyCheck = k.createPublic().toString();
             });    
-        } catch (error) {
-            error(formatError(error));
+        } catch (err) {
+            error(formatError(err));
         }
         
         if (activeUser.data.memo_key !== keyCheck) {
@@ -196,25 +195,5 @@ export class ViewKeys extends BaseComponent<Props, State> {
                 </Form.Group>
             </Form>
         </div>
-    }
-}
-
-interface DialogProps {
-    activeUser: ActiveUser;
-}
-
-
-export default class ViewKeysDialog extends BaseComponent<DialogProps> {
-
-    render() {
-        const {activeUser} = this.props;
-
-        return <>
-            <Link to={`/@${activeUser.username}/permissions`}>
-                <Button size="sm" className="view-keys-btn">
-                    {eyeSvg} {_t('view-keys.title')}
-                </Button>
-            </Link>
-        </>
     }
 }
