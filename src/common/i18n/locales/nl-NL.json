@@ -8,6 +8,7 @@
     "login": "Aanmelden",
     "login-as": "Aanmelden als",
     "signup": "Inschrijven",
+    "permissions": "Permissions",
     "delete": "Verwijder",
     "cancel": "Annuleren",
     "reply": "Reageer",
@@ -438,6 +439,7 @@
     "section-communities": "Gemeenschappen",
     "section-wallet": "Portemonnee",
     "section-settings": "Instellingen",
+    "section-permission": "Permission",
     "communities-title": "Lidmaatschap",
     "create-community": "Maak een gemeenschap aan",
     "witnesses": "Getuigen",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",
