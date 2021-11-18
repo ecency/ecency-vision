@@ -8,6 +8,7 @@
     "login": "Prijava",
     "login-as": "Prijavi se kao",
     "signup": "Registruj se",
+    "permissions": "Permissions",
     "delete": "Izbriši",
     "cancel": "Otkaži",
     "reply": "Odgovori",
@@ -438,6 +439,7 @@
     "section-communities": "Zajednice",
     "section-wallet": "Novčanik",
     "section-settings": "Подешавања",
+    "section-permission": "Permission",
     "communities-title": "Članstvo",
     "create-community": "Napravite zajednicu",
     "witnesses": "Svedoci (witnesses)",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",
