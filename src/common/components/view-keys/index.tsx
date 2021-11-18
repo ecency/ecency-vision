@@ -210,7 +210,7 @@ export default class ViewKeysDialog extends BaseComponent<DialogProps> {
         const {activeUser} = this.props;
 
         return <>
-            <Link to={`/@${activeUser.username}/permission`}>
+            <Link to={`/@${activeUser.username}/permissions`}>
                 <Button size="sm" className="view-keys-btn">
                     {eyeSvg} {_t('view-keys.title')}
                 </Button>
