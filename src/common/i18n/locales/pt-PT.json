@@ -8,6 +8,7 @@
     "login": "Entrar",
     "login-as": "Entrar como",
     "signup": "Registrar-se",
+    "permissions": "Permissions",
     "delete": "Apagar",
     "cancel": "Cancelar",
     "reply": "Responder",
@@ -438,6 +439,7 @@
     "section-communities": "Comunidades",
     "section-wallet": "Carteira",
     "section-settings": "Definições",
+    "section-permission": "Permission",
     "communities-title": "Subscrição",
     "create-community": "Criar uma comunidade",
     "witnesses": "Testemunhas",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "Ver Chaves Privadas",
+    "header": "Manage keys",
     "account": "Conta",
     "cur-pass": "Senha atual",
     "owner": "Proprietário",
