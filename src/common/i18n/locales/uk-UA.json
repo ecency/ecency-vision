@@ -8,6 +8,7 @@
     "login": "Увійти",
     "login-as": "Увійти як",
     "signup": "Зареєструватися",
+    "permissions": "Permissions",
     "delete": "Видалити",
     "cancel": "Скасувати",
     "reply": "Відповісти",
@@ -438,6 +439,7 @@
     "section-communities": "Спільноти",
     "section-wallet": "Гаманець",
     "section-settings": "Налаштування",
+    "section-permission": "Permission",
     "communities-title": "Участь",
     "create-community": "Створити спільноту",
     "witnesses": "Делегати",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",
