@@ -8,6 +8,7 @@
     "login": "Oturum aç",
     "login-as": "Oturum adı",
     "signup": "Hesap oluştur",
+    "permissions": "Permissions",
     "delete": "Sil",
     "cancel": "İptal",
     "reply": "Cevapla",
@@ -438,6 +439,7 @@
     "section-communities": "Topluluklar",
     "section-wallet": "Cüzdan",
     "section-settings": "Ayarlar",
+    "section-permission": "Permission",
     "communities-title": "Üyelik",
     "create-community": "Bir topluluk oluştur",
     "witnesses": "Tanıklar",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "Özel anahtarı görüntüle",
+    "header": "Manage keys",
     "account": "Hesap",
     "cur-pass": "Güncel şifreniz",
     "owner": "Sahip",
