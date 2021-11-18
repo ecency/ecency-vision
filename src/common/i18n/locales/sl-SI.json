@@ -8,6 +8,7 @@
     "login": "Vpis",
     "login-as": "Vpis kot",
     "signup": "Prijava",
+    "permissions": "Permissions",
     "delete": "Izbriši",
     "cancel": "Prekliči",
     "reply": "Odgovori",
@@ -438,6 +439,7 @@
     "section-communities": "Communities",
     "section-wallet": "Wallet",
     "section-settings": "Settings",
+    "section-permission": "Permission",
     "communities-title": "Membership",
     "create-community": "Create a community",
     "witnesses": "Witnesses",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",
