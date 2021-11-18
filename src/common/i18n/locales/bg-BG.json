@@ -8,6 +8,7 @@
     "login": "Вход",
     "login-as": "Влизане чрез",
     "signup": "Регистриране",
+    "permissions": "Permissions",
     "delete": "Изтрий",
     "cancel": "Отказ",
     "reply": "Отговор",
@@ -438,6 +439,7 @@
     "section-communities": "Общности",
     "section-wallet": "Портфейл",
     "section-settings": "Настройки",
+    "section-permission": "Permission",
     "communities-title": "Членство",
     "create-community": "Създай общност",
     "witnesses": "Свидетели",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",
