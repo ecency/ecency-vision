@@ -8,6 +8,7 @@
     "login": "Prisijungti",
     "login-as": "Prisijungti Kaip",
     "signup": "Registruotis",
+    "permissions": "Permissions",
     "delete": "Ištrinti",
     "cancel": "Atšaukti",
     "reply": "Atsakyti",
@@ -438,6 +439,7 @@
     "section-communities": "Bendruomenės",
     "section-wallet": "Piniginė",
     "section-settings": "Settings",
+    "section-permission": "Permission",
     "communities-title": "Membership",
     "create-community": "Sukurti bendruomenę",
     "witnesses": "Witnesses",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",
