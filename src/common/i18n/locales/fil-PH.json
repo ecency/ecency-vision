@@ -8,6 +8,7 @@
     "login": "Pumasok",
     "login-as": "Pumasok Bilang",
     "signup": "Mag-signup",
+    "permissions": "Permissions",
     "delete": "Burahin",
     "cancel": "I-kansela",
     "reply": "Sagutin",
@@ -438,6 +439,7 @@
     "section-communities": "Mga Pamayanan",
     "section-wallet": "Pitaka",
     "section-settings": "Mga Setting",
+    "section-permission": "Permission",
     "communities-title": "Pagkamiyembro",
     "create-community": "Gumawa ng pamayanan",
     "witnesses": "Mga testigo",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",
