@@ -8,6 +8,7 @@
     "login": "Einloggen",
     "login-as": "Einloggen als",
     "signup": "Registrieren",
+    "permissions": "Permissions",
     "delete": "Entfernen",
     "cancel": "Abbrechen",
     "reply": "Antworten",
@@ -438,6 +439,7 @@
     "section-communities": "Communities",
     "section-wallet": "Wallet",
     "section-settings": "Einstellungen",
+    "section-permission": "Permission",
     "communities-title": "Mitgliedschaft",
     "create-community": "Community erstellen",
     "witnesses": "Witnesses",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",
