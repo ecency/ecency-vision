@@ -8,6 +8,7 @@
     "login": "Logare",
     "login-as": "Autentificare ca",
     "signup": "Înregistrare",
+    "permissions": "Permissions",
     "delete": "Șterge",
     "cancel": "Anulează",
     "reply": "Răspunde",
@@ -438,6 +439,7 @@
     "section-communities": "Comunități",
     "section-wallet": "Portofel",
     "section-settings": "Setări",
+    "section-permission": "Permission",
     "communities-title": "Membru",
     "create-community": "Creează o comunitate",
     "witnesses": "Martori",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",
