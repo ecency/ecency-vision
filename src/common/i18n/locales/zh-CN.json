@@ -8,6 +8,7 @@
     "login": "登录",
     "login-as": "切换账号",
     "signup": "注册",
+    "permissions": "Permissions",
     "delete": "删除",
     "cancel": "取消",
     "reply": "回复",
@@ -438,6 +439,7 @@
     "section-communities": "社区",
     "section-wallet": "钱包",
     "section-settings": "设置",
+    "section-permission": "Permission",
     "communities-title": "成员",
     "create-community": "创建社区",
     "witnesses": "见证人",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "查看私钥",
+    "header": "Manage keys",
     "account": "账户",
     "cur-pass": "当前密码",
     "owner": "所有者",
