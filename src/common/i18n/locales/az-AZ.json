@@ -8,6 +8,7 @@
     "login": "Giriş et",
     "login-as": "Giriş et",
     "signup": "Qeydiyyatdan keç",
+    "permissions": "Permissions",
     "delete": "Sil",
     "cancel": "İmtina",
     "reply": "Cavabla",
@@ -438,6 +439,7 @@
     "section-communities": "Cəmiyyətlər",
     "section-wallet": "Pulqabı",
     "section-settings": "Tənzimləmələr",
+    "section-permission": "Permission",
     "communities-title": "Üzvlük",
     "create-community": "Bir cəmiyyət yarat",
     "witnesses": "Şahidlər",
@@ -1018,6 +1020,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",
