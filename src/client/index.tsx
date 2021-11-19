@@ -19,6 +19,8 @@ import "../style/theme-night.scss";
 
 import './base-handlers';
 
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+
 declare var window: AppWindow;
 
 const store = configureStore(window["__PRELOADED_STATE__"]);
@@ -33,6 +35,12 @@ hydrate(
 );
 
 clientStoreTasks(store);
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://cra.link/PWA
+// serviceWorkerRegistration.unregister();
+serviceWorkerRegistration.register();
 
 // Check & activate keychain support
 window.addEventListener("load", () => {
