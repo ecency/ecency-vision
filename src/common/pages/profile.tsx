@@ -32,7 +32,7 @@ import WalletHiveEngine from "../components/wallet-hive-engine";
 import WalletEcency from "../components/wallet-ecency";
 import ScrollToTop from "../components/scroll-to-top";
 import SearchListItem from "../components/search-list-item";
-import SearchQuery, {SearchType} from "../helper/search-query";
+import {SearchType} from "../helper/search-query";
 import SearchBox from '../components/search-box'
 
 import {getAccountFull} from "../api/hive";
@@ -45,7 +45,7 @@ import _c from "../util/fix-class-names";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import {History} from "history";
 
-import { Row, Col, Form, Button, FormControl } from 'react-bootstrap'
+import { FormControl } from 'react-bootstrap'
 
 interface MatchParams {
     username: string;
@@ -60,6 +60,7 @@ interface Props extends PageProps {
 
 interface State {
     loading: boolean;
+    typing: boolean;
     isDefaultPost:boolean;
     search: string;
     author: string;
@@ -83,6 +84,7 @@ class ProfilePage extends BaseComponent<Props, State> {
 
         this.state = {
             loading: false,
+            typing: false,
             isDefaultPost:false,
             searchDataLoading: searchParam.length > 0,
             search: searchParam,
@@ -232,16 +234,17 @@ class ProfilePage extends BaseComponent<Props, State> {
 
     handleChangeSearch = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
       const { value } = event.target;
-      this.setState({ search: value });
+      this.setState({ search: value, typing: value.length === 0 ? false : true });
       this.delayedSearch(value);
     }
 
     handleInputChange = async ( value: string): Promise<void>  => {
+        this.setState({ typing: false});
         if(value.trim() === ''){
             // this.setState({proposals: this.state.allProposals});
         } else {
           const { global } = this.props;
-          this.setState({  searchDataLoading: true});
+          this.setState({  searchDataLoading: true, typing: false});
     
           let query = `${value} author:${global.tag.substring(1)}`;
          
@@ -251,7 +254,7 @@ class ProfilePage extends BaseComponent<Props, State> {
             query += ` type:comment`
           } 
           console.log('query: ', query);
-          const data: any = await searchApi(query, "popularity", "1")
+          const data: any = await searchApi(query, "popularity", "0")
           
           if(data && data.results) {
             let sortedResults = data.results.sort((a: any,b: any) => Date.parse(b.created_at) - Date.parse(a.created_at))
@@ -272,7 +275,7 @@ class ProfilePage extends BaseComponent<Props, State> {
 
     render() {
         const {global, entries, accounts, match} = this.props;
-        const {loading, author, search, searchDataLoading, searchData} = this.state;
+        const {loading, author, search, searchDataLoading, searchData, typing} = this.state;
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
             reloadFn: this.reload,
@@ -359,7 +362,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                           )
                         }
 
-                        {
+                        {typing ? `${_t("g.typing")}...` : 
                           search.length > 0 ? (
                             <>  
                               { searchDataLoading ? 
@@ -367,7 +370,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                                             <LinearProgress/>
                                         </div> : searchData.length > 0 ? (
                                 <div className="search-list">
-                                    {searchData.map(res => <Fragment key={`${res.author}-${res.permlink}`}>
+                                    {searchData.map(res => <Fragment key={`${res.author}-${res.permlink}-${res.id}`}>
                                         {SearchListItem({...this.props, res: res})}
                                     </Fragment>)}
                                 </div>

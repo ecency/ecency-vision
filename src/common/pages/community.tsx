@@ -179,9 +179,9 @@ class CommunityPage extends BaseComponent<Props, State> {
           let query = `${value} category:${global.tag}`;
           
           console.log('query: ', query);
-          const data: any = await searchApi(query, "newest", "1")
+          const data: any = await searchApi(query, "newest", "0")
           
-          debugger
+          
           if(data && data.results) {
             let sortedResults = data.results.sort((a: any,b: any) => Date.parse(b.created_at) - Date.parse(a.created_at))
             this.setState({ searchData: sortedResults, loading: false, searchDataLoading: false })
@@ -291,7 +291,7 @@ class CommunityPage extends BaseComponent<Props, State> {
                                 const entryList = data?.entries;
                                 const loading = data?.loading;
           
-                                debugger
+                                
 
                                 return (
                                     <>
@@ -328,7 +328,7 @@ class CommunityPage extends BaseComponent<Props, State> {
                                 );
                             }
           
-                            debugger
+                            
 
                             return null;
                         })()}
