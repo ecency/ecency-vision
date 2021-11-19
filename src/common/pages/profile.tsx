@@ -1,15 +1,13 @@
 import React, { Fragment } from "react";
-
-import {connect} from "react-redux";
-
 import {match} from "react-router";
+import {Redirect} from 'react-router-dom'
 
 import {ListStyle} from "../store/global/types";
 
 import {makeGroupKey} from "../store/entries";
 import {ProfileFilter} from "../store/global/types";
-import { _t } from "../i18n";
 import _ from 'lodash'
+import {History} from "history";
 
 import BaseComponent from "../components/base";
 import Meta from "../components/meta";
@@ -35,17 +33,19 @@ import SearchListItem from "../components/search-list-item";
 import {SearchType} from "../helper/search-query";
 import SearchBox from '../components/search-box'
 
-import {getAccountFull} from "../api/hive";
 import {search as searchApi, SearchResult} from "../api/search-api";
+import ViewKeys from "../components/view-keys";
+import { PasswordUpdate } from "../components/password-update";
+
+import {getAccountFull} from "../api/hive";
 
 import defaults from "../constants/defaults.json";
-
 import _c from "../util/fix-class-names";
-
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-import {History} from "history";
+import { _t } from "../i18n";
 
 import { FormControl } from 'react-bootstrap'
+import { connect } from "react-redux";
 
 interface MatchParams {
     username: string;
@@ -274,8 +274,8 @@ class ProfilePage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, entries, accounts, match} = this.props;
-        const {loading, author, search, searchDataLoading, searchData, typing} = this.state;
+        const {global, entries, accounts, match, activeUser} = this.props;
+        const {loading, search, searchDataLoading, searchData, typing} = this.state;
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
             reloadFn: this.reload,
@@ -414,6 +414,26 @@ class ProfilePage extends BaseComponent<Props, State> {
                                         ...this.props,
                                         account
                                     })
+                                }
+
+                                if (section === "permissions" && activeUser) {
+                                    if(account.name === activeUser.username){
+                                        return <div className="container-fluid">
+                                                <div className="row">
+                                                    <div className="col-12 col-md-6">
+                                                        <h6 className="border-bottom pb-3">{_t('view-keys.header')}</h6>
+                                                        <ViewKeys activeUser={activeUser} />
+                                                    </div>
+                                                    <div className="col-12 col-md-6">
+                                                        <h6 className="border-bottom pb-3">{_t('password-update.title')}</h6>
+                                                        <PasswordUpdate activeUser={activeUser} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    }
+                                    else {
+                                        return <Redirect to={`/@${account.name}`} />
+                                    }
                                 }
 
                                 if (data !== undefined) {

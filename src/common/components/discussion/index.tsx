@@ -351,7 +351,7 @@ export const Item = (props: ItemProps) => {
                             <ProfilePreview
                                 username={entry.author}
                                 {...props}
-                                onClose={(e, doNotSetState) => {isMounted && onHideProfileAvatar(e, doNotSetState)}}
+                                onClose={(e, doNotSetState) => {onHideProfileAvatar(e, doNotSetState)}}
                             />
                         }
                     </div>
@@ -379,7 +379,7 @@ export const Item = (props: ItemProps) => {
                                 <ProfilePreview
                                     username={entry.author}
                                     {...props}
-                                    onClose={(e, doNotSetState) => {isMounted && onHideProfile(e, doNotSetState)}}
+                                    onClose={(e, doNotSetState) => {onHideProfile(e, doNotSetState)}}
                                 />
                         }
                         </div>
@@ -547,25 +547,26 @@ interface ListProps {
 
 interface ListState {
     isHiddenPermitted: boolean;
-    mutedData: string[]
+    mutedData: string[];
+    isMounted: boolean;
 }
 
 export class List extends Component<ListProps> {
     state: ListState = {
         isHiddenPermitted: false,
-        mutedData: []
+        mutedData: [],
+        isMounted: false
     }
-    _isMounted = false;
 
     componentWillUnmount(){
         document.getElementsByTagName("html")[0].style.position = 'unset';
-        this._isMounted = false;
+        this.setState({isMounted: false});
     }
     
     componentDidMount(){
-        this._isMounted = true;
+        this.setState({isMounted: true});
         document.getElementsByTagName("html")[0].style.position = 'relative';
-        this._isMounted && this.fetchMutedUsers();
+        this.state.isMounted && this.fetchMutedUsers();
     }
 
     fetchMutedUsers = () => {
@@ -574,7 +575,7 @@ export class List extends Component<ListProps> {
             getFollowing(activeUser.username, "", "ignore", 100).then(r => {
                 if (r) {
                     let filterList = r.map(user=>user.following);
-                    this._isMounted && this.setState({ mutedData: filterList });
+                    this.state.isMounted && this.setState({ mutedData: filterList });
                 }
             });
         }
@@ -644,20 +645,21 @@ interface Props {
 }
 
 interface State {
-    visible: boolean
+    visible: boolean;
+    isMounted: boolean;
 }
 
 export class Discussion extends Component<Props, State> {
     state: State = {
-        visible: !!this.props.activeUser
+        visible: !!this.props.activeUser,
+        isMounted: false
     }
-    _isMounted = false;
 
     componentDidMount() {
-        this._isMounted = true;
+        this.setState({isMounted: true});
         const {activeUser} = this.props;
         if (activeUser) {
-            this._isMounted && this.fetch();
+            this.state.isMounted && this.fetch();
         }
     }
 
@@ -684,7 +686,7 @@ export class Discussion extends Component<Props, State> {
     componentWillUnmount() {
         const {resetDiscussion} = this.props;
         resetDiscussion();
-        this._isMounted = false;
+        this.setState({isMounted: false});
     }
 
     fetch = () => {

@@ -92,7 +92,8 @@ export const ProfileCard = (props: Props) => {
                 setFollowsActiveUserLoading(false);
                 setFollowsActiveUser(res?.follows || false);
             }).catch((error) => {
-                console.log(error);
+                setFollowsActiveUserLoading(false);
+                setFollowsActiveUser(false);
             });
         }
     }

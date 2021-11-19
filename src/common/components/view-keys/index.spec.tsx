@@ -2,21 +2,11 @@ import React from "react";
 
 import TestRenderer from "react-test-renderer";
 
-import ViewKeysDialog, {ViewKeys} from "./index";
+import ViewKeys from "./index";
 
 import {activeUserMaker} from "../../helper/test-helper";
 
-it("(1) Default render", () => {
-    const props = {
-        activeUser: activeUserMaker("foo"),
-
-    };
-    const renderer = TestRenderer.create(<ViewKeysDialog {...props} />);
-    expect(renderer.toJSON()).toMatchSnapshot();
-});
-
-
-it("(2) Dialog content", () => {
+it("(1) View keys content", () => {
     const props = {
         activeUser: activeUserMaker("foo"),
         onUpdate: () => {
