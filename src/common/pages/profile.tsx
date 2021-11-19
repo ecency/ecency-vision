@@ -253,7 +253,7 @@ class ProfilePage extends BaseComponent<Props, State> {
           } else if(global.filter === 'comments') {
             query += ` type:comment`
           } 
-          console.log('query: ', query);
+
           const data: any = await searchApi(query, "popularity", "0")
           
           if(data && data.results) {

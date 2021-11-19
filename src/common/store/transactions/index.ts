@@ -70,7 +70,6 @@ export const fetchTransactions = (username: string, group: OperationGroup | "" =
     dispatch(fetchAct(group));
 
     const name = username.replace("@", "");
-    console.log('fetchTransactions')
 
     let filters: any[] = [];
     switch (group) {

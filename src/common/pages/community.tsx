@@ -178,7 +178,7 @@ class CommunityPage extends BaseComponent<Props, State> {
           
           let query = `${value} category:${global.tag}`;
           
-          console.log('query: ', query);
+
           const data: any = await searchApi(query, "newest", "0")
           
           
