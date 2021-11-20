@@ -38,7 +38,7 @@ export const Curation = (props: Props) => {
 
     useEffect(() => {
         setIsMounted(true);
-        fetch();
+        fetch(period);
         return () => {
           setIsMounted(false);
         }
@@ -48,10 +48,10 @@ export const Curation = (props: Props) => {
         return b.efficiency - a.efficiency;
     }
 
-    const fetch = async() => {
+    const fetch = async(f: CurationDuration) => {
         setLoading(true);
         setData([] as CurationItem[]);
-        const dataa = await getCuration(period);
+        const dataa = await getCuration(f);
         const accounts = dataa.map((item) => item.account);
         const ress = await getAccounts(accounts);
 
@@ -75,7 +75,7 @@ export const Curation = (props: Props) => {
                 label: _t(`leaderboard.period-${f}`),
                 onClick: () => {
                     setPeriod(f as CurationDuration);
-                    fetch();
+                    fetch(f as CurationDuration);
                 }
             }
         }))
@@ -91,7 +91,7 @@ export const Curation = (props: Props) => {
         <div className={_c(`leaderboard-list ${loading ? "loading" : ""}`)}>
             <div className="list-header">
                 <div className="list-filter">
-                    {_t('leaderboard.title-curators')} <DropDown {...dropDownConfig} float="left"/>
+                    {_t('leaderboard.title-curators')} {loading ? "" : <DropDown {...dropDownConfig} float="left" />}
                 </div>
                 <div className="list-title">
                     {_t(`leaderboard.title-${period}`)}

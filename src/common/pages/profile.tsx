@@ -1,13 +1,14 @@
 import React, { Fragment } from "react";
 import {match} from "react-router";
-import {Redirect} from 'react-router-dom'
 
+import {Redirect} from 'react-router-dom'
+import {History} from "history";
+import _ from 'lodash'
+import {_t} from "../i18n";
 import {ListStyle} from "../store/global/types";
 
 import {makeGroupKey} from "../store/entries";
 import {ProfileFilter} from "../store/global/types";
-import _ from 'lodash'
-import {History} from "history";
 
 import BaseComponent from "../components/base";
 import Meta from "../components/meta";
@@ -42,7 +43,6 @@ import {getAccountFull} from "../api/hive";
 import defaults from "../constants/defaults.json";
 import _c from "../util/fix-class-names";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-import { _t } from "../i18n";
 
 import { FormControl } from 'react-bootstrap'
 import { connect } from "react-redux";
@@ -253,8 +253,7 @@ class ProfilePage extends BaseComponent<Props, State> {
           } else if(global.filter === 'comments') {
             query += ` type:comment`
           } 
-
-          const data: any = await searchApi(query, "popularity", "0")
+          const data: any = await searchApi(query, "popularity", "1")
           
           if(data && data.results) {
             let sortedResults = data.results.sort((a: any,b: any) => Date.parse(b.created_at) - Date.parse(a.created_at))
@@ -350,7 +349,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                         })}
 
                         {
-                          (filter === 'posts' || filter === 'comments' || filter === 'communities') && (
+                          (filter === 'blog' || filter === 'posts' || filter === 'comments' || section === 'communities') && (
                               <div className='searchProfile'>
                                 <SearchBox
                                   placeholder={_t("search-comment.search-placeholder")}
