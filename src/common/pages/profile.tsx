@@ -10,6 +10,8 @@ import {makeGroupKey} from "../store/entries";
 import {ProfileFilter} from "../store/global/types";
 import { _t } from "../i18n";
 import _ from 'lodash'
+import {Redirect} from 'react-router-dom'
+import {History} from "history";
 
 import BaseComponent from "../components/base";
 import Meta from "../components/meta";
@@ -35,15 +37,15 @@ import SearchListItem from "../components/search-list-item";
 import SearchQuery, {SearchType} from "../helper/search-query";
 import SearchBox from '../components/search-box'
 
-import {getAccountFull} from "../api/hive";
 import {search as searchApi, SearchResult} from "../api/search-api";
+import ViewKeys from "../components/view-keys";
+import { PasswordUpdate } from "../components/password-update";
+
+import {getAccountFull} from "../api/hive";
 
 import defaults from "../constants/defaults.json";
-
 import _c from "../util/fix-class-names";
-
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-import {History} from "history";
 
 import { Row, Col, Form, Button, FormControl } from 'react-bootstrap'
 
@@ -322,7 +324,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                         })}
 
                         {
-                          (filter === 'blog' || filter === 'posts' || filter === 'comments' || filter === 'communities') && (
+                          (filter === 'blog' || filter === 'posts' || filter === 'comments' || section === 'communities') && (
                               <div className='searchProfile'>
                                 <SearchBox
                                   placeholder={_t("search-comment.search-placeholder")}

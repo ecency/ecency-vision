@@ -12,6 +12,7 @@
     "cancel": "I-kansela",
     "reply": "Sagutin",
     "update": "I-update",
+    "learnMore": "Learn more",
     "or": "Iba pa",
     "muted-message": "Muted author, Reveal content",
     "server-error": "Ang pag proseso ay hindi makumpleto dahil sa may pagkakamali sa server",
@@ -38,6 +39,7 @@
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
+    "logs": "logs",
     "posts": "posts",
     "comments": "comments",
     "replies": "replies",
@@ -47,6 +49,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Isarado"
   },
   "confirm": {
@@ -82,6 +85,7 @@
   },
   "search": {
     "placeholder": "Maghanap",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Maghanap {{n}} ng mga artikulo",
     "header-tag": "Mga palatandaan",
     "header-account": "Mga gumagamit",
@@ -271,13 +275,15 @@
     "comment-entry-title": "Tinitingnan mo ngayon ang nag-iisang komento sa thread na galing kay: ",
     "comment-entry-go-root": "Tingnan ang buong konteksto",
     "comment-entry-go-parent": "Tingnan ang direktang puno",
-    "hidden-warning": "This content got low rating by people. Proceed with caution.",
+    "hidden-warning": "This content got low rating by people.",
     "delete-disabled": "Content after their payout cannot be deleted.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
-    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
+    "lowrep-warning": "Author of this content has low reputation.",
+    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Kopyahin ang post address",
     "address-copied": "Ang post address ay nakopya na sa clipboard.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "pamayanan",
@@ -307,6 +313,7 @@
     "order-created": "Edad",
     "read-more": "... basahin pa ang ibang sagot...",
     "reveal-muted": "Muted author - Reveal comment",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Ipakita ang komento"
   },
   "community": {
@@ -397,6 +404,7 @@
     "done": "Ang pamayanan mo ay nagawa na",
     "reason-one": "True ownership",
     "reason-two": "Permanent, rewarding",
+    "password-copied": "Password copied to clipboard",
     "reason-three": "Powered by blockchain technology",
     "reason-four": "It costs 3 HIVE to create permanent, immutable, true ownership community",
     "done-link-label": "Magsimula."
@@ -422,6 +430,7 @@
     "post-count": "Bilang ng Post",
     "followers": "Mga tagasunod",
     "following": "Sinusundan",
+    "follows-you": "Follows you",
     "section-blog": "Blog",
     "section-posts": "Mga Post",
     "section-comments": "Mga komento",
@@ -474,12 +483,16 @@
     "unclaimed-rewards": "Mga hindi pa naaangkin na gantimpala",
     "claim-reward-balance": "Angkinin ang mga balanse sa gamtipala",
     "claim-reward-balance-ok": "Matagumpay na naangkin ang mga balanse",
-    "estimated": "Tinatayang Halaga ng Account",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "Ang tinatayang halaga ay nakabase sa isang 7-araw na karaniwang halaga ng {}.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "Ang HIVE ay isang token na puwedeng ikalakal na puwede din ilipat sa anumang oras. Ang HIVE ay puwedeng ipagpalit sa Hive Power sa pamamagitan ng proseso na tinatawag na powering up.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Ang Hive Power ay isang impluwensyang token na kumikita ng mas maraming kapangyarihan habang ito ay hinahawang ng matagal at sa pagboto sa mga post.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Ipinahiram na Hive Power",
     "hive-power-received": "Natanggap na Hive Power",
     "next-power-down-amount": "Susunod na halaga ng pagpapahina",
@@ -498,7 +511,16 @@
     "delegate": "Magpahiram",
     "power-down": "Magpahina",
     "withdraw-routes": "Ilabas ang mga ruta",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Ipinapalit sa Hive"
+  },
+  "wallet-engine": {
+    "title": "Hive Engine Tokens",
+    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
+    "no-results": "No tokens found.",
+    "token": "Token",
+    "balance": "Balance",
+    "staked": "Staked"
   },
   "withdraw-routes": {
     "title": "Alisin ang mga account",
@@ -557,7 +579,8 @@
   "purchase": {
     "select-asset": "Piliin ang ari-arian",
     "slider-hint": "Igalaw pakaliwa o pakanan ang slider para baguhin ang halaga.",
-    "submit": "Bumili"
+    "submit": "Bumili",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Isulong",
@@ -610,6 +633,8 @@
     "memo-placeholder": "ilagay ang iyong paalala dito",
     "memo-help": "Ang memo na ito ay isasapubliko",
     "available-hp-hint": "*puwedeng gamitin na hive power",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "Kumpirmahin ang iyong transaksyon",
     "confirm-sub-title": "Kung maaari, tignan kung tama lahat",
     "confirm": "Kumpirmahin",
@@ -666,6 +691,7 @@
     "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
     "type-fill_recurrent_transfer": "Recurring transfer occurred",
     "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
@@ -680,7 +706,8 @@
   },
   "delegated-vesting": {
     "title": "Naipahiram na Hive Power",
-    "undelegate": "bawiin ang ipinahiram na Hive Power"
+    "undelegate": "bawiin ang ipinahiram na Hive Power",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Natanggap na Hive Power"
@@ -750,6 +777,7 @@
     "clear": "Burahin",
     "published": "Ang post ay nailathala",
     "updated": "Ang post ay matagumpay na na-update",
+    "thumbnail": "Thumbnail",
     "advanced": "Advanced",
     "beneficiaries": "Beneficiaries",
     "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
@@ -767,7 +795,15 @@
     "placeholder-focus": "Ipasok ang tag",
     "placeholder-has-tags": "Magdagdag pa",
     "suggestion-header": "Mga tag",
-    "error-max": "Max {{n}} tags"
+    "error-max": "Max {{n}} tags",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Choose a community",
@@ -934,7 +970,10 @@
     "filter-team": "Proyektong Ecency",
     "return-description": "Ito ang basehan ng pagbabalik ng panukala. Bawat panukala na may maliit na boto ay hindi makakatanggap ng pondo.",
     "votes-dialog-title": "Mga boto sa Panukala #{{n}}",
-    "see-all": "tingnan ang lahat ng panukala"
+    "see-all": "tingnan ang lahat ng panukala",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Galeriya",
@@ -1025,9 +1064,12 @@
       "contact-email": "Email us"
     },
     "faq": {
-      "page-title": "Ecency FAQ",
+      "page-title": "How can we help you?",
       "page-sub-title": "Talaan ng mga Nilalaman",
       "what-is-ecency-header": "Ano ang Ecency?",
+      "search": "Related results for {{search}} filtered below",
+      "search-not-found": "Nothing was found. To ask our community, join our ",
+      "search-placeholder": "Search our articles",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "Ano ang Hive blockchain?",
       "what-is-hive-body": "<p>Ang Hive ay isang blockchain na idinesenyong maging mabilis, walang bayad, desentralisado, walang sensor na plataporma para sa Web3.0 na mga aplikasyon, na likas na katangian kung saan an mga mamumuhunan ay magkakaroon ng mga gantimpala sa pamamagitan ng paglalagak ng puhunan, pag-post, paglalaro ng mga laro sa blockchain, at pakikipagkalakal - na lahat ay ginagawa na walang anuman o sinuman bilang kasangkapan (desentralisado) sa pakikipagkalakal. </p>",
@@ -1160,5 +1202,9 @@
     "success-message-subscribe": "A verification link has been sent to your email account!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }

@@ -12,6 +12,7 @@
     "cancel": "Peruuta",
     "reply": "Vastaa",
     "update": "Päivitä",
+    "learnMore": "Learn more",
     "or": "Tai",
     "muted-message": "Muted author, Reveal content",
     "server-error": "Tapahtuma epäonnistui palvelinvirheen vuoksi",
@@ -38,6 +39,7 @@
     "found": "löydetty",
     "feed": "syöte",
     "blog": "blogi",
+    "logs": "logs",
     "posts": "julkaisut",
     "comments": "kommentit",
     "replies": "vastaukset",
@@ -47,6 +49,7 @@
     "payout": "Palkkio",
     "learn-more": "Lue lisää meidän",
     "faq": "UKK:sta",
+    "more-results": "More results",
     "close": "Sulje"
   },
   "confirm": {
@@ -82,6 +85,7 @@
   },
   "search": {
     "placeholder": "Haku",
+    "placeholder-proposals": "Search proposals",
     "placeholder-count": "Etsi {{n}} viestiä",
     "header-tag": "Tunnisteet",
     "header-account": "Käyttäjät",
@@ -271,13 +275,15 @@
     "comment-entry-title": "Katselet yhtä kommenttiketjua: ",
     "comment-entry-go-root": "Katso kaikki",
     "comment-entry-go-parent": "Näytä vanhempi",
-    "hidden-warning": "Tämä sisältö sai alhaisen arvosanan käyttäjiltä. Jatka varoen.",
+    "hidden-warning": "This content got low rating by people.",
     "delete-disabled": "Content after their payout cannot be deleted.",
     "muted-warning": "{{community}} valvoja mykisti tämän sisällön, koska se ei noudattanut yhteisön ohjeita.",
-    "lowrep-warning": "Tämän julkaisun tekijällä on heikko maine. Jatka varoen.",
+    "lowrep-warning": "Author of this content has low reputation.",
+    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "Olet mykistänyt tämän julkaisun tekijän.",
     "address-copy": "Kopioi osoite",
     "address-copied": "Osoite kopioitu leikepöydälle.",
+    "content-copied": "Content copied to clipboard.",
     "browse-original": "Näytä alkuperäinen julkaisu",
     "cross-post-by": "Ristilähettäjä",
     "cross-post-community": "yhteisö",
@@ -307,6 +313,7 @@
     "order-created": "Ikä",
     "read-more": "...lue lisää vastauksia...",
     "reveal-muted": "Mykistetty tekijä - paljasta kommentti",
+    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Näytä kommentti"
   },
   "community": {
@@ -397,6 +404,7 @@
     "done": "Yhteisösi luotiin 🎉",
     "reason-one": "Todellinen omistajuus",
     "reason-two": "Pysyvä, palkitseva",
+    "password-copied": "Password copied to clipboard",
     "reason-three": "Toimii lohkoketjuteknologian pohjalla",
     "reason-four": "Maksamalla 3 HIVEä luoda voit luoda pysyvän, muuttumattoman yhteisön todellisella omistajuudella",
     "done-link-label": "Aloitetaan."
@@ -422,6 +430,7 @@
     "post-count": "Julkaisujen määrä",
     "followers": "Seuraajat",
     "following": "Seuratut",
+    "follows-you": "Follows you",
     "section-blog": "Blogi",
     "section-posts": "Julkaisut",
     "section-comments": "Kommentit",
@@ -474,12 +483,16 @@
     "unclaimed-rewards": "Lunastamattomat palkkiot",
     "claim-reward-balance": "Lunasta palkkiosaldo",
     "claim-reward-balance-ok": "Palkkiosaldo lunastettu",
-    "estimated": "Arvioitu tilin arvo",
+    "estimated": "Estimated Wallet Value",
+    "estimated-points": "Estimated Points Value",
     "estimated-description": "Arvioitu arvo perustuu 7 päivän HIVE keskiarvoon.",
+    "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
     "hive-description": "HIVE on vaihdettavia, milloin tahansa siirrettäviä merkkejä. HIVEä voi vaihtaa Hive Poweriin prosessissa, jota kutsutaan Voimanlisäykseksi.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Powerit ovat vaikutuskuponkeja, jotka auttavat tienaamaan ja antavat enemmän määräysvaltaa äänestyksissä. Mitä enemmän näitä omistaa, sitä enemmän on vaikutusvaltaa ja voit saada myös palkintoja.",
+    "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
+    "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Valtuutettu Hive Power",
     "hive-power-received": "Vastaanotettu Hive Power",
     "next-power-down-amount": "Seuraava power down määrä",
@@ -498,7 +511,16 @@
     "delegate": "Valtuuta",
     "power-down": "Power down",
     "withdraw-routes": "Palauta Reitit",
+    "calculating": "Calculating",
     "converting-hbd-amount": "Muunnos HIVE:ksi"
+  },
+  "wallet-engine": {
+    "title": "Hive Engine Tokens",
+    "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
+    "no-results": "No tokens found.",
+    "token": "Token",
+    "balance": "Balance",
+    "staked": "Staked"
   },
   "withdraw-routes": {
     "title": "Palauta tilit",
@@ -557,7 +579,8 @@
   "purchase": {
     "select-asset": "Valitse etu",
     "slider-hint": "Siirrä liukusäädintä muuttaaksesi määrää.",
-    "submit": "Osta"
+    "submit": "Osta",
+    "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "promote": {
     "title": "Korosta",
@@ -610,6 +633,8 @@
     "memo-placeholder": "kirjoita muistio tähän",
     "memo-help": "Tämä muistio on julkinen",
     "available-hp-hint": "* hive power saatavilla",
+    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "Vahvista siirtotapahtuma",
     "confirm-sub-title": "Varmista vielä kerran",
     "confirm": "Vahvista",
@@ -666,6 +691,7 @@
     "type-recurrent_transfer-detail": "{{executions}} siirrot, joka {{recurrence}} tunti",
     "type-fill_recurrent_transfer": "Toistuva siirto tapahtui",
     "type-fill_recurrent_transfer-detail": "Jäljellä olevat {{remaining_executions}} siirrot",
+    "type-delegate_vesting_shares": "Delegation",
     "type-collateralized_convert": "Vakuutetut muunnokset",
     "type-collateralized_convert-detail": "Pyyntö id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
@@ -680,7 +706,8 @@
   },
   "delegated-vesting": {
     "title": "Valtuutettu Hive Power",
-    "undelegate": "poista valtuutus"
+    "undelegate": "poista valtuutus",
+    "subtitle": " HP Pending delegation returns"
   },
   "received-vesting": {
     "title": "Vastaanotettu Hive Power"
@@ -750,6 +777,7 @@
     "clear": "Tyhjennä",
     "published": "Julkaistu",
     "updated": "Julkaisu päivitetty",
+    "thumbnail": "Thumbnail",
     "advanced": "Lisäasetukset",
     "beneficiaries": "Hyötyjät",
     "beneficiaries-hint": "Aseta hyötyjät jakamaan tekijäpalkinto muille tileille",
@@ -767,7 +795,15 @@
     "placeholder-focus": "Syötä tunniste",
     "placeholder-has-tags": "Lisää enemmän",
     "suggestion-header": "Tunnisteet",
-    "error-max": "Enintään {{n}} tunnistetta"
+    "error-max": "Enintään {{n}} tunnistetta",
+    "limited_tags": "Only 10 tags allowed, remove some",
+    "limited_length": "Maximum length of each tag should be 24",
+    "limited_dash": "Use one dash in each tag",
+    "limited_space": "Use space to separate tags",
+    "limited_lowercase": "Only use lower letters in tag",
+    "limited_characters": "Use only lowercase letters, digits and one dash",
+    "limited_firstchar": "Tag must start with a letter",
+    "limited_lastchar": "Tag must end with letter or number"
   },
   "community-selector": {
     "choose": "Valitse yhteisö",
@@ -934,7 +970,10 @@
     "filter-team": "Ecency-projektit",
     "return-description": "Tämä on yleinen palautusehdotus. Jokainen ehdotus, jossa on vähemmän ääniä, ei saa rahoitusta.",
     "votes-dialog-title": "Äänet ehdotuksessa #{{n}}",
-    "see-all": "katso kaikki ehdotukset"
+    "see-all": "katso kaikki ehdotukset",
+    "daily-funded": "daily funded",
+    "daily-budget": "daily budget",
+    "total-budget": "total budget"
   },
   "gallery": {
     "title": "Galleria",
@@ -1025,9 +1064,12 @@
       "contact-email": "Lähetä meille sähköpostia"
     },
     "faq": {
-      "page-title": "Ecency UKK",
+      "page-title": "How can we help you?",
       "page-sub-title": "Sisällysluettelo",
       "what-is-ecency-header": "Mikä on Ecency?",
+      "search": "Related results for {{search}} filtered below",
+      "search-not-found": "Nothing was found. To ask our community, join our ",
+      "search-placeholder": "Search our articles",
       "what-is-ecency-body": "<p>Ecency on <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">lohkoketju</a> -pohjainen sosiaalinen verkosto, jonka on mahdollistaa <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency tarjoaa sensuroimattoman, vapaan, rajattoman ja palkitsevan alustan sisällön luojille.</p><p>Hankkeen käynnisti ja perusti Elokuussa 2016 <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> vaihtoehtoiseksi sensuurivapaaksi, käyttäjän hallittavaksi avoimen lähdekoodin sosiaaliseksi verkostoksi. On <a class=\"push-link\" href=\"/contributors\"> monia itsenäisiä vapaaehtoisia osallistujia </a> jotka haluavat pitää sananvapauden vision ja hengen yllä. </p><p>Ecency auttaa ihmisiä opettelemaan Lohkoketjuteknologian käyttöä, jossa käyttäjiä palkitaan ajastaan sekä resursseista oppien lohkoketjun sosiaalisia ominaisuuksia. Käytön helppouden ansiosta käyttäjät oppivat ja tulevat samalla uuden internetin sijoittajiksi ja kehittäjiksi.</p>",
       "what-is-hive-header": "Mikä on Hive-lohkoketju?",
       "what-is-hive-body": "<p>Hive on lohkoketju, joka oli suunniteltu olemaan nopea, ilmainen, hajautettu sekä sensuroimaton alusta Web3- sovelluksineen, joissa on sisäänrakennettuja ominaisuuksia, joissa omistajat voivat ansaita palkintoja panostamalla, tarkastamalla, pelaamalla sekä vaihtamalla - ilman välikäsiä (hajautettu). Hive-lohkoketjun yleisimmät merkit ovat HIVE, HIVE DOLLARS, HIVE POWER.</p>",
@@ -1160,5 +1202,9 @@
     "success-message-subscribe": "Vahvistuslinkki on lähetetty sähköpostiosoitteesesi!",
     "validation-email": "Sähköpostiosoite on pakollinen",
     "error-occured": "Palvelinvirhe on tapahtunut."
+  },
+  "layouts": {
+    "grid": "Grid",
+    "classic": "Classic"
   }
 }

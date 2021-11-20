@@ -53,21 +53,6 @@ exports[`(1) Default render 1`] = `
       />
     </svg>
   </span>
-  <div
-    className="custom-dropdown float-right"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  >
-    <span
-      className="user-avatar medium"
-      style={
-        Object {
-          "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-        }
-      }
-    />
-  </div>
 </div>
 `;
 
@@ -167,20 +152,5 @@ exports[`(3) usePrivate = false 1`] = `
       />
     </svg>
   </a>
-  <div
-    className="custom-dropdown float-right"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  >
-    <span
-      className="user-avatar medium"
-      style={
-        Object {
-          "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-        }
-      }
-    />
-  </div>
 </div>
 `;

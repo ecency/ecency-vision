@@ -22,7 +22,7 @@ import {
     ProposalPay
 } from "../../store/transactions/types";
 
-import {dynamicPropsIntance1} from "../../helper/test-helper";
+import {dynamicPropsIntance1, fullAccountInstance} from "../../helper/test-helper";
 
 jest.mock("moment", () => () => ({
     fromNow: () => "2 hours ago",
@@ -31,6 +31,8 @@ jest.mock("moment", () => () => ({
 const defProps = {
     history: createBrowserHistory(),
     dynamicProps: dynamicPropsIntance1,
+    account: fullAccountInstance,
+    fetchTransactions: () => {}
 }
 
 it("(1) curation_reward", async () => {

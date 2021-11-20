@@ -8,13 +8,11 @@ import {StaticRouter} from "react-router-dom";
 
 import TestRenderer from "react-test-renderer";
 
-import {globalInstance, dynamicPropsIntance1, entryInstance1, UiInstance, emptyReblogs, activeUserMaker, crossEntryInstance} from "../../helper/test-helper";
+import {globalInstance, dynamicPropsIntance1, entryInstance1, UiInstance, emptyReblogs, activeUserMaker, crossEntryInstance, allOver} from "../../helper/test-helper";
 
 import {ListStyle} from "../../store/global/types";
 
 import EntryListItem from "./index";
-import {Community} from "../../store/communities/types";
-import {Entry} from "../../store/entries/types";
 
 
 mockDate.set(1591398131176);
@@ -64,15 +62,16 @@ const defProps = {
     },
 }
 
-it("(1) Default render", () => {
-    const renderer = TestRenderer.create(
+it("(1) Default render", async() => {
+    const renderer = await TestRenderer.create(
         <StaticRouter location="/" context={{}}>
             <EntryListItem {...defProps} />
         </StaticRouter>);
+    await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(2) Grid view", () => {
+it("(2) Grid view", async() => {
 
     const props = {
         ...defProps,
@@ -81,15 +80,16 @@ it("(2) Grid view", () => {
             listStyle: ListStyle.grid
         }
     }
-    const renderer = TestRenderer.create(
+    const renderer = await TestRenderer.create(
         <StaticRouter location="/" context={{}}>
             <EntryListItem {...props} />
         </StaticRouter>);
+    await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
 
-it("(3) Nsfw", () => {
+it("(3) Nsfw", async() => {
     const props = {
         ...defProps,
         entry: {
@@ -100,15 +100,16 @@ it("(3) Nsfw", () => {
             }
         }
     }
-    const renderer = TestRenderer.create(
+    const renderer = await TestRenderer.create(
         <StaticRouter location="/" context={{}}>
             <EntryListItem {...props} />
         </StaticRouter>);
+    await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
 
-it("(4) Nsfw with active user", () => {
+it("(4) Nsfw with active user", async() => {
     const props = {
         ...defProps,
         entry: {
@@ -120,14 +121,15 @@ it("(4) Nsfw with active user", () => {
         },
         activeUser: activeUserMaker("foo")
     }
-    const renderer = TestRenderer.create(
+    const renderer = await TestRenderer.create(
         <StaticRouter location="/" context={{}}>
             <EntryListItem {...props} />
         </StaticRouter>);
+    await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(5) Nsfw but allowed", () => {
+it("(5) Nsfw but allowed", async() => {
     const props = {
         ...defProps,
         entry: {
@@ -142,23 +144,25 @@ it("(5) Nsfw but allowed", () => {
             nsfw: true
         }
     }
-    const renderer = TestRenderer.create(
+    const renderer = await TestRenderer.create(
         <StaticRouter location="/" context={{}}>
             <EntryListItem {...props} />
         </StaticRouter>);
+    await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(6) Cross post. Bottom menu", () => {
+it("(6) Cross post. Bottom menu", async() => {
     const props = {
         ...defProps,
         entry: crossEntryInstance,
         order: 2
     }
 
-    const renderer = TestRenderer.create(
+    const renderer = await TestRenderer.create(
         <StaticRouter location="/" context={{}}>
             <EntryListItem {...props} />
         </StaticRouter>);
+    await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 })

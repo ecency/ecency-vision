@@ -23,6 +23,69 @@ exports[`(1) Default render 1`] = `
 </button>
 `;
 
+exports[`(1) View keys content 1`] = `
+<div
+  className="dialog-content"
+>
+  <form
+    className=""
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+        htmlFor="account-name"
+      >
+        Account
+      </label>
+      <input
+        className="form-control"
+        id="account-name"
+        readOnly={true}
+        type="text"
+        value="foo"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+        htmlFor="cur-pass"
+      >
+        Current password
+      </label>
+      <input
+        autoComplete="off"
+        autoFocus={true}
+        className="form-control"
+        id="cur-pass"
+        onChange={[Function]}
+        required={true}
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <div>
+        <button
+          className="btn btn-outline-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Click to view keys
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+`;
+
 exports[`(2) Dialog content 1`] = `
 <div
   className="dialog-content"

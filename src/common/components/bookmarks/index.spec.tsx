@@ -81,7 +81,7 @@ it('(1) Bookmarks - No data.', async () => {
         }
     };
 
-    const component = renderer.create(<Bookmarks {...props}/>);
+    const component = await renderer.create(<Bookmarks {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
@@ -97,7 +97,7 @@ it('(2) Bookmarks - Test with data.', async () => {
         }
     };
 
-    const component = renderer.create(<Bookmarks {...props}/>);
+    const component = await renderer.create(<Bookmarks {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
@@ -115,7 +115,7 @@ it('(3) Favorites - No data.', async () => {
         }
     };
 
-    const component = renderer && renderer.create(<Favorites {...props}/>);
+    const component = await renderer.create(<Favorites {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
@@ -134,7 +134,7 @@ it('(4) Favorites - Test with data.', async () => {
         }
     };
 
-    const component = renderer.create(<Favorites {...props}/>);
+    const component = await renderer.create(<Favorites {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });

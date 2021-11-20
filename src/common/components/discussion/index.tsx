@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useState, useEffect} from "react";
 
 import {History, Location} from "history";
 
@@ -103,7 +103,6 @@ interface ItemProps {
 interface ItemState {
     reply: boolean;
     edit: boolean;
-    mounted: boolean;
     showProfileDetails: boolean;
     showProfileDetailsAvatar: boolean;
     inProgress: boolean;
@@ -112,31 +111,28 @@ interface ItemState {
     delayHandler: any
 }
 
-export class Item extends BaseComponent<ItemProps, ItemState> {
-    state: ItemState = {
-        reply: false,
-        edit: false,
-        inProgress: false,
-        showProfileDetails: false,
-        showProfileDetailsAvatar: false,
-        mutedData: [],
-        delayHandler: null,
-        isHiddenPermitted:false,
-        mounted: false
-    }
+export const Item = (props: ItemProps) => {
 
-    componentDidMount(){
-        this.fetchMutedUsers();
-        this.setState({ mounted: true })
-    }
+    const [reply, setReply] = useState(false);
+    const [edit, setEdit] = useState(false);
+    const [inProgress, setInProgress] = useState(false);
+    const [showProfileDetails, setShowProfileDetails] = useState(false);
+    const [showProfileDetailsAvatar, setShowProfileDetailsAvatar] = useState(false);
+    const [mutedData, setMutedData] = useState([] as string[]);
+    const [delayHandler, setDelayHandler] = useState(null as any);
+    const [isMounted, setIsMounted] = useState(false);
 
-    componentWillUnmount(){
-        this.setState({ mounted: false })
-    }
+    const {entry, updateReply, activeUser, addReply, deleteReply, global, community, location, history} = props;
 
-    afterVote = (votes: EntryVote[], estimated: number) => {
-        const {entry, updateReply} = this.props;
+    useEffect(() => {
+        setIsMounted(true);
+        isMounted && fetchMutedUsers();
+        return () => {
+          setIsMounted(false);
+        }
+    }, []);
 
+    const afterVote = (votes: EntryVote[], estimated: number) => { 
         const {payout} = entry;
         const newPayout = payout + estimated;
 
@@ -148,30 +144,25 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         });
     }
 
-    toggleReply = () => {
-        const {reply, edit} = this.state;
+    const toggleReply = () => {
         if (edit) {
             return;
         }
-        this.stateSet({reply: !reply});
+        setReply(!reply);
     }
 
-    toggleEdit = () => {
-        const {edit, reply} = this.state;
+    const toggleEdit = () => {
         if (reply) {
             return;
         }
-        this.stateSet({edit: !edit});
+        setEdit(!edit);
     }
 
-    replyTextChanged = (text: string) => {
-        const {entry} = this.props;
+    const replyTextChanged = (text: string) => {
         ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
     }
 
-    submitReply = (text: string) => {
-        const {entry} = this.props;
-        const {activeUser, addReply, updateReply} = this.props;
+    const submitReply = (text: string) => {
 
         if (!activeUser || !activeUser.data.__loaded) {
             return;
@@ -185,8 +176,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
             entry.json_metadata.tags || ['ecency'],
             version
         );
-
-        this.stateSet({inProgress: true});
+        setInProgress(true);
 
         comment(
             author,
@@ -216,9 +206,9 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
             ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
 
             // close comment box
-            this.toggleReply();
+            toggleReply();
 
-            if (entry.children === 0) {
+            if (entry.children === 0 && isMounted) {
                 // Update parent comment.
                 const nParentReply: Entry = {
                     ...entry,
@@ -228,23 +218,20 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
                 updateReply(nParentReply);
             }
         }).catch((e) => {
+            console.log(e);
             error(formatError(e));
         }).finally(() => {
-            this.stateSet({inProgress: false});
+            setInProgress(false);
         });
     }
 
-    updateReply = (text: string) => {
-        const {entry} = this.props;
-        const {activeUser, updateReply} = this.props;
-
+    const _updateReply = (text: string) => {
         const {permlink, parent_author: parentAuthor, parent_permlink: parentPermlink} = entry;
         const jsonMeta = makeJsonMetaDataReply(
             entry.json_metadata.tags || ['ecency'],
             version
         );
-
-        this.stateSet({inProgress: true});
+        setInProgress(true);
 
         comment(
             activeUser?.username!,
@@ -262,288 +249,278 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
             }
 
             updateReply(nReply); // update store
-            this.toggleEdit(); // close comment box
+            toggleEdit(); // close comment box
         }).catch((e) => {
             error(formatError(e));
         }).finally(() => {
-            this.stateSet({inProgress: false});
+            setInProgress(false);
         });
     }
 
-    deleted = () => {
-        const {entry, deleteReply} = this.props;
+    const deleted = () => {
         deleteReply(entry);
     }
 
-    fetchMutedUsers = () => {
-        const { activeUser } = this.props;
+    const fetchMutedUsers = () => {
         if(activeUser){
             getFollowing(activeUser.username, "", "ignore", 100).then(r => {
                 if (r) {
                     let filterList = r.map(user=>user.following);
-                    this.setState({ mutedData: filterList });
+                    isMounted && setMutedData(filterList as string[]);
                 }
             })
         }
     }
 
-    onShowProfile = (e:any) => {
+    const onShowProfile = (e:any) => {
         e.persist();
         // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
         let timeout = setTimeout(()=>{
             e.stopPropagation()
-            this.state.mounted && this.setState({showProfileDetails:true });
-            document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
-        this.state.mounted && this.setState({delayHandler: timeout})
+            isMounted && setShowProfileDetails(true);
+            document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, global.isMobile ? 0 : 500)
+        isMounted && setDelayHandler(timeout);
     }
 
-    onShowProfileAvatar = (e:any) => {
+    const onShowProfileAvatar = (e:any) => {
         e.persist();
         // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
         let timeout = setTimeout(()=>{
             e.stopPropagation()
-            this.state.mounted && this.setState({showProfileDetailsAvatar:true });
+            isMounted && setShowProfileDetailsAvatar(true);
             document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
-    }, this.props.global.isMobile ? 0 : 500)
-        this.state.mounted && this.setState({delayHandler: timeout})
+        }, global.isMobile ? 0 : 500)
+        isMounted && setDelayHandler(timeout);
     }
 
-    onHideProfile = (e:any, doNotSetState?: boolean) => {
-        const { delayHandler, mounted } = this.state;
+    const onHideProfile = (e:any, doNotSetState?: boolean) => {
         clearTimeout(delayHandler)
         e.stopPropagation()
         if(delayHandler){
             // Add 0.2 sec delay while hiding mini-profile on web
             setTimeout(()=>{
-                !doNotSetState && mounted && this.setState({showProfileDetails:false});
+                !doNotSetState && isMounted && setShowProfileDetails(false);
                 document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
-        },this.props.global.isMobile ? 0 : 200)
-    }
-    }
-
-    onHideProfileAvatar = (e:any, doNotSetState?: boolean) => {
-        const { delayHandler, mounted } = this.state;
-        clearTimeout(delayHandler)
-        e.stopPropagation()
-        if(delayHandler){
-            // Add 0.2 sec delay while hiding mini-profile on web
-            setTimeout(()=>{
-                !doNotSetState && mounted && this.setState({showProfileDetailsAvatar:false});
-                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
-        },this.props.global.isMobile ? 0 : 200)
+            }, global.isMobile ? 0 : 200)
         }
     }
 
-    render() {
-        const { entry, activeUser, community, location } = this.props;
-        const { reply, edit, inProgress, mutedData, showProfileDetails, showProfileDetailsAvatar, isHiddenPermitted, mounted } = this.state;
+    const onHideProfileAvatar = (e:any, doNotSetState?: boolean) => {
+        clearTimeout(delayHandler)
+        e.stopPropagation()
+        if(delayHandler){
+            // Add 0.2 sec delay while hiding mini-profile on web
+            setTimeout(()=>{
+                !doNotSetState && isMounted && setShowProfileDetailsAvatar(false);
+                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
+            }, global.isMobile ? 0 : 200)
+        }
+    }
 
-        const created = moment(parseDate(entry.created));
-        const readMore = entry.children > 0 && entry.depth > 5;
-        const showSubList = !readMore && entry.children > 0;
-        const canEdit = activeUser && activeUser.username === entry.author;
+    const created = moment(parseDate(entry.created));
+    const readMore = entry.children > 0 && entry.depth > 5;
+    const showSubList = !readMore && entry.children > 0;
+    const canEdit = activeUser && activeUser.username === entry.author;
 
-        const canMute = activeUser && community ? !!community.team.find(m => {
-            return m[0] === activeUser.username &&
-                [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
-        }) : false;
+    const canMute = activeUser && community ? !!community.team.find(m => {
+        return m[0] === activeUser.username &&
+            [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
+    }) : false;
 
-        const anchorId = `anchor-@${entry.author}/${entry.permlink}`;
+    const anchorId = `anchor-@${entry.author}/${entry.permlink}`;
 
-        const selected = location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`;
-        
-        let normalComponent = (
-            <div className={_c(`discussion-item depth-${entry.depth} ${selected ? "selected-item" : ""}`)}>
-                <div className="position-relative">
-                    <div className="item-anchor" id={anchorId}/>
+    const selected = location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`;
+    
+    let normalComponent = (
+        <div className={_c(`discussion-item depth-${entry.depth} ${selected ? "selected-item" : ""}`)}>
+            <div className="position-relative">
+                <div className="item-anchor" id={anchorId}/>
+            </div>
+            <div className="item-inner">
+                <div className="item-figure">
+                    <div className="d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {onShowProfile(e)}}>{UserAvatar({...props, username: entry.author, size: "medium"})}</div>
+                    <div onMouseEnter={(e) => {onShowProfileAvatar(e)}} onMouseLeave={(e, ) => {onHideProfileAvatar(e)}}>
+                        {ProfileLink({...props, username: entry.author, children: 
+                                <a className="d-none d-sm-inline-block">
+                                    {UserAvatar({...props, username: entry.author, size: "medium"})}
+                                </a>
+                            })
+                        }
+
+                        {showProfileDetailsAvatar && entry.author && 
+                            <ProfilePreview
+                                username={entry.author}
+                                {...props}
+                                onClose={(e, doNotSetState) => {onHideProfileAvatar(e, doNotSetState)}}
+                            />
+                        }
+                    </div>
                 </div>
-                <div className="item-inner">
-                    <div className="item-figure">
-                        <div className="d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {this.onShowProfile(e)}}>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</div>
-                        <div onMouseEnter={(e) => {this.onShowProfileAvatar(e)}} onMouseLeave={(e, ) => {this.onHideProfileAvatar(e)}}>
-                            {ProfileLink({...this.props, username: entry.author, children: 
-                                    <a className="d-none d-sm-inline-block">
-                                        {UserAvatar({...this.props, username: entry.author, size: "medium"})}
-                                    </a>
-                                })
-                            }
-
-                            {showProfileDetailsAvatar && entry.author && 
+                <div className="item-content">
+                    <div className="item-header">
+                        <div
+                            onMouseEnter={(e) => {onShowProfile(e)}}
+                            onMouseLeave={(e) => {onHideProfile(e)}}
+                            className="d-flex align-items-center"
+                            id={`${entry.author}-${entry.permlink}`} 
+                        >
+                        <div className="author notranslate d-flex align-items-center d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {onShowProfile(e)}}>
+                            <span className="author-name" id={`${entry.author}-${entry.permlink}`} >{entry.author}</span>
+                            <span className="author-down-arrow mx-2" id={`${entry.author}-${entry.permlink}`} >{menuDownSvg}</span>
+                        </div>
+                        {ProfileLink({
+                            ...props,
+                            username: entry.author,
+                            children: <div className="author notranslate d-none align-items-center d-sm-flex">
+                                        <span className="author-name">{entry.author}</span>
+                                    </div>
+                        })}
+                        {showProfileDetails && entry.author && 
                                 <ProfilePreview
                                     username={entry.author}
-                                    {...this.props}
-                                    onClose={(e, doNotSetState) => {this.onHideProfileAvatar(e, doNotSetState)}}
+                                    {...props}
+                                    onClose={(e, doNotSetState) => {onHideProfile(e, doNotSetState)}}
                                 />
-                            }
+                        }
                         </div>
+                        <span className="separator"/>
+                        {EntryLink({
+                            ...props,
+                            entry,
+                            children: <span className="date" title={created.format("LLLL")}>
+                                {created.fromNow()}
+                            </span>
+                        })}
                     </div>
-                    <div className="item-content">
-                        <div className="item-header">
-                            <div
-                                onMouseEnter={(e) => {this.onShowProfile(e)}}
-                                onMouseLeave={(e) => {this.onHideProfile(e)}}
-                                className="d-flex align-items-center"
-                                id={`${entry.author}-${entry.permlink}`} 
-                            >
-                            <div className="author notranslate d-flex align-items-center d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {this.onShowProfile(e)}}>
-                                <span className="author-name" id={`${entry.author}-${entry.permlink}`} >{entry.author}</span>
-                                <span className="author-down-arrow mx-2" id={`${entry.author}-${entry.permlink}`} >{menuDownSvg}</span>
-                            </div>
-                            {ProfileLink({
-                                ...this.props,
-                                username: entry.author,
-                                children: <div className="author notranslate d-none align-items-center d-sm-flex">
-                                            <span className="author-name">{entry.author}</span>
-                                        </div>
-                            })}
-                            {showProfileDetails && entry.author && 
-                                    <ProfilePreview
-                                        username={entry.author}
-                                        {...this.props}
-                                        onClose={(e, doNotSetState) => {this.onHideProfile(e, doNotSetState)}}
-                                    />
-                            }
-                            </div>
-                            <span className="separator"/>
-                            {EntryLink({
-                                ...this.props,
-                                entry,
-                                children: <span className="date" title={created.format("LLLL")}>
-                                  {created.fromNow()}
-                                </span>
-                            })}
-                        </div>
-                        {(() => {   
-                            let menuItems = [
-                                {
-                                    label: _t('g.edit'),
-                                    onClick: this.toggleEdit,
-                                    icon: pencilOutlineSvg
-                                },
-                            ];
-                            if(!(entry.is_paidout || entry.net_rshares > 0 || entry.children > 0)){
-                                let deleteItem = {
-                                    label: "",
-                                    onClick: () => {},
-                                    icon: EntryDeleteBtn({
-                                        ...this.props,
-                                        entry,
-                                        onSuccess: this.deleted,
-                                        children: <a title={_t('g.delete')} className="delete-btn ml-0 pr-3">{deleteForeverSvg} {_t('g.delete')}</a>
-                                    })
-                                };
-                                menuItems.push(deleteItem)
-                            }
-
-                            const menuConfig = {
-                                history: this.props.history,
-                                label: '',
-                                icon: dotsHorizontal,
-                                items: menuItems
-                            };
-                            
-                            const entryIsMuted = mutedData.includes(entry.author);
-                            const isComment = !!entry.parent_author;
-                            const ownEntry = activeUser && activeUser.username === entry.author;
-                            const isHidden = entry?.net_rshares < -500000000; // 1000 HP
-                            const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
-                            const isLowReputation = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
-                            const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry; 
-                                                   
-                            return <>
-                                {isMuted && (<div className="hidden-warning mt-2">
-                                    <span><Tsx k="entry.muted-warning" args={{community: entry.community_title}}><span/></Tsx></span>
-                                </div>)}
-
-                                {isHidden && (<div className="hidden-warning mt-2">
-                                    <span>{_t('entry.hidden-warning')}</span>
-                                </div>)}
-
-                                {isLowReputation && (<div className="hidden-warning mt-2">
-                                    <span>{_t('entry.lowrep-warning')}</span>
-                                </div>)}
-
-                                {mightContainMutedComments && (<div className="hidden-warning mt-2">
-                                    <span>{_t('entry.comments-hidden')}</span>
-                                </div>)}
-                                
-                                <ItemBody global={this.props.global} entry={entry}/>
-                                <div className="item-controls">
-                                    {EntryVoteBtn({
-                                        ...this.props,
-                                        entry,
-                                        afterVote: this.afterVote
-                                    })}
-                                    {EntryPayout({
-                                        ...this.props,
-                                        entry
-                                    })}
-                                    {EntryVotes({
-                                        ...this.props,
-                                        entry
-                                    })}
-                                    <a className={_c(`reply-btn ${edit ? 'disabled' : ''}`)} onClick={this.toggleReply}>
-                                        {_t("g.reply")}
-                                    </a>
-                                    {(community && canMute) && MuteBtn({
-                                        entry,
-                                        community: community!,
-                                        activeUser: activeUser!,
-                                        onSuccess: (entry) => {
-                                            const {updateReply} = this.props;
-                                            updateReply(entry);
-                                        }
-                                    })}
-                                    {canEdit && (
-                                        <div className="ml-3 dropdown-container">
-                                            <MyDropDown {...menuConfig} float="right" alignBottom={true}/>
-                                        </div>
-                                    )}
-                                </div>
-                            </>
-                        })()}
-
-                        {readMore && (
-                            <div className="read-more">
-                                {EntryLink({
-                                    ...this.props,
+                    {(() => {   
+                        let menuItems = [
+                            {
+                                label: _t('g.edit'),
+                                onClick: toggleEdit,
+                                icon: pencilOutlineSvg
+                            },
+                        ];
+                        if(!(entry.is_paidout || entry.net_rshares > 0 || entry.children > 0)){
+                            let deleteItem = {
+                                label: "",
+                                onClick: () => {},
+                                icon: EntryDeleteBtn({
+                                    ...props,
                                     entry,
-                                    children: <a>{_t("discussion.read-more")}</a>
+                                    onSuccess: deleted,
+                                    children: <a title={_t('g.delete')} className="delete-btn ml-0 pr-3">{deleteForeverSvg} {_t('g.delete')}</a>
+                                })
+                            };
+                            menuItems.push(deleteItem)
+                        }
+
+                        const menuConfig = {
+                            history: history,
+                            label: '',
+                            icon: dotsHorizontal,
+                            items: menuItems
+                        };
+                        
+                        const entryIsMuted = mutedData.includes(entry.author);
+                        const isComment = !!entry.parent_author;
+                        const ownEntry = activeUser && activeUser.username === entry.author;
+                        const isHidden = entry?.net_rshares < -500000000; // 1000 HP
+                        const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
+                        const isLowReputation = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
+                        const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry; 
+                                                
+                        return <>
+                            {isMuted && (<div className="hidden-warning mt-2">
+                                <span><Tsx k="entry.muted-warning" args={{community: entry.community_title}}><span/></Tsx></span>
+                            </div>)}
+
+                            {isHidden && (<div className="hidden-warning mt-2">
+                                <span>{_t('entry.hidden-warning')}</span>
+                            </div>)}
+
+                            {isLowReputation && (<div className="hidden-warning mt-2">
+                                <span>{_t('entry.lowrep-warning')}</span>
+                            </div>)}
+
+                            {mightContainMutedComments && (<div className="hidden-warning mt-2">
+                                <span>{_t('entry.comments-hidden')}</span>
+                            </div>)}
+                            
+                            <ItemBody global={global} entry={entry}/>
+                            <div className="item-controls">
+                                {EntryVoteBtn({
+                                    ...props,
+                                    entry,
+                                    afterVote: afterVote
                                 })}
+                                {EntryPayout({
+                                    ...props,
+                                    entry
+                                })}
+                                {EntryVotes({
+                                    ...props,
+                                    entry
+                                })}
+                                <a className={_c(`reply-btn ${edit ? 'disabled' : ''}`)} onClick={toggleReply}>
+                                    {_t("g.reply")}
+                                </a>
+                                {(community && canMute) && MuteBtn({
+                                    entry,
+                                    community: community!,
+                                    activeUser: activeUser!,
+                                    onSuccess: (entry) => {
+                                        updateReply(entry);
+                                    }
+                                })}
+                                {canEdit && (
+                                    <div className="ml-3 dropdown-container">
+                                        <MyDropDown {...menuConfig} float="right" alignBottom={true}/>
+                                    </div>
+                                )}
                             </div>
-                        )}
-                    </div>
+                        </>
+                    })()}
+
+                    {readMore && (
+                        <div className="read-more">
+                            {EntryLink({
+                                ...props,
+                                entry,
+                                children: <a>{_t("discussion.read-more")}</a>
+                            })}
+                        </div>
+                    )}
                 </div>
-
-                {reply && Comment({
-                    ...this.props,
-                    defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
-                    submitText: _t('g.reply'),
-                    cancellable: true,
-                    onChange: this.replyTextChanged,
-                    onSubmit: this.submitReply,
-                    onCancel: this.toggleReply,
-                    inProgress: inProgress,
-                    autoFocus: true
-                })}
-
-                {edit && Comment({
-                    ...this.props,
-                    defText: entry.body,
-                    submitText: _t('g.update'),
-                    cancellable: true,
-                    onSubmit: this.updateReply,
-                    onCancel: this.toggleEdit,
-                    inProgress: inProgress,
-                    autoFocus: true
-                })}
-
-                {showSubList && <List {...this.props} parent={entry}/>}
             </div>
-        );
 
-        return normalComponent;
-    }
+            {reply && Comment({
+                ...props,
+                defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
+                submitText: _t('g.reply'),
+                cancellable: true,
+                onChange: replyTextChanged,
+                onSubmit: submitReply,
+                onCancel: toggleReply,
+                inProgress: inProgress,
+                autoFocus: true
+            })}
+
+            {edit && Comment({
+                ...props,
+                defText: entry.body,
+                submitText: _t('g.update'),
+                cancellable: true,
+                onSubmit: _updateReply,
+                onCancel: toggleEdit,
+                inProgress: inProgress,
+                autoFocus: true
+            })}
+
+            {showSubList && <List {...props} parent={entry}/>}
+        </div>
+    );
+
+    return normalComponent;
 }
 
 
@@ -570,22 +547,26 @@ interface ListProps {
 
 interface ListState {
     isHiddenPermitted: boolean;
-    mutedData: string[]
+    mutedData: string[];
+    isMounted: boolean;
 }
 
 export class List extends Component<ListProps> {
     state: ListState = {
         isHiddenPermitted: false,
-        mutedData: []
+        mutedData: [],
+        isMounted: false
     }
 
     componentWillUnmount(){
-        document.getElementsByTagName("html")[0].style.position = 'unset'
+        document.getElementsByTagName("html")[0].style.position = 'unset';
+        this.setState({isMounted: false});
     }
     
     componentDidMount(){
-        document.getElementsByTagName("html")[0].style.position = 'relative'
-        this.fetchMutedUsers()
+        this.setState({isMounted: true});
+        document.getElementsByTagName("html")[0].style.position = 'relative';
+        this.state.isMounted && this.fetchMutedUsers();
     }
 
     fetchMutedUsers = () => {
@@ -594,9 +575,9 @@ export class List extends Component<ListProps> {
             getFollowing(activeUser.username, "", "ignore", 100).then(r => {
                 if (r) {
                     let filterList = r.map(user=>user.following);
-                    this.setState({ mutedData: filterList });
+                    this.state.isMounted && this.setState({ mutedData: filterList });
                 }
-            })
+            });
         }
     }
 
@@ -664,18 +645,21 @@ interface Props {
 }
 
 interface State {
-    visible: boolean
+    visible: boolean;
+    isMounted: boolean;
 }
 
 export class Discussion extends Component<Props, State> {
     state: State = {
-        visible: !!this.props.activeUser
+        visible: !!this.props.activeUser,
+        isMounted: false
     }
 
     componentDidMount() {
+        this.setState({isMounted: true});
         const {activeUser} = this.props;
         if (activeUser) {
-            this.fetch();
+            this.state.isMounted && this.fetch();
         }
     }
 
@@ -702,6 +686,7 @@ export class Discussion extends Component<Props, State> {
     componentWillUnmount() {
         const {resetDiscussion} = this.props;
         resetDiscussion();
+        this.setState({isMounted: false});
     }
 
     fetch = () => {
