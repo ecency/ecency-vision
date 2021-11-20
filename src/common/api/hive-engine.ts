@@ -59,7 +59,7 @@ const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
   };
 
   return axios
-    .post(HIVE_ENGINE_RPC_URL, JSON.stringify(data), {
+    .post(HIVE_ENGINE_RPC_URL, data, {
       headers: { "Content-type": "application/json" },
     })
     .then((r) => r.data.result)
@@ -83,7 +83,7 @@ const getTokens = (tokens: string[]): Promise<Token[]> => {
   };
 
   return axios
-    .post(HIVE_ENGINE_RPC_URL, JSON.stringify(data), {
+    .post(HIVE_ENGINE_RPC_URL, data, {
       headers: { "Content-type": "application/json" },
     })
     .then((r) => r.data.result)
