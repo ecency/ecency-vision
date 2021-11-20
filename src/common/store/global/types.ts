@@ -38,6 +38,7 @@ export enum AllFilter {
     posts = "posts",
     comments = "comments",
     replies = "replies",
+    communities = "communities",
     feed = "feed"
 }
 

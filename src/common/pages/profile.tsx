@@ -1,17 +1,14 @@
 import React, { Fragment } from "react";
-
-import {connect} from "react-redux";
-
 import {match} from "react-router";
 
+import {Redirect} from 'react-router-dom'
+import {History} from "history";
+import _ from 'lodash'
+import {_t} from "../i18n";
 import {ListStyle} from "../store/global/types";
 
 import {makeGroupKey} from "../store/entries";
 import {ProfileFilter} from "../store/global/types";
-import { _t } from "../i18n";
-import _ from 'lodash'
-import {Redirect} from 'react-router-dom'
-import {History} from "history";
 
 import BaseComponent from "../components/base";
 import Meta from "../components/meta";
@@ -34,7 +31,7 @@ import WalletHiveEngine from "../components/wallet-hive-engine";
 import WalletEcency from "../components/wallet-ecency";
 import ScrollToTop from "../components/scroll-to-top";
 import SearchListItem from "../components/search-list-item";
-import SearchQuery, {SearchType} from "../helper/search-query";
+import {SearchType} from "../helper/search-query";
 import SearchBox from '../components/search-box'
 
 import {search as searchApi, SearchResult} from "../api/search-api";
@@ -47,11 +44,13 @@ import defaults from "../constants/defaults.json";
 import _c from "../util/fix-class-names";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
-import { Row, Col, Form, Button, FormControl } from 'react-bootstrap'
+import { FormControl } from 'react-bootstrap'
+import { connect } from "react-redux";
 
 interface MatchParams {
     username: string;
     section?: string;
+    search?: string;
 }
 
 interface Props extends PageProps {
@@ -61,29 +60,46 @@ interface Props extends PageProps {
 
 interface State {
     loading: boolean;
+    typing: boolean;
     isDefaultPost:boolean;
     search: string;
     author: string;
     type: SearchType;
     searchData: SearchResult[];
+    searchDataLoading: boolean;
 }
 
 class ProfilePage extends BaseComponent<Props, State> {
-    state: State = {
-        loading: false,
-        isDefaultPost:false,
-        search: "",
-        author: "",
-        type: SearchType.ALL,
-        searchData: []
-    };
+    constructor(props:Props){
+        super(props);
+
+        const {location} = props;
+        let searchParam = location.search.replace("?","")
+        searchParam = searchParam.replace("q","")
+        searchParam = searchParam.replace("=","")
+
+        if(searchParam.length){
+            this.handleInputChange(searchParam);
+        }
+
+        this.state = {
+            loading: false,
+            typing: false,
+            isDefaultPost:false,
+            searchDataLoading: searchParam.length > 0,
+            search: searchParam,
+            author: "",
+            type: SearchType.ALL,
+            searchData: []
+        };
+
+    }
 
     async componentDidMount() {
         await this.ensureAccount();
 
         const {match, global, fetchEntries, fetchTransactions, fetchPoints} = this.props;
-        const {username, section} = match.params
-
+        const {username, section} = match.params;
         if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
             // fetch posts
             fetchEntries(global.filter, global.tag, false);
@@ -218,16 +234,17 @@ class ProfilePage extends BaseComponent<Props, State> {
 
     handleChangeSearch = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
       const { value } = event.target;
-      await this.setState({ search: value});
+      this.setState({ search: value, typing: value.length === 0 ? false : true });
       this.delayedSearch(value);
     }
 
     handleInputChange = async ( value: string): Promise<void>  => {
+        this.setState({ typing: false});
         if(value.trim() === ''){
             // this.setState({proposals: this.state.allProposals});
         } else {
-          const { search, author, type } = this.state;
-          const { global, activeUser } = this.props;
+          const { global } = this.props;
+          this.setState({  searchDataLoading: true, typing: false});
     
           let query = `${value} author:${global.tag.substring(1)}`;
          
@@ -239,12 +256,13 @@ class ProfilePage extends BaseComponent<Props, State> {
           const data: any = await searchApi(query, "popularity", "1")
           
           if(data && data.results) {
-            this.setState({ searchData: data.results })
+            let sortedResults = data.results.sort((a: any,b: any) => Date.parse(b.created_at) - Date.parse(a.created_at))
+            this.setState({ searchData: sortedResults, loading: false, searchDataLoading: false })
           }
         }
     }
 
-    delayedSearch = _.debounce(this.handleInputChange, 200);
+    delayedSearch = _.debounce(this.handleInputChange, 2000);
 
     authorChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.setState({author: e.target.value.trim()});
@@ -255,8 +273,8 @@ class ProfilePage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, entries, accounts, match} = this.props;
-        const {loading, author, search, type, searchData} = this.state;
+        const {global, entries, accounts, match, activeUser} = this.props;
+        const {loading, search, searchDataLoading, searchData, typing} = this.state;
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
             reloadFn: this.reload,
@@ -264,7 +282,14 @@ class ProfilePage extends BaseComponent<Props, State> {
         }) : NavBar({...this.props});
 
         if (loading) {
-            return <>{navBar}<LinearProgress/></>;
+            return <>
+                    {navBar}
+                    <div className="pt-3">
+                        <div className="mt-5">
+                            <LinearProgress/>
+                        </div>
+                    </div>
+                </>;
         }
 
         const username = match.params.username.replace("@", "");
@@ -330,24 +355,26 @@ class ProfilePage extends BaseComponent<Props, State> {
                                   placeholder={_t("search-comment.search-placeholder")}
                                   value={search}
                                   onChange={this.handleChangeSearch}
-                                  // onKeyDown={this.textInputDown}
                                   autoComplete="off"
                                 /> 
                               </div>
                           )
                         }
 
-                        {
+                        {typing ? `${_t("g.typing")}...` : 
                           search.length > 0 ? (
                             <>  
-                              {searchData.length > 0 ? (
+                              { searchDataLoading ? 
+                                        <div className="mt-3">
+                                            <LinearProgress/>
+                                        </div> : searchData.length > 0 ? (
                                 <div className="search-list">
-                                    {searchData.map(res => <Fragment key={`${res.author}-${res.permlink}`}>
+                                    {searchData.map(res => <Fragment key={`${res.author}-${res.permlink}-${res.id}`}>
                                         {SearchListItem({...this.props, res: res})}
                                     </Fragment>)}
                                 </div>
                               ) : (
-                                null
+                                _t("g.no-matches")
                               )}
                             </>
                           ) : (
@@ -386,6 +413,26 @@ class ProfilePage extends BaseComponent<Props, State> {
                                         ...this.props,
                                         account
                                     })
+                                }
+
+                                if (section === "permissions" && activeUser) {
+                                    if(account.name === activeUser.username){
+                                        return <div className="container-fluid">
+                                                <div className="row">
+                                                    <div className="col-12 col-md-6">
+                                                        <h6 className="border-bottom pb-3">{_t('view-keys.header')}</h6>
+                                                        <ViewKeys activeUser={activeUser} />
+                                                    </div>
+                                                    <div className="col-12 col-md-6">
+                                                        <h6 className="border-bottom pb-3">{_t('password-update.title')}</h6>
+                                                        <PasswordUpdate activeUser={activeUser} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    }
+                                    else {
+                                        return <Redirect to={`/@${account.name}`} />
+                                    }
                                 }
 
                                 if (data !== undefined) {
