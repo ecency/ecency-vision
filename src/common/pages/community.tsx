@@ -68,6 +68,28 @@ class CommunityPage extends BaseComponent<Props, State> {
         searchData: []
     };
 
+    constructor(props:Props){
+        super(props);
+
+        const {location} = props;
+        let searchParam = location.search.replace("?","")
+        searchParam = searchParam.replace("q","")
+        searchParam = searchParam.replace("=","")
+
+        if(searchParam.length){
+            this.handleInputChange(searchParam);
+        }
+
+        this.state = {
+            loading: false,
+            typing: false,
+            search: searchParam,
+            searchDataLoading: searchParam.length > 0,
+            searchData: []
+        };
+
+    }
+
     async componentDidMount() {
         await this.ensureData();
         const {match, fetchEntries} = this.props;
@@ -310,7 +332,7 @@ class CommunityPage extends BaseComponent<Props, State> {
                                             </div>
                                         )
                                         }
-                                        {typing ? `${_t("g.typing")}...` : (search.length > 0 && searchDataLoading) ? <LinearProgress /> : (searchData.length > 0 && search.length > 0) ? <div className="search-list">
+                                        {typing ? <LinearProgress /> : (search.length > 0 && searchDataLoading) ? <LinearProgress /> : (searchData.length > 0 && search.length > 0) ? <div className="search-list">
                                             {searchData.map(res => <Fragment key={`${res.author}-${res.permlink}-${res.id}`}>
                                                 {SearchListItem({...this.props, res: res})}
                                             </Fragment>)}

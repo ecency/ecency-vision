@@ -141,17 +141,18 @@ class ProfilePage extends BaseComponent<Props, State> {
         }
 
         if(entries){
-        const { filter, tag } = global;
-        const groupKey = makeGroupKey(filter, tag);
-        const prevData = entries[groupKey];
-        if(prevData){
-        const data = this.props.entries[groupKey];
-        const { loading } = data;
-        const { loading: prevLoading } = prevData;
-        if(loading !== prevLoading && !loading && data.entries.length === 0 && groupKey === `blog-${username}` && !isDefaultPost){
-            this.setState({isDefaultPost:true})
-            history.push(`/${username}/posts`);}
-        }}
+            const { filter, tag } = global;
+            const groupKey = makeGroupKey(filter, tag);
+            const prevData = entries[groupKey];
+            if(prevData){
+            const data = this.props.entries[groupKey];
+            const { loading } = data;
+            const { loading: prevLoading } = prevData;
+            if(loading !== prevLoading && !loading && data.entries.length === 0 && groupKey === `blog-${username}` && !isDefaultPost){
+                this.setState({isDefaultPost:true})
+                history.push(`/${username}/posts`);}
+            }
+        }
 
         if(prevProps.global.filter !== this.props.global.filter) {
           this.setState({search: ''});
@@ -349,7 +350,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                         })}
 
                         {
-                          (filter === 'blog' || filter === 'posts' || filter === 'comments' || section === 'communities') && (
+                          (filter === 'posts' || filter === 'comments') && (
                               <div className='searchProfile'>
                                 <SearchBox
                                   placeholder={_t("search-comment.search-placeholder")}
@@ -361,7 +362,9 @@ class ProfilePage extends BaseComponent<Props, State> {
                           )
                         }
 
-                        {typing ? `${_t("g.typing")}...` : 
+                        {typing ? <div className="mt-3">
+                                            <LinearProgress/>
+                                        </div> : 
                           search.length > 0 ? (
                             <>  
                               { searchDataLoading ? 
