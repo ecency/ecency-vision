@@ -2,7 +2,6 @@
   "g": {
     "add": "Add",
     "edit": "Edit",
-    "typing": "Type. We're searching",
     "submit": "Write a post",
     "search": "Search",
     "downloads": "Downloads",
@@ -902,7 +901,7 @@
     "matches-singular": "1 match",
     "advanced": "Advanced",
     "search": "Search",
-    "search-placeholder": "search phrase",
+    "search-placeholder": "Search phrase",
     "author": "Author",
     "author-placeholder": "username",
     "type": "Type",

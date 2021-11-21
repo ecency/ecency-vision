@@ -41,7 +41,6 @@ import capitalize from "../util/capitalize";
 import defaults from "../constants/defaults.json";
 import SearchBox from "../components/search-box";
 import _ from "lodash";
-import searchListItem from "../components/search-list-item";
 
 interface MatchParams {
     filter: string;
@@ -303,10 +302,10 @@ class CommunityPage extends BaseComponent<Props, State> {
                                         (filter === 'hot' || filter === 'created' || filter === 'trending') && (
                                             <div className='searchProfile'>
                                                 <SearchBox
-                                                placeholder={_t("search-comment.search-placeholder")}
-                                                value={search}
-                                                onChange={this.handleChangeSearch}
-                                                autoComplete="off"
+                                                    placeholder={_t("search-comment.search-placeholder")}
+                                                    value={search}
+                                                    onChange={this.handleChangeSearch}
+                                                    autoComplete="off"
                                                 /> 
                                             </div>
                                         )

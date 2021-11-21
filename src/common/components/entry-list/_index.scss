@@ -27,9 +27,19 @@
 }
 
 .searchProfile {
-  width: 40%;
   min-width: 200px;
-  margin: 30px auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  @media (min-width: $md-break) {
+    input {
+      width: 40% !important;
+      transition: all 0.25s !important;
+      &:focus {
+            width: 60% !important;
+      }
+  }
+  }
 
   .btnSearch {
     margin-top: 33px;
