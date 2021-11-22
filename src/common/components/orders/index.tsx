@@ -87,7 +87,7 @@ export const Orders = ({type, loading, data}: Props) => {
     const start = (page - 1) * pageSize;
     const end = start + pageSize;
     const sliced = mappedData.slice(start, end);
-    debugger
+
     return loading ? <Skeleton className="loading-hive" /> : <div className="rounded">
                 <h5>{title}</h5>
                 <Table striped={true} bordered={true} hover={true} size="sm">
@@ -97,7 +97,7 @@ export const Orders = ({type, loading, data}: Props) => {
                     </tr>
                     </thead>
                     <tbody>
-                    {sliced.map(item => <tr key={item.key1}>
+                    {sliced.map((item, index) => <tr key={`${item.key1}-${index}`}>
                             <td>{item.key1}</td>
                             <td>{item.key2}</td>
                             <td>{item.key3}</td>
@@ -113,6 +113,7 @@ export const Orders = ({type, loading, data}: Props) => {
                         maxItems={8}
                         page={page}
                         onPageChange={(page) => setPage(page)}
-                    />}
+                    />
+                }
             </div>
 }
