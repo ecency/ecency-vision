@@ -175,7 +175,8 @@
     "replies": "1 odgovor. Kliknite da odgovorite.",
     "replies-n": "{{n}} odgovora. Kliknite da odgovorite.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Još nema odgovora. Kliknite da odgovorite."
   },
   "nsfw": {
