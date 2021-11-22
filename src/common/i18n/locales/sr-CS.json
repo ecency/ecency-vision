@@ -8,6 +8,7 @@
     "login": "Prijava",
     "login-as": "Prijavi se kao",
     "signup": "Registruj se",
+    "permissions": "Permissions",
     "delete": "Izbriši",
     "cancel": "Otkaži",
     "reply": "Odgovori",
@@ -174,7 +175,8 @@
     "replies": "1 odgovor. Kliknite da odgovorite.",
     "replies-n": "{{n}} odgovora. Kliknite da odgovorite.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Još nema odgovora. Kliknite da odgovorite."
   },
   "nsfw": {
@@ -438,6 +440,7 @@
     "section-communities": "Zajednice",
     "section-wallet": "Novčanik",
     "section-settings": "Подешавања",
+    "section-permission": "Permission",
     "communities-title": "Članstvo",
     "create-community": "Napravite zajednicu",
     "witnesses": "Svedoci (witnesses)",
@@ -1018,6 +1021,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",

@@ -8,6 +8,7 @@
     "login": "Giriş et",
     "login-as": "Giriş et",
     "signup": "Qeydiyyatdan keç",
+    "permissions": "Permissions",
     "delete": "Sil",
     "cancel": "İmtina",
     "reply": "Cavabla",
@@ -174,7 +175,8 @@
     "replies": "1 cavab. Cavablamaq üçün klikləyin.",
     "replies-n": "{{n}} cavab. Cavablamaq üçün klikləyin.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Hələ ki, cavab yoxdur. Cavablamaq üçün klikləyin."
   },
   "nsfw": {
@@ -438,6 +440,7 @@
     "section-communities": "Cəmiyyətlər",
     "section-wallet": "Pulqabı",
     "section-settings": "Tənzimləmələr",
+    "section-permission": "Permission",
     "communities-title": "Üzvlük",
     "create-community": "Bir cəmiyyət yarat",
     "witnesses": "Şahidlər",
@@ -1018,6 +1021,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",

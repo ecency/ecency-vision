@@ -8,6 +8,7 @@
     "login": "Oturum aç",
     "login-as": "Oturum adı",
     "signup": "Hesap oluştur",
+    "permissions": "Permissions",
     "delete": "Sil",
     "cancel": "İptal",
     "reply": "Cevapla",
@@ -174,7 +175,8 @@
     "replies": "1 yorum. Yanıtlamak için tıklayın.",
     "replies-n": "{{n}} yorum. Yanıtlamak için tıklayın.",
     "vote-error": "Önceki değer kabul edilmedi. Farklı bir değerde oy verin.",
-    "vote-warning": "%0 oy vermek gönderiden oyu kaldırır.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Henüz yorum yapılmadı. Yorum yazmak için tıklayın."
   },
   "nsfw": {
@@ -438,6 +440,7 @@
     "section-communities": "Topluluklar",
     "section-wallet": "Cüzdan",
     "section-settings": "Ayarlar",
+    "section-permission": "Permission",
     "communities-title": "Üyelik",
     "create-community": "Bir topluluk oluştur",
     "witnesses": "Tanıklar",
@@ -1018,6 +1021,7 @@
   },
   "view-keys": {
     "title": "Özel anahtarı görüntüle",
+    "header": "Manage keys",
     "account": "Hesap",
     "cur-pass": "Güncel şifreniz",
     "owner": "Sahip",

@@ -8,6 +8,7 @@
     "login": "Kirjaudu sisään",
     "login-as": "Kirjaudu käyttäjänimellä",
     "signup": "Rekisteröidy",
+    "permissions": "Permissions",
     "delete": "Poista",
     "cancel": "Peruuta",
     "reply": "Vastaa",
@@ -174,7 +175,8 @@
     "replies": "1 vastaus. Klikkaa vastataksesi.",
     "replies-n": "{{n}} vastausta. Klikkaa vastataksesi.",
     "vote-error": "Edellinen arvo ei ole hyväksyttävä. Äänestä eri arvolla.",
-    "vote-warning": "Äänestämällä 0% poistaa sisällön tukemisen.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Ei vielä vastauksia. Klikkaa vastataksesi."
   },
   "nsfw": {
@@ -438,6 +440,7 @@
     "section-communities": "Yhteisöt",
     "section-wallet": "Lompakko",
     "section-settings": "Asetukset",
+    "section-permission": "Permission",
     "communities-title": "Jäsenyys",
     "create-community": "Luo yhteisö",
     "witnesses": "Todistajat",
@@ -1018,6 +1021,7 @@
   },
   "view-keys": {
     "title": "Näytä yksityiset avaimet",
+    "header": "Manage keys",
     "account": "Tili",
     "cur-pass": "Nykyinen salasana",
     "owner": "Omistaja",

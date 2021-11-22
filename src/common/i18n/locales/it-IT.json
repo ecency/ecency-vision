@@ -8,6 +8,7 @@
     "login": "Accedi",
     "login-as": "Accedi come",
     "signup": "Registrati",
+    "permissions": "Permissions",
     "delete": "Elimina",
     "cancel": "Cancella",
     "reply": "Rispondi",
@@ -174,7 +175,8 @@
     "replies": "1 risposta. Clicca per rispondere.",
     "replies-n": "{{n}} risposte. Clicca per rispondere.",
     "vote-error": "Il precedente valore non è accettabile. Vota con un valore differente.",
-    "vote-warning": "Votando 0% non stai votando il contenuto.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Ancora nessuna risposta. Clicca per rispondere."
   },
   "nsfw": {
@@ -438,6 +440,7 @@
     "section-communities": "Community",
     "section-wallet": "Portafoglio",
     "section-settings": "Impostazioni",
+    "section-permission": "Permission",
     "communities-title": "Appartenenza",
     "create-community": "Crea una community",
     "witnesses": "Convalidatori",
@@ -1018,6 +1021,7 @@
   },
   "view-keys": {
     "title": "Mostra le chiavi private",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Password attuale",
     "owner": "Proprietario",

@@ -8,6 +8,7 @@
     "login": "Pumasok",
     "login-as": "Pumasok Bilang",
     "signup": "Mag-signup",
+    "permissions": "Permissions",
     "delete": "Burahin",
     "cancel": "I-kansela",
     "reply": "Sagutin",
@@ -174,7 +175,8 @@
     "replies": "1 kasagutan. Pindutin para sumagot.",
     "replies-n": "{{n}} mga kasagutan. Pindutin para sumagot.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Walang pang mga kasagutan. Pindutin para sumagot."
   },
   "nsfw": {
@@ -438,6 +440,7 @@
     "section-communities": "Mga Pamayanan",
     "section-wallet": "Pitaka",
     "section-settings": "Mga Setting",
+    "section-permission": "Permission",
     "communities-title": "Pagkamiyembro",
     "create-community": "Gumawa ng pamayanan",
     "witnesses": "Mga testigo",
@@ -1018,6 +1021,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",

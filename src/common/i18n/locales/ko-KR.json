@@ -8,6 +8,7 @@
     "login": "로그인",
     "login-as": "로그인",
     "signup": "가입",
+    "permissions": "Permissions",
     "delete": "삭제",
     "cancel": "최소",
     "reply": "댓글 쓰기",
@@ -174,7 +175,8 @@
     "replies": "댓글 1 개. 응답하려면 클릭하세요.",
     "replies-n": "댓글 {{n}} 개. 응답하려면 클릭하세요.",
     "vote-error": "이전 값은 허용되지 않습니다. 다른 값으로 투표하세요.",
-    "vote-warning": "보팅 0%는 콘텐츠의 보팅을 취소합니다.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "댓글 없습니다. 응답하려면 클릭하세요."
   },
   "nsfw": {
@@ -438,6 +440,7 @@
     "section-communities": "커뮤니티",
     "section-wallet": "지갑",
     "section-settings": "설정",
+    "section-permission": "Permission",
     "communities-title": "멤버쉽",
     "create-community": "커뮤니티 만들기",
     "witnesses": "증인",
@@ -1018,6 +1021,7 @@
   },
   "view-keys": {
     "title": "개인 키 보기",
+    "header": "Manage keys",
     "account": "계정",
     "cur-pass": "현재 비밀번호",
     "owner": "소유자",

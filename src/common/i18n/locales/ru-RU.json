@@ -8,6 +8,7 @@
     "login": "Войти",
     "login-as": "Войти как",
     "signup": "Регистрация",
+    "permissions": "Permissions",
     "delete": "Удалить",
     "cancel": "Отменить",
     "reply": "Ответить",
@@ -174,7 +175,8 @@
     "replies": "1 ответ. Нажмите чтобы ответить.",
     "replies-n": "{{n}} ответов. Нажмите для ответа.",
     "vote-error": "Предыдущее значение неприемлемо. Голосуйте с другой ценностью.",
-    "vote-warning": "Голосование 0 % u означает голосование за содержание.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Ответов пока нет. Нажмите чтобы ответить."
   },
   "nsfw": {
@@ -438,6 +440,7 @@
     "section-communities": "Сообщества",
     "section-wallet": "Кошелек",
     "section-settings": "Настройки",
+    "section-permission": "Permission",
     "communities-title": "Участники",
     "create-community": "Создать сообщество",
     "witnesses": "Заверители",
@@ -1018,6 +1021,7 @@
   },
   "view-keys": {
     "title": "Просмотр закрытых ключей",
+    "header": "Manage keys",
     "account": "Аккаунт",
     "cur-pass": "Действующий пароль",
     "owner": "Владелец",

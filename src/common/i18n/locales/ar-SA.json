@@ -8,6 +8,7 @@
     "login": "تسجيل الدخول",
     "login-as": "تسجيل الدخول كـ",
     "signup": "إنشاء حساب",
+    "permissions": "Permissions",
     "delete": "حذف",
     "cancel": "إلغاء",
     "reply": "رد",
@@ -174,7 +175,8 @@
     "replies": "1 response. Click to respond.",
     "replies-n": "{{n}} responses. Click to respond.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "No responses yet. Click to respond."
   },
   "nsfw": {
@@ -438,6 +440,7 @@
     "section-communities": "Communities",
     "section-wallet": "Wallet",
     "section-settings": "Settings",
+    "section-permission": "Permission",
     "communities-title": "Membership",
     "create-community": "Create a community",
     "witnesses": "Witnesses",
@@ -1018,6 +1021,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",
