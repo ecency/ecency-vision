@@ -175,7 +175,8 @@
     "replies": "1 reactie. Klik om te antwoorden.",
     "replies-n": "{{n}} reacties. Klik om te antwoorden.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Nog geen reacties. Klik om te antwoorden."
   },
   "nsfw": {
