@@ -175,7 +175,8 @@
     "replies": "1 vastaus. Klikkaa vastataksesi.",
     "replies-n": "{{n}} vastausta. Klikkaa vastataksesi.",
     "vote-error": "Edellinen arvo ei ole hyväksyttävä. Äänestä eri arvolla.",
-    "vote-warning": "Äänestämällä 0% poistaa sisällön tukemisen.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Ei vielä vastauksia. Klikkaa vastataksesi."
   },
   "nsfw": {
