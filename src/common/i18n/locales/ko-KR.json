@@ -175,7 +175,8 @@
     "replies": "댓글 1 개. 응답하려면 클릭하세요.",
     "replies-n": "댓글 {{n}} 개. 응답하려면 클릭하세요.",
     "vote-error": "이전 값은 허용되지 않습니다. 다른 값으로 투표하세요.",
-    "vote-warning": "보팅 0%는 콘텐츠의 보팅을 취소합니다.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "댓글 없습니다. 응답하려면 클릭하세요."
   },
   "nsfw": {
