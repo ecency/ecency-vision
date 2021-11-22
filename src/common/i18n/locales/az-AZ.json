@@ -175,7 +175,8 @@
     "replies": "1 cavab. Cavablamaq üçün klikləyin.",
     "replies-n": "{{n}} cavab. Cavablamaq üçün klikləyin.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Hələ ki, cavab yoxdur. Cavablamaq üçün klikləyin."
   },
   "nsfw": {
