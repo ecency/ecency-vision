@@ -421,6 +421,25 @@ p {
 
 .vote-warning {
   font-size: 12px;
+  color: $gray-600;
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+p {
+  margin:0px;
+}
+
+  @media screen and (max-width: 480px) {
+    p {
+      width: 90%;
+      text-align: center;
+      white-space: pre-wrap;
+    }
+  }
+}
+
+.vote-remove {
+  font-size: 12px;
   color: $yellow;
   display: flex;
   justify-content: center;
