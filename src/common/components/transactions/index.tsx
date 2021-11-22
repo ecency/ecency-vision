@@ -414,6 +414,11 @@ export class TransactionList extends Component<Props> {
         transactionsList: []
     };
 
+    componentDidMount(){
+        const {account, fetchTransactions} = this.props;
+        account && account.name && fetchTransactions(account.name)
+    }
+
     componentDidUpdate(prevProps: any) {
         const {transactionsList} = this.state;
         const {transactions} = this.props;

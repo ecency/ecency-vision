@@ -659,7 +659,7 @@ export class Discussion extends Component<Props, State> {
         this.setState({isMounted: true});
         const {activeUser} = this.props;
         if (activeUser) {
-            this.state.isMounted && this.fetch();
+            this.fetch();
         }
     }
 
