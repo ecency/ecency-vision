@@ -176,7 +176,7 @@
     "replies-n": "{{n}} responses. Click to respond.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
     "vote-remove": "Voting 0% unvotes the content.",
-    "vote-warning": "Changing already voted content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "No responses yet. Click to respond."
   },
   "nsfw": {

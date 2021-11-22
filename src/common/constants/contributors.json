@@ -352,5 +352,13 @@
     "contributes":[
       "Thought Leader"
     ]
+  },
+  {
+    "name": "forykw",
+    "contributes":[
+      "Tester",
+      "Troubleshooter",
+      "Developer"
+    ]
   }
 ]
