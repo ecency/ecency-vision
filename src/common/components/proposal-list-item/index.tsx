@@ -187,7 +187,7 @@ export class ProposalListItem extends Component<Props, State> {
                         </div>
                     </div>
                 </div>
-                {thresholdProposalIds && _.includes(thresholdProposalIds, proposal.id)&& (
+                {proposal.id !== isReturnProposalId && thresholdProposalIds && _.includes(thresholdProposalIds, proposal.id)&& (
                     <div className="return-proposal">{_t("proposals.threshold-description")}</div>
                 )}
                 {(proposal.id === isReturnProposalId)&& (
