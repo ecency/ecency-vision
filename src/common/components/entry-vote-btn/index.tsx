@@ -37,6 +37,7 @@ const getVoteValue = (
   username: string,
   def: number
 ): number => {
+  debugger
   return ls.get(`vote-value-${type}-${username}`, def);
 };
 
@@ -196,7 +197,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       const estimated = Number(this.estimate(upSliderVal).toFixed(3));
       onClick(upSliderVal, estimated);
       setVoteValue("up", `${activeUser?.username!}-${post_id}`, upSliderVal);
-      setVoteValue("upPrevious", `${activeUser?.username!}`, upSliderVal);
+      setVoteValue("upPrevious", `${activeUser?.username!}-${post_id}`, upSliderVal);
       this.setState({ wrongValueUp: false, wrongValueDown: false });
     } else if(upVoted && initialVoteValues.up === upSliderVal){
       this.setState({ wrongValueUp: true, wrongValueDown: false });
@@ -213,7 +214,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       onClick(downSliderVal, estimated);
       this.setState({ wrongValueDown: false, wrongValueUp: false });
       setVoteValue("down", `${activeUser?.username!}-${post_id}`, downSliderVal);
-      setVoteValue("downPrevious", `${activeUser?.username!}`, downSliderVal);
+      setVoteValue("downPrevious", `${activeUser?.username!}-${post_id}`, downSliderVal);
     } else if(downVoted && initialVoteValues.down === downSliderVal){
       this.setState({ wrongValueDown: true, wrongValueUp: false });
     }
@@ -470,21 +471,21 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                     <span className={voteBtnClass}>{chevronUpSvgForVote}</span>
                     {activeUser && tooltipClass.length > 0 && (
                       <div>
-                      <span
-                        className="tooltiptext"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
-                      >
-                        <VoteDialog
-                          {...this.props}
-                          activeUser={activeUser as any}
-                          onClick={this.vote}
-                          upVoted={upVoted}
-                          downVoted={downVoted}
-                        />
-                      </span>
-                    </div>)}
+                        <span
+                          className="tooltiptext"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                        >
+                          <VoteDialog
+                            {...this.props}
+                            activeUser={activeUser as any}
+                            onClick={this.vote}
+                            upVoted={upVoted}
+                            downVoted={downVoted}
+                          />
+                        </span>
+                      </div>)}
                   </div>
                 </div>
               </div>
