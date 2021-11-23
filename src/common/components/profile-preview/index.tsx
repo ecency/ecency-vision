@@ -112,12 +112,12 @@ export const ProfilePreview = ({username, global, onClose, activeUser, ...props}
                                 <div>{loading ? <Skeleton className="loading-md my-3" /> : `@${username} (${reputation})`}</div>
                                 <div>{loggedIn && followsActiveUserLoading ? <Skeleton className="loading-md my-3" /> : followsActiveUser ? _t("profile.follows-you") : null}</div>
                             </Link>
-                            <div className="d-flex mt-3">
+                            {username !== activeUser?.username && <div className="d-flex mt-3">
                                 <>
                                     <FollowControls {...props} targetUsername={username} activeUser={activeUser} />
                                     {global.usePrivate && <FavoriteBtn {...props} targetUsername={username} activeUser={activeUser} />}
                                 </>
-                            </div>
+                            </div>}
                         </div>
                     </div>
                     <div className="d-flex justify-content-between flex-wrap">
