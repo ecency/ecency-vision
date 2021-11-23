@@ -1,7 +1,47 @@
 'use strict';
+const path = require('path');
+const modifyBuilder = require('razzle-plugin-pwa').default
+
+const pwaConfig = {
+  swDest: path.resolve(__dirname, "build", "sw.js"),
+  clientsClaim: true,
+  skipWaiting: true,
+  runtimeCaching: [{
+      urlPattern: new RegExp('https://ecency.com'),
+      handler: 'networkFirst'
+  }]
+}
+
+const manifestConfig = {
+  filename: 'manifest.json',
+  name: 'Razzle App',
+  short_name: 'Razzle',
+  description: 'Another Razzle App',
+  orientation: 'portrait',
+  display: 'fullscreen',
+  start_url: '.',
+  theme_color: '#ffffff',
+  background_color: '#ffffff',
+  related_applications: [],
+  icons: [
+    {
+      'src': require.resolve(path.join(__dirname,'public', 'logo192.png')),
+      'sizes': '192x192',
+      'type': 'image/png'
+    },
+    {
+        'src': require.resolve(path.join(__dirname, 'public', 'logo512.png')),
+        'sizes': '512x512',
+        'type': 'image/png'
+    }
+  ]
+}
+
+const modify = modifyBuilder({ pwaConfig, manifestConfig })
+
 
 module.exports = {
-  plugins: ['typescript', 'scss'],
+  plugins: ['typescript', 'scss', { func: modify }],
   options: {
     buildType: 'iso'
   },
@@ -21,6 +61,12 @@ module.exports = {
   }) {
     // Do some stuff to webpackConfig
     webpackConfig.devtool = dev ? 'source-map' : false;
+
+
+    webpackConfig.plugins.push(
+      new InjectManifest({ swDest: "sw.js", swSrc: "services.js" }),
+    );
+
     return webpackConfig;
   }
 };

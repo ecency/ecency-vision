@@ -43,6 +43,7 @@
     "node-cache": "^5.1.0",
     "node-sass": "^6.0.1",
     "numeral": "^2.0.6",
+    "offline-plugin": "^5.0.7",
     "path-to-regexp": "^6.1.0",
     "qs": "^6.9.4",
     "query-string": "^6.13.1",
@@ -64,6 +65,7 @@
     "serialize-javascript": "^3.1.0",
     "sortablejs": "^1.13.0",
     "speakingurl": "^14.0.1",
+    "workbox-webpack-plugin": "^6.4.1",
     "xss": "^1.0.8"
   },
   "devDependencies": {
@@ -90,7 +92,9 @@
     "postcss": "8.2.10",
     "razzle": "^4.0.5",
     "razzle-dev-utils": "^4.0.5",
+    "razzle-plugin-pwa": "^2.2.3",
     "razzle-plugin-scss": "^4.0.5",
+    "razzle-plugin-serviceworker": "^1.0.3",
     "razzle-plugin-typescript": "^3.0.0",
     "react-test-renderer": "^16.13.1",
     "ts-jest": "^26.4.2",

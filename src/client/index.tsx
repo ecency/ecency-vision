@@ -19,7 +19,7 @@ import "../style/theme-night.scss";
 
 import './base-handlers';
 
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+// import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 declare var window: AppWindow;
 
@@ -40,7 +40,7 @@ clientStoreTasks(store);
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA
 // serviceWorkerRegistration.unregister();
-serviceWorkerRegistration.register();
+// serviceWorkerRegistration.register();
 
 // Check & activate keychain support
 window.addEventListener("load", () => {
