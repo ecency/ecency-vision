@@ -175,8 +175,8 @@
     "replies": "1 respuesta. Haga clic para responder.",
     "replies-n": "{{n}} respuestas. Haga clic para responder.",
     "vote-error": "El valor anterior no es aceptable. Votar con un valor diferente.",
-    "vote-remove": "Voting 0% unvotes the content.",
-    "vote-warning": "Changing vote...",
+    "vote-remove": "Votar 0% desvota el contenido.",
+    "vote-warning": "Cambiando voto...",
     "no-replies": "Aún no hay respuestas. Haga clic para responder."
   },
   "nsfw": {
