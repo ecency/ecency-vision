@@ -34,14 +34,17 @@ export const OpenOrders = ({data, loading}: Props) => {
         </tr>
         </thead>
         <tbody>
-        {data.map(item => <tr key={item.id}>
-                <td>{moment.utc(item.created).local().format()}</td>
+        {data.map(item => {
+            let date = moment.utc(item.created).local().format().replace("T"," ");
+            date = date.substring(0, date.indexOf('+'))
+        return <tr key={item.id}>
+                <td>{date}</td>
                 <td>{item.seller ? "Sell" : "Buy"}</td>
                 <td>{parseFloat(item.real_price).toFixed(6)}</td>
                 <td>{item.sell_price.base}</td>
                 <td>{item.sell_price.quote}</td>
                 <td className="p-2"><div className="rounded text-white bg-primary p-1 d-inline pointer" onClick={()=> cancelTransaction(item.seller, item.orderid)}>Cancel</div></td>
-            </tr>)}
+            </tr>})}
         </tbody>
     </Table>
     </div>
