@@ -65,12 +65,15 @@ export class EntryListContent extends Component<Props, State> {
         loadingMutedUsers: false,
     }
 
+    _isMounted = false;
+
     fetchMutedUsers = () => {
         const { activeUser } = this.props;
         const { loadingMutedUsers } = this.state;
         if(!loadingMutedUsers){
             if(activeUser){
             this.setState({ loadingMutedUsers: true });
+
             getFollowing(activeUser.username, "", "ignore", 100).then(r => {
                 if (r) {
                     let filterList = r.map(user => user.following);
@@ -84,17 +87,27 @@ export class EntryListContent extends Component<Props, State> {
     }
 
     componentDidUpdate(prevProps:Props){
+        this._isMounted = true;
         if(prevProps.activeUser?.username !== this.props.activeUser?.username){
             this.fetchMutedUsers()
         }
         if(prevProps.activeUser !== this.props.activeUser && !this.props.activeUser){
-            this.setState({mutedUsers:[]})
+            if(this._isMounted) {
+                this.setState({mutedUsers:[]})
+            }
         }
        
     }
 
     componentDidMount(){
         this.fetchMutedUsers();
+    }
+
+    componentWillUnmount() {
+      this.setState({
+        mutedUsers: [],
+        loadingMutedUsers: false,
+      })
     }
 
     render() {

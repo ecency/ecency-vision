@@ -146,12 +146,12 @@ export const ProfileCard = (props: Props) => {
             </h1>
 
             <div className="vpower-line">
-                <div className="vpower-line-inner" style={{width: `${vPower}%`}}/>
+                <div className="vpower-line-inner" style={{width: `${vPower.toFixed(0)}%`}}/>
             </div>
 
             <div className="vpower-percentage">
                 <Tooltip content={_t("profile.voting-power")}>
-                    <span>{vPower.toFixed(2)}</span>
+                    <span>{vPower.toFixed(0)}</span>
                 </Tooltip>
             </div>
             {loggedIn && !isMyProfile && <div className="d-flex justify-content-center mb-3 d-md-block">{followsActiveUserLoading ? <Skeleton className="loading-follows-you" /> : followsActiveUser ? <div className="follow-pill d-inline text-lowercase">{_t("profile.follows-you")}</div> : null}</div>}
