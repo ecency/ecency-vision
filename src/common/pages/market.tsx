@@ -9,6 +9,8 @@ import { getMarketStatistics, getOpenOrder, getOrderBook, getTradeHistory, Marke
 import { FullAccount } from '../store/accounts/types';
 import { Orders } from '../components/orders';
 import { OpenOrders } from '../components/open-orders';
+import ChartistGraph from 'react-chartist';
+import { range } from 'lodash';
 
 const MarketPage = (props: PageProps) => {
     const [data, setData] = useState<MarketStatistics | null>(null);
@@ -35,26 +37,52 @@ const MarketPage = (props: PageProps) => {
         activeUser && getOpenOrder(activeUser.username).then(res=>{
             setopenOrdersdata(res);
             setopenOrdersDataLoading(false);
-            debugger
         })
         
     }, []);
     
-
     let navbar = global.isElectron ?
         NavBarElectron({
             ...props,
             reloadFn: () => {},
             reloading: false,
         }) : <NavBar {...props} />;
-        
+
+        let series1 = tablesData ? tablesData!.bids.map(item => parseFloat(item.order_price.base.replace("HIVE", ""))) : [];
+        let series2 = tablesData ? tablesData!.asks.map(item => parseFloat(item.order_price.base.replace("HBD", ""))) : [];
+        let high1 = Math.max(...series1)
+        let high2 = Math.max(...series2)
+        let low1 = Math.min(...series1)
+        let low2 = Math.min(...series2);
+        let high = Math.max(high1, high2)
+        let low = Math.min(low1, low2)
+        let step = tablesData ? high/8 : 0
+        var chartData = {
+            series: [series1, series2],
+            labels: [0, 0.5,1,1.5,2,2.5,3]
+          };
+      
+          var options = {
+            low: 0,
+            height: 5,
+            showArea: true,
+            showLine: false,
+            showPoint: false,
+            fullWidth: true,
+            axisX: {
+                showGrid: false
+            },
+          };
+        debugger
     return <div className="d-flex justify-content-center">
                 <div className="w-75">
                     <div>{navbar}</div>
                     <div style={{marginTop: 70}}>
                         <ChartStats data={data} loading={loading} />
                     </div>
-                    <div style={{height: 200}} className="border rounded mt-5 text-center d-flex align-items-center justify-content-center">Chart goes here</div>
+                    <div style={{height: 500}} className="border rounded mt-5 text-center d-flex align-items-center justify-content-center">
+                        {tablesData ? <ChartistGraph data={chartData} options={options} type="Line"/>: "Loading..."}
+                    </div>
                     <div className="container my-3">
                         <div className="row justify-content-between">
                             <div className="col-12 col-sm-5 p-0">
