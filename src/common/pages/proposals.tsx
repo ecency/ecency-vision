@@ -177,8 +177,6 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         const {global} = this.props;
         const {loading, proposals, totalBudget, dailyBudget, dailyFunded, filter, inProgress} = this.state;
 
-        console.log('proposals 1123: ', proposals);
-
         const navBar = global.isElectron ?
             NavBarElectron({
                 ...this.props,

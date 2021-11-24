@@ -74,7 +74,7 @@ interface Props {
     trackEntryPin: (entry: Entry) => void;
     setSigningKey: (key: string) => void;
     setEntryPin: (entry: Entry, pin: boolean) => void;
-    muted?: boolean
+    muted?: boolean;
 }
 
 interface State {
@@ -82,7 +82,7 @@ interface State {
     showMuted: boolean;
     mounted: boolean;
     showProfileDetails: boolean;
-    delayHandler: any
+    delayHandler: any;
 }
 
 export default class EntryListItem extends Component<Props, State> {

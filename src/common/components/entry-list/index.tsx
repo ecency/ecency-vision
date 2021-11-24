@@ -56,7 +56,7 @@ interface Props {
 
 interface State {
     mutedUsers: string[];
-    loadingMutedUsers: boolean,
+    loadingMutedUsers: boolean;
 }
 
 export class EntryListContent extends Component<Props, State> {
