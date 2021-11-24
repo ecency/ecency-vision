@@ -530,8 +530,13 @@ class SubmitPage extends BaseComponent<Props, State> {
 
         const [parentPermlink] = tags;
         const meta = extractMetaData(body);
+        let localThumbnail = ls.get('draft_selected_image');
+
         if(meta.image){
             meta.image = [selectedThumbnail, ...meta.image!.splice(0,9)]
+        }
+        else if(selectedThumbnail === localThumbnail){
+            ls.remove('draft_selected_image')
         }
         else {
             meta.image = [selectedThumbnail]
