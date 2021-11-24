@@ -11,6 +11,7 @@ import { Orders } from '../components/orders';
 import { OpenOrders } from '../components/open-orders';
 import ChartistGraph from 'react-chartist';
 import { range } from 'lodash';
+import { MarketChart } from '../components/market-chart';
 
 const MarketPage = (props: PageProps) => {
     const [data, setData] = useState<MarketStatistics | null>(null);
@@ -48,41 +49,21 @@ const MarketPage = (props: PageProps) => {
             reloading: false,
         }) : <NavBar {...props} />;
 
-        let series1 = tablesData ? tablesData!.bids.map(item => parseFloat(item.order_price.base.replace("HIVE", ""))) : [];
-        let series2 = tablesData ? tablesData!.asks.map(item => parseFloat(item.order_price.base.replace("HBD", ""))) : [];
-        let high1 = Math.max(...series1)
-        let high2 = Math.max(...series2)
-        let low1 = Math.min(...series1)
-        let low2 = Math.min(...series2);
-        let high = Math.max(high1, high2)
-        let low = Math.min(low1, low2)
-        let step = tablesData ? high/8 : 0
-        var chartData = {
-            series: [series1, series2],
-            labels: [0, 0.5,1,1.5,2,2.5,3]
-          };
-      
-          var options = {
-            low: 0,
-            height: 5,
-            showArea: true,
-            showLine: false,
-            showPoint: false,
-            fullWidth: true,
-            axisX: {
-                showGrid: false
-            },
-          };
-        debugger
-    return <div className="d-flex justify-content-center">
+        let series1 = tablesData ? tablesData!.bids.map((item, index) => {
+            return parseFloat(parseFloat(item.real_price).toFixed(5))
+        } ) : [];
+        series1 = series1.filter((item, index) => index%40==0)
+        let series2 = tablesData ? tablesData!.asks.map((item, index) => parseFloat(parseFloat(item.real_price).toFixed(5))) : [];
+        series2 = series2.filter((item, index) => index%40==0)
+    return <>
+            <div className="d-flex justify-content-center">
                 <div className="w-75">
                     <div>{navbar}</div>
                     <div style={{marginTop: 70}}>
                         <ChartStats data={data} loading={loading} />
                     </div>
-                    <div style={{height: 500}} className="border rounded mt-5 text-center d-flex align-items-center justify-content-center">
-                        {tablesData ? <ChartistGraph data={chartData} options={options} type="Line"/>: "Loading..."}
-                    </div>
+
+                    {tablesData ? <MarketChart data1={series1} data2={series2} /> : "Loading..."}
                     <div className="container my-3">
                         <div className="row justify-content-between">
                             <div className="col-12 col-sm-5 p-0">
@@ -113,6 +94,7 @@ const MarketPage = (props: PageProps) => {
                     </div>
                 </div>
             </div>
+        </>
 }
 
 export default connect(pageMapStateToProps, pageMapDispatchToProps)(MarketPage as any);
