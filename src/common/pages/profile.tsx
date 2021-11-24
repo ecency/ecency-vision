@@ -132,6 +132,9 @@ class ProfilePage extends BaseComponent<Props, State> {
 
         // Wallet and points are not a correct filter to fetch posts
         if (section && !Object.keys(ProfileFilter).includes(section)) {
+            if (section !== prevMatch.params.section) {
+                this.setState({search: ""});
+            }
             return;
         }
 
@@ -145,12 +148,14 @@ class ProfilePage extends BaseComponent<Props, State> {
             const groupKey = makeGroupKey(filter, tag);
             const prevData = entries[groupKey];
             if(prevData){
-            const data = this.props.entries[groupKey];
-            const { loading } = data;
-            const { loading: prevLoading } = prevData;
-            if(loading !== prevLoading && !loading && data.entries.length === 0 && groupKey === `blog-${username}` && !isDefaultPost){
-                this.setState({isDefaultPost:true})
-                history.push(`/${username}/posts`);}
+                const data = this.props.entries[groupKey];
+                const { loading } = data;
+                const { loading: prevLoading } = prevData;
+
+                if(loading !== prevLoading && !loading && data.entries.length === 0 && groupKey === `blog-${username}` && !isDefaultPost){
+                    this.setState({isDefaultPost:true});
+                    history.push(`/${username}/posts`);
+                }
             }
         }
 
@@ -350,7 +355,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                         })}
 
                         {
-                          (filter === 'posts' || filter === 'comments') && (
+                          (filter === 'posts' || filter === 'comments') && (section === filter) && (
                               <div className='searchProfile'>
                                 <SearchBox
                                   placeholder={_t("search-comment.search-placeholder")}
