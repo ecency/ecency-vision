@@ -10,6 +10,9 @@ import ProfileEdit from "../profile-edit";
 import Preferences from "../preferences";
 import PasswordUpdate from "../password-update";
 import ViewKeys from "../view-keys";
+import { Link } from "react-router-dom";
+import { _t } from "../../i18n";
+import { keySvg } from "../../img/svg";
 
 interface Props {
     history: History;
@@ -40,8 +43,9 @@ export class ProfileSettings extends Component<Props> {
             return <>
                 {activeUser.data.__loaded && <ProfileEdit {...this.props} activeUser={activeUser}/>}
                 <Preferences {...this.props} activeUser={activeUser} />
-                <PasswordUpdate activeUser={activeUser}/>
-                <ViewKeys activeUser={activeUser}/>
+                {activeUser && activeUser.username && <Link to={`/@${activeUser.username}/permissions`}>
+                    <h5>{_t("g.permissions")}</h5>
+                </Link>}
             </>
         }
 

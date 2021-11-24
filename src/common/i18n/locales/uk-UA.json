@@ -8,6 +8,7 @@
     "login": "Увійти",
     "login-as": "Увійти як",
     "signup": "Зареєструватися",
+    "permissions": "Permissions",
     "delete": "Видалити",
     "cancel": "Скасувати",
     "reply": "Відповісти",
@@ -49,6 +50,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "ЧаПи",
+    "more-results": "More results",
     "close": "Close"
   },
   "confirm": {
@@ -173,7 +175,8 @@
     "replies": "1 відповідь. Натисніть, щоб відповісти.",
     "replies-n": "{{n}} відповідей. Натисніть, щоб відповісти.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Ще немає відповідей. Натисніть, щоб відповісти."
   },
   "nsfw": {
@@ -429,6 +432,7 @@
     "post-count": "Кількість дописів",
     "followers": "Підписники",
     "following": "Слідкує",
+    "follows-you": "Follows you",
     "section-blog": "Блог",
     "section-posts": "Дописи",
     "section-comments": "Коментарі",
@@ -436,6 +440,7 @@
     "section-communities": "Спільноти",
     "section-wallet": "Гаманець",
     "section-settings": "Налаштування",
+    "section-permission": "Permission",
     "communities-title": "Участь",
     "create-community": "Створити спільноту",
     "witnesses": "Делегати",
@@ -1016,6 +1021,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",

@@ -2,7 +2,7 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="entry-list-item"
+  className="entry-list-item hot"
   id="good-karmaawesome-hive"
 >
   <div
@@ -263,7 +263,7 @@ exports[`(1) Default render 1`] = `
 
 exports[`(2) Grid view 1`] = `
 <div
-  className="entry-list-item"
+  className="entry-list-item hot"
   id="good-karmaawesome-hive"
 >
   <div
@@ -548,7 +548,7 @@ exports[`(2) Grid view 1`] = `
 
 exports[`(3) Nsfw 1`] = `
 <div
-  className="entry-list-item"
+  className="entry-list-item hot"
   id="good-karmaawesome-hive"
 >
   <div
@@ -840,7 +840,7 @@ exports[`(3) Nsfw 1`] = `
 
 exports[`(4) Nsfw with active user 1`] = `
 <div
-  className="entry-list-item"
+  className="entry-list-item hot"
   id="good-karmaawesome-hive"
 >
   <div
@@ -1131,7 +1131,7 @@ exports[`(4) Nsfw with active user 1`] = `
 
 exports[`(5) Nsfw but allowed 1`] = `
 <div
-  className="entry-list-item"
+  className="entry-list-item hot"
   id="good-karmaawesome-hive"
 >
   <div
@@ -1417,7 +1417,7 @@ exports[`(5) Nsfw but allowed 1`] = `
 
 exports[`(6) Cross post. Bottom menu 1`] = `
 <div
-  className="entry-list-item"
+  className="entry-list-item hot"
   id="regenerettewe-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
 >
   <div

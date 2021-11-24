@@ -268,5 +268,97 @@
     "contributes":[
       "Translation (Bulgarian)"
     ]
+  },
+  {
+    "name": "acidyo",
+    "contributes":[
+      "Onboarding"
+    ]
+  },
+  {
+    "name": "bluemist",
+    "contributes":[
+      "Onboarding"
+    ]
+  },
+  {
+    "name": "melinda010100",
+    "contributes":[
+      "Thought Leader"
+    ]
+  },
+  {
+    "name": "jznsamuel",
+    "contributes":[
+      "Thought Leader"
+    ]
+  },
+  {
+    "name": "dodolzk",
+    "contributes":[
+      "Translation (Indonesian)"
+    ]
+  },
+  {
+    "name": "seckorama",
+    "contributes":[
+      "Curator"
+    ]
+  },
+  {
+    "name": "yandot",
+    "contributes":[
+      "Curator"
+    ]
+  },
+  {
+    "name": "iamjadeline",
+    "contributes":[
+      "Curator"
+    ]
+  },
+  {
+    "name": "sultan-indo",
+    "contributes":[
+      "Curator"
+    ]
+  },
+  {
+    "name": "stevenson7",
+    "contributes":[
+      "Curator"
+    ]
+  },
+  {
+    "name": "nicanor-mosquera",
+    "contributes":[
+      "Curator"
+    ]
+  },
+  {
+    "name": "tpkidkai",
+    "contributes":[
+      "Curator"
+    ]
+  },
+  {
+    "name": "dayatsiaulia",
+    "contributes":[
+      "Curator"
+    ]
+  },
+  {
+    "name": "foxkoit",
+    "contributes":[
+      "Thought Leader"
+    ]
+  },
+  {
+    "name": "forykw",
+    "contributes":[
+      "Tester",
+      "Troubleshooter",
+      "Developer"
+    ]
   }
 ]

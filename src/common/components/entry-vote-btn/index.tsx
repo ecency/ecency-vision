@@ -59,6 +59,7 @@ interface VoteDialogState {
   mode: Mode;
   wrongValueUp: boolean;
   showWarning: boolean;
+  showRemove: boolean;
   wrongValueDown: boolean;
   initialVoteValues: { up: any; down: any };
 }
@@ -72,6 +73,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     wrongValueUp: false,
     wrongValueDown: false,
     showWarning: false,
+    showRemove: false,
     initialVoteValues: {
       up: getVoteValue("up", this.props.activeUser?.username! + '-' + this.props.entry.post_id,  getVoteValue("upPrevious", this.props.activeUser?.username!, 100)),
       down: getVoteValue("down", this.props.activeUser?.username!+ '-' + this.props.entry.post_id,  getVoteValue("downPrevious", this.props.activeUser?.username!, -1)),
@@ -143,22 +145,21 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     this.setState({
       upSliderVal,
       wrongValueUp: upSliderVal === initialVoteValues.up && upVoted,
-      showWarning: upSliderVal < initialVoteValues.up && (upVoted) 
+      showRemove: upSliderVal === 0 && upVoted,
+      showWarning: (upSliderVal < initialVoteValues.up || upSliderVal > initialVoteValues.up) && upSliderVal > 0 && upVoted
     });
   };
 
-  downSliderChanged = (
-    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
-  ) => {
+  downSliderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const { target: { id, value} } = e;
-
     const downSliderVal = Number(value);
     const { initialVoteValues } = this.state;
     const { upVoted, downVoted } = this.props;
     this.setState({
       downSliderVal,
       wrongValueDown: downSliderVal === initialVoteValues.up,
-      showWarning: downSliderVal > initialVoteValues.down && (downVoted)
+      showRemove: downSliderVal === 0 && downVoted,
+      showWarning: (downSliderVal > initialVoteValues.down || downSliderVal < initialVoteValues.down) && downSliderVal < 0 && downVoted
     });
   };
 
@@ -195,7 +196,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       const estimated = Number(this.estimate(upSliderVal).toFixed(3));
       onClick(upSliderVal, estimated);
       setVoteValue("up", `${activeUser?.username!}-${post_id}`, upSliderVal);
-      setVoteValue("upPrevious", `${activeUser?.username!}`, upSliderVal);
+      setVoteValue("upPrevious", `${activeUser?.username!}-${post_id}`, upSliderVal);
       this.setState({ wrongValueUp: false, wrongValueDown: false });
     } else if(upVoted && initialVoteValues.up === upSliderVal){
       this.setState({ wrongValueUp: true, wrongValueDown: false });
@@ -212,14 +213,14 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       onClick(downSliderVal, estimated);
       this.setState({ wrongValueDown: false, wrongValueUp: false });
       setVoteValue("down", `${activeUser?.username!}-${post_id}`, downSliderVal);
-      setVoteValue("downPrevious", `${activeUser?.username!}`, downSliderVal);
+      setVoteValue("downPrevious", `${activeUser?.username!}-${post_id}`, downSliderVal);
     } else if(downVoted && initialVoteValues.down === downSliderVal){
       this.setState({ wrongValueDown: true, wrongValueUp: false });
     }
   };
 
   render() {
-    const { upSliderVal, downSliderVal, mode, wrongValueUp, wrongValueDown, showWarning } = this.state;
+    const { upSliderVal, downSliderVal, mode, wrongValueUp, wrongValueDown, showWarning, showRemove } = this.state;
     const { entry: { post_id } } = this.props;
 
     return (
@@ -275,6 +276,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 <p>{_t('entry-list-item.vote-warning')}</p>
               </div>
             )}
+            {showRemove && (
+              <div className="vote-remove">
+                <p>{_t('entry-list-item.vote-remove')}</p>
+              </div>
+            )}
           </>
         )}
 
@@ -326,6 +332,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             {showWarning && (
               <div className="vote-warning">
                 <p>{_t('entry-list-item.vote-warning')}</p>
+              </div>
+            )}
+            {showRemove && (
+              <div className="vote-remove">
+                <p>{_t('entry-list-item.vote-remove')}</p>
               </div>
             )}
           </>
@@ -459,21 +470,21 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                     <span className={voteBtnClass}>{chevronUpSvgForVote}</span>
                     {activeUser && tooltipClass.length > 0 && (
                       <div>
-                      <span
-                        className="tooltiptext"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
-                      >
-                        <VoteDialog
-                          {...this.props}
-                          activeUser={activeUser as any}
-                          onClick={this.vote}
-                          upVoted={upVoted}
-                          downVoted={downVoted}
-                        />
-                      </span>
-                    </div>)}
+                        <span
+                          className="tooltiptext"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                        >
+                          <VoteDialog
+                            {...this.props}
+                            activeUser={activeUser as any}
+                            onClick={this.vote}
+                            upVoted={upVoted}
+                            downVoted={downVoted}
+                          />
+                        </span>
+                      </div>)}
                   </div>
                 </div>
               </div>

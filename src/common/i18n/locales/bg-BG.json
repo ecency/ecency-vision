@@ -8,6 +8,7 @@
     "login": "Вход",
     "login-as": "Влизане чрез",
     "signup": "Регистриране",
+    "permissions": "Permissions",
     "delete": "Изтрий",
     "cancel": "Отказ",
     "reply": "Отговор",
@@ -49,6 +50,7 @@
     "payout": "Payout",
     "learn-more": "Научи повече от нашия",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Затвори"
   },
   "confirm": {
@@ -173,7 +175,8 @@
     "replies": "1 отговор. Натисни да отговориш.",
     "replies-n": "{{n}} отговори. Натисни за да отговориш.",
     "vote-error": "Предходната стойност е неприемлива. Гласувайте с различна стойност.",
-    "vote-warning": "Гласуване с 0% отменя гласуването на съдържанието.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Няма отговори все още. Натисни за да отговориш."
   },
   "nsfw": {
@@ -429,6 +432,7 @@
     "post-count": "Брой публикации",
     "followers": "Последователи",
     "following": "Следва",
+    "follows-you": "Follows you",
     "section-blog": "Блог",
     "section-posts": "Публикации",
     "section-comments": "Коментари",
@@ -436,6 +440,7 @@
     "section-communities": "Общности",
     "section-wallet": "Портфейл",
     "section-settings": "Настройки",
+    "section-permission": "Permission",
     "communities-title": "Членство",
     "create-community": "Създай общност",
     "witnesses": "Свидетели",
@@ -1016,6 +1021,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",

@@ -8,6 +8,7 @@
     "login": "Pumasok",
     "login-as": "Pumasok Bilang",
     "signup": "Mag-signup",
+    "permissions": "Permissions",
     "delete": "Burahin",
     "cancel": "I-kansela",
     "reply": "Sagutin",
@@ -49,6 +50,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Isarado"
   },
   "confirm": {
@@ -173,7 +175,8 @@
     "replies": "1 kasagutan. Pindutin para sumagot.",
     "replies-n": "{{n}} mga kasagutan. Pindutin para sumagot.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Walang pang mga kasagutan. Pindutin para sumagot."
   },
   "nsfw": {
@@ -429,6 +432,7 @@
     "post-count": "Bilang ng Post",
     "followers": "Mga tagasunod",
     "following": "Sinusundan",
+    "follows-you": "Follows you",
     "section-blog": "Blog",
     "section-posts": "Mga Post",
     "section-comments": "Mga komento",
@@ -436,6 +440,7 @@
     "section-communities": "Mga Pamayanan",
     "section-wallet": "Pitaka",
     "section-settings": "Mga Setting",
+    "section-permission": "Permission",
     "communities-title": "Pagkamiyembro",
     "create-community": "Gumawa ng pamayanan",
     "witnesses": "Mga testigo",
@@ -1016,6 +1021,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",

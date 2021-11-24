@@ -8,6 +8,7 @@
     "login": "Logowanie",
     "login-as": "Zaloguj się jako",
     "signup": "Rejestracja",
+    "permissions": "Permissions",
     "delete": "Usuń",
     "cancel": "Anuluj",
     "reply": "Odpowiedz",
@@ -49,6 +50,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Zamknij"
   },
   "confirm": {
@@ -173,7 +175,8 @@
     "replies": "1 odpowiedź. Kliknij aby odpowiedzieć.",
     "replies-n": "{{n}} odpowiedzi. Kliknij aby odpowiedzieć.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Brak odpowiedzi. Kliknij aby odpowiedzieć."
   },
   "nsfw": {
@@ -429,6 +432,7 @@
     "post-count": "Liczba Postów",
     "followers": "Obserwujący",
     "following": "Obserwowani",
+    "follows-you": "Follows you",
     "section-blog": "Blog",
     "section-posts": "Wpisy",
     "section-comments": "Komentarze",
@@ -436,6 +440,7 @@
     "section-communities": "Społeczności",
     "section-wallet": "Portfel",
     "section-settings": "Ustawienia",
+    "section-permission": "Permission",
     "communities-title": "Członkostwo",
     "create-community": "Stwórz społeczność",
     "witnesses": "Delegaci",
@@ -1016,6 +1021,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",

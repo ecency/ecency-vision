@@ -8,6 +8,7 @@
     "login": "Masuk",
     "login-as": "Masuk sebagai",
     "signup": "Daftar",
+    "permissions": "Permissions",
     "delete": "Hapus",
     "cancel": "Batal",
     "reply": "Balas",
@@ -49,6 +50,7 @@
     "payout": "Bayaran",
     "learn-more": "Pelajari lebih banyak di",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Tutup"
   },
   "confirm": {
@@ -173,7 +175,8 @@
     "replies": "1 respon, Klik untuk merespon.",
     "replies-n": "{{n}} respon. Klik untuk merespon.",
     "vote-error": "Nilai sebelumnya tidak dapat diterima. Pilih dengan nilai yang berbeda.",
-    "vote-warning": "Voting 0% membatalkan vote konten ini.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Belum ada respon. Klik untuk merespon."
   },
   "nsfw": {
@@ -429,6 +432,7 @@
     "post-count": "Hitungan Postingan",
     "followers": "Pengikut",
     "following": "Mengikuti",
+    "follows-you": "Follows you",
     "section-blog": "Blog",
     "section-posts": "Postingan",
     "section-comments": "Komentar",
@@ -436,6 +440,7 @@
     "section-communities": "Komunitas",
     "section-wallet": "Dompet",
     "section-settings": "Pengaturan",
+    "section-permission": "Permission",
     "communities-title": "Keanggotaan",
     "create-community": "Buatlah sebuah komunitas",
     "witnesses": "Saksi",
@@ -1016,6 +1021,7 @@
   },
   "view-keys": {
     "title": "Lihat Kunci Pribadi",
+    "header": "Manage keys",
     "account": "Akun",
     "cur-pass": "Password terkini",
     "owner": "Pemilik",

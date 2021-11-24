@@ -1,10 +1,8 @@
-import React, {Component} from "react";
+import React, {useEffect, useState, useCallback} from "react";
 
 import {History} from "history";
 
 import {Link} from "react-router-dom";
-
-import isEqual from "react-fast-compare";
 
 import moment from "moment";
 
@@ -57,194 +55,187 @@ interface State {
     followsActiveUserLoading: boolean;
 }
 
-export class ProfileCard extends Component<Props, State> {
-    state: State = {
-        followersList: false,
-        followingList: false,
-        followsActiveUser: false,
-        followsActiveUserLoading: false,
-    };
-    _isMounted = false;
+export const ProfileCard = (props: Props) => {
+    const [followersList, setFollowersList] = useState(false);
+    const [followingList, setFollowingList] = useState(false);
+    const [followsActiveUser, setFollowsActiveUser] = useState(false);
+    const [isMounted, setIsmounted] = useState(false);
+    const [followsActiveUserLoading, setFollowsActiveUserLoading] = useState(false);
+    const [, updateState] = useState();
+    const forceUpdate = useCallback(() => updateState({} as any), []);
 
-    componentDidMount(){
-        this._isMounted = true;
-        this.setState({followsActiveUserLoading: this.props.activeUser && this.props.activeUser.username ? true : false});
-        this._isMounted && this.getFollowsInfo(this.props.account.name)
-    }
+    const {activeUser, account, section} = props;
 
-    componentWillUnmount(){
-        this._isMounted = false;
-    }
-
-    componentDidUpdate(prevProps: Readonly<Props>){
-        if (this.props.account.name !== prevProps.account.name){
-            this.setState({followersList: false, followingList: false, followsActiveUserLoading: this.props.activeUser && this.props.activeUser.username ? true : false});
-            this.getFollowsInfo(this.props.account.name);
+    useEffect(() => {
+        if(activeUser && activeUser.username){
+            setFollowsActiveUserLoading(activeUser && activeUser.username ? true : false);
+            getFollowsInfo(account.name);
         }
-    }
+    }, 
+    [account]);
 
-    getFollowsInfo = (username: string) => {
-        if(this.props.activeUser){
-            getRelationshipBetweenAccounts(username, this.props.activeUser.username).then(res=>{
-                this._isMounted && this.setState({followsActiveUserLoading: false, followsActiveUser: res?.follows || false})
+    useEffect(()=>{
+        setIsmounted(true);
+        return () => setIsmounted(false)
+    },[])
+
+    useEffect(() => {
+        setFollowersList(false);
+        setFollowingList(false);
+        setFollowsActiveUserLoading(activeUser && activeUser.username ? true : false);
+        isMounted && getFollowsInfo(account.name);
+    }, [account.name]);
+
+    const getFollowsInfo = (username: string) => {
+        if(activeUser){
+            getRelationshipBetweenAccounts(username, activeUser.username).then(res=>{
+                setFollowsActiveUserLoading(false);
+                setFollowsActiveUser(res?.follows || false);
             }).catch((error) => {
-                console.log(error);
+                setFollowsActiveUserLoading(false);
+                setFollowsActiveUser(false);
             });
         }
     }
 
-    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
-        return !isEqual(this.props.account, nextProps.account)
-            || !isEqual(this.props.activeUser, nextProps.activeUser)
-            || !isEqual(this.props.section, nextProps.section)
-            || !isEqual(this.state, nextState);
+    const toggleFollowers = () => {
+        setFollowersList(!followersList);
+    };
+
+    const toggleFollowing = () => {
+        setFollowingList(!followingList);
+    };
+    const loggedIn = activeUser && activeUser.username;
+    
+    if (!account.__loaded) {
+        return <div className="profile-card">
+            <div className="profile-avatar">
+                {UserAvatar({...props, username: account.name, size: "xLarge"})}
+            </div>
+
+            <h1>
+                <div className="username">{account.name}</div>
+            </h1>
+        </div>
     }
 
-    toggleFollowers = () => {
-        const {followersList} = this.state;
-        this.setState({followersList: !followersList});
-    };
+    const vPower = votingPower(account);
 
-    toggleFollowing = () => {
-        const {followingList} = this.state;
-        this.setState({followingList: !followingList});
-    };
+    const isMyProfile = activeUser && activeUser.username === account.name && activeUser.data.__loaded && activeUser.data.profile;
+    const isSettings = section === 'settings';
 
-    render() {
-        const {account, activeUser, section} = this.props;
-        const {followsActiveUser, followsActiveUserLoading} = this.state;
-        const loggedIn = activeUser && activeUser.username;
-        
-        if (!account.__loaded) {
-            return <div className="profile-card">
-                <div className="profile-avatar">
-                    {UserAvatar({...this.props, username: account.name, size: "xLarge"})}
-                </div>
-
-                <h1>
-                    <div className="username">{account.name}</div>
-                </h1>
+    return (
+        <div className="profile-card">
+            <div className="profile-avatar">
+                {UserAvatar({...props, username: account.name, size: "xLarge", src: account.profile?.profile_image})}
+                {isMyProfile && isSettings &&
+                    <EditPic 
+                        {...props} 
+                        account={account as FullAccount} 
+                        activeUser={activeUser!} 
+                        onUpdate={() => {
+                            forceUpdate();
+                        }} 
+                    />
+                }
+                {account.__loaded && <div className="reputation">{accountReputation(account.reputation!)}</div>}
             </div>
-        }
 
-        const vPower = votingPower(account);
+            <h1>
+                <div className="username">{account.name}</div>
+            </h1>
 
-        const isMyProfile = activeUser && activeUser.username === account.name && activeUser.data.__loaded && activeUser.data.profile;
-        const isSettings = section === 'settings';
+            <div className="vpower-line">
+                <div className="vpower-line-inner" style={{width: `${vPower}%`}}/>
+            </div>
 
-        return (
-            <div className="profile-card">
-                <div className="profile-avatar">
-                    {UserAvatar({...this.props, username: account.name, size: "xLarge", src: account.profile?.profile_image})}
-                    {isMyProfile && isSettings &&
-                        <EditPic 
-                            {...this.props} 
-                            account={account as FullAccount} 
-                            activeUser={activeUser!} 
-                            onUpdate={() => {
-                                this.forceUpdate();
-                            }} 
-                        />
-                    }
-                    {account.__loaded && <div className="reputation">{accountReputation(account.reputation!)}</div>}
+            <div className="vpower-percentage">
+                <Tooltip content={_t("profile.voting-power")}>
+                    <span>{vPower.toFixed(2)}</span>
+                </Tooltip>
+            </div>
+            {loggedIn && !isMyProfile && <div className="d-flex justify-content-center mb-3 d-md-block">{followsActiveUserLoading ? <Skeleton className="loading-follows-you" /> : followsActiveUser ? <div className="follow-pill d-inline text-lowercase">{_t("profile.follows-you")}</div> : null}</div>}
+
+            {(account.profile?.name || account.profile?.about) && (
+                <div className="basic-info">
+                    {account.profile?.name && <div className="full-name">{account.profile.name}</div>}
+                    {account.profile?.about && <div className="about">{account.profile.about}</div>}
                 </div>
+            )}
 
-                <h1>
-                    <div className="username">{account.name}</div>
-                </h1>
-
-                <div className="vpower-line">
-                    <div className="vpower-line-inner" style={{width: `${vPower}%`}}/>
-                </div>
-
-                <div className="vpower-percentage">
-                    <Tooltip content={_t("profile.voting-power")}>
-                        <span>{vPower.toFixed(2)}</span>
-                    </Tooltip>
-                </div>
-                {loggedIn && <div className="d-flex justify-content-center mb-3 d-md-block">{followsActiveUserLoading ? <Skeleton className="loading-follows-you" /> : followsActiveUser ? <div className="follow-pill d-inline text-lowercase">{_t("profile.follows-you")}</div> : null}</div>}
-
-                {(account.profile?.name || account.profile?.about) && (
-                    <div className="basic-info">
-                        {account.profile?.name && <div className="full-name">{account.profile.name}</div>}
-                        {account.profile?.about && <div className="about">{account.profile.about}</div>}
+            {account.__loaded && (
+                <div className="stats">
+                    <div className="stat">
+                        <Tooltip content={_t("profile.post-count")}>
+                            <span>
+                                {formatListBulledttedSvg} {formattedNumber(account.post_count!, {fractionDigits: 0})}
+                            </span>
+                        </Tooltip>
                     </div>
-                )}
 
-                {account.__loaded && (
-                    <div className="stats">
-                        <div className="stat">
-                            <Tooltip content={_t("profile.post-count")}>
-                                <span>
-                                    {formatListBulledttedSvg} {formattedNumber(account.post_count!, {fractionDigits: 0})}
+                    {account.follow_stats?.follower_count !== undefined && (
+                        <div className="stat followers">
+                            <Tooltip content={_t("profile.followers")}>
+                                <span onClick={toggleFollowers}>
+                                    {accountMultipleSvg} {formattedNumber(account.follow_stats.follower_count, {fractionDigits: 0})}
                                 </span>
                             </Tooltip>
                         </div>
+                    )}
 
-                        {account.follow_stats?.follower_count !== undefined && (
-                            <div className="stat followers">
-                                <Tooltip content={_t("profile.followers")}>
-                                    <span onClick={this.toggleFollowers}>
-                                        {accountMultipleSvg} {formattedNumber(account.follow_stats.follower_count, {fractionDigits: 0})}
-                                    </span>
-                                </Tooltip>
-                            </div>
-                        )}
+                    {account.follow_stats?.following_count !== undefined && (
+                        <div className="stat following">
+                            <Tooltip content={_t("profile.following")}>
+                                <span onClick={toggleFollowing}>
+                                    {accountPlusSvg} {formattedNumber(account.follow_stats.following_count, {fractionDigits: 0})}
+                                </span>
+                            </Tooltip>
+                        </div>
+                    )}
+                </div>
+            )}
 
-                        {account.follow_stats?.following_count !== undefined && (
-                            <div className="stat following">
-                                <Tooltip content={_t("profile.following")}>
-                                    <span onClick={this.toggleFollowing}>
-                                        {accountPlusSvg} {formattedNumber(account.follow_stats.following_count, {fractionDigits: 0})}
-                                    </span>
-                                </Tooltip>
-                            </div>
-                        )}
+            <div className="extra-props">
+                {account.profile?.location && (
+                    <div className="prop">
+                        {nearMeSvg} {account.profile.location}
                     </div>
                 )}
 
-                <div className="extra-props">
-                    {account.profile?.location && (
-                        <div className="prop">
-                            {nearMeSvg} {account.profile.location}
-                        </div>
-                    )}
-
-                    {account.profile?.website && (
-                        <div className="prop">
-                            {earthSvg}
-                            <a target="_external" className="website-link" href={`https://${account.profile.website.replace(/^(https?|ftp):\/\//,"")}`}>
-                                {account.profile.website}
-                            </a>
-                        </div>
-                    )}
-
-                    {account.created && (
-                        <div className="prop">
-                            {calendarRangeSvg} {moment(new Date(account.created)).format("LL")}
-                        </div>
-                    )}
-
+                {account.profile?.website && (
                     <div className="prop">
-                        {rssSvg}
-                        <a target="_external" href={`${defaults.base}/@${account.name}/rss.xml`}>
-                            RSS feed
+                        {earthSvg}
+                        <a target="_external" className="website-link" href={`https://${account.profile.website.replace(/^(https?|ftp):\/\//,"")}`}>
+                            {account.profile.website}
                         </a>
                     </div>
-                </div>
+                )}
 
-                {isMyProfile && (
-                    <div className="btn-controls">
-                        <Link className="btn btn-sm btn-primary" to="/witnesses">{_t("profile.witnesses")}</Link>
-                        <Link className="btn btn-sm btn-primary" to="/proposals">{_t("profile.proposals")}</Link>
+                {account.created && (
+                    <div className="prop">
+                        {calendarRangeSvg} {moment(new Date(account.created)).format("LL")}
                     </div>
                 )}
 
-                {this.state.followersList && <Followers {...this.props} account={account} onHide={this.toggleFollowers}/>}
-                {this.state.followingList && <Following {...this.props} account={account} onHide={this.toggleFollowing}/>}
+                <div className="prop">
+                    {rssSvg}
+                    <a target="_external" href={`${defaults.base}/@${account.name}/rss.xml`}>
+                        RSS feed
+                    </a>
+                </div>
             </div>
-        );
-    }
+
+            {isMyProfile && (
+                <div className="btn-controls">
+                    <Link className="btn btn-sm btn-primary" to="/witnesses">{_t("profile.witnesses")}</Link>
+                    <Link className="btn btn-sm btn-primary" to="/proposals">{_t("profile.proposals")}</Link>
+                </div>
+            )}
+
+            {followersList && <Followers {...props} account={account} onHide={toggleFollowers}/>}
+            {followingList && <Following {...props} account={account} onHide={toggleFollowing}/>}
+        </div>
+    );
 }
 
 export default (p: Props) => {

@@ -8,6 +8,7 @@
     "login": "Aanmelden",
     "login-as": "Aanmelden als",
     "signup": "Inschrijven",
+    "permissions": "Permissions",
     "delete": "Verwijder",
     "cancel": "Annuleren",
     "reply": "Reageer",
@@ -49,6 +50,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Sluiten"
   },
   "confirm": {
@@ -173,7 +175,8 @@
     "replies": "1 reactie. Klik om te antwoorden.",
     "replies-n": "{{n}} reacties. Klik om te antwoorden.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Nog geen reacties. Klik om te antwoorden."
   },
   "nsfw": {
@@ -429,6 +432,7 @@
     "post-count": "Aantal artikelen",
     "followers": "Volgers",
     "following": "Volgend",
+    "follows-you": "Follows you",
     "section-blog": "Blog",
     "section-posts": "Artikelen",
     "section-comments": "Reacties",
@@ -436,6 +440,7 @@
     "section-communities": "Gemeenschappen",
     "section-wallet": "Portemonnee",
     "section-settings": "Instellingen",
+    "section-permission": "Permission",
     "communities-title": "Lidmaatschap",
     "create-community": "Maak een gemeenschap aan",
     "witnesses": "Getuigen",
@@ -1016,6 +1021,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",

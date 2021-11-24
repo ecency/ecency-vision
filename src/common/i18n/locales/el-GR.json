@@ -8,6 +8,7 @@
     "login": "Σύνδεση",
     "login-as": "Είσοδος ως",
     "signup": "Εγγραφή",
+    "permissions": "Permissions",
     "delete": "Διαγραφή",
     "cancel": "Ακύρωση",
     "reply": "Απάντηση",
@@ -49,6 +50,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Close"
   },
   "confirm": {
@@ -173,7 +175,8 @@
     "replies": "1 απάντηση. Κάντε κλικ για να απαντήσετε.",
     "replies-n": "{{n}} απαντήσεις. Κάντε κλικ για να απαντήσετε.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Καμία απάντηση ακόμα. Κάντε κλικ για να απαντήσετε."
   },
   "nsfw": {
@@ -429,6 +432,7 @@
     "post-count": "Πλήθος αναρτήσεων",
     "followers": "Ακόλουθοι",
     "following": "Ακολουθείτε",
+    "follows-you": "Follows you",
     "section-blog": "Ιστολόγιο",
     "section-posts": "Δημοσιεύσεις",
     "section-comments": "Σχόλια",
@@ -436,6 +440,7 @@
     "section-communities": "Κοινότητες",
     "section-wallet": "Πορτοφόλι",
     "section-settings": "Ρυθμίσεις",
+    "section-permission": "Permission",
     "communities-title": "Συμμετοχή",
     "create-community": "Δημιουργήστε μια κοινότητα",
     "witnesses": "Μάρτυρες",
@@ -1016,6 +1021,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",

@@ -8,6 +8,7 @@
     "login": "Logare",
     "login-as": "Autentificare ca",
     "signup": "Înregistrare",
+    "permissions": "Permissions",
     "delete": "Șterge",
     "cancel": "Anulează",
     "reply": "Răspunde",
@@ -49,6 +50,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Close"
   },
   "confirm": {
@@ -173,7 +175,8 @@
     "replies": "1 răspuns. Apasă pentru a răspunde.",
     "replies-n": "{{n}} răspunsuri. Apasă pentru a răspunde.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Nici un răspuns încă. Apasă pentru a răspunde."
   },
   "nsfw": {
@@ -429,6 +432,7 @@
     "post-count": "Număr postări",
     "followers": "Urmăritori",
     "following": "Urmărit",
+    "follows-you": "Follows you",
     "section-blog": "Blog",
     "section-posts": "Postări",
     "section-comments": "Comentarii",
@@ -436,6 +440,7 @@
     "section-communities": "Comunități",
     "section-wallet": "Portofel",
     "section-settings": "Setări",
+    "section-permission": "Permission",
     "communities-title": "Membru",
     "create-community": "Creează o comunitate",
     "witnesses": "Martori",
@@ -1016,6 +1021,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",

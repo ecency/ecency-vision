@@ -33,7 +33,7 @@ exports[`(1) Default Render 1`] = `
           <div
             className="amount amount-bold"
           >
-            Calculating...
+            $ 0.000
           </div>
         </div>
       </div>

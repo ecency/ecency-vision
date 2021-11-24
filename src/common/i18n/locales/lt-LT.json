@@ -8,6 +8,7 @@
     "login": "Prisijungti",
     "login-as": "Prisijungti Kaip",
     "signup": "Registruotis",
+    "permissions": "Permissions",
     "delete": "Ištrinti",
     "cancel": "Atšaukti",
     "reply": "Atsakyti",
@@ -49,6 +50,7 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "more-results": "More results",
     "close": "Close"
   },
   "confirm": {
@@ -173,7 +175,8 @@
     "replies": "1 atsakymas. Spauskite, jeigu norite atsakyti.",
     "replies-n": "{{n}} atsakymų. Spauskite, jeigu norite atsakyti.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-warning": "Changing vote...",
     "no-replies": "Jokių atsakymų kolkas. Spauskite, jeigu norite atsakyti."
   },
   "nsfw": {
@@ -429,6 +432,7 @@
     "post-count": "Įrašų Skaičius",
     "followers": "Sekėjai",
     "following": "Sekama",
+    "follows-you": "Follows you",
     "section-blog": "Blog'as",
     "section-posts": "Įrašai",
     "section-comments": "Komentarai",
@@ -436,6 +440,7 @@
     "section-communities": "Bendruomenės",
     "section-wallet": "Piniginė",
     "section-settings": "Settings",
+    "section-permission": "Permission",
     "communities-title": "Membership",
     "create-community": "Sukurti bendruomenę",
     "witnesses": "Witnesses",
@@ -1016,6 +1021,7 @@
   },
   "view-keys": {
     "title": "View Private keys",
+    "header": "Manage keys",
     "account": "Account",
     "cur-pass": "Current password",
     "owner": "Owner",
