@@ -9,8 +9,6 @@ import { getMarketStatistics, getOpenOrder, getOrderBook, getTradeHistory, Marke
 import { FullAccount } from '../store/accounts/types';
 import { Orders } from '../components/orders';
 import { OpenOrders } from '../components/open-orders';
-import ChartistGraph from 'react-chartist';
-import { range } from 'lodash';
 import { MarketChart } from '../components/market-chart';
 
 const MarketPage = (props: PageProps) => {
@@ -48,13 +46,13 @@ const MarketPage = (props: PageProps) => {
             reloadFn: () => {},
             reloading: false,
         }) : <NavBar {...props} />;
-
         let series1 = tablesData ? tablesData!.bids.map((item, index) => {
-            return parseFloat(parseFloat(item.real_price).toFixed(5))
+            return parseFloat((item.hbd/1000).toFixed(5))
         } ) : [];
-        series1 = series1.filter((item, index) => index%40==0)
-        let series2 = tablesData ? tablesData!.asks.map((item, index) => parseFloat(parseFloat(item.real_price).toFixed(5))) : [];
-        series2 = series2.filter((item, index) => index%40==0)
+        series1 = series1.filter((item, index) => index % 10 == 0)
+
+        let series2 = tablesData ? tablesData!.asks.map((item, index) => parseFloat((item.hbd/1000).toFixed(5))) : [];
+        series2 = series2.filter((item, index) => index % 10 == 0);
     return <>
             <div className="d-flex justify-content-center">
                 <div className="w-75">
@@ -63,7 +61,7 @@ const MarketPage = (props: PageProps) => {
                         <ChartStats data={data} loading={loading} />
                     </div>
 
-                    {tablesData ? <MarketChart data1={series1} data2={series2} /> : "Loading..."}
+                    {(data && tablesData) ? <MarketChart data1={series1} data2={series2} /> : "Loading..."}
                     <div className="container my-3">
                         <div className="row justify-content-between">
                             <div className="col-12 col-sm-5 p-0">

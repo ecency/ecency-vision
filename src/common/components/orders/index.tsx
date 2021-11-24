@@ -50,7 +50,7 @@ export const Orders = ({type, loading, data}: Props) => {
         case 1:
             mappedData = data.map((item:any) => {
                 return {
-                    key1: (item as OrdersDataItem).hbd,
+                    key1: (item as OrdersDataItem).hbd/1000,
                     key2: (item as OrdersDataItem).order_price.quote,
                     key3: (item as OrdersDataItem).hive,
                     key4: parseFloat((item as OrdersDataItem).real_price).toFixed(6)
@@ -62,7 +62,7 @@ export const Orders = ({type, loading, data}: Props) => {
             title = `${_t("market.sell")} ${_t("market.orders")}`;
             mappedData = data.map((item:any) => {
                 return {
-                    key4: (item as OrdersDataItem).hbd,
+                    key4: (item as OrdersDataItem).hbd/1000,
                     key3: (item as OrdersDataItem).order_price.quote,
                     key2: (item as OrdersDataItem).hive,
                     key1: parseFloat((item as OrdersDataItem).real_price).toFixed(6)
