@@ -54,6 +54,7 @@ import isCommunity from "../helper/is-community";
 import accountReputation from '../helper/account-reputation';
 
 import truncate from "../util/truncate";
+import replaceLinkIdToDataId from "../util/replace-link-id-to-data-id";
 import * as ls from "../util/local-storage";
 import {crossPostMessage} from "../helper/cross-post";
 
@@ -718,8 +719,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                             </>;
                                         }
 
-                                        let renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 ? comment : entry.body :entry.body, false, global.canUseWebp)};
-                                        
+                                        const _entry_body = replaceLinkIdToDataId(entry.body);
+                                        let renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 ? comment : _entry_body :_entry_body, false, global.canUseWebp)};
                                         const ctitle = entry.community ? entry.community_title : "";
                                         let extraItems = ownEntry && isComment ? [{
                                                 label: _t("g.edit"),
