@@ -933,7 +933,6 @@
     "filter-inactive": "Parating",
     "filter-team": "Proyektong Ecency",
     "return-description": "Ito ang basehan ng pagbabalik ng panukala. Bawat panukala na may maliit na boto ay hindi makakatanggap ng pondo.",
-    "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "Mga boto sa Panukala #{{n}}",
     "see-all": "tingnan ang lahat ng panukala"
   },

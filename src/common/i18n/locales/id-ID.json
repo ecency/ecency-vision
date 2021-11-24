@@ -933,7 +933,6 @@
     "filter-inactive": "Akan datang",
     "filter-team": "Proyek Ecency",
     "return-description": "Ini adalah proposal pengembalian dasar. Setiap proposal dengan suara lebih sedikit tidak akan menerima dana.",
-    "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "Vote pada Proposal #{{n}}",
     "see-all": "lihat semua proposal"
   },

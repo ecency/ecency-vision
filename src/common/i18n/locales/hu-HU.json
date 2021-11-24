@@ -933,7 +933,6 @@
     "filter-inactive": "Közelgő",
     "filter-team": "Ecency projektek",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
-    "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "#{{n}} javaslat szavazatai",
     "see-all": "összes javaslat megtekintése"
   },

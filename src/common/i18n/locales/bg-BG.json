@@ -933,7 +933,7 @@
     "filter-inactive": "Предстоящи",
     "filter-team": "Ecency Проекти",
     "return-description": "Това е мининималната стойност за осъществяване на предложение. Всяко предложение с по-малко гласове няма да получи средства.",
-    "threshold-description": "This is a threshold proposal.",
+    
     "votes-dialog-title": "Гласове на Предложение #{{n}}",
     "see-all": "виж всички предложения"
   },

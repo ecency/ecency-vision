@@ -933,7 +933,6 @@
     "filter-inactive": "Predstojeće",
     "filter-team": "Ecency Projekti",
     "return-description": "Ovo je osnovna zarada predloga. Svaki predlog sa manje glasova neće dobiti sredstva.",
-    "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "Glasovi za predloge #{{n}}",
     "see-all": "pogledajte sve predloge"
   },

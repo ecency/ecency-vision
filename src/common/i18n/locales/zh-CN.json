@@ -933,7 +933,6 @@
     "filter-inactive": "即将开始",
     "filter-team": "Ecency 项目",
     "return-description": "这是基础返回提案。每个票数较少的提案都不会收到资金。",
-    "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "对提议#{{n}} 投票",
     "see-all": "查看所有提议"
   },

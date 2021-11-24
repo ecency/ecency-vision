@@ -933,7 +933,6 @@
     "filter-inactive": "Upcoming",
     "filter-team": "Ecency Projects",
     "return-description": "Bu təməl geri təklifdir. Az səs alan hər bir təklif vəsait almayacaq.",
-    "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "#{{n}} təklifdəki səslər",
     "see-all": "bütün təkliflərə bax"
   },

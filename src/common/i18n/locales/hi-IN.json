@@ -933,7 +933,6 @@
     "filter-inactive": "आगामी",
     "filter-team": "इसेंसी परियोजनाएं",
     "return-description": "यह आधार रिटर्न प्रस्ताव है। कम मतों वाले प्रत्येक प्रस्ताव को धन प्राप्त नहीं होगा।",
-    "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "प्रस्ताव पर वोट # {{n}}",
     "see-all": "सभी प्रस्ताव देखें"
   },

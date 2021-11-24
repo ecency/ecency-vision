@@ -933,7 +933,6 @@
     "filter-inactive": "Rimanente",
     "filter-team": "Progetti Ecency",
     "return-description": "Questa è la soglia minima per un ritorno dalla proposta. Ogni proposta con meno voti non riceverà fondi.",
-    "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "Vota sulla proposta #{{n}}",
     "see-all": "vedi tutte le proposte"
   },
