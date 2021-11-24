@@ -308,7 +308,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
           <WalletMenu
             global={global}
             username={account.name}
-            active="hive-engine"
+            active="engine"
           />
         </div>
       </div>
