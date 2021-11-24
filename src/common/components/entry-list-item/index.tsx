@@ -132,7 +132,7 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     componentDidMount(){
-        const { muted } = this.props;
+        const { entry, muted } = this.props;
         if(muted){
             this.setState({ showMuted: true })
         }
@@ -142,14 +142,7 @@ export default class EntryListItem extends Component<Props, State> {
 
     componentWillUnmount(){
         document.getElementsByTagName("html")[0].style.position = 'unset'
-        // this.setState({ mounted: false })
-        this.setState({
-          showNsfw: false,
-          showMuted: false,
-          mounted: false,
-          showProfileDetails:false,
-          delayHandler: null
-        })
+        this.setState({ mounted: false })
     }
 
     componentDidUpdate(prevProps:Props){
