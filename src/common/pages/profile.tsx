@@ -78,10 +78,6 @@ class ProfilePage extends BaseComponent<Props, State> {
         searchParam = searchParam.replace("q","")
         searchParam = searchParam.replace("=","")
 
-        if(searchParam.length){
-            this.handleInputChange(searchParam);
-        }
-
         this.state = {
             loading: false,
             typing: false,
@@ -96,9 +92,17 @@ class ProfilePage extends BaseComponent<Props, State> {
     }
 
     async componentDidMount() {
+        const {match, global, fetchEntries, fetchTransactions, fetchPoints, location} = this.props;
+
+        let searchParam = location.search.replace("?","")
+        searchParam = searchParam.replace("q","")
+        searchParam = searchParam.replace("=","")
+        if(searchParam.length){
+            this.handleInputChange(searchParam);
+        }
+
         await this.ensureAccount();
 
-        const {match, global, fetchEntries, fetchTransactions, fetchPoints} = this.props;
         const {username, section} = match.params;
         if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
             // fetch posts
@@ -258,9 +262,13 @@ class ProfilePage extends BaseComponent<Props, State> {
             query += ` type:post`
           } else if(global.filter === 'comments') {
             query += ` type:comment`
-          } 
-          const data: any = await searchApi(query, "popularity", "1")
-          
+          }
+          let data:any;
+          try {
+            data = await searchApi(query, "newest", "0")
+          } catch (error) {
+            data = null;
+          }
           if(data && data.results) {
             let sortedResults = data.results.sort((a: any,b: any) => Date.parse(b.created_at) - Date.parse(a.created_at))
             this.setState({ searchData: sortedResults, loading: false, searchDataLoading: false })
@@ -309,7 +317,7 @@ class ProfilePage extends BaseComponent<Props, State> {
         //  Meta config
         const url = `${defaults.base}/@${username}${section ? `/${section}` : ""}`;
         const metaProps = account.__loaded ? {
-            title: `${account.profile?.name || account.name}'s ${section ? `${section}` : ""} on decentralized web`,
+            title: `${account.profile?.name || account.name}'s ${section ? section === "engine" ? "tokens" : `${section}` : ""} on decentralized web`,
             description: `${account.profile?.about ? `${account.profile?.about} ${section ? `${section}` : ""}` : `${(account.profile?.name || account.name)} ${section ? `${section}` : ""}`}` || "",
             url: `/@${username}${section ? `/${section}` : ""}`,
             canonical: url,
@@ -395,7 +403,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                                     });
                                 }
 
-                                if (section === "hive-engine") {
+                                if (section === "engine") {
                                     return WalletHiveEngine({
                                         ...this.props,
                                         account
