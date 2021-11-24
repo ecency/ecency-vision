@@ -1585,11 +1585,6 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
               HBD
             </span>
           </div>
-          <div
-            className="text-muted mt-1 override-warning"
-          >
-            The new amount overrides the previous one.
-          </div>
         </div>
       </div>
       <div
@@ -2011,11 +2006,6 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
               HIVE
             </span>
           </div>
-          <div
-            className="text-muted mt-1 override-warning"
-          >
-            The new amount overrides the previous one.
-          </div>
         </div>
       </div>
       <div
@@ -2381,11 +2371,6 @@ exports[`(6) Convert (1) Step 1 1`] = `
               HBD
             </span>
           </div>
-          <div
-            className="text-muted mt-1 override-warning"
-          >
-            The new amount overrides the previous one.
-          </div>
         </div>
       </div>
       <div
@@ -2734,11 +2719,6 @@ exports[`(7) Power up (1) Step 1 1`] = `
                
               HIVE
             </span>
-          </div>
-          <div
-            className="text-muted mt-1 override-warning"
-          >
-            The new amount overrides the previous one.
           </div>
         </div>
       </div>
@@ -3460,11 +3440,6 @@ exports[`(9) Power down (1) Step 1 1`] = `
             >
               * available hive power
             </div>
-          </div>
-          <div
-            className="text-muted mt-1 override-warning"
-          >
-            The new amount overrides the previous one.
           </div>
           <div
             className="power-down-estimation"
