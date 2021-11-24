@@ -37,7 +37,6 @@ const getVoteValue = (
   username: string,
   def: number
 ): number => {
-  debugger
   return ls.get(`vote-value-${type}-${username}`, def);
 };
 
