@@ -7,6 +7,8 @@ import { error, success } from "../feedback";
 import LinearProgress from "../linear-progress";
 import { apiBase } from "../../api/helper";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
+import { Link } from "react-router-dom";
+import isElectron from "../../util/is-electron";
 
 const LandingPage = (props: any) => {
 
@@ -90,9 +92,9 @@ const LandingPage = (props: any) => {
           >
             {_t("landing-page.get-started")}
           </button>
-          <a className="scroll-down" href="#earn-money">
+          <Link className="scroll-down" to="#earn-money">
             {scrollDown}
-          </a>
+          </Link>
         </div>
       </div>
       <div className="sections second-section" id="earn-money">
@@ -104,15 +106,15 @@ const LandingPage = (props: any) => {
               <p className="mt-2 w-88 mb-5 mb-sm-0">
                 {_t("landing-page.earn-money-block-chain-based")}
                 <span>
-                  <a href="/signup?referral=ecency">
+                  <Link to="/signup?referral=ecency">
                     {_t("landing-page.join-us")}
-                  </a>
+                  </Link>
                 </span>
                 {_t("landing-page.various-digital-tokens")}
               </p>
-              <a className="link-read-more" href="/faq">
+              <Link className="link-read-more" to="/faq">
                 {_t("landing-page.read-more")}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -150,9 +152,9 @@ const LandingPage = (props: any) => {
               <h2>{_t("landing-page.decentralization")}</h2>
               <p>
                 <span>
-                  <a href="https://hive.io" target="_blank">
+                  <Link to={{pathname:"https://hive.io"}} target="_blank" onClick={()=> isElectron() && window.open('https://hive.io', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
                     {_t("landing-page.hive-blockchain")}
-                  </a>
+                  </Link>
                 </span>{" "}
                 {_t("landing-page.decentralization-desc")}
               </p>
@@ -166,9 +168,9 @@ const LandingPage = (props: any) => {
               <p>
                 {_t("landing-page.open-source-desc")}
               </p>
-              <a className="no-break" href="/signup?referral=ecency">
+              <Link to="/signup?referral=ecency" className="no-break">
                 {_t("landing-page.feel-free-join")}
-              </a>
+              </Link>
             </div>
             <div className="img-wrapper">
               <img
@@ -240,10 +242,10 @@ const LandingPage = (props: any) => {
               <h2>{_t("landing-page.download-our-application")}</h2>
               <p className="mt-4">{_t("landing-page.download-our-application-desc-1")}</p>
               <p>{_t("landing-page.download-our-application-desc-2")}</p>
-              <a
+              <Link to={{pathname:"https://desktop.ecency.com/"}}
                 className="windows"
-                href="https://desktop.ecency.com/"
                 target="blank"
+                onClick={()=> isElectron() && window.open('https://desktop.ecency.com/', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}
               >
                 <img
                   src={
@@ -254,8 +256,8 @@ const LandingPage = (props: any) => {
                   alt="Download for Windows"
                 />
                 {_t("landing-page.download-for-windows")}
-              </a>
-              <a href="https://ios.ecency.com/" target="blank">
+              </Link>
+              <Link to={{pathname:"https://ios.ecency.com/"}} target="blank" onClick={()=> isElectron() && window.open('https://ios.ecency.com/', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
                 <img
                   src={
                     props?.global?.theme === "day"
@@ -265,8 +267,8 @@ const LandingPage = (props: any) => {
                   alt="Download for IOS"
                 />
                 {_t("landing-page.download-for-ios")}
-              </a>
-              <a href="https://android.ecency.com/" target="blank">
+              </Link>
+              <Link to={{pathname:"https://android.ecency.com/"}} target="blank" onClick={()=> isElectron() && window.open('https://android.ecency.com/', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
                 <img
                   src={
                     props?.global?.theme === "day"
@@ -276,7 +278,7 @@ const LandingPage = (props: any) => {
                   alt="Download for Android"
                 />
                 {_t("landing-page.download-for-android")}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -315,27 +317,27 @@ const LandingPage = (props: any) => {
                 <li>
                   <img src={FounderImg} alt="Founder" loading="lazy" />
                   <div className="text-wrapper">
-                    <a href="/@good-karma">@good-karma</a>
+                    <Link to="/@good-karma">@good-karma</Link>
                     <p>{_t("landing-page.founder")}</p>
                   </div>
                 </li>
                 <li>
                   <img src={DevopsImg} alt="Devops" loading="lazy"/>
                   <div className="text-wrapper">
-                    <a href="/@talhasch">@talhasch</a>
+                    <Link to="/@talhasch">@talhasch</Link>
                     <p>{_t("landing-page.devops-guru")}</p>
                   </div>
                 </li>
                 <li>
                   <img src={DesignGuru} alt="Designer" loading="lazy"/>
                   <div className="text-wrapper">
-                    <a href="/@dunsky">@dunsky</a>
+                    <Link to="/@dunsky">@dunsky</Link>
                     <p>{_t("landing-page.design-guru")}</p>
                   </div>
                 </li>
                 <li className="last-element">
-                  <a href="/contributors">{_t("landing-page.community-contributors")}</a>
-                  <a href="/witnesses">{_t("landing-page.blockchain-witnesses")}</a>
+                  <Link to="/contributors">{_t("landing-page.community-contributors")}</Link>
+                  <Link to="/witnesses">{_t("landing-page.blockchain-witnesses")}</Link>
                 </li>
               </ul>
             </div>
@@ -364,30 +366,30 @@ const LandingPage = (props: any) => {
               <div className="links">
                 <ul className="first-column">
                   <li>
-                    <a href="#about">{_t("landing-page.about")}</a>
+                    <Link to="#about">{_t("landing-page.about")}</Link>
                   </li>
                   <li>
-                    <a href="/faq">{_t("landing-page.faq")}</a>
+                    <Link to="/faq">{_t("landing-page.faq")}</Link>
                   </li>
                   <li>
-                    <a href="/terms-of-service">{_t("landing-page.terms-of-service")}</a>
+                    <Link to="/terms-of-service">{_t("landing-page.terms-of-service")}</Link>
                   </li>
                   <li>
-                    <a href="/privacy-policy">{_t("landing-page.privacy-policy")}</a>
+                    <Link to="/privacy-policy">{_t("landing-page.privacy-policy")}</Link>
                   </li>
                 </ul>
                 <ul className="second-column">
                   <li>
-                    <a href="/discover">{_t("landing-page.discover")}</a>
+                    <Link to="/discover">{_t("landing-page.discover")}</Link>
                   </li>
                   <li>
                     <p onClick={() => props.toggleUIProp("login")}>{_t("landing-page.sign-in")}</p>
                   </li>
                   <li>
-                    <a href="/communities">{_t("landing-page.communities")}</a>
+                    <Link to="/communities">{_t("landing-page.communities")}</Link>
                   </li>
                   <li>
-                    <a href="/faq">{_t("landing-page.help")}</a>
+                    <Link to="/faq">{_t("landing-page.help")}</Link>
                   </li>
                 </ul>
               </div>
@@ -413,33 +415,33 @@ const LandingPage = (props: any) => {
             <div className="socials w-100 d-none d-lg-block">
                   <ul className="p-0 m-0 d-flex justify-content-between w-50">
                     <li>
-                      <a href="https://youtube.com/ecency">
+                      <Link to={{pathname: "https://youtube.com/ecency"}} target="_blank">
                         <img src={FooterYoutube} alt="youtube" />
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="https://twitter.com/ecency_official">
+                      <Link to={{pathname:"https://twitter.com/ecency_official"}} target="_blank" onClick={()=> isElectron() && window.open('https://twitter.com/ecency_official', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
                         <img src={FooterTwitter} alt="twitter" />
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="https://t.me/ecency">
+                      <Link to={{pathname: "https://t.me/ecency"}} target="_blank" onClick={()=> isElectron() && window.open('https://t.me/ecency', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
                         <img src={FooterTelegram} alt="telegram" />
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="https://discord.me/ecency">
+                      <Link to={{pathname: "https://discord.me/ecency"}} target="_blank" onClick={()=> isElectron() && window.open('https://discord.me/ecency', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
                         <img src={FooterDiscord} alt="discord" />
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
             
                 </div>
             </div><div className="site-icon">
-              <a href="#">
+              <Link to="#">
                 <img src={LogoCircle} alt="ecency logo" />
-              </a>
+              </Link>
               <p className="copy-right">{_t("landing-page.copy-rights")}</p>
             </div>
           </div>
