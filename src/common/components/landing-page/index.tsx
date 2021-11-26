@@ -5,9 +5,10 @@ import { _t } from "../../i18n";
 import { scrollDown } from "../../img/svg";
 import { error, success } from "../feedback";
 import LinearProgress from "../linear-progress";
+import Link from "../alink";
+
 import { apiBase } from "../../api/helper";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
-import { Link } from "react-router-dom";
 import isElectron from "../../util/is-electron";
 
 const LandingPage = (props: any) => {
@@ -84,7 +85,6 @@ const LandingPage = (props: any) => {
           <h1>{_t("landing-page.welcome-text")}</h1>
           <div className="d-flex flex-wrap justify-content-center align-items-center">
             <p className="mb-3">{_t("landing-page.what-is-ecency")}</p>
-            <p className="ml-1 mb-3">{_t("landing-page.powered-by-hive")}</p>
           </div>
           <button
             className="get-started mx-auto"
@@ -152,7 +152,7 @@ const LandingPage = (props: any) => {
               <h2>{_t("landing-page.decentralization")}</h2>
               <p>
                 <span>
-                  <Link to={{pathname:"https://hive.io"}} target="_blank" onClick={()=> isElectron() && window.open('https://hive.io', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
+                  <Link to={"https://hive.io"} target="_blank" onClick={()=> isElectron() && window.open('https://hive.io', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
                     {_t("landing-page.hive-blockchain")}
                   </Link>
                 </span>{" "}
@@ -198,21 +198,21 @@ const LandingPage = (props: any) => {
             </div>
             <ul>
               <li>
-                <h3>92M</h3>
+                <h3>96M</h3>
                 <p>{_t("landing-page.posts")}</p>
               </li>
               <li>
-                <h3>300K</h3>
+                <h3>600K</h3>
                 <p>{_t("landing-page.unique-visitors")}</p>
               </li>
             </ul>
             <ul>
               <li>
-                <h3>15M</h3>
+                <h3>38M</h3>
                 <p>{_t("landing-page.points-distrubuted")}</p>
               </li>
               <li>
-                <h3>25K</h3>
+                <h3>75K</h3>
                 <p>{_t("landing-page.new-users")}</p>
               </li>
             </ul>
@@ -242,7 +242,7 @@ const LandingPage = (props: any) => {
               <h2>{_t("landing-page.download-our-application")}</h2>
               <p className="mt-4">{_t("landing-page.download-our-application-desc-1")}</p>
               <p>{_t("landing-page.download-our-application-desc-2")}</p>
-              <Link to={{pathname:"https://desktop.ecency.com/"}}
+              <Link to={"https://desktop.ecency.com/"}
                 className="windows"
                 target="blank"
                 onClick={()=> isElectron() && window.open('https://desktop.ecency.com/', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}
@@ -257,7 +257,7 @@ const LandingPage = (props: any) => {
                 />
                 {_t("landing-page.download-for-windows")}
               </Link>
-              <Link to={{pathname:"https://ios.ecency.com/"}} target="blank" onClick={()=> isElectron() && window.open('https://ios.ecency.com/', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
+              <Link to={"https://ios.ecency.com/"} target="blank" onClick={()=> isElectron() && window.open('https://ios.ecency.com/', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
                 <img
                   src={
                     props?.global?.theme === "day"
@@ -268,7 +268,7 @@ const LandingPage = (props: any) => {
                 />
                 {_t("landing-page.download-for-ios")}
               </Link>
-              <Link to={{pathname:"https://android.ecency.com/"}} target="blank" onClick={()=> isElectron() && window.open('https://android.ecency.com/', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
+              <Link to={"https://android.ecency.com/"} target="blank" onClick={()=> isElectron() && window.open('https://android.ecency.com/', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
                 <img
                   src={
                     props?.global?.theme === "day"
@@ -415,22 +415,22 @@ const LandingPage = (props: any) => {
             <div className="socials w-100 d-none d-lg-block">
                   <ul className="p-0 m-0 d-flex justify-content-between w-50">
                     <li>
-                      <Link to={{pathname: "https://youtube.com/ecency"}} target="_blank">
+                      <Link to={"https://youtube.com/ecency"} target="_blank">
                         <img src={FooterYoutube} alt="youtube" />
                       </Link>
                     </li>
                     <li>
-                      <Link to={{pathname:"https://twitter.com/ecency_official"}} target="_blank" onClick={()=> isElectron() && window.open('https://twitter.com/ecency_official', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
+                      <Link to={"https://twitter.com/ecency_official"} target="_blank" onClick={()=> isElectron() && window.open('https://twitter.com/ecency_official', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
                         <img src={FooterTwitter} alt="twitter" />
                       </Link>
                     </li>
                     <li>
-                      <Link to={{pathname: "https://t.me/ecency"}} target="_blank" onClick={()=> isElectron() && window.open('https://t.me/ecency', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
+                      <Link to={"https://t.me/ecency"} target="_blank" onClick={()=> isElectron() && window.open('https://t.me/ecency', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
                         <img src={FooterTelegram} alt="telegram" />
                       </Link>
                     </li>
                     <li>
-                      <Link to={{pathname: "https://discord.me/ecency"}} target="_blank" onClick={()=> isElectron() && window.open('https://discord.me/ecency', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
+                      <Link to={"https://discord.me/ecency"} target="_blank" onClick={()=> isElectron() && window.open('https://discord.me/ecency', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
                         <img src={FooterDiscord} alt="discord" />
                       </Link>
                     </li>
