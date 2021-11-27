@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {History, Location} from "history";
 import { _t } from "../../i18n";
+import ClickAwayListener from "../clickaway-listener";
 
 interface Props {
     history?: History;
@@ -184,6 +185,7 @@ export default class SuggestionList extends Component<Props> {
                     {children}
 
                     {showList && modeItems ? (!!modeItems && modeItems.length > 0) && modeItemsUI : items.length > 0 && (
+                    <ClickAwayListener onClickAway={()=>this.setState({showList: false})}>
                         <div className="suggestion-list">
                             {header && <div className="list-header">{header}</div>}
                             <div className="list-body">
@@ -210,6 +212,7 @@ export default class SuggestionList extends Component<Props> {
                                 })}
                             </div>
                         </div>
+                    </ClickAwayListener>
                     )}
                 </div>
             </>
