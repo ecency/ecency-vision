@@ -388,7 +388,7 @@
     "title": "Título",
     "about": "Acerca de",
     "description": "Crear comunidades mejores, monetizables, descentralizadas e inmutables",
-    "fee": "Cuota de creación",
+    "fee": "Tarifa de creación",
     "creator": "Creador",
     "username": "Nombre de Usuario de la Comunidad",
     "username-available": "Disponible.",
@@ -407,7 +407,7 @@
     "reason-one": "Propiedad real",
     "reason-two": "Permanente, recompensa",
     "password-copied": "Contraseña copiada al portapapeles",
-    "reason-three": "Desarrollado usando tecnología blockchain",
+    "reason-three": "Desarrollado con tecnología blockchain",
     "reason-four": "Cuesta 3 HIVE crear una comunidad de verdadera propiedad permanente e inmutable",
     "done-link-label": "Empieza ya."
   },
@@ -467,7 +467,7 @@
     "profile-image": "Imagen de perfil",
     "website": "Página Web",
     "location": "Localización",
-    "copied": "El enlace de referencia se ha copiado en el portapapeles.",
+    "copied": "El enlace de referido se ha copiado en el portapapeles.",
     "updated": "¡Perfil actualizado exitosamente!"
   },
   "image-upload-button": {
@@ -479,7 +479,7 @@
     "currency": "Divisa",
     "language": "Idioma",
     "nsfw": "Mostrar contenido NSFW",
-    "referral-link": "Enlace de referencia",
+    "referral-link": "Enlace de referido",
     "updated": "Preferencias actualizadas!"
   },
   "wallet": {
@@ -519,7 +519,7 @@
   },
   "wallet-engine": {
     "title": "Motor de Tokens de Hive",
-    "description": "Hive Engine es una plataforma inteligente de cadena lateral para la cadena de bloques de colmenas.",
+    "description": "Hive Engine es una plataforma inteligente de cadena lateral para la cadena de bloques de Hive.",
     "no-results": "No se ha encontrado ningún token.",
     "token": "Token",
     "balance": "Balance",
