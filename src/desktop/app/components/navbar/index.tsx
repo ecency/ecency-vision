@@ -100,7 +100,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
 
         const curPath = entries[index]?.pathname || '/';
         let address = curPath === '/' ? `${defaults.filter}` : curPath.replace('/', '');
-        debugger
+        
         // persist search string
         if (curPath.startsWith('/search')) {
             const qs = queryString.parse(location.search);
@@ -164,13 +164,13 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
 
 
     render() {
-        const {address} = this.state;
+        const {address, changed} = this.state;
         return (
             <div className="address">
                 <div className="pre-add-on">{magnifySvg}</div>
                 <span className="protocol">ecency://</span>
                 <div className="url">
-                    <SearchSuggester {...this.props} value={address}>
+                    <SearchSuggester {...this.props} value={address} changed={changed}>
                         <input
                             type="text"
                             value={address}
