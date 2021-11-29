@@ -59,6 +59,7 @@
     .body-input,
     .tag-input {
       margin-top: 10px;
+      position: relative;
 
       .form-control {
         border-radius: 8px;
@@ -78,6 +79,11 @@
         @include themify(night) {
           color: $silver;
         }
+      }
+
+      .rta__autocomplete {
+        max-height: 100px !important;
+        overflow: auto !important;
       }
     }
 

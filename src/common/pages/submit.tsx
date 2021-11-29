@@ -68,6 +68,7 @@ import {checkSvg, contentSaveSvg} from "../img/svg";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import ModalConfirm from "../components/modal-confirm";
 import ResizableTextarea from "../components/resizable-text-area";
+import TextareaAutocomplete from "../components/textarea-autocomplete";
 
 interface PostBase {
     title: string;
@@ -806,9 +807,9 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 minrows={10}
                                 maxrows={100}
                                 spellCheck={true}
-                                /> : <Form.Control
+                                /> : <TextareaAutocomplete //Form.Control
                                 id="the-editor"
-                                className="the-editor accepts-emoji"
+                                className="the-editor accepts-emoji form-control"
                                 as="textarea"
                                 placeholder={_t("submit.body-placeholder")}
                                 value={body}
