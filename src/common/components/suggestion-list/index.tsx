@@ -196,7 +196,6 @@ export default class SuggestionList extends Component<Props> {
                                             href="#"
                                             key={i}
                                             className="list-item"
-                                            id="gandi"
                                             onClick={(e: React.MouseEvent) => {
                                                 e.preventDefault();
                                                 const {onSelect} = this.props;
