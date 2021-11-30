@@ -493,7 +493,7 @@
     "hive": "HIVE",
     "hive-description": "HIVE on vaihdettavia, milloin tahansa siirrettäviä merkkejä. HIVEä voi vaihtaa Hive Poweriin prosessissa, jota kutsutaan Voimanlisäykseksi.",
     "hive-power": "HIVE POWER",
-    "hive-power-description": "Hive Powerit ovat vaikutuskuponkeja, jotka auttavat tienaamaan ja antavat enemmän määräysvaltaa äänestyksissä. Mitä enemmän näitä omistaa, sitä enemmän on vaikutusvaltaa ja voit saada myös palkintoja.",
+    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
     "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Valtuutettu Hive Power",
