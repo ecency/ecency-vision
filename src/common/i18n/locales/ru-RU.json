@@ -972,6 +972,7 @@
     "filter-inactive": "Предстоящие",
     "filter-team": "Проекты Ecency",
     "return-description": "Это базовое предложение возврата. Каждое предложение с меньшим количеством голосов не получит средств.",
+    "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "Голосов за Предложение #{{n}}",
     "see-all": "посмотреть все предложения",
     "daily-funded": "ежедневное финансирование",
