@@ -972,6 +972,7 @@
     "filter-inactive": "예정",
     "filter-team": "Ecency 프로젝트",
     "return-description": "이것은 기본 반환 제안서입니다. 투표 수가 적은 모든 제안서는 자금을 받지 못합니다.",
+    "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "제안서 #{{n}}의 투표",
     "see-all": "모든 제안서 보기",
     "daily-funded": "일일 자금 지원",
