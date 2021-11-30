@@ -227,7 +227,7 @@
     "community-placeholder": "Elige una comunidad",
     "message-placeholder": "Iniciar la conversación con un mensaje",
     "submit-label": "Confirmar",
-    "published": "La publicación fue enviada",
+    "published": "Publicación enviada",
     "no-subscription": "No tienes ninguna suscripción comunitaria para enviar mensajes cruzados.",
     "info": "Las recompensas se rechazan automáticamente para la publicación cruzada y las discusiones bajo la publicación cruzada serán diferentes y seguirán diferentes pautas comunitarias."
   },
@@ -388,7 +388,7 @@
     "title": "Título",
     "about": "Acerca de",
     "description": "Crear comunidades mejores, monetizables, descentralizadas e inmutables",
-    "fee": "Cuota de creación",
+    "fee": "Tarifa de creación",
     "creator": "Creador",
     "username": "Nombre de Usuario de la Comunidad",
     "username-available": "Disponible.",
@@ -407,7 +407,7 @@
     "reason-one": "Propiedad real",
     "reason-two": "Permanente, recompensa",
     "password-copied": "Contraseña copiada al portapapeles",
-    "reason-three": "Desarrollado usando tecnología blockchain",
+    "reason-three": "Desarrollado con tecnología blockchain",
     "reason-four": "Cuesta 3 HIVE crear una comunidad de verdadera propiedad permanente e inmutable",
     "done-link-label": "Empieza ya."
   },
@@ -467,7 +467,7 @@
     "profile-image": "Imagen de perfil",
     "website": "Página Web",
     "location": "Localización",
-    "copied": "El enlace de referencia se ha copiado en el portapapeles.",
+    "copied": "El enlace de referido se ha copiado en el portapapeles.",
     "updated": "¡Perfil actualizado exitosamente!"
   },
   "image-upload-button": {
@@ -479,7 +479,7 @@
     "currency": "Divisa",
     "language": "Idioma",
     "nsfw": "Mostrar contenido NSFW",
-    "referral-link": "Enlace de referencia",
+    "referral-link": "Enlace de referido",
     "updated": "Preferencias actualizadas!"
   },
   "wallet": {
@@ -493,7 +493,7 @@
     "hive": "HIVE",
     "hive-description": "HIVE es una moneda que puede transferirse en cualquier momento. HIVE se puede convertir a Hive Power en un proceso llamado Power Up.",
     "hive-power": "HIVE POWER",
-    "hive-power-description": "Hive Power es una moneda de influencia que permite más poder por mantenerlas a largo plazo y votar en los posts. Cuántas más tengas, más influencia tendrás en las recompensas que le das al resto de gente y más recompensas obtendrás por tus votos.",
+    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
     "hive-power-apr-rate": "La tasa de interés APR para Hive Power es de {{value}}%",
     "hive-dollars-apr-rate": "La tasa de interés APR para HBD($) es {{value}}%",
     "hive-power-delegated": "Hive Power delegado",
@@ -519,7 +519,7 @@
   },
   "wallet-engine": {
     "title": "Motor de Tokens de Hive",
-    "description": "Hive Engine es una plataforma inteligente de cadena lateral para la cadena de bloques de colmenas.",
+    "description": "Hive Engine es una plataforma inteligente de cadena lateral para la cadena de bloques de Hive.",
     "no-results": "No se ha encontrado ningún token.",
     "token": "Token",
     "balance": "Balance",
@@ -1152,8 +1152,8 @@
   },
   "landing-page": {
     "welcome-text": "¡Bienvenido a Ecency!",
-    "what-is-ecency": "Red social basada en Blockchain",
-    "powered-by-hive": " sustentado en Hive",
+    "what-is-ecency": "Red social descentralizada, de recompensa y verdadera propiedad",
+    "powered-by-hive": "sustentado en Hive",
     "get-started": "Empieza ya",
     "earn-money": "Gana dinero",
     "earn-money-block-chain-based": "Red social basada en Blockchain, ",
