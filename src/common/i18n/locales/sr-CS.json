@@ -493,7 +493,7 @@
     "hive": "HIVE",
     "hive-description": "HIVE su tokeni koje možete razmenjivati u svakom trenutku. HIVE se može pretvoriti u Hive snagu u procesu zvanom pojačavanje snage.",
     "hive-power": "HIVE SNAGA",
-    "hive-power-description": "Hive snaga su tokeni uticaja koji zarađuju više snage kod dugoročnog zadržavanja i glasanja na objavama. Što više Hive snage imate, više možete uticati na nagrade drugih i više ćete zaraditi na vašim glasovima.",
+    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
     "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Delegirana Hive Snaga",
