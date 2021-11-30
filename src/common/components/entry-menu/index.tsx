@@ -328,7 +328,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
             ];
         }
 
-        if (global.usePrivate && ownEntry) {
+        if (global.usePrivate) {
             menuItems = [
                 ...menuItems,
                 ...[

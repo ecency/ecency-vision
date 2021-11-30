@@ -459,7 +459,7 @@ exports[`(1) Default Render 1`] = `
       </a>
       <a
         className="menu-item hive-engine"
-        href="/@user1/hive-engine"
+        href="/@user1/engine"
         onClick={[Function]}
       >
         <span
@@ -988,7 +988,7 @@ exports[`(2) With active user 1`] = `
       </a>
       <a
         className="menu-item hive-engine"
-        href="/@user1/hive-engine"
+        href="/@user1/engine"
         onClick={[Function]}
       >
         <span
@@ -1549,7 +1549,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
       </a>
       <a
         className="menu-item hive-engine"
-        href="/@user1/hive-engine"
+        href="/@user1/engine"
         onClick={[Function]}
       >
         <span

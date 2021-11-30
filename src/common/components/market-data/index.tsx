@@ -33,31 +33,32 @@ interface Props {
 }
 
 interface State {
-    prices: Price[]
+    prices: Price[];
 }
 
 export class Market extends BaseComponent<Props, State> {
     state: State = {
-        prices: []
+        prices: [],
     }
 
     node = React.createRef<HTMLDivElement>();
 
     componentDidMount() {
         const {coin, vsCurrency, fromTs, toTs} = this.props;
+        this._mounted = true;
 
         getMarketData(coin, vsCurrency, fromTs, toTs).then((r) => {
-            if (r && r.prices) {
+            if (r && r.prices && this._mounted) {
                 const prices: Price[] = r.prices.map((x: any) => ({time: x[0], price: x[1]}));
                 this.stateSet({prices}, () => {
                     this.attachEvents();
                 });
             }
-        });
+        }).catch(err=> console.log('market_data_error', err));
     }
 
     componentWillUnmount() {
-        super.componentWillUnmount();
+        this._mounted = false;
 
         this.detachEvents();
     }

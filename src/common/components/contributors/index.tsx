@@ -10,6 +10,7 @@ import {Account} from "../../store/accounts/types";
 
 import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
+import _ from "lodash";
 
 interface Props {
     history: History;
@@ -17,9 +18,30 @@ interface Props {
     addAccount: (data: Account) => void;
 }
 
-export class Contributors extends Component<Props> {
+interface State {
+    mounted: boolean,
+    contributors: { name:string, contributes: string[] } []
+}
+
+export class Contributors extends Component<Props, State> {
+    constructor(props: Props){
+        super(props);
+        this.state = {
+            mounted: false,
+            contributors: []
+        }
+    }
+
+    componentDidMount(){
+        this.setState({
+            mounted: true,
+            contributors: _.shuffle(contributors)
+        })
+    }
+
     render() {
-        return (
+        const {mounted, contributors} = this.state;
+        return mounted ? (
             <div className="contributors">
                 <div className="contributors-list">
                     <div className="list-header">
@@ -56,7 +78,7 @@ export class Contributors extends Component<Props> {
                     </div>
                 </div>
             </div>
-        );
+        ) : null;
     }
 }
 

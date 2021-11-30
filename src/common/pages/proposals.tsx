@@ -96,7 +96,6 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                 // put expired proposals in the end of the list
                 const expired = proposals.filter(x => x.status === "expired");
                 const others = proposals.filter(x => x.status !== "expired");
-
                 return [...others, ...expired];
             })
             .then(proposals => {

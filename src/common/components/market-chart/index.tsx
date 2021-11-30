@@ -17,7 +17,7 @@ export const MarketChart = ({data1, data2}:MarketChartProps) => {
     };
 
     var options = {
-      high: 16000,
+      high: 20000,
       low: 0,
       showArea:true,
       chartPadding: {

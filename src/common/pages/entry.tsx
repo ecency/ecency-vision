@@ -579,7 +579,7 @@ class EntryPage extends BaseComponent<Props, State> {
         };
         let containerClasses = global.isElectron ? "app-content entry-page mt-0 pt-6" : "app-content entry-page";
 
-        return isMounted ? (
+        return (
             <>
                 <Meta {...metaProps} />
                 <ScrollToTop/>
@@ -1020,7 +1020,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 {editHistory && <EditHistory entry={entry} onHide={this.toggleEditHistory}/>}
                 <EntryBodyExtra entry={entry}/>
             </>
-        ) : navBar;
+        );
     }
 }
 

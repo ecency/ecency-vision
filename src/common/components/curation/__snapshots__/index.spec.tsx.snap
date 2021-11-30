@@ -12,6 +12,7 @@ exports[`(1) Render with data. 1`] = `
     >
       Curators
        
+      
     </div>
     <div
       className="list-title"
