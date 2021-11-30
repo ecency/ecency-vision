@@ -493,7 +493,7 @@
     "hive": "HIVE",
     "hive-description": "Ang HIVE ay isang token na puwedeng ikalakal na puwede din ilipat sa anumang oras. Ang HIVE ay puwedeng ipagpalit sa Hive Power sa pamamagitan ng proseso na tinatawag na powering up.",
     "hive-power": "HIVE POWER",
-    "hive-power-description": "Ang Hive Power ay isang impluwensyang token na kumikita ng mas maraming kapangyarihan habang ito ay hinahawang ng matagal at sa pagboto sa mga post.",
+    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
     "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Ipinahiram na Hive Power",
