@@ -972,6 +972,7 @@
     "filter-inactive": "Brevemente",
     "filter-team": "Projetos da Ecency",
     "return-description": "Esta é a proposta de base de retorno. Todas as propostas com menos votos não receberão fundos.",
+    "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "Votos na proposta #{{n}}",
     "see-all": "ver todas as propostas",
     "daily-funded": "fundo diário",
