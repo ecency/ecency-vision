@@ -972,6 +972,7 @@
     "filter-inactive": "Tuleva",
     "filter-team": "Ecency-projektit",
     "return-description": "Tämä on yleinen palautusehdotus. Jokainen ehdotus, jossa on vähemmän ääniä, ei saa rahoitusta.",
+    "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "Äänet ehdotuksessa #{{n}}",
     "see-all": "katso kaikki ehdotukset",
     "daily-funded": "daily funded",
