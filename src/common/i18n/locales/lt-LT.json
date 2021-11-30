@@ -493,7 +493,7 @@
     "hive": "HIVE",
     "hive-description": "HIVE yra mainomi virtualūs žetonai, kurie gali būti pervesti bet kuriuo metu. HIVE gali būti pervestas į Hive Power, procesą vadinama jėgos kėlimu.",
     "hive-power": "HIVE POWER",
-    "hive-power-description": "Hive Power yra įtakingi virtualūs žetonai, kurie įgauna daugiau galios juos kaupiant ir balsuojant. Kuo daugiau Hive Power vartotojas turi, tuo daugiau įtakos jis turi kitų vartotojų atlygiui ir gali pats gauti atlygį už tikslų balsavimą.",
+    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
     "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Deleguota Hive Power",
