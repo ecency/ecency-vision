@@ -493,7 +493,7 @@
     "hive": "HIVE",
     "hive-description": "HIVE是可以交易的代币，可以随时传输。HIVE可以转换为Hive Power通过能力提升过程。",
     "hive-power": "Hive Power",
-    "hive-power-description": "Hive Power (HP) 是影响力的代币，通过长期持有并给文章点赞来获得更大影响力。拥有越多 Hive Power，就能对其他人的奖励产生更大影响，并通过点赞获得更多收益。",
+    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
     "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "已委托的 Hive Power",
