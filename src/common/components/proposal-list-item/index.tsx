@@ -8,6 +8,8 @@ import {History,Location} from "history";
 
 import moment from "moment";
 
+import _ from "lodash";
+
 import numeral from "numeral";
 
 import {Proposal, getProposalVotes} from "../../api/hive";
@@ -48,6 +50,8 @@ interface Props {
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     setSigningKey: (key: string) => void;
+    isReturnProposalId?: number;
+    thresholdProposalIds?: any[];
 }
 
 interface State {
@@ -93,7 +97,7 @@ export class ProposalListItem extends Component<Props, State> {
     render() {
         const {votes, votedByVoter} = this.state;
 
-        const {dynamicProps, proposal} = this.props;
+        const {dynamicProps, proposal, isReturnProposalId, thresholdProposalIds} = this.props;
 
         const startDate = moment(new Date(proposal.start_date));
         const endDate = moment(new Date(proposal.end_date));
@@ -183,7 +187,10 @@ export class ProposalListItem extends Component<Props, State> {
                         </div>
                     </div>
                 </div>
-                {proposal.id === 0 && (
+                {proposal.id !== isReturnProposalId && thresholdProposalIds && _.includes(thresholdProposalIds, proposal.id)&& (
+                    <div className="return-proposal">{_t("proposals.threshold-description")}</div>
+                )}
+                {(proposal.id === isReturnProposalId)&& (
                     <div className="return-proposal">{_t("proposals.return-description")}</div>
                 )}
                 {votes && <ProposalVotes {...this.props} onHide={this.toggleVotes}/>}
@@ -208,7 +215,9 @@ export default (p: Props) => {
         deleteUser: p.deleteUser,
         toggleUIProp: p.toggleUIProp,
         setSigningKey: p.setSigningKey,
-        proposal: p.proposal
+        proposal: p.proposal,
+        isReturnProposalId: p.isReturnProposalId,
+        thresholdProposalIds: p.thresholdProposalIds
     }
 
     return <ProposalListItem {...props} />;

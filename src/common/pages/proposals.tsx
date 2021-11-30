@@ -63,6 +63,9 @@ interface State {
     loading: boolean;
     inProgress: boolean;
     search: string;
+    minVotes: number;
+    isReturnProposalId: any;
+    thresholdProposalIds: any[];
 }
 
 class ProposalsPage extends BaseComponent<PageProps, State> {
@@ -76,7 +79,10 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         filter: Filter.ALL,
         loading: true,
         inProgress: false,
-        search: ''
+        search: '',
+        minVotes: 0,
+        isReturnProposalId: null,
+        thresholdProposalIds: [],
     }
 
     constructor(props: any) {
@@ -101,23 +107,44 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
             .then(proposals => {
                 // get return proposal's total votes
                 const minVotes = Number(proposals.find(x => x.id === 0)?.total_votes || 0);
-                // find eligible proposals and
-                const eligible = proposals.filter(x => x.id > 0 && Number(x.total_votes) >= minVotes && x.status !== 'expired');
-                //  add up total votes
-                const dailyFunded = eligible.reduce((a, b) => a + Number(b.daily_pay.amount), 0) / 1000;
+                // // find eligible proposals and
+                // const eligible = proposals.filter(x => this.eligibleFilter(x, minVotes));
+                // //  add up total votes
+                // const dailyFunded = eligible.reduce((a, b) => a + Number(b.daily_pay.amount), 0) / 1000;
 
-                this.stateSet({proposals, proposals_: proposals, dailyFunded, allProposals: proposals});
+                this.stateSet({proposals, proposals_: proposals, allProposals: proposals, minVotes});
 
                 return getAccount("hive.fund");
             })
             .then(fund => {
+                const { proposals, minVotes } = this.state;
                 const totalBudget = parseAsset(fund.hbd_balance).amount;
                 const dailyBudget = totalBudget / 100;
-                this.stateSet({totalBudget, dailyBudget})
+                
+
+                // find eligible proposals and
+                // const eligible = proposals.filter(x => this.eligibleFilter(x, minVotes));
+                const eligible = proposals.filter(proposal => proposal.status !== 'expired');
+                //  add up total votes
+                let _thresholdProposalIds : any[] = [];
+                const dailyFunded = eligible.reduce((a, b) => {
+                    const _sum_amount = a + Number(b.daily_pay.amount) / 1000;
+                    if (_sum_amount >= dailyBudget) {
+                        _thresholdProposalIds = _.union([b.id], _thresholdProposalIds);    
+                    }
+                    _sum_amount >= dailyBudget && this.stateSet({isReturnProposalId: b.id});
+                    return _sum_amount <= dailyBudget ? _sum_amount : a;
+                }, 0);
+
+                this.stateSet({totalBudget, dailyBudget, dailyFunded, thresholdProposalIds: _thresholdProposalIds})
             })
             .finally(() => {
                 this.stateSet({loading: false});
             });
+    }
+
+    eligibleFilter = (proposal: Proposal, minVotes: number) => {
+        return proposal.id > 0 && Number(proposal.total_votes) >= minVotes && proposal.status !== 'expired';
     }
 
     applyFilter = (filter: Filter) => {
@@ -175,8 +202,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         };
 
         const {global} = this.props;
-        const {loading, proposals, totalBudget, dailyBudget, dailyFunded, filter, inProgress} = this.state;
-
+        const {loading, proposals, totalBudget, dailyBudget, dailyFunded, filter, inProgress, minVotes, isReturnProposalId, thresholdProposalIds} = this.state;
         const navBar = global.isElectron ?
             NavBarElectron({
                 ...this.props,
@@ -250,14 +276,14 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
 
                         return <>
                             <div className="proposal-list">
-                                {proposals.map((p) =>
-                                    <Fragment key={p.id}>
+                                {proposals.map((p) => <Fragment key={p.id}>
                                         {ProposalListItem({
                                             ...this.props,
-                                            proposal: p
+                                            proposal: p,
+                                            isReturnProposalId,
+                                            thresholdProposalIds
                                         })}
-                                    </Fragment>
-                                )}
+                                    </Fragment>)}
                             </div>
                         </>
                     })()}
