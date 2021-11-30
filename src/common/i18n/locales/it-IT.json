@@ -493,7 +493,7 @@
     "hive": "HIVE",
     "hive-description": "HIVE è un token scambiabile che può essere trasferito in ogni momento. HIVE può essere convertito in Hive Power in un processo chiamato Potenziamento.",
     "hive-power": "HIVE POWER",
-    "hive-power-description": "Gli Hive Power sono token indici di influenza che permettono di guadagnare più potere quando voti sui post e quando li detieni per lunghi periodi.",
+    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
     "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Hive Power Delegati",
