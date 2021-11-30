@@ -493,7 +493,7 @@
     "hive": "HIVE",
     "hive-description": "HIVE sunt token-uri convertibile ce pot fi transferate oricând. HIVE pot fi transformați in Hive Power printr-un proces numit power up.",
     "hive-power": "HIVE POWER",
-    "hive-power-description": "Hive Power sunt token-uri de influență ce câștigă mai multă putere pentru menținerea puterii de vot și votare. Cu cât deții mai mult Hive Power, cu atât poți influența recompensele altora si poti câștiga recompense pentru votare.",
+    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
     "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Hive Power Delegat",
