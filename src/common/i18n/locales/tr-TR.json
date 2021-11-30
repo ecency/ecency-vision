@@ -493,7 +493,7 @@
     "hive": "HIVE",
     "hive-description": "HIVE dilediğiniz zaman transfer edebileceğiniz ticari tokendır. HIVE hesap geliştirme olarak adlandırılan bir süreçte Hive Power'a dönüştürülebilir.",
     "hive-power": "HIVE POWER",
-    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on posts. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting.",
+    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
     "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Delegasyon Yapılmış Hive Power",
