@@ -3,40 +3,21 @@ import ReactTextareaAutocomplete from "@webscopeio/react-textarea-autocomplete";
 import "@webscopeio/react-textarea-autocomplete/style.css";
 
 import BaseComponent from "../base";
+import UserAvatar from "../user-avatar";
+import {_t} from "../../i18n";
 
-import {lookupAccounts} from "../../api/hive";
+import { lookupAccounts } from "../../api/hive";
 
-interface State {
-	suggestions: string[];
-	loading: boolean;
-}
+interface State {}
 
-const Item = (props: any) => <div>{`${props.entity}`}</div>;
+const Loading = () => <div>{_t("g.loading")}</div>;
 
-const Loading = () => <div>Loading</div>;
+let timer: any = null;
 
 export default class TextareaAutocomplete extends BaseComponent<any, State> {
 	constructor(props: any) {
 		super(props);
-		this.state = {
-			suggestions: [],
-			loading: false,
-		};
 	}
-
-	fetchSuggestions = (token: string) => async (res: any) => {
-		const { loading } = this.state;
-
-		if (loading || !token) {
-			return;
-		}
-
-		this.stateSet({ loading: true });
-		let suggestions = await lookupAccounts(token, 20)
-		suggestions = suggestions.map((x) => `@${x}`);
-		this.stateSet({ loading: false });
-		return res(suggestions)
-	};
 
 	render() {
 		return (
@@ -45,9 +26,24 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 				loadingComponent={Loading}
 				trigger={{
 					"@": {
-						dataProvider: token => new Promise(this.fetchSuggestions(token)),
-						component: Item,
-						output: (item: any, trigger) => item
+						dataProvider: token => {
+							clearTimeout(timer);
+							return new Promise((resolve) => {
+								timer = setTimeout(async () => {
+									let suggestions = await lookupAccounts(token, 5)
+									resolve(suggestions)
+								}, 300);
+							});
+						},
+						component: (props: any) => {
+							return (
+								<>
+									{UserAvatar({ global: this.props.global, username: props.entity, size: "small"})}
+									<span style={{marginLeft: "8px"}}>{props.entity}</span>
+								</>
+							)
+						},
+						output: (item: any, trigger) => `@${item}`
 					},
 				}}
 			/>

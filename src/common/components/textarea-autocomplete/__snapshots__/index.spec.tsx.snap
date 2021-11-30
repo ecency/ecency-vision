@@ -2,20 +2,43 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  style={
-    Object {
-      "width": 300,
-    }
-  }
+  className="rta  "
 >
   <textarea
-    className="the-editor accepts-emoji form-control"
-    id="the-editor-xs"
-    maxRows={100}
-    minRows={1}
+    as="textarea"
+    className="rta__textarea the-editor accepts-emoji form-control"
+    global={
+      Object {
+        "canUseWebp": false,
+        "currency": "usd",
+        "currencyRate": 1,
+        "currencySymbol": "$",
+        "filter": "hot",
+        "hasKeyChain": false,
+        "intro": true,
+        "isElectron": false,
+        "isMobile": false,
+        "lang": "en-US",
+        "listStyle": "row",
+        "newVersion": null,
+        "notifications": true,
+        "nsfw": false,
+        "searchIndexCount": 10000000,
+        "tag": "",
+        "theme": "day",
+        "usePrivate": true,
+      }
+    }
+    id="the-editor"
+    onBlur={[Function]}
     onChange={[Function]}
-    rows={1}
-    value="ResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextArea"
+    onClick={[Function]}
+    onScroll={[Function]}
+    onSelect={[Function]}
+    placeholder="placeholder"
+    rows={10}
+    spellCheck={true}
+    value=""
   />
 </div>
 `;

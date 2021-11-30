@@ -1,25 +1,27 @@
 import React from "react";
 
-import ResizableTextArea from "./index";
+import ReactTextareaAutocomplete from "./index";
 import renderer from "react-test-renderer";
 
-const longText = "ResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextAreaResizableTextArea"
+import {globalInstance} from "../../helper/test-helper";
+
 const props = {
-    id:"the-editor-xs",
+    global: globalInstance,
+    id: "the-editor",
     className: "the-editor accepts-emoji form-control",
-    minRows: 1,
-    maxRows: 100,
-    value: longText
+    as: "textarea",
+    placeholder: "placeholder",
+    value: "",
+    onChange: () => {
+
+    },
+    rows: 10,
+    spellCheck: true,
 };
 
 
-const component = renderer.create(<div style={{ width: 300 }}><ResizableTextArea {...props} /></div>);
+const component = renderer.create(<ReactTextareaAutocomplete {...props} />);
 
 it("(1) Default render", () => {
     expect(component.toJSON()).toMatchSnapshot();
-});
-
-it("(2) With correct value", () => {
-    const instance: any = component.getInstance();
-    expect(component.root.findByProps({id: props.id}).props.value).toContain(longText);
 });

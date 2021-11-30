@@ -808,6 +808,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 maxrows={100}
                                 spellCheck={true}
                                 /> : <TextareaAutocomplete //Form.Control
+                                global={this.props.global}
                                 id="the-editor"
                                 className="the-editor accepts-emoji form-control"
                                 as="textarea"
