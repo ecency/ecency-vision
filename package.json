@@ -53,6 +53,7 @@
     "react-dom": "^16.8.6",
     "react-fast-compare": "^3.2.0",
     "react-helmet": "^6.0.0",
+    "react-highcharts": "^16.1.0",
     "react-img-webp": "^2.0.2",
     "react-popper": "^2.2.5",
     "react-redux": "^7.2.0",

@@ -9,7 +9,7 @@ import { getMarketStatistics, getOpenOrder, getOrderBook, getTradeHistory, Marke
 import { FullAccount } from '../store/accounts/types';
 import { Orders } from '../components/orders';
 import { OpenOrders } from '../components/open-orders';
-import { MarketChart } from '../components/market-chart';
+import MarketChart from '../components/market-chart';
 
 const MarketPage = (props: PageProps) => {
     const [data, setData] = useState<MarketStatistics | null>(null);
@@ -46,13 +46,6 @@ const MarketPage = (props: PageProps) => {
             reloadFn: () => {},
             reloading: false,
         }) : <NavBar {...props} />;
-        let series1 = tablesData ? tablesData!.bids.map((item, index) => {
-            return parseFloat((item.hbd/1000).toFixed(5))
-        } ) : [];
-        series1 = series1.filter((item, index) => index % 10 == 0)
-
-        let series2 = tablesData ? tablesData!.asks.map((item, index) => parseFloat((item.hbd/1000).toFixed(5))) : [];
-        series2 = series2.filter((item, index) => index % 10 == 0);
     return <>
             <div className="d-flex justify-content-center">
                 <div className="w-75">
@@ -61,7 +54,7 @@ const MarketPage = (props: PageProps) => {
                         <ChartStats data={data} loading={loading} />
                     </div>
 
-                    {(data && tablesData) ? <MarketChart data1={series1} data2={series2} /> : "Loading..."}
+                    {(data && tablesData) ? <MarketChart bids={tablesData!.bids || []} asks={tablesData!.asks || []} /> : "Loading..."}
                     <div className="container my-3">
                         <div className="row justify-content-between">
                             <div className="col-12 col-sm-5 p-0">
