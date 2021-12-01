@@ -742,7 +742,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         const {global, activeUser} = this.props;
 
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
-        const isMobile = typeof window !== 'undefined' && window.innerWidth < 570;
+        // const isMobile = typeof window !== 'undefined' && window.innerWidth < 570;
         let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
         return (
             <>
@@ -798,16 +798,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                             })}
                         </div>
                         <div className="body-input">
-                           {isMobile ? <ResizableTextarea
-                                id="the-editor-xs"
-                                className="the-editor accepts-emoji form-control"
-                                placeholder={_t("submit.body-placeholder")}
-                                value={body}
-                                onChange={this.bodyChanged}
-                                minrows={10}
-                                maxrows={100}
-                                spellCheck={true}
-                                /> : <TextareaAutocomplete //Form.Control
+                            <TextareaAutocomplete
                                 global={this.props.global}
                                 id="the-editor"
                                 className="the-editor accepts-emoji form-control"
@@ -815,9 +806,10 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 placeholder={_t("submit.body-placeholder")}
                                 value={body}
                                 onChange={this.bodyChanged}
-                                rows={10}
+                                minrows={10}
+                                maxrows={100}
                                 spellCheck={true}
-                            />}
+                            />
                         </div>
                         {editingEntry === null && (
                             <div className="bottom-toolbar">
