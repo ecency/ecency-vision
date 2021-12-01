@@ -54,7 +54,6 @@ const MarketChart = ({ bids, asks }:any) => {
   }
 
   const depth_chart_config = generateDepthChart(bids, asks);
-  debugger
   return <div className="DepthChart">
       <ReactHighcharts config={depth_chart_config} />
   </div>
@@ -86,7 +85,6 @@ function generateBidAsk(bidsArray:any, asksArray:any) {
     bids.unshift([0, bids[0][1]]);
 
     let asks = aggregateOrders(asksArray);
-    debugger
     // Insert a final entry to make sure the chart is centered properly
     asks.push([asks[asks.length - 1][0] * 4, asks[asks.length - 1][1]]);
 
@@ -113,20 +111,21 @@ function generateDepthChart(bidsArray:any, asksArray:any) {
     if (bids[0]) {
         series.push({
             step: 'right',
-            name: _t('g.bid'),
+            name: _t('market.bid'),
             color: 'rgba(0,150,0,1.0)',
+            dataGrouping: {
+              enabled: false
+            },
             fillColor: 'rgba(0,150,0,0.2)',
-            tooltip: { valueSuffix: ' ' + 'LIQUID_TICKER' },
             data: bids,
         });
     }
     if (asks[0]) {
         series.push({
             step: 'left',
-            name: _t('g.ask'),
+            name: _t('market.ask'),
             color: 'rgba(150,0,0,1.0)',
             fillColor: 'rgba(150,0,0,0.2)',
-            tooltip: { valueSuffix: ' ' + 'LIQUID_TICKER' },
             data: asks,
         });
     }
@@ -187,18 +186,16 @@ function generateDepthChart(bidsArray:any, asksArray:any) {
         tooltip: {
             shared: false,
             backgroundColor: 'rgba(0, 0, 0, 0.3)',
-            // formatter: () => {
-            //     return (
-            //         `<span>${_t('g.price')}: ${(this.x / power).toFixed(6)} ${
-            //             'CURRENCY_SIGN'
-            //         }/LIQUID_TOKEN_UPPERCASE</span><br/><span>\u25CF</span>${
-            //             this.series.name
-            //         }: <b>${(this.y / 1000).toFixed(3)} DEBT_TOKEN_SHORT ` +
-            //         '(' +
-            //         'CURRENCY_SIGN' +
-            //         ')</b>'
-            //     );
-            // },
+            formatter: ({chart:{hoverPoint:{options:{x,y}}, hoverSeries:{name}}}:any) => {
+              debugger
+                return (
+                    `<span>${_t('market.price')}: ${(x / power).toFixed(6)} ${
+                        '$/HIVE'
+                    }</span><br/><span>\u25CF</span>${
+                        name
+                    }: <b>${(y / 1000).toFixed(3)} HBD ($) ` +'</b>'
+                );
+            },
             style: {
                 color: '#FFFFFF',
             },
