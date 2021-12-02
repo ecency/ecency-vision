@@ -9,10 +9,9 @@ import { getMarketStatistics, getOpenOrder, getOrderBook, getTradeHistory, Marke
 import { FullAccount } from '../store/accounts/types';
 import { Orders } from '../components/orders';
 import { OpenOrders } from '../components/open-orders';
-import { lazy } from '@loadable/component'
-const MarketChart = lazy(() => import('../components/market-chart'))
+import { lazy } from '@loadable/component';
 
-
+const MarketChart = lazy(() => import('../components/market-chart'));
 
 const MarketPage = (props: PageProps) => {
     const [data, setData] = useState<MarketStatistics | null>(null);
@@ -27,6 +26,11 @@ const MarketPage = (props: PageProps) => {
         setLoading(true);
         setLoadingTablesData(true);
         setopenOrdersDataLoading(true)
+        setInterval(()=>updateData(), 20000)
+        
+    }, []);
+
+    const updateData = () => {
         getMarketStatistics().then(res=>{
             setLoading(false);
             setData(res)
@@ -40,8 +44,7 @@ const MarketPage = (props: PageProps) => {
             setopenOrdersdata(res);
             setopenOrdersDataLoading(false);
         })
-        
-    }, []);
+    }
     
     let navbar = global.isElectron ?
         NavBarElectron({
@@ -49,6 +52,7 @@ const MarketPage = (props: PageProps) => {
             reloadFn: () => {},
             reloading: false,
         }) : <NavBar {...props} />;
+        
     return <>
             <div className="d-flex justify-content-center">
                 <div className="w-75">
@@ -57,7 +61,9 @@ const MarketPage = (props: PageProps) => {
                         <ChartStats data={data} loading={loading} />
                     </div>
 
-                    {(data && tablesData) ? <Suspense fallback={<div>Loading chunked component...</div>}><MarketChart bids={tablesData!.bids || []} asks={tablesData!.asks || []} /></Suspense> : "Loading..."}
+                    {(data && tablesData) ? <Suspense fallback={<div>Loading chunked component...</div>}>
+                            <MarketChart bids={tablesData!.bids || []} asks={tablesData!.asks || []} />
+                        </Suspense> : "Loading..."}
                     <div className="container my-3">
                         <div className="row justify-content-between">
                             <div className="col-12 col-sm-5 p-0">

@@ -1,53 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { _t } from '../../i18n';
-import { useEffect } from 'react';
 const ReactHighcharts = require('react-highcharts/dist/ReactHighstock');
 const power = 100;
 const precision = 1000;
 
-function orderEqual(a:any, b:any) {
-    return a.price === b.price && a.hive === b.hive && a.hbd === b.hbd;
-}
-
-function ordersEqual(a:any, b:any) {
-    if (a.length !== b.length) {
-        return false;
-    }
-
-    for (let key in a) {
-        if (!(key in b) || !orderEqual(a[key], b[key])) {
-            return false;
-        }
-    }
-
-    for (let key in b) {
-        if (!(key in a) || !orderEqual(a[key], b[key])) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-
 const MarketChart = ({ bids, asks }:any) => {
-  useEffect(()=>{
-      //   if(bids || asks){
-      //     if (chart && 'series' in chart && chart.series.length === 2) {
-      //     const { bids, asks } = generateBidAsk(
-      //         nextProps.bids,
-      //         nextProps.asks
-      //     );
-      //     const { min, max } = getMinMax(bids, asks);
-
-      //     chart.series[0].setData(bids);
-      //     chart.series[1].setData(asks);
-      //     chart.xAxis[0].setExtremes(min, max);
-      //     return false;
-      //  }
-      // }
-  },[bids, asks])
 
   if (!bids.length && !asks.length) {
       return null;
