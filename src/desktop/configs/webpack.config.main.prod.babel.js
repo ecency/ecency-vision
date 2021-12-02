@@ -47,6 +47,8 @@ export default merge(baseConfig, {
       openAnalyzer: process.env.OPEN_ANALYZER === 'true',
     }),
 
+    "@loadable/babel-plugin",
+
     /**
      * Create global constants which can be configured at compile time.
      *

@@ -29,6 +29,8 @@ module.exports = (api) => {
       // Stage 0
       require('@babel/plugin-proposal-function-bind'),
 
+      "@loadable/babel-plugin",
+
       // Stage 1
       require('@babel/plugin-proposal-export-default-from'),
       require('@babel/plugin-proposal-logical-assignment-operators'),

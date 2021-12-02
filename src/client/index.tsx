@@ -18,19 +18,22 @@ import "../style/theme-day.scss";
 import "../style/theme-night.scss";
 
 import './base-handlers';
+import { loadableReady } from "@loadable/component";
 
 declare var window: AppWindow;
 
 const store = configureStore(window["__PRELOADED_STATE__"]);
+loadableReady().then(() => {
+    hydrate(
+        <Provider store={store}>
+            <ConnectedRouter history={history!}>
+                <App/>
+            </ConnectedRouter>
+        </Provider>,
+        document.getElementById("root")
+    );
+  });
 
-hydrate(
-    <Provider store={store}>
-        <ConnectedRouter history={history!}>
-            <App/>
-        </ConnectedRouter>
-    </Provider>,
-    document.getElementById("root")
-);
 
 clientStoreTasks(store);
 
@@ -47,14 +50,16 @@ window.addEventListener("load", () => {
 
 if (module.hot) {
     module.hot.accept("../common/app", () => {
-        hydrate(
-            <Provider store={store}>
-                <ConnectedRouter history={history!}>
-                    <App/>
-                </ConnectedRouter>
-            </Provider>,
-            document.getElementById("root")
-        );
+        loadableReady().then(() => {
+            hydrate(
+                <Provider store={store}>
+                    <ConnectedRouter history={history!}>
+                        <App/>
+                    </ConnectedRouter>
+                </Provider>,
+                document.getElementById("root")
+            );
+          });
     });
 }
 

@@ -147,6 +147,8 @@ export default merge(baseConfig, {
       multiStep: true,
     }),
 
+    "@loadable/babel-plugin",
+
     new webpack.NoEmitOnErrorsPlugin(),
 
     /**

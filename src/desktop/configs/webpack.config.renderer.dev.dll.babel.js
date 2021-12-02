@@ -45,6 +45,7 @@ export default merge(baseConfig, {
       path: path.join(dist, '[name].json'),
       name: '[name]',
     }),
+    "@loadable/babel-plugin",
 
     /**
      * Create global constants which can be configured at compile time.

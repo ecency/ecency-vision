@@ -43,6 +43,8 @@ export default {
       NODE_ENV: 'production',
     }),
 
+    "@loadable/babel-plugin",
+
     new webpack.NamedModulesPlugin(),
   ],
 };

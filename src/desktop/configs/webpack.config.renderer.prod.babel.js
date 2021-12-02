@@ -143,6 +143,8 @@ export default merge(baseConfig, {
       E2E_BUILD: false,
     }),
 
+    "@loadable/babel-plugin",
+
     new MiniCssExtractPlugin({
       filename: 'style.css',
     }),

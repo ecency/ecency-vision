@@ -1,4 +1,6 @@
 'use strict';
+const LoadableWebpackPlugin = require("@loadable/webpack-plugin");
+const path = require("path");
 
 module.exports = {
   plugins: ['typescript', 'scss'],
@@ -19,8 +21,28 @@ module.exports = {
     },
     paths, // the modified paths that will be used by Razzle.
   }) {
+    const config = webpackConfig;
+
+    // add loadable webpack plugin only
+    // when we are building the client bundle
+    if (target === "web") {
+      const filename = path.resolve(__dirname, "build");
+
+      // saving stats file to build folder
+      // without this, stats files will go into
+      // build/public folder
+      config.plugins.push(
+        new LoadableWebpackPlugin({
+          outputAsset: false,
+          writeToDisk: { filename },
+        })
+      );
+    }
     // Do some stuff to webpackConfig
-    webpackConfig.devtool = dev ? 'source-map' : false;
-    return webpackConfig;
+    config.devtool = dev ? 'source-map' : false;
+    config.node = {
+      fs: 'empty',
+    }
+    return config;
   }
 };

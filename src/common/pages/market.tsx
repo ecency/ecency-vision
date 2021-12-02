@@ -9,9 +9,10 @@ import { getMarketStatistics, getOpenOrder, getOrderBook, getTradeHistory, Marke
 import { FullAccount } from '../store/accounts/types';
 import { Orders } from '../components/orders';
 import { OpenOrders } from '../components/open-orders';
-import { lazy } from '@loadable/component';
+import loadable from '@loadable/component';
+// import MarketChart from '../components/market-chart'
 
-const MarketChart = lazy(() => import('../components/market-chart'));
+const MarketChart = loadable(() => import('../components/market-chart'),{fallback:<div>"Loading chunked component"</div>});
 
 const MarketPage = (props: PageProps) => {
     const [data, setData] = useState<MarketStatistics | null>(null);
@@ -25,8 +26,9 @@ const MarketPage = (props: PageProps) => {
     useEffect(()=>{
         setLoading(true);
         setLoadingTablesData(true);
-        setopenOrdersDataLoading(true)
-        setInterval(()=>updateData(), 20000)
+        setopenOrdersDataLoading(true);
+        updateData();
+        setInterval(() => updateData(), 20000)
         
     }, []);
 
@@ -60,10 +62,11 @@ const MarketPage = (props: PageProps) => {
                     <div style={{marginTop: 70}}>
                         <ChartStats data={data} loading={loading} />
                     </div>
+                    <MarketChart bids={[]} asks={[]} />
 
-                    {(data && tablesData) ? <Suspense fallback={<div>Loading chunked component...</div>}>
+                    {/* {(data && tablesData) ?
                             <MarketChart bids={tablesData!.bids || []} asks={tablesData!.asks || []} />
-                        </Suspense> : "Loading..."}
+                       : "Loading..."} */}
                     <div className="container my-3">
                         <div className="row justify-content-between">
                             <div className="col-12 col-sm-5 p-0">

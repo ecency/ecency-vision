@@ -3,7 +3,10 @@ import express from "express";
 import React from "react";
 import { Provider } from "react-redux";
 import { renderToString } from "react-dom/server";
+import { ChunkExtractor, ChunkExtractorManager } from "@loadable/server";
 import { StaticRouter } from "react-router-dom";
+
+import path from "path";
 
 import { Helmet } from "react-helmet";
 
@@ -35,13 +38,20 @@ export const render = (req: express.Request, state: AppState) => {
   const store = configureStore(state);
 
   const context = {};
+  const extractor = new ChunkExtractor({
+    statsFile: path.resolve("build/loadable-stats.json"),
+    // razzle client bundle entrypoint is client.js
+    entrypoints: ["client"],
+  });
 
   const markup = renderToString(
+  <ChunkExtractorManager extractor={extractor}>
     <Provider store={store}>
       <StaticRouter location={req.originalUrl} context={context}>
         <App />
       </StaticRouter>
     </Provider>
+  </ChunkExtractorManager>
   );
 
   const finalState = store.getState();
@@ -49,12 +59,22 @@ export const render = (req: express.Request, state: AppState) => {
   const helmet = Helmet.renderStatic();
   const headHelmet =
     helmet.meta.toString() + helmet.title.toString() + helmet.link.toString();
+    // collect script tags
+    const scriptTags = extractor.getScriptTags();
+  
+    // collect "preload/prefetch" links
+    const linkTags = extractor.getLinkTags();
+  
+    // collect style tags
+    const styleTags = extractor.getStyleTags();
 
   return `<!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
+                ${linkTags}
+                ${styleTags}
                 <meta name="theme-color" content="#000000"/>
                 <link rel="icon" href="/favicon.png" />
                 <link rel="apple-touch-icon" href="/logo192.png" />
@@ -64,6 +84,7 @@ export const render = (req: express.Request, state: AppState) => {
             </head>
             <body class="${`theme-${state.global.theme}`}" style="display: none;">
                 <div id="root">${markup}</div>
+                ${scriptTags}
                 <script>
                   window.__PRELOADED_STATE__ = ${serialize(finalState)}
                 </script>
