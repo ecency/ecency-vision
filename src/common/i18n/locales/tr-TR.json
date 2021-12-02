@@ -972,6 +972,7 @@
     "filter-inactive": "Gelecek",
     "filter-team": "Ecency Projeleri",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
+    "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "#{{n}} Teklif Oylandı",
     "see-all": "tüm teklifleri görüntüle",
     "daily-funded": "daily funded",
