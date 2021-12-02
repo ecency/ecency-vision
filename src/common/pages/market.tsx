@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { NavBar } from '../components/navbar';
 import NavBarElectron from "../../desktop/app/components/navbar";
 import { connect } from 'react-redux';
@@ -9,7 +9,10 @@ import { getMarketStatistics, getOpenOrder, getOrderBook, getTradeHistory, Marke
 import { FullAccount } from '../store/accounts/types';
 import { Orders } from '../components/orders';
 import { OpenOrders } from '../components/open-orders';
-import MarketChart from '../components/market-chart';
+import { lazy } from '@loadable/component'
+const MarketChart = lazy(() => import('../components/market-chart'))
+
+
 
 const MarketPage = (props: PageProps) => {
     const [data, setData] = useState<MarketStatistics | null>(null);
@@ -54,7 +57,7 @@ const MarketPage = (props: PageProps) => {
                         <ChartStats data={data} loading={loading} />
                     </div>
 
-                    {(data && tablesData) ? <MarketChart bids={tablesData!.bids || []} asks={tablesData!.asks || []} /> : "Loading..."}
+                    {(data && tablesData) ? <Suspense fallback={<div>Loading chunked component...</div>}><MarketChart bids={tablesData!.bids || []} asks={tablesData!.asks || []} /></Suspense> : "Loading..."}
                     <div className="container my-3">
                         <div className="row justify-content-between">
                             <div className="col-12 col-sm-5 p-0">

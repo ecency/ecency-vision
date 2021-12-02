@@ -153,17 +153,18 @@ function generateDepthChart(bidsArray:any, asksArray:any) {
             lineWidth: 2,
             labels: {
                 align: 'left',
-                // formatter: function() {
-                //     const value = this.value / precision;
-                //     return (
-                //         '$' +
-                //         (value > 1e6
-                //             ? (value / 1e6).toFixed(3) + 'M'
-                //             : value > 10000
-                //               ? (value / 1e3).toFixed(0) + 'k'
-                //               : value)
-                //     );
-                // },
+                formatter: (values:any) => {
+                    const value = values.value / precision;
+                    debugger
+                    return (
+                        '$' +
+                        (value > 1e6
+                            ? (value / 1e6).toFixed(3) + 'M'
+                            : value > 10000
+                              ? (value / 1e3).toFixed(0) + 'k'
+                              : value)
+                    );
+                },
             },
             gridLineWidth: 1,
         },
@@ -187,7 +188,6 @@ function generateDepthChart(bidsArray:any, asksArray:any) {
             shared: false,
             backgroundColor: 'rgba(0, 0, 0, 0.3)',
             formatter: ({chart:{hoverPoint:{options:{x,y}}, hoverSeries:{name}}}:any) => {
-              debugger
                 return (
                     `<span>${_t('market.price')}: ${(x / power).toFixed(6)} ${
                         '$/HIVE'
