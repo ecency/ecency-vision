@@ -137,11 +137,11 @@ function generateDepthChart(bidsArray:any, asksArray:any) {
         xAxis: {
             min: min,
             max: max,
-            // labels: {
-            //     formatter: () => {
-            //         return this.value / power;
-            //     },
-            // },
+            labels: {
+                formatter: (values:any) => {
+                    return values.value / power;
+                },
+            },
             ordinal: false,
             lineColor: '#000000',
             title: {
@@ -155,15 +155,13 @@ function generateDepthChart(bidsArray:any, asksArray:any) {
                 align: 'left',
                 formatter: (values:any) => {
                     const value = values.value / precision;
-                    debugger
-                    return (
-                        '$' +
-                        (value > 1e6
-                            ? (value / 1e6).toFixed(3) + 'M'
-                            : value > 10000
-                              ? (value / 1e3).toFixed(0) + 'k'
-                              : value)
-                    );
+                    let label = '$' +
+                    (value > 1e6
+                        ? (value / 1e6).toFixed(3) + 'M'
+                        : value > 10000
+                          ? (value / 1e3).toFixed(0) + 'k'
+                          : value);
+                    return label
                 },
             },
             gridLineWidth: 1,
