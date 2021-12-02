@@ -33,6 +33,7 @@ import _c from "../../util/fix-class-names";
 import {_t} from "../../i18n";
 
 import {linkSvg} from "../../img/svg";
+import isElectron from "../../util/is-electron";
 
 interface Props {
     history: History;
@@ -78,10 +79,11 @@ export class ProposalListItem extends Component<Props, State> {
     loadProposalByVoter = () => {
         const {proposal, location} = this.props;
 
-        const params = new URLSearchParams(location.search);
-        const voterParams = params.get('voter');
+        const params = isElectron() ? location.search.replace("?voter=","") : new URLSearchParams(location.search);
+        const voterParams = isElectron() ? (params || "") : (params as URLSearchParams).get('voter');
+
         if(!!voterParams) {
-            getProposalVotes(proposal.id,voterParams, 1).then(r => {
+            getProposalVotes(proposal.id, voterParams as string, 1).then(r => {
                 const votedByVoter = r.length > 0 && r[0].voter ===voterParams;
                 this.setState({votedByVoter});
             }).finally()
@@ -113,7 +115,6 @@ export class ProposalListItem extends Component<Props, State> {
         const strAllPayment = numeral(allPayment).format("0.0a");
         const diff = endDate.diff(moment(now()), 'days');
         const remaining = diff < 0 ? 0 : diff;
-
         return (
             <div className={_c(`proposal-list-item ${!!votedByVoter ? 'voted-by-voter' : ''}`)}>
                 <div className="item-content">

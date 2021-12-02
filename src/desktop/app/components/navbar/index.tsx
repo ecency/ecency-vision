@@ -40,6 +40,7 @@ import routes from "../../../../common/routes";
 import {version} from "../../../package.json";
 
 import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg, dotsHorizontal, translateSvg} from "../../../../common/img/svg";
+import isElectron from "../../../../common/util/is-electron";
 
 // why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
 
@@ -99,13 +100,17 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
 
         const curPath = entries[index]?.pathname || '/';
         let address = curPath === '/' ? `${defaults.filter}` : curPath.replace('/', '');
-
+        
         // persist search string
         if (curPath.startsWith('/search')) {
             const qs = queryString.parse(location.search);
             if ((qs.q as string)) {
                 address = qs.q;
             }
+        }
+
+        if(location.search && location.search.length > 0){
+            address = location.pathname + location.search
         }
 
         this.setState({address, realAddress: address});
@@ -138,6 +143,11 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
             });
 
             if (pathMatch) {
+                let isAddressValidForElectron = isElectron() && address.includes("?")
+                if(isAddressValidForElectron){
+                    history.push(`/${address}`);
+                    return;
+                }
                 history.push(url.pathname);
                 return;
             }
@@ -154,14 +164,13 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
 
 
     render() {
-        const {address} = this.state;
-
+        const {address, changed} = this.state;
         return (
             <div className="address">
                 <div className="pre-add-on">{magnifySvg}</div>
                 <span className="protocol">ecency://</span>
                 <div className="url">
-                    <SearchSuggester {...this.props} value={address}>
+                    <SearchSuggester {...this.props} value={address} changed={changed}>
                         <input
                             type="text"
                             value={address}
