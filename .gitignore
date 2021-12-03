@@ -3,6 +3,7 @@ logs
 npm-debug.log*
 .DS_Store
 .idea
+cache
 
 coverage
 node_modules

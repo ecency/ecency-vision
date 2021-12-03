@@ -45,13 +45,13 @@ export const render = (req: express.Request, state: AppState) => {
   });
 
   const markup = renderToString(
-  <ChunkExtractorManager extractor={extractor}>
     <Provider store={store}>
       <StaticRouter location={req.originalUrl} context={context}>
-        <App />
+        <ChunkExtractorManager extractor={extractor}>
+          <App />
+        </ChunkExtractorManager>
       </StaticRouter>
     </Provider>
-  </ChunkExtractorManager>
   );
 
   const finalState = store.getState();

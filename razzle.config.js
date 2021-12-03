@@ -3,7 +3,12 @@ const LoadableWebpackPlugin = require("@loadable/webpack-plugin");
 const path = require("path");
 
 module.exports = {
-  plugins: ['typescript', 'scss'],
+  plugins: [{
+    name: 'typescript',
+    options: {
+      useBabel: true,
+    },
+  }, 'scss'],
   options: {
     buildType: 'iso'
   },
