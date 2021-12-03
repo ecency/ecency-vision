@@ -807,8 +807,9 @@ interface FAQPageState {
 class FaqPage extends Component<PageProps, FAQPageState> {
     constructor(props:PageProps){
         super(props);
+        let searchParam = props.location.search.replace("?q=","")
         this.state = {
-            search: ""
+            search: searchParam
         }
     }
 
@@ -819,7 +820,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
             title: _t('static.faq.page-title')
         };
 
-        const {global} = this.props;
+        const {global, location} = this.props;
         const imgs = apiBase(`/assets/ecency-faq.${this.props.global.canUseWebp ? 'webp' : 'jpg'}`);
         let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
         let faqKeys = [...faqKeysGeneral, ...faqKeysHive];
@@ -834,7 +835,6 @@ class FaqPage extends Component<PageProps, FAQPageState> {
             })
         }
         let dataToShow = (search.length > 0 && searchResult.length > 0) ? searchResult : faqKeys;
-
         return (
             <>
                 <Meta {...metaProps} />
