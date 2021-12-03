@@ -35,14 +35,13 @@ export const render = (req: express.Request, state: AppState) => {
   const store = configureStore(state);
 
   const context = {};
+  const PrepassedApp = <Provider store={store}>
+  <StaticRouter location={req.originalUrl} context={context}>
+    <App />
+  </StaticRouter>
+</Provider>
 
-  const markup = renderToString(
-    <Provider store={store}>
-      <StaticRouter location={req.originalUrl} context={context}>
-        <App />
-      </StaticRouter>
-    </Provider>
-  );
+  const markup = renderToString(PrepassedApp);
 
   const finalState = store.getState();
 

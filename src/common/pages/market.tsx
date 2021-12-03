@@ -1,6 +1,7 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavBar } from '../components/navbar';
 import NavBarElectron from "../../desktop/app/components/navbar";
+import MarketChart from "../components/market-chart";
 import { connect } from 'react-redux';
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from './common';
 import { ChartStats } from '../components/chart-stats';
@@ -9,9 +10,7 @@ import { getMarketStatistics, getOpenOrder, getOrderBook, getTradeHistory, Marke
 import { FullAccount } from '../store/accounts/types';
 import { Orders } from '../components/orders';
 import { OpenOrders } from '../components/open-orders';
-import { lazy } from '@loadable/component';
-
-const MarketChart = lazy(() => import('../components/market-chart'));
+import SSRSuspense from '../components/ssr-suspense';
 
 const MarketPage = (props: PageProps) => {
     const [data, setData] = useState<MarketStatistics | null>(null);
@@ -26,8 +25,8 @@ const MarketPage = (props: PageProps) => {
         setLoading(true);
         setLoadingTablesData(true);
         setopenOrdersDataLoading(true)
+        updateData();
         setInterval(()=>updateData(), 20000)
-        
     }, []);
 
     const updateData = () => {
@@ -61,9 +60,9 @@ const MarketPage = (props: PageProps) => {
                         <ChartStats data={data} loading={loading} />
                     </div>
 
-                    {(data && tablesData) ? <Suspense fallback={<div>Loading chunked component...</div>}>
+                    {(data && tablesData) ? <SSRSuspense fallback={<div>Loading chunked component...</div>}>
                             <MarketChart bids={tablesData!.bids || []} asks={tablesData!.asks || []} />
-                        </Suspense> : "Loading..."}
+                        </SSRSuspense> : "Loading..."}
                     <div className="container my-3">
                         <div className="row justify-content-between">
                             <div className="col-12 col-sm-5 p-0">

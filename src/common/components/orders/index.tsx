@@ -48,7 +48,7 @@ export const Orders = ({type, loading, data}: Props) => {
     let mappedData: MappedData[] = [];
     switch(type){
         case 1:
-            mappedData = data.map((item:any) => {
+            mappedData = (data as OrdersDataItem[]).map((item:OrdersDataItem) => {
                 return {
                     key1: (item as OrdersDataItem).hbd/1000,
                     key2: (item as OrdersDataItem).order_price.quote,
@@ -60,7 +60,7 @@ export const Orders = ({type, loading, data}: Props) => {
         case 2:
             columns = sellColumns;
             title = `${_t("market.sell")} ${_t("market.orders")}`;
-            mappedData = data.map((item:any) => {
+            mappedData = (data as OrdersDataItem[]).map((item:OrdersDataItem) => {
                 return {
                     key4: (item as OrdersDataItem).hbd/1000,
                     key3: (item as OrdersDataItem).order_price.quote,
@@ -72,7 +72,7 @@ export const Orders = ({type, loading, data}: Props) => {
         case 3:
             columns = tradeColumns;
             title = `${_t("market.trade-history")}`;
-            mappedData = data.map((item:any) => {
+            mappedData = (data as TradeDataItem[]).map((item:TradeDataItem) => {
                 return {
                     key4:(item as TradeDataItem).current_pays,
                     key3: (item as TradeDataItem).open_pays,
