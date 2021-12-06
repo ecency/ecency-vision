@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavBar } from '../components/navbar';
 import NavBarElectron from "../../desktop/app/components/navbar";
-import MarketChart from "../components/market-chart";
 import { connect } from 'react-redux';
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from './common';
 import { ChartStats } from '../components/chart-stats';
@@ -11,6 +10,8 @@ import { FullAccount } from '../store/accounts/types';
 import { Orders } from '../components/orders';
 import { OpenOrders } from '../components/open-orders';
 import SSRSuspense from '../components/ssr-suspense';
+
+const MarketChart = React.lazy(()=>import ("../components/market-chart"));
 
 const MarketPage = (props: PageProps) => {
     const [data, setData] = useState<MarketStatistics | null>(null);
