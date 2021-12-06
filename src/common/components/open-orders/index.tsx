@@ -1,8 +1,10 @@
 import moment from 'moment';
 import React from 'react';
+import { useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { cancelOpenOrder, OpenOrdersData } from '../../api/hive';
 import { _t } from '../../i18n';
+import ModalConfirm from '../modal-confirm';
 import { Skeleton } from '../skeleton';
 
 const columns = [
@@ -17,15 +19,19 @@ const columns = [
 interface Props {
     data: OpenOrdersData[];
     loading: boolean;
+    username: string;
 }
 
-export const OpenOrders = ({data, loading}: Props) => {
+export const OpenOrders = ({data, loading, username}: Props) => {
+    const [isModalOpen, setIsModalOpen] = useState<number>(0)
 
-    const cancelTransaction = (username:string,id: number) => {
-        cancelOpenOrder(username, id).then(res=>{debugger})
+    const cancelTransaction = () => {
+        cancelOpenOrder(username, isModalOpen).then(res=>{debugger})
+        setIsModalOpen(0)
     }
 
     return loading ? <Skeleton className="loading-hive" /> : <div className="rounded">
+        {isModalOpen ? <ModalConfirm okVariant="danger" onConfirm={cancelTransaction} onCancel={() => setIsModalOpen(0)}/>: null}
     <h5>{_t("market.open-orders")}</h5>
     <Table striped={true} bordered={true} hover={true} size="sm">
         <thead>
@@ -43,7 +49,7 @@ export const OpenOrders = ({data, loading}: Props) => {
                 <td>{parseFloat(item.real_price).toFixed(6)}</td>
                 <td>{item.sell_price.base}</td>
                 <td>{item.sell_price.quote}</td>
-                <td className="p-2"><div className="rounded text-white bg-primary p-1 d-inline pointer" onClick={()=> cancelTransaction(item.seller, item.orderid)}>Cancel</div></td>
+                <td className="p-2"><div className="rounded text-white bg-primary p-1 d-inline pointer" onClick={()=> setIsModalOpen(item.id)}>Cancel</div></td>
             </tr>})}
         </tbody>
     </Table>

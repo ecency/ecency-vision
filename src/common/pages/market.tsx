@@ -88,7 +88,7 @@ const MarketPage = (props: PageProps) => {
                             <div className="col-12 col-lg-6 pl-sm-0"><Orders type={1} loading={loadingTablesData} data={tablesData ? tablesData!.bids : []}/></div>
                             <div className="col-12 col-lg-6 pl-0 pl-sm-auto"><Orders type={2} loading={loadingTablesData} data={tablesData ? tablesData!.asks : []}/></div>
                             <div className="col-12 px-0 px-sm-auto mt-5"><Orders type={3} loading={loadingTablesData} data={tablesData ? tablesData!.trading : []}/></div>
-                            <div className="col-12 px-0 mt-5"><OpenOrders data={openOrdersdata || []} loading={openOrdersDataLoading} /></div>
+                            <div className="col-12 px-0 mt-5"><OpenOrders data={openOrdersdata || []} loading={openOrdersDataLoading} username={(activeUser && activeUser.username) || ""}/></div>
                         </div>
 
                     </div>
