@@ -32,18 +32,19 @@ export const HiveBarter = ({type, available, peakValue, loading, username}: Prop
     },[price, amount])
 
     const buyHive = () => {
-   
+        placeHiveOrder(username, amount, total).then(res=>{
+            debugger
+        })
     };
 
     const sellHive = () => {
-        setPlacingOrder(true);
         placeHiveOrder(username, total, amount).then(res=>{
             debugger
         })
-
     };
 
     const placeOrder = (e:any) => {
+        setPlacingOrder(true);
         e.preventDefault();
         type===1 ? buyHive() :sellHive()
     }
