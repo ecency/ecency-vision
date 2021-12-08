@@ -282,19 +282,19 @@
     "muted-warning": "تم كتم هذا المحتوى من قبل مشرفي {{community}} لعدم اتباع إرشادات المجتمع.",
     "lowrep-warning": "مؤلف هذا المحتوى ذو سمعة منخفضة.",
     "deleted-content-warning": "تم حذف هذا المحتوى من قبل المؤلف. يمكنك رؤيته من Blockchain ",
-    "comments-hidden": "Author of this post is muted by you.",
-    "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard.",
-    "content-copied": "Content copied to clipboard.",
-    "browse-original": "Open original post",
-    "cross-post-by": "Cross post by",
-    "cross-post-community": "community",
-    "community-in": "in"
+    "comments-hidden": "مؤلف هذا المنشور مكتوم من قبلك.",
+    "address-copy": "نسخ عنوان المنشور",
+    "address-copied": "تم نسخ عنوان المنشور إلى الحافظة.",
+    "content-copied": "تم نسخ المحتوى إلى الحافظة.",
+    "browse-original": "فتح المنشور الأصلي",
+    "cross-post-by": "نشر متقاطع بواسطة",
+    "cross-post-community": "مجتمع",
+    "community-in": "في"
   },
   "edit-history": {
-    "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "title": "تعديل التاريخ",
+    "show-diff": "إظهار الفرق",
+    "version": "الإصدار {{n}}"
   },
   "similar-entries": {
     "title": "Read next"
