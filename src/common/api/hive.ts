@@ -124,6 +124,20 @@ export const cancelOpenOrder = (username:string, orderId: string|number): Promis
     client.call("condenser_api", "broadcast_transaction", [{operations:[["limit_order_cancel",{
         "owner":username,"orderid":orderId}]]}]);
 
+export const placeHiveOrder = (username:string, min_to_receive: string, amount_to_sell:string): Promise<MarketStatistics> =>
+    {
+        let expirationDate:any = new Date(Date.now()).toISOString().split(".")[0];
+        debugger
+        return client.call("condenser_api", "broadcast_transaction", [{operations:[["limit_order_create",{
+            amount_to_sell,
+            expiration: expirationDate,
+            fill_or_kill: false,
+            min_to_receive,
+            orderid: window.URL.createObjectURL(new Blob([])).substr(-36),
+            owner: username
+        }]]}])
+};
+
 export const getOrderBook = (limit: number = 500): Promise<OrdersData> =>
     client.call("condenser_api", "get_order_book", [limit]);
 

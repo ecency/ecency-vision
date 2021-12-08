@@ -65,13 +65,14 @@ const MarketPage = (props: PageProps) => {
                             <MarketChart bids={tablesData!.bids || []} asks={tablesData!.asks || []} />
                         </SSRSuspense> : "Loading..."}
                     <div className="container my-3">
-                        <div className="row justify-content-between">
+                        {activeUser && <div className="row justify-content-between">
                             <div className="col-12 col-sm-5 p-0">
                                 <HiveBarter
                                     type={1}
                                     available={activeUser && (activeUser.data as FullAccount).balance || ""}
                                     peakValue={data? parseFloat(data!.lowest_ask) :0}
                                     loading={loading}
+                                    username={activeUser!.username}
                                 />
                             </div>
                             <div className="col-12 col-sm-5 p-0">
@@ -80,9 +81,10 @@ const MarketPage = (props: PageProps) => {
                                     available={activeUser && (activeUser.data as FullAccount).hbd_balance || ""}
                                     peakValue={data? parseFloat(data!.highest_bid) :0}
                                     loading={loading}
+                                    username={activeUser!.username}
                                 />
                             </div>
-                        </div>
+                        </div>}
 
                         <div className="row mt-5">
                             <div className="col-12 col-lg-6 pl-sm-0"><Orders type={1} loading={loadingTablesData} data={tablesData ? tablesData!.bids : []}/></div>

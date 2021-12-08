@@ -2,20 +2,23 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import {Button, Form, InputGroup} from 'react-bootstrap';
+import { placeHiveOrder } from '../../api/hive';
 import { _t } from '../../i18n';
 import { Skeleton } from '../skeleton';
 
 interface Props {
     type: 1 | 2 ;
     available: string;
+    username: string;
     peakValue: number;
     loading: boolean;
 }
 
-export const HiveBarter = ({type, available, peakValue, loading}: Props) => {
+export const HiveBarter = ({type, available, peakValue, loading, username}: Props) => {
     const [price, setPrice] = useState(peakValue.toFixed(6));
-    const [amount, setAmount] = useState(0.0);
-    const [total, setTotal] = useState(0.0);
+    const [amount, setAmount] = useState('0.0');
+    const [total, setTotal] = useState('0.0');
+    const [placingOrder, setPlacingOrder] = useState(false);
 
     useEffect(()=>{
         if(peakValue){
@@ -23,54 +26,24 @@ export const HiveBarter = ({type, available, peakValue, loading}: Props) => {
         }
     },[peakValue])
 
+    useEffect(()=>{
+        let refinedAmount = parseFloat(amount.replace(" HIVE",""));
+        setTotal(`${(parseFloat(price) * refinedAmount).toFixed(3)} HBD`)
+    },[price, amount])
+
     const buyHive = () => {
-    const { placeOrder, user } = this.props;
-    if (!user) return;
-    const amount_to_sell = parseFloat(
-        ReactDOM.findDOMNode(this.refs.buyHive_total).value
-    );
-    const min_to_receive = parseFloat(
-        ReactDOM.findDOMNode(this.refs.buyHive_amount).value
-    );
-    const price = (amount_to_sell / min_to_receive).toFixed(6);
-    const { lowest_ask } = this.props.ticker;
-    placeOrder(
-        user,
-        `${amount_to_sell} ${DEBT_TICKER}`,
-        `${min_to_receive} ${LIQUID_TICKER}`,
-        `${CURRENCY_SIGN}${price}/${LIQUID_TICKER}`,
-        !!this.state.buy_price_warning,
-        lowest_ask,
-        (msg) => {
-            this.props.notify(msg);
-            this.props.reload(user);
-        }
-    );
-};
+   
+    };
 
     const sellHive = () => {
-        // amount_to_sell: "0.098 HIVE" AMOUNT
-        // expiration: "2022-01-03T12:56:09" Date.now()
-        // fill_or_kill: false
-        // min_to_receive: "0.165 HBD" Total
-        // orderid: 1638885401 random guid
-        // owner: "ghazanfar89"
-        // placeHiveOrder(
-        //     user,
-        //     `${amount_to_sell} ${LIQUID_TICKER}`,
-        //     `${min_to_receive} ${DEBT_TICKER}`,
-        //     `${CURRENCY_SIGN}${price}/${LIQUID_TICKER}`,
-        //     !!this.state.sell_price_warning,
-        //     highest_bid,
-        //     (msg) => {
-        //         this.props.notify(msg);
-        //         this.props.reload(user);
-        //     }
-        // );
+        setPlacingOrder(true);
+        placeHiveOrder(username, total, amount).then(res=>{
+            debugger
+        })
+
     };
 
     const placeOrder = (e:any) => {
-        debugger
         e.preventDefault();
         type===1 ? buyHive() :sellHive()
     }
@@ -97,7 +70,7 @@ export const HiveBarter = ({type, available, peakValue, loading}: Props) => {
                     <Form.Control
                         value={price}
                         placeholder="0.0"
-                        onChange={({target:{value}})=>setPrice(value)}
+                        onChange={({target:{value}}) => setPrice(value)}
                     />
                     <InputGroup.Text className="rounded-left">{_t("market.hbd")}/{_t("wallet.hive")}</InputGroup.Text>
                 </InputGroup>
@@ -108,8 +81,8 @@ export const HiveBarter = ({type, available, peakValue, loading}: Props) => {
                 <InputGroup >
                     <Form.Control
                         placeholder="0.0"
-                        value={amount}
-                        onChange={({target:{value}})=>setAmount(value)}
+                        value={parseFloat(amount.replace(" HIVE","")).toFixed(6)}
+                        onChange={({target:{value}}) => setAmount(`${value} HIVE`)}
                     />
                     <InputGroup.Text className="rounded-left">{_t("wallet.hive")}</InputGroup.Text>
                 </InputGroup>
@@ -120,8 +93,8 @@ export const HiveBarter = ({type, available, peakValue, loading}: Props) => {
                 <InputGroup >
                     <Form.Control
                         placeholder="0.0"
-                        value={total}
-                        onChange={({target:{value}})=>setTotal(value)}
+                        value={(total.replace(" HBD",""))}
+                        onChange={({target:{value}})=>{setTotal(`${value} HBD`); setAmount(`${parseFloat(value)/parseFloat(price)}`)}}
                     />
                     <InputGroup.Text className="rounded-left">{_t("market.hbd")}($)</InputGroup.Text>
                 </InputGroup>
