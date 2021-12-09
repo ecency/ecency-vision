@@ -53,7 +53,7 @@ interface Props {
     notifications: Notifications;
     step?: number;
     fetchTrendingTags: () => void;
-    toggleTheme: () => void;
+    toggleTheme: (theme_key: string | null) => void;
     addUser: (user: User) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
@@ -108,10 +108,15 @@ export class NavBar extends Component<Props, State> {
         if (!location.pathname.startsWith("/signup") && qs.referral) {
             history.push(`/signup?referral=${qs.referral}`)
         }
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', this.handleAutoDetectTheme); // listen to dark theme
+        this.handleSetTheme(); // detect default set theme on load page
     }
 
     componentWillUnmount() {
-        document.getElementsByTagName('body')[0].classList.remove("overflow-hidden")
+        document.getElementsByTagName('body')[0].classList.remove("overflow-hidden");
+
+        window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', this.handleAutoDetectTheme)
     }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
@@ -148,7 +153,7 @@ export class NavBar extends Component<Props, State> {
     }
 
     changeTheme = () => {
-        this.props.toggleTheme();
+        this.props.toggleTheme(null);
     };
 
     toggleSmVisible = () => {
@@ -171,6 +176,16 @@ export class NavBar extends Component<Props, State> {
         if(this.props.setStepOne) {
             return this.props.setStepOne()
         }
+    }
+
+    handleSetTheme = () => {
+        const _default_theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.night : Theme.day
+        this.props.toggleTheme(_default_theme);
+    }
+
+    handleAutoDetectTheme = (e: any = null) => {
+        const _default_theme = e && e.matches ? Theme.night : Theme.day
+        this.props.toggleTheme(_default_theme);
     }
 
     render() {
