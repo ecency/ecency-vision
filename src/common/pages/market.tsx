@@ -11,7 +11,7 @@ import { Orders } from '../components/orders';
 import { OpenOrders } from '../components/open-orders';
 import SSRSuspense from '../components/ssr-suspense';
 
-const MarketChart = React.lazy(()=>import ("../components/market-chart"));
+const MarketChart = React.lazy(()=> import ("../components/market-chart"));
 
 const MarketPage = (props: PageProps) => {
     const [data, setData] = useState<MarketStatistics | null>(null);
