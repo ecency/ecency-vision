@@ -115,7 +115,7 @@ export const toggleTheme = (theme_key = null) => (
   const { global } = getState();
 
   const { theme, isMobile } = global;
-  let newTheme = theme === Theme.day ? Theme.night : Theme.day;
+  let newTheme: any = theme === Theme.day ? Theme.night : Theme.day;
   
   if (!!theme_key) {
     newTheme = theme_key;
