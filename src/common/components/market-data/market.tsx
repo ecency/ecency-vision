@@ -6,6 +6,7 @@ import { getMarketData } from '../../api/misc';
 import BaseComponent from '../base';
 
 import numeral from "numeral";
+import { _t } from '../../i18n';
 
 interface Price {
     time: number;
@@ -134,7 +135,7 @@ class Market extends BaseComponent<Props, State> {
                 enabled:false
             },
             chart:{
-                height: 150,
+                height: 140,
                 zoomType: 'x'
             },
             plotOptions:{
@@ -147,8 +148,13 @@ class Market extends BaseComponent<Props, State> {
             },
             tooltip:{
                 valueDecimals:2,
+                useHTML:true,
                 shadow:false,
-                xDateFormat:'dd/mm/yyyy'
+                formatter: (({chart}:any) => {
+                    let date = moment(chart.hoverPoint.options.x).calendar();
+                    let rate = chart.hoverPoint.options.y;
+                    return `<div><div>${_t("g.when")}: <b>${date}</b></div><div>${_t("g.price")}:<b>${rate}</b></div></div>`
+                }) as any
             },
             xAxis: {
                 lineWidth: 0,
@@ -172,11 +178,11 @@ class Market extends BaseComponent<Props, State> {
                      text: null
                  },   
                  labels: {
-                     enabled: false
+                     enabled: false,
                  },
                  minorTickLength: 0,
                  tickLength: 0,
-                 gridLineWidth: 0
+                 gridLineWidth: 0,
               },
             series: [
               {
