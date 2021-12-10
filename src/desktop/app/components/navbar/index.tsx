@@ -124,6 +124,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
     };
 
     addressKeyup = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        debugger
         if (e.keyCode === 13) {
             const {address, changed} = this.state;
             const {history} = this.props;
@@ -145,10 +146,10 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
             if (pathMatch) {
                 let isAddressValidForElectron = isElectron() && address.includes("?")
                 if(isAddressValidForElectron){
-                    history.push(`/${address}`);
+                    history.push(`${address[0]=='/'?address.replace("/",""):address}`);
                     return;
                 }
-                history.push(url.pathname);
+                history.push(url.pathname[0]=='/'?url.pathname.replace("/",""):url.pathname);
                 return;
             }
 
