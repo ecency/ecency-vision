@@ -110,7 +110,10 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
         }
 
         if(location.search && location.search.length > 0){
-            address = location.pathname + location.search
+            address = location.pathname + location.search;
+            if(address[0]==="/"){
+                address = address.replace("/","")
+            }
         }
 
         this.setState({address, realAddress: address});
@@ -124,7 +127,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
     };
 
     addressKeyup = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        debugger
+        
         if (e.keyCode === 13) {
             const {address, changed} = this.state;
             const {history} = this.props;
@@ -146,7 +149,10 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
             if (pathMatch) {
                 let isAddressValidForElectron = isElectron() && address.includes("?")
                 if(isAddressValidForElectron){
-                    history.push(`${address[0]=='/'?address.replace("/",""):address}`);
+                    let validAddress = address[0]=='/'?address.replace("/",""):address;
+                    
+                    history.push(`${validAddress}`);
+                    this.setState({address:validAddress})
                     return;
                 }
                 history.push(url.pathname[0]=='/'?url.pathname.replace("/",""):url.pathname);
@@ -158,6 +164,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
 
         if (e.keyCode === 27) {
             const {realAddress} = this.state;
+            
 
             this.setState({address: realAddress});
         }
@@ -166,6 +173,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
 
     render() {
         const {address, changed} = this.state;
+        
         return (
             <div className="address">
                 <div className="pre-add-on">{magnifySvg}</div>
