@@ -126,7 +126,7 @@ export class ProposalListItem extends Component<Props, State> {
         const strAllPayment = numeral(allPayment).format("0.0a");
         const diff = endDate.diff(moment(now()), 'days');
         const remaining = diff < 0 ? 0 : diff;
-        debugger
+        
         return loadingSearchResult ? <Skeleton className="w-100 loadingSearch mb-3 shadow"/>:(
             <div className={_c(`proposal-list-item ${!!votedByVoter ? 'voted-by-voter' : ''}`)}>
                 <div className="item-content">
