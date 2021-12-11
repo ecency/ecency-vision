@@ -115,6 +115,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
                 address = address.replace("/","")
             }
         }
+        debugger
 
         this.setState({address, realAddress: address});
     };
@@ -152,12 +153,16 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
                     let validAddress = address[0]=='/'?address.replace("/",""):address;
                     
                     history.push(`${validAddress}`);
+                    debugger
                     this.setState({address:validAddress})
                     return;
                 }
-                history.push(url.pathname[0]=='/'?url.pathname.replace("/",""):url.pathname);
+                let validAddress = url.pathname[0]=='/'?url.pathname.replace("/",""):url.pathname
+                debugger
+                history.push(validAddress);
                 return;
             }
+            debugger
 
             history.push(`/search/?q=${encodeURIComponent(address)}`);
         }
