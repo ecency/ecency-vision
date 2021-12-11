@@ -29,6 +29,7 @@ exports[`(1) Default render 1`] = `
       value=""
     />
   </div>
+  <div />
 </div>
 `;
 
@@ -61,5 +62,6 @@ exports[`(2) With query 1`] = `
       value="foo"
     />
   </div>
+  <div />
 </div>
 `;

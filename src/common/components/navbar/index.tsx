@@ -53,7 +53,7 @@ interface Props {
     notifications: Notifications;
     step?: number;
     fetchTrendingTags: () => void;
-    toggleTheme: (theme_key: string | null) => void;
+    toggleTheme: (theme_key?: string) => void;
     addUser: (user: User) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
@@ -153,7 +153,7 @@ export class NavBar extends Component<Props, State> {
     }
 
     changeTheme = () => {
-        this.props.toggleTheme(null);
+        this.props.toggleTheme();
     };
 
     toggleSmVisible = () => {

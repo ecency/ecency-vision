@@ -105,6 +105,7 @@ exports[`(1) Default render 1`] = `
               type="text"
               value="hot"
             />
+            <div />
           </div>
         </div>
       </div>
@@ -342,6 +343,7 @@ Array [
                 type="text"
                 value="hot"
               />
+              <div />
             </div>
           </div>
         </div>
@@ -610,6 +612,7 @@ exports[`(3) Night Theme 1`] = `
               type="text"
               value="hot"
             />
+            <div />
           </div>
         </div>
       </div>
@@ -846,6 +849,7 @@ exports[`(4) With active user 1`] = `
               type="text"
               value="hot"
             />
+            <div />
           </div>
         </div>
       </div>
@@ -1134,6 +1138,7 @@ exports[`(5) With active user && usePrivate = false 1`] = `
               type="text"
               value="hot"
             />
+            <div />
           </div>
         </div>
       </div>

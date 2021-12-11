@@ -108,7 +108,7 @@ export default (state: Global = initialState, action: Actions): Global => {
 };
 
 /* Actions */
-export const toggleTheme = (theme_key = null) => (
+export const toggleTheme = (theme_key?:Theme) => (
   dispatch: Dispatch,
   getState: () => AppState
 ) => {
