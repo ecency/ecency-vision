@@ -489,7 +489,7 @@
     "estimated": "Tahmini Hesap Değeri",
     "estimated-points": "Tahmini Puan Değeri",
     "estimated-description": "Tahmini değer HIVE'ın 7 günlük ortalama değerine dayanmaktadır.",
-    "estimated-description-points": "The estimated value is based on purchase value of Points.",
+    "estimated-description-points": "Tahmini değer puan satış miktarına bağlıdır.",
     "hive": "HIVE",
     "hive-description": "HIVE dilediğiniz zaman transfer edebileceğiniz ticari tokendır. HIVE hesap geliştirme olarak adlandırılan bir süreçte Hive Power'a dönüştürülebilir.",
     "hive-power": "HIVE POWER",
