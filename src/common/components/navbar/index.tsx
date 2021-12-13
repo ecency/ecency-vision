@@ -110,7 +110,7 @@ export class NavBar extends Component<Props, State> {
         }
 
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', this.handleAutoDetectTheme); // listen to dark theme
-        this.handleSetTheme(); // detect default set theme on load page
+        // this.handleSetTheme(); // detect default set theme on load page
     }
 
     componentWillUnmount() {
@@ -178,12 +178,12 @@ export class NavBar extends Component<Props, State> {
         }
     }
 
-    handleSetTheme = () => {
-        const _default_theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.night : Theme.day
-        this.props.toggleTheme(_default_theme);
-    }
+    // handleSetTheme = () => {
+    //     const _default_theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.night : Theme.day
+    //     this.props.toggleTheme(_default_theme);
+    // }
 
-    handleAutoDetectTheme = (e: any = null) => {
+    handleAutoDetectTheme = (e: any = null) => {        
         const _default_theme = e && e.matches ? Theme.night : Theme.day
         this.props.toggleTheme(_default_theme);
     }
