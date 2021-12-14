@@ -5,6 +5,8 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
 import Meta from "../components/meta";
+
+import i18n from "i18next";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 import NavBarElectron from "../../desktop/app/components/navbar";
@@ -13,12 +15,13 @@ import Contributors from "../components/contributors";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
-import {_t} from "../i18n";
+import {langOptions, _t} from "../i18n";
 import {Tsx} from "../i18n/helper";
 
 import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSvg} from "../img/svg";
 import { apiBase } from '../api/helper';
-import {Button, ButtonGroup, Form} from 'react-bootstrap'
+import {Form} from 'react-bootstrap'
+import { removeDiacritics }  from '../../common/store/diacritics'
 
 const faqKeysGeneral = [
     'what-is-ecency',
@@ -807,8 +810,18 @@ interface FAQPageState {
 class FaqPage extends Component<PageProps, FAQPageState> {
     constructor(props:PageProps){
         super(props);
+        let searchFromUrl:any = props.location.search.split("&lang=")[0].replace("?q=","");
+        searchFromUrl = removeDiacritics(searchFromUrl)
+        const languageFromUrl = props.location.search.split("&lang=")[1];
+        const languageFromList = langOptions.find(item => item.code.split("-")[0] === languageFromUrl);
+        debugger
+        if(languageFromList){
+            i18n.changeLanguage(languageFromList.code).then(() => {
+                props.setLang(languageFromList.code);
+            });
+        }
         this.state = {
-            search: ""
+            search: searchFromUrl || ""
         }
     }
 
