@@ -153,18 +153,17 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     }
 
     getWitness = async (witnessArray:WitnessTransformed[])=>{
-        const witnessUserNamesArray:string[] =
-            witnessArray.map((item: WitnessTransformed)=>{
+        const witnessUserNamesArray:string[] = witnessArray.map((item: WitnessTransformed)=> {
             return item.name
         })
         try {
             const accounts:FullAccount[] = await getAccounts(witnessUserNamesArray);
             const byWitnessState:WitnessTransformed[] = witnessArray.map((item: WitnessTransformed, index: number) => {
                 try {
-                    const parsedArray = JSON.parse(accounts[index].json_metadata ?accounts[index].json_metadata:'');
+                    const parsedArray = JSON.parse(accounts[index].posting_json_metadata?accounts[index].posting_json_metadata:'');
                     return {
                         ...item,
-                        witnessBy:parsedArray.profile.name ? parsedArray.profile.name: undefined
+                        witnessBy:parsedArray.profile.witness_owner ? parsedArray.profile.witness_owner: undefined
                     }
                 }
                 catch (e) {
