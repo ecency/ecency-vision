@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="rta  "
+>
+  <textarea
+    as="textarea"
+    className="rta__textarea the-editor accepts-emoji form-control"
+    global={
+      Object {
+        "canUseWebp": false,
+        "currency": "usd",
+        "currencyRate": 1,
+        "currencySymbol": "$",
+        "filter": "hot",
+        "hasKeyChain": false,
+        "intro": true,
+        "isElectron": false,
+        "isMobile": false,
+        "lang": "en-US",
+        "listStyle": "row",
+        "newVersion": null,
+        "notifications": true,
+        "nsfw": false,
+        "searchIndexCount": 10000000,
+        "tag": "",
+        "theme": "day",
+        "usePrivate": true,
+      }
+    }
+    id="the-editor"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onClick={[Function]}
+    onScroll={[Function]}
+    onSelect={[Function]}
+    placeholder="placeholder"
+    rows={10}
+    spellCheck={true}
+    value=""
+  />
+</div>
+`;

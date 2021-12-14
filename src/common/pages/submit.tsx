@@ -68,6 +68,7 @@ import {checkSvg, contentSaveSvg} from "../img/svg";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import ModalConfirm from "../components/modal-confirm";
 import ResizableTextarea from "../components/resizable-text-area";
+import TextareaAutocomplete from "../components/textarea-autocomplete";
 
 interface PostBase {
     title: string;
@@ -741,7 +742,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         const {global, activeUser} = this.props;
 
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
-        const isMobile = typeof window !== 'undefined' && window.innerWidth < 570;
+        // const isMobile = typeof window !== 'undefined' && window.innerWidth < 570;
         let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
         return (
             <>
@@ -797,25 +798,18 @@ class SubmitPage extends BaseComponent<Props, State> {
                             })}
                         </div>
                         <div className="body-input">
-                           {isMobile ? <ResizableTextarea
-                                id="the-editor-xs"
+                            <TextareaAutocomplete
+                                global={this.props.global}
+                                id="the-editor"
                                 className="the-editor accepts-emoji form-control"
+                                as="textarea"
                                 placeholder={_t("submit.body-placeholder")}
                                 value={body}
                                 onChange={this.bodyChanged}
                                 minrows={10}
                                 maxrows={100}
                                 spellCheck={true}
-                                /> : <Form.Control
-                                id="the-editor"
-                                className="the-editor accepts-emoji"
-                                as="textarea"
-                                placeholder={_t("submit.body-placeholder")}
-                                value={body}
-                                onChange={this.bodyChanged}
-                                rows={10}
-                                spellCheck={true}
-                            />}
+                            />
                         </div>
                         {editingEntry === null && (
                             <div className="bottom-toolbar">
