@@ -187,7 +187,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
                 <div className="pre-add-on">{magnifySvg}</div>
                 <span className="protocol">ecency://</span>
                 <div className="url">
-                    <SearchSuggester {...this.props} value={address} changed={changed}>
+                    {/* <SearchSuggester {...this.props} value={address} changed={changed}> */}
                         <input
                             type="text"
                             value={address}
@@ -196,7 +196,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
                             placeholder={_t('navbar.address-placeholder')}
                             spellCheck={false}
                         />
-                    </SearchSuggester>
+                    {/* </SearchSuggester> */}
                 </div>
             </div>
         )
