@@ -266,6 +266,8 @@ export interface Witness {
     available_witness_account_subsidies: number;
     running_version: string;
     owner: string;
+    signing_key:string,
+    last_hbd_exchange_update:string
 }
 
 export const getWitnessesByVote = (
