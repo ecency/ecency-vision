@@ -151,21 +151,23 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
             const pathMatch = Object.values(routes).find(p => {
                 return pathToRegexp(p).test(url.pathname)
             });
-
+            
             if (pathMatch) {
                 let isAddressValidForElectron = isElectron() && address.includes("?")
                 if(isAddressValidForElectron){
-                    let validAddress = address[0]=='/'?address.replace("/",""):address;
-                    
-                    history.push(`${validAddress}`);
+                    let validAddress = address[0]=='/'? address.replace("/",""): address;
                     this.setState({address:validAddress})
+                    
+                    history.push(`/${validAddress}`);
                     return;
                 }
-                let validAddress = url.pathname[0]=='/'?url.pathname.replace("/",""):url.pathname
-                history.push(validAddress);
+                let validAddress = url.pathname[0]=='/'?url.pathname.replace("/",""):url.pathname;
+                this.setState({address:validAddress})
+                
+                history.push(`/${validAddress}`);
                 return;
             }
-
+            
             history.push(`/search/?q=${encodeURIComponent(address)}`);
         }
 
@@ -180,7 +182,6 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
 
     render() {
         const {address, changed} = this.state;
-        
         return (
             <div className="address">
                 <div className="pre-add-on">{magnifySvg}</div>
