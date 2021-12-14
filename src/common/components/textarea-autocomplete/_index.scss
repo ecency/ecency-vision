@@ -10,7 +10,12 @@
 
     .rta__list {
       overflow-x: auto;
-
+      @include themify(day) {
+        background: $white-two;
+      }
+      @include themify(night) {
+        background: $dark;
+      }
       .rta__item {
         border-bottom: none;
 
@@ -28,6 +33,7 @@
 
           @include themify(day) {
             color: $warm-grey;
+            background: $white-two;
 
             &.rta__item--selected,
             &.rta__entity--selected,
@@ -42,7 +48,8 @@
           }
 
           @include themify(night) {
-            color: $charcoal-grey;
+            color: $white-four;
+            background: $dark;
 
             &.rta__item--selected,
             &.rta__entity--selected,
