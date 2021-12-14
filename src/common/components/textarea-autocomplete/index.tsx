@@ -30,6 +30,12 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 		};
 	}
 
+	componentDidUpdate(prevProps: any){
+		if(this.props.value !== prevProps.value){
+			this.setState({value: this.props.value})
+		}
+	}
+
 	handleChange = (event: any) => {
 		const isMobile = typeof window !== 'undefined' && window.innerWidth < 570;
 		if (isMobile) {
