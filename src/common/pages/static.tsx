@@ -18,11 +18,12 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import {langOptions, _t} from "../i18n";
 import {Tsx} from "../i18n/helper";
 
-import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSvg} from "../img/svg";
+import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSvg, copyContent} from "../img/svg";
 import { apiBase } from '../api/helper';
-import {Form} from 'react-bootstrap'
+import {Button, Form, InputGroup} from 'react-bootstrap'
 import { removeDiacritics }  from '../../common/store/diacritics'
-
+import { success } from "../components/feedback";
+import * as ls from "../util/local-storage";
 const faqKeysGeneral = [
     'what-is-ecency',
     'what-is-difference',
@@ -814,14 +815,26 @@ class FaqPage extends Component<PageProps, FAQPageState> {
         searchFromUrl = removeDiacritics(searchFromUrl)
         const languageFromUrl = props.location.search.split("&lang=")[1];
         const languageFromList = langOptions.find(item => item.code.split("-")[0] === languageFromUrl);
+        
         debugger
         if(languageFromList){
+            ls.set("lang",languageFromList.code)
             props.setLang(languageFromList.code);
             i18n.changeLanguage(languageFromList.code)
         }
         this.state = {
             search: searchFromUrl || ""
         }
+    }
+
+    copyToClipboard = (text: string) => {
+        const textField = document.createElement('textarea');
+        textField.innerText = text;
+        document.body.appendChild(textField);
+        textField.select();
+        document.execCommand('copy');
+        textField.remove();
+        success('copied');
     }
 
     render() {
@@ -864,15 +877,30 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                             <img src={imgs} className="rounded"/>
                             <div className="position-absolute search-container d-flex justify-content-center align-items-center flex-column rounded p-3">
                                 <h1 className="text-white faq-title mb-3">{_t('static.faq.page-title')}</h1>
-                                <Form.Control
-                                    placeholder={`${_t("static.faq.search-placeholder")}`}
-                                    className="w-75"
-                                    onChange={e=>{
-                                        this.setState({search: e.target.value});
-                                }}
-                                    value={search}
-                                    autoFocus={true}
-                                />
+                                <InputGroup 
+                                    className="mb-3 w-75"
+                                >
+                                    <Form.Control
+                                        placeholder={`${_t("static.faq.search-placeholder")}`}
+                                        className="w-75"
+                                        onChange={e=>{
+                                            this.setState({search: e.target.value});
+                                    }}
+                                        value={search}
+                                        autoFocus={true}
+                                    />
+                                    <InputGroup.Append>
+                                        <Button
+                                            variant="primary"
+                                            size="sm"
+                                            className="copy-to-clipboard"
+                                            disabled={search.length === 0}
+                                            onClick={() => this.copyToClipboard(`http://localhost:3000/faq?q=${search}&lang=${global.lang.split("-")[0]}`)}
+                                        >
+                                            {copyContent}
+                                        </Button>
+                                    </InputGroup.Append>
+                                </InputGroup>
                                 {search.length > 0 && <Form.Text className="text-white mt-2 mt-sm-3 w-75 text-center helper-text">
                                     {searchResult.length > 0 ? _t("static.faq.search", {search: `"${search}"`}) :
                                         <div className="text-not-found">{_t("static.faq.search-not-found")}<Link to="https://discord.me/ecency" target="_blank">Discord</Link>.</div>}

@@ -30,7 +30,6 @@ export class SwitchLang extends Component<Props> {
 
         const languageFromLS = ls && ls.get("lang");
         const lang = languageFromLS !== null ? languageFromLS.slice(0, 2).toUpperCase() : "EN";
-
         const langMenuConfig = {
             history: this.props.history,
             label: label || lang,
