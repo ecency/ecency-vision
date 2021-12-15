@@ -816,9 +816,8 @@ class FaqPage extends Component<PageProps, FAQPageState> {
         const languageFromList = langOptions.find(item => item.code.split("-")[0] === languageFromUrl);
         debugger
         if(languageFromList){
-            i18n.changeLanguage(languageFromList.code).then(() => {
-                props.setLang(languageFromList.code);
-            });
+            props.setLang(languageFromList.code);
+            i18n.changeLanguage(languageFromList.code)
         }
         this.state = {
             search: searchFromUrl || ""
