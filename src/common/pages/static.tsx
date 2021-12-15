@@ -22,9 +22,9 @@ import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSv
 import { apiBase } from '../api/helper';
 import {Button, Form, InputGroup} from 'react-bootstrap'
 import { removeDiacritics }  from '../../common/store/diacritics'
-import { error, success } from "../components/feedback";
-import * as ls from "../util/local-storage";
+import Feedback, { success } from "../components/feedback";
 import clipboard from "../util/clipboard";
+
 const faqKeysGeneral = [
     'what-is-ecency',
     'what-is-difference',
@@ -807,6 +807,7 @@ class TosPage extends Component<PageProps> {
 
 interface FAQPageState {
     search: string;
+    currentLanguage: string;
 }
 
 class FaqPage extends Component<PageProps, FAQPageState> {
@@ -818,17 +819,24 @@ class FaqPage extends Component<PageProps, FAQPageState> {
         const languageFromList = langOptions.find(item => item.code.split("-")[0] === languageFromUrl);
         
         if(languageFromList){
-            ls.set("lang",languageFromList.code)
             props.setLang(languageFromList.code);
             i18n.changeLanguage(languageFromList.code)
         }
         this.state = {
-            search: searchFromUrl || ""
+            search: searchFromUrl || "",
+            currentLanguage:props.global.lang
         }
     }
 
+    componentWillUnmount(){
+        let {currentLanguage} = this.state;
+
+        this.props.setLang(currentLanguage);
+        i18n.changeLanguage(currentLanguage);
+    }
+
     copyToClipboard = (text: string) => {
-        success('copied');
+        success(_t("static.faq.reference-link-copied"));
         clipboard(text)
     }
 
@@ -859,6 +867,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
             <>
                 <Meta {...metaProps} />
                 <ScrollToTop/>
+                <Feedback />
                 <Theme global={this.props.global}/>
                 {global.isElectron ?
                     NavBarElectron({
