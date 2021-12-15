@@ -51,7 +51,8 @@
     "learn-more": "Aprende más en nuestro",
     "faq": "Preguntas Frecuentes (FAQ)",
     "more-results": "Más resultados",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "loading": "Cargando"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -780,7 +781,7 @@
     "clear": "Limpiar",
     "published": "La publicación fue enviada",
     "updated": "Publicación actualizada",
-    "thumbnail": "Vista en miniaturas",
+    "thumbnail": "Miniatura",
     "advanced": "Avanzado",
     "beneficiaries": "Beneficiarios",
     "beneficiaries-hint": "Establecer beneficiarios para compartir la recompensa del autor con otras cuentas",

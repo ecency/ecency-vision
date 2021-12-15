@@ -51,7 +51,8 @@
     "learn-more": "Saiba mais em",
     "faq": "Perguntas Frequentes",
     "more-results": "More results",
-    "close": "Fechar"
+    "close": "Fechar",
+    "loading": "Loading"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -972,7 +973,7 @@
     "filter-inactive": "Brevemente",
     "filter-team": "Projetos da Ecency",
     "return-description": "Esta é a proposta de base de retorno. Todas as propostas com menos votos não receberão fundos.",
-    "threshold-description": "This is a threshold proposal.",
+    "threshold-description": "Trata-se de uma proposta com limitações.",
     "votes-dialog-title": "Votos na proposta #{{n}}",
     "see-all": "ver todas as propostas",
     "daily-funded": "fundo diário",
@@ -1153,8 +1154,8 @@
   },
   "landing-page": {
     "welcome-text": "Bem-vindo à Ecency!",
-    "what-is-ecency": "Decentralized, rewarding, true ownership social network",
-    "powered-by-hive": "powered by Hive",
+    "what-is-ecency": "A rede social com propriedade de verdade das contas. Totalmente decentralizada e recompensante",
+    "powered-by-hive": "possibilitado pela Hive",
     "get-started": "Comece agora",
     "earn-money": "Ganhe dinheiro",
     "earn-money-block-chain-based": "Rede social baseada em Blockchain, ",
