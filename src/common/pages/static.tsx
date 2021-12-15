@@ -22,8 +22,9 @@ import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSv
 import { apiBase } from '../api/helper';
 import {Button, Form, InputGroup} from 'react-bootstrap'
 import { removeDiacritics }  from '../../common/store/diacritics'
-import { success } from "../components/feedback";
+import { error, success } from "../components/feedback";
 import * as ls from "../util/local-storage";
+import clipboard from "../util/clipboard";
 const faqKeysGeneral = [
     'what-is-ecency',
     'what-is-difference',
@@ -816,7 +817,6 @@ class FaqPage extends Component<PageProps, FAQPageState> {
         const languageFromUrl = props.location.search.split("&lang=")[1];
         const languageFromList = langOptions.find(item => item.code.split("-")[0] === languageFromUrl);
         
-        debugger
         if(languageFromList){
             ls.set("lang",languageFromList.code)
             props.setLang(languageFromList.code);
@@ -828,13 +828,8 @@ class FaqPage extends Component<PageProps, FAQPageState> {
     }
 
     copyToClipboard = (text: string) => {
-        const textField = document.createElement('textarea');
-        textField.innerText = text;
-        document.body.appendChild(textField);
-        textField.select();
-        document.execCommand('copy');
-        textField.remove();
         success('copied');
+        clipboard(text)
     }
 
     render() {
@@ -876,7 +871,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                         <div className="position-relative rounded">
                             <img src={imgs} className="rounded"/>
                             <div className="position-absolute search-container d-flex justify-content-center align-items-center flex-column rounded p-3">
-                                <h1 className="text-white faq-title mb-3">{_t('static.faq.page-title')}</h1>
+                                <h1 className="text-white faq-title text-center mb-3">{_t('static.faq.page-title')}</h1>
                                 <InputGroup 
                                     className="mb-3 w-75"
                                 >
@@ -895,7 +890,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                                             size="sm"
                                             className="copy-to-clipboard"
                                             disabled={search.length === 0}
-                                            onClick={() => this.copyToClipboard(`http://localhost:3000/faq?q=${search}&lang=${global.lang.split("-")[0]}`)}
+                                            onClick={() => {this.copyToClipboard(`http://localhost:3000/faq?q=${search}&lang=${global.lang.split("-")[0]}`);}}
                                         >
                                             {copyContent}
                                         </Button>
