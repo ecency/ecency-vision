@@ -116,8 +116,9 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
             }
         }
 
-        if(address.split('/')[0] == address.split('/')[1]){
-            address = address.split('/');
+        const spt = address.split('/');
+        if(spt[0] == spt[1]){
+            address = spt;
             address.shift();
             address = address.join("/")
         }
