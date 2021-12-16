@@ -50,9 +50,9 @@
     "payout": "Pagamento",
     "learn-more": "Saiba mais em",
     "faq": "Perguntas Frequentes",
-    "more-results": "More results",
+    "more-results": "Mais resultados",
     "close": "Fechar",
-    "loading": "Loading"
+    "loading": "Carregando"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -176,8 +176,8 @@
     "replies": "1 resposta. Clica para responder.",
     "replies-n": "{{n}} respostas. Clique para responder.",
     "vote-error": "Valor anterior não foi possível. Vote com um valor diferente.",
-    "vote-remove": "Voting 0% unvotes the content.",
-    "vote-warning": "Changing vote...",
+    "vote-remove": "Votar com 0% retira o voto.",
+    "vote-warning": "Alterando o voto...",
     "no-replies": "Nenhuma resposta ainda. Clique para responder."
   },
   "nsfw": {
@@ -433,7 +433,7 @@
     "post-count": "Contagem de Postagem",
     "followers": "Seguidores",
     "following": "Seguindo",
-    "follows-you": "Follows you",
+    "follows-you": "Segue você",
     "section-blog": "Blog",
     "section-posts": "Publicações",
     "section-comments": "Comentários",
