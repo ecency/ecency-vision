@@ -5,46 +5,51 @@ import moment from "moment";
 import {_t} from "../../i18n";
 
 import {Tsx} from "../../i18n/helper";
-import { appleSvg, desktopSvg, eyeBoldSvg, googleSvg } from "../../img/svg";
+import { appleSvg, desktopSvg, eyeBoldSvg, eyeSvg, googleSvg } from "../../img/svg";
 import { Link } from "react-router-dom";
 import DownloadTrigger from "../download-trigger";
 import SSRSuspense from "../ssr-suspense";
+import { Global } from "../../store/global/types";
 const Market = React.lazy(()=> import ("./market"));
 
+interface MarketDataProps {
+    global: Global
+}
 
 interface MarketDataState {
     visible: boolean
 }
 
-export default class MarketData extends Component<{},MarketDataState> {
-    constructor(props:{}){
+export default class MarketData extends Component<MarketDataProps,MarketDataState> {
+    constructor(props:MarketDataProps){
         super(props);
         this.state = {
             visible: false
         }
-
     }
 
     render() {
         const fromTs = moment().subtract(2, "days").format("X");
         const toTs = moment().format("X");
         const {visible} = this.state;
+        const {global:{theme}} = this.props;
 
         return <div className="market-data">
             <div className="market-data-header">
                 <span className="title d-flex align-items-center">{_t("market-data.title")}
-                {!visible && <div className="pointer ml-2" onClick={() => this.setState({visible:true})}>
-                    {eyeBoldSvg}
-                </div>}</span>
+                    <div className="pointer ml-2" onClick={() => this.setState({visible: !visible})}>
+                        {visible ? eyeSvg : eyeBoldSvg}
+                    </div>
+                </span>
                 {visible && <Tsx k="market-data.credits" args={{}}>
                     <div className="credits"/>
                 </Tsx>}
             </div>
             {visible ? <SSRSuspense fallback={'Loading chunked charts'}>
-                <Market label="HIVE" coin="hive" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter="0.000$"/>
-                <Market label="HBD" coin="hive_dollar" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter="0.000$"/>
-                <Market label="BTC" coin="bitcoin" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter=",$"/>
-                <Market label="ETH" coin="ethereum" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter="0.000$"/>
+                <Market label="HIVE" coin="hive" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter="0.000$" theme={theme}/>
+                <Market label="HBD" coin="hive_dollar" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter="0.000$" theme={theme}/>
+                <Market label="BTC" coin="bitcoin" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter=",$" theme={theme}/>
+                <Market label="ETH" coin="ethereum" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter="0.000$" theme={theme}/>
                 <div className="menu-nav">
                     <DownloadTrigger>
                         <div className="downloads">

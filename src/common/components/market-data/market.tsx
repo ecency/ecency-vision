@@ -7,6 +7,7 @@ import BaseComponent from '../base';
 
 import numeral from "numeral";
 import { _t } from '../../i18n';
+import { Theme } from '../../store/global/types';
 
 interface Price {
     time: number;
@@ -20,6 +21,7 @@ interface Props {
     fromTs: string;
     toTs: string;
     formatter: string;
+    theme: Theme;
 }
 
 interface State {
@@ -117,8 +119,14 @@ class Market extends BaseComponent<Props, State> {
         tooltip!.innerHTML = "";
     }
 
+    componentDidUpdate(prevProps:Props){
+        if(prevProps.theme && this.props.theme){
+            this.forceUpdate()
+        }
+    }
+
     render() {
-        const {label, formatter} = this.props;
+        const {label, formatter, theme} = this.props;
         const {prices} = this.state;
         let strPrice = "...";
         if (prices.length) {
@@ -126,7 +134,7 @@ class Market extends BaseComponent<Props, State> {
             strPrice = numeral(price).format(formatter);
         }
           
-          const config:Highcharts.Options  = {
+          const config:any  = {
             title: {
                 text: null
             },
@@ -136,15 +144,15 @@ class Market extends BaseComponent<Props, State> {
             },
             chart:{
                 height: 140,
-                zoomType: 'x'
+                zoomType: 'x',
+                backgroundColor: theme === Theme.night ? "#161d26" : ""
             },
             plotOptions:{
                 area:{
-                    fillColor:"#f3f7fb",
+                    fillColor:theme === Theme.night ? "#2e3d51" : "#f3f7fb",
                     lineColor:'#81acef',
                     lineWidth:3
                 },
-
             },
             tooltip:{
                 valueDecimals:2,
@@ -154,7 +162,8 @@ class Market extends BaseComponent<Props, State> {
                     let date = moment(chart.hoverPoint.options.x).calendar();
                     let rate = chart.hoverPoint.options.y;
                     return `<div><div>${_t("g.when")}: <b>${date}</b></div><div>${_t("g.price")}:<b>${rate}</b></div></div>`
-                }) as any
+                }) as any,
+                enabled: false
             },
             xAxis: {
                 lineWidth: 0,
@@ -189,6 +198,7 @@ class Market extends BaseComponent<Props, State> {
                   name: ' ',
                   data: prices.map(item=>[item.time, item.price]),
                   type: 'area',
+                  enableMouseTracking: false
               },
             ],
           };
