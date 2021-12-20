@@ -102,7 +102,7 @@ export const ProfilePreview = ({username, global, onClose, activeUser, ...props}
                         <div className={`rounded-circle mb-3 profile-img-container ${profile && profile.profile.profile_image ? "" : "no-image"}`}>
                             {loading ? <Skeleton className="profile-img rounded-circle" /> : profile && 
                             <Link to={`/@${username}`} onClick={(e) => onClose(e, true)}>
-                                <img src={`https://images.ecency.com/u/${username}/avatar/medium`} alt="img" className="profile-img rounded-circle bg-primary" loading="lazy"/>
+                                <img src={`https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${username}/avatar/medium`} alt="img" className="profile-img rounded-circle bg-primary" loading="lazy"/>
                             </Link>
                             }
                         </div>
