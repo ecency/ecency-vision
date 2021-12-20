@@ -7,6 +7,7 @@ import UserAvatar from "../user-avatar";
 import { _t } from "../../i18n";
 
 import { lookupAccounts } from "../../api/hive";
+import { searchPath } from '../../api/search-api';
 
 interface State {
 	value: string;
@@ -68,6 +69,8 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 
 	render() {
 
+		const {activeUser} = this.props;
+
 		return (
 			<ReactTextareaAutocomplete
 				{...this.props}
@@ -82,8 +85,17 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 							clearTimeout(timer);
 							return new Promise((resolve) => {
 								timer = setTimeout(async () => {
-									let suggestions = await lookupAccounts(token, 5)
-									resolve(suggestions)
+									debugger
+
+									if(token.includes("/")){
+										searchPath(activeUser, token).then(resp => {
+											debugger
+											resolve(resp)
+										})}
+									else {
+										let suggestions = await lookupAccounts(token, 5)
+										resolve(suggestions)
+									}
 								}, 300);
 							});
 						},

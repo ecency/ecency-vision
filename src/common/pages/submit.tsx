@@ -809,6 +809,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 minrows={10}
                                 maxrows={100}
                                 spellCheck={true}
+                                activeUser={activeUser && activeUser.username || ""}
                             />
                         </div>
                         {editingEntry === null && (
