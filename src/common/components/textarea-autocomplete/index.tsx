@@ -7,7 +7,7 @@ import UserAvatar from "../user-avatar";
 import { _t } from "../../i18n";
 
 import { lookupAccounts } from "../../api/hive";
-import { searchPath } from '../../api/search-api';
+//import { searchPath } from '../../api/search-api';
 
 interface State {
 	value: string;
@@ -77,6 +77,7 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 				value={this.state.value}
 				placeholder={this.props.placeholder}
 				onChange={this.handleChange}
+				minChar={2}
 				trigger={{
 					"@": {
 						dataProvider: token => {
@@ -89,13 +90,16 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 									}, 300);
 								});
 							} else {
-								return new Promise((resolve) => {
+								return [];
+								/*new Promise((resolve) => {
 									const splt = token.split('/');
-									timer = setTimeout(async () => {
-										let suggestions = await searchPath(splt[0], token);
-										resolve(suggestions)
-									}, 300);
-								});
+									if (splt[1]) {
+										timer = setTimeout(async () => {
+											let suggestions = await searchPath(this.props.activeUser.username, token);
+											resolve(suggestions)
+										}, 1000);
+									}
+								});*/
 							}
 						},
 						component: (props: any) => {
