@@ -38,6 +38,7 @@ const faqKeysGeneral = [
     'how-promotion-work',
     'how-boosting-work',
     'why-refund-points',
+    'boosting-vote-buying',
     'different-reward-choices',
     'can-guest-post',
     'can-link-post',
