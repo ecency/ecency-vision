@@ -1116,7 +1116,7 @@
       "can-link-post-header": "我可以从Ecency 团队请求添加背链接到我的网站吗？",
       "can-link-post-body": "<p>我们网站上的所有内容都是由我们的用户创建的，我们无法修改或添加背链接。 您可以自由地联系帖子的作者或 <a href=\"/signup?referral=ecency\" class=\"push-link\">注册</a> 来打开您自己的博客和社区。 免费发布文章创建反向链接。</p>",
       "can-guest-post-header": "是否可以在您的网站上留言？",
-      "can-guest-post-body": "<p>在生态上发布简单易用， <a href=\"/signup?referral=ecency\" class=\"push-link\">注册</a> 来打开您自己的博客和社区，开始发布您的内容。</p>",
+      "can-guest-post-body": "<p>Publishing on Ecency is simple and easy, <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, start posting your content.</p>",
       "source-label-header": "内容源标签，是什么？",
       "source-label-body": "<p>内容源帮助您了解内容是如何发布的。 在某些情况下，您可能会看到第三方客户端名称, 该名称表示内容来自非生态应用程序。 作者有时使用第三方客户端应用程序来管理他们的博客、社区。 第三方客户是作者使用的软件工具，因此与内容无关，也不反映内容。 内容可以由人类直接创建，或者在某些情况下由应用程序自动创建</p>",
       "how-to-contribute-header": "如何为生态做出贡献？",
@@ -1128,7 +1128,9 @@
       "can-delete-account-header": "Can I delete or deactivate my account?",
       "can-delete-account-body": "<p>Accounts on Ecency can not be deactivated or deleted. The account along with all of its activity is permanently stored in the Hive blockchain.</p>",
       "different-reward-choices-header": "What are the differences in Reward types?",
-      "different-reward-choices-body": "<p>In publishing settings section, you can see 3 different Reward types/choices.<ul><li>50%/50% - This rewards in half Hive Power, and half liquid HIVE / Hive Dollars. The ratio of liquid HIVE to Hive Dollars rewarded is based on network conditions at the time of payout. This is the default payout option.</li><li>Power Up 100% - This option rewards the post in 100% Hive Power.</li><li>Decline Payout - Use this option to receive no post rewards. Votes will affect the post's position on the trending ranking but no rewards are paid from Hive's reward pool. Replies made to the post are still eligible for rewards.</li></ul></p>"
+      "different-reward-choices-body": "<p>In publishing settings section, you can see 3 different Reward types/choices.<ul><li>50%/50% - This rewards in half Hive Power, and half liquid HIVE / Hive Dollars. The ratio of liquid HIVE to Hive Dollars rewarded is based on network conditions at the time of payout. This is the default payout option.</li><li>Power Up 100% - This option rewards the post in 100% Hive Power.</li><li>Decline Payout - Use this option to receive no post rewards. Votes will affect the post's position on the trending ranking but no rewards are paid from Hive's reward pool. Replies made to the post are still eligible for rewards.</li></ul></p>",
+      "boosting-vote-buying-header": "Is boosting considered a vote buying?",
+      "boosting-vote-buying-body": "<p>No! Because, there is no guarantee of receiving vote, there is no guarantee of exact amount of vote, boosting maximum amount is limited, each content reviewed by our curators, there is no profit in it. All curation rewards are sent back to delegators 100%. Only measurable success we seek is to see engagement and growth on entire ecosystem. Boosting is simply creating additional use case for Ecency Points to improve engagement on platform, so it is essentially same as any other curation guilds on Hive. Goal of those guilds ultimately to improve engagement on platform and grow activity, the way each measures that success is the different.</p>"
     }
   },
   "contributors": {
