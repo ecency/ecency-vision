@@ -800,6 +800,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                         <div className="body-input">
                             <TextareaAutocomplete
                                 global={this.props.global}
+                                activeUser={this.props.activeUser}
                                 id="the-editor"
                                 className="the-editor accepts-emoji form-control"
                                 as="textarea"

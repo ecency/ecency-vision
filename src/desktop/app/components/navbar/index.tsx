@@ -110,7 +110,17 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
         }
 
         if(location.search && location.search.length > 0){
-            address = location.pathname + location.search
+            address = location.pathname + location.search;
+            if(address[0]==="/"){
+                address = address.replace("/","")
+            }
+        }
+
+        const spt = address.split('/');
+        if(spt[0] == spt[1]){
+            address = spt;
+            address.shift();
+            address = address.join("/")
         }
 
         this.setState({address, realAddress: address});
@@ -124,6 +134,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
     };
 
     addressKeyup = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        
         if (e.keyCode === 13) {
             const {address, changed} = this.state;
             const {history} = this.props;
@@ -141,22 +152,29 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
             const pathMatch = Object.values(routes).find(p => {
                 return pathToRegexp(p).test(url.pathname)
             });
-
+            
             if (pathMatch) {
                 let isAddressValidForElectron = isElectron() && address.includes("?")
                 if(isAddressValidForElectron){
-                    history.push(`/${address}`);
+                    let validAddress = address[0]=='/'? address.replace("/",""): address;
+                    this.setState({address:validAddress})
+                    
+                    history.push(`/${validAddress}`);
                     return;
                 }
-                history.push(url.pathname);
+                let validAddress = url.pathname[0]=='/'?url.pathname.replace("/",""):url.pathname;
+                this.setState({address:validAddress})
+                
+                history.push(`/${validAddress}`);
                 return;
             }
-
+            
             history.push(`/search/?q=${encodeURIComponent(address)}`);
         }
 
         if (e.keyCode === 27) {
             const {realAddress} = this.state;
+            
 
             this.setState({address: realAddress});
         }
@@ -170,7 +188,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
                 <div className="pre-add-on">{magnifySvg}</div>
                 <span className="protocol">ecency://</span>
                 <div className="url">
-                    <SearchSuggester {...this.props} value={address} changed={changed}>
+                    {/* <SearchSuggester {...this.props} value={address} changed={changed}> */}
                         <input
                             type="text"
                             value={address}
@@ -179,7 +197,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
                             placeholder={_t('navbar.address-placeholder')}
                             spellCheck={false}
                         />
-                    </SearchSuggester>
+                    {/* </SearchSuggester> */}
                 </div>
             </div>
         )
