@@ -117,11 +117,18 @@ class ProfilePage extends BaseComponent<Props, State> {
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints, history } = this.props;
-        const {match: prevMatch, entries} = prevProps;
+        const {match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints, history, location : {search} } = this.props;
+        const {match: prevMatch, entries, location: {search: prevSearch}} = prevProps;
 
         const {username, section} = match.params;
         const { isDefaultPost } = this.state;
+        
+        if(prevSearch !== search){
+            let searchText = search.replace("?q=",'')
+            this.setState({search: searchText || "", searchDataLoading: searchText.length > 0});
+            searchText.length > 0 && this.handleInputChange(searchText)
+
+        }
 
         // username changed. re-fetch wallet transactions and points
         if (username !== prevMatch.params.username) {
@@ -254,7 +261,7 @@ class ProfilePage extends BaseComponent<Props, State> {
             // this.setState({proposals: this.state.allProposals});
         } else {
           const { global } = this.props;
-          this.setState({  searchDataLoading: true, typing: false});
+          this.setState({  searchDataLoading: true});
     
           let query = `${value} author:${global.tag.substring(1)}`;
          
@@ -270,7 +277,8 @@ class ProfilePage extends BaseComponent<Props, State> {
             data = null;
           }
           if(data && data.results) {
-            let sortedResults = data.results.sort((a: any,b: any) => Date.parse(b.created_at) - Date.parse(a.created_at))
+            let sortedResults = data.results.sort((a: any,b: any) => Date.parse(b.created_at) - Date.parse(a.created_at));
+            
             this.setState({ searchData: sortedResults, loading: false, searchDataLoading: false })
           }
         }

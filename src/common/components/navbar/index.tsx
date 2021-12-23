@@ -39,7 +39,7 @@ import _c from "../../util/fix-class-names";
 import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg, chevronUpSvg, upArrowSvg, keySvg, sunSvg, gifCardSvg} from "../../img/svg";
 import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
-const logo = require('../../img/logo-circle.svg');
+//const logo = require('../../img/logo-circle.svg');
 
 interface Props {
     history: History;
@@ -190,7 +190,7 @@ export class NavBar extends Component<Props, State> {
 
     render() {
         const {global, activeUser, ui, step, toggleUIProp, setActiveUser } = this.props;
-        const logo = global.isElectron ? "./img/logo-circle.svg" : require('../../img/logo-circle.svg');
+        const logo = global.isElectron ? "./img/logo-circle.svg" : require('../../img/logo-circle-santa.svg');
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
         const {smVisible, floating, showMobileSearch, showProfileMenu, drafts, bookmarks, fragments, gallery, schedules } = this.state;

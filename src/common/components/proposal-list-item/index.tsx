@@ -34,6 +34,7 @@ import {_t} from "../../i18n";
 
 import {linkSvg} from "../../img/svg";
 import isElectron from "../../util/is-electron";
+import { Skeleton } from "../skeleton";
 
 interface Props {
     history: History;
@@ -57,13 +58,15 @@ interface Props {
 
 interface State {
     votes: boolean,
-    votedByVoter: boolean
+    votedByVoter: boolean,
+    loadingSearchResult:boolean
 }
 
 export class ProposalListItem extends Component<Props, State> {
     state: State = {
         votes: false,
         votedByVoter: false,
+        loadingSearchResult: false,
     }
 
     componentDidMount() {
@@ -73,7 +76,15 @@ export class ProposalListItem extends Component<Props, State> {
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
         return !isEqual(this.state, nextState) ||
             !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
+            !isEqual(this.props.location, nextProps.location) ||
             !isEqual(this.props.dynamicProps.hivePerMVests, nextProps.dynamicProps.hivePerMVests);
+    }
+
+    componentDidUpdate(prevProps: Readonly<Props>){
+        if(prevProps.location !== this.props.location){
+            this.loadProposalByVoter();
+            this.setState({loadingSearchResult: true})
+        }
     }
 
     loadProposalByVoter = () => {
@@ -84,8 +95,8 @@ export class ProposalListItem extends Component<Props, State> {
 
         if(!!voterParams) {
             getProposalVotes(proposal.id, voterParams as string, 1).then(r => {
-                const votedByVoter = r.length > 0 && r[0].voter ===voterParams;
-                this.setState({votedByVoter});
+                const votedByVoter = r.length > 0 && r[0].voter === voterParams;
+                this.setState({votedByVoter, loadingSearchResult:false});
             }).finally()
         }
 
@@ -97,7 +108,7 @@ export class ProposalListItem extends Component<Props, State> {
     }
 
     render() {
-        const {votes, votedByVoter} = this.state;
+        const {votes, votedByVoter, loadingSearchResult} = this.state;
 
         const {dynamicProps, proposal, isReturnProposalId, thresholdProposalIds} = this.props;
 
@@ -115,7 +126,8 @@ export class ProposalListItem extends Component<Props, State> {
         const strAllPayment = numeral(allPayment).format("0.0a");
         const diff = endDate.diff(moment(now()), 'days');
         const remaining = diff < 0 ? 0 : diff;
-        return (
+        
+        return loadingSearchResult ? <Skeleton className="w-100 loadingSearch mb-3 shadow"/>:(
             <div className={_c(`proposal-list-item ${!!votedByVoter ? 'voted-by-voter' : ''}`)}>
                 <div className="item-content">
                     <div className="left-side">
