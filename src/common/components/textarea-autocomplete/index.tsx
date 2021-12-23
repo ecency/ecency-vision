@@ -80,16 +80,13 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 				placeholder={this.props.placeholder}
 				onChange={this.handleChange}
 				trigger={{
-					"@": {
+					["@"]: {
 						dataProvider: token => {
 							clearTimeout(timer);
 							return new Promise((resolve) => {
 								timer = setTimeout(async () => {
-									debugger
-
 									if(token.includes("/")){
 										searchPath(activeUser, token).then(resp => {
-											debugger
 											resolve(resp)
 										})}
 									else {
