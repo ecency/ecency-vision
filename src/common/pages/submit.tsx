@@ -99,8 +99,7 @@ class PreviewContent extends Component<PreviewProps> {
 
     render() {
         const {title, tags, body, global} = this.props;
-        let renderedPreview = renderPostBody(body, false, global.canUseWebp)
-        debugger
+        let renderedPreview = renderPostBody(body, false, global.canUseWebp);
         return (
             <>
                 <div className="preview-title">{title}</div>
