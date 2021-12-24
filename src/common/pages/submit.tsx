@@ -99,7 +99,8 @@ class PreviewContent extends Component<PreviewProps> {
 
     render() {
         const {title, tags, body, global} = this.props;
-
+        let renderedPreview = renderPostBody(body, false, global.canUseWebp)
+        debugger
         return (
             <>
                 <div className="preview-title">{title}</div>
@@ -121,7 +122,7 @@ class PreviewContent extends Component<PreviewProps> {
                     })}
                 </div>
 
-                <div className="preview-body markdown-view" dangerouslySetInnerHTML={{__html: renderPostBody(body, false, global.canUseWebp)}}/>
+                <div className="preview-body markdown-view" dangerouslySetInnerHTML={{__html: renderedPreview }}/>
             </>
         );
     }
@@ -800,7 +801,6 @@ class SubmitPage extends BaseComponent<Props, State> {
                         <div className="body-input">
                             <TextareaAutocomplete
                                 global={this.props.global}
-                                activeUser={this.props.activeUser}
                                 id="the-editor"
                                 className="the-editor accepts-emoji form-control"
                                 as="textarea"
