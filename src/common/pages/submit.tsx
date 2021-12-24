@@ -148,6 +148,7 @@ interface State extends PostBase, Advanced {
     disabled: boolean;
     thumbnails: string[];
     selectedThumbnail: string;
+    selectionTouched: boolean;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -165,6 +166,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         thumbnails: [],
         selectedThumbnail: "",
         schedule: null,
+        selectionTouched: false,
         reblogSwitch: false,
         clearModal: false,
         preview: {
@@ -428,6 +430,7 @@ class SubmitPage extends BaseComponent<Props, State> {
             this.updatePreview();
             this.saveAdvanced();
         });
+        ls.remove('draft_selected_image');
 
         const {editingDraft} = this.state;
         if (editingDraft) {
@@ -500,7 +503,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const {activeUser, history, addEntry} = this.props;
-        const {title, tags, body, reward, reblogSwitch, beneficiaries, selectedThumbnail} = this.state;
+        const {title, tags, body, reward, reblogSwitch, beneficiaries, selectedThumbnail, selectionTouched} = this.state;
 
         // make sure active user fully loaded
         if (!activeUser || !activeUser.data.__loaded) {
@@ -534,10 +537,15 @@ class SubmitPage extends BaseComponent<Props, State> {
         let localThumbnail = ls.get('draft_selected_image');
 
         if(meta.image){
-            meta.image = [selectedThumbnail, ...meta.image!.splice(0,9)]
+            if(selectionTouched){
+                meta.image = [selectedThumbnail, ...meta.image!.splice(0,9)]
+            }
+            else {
+                meta.image = [ ...meta.image!.splice(0,9)]
+            }
         }
         else if(selectedThumbnail === localThumbnail){
-            ls.remove('draft_selected_image')
+            ls.remove('draft_selected_image');
         }
         else {
             meta.image = [selectedThumbnail]
@@ -545,6 +553,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         const jsonMeta = makeJsonMetaData(meta, tags, version);
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
         this.stateSet({posting: true});
+        debugger
         comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options, true)
             .then(() => {
 
@@ -963,7 +972,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                                     <div
                                                                         className={`selection-item shadow ${selectedItem === item ? "selected" : ""} mr-3 mb-2`}
                                                                         style={{backgroundImage:`url("${proxifyImageSrc(item, 260, 200)}")`}}
-                                                                        onClick={() => this.selectThumbnails(item)}
+                                                                        onClick={() => {this.selectThumbnails(item); this.setState({selectionTouched: true})}}
                                                                         key={item}
                                                                     />
                                                                     {selectedItem === item && <div className="text-success check position-absolute bg-white rounded-circle d-flex justify-content-center align-items-center">
