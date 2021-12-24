@@ -24,6 +24,7 @@ import {Button, Form, InputGroup} from 'react-bootstrap'
 import { removeDiacritics }  from '../../common/store/diacritics'
 import Feedback, { success } from "../components/feedback";
 import clipboard from "../util/clipboard";
+import * as ls from '../util/local-storage'
 
 const faqKeysGeneral = [
     'what-is-ecency',
@@ -821,7 +822,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
         searchFromUrl = removeDiacritics(searchFromUrl)
         const languageFromUrl = props.location.search.split("&lang=")[1];
         const languageFromList = langOptions.find(item => item.code.split("-")[0] === languageFromUrl);
-        
+
         if(languageFromList){
             props.setLang(languageFromList.code);
             i18n.changeLanguage(languageFromList.code)
@@ -830,13 +831,16 @@ class FaqPage extends Component<PageProps, FAQPageState> {
             search: searchFromUrl || "",
             currentLanguage:props.global.lang
         }
+
+        if(languageFromList && props.global.lang !== languageFromList.code){
+            ls.set("current-language", props.global.lang)
+        }
     }
 
     componentWillUnmount(){
-        let {currentLanguage} = this.state;
-
-        this.props.setLang(currentLanguage);
-        i18n.changeLanguage(currentLanguage);
+        const currentLang = ls.get("current-language");
+        this.props.setLang(currentLang);
+        i18n.changeLanguage(currentLang);
     }
 
     copyToClipboard = (text: string) => {

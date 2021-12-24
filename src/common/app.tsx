@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {Route, Switch} from "react-router-dom";
 
 import EntryIndexContainer from "./pages/entry-index";
@@ -29,9 +29,24 @@ import {
 } from "./pages/static";
 
 import routes from "./routes";
+import * as ls from './util/local-storage';
 
-const App = () => {
-    
+import i18n from "i18next";
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./pages/common";
+import { connect } from "react-redux";
+const App = connect(pageMapStateToProps, pageMapDispatchToProps)(
+    ({ setLang }:PageProps) => {
+        useEffect(() => {
+            let pathname = window.location.pathname;
+            if(pathname !== '/faq'){
+                const currentLang = ls.get("current-language");
+                if(currentLang){
+                    setLang(currentLang);
+                    i18n.changeLanguage(currentLang)
+                }
+        }
+    },[]);
+
     return (
         <>
             <Tracker/>
@@ -70,6 +85,6 @@ const App = () => {
             </Switch>
         </>
     );
-};
+});
 
 export default App;
