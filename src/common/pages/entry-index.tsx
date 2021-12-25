@@ -46,8 +46,9 @@ class EntryIndexPage extends Component<PageProps, State> {
     }
 
     componentDidMount() {
-        const {global, fetchEntries} = this.props;
+        const {global, fetchEntries, fetchTrendingTags} = this.props;
         fetchEntries(global.filter, global.tag, false);
+        fetchTrendingTags();
         this.props.activeUser !== null ? this.changeStepTwo() :this.changeStepOne() 
     }
 
