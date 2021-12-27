@@ -1,6 +1,14 @@
 .search-box {
   position: relative;
 
+  @media (min-width: $md-break) {
+    .input-with-copy {
+      &:focus {
+            width: 90% !important;
+      }
+    }
+  }
+
   .prepend {
     position: absolute;
     left: 0;
