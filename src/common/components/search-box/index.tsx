@@ -4,30 +4,40 @@ import { Button, FormControl, InputGroup } from "react-bootstrap";
 import { _t } from "../../i18n";
 
 import { copyContent, magnifySvg } from "../../img/svg";
+import { success } from "../feedback";
 
 type Props = any;
 
 export default class SearchBox extends Component<Props> {
+
+  copyToClipboard = (text: string) => {
+      const textField = document.createElement('textarea');
+      textField.innerText = text;
+      document.body.appendChild(textField);
+      textField.select();
+      document.execCommand('copy');
+      textField.remove();
+      success(_t('profile-info.link-copied'));
+  }
+
   render() {
-    const {showCopyButton} = this.props
+    const {showCopyButton, value, username, filter} = this.props
     return (<div className="search-box">
       {showCopyButton ? 
-      <InputGroup
-          className="mb-3 w-75"
-      >
-          <FormControl type="text" {...this.props} className={"input-with-copy"}/>
+      <div className="d-flex">
+          <FormControl type="text" {...this.props} className={"input-with-copy rounded-right"}/>
           <InputGroup.Append>
               <Button
                   variant="primary"
                   size="sm"
-                  className="copy-to-clipboard"
-                  // disabled={search.length === 0}
-                  // onClick={() => {this.copyToClipboard(`http://localhost:3000/faq?q=${search}&lang=${global.lang.split("-")[0]}`);}}
+                  className="copy-to-clipboard rounded-left"
+                  disabled={value.length === 0}
+                  onClick={() => {this.copyToClipboard(`https://ecency.com/@${username}/${filter}?q=${value}`);}}
               >
                   {copyContent}
               </Button>
           </InputGroup.Append>
-      </InputGroup> : <>
+          </div>: <>
       <span className="prepend">{magnifySvg}</span>
         <FormControl type="text" {...this.props} /></>}
       </div> )

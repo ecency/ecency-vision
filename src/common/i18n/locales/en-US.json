@@ -458,6 +458,7 @@
     "down-vote-power": "Downvote Power: {{n}}%",
     "no-posts": "Here you will see your posts, looks like no content exists.",
     "create-posts": "Let's create a new post",
+    "link-copied": "Link to the search copied successfully",
     "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
