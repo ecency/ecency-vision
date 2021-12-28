@@ -10,6 +10,17 @@
     }
   }
 
+  .focus-input {
+    @media (min-width: $md-break) {
+      &:focus-within {
+        input {
+            width: 90% !important;
+        }
+      }
+    }
+
+  }
+
   .prepend {
     position: absolute;
     left: 0;
