@@ -613,10 +613,6 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const meta = extractMetaData(body);
-        const jsonMeta = Object.assign({}, json_metadata, meta, {tags});
-        let localThumbnail = ls.get('draft_selected_image');
-
-        this.stateSet({posting: true});
         if(meta.image){
             if(selectionTouched){
                 meta.image = [selectedThumbnail, ...meta.image!.splice(0,9)]
@@ -625,10 +621,13 @@ class SubmitPage extends BaseComponent<Props, State> {
                 meta.image = [ ...meta.image!.splice(0,9)]
             }
         }
-        else {
+        else if(selectionTouched){
             meta.image = [selectedThumbnail]
         }
-        debugger
+        const jsonMeta = Object.assign({}, json_metadata, meta, {tags});
+
+        this.stateSet({posting: true});
+        
         comment(activeUser?.username!, "", category, permlink, title, newBody, jsonMeta, null)
             .then(() => {
                 this.stateSet({posting: false});
