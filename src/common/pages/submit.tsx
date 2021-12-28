@@ -598,7 +598,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const {activeUser, updateEntry, history} = this.props;
-        const {title, tags, body, editingEntry} = this.state;
+        const {title, tags, body, editingEntry, selectionTouched, selectedThumbnail} = this.state;
 
         if (!editingEntry) {
             return;
@@ -614,8 +614,21 @@ class SubmitPage extends BaseComponent<Props, State> {
 
         const meta = extractMetaData(body);
         const jsonMeta = Object.assign({}, json_metadata, meta, {tags});
+        let localThumbnail = ls.get('draft_selected_image');
 
         this.stateSet({posting: true});
+        if(meta.image){
+            if(selectionTouched){
+                meta.image = [selectedThumbnail, ...meta.image!.splice(0,9)]
+            }
+            else {
+                meta.image = [ ...meta.image!.splice(0,9)]
+            }
+        }
+        else {
+            meta.image = [selectedThumbnail]
+        }
+        debugger
         comment(activeUser?.username!, "", category, permlink, title, newBody, jsonMeta, null)
             .then(() => {
                 this.stateSet({posting: false});
@@ -820,21 +833,22 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 spellCheck={true}
                             />
                         </div>
+                        <div className="bottom-toolbar">
                         {editingEntry === null && (
-                            <div className="bottom-toolbar">
                                 <Button variant="outline-info" onClick={()=>this.setState({clearModal: true})}>
                                     {_t("submit.clear")}
                                 </Button>
-                                <Button variant="outline-primary" onClick={this.toggleAdvanced}>
-                                    {advanced ?
-                                        _t("submit.preview") :
-                                        <>
-                                            {_t("submit.advanced")}
-                                            {this.hasAdvanced() ? " •••" : null}
-                                        </>}
-                                </Button>
-                            </div>
                         )}
+
+                            <Button variant="outline-primary" onClick={this.toggleAdvanced}>
+                                {advanced ?
+                                    _t("submit.preview") :
+                                    <>
+                                        {_t("submit.advanced")}
+                                        {this.hasAdvanced() ? " •••" : null}
+                                    </>}
+                            </Button>
+                        </div>
                     </div>
                     <div className="flex-spacer"/>
                     {(() => {
@@ -904,53 +918,55 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 </div>
                                 <div className="panel-body">
                                     <div className="container">
-                                        <Form.Group as={Row}>
-                                            <Form.Label column={true} sm="3">
-                                                {_t("submit.reward")}
-                                            </Form.Label>
-                                            <Col sm="9">
-                                                <Form.Control as="select" value={reward} onChange={this.rewardChanged}>
-                                                    <option value="default">{_t("submit.reward-default")}</option>
-                                                    <option value="sp">{_t("submit.reward-sp")}</option>
-                                                    <option value="dp">{_t("submit.reward-dp")}</option>
-                                                </Form.Control>
-                                                <Form.Text muted={true}>{_t("submit.reward-hint")}</Form.Text>
-                                            </Col>
-                                        </Form.Group>
-                                        <Form.Group as={Row}>
-                                            <Form.Label column={true} sm="3">
-                                                {_t("submit.beneficiaries")}
-                                            </Form.Label>
-                                            <Col sm="9">
-                                                <BeneficiaryEditor author={activeUser?.username} list={beneficiaries} onAdd={this.beneficiaryAdded}
-                                                                   onDelete={this.beneficiaryDeleted}/>
-                                                <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
-                                            </Col>
-                                        </Form.Group>
-                                        {global.usePrivate && <Form.Group as={Row}>
-                                          <Form.Label column={true} sm="3">
-                                              {_t("submit.schedule")}
-                                          </Form.Label>
-                                          <Col sm="9">
-                                            <PostScheduler date={schedule ? moment(schedule) : null} onChange={this.scheduleChanged}/>
-                                            <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
-                                          </Col>
-                                        </Form.Group>}
-                                        {tags.length > 0 && isCommunity(tags[0]) && (
+                                        {editingEntry === null && <>
                                             <Form.Group as={Row}>
-                                                <Col sm="3"/>
+                                                <Form.Label column={true} sm="3">
+                                                    {_t("submit.reward")}
+                                                </Form.Label>
                                                 <Col sm="9">
-                                                    <Form.Check
-                                                        type="switch"
-                                                        id="reblog-switch"
-                                                        label={_t("submit.reblog")}
-                                                        checked={reblogSwitch}
-                                                        onChange={this.reblogSwitchChanged}
-                                                    />
-                                                    <Form.Text muted={true}>{_t("submit.reblog-hint")}</Form.Text>
+                                                    <Form.Control as="select" value={reward} onChange={this.rewardChanged}>
+                                                        <option value="default">{_t("submit.reward-default")}</option>
+                                                        <option value="sp">{_t("submit.reward-sp")}</option>
+                                                        <option value="dp">{_t("submit.reward-dp")}</option>
+                                                    </Form.Control>
+                                                    <Form.Text muted={true}>{_t("submit.reward-hint")}</Form.Text>
                                                 </Col>
                                             </Form.Group>
-                                        )}
+                                            <Form.Group as={Row}>
+                                                <Form.Label column={true} sm="3">
+                                                    {_t("submit.beneficiaries")}
+                                                </Form.Label>
+                                                <Col sm="9">
+                                                    <BeneficiaryEditor author={activeUser?.username} list={beneficiaries} onAdd={this.beneficiaryAdded}
+                                                                    onDelete={this.beneficiaryDeleted}/>
+                                                    <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
+                                                </Col>
+                                            </Form.Group>
+                                            {global.usePrivate && <Form.Group as={Row}>
+                                            <Form.Label column={true} sm="3">
+                                                {_t("submit.schedule")}
+                                            </Form.Label>
+                                            <Col sm="9">
+                                                <PostScheduler date={schedule ? moment(schedule) : null} onChange={this.scheduleChanged}/>
+                                                <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
+                                            </Col>
+                                            </Form.Group>}
+                                            {tags.length > 0 && isCommunity(tags[0]) && (
+                                                <Form.Group as={Row}>
+                                                    <Col sm="3"/>
+                                                    <Col sm="9">
+                                                        <Form.Check
+                                                            type="switch"
+                                                            id="reblog-switch"
+                                                            label={_t("submit.reblog")}
+                                                            checked={reblogSwitch}
+                                                            onChange={this.reblogSwitchChanged}
+                                                        />
+                                                        <Form.Text muted={true}>{_t("submit.reblog-hint")}</Form.Text>
+                                                    </Col>
+                                                </Form.Group>
+                                            )}
+                                        </>}
                                         {thumbnails.length > 0 && 
                                             <Form.Group as={Row}>
                                                 <Form.Label column={true} sm="3">
