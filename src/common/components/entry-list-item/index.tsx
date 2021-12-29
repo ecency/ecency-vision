@@ -83,7 +83,6 @@ interface State {
   showMuted: boolean;
   mounted: boolean;
   showProfileDetails: boolean;
-  keepShowingProfileDetails: boolean;
   delayHandler: any;
 }
 
@@ -93,7 +92,6 @@ export default class EntryListItem extends Component<Props, State> {
     showMuted: false,
     mounted: false,
     showProfileDetails: false,
-    keepShowingProfileDetails: false,
     delayHandler: null
   }
 
@@ -158,7 +156,7 @@ export default class EntryListItem extends Component<Props, State> {
     }
   }
 
-  showMiniProfile = (e: any) => {
+  showMiniProfile = (e: any) => { 
     e.persist();
     // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
     const timeout =
@@ -172,15 +170,7 @@ export default class EntryListItem extends Component<Props, State> {
     this.setState({ delayHandler: timeout })
   }
 
-  keepShowMiniProfile = (e: any) => {
-    // if user move mouse from username to profile popup
-    e.persist()
-    this.setState({
-      keepShowingProfileDetails: true
-    })
-  }
-
-  hideMiniProfile = (e: any, doNotSetState?: boolean) => {
+  hideMiniProfile = (e: any, doNotSetState?: boolean) => {    
     const { delayHandler } = this.state;
     clearTimeout(delayHandler)
     e.stopPropagation()
@@ -325,8 +315,7 @@ export default class EntryListItem extends Component<Props, State> {
                     {
                       ({ ref }) => {
                         return (
-                          <div ref={ref} className="author btn notranslate d-none d-sm-flex align-items-center position-relative" onMouseEnter={this.showMiniProfile}
-                            onMouseLeave={(e) => this.hideMiniProfile(e, this.state.keepShowingProfileDetails)}>
+                          <div ref={ref} className="author btn notranslate d-none d-sm-flex align-items-center position-relative" onMouseEnter={this.showMiniProfile}>
                             <span>{entry.author}</span>
                           </div>
                         )
@@ -334,10 +323,10 @@ export default class EntryListItem extends Component<Props, State> {
                     }
                   </Reference>
                   {showProfileDetails && entry.author &&
-                    <Popper placement="bottom" modifiers={[{ name: 'offset', options: { offset: () => [0, window.matchMedia('(max-width: 575px)').matches ? 0 : -30]}}]}>
+                    <Popper placement="bottom" modifiers={[{ name: 'offset', options: { offset: () => [0, window.matchMedia('(max-width: 576px)').matches ? 0 : -30]}}]}>
                       {
                         ({ ref, style, placement, arrowProps }) => (
-                          <div ref={ref} style={{...style }} className="popper-container" data-placement={placement} onMouseOver={this.keepShowMiniProfile}
+                          <div ref={ref} style={{...style }} className="popper-container" data-placement={placement}
                             onMouseLeave={this.hideMiniProfile}>
                             <ProfilePreview
                               username={entry.author}
