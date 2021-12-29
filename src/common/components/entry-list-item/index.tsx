@@ -40,6 +40,7 @@ import {repeatSvg, pinSvg, commentSvg, muteSvg, volumeOffSvg, closeSvg, downArro
 
 import defaults from "../../constants/defaults.json";
 import { ProfilePreview } from "../profile-preview";
+import { Manager, Reference, Popper } from "react-popper"
 
 setProxyBase(defaults.imageServer);
 
@@ -283,40 +284,44 @@ export default class EntryListItem extends Component<Props, State> {
                     <div className="item-header-main">
                         <div className="author-part" id={`${entry.author}-${entry.permlink}`}>
                             <div
-                                onMouseEnter={this.showMiniProfile}
-                                onMouseLeave={this.hideMiniProfile}
                                 className="d-flex align-items-center"
                                 id={`${entry.author}-${entry.permlink}`}
                             >
-                                <div className="author-avatar d-sm-none" onClick={this.showMiniProfile} id={`${entry.author}-${entry.permlink}`}>{UserAvatar({...this.props, username: entry.author, size: "small"})}</div>
+                                <div className="author-avatar btn p-0 d-sm-none" onClick={this.showMiniProfile} id={`${entry.author}-${entry.permlink}`}>{UserAvatar({...this.props, username: entry.author, size: "small"})}</div>
                                 {ProfileLink({
                                     ...this.props,
                                     username: entry.author,
                                     children: <a className="author-avatar d-none d-sm-block">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
                                 })}
 
-                                <div className="author notranslate d-flex d-sm-none align-items-center" onClick={this.showMiniProfile} id={`${entry.author}-${entry.permlink}`}>
+                                <div className="author btn notranslate d-flex d-sm-none align-items-center" onClick={this.showMiniProfile} id={`${entry.author}-${entry.permlink}`}>
                                     <span>{entry.author}</span>
                                 </div>
-                            
-                                {ProfileLink({
-                                    ...this.props,
-                                    username: entry.author,
-                                    children: <div className="author notranslate d-none d-sm-flex align-items-center">
-                                                <span>{entry.author}</span>
-                                            </div>
-                                })}
-                                {showProfileDetails && entry.author && 
-                                    <ProfilePreview
-                                        username={entry.author}
-                                        {...this.props}
-                                        onClose={this.hideMiniProfile}
-                                    />
+
+                                <Manager>
+                                    <Reference>
+                                        {({ref}) => (<div ref={ref} className="author btn notranslate d-none d-sm-flex align-items-center position-relative" onMouseEnter={this.showMiniProfile}>
+                                            <span>{entry.author}</span>
+                                        </div>)}
+                                    </Reference>
+                                    {showProfileDetails && entry.author && 
+                                    <Popper placement="bottom" modifiers={[{ name: 'offset', options: { offset: () => [0, window.matchMedia('(max-width: 576px)').matches ? 0 : -30]}}]}>
+                                        {({ref, style, placement, arrowProps}) => (<div ref={ref} style={{...style }} className="popper-container" data-placement={placement}
+                            onMouseLeave={this.hideMiniProfile}>
+                                                <ProfilePreview
+                                                    username={entry.author}
+                                                    {...this.props}
+                                                    onClose={this.hideMiniProfile}
+                                                />
+                                        </div>)}
+                                    </Popper>
                                 }
+                                </Manager>
                             </div>
                              
                             <span
                                 className="author-down-arrow ml-1"
+                                role="button"
                                 onClick={this.showMiniProfile}
                                 id={`${entry.author}-${entry.permlink}`}
                             >

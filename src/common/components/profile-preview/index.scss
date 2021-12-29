@@ -1,7 +1,4 @@
 .profile-container {
-    top: 22%;
-    left: 13%;
-    width: 30%;
     z-index: 4;
 
   @media (max-width: $sm-break) {
@@ -14,8 +11,31 @@
     border-top-right-radius: 0px !important;
   }
 
-  @media (min-width: 577px) and (max-width: 740px) {
-    width: 45%;
+  @media (min-width: 577px) and (max-width: 1000px) {
+    width: 100%;
+  }
+}
+
+.popper-container {
+  width: 30% !important;
+  z-index: 2 !important;
+  padding: 30px;
+  @media (max-width: $sm-break) {
+    width: 100% !important;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 10;
+    height: 100%;
+  }
+  @media (min-width: 577px) and (max-width: 1000px) {
+    width: 80% !important;
+  }
+  @media (min-width: 1001px) and (max-width: 1300px) {
+    width: 60% !important;
   }
 }
 
