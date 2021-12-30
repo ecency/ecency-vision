@@ -285,8 +285,8 @@
     "deleted-content-warning": "Este contenido fue eliminado por el autor. Puedes verlo desde la Blockchain ",
     "comments-hidden": "Silenciaste al autor de esta publicación.",
     "address-copy": "Copiar la dirección de la Publicación",
-    "address-copied": "Dirección de publicación copiada al portapapeles.",
-    "content-copied": "Contenido copiado al portapapeles.",
+    "address-copied": "Post address copied to clipboard",
+    "content-copied": "Content copied to clipboard",
     "browse-original": "Abrir publicación original",
     "cross-post-by": "Publicación cruzada por",
     "cross-post-community": "comunidad",
@@ -458,6 +458,7 @@
     "down-vote-power": "Poder de Votos Negativos: {{n}}%",
     "no-posts": "Aquí verás tus mensajes, parece que no existe contenido.",
     "create-posts": "Vamos a crear una nueva publicación",
+    "link-copied": "Search link copied to clipboard",
     "no-posts-found": "¡No se encontró nada!"
   },
   "profile-edit": {
@@ -468,7 +469,7 @@
     "profile-image": "Imagen de perfil",
     "website": "Página Web",
     "location": "Localización",
-    "copied": "El enlace de referido se ha copiado en el portapapeles.",
+    "copied": "Referral link copied to clipboard",
     "updated": "¡Perfil actualizado exitosamente!"
   },
   "image-upload-button": {
