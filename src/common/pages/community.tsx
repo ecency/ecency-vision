@@ -329,7 +329,7 @@ class CommunityPage extends BaseComponent<Props, State> {
                                                     onChange={this.handleChangeSearch}
                                                     autoComplete="off"
                                                     showcopybutton={true}
-                                                    filter={`@${community.name}`}
+                                                    filter={`${community.name}`}
                                                     username={filter}
                                                     
                                                 /> 

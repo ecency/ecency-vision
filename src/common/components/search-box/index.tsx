@@ -32,7 +32,7 @@ export default class SearchBox extends Component<Props> {
                   size="sm"
                   className="copy-to-clipboard rounded-left"
                   disabled={value.length === 0}
-                  onClick={() => {this.copyToClipboard(`https://ecency.com/${username}/${filter.replace('@','')}?q=${value}`);}}
+                  onClick={() => {this.copyToClipboard(`https://ecency.com/${username}/${filter}?q=${value}`);}}
               >
                   {copyContent}
               </Button>
