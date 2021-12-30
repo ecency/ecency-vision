@@ -285,8 +285,8 @@
     "deleted-content-warning": "Это содержимое было удалено автором. Вы можете увидеть его из блокчейна ",
     "comments-hidden": "Автор сообщения отключен вами.",
     "address-copy": "Скопировать адрес поста",
-    "address-copied": "Адрес поста скопирован в буфер обмена.",
-    "content-copied": "Скопировано в буфер обмена.",
+    "address-copied": "Post address copied to clipboard",
+    "content-copied": "Content copied to clipboard",
     "browse-original": "Открыть оригинальный пост",
     "cross-post-by": "Кросс-пост от",
     "cross-post-community": "сообщество",
@@ -458,6 +458,7 @@
     "down-vote-power": "Понижающая сила голоса: {{n}}%",
     "no-posts": "Здесь вы увидите ваши посты, в которых, похоже, нет содержимого.",
     "create-posts": "Давайте создадим новый пост",
+    "link-copied": "Search link copied to clipboard",
     "no-posts-found": "Ничего не найдено!"
   },
   "profile-edit": {
@@ -468,7 +469,7 @@
     "profile-image": "Фото профиля",
     "website": "Вебсайт",
     "location": "Локация",
-    "copied": "Реферальная ссылка скопирована в буфер обмена.",
+    "copied": "Referral link copied to clipboard",
     "updated": "Профиль обновлен!"
   },
   "image-upload-button": {

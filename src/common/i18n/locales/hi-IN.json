@@ -285,8 +285,8 @@
     "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "इस पोस्ट के लेखक को आपने म्यूट कर दिया है।",
     "address-copy": "पोस्ट पता कापी करे",
-    "address-copied": "क्लिपबोर्ड पर पोस्ट पता कॉपी किया गया।",
-    "content-copied": "Content copied to clipboard.",
+    "address-copied": "Post address copied to clipboard",
+    "content-copied": "Content copied to clipboard",
     "browse-original": "मूल पोस्ट खोलें",
     "cross-post-by": "द्वारा क्रॉस पोस्ट",
     "cross-post-community": "समुदाय",
@@ -458,6 +458,7 @@
     "down-vote-power": "डाउनवोट पावर: {{n}}%",
     "no-posts": "यहां आप अपनी पोस्ट देखेंगे, ऐसा लगता है कि कोई सामग्री मौजूद नहीं है।",
     "create-posts": "आइए एक नई पोस्ट बनाएं",
+    "link-copied": "Search link copied to clipboard",
     "no-posts-found": "कुछ भी नहीं मिला!"
   },
   "profile-edit": {
@@ -468,7 +469,7 @@
     "profile-image": "प्रोफ़ाइल तसवीर",
     "website": "वेबसाइट",
     "location": "स्थान",
-    "copied": "रेफ़रल लिंक क्लिपबोर्ड पर कॉपी किया गया।",
+    "copied": "Referral link copied to clipboard",
     "updated": "प्रोफाइल को सफलतापूर्वक अपडेट किया गया!"
   },
   "image-upload-button": {
