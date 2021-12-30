@@ -32,10 +32,10 @@ import routes from "./routes";
 import * as ls from './util/local-storage';
 
 import i18n from "i18next";
-import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./pages/common";
+import { pageMapDispatchToProps, pageMapStateToProps } from "./pages/common";
 import { connect } from "react-redux";
-const App = connect(pageMapStateToProps, pageMapDispatchToProps)(
-    ({ setLang }:PageProps) => {
+
+const App = ({ setLang }: any) => {
         useEffect(() => {
             let pathname = window.location.pathname;
             if(pathname !== '/faq'){
@@ -85,6 +85,6 @@ const App = connect(pageMapStateToProps, pageMapDispatchToProps)(
             </Switch>
         </>
     );
-});
+};
 
-export default App;
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(App);

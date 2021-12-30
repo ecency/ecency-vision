@@ -26,7 +26,7 @@ const store = configureStore(window["__PRELOADED_STATE__"]);
 hydrate(
     <Provider store={store}>
         <ConnectedRouter history={history!}>
-            <App/>
+            <App />
         </ConnectedRouter>
     </Provider>,
     document.getElementById("root")
