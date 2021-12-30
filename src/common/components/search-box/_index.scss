@@ -5,7 +5,7 @@
     .input-with-copy {
       width: 40% !important;
       &:focus {
-            width: 90% !important;
+            width: 100% !important;
       }
     }
   }
@@ -14,7 +14,7 @@
     @media (min-width: $md-break) {
       &:focus-within {
         input {
-            width: 90% !important;
+            width: 100% !important;
         }
       }
     }

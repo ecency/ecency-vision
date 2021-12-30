@@ -8,7 +8,7 @@ import { success } from "../feedback";
 
 type Props = any;
 
-export default class SearchBox extends Component<Props> {
+export default class SearchBox extends Component<any> {
 
   copyToClipboard = (text: string) => {
       const textField = document.createElement('textarea');
