@@ -285,8 +285,8 @@
     "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "这个帖子的作者被你禁言。",
     "address-copy": "复制帖子地址",
-    "address-copied": "帖子地址已复制到剪贴板。",
-    "content-copied": "Content copied to clipboard.",
+    "address-copied": "Post address copied to clipboard",
+    "content-copied": "Content copied to clipboard",
     "browse-original": "打开原始帖子",
     "cross-post-by": "交叉帖子由",
     "cross-post-community": "社区",
@@ -458,6 +458,7 @@
     "down-vote-power": "投反对票能量： {{n}}%",
     "no-posts": "您将在这里看到您的帖子，看起来不存在任何内容。",
     "create-posts": "让我们创建一个新帖子",
+    "link-copied": "Search link copied to clipboard",
     "no-posts-found": "找不到任何东西！"
   },
   "profile-edit": {
@@ -468,7 +469,7 @@
     "profile-image": "用戶头像",
     "website": "网址",
     "location": "所在地",
-    "copied": "邀请链接已复制到剪贴板",
+    "copied": "Referral link copied to clipboard",
     "updated": "资料更新成功"
   },
   "image-upload-button": {
