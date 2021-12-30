@@ -8,7 +8,7 @@ import { success } from "../feedback";
 
 type Props = any;
 
-export default class SearchBox extends Component<any> {
+export default class SearchBox extends Component<Props> {
 
   copyToClipboard = (text: string) => {
       const textField = document.createElement('textarea');
@@ -21,11 +21,11 @@ export default class SearchBox extends Component<any> {
   }
 
   render() {
-    const {showcopybutton, value, username, filter} = this.props
+    const {showcopybutton, value, username, filter, ...other} = this.props
     return (<div className="search-box">
       {showcopybutton ? 
       <div className="d-flex focus-input">
-          <FormControl type="text" {...this.props} className={"input-with-copy rounded-right"}/>
+          <FormControl type="text" value={value} username={username} filter={filter} {...other} className={"input-with-copy rounded-right"}/>
           <InputGroup.Append>
               <Button
                   variant="primary"
@@ -39,7 +39,7 @@ export default class SearchBox extends Component<any> {
           </InputGroup.Append>
           </div>: <>
       <span className="prepend">{magnifySvg}</span>
-        <FormControl type="text" {...this.props} /></>}
+        <FormControl type="text" value={value} username={username} filter={filter} {...other}/></>}
       </div> )
   }
 }
