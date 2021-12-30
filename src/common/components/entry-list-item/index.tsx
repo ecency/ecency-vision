@@ -305,7 +305,7 @@ export default class EntryListItem extends Component<Props, State> {
                                         </div>)}
                                     </Reference>
                                     {showProfileDetails && entry.author && 
-                                    <Popper placement="bottom" modifiers={[{ name: 'offset', options: { offset: () => [0, window.matchMedia('(max-width: 576px)').matches ? 0 : -30]}}]}>
+                                    <Popper placement="bottom-start" modifiers={[{ name: 'offset', options: { offset: () => [0, window.matchMedia('(max-width: 576px)').matches ? 0 : -30]}}]}>
                                         {({ref, style, placement, arrowProps}) => (<div ref={ref} style={{...style }} className="popper-container" data-placement={placement}
                             onMouseLeave={this.hideMiniProfile}>
                                                 <ProfilePreview

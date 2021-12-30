@@ -58,7 +58,7 @@ import { ProfilePreview } from "../profile-preview";
 import { iteratorStream } from "@hiveio/dhive/lib/utils";
 import { Tsx } from "../../i18n/helper";
 import MyDropDown from "../dropdown";
-
+import { Manager, Reference, Popper } from "react-popper"
 
 interface ItemBodyProps {
     entry: Entry;
@@ -338,50 +338,44 @@ export const Item = (props: ItemProps) => {
             </div>
             <div className="item-inner">
                 <div className="item-figure">
-                    <div className="d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {onShowProfile(e)}}>{UserAvatar({...props, username: entry.author, size: "medium"})}</div>
-                    <div onMouseEnter={(e) => {onShowProfileAvatar(e)}} onMouseLeave={(e, ) => {onHideProfileAvatar(e)}}>
+                    <div className="btn p-0 d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {onShowProfile(e)}}>{UserAvatar({...props, username: entry.author, size: "medium"})}</div>
                         {ProfileLink({...props, username: entry.author, children: 
                                 <a className="d-none d-sm-inline-block">
                                     {UserAvatar({...props, username: entry.author, size: "medium"})}
                                 </a>
                             })
                         }
-
-                        {showProfileDetailsAvatar && entry.author && 
-                            <ProfilePreview
-                                username={entry.author}
-                                {...props}
-                                onClose={(e, doNotSetState) => {onHideProfileAvatar(e, doNotSetState)}}
-                            />
-                        }
-                    </div>
                 </div>
                 <div className="item-content">
                     <div className="item-header">
                         <div
-                            onMouseEnter={(e) => {onShowProfile(e)}}
-                            onMouseLeave={(e) => {onHideProfile(e)}}
                             className="d-flex align-items-center"
                             id={`${entry.author}-${entry.permlink}`} 
                         >
-                        <div className="author notranslate d-flex align-items-center d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {onShowProfile(e)}}>
+                        <div className="author btn notranslate d-flex align-items-center d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {onShowProfile(e)}}>
                             <span className="author-name" id={`${entry.author}-${entry.permlink}`} >{entry.author}</span>
-                            <span className="author-down-arrow mx-2" id={`${entry.author}-${entry.permlink}`} >{menuDownSvg}</span>
+                            <span className="author-down-arrow mx-2" role='button' id={`${entry.author}-${entry.permlink}`} >{menuDownSvg}</span>
                         </div>
-                        {ProfileLink({
-                            ...props,
-                            username: entry.author,
-                            children: <div className="author notranslate d-none align-items-center d-sm-flex">
+
+                        <Manager>
+                                    <Reference>
+                                        {({ref}) => (<div ref={ref} className="author btn notranslate d-none d-sm-flex align-items-center position-relative" onMouseEnter={(e) => {onShowProfile(e)}}>
                                         <span className="author-name">{entry.author}</span>
-                                    </div>
-                        })}
-                        {showProfileDetails && entry.author && 
-                                <ProfilePreview
-                                    username={entry.author}
-                                    {...props}
-                                    onClose={(e, doNotSetState) => {onHideProfile(e, doNotSetState)}}
-                                />
-                        }
+                                        </div>)}
+                                    </Reference>
+                                    {showProfileDetails && entry.author && 
+                                    <Popper placement="bottom-start" modifiers={[{ name: 'offset', options: { offset: () => [0, window.matchMedia('(max-width: 576px)').matches ? 0 : -30]}}]}>
+                                        {({ref, style, placement, arrowProps}) => (<div ref={ref} style={{...style }} className="popper-discussion" data-placement={placement}
+                            onMouseLeave={(e) => {onHideProfile(e)}}>
+                                                <ProfilePreview
+                                                    username={entry.author}
+                                                    {...props}
+                                                    onClose={(e, doNotSetState) => {onHideProfile(e, doNotSetState)}}
+                                                />
+                                        </div>)}
+                                    </Popper>
+                                }
+                                </Manager>
                         </div>
                         <span className="separator"/>
                         {EntryLink({

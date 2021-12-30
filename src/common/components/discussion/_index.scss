@@ -153,10 +153,10 @@
             .author {
               align-items: center;
               display: inline-flex;
+              padding: 2px 10px;
 
               .author-name {
                 font-weight: 700;
-                margin-right: 2px;
                 word-break: keep-all;
               }
 
@@ -178,6 +178,14 @@
 
                 &::after {
                   content: ")";
+                }
+              }
+              &:hover {
+                @include themify(day) {
+                  background: $duck-egg-blue;
+                }
+                @include themify(night) {
+                  background: $metallic-blue;
                 }
               }
             }
@@ -309,6 +317,23 @@
       bottom: 50px;
       left: -20px
     }
+  }
+}
+
+.popper-discussion {
+  width: 75% !important;
+  z-index: 2 !important;
+  padding: 30px;
+  @media (max-width: $sm-break) {
+    width: 100% !important;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 10;
+    height: 100%;
   }
 }
 
