@@ -68,10 +68,10 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 	};
 
 	render() {
-
+		const {activeUser, ...other} = this.props;
 		return (
 			<ReactTextareaAutocomplete
-				{...this.props}
+				{...other}
 				loadingComponent={Loading}
 				rows={this.state.rows}
 				value={this.state.value}
@@ -95,7 +95,7 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 									const splt = token.split('/');
 									if (splt[1]) {
 										timer = setTimeout(async () => {
-											let suggestions = await searchPath(this.props.activeUser.username, token);
+											let suggestions = await searchPath(activeUser.username, token);
 											resolve(suggestions)
 										}, 1000);
 									}
