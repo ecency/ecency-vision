@@ -998,10 +998,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@ecency/render-helper@^2.2.5":
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.2.5.tgz#0ee2cbcc23681277464689fa6db79ba5c183b5ba"
-  integrity sha512-Ywrls/BVrMpwtcdHcfB+EbxEOYgOzd/cd6QsetzT6Ya9JgjhCc7RtOWApahR+GWUxUqQ35fpt3oTcJvsq2AquQ==
+"@ecency/render-helper@^2.2.7":
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.2.7.tgz#aa101605c1d8956a82bb3130c165d4a98dc189fe"
+  integrity sha512-5YcSvHtGJpaHsN8V+/fqSGiPFCBTsMJQNgG6RDctB7T5+uebnvMYMb2ZBkvYcpR4o0M+lWySlaT16vXopQnSAw==
   dependencies:
     he "^1.2.0"
     lolight "^1.4.0"
