@@ -378,7 +378,10 @@ class ProfilePage extends BaseComponent<Props, State> {
                                   value={search}
                                   onChange={this.handleChangeSearch}
                                   autoComplete="off"
-                                /> 
+                                  showcopybutton={true}
+                                  username={`@${username}`}
+                                  filter={filter}
+                                />
                               </div>
                           )
                         }

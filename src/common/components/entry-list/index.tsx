@@ -15,10 +15,8 @@ import {UI, ToggleType} from "../../store/ui/types";
 import EntryListItem from "../entry-list-item/index";
 import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 import MessageNoData from "../message-no-data";
-import SearchBox from '../search-box'
 import { Link } from "react-router-dom";
 import { _t } from "../../i18n";
-import * as ls from "../../util/local-storage";
 import LinearProgress from "../linear-progress";
 import { getFollowing } from "../../api/hive";
 
