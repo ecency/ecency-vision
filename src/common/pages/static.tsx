@@ -844,7 +844,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
     }
 
     copyToClipboard = (text: string) => {
-        success(_t("static.faq.reference-link-copied"));
+        success(_t("static.faq.search-link-copied"));
         clipboard(text)
     }
 
