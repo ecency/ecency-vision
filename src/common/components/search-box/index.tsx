@@ -25,7 +25,7 @@ export default class SearchBox extends Component<Props> {
     return (<div className="search-box">
       {showcopybutton ? 
       <div className="d-flex focus-input">
-          <FormControl type="text" value={value} username={username} filter={filter} {...other} className={"input-with-copy rounded-right"}/>
+          <FormControl type="text" value={value} {...{...other, username, filter}} className={"input-with-copy rounded-right"}/>
           <InputGroup.Append>
               <Button
                   variant="primary"
@@ -39,7 +39,7 @@ export default class SearchBox extends Component<Props> {
           </InputGroup.Append>
           </div>: <>
       <span className="prepend">{magnifySvg}</span>
-        <FormControl type="text" value={value} username={username} filter={filter} {...other}/></>}
+        <FormControl type="text" value={value} {...{...other, username, filter}}/></>}
       </div> )
   }
 }
