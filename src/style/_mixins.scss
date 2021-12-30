@@ -84,9 +84,16 @@
               content: ")";
             }
           }
-        }
-        .author:hover {
-          background-color: #2e3d51;
+          
+          &:hover {
+            @include themify(day) {
+              background: $duck-egg-blue;
+            }
+  
+            @include themify(night) {
+              background: $metallic-blue;
+            }
+          }
         }
       }
 
