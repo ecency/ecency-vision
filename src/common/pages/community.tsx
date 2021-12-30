@@ -328,7 +328,7 @@ class CommunityPage extends BaseComponent<Props, State> {
                                                     value={search}
                                                     onChange={this.handleChangeSearch}
                                                     autoComplete="off"
-                                                    showCopyButton={true}
+                                                    showcopybutton={true}
                                                     filter={`@${community.name}`}
                                                     username={filter}
                                                     

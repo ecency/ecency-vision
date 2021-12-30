@@ -21,9 +21,9 @@ export default class SearchBox extends Component<any> {
   }
 
   render() {
-    const {showCopyButton, value, username, filter} = this.props
+    const {showcopybutton, value, username, filter} = this.props
     return (<div className="search-box">
-      {showCopyButton ? 
+      {showcopybutton ? 
       <div className="d-flex focus-input">
           <FormControl type="text" {...this.props} className={"input-with-copy rounded-right"}/>
           <InputGroup.Append>
