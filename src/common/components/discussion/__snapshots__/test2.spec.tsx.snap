@@ -22,7 +22,7 @@ exports[`(1) Empty list with no active user 1`] = `
     <div
       className="label"
     >
-      Join the conversion now
+      Join the conversation now
     </div>
     <button
       className="btn btn-primary"

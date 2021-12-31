@@ -285,8 +285,8 @@
     "deleted-content-warning": "تم حذف هذا المحتوى من قبل المؤلف. يمكنك رؤيته من Blockchain ",
     "comments-hidden": "مؤلف هذا المنشور مكتوم من قبلك.",
     "address-copy": "نسخ عنوان المنشور",
-    "address-copied": "تم نسخ عنوان المنشور إلى الحافظة.",
-    "content-copied": "تم نسخ المحتوى إلى الحافظة.",
+    "address-copied": "Post address copied to clipboard",
+    "content-copied": "Content copied to clipboard",
     "browse-original": "فتح المنشور الأصلي",
     "cross-post-by": "نشر متقاطع بواسطة",
     "cross-post-community": "مجتمع",
@@ -458,6 +458,7 @@
     "down-vote-power": "قوة التصويت السلبي: {{n}}%",
     "no-posts": "هنا سترى منشوراتك، يبدو أنه لا يوجد أي محتوى.",
     "create-posts": "لننشئ منشوراً جديداً",
+    "link-copied": "Search link copied to clipboard",
     "no-posts-found": "لم يعثر على شيئ!"
   },
   "profile-edit": {
@@ -468,7 +469,7 @@
     "profile-image": "صورة الملف الشخصي",
     "website": "الموقع الإلكتروني",
     "location": "المكان",
-    "copied": "تم نسخ رابط الإحالة إلى الحافظة.",
+    "copied": "Referral link copied to clipboard",
     "updated": "تم تحديث الملف الشخصي بنجاح!"
   },
   "image-upload-button": {

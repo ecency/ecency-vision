@@ -28,7 +28,7 @@ exports[`(1) Default render 1`] = `
         alt="Logo"
         className="logo"
         onClick={[Function]}
-        src="logo-circle.svg"
+        src="logo-circle-santa.svg"
       />
     </div>
     <div
@@ -63,7 +63,7 @@ exports[`(1) Default render 1`] = `
           alt="Logo"
           className="logo"
           onClick={[Function]}
-          src="logo-circle.svg"
+          src="logo-circle-santa.svg"
         />
       </div>
       <div
@@ -440,7 +440,7 @@ exports[`(2) Night Theme 1`] = `
         alt="Logo"
         className="logo"
         onClick={[Function]}
-        src="logo-circle.svg"
+        src="logo-circle-santa.svg"
       />
     </div>
     <div
@@ -475,7 +475,7 @@ exports[`(2) Night Theme 1`] = `
           alt="Logo"
           className="logo"
           onClick={[Function]}
-          src="logo-circle.svg"
+          src="logo-circle-santa.svg"
         />
       </div>
       <div
@@ -960,7 +960,7 @@ exports[`(3) With active user 1`] = `
         <img
           alt="Logo"
           className="logo"
-          src="logo-circle.svg"
+          src="logo-circle-santa.svg"
         />
       </a>
     </div>
@@ -999,7 +999,7 @@ exports[`(3) With active user 1`] = `
           <img
             alt="Logo"
             className="logo"
-            src="logo-circle.svg"
+            src="logo-circle-santa.svg"
           />
         </a>
       </div>
@@ -1570,7 +1570,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
         <img
           alt="Logo"
           className="logo"
-          src="logo-circle.svg"
+          src="logo-circle-santa.svg"
         />
       </a>
     </div>
@@ -1609,7 +1609,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           <img
             alt="Logo"
             className="logo"
-            src="logo-circle.svg"
+            src="logo-circle-santa.svg"
           />
         </a>
       </div>

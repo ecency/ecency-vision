@@ -285,8 +285,8 @@
     "deleted-content-warning": "O conteúdo foi deletado pelo autor. Entretanto, você poderá vê-lo acessando os registros na Blockchain ",
     "comments-hidden": "O autor desta publicação foi silenciado por você.",
     "address-copy": "Copiar endereço do post",
-    "address-copied": "Endereço do post copiado.",
-    "content-copied": "Conteúdo copiado para a área de transferência.",
+    "address-copied": "Post address copied to clipboard",
+    "content-copied": "Content copied to clipboard",
     "browse-original": "Abrir publicação original",
     "cross-post-by": "Repostado por",
     "cross-post-community": "comunidade",
@@ -458,6 +458,7 @@
     "down-vote-power": "Poder de Voto Negativo: {{n}}%",
     "no-posts": "Aqui você verá suas publicações. Não há conteúdo ainda.",
     "create-posts": "Vamos criar uma nova publicação",
+    "link-copied": "Search link copied to clipboard",
     "no-posts-found": "Nada encontrado!"
   },
   "profile-edit": {
@@ -468,7 +469,7 @@
     "profile-image": "Imagem de Perfil",
     "website": "Website",
     "location": "Localização",
-    "copied": "Link de referência copiado para a área de transferência.",
+    "copied": "Referral link copied to clipboard",
     "updated": "Perfil atualizado com sucesso!"
   },
   "image-upload-button": {

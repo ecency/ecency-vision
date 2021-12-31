@@ -68,12 +68,10 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 	};
 
 	render() {
-
-		const {activeUser} = this.props;
-
+		const {activeUser, ...other} = this.props;
 		return (
 			<ReactTextareaAutocomplete
-				{...this.props}
+				{...other}
 				loadingComponent={Loading}
 				rows={this.state.rows}
 				value={this.state.value}
