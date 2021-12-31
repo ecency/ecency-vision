@@ -153,7 +153,7 @@
             .author {
               align-items: center;
               display: inline-flex;
-              padding: 2px 10px;
+              padding: 2px;
 
               .author-name {
                 font-weight: 700;
@@ -328,11 +328,12 @@
     width: 100% !important;
     background-color: rgba(0, 0, 0, 0.1);
     position: absolute;
+    padding: 0px;
     top: 0px;
     bottom: 0px;
     left: 0px;
     right: 0px;
-    z-index: 10;
+    z-index: 10 !important;
     height: 100%;
   }
 }

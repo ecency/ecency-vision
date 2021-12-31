@@ -61,7 +61,7 @@
         .author {
           font-weight: 700;
           word-break: keep-all;
-          padding: 2px 10px;
+          padding: 2px;
 
           @include themify(day) {
             color: $charcoal-grey;

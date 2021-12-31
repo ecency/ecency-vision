@@ -354,8 +354,9 @@ export const Item = (props: ItemProps) => {
                         >
                         <div className="author btn notranslate d-flex align-items-center d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {onShowProfile(e)}}>
                             <span className="author-name" id={`${entry.author}-${entry.permlink}`} >{entry.author}</span>
-                            <span className="author-down-arrow mx-2" role='button' id={`${entry.author}-${entry.permlink}`} >{menuDownSvg}</span>
+                            
                         </div>
+                        <span className="author-down-arrow mx-1" role='button' onClick={(e) => {onShowProfile(e)}} id={`${entry.author}-${entry.permlink}`} >{menuDownSvg}</span>
 
                         <Manager>
                                     <Reference>

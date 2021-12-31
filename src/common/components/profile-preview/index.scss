@@ -2,6 +2,7 @@
     z-index: 4;
 
   @media (max-width: $sm-break) {
+    position: absolute;
     top: unset;
     width: 100%;
     bottom: 0px;
@@ -24,6 +25,7 @@
     width: 100% !important;
     background-color: rgba(0, 0, 0, 0.1);
     position: absolute;
+    padding: 0px;
     top: 0px;
     bottom: 0px;
     left: 0px;
@@ -111,7 +113,8 @@
 .profile-parent {
   @media (max-width: $sm-break) {
     background-color: rgb(0 0 0 / 85%);
-    position: absolute;
+    position: relative;
+    height: 100vh;
     top: 0px;
     bottom: 0px;
     left: 0px;
