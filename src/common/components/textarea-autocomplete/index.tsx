@@ -96,9 +96,10 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 							});
 						},
 						component: (props: any) => {
+							debugger
 							return (
 								<>
-									{UserAvatar({ global: this.props.global, username: props.entity, size: "small" })}
+									{props.entity.includes("/") ? null : UserAvatar({ global: this.props.global, username: props.entity, size: "small" })}
 									<span style={{ marginLeft: "8px" }}>{props.entity}</span>
 								</>
 							)

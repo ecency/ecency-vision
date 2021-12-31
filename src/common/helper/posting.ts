@@ -42,7 +42,7 @@ export const createPermlink = (title: string, random: boolean = false): string =
 
 export const extractMetaData = (body: string): MetaData => {
     const urlReg = /(\b(https?|ftp):\/\/[A-Z0-9+&@#/%?=~_|!:,.;-]*[-A-Z0-9+&@#/%=~_|])/gim;
-    const userReg = /(^|[ \t]{2,})(@[a-z][-.a-z\d]+[a-z\d])(\/?[-a-z\d]*)/gm;
+    const userReg = /(^|\s)(@[a-z][-.a-z\d]+[a-z\d])/gim;
     const imgReg = /(https?:\/\/.*\.(?:tiff?|jpe?g|gif|png|svg|ico|heic|webp))/gim;
 
     const out: MetaData = {};
