@@ -106,6 +106,7 @@ export class Search extends BaseComponent<Props, State> {
           {...this.props}
           value={query}
           containerClassName={containerClassName}
+          changed={true}
         >
           <SearchBox
             placeholder={placeholder}

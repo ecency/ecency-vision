@@ -202,7 +202,7 @@
       h1.entry-title {
         font-size: 42px;
         margin: 16px 0 22px 0;
-        word-break: break-all;
+        word-break: break-word;
 
         @media (min-width: $md-break) {
           font-size: 38px;

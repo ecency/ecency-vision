@@ -120,6 +120,7 @@ exports[`(2) Dialog 1`] = `
                 value="good-karma"
               />
             </div>
+            <div />
           </div>
         </div>
       </div>

@@ -236,13 +236,13 @@ export class Transfer extends BaseComponent<Props, State> {
             }
 
             this.stateSet({inProgress: true, toData: null});
-            const {activeUser, dynamicProps: { hivePerMVests } } = this.props;
+            const {activeUser, mode, dynamicProps: { hivePerMVests } } = this.props;
 
             return getAccount(to)
                 .then(resp => {
                     if (resp) {
                         this.stateSet({toError: '', toData: resp});
-                        activeUser && activeUser.username && getVestingDelegations(activeUser.username, to, 1000).then(res=>{
+                        activeUser && activeUser.username && mode === "delegate" && getVestingDelegations(activeUser.username, to, 1000).then(res=>{
                             const delegateAccount = res && res.length > 0 && 
                             (res!.find(item => (item as any).delegatee===to && (item as any).delegator===activeUser.username));
                             const previousAmount = delegateAccount ? Number(formattedNumber(vestsToHp(Number(parseAsset((delegateAccount!.vesting_shares)).amount), hivePerMVests))) : "";

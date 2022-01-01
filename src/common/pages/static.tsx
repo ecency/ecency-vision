@@ -23,29 +23,33 @@ import {Button, ButtonGroup, Form} from 'react-bootstrap'
 const faqKeysGeneral = [
     'what-is-ecency',
     'what-is-difference',
+    'what-is-hive',
     'why-choose-ecency',
     'how-ecency-works',
     'how-to-join',
+    'can-change-username',
+    'can-delete-account',
     'how-to-signin',
     'how-to-contribute',
     'how-referrals-work',
     'what-is-points',
     'where-tokens-come',
+    'what-are-rc',
     'how-promotion-work',
     'how-boosting-work',
+    'why-refund-points',
+    'boosting-vote-buying',
+    'different-reward-choices',
     'can-guest-post',
     'can-link-post',
     'source-label',
     'how-to-transfer',
     'how-see-rewards',
     'when-claim-rewards',
-    'how-dhf-work',
-    'what-are-rc',
     'how-boost-account',
+    'how-dhf-work',
     'what-spam-abuse',
 ]
-
-const faqKeysHive = [ 'what-is-hive']
 
 class AboutPage extends Component<PageProps> {
     render() {
@@ -123,7 +127,7 @@ class AboutPage extends Component<PageProps> {
                     <div className="faq">
                         <h2 className="faq-title">{_t('static.about.faq-title')}</h2>
                         <div className="faq-links">
-                            {[...faqKeysGeneral,...faqKeysHive].slice(0, 4).map(x => {
+                            {[...faqKeysGeneral].slice(0, 4).map(x => {
                                 return <p key={x}>
                                     <a className="faq-link" href={`/faq#${x}`}>{_t(`static.faq.${x}-header`)}</a>
                                 </p>
@@ -822,7 +826,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
         const {global} = this.props;
         const imgs = apiBase(`/assets/ecency-faq.${this.props.global.canUseWebp ? 'webp' : 'jpg'}`);
         let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
-        let faqKeys = [...faqKeysGeneral, ...faqKeysHive];
+        let faqKeys = [...faqKeysGeneral];
         let searchResult: string[] = [];
         if(search && search.length > 0){
             faqKeys.map(x => {

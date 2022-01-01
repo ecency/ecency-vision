@@ -108,14 +108,18 @@ export default (state: Global = initialState, action: Actions): Global => {
 };
 
 /* Actions */
-export const toggleTheme = () => (
+export const toggleTheme = (theme_key?:Theme) => (
   dispatch: Dispatch,
   getState: () => AppState
 ) => {
   const { global } = getState();
 
   const { theme, isMobile } = global;
-  const newTheme = theme === Theme.day ? Theme.night : Theme.day;
+  let newTheme: any = theme === Theme.day ? Theme.night : Theme.day;
+  
+  if (!!theme_key) {
+    newTheme = theme_key;
+  }
 
   ls.set("theme", newTheme);
   Cookies.set("theme", newTheme);

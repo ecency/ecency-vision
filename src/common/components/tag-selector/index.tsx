@@ -102,7 +102,7 @@ export class TagSelector extends Component<Props, State> {
         pastedData = clipboardData.getData('Text');
         this.setState({value: ""});
 
-        let isMultiTagsWithSpace = pastedData.split(' ').join(",").split(",")
+        let isMultiTagsWithSpace = pastedData.split(' ').join(",").split('\n').join(",").split(",")
         if(isMultiTagsWithSpace.length > 1 ){
             for (const item of isMultiTagsWithSpace) {
                 await this.filter(item.split(' '));

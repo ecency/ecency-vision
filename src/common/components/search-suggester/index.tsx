@@ -27,6 +27,7 @@ interface Props {
     value: string;
     children: JSX.Element;
     containerClassName?: string;
+    changed: boolean;
 }
 
 interface State {
@@ -58,7 +59,7 @@ export class SearchSuggester extends BaseComponent<Props, State> {
             return;
         }
 
-        if (this.props.value !== prevProps.value) {
+        if (this.props.value !== prevProps.value && this.props.changed) {
             this.trigger();
         }
     }
@@ -256,7 +257,8 @@ export default (p: Props) => {
         value: p.value,
         trendingTags: p.trendingTags,
         children: p.children,
-        containerClassName: p.containerClassName
+        containerClassName: p.containerClassName,
+        changed: p.changed
     }
 
     return <SearchSuggester {...props} />

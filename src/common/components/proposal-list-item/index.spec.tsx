@@ -56,6 +56,7 @@ it('(1) Default render.', async () => {
 /*it('(2) Return proposal.', async () => {
     const props = {
         ...defProps,
+        isReturnProposalId: 0,
         proposal: {...proposalInstance, id: 0, proposal_id: 0}
     }
 

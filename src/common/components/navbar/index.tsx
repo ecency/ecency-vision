@@ -39,7 +39,7 @@ import _c from "../../util/fix-class-names";
 import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg, chevronUpSvg, upArrowSvg, keySvg, sunSvg, gifCardSvg} from "../../img/svg";
 import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
-const logo = require('../../img/logo-circle.svg');
+//const logo = require('../../img/logo-circle.svg');
 
 interface Props {
     history: History;
@@ -53,7 +53,7 @@ interface Props {
     notifications: Notifications;
     step?: number;
     fetchTrendingTags: () => void;
-    toggleTheme: () => void;
+    toggleTheme: (theme_key?: string) => void;
     addUser: (user: User) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
@@ -108,10 +108,15 @@ export class NavBar extends Component<Props, State> {
         if (!location.pathname.startsWith("/signup") && qs.referral) {
             history.push(`/signup?referral=${qs.referral}`)
         }
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', this.handleAutoDetectTheme); // listen to dark theme
+        // this.handleSetTheme(); // detect default set theme on load page
     }
 
     componentWillUnmount() {
-        document.getElementsByTagName('body')[0].classList.remove("overflow-hidden")
+        document.getElementsByTagName('body')[0].classList.remove("overflow-hidden");
+
+        window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', this.handleAutoDetectTheme)
     }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
@@ -173,9 +178,19 @@ export class NavBar extends Component<Props, State> {
         }
     }
 
+    // handleSetTheme = () => {
+    //     const _default_theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.night : Theme.day
+    //     this.props.toggleTheme(_default_theme);
+    // }
+
+    handleAutoDetectTheme = (e: any = null) => {        
+        const _default_theme = e && e.matches ? Theme.night : Theme.day
+        this.props.toggleTheme(_default_theme);
+    }
+
     render() {
         const {global, activeUser, ui, step, toggleUIProp, setActiveUser } = this.props;
-        const logo = global.isElectron ? "./img/logo-circle.svg" : require('../../img/logo-circle.svg');
+        const logo = global.isElectron ? "./img/logo-circle.svg" : require('../../img/logo-circle-santa.svg');
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
         const {smVisible, floating, showMobileSearch, showProfileMenu, drafts, bookmarks, fragments, gallery, schedules } = this.state;

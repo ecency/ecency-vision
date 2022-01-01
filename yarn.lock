@@ -998,10 +998,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@ecency/render-helper@^2.2.4":
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.2.4.tgz#a6eedf5f8dd6b7fd89d14ceeeebe7cabe84f2de6"
-  integrity sha512-acBcz2D0Z8A74hDpEV1XwuQtftwhaorgxrr1nMOCHH+EbX/DizX3L8qtzbgt+6FPWFpsxbBVPvbBYwPxnKH5RQ==
+"@ecency/render-helper@^2.2.7":
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.2.7.tgz#aa101605c1d8956a82bb3130c165d4a98dc189fe"
+  integrity sha512-5YcSvHtGJpaHsN8V+/fqSGiPFCBTsMJQNgG6RDctB7T5+uebnvMYMb2ZBkvYcpR4o0M+lWySlaT16vXopQnSAw==
   dependencies:
     he "^1.2.0"
     lolight "^1.4.0"
@@ -1781,6 +1781,13 @@
     anymatch "^3.0.0"
     source-map "^0.6.0"
 
+"@types/webscopeio__react-textarea-autocomplete@^4.7.2":
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/@types/webscopeio__react-textarea-autocomplete/-/webscopeio__react-textarea-autocomplete-4.7.2.tgz#605e8a6b4194fb4b6e55df8a19bc8fcd56319cfa"
+  integrity sha512-e1DZGD+eH19BnllTWCGXAdrMa2kI53wEMuhn/d+wUmnu8//ZI6BiuK/EPdw07fI4+tlyo5qdPZdXdpkoXHJVOw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/yargs-parser@*":
   version "20.2.1"
   resolved "https://registry.yarnpkg.com/@types/yargs-parser/-/yargs-parser-20.2.1.tgz#3b9ce2489919d9e4fea439b76916abc34b2df129"
@@ -1944,6 +1951,14 @@
     "@webassemblyjs/ast" "1.9.0"
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
+
+"@webscopeio/react-textarea-autocomplete@^4.8.1":
+  version "4.8.1"
+  resolved "https://registry.yarnpkg.com/@webscopeio/react-textarea-autocomplete/-/react-textarea-autocomplete-4.8.1.tgz#2209da4337135612b33b333aabe002fb14f88aaa"
+  integrity sha512-1toVv6rlvpzH5pgvkfuGRFTkYrhc+flLGMjQHpnkaaVBRp+7DCgGt2ou5NdHI52PBOdQtK6Pwar5coyF33Tj/Q==
+  dependencies:
+    custom-event "^1.0.1"
+    textarea-caret "3.0.2"
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
@@ -3779,6 +3794,11 @@ currency-symbol-map@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/currency-symbol-map/-/currency-symbol-map-4.0.4.tgz#3cfba625974dd3f86822d327ecbd10248695e95e"
   integrity sha512-hkSCCopJXVsvIZIiumJc6FoNXR5LQ646c3ufzF0yfv3155PYygysHw24JuzPSg4j86EFpvtgeX+vEhzRtcJ5Ag==
+
+custom-event@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/custom-event/-/custom-event-1.0.1.tgz#5d02a46850adf1b4a317946a3928fccb5bfd0425"
+  integrity sha1-XQKkaFCt8bSjF5RqOSj8y1v9BCU=
 
 cyclist@^1.0.1:
   version "1.0.1"
@@ -10527,6 +10547,11 @@ text-table@0.2.0, text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
+textarea-caret@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/textarea-caret/-/textarea-caret-3.0.2.tgz#f360c48699aa1abf718680a43a31a850665c2caf"
+  integrity sha1-82DEhpmqGr9xhoCkOjGoUGZcLK8=
+
 throat@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/throat/-/throat-5.0.0.tgz#c5199235803aad18754a667d659b5e72ce16764b"
@@ -10588,9 +10613,9 @@ tmp@^0.0.33:
     os-tmpdir "~1.0.2"
 
 tmpl@1.0.x:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/tmpl/-/tmpl-1.0.4.tgz#23640dd7b42d00433911140820e5cf440e521dd1"
-  integrity sha1-I2QN17QtAEM5ERQIIOXPRA5SHdE=
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/tmpl/-/tmpl-1.0.5.tgz#8683e0b902bb9c20c4f726e3c0b69f36518c07cc"
+  integrity sha512-3f0uOEAQwIqGuWW2MVzYg8fV/QNnc/IpuJNG837rLuczAaLVHslWHZQj4IGiEl5Hs3kkbhwL9Ab7Hrsmuj+Smw==
 
 to-arraybuffer@^1.0.0:
   version "1.0.1"
@@ -10987,9 +11012,9 @@ url-loader@^4.1.1:
     schema-utils "^3.0.0"
 
 url-parse@^1.4.3:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.5.1.tgz#d5fa9890af8a5e1f274a2c98376510f6425f6e3b"
-  integrity sha512-HOfCOUJt7iSYzEx/UqgtwKRMC6EU91NFhsCHMv9oM03VJcVo2Qrp8T8kI9D7amFf1cu+/3CEhgb3rF9zL7k85Q==
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.5.3.tgz#71c1303d38fb6639ade183c2992c8cc0686df862"
+  integrity sha512-IIORyIQD9rvj0A4CLWsHkBBJuNqWpFQe224b6j9t/ABmquIS0qDU2pY6kl6AuOrL5OkCXHMCFNe1jBcuAggjvQ==
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"

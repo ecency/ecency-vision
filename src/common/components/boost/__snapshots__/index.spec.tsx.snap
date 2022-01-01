@@ -74,6 +74,7 @@ exports[`(1) Default render 1`] = `
               type="text"
               value=""
             />
+            <div />
           </div>
           
           <small
@@ -100,7 +101,7 @@ exports[`(1) Default render 1`] = `
             <div
               className="slider-price"
             >
-              0.378 $
+              1.000 $
               <small>
                 150
                  POINTS
@@ -225,6 +226,7 @@ exports[`(2) Insufficient Funds 1`] = `
               type="text"
               value=""
             />
+            <div />
           </div>
           
           <small
@@ -251,7 +253,7 @@ exports[`(2) Insufficient Funds 1`] = `
             <div
               className="slider-price"
             >
-              0.378 $
+              1.000 $
               <small>
                 150
                  POINTS
@@ -372,6 +374,7 @@ exports[`(2) With entry 1`] = `
               type="text"
               value="good-karma/awesome-hive"
             />
+            <div />
           </div>
           
           <small
@@ -398,7 +401,7 @@ exports[`(2) With entry 1`] = `
             <div
               className="slider-price"
             >
-              0.378 $
+              1.000 $
               <small>
                 150
                  POINTS

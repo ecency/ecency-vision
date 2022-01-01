@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
 import {connect} from "react-redux";
 import {match} from "react-router";
-
 import {Alert} from "react-bootstrap";
+import _ from "lodash";
+
 import SearchListItem from "../components/search-list-item";
 
 import {ListStyle} from "../store/global/types";
@@ -40,7 +41,6 @@ import capitalize from "../util/capitalize";
 
 import defaults from "../constants/defaults.json";
 import SearchBox from "../components/search-box";
-import _ from "lodash";
 
 interface MatchParams {
     filter: string;
@@ -328,6 +328,10 @@ class CommunityPage extends BaseComponent<Props, State> {
                                                     value={search}
                                                     onChange={this.handleChangeSearch}
                                                     autoComplete="off"
+                                                    showcopybutton={true}
+                                                    filter={`${community.name}`}
+                                                    username={filter}
+                                                    
                                                 /> 
                                             </div>
                                         )

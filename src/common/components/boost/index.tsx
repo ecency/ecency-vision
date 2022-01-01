@@ -228,9 +228,9 @@ export class Boost extends BaseComponent<Props, State> {
     }
 
     pointsToSbd = (points: number) => {
-        const {dynamicProps} = this.props;
-        const {base, quote} = dynamicProps;
-        return points * 0.01 * (base / quote);
+        //const {dynamicProps} = this.props;
+        //const {base, quote} = dynamicProps;
+        return points / 150; //* 0.01 * (base / quote);
     };
 
     render() {

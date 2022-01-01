@@ -68,6 +68,7 @@ import {checkSvg, contentSaveSvg} from "../img/svg";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import ModalConfirm from "../components/modal-confirm";
 import ResizableTextarea from "../components/resizable-text-area";
+import TextareaAutocomplete from "../components/textarea-autocomplete";
 
 interface PostBase {
     title: string;
@@ -147,6 +148,7 @@ interface State extends PostBase, Advanced {
     disabled: boolean;
     thumbnails: string[];
     selectedThumbnail: string;
+    selectionTouched: boolean;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -159,6 +161,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         editingEntry: null,
         saving: false,
         editingDraft: null,
+        selectionTouched: false,
         advanced: false,
         beneficiaries: [],
         thumbnails: [],
@@ -426,6 +429,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         this.stateSet({title: "", tags: [], body: "", advanced: false, reward: "default", beneficiaries: [], schedule: null, reblogSwitch: false, clearModal: false}, () => {
             this.updatePreview();
             this.saveAdvanced();
+            ls.remove('draft_selected_image');
         });
 
         const {editingDraft} = this.state;
@@ -499,7 +503,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const {activeUser, history, addEntry} = this.props;
-        const {title, tags, body, reward, reblogSwitch, beneficiaries, selectedThumbnail} = this.state;
+        const {title, tags, body, reward, reblogSwitch, beneficiaries, selectedThumbnail, selectionTouched} = this.state;
 
         // make sure active user fully loaded
         if (!activeUser || !activeUser.data.__loaded) {
@@ -533,10 +537,15 @@ class SubmitPage extends BaseComponent<Props, State> {
         let localThumbnail = ls.get('draft_selected_image');
 
         if(meta.image){
-            meta.image = [selectedThumbnail, ...meta.image!.splice(0,9)]
+            if(selectionTouched){
+                meta.image = [selectedThumbnail, ...meta.image!.splice(0,9)]
+            }
+            else {
+                meta.image = [ ...meta.image!.splice(0,9)]
+            }
         }
         else if(selectedThumbnail === localThumbnail){
-            ls.remove('draft_selected_image')
+            ls.remove('draft_selected_image');
         }
         else {
             meta.image = [selectedThumbnail]
@@ -741,7 +750,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         const {global, activeUser} = this.props;
 
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
-        const isMobile = typeof window !== 'undefined' && window.innerWidth < 570;
+        // const isMobile = typeof window !== 'undefined' && window.innerWidth < 570;
         let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
         return (
             <>
@@ -797,25 +806,19 @@ class SubmitPage extends BaseComponent<Props, State> {
                             })}
                         </div>
                         <div className="body-input">
-                           {isMobile ? <ResizableTextarea
-                                id="the-editor-xs"
+                            <TextareaAutocomplete
+                                global={this.props.global}
+                                activeUser={this.props.activeUser}
+                                id="the-editor"
                                 className="the-editor accepts-emoji form-control"
+                                as="textarea"
                                 placeholder={_t("submit.body-placeholder")}
-                                value={body}
+                                value={body.length > 0 ? body : preview.body}
                                 onChange={this.bodyChanged}
                                 minrows={10}
                                 maxrows={100}
                                 spellCheck={true}
-                                /> : <Form.Control
-                                id="the-editor"
-                                className="the-editor accepts-emoji"
-                                as="textarea"
-                                placeholder={_t("submit.body-placeholder")}
-                                value={body}
-                                onChange={this.bodyChanged}
-                                rows={10}
-                                spellCheck={true}
-                            />}
+                            />
                         </div>
                         {editingEntry === null && (
                             <div className="bottom-toolbar">
@@ -968,7 +971,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                                     <div
                                                                         className={`selection-item shadow ${selectedItem === item ? "selected" : ""} mr-3 mb-2`}
                                                                         style={{backgroundImage:`url("${proxifyImageSrc(item, 260, 200)}")`}}
-                                                                        onClick={() => this.selectThumbnails(item)}
+                                                                        onClick={() => { this.selectThumbnails(item); this.setState({selectionTouched: true})}}
                                                                         key={item}
                                                                     />
                                                                     {selectedItem === item && <div className="text-success check position-absolute bg-white rounded-circle d-flex justify-content-center align-items-center">
