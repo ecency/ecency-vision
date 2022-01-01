@@ -14,13 +14,6 @@ const buyColumns = [
     `${_t("market.price")}`
 ];
 
-const sellColumns = [
-    `${_t("market.price")}`,
-    `${_t("wallet.hive")}`,
-    `${_t("market.hbd")} ($)`,
-    `${_t("market.total")} ${_t("market.hbd")} ($)`
-];
-
 const tradeColumns = [
     `${_t("market.date")}`,
     `${_t("market.price")}`,
@@ -39,9 +32,10 @@ interface Props {
     type: 1 | 2 | 3;
     loading: boolean;
     data: OrdersDataItem[] | TradeDataItem[];
+    onPriceClick?: (value: string | number) => void;
 }
 
-export const Orders = ({type, loading, data}: Props) => {
+export const Orders = ({type, loading, data, onPriceClick}: Props) => {
     const [page, setPage] = useState(1)
     let columns = buyColumns;
     let title = `${_t("market.buy")} ${_t("market.orders")}`;
@@ -58,14 +52,14 @@ export const Orders = ({type, loading, data}: Props) => {
             })
             break;
         case 2:
-            columns = sellColumns;
+            columns = buyColumns;
             title = `${_t("market.sell")} ${_t("market.orders")}`;
             mappedData = (data as OrdersDataItem[]).map((item:OrdersDataItem) => {
                 return {
-                    key4: (item as OrdersDataItem).hbd/1000,
-                    key3: (item as OrdersDataItem).order_price.quote,
-                    key2: (item as OrdersDataItem).hive,
-                    key1: parseFloat((item as OrdersDataItem).real_price).toFixed(6)
+                    key1: (item as OrdersDataItem).hbd/1000,
+                    key2: (item as OrdersDataItem).order_price.quote,
+                    key3: (item as OrdersDataItem).hive,
+                    key4: parseFloat((item as OrdersDataItem).real_price).toFixed(6)
                 }
             })
             break;
@@ -101,7 +95,7 @@ export const Orders = ({type, loading, data}: Props) => {
                             <td>{item.key1}</td>
                             <td>{item.key2}</td>
                             <td>{item.key3}</td>
-                            <td>{item.key4}</td>
+                            <td className={type===1 || type===2 ? 'pointer' : ''} onClick={() => onPriceClick ? onPriceClick(item.key4) : {}}>{item.key4}</td>
                         </tr>)}
                     </tbody>
                 </Table>
