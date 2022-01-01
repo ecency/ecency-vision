@@ -41,6 +41,7 @@ export class SwitchLang extends Component<Props> {
                         i18n.changeLanguage(f.code).then(() => {
                             setLang(f.code);
                         });
+                        ls.set("current-language", f.code)
                     }
                 }
             })),
