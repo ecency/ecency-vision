@@ -85,9 +85,16 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 							return new Promise((resolve) => {
 								timer = setTimeout(async () => {
 									if(token.includes("/")){
-										searchPath(activeUser, token).then(resp => {
+										let ignoreList = ['wallet', 'feed', 'followers', 'following', 'points', 'communities', 'posts', 'blog', 'comments', 'replies', 'settings', 'engine']
+										let searchIsInvalid = ignoreList.some(item => token.includes(`/${item}`))
+										if(!searchIsInvalid){
+											searchPath(activeUser, token).then(resp => {
 											resolve(resp)
-										})}
+										})
+									} else {
+										resolve([])
+									}
+									}
 									else {
 										let suggestions = await lookupAccounts(token, 5)
 										resolve(suggestions)
