@@ -550,6 +550,10 @@ class SubmitPage extends BaseComponent<Props, State> {
         else {
             meta.image = [selectedThumbnail]
         }
+        if(meta.image){
+            meta.image = [...new Set(meta.image)]
+        }
+        
         const jsonMeta = makeJsonMetaData(meta, tags, version);
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
         this.stateSet({posting: true});
@@ -624,6 +628,10 @@ class SubmitPage extends BaseComponent<Props, State> {
         else if(selectionTouched){
             meta.image = [selectedThumbnail]
         }
+        if(meta.image){
+            meta.image = [...new Set(meta.image)]
+        }
+        
         const jsonMeta = Object.assign({}, json_metadata, meta, {tags});
 
         this.stateSet({posting: true});
@@ -972,7 +980,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                     {_t("submit.thumbnail")}
                                                 </Form.Label>
                                                 <div className="col-sm-9 d-flex flex-wrap selection-container">
-                                                    {thumbnails!.map((item, i)=> {
+                                                    {[...new Set(thumbnails)]!.map((item, i)=> {
                                                         let selectedItem = selectedThumbnail;
                                                         switch(selectedItem){
                                                             case '':
