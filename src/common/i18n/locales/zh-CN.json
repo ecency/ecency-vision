@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "目录",
       "what-is-ecency-header": "什么是Ecency？",
       "search": "Related results for {{search}} filtered below",
