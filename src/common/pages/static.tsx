@@ -907,7 +907,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                                             size="sm"
                                             className="copy-to-clipboard"
                                             disabled={search.length === 0}
-                                            onClick={() => {this.copyToClipboard(`http://localhost:3000/faq?q=${search}&lang=${global.lang.split("-")[0]}`);}}
+                                            onClick={() => {this.copyToClipboard(`https://ecency.com/faq?q=${search}&lang=${global.lang.split("-")[0]}`);}}
                                         >
                                             {copyContent}
                                         </Button>
