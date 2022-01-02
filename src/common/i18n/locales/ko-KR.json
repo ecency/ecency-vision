@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "어떻게 도와 드릴까요?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "목차",
       "what-is-ecency-header": "Ecency란?",
       "search": "아래 필터링된 {{search}} 관련 결과",
