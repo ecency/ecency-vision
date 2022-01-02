@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "Bagaimana kami dapat membantu Anda?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Daftar Isi",
       "what-is-ecency-header": "Apa itu Ecency?",
       "search": "Berikut ini adalah hasil pencarian yang berkaitan dengan {{search}}",
