@@ -1072,7 +1072,7 @@
     },
     "faq": {
       "page-title": "Como podemos ajudá-lo?",
-      "search-link-copied": "Search link copied to clipboard",
+      "search-link-copied": "Link de pesquisa copiado para a área de transferência",
       "page-sub-title": "Tabela de conteúdos",
       "what-is-ecency-header": "O que é Ecency?",
       "search": "Resultados relacionados para {{search}} filtrados abaixo",
@@ -1129,10 +1129,10 @@
       "can-change-username-body": "<p>Account names on Ecency and Hive blockchain can not be changed. If you would like a new account name, you can create new account.</p>",
       "can-delete-account-header": "Posso excluir ou desativar minha conta?",
       "can-delete-account-body": "<p>Accounts on Ecency can not be deactivated or deleted. The account along with all of its activity is permanently stored in the Hive blockchain.</p>",
-      "different-reward-choices-header": "What are the differences in Reward types?",
+      "different-reward-choices-header": "Quais são as diferenças nos tipos de recompensa?",
       "different-reward-choices-body": "<p>In publishing settings section, you can see 3 different Reward types/choices.<ul><li>50%/50% - This rewards in half Hive Power, and half liquid HIVE / Hive Dollars. The ratio of liquid HIVE to Hive Dollars rewarded is based on network conditions at the time of payout. This is the default payout option.</li><li>Power Up 100% - This option rewards the post in 100% Hive Power.</li><li>Decline Payout - Use this option to receive no post rewards. Votes will affect the post's position on the trending ranking but no rewards are paid from Hive's reward pool. Replies made to the post are still eligible for rewards.</li></ul></p>",
-      "boosting-vote-buying-header": "Is boosting considered a vote buying?",
-      "boosting-vote-buying-body": "<p>No! Because, there is no guarantee of receiving vote, there is no guarantee of exact amount of vote, boosting maximum amount is limited, each content reviewed by our curators, there is no profit in it. All curation rewards are sent back to delegators 100%. Only measurable success we seek is to see engagement and growth on entire ecosystem. Boosting is simply creating additional use case for Ecency Points to improve engagement on platform, so it is essentially same as any other curation guilds on Hive. Goal of those guilds ultimately to improve engagement on platform and grow activity, the way each measures that success is the different.</p>"
+      "boosting-vote-buying-header": "Impulsionamento é considerado compra de voto?",
+      "boosting-vote-buying-body": "<p>Não! Você não tem garantia que a publicação será votada, nem da exata quantidade de votos, bem como há limite de impulsionamento. Cada conteúdo é avaliado por nossos curadores, de forma gratuita. Todos ganhos de curadoria são enviados de volta para nossos delegadores. O único sucesso quantificado que buscamos está no engajamento e crescimento de todo o ecossistema. Impulsionar é simplesmente criar um uso adicional para os Points da Ecency, aumentando o engajamento na plataforma. Portanto, é essencialmente o mesmo que qualquer grupo de curadoria dentro da Hive. O objetivo desses grupos é aumentar o envolvimento em última instância, e aumentar as atividades dos usuários. A forma que cada um mede o sucesso é diferente</p>"
     }
   },
   "contributors": {
