@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "Чем мы можем вам помочь?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Таблица с содержимым",
       "what-is-ecency-header": "Что такое Ecency?",
       "search": "Похожие результаты по {{search}} отфильтрованны ниже",
