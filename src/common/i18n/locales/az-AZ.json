@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Mündəricat",
       "what-is-ecency-header": "Ecency nədir?",
       "search": "Related results for {{search}} filtered below",
