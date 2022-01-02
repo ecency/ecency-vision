@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "Como podemos ajudá-lo?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Tabela de conteúdos",
       "what-is-ecency-header": "O que é Ecency?",
       "search": "Resultados relacionados para {{search}} filtrados abaixo",
