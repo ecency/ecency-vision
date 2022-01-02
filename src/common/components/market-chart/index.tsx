@@ -1,16 +1,17 @@
 import React from 'react';
 import { _t } from '../../i18n';
+import { Theme } from '../../store/global/types';
 const ReactHighcharts = require('react-highcharts/dist/ReactHighstock');
 const power = 100;
 const precision = 1000;
 
-const MarketChart = ({ bids, asks }:any) => {
+const MarketChart = ({ bids, asks, theme }:any) => {
 
   if (!bids.length && !asks.length) {
       return null;
   }
 
-  const depth_chart_config = generateDepthChart(bids, asks);
+  const depth_chart_config = generateDepthChart(bids, asks, theme);
   return <div className="DepthChart">
       <ReactHighcharts config={depth_chart_config} />
   </div>
@@ -60,7 +61,7 @@ function getMinMax(bids:any, asks:any) {
     };
 }
 
-function generateDepthChart(bidsArray:any, asksArray:any) {
+function generateDepthChart(bidsArray:any, asksArray:any, theme: string) {
     const { bids, asks } = generateBidAsk(bidsArray, asksArray);
     let series = [];
 
@@ -90,7 +91,7 @@ function generateDepthChart(bidsArray:any, asksArray:any) {
     let depth_chart_config = {
         title: { text: null },
         subtitle: { text: null },
-        chart: { type: 'area', zoomType: 'x' },
+        chart: { type: 'area', zoomType: 'x', backgroundColor: theme===Theme.night ? "#202834" : "white"},
         xAxis: {
             min: min,
             max: max,

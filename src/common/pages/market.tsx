@@ -62,12 +62,12 @@ const MarketPage = (props: PageProps) => {
             <div className="d-flex justify-content-center">
                 <div className="w-75">
                     <div>{navbar}</div>
-                    <div style={{marginTop: 70}}>
+                    <div className='mb-5' style={{marginTop: '6rem'}}>
                         <ChartStats data={data} loading={loading} />
                     </div>
 
                     {(data && tablesData) ? <SSRSuspense fallback={<div>Loading chunked component...</div>}>
-                            <MarketChart bids={tablesData!.bids || []} asks={tablesData!.asks || []} />
+                            <MarketChart bids={tablesData!.bids || []} asks={tablesData!.asks || []} theme={global.theme} />
                         </SSRSuspense> : "Loading..."}
                     <div className="container my-3">
                         {activeUser && <div className="row justify-content-between">
