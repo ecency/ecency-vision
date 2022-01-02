@@ -847,7 +847,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 </Button>
                         )}
 
-                            <Button variant="outline-primary" onClick={this.toggleAdvanced}>
+                            <Button variant="outline-primary" onClick={this.toggleAdvanced} className="ml-auto">
                                 {advanced ?
                                     _t("submit.preview") :
                                     <>
