@@ -847,14 +847,16 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 </Button>
                         )}
 
-                            <Button variant="outline-primary" onClick={this.toggleAdvanced} className="ml-auto">
+                            {thumbnails.length > 0 && (
+                                <Button variant="outline-primary" onClick={this.toggleAdvanced} className="ml-auto">
                                 {advanced ?
                                     _t("submit.preview") :
                                     <>
                                         {_t("submit.advanced")}
                                         {this.hasAdvanced() ? " •••" : null}
                                     </>}
-                            </Button>
+                                </Button>
+                            )}
                         </div>
                     </div>
                     <div className="flex-spacer"/>
