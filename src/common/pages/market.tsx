@@ -16,7 +16,7 @@ const MarketChart = React.lazy(()=> import ("../components/market-chart"));
 const MarketPage = (props: PageProps) => {
     const [data, setData] = useState<MarketStatistics | null>(null);
     const [loading, setLoading] = useState(false);
-    const [bidValues, setBidValues] = useState({lowest: data ? parseFloat(data!.lowest_ask) :0, highest: data? parseFloat(data!.highest_bid) :0});
+    const [bidValues, setBidValues] = useState<any>({lowest: 0, highest: 0});
     const [openOrdersdata, setopenOrdersdata] = useState<OpenOrdersData[]>([]);
     const [openOrdersDataLoading, setopenOrdersDataLoading] = useState(false);
     const [tablesData, setTablesData] = useState<OrdersData | null>(null);
@@ -75,26 +75,30 @@ const MarketPage = (props: PageProps) => {
                                 <HiveBarter
                                     type={1}
                                     available={activeUser && (activeUser.data as FullAccount).balance || ""}
-                                    peakValue={bidValues.lowest}
+                                    peakValue={parseFloat(bidValues.lowest)}
+                                    basePeakValue={data ? parseFloat(data!.lowest_ask): 0}
                                     loading={loading}
                                     username={activeUser!.username}
+                                    onClickPeakValue={()=>setBidValues({...bidValues, lowest: data ? parseFloat(data!.lowest_ask): 0})}
                                 />
                             </div>
                             <div className="col-12 col-sm-5 p-0">
                                 <HiveBarter
                                     type={2}
                                     available={activeUser && (activeUser.data as FullAccount).hbd_balance || ""}
-                                    peakValue={bidValues.highest}
+                                    peakValue={parseFloat(bidValues.highest)}
+                                    basePeakValue={data ? parseFloat(data!.highest_bid): 0}
                                     loading={loading}
                                     username={activeUser!.username}
+                                    onClickPeakValue={()=>setBidValues({...bidValues, highest: data ? parseFloat(data!.highest_bid): 0})}
                                 />
                             </div>
                         </div>}
 
                         <div className="row mt-5">
                             {!openOrdersDataLoading && openOrdersdata.length>0 && <div className="col-12 px-0"><OpenOrders data={openOrdersdata || []} loading={openOrdersDataLoading} username={(activeUser && activeUser.username) || ""}/></div>}
-                            <div className="col-12 col-lg-6 pl-sm-0"><Orders onPriceClick={(value)=>setBidValues({...bidValues,lowest:value as number})} type={1} loading={loadingTablesData} data={tablesData ? tablesData!.bids : []}/></div>
-                            <div className="col-12 col-lg-6 pl-0 pl-sm-auto"><Orders onPriceClick={(value)=>setBidValues({...bidValues, highest:value as number})} type={2} loading={loadingTablesData} data={tablesData ? tablesData!.asks : []}/></div>
+                            <div className="col-12 col-lg-6 pl-sm-0"><Orders onPriceClick={(value)=>setBidValues({...bidValues,lowest:value})} type={1} loading={loadingTablesData} data={tablesData ? tablesData!.bids : []}/></div>
+                            <div className="col-12 col-lg-6 pl-0 pl-sm-auto"><Orders onPriceClick={(value)=>setBidValues({...bidValues, highest:value})} type={2} loading={loadingTablesData} data={tablesData ? tablesData!.asks : []}/></div>
                             <div className="col-12 px-0 px-sm-auto mt-5"><Orders type={3} loading={loadingTablesData} data={tablesData ? tablesData!.trading : []}/></div>
                         </div>
 

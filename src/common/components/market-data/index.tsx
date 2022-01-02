@@ -82,6 +82,8 @@ export default class MarketData extends Component<MarketDataProps,MarketDataStat
                 <Link to="/faqs">Terms of service</Link></div>
                 <div>
                 <Link to="/faqs">Privacy Policy</Link></div>
+                <div className="mt-3">
+                <Link to="/market">Market</Link></div>
                 </div>}
         </div>
     }

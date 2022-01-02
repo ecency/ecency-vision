@@ -11,10 +11,12 @@ interface Props {
     available: string;
     username: string;
     peakValue: number;
+    basePeakValue: number;
     loading: boolean;
+    onClickPeakValue: () => void;
 }
 
-export const HiveBarter = ({type, available, peakValue, loading, username}: Props) => {
+export const HiveBarter = ({type, available, peakValue, loading, username, basePeakValue, onClickPeakValue}: Props) => {
     const [price, setPrice] = useState(peakValue.toFixed(6));
     const [amount, setAmount] = useState('0.0');
     const [total, setTotal] = useState('0.0');
@@ -59,7 +61,7 @@ export const HiveBarter = ({type, available, peakValue, loading, username}: Prop
                 </small>
                 <small className="d-flex">
                     <div className="mr-1 text-primary">{type === 1 ? _t("market.lowest-ask") : _t("market.highest-bid")}:</div>
-                    <div>{peakValue.toFixed(6)}</div>
+                    <div onClick={onClickPeakValue} className='pointer'>{basePeakValue.toFixed(6)}</div>
                 </small>
             </div>
         </div>
