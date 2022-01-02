@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Sadržaj",
       "what-is-ecency-header": "Šta je Ecency?",
       "search": "Related results for {{search}} filtered below",
