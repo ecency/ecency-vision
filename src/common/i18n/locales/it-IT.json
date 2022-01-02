@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Indice",
       "what-is-ecency-header": "Che cos'è Ecency?",
       "search": "Related results for {{search}} filtered below",
