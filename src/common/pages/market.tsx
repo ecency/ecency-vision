@@ -12,6 +12,7 @@ import { OpenOrders } from '../components/open-orders';
 import SSRSuspense from '../components/ssr-suspense';
 import { Skeleton } from '../components/skeleton';
 import { _t } from '../i18n';
+import { Button, ButtonGroup } from 'react-bootstrap';
 
 const MarketChart = React.lazy(()=> import ("../components/market-chart"));
 
@@ -23,6 +24,7 @@ const MarketPage = (props: PageProps) => {
     const [openOrdersDataLoading, setopenOrdersDataLoading] = useState(false);
     const [tablesData, setTablesData] = useState<OrdersData | null>(null);
     const [loadingTablesData, setLoadingTablesData] = useState(false);
+    const [exchangeType, setExchangeType] = useState(1);
     const {global, activeUser} = props;
 
     useEffect(()=>{
@@ -79,7 +81,7 @@ const MarketPage = (props: PageProps) => {
                             </SSRSuspense> : "Loading..."}
                     </div>
                     <div className="container my-3 mx-0">
-                        {activeUser && <div className="row justify-content-between">
+                        {activeUser && <div className="row justify-content-between d-none d-md-flex">
                             <div className="col-12 col-sm-5 p-0">
                                 <HiveBarter
                                     type={1}
@@ -102,6 +104,34 @@ const MarketPage = (props: PageProps) => {
                                     onClickPeakValue={()=>setBidValues({...bidValues, highest: data ? parseFloat(data!.highest_bid): 0})}
                                 />
                             </div>
+                        </div>}
+
+                        {activeUser && <div className='d-flex flex-column d-md-none'>
+                                <div className='d-flex align-items-sm-center justify-content-start justify-content-sm-between flex-column flex-sm-row'>
+                                    <h3>Exchange tokens</h3>
+                                    <ButtonGroup size="lg" className="my-3">
+                                        <Button className="mr-3" variant={exchangeType === 1 ? "primary" : 'secondary'} onClick={()=>setExchangeType(1)}>Buy</Button>
+                                        <Button variant={exchangeType === 2 ? "primary" : 'secondary'} onClick={()=>setExchangeType(2)}>Sell</Button>
+                                    </ButtonGroup>
+                                </div>
+
+                                {exchangeType === 1 ? <HiveBarter
+                                    type={1}
+                                    available={activeUser && (activeUser.data as FullAccount).balance || ""}
+                                    peakValue={parseFloat(bidValues.lowest)}
+                                    basePeakValue={data ? parseFloat(data!.lowest_ask): 0}
+                                    loading={loading}
+                                    username={activeUser!.username}
+                                    onClickPeakValue={()=>setBidValues({...bidValues, lowest: data ? parseFloat(data!.lowest_ask): 0})}
+                                /> : <HiveBarter
+                                type={2}
+                                available={activeUser && (activeUser.data as FullAccount).hbd_balance || ""}
+                                peakValue={parseFloat(bidValues.highest)}
+                                basePeakValue={data ? parseFloat(data!.highest_bid): 0}
+                                loading={loading}
+                                username={activeUser!.username}
+                                onClickPeakValue={()=>setBidValues({...bidValues, highest: data ? parseFloat(data!.highest_bid): 0})}
+                            />}
                         </div>}
 
                         <div className="row mt-5">
