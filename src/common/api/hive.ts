@@ -127,7 +127,6 @@ export const cancelOpenOrder = (username:string, orderId: string|number): Promis
 export const placeHiveOrder = (username:string, min_to_receive: string, amount_to_sell:string): Promise<MarketStatistics> =>
     {
         let expirationDate:any = new Date(Date.now()).toISOString().split(".")[0];
-        debugger
         return client.call("condenser_api", "broadcast_transaction", [{operations:[["limit_order_create",{
             amount_to_sell,
             expiration: expirationDate,

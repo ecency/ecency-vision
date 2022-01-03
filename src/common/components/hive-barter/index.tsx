@@ -35,13 +35,11 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
 
     const buyHive = () => {
         placeHiveOrder(username, amount, total).then(res=>{
-            debugger
         })
     };
 
     const sellHive = () => {
         placeHiveOrder(username, total, amount).then(res=>{
-            debugger
         })
     };
 

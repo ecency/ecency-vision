@@ -26,7 +26,7 @@ export const OpenOrders = ({data, loading, username}: Props) => {
     const [isModalOpen, setIsModalOpen] = useState<number>(0)
 
     const cancelTransaction = () => {
-        cancelOpenOrder(username, isModalOpen).then(res=>{debugger})
+        cancelOpenOrder(username, isModalOpen).then(res=>{})
         setIsModalOpen(0)
     }
 

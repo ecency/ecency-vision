@@ -121,7 +121,6 @@ class Market extends BaseComponent<Props, State> {
 
     componentDidUpdate(prevProps:Props){
         if(prevProps.theme !== this.props.theme){
-            debugger
             this.forceUpdate()
         }
     }
