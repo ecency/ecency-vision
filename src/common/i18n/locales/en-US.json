@@ -262,6 +262,8 @@
     "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "market": {
+    "title": "Internal token exchange",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id ligula ac enim tincidunt euismod. Duis eu ex a turpis consequat pharetra. Pellentesque nisl sem, ultricies dignissim vulputate consectetur, facilisis quis felis. Sed neque magna, fringilla et dui a, sodales lacinia sem. Nulla facilisi. Mauris sit amet odio tempor, tristique lectus a, sodales mauris. Praesent gravida sapien eu fringilla tristique. Vestibulum mauris justo, sollicitudin sed magna id, interdum accumsan neque. Donec faucibus felis id ligula vehicula, vitae pulvinar mi sodales. Morbi suscipit cursus justo, interdum ultrices sapien fringilla id. Vestibulum ac odio metus. Sed augue lorem, feugiat in est a, dapibus blandit nisl. Aenean id elit vitae sem eleifend rhoncus id finibus metus. Curabitur in tincidunt dolor, ut tincidunt dolor. Nunc a ultricies tellus, vitae ornare lorem. Mauris sit amet nisi nec sem lobortis semper in at metus.",
     "last-price": "Last Price",
     "volume": "24h volume",
     "bid": "Bid",
