@@ -10,6 +10,7 @@ import { FullAccount } from '../store/accounts/types';
 import { Orders } from '../components/orders';
 import { OpenOrders } from '../components/open-orders';
 import SSRSuspense from '../components/ssr-suspense';
+import { Skeleton } from '../components/skeleton';
 
 const MarketChart = React.lazy(()=> import ("../components/market-chart"));
 
@@ -61,14 +62,21 @@ const MarketPage = (props: PageProps) => {
     return <>
             <div className="d-flex justify-content-center">
                 <div className="w-75">
-                    <div>{navbar}</div>
-                    <div className='mb-5' style={{marginTop: '6rem'}}>
-                        <ChartStats data={data} loading={loading} />
+                    <div style={{marginBottom: '6rem'}}>{navbar}</div>
+                    <div className='mb-5'>
+                        <h2>Title of the page</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id ligula ac enim tincidunt euismod. Duis eu ex a turpis consequat pharetra. Pellentesque nisl sem, ultricies dignissim vulputate consectetur, facilisis quis felis. Sed neque magna, fringilla et dui a, sodales lacinia sem. Nulla facilisi. Mauris sit amet odio tempor, tristique lectus a, sodales mauris. Praesent gravida sapien eu fringilla tristique. Vestibulum mauris justo, sollicitudin sed magna id, interdum accumsan neque. Donec faucibus felis id ligula vehicula, vitae pulvinar mi sodales. Morbi suscipit cursus justo, interdum ultrices sapien fringilla id. Vestibulum ac odio metus. Sed augue lorem, feugiat in est a, dapibus blandit nisl. Aenean id elit vitae sem eleifend rhoncus id finibus metus. Curabitur in tincidunt dolor, ut tincidunt dolor. Nunc a ultricies tellus, vitae ornare lorem. Mauris sit amet nisi nec sem lobortis semper in at metus.</p>
                     </div>
+                    <div className='d-flex justify-content-md-between flex-column flex-md-row'>
+                        <div className='mb-5'>
+                            <h4 className='mb-3'>{loading ? <Skeleton className='skeleton-loading'/> : "Stock information"}</h4>
+                            <ChartStats data={data} loading={loading} />
+                        </div>
 
-                    {(data && tablesData) ? <SSRSuspense fallback={<div>Loading chunked component...</div>}>
-                            <MarketChart bids={tablesData!.bids || []} asks={tablesData!.asks || []} theme={global.theme} />
-                        </SSRSuspense> : "Loading..."}
+                        {(data && tablesData) ? <SSRSuspense fallback={<div>Loading chunked component...</div>}>
+                                <MarketChart bids={tablesData!.bids || []} asks={tablesData!.asks || []} theme={global.theme} />
+                            </SSRSuspense> : "Loading..."}
+                    </div>
                     <div className="container my-3">
                         {activeUser && <div className="row justify-content-between">
                             <div className="col-12 col-sm-5 p-0">
