@@ -6,3 +6,15 @@
 .active {
     z-index: 1;
 }
+
+tbody {
+    @media (max-width: $sm-break) {
+        font-size: 11px;
+    }
+}
+
+thead, .pagination {
+    @media (max-width: $sm-break) {
+        font-size: 12px;
+    }
+}

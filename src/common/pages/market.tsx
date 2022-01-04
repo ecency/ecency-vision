@@ -80,67 +80,70 @@ const MarketPage = (props: PageProps) => {
                                 <MarketChart bids={tablesData!.bids || []} asks={tablesData!.asks || []} theme={global.theme} />
                             </SSRSuspense> : "Loading..."}
                     </div>
-                    <div className="container my-3 mx-0">
-                        {activeUser && <div className="row justify-content-between d-none d-md-flex">
-                            <div className="col-12 col-sm-5 p-0">
-                                <HiveBarter
-                                    type={1}
-                                    available={activeUser && (activeUser.data as FullAccount).balance || ""}
-                                    peakValue={parseFloat(bidValues.lowest)}
-                                    basePeakValue={data ? parseFloat(data!.lowest_ask): 0}
-                                    loading={loading}
-                                    username={activeUser!.username}
-                                    onClickPeakValue={()=>setBidValues({...bidValues, lowest: data ? parseFloat(data!.lowest_ask): 0})}
-                                />
-                            </div>
-                            <div className="col-12 col-sm-5 p-0">
-                                <HiveBarter
-                                    type={2}
-                                    available={activeUser && (activeUser.data as FullAccount).hbd_balance || ""}
-                                    peakValue={parseFloat(bidValues.highest)}
-                                    basePeakValue={data ? parseFloat(data!.highest_bid): 0}
-                                    loading={loading}
-                                    username={activeUser!.username}
-                                    onClickPeakValue={()=>setBidValues({...bidValues, highest: data ? parseFloat(data!.highest_bid): 0})}
-                                />
-                            </div>
-                        </div>}
+                    <div className='d-flex justify-content-center'>
+                        <div className="container my-5 mx-0">
+                            <div>
+                                {activeUser && <div className="row justify-content-between d-none d-md-flex">
+                                    <div className="col-12 col-sm-5 p-0">
+                                        <HiveBarter
+                                            type={1}
+                                            available={activeUser && (activeUser.data as FullAccount).balance || ""}
+                                            peakValue={parseFloat(bidValues.lowest)}
+                                            basePeakValue={data ? parseFloat(data!.lowest_ask): 0}
+                                            loading={loading}
+                                            username={activeUser!.username}
+                                            onClickPeakValue={()=>setBidValues({...bidValues, lowest: data ? parseFloat(data!.lowest_ask): 0})}
+                                        />
+                                    </div>
+                                    <div className="col-12 col-sm-5 p-0">
+                                        <HiveBarter
+                                            type={2}
+                                            available={activeUser && (activeUser.data as FullAccount).hbd_balance || ""}
+                                            peakValue={parseFloat(bidValues.highest)}
+                                            basePeakValue={data ? parseFloat(data!.highest_bid): 0}
+                                            loading={loading}
+                                            username={activeUser!.username}
+                                            onClickPeakValue={()=>setBidValues({...bidValues, highest: data ? parseFloat(data!.highest_bid): 0})}
+                                        />
+                                    </div>
+                                </div>}
 
-                        {activeUser && <div className='d-flex flex-column d-md-none'>
-                                <div className='d-flex align-items-sm-center justify-content-start justify-content-sm-between flex-column flex-sm-row'>
-                                    <h3>Exchange tokens</h3>
-                                    <ButtonGroup size="lg" className="my-3">
-                                        <Button className="mr-3" variant={exchangeType === 1 ? "primary" : 'secondary'} onClick={()=>setExchangeType(1)}>Buy</Button>
-                                        <Button variant={exchangeType === 2 ? "primary" : 'secondary'} onClick={()=>setExchangeType(2)}>Sell</Button>
-                                    </ButtonGroup>
+                                {activeUser && <div className='d-flex flex-column d-md-none'>
+                                        <div className='d-flex align-items-sm-center justify-content-start justify-content-sm-between flex-column flex-sm-row'>
+                                            <h3>Exchange tokens</h3>
+                                            <ButtonGroup size="lg" className="my-3">
+                                                <Button className="mr-3" variant={exchangeType === 1 ? "primary" : 'secondary'} onClick={()=>setExchangeType(1)}>Buy</Button>
+                                                <Button variant={exchangeType === 2 ? "primary" : 'secondary'} onClick={()=>setExchangeType(2)}>Sell</Button>
+                                            </ButtonGroup>
+                                        </div>
+
+                                        {exchangeType === 1 ? <HiveBarter
+                                            type={1}
+                                            available={activeUser && (activeUser.data as FullAccount).balance || ""}
+                                            peakValue={parseFloat(bidValues.lowest)}
+                                            basePeakValue={data ? parseFloat(data!.lowest_ask): 0}
+                                            loading={loading}
+                                            username={activeUser!.username}
+                                            onClickPeakValue={()=>setBidValues({...bidValues, lowest: data ? parseFloat(data!.lowest_ask): 0})}
+                                        /> : <HiveBarter
+                                        type={2}
+                                        available={activeUser && (activeUser.data as FullAccount).hbd_balance || ""}
+                                        peakValue={parseFloat(bidValues.highest)}
+                                        basePeakValue={data ? parseFloat(data!.highest_bid): 0}
+                                        loading={loading}
+                                        username={activeUser!.username}
+                                        onClickPeakValue={()=>setBidValues({...bidValues, highest: data ? parseFloat(data!.highest_bid): 0})}
+                                    />}
+                                </div>}
+
+                                <div className="row mt-5">
+                                    {!openOrdersDataLoading && openOrdersdata.length>0 && <div className="col-12 px-0 mb-5"><OpenOrders data={openOrdersdata || []} loading={openOrdersDataLoading} username={(activeUser && activeUser.username) || ""}/></div>}
+                                    <div className="col-12 col-lg-6 pl-sm-0"><Orders onPriceClick={(value)=> setBidValues({...bidValues,lowest:value})} type={1} loading={loadingTablesData} data={tablesData ? tablesData!.bids : []}/></div>
+                                    <div className="col-12 col-lg-6 pl-0 pl-sm-auto mt-5 mt-lg-0"><Orders onPriceClick={(value)=>setBidValues({...bidValues, highest:value})} type={2} loading={loadingTablesData} data={tablesData ? tablesData!.asks : []}/></div>
+                                    <div className="col-12 px-0 px-sm-auto mt-5"><Orders type={3} loading={loadingTablesData} data={tablesData ? tablesData!.trading : []}/></div>
                                 </div>
-
-                                {exchangeType === 1 ? <HiveBarter
-                                    type={1}
-                                    available={activeUser && (activeUser.data as FullAccount).balance || ""}
-                                    peakValue={parseFloat(bidValues.lowest)}
-                                    basePeakValue={data ? parseFloat(data!.lowest_ask): 0}
-                                    loading={loading}
-                                    username={activeUser!.username}
-                                    onClickPeakValue={()=>setBidValues({...bidValues, lowest: data ? parseFloat(data!.lowest_ask): 0})}
-                                /> : <HiveBarter
-                                type={2}
-                                available={activeUser && (activeUser.data as FullAccount).hbd_balance || ""}
-                                peakValue={parseFloat(bidValues.highest)}
-                                basePeakValue={data ? parseFloat(data!.highest_bid): 0}
-                                loading={loading}
-                                username={activeUser!.username}
-                                onClickPeakValue={()=>setBidValues({...bidValues, highest: data ? parseFloat(data!.highest_bid): 0})}
-                            />}
-                        </div>}
-
-                        <div className="row mt-5">
-                            {!openOrdersDataLoading && openOrdersdata.length>0 && <div className="col-12 px-0"><OpenOrders data={openOrdersdata || []} loading={openOrdersDataLoading} username={(activeUser && activeUser.username) || ""}/></div>}
-                            <div className="col-12 col-lg-6 pl-sm-0"><Orders onPriceClick={(value)=>setBidValues({...bidValues,lowest:value})} type={1} loading={loadingTablesData} data={tablesData ? tablesData!.bids : []}/></div>
-                            <div className="col-12 col-lg-6 pl-0 pl-sm-auto"><Orders onPriceClick={(value)=>setBidValues({...bidValues, highest:value})} type={2} loading={loadingTablesData} data={tablesData ? tablesData!.asks : []}/></div>
-                            <div className="col-12 px-0 px-sm-auto mt-5"><Orders type={3} loading={loadingTablesData} data={tablesData ? tablesData!.trading : []}/></div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
