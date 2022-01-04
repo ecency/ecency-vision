@@ -55,7 +55,7 @@ const defProps = {
     },
 };
 
-global.window.matchMedia = jest.fn(() => { return { matches: false, addListener: jest.fn(), removeListener: jest.fn() } })
+//const itif = (condition) => condition ? it : it.skip;
 
 it("(1) Default render", () => {
     const component = <NavBar {...defProps} />;
