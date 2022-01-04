@@ -25,7 +25,8 @@ export interface MappedData {
     key1:string | number,
     key2:string | number,
     key3:string | number,
-    key4:string | number
+    key4:string | number,
+    key5?:string | number
 }
 
 interface Props {
@@ -67,10 +68,17 @@ export const Orders = ({type, loading, data, onPriceClick}: Props) => {
             columns = tradeColumns;
             title = `${_t("market.trade-history")}`;
             mappedData = (data as TradeDataItem[]).map((item:TradeDataItem) => {
-                return {
+                let hbd = parseFloat(item.current_pays.split(' ')[0]);
+                let hive = parseFloat(item.open_pays.toString().split(' ')[0]);
+        
+                let price = hbd/hive;
+                let type = item.current_pays.indexOf("HBD") !== -1 ? 'bid' : 'ask';
+                let stringPrice = price.toFixed(6);
+                        return {
+                    key5: type,
                     key4:(item as TradeDataItem).current_pays,
                     key3: (item as TradeDataItem).open_pays,
-                    key2: 'price',
+                    key2: stringPrice,
                     key1: moment.utc((item as TradeDataItem).date).local().fromNow()
                 }
             }).reverse()
@@ -93,7 +101,7 @@ export const Orders = ({type, loading, data, onPriceClick}: Props) => {
                     <tbody>
                     {sliced.map((item, index) => <tr key={`${item.key1}-${index}`}>
                             <td>{item.key1}</td>
-                            <td>{item.key2}</td>
+                            <td className={type === 3 ? item.key5 === "bid" ? "text-success" : "text-danger" : ""}>{item.key2}</td>
                             <td>{item.key3}</td>
                             <td className={type===1 || type===2 ? 'pointer' : ''} onClick={() => onPriceClick ? onPriceClick(item.key4) : {}}>{item.key4}</td>
                         </tr>)}
