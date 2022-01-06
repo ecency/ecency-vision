@@ -85,6 +85,11 @@ You can easily deploy a set of vision instances to your production environment, 
 docker stack deploy -c docker-compose.yml -c docker-compose.production.yml vision
 ```
 
+### Contributors
+
+[![Contributors](https://contrib.rocks/image?repo=ecency/ecency-vision)](https://github.com/ecency/ecency-vision/graphs/contributors)
+
+
 ## Issues
 
 To report a non-critical issue, please file an issue on this GitHub project.
