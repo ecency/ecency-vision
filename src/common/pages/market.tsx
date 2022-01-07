@@ -13,6 +13,7 @@ import SSRSuspense from '../components/ssr-suspense';
 import { Skeleton } from '../components/skeleton';
 import { _t } from '../i18n';
 import { Button, ButtonGroup } from 'react-bootstrap';
+import { Tsx } from '../i18n/helper';
 
 const MarketChart = React.lazy(()=> import ("../components/market-chart"));
 
@@ -68,7 +69,7 @@ const MarketPage = (props: PageProps) => {
                     <div style={{marginBottom: '6rem'}}>{navbar}</div>
                     <div className='mb-5'>
                         <h2>{_t("market.title")}</h2>
-                        <p>{_t("market.description")}</p>
+                        <Tsx k="market.description"><div className="header-description" /></Tsx>
                     </div>
                     <div className='d-flex justify-content-md-between flex-column flex-md-row'>
                         <div className='mb-5'>
