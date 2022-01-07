@@ -563,7 +563,7 @@
     "delegation-list-desc": "Награда за Делегиран Hive",
     "referral-list-desc": "Награда на реферала",
     "community-list-desc": "Общностнa наградa",
-    "transfer": "Подари на някого",
+    "transfer": "Gift",
     "claim-ok": "Взети точки",
     "promote": "Промотиране",
     "boost": "Подсилване",
@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Таблица на съдържанието",
       "what-is-ecency-header": "Какво е Ecency?",
       "search": "Related results for {{search}} filtered below",

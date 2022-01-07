@@ -563,7 +563,7 @@
     "delegation-list-desc": "Delegacijos atlygis",
     "referral-list-desc": "Rekomendacijos atlygis",
     "community-list-desc": "Community reward",
-    "transfer": "Padovanoti kažkam",
+    "transfer": "Gift",
     "claim-ok": "Taškai atsiimti",
     "promote": "Reklamuoti",
     "boost": "Paspartinti",
@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Turinys",
       "what-is-ecency-header": "Kas yra Ecency?",
       "search": "Related results for {{search}} filtered below",

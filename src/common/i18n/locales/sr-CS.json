@@ -563,7 +563,7 @@
     "delegation-list-desc": "Nagrada delegacije",
     "referral-list-desc": "Nagrada preporuke",
     "community-list-desc": "Community reward",
-    "transfer": "Pokloni nekome",
+    "transfer": "Gift",
     "claim-ok": "Potvrđeni poeni",
     "promote": "Promoviši",
     "boost": "Pojačaj",
@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Sadržaj",
       "what-is-ecency-header": "Šta je Ecency?",
       "search": "Related results for {{search}} filtered below",

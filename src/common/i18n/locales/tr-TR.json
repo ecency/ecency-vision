@@ -563,7 +563,7 @@
     "delegation-list-desc": "Delegasyon ödülü",
     "referral-list-desc": "Alt üye ödülü",
     "community-list-desc": "Topluluk ödülü",
-    "transfer": "Birine hediye gönder",
+    "transfer": "Gift",
     "claim-ok": "Çekilen puanlar",
     "promote": "Tanıtım Yap",
     "boost": "Yükselt",
@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "İçindekiler",
       "what-is-ecency-header": "Ecency Nedir?",
       "search": "Related results for {{search}} filtered below",

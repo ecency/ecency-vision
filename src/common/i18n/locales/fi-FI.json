@@ -563,7 +563,7 @@
     "delegation-list-desc": "Valtuutuspalkkio",
     "referral-list-desc": "Suosittelupalkkio",
     "community-list-desc": "Yhteisöpalkkio",
-    "transfer": "Lahjoita",
+    "transfer": "Gift",
     "claim-ok": "Pisteitä lunastettu",
     "promote": "Korosta",
     "boost": "Tehosta",
@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Sisällysluettelo",
       "what-is-ecency-header": "Mikä on Ecency?",
       "search": "Related results for {{search}} filtered below",

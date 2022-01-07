@@ -563,7 +563,7 @@
     "delegation-list-desc": "Винагорода за делегування",
     "referral-list-desc": "Реферальна винагорода",
     "community-list-desc": "Community reward",
-    "transfer": "Подарувати комусь",
+    "transfer": "Gift",
     "claim-ok": "Бали зараховані",
     "promote": "Просувати",
     "boost": "Підсилити",
@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "Як ми можемо вам допомогти?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Зміст",
       "what-is-ecency-header": "Що таке Ecency?",
       "search": "Пов'язані результати за {{search}} відфільтровано нижче",
