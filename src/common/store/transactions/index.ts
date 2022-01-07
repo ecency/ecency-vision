@@ -25,7 +25,7 @@ export const ACCOUNT_OPERATION_GROUPS: Record<OperationGroup, number[]> = {
     "rewards": [ops.author_reward, ops.curation_reward, ops.producer_reward, ops.claim_reward_balance, ops.comment_benefactor_reward, ops.liquidity_reward, ops.comment_reward]
 }
 
-const ALL_ACCOUNT_OPERATIONS = [...Object.values(ACCOUNT_OPERATION_GROUPS)].flat();
+const ALL_ACCOUNT_OPERATIONS = [...Object.values(ACCOUNT_OPERATION_GROUPS)].reduce((acc, val) => acc.concat(val), []);
 
 export const initialState: Transactions = {
     list: [],
