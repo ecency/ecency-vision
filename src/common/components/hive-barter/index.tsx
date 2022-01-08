@@ -18,8 +18,8 @@ interface Props {
 
 export const HiveBarter = ({type, available, peakValue, loading, username, basePeakValue, onClickPeakValue}: Props) => {
     const [price, setPrice] = useState(peakValue.toFixed(6));
-    const [amount, setAmount] = useState('0.0');
-    const [total, setTotal] = useState('0.0');
+    const [amount, setAmount] = useState<any>(0.000);
+    const [total, setTotal] = useState<any>(0.000);
     const [placingOrder, setPlacingOrder] = useState(false);
 
     useEffect(()=>{
@@ -29,17 +29,17 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
     },[peakValue])
 
     useEffect(()=>{
-        let refinedAmount = parseFloat(amount.replace(" HIVE",""));
-        setTotal(`${(parseFloat(price) * refinedAmount).toFixed(3)} HBD`)
+        let refinedAmount = amount;
+        setTotal((parseFloat(price) * refinedAmount));
     },[price, amount])
 
     const buyHive = () => {
-        placeHiveOrder(username, amount, total).then(res=>{
+        placeHiveOrder(username, `${amount}`, total).then(res=>{
         })
     };
 
     const sellHive = () => {
-        placeHiveOrder(username, total, amount).then(res=>{
+        placeHiveOrder(username, total, `${amount}`).then(res=>{
         })
     };
 
@@ -82,8 +82,9 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
                 <InputGroup >
                     <Form.Control
                         placeholder="0.0"
-                        value={parseFloat(amount.replace(" HIVE","")).toFixed(6)}
-                        onChange={({target:{value}}) => setAmount(`${value} HIVE`)}
+                        value={`${amount}`}
+                        onChange={({target:{value}}) => {
+                            setAmount(value)}}
                     />
                     <InputGroup.Text className="rounded-left">{_t("wallet.hive")}</InputGroup.Text>
                 </InputGroup>
@@ -94,8 +95,8 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
                 <InputGroup >
                     <Form.Control
                         placeholder="0.0"
-                        value={(total.replace(" HBD",""))}
-                        onChange={({target:{value}})=>{setTotal(`${value} HBD`); setAmount(`${parseFloat(value)/parseFloat(price)}`)}}
+                        value={total}
+                        onChange={({target:{value}})=>{ setTotal(isNaN(value as any)? 0 : value); setAmount(isNaN(`${parseFloat(value)/parseFloat(price)}` as any)? 0 : `${parseFloat(value)/parseFloat(price)}`)}}
                     />
                     <InputGroup.Text className="rounded-left">{_t("market.hbd")}($)</InputGroup.Text>
                 </InputGroup>

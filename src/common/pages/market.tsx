@@ -88,7 +88,7 @@ const MarketPage = (props: PageProps) => {
                                     <div className="col-12 col-sm-5 p-0">
                                         <HiveBarter
                                             type={1}
-                                            available={activeUser && (activeUser.data as FullAccount).balance || ""}
+                                            available={activeUser && (activeUser.data as FullAccount).hbd_balance || ""}
                                             peakValue={parseFloat(bidValues.lowest)}
                                             basePeakValue={data ? parseFloat(data!.lowest_ask): 0}
                                             loading={loading}
@@ -99,7 +99,7 @@ const MarketPage = (props: PageProps) => {
                                     <div className="col-12 col-sm-5 p-0">
                                         <HiveBarter
                                             type={2}
-                                            available={activeUser && (activeUser.data as FullAccount).hbd_balance || ""}
+                                            available={activeUser && (activeUser.data as FullAccount).balance || ""}
                                             peakValue={parseFloat(bidValues.highest)}
                                             basePeakValue={data ? parseFloat(data!.highest_bid): 0}
                                             loading={loading}
