@@ -111,10 +111,24 @@ const MarketPage = (props: PageProps) => {
 
                                 {activeUser && <div className='d-flex flex-column d-md-none'>
                                         <div className='d-flex align-items-sm-center justify-content-start justify-content-sm-between flex-column flex-sm-row'>
-                                            <h3>Exchange tokens</h3>
+                                            <h3>{_t("market.barter")}</h3>
                                             <ButtonGroup size="lg" className="my-3">
-                                                <Button className="mr-3" variant={exchangeType === 1 ? "primary" : 'secondary'} onClick={()=>setExchangeType(1)}>Buy</Button>
-                                                <Button variant={exchangeType === 2 ? "primary" : 'secondary'} onClick={()=>setExchangeType(2)}>Sell</Button>
+                                                <Button
+                                                    className="rounded-right" 
+                                                    variant={exchangeType === 1 ? "primary" : 'secondary'} 
+                                                    onClick={()=>setExchangeType(1)} 
+                                                    style={{ borderTopRightRadius:'0px !important', borderBottomRightRadius:'0px !important'}}
+                                                >
+                                                    {_t("market.buy")}
+                                                </Button>
+                                                <Button 
+                                                    variant={exchangeType === 2 ? "primary" : 'secondary'} 
+                                                    className="rounded-left" 
+                                                    onClick={()=>setExchangeType(2)} 
+                                                    style={{borderTopLeftRadius:'0px !important', borderBottomLeftRadius:'0px !important'}}
+                                                >
+                                                    {_t("market.sell")}
+                                                </Button>
                                             </ButtonGroup>
                                         </div>
 
@@ -138,7 +152,7 @@ const MarketPage = (props: PageProps) => {
                                 </div>}
 
                                 <div className="row mt-5">
-                                    {!openOrdersDataLoading && openOrdersdata.length>0 && <div className="col-12 px-0 mb-5"><OpenOrders data={openOrdersdata || []} loading={openOrdersDataLoading} username={(activeUser && activeUser.username) || ""}/></div>}
+                                    {!openOrdersDataLoading && openOrdersdata.length > 0 && <div className="col-12 px-0 mb-5"><OpenOrders data={openOrdersdata || []} loading={openOrdersDataLoading} username={(activeUser && activeUser.username) || ""}/></div>}
                                     <div className="col-12 col-lg-6 pl-sm-0"><Orders onPriceClick={(value)=> setBidValues({...bidValues,lowest:value})} type={1} loading={loadingTablesData} data={tablesData ? tablesData!.bids : []}/></div>
                                     <div className="col-12 col-lg-6 pl-0 pl-sm-auto mt-5 mt-lg-0"><Orders onPriceClick={(value)=>setBidValues({...bidValues, highest:value})} type={2} loading={loadingTablesData} data={tablesData ? tablesData!.asks : []}/></div>
                                     <div className="col-12 px-0 px-sm-auto mt-5"><Orders type={3} loading={loadingTablesData} data={tablesData ? tablesData!.trading : []}/></div>
