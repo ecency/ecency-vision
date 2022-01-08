@@ -84,7 +84,7 @@ const MarketPage = (props: PageProps) => {
                     <div className='d-flex justify-content-center'>
                         <div className="container my-5 mx-0">
                             <div>
-                                {activeUser && <div className="row justify-content-between d-none d-md-flex">
+                                {activeUser && <div className="row justify-content-between d-none d-md-flex px-3">
                                     <div className="col-12 col-sm-5 p-0">
                                         <HiveBarter
                                             type={1}
@@ -151,10 +151,10 @@ const MarketPage = (props: PageProps) => {
                                     />}
                                 </div>}
 
-                                <div className="row mt-5">
+                                <div className="row mt-5 mx-0">
                                     {!openOrdersDataLoading && openOrdersdata.length > 0 && <div className="col-12 px-0 mb-5"><OpenOrders data={openOrdersdata || []} loading={openOrdersDataLoading} username={(activeUser && activeUser.username) || ""}/></div>}
-                                    <div className="col-12 col-lg-6 pl-sm-0"><Orders onPriceClick={(value)=> setBidValues({...bidValues,lowest:value})} type={1} loading={loadingTablesData} data={tablesData ? tablesData!.bids : []}/></div>
-                                    <div className="col-12 col-lg-6 pl-0 pl-sm-auto mt-5 mt-lg-0"><Orders onPriceClick={(value)=>setBidValues({...bidValues, highest:value})} type={2} loading={loadingTablesData} data={tablesData ? tablesData!.asks : []}/></div>
+                                    <div className="col-12 col-lg-6 px-sm-0"><Orders onPriceClick={(value)=> setBidValues({...bidValues,lowest:value})} type={1} loading={loadingTablesData} data={tablesData ? tablesData!.bids : []}/></div>
+                                    <div className="col-12 col-lg-6 px-0 px-sm-auto mt-5 mt-lg-0"><Orders onPriceClick={(value)=>setBidValues({...bidValues, highest:value})} type={2} loading={loadingTablesData} data={tablesData ? tablesData!.asks : []}/></div>
                                     <div className="col-12 px-0 px-sm-auto mt-5"><Orders type={3} loading={loadingTablesData} data={tablesData ? tablesData!.trading : []}/></div>
                                 </div>
                             </div>
