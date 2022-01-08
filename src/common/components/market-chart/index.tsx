@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { _t } from '../../i18n';
 import { Theme } from '../../store/global/types';
 const ReactHighcharts = require('react-highcharts/dist/ReactHighstock');
@@ -10,6 +10,24 @@ const MarketChart = ({ bids, asks, theme }:any) => {
   if (!bids.length && !asks.length) {
       return null;
   }
+
+  useEffect(()=>{
+
+  if (theme) {
+    // I know I'm adding this logic out of nowhere here but if I 
+    // touch the exisiting logic that's there for mobile, I know I'll break
+    // many pages that will be hard to detect. It works fine here.
+    // We can refactor it later in toggleTheme()
+    
+    let body: any = document.getElementsByTagName("body");
+    if (!body) return;
+    body = body[0];
+    body.classList.remove(`theme-night`);
+    body.classList.remove(`theme-day`);
+    body.classList.add(`theme-${theme}`);
+  }
+
+  },[theme])
 
   const depth_chart_config = generateDepthChart(bids, asks, theme);
   return <div className="DepthChart">
@@ -91,7 +109,7 @@ function generateDepthChart(bidsArray:any, asksArray:any, theme: string) {
     let depth_chart_config = {
         title: { text: null },
         subtitle: { text: null },
-        chart: { type: 'area', zoomType: 'x', backgroundColor: theme===Theme.night ? "#202834" : "white"},
+        chart: { type: 'area', zoomType: 'x', backgroundColor: theme === Theme.night ? "#202834" : "white"},
         xAxis: {
             min: min,
             max: max,

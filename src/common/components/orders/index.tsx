@@ -8,10 +8,10 @@ import moment from 'moment';
 import { _t } from '../../i18n';
 
 const buyColumns = [
-    `${_t("market.total")} ${_t("market.hbd")} ($)`,
-    `${_t("market.hbd")} ($)`,
+    `${_t("market.price")}`,
     `${_t("wallet.hive")}`,
-    `${_t("market.price")}`
+    `${_t("market.hbd")} ($)`,
+    `${_t("market.total")} ${_t("market.hbd")} ($)`,
 ];
 
 const tradeColumns = [
@@ -45,10 +45,10 @@ export const Orders = ({type, loading, data, onPriceClick}: Props) => {
         case 1:
             mappedData = (data as OrdersDataItem[]).map((item:OrdersDataItem) => {
                 return {
-                    key1: (item as OrdersDataItem).hbd/1000,
-                    key2: (item as OrdersDataItem).order_price.quote,
-                    key3: (item as OrdersDataItem).hive,
-                    key4: parseFloat((item as OrdersDataItem).real_price).toFixed(6)
+                    key4: (item as OrdersDataItem).hbd/1000,
+                    key3: (item as OrdersDataItem).order_price.quote,
+                    key2: (item as OrdersDataItem).hive,
+                    key1: parseFloat((item as OrdersDataItem).real_price).toFixed(6)
                 }
             })
             break;
@@ -57,10 +57,10 @@ export const Orders = ({type, loading, data, onPriceClick}: Props) => {
             title = `${_t("market.sell")} ${_t("market.orders")}`;
             mappedData = (data as OrdersDataItem[]).map((item:OrdersDataItem) => {
                 return {
-                    key1: (item as OrdersDataItem).hbd/1000,
-                    key2: (item as OrdersDataItem).order_price.quote,
-                    key3: (item as OrdersDataItem).hive,
-                    key4: parseFloat((item as OrdersDataItem).real_price).toFixed(6)
+                    key4: (item as OrdersDataItem).hbd/1000,
+                    key3: (item as OrdersDataItem).order_price.quote,
+                    key2: (item as OrdersDataItem).hive,
+                    key1: parseFloat((item as OrdersDataItem).real_price).toFixed(6)
                 }
             })
             break;
