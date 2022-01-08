@@ -73,13 +73,13 @@ const MarketPage = (props: PageProps) => {
                     </div>
                     <div className='d-flex justify-content-md-between flex-column flex-md-row'>
                         <div className='mb-5'>
-                            <h4 className='mb-3'>{loading ? <Skeleton className='skeleton-loading'/> : "Stock information"}</h4>
+                            <h4 className='mb-3'>{loading ? <Skeleton className='skeleton-loading'/> : _t("market.stock-info")}</h4>
                             <ChartStats data={data} loading={loading} />
                         </div>
 
-                        {(data && tablesData) ? <SSRSuspense fallback={<div>Loading chunked component...</div>}>
+                        {(data && tablesData) ? <SSRSuspense fallback={<div>{_t('g.loading-chunk')}...</div>}>
                                 <MarketChart bids={tablesData!.bids || []} asks={tablesData!.asks || []} theme={global.theme} />
-                            </SSRSuspense> : "Loading..."}
+                            </SSRSuspense> : _t("g.loading")+"..."}
                     </div>
                     <div className='d-flex justify-content-center'>
                         <div className="container my-5 mx-0">

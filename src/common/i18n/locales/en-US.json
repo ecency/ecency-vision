@@ -4,6 +4,7 @@
     "edit": "Edit",
     "submit": "Write a post",
     "search": "Search",
+    "loading-chunk": "Loading chunked component",
     "downloads": "Downloads",
     "login": "Login",
     "login-as": "Login As",
@@ -284,6 +285,9 @@
     "hbd": "HBD",
     "action": "Action",
     "trade-history": "Trade History",
+    "stock-params": "Params",
+    "stock-info": "Stock information",
+    "stock-values": "Values",
     "lowest-ask": "Lowest ask"
   },
   "list-style": {

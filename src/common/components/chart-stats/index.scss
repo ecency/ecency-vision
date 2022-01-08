@@ -1,17 +1,4 @@
 .skeleton-loading {
     height: 30px;
-    width: 7%;
-}
-
-.values-container {
-    grid-template-columns: auto;
-    display: grid;
-    grid-gap: 10px;
-
-    @media (max-width: $md-break) {
-        grid-template-columns: 1fr 1fr;
-    }
-    @media (max-width: $sm-break) {
-        grid-template-columns: 1fr;
-    }
+    width: 40px;
 }
