@@ -73,8 +73,7 @@ export default class MarketData extends Component<MarketDataProps,MarketDataStat
                             {_t("entry-index.pp")}
                         </Link>
                     </div>
-                </div>
-                               
+                </div>           
             </SSRSuspense> : <div className="p-3 border-left">
                 <div>
                 <Link to="/faqs">FAQ</Link></div>

@@ -28,7 +28,7 @@ const MyPagination = ({dataLength, maxItems, onPageChange, pageSize, className, 
     const pages = Math.ceil(dataLength / pageSize);
 
     const records = [...Array(pages).keys()];
-    let responsiveMaxItems = isMobile() ? 2 : maxItems
+    let responsiveMaxItems = isMobile() ? 3 : maxItems
 
     let sliceStart = (page - responsiveMaxItems / 2);
     if (sliceStart < 0) sliceStart = 0;
