@@ -65,7 +65,7 @@ const MarketPage = (props: PageProps) => {
         
     return <>
             <div className="d-flex justify-content-center">
-                <div className="w-75">
+                <div className="w-sm-75 p-3 p-sm-0">
                     <div style={{marginBottom: '6rem'}}>{navbar}</div>
                     <div className='mb-5'>
                         <h2>{_t("market.title")}</h2>
@@ -151,10 +151,10 @@ const MarketPage = (props: PageProps) => {
                                     />}
                                 </div>}
 
-                                <div className="row mt-5 mx-0">
+                                <div className="row mt-5 mx-0 justify-content-between">
                                     {!openOrdersDataLoading && openOrdersdata.length > 0 && <div className="col-12 px-0 mb-5"><OpenOrders data={openOrdersdata || []} loading={openOrdersDataLoading} username={(activeUser && activeUser.username) || ""}/></div>}
-                                    <div className="col-12 col-lg-6 px-sm-0"><Orders onPriceClick={(value)=> setBidValues({...bidValues,lowest:value})} type={1} loading={loadingTablesData} data={tablesData ? tablesData!.bids : []}/></div>
-                                    <div className="col-12 col-lg-6 px-0 px-sm-auto mt-5 mt-lg-0"><Orders onPriceClick={(value)=>setBidValues({...bidValues, highest:value})} type={2} loading={loadingTablesData} data={tablesData ? tablesData!.asks : []}/></div>
+                                    <div className="col-12 col-xl-5 px-0"><Orders onPriceClick={(value)=> setBidValues({...bidValues,lowest:value})} type={1} loading={loadingTablesData} data={tablesData ? tablesData!.bids : []}/></div>
+                                    <div className="col-12 col-xl-5 px-0 px-sm-auto mt-5 mt-lg-0"><Orders onPriceClick={(value)=>setBidValues({...bidValues, highest:value})} type={2} loading={loadingTablesData} data={tablesData ? tablesData!.asks : []}/></div>
                                     <div className="col-12 px-0 px-sm-auto mt-5"><Orders type={3} loading={loadingTablesData} data={tablesData ? tablesData!.trading : []}/></div>
                                 </div>
                             </div>

@@ -11,7 +11,7 @@ interface Props {
 export const ChartStats = ({loading, data}: Props) =>{
 
     return loading ?
-        <Table striped bordered hover>
+        <Table striped={true} bordered={true} hover={true}>
             <thead>
                 <tr>
                     <th><Skeleton className="skeleton-loading mr-5" /></th>
@@ -40,7 +40,7 @@ export const ChartStats = ({loading, data}: Props) =>{
                     <td><Skeleton className="skeleton-loading mr-5" /></td>
                 </tr>
             </tbody>
-        </Table> :  <Table striped bordered hover>
+        </Table> :  <Table striped={true} bordered={true} hover={true}>
                             <thead>
                                 <tr>
                                 <th>{_t("market.stock-params")}</th>
