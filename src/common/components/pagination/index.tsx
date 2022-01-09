@@ -1,5 +1,6 @@
-import React, {Component} from "react";
+import React, {Component, useEffect, useState} from "react";
 import {Pagination} from "react-bootstrap";
+import { isMobile } from "../../util/is-mobile";
 
 interface Props {
     dataLength: number,
@@ -10,63 +11,53 @@ interface Props {
     className?: string;
 }
 
-interface State {
-    page: number;
-}
+const MyPagination = ({dataLength, maxItems, onPageChange, pageSize, className, page:pageFromProps}:Props) => {
+    const [page, setPage] = useState<number>(pageFromProps || 1)
 
-export default class MyPagination extends Component<Props, State> {
-    state: State = {
-        page: this.props.page || 1
-    }
-
-    changePage = (num: number) => {
-        const {onPageChange} = this.props;
-        this.setState({page: num});
+    const changePage = (num: number) => {
+        setPage(num)
         onPageChange(num);
     }
 
-    componentDidUpdate(prevProps: Props){
-        if(prevProps.page !== this.props.page && this.props.page){
-            this.setState({ page: this.props.page })
+    useEffect(()=>{
+        if(pageFromProps){
+            setPage(pageFromProps)
         }
-    }
+    },[pageFromProps]);
 
-    render() {
-        const {dataLength, maxItems, pageSize, className} = this.props;
-        const {page} = this.state;
+    const pages = Math.ceil(dataLength / pageSize);
 
-        const pages = Math.ceil(dataLength / pageSize);
+    const records = [...Array(pages).keys()];
+    let responsiveMaxItems = isMobile() ? 2 : maxItems
 
-        const records = [...Array(pages).keys()];
+    let sliceStart = (page - responsiveMaxItems / 2);
+    if (sliceStart < 0) sliceStart = 0;
+    let sliceEnd = sliceStart + responsiveMaxItems;
 
-        let sliceStart = (page - maxItems / 2);
-        if (sliceStart < 0) sliceStart = 0;
-        let sliceEnd = sliceStart + maxItems;
+    const allItems = records.map((i, x) => {
+        const num = i + 1;
+        return <Pagination.Item active={num === page} onClick={() => {
+            changePage(num);
+        }} key={num}>{num}</Pagination.Item>
+    });
 
-        const allItems = records.map((i, x) => {
-            const num = i + 1;
-
-            return <Pagination.Item active={num === page} onClick={() => {
-                this.changePage(num);
-            }} key={num}>{num}</Pagination.Item>
-        });
-
-        const items = allItems.slice(sliceStart, sliceEnd);
+    const items = allItems.slice(sliceStart, sliceEnd);
 
         return <Pagination className={className}>
             <Pagination.First disabled={!(sliceStart > 0)} onClick={() => {
-                this.changePage(1);
+                changePage(1);
             }}/>
             <Pagination.Prev disabled={!(page > 1)} onClick={() => {
-                this.changePage(page - 1);
+                changePage(page - 1);
             }}/>
             {items}
             <Pagination.Next disabled={page >= pages} onClick={() => {
-                this.changePage(page + 1);
+                changePage(page + 1);
             }}/>
             <Pagination.Last disabled={page >= pages} onClick={() => {
-                this.changePage(pages);
+                changePage(pages);
             }}/>
         </Pagination>;
-    }
 }
+
+export default MyPagination
