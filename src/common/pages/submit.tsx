@@ -841,22 +841,20 @@ class SubmitPage extends BaseComponent<Props, State> {
                             />
                         </div>
                         <div className="bottom-toolbar">
-                        {editingEntry === null && (
+                            {editingEntry === null && (
                                 <Button variant="outline-info" onClick={()=>this.setState({clearModal: true})}>
                                     {_t("submit.clear")}
                                 </Button>
-                        )}
-
-                            {thumbnails.length > 0 && (
-                                <Button variant="outline-primary" onClick={this.toggleAdvanced} className="ml-auto">
-                                {advanced ?
-                                    _t("submit.preview") :
-                                    <>
-                                        {_t("submit.advanced")}
-                                        {this.hasAdvanced() ? " •••" : null}
-                                    </>}
-                                </Button>
                             )}
+
+                            <Button variant="outline-primary" onClick={this.toggleAdvanced} className="ml-auto">
+                            {advanced ?
+                                _t("submit.preview") :
+                                <>
+                                    {_t("submit.advanced")}
+                                    {this.hasAdvanced() ? " •••" : null}
+                                </>}
+                            </Button>
                         </div>
                     </div>
                     <div className="flex-spacer"/>
