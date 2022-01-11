@@ -139,14 +139,18 @@ export class EntryListContent extends Component<Props, State> {
                                 return [...l];
                             })}
                         </>
-                    ) : !loading &&  <MessageNoData>
-                            {(global.tag===`@${activeUser?.username}` && global.filter === "posts") ? 
-                            <div className='text-center'>
-                                <div className="info">{_t("profile-info.no-posts")}</div>
-                                <Link to='/submit' className="action"><b>{_t("profile-info.create-posts")}</b></Link>
-                            </div>:
-                            <div className="info">{`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}</div>}
-                        </MessageNoData>
+                    ) : !loading &&  (global.tag===`@${activeUser?.username}` && global.filter === "posts") ? 
+                                    <MessageNoData
+                                        title={_t("profile-info.no-posts")}
+                                        description={_t("profile-info.no-posts")}
+                                        buttonText={_t("profile-info.create-posts")}
+                                        buttonTo="/submit"
+                                    /> : <MessageNoData
+                                    title={_t("profile-info.no-posts")}
+                                    description={`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}
+                                    buttonText={_t("profile-info.create-posts")}
+                                    buttonTo="/submit"
+                                />
                 }
             
             </>
