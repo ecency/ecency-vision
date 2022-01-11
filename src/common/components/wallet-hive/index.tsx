@@ -37,6 +37,7 @@ import parseAsset from "../../helper/parse-asset";
 import {_t} from "../../i18n";
 
 import {plusCircle} from "../../img/svg";
+import { addAccount } from "../../store/accounts";
 
 interface Props {
     history: History;
@@ -50,6 +51,7 @@ interface Props {
     updateActiveUser: (data?: Account) => void;
     setSigningKey: (key: string) => void;
     fetchTransactions: (username: string, group?: OperationGroup | "") => void;
+    // ensureAccount: () => void
 }
 
 interface State {
@@ -188,7 +190,9 @@ export class WalletHive extends BaseComponent<Props, State> {
     }
 
     closeTransferDialog = () => {
+        // const {ensureAccount} = this.props
         this.stateSet({transfer: false, transferMode: null, transferAsset: null});
+        // ensureAccount()
     }
 
     render() {
@@ -258,9 +262,10 @@ export class WalletHive extends BaseComponent<Props, State> {
                             </div>
                             <div className="balance-values">
                                 <div className="amount">
-                                    {(() => {
+                                {(() => {
+                                        let dropDownConfig: any
                                         if (isMyPage) {
-                                            const dropDownConfig = {
+                                            dropDownConfig = {
                                                 history: this.props.history,
                                                 label: '',
                                                 items: [
@@ -284,11 +289,25 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                     },
                                                 ],
                                             };
-                                            return <div className="amount-actions">
-                                                <DropDown {...dropDownConfig} float="right"/>
-                                            </div>;
+                                            
+                                        } else if (activeUser) {
+                                            dropDownConfig = {
+                                                history: this.props.history,
+                                                label: '',
+                                                items: [
+                                                    {
+                                                        label: _t('wallet.transfer'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('transfer', 'HIVE');
+                                                        }
+                                                    }
+                                                ],
+                                            };
                                         }
-                                        return null;
+                                        return (<div className="amount-actions">
+                                                <DropDown {...dropDownConfig} float="right"/>
+                                            </div>)
+                                        
                                     })()}
 
                                     <span>{formattedNumber(w.balance, {suffix: "HIVE"})}</span>
@@ -305,10 +324,10 @@ export class WalletHive extends BaseComponent<Props, State> {
 
                             <div className="balance-values">
                                 <div className="amount">
-                                    {(() => {
+                                {(() => {
+                                        let dropDownConfig: any
                                         if (isMyPage) {
-
-                                            const dropDownConfig = {
+                                            dropDownConfig = {
                                                 history: this.props.history,
                                                 label: '',
                                                 items: [
@@ -332,11 +351,30 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                     },
                                                 ],
                                             };
-                                            return <div className="amount-actions">
-                                                <DropDown {...dropDownConfig} float="right"/>
-                                            </div>;
+                                        } else if (activeUser) {
+                                            dropDownConfig = {
+                                                history: this.props.history,
+                                                label: '',
+                                                items: [
+                                                    {
+                                                        label: _t('wallet.delegate'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('delegate', 'HP');
+                                                        },
+                                                    },
+                                                    {
+                                                        label: _t('wallet.power-up'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('power-up', 'HIVE');
+                                                        }
+                                                    },
+                                                ],
+                                            };
                                         }
-                                        return null;
+                                        return (<div className="amount-actions">
+                                                <DropDown {...dropDownConfig} float="right"/>
+                                            </div>)
+                                        
                                     })()}
                                     {totalHP}
                                 </div>
@@ -402,9 +440,10 @@ export class WalletHive extends BaseComponent<Props, State> {
                             </div>
                             <div className="balance-values">
                                 <div className="amount">
-                                    {(() => {
+                                {(() => {
+                                        let dropDownConfig: any
                                         if (isMyPage) {
-                                            const dropDownConfig = {
+                                            dropDownConfig = {
                                                 history: this.props.history,
                                                 label: '',
                                                 items: [
@@ -428,12 +467,24 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                     },
                                                 ],
                                             };
-
-                                            return <div className="amount-actions">
-                                                <DropDown {...dropDownConfig} float="right"/>
-                                            </div>;
+                                        } else if (activeUser) {
+                                            dropDownConfig = {
+                                                history: this.props.history,
+                                                label: '',
+                                                items: [
+                                                    {
+                                                        label: _t('wallet.transfer'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('transfer', 'HBD');
+                                                        }
+                                                    }
+                                                ],
+                                            };
                                         }
-                                        return null;
+                                        return (<div className="amount-actions">
+                                                <DropDown {...dropDownConfig} float="right"/>
+                                            </div>)
+                                        
                                     })()}
                                     <span>{formattedNumber(w.hbdBalance, {prefix: "$"})}</span>
                                 </div>
@@ -458,9 +509,10 @@ export class WalletHive extends BaseComponent<Props, State> {
                             </div>
                             <div className="balance-values">
                                 <div className="amount">
-                                    {(() => {
+                                {(() => {
+                                        let dropDownConfig: any
                                         if (isMyPage) {
-                                            const dropDownConfig = {
+                                            dropDownConfig = {
                                                 history: this.props.history,
                                                 label: '',
                                                 items: [
@@ -472,19 +524,32 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                     }
                                                 ],
                                             };
-
-                                            return <div className="amount-actions">
-                                                <DropDown {...dropDownConfig} float="right"/>
-                                            </div>;
+                                        } else if (activeUser) {
+                                            dropDownConfig = {
+                                                history: this.props.history,
+                                                label: '',
+                                                items: [
+                                                    {
+                                                        label: _t('wallet.transfer'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('transfer-saving', 'HIVE');
+                                                        }
+                                                    }
+                                                ],
+                                            };
                                         }
-                                        return null;
+                                        return (<div className="amount-actions">
+                                                <DropDown {...dropDownConfig} float="right"/>
+                                            </div>)
+                                        
                                     })()}
                                     <span>{formattedNumber(w.savingBalance, {suffix: "HIVE"})}</span>
                                 </div>
                                 <div className="amount">
-                                    {(() => {
+                                {(() => {
+                                        let dropDownConfig: any
                                         if (isMyPage) {
-                                            const dropDownConfig = {
+                                            dropDownConfig = {
                                                 history: this.props.history,
                                                 label: '',
                                                 items: [
@@ -496,12 +561,24 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                     },
                                                 ],
                                             };
-
-                                            return <div className="amount-actions">
-                                                <DropDown {...dropDownConfig} float="right"/>
-                                            </div>;
+                                        } else if (activeUser) {
+                                            dropDownConfig = {
+                                                history: this.props.history,
+                                                label: '',
+                                                items: [
+                                                    {
+                                                        label: _t('wallet.transfer'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('transfer-saving', 'HBD');
+                                                        }
+                                                    }
+                                                ],
+                                            };
                                         }
-                                        return null;
+                                        return (<div className="amount-actions">
+                                                <DropDown {...dropDownConfig} float="right"/>
+                                            </div>)
+                                        
                                     })()}
 
                                     <span>{formattedNumber(w.savingBalanceHbd, {suffix: "$"})}</span>
@@ -523,7 +600,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                     <WalletMenu global={global} username={account.name} active="hive"/>
                 </div>
 
-                {transfer && <Transfer {...this.props} activeUser={activeUser!} mode={transferMode!} asset={transferAsset!} onHide={this.closeTransferDialog}/>}
+                {transfer && <Transfer {...this.props} activeUser={activeUser!} to={isMyPage ? undefined : account.name} mode={transferMode!} asset={transferAsset!} onHide={this.closeTransferDialog}/>}
 
                 {this.state.delegatedList && (
                     <DelegatedVesting {...this.props} account={account} onHide={this.toggleDelegatedList} totalDelegated={totalDelegated.replace("- ","")}/>
@@ -554,7 +631,8 @@ export default (p: Props) => {
         addAccount: p.addAccount,
         updateActiveUser: p.updateActiveUser,
         setSigningKey: p.setSigningKey,
-        fetchTransactions: p.fetchTransactions
+        fetchTransactions: p.fetchTransactions,
+        // ensureAccount: p.ensureAccount
     }
 
     return <WalletHive {...props} />;

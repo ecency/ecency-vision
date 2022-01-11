@@ -262,6 +262,7 @@ export const WalletEcency = (props: Props) => {
     }
 
     const toggleTransfer = () => {
+        // if(transfer) fetchPoints(account.name)
         setTransfer(!transfer);
     }
 
@@ -281,20 +282,20 @@ export const WalletEcency = (props: Props) => {
 
     const isMyPage = activeUser && activeUser.username === account.name;
 
-    const dropDownConfig = {
-        history: history,
-        label: '',
-        items: [{
-            label: _t('points.transfer'),
-            onClick: toggleTransfer
-        }, {
-            label: _t('points.promote'),
-            onClick: togglePromote
-        }, {
-            label: _t('points.boost'),
-            onClick: toggleBoost
-        }]
-    };
+    // const dropDownConfig = {
+    //     history: history,
+    //     label: '',
+    //     items: [{
+    //         label: _t('points.transfer'),
+    //         onClick: toggleTransfer
+    //     }, {
+    //         label: _t('points.promote'),
+    //         onClick: togglePromote
+    //     }, {
+    //         label: _t('points.boost'),
+    //         onClick: toggleBoost
+    //     }]
+    // };
 
     const txFilters = [
         TransactionType.CHECKIN, TransactionType.LOGIN, TransactionType.CHECKIN_EXTRA,
@@ -348,11 +349,49 @@ export const WalletEcency = (props: Props) => {
                             </div>
                             <div className="balance-values">
                                 <div className="amount">
-                                    {isMyPage && (
+
+                                {
+                                        (() => {
+                                            let dropDownConfig: any
+                                            if(isMyPage) {
+                                                dropDownConfig = {
+                                                    history: history,
+                                                    label: '',
+                                                    items: [{
+                                                        label: _t('points.transfer'),
+                                                        onClick: toggleTransfer
+                                                    }, {
+                                                        label: _t('points.promote'),
+                                                        onClick: togglePromote
+                                                    }, {
+                                                        label: _t('points.boost'),
+                                                        onClick: toggleBoost
+                                                    }]
+                                                };
+                                            } else if (activeUser) {
+                                                dropDownConfig = {
+                                                    history: history,
+                                                    label: '',
+                                                    items: [{
+                                                        label: _t('points.transfer-user'),
+                                                        onClick: toggleTransfer
+                                                    }]
+                                                };
+                                            }
+                                            return (
+                                                <div className="amount-actions">
+                                            <DropDown {...dropDownConfig} float="right"/>
+                                        </div>
+                                            )
+                                        })()
+                                    }
+
+
+                                    {/* {isMyPage && (
                                         <div className="amount-actions">
                                             <DropDown {...dropDownConfig} float="right"/>
                                         </div>
-                                    )}
+                                    )} */}
 
                                     <>{points.points} {"POINTS"}</>
                                 </div>
@@ -456,6 +495,7 @@ export const WalletEcency = (props: Props) => {
                     mode="transfer"
                     asset="POINT"
                     activeUser={activeUser!}
+                    to={isMyPage ? undefined : account.name}
                     onHide={toggleTransfer}/>)
                 }
 

@@ -411,6 +411,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                                     return WalletHive({
                                         ...this.props,
                                         account
+                                        // ensureAccount: this.ensureAccount
                                     });
                                 }
 
