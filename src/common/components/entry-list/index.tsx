@@ -140,12 +140,12 @@ export class EntryListContent extends Component<Props, State> {
                             })}
                         </>
                     ) : !loading &&  (global.tag===`@${activeUser?.username}` && global.filter === "posts") ? 
-                                    <MessageNoData
-                                        title={_t("profile-info.no-posts")}
-                                        description={_t("profile-info.no-posts")}
-                                        buttonText={_t("profile-info.create-posts")}
-                                        buttonTo="/submit"
-                                    /> : <MessageNoData
+                            <MessageNoData
+                                title={_t("profile-info.no-posts")}
+                                description={`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}
+                                buttonText={_t("profile-info.create-posts")}
+                                buttonTo="/submit"
+                            /> : <MessageNoData
                                     title={_t("profile-info.no-posts")}
                                     description={`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}
                                     buttonText={_t("profile-info.create-posts")}
