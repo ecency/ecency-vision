@@ -171,6 +171,7 @@ interface Props {
     signingKey: string;
     transactions: Transactions;
     fetchPoints: (username: string, type?: number) => void;
+    updateWalletValues: () => void;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
     setSigningKey: (key: string) => void;
@@ -262,7 +263,6 @@ export const WalletEcency = (props: Props) => {
     }
 
     const toggleTransfer = () => {
-        // if(transfer) fetchPoints(account.name)
         setTransfer(!transfer);
     }
 
@@ -518,6 +518,7 @@ export default (p: Props) => {
         signingKey: p.signingKey,
         transactions: p.transactions,
         fetchPoints: p.fetchPoints,
+        updateWalletValues: p.updateWalletValues,
         addAccount: p.addAccount,
         updateActiveUser: p.updateActiveUser,
         setSigningKey: p.setSigningKey

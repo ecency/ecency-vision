@@ -51,7 +51,8 @@ interface Props {
     updateActiveUser: (data?: Account) => void;
     setSigningKey: (key: string) => void;
     fetchTransactions: (username: string, group?: OperationGroup | "") => void;
-    // ensureAccount: () => void
+    fetchPoints: (username: string, type?: number) => void;
+    updateWalletValues: () => void;
 }
 
 interface State {
@@ -190,9 +191,7 @@ export class WalletHive extends BaseComponent<Props, State> {
     }
 
     closeTransferDialog = () => {
-        // const {ensureAccount} = this.props
         this.stateSet({transfer: false, transferMode: null, transferAsset: null});
-        // ensureAccount()
     }
 
     render() {
@@ -632,7 +631,8 @@ export default (p: Props) => {
         updateActiveUser: p.updateActiveUser,
         setSigningKey: p.setSigningKey,
         fetchTransactions: p.fetchTransactions,
-        // ensureAccount: p.ensureAccount
+        updateWalletValues: p.updateWalletValues,
+        fetchPoints: p.fetchPoints
     }
 
     return <WalletHive {...props} />;

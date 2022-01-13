@@ -410,8 +410,8 @@ class ProfilePage extends BaseComponent<Props, State> {
                                 if (section === "wallet") {
                                     return WalletHive({
                                         ...this.props,
-                                        account
-                                        // ensureAccount: this.ensureAccount
+                                        account,
+                                        updateWalletValues: this.ensureAccount
                                     });
                                 }
 
