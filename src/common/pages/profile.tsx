@@ -425,7 +425,8 @@ class ProfilePage extends BaseComponent<Props, State> {
                                 if (section === "points") {
                                     return WalletEcency({
                                         ...this.props,
-                                        account
+                                        account,
+                                        updateWalletValues: this.ensureAccount
                                     });
                                 }
 
