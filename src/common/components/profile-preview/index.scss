@@ -17,30 +17,6 @@
   }
 }
 
-.popper-container {
-  width: 30% !important;
-  z-index: 2 !important;
-  padding: 30px 0px;
-  @media (max-width: $sm-break) {
-    width: 100% !important;
-    background-color: rgba(0, 0, 0, 0.1);
-    position: absolute;
-    padding: 0px;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    z-index: 10;
-    height: 100%;
-  }
-  @media (min-width: 577px) and (max-width: 1000px) {
-    width: 80% !important;
-  }
-  @media (min-width: 1001px) and (max-width: 1300px) {
-    width: 60% !important;
-  }
-}
-
 .profile-img{
     min-height: 90px;
     min-width: 90px;

@@ -39,8 +39,7 @@ import truncate from "../../util/truncate";
 import {repeatSvg, pinSvg, commentSvg, muteSvg, volumeOffSvg, closeSvg, downArrowSvg, menuDownSvg} from "../../img/svg";
 
 import defaults from "../../constants/defaults.json";
-import { ProfilePreview } from "../profile-preview";
-import { Manager, Reference, Popper } from "react-popper"
+import { ProfilePopover } from "../profile-popover";
 
 setProxyBase(defaults.imageServer);
 
@@ -82,8 +81,6 @@ interface State {
     showNsfw: boolean;
     showMuted: boolean;
     mounted: boolean;
-    showProfileDetails: boolean;
-    delayHandler: any;
 }
 
 export default class EntryListItem extends Component<Props, State> {
@@ -91,8 +88,6 @@ export default class EntryListItem extends Component<Props, State> {
         showNsfw: false,
         showMuted: false,
         mounted: false,
-        showProfileDetails:false,
-        delayHandler: null
     }
 
     public static defaultProps = {
@@ -156,33 +151,9 @@ export default class EntryListItem extends Component<Props, State> {
         }
     }
 
-    showMiniProfile = (e: any) => {
-        e.persist();
-        // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
-        const timeout =
-            setTimeout(()=>{
-                e.stopPropagation()
-                if(this.props.global.isMobile && e.type == "click"){
-            }
-            this.setState({showProfileDetails:true });
-            document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, this.props.global.isMobile ? 0 : 500)
-        this.setState({delayHandler:timeout})
-    }
-
-    hideMiniProfile = (e:any, doNotSetState?: boolean) => {
-        const { delayHandler } = this.state;
-        clearTimeout(delayHandler)
-        e.stopPropagation()
-        // Add 0.2 sec delay while hiding mini-profile on web
-        setTimeout(()=>{
-                !doNotSetState && this.setState({showProfileDetails:false});
-                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
-        }, this.props.global.isMobile ? 0 : 200)
-    }
-
     render() {
         const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order} = this.props;
-        const { showProfileDetails, mounted } = this.state;
+        const { mounted } = this.state;
 
         const fallbackImage = global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png");
         const noImage = global.isElectron ?  "./img/noimage.svg" : require("../../img/noimage.svg");
@@ -287,46 +258,16 @@ export default class EntryListItem extends Component<Props, State> {
                                 className="d-flex align-items-center"
                                 id={`${entry.author}-${entry.permlink}`}
                             >
-                                <div className="author-avatar btn p-0 d-sm-none" onClick={this.showMiniProfile} id={`${entry.author}-${entry.permlink}`}>{UserAvatar({...this.props, username: entry.author, size: "small"})}</div>
                                 {ProfileLink({
                                     ...this.props,
                                     username: entry.author,
-                                    children: <a className="author-avatar d-none d-sm-block">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
+                                    children: <a className="author-avatar d-sm-block">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
                                 })}
 
-                                <div className="author btn notranslate d-flex d-sm-none align-items-center" onClick={this.showMiniProfile} id={`${entry.author}-${entry.permlink}`}>
-                                    <span>{entry.author}</span>
-                                </div>
-
-                                <Manager>
-                                    <Reference>
-                                        {({ref}) => (<div ref={ref} className="author btn notranslate d-none d-sm-flex align-items-center position-relative" onMouseEnter={this.showMiniProfile}>
-                                            <span>{entry.author}</span>
-                                        </div>)}
-                                    </Reference>
-                                    {showProfileDetails && entry.author && 
-                                    <Popper placement="bottom-start" modifiers={[{ name: 'offset', options: { offset: () => [0, window.matchMedia('(max-width: 576px)').matches ? 0 : -30]}}]}>
-                                        {({ref, style, placement, arrowProps}) => (<div ref={ref} style={{...style }} className="popper-container" data-placement={placement}
-                            onMouseLeave={this.hideMiniProfile}>
-                                                <ProfilePreview
-                                                    username={entry.author}
-                                                    {...this.props}
-                                                    onClose={this.hideMiniProfile}
-                                                />
-                                        </div>)}
-                                    </Popper>
-                                }
-                                </Manager>
+                                <ProfilePopover {...this.props} />
                             </div>
                              
-                            <span
-                                className="author-down-arrow ml-1"
-                                role="button"
-                                onClick={this.showMiniProfile}
-                                id={`${entry.author}-${entry.permlink}`}
-                            >
-                                {menuDownSvg}
-                            </span>
+                            
                         </div>
                         {Tag({
                             ...this.props,
