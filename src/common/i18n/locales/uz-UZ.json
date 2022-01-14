@@ -1,7 +1,7 @@
 {
   "g": {
-    "add": "Add",
-    "edit": "Edit",
+    "add": "Qo'shish",
+    "edit": "O'zgartirish",
     "submit": "Write a post",
     "search": "Search",
     "downloads": "Downloads",
@@ -52,7 +52,7 @@
     "faq": "FAQ",
     "more-results": "More results",
     "close": "Close",
-    "loading": "Loading"
+    "loading": "Yuklanmoqda"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -170,7 +170,7 @@
   "entry-list-item": {
     "cross-posted": "cross-posted",
     "cross-posted-to": "to",
-    "reblogged": "{{n}} Reblogged",
+    "reblogged": "{{n}} Tarqatildi",
     "promoted": "Promoted",
     "pinned": "Pinned Post",
     "replies": "1 response. Click to respond.",
