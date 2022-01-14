@@ -27,6 +27,9 @@ interface Props {
     activeUser: ActiveUser | null;
     entry: Entry;
     signingKey: string;
+    account: Account;
+    fetchPoints: (username: string, type?: number) => void;
+    updateWalletValues: () => void;
     addAccount: (data: Account) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
@@ -117,6 +120,9 @@ export default (p: Props) => {
         dynamicProps: p.dynamicProps,
         users: p.users,
         ui: p.ui,
+        account: p.account,
+        fetchPoints: p.fetchPoints,
+        updateWalletValues: p.updateWalletValues,
         activeUser: p.activeUser,
         entry: p.entry,
         signingKey: p.signingKey,

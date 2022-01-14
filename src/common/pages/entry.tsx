@@ -10,7 +10,7 @@ import {renderPostBody, setProxyBase, catchPostImage, postBodySummary} from "@ec
 
 import {Entry, EntryVote} from "../store/entries/types";
 import {Community} from "../store/communities/types";
-import {FullAccount} from "../store/accounts/types";
+import {Account, FullAccount} from "../store/accounts/types";
 
 import EntryLink, {makePath as makeEntryPath} from "../components/entry-link";
 
@@ -84,6 +84,8 @@ interface MatchParams {
 
 interface Props extends PageProps {
     match: match<MatchParams>;
+    account: Account;
+    updateWalletValues: () => void
 }
 
 interface State {
@@ -958,7 +960,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                             })}
                                             {EntryTipBtn({
                                                 ...this.props,
-                                                entry
+                                                entry                                                
                                             })}
                                             {!ownEntry && (
                                                 <>
