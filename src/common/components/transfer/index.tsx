@@ -551,7 +551,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
     finish = () => {
         const {onHide, mode, asset, account, activeUser, fetchPoints, updateWalletValues} = this.props;
-        if (account.name && activeUser.username && (account.name !== activeUser.username)) {
+        if (account && activeUser && (account.name !== activeUser.username)) {
             if (mode === 'transfer' && asset === 'POINT') {
                 fetchPoints(account.name)
             } else {

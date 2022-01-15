@@ -193,7 +193,7 @@ class EntryPage extends BaseComponent<Props, State> {
        const infoCard:HTMLElement | null = document.getElementById("avatar-fixed-container");
        const top = this?.viewElement?.getBoundingClientRect()?.top || 120;
         
-       if(infoCard != null && window.scrollY > 180  && top && !(top <= 0)) {
+       if(infoCard != null && window.scrollY > 180  && top && !(top <= 0)) {
             infoCard.classList.replace('invisible','visible');
             if(!showProfileBox){
                 this.setState({showProfileBox:true})
@@ -960,7 +960,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                             })}
                                             {EntryTipBtn({
                                                 ...this.props,
-                                                entry                                                
+                                                entry
                                             })}
                                             {!ownEntry && (
                                                 <>
