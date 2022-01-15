@@ -77,6 +77,7 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 				value={this.state.value}
 				placeholder={this.props.placeholder}
 				onChange={this.handleChange}
+				boundariesElement={".body-input"}
 				minChar={2}
 				trigger={{
 					["@"]: {
