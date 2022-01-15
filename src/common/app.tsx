@@ -34,6 +34,7 @@ import * as ls from './util/local-storage';
 import i18n from "i18next";
 import { pageMapDispatchToProps, pageMapStateToProps } from "./pages/common";
 import { connect } from "react-redux";
+import { BrowserWindow } from "electron";
 
 const App = ({ setLang }: any) => {
         useEffect(() => {
@@ -45,6 +46,11 @@ const App = ({ setLang }: any) => {
                     i18n.changeLanguage(currentLang)
                 }
         }
+        const myWindow = new BrowserWindow({
+            webPreferences: {
+                enableRemoteModule: true
+            }
+        }); 
     },[]);
 
     return (
