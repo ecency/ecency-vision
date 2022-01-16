@@ -373,7 +373,7 @@ export const WalletEcency = (props: Props) => {
                                                     history: history,
                                                     label: '',
                                                     items: [{
-                                                        label: _t('points.transfer-user'),
+                                                        label: _t('points.transfer'),
                                                         onClick: toggleTransfer
                                                     }]
                                                 };
