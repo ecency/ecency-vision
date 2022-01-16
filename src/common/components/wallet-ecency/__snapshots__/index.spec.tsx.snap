@@ -60,6 +60,9 @@ exports[`(1) Default Render 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            />
             12.010
              
             POINTS
