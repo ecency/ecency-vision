@@ -46,11 +46,6 @@ const App = ({ setLang }: any) => {
                     i18n.changeLanguage(currentLang)
                 }
         }
-        const myWindow = new BrowserWindow({
-            webPreferences: {
-                enableRemoteModule: true
-            }
-        }); 
     },[]);
 
     return (

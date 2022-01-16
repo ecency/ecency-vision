@@ -54,6 +54,7 @@ const sendProtocolUrl2Window = (u: any): void => {
     if (m[0]) {
         mainWindow!.webContents.executeJavaScript(`protocolHandler('${m[0]}')`);
     }
+
 };
 
 const sLock = app.requestSingleInstanceLock();
@@ -113,6 +114,7 @@ const createWindow = async () => {
         icon: getAssetPath('icon.png'),
         webPreferences: {
             nodeIntegration: true,
+            enableRemoteModule: true
         },
     });
 

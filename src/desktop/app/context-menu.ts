@@ -1,8 +1,7 @@
-import { shell, clipboard, Renderer} from "electron";
+import { shell, clipboard, remote} from "electron";
 
 import {_t} from "../../common/i18n";
 
-const { remote } = Renderer;
 const {Menu, MenuItem} = remote;
 
 const isAnyTextSelected = () => window.getSelection() && window.getSelection()!.toString() !== '';
