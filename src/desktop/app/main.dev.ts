@@ -14,6 +14,7 @@ import path from 'path';
 import {app, BrowserWindow, ipcMain, shell} from 'electron';
 import {autoUpdater} from 'electron-updater';
 import MenuBuilder from './menu';
+import { HandlerDetails } from 'electron/main';
 
 const osPlatform = require("os").platform();
 
@@ -114,7 +115,9 @@ const createWindow = async () => {
         icon: getAssetPath('icon.png'),
         webPreferences: {
             nodeIntegration: true,
-            enableRemoteModule: true
+            enableRemoteModule: true,
+            contextIsolation: false,
+            worldSafeExecuteJavaScript: false
         },
     });
 
@@ -159,10 +162,12 @@ const createWindow = async () => {
             }, 3000);
         }
 
-    }).on('new-window', (e, url) => {
+    })
+
+    mainWindow.webContents.setWindowOpenHandler(({url}: HandlerDetails)=>{
         shell.openExternal(url);
-        e.preventDefault();
-    });
+        return {action: "allow"}
+    })
 
     mainWindow.on('closed', () => {
         mainWindow = null;

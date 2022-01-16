@@ -19,6 +19,8 @@ const windowSettings = {
     webPreferences: {
         enableRemoteModule: true,
         nodeIntegration: true,
+        contextIsolation: false,
+        worldSafeExecuteJavaScript: false
     }
 };
 
