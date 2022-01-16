@@ -285,8 +285,8 @@
     "deleted-content-warning": "Este contenido fue eliminado por el autor. Puedes verlo desde la Blockchain ",
     "comments-hidden": "Silenciaste al autor de esta publicación.",
     "address-copy": "Copiar la dirección de la Publicación",
-    "address-copied": "Dirección de publicación copiada al portapapeles.",
-    "content-copied": "Contenido copiado al portapapeles.",
+    "address-copied": "Dirección de publicación copiada al portapapeles",
+    "content-copied": "Contenido copiado al portapapeles",
     "browse-original": "Abrir publicación original",
     "cross-post-by": "Publicación cruzada por",
     "cross-post-community": "comunidad",
@@ -458,6 +458,7 @@
     "down-vote-power": "Poder de Votos Negativos: {{n}}%",
     "no-posts": "Aquí verás tus mensajes, parece que no existe contenido.",
     "create-posts": "Vamos a crear una nueva publicación",
+    "link-copied": "Enlace de búsqueda copiado al portapapeles",
     "no-posts-found": "¡No se encontró nada!"
   },
   "profile-edit": {
@@ -468,7 +469,7 @@
     "profile-image": "Imagen de perfil",
     "website": "Página Web",
     "location": "Localización",
-    "copied": "El enlace de referido se ha copiado en el portapapeles.",
+    "copied": "El enlace de referido se ha copiado en el portapapeles",
     "updated": "¡Perfil actualizado exitosamente!"
   },
   "image-upload-button": {
@@ -562,7 +563,7 @@
     "delegation-list-desc": "Recompensa por delegación",
     "referral-list-desc": "Recompensa por referido",
     "community-list-desc": "Recompensa de la comunidad",
-    "transfer": "Regalar a alguien",
+    "transfer": "Regalo",
     "claim-ok": "Puntos reclamados",
     "promote": "Promocionar",
     "boost": "Boost",
@@ -1071,6 +1072,7 @@
     },
     "faq": {
       "page-title": "¿Cómo podemos ayudarte?",
+      "search-link-copied": "Enlace de búsqueda copiado al portapapeles",
       "page-sub-title": "Lista de contenidos",
       "what-is-ecency-header": "¿Qué es Ecency?",
       "search": "Resultados relacionados para {{search}} filtrados a continuación",

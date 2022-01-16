@@ -285,8 +285,8 @@
     "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Копирай адреса",
-    "address-copied": "Адресът е копиран в клипборда.",
-    "content-copied": "Content copied to clipboard.",
+    "address-copied": "Post address copied to clipboard",
+    "content-copied": "Content copied to clipboard",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -458,6 +458,7 @@
     "down-vote-power": "Сила за отрицателно гласуване: {{n}}%",
     "no-posts": "Тук можете да видите вашите публикации, изглежда че няма налично съдържание.",
     "create-posts": "Нека създадем нова публикация",
+    "link-copied": "Search link copied to clipboard",
     "no-posts-found": "Не е намерено!"
   },
   "profile-edit": {
@@ -468,7 +469,7 @@
     "profile-image": "Профилна снимка",
     "website": "Уебсайт",
     "location": "Местоположение",
-    "copied": "Рефералната връзка е копирана.",
+    "copied": "Referral link copied to clipboard",
     "updated": "Профила е актуализиран успешно!"
   },
   "image-upload-button": {
@@ -562,7 +563,7 @@
     "delegation-list-desc": "Награда за Делегиран Hive",
     "referral-list-desc": "Награда на реферала",
     "community-list-desc": "Общностнa наградa",
-    "transfer": "Подари на някого",
+    "transfer": "Gift",
     "claim-ok": "Взети точки",
     "promote": "Промотиране",
     "boost": "Подсилване",
@@ -1071,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Таблица на съдържанието",
       "what-is-ecency-header": "Какво е Ecency?",
       "search": "Related results for {{search}} filtered below",

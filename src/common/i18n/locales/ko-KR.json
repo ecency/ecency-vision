@@ -285,8 +285,8 @@
     "deleted-content-warning": "이 콘텐츠는 작성자에 의해 삭제되었습니다. 블록체인에서 볼 수 있습니다 ",
     "comments-hidden": "이 게시물의 작성자는 귀하에 의해 뮤트되었습니다.",
     "address-copy": "글 주소 복사",
-    "address-copied": "글 주소가 클립보드에 복사되었습니다.",
-    "content-copied": "콘텐츠 클립보드에 복사되었습니다.",
+    "address-copied": "Post address copied to clipboard",
+    "content-copied": "Content copied to clipboard",
     "browse-original": "원본 게시물 보기",
     "cross-post-by": "교차 게시물 작성자",
     "cross-post-community": "커뮤니티",
@@ -458,6 +458,7 @@
     "down-vote-power": "다운보팅 파워: {{n}}%",
     "no-posts": "여기에 귀하의 게시물이 표시됩니다, 콘텐츠가 없는 것 같습니다.",
     "create-posts": "새 게시물을 작성해 봅시다.",
+    "link-copied": "Search link copied to clipboard",
     "no-posts-found": "검색 결과가 없습니다!"
   },
   "profile-edit": {
@@ -468,7 +469,7 @@
     "profile-image": "프로필 사진",
     "website": "웹사이트",
     "location": "위치",
-    "copied": "추천인 링크가 클립보드에 복사되었습니다.",
+    "copied": "Referral link copied to clipboard",
     "updated": "프로필을 성공적으로 업데이트 하였습니다!"
   },
   "image-upload-button": {
@@ -562,7 +563,7 @@
     "delegation-list-desc": "임대 보상",
     "referral-list-desc": "추천인 보상",
     "community-list-desc": "커뮤니티 보상",
-    "transfer": "선물하기",
+    "transfer": "Gift",
     "claim-ok": "포인트 요청했습니다",
     "promote": "홍보",
     "boost": "부스트",
@@ -1071,6 +1072,7 @@
     },
     "faq": {
       "page-title": "어떻게 도와 드릴까요?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "목차",
       "what-is-ecency-header": "Ecency란?",
       "search": "아래 필터링된 {{search}} 관련 결과",

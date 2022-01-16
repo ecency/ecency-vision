@@ -285,8 +285,8 @@
     "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "Olet mykistänyt tämän julkaisun tekijän.",
     "address-copy": "Kopioi osoite",
-    "address-copied": "Osoite kopioitu leikepöydälle.",
-    "content-copied": "Content copied to clipboard.",
+    "address-copied": "Post address copied to clipboard",
+    "content-copied": "Content copied to clipboard",
     "browse-original": "Näytä alkuperäinen julkaisu",
     "cross-post-by": "Ristilähettäjä",
     "cross-post-community": "yhteisö",
@@ -458,6 +458,7 @@
     "down-vote-power": "Äänen laskuteho: {{n}}%",
     "no-posts": "Täällä näet julkaisusi, näyttää siltä ettei sisältöä ole luotu.",
     "create-posts": "Luodaan uusi julkaisu",
+    "link-copied": "Search link copied to clipboard",
     "no-posts-found": "Ei löytynyt mitään!"
   },
   "profile-edit": {
@@ -468,7 +469,7 @@
     "profile-image": "Profiilikuva",
     "website": "Sivusto",
     "location": "Sijainti",
-    "copied": "Suosituslinkki kopioitu leikepöydälle.",
+    "copied": "Referral link copied to clipboard",
     "updated": "Profiili on päivitetty onnistuneesti!"
   },
   "image-upload-button": {
@@ -562,7 +563,7 @@
     "delegation-list-desc": "Valtuutuspalkkio",
     "referral-list-desc": "Suosittelupalkkio",
     "community-list-desc": "Yhteisöpalkkio",
-    "transfer": "Lahjoita",
+    "transfer": "Gift",
     "claim-ok": "Pisteitä lunastettu",
     "promote": "Korosta",
     "boost": "Tehosta",
@@ -1071,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Sisällysluettelo",
       "what-is-ecency-header": "Mikä on Ecency?",
       "search": "Related results for {{search}} filtered below",

@@ -285,8 +285,8 @@
     "deleted-content-warning": "İçerik yazarı tarafından silinmiştir. Blockchain'den bakabilirsiniz ",
     "comments-hidden": "Bu gönderinin yazarı tarafınızdan engellenmiştir.",
     "address-copy": "Gönderi adresini kopyala",
-    "address-copied": "Gönderi adresi panoya kopyalandı.",
-    "content-copied": "İçerik panoya kopyalandı.",
+    "address-copied": "Post address copied to clipboard",
+    "content-copied": "Content copied to clipboard",
     "browse-original": "Orijinal gönderiyi görüntüle",
     "cross-post-by": "Çapraz gönderen",
     "cross-post-community": "topluluk",
@@ -458,6 +458,7 @@
     "down-vote-power": "Eksi Oy Gücü: %{{n}}",
     "no-posts": "Burada gönderilerinizi göreceksiniz, şu anda içerik yok.",
     "create-posts": "Yeni bir gönderi oluştur",
+    "link-copied": "Search link copied to clipboard",
     "no-posts-found": "Hiçbir şey bulunamadı!"
   },
   "profile-edit": {
@@ -468,7 +469,7 @@
     "profile-image": "Profil resmi",
     "website": "Web sitesi",
     "location": "Konum",
-    "copied": "Referans bağlantısı panoya kopyalandı.",
+    "copied": "Referral link copied to clipboard",
     "updated": "Profil başarıyla güncellendi!"
   },
   "image-upload-button": {
@@ -562,7 +563,7 @@
     "delegation-list-desc": "Delegasyon ödülü",
     "referral-list-desc": "Alt üye ödülü",
     "community-list-desc": "Topluluk ödülü",
-    "transfer": "Birine hediye gönder",
+    "transfer": "Gift",
     "claim-ok": "Çekilen puanlar",
     "promote": "Tanıtım Yap",
     "boost": "Yükselt",
@@ -1071,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "İçindekiler",
       "what-is-ecency-header": "Ecency Nedir?",
       "search": "Related results for {{search}} filtered below",

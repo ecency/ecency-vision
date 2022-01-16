@@ -8,7 +8,7 @@
     "login": "Войти",
     "login-as": "Войти как",
     "signup": "Регистрация",
-    "permissions": "Permissions",
+    "permissions": "Разрешения",
     "delete": "Удалить",
     "cancel": "Отменить",
     "reply": "Ответить",
@@ -25,7 +25,7 @@
     "back": "Назад",
     "load-more": "Загрузить больше",
     "empty-list": "Здесь пусто",
-    "no-matches": "Nothing found",
+    "no-matches": "Ничего не найдено",
     "save": "Сохранить",
     "try-again": "Попрoбуйте снова",
     "show": "Показать",
@@ -52,7 +52,7 @@
     "faq": "ЧаВо",
     "more-results": "Показать больше результатов",
     "close": "Закрыть",
-    "loading": "Loading"
+    "loading": "Загрузка"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -176,7 +176,7 @@
     "replies": "1 ответ. Нажмите чтобы ответить.",
     "replies-n": "{{n}} ответов. Нажмите для ответа.",
     "vote-error": "Предыдущее значение неприемлемо. Голосуйте с другой ценностью.",
-    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-remove": "Голосование 0 % u означает отменить голосование.",
     "vote-warning": "Changing vote...",
     "no-replies": "Ответов пока нет. Нажмите чтобы ответить."
   },
@@ -285,8 +285,8 @@
     "deleted-content-warning": "Это содержимое было удалено автором. Вы можете увидеть его из блокчейна ",
     "comments-hidden": "Автор сообщения отключен вами.",
     "address-copy": "Скопировать адрес поста",
-    "address-copied": "Адрес поста скопирован в буфер обмена.",
-    "content-copied": "Скопировано в буфер обмена.",
+    "address-copied": "Post address copied to clipboard",
+    "content-copied": "Content copied to clipboard",
     "browse-original": "Открыть оригинальный пост",
     "cross-post-by": "Кросс-пост от",
     "cross-post-community": "сообщество",
@@ -458,6 +458,7 @@
     "down-vote-power": "Понижающая сила голоса: {{n}}%",
     "no-posts": "Здесь вы увидите ваши посты, в которых, похоже, нет содержимого.",
     "create-posts": "Давайте создадим новый пост",
+    "link-copied": "Search link copied to clipboard",
     "no-posts-found": "Ничего не найдено!"
   },
   "profile-edit": {
@@ -468,7 +469,7 @@
     "profile-image": "Фото профиля",
     "website": "Вебсайт",
     "location": "Локация",
-    "copied": "Реферальная ссылка скопирована в буфер обмена.",
+    "copied": "Referral link copied to clipboard",
     "updated": "Профиль обновлен!"
   },
   "image-upload-button": {
@@ -562,7 +563,7 @@
     "delegation-list-desc": "Награда за делегирование",
     "referral-list-desc": "Реферальная награда",
     "community-list-desc": "Награды сообщества",
-    "transfer": "Подарить кому-то",
+    "transfer": "Gift",
     "claim-ok": "Очки зачислены",
     "promote": "Продвинуть",
     "boost": "Усилить",
@@ -1071,6 +1072,7 @@
     },
     "faq": {
       "page-title": "Чем мы можем вам помочь?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Таблица с содержимым",
       "what-is-ecency-header": "Что такое Ecency?",
       "search": "Похожие результаты по {{search}} отфильтрованны ниже",

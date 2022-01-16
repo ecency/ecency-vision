@@ -285,8 +285,8 @@
     "deleted-content-warning": "Questo contenuto è stato rimosso dall'autore. Puoi vederlo attraverso la Blockchain ",
     "comments-hidden": "L'autore di questo post è stato silenziato da te.",
     "address-copy": "Copia l'indirizzo del Post",
-    "address-copied": "Indirizzo del post copiato negli appunti.",
-    "content-copied": "Contenuto copiato negli appunti.",
+    "address-copied": "Post address copied to clipboard",
+    "content-copied": "Content copied to clipboard",
     "browse-original": "Apri post originale",
     "cross-post-by": "Postato trasversalmente da",
     "cross-post-community": "community",
@@ -458,6 +458,7 @@
     "down-vote-power": "Potenza di Disapprovazione: {{n}}%",
     "no-posts": "Qui vedrai i tuoi post, sembra che attualmente non ci siano contenuti.",
     "create-posts": "Inizia a creare un nuovo post",
+    "link-copied": "Search link copied to clipboard",
     "no-posts-found": "Non abbiamo trovato nulla!"
   },
   "profile-edit": {
@@ -468,7 +469,7 @@
     "profile-image": "Immagine del profilo",
     "website": "Sito web",
     "location": "Posizione/Provenienza",
-    "copied": "Link di affiliazione copiato negli appunti.",
+    "copied": "Referral link copied to clipboard",
     "updated": "Profilo aggiornato con successo!"
   },
   "image-upload-button": {
@@ -562,7 +563,7 @@
     "delegation-list-desc": "Ricompensa dalla delega",
     "referral-list-desc": "Ricompense da raccomandazioni",
     "community-list-desc": "Ricompensa della community",
-    "transfer": "Fai un regalo a qualcuno",
+    "transfer": "Gift",
     "claim-ok": "Punti richiesti",
     "promote": "Promuovi",
     "boost": "Boost",
@@ -1071,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Indice",
       "what-is-ecency-header": "Che cos'è Ecency?",
       "search": "Related results for {{search}} filtered below",
