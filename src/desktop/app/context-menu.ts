@@ -1,4 +1,4 @@
-import { shell, clipboard, remote} from "electron";
+import {remote, shell, clipboard} from "electron";
 
 import {_t} from "../../common/i18n";
 
