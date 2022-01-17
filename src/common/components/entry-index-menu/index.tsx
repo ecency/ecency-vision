@@ -392,7 +392,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     onChange={this.onChangeGlobal}
                                     custom={true}
                                 /> */}
-                                <div className="border-left ml-3 ml-md-5 dropDown-left-border-height"></div>
+                                <div className="border-left ml-3 ml-md-5 dropDown-left-border-height" />
                                 <span id="check-isGlobal" className="d-flex align-items-center pl-3">
                                 <Temp {...this.props} />
                                 </span>
