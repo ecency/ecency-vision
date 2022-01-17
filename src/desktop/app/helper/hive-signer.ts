@@ -17,7 +17,10 @@ const windowSettings = {
     maximizable: false,
     alwaysOnTop: true,
     webPreferences: {
-        nodeIntegration: false
+        enableRemoteModule: true,
+        nodeIntegration: true,
+        contextIsolation: false,
+        worldSafeExecuteJavaScript: false
     }
 };
 
