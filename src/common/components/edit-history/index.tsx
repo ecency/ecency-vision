@@ -1,38 +1,38 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import moment from 'moment';
+import moment from "moment";
 
-import { diff_match_patch } from 'diff-match-patch';
+import { diff_match_patch } from "diff-match-patch";
 
-import { Modal, Form, FormControl } from 'react-bootstrap';
+import { Modal, Form, FormControl } from "react-bootstrap";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
-import { renderPostBody, setProxyBase } from '@ecency/render-helper';
+import { renderPostBody, setProxyBase } from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
-import { Entry } from '../../store/entries/types';
+import { Entry } from "../../store/entries/types";
 
-import BaseComponent from '../base';
-import LinearProgress from '../linear-progress';
+import BaseComponent from "../base";
+import LinearProgress from "../linear-progress";
 
-import { error } from '../feedback';
+import { error } from "../feedback";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
-import { commentHistory, CommentHistoryListItem } from '../../api/private-api';
+import { commentHistory, CommentHistoryListItem } from "../../api/private-api";
 
-import { historySvg, tagSvg } from '../../img/svg';
+import { historySvg, tagSvg } from "../../img/svg";
 
 const dmp = new diff_match_patch();
 
 const make_diff = (str1: string, str2: string): string => {
   const d = dmp.diff_main(str1, str2);
   dmp.diff_cleanupSemantic(d);
-  return dmp.diff_prettyHtml(d).replace(/&para;/g, '&nbsp;');
+  return dmp.diff_prettyHtml(d).replace(/&para;/g, "&nbsp;");
 };
 
 export interface CommentHistoryListItemDiff {
@@ -73,9 +73,9 @@ export class EditHistory extends BaseComponent<Props, State> {
   buildList = (raw: CommentHistoryListItem[]): CommentHistoryListItemDiff[] => {
     const t: CommentHistoryListItemDiff[] = [];
 
-    let h = '';
+    let h = "";
     for (let l = 0; l < raw.length; l += 1) {
-      if (raw[l].body.startsWith('@@')) {
+      if (raw[l].body.startsWith("@@")) {
         const p = dmp.patch_fromText(raw[l].body);
         h = dmp.patch_apply(p, h)[0];
         raw[l].body = h;
@@ -88,7 +88,7 @@ export class EditHistory extends BaseComponent<Props, State> {
         title: raw[l].title,
         body: h,
         timestamp: raw[l].timestamp,
-        tags: raw[l].tags.join(', ')
+        tags: raw[l].tags.join(", ")
       });
     }
 
@@ -111,7 +111,7 @@ export class EditHistory extends BaseComponent<Props, State> {
         this.stateSet({ history: this.buildList(resp.list) });
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       })
       .finally(() => {
         this.stateSet({ loading: false });
@@ -155,16 +155,16 @@ export class EditHistory extends BaseComponent<Props, State> {
         <div className="version-list-sm">
           <div className="diff-select">
             <label>
-              <input type="checkbox" checked={showDiff} onChange={this.diffChanged} />{' '}
-              {_t('edit-history.show-diff')}
+              <input type="checkbox" checked={showDiff} onChange={this.diffChanged} />{" "}
+              {_t("edit-history.show-diff")}
             </label>
           </div>
           <Form.Control as="select" value={selected} onChange={this.versionChanged}>
             {history.map((i) => {
               return (
                 <option value={i.v} key={i.v}>
-                  {' '}
-                  {_t('edit-history.version', { n: i.v })}
+                  {" "}
+                  {_t("edit-history.version", { n: i.v })}
                 </option>
               );
             })}
@@ -173,8 +173,8 @@ export class EditHistory extends BaseComponent<Props, State> {
         <div className="version-list-lg">
           <div className="diff-select">
             <label>
-              <input type="checkbox" checked={showDiff} onChange={this.diffChanged} />{' '}
-              {_t('edit-history.show-diff')}
+              <input type="checkbox" checked={showDiff} onChange={this.diffChanged} />{" "}
+              {_t("edit-history.show-diff")}
             </label>
           </div>
           {history.map((i) => {
@@ -182,14 +182,14 @@ export class EditHistory extends BaseComponent<Props, State> {
             return (
               <div
                 key={i.v}
-                className={_c(`version-list-item ${selected === i.v ? 'selected' : ''}`)}
+                className={_c(`version-list-item ${selected === i.v ? "selected" : ""}`)}
                 onClick={() => {
                   this.versionClicked(i);
                 }}
               >
                 <div className="item-icon">{historySvg}</div>
-                <div className="item-title">{_t('edit-history.version', { n: i.v })}</div>
-                <div className="item-date">{date.format('LLL')}</div>
+                <div className="item-title">{_t("edit-history.version", { n: i.v })}</div>
+                <div className="item-date">{date.format("LLL")}</div>
               </div>
             );
           })}
@@ -220,7 +220,7 @@ export default class EditHistoryDialog extends Component<Props> {
         size="lg"
       >
         <Modal.Header closeButton={true}>
-          <Modal.Title>{_t('edit-history.title')}</Modal.Title>
+          <Modal.Title>{_t("edit-history.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <EditHistory {...this.props} />

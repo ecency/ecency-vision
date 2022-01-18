@@ -1,26 +1,26 @@
-import React from 'react';
+import React from "react";
 
-import i18n from 'i18next';
+import i18n from "i18next";
 
-import { Global } from '../../store/global/types';
+import { Global } from "../../store/global/types";
 
-import { Col, Form, FormControl, InputGroup, Button } from 'react-bootstrap';
+import { Col, Form, FormControl, InputGroup, Button } from "react-bootstrap";
 
-import BaseComponent from '../base';
-import { success } from '../feedback';
+import BaseComponent from "../base";
+import { success } from "../feedback";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { langOptions } from '../../i18n';
+import { langOptions } from "../../i18n";
 
-import { getCurrencyRate } from '../../api/misc';
+import { getCurrencyRate } from "../../api/misc";
 
-import currencySymbol from '../../helper/currency-symbol';
+import currencySymbol from "../../helper/currency-symbol";
 
-import currencies from '../../constants/currencies.json';
-import activeUser from '../../store/active-user';
-import { ActiveUser } from '../../store/active-user/types';
-import { copyContent } from '../../img/svg';
+import currencies from "../../constants/currencies.json";
+import activeUser from "../../store/active-user";
+import { ActiveUser } from "../../store/active-user/types";
+import { copyContent } from "../../img/svg";
 
 interface Props {
   global: Global;
@@ -44,15 +44,15 @@ export class Preferences extends BaseComponent<Props, State> {
   notificationsChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const { muteNotifications, unMuteNotifications } = this.props;
 
-    if (e.target.value === '1') {
+    if (e.target.value === "1") {
       unMuteNotifications();
     }
 
-    if (e.target.value === '0') {
+    if (e.target.value === "0") {
       muteNotifications();
     }
 
-    success(_t('preferences.updated'));
+    success(_t("preferences.updated"));
   };
 
   currencyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
@@ -65,7 +65,7 @@ export class Preferences extends BaseComponent<Props, State> {
         const { setCurrency } = this.props;
 
         setCurrency(currency, rate, symbol);
-        success(_t('preferences.updated'));
+        success(_t("preferences.updated"));
       })
       .finally(() => {
         this.stateSet({ inProgress: false });
@@ -78,7 +78,7 @@ export class Preferences extends BaseComponent<Props, State> {
 
     i18n.changeLanguage(code).then(() => {
       setLang(code);
-      success(_t('preferences.updated'));
+      success(_t("preferences.updated"));
     });
   };
 
@@ -87,17 +87,17 @@ export class Preferences extends BaseComponent<Props, State> {
     const { value } = e.target;
 
     setNsfw(Boolean(Number(value)));
-    success(_t('preferences.updated'));
+    success(_t("preferences.updated"));
   };
 
   copyToClipboard = (text: string) => {
-    const textField = document.createElement('textarea');
+    const textField = document.createElement("textarea");
     textField.innerText = text;
     document.body.appendChild(textField);
     textField.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     textField.remove();
-    success(_t('profile-edit.copied'));
+    success(_t("profile-edit.copied"));
   };
 
   render() {
@@ -107,26 +107,26 @@ export class Preferences extends BaseComponent<Props, State> {
     return (
       <>
         <div className="preferences">
-          <div className="preferences-header">{_t('preferences.title')}</div>
+          <div className="preferences-header">{_t("preferences.title")}</div>
 
           <Form.Row>
             <Col lg={6} xl={4}>
               <Form.Group>
-                <Form.Label>{_t('preferences.notifications')}</Form.Label>
+                <Form.Label>{_t("preferences.notifications")}</Form.Label>
                 <Form.Control
                   type="text"
                   value={global.notifications ? 1 : 0}
                   as="select"
                   onChange={this.notificationsChanged}
                 >
-                  <option value={1}>{_t('g.on')}</option>
-                  <option value={0}>{_t('g.off')}</option>
+                  <option value={1}>{_t("g.on")}</option>
+                  <option value={0}>{_t("g.off")}</option>
                 </Form.Control>
               </Form.Group>
             </Col>
             <Col lg={6} xl={4}>
               <Form.Group>
-                <Form.Label>{_t('preferences.currency')}</Form.Label>
+                <Form.Label>{_t("preferences.currency")}</Form.Label>
                 <Form.Control
                   type="text"
                   value={global.currency}
@@ -144,7 +144,7 @@ export class Preferences extends BaseComponent<Props, State> {
             </Col>
             <Col lg={6} xl={4}>
               <Form.Group>
-                <Form.Label>{_t('preferences.language')}</Form.Label>
+                <Form.Label>{_t("preferences.language")}</Form.Label>
                 <Form.Control
                   type="text"
                   value={global.lang}
@@ -164,15 +164,15 @@ export class Preferences extends BaseComponent<Props, State> {
           <Form.Row>
             <Col lg={6} xl={4}>
               <Form.Group>
-                <Form.Label>{_t('preferences.nsfw')}</Form.Label>
+                <Form.Label>{_t("preferences.nsfw")}</Form.Label>
                 <Form.Control
                   type="text"
                   value={global.nsfw ? 1 : 0}
                   as="select"
                   onChange={this.nsfwChanged}
                 >
-                  <option value={1}>{_t('g.on')}</option>
-                  <option value={0}>{_t('g.off')}</option>
+                  <option value={1}>{_t("g.on")}</option>
+                  <option value={0}>{_t("g.off")}</option>
                 </Form.Control>
               </Form.Group>
             </Col>
@@ -180,7 +180,7 @@ export class Preferences extends BaseComponent<Props, State> {
             {activeUser && activeUser.username && (
               <Col lg={6} xl={4}>
                 <Form.Group>
-                  <Form.Label>{_t('preferences.referral-link')}</Form.Label>
+                  <Form.Label>{_t("preferences.referral-link")}</Form.Label>
                   <InputGroup
                     className="mb-3"
                     onClick={() =>

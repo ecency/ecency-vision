@@ -1,54 +1,54 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component, useState, useEffect } from "react";
 
-import { History, Location } from 'history';
+import { History, Location } from "history";
 
-import moment from 'moment';
+import moment from "moment";
 
-import { Button, Form, FormControl } from 'react-bootstrap';
+import { Button, Form, FormControl } from "react-bootstrap";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
-import { renderPostBody, setProxyBase } from '@ecency/render-helper';
+import { renderPostBody, setProxyBase } from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
-import { Entry, EntryVote } from '../../store/entries/types';
-import { Account, FullAccount } from '../../store/accounts/types';
-import { Community, ROLES } from '../../store/communities/types';
-import { DynamicProps } from '../../store/dynamic-props/types';
-import { Global } from '../../store/global/types';
-import { User } from '../../store/users/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { Discussion as DiscussionType, SortOrder } from '../../store/discussion/types';
-import { UI, ToggleType } from '../../store/ui/types';
+import { Entry, EntryVote } from "../../store/entries/types";
+import { Account, FullAccount } from "../../store/accounts/types";
+import { Community, ROLES } from "../../store/communities/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
+import { Global } from "../../store/global/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { Discussion as DiscussionType, SortOrder } from "../../store/discussion/types";
+import { UI, ToggleType } from "../../store/ui/types";
 
-import BaseComponent from '../base';
-import ProfileLink from '../profile-link';
-import EntryLink from '../entry-link';
-import UserAvatar from '../user-avatar';
-import EntryVoteBtn from '../entry-vote-btn/index';
-import EntryPayout from '../entry-payout/index';
-import EntryVotes from '../entry-votes';
-import LinearProgress from '../linear-progress';
-import Comment from '../comment';
-import EntryDeleteBtn from '../entry-delete-btn';
-import MuteBtn from '../mute-btn';
-import LoginRequired from '../login-required';
+import BaseComponent from "../base";
+import ProfileLink from "../profile-link";
+import EntryLink from "../entry-link";
+import UserAvatar from "../user-avatar";
+import EntryVoteBtn from "../entry-vote-btn/index";
+import EntryPayout from "../entry-payout/index";
+import EntryVotes from "../entry-votes";
+import LinearProgress from "../linear-progress";
+import Comment from "../comment";
+import EntryDeleteBtn from "../entry-delete-btn";
+import MuteBtn from "../mute-btn";
+import LoginRequired from "../login-required";
 
-import parseDate from '../../helper/parse-date';
+import parseDate from "../../helper/parse-date";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { comment, formatError } from '../../api/operations';
+import { comment, formatError } from "../../api/operations";
 
-import * as ls from '../../util/local-storage';
+import * as ls from "../../util/local-storage";
 
-import { createReplyPermlink, makeJsonMetaDataReply } from '../../helper/posting';
-import tempEntry from '../../helper/temp-entry';
+import { createReplyPermlink, makeJsonMetaDataReply } from "../../helper/posting";
+import tempEntry from "../../helper/temp-entry";
 
-import { error } from '../feedback';
+import { error } from "../feedback";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
 import {
   commentSvg,
@@ -56,14 +56,14 @@ import {
   deleteForeverSvg,
   menuDownSvg,
   dotsHorizontal
-} from '../../img/svg';
+} from "../../img/svg";
 
-import { version } from '../../../../package.json';
-import { getFollowing } from '../../api/hive';
-import { iteratorStream } from '@hiveio/dhive/lib/utils';
-import { Tsx } from '../../i18n/helper';
-import MyDropDown from '../dropdown';
-import { ProfilePopover } from '../profile-popover';
+import { version } from "../../../../package.json";
+import { getFollowing } from "../../api/hive";
+import { iteratorStream } from "@hiveio/dhive/lib/utils";
+import { Tsx } from "../../i18n/helper";
+import MyDropDown from "../dropdown";
+import { ProfilePopover } from "../profile-popover";
 
 interface ItemBodyProps {
   entry: Entry;
@@ -184,17 +184,17 @@ export const Item = (props: ItemProps) => {
     const author = activeUser.username;
     const permlink = createReplyPermlink(entry.author);
 
-    const jsonMeta = makeJsonMetaDataReply(entry.json_metadata.tags || ['ecency'], version);
+    const jsonMeta = makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], version);
     setInProgress(true);
 
-    comment(author, parentAuthor, parentPermlink, permlink, '', text, jsonMeta, null, true)
+    comment(author, parentAuthor, parentPermlink, permlink, "", text, jsonMeta, null, true)
       .then(() => {
         const nReply = tempEntry({
           author: activeUser.data as FullAccount,
           permlink,
           parentAuthor,
           parentPermlink,
-          title: '',
+          title: "",
           body: text,
           tags: []
         });
@@ -229,7 +229,7 @@ export const Item = (props: ItemProps) => {
 
   const _updateReply = (text: string) => {
     const { permlink, parent_author: parentAuthor, parent_permlink: parentPermlink } = entry;
-    const jsonMeta = makeJsonMetaDataReply(entry.json_metadata.tags || ['ecency'], version);
+    const jsonMeta = makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], version);
     setInProgress(true);
 
     comment(
@@ -237,7 +237,7 @@ export const Item = (props: ItemProps) => {
       parentAuthor!,
       parentPermlink!,
       permlink,
-      '',
+      "",
       text,
       jsonMeta,
       null
@@ -265,7 +265,7 @@ export const Item = (props: ItemProps) => {
 
   const fetchMutedUsers = () => {
     if (activeUser) {
-      getFollowing(activeUser.username, '', 'ignore', 100).then((r) => {
+      getFollowing(activeUser.username, "", "ignore", 100).then((r) => {
         if (r) {
           let filterList = r.map((user) => user.following);
           isMounted && setMutedData(filterList as string[]);
@@ -292,10 +292,10 @@ export const Item = (props: ItemProps) => {
   const anchorId = `anchor-@${entry.author}/${entry.permlink}`;
 
   const selected =
-    location.hash && location.hash.replace('#', '') === `@${entry.author}/${entry.permlink}`;
+    location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`;
 
   let normalComponent = (
-    <div className={_c(`discussion-item depth-${entry.depth} ${selected ? 'selected-item' : ''}`)}>
+    <div className={_c(`discussion-item depth-${entry.depth} ${selected ? "selected-item" : ""}`)}>
       <div className="position-relative">
         <div className="item-anchor" id={anchorId} />
       </div>
@@ -306,7 +306,7 @@ export const Item = (props: ItemProps) => {
             username: entry.author,
             children: (
               <a className="d-sm-inline-block">
-                {UserAvatar({ ...props, username: entry.author, size: 'medium' })}
+                {UserAvatar({ ...props, username: entry.author, size: "medium" })}
               </a>
             )
           })}
@@ -321,7 +321,7 @@ export const Item = (props: ItemProps) => {
               ...props,
               entry,
               children: (
-                <span className="date" title={created.format('LLLL')}>
+                <span className="date" title={created.format("LLLL")}>
                   {created.fromNow()}
                 </span>
               )
@@ -330,22 +330,22 @@ export const Item = (props: ItemProps) => {
           {(() => {
             let menuItems = [
               {
-                label: _t('g.edit'),
+                label: _t("g.edit"),
                 onClick: toggleEdit,
                 icon: pencilOutlineSvg
               }
             ];
             if (!(entry.is_paidout || entry.net_rshares > 0 || entry.children > 0)) {
               let deleteItem = {
-                label: '',
+                label: "",
                 onClick: () => {},
                 icon: EntryDeleteBtn({
                   ...props,
                   entry,
                   onSuccess: deleted,
                   children: (
-                    <a title={_t('g.delete')} className="delete-btn ml-0 pr-3">
-                      {deleteForeverSvg} {_t('g.delete')}
+                    <a title={_t("g.delete")} className="delete-btn ml-0 pr-3">
+                      {deleteForeverSvg} {_t("g.delete")}
                     </a>
                   )
                 })
@@ -355,7 +355,7 @@ export const Item = (props: ItemProps) => {
 
             const menuConfig = {
               history: history,
-              label: '',
+              label: "",
               icon: dotsHorizontal,
               items: menuItems
             };
@@ -384,19 +384,19 @@ export const Item = (props: ItemProps) => {
 
                 {isHidden && (
                   <div className="hidden-warning mt-2">
-                    <span>{_t('entry.hidden-warning')}</span>
+                    <span>{_t("entry.hidden-warning")}</span>
                   </div>
                 )}
 
                 {isLowReputation && (
                   <div className="hidden-warning mt-2">
-                    <span>{_t('entry.lowrep-warning')}</span>
+                    <span>{_t("entry.lowrep-warning")}</span>
                   </div>
                 )}
 
                 {mightContainMutedComments && (
                   <div className="hidden-warning mt-2">
-                    <span>{_t('entry.comments-hidden')}</span>
+                    <span>{_t("entry.comments-hidden")}</span>
                   </div>
                 )}
 
@@ -415,8 +415,8 @@ export const Item = (props: ItemProps) => {
                     ...props,
                     entry
                   })}
-                  <a className={_c(`reply-btn ${edit ? 'disabled' : ''}`)} onClick={toggleReply}>
-                    {_t('g.reply')}
+                  <a className={_c(`reply-btn ${edit ? "disabled" : ""}`)} onClick={toggleReply}>
+                    {_t("g.reply")}
                   </a>
                   {community &&
                     canMute &&
@@ -443,7 +443,7 @@ export const Item = (props: ItemProps) => {
               {EntryLink({
                 ...props,
                 entry,
-                children: <a>{_t('discussion.read-more')}</a>
+                children: <a>{_t("discussion.read-more")}</a>
               })}
             </div>
           )}
@@ -453,8 +453,8 @@ export const Item = (props: ItemProps) => {
       {reply &&
         Comment({
           ...props,
-          defText: ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || '',
-          submitText: _t('g.reply'),
+          defText: ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || "",
+          submitText: _t("g.reply"),
           cancellable: true,
           onChange: replyTextChanged,
           onSubmit: submitReply,
@@ -467,7 +467,7 @@ export const Item = (props: ItemProps) => {
         Comment({
           ...props,
           defText: entry.body,
-          submitText: _t('g.update'),
+          submitText: _t("g.update"),
           cancellable: true,
           onSubmit: _updateReply,
           onCancel: toggleEdit,
@@ -517,20 +517,20 @@ export class List extends Component<ListProps> {
   };
 
   componentWillUnmount() {
-    document.getElementsByTagName('html')[0].style.position = 'unset';
+    document.getElementsByTagName("html")[0].style.position = "unset";
     this.setState({ isMounted: false });
   }
 
   componentDidMount() {
     this.setState({ isMounted: true });
-    document.getElementsByTagName('html')[0].style.position = 'relative';
+    document.getElementsByTagName("html")[0].style.position = "relative";
     this.state.isMounted && this.fetchMutedUsers();
   }
 
   fetchMutedUsers = () => {
     const { activeUser } = this.props;
     if (activeUser) {
-      getFollowing(activeUser.username, '', 'ignore', 100).then((r) => {
+      getFollowing(activeUser.username, "", "ignore", 100).then((r) => {
         if (r) {
           let filterList = r.map((user) => user.following);
           this.state.isMounted && this.setState({ mutedData: filterList });
@@ -574,9 +574,9 @@ export class List extends Component<ListProps> {
         ))}
         {!isHiddenPermitted && mutedContent.length > 0 && activeUser && activeUser.username && (
           <div className="hidden-warning d-flex justify-content-between flex-1 align-items-center mt-3">
-            <div className="flex-1">{_t('discussion.reveal-muted-long-description')}</div>
+            <div className="flex-1">{_t("discussion.reveal-muted-long-description")}</div>
             <div onClick={() => this.setState({ isHiddenPermitted: true })} className="pointer p-3">
-              <b>{_t('g.show')}</b>
+              <b>{_t("g.show")}</b>
             </div>
           </div>
         )}
@@ -639,7 +639,7 @@ export class Discussion extends Component<Props, State> {
     if (prevProps.discussion.list.length === 0 && discussion.list.length > 0) {
       const { location } = this.props;
       if (location.hash) {
-        const permlink = location.hash.replace('#', '');
+        const permlink = location.hash.replace("#", "");
         const anchorId = `anchor-${permlink}`;
         const anchorEl = document.getElementById(anchorId);
         if (anchorEl) {
@@ -689,10 +689,10 @@ export class Discussion extends Component<Props, State> {
     const join = (
       <div className="discussion-card">
         <div className="icon">{commentSvg}</div>
-        <div className="label">{_t('discussion.join')}</div>
+        <div className="label">{_t("discussion.join")}</div>
         {LoginRequired({
           ...this.props,
-          children: <Button>{_t('discussion.btn-join')}</Button>
+          children: <Button>{_t("discussion.btn-join")}</Button>
         })}
       </div>
     );
@@ -706,7 +706,7 @@ export class Discussion extends Component<Props, State> {
     }
 
     const strCount =
-      count > 1 ? _t('discussion.n-replies', { n: count }) : _t('discussion.replies');
+      count > 1 ? _t("discussion.n-replies", { n: count }) : _t("discussion.replies");
 
     if (!visible && count >= 1) {
       return (
@@ -714,7 +714,7 @@ export class Discussion extends Component<Props, State> {
           <div className="discussion-card">
             <div className="icon">{commentSvg}</div>
             <div className="label">{strCount}</div>
-            <Button onClick={this.show}>{_t('g.show')}</Button>
+            <Button onClick={this.show}>{_t("g.show")}</Button>
           </div>
         </div>
       );
@@ -725,12 +725,12 @@ export class Discussion extends Component<Props, State> {
         {!activeUser && <>{join}</>}
         <div className="discussion-header">
           <div className="count">
-            {' '}
+            {" "}
             {commentSvg} {strCount}
           </div>
           <span className="flex-spacer" />
           <div className="order">
-            <span className="order-label">{_t('discussion.order')}</span>
+            <span className="order-label">{_t("discussion.order")}</span>
             <Form.Control
               as="select"
               size="sm"
@@ -738,10 +738,10 @@ export class Discussion extends Component<Props, State> {
               onChange={this.orderChanged}
               disabled={loading}
             >
-              <option value="trending">{_t('discussion.order-trending')}</option>
-              <option value="author_reputation">{_t('discussion.order-reputation')}</option>
-              <option value="votes">{_t('discussion.order-votes')}</option>
-              <option value="created">{_t('discussion.order-created')}</option>
+              <option value="trending">{_t("discussion.order-trending")}</option>
+              <option value="author_reputation">{_t("discussion.order-reputation")}</option>
+              <option value="votes">{_t("discussion.order-votes")}</option>
+              <option value="created">{_t("discussion.order-created")}</option>
             </Form.Control>
           </div>
         </div>

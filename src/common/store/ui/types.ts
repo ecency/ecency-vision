@@ -5,9 +5,9 @@ export interface UI {
 }
 
 export enum ActionTypes {
-  TOGGLE_LOGIN = '@ui/TOGGLE-LOGIN',
-  TOGGLE_LOGIN_KC = '@ui/TOGGLE-LOGIN-KC',
-  TOGGLE_NOTIFICATIONS = '@users/TOGGLE_NOTIFICATIONS'
+  TOGGLE_LOGIN = "@ui/TOGGLE-LOGIN",
+  TOGGLE_LOGIN_KC = "@ui/TOGGLE-LOGIN-KC",
+  TOGGLE_NOTIFICATIONS = "@users/TOGGLE_NOTIFICATIONS"
 }
 
 export interface ToggleLoginAct {
@@ -24,4 +24,4 @@ export interface ToggleNotificationsAct {
 
 export type Actions = ToggleLoginAct | ToggleLoginKcAct | ToggleNotificationsAct;
 
-export type ToggleType = 'login' | 'loginKc' | 'notifications';
+export type ToggleType = "login" | "loginKc" | "notifications";

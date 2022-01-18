@@ -1,17 +1,17 @@
-import { Client, RCAPI, utils } from '@hiveio/dhive';
+import { Client, RCAPI, utils } from "@hiveio/dhive";
 
-import { RCAccount } from '@hiveio/dhive/lib/chain/rc';
+import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 
-import { TrendingTag } from '../store/trending-tags/types';
-import { DynamicProps } from '../store/dynamic-props/types';
-import { FullAccount, AccountProfile, AccountFollowStats } from '../store/accounts/types';
+import { TrendingTag } from "../store/trending-tags/types";
+import { DynamicProps } from "../store/dynamic-props/types";
+import { FullAccount, AccountProfile, AccountFollowStats } from "../store/accounts/types";
 
-import parseAsset from '../helper/parse-asset';
-import { vestsToRshares } from '../helper/vesting';
-import isCommunity from '../helper/is-community';
+import parseAsset from "../helper/parse-asset";
+import { vestsToRshares } from "../helper/vesting";
+import isCommunity from "../helper/is-community";
 
-import SERVERS from '../constants/servers.json';
-import { dataLimit } from './bridge';
+import SERVERS from "../constants/servers.json";
+import { dataLimit } from "./bridge";
 
 export const client = new Client(SERVERS, {
   timeout: 4000,
@@ -67,21 +67,21 @@ export interface Follow {
 }
 
 export const getPost = (username: string, permlink: string): Promise<any> =>
-  client.call('condenser_api', 'get_content', [username, permlink]);
+  client.call("condenser_api", "get_content", [username, permlink]);
 
 export const getActiveVotes = (author: string, permlink: string): Promise<Vote[]> =>
-  client.database.call('get_active_votes', [author, permlink]);
+  client.database.call("get_active_votes", [author, permlink]);
 
-export const getTrendingTags = (afterTag: string = '', limit: number = 250): Promise<string[]> =>
-  client.database.call('get_trending_tags', [afterTag, limit]).then((tags: TrendingTag[]) => {
+export const getTrendingTags = (afterTag: string = "", limit: number = 250): Promise<string[]> =>
+  client.database.call("get_trending_tags", [afterTag, limit]).then((tags: TrendingTag[]) => {
     return tags
-      .filter((x) => x.name !== '')
+      .filter((x) => x.name !== "")
       .filter((x) => !isCommunity(x.name))
       .map((x) => x.name);
   });
 
 export const lookupAccounts = (q: string, limit = 50): Promise<string[]> =>
-  client.database.call('lookup_accounts', [q, limit]);
+  client.database.call("lookup_accounts", [q, limit]);
 
 export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
   return client.database.getAccounts(usernames).then((resp: any[]): FullAccount[] =>
@@ -137,12 +137,12 @@ export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
 
       if (!profile) {
         profile = {
-          about: '',
-          cover_image: '',
-          location: '',
-          name: '',
-          profile_image: '',
-          website: ''
+          about: "",
+          cover_image: "",
+          location: "",
+          name: "",
+          profile_image: "",
+          website: ""
         };
       }
 
@@ -165,25 +165,25 @@ export const getAccountFull = (username: string): Promise<FullAccount> =>
   });
 
 export const getFollowCount = (username: string): Promise<AccountFollowStats> =>
-  client.database.call('get_follow_count', [username]);
+  client.database.call("get_follow_count", [username]);
 
 export const getFollowing = (
   follower: string,
   startFollowing: string,
-  followType = 'blog',
+  followType = "blog",
   limit = 100
 ): Promise<Follow[]> =>
-  client.database.call('get_following', [follower, startFollowing, followType, limit]);
+  client.database.call("get_following", [follower, startFollowing, followType, limit]);
 
 export const getFollowers = (
   following: string,
   startFollowing: string,
-  followType = 'blog',
+  followType = "blog",
   limit = 100
 ): Promise<Follow[]> =>
-  client.database.call('get_followers', [
+  client.database.call("get_followers", [
     following,
-    startFollowing === '' ? null : startFollowing,
+    startFollowing === "" ? null : startFollowing,
     followType,
     limit
   ]);
@@ -210,13 +210,13 @@ export const getAccountHistory = (
   start: number = -1,
   limit: number = 20
 ): Promise<any> => {
-  return client.call('condenser_api', 'get_account_history', [username, start, limit, ...filters]);
+  return client.call("condenser_api", "get_account_history", [username, start, limit, ...filters]);
 };
 
-export const getFeedHistory = (): Promise<FeedHistory> => client.database.call('get_feed_history');
+export const getFeedHistory = (): Promise<FeedHistory> => client.database.call("get_feed_history");
 
 export const getRewardFund = (): Promise<RewardFund> =>
-  client.database.call('get_reward_fund', ['post']);
+  client.database.call("get_reward_fund", ["post"]);
 
 export const getDynamicProps = async (): Promise<DynamicProps> => {
   const globalDynamic = await getDynamicGlobalProperties();
@@ -257,10 +257,10 @@ export const getDynamicProps = async (): Promise<DynamicProps> => {
 
 export const getVestingDelegations = (
   username: string,
-  from: string = '',
+  from: string = "",
   limit: number = 50
 ): Promise<DelegatedVestingShare[]> =>
-  client.database.call('get_vesting_delegations', [username, from, limit]);
+  client.database.call("get_vesting_delegations", [username, from, limit]);
 
 export interface Witness {
   total_missed: number;
@@ -280,8 +280,8 @@ export interface Witness {
   last_hbd_exchange_update: string;
 }
 
-export const getWitnessesByVote = (from: string = '', limit: number = 50): Promise<Witness[]> =>
-  client.call('condenser_api', 'get_witnesses_by_vote', [from, limit]);
+export const getWitnessesByVote = (from: string = "", limit: number = 50): Promise<Witness[]> =>
+  client.call("condenser_api", "get_witnesses_by_vote", [from, limit]);
 
 export interface Proposal {
   creator: string;
@@ -303,12 +303,12 @@ export interface Proposal {
 
 export const getProposals = (): Promise<Proposal[]> =>
   client
-    .call('database_api', 'list_proposals', {
+    .call("database_api", "list_proposals", {
       start: [-1],
       limit: 200,
-      order: 'by_total_votes',
-      order_direction: 'descending',
-      status: 'all'
+      order: "by_total_votes",
+      order_direction: "descending",
+      status: "all"
     })
     .then((r) => r.proposals);
 
@@ -320,11 +320,11 @@ export interface ProposalVote {
 
 export const getProposalVotes = (
   proposalId: number,
-  voter: string = '',
+  voter: string = "",
   limit: number = 300
 ): Promise<ProposalVote[]> =>
   client
-    .call('condenser_api', 'list_proposal_votes', [[proposalId, voter], limit, 'by_proposal_voter'])
+    .call("condenser_api", "list_proposal_votes", [[proposalId, voter], limit, "by_proposal_voter"])
     .then((r) => r.filter((x: ProposalVote) => x.proposal.proposal_id === proposalId))
     .then((r) => r.map((x: ProposalVote) => ({ id: x.id, voter: x.voter })));
 
@@ -337,7 +337,7 @@ export interface WithdrawRoute {
 }
 
 export const getWithdrawRoutes = (account: string): Promise<WithdrawRoute[]> =>
-  client.database.call('get_withdraw_routes', [account, 'outgoing']);
+  client.database.call("get_withdraw_routes", [account, "outgoing"]);
 
 export const votingPower = (account: FullAccount): number => {
   // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"
@@ -408,7 +408,7 @@ export interface ConversionRequest {
 }
 
 export const getConversionRequests = (account: string): Promise<ConversionRequest[]> =>
-  client.database.call('get_conversion_requests', [account]);
+  client.database.call("get_conversion_requests", [account]);
 
 export interface BlogEntry {
   blog: string;
@@ -419,4 +419,4 @@ export interface BlogEntry {
 }
 
 export const getBlogEntries = (username: string, limit: number = dataLimit): Promise<BlogEntry[]> =>
-  client.call('condenser_api', 'get_blog_entries', [username, 0, limit]);
+  client.call("condenser_api", "get_blog_entries", [username, 0, limit]);

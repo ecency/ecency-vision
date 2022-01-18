@@ -1,45 +1,45 @@
-import { LocationChangeAction } from '../common';
+import { LocationChangeAction } from "../common";
 
 export enum ListStyle {
-  row = 'row',
-  grid = 'grid'
+  row = "row",
+  grid = "grid"
 }
 
 export enum Theme {
-  day = 'day',
-  night = 'night'
+  day = "day",
+  night = "night"
 }
 
 export enum EntryFilter {
-  trending = 'trending',
-  hot = 'hot',
-  created = 'created',
-  payout = 'payout',
-  payout_comments = 'payout_comments',
-  muted = 'muted'
+  trending = "trending",
+  hot = "hot",
+  created = "created",
+  payout = "payout",
+  payout_comments = "payout_comments",
+  muted = "muted"
 }
 
 export enum ProfileFilter {
-  blog = 'blog',
-  posts = 'posts',
-  comments = 'comments',
-  replies = 'replies'
+  blog = "blog",
+  posts = "posts",
+  comments = "comments",
+  replies = "replies"
 }
 
 // TODO: Find a proper way to merge EntryFilter and ProfileFilter
 export enum AllFilter {
-  trending = 'trending',
-  hot = 'hot',
-  created = 'created',
-  payout = 'payout',
-  payout_comments = 'payout_comments',
-  muted = 'muted', // To see muted accounts
-  blog = 'blog', // This might be deleted
-  posts = 'posts',
-  comments = 'comments',
-  replies = 'replies',
-  communities = 'communities',
-  feed = 'feed'
+  trending = "trending",
+  hot = "hot",
+  created = "created",
+  payout = "payout",
+  payout_comments = "payout_comments",
+  muted = "muted", // To see muted accounts
+  blog = "blog", // This might be deleted
+  posts = "posts",
+  comments = "comments",
+  replies = "replies",
+  communities = "communities",
+  feed = "feed"
 }
 
 export interface Global {
@@ -64,16 +64,16 @@ export interface Global {
 }
 
 export enum ActionTypes {
-  THEME_CHANGE = '@global/THEME_CHANGE',
-  INTRO_HIDE = '@global/INTRO_HIDE',
-  LIST_STYLE_CHANGE = '@global/LIST_STYLE_CHANGE',
-  HAS_KEYCHAIN = '@global/HAS_KEYCHAIN',
-  NOTIFICATIONS_MUTE = '@global/NOTIFICATIONS_MUTE',
-  NOTIFICATIONS_UNMUTE = '@global/NOTIFICATIONS_UNMUTE',
-  CURRENCY_SET = '@global/CURRENCY_SET',
-  LANG_SET = '@global/LANG_SET',
-  NEW_VERSION_CHANGE = '@global/NEW_VERSION_CHANGE',
-  NSFW_SET = '@global/NSFW_SET'
+  THEME_CHANGE = "@global/THEME_CHANGE",
+  INTRO_HIDE = "@global/INTRO_HIDE",
+  LIST_STYLE_CHANGE = "@global/LIST_STYLE_CHANGE",
+  HAS_KEYCHAIN = "@global/HAS_KEYCHAIN",
+  NOTIFICATIONS_MUTE = "@global/NOTIFICATIONS_MUTE",
+  NOTIFICATIONS_UNMUTE = "@global/NOTIFICATIONS_UNMUTE",
+  CURRENCY_SET = "@global/CURRENCY_SET",
+  LANG_SET = "@global/LANG_SET",
+  NEW_VERSION_CHANGE = "@global/NEW_VERSION_CHANGE",
+  NSFW_SET = "@global/NSFW_SET"
 }
 
 export interface ThemeChangeAction {

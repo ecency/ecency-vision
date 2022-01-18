@@ -1,40 +1,40 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History, Location } from 'history';
+import { History, Location } from "history";
 
-import moment from 'moment';
+import moment from "moment";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import { catchPostImage, postBodySummary, setProxyBase } from '@ecency/render-helper';
+import { catchPostImage, postBodySummary, setProxyBase } from "@ecency/render-helper";
 
-import { Entry, EntryVote } from '../../store/entries/types';
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
-import { DynamicProps } from '../../store/dynamic-props/types';
-import { Community, Communities } from '../../store/communities/types';
-import { User } from '../../store/users/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { Reblogs } from '../../store/reblogs/types';
-import { UI, ToggleType } from '../../store/ui/types';
-import { EntryPinTracker } from '../../store/entry-pin-tracker/types';
+import { Entry, EntryVote } from "../../store/entries/types";
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
+import { Community, Communities } from "../../store/communities/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { Reblogs } from "../../store/reblogs/types";
+import { UI, ToggleType } from "../../store/ui/types";
+import { EntryPinTracker } from "../../store/entry-pin-tracker/types";
 
-import ProfileLink from '../profile-link/index';
-import Tag from '../tag';
-import UserAvatar from '../user-avatar/index';
-import EntryLink from '../entry-link/index';
-import EntryVoteBtn from '../entry-vote-btn/index';
-import EntryReblogBtn from '../entry-reblog-btn/index';
-import EntryPayout from '../entry-payout/index';
-import EntryVotes from '../entry-votes';
-import Tooltip from '../tooltip';
-import EntryMenu from '../entry-menu';
-import parseDate from '../../helper/parse-date';
-import { _t } from '../../i18n';
-import { Tsx } from '../../i18n/helper';
+import ProfileLink from "../profile-link/index";
+import Tag from "../tag";
+import UserAvatar from "../user-avatar/index";
+import EntryLink from "../entry-link/index";
+import EntryVoteBtn from "../entry-vote-btn/index";
+import EntryReblogBtn from "../entry-reblog-btn/index";
+import EntryPayout from "../entry-payout/index";
+import EntryVotes from "../entry-votes";
+import Tooltip from "../tooltip";
+import EntryMenu from "../entry-menu";
+import parseDate from "../../helper/parse-date";
+import { _t } from "../../i18n";
+import { Tsx } from "../../i18n/helper";
 
-import _c from '../../util/fix-class-names';
-import truncate from '../../util/truncate';
+import _c from "../../util/fix-class-names";
+import truncate from "../../util/truncate";
 
 import {
   repeatSvg,
@@ -45,10 +45,10 @@ import {
   closeSvg,
   downArrowSvg,
   menuDownSvg
-} from '../../img/svg';
+} from "../../img/svg";
 
-import defaults from '../../constants/defaults.json';
-import { ProfilePopover } from '../profile-popover';
+import defaults from "../../constants/defaults.json";
+import { ProfilePopover } from "../profile-popover";
 
 setProxyBase(defaults.imageServer);
 
@@ -77,7 +77,7 @@ interface Props {
   fetchReblogs: () => void;
   addReblog: (author: string, permlink: string) => void;
   deleteReblog: (author: string, permlink: string) => void;
-  toggleUIProp: (what: ToggleType | 'login') => void;
+  toggleUIProp: (what: ToggleType | "login") => void;
   addCommunity: (data: Community) => void;
   trackEntryPin: (entry: Entry) => void;
   setSigningKey: (key: string) => void;
@@ -99,7 +99,7 @@ export default class EntryListItem extends Component<Props, State> {
   };
 
   public static defaultProps = {
-    asAuthor: '',
+    asAuthor: "",
     promoted: false
   };
 
@@ -140,12 +140,12 @@ export default class EntryListItem extends Component<Props, State> {
     if (muted) {
       this.setState({ showMuted: true });
     }
-    document.getElementsByTagName('html')[0].style.position = 'relative';
+    document.getElementsByTagName("html")[0].style.position = "relative";
     this.setState({ mounted: true });
   }
 
   componentWillUnmount() {
-    document.getElementsByTagName('html')[0].style.position = 'unset';
+    document.getElementsByTagName("html")[0].style.position = "unset";
     this.setState({ mounted: false });
   }
 
@@ -172,30 +172,30 @@ export default class EntryListItem extends Component<Props, State> {
     const { mounted } = this.state;
 
     const fallbackImage = global.isElectron
-      ? './img/fallback.png'
-      : require('../../img/fallback.png');
-    const noImage = global.isElectron ? './img/noimage.svg' : require('../../img/noimage.svg');
-    const nsfwImage = global.isElectron ? './img/nsfw.png' : require('../../img/nsfw.png');
+      ? "./img/fallback.png"
+      : require("../../img/fallback.png");
+    const noImage = global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg");
+    const nsfwImage = global.isElectron ? "./img/nsfw.png" : require("../../img/nsfw.png");
     const crossPost = !!theEntry.original_entry;
 
     const entry = theEntry.original_entry || theEntry;
 
     const imgGrid: string =
       (global.canUseWebp
-        ? catchPostImage(entry, 600, 500, 'webp')
+        ? catchPostImage(entry, 600, 500, "webp")
         : catchPostImage(entry, 600, 500)) || noImage;
     const imgRow: string =
       (global.canUseWebp
-        ? catchPostImage(entry, 260, 200, 'webp')
+        ? catchPostImage(entry, 260, 200, "webp")
         : catchPostImage(entry, 260, 200)) || noImage;
-    let svgSizeRow = imgRow === noImage ? 'noImage' : '';
-    let svgSizeGrid = imgGrid === noImage ? '172px' : 'auto';
+    let svgSizeRow = imgRow === noImage ? "noImage" : "";
+    let svgSizeGrid = imgGrid === noImage ? "172px" : "auto";
 
     const summary: string = postBodySummary(entry, 200);
 
     const date = moment(parseDate(entry.created));
     const dateRelative = date.fromNow(true);
-    const dateFormatted = date.format('LLLL');
+    const dateFormatted = date.format("LLLL");
 
     const isChild = !!entry.parent_author;
 
@@ -214,7 +214,7 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     let thumb: JSX.Element | null = null;
-    if (global.listStyle === 'grid') {
+    if (global.listStyle === "grid") {
       thumb = (
         <img
           src={imgGrid}
@@ -227,7 +227,7 @@ export default class EntryListItem extends Component<Props, State> {
         />
       );
     }
-    if (global.listStyle === 'row') {
+    if (global.listStyle === "row") {
       thumb = (
         <picture>
           <source srcSet={imgRow} media="(min-width: 576px)" />
@@ -246,12 +246,12 @@ export default class EntryListItem extends Component<Props, State> {
       entry.json_metadata &&
       entry.json_metadata.tags &&
       Array.isArray(entry.json_metadata.tags) &&
-      entry.json_metadata.tags.includes('nsfw');
+      entry.json_metadata.tags.includes("nsfw");
 
-    const cls = `entry-list-item ${promoted ? 'promoted-item' : ''} ${global.filter}`;
+    const cls = `entry-list-item ${promoted ? "promoted-item" : ""} ${global.filter}`;
 
     return mounted ? (
-      <div className={_c(cls)} id={(entry.author + entry.permlink).replace(/[0-9]/g, '')}>
+      <div className={_c(cls)} id={(entry.author + entry.permlink).replace(/[0-9]/g, "")}>
         {(() => {
           if (crossPost) {
             return (
@@ -260,8 +260,8 @@ export default class EntryListItem extends Component<Props, State> {
                   ...this.props,
                   username: theEntry.author,
                   children: <a className="cross-item-author notranslate">{`@${theEntry.author}`}</a>
-                })}{' '}
-                {_t('entry-list-item.cross-posted')}{' '}
+                })}{" "}
+                {_t("entry-list-item.cross-posted")}{" "}
                 {EntryLink({
                   ...this.props,
                   entry: theEntry.original_entry!,
@@ -273,15 +273,15 @@ export default class EntryListItem extends Component<Props, State> {
                       )}
                     </a>
                   )
-                })}{' '}
-                {_t('entry-list-item.cross-posted-to')}{' '}
+                })}{" "}
+                {_t("entry-list-item.cross-posted-to")}{" "}
                 {Tag({
                   ...this.props,
                   tag:
                     theEntry.community && theEntry.community_title
                       ? { name: theEntry.community, title: theEntry.community_title }
                       : theEntry.category,
-                  type: 'link',
+                  type: "link",
                   children: (
                     <a className="community-name">
                       {theEntry.community_title || theEntry.category}
@@ -304,7 +304,7 @@ export default class EntryListItem extends Component<Props, State> {
                   username: entry.author,
                   children: (
                     <a className="author-avatar d-sm-block">
-                      {UserAvatar({ ...this.props, username: entry.author, size: 'small' })}
+                      {UserAvatar({ ...this.props, username: entry.author, size: "small" })}
                     </a>
                   )
                 })}
@@ -318,7 +318,7 @@ export default class EntryListItem extends Component<Props, State> {
                 entry.community && entry.community_title
                   ? { name: entry.community, title: entry.community_title }
                   : entry.category,
-              type: 'link',
+              type: "link",
               children: <a className="category">{entry.community_title || entry.category}</a>
             })}
             {!isVisited && <span className="read-mark" />}
@@ -328,20 +328,20 @@ export default class EntryListItem extends Component<Props, State> {
           </div>
           <div className="item-header-features">
             {isPinned && (
-              <Tooltip content={_t('entry-list-item.pinned')}>
+              <Tooltip content={_t("entry-list-item.pinned")}>
                 <span className="pinned">{pinSvg}</span>
               </Tooltip>
             )}
             {reBlogged && (
               <span className="reblogged">
-                {repeatSvg} {_t('entry-list-item.reblogged', { n: reBlogged })}
+                {repeatSvg} {_t("entry-list-item.reblogged", { n: reBlogged })}
               </span>
             )}
             {promoted && (
               <>
                 <span className="flex-spacer" />
                 <div className="promoted">
-                  <a href="/faq#how-promotion-work">{_t('entry-list-item.promoted')}</a>
+                  <a href="/faq#how-promotion-work">{_t("entry-list-item.promoted")}</a>
                 </div>
               </>
             )}
@@ -367,12 +367,12 @@ export default class EntryListItem extends Component<Props, State> {
                           this.toggleNsfw();
                         }}
                       >
-                        {_t('nsfw.reveal')}
-                      </a>{' '}
-                      {_t('g.or').toLowerCase()}{' '}
+                        {_t("nsfw.reveal")}
+                      </a>{" "}
+                      {_t("g.or").toLowerCase()}{" "}
                       {activeUser && (
                         <>
-                          {_t('nsfw.settings-1')}{' '}
+                          {_t("nsfw.settings-1")}{" "}
                           <a
                             href="#"
                             onClick={(e) => {
@@ -380,9 +380,9 @@ export default class EntryListItem extends Component<Props, State> {
                               history.push(`/@${activeUser.username}/settings`);
                             }}
                           >
-                            {_t('nsfw.settings-2')}
+                            {_t("nsfw.settings-2")}
                           </a>
-                          {'.'}
+                          {"."}
                         </>
                       )}
                       {!activeUser && (
@@ -390,7 +390,7 @@ export default class EntryListItem extends Component<Props, State> {
                           <Tsx k="nsfw.signup">
                             <span />
                           </Tsx>
-                          {'.'}
+                          {"."}
                         </>
                       )}
                     </div>
@@ -407,7 +407,7 @@ export default class EntryListItem extends Component<Props, State> {
                   <div className="item-summary">
                     <div className="item-nsfw">
                       <span className="nsfw-badge text-capitalize d-inline-flex align-items-center">
-                        <div className="mute-icon">{volumeOffSvg}</div> <div>{_t('g.muted')}</div>
+                        <div className="mute-icon">{volumeOffSvg}</div> <div>{_t("g.muted")}</div>
                       </span>
                     </div>
                     <div className="item-nsfw-options">
@@ -418,7 +418,7 @@ export default class EntryListItem extends Component<Props, State> {
                           this.setState({ showMuted: false });
                         }}
                       >
-                        {_t('g.muted-message')}
+                        {_t("g.muted-message")}
                       </a>
 
                       {!activeUser && (
@@ -426,7 +426,7 @@ export default class EntryListItem extends Component<Props, State> {
                           <Tsx k="nsfw.signup">
                             <span />
                           </Tsx>
-                          {'.'}
+                          {"."}
                         </>
                       )}
                     </div>
@@ -437,7 +437,7 @@ export default class EntryListItem extends Component<Props, State> {
 
             return (
               <>
-                <div className={'item-image ' + svgSizeRow}>
+                <div className={"item-image " + svgSizeRow}>
                   {EntryLink({
                     ...this.props,
                     entry: crossPost ? theEntry : entry,
@@ -481,9 +481,9 @@ export default class EntryListItem extends Component<Props, State> {
                     content={
                       entry.children > 0
                         ? entry.children === 1
-                          ? _t('entry-list-item.replies')
-                          : _t('entry-list-item.replies-n', { n: entry.children })
-                        : _t('entry-list-item.no-replies')
+                          ? _t("entry-list-item.replies")
+                          : _t("entry-list-item.replies-n", { n: entry.children })
+                        : _t("entry-list-item.no-replies")
                     }
                   >
                     <span className="inner">

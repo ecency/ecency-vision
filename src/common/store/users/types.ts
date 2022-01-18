@@ -7,8 +7,8 @@ export interface User {
 }
 
 export enum ActionTypes {
-  ADD = '@users/ADD',
-  RELOAD = '@users/RELOAD'
+  ADD = "@users/ADD",
+  RELOAD = "@users/RELOAD"
 }
 
 export interface AddAction {

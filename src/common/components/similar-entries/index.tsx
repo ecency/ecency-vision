@@ -1,29 +1,29 @@
-import React from 'react';
+import React from "react";
 
-import { History, Location } from 'history';
+import { History, Location } from "history";
 
-import moment from 'moment';
+import moment from "moment";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
-import { catchPostImage, setProxyBase } from '@ecency/render-helper';
+import { catchPostImage, setProxyBase } from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
-import { Global } from '../../store/global/types';
-import { Entry } from '../../store/entries/types';
+import { Global } from "../../store/global/types";
+import { Entry } from "../../store/entries/types";
 
-import BaseComponent from '../base';
-import EntryLink from '../entry-link';
+import BaseComponent from "../base";
+import EntryLink from "../entry-link";
 
-import { search, SearchResult } from '../../api/search-api';
+import { search, SearchResult } from "../../api/search-api";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import parseDate from '../../helper/parse-date';
-import isCommunity from '../../helper/is-community';
+import parseDate from "../../helper/parse-date";
+import isCommunity from "../../helper/is-community";
 
 interface Props {
   history: History;
@@ -59,28 +59,28 @@ export class SimilarEntries extends BaseComponent<Props, State> {
     const { json_metadata, permlink } = entry;
     const { retry } = this.state;
 
-    let q = '*';
+    let q = "*";
     q += ` -dporn type:post`;
     let tags;
     // 3 tags and decrease until there is enough relevant posts
     if (json_metadata && json_metadata.tags && Array.isArray(json_metadata.tags)) {
       tags = json_metadata.tags
-        .filter((x: string) => x !== '')
+        .filter((x: string) => x !== "")
         .filter((x: string) => !isCommunity(x))
         .filter((x: string, ind: number) => ind < retry)
-        .join(',');
+        .join(",");
     }
     // check to make sure tags are not empty
     if (tags && tags.length > 0) {
       q += ` tag:${tags}`;
     } else {
       // no tags in post, try with permlink
-      const fperm = permlink.split('-');
+      const fperm = permlink.split("-");
       tags = fperm
-        .filter((x: string) => x !== '')
+        .filter((x: string) => x !== "")
         .filter((x: string) => !/^-?\d+$/.test(x))
         .filter((x: string) => x.length > 2)
-        .join(',');
+        .join(",");
       q += ` tag:${tags}`;
     }
     return q;
@@ -94,7 +94,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
     if (retry > 0 && this.state.entries.length < limit) {
       this.setState({ loading: true });
       const query = this.buildQuery(entry);
-      search(query, 'newest', '0', undefined, undefined)
+      search(query, "newest", "0", undefined, undefined)
         .then((r) => {
           const rawEntries: SearchResult[] = r.results.filter((r) => r.permlink !== permlink);
 
@@ -126,9 +126,9 @@ export class SimilarEntries extends BaseComponent<Props, State> {
     const { global } = this.props;
     const { entries } = this.state;
     const fallbackImage = global.isElectron
-      ? './img/fallback.png'
-      : require('../../img/fallback.png');
-    const noImage = global.isElectron ? './img/noimage.svg' : require('../../img/noimage.svg');
+      ? "./img/fallback.png"
+      : require("../../img/fallback.png");
+    const noImage = global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg");
     if (entries.length !== 3) {
       return null;
     }
@@ -137,22 +137,22 @@ export class SimilarEntries extends BaseComponent<Props, State> {
       <>
         <div className="similar-entries-list">
           <div className="similar-entries-list-header">
-            <div className="list-header-text">{_t('similar-entries.title')}</div>
+            <div className="list-header-text">{_t("similar-entries.title")}</div>
           </div>
           <div className="similar-entries-list-body">
             {entries.map((en, i) => {
               const img =
-                catchPostImage(en.img_url, 600, 500, global.canUseWebp ? 'webp' : 'match') ||
+                catchPostImage(en.img_url, 600, 500, global.canUseWebp ? "webp" : "match") ||
                 noImage;
-              const imgSize = img == noImage ? '75px' : 'auto';
-              const date = moment(parseDate(`${en.created_at.replace('+00:00', '')}`));
+              const imgSize = img == noImage ? "75px" : "auto";
+              const date = moment(parseDate(`${en.created_at.replace("+00:00", "")}`));
               const dateRelative = date.fromNow();
 
               return (
                 <div className="similar-entries-list-item" key={i}>
                   {EntryLink({
                     ...this.props,
-                    entry: { category: 'relevant', author: en.author, permlink: en.permlink },
+                    entry: { category: "relevant", author: en.author, permlink: en.permlink },
                     children: (
                       <>
                         <div className="item-image">

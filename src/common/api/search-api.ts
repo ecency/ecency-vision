@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { dataLimit } from './bridge';
+import axios from "axios";
+import { dataLimit } from "./bridge";
 
-import { apiBase } from './helper';
+import { apiBase } from "./helper";
 
 export interface SearchResult {
   id: number;
@@ -76,7 +76,7 @@ export interface AccountSearchResult {
 }
 
 export const searchAccount = (
-  q: string = '',
+  q: string = "",
   limit: number = dataLimit,
   random: number = 1
 ): Promise<AccountSearchResult[]> => {
@@ -91,7 +91,7 @@ export interface TagSearchResult {
 }
 
 export const searchTag = (
-  q: string = '',
+  q: string = "",
   limit: number = dataLimit,
   random: number = 0
 ): Promise<TagSearchResult[]> => {

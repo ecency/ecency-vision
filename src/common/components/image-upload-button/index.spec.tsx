@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import renderer from 'react-test-renderer';
+import renderer from "react-test-renderer";
 
-import UploadButton from './index';
+import UploadButton from "./index";
 
-import { activeUserMaker } from '../../helper/test-helper';
+import { activeUserMaker } from "../../helper/test-helper";
 
-it('(1) Default render', () => {
+it("(1) Default render", () => {
   const props = {
-    activeUser: activeUserMaker('foo'),
+    activeUser: activeUserMaker("foo"),
     onBegin: () => {},
     onEnd: () => {}
   };

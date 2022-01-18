@@ -1,10 +1,10 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
-import { User, Actions, AddAction, ReloadAction, ActionTypes } from './types';
+import { User, Actions, AddAction, ReloadAction, ActionTypes } from "./types";
 
-import * as ls from '../../util/local-storage';
+import * as ls from "../../util/local-storage";
 
-import { encodeObj, decodeObj } from '../../util/encoder';
+import { encodeObj, decodeObj } from "../../util/encoder";
 
 export const initialState: User[] = [];
 
@@ -12,12 +12,12 @@ export default (state: User[] = initialState, action: Actions): User[] => {
   switch (action.type) {
     case ActionTypes.ADD:
     case ActionTypes.RELOAD: {
-      return ls.getByPrefix('user_').map((x) => {
+      return ls.getByPrefix("user_").map((x) => {
         const u = decodeObj(x) as User;
         return {
           username: u.username,
-          refreshToken: '',
-          accessToken: '',
+          refreshToken: "",
+          accessToken: "",
           expiresIn: u.expiresIn,
           postingKey: u.postingKey
         };

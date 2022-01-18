@@ -1,10 +1,10 @@
 // Base event handlers for browser window
 
-import { history } from '../common/store';
+import { history } from "../common/store";
 
-import routes from '../common/routes';
+import routes from "../common/routes";
 
-import { pathToRegexp } from 'path-to-regexp';
+import { pathToRegexp } from "path-to-regexp";
 
 // Global drag&drop
 const handleDragOver = (e: DragEvent) => {
@@ -13,8 +13,8 @@ const handleDragOver = (e: DragEvent) => {
   }
 
   e.preventDefault();
-  e.dataTransfer.effectAllowed = 'none';
-  e.dataTransfer.dropEffect = 'none';
+  e.dataTransfer.effectAllowed = "none";
+  e.dataTransfer.dropEffect = "none";
 };
 
 // Global click handler
@@ -22,12 +22,12 @@ const handleClick = (e: Event) => {
   const el = e.target as HTMLElement;
 
   // Anchor link handler
-  if (el.tagName === 'A' || (el.parentElement && el.parentElement.tagName === 'A')) {
+  if (el.tagName === "A" || (el.parentElement && el.parentElement.tagName === "A")) {
     const href =
-      el.getAttribute('href') || (el.parentElement ? el.parentElement.getAttribute('href') : null);
+      el.getAttribute("href") || (el.parentElement ? el.parentElement.getAttribute("href") : null);
 
-    if (href && href.startsWith('/') && href.indexOf('#') !== -1) {
-      const [route, anchor] = href.split('#');
+    if (href && href.startsWith("/") && href.indexOf("#") !== -1) {
+      const [route, anchor] = href.split("#");
 
       // make sure link matches with one of app routes
       if (Object.values(routes).find((p) => pathToRegexp(p).test(route))) {
@@ -51,11 +51,11 @@ const handleClick = (e: Event) => {
   }
 
   // Handle links in static pages. (faq etc...)
-  if (el.tagName === 'A') {
-    if (el.classList.contains('push-link')) {
+  if (el.tagName === "A") {
+    if (el.classList.contains("push-link")) {
       e.preventDefault();
-      const href = el.getAttribute('href');
-      if (href && href.startsWith('/')) {
+      const href = el.getAttribute("href");
+      if (href && href.startsWith("/")) {
         // make sure link matches with one of app routes
         if (Object.values(routes).find((p) => pathToRegexp(p).test(href))) {
           e.preventDefault();
@@ -66,7 +66,7 @@ const handleClick = (e: Event) => {
   }
 };
 
-document.addEventListener('DOMContentLoaded', function () {
-  document.body.addEventListener('dragover', handleDragOver);
-  document.body.addEventListener('click', handleClick);
+document.addEventListener("DOMContentLoaded", function () {
+  document.body.addEventListener("dragover", handleDragOver);
+  document.body.addEventListener("click", handleClick);
 });

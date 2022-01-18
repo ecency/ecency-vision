@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { History } from 'history';
+import React, { useState, useEffect } from "react";
+import { History } from "history";
 
-import { menuDownSvg } from '../../img/svg';
-import _c from '../../util/fix-class-names';
+import { menuDownSvg } from "../../img/svg";
+import _c from "../../util/fix-class-names";
 
 export interface MenuItem {
   label: string | JSX.Element;
@@ -16,7 +16,7 @@ export interface MenuItem {
 
 interface Props {
   history: History | null;
-  float: 'left' | 'right';
+  float: "left" | "right";
   alignBottom?: boolean;
   header?: string;
   preElem?: JSX.Element;
@@ -102,8 +102,8 @@ const MyDropDown = (props: Props) => {
   const { label, float, items } = props;
 
   const child: JSX.Element =
-    typeof label === 'string' ? (
-      <div className={_c(`dropdown-btn ${menu ? 'hover' : ''}`)}>
+    typeof label === "string" ? (
+      <div className={_c(`dropdown-btn ${menu ? "hover" : ""}`)}>
         {label && <div className="label">{label}</div>}
         <div className="menu-down">{props?.icon || menuDownSvg}</div>
       </div>
@@ -111,7 +111,7 @@ const MyDropDown = (props: Props) => {
       label
     );
 
-  const menuCls = _c(`custom-dropdown float-${float} ${props?.alignBottom ? 'align-bottom' : ''}`);
+  const menuCls = _c(`custom-dropdown float-${float} ${props?.alignBottom ? "align-bottom" : ""}`);
 
   return mounted ? (
     <div className={menuCls} onClick={mouseClick} onMouseEnter={mouseEnter} onMouseLeave={mouseOut}>
@@ -127,13 +127,13 @@ const MyDropDown = (props: Props) => {
                 return (
                   <div
                     key={k}
-                    className={`menu-item ${i?.active === true ? 'active' : ''}`}
+                    className={`menu-item ${i?.active === true ? "active" : ""}`}
                     onClick={() => {
                       itemClicked(i);
                     }}
                   >
                     <span className="item-inner">
-                      {i?.icon ? <span className="item-icon">{i?.icon as JSX.Element} </span> : ''}
+                      {i?.icon ? <span className="item-icon">{i?.icon as JSX.Element} </span> : ""}
                       {i.label as string | JSX.Element}
                     </span>
                   </div>

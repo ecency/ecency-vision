@@ -1,27 +1,27 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 
-import { History } from 'history';
+import { History } from "history";
 
-import moment from 'moment';
+import moment from "moment";
 
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
-import { Community } from '../../store/communities/types';
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
+import { Community } from "../../store/communities/types";
 
-import BaseComponent from '../base';
-import ProfileLink from '../profile-link';
-import EntryLink from '../entry-link';
-import UserAvatar from '../user-avatar';
-import LinearProgress from '../linear-progress';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import ProfileLink from "../profile-link";
+import EntryLink from "../entry-link";
+import UserAvatar from "../user-avatar";
+import LinearProgress from "../linear-progress";
+import { error } from "../feedback";
 
-import { getAccountNotifications, AccountNotification } from '../../api/bridge';
+import { getAccountNotifications, AccountNotification } from "../../api/bridge";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import parseDate from '../../helper/parse-date';
+import parseDate from "../../helper/parse-date";
 
 interface ListItemProps {
   history: History;
@@ -39,26 +39,26 @@ class ListItem extends Component<ListItemProps> {
     const { notification } = this.props;
     const { msg } = notification;
 
-    const parts = msg.split(new RegExp(`(${patterns.join('|')})`, 'gi'));
+    const parts = msg.split(new RegExp(`(${patterns.join("|")})`, "gi"));
 
     return (
       <>
         {parts.map((part, i) => {
-          if (part.trim() === '') {
+          if (part.trim() === "") {
             return null;
           }
 
           if (patterns.includes(part.toLowerCase())) {
             // post link
-            if (part.includes('/')) {
-              const s = part.split('/');
+            if (part.includes("/")) {
+              const s = part.split("/");
               return (
                 <Fragment key={i}>
                   {EntryLink({
                     ...this.props,
                     entry: {
-                      category: 'post',
-                      author: s[0].replace('@', ''),
+                      category: "post",
+                      author: s[0].replace("@", ""),
                       permlink: s[1]
                     },
                     children: <>{part}</>
@@ -72,7 +72,7 @@ class ListItem extends Component<ListItemProps> {
               <Fragment key={i}>
                 {ProfileLink({
                   ...this.props,
-                  username: part.replace('@', ''),
+                  username: part.replace("@", ""),
                   children: <>{part}</>
                 })}
               </Fragment>
@@ -95,14 +95,14 @@ class ListItem extends Component<ListItemProps> {
     let formatPatterns = [];
 
     // @username/permlink
-    if (notification.url.startsWith('@')) {
+    if (notification.url.startsWith("@")) {
       formatPatterns.push(notification.url);
     }
 
     // @usernames
     formatPatterns = [...formatPatterns, ...mentions];
 
-    const username = mentions[0].replace('@', '');
+    const username = mentions[0].replace("@", "");
     const msg = this.formatMessage(formatPatterns);
     const date = moment(parseDate(notification.date));
 
@@ -112,7 +112,7 @@ class ListItem extends Component<ListItemProps> {
           {ProfileLink({
             ...this.props,
             username,
-            children: <>{UserAvatar({ ...this.props, username, size: 'medium' })}</>
+            children: <>{UserAvatar({ ...this.props, username, size: "medium" })}</>
           })}
         </div>
         <div className="activity-content">
@@ -164,7 +164,7 @@ export class Activities extends BaseComponent<Props, State> {
         }
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       })
       .finally(() => {
         this.stateSet({ loading: false });
@@ -186,7 +186,7 @@ export class Activities extends BaseComponent<Props, State> {
         {hasMore && (
           <div className="load-more">
             <Button disabled={loading || !hasMore} onClick={this.fetch}>
-              {_t('g.load-more')}
+              {_t("g.load-more")}
             </Button>
           </div>
         )}

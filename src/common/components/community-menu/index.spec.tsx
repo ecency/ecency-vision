@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import { StaticRouter } from 'react-router-dom';
+import { StaticRouter } from "react-router-dom";
 
-import { createLocation, createBrowserHistory } from 'history';
+import { createLocation, createBrowserHistory } from "history";
 
-import CommunityMenu from './index';
-import TestRenderer from 'react-test-renderer';
+import CommunityMenu from "./index";
+import TestRenderer from "react-test-renderer";
 
-import { globalInstance, communityInstance1 } from '../../helper/test-helper';
+import { globalInstance, communityInstance1 } from "../../helper/test-helper";
 
 const defProps = {
   history: createBrowserHistory(),
@@ -17,15 +17,15 @@ const defProps = {
   toggleListStyle: () => {}
 };
 
-it('(1) Default render', () => {
+it("(1) Default render", () => {
   const props = {
     ...defProps,
     ...{
       match: {
-        path: '...',
-        url: '/trending/hive-125125',
+        path: "...",
+        url: "/trending/hive-125125",
         isExact: true,
-        params: { filter: 'trending', name: 'hive-125125' }
+        params: { filter: "trending", name: "hive-125125" }
       }
     }
   };
@@ -41,15 +41,15 @@ it('(1) Default render', () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Hot filter', () => {
+it("(2) Hot filter", () => {
   const props = {
     ...defProps,
     ...{
       match: {
-        path: '...',
-        url: '/hot/hive-125125',
+        path: "...",
+        url: "/hot/hive-125125",
         isExact: true,
-        params: { filter: 'hot', name: 'hive-125125' }
+        params: { filter: "hot", name: "hive-125125" }
       }
     }
   };
@@ -65,15 +65,15 @@ it('(2) Hot filter', () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(3) In section', () => {
+it("(3) In section", () => {
   const props = {
     ...defProps,
     ...{
       match: {
-        path: '...',
-        url: '/activities/hive-125125',
+        path: "...",
+        url: "/activities/hive-125125",
         isExact: true,
-        params: { filter: 'hot', name: 'hive-125125' }
+        params: { filter: "hot", name: "hive-125125" }
       }
     }
   };

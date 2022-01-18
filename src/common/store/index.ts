@@ -1,28 +1,28 @@
-import { combineReducers } from 'redux';
-import { connectRouter } from 'connected-react-router';
-import { createBrowserHistory, createMemoryHistory, History } from 'history';
+import { combineReducers } from "redux";
+import { connectRouter } from "connected-react-router";
+import { createBrowserHistory, createMemoryHistory, History } from "history";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import global from './global';
-import dynamicProps from './dynamic-props';
-import trendingTags from './trending-tags';
-import entries from './entries';
-import accounts from './accounts';
-import communities from './communities';
-import transactions from './transactions';
-import users from './users';
-import activeUser from './active-user';
-import reblogs from './reblogs';
-import discussion from './discussion';
-import ui from './ui';
-import subscriptions from './subscriptions';
-import notifications from './notifications';
-import points from './points';
-import signingKey from './signing-key';
-import entryPinTracker from './entry-pin-tracker';
+import global from "./global";
+import dynamicProps from "./dynamic-props";
+import trendingTags from "./trending-tags";
+import entries from "./entries";
+import accounts from "./accounts";
+import communities from "./communities";
+import transactions from "./transactions";
+import users from "./users";
+import activeUser from "./active-user";
+import reblogs from "./reblogs";
+import discussion from "./discussion";
+import ui from "./ui";
+import subscriptions from "./subscriptions";
+import notifications from "./notifications";
+import points from "./points";
+import signingKey from "./signing-key";
+import entryPinTracker from "./entry-pin-tracker";
 
-import filterTagExtract from '../helper/filter-tag-extract';
+import filterTagExtract from "../helper/filter-tag-extract";
 
 let reducers = {
   global,
@@ -47,8 +47,8 @@ let reducers = {
 export let history: History | undefined;
 
 // create browser history on client side
-if (typeof window !== 'undefined') {
-  if (window.location.href.startsWith('file://')) {
+if (typeof window !== "undefined") {
+  if (window.location.href.startsWith("file://")) {
     // electron
     history = createMemoryHistory();
   } else {
@@ -86,14 +86,14 @@ if (typeof window !== 'undefined') {
     if (pathname === prevPath) {
       return;
     }
-    _push(pathname.includes('//') ? '/' : pathname, state);
+    _push(pathname.includes("//") ? "/" : pathname, state);
   };
 
   // scroll to top on every push action
   history.listen((location, action) => {
-    if (action === 'PUSH') {
+    if (action === "PUSH") {
       // Don't scroll to top with anchor links
-      if (history!.location.hash !== '') {
+      if (history!.location.hash !== "") {
         return;
       }
 

@@ -1,20 +1,20 @@
-import express from 'express';
+import express from "express";
 
-import RSS from 'rss';
+import RSS from "rss";
 
-import { Entry } from '../../common/store/entries/types';
+import { Entry } from "../../common/store/entries/types";
 
-import defaults from '../../common/constants/defaults.json';
+import defaults from "../../common/constants/defaults.json";
 
-import { catchPostImage, postBodySummary, setProxyBase } from '@ecency/render-helper';
+import { catchPostImage, postBodySummary, setProxyBase } from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
-import { getPostsRanked, getAccountPosts, dataLimit } from '../../common/api/bridge';
+import { getPostsRanked, getAccountPosts, dataLimit } from "../../common/api/bridge";
 
 const feedOptions = (req: express.Request) => {
   return {
-    title: 'RSS Feed',
+    title: "RSS Feed",
     feed_url: `${defaults.base}${req.originalUrl}`,
     site_url: defaults.base,
     image_url: `${defaults.base}/logo512.png`
@@ -29,7 +29,7 @@ const feedItem = (x: Entry) => {
     categories: [x.category],
     author: x.author,
     date: x.created,
-    enclosure: { url: catchPostImage(x.body) || '' }
+    enclosure: { url: catchPostImage(x.body) || "" }
   };
 };
 
@@ -39,13 +39,13 @@ export const entryRssHandler = async (req: express.Request, res: express.Respons
   let entries: Entry[];
 
   try {
-    entries = (await getPostsRanked(filter, '', '', dataLimit, tag)) || [];
+    entries = (await getPostsRanked(filter, "", "", dataLimit, tag)) || [];
   } catch (e) {
     // Non existent tag error handler
-    if (String(e).indexOf('Invalid parameters') !== -1) {
+    if (String(e).indexOf("Invalid parameters") !== -1) {
       entries = [];
     } else {
-      res.status(500).send('Server Error');
+      res.status(500).send("Server Error");
       return;
     }
   }
@@ -56,19 +56,19 @@ export const entryRssHandler = async (req: express.Request, res: express.Respons
     feed.item(feedItem(x));
   });
 
-  res.set('Content-Type', 'text/xml');
+  res.set("Content-Type", "text/xml");
   return res.send(feed.xml());
 };
 
 export const authorRssHandler = async (req: express.Request, res: express.Response) => {
-  const { author, section = 'posts' } = req.params;
+  const { author, section = "posts" } = req.params;
 
   let entries: Entry[];
 
   try {
     entries = (await getAccountPosts(section, author)) || [];
   } catch (e) {
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
     return;
   }
 
@@ -78,6 +78,6 @@ export const authorRssHandler = async (req: express.Request, res: express.Respon
     feed.item(feedItem(x));
   });
 
-  res.set('Content-Type', 'text/xml');
+  res.set("Content-Type", "text/xml");
   return res.send(feed.xml());
 };

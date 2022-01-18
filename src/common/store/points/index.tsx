@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
 import {
   Points,
@@ -9,13 +9,13 @@ import {
   FetchAction,
   FetchedAction,
   ErrorAction
-} from './types';
+} from "./types";
 
-import { getPoints, getPointTransactions } from '../../api/private-api';
+import { getPoints, getPointTransactions } from "../../api/private-api";
 
 export const initialState: Points = {
-  points: '0.000',
-  uPoints: '0.000',
+  points: "0.000",
+  uPoints: "0.000",
   transactions: [],
   loading: false,
   filter: 0
@@ -53,7 +53,7 @@ export const fetchPoints =
   async (dispatch: Dispatch) => {
     dispatch(fetchAct(filter));
 
-    const name = username.replace('@', '');
+    const name = username.replace("@", "");
 
     let points;
     try {

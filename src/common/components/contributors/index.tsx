@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import contributors from '../../constants/contributors.json';
-import ProfileLink from '../profile-link';
-import UserAvatar from '../user-avatar';
+import contributors from "../../constants/contributors.json";
+import ProfileLink from "../profile-link";
+import UserAvatar from "../user-avatar";
 
-import { History } from 'history';
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
+import { History } from "history";
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
 
-import { _t } from '../../i18n';
-import { Tsx } from '../../i18n/helper';
-import _ from 'lodash';
+import { _t } from "../../i18n";
+import { Tsx } from "../../i18n/helper";
+import _ from "lodash";
 
 interface Props {
   history: History;
@@ -45,7 +45,7 @@ export class Contributors extends Component<Props, State> {
       <div className="contributors">
         <div className="contributors-list">
           <div className="list-header">
-            <h1 className="list-title">{_t('contributors.title')}</h1>
+            <h1 className="list-title">{_t("contributors.title")}</h1>
             <Tsx k="contributors.description">
               <div className="list-description" />
             </Tsx>
@@ -59,7 +59,7 @@ export class Contributors extends Component<Props, State> {
                     {ProfileLink({
                       ...this.props,
                       username,
-                      children: <>{UserAvatar({ ...this.props, username, size: 'small' })}</>
+                      children: <>{UserAvatar({ ...this.props, username, size: "small" })}</>
                     })}
 
                     <div className="item-info">
@@ -70,7 +70,7 @@ export class Contributors extends Component<Props, State> {
                       })}
                     </div>
                   </div>
-                  <div className="item-extra">{c.contributes.join(', ')}</div>
+                  <div className="item-extra">{c.contributes.join(", ")}</div>
                 </div>
               );
             })}

@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
-import defaults from '../constants/defaults.json';
+import defaults from "../constants/defaults.json";
 
-import { apiBase } from './helper';
+import { apiBase } from "./helper";
 
-export const getEmojiData = () => fetch(apiBase('/emoji.json')).then((response) => response.json());
+export const getEmojiData = () => fetch(apiBase("/emoji.json")).then((response) => response.json());
 
 export const uploadImage = async (
   file: File,
@@ -13,14 +13,14 @@ export const uploadImage = async (
   url: string;
 }> => {
   const fData = new FormData();
-  fData.append('file', file);
+  fData.append("file", file);
 
   const postUrl = `${defaults.imageServer}/hs/${token}`;
 
   return axios
     .post(postUrl, fData, {
       headers: {
-        'Content-Type': 'multipart/form-data'
+        "Content-Type": "multipart/form-data"
       }
     })
     .then((r) => r.data);
@@ -37,7 +37,7 @@ export const getMarketData = (
 };
 
 export const getCurrencyRate = (cur: string): Promise<number> => {
-  if (cur === 'hbd') {
+  if (cur === "hbd") {
     return new Promise((resolve) => resolve(1));
   }
 
@@ -50,6 +50,6 @@ export const getCurrencyRate = (cur: string): Promise<number> => {
 
 export const geLatestDesktopTag = (): Promise<string> =>
   axios
-    .get('https://api.github.com/repos/ecency/ecency-vision/releases/latest')
+    .get("https://api.github.com/repos/ecency/ecency-vision/releases/latest")
     .then((r) => r.data)
     .then((r) => r.tag_name);

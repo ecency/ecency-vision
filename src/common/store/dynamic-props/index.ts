@@ -1,8 +1,8 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
-import { DynamicProps, State, Actions, ActionTypes, FetchedAction } from './types';
+import { DynamicProps, State, Actions, ActionTypes, FetchedAction } from "./types";
 
-import { getDynamicProps } from '../../api/hive';
+import { getDynamicProps } from "../../api/hive";
 
 export const initialState: State = {
   hivePerMVests: 1,

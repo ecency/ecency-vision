@@ -1,8 +1,8 @@
 export default (s: string): string => {
   return s
-    .split(' ')
+    .split(" ")
     .map((x) => x.trim())
     .filter((x) => x)
-    .join(' ')
+    .join(" ")
     .trim();
 };

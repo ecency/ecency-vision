@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Modal, Form, Row, Col, InputGroup, FormControl, Button } from 'react-bootstrap';
+import { Modal, Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
 
-import { Global } from '../../store/global/types';
-import { Community, CommunityTeam } from '../../store/communities/types';
-import { Account } from '../../store/accounts/types';
-import { ActiveUser } from '../../store/active-user/types';
+import { Global } from "../../store/global/types";
+import { Community, CommunityTeam } from "../../store/communities/types";
+import { Account } from "../../store/accounts/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import BaseComponent from '../base';
-import LinearProgress from '../linear-progress';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import LinearProgress from "../linear-progress";
+import { error } from "../feedback";
 
-import { getAccount } from '../../api/hive';
+import { getAccount } from "../../api/hive";
 
-import { clone } from '../../store/util';
+import { clone } from "../../store/util";
 
-import { setUserRole, formatError } from '../../api/operations';
+import { setUserRole, formatError } from "../../api/operations";
 
-import { _t } from '../../i18n';
-import { Tsx } from '../../i18n/helper';
+import { _t } from "../../i18n";
+import { Tsx } from "../../i18n/helper";
 
 interface Props {
   global: Global;
@@ -42,7 +42,7 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
   state: State = {
     user: this.props.user,
     role: this.props.role || this.props.roles[0],
-    userError: '',
+    userError: "",
     inProgress: false
   };
 
@@ -62,12 +62,12 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
     const { user, role } = this.state;
     const { community, activeUser, addCommunity, onHide } = this.props;
 
-    if (user.trim() === '') {
+    if (user.trim() === "") {
       this._input.current?.focus();
       return false;
     }
 
-    this.stateSet({ inProgress: true, userError: '' });
+    this.stateSet({ inProgress: true, userError: "" });
 
     let userData: Account | null | undefined;
 
@@ -78,7 +78,7 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
     }
 
     if (!userData) {
-      this.stateSet({ inProgress: false, userError: _t('community-role-edit.user-not-found') });
+      this.stateSet({ inProgress: false, userError: _t("community-role-edit.user-not-found") });
     }
 
     return setUserRole(activeUser.username, community.name, user, role)
@@ -86,7 +86,7 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
         const team: CommunityTeam = clone(community.team);
         const nTeam =
           team.find((x) => x[0] === user) === undefined
-            ? [...team, [user, role, '']]
+            ? [...team, [user, role, ""]]
             : team.map((x) => (x[0] === user ? [x[0], role, x[2]] : x));
         const nCom: Community = { ...clone(community), team: nTeam };
         addCommunity(nCom);
@@ -103,10 +103,10 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
     return (
       <div className="community-role-edit-dialog-content">
         {inProgress && <LinearProgress />}
-        <div className={`user-role-form ${inProgress ? 'in-progress' : ''}`}>
+        <div className={`user-role-form ${inProgress ? "in-progress" : ""}`}>
           <Form.Group as={Row}>
             <Form.Label column={true} sm="2">
-              {_t('community-role-edit.username')}
+              {_t("community-role-edit.username")}
             </Form.Label>
             <Col sm="10">
               <InputGroup>
@@ -115,11 +115,11 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
                 </InputGroup.Prepend>
                 <Form.Control
                   type="text"
-                  autoFocus={user === ''}
-                  placeholder={_t('community-role-edit.username').toLowerCase()}
+                  autoFocus={user === ""}
+                  placeholder={_t("community-role-edit.username").toLowerCase()}
                   value={user}
                   onChange={this.userChanged}
-                  className={userError ? 'is-invalid' : ''}
+                  className={userError ? "is-invalid" : ""}
                   ref={this._input}
                 />
               </InputGroup>
@@ -128,7 +128,7 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
           </Form.Group>
           <Form.Group as={Row}>
             <Form.Label column={true} sm="2">
-              {_t('community-role-edit.role')}
+              {_t("community-role-edit.role")}
             </Form.Label>
             <Col sm="10">
               <Form.Control as="select" value={role} onChange={this.roleChanged}>
@@ -142,7 +142,7 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
           </Form.Group>
           <div className="d-flex justify-content-end">
             <Button type="button" onClick={this.submit} disabled={inProgress}>
-              {_t('g.save')}
+              {_t("g.save")}
             </Button>
           </div>
         </div>
@@ -168,7 +168,7 @@ export default class CommunityRoleEditDialog extends Component<Props> {
         size="lg"
       >
         <Modal.Header closeButton={true}>
-          <Modal.Title>{_t('community-role-edit.title')}</Modal.Title>
+          <Modal.Title>{_t("community-role-edit.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <CommunityRoleEdit {...this.props} />

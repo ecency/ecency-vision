@@ -1,23 +1,23 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 
-import moment from 'moment';
+import moment from "moment";
 
-import { Popover, OverlayTrigger } from 'react-bootstrap';
+import { Popover, OverlayTrigger } from "react-bootstrap";
 
-import { Entry } from '../../store/entries/types';
-import { Global } from '../../store/global/types';
-import { DynamicProps } from '../../store/dynamic-props/types';
+import { Entry } from "../../store/entries/types";
+import { Global } from "../../store/global/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
 
-import FormattedCurrency from '../formatted-currency/index';
+import FormattedCurrency from "../formatted-currency/index";
 
-import parseAsset from '../../helper/parse-asset';
-import parseDate from '../../helper/parse-date';
+import parseAsset from "../../helper/parse-asset";
+import parseDate from "../../helper/parse-date";
 
-import formattedNumber from '../../util/formatted-number';
+import formattedNumber from "../../util/formatted-number";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
 interface Props {
   global: Global;
@@ -56,18 +56,18 @@ export class EntryPayoutDetail extends Component<Props> {
     if (pendingPayout > 0) {
       if (pendingPayoutPrintedHbd > 0) {
         breakdownPayout.push(
-          formattedNumber(pendingPayoutPrintedHbd, { fractionDigits: 3, suffix: 'HBD' })
+          formattedNumber(pendingPayoutPrintedHbd, { fractionDigits: 3, suffix: "HBD" })
         );
       }
 
       if (pendingPayoutPrintedHive > 0) {
         breakdownPayout.push(
-          formattedNumber(pendingPayoutPrintedHive, { fractionDigits: 3, suffix: 'HIVE' })
+          formattedNumber(pendingPayoutPrintedHive, { fractionDigits: 3, suffix: "HIVE" })
         );
       }
 
       if (pendingPayoutHp > 0) {
-        breakdownPayout.push(formattedNumber(pendingPayoutHp, { fractionDigits: 3, suffix: 'HP' }));
+        breakdownPayout.push(formattedNumber(pendingPayoutHp, { fractionDigits: 3, suffix: "HP" }));
       }
     }
 
@@ -75,13 +75,13 @@ export class EntryPayoutDetail extends Component<Props> {
       <div className="payout-popover-content">
         {fullPower && (
           <p>
-            <span className="label">{_t('entry-payout.reward')}</span>
-            <span className="value">{_t('entry-payout.full-power')}</span>
+            <span className="label">{_t("entry-payout.reward")}</span>
+            <span className="value">{_t("entry-payout.full-power")}</span>
           </p>
         )}
         {pendingPayout > 0 && (
           <p>
-            <span className="label">{_t('entry-payout.pending-payout')}</span>
+            <span className="label">{_t("entry-payout.pending-payout")}</span>
             <span className="value">
               <FormattedCurrency {...this.props} value={pendingPayout} fixAt={3} />
             </span>
@@ -89,7 +89,7 @@ export class EntryPayoutDetail extends Component<Props> {
         )}
         {promotedPayout > 0 && (
           <p>
-            <span className="label">{_t('entry-payout.promoted')}</span>
+            <span className="label">{_t("entry-payout.promoted")}</span>
             <span className="value">
               <FormattedCurrency {...this.props} value={promotedPayout} fixAt={3} />
             </span>
@@ -97,7 +97,7 @@ export class EntryPayoutDetail extends Component<Props> {
         )}
         {authorPayout > 0 && (
           <p>
-            <span className="label">{_t('entry-payout.author-payout')}</span>
+            <span className="label">{_t("entry-payout.author-payout")}</span>
             <span className="value">
               <FormattedCurrency {...this.props} value={authorPayout} fixAt={3} />
             </span>
@@ -105,7 +105,7 @@ export class EntryPayoutDetail extends Component<Props> {
         )}
         {curatorPayout > 0 && (
           <p>
-            <span className="label">{_t('entry-payout.curators-payout')}</span>
+            <span className="label">{_t("entry-payout.curators-payout")}</span>
             <span className="value">
               <FormattedCurrency {...this.props} value={curatorPayout} fixAt={3} />
             </span>
@@ -113,7 +113,7 @@ export class EntryPayoutDetail extends Component<Props> {
         )}
         {beneficiary.length > 0 && (
           <p>
-            <span className="label">{_t('entry-payout.beneficiary')}</span>
+            <span className="label">{_t("entry-payout.beneficiary")}</span>
             <span className="value">
               {beneficiary.map((x, i) => (
                 <Fragment key={i}>
@@ -125,7 +125,7 @@ export class EntryPayoutDetail extends Component<Props> {
         )}
         {breakdownPayout.length > 0 && (
           <p>
-            <span className="label">{_t('entry-payout.breakdown')}</span>
+            <span className="label">{_t("entry-payout.breakdown")}</span>
             <span className="value">
               {breakdownPayout.map((x, i) => (
                 <Fragment key={i}>
@@ -136,12 +136,12 @@ export class EntryPayoutDetail extends Component<Props> {
           </p>
         )}
         <p>
-          <span className="label">{_t('entry-payout.payout-date')}</span>
+          <span className="label">{_t("entry-payout.payout-date")}</span>
           <span className="value">{payoutDate.fromNow()}</span>
         </p>
         {payoutLimitHit && (
           <p>
-            <span className="label">{_t('entry-payout.max-accepted')}</span>
+            <span className="label">{_t("entry-payout.max-accepted")}</span>
             <span className="value">
               <FormattedCurrency {...this.props} value={maxPayout} fixAt={3} />
             </span>
@@ -177,11 +177,11 @@ export class EntryPayout extends Component<Props> {
     );
 
     return (
-      <OverlayTrigger trigger={['hover', 'focus']} overlay={popover} delay={1000}>
+      <OverlayTrigger trigger={["hover", "focus"]} overlay={popover} delay={1000}>
         <div
           className={_c(
-            `entry-payout ${isPayoutDeclined ? 'payout-declined' : ''} ${
-              payoutLimitHit ? 'payout-limit-hit' : ''
+            `entry-payout ${isPayoutDeclined ? "payout-declined" : ""} ${
+              payoutLimitHit ? "payout-limit-hit" : ""
             } notranslate`
           )}
         >

@@ -1,24 +1,24 @@
-import React from 'react';
+import React from "react";
 
-import { History, Location } from 'history';
+import { History, Location } from "history";
 
-import queryString from 'query-string';
+import queryString from "query-string";
 
-import { Account } from '../../store/accounts/types';
-import { Global } from '../../store/global/types';
+import { Account } from "../../store/accounts/types";
+import { Global } from "../../store/global/types";
 
-import BaseComponent from '../base';
-import LinearProgress from '../linear-progress';
+import BaseComponent from "../base";
+import LinearProgress from "../linear-progress";
 
-import SearchQuery from '../../helper/search-query';
-import ProfileLink from '../profile-link';
-import UserAvatar from '../user-avatar';
+import SearchQuery from "../../helper/search-query";
+import ProfileLink from "../profile-link";
+import UserAvatar from "../user-avatar";
 
-import { searchAccount, AccountSearchResult } from '../../api/search-api';
+import { searchAccount, AccountSearchResult } from "../../api/search-api";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import truncate from '../../util/truncate';
+import truncate from "../../util/truncate";
 
 interface Props {
   history: History;
@@ -37,7 +37,7 @@ const grabSearch = (location: Location) => {
   const qs = queryString.parse(location.search);
   const q = qs.q as string;
 
-  return new SearchQuery(q).search.split(' ')[0].replace('@', '');
+  return new SearchQuery(q).search.split(" ")[0].replace("@", "");
 };
 
 export class SearchPeople extends BaseComponent<Props, State> {
@@ -76,7 +76,7 @@ export class SearchPeople extends BaseComponent<Props, State> {
     return (
       <div className="card search-people">
         <div className="card-header">
-          <strong>{_t('search-people.title')}</strong>
+          <strong>{_t("search-people.title")}</strong>
         </div>
         <div className="card-body">
           {(() => {
@@ -85,7 +85,7 @@ export class SearchPeople extends BaseComponent<Props, State> {
             }
 
             if (results.length === 0) {
-              return <span className="text-muted">{_t('g.no-matches')}</span>;
+              return <span className="text-muted">{_t("g.no-matches")}</span>;
             }
 
             return (
@@ -99,7 +99,7 @@ export class SearchPeople extends BaseComponent<Props, State> {
                           {ProfileLink({
                             ...this.props,
                             username,
-                            children: <>{UserAvatar({ ...this.props, username, size: 'medium' })}</>
+                            children: <>{UserAvatar({ ...this.props, username, size: "medium" })}</>
                           })}
                           <div className="item-title">
                             {ProfileLink({
@@ -108,7 +108,7 @@ export class SearchPeople extends BaseComponent<Props, State> {
                               children: <a className="item-name notransalte">{i.full_name}</a>
                             })}
                             <span className="item-sub-title">
-                              {'@'}
+                              {"@"}
                               {i.name}
                             </span>
                           </div>

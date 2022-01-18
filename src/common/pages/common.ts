@@ -1,23 +1,23 @@
-import { AnyAction, bindActionCreators, Dispatch } from 'redux';
-import { AppState } from '../store';
+import { AnyAction, bindActionCreators, Dispatch } from "redux";
+import { AppState } from "../store";
 
-import { History, Location } from 'history';
-import { Global } from '../store/global/types';
-import { User } from '../store/users/types';
-import { Account, Accounts } from '../store/accounts/types';
-import { Community, Communities } from '../store/communities/types';
-import { TrendingTags } from '../store/trending-tags/types';
-import { ActiveUser } from '../store/active-user/types';
-import { ToggleType, UI } from '../store/ui/types';
-import { NotificationFilter, Notifications } from '../store/notifications/types';
-import { Subscription } from '../store/subscriptions/types';
-import { DynamicProps } from '../store/dynamic-props/types';
-import { Entries, Entry } from '../store/entries/types';
-import { Reblogs } from '../store/reblogs/types';
-import { Discussion as DiscussionType, SortOrder } from '../store/discussion/types';
-import { Transactions, OperationGroup } from '../store/transactions/types';
-import { Points } from '../store/points/types';
-import { EntryPinTracker } from '../store/entry-pin-tracker/types';
+import { History, Location } from "history";
+import { Global } from "../store/global/types";
+import { User } from "../store/users/types";
+import { Account, Accounts } from "../store/accounts/types";
+import { Community, Communities } from "../store/communities/types";
+import { TrendingTags } from "../store/trending-tags/types";
+import { ActiveUser } from "../store/active-user/types";
+import { ToggleType, UI } from "../store/ui/types";
+import { NotificationFilter, Notifications } from "../store/notifications/types";
+import { Subscription } from "../store/subscriptions/types";
+import { DynamicProps } from "../store/dynamic-props/types";
+import { Entries, Entry } from "../store/entries/types";
+import { Reblogs } from "../store/reblogs/types";
+import { Discussion as DiscussionType, SortOrder } from "../store/discussion/types";
+import { Transactions, OperationGroup } from "../store/transactions/types";
+import { Points } from "../store/points/types";
+import { EntryPinTracker } from "../store/entry-pin-tracker/types";
 
 import {
   toggleTheme,
@@ -29,10 +29,10 @@ import {
   setCurrency,
   setLang,
   setNsfw
-} from '../store/global';
-import { fetchTrendingTags } from '../store/trending-tags';
-import { updateSubscriptions } from '../store/subscriptions';
-import { fetchEntries, addEntry, updateEntry, invalidateEntries } from '../store/entries';
+} from "../store/global";
+import { fetchTrendingTags } from "../store/trending-tags";
+import { updateSubscriptions } from "../store/subscriptions";
+import { fetchEntries, addEntry, updateEntry, invalidateEntries } from "../store/entries";
 import {
   fetchDiscussion,
   sortDiscussion,
@@ -40,23 +40,23 @@ import {
   updateReply,
   addReply,
   deleteReply
-} from '../store/discussion';
-import { addAccount } from '../store/accounts';
-import { addCommunity } from '../store/communities';
-import { fetchTransactions, resetTransactions } from '../store/transactions';
-import { addUser, deleteUser } from '../store/users';
-import { setActiveUser, updateActiveUser } from '../store/active-user';
-import { toggleUIProp } from '../store/ui';
-import { fetchReblogs, addReblog, deleteReblog } from '../store/reblogs';
+} from "../store/discussion";
+import { addAccount } from "../store/accounts";
+import { addCommunity } from "../store/communities";
+import { fetchTransactions, resetTransactions } from "../store/transactions";
+import { addUser, deleteUser } from "../store/users";
+import { setActiveUser, updateActiveUser } from "../store/active-user";
+import { toggleUIProp } from "../store/ui";
+import { fetchReblogs, addReblog, deleteReblog } from "../store/reblogs";
 import {
   fetchNotifications,
   fetchUnreadNotificationCount,
   setNotificationsFilter,
   markNotifications
-} from '../store/notifications';
-import { fetchPoints, resetPoints } from '../store/points';
-import { setSigningKey } from '../store/signing-key';
-import { trackEntryPin, setEntryPin } from '../store/entry-pin-tracker';
+} from "../store/notifications";
+import { fetchPoints, resetPoints } from "../store/points";
+import { setSigningKey } from "../store/signing-key";
+import { trackEntryPin, setEntryPin } from "../store/entry-pin-tracker";
 
 export interface PageProps {
   history: History;
@@ -104,7 +104,7 @@ export interface PageProps {
   transactions: Transactions;
   fetchTransactions: (
     username: string,
-    group?: OperationGroup | '',
+    group?: OperationGroup | "",
     start?: number,
     limit?: number
   ) => void;

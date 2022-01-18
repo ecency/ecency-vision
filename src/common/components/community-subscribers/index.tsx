@@ -1,30 +1,30 @@
-import React from 'react';
+import React from "react";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
-import { Community, roleMap } from '../../store/communities/types';
-import { Subscription } from '../../store/subscriptions/types';
-import { ActiveUser } from '../../store/active-user/types';
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
+import { Community, roleMap } from "../../store/communities/types";
+import { Subscription } from "../../store/subscriptions/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import BaseComponent from '../base';
-import ProfileLink from '../profile-link';
-import UserAvatar from '../user-avatar';
-import LinearProgress from '../linear-progress';
-import CommunityRoleEditDialog from '../community-role-edit';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import ProfileLink from "../profile-link";
+import UserAvatar from "../user-avatar";
+import LinearProgress from "../linear-progress";
+import CommunityRoleEditDialog from "../community-role-edit";
+import { error } from "../feedback";
 
-import accountReputation from '../../helper/account-reputation';
+import accountReputation from "../../helper/account-reputation";
 
-import { getAccounts } from '../../api/hive';
-import { getSubscribers } from '../../api/bridge';
+import { getAccounts } from "../../api/hive";
+import { getSubscribers } from "../../api/bridge";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { pencilOutlineSvg } from '../../img/svg';
+import { pencilOutlineSvg } from "../../img/svg";
 
 interface MinifiedAccount {
   name: string;
@@ -73,7 +73,7 @@ export class Subscribers extends BaseComponent<Props, State> {
         if (resp) {
           // merge subscribers & community team
           const subscribers = [
-            ...community.team.filter((x) => !x[0].startsWith('hive-')),
+            ...community.team.filter((x) => !x[0].startsWith("hive-")),
             ...resp.filter((x) => community.team.find((y) => x[0] === y[0]) === undefined)
           ];
 
@@ -90,7 +90,7 @@ export class Subscribers extends BaseComponent<Props, State> {
         return null;
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       })
       .finally(() => {
         this.stateSet({ loading: false });
@@ -131,7 +131,7 @@ export class Subscribers extends BaseComponent<Props, State> {
                       {ProfileLink({
                         ...this.props,
                         username,
-                        children: <>{UserAvatar({ ...this.props, username, size: 'small' })}</>
+                        children: <>{UserAvatar({ ...this.props, username, size: "small" })}</>
                       })}
                       <div className="item-info">
                         {ProfileLink({

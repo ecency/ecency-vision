@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
 import {
   UI,
@@ -8,7 +8,7 @@ import {
   ToggleNotificationsAct,
   ActionTypes,
   ToggleType
-} from './types';
+} from "./types";
 
 export const initialState: UI = {
   login: false,
@@ -38,13 +38,13 @@ export default (state: UI = initialState, action: Actions): UI => {
 /* Actions */
 export const toggleUIProp = (what: ToggleType) => (dispatch: Dispatch) => {
   switch (what) {
-    case 'login':
+    case "login":
       dispatch(toggleLoginAct());
       break;
-    case 'loginKc':
+    case "loginKc":
       dispatch(toggleLoginKcAct());
       break;
-    case 'notifications':
+    case "notifications":
       dispatch(toggleNotificationsAct());
       break;
     default:

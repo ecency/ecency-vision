@@ -1,21 +1,21 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import React from "react";
+import renderer from "react-test-renderer";
 
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory } from "history";
 
-import { StaticRouter } from 'react-router-dom';
+import { StaticRouter } from "react-router-dom";
 
-import { ProfileCommunities } from './index';
+import { ProfileCommunities } from "./index";
 
-import { globalInstance, activeUserMaker, allOver } from '../../helper/test-helper';
+import { globalInstance, activeUserMaker, allOver } from "../../helper/test-helper";
 
-jest.mock('../../api/bridge', () => ({
+jest.mock("../../api/bridge", () => ({
   getSubscriptions: () =>
     new Promise((resolve) => {
       resolve([
-        ['hive-125125', 'Ecency', 'admin', ''],
-        ['hive-139531', 'HiveDevs', 'mod', ''],
-        ['hive-102930', 'Hive Improvement', 'guest', '']
+        ["hive-125125", "Ecency", "admin", ""],
+        ["hive-139531", "HiveDevs", "mod", ""],
+        ["hive-102930", "Hive Improvement", "guest", ""]
       ]);
     }),
   getCommunity: () =>
@@ -24,13 +24,13 @@ jest.mock('../../api/bridge', () => ({
     })
 }));
 
-it('(1) Default render - With data.', async () => {
+it("(1) Default render - With data.", async () => {
   const props = {
     history: createBrowserHistory(),
     global: globalInstance,
     activeUser: null,
     account: {
-      name: 'foo'
+      name: "foo"
     }
   };
 
@@ -43,13 +43,13 @@ it('(1) Default render - With data.', async () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Should show create community link', async () => {
+it("(2) Should show create community link", async () => {
   const props = {
     history: createBrowserHistory(),
     global: globalInstance,
-    activeUser: activeUserMaker('foo'),
+    activeUser: activeUserMaker("foo"),
     account: {
-      name: 'foo'
+      name: "foo"
     }
   };
 

@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
 // import { Dropdown, DropdownButton } from "react-bootstrap";
-import DropDown, { MenuItem } from '../dropdown';
+import DropDown, { MenuItem } from "../dropdown";
 
-import { Global } from '../../store/global/types';
+import { Global } from "../../store/global/types";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
-import { viewModuleSvg, gridView, listView, menuDownSvg } from '../../img/svg';
+import { viewModuleSvg, gridView, listView, menuDownSvg } from "../../img/svg";
 
 interface Props {
   global: Global;
@@ -37,23 +37,23 @@ export default class ListStyleToggle extends Component<Props> {
       {
         label: (
           <span className="gridMenu">
-            {gridView} {_t('layouts.grid')}
+            {gridView} {_t("layouts.grid")}
           </span>
         ),
-        active: global.listStyle === 'grid',
+        active: global.listStyle === "grid",
         onClick: () => {
-          this.changeStyle('grid');
+          this.changeStyle("grid");
         }
       },
       {
         label: (
           <span className="gridMenu">
-            {listView} {_t('layouts.classic')}
+            {listView} {_t("layouts.classic")}
           </span>
         ),
-        active: global.listStyle === 'row',
+        active: global.listStyle === "row",
         onClick: () => {
-          this.changeStyle('row');
+          this.changeStyle("row");
         }
       }
     ];
@@ -62,7 +62,7 @@ export default class ListStyleToggle extends Component<Props> {
       history: null,
       label: (
         <span className="view-feed">
-          <span className="view-layout">{viewModuleSvg}</span>{' '}
+          <span className="view-layout">{viewModuleSvg}</span>{" "}
           <span className="menu-down-icon">{menuDownSvg}</span>
         </span>
       ),

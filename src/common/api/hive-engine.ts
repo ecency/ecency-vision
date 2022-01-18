@@ -1,7 +1,7 @@
-import axios from 'axios';
-import HiveEngineToken from '../helper/hive-engine-wallet';
-import { TransactionConfirmation } from '@hiveio/dhive';
-import { broadcastPostingJSON } from './operations';
+import axios from "axios";
+import HiveEngineToken from "../helper/hive-engine-wallet";
+import { TransactionConfirmation } from "@hiveio/dhive";
+import { broadcastPostingJSON } from "./operations";
 
 interface TokenBalance {
   symbol: string;
@@ -42,15 +42,15 @@ export interface TokenStatus {
   precision: number;
 }
 
-const HIVE_ENGINE_RPC_URL = 'https://api.hive-engine.com/rpc/contracts';
+const HIVE_ENGINE_RPC_URL = "https://api.hive-engine.com/rpc/contracts";
 
 const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
   const data = {
-    jsonrpc: '2.0',
-    method: 'find',
+    jsonrpc: "2.0",
+    method: "find",
     params: {
-      contract: 'tokens',
-      table: 'balances',
+      contract: "tokens",
+      table: "balances",
       query: {
         account: account
       }
@@ -60,7 +60,7 @@ const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
 
   return axios
     .post(HIVE_ENGINE_RPC_URL, data, {
-      headers: { 'Content-type': 'application/json' }
+      headers: { "Content-type": "application/json" }
     })
     .then((r) => r.data.result)
     .catch((e) => {
@@ -70,11 +70,11 @@ const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
 
 const getTokens = (tokens: string[]): Promise<Token[]> => {
   const data = {
-    jsonrpc: '2.0',
-    method: 'find',
+    jsonrpc: "2.0",
+    method: "find",
     params: {
-      contract: 'tokens',
-      table: 'tokens',
+      contract: "tokens",
+      table: "tokens",
       query: {
         symbol: { $in: tokens }
       }
@@ -84,7 +84,7 @@ const getTokens = (tokens: string[]): Promise<Token[]> => {
 
   return axios
     .post(HIVE_ENGINE_RPC_URL, data, {
-      headers: { 'Content-type': 'application/json' }
+      headers: { "Content-type": "application/json" }
     })
     .then((r) => r.data.result)
     .catch((e) => {
@@ -128,7 +128,7 @@ export const claimRewards = async (
     })
   );
 
-  return broadcastPostingJSON(account, 'scot_claim_token', json);
+  return broadcastPostingJSON(account, "scot_claim_token", json);
 };
 
 export const stakeTokens = async (
@@ -137,8 +137,8 @@ export const stakeTokens = async (
   amount: string
 ): Promise<TransactionConfirmation> => {
   const json = JSON.stringify({
-    contractName: 'tokens',
-    contractAction: 'stake',
+    contractName: "tokens",
+    contractAction: "stake",
     contractPayload: {
       symbol: token,
       to: account,
@@ -146,5 +146,5 @@ export const stakeTokens = async (
     }
   });
 
-  return broadcastPostingJSON(account, 'ssc-mainnet-hive', json);
+  return broadcastPostingJSON(account, "ssc-mainnet-hive", json);
 };

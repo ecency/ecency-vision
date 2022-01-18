@@ -1,4 +1,4 @@
-import hs from 'hivesigner';
+import hs from "hivesigner";
 
 import {
   PrivateKey,
@@ -6,25 +6,25 @@ import {
   TransactionConfirmation,
   AccountUpdateOperation,
   CustomJsonOperation
-} from '@hiveio/dhive';
+} from "@hiveio/dhive";
 
-import { Parameters } from 'hive-uri';
+import { Parameters } from "hive-uri";
 
-import { client as hiveClient } from './hive';
+import { client as hiveClient } from "./hive";
 
-import { Account } from '../store/accounts/types';
+import { Account } from "../store/accounts/types";
 
-import { usrActivity } from './private-api';
+import { usrActivity } from "./private-api";
 
-import { getAccessToken, getPostingKey } from '../helper/user-token';
+import { getAccessToken, getPostingKey } from "../helper/user-token";
 
-import * as keychain from '../helper/keychain';
+import * as keychain from "../helper/keychain";
 
-import parseAsset from '../helper/parse-asset';
+import parseAsset from "../helper/parse-asset";
 
-import { hotSign } from '../helper/hive-signer';
+import { hotSign } from "../helper/hive-signer";
 
-import { _t } from '../i18n';
+import { _t } from "../i18n";
 
 export interface MetaData {
   links?: string[];
@@ -52,23 +52,23 @@ export interface CommentOptions {
   extensions: Array<[0, { beneficiaries: BeneficiaryRoute[] }]>;
 }
 
-export type RewardType = 'default' | 'sp' | 'dp';
+export type RewardType = "default" | "sp" | "dp";
 
 const handleChainError = (strErr: string) => {
   if (/You may only post once every/.test(strErr)) {
-    return _t('chain-error.min-root-comment');
+    return _t("chain-error.min-root-comment");
   } else if (/Your current vote on this comment is identical/.test(strErr)) {
-    return _t('chain-error.identical-vote');
+    return _t("chain-error.identical-vote");
   } else if (/Please wait to transact, or power up/.test(strErr)) {
-    return _t('chain-error.insufficient-resource');
+    return _t("chain-error.insufficient-resource");
   } else if (/Cannot delete a comment with net positive/.test(strErr)) {
-    return _t('chain-error.delete-comment-with-vote');
+    return _t("chain-error.delete-comment-with-vote");
   } else if (/children == 0/.test(strErr)) {
-    return _t('chain-error.comment-children');
+    return _t("chain-error.comment-children");
   } else if (/comment_cashout/.test(strErr)) {
-    return _t('chain-error.comment-cashout');
+    return _t("chain-error.comment-cashout");
   } else if (/Votes evaluating for comment that is paid out is forbidden/.test(strErr)) {
-    return _t('chain-error.paid-out-post-forbidden');
+    return _t("chain-error.paid-out-post-forbidden");
   }
 
   return null;
@@ -80,7 +80,7 @@ export const formatError = (err: any): string => {
     return chainErr;
   }
 
-  if (err.error_description && typeof err.error_description === 'string') {
+  if (err.error_description && typeof err.error_description === "string") {
     let chainErr = handleChainError(err.error_description);
     if (chainErr) {
       return chainErr;
@@ -89,7 +89,7 @@ export const formatError = (err: any): string => {
     return err.error_description.substring(0, 80);
   }
 
-  if (err.message && typeof err.message === 'string') {
+  if (err.message && typeof err.message === "string") {
     let chainErr = handleChainError(err.message);
     if (chainErr) {
       return chainErr;
@@ -98,7 +98,7 @@ export const formatError = (err: any): string => {
     return err.message.substring(0, 80);
   }
 
-  return '';
+  return "";
 };
 
 export const broadcastPostingJSON = (
@@ -169,12 +169,12 @@ export const reblog = (
   };
 
   if (_delete) {
-    message['delete'] = 'delete';
+    message["delete"] = "delete";
   }
 
-  const json = ['reblog', message];
+  const json = ["reblog", message];
 
-  return broadcastPostingJSON(username, 'follow', json).then((r: TransactionConfirmation) => {
+  return broadcastPostingJSON(username, "follow", json).then((r: TransactionConfirmation) => {
     usrActivity(username, 130, r.block_num, r.id).then();
     return r;
   });
@@ -201,10 +201,10 @@ export const comment = (
     json_metadata: JSON.stringify(jsonMetadata)
   };
 
-  const opArray: Operation[] = [['comment', params]];
+  const opArray: Operation[] = [["comment", params]];
 
   if (options) {
-    const e: Operation = ['comment_options', options];
+    const e: Operation = ["comment_options", options];
     opArray.push(e);
   }
 
@@ -227,7 +227,7 @@ export const deleteComment = (
     permlink
   };
 
-  const opArray: Operation[] = [['delete_comment', params]];
+  const opArray: Operation[] = [["delete_comment", params]];
 
   return broadcastPostingOperations(username, opArray);
 };
@@ -245,7 +245,7 @@ export const vote = (
     weight
   };
 
-  const opArray: Operation[] = [['vote', params]];
+  const opArray: Operation[] = [["vote", params]];
 
   return broadcastPostingOperations(username, opArray).then((r: TransactionConfirmation) => {
     usrActivity(username, 120, r.block_num, r.id).then();
@@ -255,20 +255,20 @@ export const vote = (
 
 export const follow = (follower: string, following: string): Promise<TransactionConfirmation> => {
   const json = [
-    'follow',
+    "follow",
     {
       follower,
       following,
-      what: ['blog']
+      what: ["blog"]
     }
   ];
 
-  return broadcastPostingJSON(follower, 'follow', json);
+  return broadcastPostingJSON(follower, "follow", json);
 };
 
 export const unFollow = (follower: string, following: string): Promise<TransactionConfirmation> => {
   const json = [
-    'follow',
+    "follow",
     {
       follower,
       following,
@@ -276,20 +276,20 @@ export const unFollow = (follower: string, following: string): Promise<Transacti
     }
   ];
 
-  return broadcastPostingJSON(follower, 'follow', json);
+  return broadcastPostingJSON(follower, "follow", json);
 };
 
 export const ignore = (follower: string, following: string): Promise<TransactionConfirmation> => {
   const json = [
-    'follow',
+    "follow",
     {
       follower,
       following,
-      what: ['ignore']
+      what: ["ignore"]
     }
   ];
 
-  return broadcastPostingJSON(follower, 'follow', json);
+  return broadcastPostingJSON(follower, "follow", json);
 };
 
 export const claimRewardBalance = (
@@ -305,7 +305,7 @@ export const claimRewardBalance = (
     reward_vests: rewardVests
   };
 
-  const opArray: Operation[] = [['claim_reward_balance', params]];
+  const opArray: Operation[] = [["claim_reward_balance", params]];
 
   return broadcastPostingOperations(username, opArray);
 };
@@ -329,7 +329,7 @@ export const transfer = (
 
 export const transferHot = (from: string, to: string, amount: string, memo: string) => {
   const op: Operation = [
-    'transfer',
+    "transfer",
     {
       from,
       to,
@@ -362,7 +362,7 @@ export const transferPoint = (
   });
 
   const op = {
-    id: 'esteem_point_transfer',
+    id: "esteem_point_transfer",
     json,
     required_auths: [from],
     required_posting_auths: []
@@ -373,10 +373,10 @@ export const transferPoint = (
 
 export const transferPointHot = (from: string, to: string, amount: string, memo: string) => {
   const params = {
-    authority: 'active',
+    authority: "active",
     required_auths: `["${from}"]`,
-    required_posting_auths: '[]',
-    id: 'esteem_point_transfer',
+    required_posting_auths: "[]",
+    id: "esteem_point_transfer",
     json: JSON.stringify({
       sender: from,
       receiver: to,
@@ -385,7 +385,7 @@ export const transferPointHot = (from: string, to: string, amount: string, memo:
     })
   };
 
-  hotSign('custom-json', params, `@${from}/points`);
+  hotSign("custom-json", params, `@${from}/points`);
 };
 
 export const transferPointKc = (from: string, to: string, amount: string, memo: string) => {
@@ -396,7 +396,7 @@ export const transferPointKc = (from: string, to: string, amount: string, memo: 
     memo
   });
 
-  return keychain.customJson(from, 'esteem_point_transfer', 'Active', json, 'Point Transfer');
+  return keychain.customJson(from, "esteem_point_transfer", "Active", json, "Point Transfer");
 };
 
 export const transferToSavings = (
@@ -407,7 +407,7 @@ export const transferToSavings = (
   memo: string
 ): Promise<TransactionConfirmation> => {
   const op: Operation = [
-    'transfer_to_savings',
+    "transfer_to_savings",
     {
       from,
       to,
@@ -421,7 +421,7 @@ export const transferToSavings = (
 
 export const transferToSavingsHot = (from: string, to: string, amount: string, memo: string) => {
   const op: Operation = [
-    'transfer_to_savings',
+    "transfer_to_savings",
     {
       from,
       to,
@@ -436,7 +436,7 @@ export const transferToSavingsHot = (from: string, to: string, amount: string, m
 
 export const transferToSavingsKc = (from: string, to: string, amount: string, memo: string) => {
   const op: Operation = [
-    'transfer_to_savings',
+    "transfer_to_savings",
     {
       from,
       to,
@@ -445,7 +445,7 @@ export const transferToSavingsKc = (from: string, to: string, amount: string, me
     }
   ];
 
-  return keychain.broadcast(from, [op], 'Active');
+  return keychain.broadcast(from, [op], "Active");
 };
 
 export const convert = (
@@ -454,7 +454,7 @@ export const convert = (
   amount: string
 ): Promise<TransactionConfirmation> => {
   const op: Operation = [
-    'convert',
+    "convert",
     {
       owner,
       amount,
@@ -467,7 +467,7 @@ export const convert = (
 
 export const convertHot = (owner: string, amount: string) => {
   const op: Operation = [
-    'convert',
+    "convert",
     {
       owner,
       amount,
@@ -481,7 +481,7 @@ export const convertHot = (owner: string, amount: string) => {
 
 export const convertKc = (owner: string, amount: string) => {
   const op: Operation = [
-    'convert',
+    "convert",
     {
       owner,
       amount,
@@ -489,7 +489,7 @@ export const convertKc = (owner: string, amount: string) => {
     }
   ];
 
-  return keychain.broadcast(owner, [op], 'Active');
+  return keychain.broadcast(owner, [op], "Active");
 };
 
 export const transferFromSavings = (
@@ -500,7 +500,7 @@ export const transferFromSavings = (
   memo: string
 ): Promise<TransactionConfirmation> => {
   const op: Operation = [
-    'transfer_from_savings',
+    "transfer_from_savings",
     {
       from,
       to,
@@ -515,7 +515,7 @@ export const transferFromSavings = (
 
 export const transferFromSavingsHot = (from: string, to: string, amount: string, memo: string) => {
   const op: Operation = [
-    'transfer_from_savings',
+    "transfer_from_savings",
     {
       from,
       to,
@@ -531,7 +531,7 @@ export const transferFromSavingsHot = (from: string, to: string, amount: string,
 
 export const transferFromSavingsKc = (from: string, to: string, amount: string, memo: string) => {
   const op: Operation = [
-    'transfer_from_savings',
+    "transfer_from_savings",
     {
       from,
       to,
@@ -541,7 +541,7 @@ export const transferFromSavingsKc = (from: string, to: string, amount: string, 
     }
   ];
 
-  return keychain.broadcast(from, [op], 'Active');
+  return keychain.broadcast(from, [op], "Active");
 };
 
 export const transferToVesting = (
@@ -551,7 +551,7 @@ export const transferToVesting = (
   amount: string
 ): Promise<TransactionConfirmation> => {
   const op: Operation = [
-    'transfer_to_vesting',
+    "transfer_to_vesting",
     {
       from,
       to,
@@ -564,7 +564,7 @@ export const transferToVesting = (
 
 export const transferToVestingHot = (from: string, to: string, amount: string) => {
   const op: Operation = [
-    'transfer_to_vesting',
+    "transfer_to_vesting",
     {
       from,
       to,
@@ -578,7 +578,7 @@ export const transferToVestingHot = (from: string, to: string, amount: string) =
 
 export const transferToVestingKc = (from: string, to: string, amount: string) => {
   const op: Operation = [
-    'transfer_to_vesting',
+    "transfer_to_vesting",
     {
       from,
       to,
@@ -586,7 +586,7 @@ export const transferToVestingKc = (from: string, to: string, amount: string) =>
     }
   ];
 
-  return keychain.broadcast(from, [op], 'Active');
+  return keychain.broadcast(from, [op], "Active");
 };
 
 export const delegateVestingShares = (
@@ -596,7 +596,7 @@ export const delegateVestingShares = (
   vestingShares: string
 ): Promise<TransactionConfirmation> => {
   const op: Operation = [
-    'delegate_vesting_shares',
+    "delegate_vesting_shares",
     {
       delegator,
       delegatee,
@@ -613,7 +613,7 @@ export const delegateVestingSharesHot = (
   vestingShares: string
 ) => {
   const op: Operation = [
-    'delegate_vesting_shares',
+    "delegate_vesting_shares",
     {
       delegator,
       delegatee,
@@ -631,7 +631,7 @@ export const delegateVestingSharesKc = (
   vestingShares: string
 ) => {
   const op: Operation = [
-    'delegate_vesting_shares',
+    "delegate_vesting_shares",
     {
       delegator,
       delegatee,
@@ -639,7 +639,7 @@ export const delegateVestingSharesKc = (
     }
   ];
 
-  return keychain.broadcast(delegator, [op], 'Active');
+  return keychain.broadcast(delegator, [op], "Active");
 };
 
 export const withdrawVesting = (
@@ -648,7 +648,7 @@ export const withdrawVesting = (
   vestingShares: string
 ): Promise<TransactionConfirmation> => {
   const op: Operation = [
-    'withdraw_vesting',
+    "withdraw_vesting",
     {
       account,
       vesting_shares: vestingShares
@@ -660,7 +660,7 @@ export const withdrawVesting = (
 
 export const withdrawVestingHot = (account: string, vestingShares: string) => {
   const op: Operation = [
-    'withdraw_vesting',
+    "withdraw_vesting",
     {
       account,
       vesting_shares: vestingShares
@@ -673,14 +673,14 @@ export const withdrawVestingHot = (account: string, vestingShares: string) => {
 
 export const withdrawVestingKc = (account: string, vestingShares: string) => {
   const op: Operation = [
-    'withdraw_vesting',
+    "withdraw_vesting",
     {
       account,
       vesting_shares: vestingShares
     }
   ];
 
-  return keychain.broadcast(account, [op], 'Active');
+  return keychain.broadcast(account, [op], "Active");
 };
 
 export const setWithdrawVestingRoute = (
@@ -691,7 +691,7 @@ export const setWithdrawVestingRoute = (
   autoVest: boolean
 ): Promise<TransactionConfirmation> => {
   const op: Operation = [
-    'set_withdraw_vesting_route',
+    "set_withdraw_vesting_route",
     {
       from_account: from,
       to_account: to,
@@ -710,7 +710,7 @@ export const setWithdrawVestingRouteHot = (
   autoVest: boolean
 ) => {
   const op: Operation = [
-    'set_withdraw_vesting_route',
+    "set_withdraw_vesting_route",
     {
       from_account: from,
       to_account: to,
@@ -730,7 +730,7 @@ export const setWithdrawVestingRouteKc = (
   autoVest: boolean
 ) => {
   const op: Operation = [
-    'set_withdraw_vesting_route',
+    "set_withdraw_vesting_route",
     {
       from_account: from,
       to_account: to,
@@ -739,7 +739,7 @@ export const setWithdrawVestingRouteKc = (
     }
   ];
 
-  return keychain.broadcast(from, [op], 'Active');
+  return keychain.broadcast(from, [op], "Active");
 };
 
 export const witnessVote = (
@@ -749,7 +749,7 @@ export const witnessVote = (
   approve: boolean
 ): Promise<TransactionConfirmation> => {
   const op: Operation = [
-    'account_witness_vote',
+    "account_witness_vote",
     {
       account,
       witness,
@@ -767,7 +767,7 @@ export const witnessVoteHot = (account: string, witness: string, approve: boolea
     approve
   };
 
-  hotSign('account-witness-vote', params, 'witnesses');
+  hotSign("account-witness-vote", params, "witnesses");
 };
 
 export const witnessVoteKc = (account: string, witness: string, approve: boolean) => {
@@ -780,7 +780,7 @@ export const witnessProxy = (
   proxy: string
 ): Promise<TransactionConfirmation> => {
   const op: Operation = [
-    'account_witness_proxy',
+    "account_witness_proxy",
     {
       account,
       proxy
@@ -796,7 +796,7 @@ export const witnessProxyHot = (account: string, proxy: string) => {
     proxy
   };
 
-  hotSign('account-witness-proxy', params, 'witnesses');
+  hotSign("account-witness-proxy", params, "witnesses");
 };
 
 export const witnessProxyKc = (account: string, witness: string) => {
@@ -810,7 +810,7 @@ export const proposalVote = (
   approve: boolean
 ): Promise<TransactionConfirmation> => {
   const op: Operation = [
-    'update_proposal_votes',
+    "update_proposal_votes",
     {
       voter: account,
       proposal_ids: [proposal],
@@ -829,12 +829,12 @@ export const proposalVoteHot = (account: string, proposal: number, approve: bool
     approve
   };
 
-  hotSign('update-proposal-votes', params, 'proposals');
+  hotSign("update-proposal-votes", params, "proposals");
 };
 
 export const proposalVoteKc = (account: string, proposal: number, approve: boolean) => {
   const op: Operation = [
-    'update_proposal_votes',
+    "update_proposal_votes",
     {
       voter: account,
       proposal_ids: [proposal],
@@ -843,25 +843,25 @@ export const proposalVoteKc = (account: string, proposal: number, approve: boole
     }
   ];
 
-  return keychain.broadcast(account, [op], 'Active');
+  return keychain.broadcast(account, [op], "Active");
 };
 
 export const subscribe = (
   username: string,
   community: string
 ): Promise<TransactionConfirmation> => {
-  const json = ['subscribe', { community }];
+  const json = ["subscribe", { community }];
 
-  return broadcastPostingJSON(username, 'community', json);
+  return broadcastPostingJSON(username, "community", json);
 };
 
 export const unSubscribe = (
   username: string,
   community: string
 ): Promise<TransactionConfirmation> => {
-  const json = ['unsubscribe', { community }];
+  const json = ["unsubscribe", { community }];
 
-  return broadcastPostingJSON(username, 'community', json);
+  return broadcastPostingJSON(username, "community", json);
 };
 
 export const promote = (
@@ -879,7 +879,7 @@ export const promote = (
   });
 
   const op = {
-    id: 'esteem_promote',
+    id: "esteem_promote",
     json,
     required_auths: [user],
     required_posting_auths: []
@@ -890,10 +890,10 @@ export const promote = (
 
 export const promoteHot = (user: string, author: string, permlink: string, duration: number) => {
   const params = {
-    authority: 'active',
+    authority: "active",
     required_auths: `["${user}"]`,
-    required_posting_auths: '[]',
-    id: 'esteem_promote',
+    required_posting_auths: "[]",
+    id: "esteem_promote",
     json: JSON.stringify({
       user,
       author,
@@ -902,7 +902,7 @@ export const promoteHot = (user: string, author: string, permlink: string, durat
     })
   };
 
-  hotSign('custom-json', params, `@${user}/points`);
+  hotSign("custom-json", params, `@${user}/points`);
 };
 
 export const promoteKc = (user: string, author: string, permlink: string, duration: number) => {
@@ -913,7 +913,7 @@ export const promoteKc = (user: string, author: string, permlink: string, durati
     duration
   });
 
-  return keychain.customJson(user, 'esteem_promote', 'Active', json, 'Promote');
+  return keychain.customJson(user, "esteem_promote", "Active", json, "Promote");
 };
 
 export const boost = (
@@ -931,7 +931,7 @@ export const boost = (
   });
 
   const op = {
-    id: 'esteem_boost',
+    id: "esteem_boost",
     json,
     required_auths: [user],
     required_posting_auths: []
@@ -942,10 +942,10 @@ export const boost = (
 
 export const boostHot = (user: string, author: string, permlink: string, amount: string) => {
   const params = {
-    authority: 'active',
+    authority: "active",
     required_auths: `["${user}"]`,
-    required_posting_auths: '[]',
-    id: 'esteem_boost',
+    required_posting_auths: "[]",
+    id: "esteem_boost",
     json: JSON.stringify({
       user,
       author,
@@ -954,7 +954,7 @@ export const boostHot = (user: string, author: string, permlink: string, amount:
     })
   };
 
-  hotSign('custom-json', params, `@${user}/points`);
+  hotSign("custom-json", params, `@${user}/points`);
 };
 
 export const boostKc = (user: string, author: string, permlink: string, amount: string) => {
@@ -965,7 +965,7 @@ export const boostKc = (user: string, author: string, permlink: string, amount: 
     amount
   });
 
-  return keychain.customJson(user, 'esteem_boost', 'Active', json, 'Boost');
+  return keychain.customJson(user, "esteem_boost", "Active", json, "Boost");
 };
 
 export const communityRewardsRegister = (
@@ -977,7 +977,7 @@ export const communityRewardsRegister = (
   });
 
   const op = {
-    id: 'esteem_registration',
+    id: "esteem_registration",
     json,
     required_auths: [name],
     required_posting_auths: []
@@ -988,16 +988,16 @@ export const communityRewardsRegister = (
 
 export const communityRewardsRegisterHot = (name: string) => {
   const params = {
-    authority: 'active',
+    authority: "active",
     required_auths: `["${name}"]`,
-    required_posting_auths: '[]',
-    id: 'esteem_registration',
+    required_posting_auths: "[]",
+    id: "esteem_registration",
     json: JSON.stringify({
       name
     })
   };
 
-  hotSign('custom-json', params, `created/${name}`);
+  hotSign("custom-json", params, `created/${name}`);
 };
 
 export const communityRewardsRegisterKc = (name: string) => {
@@ -1005,7 +1005,7 @@ export const communityRewardsRegisterKc = (name: string) => {
     name
   });
 
-  return keychain.customJson(name, 'esteem_registration', 'Active', json, 'Community Registration');
+  return keychain.customJson(name, "esteem_registration", "Active", json, "Community Registration");
 };
 
 export const updateProfile = (
@@ -1021,19 +1021,19 @@ export const updateProfile = (
 ): Promise<TransactionConfirmation> => {
   const params = {
     account: account.name,
-    json_metadata: '',
+    json_metadata: "",
     posting_json_metadata: JSON.stringify({ profile: { ...newProfile, version: 2 } }),
     extensions: []
   };
 
-  const opArray: Operation[] = [['account_update2', params]];
+  const opArray: Operation[] = [["account_update2", params]];
 
   return broadcastPostingOperations(account.name, opArray);
 };
 
 export const grantPostingPermission = (key: PrivateKey, account: Account, pAccount: string) => {
   if (!account.__loaded) {
-    throw 'posting|memo_key|json_metadata required with account instance';
+    throw "posting|memo_key|json_metadata required with account instance";
   }
 
   const newPosting = Object.assign(
@@ -1064,7 +1064,7 @@ export const grantPostingPermission = (key: PrivateKey, account: Account, pAccou
 
 export const revokePostingPermission = (key: PrivateKey, account: Account, pAccount: string) => {
   if (!account.__loaded) {
-    throw 'posting|memo_key|json_metadata required with account instance';
+    throw "posting|memo_key|json_metadata required with account instance";
   }
 
   const newPosting = Object.assign(
@@ -1092,9 +1092,9 @@ export const setUserRole = (
   account: string,
   role: string
 ): Promise<TransactionConfirmation> => {
-  const json = ['setRole', { community, account, role }];
+  const json = ["setRole", { community, account, role }];
 
-  return broadcastPostingJSON(username, 'community', json);
+  return broadcastPostingJSON(username, "community", json);
 };
 
 export const updateCommunity = (
@@ -1109,9 +1109,9 @@ export const updateCommunity = (
     is_nsfw: boolean;
   }
 ): Promise<TransactionConfirmation> => {
-  const json = ['updateProps', { community, props }];
+  const json = ["updateProps", { community, props }];
 
-  return broadcastPostingJSON(username, 'community', json);
+  return broadcastPostingJSON(username, "community", json);
 };
 
 export const pinPost = (
@@ -1121,9 +1121,9 @@ export const pinPost = (
   permlink: string,
   pin: boolean
 ): Promise<TransactionConfirmation> => {
-  const json = [pin ? 'pinPost' : 'unpinPost', { community, account, permlink }];
+  const json = [pin ? "pinPost" : "unpinPost", { community, account, permlink }];
 
-  return broadcastPostingJSON(username, 'community', json);
+  return broadcastPostingJSON(username, "community", json);
 };
 
 export const mutePost = (
@@ -1134,18 +1134,18 @@ export const mutePost = (
   notes: string,
   mute: boolean
 ): Promise<TransactionConfirmation> => {
-  const json = [mute ? 'mutePost' : 'unmutePost', { community, account, permlink, notes }];
+  const json = [mute ? "mutePost" : "unmutePost", { community, account, permlink, notes }];
 
-  return broadcastPostingJSON(username, 'community', json);
+  return broadcastPostingJSON(username, "community", json);
 };
 
 export const hiveNotifySetLastRead = (username: string): Promise<TransactionConfirmation> => {
   const now = new Date().toISOString();
-  const date = now.split('.')[0];
+  const date = now.split(".")[0];
 
-  const json = ['setLastRead', { date }];
+  const json = ["setLastRead", { date }];
 
-  return broadcastPostingJSON(username, 'notify', json);
+  return broadcastPostingJSON(username, "notify", json);
 };
 
 export const updatePassword = (

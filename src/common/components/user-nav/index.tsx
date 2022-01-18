@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
-import { History, Location } from 'history';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { History, Location } from "history";
+import { Link } from "react-router-dom";
 
-import { Global } from '../../store/global/types';
-import { User } from '../../store/users/types';
-import { Account } from '../../store/accounts/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { ToggleType, UI } from '../../store/ui/types';
-import { NotificationFilter, Notifications } from '../../store/notifications/types';
-import { DynamicProps } from '../../store/dynamic-props/types';
+import { Global } from "../../store/global/types";
+import { User } from "../../store/users/types";
+import { Account } from "../../store/accounts/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { ToggleType, UI } from "../../store/ui/types";
+import { NotificationFilter, Notifications } from "../../store/notifications/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
 
-import ToolTip from '../tooltip';
-import UserAvatar from '../user-avatar';
-import DropDown from '../dropdown';
-import UserNotifications from '../notifications';
-import Gallery from '../gallery';
-import Drafts from '../drafts';
-import Bookmarks from '../bookmarks';
-import Schedules from '../schedules';
-import Fragments from '../fragments';
+import ToolTip from "../tooltip";
+import UserAvatar from "../user-avatar";
+import DropDown from "../dropdown";
+import UserNotifications from "../notifications";
+import Gallery from "../gallery";
+import Drafts from "../drafts";
+import Bookmarks from "../bookmarks";
+import Schedules from "../schedules";
+import Fragments from "../fragments";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import HiveWallet from '../../helper/hive-wallet';
+import HiveWallet from "../../helper/hive-wallet";
 
-import { creditCardSvg, gifCardSvg, bellSvg, bellOffSvg, chevronUpSvg } from '../../img/svg';
+import { creditCardSvg, gifCardSvg, bellSvg, bellOffSvg, chevronUpSvg } from "../../img/svg";
 
-import { votingPower, downVotingPower } from '../../api/hive';
+import { votingPower, downVotingPower } from "../../api/hive";
 
 class WalletBadge extends Component<{
   activeUser: ActiveUser;
@@ -46,7 +46,7 @@ class WalletBadge extends Component<{
       <>
         <ToolTip
           content={
-            hasUnclaimedRewards ? _t('user-nav.unclaimed-reward-notice') : _t('user-nav.wallet')
+            hasUnclaimedRewards ? _t("user-nav.unclaimed-reward-notice") : _t("user-nav.wallet")
           }
         >
           <Link to={`/@${activeUser.username}/wallet`} className="user-wallet">
@@ -63,13 +63,13 @@ class PointsBadge extends Component<{ activeUser: ActiveUser }> {
   render() {
     const { activeUser } = this.props;
 
-    let hasUnclaimedPoints = activeUser.points.uPoints !== '0.000';
+    let hasUnclaimedPoints = activeUser.points.uPoints !== "0.000";
 
     return (
       <>
         <ToolTip
           content={
-            hasUnclaimedPoints ? _t('user-nav.unclaimed-points-notice') : _t('user-nav.points')
+            hasUnclaimedPoints ? _t("user-nav.unclaimed-points-notice") : _t("user-nav.points")
           }
         >
           <Link to={`/@${activeUser.username}/points`} className="user-points">
@@ -123,7 +123,7 @@ export default class UserNav extends Component<Props, State> {
 
   toggleLogin = () => {
     const { toggleUIProp } = this.props;
-    toggleUIProp('login');
+    toggleUIProp("login");
   };
 
   toggleDrafts = () => {
@@ -153,7 +153,7 @@ export default class UserNav extends Component<Props, State> {
 
   toggleNotifications = () => {
     const { toggleUIProp } = this.props;
-    toggleUIProp('notifications');
+    toggleUIProp("notifications");
   };
 
   goToSettings = () => {
@@ -168,17 +168,17 @@ export default class UserNav extends Component<Props, State> {
 
     const preDropDownElem = activeUser.data.__loaded ? (
       <div className="drop-down-menu-power">
-        <div className="label">{_t('user-nav.vote-power')}</div>
+        <div className="label">{_t("user-nav.vote-power")}</div>
         <div className="power">
           <div className="voting">
             {chevronUpSvg}
             {votingPower(activeUser.data).toFixed(0)}
-            {'%'}
+            {"%"}
           </div>
           <div className="downVoting">
             {chevronUpSvg}
             {downVotingPower(activeUser.data).toFixed(0)}
-            {'%'}
+            {"%"}
           </div>
         </div>
       </div>
@@ -186,43 +186,43 @@ export default class UserNav extends Component<Props, State> {
 
     const dropDownItems = [
       {
-        label: _t('user-nav.profile'),
+        label: _t("user-nav.profile"),
         href: `/@${activeUser.username}`
       },
       ...(global.usePrivate
         ? [
             {
-              label: _t('user-nav.drafts'),
+              label: _t("user-nav.drafts"),
               onClick: this.toggleDrafts
             },
             {
-              label: _t('user-nav.gallery'),
+              label: _t("user-nav.gallery"),
               onClick: this.toggleGallery
             },
             {
-              label: _t('user-nav.bookmarks'),
+              label: _t("user-nav.bookmarks"),
               onClick: this.toggleBookmarks
             },
             {
-              label: _t('user-nav.schedules'),
+              label: _t("user-nav.schedules"),
               onClick: this.toggleSchedules
             },
             {
-              label: _t('user-nav.fragments'),
+              label: _t("user-nav.fragments"),
               onClick: this.toggleFragments
             }
           ]
         : []),
       {
-        label: _t('user-nav.settings'),
+        label: _t("user-nav.settings"),
         onClick: this.goToSettings
       },
       {
-        label: _t('g.login-as'),
+        label: _t("g.login-as"),
         onClick: this.toggleLogin
       },
       {
-        label: _t('user-nav.logout'),
+        label: _t("user-nav.logout"),
         onClick: () => {
           const { setActiveUser } = this.props;
           setActiveUser(null);
@@ -232,7 +232,7 @@ export default class UserNav extends Component<Props, State> {
 
     const dropDownConfig = {
       history: this.props.history,
-      label: UserAvatar({ ...this.props, username: activeUser.username, size: 'medium' }),
+      label: UserAvatar({ ...this.props, username: activeUser.username, size: "medium" }),
       items: dropDownItems,
       preElem: preDropDownElem
     };
@@ -245,11 +245,11 @@ export default class UserNav extends Component<Props, State> {
           <WalletBadge activeUser={activeUser} dynamicProps={dynamicProps} />
 
           {global.usePrivate && (
-            <ToolTip content={_t('user-nav.notifications')}>
+            <ToolTip content={_t("user-nav.notifications")}>
               <span className="notifications" onClick={this.toggleNotifications}>
                 {unread > 0 && (
                   <span className="notifications-badge notranslate">
-                    {unread.toString().length < 3 ? unread : '...'}
+                    {unread.toString().length < 3 ? unread : "..."}
                   </span>
                 )}
                 {global.notifications ? bellSvg : bellOffSvg}

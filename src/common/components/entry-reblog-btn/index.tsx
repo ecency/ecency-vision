@@ -1,25 +1,25 @@
-import React from 'react';
+import React from "react";
 
-import { Entry } from '../../store/entries/types';
-import { Account } from '../../store/accounts/types';
-import { User } from '../../store/users/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { Reblogs } from '../../store/reblogs/types';
-import { UI, ToggleType } from '../../store/ui/types';
+import { Entry } from "../../store/entries/types";
+import { Account } from "../../store/accounts/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { Reblogs } from "../../store/reblogs/types";
+import { UI, ToggleType } from "../../store/ui/types";
 
-import BaseComponent from '../base';
-import Tooltip from '../tooltip';
-import LoginRequired from '../login-required';
-import PopoverConfirm from '../popover-confirm';
-import { error, success, info } from '../feedback';
+import BaseComponent from "../base";
+import Tooltip from "../tooltip";
+import LoginRequired from "../login-required";
+import PopoverConfirm from "../popover-confirm";
+import { error, success, info } from "../feedback";
 
-import { reblog, formatError } from '../../api/operations';
+import { reblog, formatError } from "../../api/operations";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
-import { repeatSvg } from '../../img/svg';
+import { repeatSvg } from "../../img/svg";
 
 interface Props {
   entry: Entry;
@@ -69,7 +69,7 @@ export class EntryReblogBtn extends BaseComponent<Props> {
     reblog(activeUser?.username!, entry.author, entry.permlink)
       .then(() => {
         addReblog(entry.author, entry.permlink);
-        success(_t('entry-reblog.success'));
+        success(_t("entry-reblog.success"));
       })
       .catch((e) => {
         error(formatError(e));
@@ -86,7 +86,7 @@ export class EntryReblogBtn extends BaseComponent<Props> {
     reblog(activeUser?.username!, entry.author, entry.permlink, true)
       .then(() => {
         deleteReblog(entry.author, entry.permlink);
-        info(_t('entry-reblog.delete-success'));
+        info(_t("entry-reblog.delete-success"));
       })
       .catch((e) => {
         error(formatError(e));
@@ -108,10 +108,10 @@ export class EntryReblogBtn extends BaseComponent<Props> {
     const content = (
       <div
         className={_c(
-          `entry-reblog-btn ${reblogged ? 'reblogged' : ''} ${inProgress ? 'in-progress' : ''} `
+          `entry-reblog-btn ${reblogged ? "reblogged" : ""} ${inProgress ? "in-progress" : ""} `
         )}
       >
-        <Tooltip content={reblogged ? _t('entry-reblog.delete-reblog') : _t('entry-reblog.reblog')}>
+        <Tooltip content={reblogged ? _t("entry-reblog.delete-reblog") : _t("entry-reblog.reblog")}>
           <a className="inner-btn">{repeatSvg}</a>
         </Tooltip>
       </div>
@@ -130,8 +130,8 @@ export class EntryReblogBtn extends BaseComponent<Props> {
         <PopoverConfirm
           onConfirm={this.deleteReblog}
           okVariant="danger"
-          titleText={_t('entry-reblog.delete-confirm-title')}
-          okText={_t('entry-reblog.delete-confirm-ok')}
+          titleText={_t("entry-reblog.delete-confirm-title")}
+          okText={_t("entry-reblog.delete-confirm-ok")}
         >
           {content}
         </PopoverConfirm>
@@ -142,8 +142,8 @@ export class EntryReblogBtn extends BaseComponent<Props> {
     return (
       <PopoverConfirm
         onConfirm={this.reblog}
-        titleText={_t('entry-reblog.confirm-title', { n: activeUser.username })}
-        okText={_t('entry-reblog.confirm-ok')}
+        titleText={_t("entry-reblog.confirm-title", { n: activeUser.username })}
+        okText={_t("entry-reblog.confirm-ok")}
       >
         {content}
       </PopoverConfirm>

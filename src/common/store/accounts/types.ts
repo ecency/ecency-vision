@@ -1,4 +1,4 @@
-import { Authority } from '@hiveio/dhive';
+import { Authority } from "@hiveio/dhive";
 
 export interface AccountProfile {
   about?: string;
@@ -70,7 +70,7 @@ export type Account = FullAccount | BaseAccount;
 export type Accounts = Account[];
 
 export enum ActionTypes {
-  ADD = '@accounts/ADD'
+  ADD = "@accounts/ADD"
 }
 
 export interface AddAction {

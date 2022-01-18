@@ -3,11 +3,11 @@ const isHumanReadable = (input: number): boolean => {
 };
 
 export default (input: string | number): number => {
-  if (typeof input === 'number' && isHumanReadable(input)) {
+  if (typeof input === "number" && isHumanReadable(input)) {
     return Math.floor(input);
   }
 
-  if (typeof input === 'string') {
+  if (typeof input === "string") {
     input = Number(input);
 
     if (isHumanReadable(input)) {

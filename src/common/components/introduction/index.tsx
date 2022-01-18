@@ -1,8 +1,8 @@
-import React from 'react';
-import { useRef } from 'react';
-import { useEffect } from 'react';
-import { Col, Container, Row, Button } from 'react-bootstrap';
-import { _t } from '../../i18n';
+import React from "react";
+import { useRef } from "react";
+import { useEffect } from "react";
+import { Col, Container, Row, Button } from "react-bootstrap";
+import { _t } from "../../i18n";
 
 export interface Props {
   title: string;
@@ -28,10 +28,10 @@ export const Introduction = ({
   const prevButton = useRef(null);
 
   useEffect(() => {
-    let body = document.getElementsByTagName('body')[0];
-    body.classList.add('overflow-hidden');
+    let body = document.getElementsByTagName("body")[0];
+    body.classList.add("overflow-hidden");
     return () => {
-      body.classList.remove('overflow-hidden');
+      body.classList.remove("overflow-hidden");
     };
   }, []);
 
@@ -69,7 +69,7 @@ export const Introduction = ({
                       onPrevious();
                     }}
                   >
-                    {_t('g.previous')}
+                    {_t("g.previous")}
                   </Button>
                 )}
                 {onNext && (
@@ -81,7 +81,7 @@ export const Introduction = ({
                       onNext();
                     }}
                   >
-                    {_t(showFinish ? 'g.finish' : 'g.next')}
+                    {_t(showFinish ? "g.finish" : "g.next")}
                   </Button>
                 )}
               </div>

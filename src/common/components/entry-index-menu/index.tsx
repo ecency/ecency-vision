@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { EntryFilter, Global } from '../../store/global/types';
-import { ActiveUser } from '../../store/active-user/types';
+import { EntryFilter, Global } from "../../store/global/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import DropDown, { MenuItem } from '../dropdown';
-import ListStyleToggle from '../list-style-toggle';
+import DropDown, { MenuItem } from "../dropdown";
+import ListStyleToggle from "../list-style-toggle";
 
-import { _t } from '../../i18n';
-import * as ls from '../../util/local-storage';
-import _c from '../../util/fix-class-names';
-import { Form } from 'react-bootstrap';
-import { informationVariantSvg } from '../../img/svg';
-import { apiBase } from '../../api/helper';
-import { Introduction } from '../introduction';
+import { _t } from "../../i18n";
+import * as ls from "../../util/local-storage";
+import _c from "../../util/fix-class-names";
+import { Form } from "react-bootstrap";
+import { informationVariantSvg } from "../../img/svg";
+import { apiBase } from "../../api/helper";
+import { Introduction } from "../introduction";
 
 interface Props {
   history: History;
@@ -26,11 +26,11 @@ interface Props {
 }
 
 export enum IntroductionType {
-  FRIENDS = 'FRIENDS',
-  TRENDING = 'TRENDING',
-  HOT = 'HOT',
-  NEW = 'NEW',
-  NONE = 'NONE'
+  FRIENDS = "FRIENDS",
+  TRENDING = "TRENDING",
+  HOT = "HOT",
+  NEW = "NEW",
+  NONE = "NONE"
 }
 
 interface States {
@@ -44,7 +44,7 @@ export const isMyPage = (global: Global, activeUser: ActiveUser | null) => {
   return (
     activeUser &&
     activeUser !== null &&
-    ((activeUser.username === tag.replace('@', '') && filter === 'feed') || tag === 'my')
+    ((activeUser.username === tag.replace("@", "") && filter === "feed") || tag === "my")
   );
 };
 
@@ -62,7 +62,7 @@ export class EntryIndexMenu extends Component<Props, States> {
       },
       global: { filter }
     } = props;
-    let isGlobal = !pathname.includes('/my');
+    let isGlobal = !pathname.includes("/my");
     if (activeUser && isActiveUser(activeUser) && pathname.includes(activeUser.username)) {
       isGlobal = false;
     }
@@ -71,10 +71,10 @@ export class EntryIndexMenu extends Component<Props, States> {
     if (
       activeUser &&
       isActiveUser(activeUser) &&
-      (showInitialIntroductionJourney === 'false' || showInitialIntroductionJourney === null)
+      (showInitialIntroductionJourney === "false" || showInitialIntroductionJourney === null)
     ) {
       showInitialIntroductionJourney = true;
-      ls.set(`${activeUser.username}HadTutorial`, 'true');
+      ls.set(`${activeUser.username}HadTutorial`, "true");
     }
     if (showInitialIntroductionJourney === true) {
       showInitialIntroductionJourney = IntroductionType.FRIENDS;
@@ -91,20 +91,20 @@ export class EntryIndexMenu extends Component<Props, States> {
     } = this.props;
     const { introduction } = this.state;
     if (introduction === IntroductionType.NONE) {
-      if (typeof window !== 'undefined') {
-        document.getElementById('overlay') &&
-          document.getElementById('overlay')!.classList.remove('overlay-for-introduction');
-        document.getElementById('feed') &&
-          document.getElementById('feed')!.classList.remove('active');
-        document.getElementById(filter) && document.getElementById(filter)!.classList.add('active');
-        document.getElementsByTagName('ul') &&
-          document.getElementsByTagName('ul')[0] &&
-          document.getElementsByTagName('ul')[0]!.classList.remove('flash');
-        let entryIndexMenuElements = document.getElementsByClassName('entry-index-menu');
+      if (typeof window !== "undefined") {
+        document.getElementById("overlay") &&
+          document.getElementById("overlay")!.classList.remove("overlay-for-introduction");
+        document.getElementById("feed") &&
+          document.getElementById("feed")!.classList.remove("active");
+        document.getElementById(filter) && document.getElementById(filter)!.classList.add("active");
+        document.getElementsByTagName("ul") &&
+          document.getElementsByTagName("ul")[0] &&
+          document.getElementsByTagName("ul")[0]!.classList.remove("flash");
+        let entryIndexMenuElements = document.getElementsByClassName("entry-index-menu");
         entryIndexMenuElements &&
           entryIndexMenuElements.length > 1 &&
           entryIndexMenuElements[0] &&
-          entryIndexMenuElements[0].classList.remove('entry-index-menu');
+          entryIndexMenuElements[0].classList.remove("entry-index-menu");
       }
     }
     this.setState({ isMounted: true });
@@ -116,10 +116,10 @@ export class EntryIndexMenu extends Component<Props, States> {
       global: { tag, filter }
     } = this.props;
     this.setState({ isGlobal: !this.state.isGlobal });
-    if (history.location.pathname.includes('/my')) {
-      history.push(history.location.pathname.replace('/my', ''));
+    if (history.location.pathname.includes("/my")) {
+      history.push(history.location.pathname.replace("/my", ""));
     } else {
-      filter !== 'feed' && history.push('/' + filter + (tag.length > 0 ? '' : '/my'));
+      filter !== "feed" && history.push("/" + filter + (tag.length > 0 ? "" : "/my"));
     }
   }
 
@@ -130,28 +130,28 @@ export class EntryIndexMenu extends Component<Props, States> {
       global: { tag, filter }
     } = this.props;
 
-    if (history.location.pathname.includes('/my') && !isActiveUser(activeUser)) {
-      history.push(history.location.pathname.replace('/my', ''));
+    if (history.location.pathname.includes("/my") && !isActiveUser(activeUser)) {
+      history.push(history.location.pathname.replace("/my", ""));
     } else if (
       !isActiveUser(prevProps.activeUser) !== !isActiveUser(activeUser) &&
-      filter !== 'feed'
+      filter !== "feed"
     ) {
       this.setState({ isGlobal: tag.length > 0 });
-      let path = history.location.pathname + (tag.length > 0 ? '' : '/');
-      path = path.replace('//', '/');
+      let path = history.location.pathname + (tag.length > 0 ? "" : "/");
+      path = path.replace("//", "/");
       history.push(path);
-    } else if (prevProps.global.tag !== tag && filter !== 'feed' && tag !== '') {
-      let isGlobal = tag !== 'my';
+    } else if (prevProps.global.tag !== tag && filter !== "feed" && tag !== "") {
+      let isGlobal = tag !== "my";
       this.setState({ isGlobal });
     } else if (
-      prevProps.global.filter !== 'feed' &&
+      prevProps.global.filter !== "feed" &&
       prevProps.global.tag !== tag &&
-      filter !== 'feed' &&
-      tag === ''
+      filter !== "feed" &&
+      tag === ""
     ) {
-      if (prevProps.global.tag !== 'my') {
+      if (prevProps.global.tag !== "my") {
         let isGlobal = false;
-        history.push(history.location.pathname + '/my');
+        history.push(history.location.pathname + "/my");
         this.setState({ isGlobal });
       }
     }
@@ -162,10 +162,10 @@ export class EntryIndexMenu extends Component<Props, States> {
       prevProps.activeUser !== activeUser &&
       activeUser &&
       isActiveUser(activeUser) &&
-      (showInitialIntroductionJourney === 'false' || showInitialIntroductionJourney === null)
+      (showInitialIntroductionJourney === "false" || showInitialIntroductionJourney === null)
     ) {
       showInitialIntroductionJourney = true;
-      ls.set(`${activeUser.username}HadTutorial`, 'true');
+      ls.set(`${activeUser.username}HadTutorial`, "true");
       this.setState({
         introduction: showInitialIntroductionJourney
           ? IntroductionType.FRIENDS
@@ -187,19 +187,19 @@ export class EntryIndexMenu extends Component<Props, States> {
   };
 
   getPopupTitle = () => {
-    let value = '';
+    let value = "";
     switch (this.state.introduction) {
       case IntroductionType.TRENDING:
-        value = 'filter-trending';
+        value = "filter-trending";
         break;
       case IntroductionType.HOT:
-        value = 'filter-hot';
+        value = "filter-hot";
         break;
       case IntroductionType.NEW:
-        value = 'filter-created';
+        value = "filter-created";
         break;
       case IntroductionType.FRIENDS:
-        value = 'filter-feed-friends';
+        value = "filter-feed-friends";
         break;
       default:
         value = value;
@@ -295,7 +295,7 @@ export class EntryIndexMenu extends Component<Props, States> {
     const { filter } = global;
     const isMy = isMyPage(global, activeUser);
     const isActive = isActiveUser(activeUser);
-    const OurVision = apiBase(`/assets/our-vision.${global.canUseWebp ? 'webp' : 'png'}`);
+    const OurVision = apiBase(`/assets/our-vision.${global.canUseWebp ? "webp" : "png"}`);
 
     const menuConfig: {
       history: History;
@@ -304,20 +304,20 @@ export class EntryIndexMenu extends Component<Props, States> {
     } = {
       history: this.props.history,
       label:
-        isMy && filter === 'feed'
-          ? _t('entry-filter.filter-feed-friends')
+        isMy && filter === "feed"
+          ? _t("entry-filter.filter-feed-friends")
           : _t(`entry-filter.filter-${filter}`),
       items: [
         ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
           return {
             label: _t(`entry-filter.filter-${x}`),
             href: isActive ? (isGlobal ? `/${x}` : `/${x}/my`) : `/${x}`,
-            active: filter === x || filter === x + '/my',
+            active: filter === x || filter === x + "/my",
             id: x,
             flash:
-              (x === 'trending' && introduction === IntroductionType.TRENDING) ||
-              (x === 'hot' && introduction === IntroductionType.HOT) ||
-              (x === 'created' && introduction === IntroductionType.NEW)
+              (x === "trending" && introduction === IntroductionType.TRENDING) ||
+              (x === "hot" && introduction === IntroductionType.HOT) ||
+              (x === "created" && introduction === IntroductionType.NEW)
           };
         })
       ]
@@ -331,8 +331,8 @@ export class EntryIndexMenu extends Component<Props, States> {
             {
               label: _t(`entry-filter.filter-feed-friends`),
               href: `/@${activeUser?.username}/feed`,
-              active: filter === 'feed',
-              id: 'feed'
+              active: filter === "feed",
+              id: "feed"
             },
             ...menuConfig.items
           ]
@@ -340,27 +340,27 @@ export class EntryIndexMenu extends Component<Props, States> {
 
     const introductionDescription = (
       <>
-        {_t('entry-filter.filter-global-part1')}
+        {_t("entry-filter.filter-global-part1")}
         <span className="text-capitalize">{_t(`${this.getPopupTitle()}`)}</span>
-        {introduction === IntroductionType.FRIENDS && _t('entry-filter.filter-global-part4')}
+        {introduction === IntroductionType.FRIENDS && _t("entry-filter.filter-global-part4")}
         {introduction === IntroductionType.FRIENDS && (
-          <Link to="/discover"> {_t('entry-filter.filter-global-discover')}</Link>
+          <Link to="/discover"> {_t("entry-filter.filter-global-discover")}</Link>
         )}
         {isGlobal &&
           introduction !== IntroductionType.FRIENDS &&
-          _t('entry-filter.filter-global-part2')}
+          _t("entry-filter.filter-global-part2")}
         {!isGlobal &&
           introduction !== IntroductionType.FRIENDS &&
-          _t('entry-filter.filter-global-part3')}
+          _t("entry-filter.filter-global-part3")}
         {!isGlobal && introduction !== IntroductionType.FRIENDS && (
-          <Link to="/communities"> {_t('entry-filter.filter-global-join-communities')}</Link>
+          <Link to="/communities"> {_t("entry-filter.filter-global-join-communities")}</Link>
         )}
       </>
     );
     const introductionOverlayClass =
       (isMounted &&
-        (introduction === IntroductionType.NONE ? 'd-none' : 'overlay-for-introduction')) ||
-      'd-none';
+        (introduction === IntroductionType.NONE ? "d-none" : "overlay-for-introduction")) ||
+      "d-none";
     return isMounted ? (
       <div>
         <div className={introductionOverlayClass} id="overlay" onClick={this.onClosePopup} />
@@ -371,10 +371,10 @@ export class EntryIndexMenu extends Component<Props, States> {
                 <ul
                   className={`nav nav-pills position-relative nav-fill ${
                     introduction === IntroductionType.NONE
-                      ? ''
+                      ? ""
                       : introduction === IntroductionType.FRIENDS
-                      ? 'flash'
-                      : ''
+                      ? "flash"
+                      : ""
                   }`}
                 >
                   <li className={`nav-item`}>
@@ -382,28 +382,28 @@ export class EntryIndexMenu extends Component<Props, States> {
                       to={`/@${activeUser?.username}/feed`}
                       className={_c(
                         `nav-link my-link ${
-                          filter === 'feed' &&
+                          filter === "feed" &&
                           (introduction === IntroductionType.NONE ||
                             introduction === IntroductionType.FRIENDS)
-                            ? 'active'
-                            : ''
+                            ? "active"
+                            : ""
                         }   ${
                           introduction !== IntroductionType.NONE &&
                           introduction === IntroductionType.FRIENDS
-                            ? 'active'
-                            : ''
+                            ? "active"
+                            : ""
                         }`
                       )}
                       id="feed"
                     >
-                      {_t('entry-filter.filter-feed-friends')}
+                      {_t("entry-filter.filter-feed-friends")}
                     </Link>
                   </li>
                   {isMounted &&
                   introduction !== IntroductionType.NONE &&
                   introduction === IntroductionType.FRIENDS ? (
                     <Introduction
-                      title={_t('entry-filter.filter-feed-friends')}
+                      title={_t("entry-filter.filter-feed-friends")}
                       media={OurVision}
                       onNext={() => {
                         let value = IntroductionType.TRENDING;
@@ -429,16 +429,16 @@ export class EntryIndexMenu extends Component<Props, States> {
                   <ul className={`nav nav-pills nav-fill`}>
                     {menuConfig.items.map((i, k) => {
                       return (
-                        <li key={k} className={`nav-item ${i.flash ? 'flash' : ''}`}>
+                        <li key={k} className={`nav-item ${i.flash ? "flash" : ""}`}>
                           <Link
                             to={i.href!}
                             className={_c(
                               `nav-link link-${i.id} ${
                                 introduction !== IntroductionType.NONE && !i.flash && i.active
-                                  ? ''
+                                  ? ""
                                   : i.active || i.flash
-                                  ? 'active'
-                                  : ''
+                                  ? "active"
+                                  : ""
                               }`
                             )}
                             id={i.id}
@@ -459,10 +459,10 @@ export class EntryIndexMenu extends Component<Props, States> {
                         media={OurVision}
                         placement={
                           introduction === IntroductionType.TRENDING
-                            ? '25%'
+                            ? "25%"
                             : introduction === IntroductionType.HOT
-                            ? '50%'
-                            : '75%'
+                            ? "50%"
+                            : "75%"
                         }
                         onNext={this.onNextWeb}
                         onPrevious={this.onPreviousWeb}
@@ -497,7 +497,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                         <li key={k} className="nav-item">
                           <Link
                             to={i.href!}
-                            className={_c(`nav-link link-${i.id} ${i.active ? 'active' : ''}`)}
+                            className={_c(`nav-link link-${i.id} ${i.active ? "active" : ""}`)}
                           >
                             {i.label}
                           </Link>
@@ -508,11 +508,11 @@ export class EntryIndexMenu extends Component<Props, States> {
                 </div>
               </div>
 
-              {isActive && filter !== 'feed' && (
+              {isActive && filter !== "feed" && (
                 <Form.Check
                   id="check-isGlobal"
                   type="checkbox"
-                  label={_t('entry-filter.filter-global')}
+                  label={_t("entry-filter.filter-global")}
                   name="isGlobal"
                   className="d-flex align-items-center ml-3 ml-md-5 border-left pl-5"
                   checked={isGlobal}
@@ -528,13 +528,13 @@ export class EntryIndexMenu extends Component<Props, States> {
               onClick={() =>
                 this.setState({
                   introduction:
-                    filter === 'feed'
+                    filter === "feed"
                       ? IntroductionType.FRIENDS
-                      : filter === 'trending'
+                      : filter === "trending"
                       ? IntroductionType.TRENDING
-                      : filter === 'hot'
+                      : filter === "hot"
                       ? IntroductionType.HOT
-                      : filter === 'created'
+                      : filter === "created"
                       ? IntroductionType.NEW
                       : IntroductionType.NONE
                 })

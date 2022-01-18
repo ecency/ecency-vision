@@ -1,5 +1,5 @@
-import React from 'react';
-import { Reference } from 'react-popper';
+import React from "react";
+import { Reference } from "react-popper";
 
 // https://github.com/FezVrasta/react-popper#usage-without-a-reference-htmlelement
 class VirtualSelectionReference {

@@ -1,23 +1,23 @@
-import express from 'express';
+import express from "express";
 
-import { AppState } from '../../common/store';
-import { ProfileFilter } from '../../common/store/global/types';
-import { Entry } from '../../common/store/entries/types';
-import { makeGroupKey } from '../../common/store/entries';
+import { AppState } from "../../common/store";
+import { ProfileFilter } from "../../common/store/global/types";
+import { Entry } from "../../common/store/entries/types";
+import { makeGroupKey } from "../../common/store/entries";
 
-import defaults from '../../common/constants/defaults.json';
+import defaults from "../../common/constants/defaults.json";
 
-import { optimizeEntries } from '../helper';
+import { optimizeEntries } from "../helper";
 
-import * as hiveApi from '../../common/api/hive';
-import * as bridgeApi from '../../common/api/bridge';
+import * as hiveApi from "../../common/api/hive";
+import * as bridgeApi from "../../common/api/bridge";
 
-import { makePreloadedState } from '../state';
+import { makePreloadedState } from "../state";
 
-import { render } from '../template';
+import { render } from "../template";
 
 export default async (req: express.Request, res: express.Response) => {
-  const { username, section = 'blog' } = req.params;
+  const { username, section = "blog" } = req.params;
   const address = `@${username}`;
 
   let entries = {};
@@ -28,7 +28,7 @@ export default async (req: express.Request, res: express.Response) => {
 
     try {
       entryList =
-        (await bridgeApi.getAccountPosts(section, username, '', '', bridgeApi.dataLimit)) || [];
+        (await bridgeApi.getAccountPosts(section, username, "", "", bridgeApi.dataLimit)) || [];
     } catch (e) {
       entryList = [];
     }
@@ -53,7 +53,7 @@ export default async (req: express.Request, res: express.Response) => {
   } catch (e) {}
 
   const filter = ProfileFilter[section] || defaults.filter;
-  const tag = ProfileFilter[section] ? address : '';
+  const tag = ProfileFilter[section] ? address : "";
 
   const state = await makePreloadedState(req);
 

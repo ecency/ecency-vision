@@ -1,83 +1,83 @@
-import React, { Fragment, Ref } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Fragment, Ref } from "react";
+import ReactDOM from "react-dom";
 
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { match } from 'react-router';
-import moment from 'moment';
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { match } from "react-router";
+import moment from "moment";
 
 import {
   renderPostBody,
   setProxyBase,
   catchPostImage,
   postBodySummary
-} from '@ecency/render-helper';
+} from "@ecency/render-helper";
 
-import { Entry, EntryVote } from '../store/entries/types';
-import { Community } from '../store/communities/types';
-import { Account, FullAccount } from '../store/accounts/types';
+import { Entry, EntryVote } from "../store/entries/types";
+import { Community } from "../store/communities/types";
+import { Account, FullAccount } from "../store/accounts/types";
 
-import EntryLink, { makePath as makeEntryPath } from '../components/entry-link';
+import EntryLink, { makePath as makeEntryPath } from "../components/entry-link";
 
-import BaseComponent from '../components/base';
-import ProfileLink from '../components/profile-link';
-import UserAvatar from '../components/user-avatar';
-import Tag from '../components/tag';
-import EntryVoteBtn from '../components/entry-vote-btn/index';
-import EntryPayout from '../components/entry-payout/index';
-import EntryVotes from '../components/entry-votes';
-import Discussion from '../components/discussion';
-import MdHandler from '../components/md-handler';
-import LinearProgress from '../components/linear-progress';
-import EntryReblogBtn from '../components/entry-reblog-btn/index';
-import Comment from '../components/comment';
-import SimilarEntries from '../components/similar-entries';
-import BookmarkBtn from '../components/bookmark-btn';
-import EditHistory from '../components/edit-history';
-import { error } from '../components/feedback';
-import Meta from '../components/meta';
-import Theme from '../components/theme/index';
-import Feedback from '../components/feedback';
-import NavBar from '../components/navbar/index';
-import NavBarElectron from '../../desktop/app/components/navbar';
-import NotFound from '../components/404';
-import ScrollToTop from '../components/scroll-to-top';
-import EntryBodyExtra from '../components/entry-body-extra';
-import EntryTipBtn from '../components/entry-tip-btn';
-import EntryMenu from '../components/entry-menu';
-import AuthorInfoCard from '../components/author-info-card';
+import BaseComponent from "../components/base";
+import ProfileLink from "../components/profile-link";
+import UserAvatar from "../components/user-avatar";
+import Tag from "../components/tag";
+import EntryVoteBtn from "../components/entry-vote-btn/index";
+import EntryPayout from "../components/entry-payout/index";
+import EntryVotes from "../components/entry-votes";
+import Discussion from "../components/discussion";
+import MdHandler from "../components/md-handler";
+import LinearProgress from "../components/linear-progress";
+import EntryReblogBtn from "../components/entry-reblog-btn/index";
+import Comment from "../components/comment";
+import SimilarEntries from "../components/similar-entries";
+import BookmarkBtn from "../components/bookmark-btn";
+import EditHistory from "../components/edit-history";
+import { error } from "../components/feedback";
+import Meta from "../components/meta";
+import Theme from "../components/theme/index";
+import Feedback from "../components/feedback";
+import NavBar from "../components/navbar/index";
+import NavBarElectron from "../../desktop/app/components/navbar";
+import NotFound from "../components/404";
+import ScrollToTop from "../components/scroll-to-top";
+import EntryBodyExtra from "../components/entry-body-extra";
+import EntryTipBtn from "../components/entry-tip-btn";
+import EntryMenu from "../components/entry-menu";
+import AuthorInfoCard from "../components/author-info-card";
 
-import * as bridgeApi from '../api/bridge';
-import { comment, formatError } from '../api/operations';
+import * as bridgeApi from "../api/bridge";
+import { comment, formatError } from "../api/operations";
 
-import parseDate from '../helper/parse-date';
-import entryCanonical from '../helper/entry-canonical';
-import tempEntry from '../helper/temp-entry';
-import appName from '../helper/app-name';
-import { makeJsonMetaDataReply, createReplyPermlink } from '../helper/posting';
-import isCommunity from '../helper/is-community';
-import accountReputation from '../helper/account-reputation';
+import parseDate from "../helper/parse-date";
+import entryCanonical from "../helper/entry-canonical";
+import tempEntry from "../helper/temp-entry";
+import appName from "../helper/app-name";
+import { makeJsonMetaDataReply, createReplyPermlink } from "../helper/posting";
+import isCommunity from "../helper/is-community";
+import accountReputation from "../helper/account-reputation";
 
-import truncate from '../util/truncate';
-import * as ls from '../util/local-storage';
-import { crossPostMessage } from '../helper/cross-post';
+import truncate from "../util/truncate";
+import * as ls from "../util/local-storage";
+import { crossPostMessage } from "../helper/cross-post";
 
-import { _t } from '../i18n';
-import { Tsx } from '../i18n/helper';
+import { _t } from "../i18n";
+import { Tsx } from "../i18n/helper";
 
-import { version } from '../../../package.json';
+import { version } from "../../../package.json";
 
-import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from './common';
+import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
 
-import defaults from '../constants/defaults.json';
-import dmca from '../constants/dmca.json';
+import defaults from "../constants/defaults.json";
+import dmca from "../constants/dmca.json";
 
-import { getFollowing } from '../api/hive';
-import { history } from '../store';
-import { deleteForeverSvg, pencilOutlineSvg } from '../img/svg';
-import entryDeleteBtn from '../components/entry-delete-btn';
-import { SelectionPopover } from '../components/selection-popover';
-import { commentHistory } from '../api/private-api';
+import { getFollowing } from "../api/hive";
+import { history } from "../store";
+import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
+import entryDeleteBtn from "../components/entry-delete-btn";
+import { SelectionPopover } from "../components/selection-popover";
+import { commentHistory } from "../api/private-api";
 
 setProxyBase(defaults.imageServer);
 
@@ -116,12 +116,12 @@ class EntryPage extends BaseComponent<Props, State> {
     edit: false,
     showIfNsfw: false,
     editHistory: false,
-    comment: '',
-    commentText: '',
+    comment: "",
+    commentText: "",
     showProfileBox: false,
     entryIsMuted: false,
     isMounted: false,
-    selection: '',
+    selection: "",
     postIsDeleted: false,
     deletedEntry: null
   };
@@ -139,11 +139,11 @@ class EntryPage extends BaseComponent<Props, State> {
     this.fetchMutedUsers();
 
     const { location, global } = this.props;
-    if (global.usePrivate && location.search === '?history') {
+    if (global.usePrivate && location.search === "?history") {
       this.toggleEditHistory();
     }
-    window.addEventListener('scroll', this.detect);
-    window.addEventListener('resize', this.detect);
+    window.addEventListener("scroll", this.detect);
+    window.addEventListener("resize", this.detect);
     this.setState({ isMounted: true });
   }
 
@@ -157,32 +157,32 @@ class EntryPage extends BaseComponent<Props, State> {
     }
     if (prevStates.selection !== selection && !prevStates.selection && entry) {
       let text = selection
-        ? (entry.body ? entry.body + `\n` : '') + selection
+        ? (entry.body ? entry.body + `\n` : "") + selection
         : entry.body
         ? entry.body
-        : '';
+        : "";
       if (activeUser && activeUser.username) {
         let storageText = ls.get(`reply_draft_${entry.author}_${entry.permlink}`);
         storageText = storageText && storageText.trim();
         text = selection
           ? storageText
             ? storageText + `\n` + selection
-            : '' + selection
+            : "" + selection
           : storageText
           ? storageText
-          : '';
+          : "";
         this.replyTextChanged(text);
-        this.setState({ commentText: text, selection: '' });
+        this.setState({ commentText: text, selection: "" });
       }
     }
   }
 
   componentWillUnmount() {
     const p1 = new Promise((resolve, reject) => {
-      resolve(window.removeEventListener('scroll', this.detect));
+      resolve(window.removeEventListener("scroll", this.detect));
     });
     const p2 = new Promise((resolve, reject) => {
-      resolve(window.removeEventListener('resize', this.detect));
+      resolve(window.removeEventListener("resize", this.detect));
     });
     Promise.all([p1, p2]);
     this.setState({ isMounted: false });
@@ -201,7 +201,7 @@ class EntryPage extends BaseComponent<Props, State> {
         });
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       })
       .finally(() => {});
   };
@@ -209,21 +209,21 @@ class EntryPage extends BaseComponent<Props, State> {
   // detects distance between title and comments section sets visibility of profile card
   detect = () => {
     const { showProfileBox } = this.state;
-    const infoCard: HTMLElement | null = document.getElementById('avatar-fixed-container');
+    const infoCard: HTMLElement | null = document.getElementById("avatar-fixed-container");
     const top = this?.viewElement?.getBoundingClientRect()?.top || 120;
 
     if (infoCard != null && window.scrollY > 180 && top && !(top <= 0)) {
-      infoCard.classList.replace('invisible', 'visible');
+      infoCard.classList.replace("invisible", "visible");
       if (!showProfileBox) {
         this.setState({ showProfileBox: true });
       }
     } else if (infoCard != null && window.scrollY <= 180) {
-      infoCard.classList.replace('visible', 'invisible');
+      infoCard.classList.replace("visible", "invisible");
       if (showProfileBox) {
         this.setState({ showProfileBox: false });
       }
     } else if (top && top <= 0 && infoCard !== null) {
-      infoCard.classList.replace('visible', 'invisible');
+      infoCard.classList.replace("visible", "invisible");
       if (showProfileBox) {
         this.setState({ showProfileBox: false });
       }
@@ -236,7 +236,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
     if (entry) {
       const { permlink, parent_author: parentAuthor, parent_permlink: parentPermlink } = entry;
-      const jsonMeta = makeJsonMetaDataReply(entry.json_metadata.tags || ['ecency'], version);
+      const jsonMeta = makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], version);
 
       this.stateSet({ loading: true });
 
@@ -245,7 +245,7 @@ class EntryPage extends BaseComponent<Props, State> {
         parentAuthor!,
         parentPermlink!,
         permlink,
-        '',
+        "",
         text,
         jsonMeta,
         null
@@ -291,7 +291,7 @@ class EntryPage extends BaseComponent<Props, State> {
     const { match, addEntry, updateEntry, addCommunity, activeUser, history } = this.props;
     const entry = this.getEntry();
     const { category, username, permlink } = match.params;
-    const author = username.replace('@', '');
+    const author = username.replace("@", "");
 
     let reducerFn = updateEntry;
 
@@ -348,8 +348,8 @@ class EntryPage extends BaseComponent<Props, State> {
         let errorMessage = e.jse_info && e.jse_info;
         let arr = [];
         for (let p in errorMessage) arr.push(errorMessage[p]);
-        errorMessage = arr.toString().replaceAll(',', '');
-        if (errorMessage && errorMessage.length > 0 && errorMessage.includes('was deleted')) {
+        errorMessage = arr.toString().replaceAll(",", "");
+        if (errorMessage && errorMessage.length > 0 && errorMessage.includes("was deleted")) {
           this.setState({ postIsDeleted: true, loading: true });
           this.loadDeletedEntry(author, permlink);
         }
@@ -362,7 +362,7 @@ class EntryPage extends BaseComponent<Props, State> {
   getEntry = (): Entry | undefined => {
     const { entries, match } = this.props;
     const { username, permlink } = match.params;
-    const author = username.replace('@', '');
+    const author = username.replace("@", "");
 
     const groupKeys = Object.keys(entries);
     let entry: Entry | undefined = undefined;
@@ -371,8 +371,8 @@ class EntryPage extends BaseComponent<Props, State> {
       entry = entries[k].entries.find((x) => x.author === author && x.permlink === permlink);
       if (entry) {
         if (dmca.some((rx: string) => new RegExp(rx).test(`${entry?.author}/${entry?.permlink}`))) {
-          entry.body = 'This post is not available due to a copyright/fraudulent claim.';
-          entry.title = '';
+          entry.body = "This post is not available due to a copyright/fraudulent claim.";
+          entry.title = "";
         }
         break;
       }
@@ -413,20 +413,20 @@ class EntryPage extends BaseComponent<Props, State> {
     const { author: parentAuthor, permlink: parentPermlink } = entry;
     const author = activeUser.username;
     const permlink = createReplyPermlink(entry.author);
-    const tags = entry.json_metadata.tags || ['ecency'];
+    const tags = entry.json_metadata.tags || ["ecency"];
 
     const jsonMeta = makeJsonMetaDataReply(tags, version);
 
     this.stateSet({ replying: true });
 
-    comment(author, parentAuthor, parentPermlink, permlink, '', text, jsonMeta, null, true)
+    comment(author, parentAuthor, parentPermlink, permlink, "", text, jsonMeta, null, true)
       .then(() => {
         const nReply = tempEntry({
           author: activeUser.data as FullAccount,
           permlink,
           parentAuthor,
           parentPermlink,
-          title: '',
+          title: "",
           body: text,
           tags
         });
@@ -436,7 +436,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
         // remove reply draft
         ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
-        this.stateSet({ commentText: '' });
+        this.stateSet({ commentText: "" });
 
         if (entry.children === 0) {
           // Activate discussion section with first comment.
@@ -471,7 +471,7 @@ class EntryPage extends BaseComponent<Props, State> {
     const { activeUser } = this.props;
     const entry = this.getEntry()!;
     if (activeUser && entry) {
-      getFollowing(activeUser.username, '', 'ignore', 100).then((r) => {
+      getFollowing(activeUser.username, "", "ignore", 100).then((r) => {
         if (r) {
           let filterList = r.map((user) => user.following);
           if (!this.state.entryIsMuted) {
@@ -526,7 +526,7 @@ class EntryPage extends BaseComponent<Props, State> {
     const entry = this.getEntry();
     if (postIsDeleted) {
       const { username, permlink } = match.params;
-      const author = username.replace('@', '');
+      const author = username.replace("@", "");
 
       return (
         <div>
@@ -548,11 +548,11 @@ class EntryPage extends BaseComponent<Props, State> {
                 <div className="col-12 col-lg-9">
                   <div className="p-0 p-lg-5 the-entry">
                     <div className="p-3 bg-danger rounded text-white my-0 mb-4 my-lg-5">
-                      {_t('entry.deleted-content-warning')}
+                      {_t("entry.deleted-content-warning")}
                       <u onClick={this.toggleEditHistory} className="text-primary pointer">
-                        {_t('points.history')}
-                      </u>{' '}
-                      {_t('g.logs')}.
+                        {_t("points.history")}
+                      </u>{" "}
+                      {_t("g.logs")}.
                     </div>
                     <div className="cross-post">
                       <h1 className="entry-title">{deletedEntry!.title}</h1>
@@ -606,7 +606,7 @@ class EntryPage extends BaseComponent<Props, State> {
       tags.splice(0, 0, entry.category);
     }
     const app = appName(entry.json_metadata.app);
-    const appShort = app.split('/')[0].split(' ')[0];
+    const appShort = app.split("/")[0].split(" ")[0];
 
     const { activeUser } = this.props;
 
@@ -619,24 +619,24 @@ class EntryPage extends BaseComponent<Props, State> {
     const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry;
 
     //  Meta config
-    const url = entryCanonical(entry) || '';
+    const url = entryCanonical(entry) || "";
 
-    const nsfw = entry.json_metadata.tags && entry.json_metadata.tags.includes('nsfw');
+    const nsfw = entry.json_metadata.tags && entry.json_metadata.tags.includes("nsfw");
 
     const metaProps = {
       title: `${truncate(entry.title, 67)}`,
       description: `${truncate(postBodySummary(entry.body, 210), 140)} by @${entry.author}`,
       url: entry.url,
       canonical: url,
-      image: catchPostImage(entry, 600, 500, global.canUseWebp ? 'webp' : 'match'),
+      image: catchPostImage(entry, 600, 500, global.canUseWebp ? "webp" : "match"),
       published: published.toISOString(),
       modified: modified.toISOString(),
       tag: isCommunity(tags[0]) ? tags[1] : tags[0],
-      keywords: tags.join(', ')
+      keywords: tags.join(", ")
     };
     let containerClasses = global.isElectron
-      ? 'app-content entry-page mt-0 pt-6'
-      : 'app-content entry-page';
+      ? "app-content entry-page mt-0 pt-6"
+      : "app-content entry-page";
 
     return (
       <>
@@ -651,13 +651,13 @@ class EntryPage extends BaseComponent<Props, State> {
             {originalEntry && (
               <div className="cross-post">
                 <div className="cross-post-info">
-                  {_t('entry.cross-post-by')}
+                  {_t("entry.cross-post-by")}
                   {ProfileLink({
                     ...this.props,
                     username: entry.author,
                     children: (
                       <div className="cross-post-author">
-                        {UserAvatar({ ...this.props, username: entry.author, size: 'medium' })}
+                        {UserAvatar({ ...this.props, username: entry.author, size: "medium" })}
                         {`@${entry.author}`}
                       </div>
                     )
@@ -667,10 +667,10 @@ class EntryPage extends BaseComponent<Props, State> {
                   {Tag({
                     ...this.props,
                     tag: entry.category,
-                    type: 'link',
+                    type: "link",
                     children: <div className="community-link">{entry.community_title}</div>
                   })}
-                  {_t('entry.cross-post-community')}
+                  {_t("entry.cross-post-community")}
                 </div>
                 <div className="cross-post-message">
                   {'"'}
@@ -695,12 +695,12 @@ class EntryPage extends BaseComponent<Props, State> {
                             this.stateSet({ showIfNsfw: true });
                           }}
                         >
-                          {_t('nsfw.reveal')}
-                        </a>{' '}
-                        {_t('g.or').toLowerCase()}{' '}
+                          {_t("nsfw.reveal")}
+                        </a>{" "}
+                        {_t("g.or").toLowerCase()}{" "}
                         {activeUser && (
                           <>
-                            {_t('nsfw.settings-1')}{' '}
+                            {_t("nsfw.settings-1")}{" "}
                             <a
                               href="#"
                               onClick={(e) => {
@@ -708,9 +708,9 @@ class EntryPage extends BaseComponent<Props, State> {
                                 history.push(`/@${activeUser.username}/settings`);
                               }}
                             >
-                              {_t('nsfw.settings-2')}
+                              {_t("nsfw.settings-2")}
                             </a>
-                            {'.'}
+                            {"."}
                           </>
                         )}
                         {!activeUser && (
@@ -718,7 +718,7 @@ class EntryPage extends BaseComponent<Props, State> {
                             <Tsx k="nsfw.signup">
                               <span />
                             </Tsx>
-                            {'.'}
+                            {"."}
                           </>
                         )}
                       </div>
@@ -750,7 +750,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                       {UserAvatar({
                                         ...this.props,
                                         username: originalEntry.author,
-                                        size: 'medium'
+                                        size: "medium"
                                       })}
                                     </div>
                                   )
@@ -774,7 +774,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                           </span>
                                           <span
                                             className="author-reputation"
-                                            title={_t('entry.author-reputation')}
+                                            title={_t("entry.author-reputation")}
                                           >
                                             {reputation}
                                           </span>
@@ -784,16 +784,16 @@ class EntryPage extends BaseComponent<Props, State> {
                                   </div>
 
                                   <div className="info-line-2">
-                                    <span className="date" title={published.format('LLLL')}>
+                                    <span className="date" title={published.format("LLLL")}>
                                       {published.fromNow()}
                                     </span>
                                     <span className="separator" />
                                     <div className="entry-tag">
-                                      <span className="in-tag">{_t('entry.community-in')}</span>
+                                      <span className="in-tag">{_t("entry.community-in")}</span>
                                       {Tag({
                                         ...this.props,
                                         tag: originalEntry.category,
-                                        type: 'link',
+                                        type: "link",
                                         children: (
                                           <div className="tag-name">
                                             {originalEntry.community
@@ -836,12 +836,12 @@ class EntryPage extends BaseComponent<Props, State> {
                         )
                       };
 
-                      const ctitle = entry.community ? entry.community_title : '';
+                      const ctitle = entry.community ? entry.community_title : "";
                       let extraItems =
                         ownEntry && isComment
                           ? [
                               {
-                                label: _t('g.edit'),
+                                label: _t("g.edit"),
                                 onClick: this.toggleEdit,
                                 icon: pencilOutlineSvg
                               }
@@ -855,7 +855,7 @@ class EntryPage extends BaseComponent<Props, State> {
                         extraItems = [
                           ...extraItems,
                           {
-                            label: '',
+                            label: "",
                             onClick: () => {},
                             icon: entryDeleteBtn({
                               ...this.props,
@@ -863,8 +863,8 @@ class EntryPage extends BaseComponent<Props, State> {
                               setDeleteInProgress: (value) => this.setState({ loading: value }),
                               onSuccess: this.deleted,
                               children: (
-                                <a title={_t('g.delete')} className="edit-btn">
-                                  {deleteForeverSvg} {_t('g.delete')}
+                                <a title={_t("g.delete")} className="edit-btn">
+                                  {deleteForeverSvg} {_t("g.delete")}
                                 </a>
                               )
                             })
@@ -887,19 +887,19 @@ class EntryPage extends BaseComponent<Props, State> {
 
                             {isHidden && (
                               <div className="hidden-warning">
-                                <span>{_t('entry.hidden-warning')}</span>
+                                <span>{_t("entry.hidden-warning")}</span>
                               </div>
                             )}
 
                             {isLowReputation && (
                               <div className="hidden-warning">
-                                <span>{_t('entry.lowrep-warning')}</span>
+                                <span>{_t("entry.lowrep-warning")}</span>
                               </div>
                             )}
 
                             {mightContainMutedComments && (
                               <div className="hidden-warning">
-                                <span>{_t('entry.comments-hidden')}</span>
+                                <span>{_t("entry.comments-hidden")}</span>
                               </div>
                             )}
 
@@ -907,12 +907,12 @@ class EntryPage extends BaseComponent<Props, State> {
                               <div className="comment-entry-header">
                                 <div className="comment-entry-header-title">RE: {entry.title}</div>
                                 <div className="comment-entry-header-info">
-                                  {_t('entry.comment-entry-title')}
+                                  {_t("entry.comment-entry-title")}
                                 </div>
                                 <p className="comment-entry-root-title">{entry.title}</p>
                                 <ul className="comment-entry-opts">
                                   <li>
-                                    <Link to={entry.url}>{_t('entry.comment-entry-go-root')}</Link>
+                                    <Link to={entry.url}>{_t("entry.comment-entry-go-root")}</Link>
                                   </li>
                                   {entry.depth > 1 && (
                                     <li>
@@ -923,7 +923,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                           entry.parent_permlink!
                                         )}
                                       >
-                                        {_t('entry.comment-entry-go-parent')}
+                                        {_t("entry.comment-entry-go-parent")}
                                       </Link>
                                     </li>
                                   )}
@@ -940,7 +940,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                     {UserAvatar({
                                       ...this.props,
                                       username: entry.author,
-                                      size: 'medium'
+                                      size: "medium"
                                     })}
                                   </div>
                                 )
@@ -964,7 +964,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                         </span>
                                         <span
                                           className="author-reputation"
-                                          title={_t('entry.author-reputation')}
+                                          title={_t("entry.author-reputation")}
                                         >
                                           {reputation}
                                         </span>
@@ -974,16 +974,16 @@ class EntryPage extends BaseComponent<Props, State> {
                                 </div>
 
                                 <div className="info-line-2">
-                                  <span className="date" title={published.format('LLLL')}>
+                                  <span className="date" title={published.format("LLLL")}>
                                     {published.fromNow()}
                                   </span>
                                   <span className="separator" />
                                   <div className="entry-tag">
-                                    <span className="in-tag">{_t('entry.community-in')}</span>
+                                    <span className="in-tag">{_t("entry.community-in")}</span>
                                     {Tag({
                                       ...this.props,
                                       tag: entry.category,
-                                      type: 'link',
+                                      type: "link",
                                       children: (
                                         <div className="tag-name">
                                           {entry.community
@@ -1032,7 +1032,7 @@ class EntryPage extends BaseComponent<Props, State> {
                             Comment({
                               ...this.props,
                               defText: commentText,
-                              submitText: _t('g.update'),
+                              submitText: _t("g.update"),
                               cancellable: true,
                               onSubmit: this.updateReply,
                               onCancel: this.toggleEdit,
@@ -1055,7 +1055,7 @@ class EntryPage extends BaseComponent<Props, State> {
                     <div className="entry-footer">
                       <div className="entry-tags">
                         {tags.map((t, i) => {
-                          if (typeof t === 'string') {
+                          if (typeof t === "string") {
                             if (entry.community && entry.community_title && t === entry.community) {
                               return (
                                 <Fragment key={t + i}>
@@ -1065,7 +1065,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                       name: entry.community,
                                       title: entry.community_title
                                     },
-                                    type: 'link',
+                                    type: "link",
                                     children: <div className="entry-tag">{t}</div>
                                   })}
                                 </Fragment>
@@ -1077,7 +1077,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                 {Tag({
                                   ...this.props,
                                   tag: t.trim(),
-                                  type: 'link',
+                                  type: "link",
                                   children: <div className="entry-tag">{t}</div>
                                 })}
                               </Fragment>
@@ -1088,7 +1088,7 @@ class EntryPage extends BaseComponent<Props, State> {
                         })}
                       </div>
                       <div className="entry-info">
-                        <div className="date" title={published.format('LLLL')}>
+                        <div className="date" title={published.format("LLLL")}>
                           {published.fromNow()}
                         </div>
                         <span className="separator" />
@@ -1100,7 +1100,7 @@ class EntryPage extends BaseComponent<Props, State> {
                               <span className="author-name">{entry.author}</span>
                               <span
                                 className="author-reputation"
-                                title={_t('entry.author-reputation')}
+                                title={_t("entry.author-reputation")}
                               >
                                 {reputation}
                               </span>
@@ -1170,7 +1170,7 @@ class EntryPage extends BaseComponent<Props, State> {
                         {EntryLink({
                           ...this.props,
                           entry: originalEntry,
-                          children: <a className="btn btn-primary">{_t('entry.browse-original')}</a>
+                          children: <a className="btn btn-primary">{_t("entry.browse-original")}</a>
                         })}
                       </div>
                     )}
@@ -1179,7 +1179,7 @@ class EntryPage extends BaseComponent<Props, State> {
                       Comment({
                         ...this.props,
                         defText: commentText,
-                        submitText: _t('g.reply'),
+                        submitText: _t("g.reply"),
                         onChange: this.replyTextChanged,
                         onSubmit: this.replySubmitted,
                         inProgress: replying,
@@ -1197,7 +1197,7 @@ class EntryPage extends BaseComponent<Props, State> {
                       Comment({
                         ...this.props,
                         defText: commentText,
-                        submitText: _t('g.reply'),
+                        submitText: _t("g.reply"),
                         onChange: this.replyTextChanged,
                         onSubmit: this.replySubmitted,
                         inProgress: replying,

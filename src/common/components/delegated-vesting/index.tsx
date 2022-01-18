@@ -1,41 +1,41 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Form, Modal, Pagination } from 'react-bootstrap';
+import { Form, Modal, Pagination } from "react-bootstrap";
 
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
-import { DynamicProps } from '../../store/dynamic-props/types';
-import { ActiveUser } from '../../store/active-user/types';
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import BaseComponent from '../base';
-import ProfileLink from '../profile-link';
-import UserAvatar from '../user-avatar';
-import LinearProgress from '../linear-progress';
-import Tooltip from '../tooltip';
-import KeyOrHotDialog from '../key-or-hot-dialog';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import ProfileLink from "../profile-link";
+import UserAvatar from "../user-avatar";
+import LinearProgress from "../linear-progress";
+import Tooltip from "../tooltip";
+import KeyOrHotDialog from "../key-or-hot-dialog";
+import { error } from "../feedback";
 
-import { DelegatedVestingShare, getVestingDelegations } from '../../api/hive';
+import { DelegatedVestingShare, getVestingDelegations } from "../../api/hive";
 
 import {
   delegateVestingShares,
   delegateVestingSharesHot,
   delegateVestingSharesKc,
   formatError
-} from '../../api/operations';
+} from "../../api/operations";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { vestsToHp } from '../../helper/vesting';
+import { vestsToHp } from "../../helper/vesting";
 
-import parseAsset from '../../helper/parse-asset';
+import parseAsset from "../../helper/parse-asset";
 
-import formattedNumber from '../../util/formatted-number';
+import formattedNumber from "../../util/formatted-number";
 
-import _c from '../../util/fix-class-names';
-import MyPagination from '../pagination';
+import _c from "../../util/fix-class-names";
+import MyPagination from "../pagination";
 
 interface Props {
   history: History;
@@ -95,14 +95,14 @@ export class List extends BaseComponent<Props, State> {
             let parsedValue: any = parseAsset(item.vesting_shares).amount;
             parsedValue = vestsToHp(parsedValue, hivePerMVests);
             parsedValue = formattedNumber(parsedValue);
-            parsedValue = parsedValue.replace(/,/g, '');
+            parsedValue = parsedValue.replace(/,/g, "");
             parsedValue = parseFloat(parsedValue);
             parsedValue = n + parsedValue;
             return parsedValue;
           }, 0);
 
           const totalDelegatedNumbered = parseFloat(
-            totalDelegated.replace(' HP', '').replace(',', '')
+            totalDelegated.replace(" HP", "").replace(",", "")
           );
           const toBeReturned = totalDelegatedNumbered - totalDelegatedValue;
           setSubtitle && setSubtitle(Number(toBeReturned.toFixed(3)));
@@ -112,7 +112,7 @@ export class List extends BaseComponent<Props, State> {
       });
     };
 
-    return getData(account.name, '', 1000);
+    return getData(account.name, "", 1000);
   };
 
   componentDidUpdate(prevProps: Props) {
@@ -152,12 +152,12 @@ export class List extends BaseComponent<Props, State> {
     return (
       <div
         className={_c(
-          `delegated-vesting-content ${inProgress ? 'in-progress' : ''} ${hideList ? 'hidden' : ''}`
+          `delegated-vesting-content ${inProgress ? "in-progress" : ""} ${hideList ? "hidden" : ""}`
         )}
       >
         <div className="user-list">
           <div className="list-body">
-            {sliced.length === 0 && <div className="empty-list">{_t('g.empty-list')}</div>}
+            {sliced.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
             {sliced.map((x) => {
               const vestingShares = parseAsset(x.vesting_shares).amount;
               const { delegatee: username } = x;
@@ -169,7 +169,7 @@ export class List extends BaseComponent<Props, State> {
                       activeUser: activeUser,
                       children: (
                         <a href="#" className="undelegate">
-                          {_t('delegated-vesting.undelegate')}
+                          {_t("delegated-vesting.undelegate")}
                         </a>
                       ),
                       onToggle: () => {
@@ -178,17 +178,17 @@ export class List extends BaseComponent<Props, State> {
                       },
                       onKey: (key) => {
                         this.setState({ inProgress: true });
-                        delegateVestingShares(activeUser.username, key, username, '0.000000 VESTS')
+                        delegateVestingShares(activeUser.username, key, username, "0.000000 VESTS")
                           .then(() => this.fetch())
                           .catch((err) => error(formatError(err)))
                           .finally(() => this.setState({ inProgress: false }));
                       },
                       onHot: () => {
-                        delegateVestingSharesHot(activeUser.username, username, '0.000000 VESTS');
+                        delegateVestingSharesHot(activeUser.username, username, "0.000000 VESTS");
                       },
                       onKc: () => {
                         this.setState({ inProgress: true });
-                        delegateVestingSharesKc(activeUser.username, username, '0.000000 VESTS')
+                        delegateVestingSharesKc(activeUser.username, username, "0.000000 VESTS")
                           .then(() => this.fetch())
                           .catch((err) => error(formatError(err)))
                           .finally(() => this.setState({ inProgress: false }));
@@ -203,7 +203,7 @@ export class List extends BaseComponent<Props, State> {
                       ...this.props,
                       username,
                       children: (
-                        <>{UserAvatar({ ...this.props, username: x.delegatee, size: 'small' })}</>
+                        <>{UserAvatar({ ...this.props, username: x.delegatee, size: "small" })}</>
                       )
                     })}
                     <div className="item-info">
@@ -217,7 +217,7 @@ export class List extends BaseComponent<Props, State> {
                   <div className="item-extra">
                     <Tooltip content={x.vesting_shares}>
                       <span>
-                        {formattedNumber(vestsToHp(vestingShares, hivePerMVests), { suffix: 'HP' })}
+                        {formattedNumber(vestsToHp(vestingShares, hivePerMVests), { suffix: "HP" })}
                       </span>
                     </Tooltip>
                     {deleteBtn}
@@ -249,8 +249,8 @@ interface DelegatedVestingState {
 
 export default class DelegatedVesting extends Component<Props, DelegatedVestingState> {
   state = {
-    searchText: '',
-    subtitle: ''
+    searchText: "",
+    subtitle: ""
   };
 
   render() {
@@ -263,7 +263,7 @@ export default class DelegatedVesting extends Component<Props, DelegatedVestingS
           <Modal.Header closeButton={true}>
             <Modal.Title>
               <div>
-                <div>{_t('delegated-vesting.title')}</div>
+                <div>{_t("delegated-vesting.title")}</div>
                 <div className="text-muted mt-3 text-small">{subtitle}</div>
               </div>
             </Modal.Title>
@@ -272,7 +272,7 @@ export default class DelegatedVesting extends Component<Props, DelegatedVestingS
           <Form.Group className="w-100 px-3">
             <Form.Control
               type="text"
-              placeholder={_t('friends.search-placeholder')}
+              placeholder={_t("friends.search-placeholder")}
               value={searchText}
               onChange={(e) => {
                 let text = e.target.value;
@@ -286,7 +286,7 @@ export default class DelegatedVesting extends Component<Props, DelegatedVestingS
               searchText={searchText}
               setSubtitle={(value) =>
                 this.setState({
-                  subtitle: value === 0 ? '' : `+${value} ${_t('delegated-vesting.subtitle')}`
+                  subtitle: value === 0 ? "" : `+${value} ${_t("delegated-vesting.subtitle")}`
                 })
               }
             />

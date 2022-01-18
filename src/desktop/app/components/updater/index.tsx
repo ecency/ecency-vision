@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Button, ProgressBar } from 'react-bootstrap';
+import { Button, ProgressBar } from "react-bootstrap";
 
-import { Global } from '../../../../common/store/global/types';
+import { Global } from "../../../../common/store/global/types";
 
-import { _t } from '../../../../common/i18n';
+import { _t } from "../../../../common/i18n";
 
-import { getOperatingSystem } from '../../../../common/util/platform';
+import { getOperatingSystem } from "../../../../common/util/platform";
 
 interface Props {
   global: Global;
@@ -22,7 +22,7 @@ interface State {
 
 export default class Updater extends Component<Props, State> {
   state: State = {
-    ver: '',
+    ver: "",
     downloading: false,
     progress: 0,
     completed: false
@@ -30,9 +30,9 @@ export default class Updater extends Component<Props, State> {
 
   componentDidMount() {
     // "?" is for to pass tests
-    window['ipcRenderer']?.on('download-started', this.onDownloadStarted);
-    window['ipcRenderer']?.on('download-progress', this.onDownloadProgress);
-    window['ipcRenderer']?.on('update-downloaded', this.onUpdateDownloaded);
+    window["ipcRenderer"]?.on("download-started", this.onDownloadStarted);
+    window["ipcRenderer"]?.on("download-progress", this.onDownloadProgress);
+    window["ipcRenderer"]?.on("update-downloaded", this.onUpdateDownloaded);
   }
 
   onDownloadStarted = () => {
@@ -63,7 +63,7 @@ export default class Updater extends Component<Props, State> {
 
   begin = () => {
     const { global } = this.props;
-    window['ipcRenderer']?.send('download-update', global.newVersion);
+    window["ipcRenderer"]?.send("download-update", global.newVersion);
   };
 
   dismiss = () => {
@@ -78,7 +78,7 @@ export default class Updater extends Component<Props, State> {
   };
 
   updateRestart = () => {
-    window['ipcRenderer']?.send('update-restart');
+    window["ipcRenderer"]?.send("update-restart");
   };
 
   render() {
@@ -88,19 +88,19 @@ export default class Updater extends Component<Props, State> {
     }
 
     // Windows
-    if (getOperatingSystem(window.navigator.userAgent) === 'WindowsOS') {
+    if (getOperatingSystem(window.navigator.userAgent) === "WindowsOS") {
       return (
         <div className="updater">
           <p className="info-text">
-            {_t('updater.new-version-available')}{' '}
+            {_t("updater.new-version-available")}{" "}
             <span className="release-name">{global.newVersion}</span>
           </p>
           <Button className="btn-update" onClick={this.begin}>
-            {_t('updater.download')}
+            {_t("updater.download")}
           </Button>
 
           <Button className="btn-dismiss" onClick={this.dismiss}>
-            {_t('updater.dismiss')}
+            {_t("updater.dismiss")}
           </Button>
         </div>
       );
@@ -114,21 +114,21 @@ export default class Updater extends Component<Props, State> {
         {!downloading && !completed && (
           <>
             <p className="info-text">
-              {_t('updater.new-version-available')}{' '}
+              {_t("updater.new-version-available")}{" "}
               <span className="release-name">{global.newVersion}</span>
             </p>
             <Button className="btn-update" onClick={this.begin}>
-              {_t('updater.update')}
+              {_t("updater.update")}
             </Button>
 
             <Button className="btn-dismiss" onClick={this.dismiss}>
-              {_t('updater.dismiss')}
+              {_t("updater.dismiss")}
             </Button>
           </>
         )}
         {downloading && (
           <>
-            <p className="info-text">{_t('updater.downloading')}</p>
+            <p className="info-text">{_t("updater.downloading")}</p>
             <div className="progress">
               <ProgressBar max={100} min={0} now={percent} label={`${percent}%`} />
             </div>
@@ -136,8 +136,8 @@ export default class Updater extends Component<Props, State> {
         )}
         {completed && (
           <>
-            <p className="info-text">{_t('updater.download-completed')}</p>
-            <Button onClick={this.updateRestart}>{_t('updater.restart')}</Button>
+            <p className="info-text">{_t("updater.download-completed")}</p>
+            <Button onClick={this.updateRestart}>{_t("updater.restart")}</Button>
           </>
         )}
       </div>

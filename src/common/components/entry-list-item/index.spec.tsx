@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import { createBrowserHistory, createLocation } from 'history';
+import { createBrowserHistory, createLocation } from "history";
 
-import mockDate from 'mockdate';
+import mockDate from "mockdate";
 
-import { StaticRouter } from 'react-router-dom';
+import { StaticRouter } from "react-router-dom";
 
-import TestRenderer from 'react-test-renderer';
+import TestRenderer from "react-test-renderer";
 
 import {
   globalInstance,
@@ -17,11 +17,11 @@ import {
   activeUserMaker,
   crossEntryInstance,
   allOver
-} from '../../helper/test-helper';
+} from "../../helper/test-helper";
 
-import { ListStyle } from '../../store/global/types';
+import { ListStyle } from "../../store/global/types";
 
-import EntryListItem from './index';
+import EntryListItem from "./index";
 
 mockDate.set(1591398131176);
 
@@ -38,8 +38,8 @@ const defProps = {
   entry: entryInstance1,
   ui: UiInstance,
   entryPinTracker: {},
-  signingKey: '',
-  asAuthor: '',
+  signingKey: "",
+  asAuthor: "",
   promoted: false,
   order: 0,
   addAccount: () => {},
@@ -57,7 +57,7 @@ const defProps = {
   setEntryPin: () => {}
 };
 
-it('(1) Default render', async () => {
+it("(1) Default render", async () => {
   const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
       <EntryListItem {...defProps} />
@@ -67,7 +67,7 @@ it('(1) Default render', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Grid view', async () => {
+it("(2) Grid view", async () => {
   const props = {
     ...defProps,
     global: {
@@ -84,14 +84,14 @@ it('(2) Grid view', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(3) Nsfw', async () => {
+it("(3) Nsfw", async () => {
   const props = {
     ...defProps,
     entry: {
       ...entryInstance1,
       json_metadata: {
         ...entryInstance1.json_metadata,
-        tags: [...entryInstance1.json_metadata.tags, 'nsfw']
+        tags: [...entryInstance1.json_metadata.tags, "nsfw"]
       }
     }
   };
@@ -104,17 +104,17 @@ it('(3) Nsfw', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(4) Nsfw with active user', async () => {
+it("(4) Nsfw with active user", async () => {
   const props = {
     ...defProps,
     entry: {
       ...entryInstance1,
       json_metadata: {
         ...entryInstance1.json_metadata,
-        tags: [...entryInstance1.json_metadata.tags, 'nsfw']
+        tags: [...entryInstance1.json_metadata.tags, "nsfw"]
       }
     },
-    activeUser: activeUserMaker('foo')
+    activeUser: activeUserMaker("foo")
   };
   const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
@@ -125,14 +125,14 @@ it('(4) Nsfw with active user', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(5) Nsfw but allowed', async () => {
+it("(5) Nsfw but allowed", async () => {
   const props = {
     ...defProps,
     entry: {
       ...entryInstance1,
       json_metadata: {
         ...entryInstance1.json_metadata,
-        tags: [...entryInstance1.json_metadata.tags, 'nsfw']
+        tags: [...entryInstance1.json_metadata.tags, "nsfw"]
       }
     },
     global: {
@@ -149,7 +149,7 @@ it('(5) Nsfw but allowed', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(6) Cross post. Bottom menu', async () => {
+it("(6) Cross post. Bottom menu", async () => {
   const props = {
     ...defProps,
     entry: crossEntryInstance,

@@ -1,13 +1,13 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 
-import { Modal } from 'react-bootstrap';
+import { Modal } from "react-bootstrap";
 
-import BaseComponent from '../base';
+import BaseComponent from "../base";
 
-import { geLatestDesktopTag } from '../../api/misc';
+import { geLatestDesktopTag } from "../../api/misc";
 
-import platform from '../../util/platform';
-import { history } from '../../store';
+import platform from "../../util/platform";
+import { history } from "../../store";
 
 interface ContentState {
   desktopTag: string;
@@ -15,7 +15,7 @@ interface ContentState {
 
 export class DialogContent extends BaseComponent<{}, ContentState> {
   state: ContentState = {
-    desktopTag: '3.0.15'
+    desktopTag: "3.0.15"
   };
 
   componentDidMount() {
@@ -36,7 +36,7 @@ export class DialogContent extends BaseComponent<{}, ContentState> {
           Enjoy Ecency for iPhone, iPad and Android, as well as Windows, Mac or Linux devices
         </div>
         <div className="download-buttons">
-          {os !== 'iOS' && os !== 'AndroidOS' && os === 'WindowsOS' && (
+          {os !== "iOS" && os !== "AndroidOS" && os === "WindowsOS" && (
             <a
               className="download-button btn-desktop"
               target="_blank"
@@ -46,7 +46,7 @@ export class DialogContent extends BaseComponent<{}, ContentState> {
               Windows
             </a>
           )}
-          {os !== 'iOS' && os !== 'AndroidOS' && os === 'MacOS' && (
+          {os !== "iOS" && os !== "AndroidOS" && os === "MacOS" && (
             <a
               className="download-button btn-desktop"
               target="_blank"
@@ -56,7 +56,7 @@ export class DialogContent extends BaseComponent<{}, ContentState> {
               Mac
             </a>
           )}
-          {os !== 'iOS' && os !== 'AndroidOS' && (os === 'UnixOS' || os === 'LinuxOS') && (
+          {os !== "iOS" && os !== "AndroidOS" && (os === "UnixOS" || os === "LinuxOS") && (
             <a
               className="download-button btn-desktop"
               target="_blank"
@@ -66,7 +66,7 @@ export class DialogContent extends BaseComponent<{}, ContentState> {
               Linux
             </a>
           )}
-          {(os === 'AndroidOS' || os !== 'iOS') && (
+          {(os === "AndroidOS" || os !== "iOS") && (
             <a
               className="download-button btn-android"
               target="_blank"
@@ -76,7 +76,7 @@ export class DialogContent extends BaseComponent<{}, ContentState> {
               Android
             </a>
           )}
-          {(os === 'iOS' || os !== 'AndroidOS') && (
+          {(os === "iOS" || os !== "AndroidOS") && (
             <a
               className="download-button btn-ios"
               target="_blank"
@@ -112,7 +112,7 @@ export default class DownloadTrigger extends Component<Props, State> {
   };
 
   componentDidMount() {
-    if (history?.location.hash === '#download') {
+    if (history?.location.hash === "#download") {
       this.toggle();
     }
   }
@@ -120,14 +120,14 @@ export default class DownloadTrigger extends Component<Props, State> {
   componentDidUpdate(prevProps: Props, prevStates: State) {
     if (prevStates.modal !== this.state.modal) {
       if (!this.state.modal) {
-        let scrollToTop: any = document.getElementsByClassName('overlay-for-introduction');
+        let scrollToTop: any = document.getElementsByClassName("overlay-for-introduction");
 
         scrollToTop = scrollToTop.length > 0;
 
         if (scrollToTop) {
           window.scrollTo({
             top: 0,
-            behavior: 'smooth'
+            behavior: "smooth"
           });
         }
       }

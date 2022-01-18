@@ -1,14 +1,14 @@
-import axios from 'axios';
+import axios from "axios";
 
-import { PointTransaction } from '../store/points/types';
-import { ApiNotification, NotificationFilter } from '../store/notifications/types';
-import { Entry } from '../store/entries/types';
+import { PointTransaction } from "../store/points/types";
+import { ApiNotification, NotificationFilter } from "../store/notifications/types";
+import { Entry } from "../store/entries/types";
 
-import { getAccessToken } from '../helper/user-token';
+import { getAccessToken } from "../helper/user-token";
 
-import { apiBase } from './helper';
+import { apiBase } from "./helper";
 
-import { AppWindow } from '../../client/window';
+import { AppWindow } from "../../client/window";
 
 declare var window: AppWindow;
 
@@ -37,7 +37,7 @@ export interface LeaderBoardItem {
   points: string;
 }
 
-export type LeaderBoardDuration = 'day' | 'week' | 'month';
+export type LeaderBoardDuration = "day" | "week" | "month";
 
 export const getLeaderboard = (duration: LeaderBoardDuration): Promise<LeaderBoardItem[]> => {
   return axios.get(apiBase(`/private-api/leaderboard/${duration}`)).then((resp) => resp.data);
@@ -51,7 +51,7 @@ export interface CurationItem {
   uniques: number;
 }
 
-export type CurationDuration = 'day' | 'week' | 'month';
+export type CurationDuration = "day" | "week" | "month";
 
 export const getCuration = (duration: CurationDuration): Promise<CurationItem[]> => {
   return axios.get(apiBase(`/private-api/curation/${duration}`)).then((resp) => resp.data);
@@ -80,8 +80,8 @@ export const subscribeEmail = (email: string): Promise<any> =>
 export const usrActivity = (
   username: string,
   ty: number,
-  bl: string | number = '',
-  tx: string | number = ''
+  bl: string | number = "",
+  tx: string | number = ""
 ) => {
   if (!window.usePrivate) {
     return new Promise((resolve) => resolve(null));
@@ -122,7 +122,7 @@ export const getNotifications = (
 
 export const getCurrencyTokenRate = (currency: string, token: string): Promise<number> =>
   axios
-    .get(apiBase(`/private-api/market-data/${currency === 'hbd' ? 'usd' : currency}/${token}`))
+    .get(apiBase(`/private-api/market-data/${currency === "hbd" ? "usd" : currency}/${token}`))
     .then((resp: any) => resp.data);
 
 export const getUnreadNotificationCount = (username: string): Promise<number> => {
@@ -364,8 +364,8 @@ export const getPoints = (
 
   return new Promise((resolve) => {
     resolve({
-      points: '0.000',
-      unclaimed_points: '0.000'
+      points: "0.000",
+      unclaimed_points: "0.000"
     });
   });
 };
@@ -411,7 +411,7 @@ export const getPromotedPost = (
   username: string,
   author: string,
   permlink: string
-): Promise<{ author: string; permlink: string } | ''> => {
+): Promise<{ author: string; permlink: string } | ""> => {
   const data = { code: getAccessToken(username), author, permlink };
   return axios.post(apiBase(`/private-api/promoted-post`), data).then((resp) => resp.data);
 };
@@ -425,7 +425,7 @@ export const getBoostedPost = (
   username: string,
   author: string,
   permlink: string
-): Promise<{ author: string; permlink: string } | ''> => {
+): Promise<{ author: string; permlink: string } | ""> => {
   const data = { code: getAccessToken(username), author, permlink };
   return axios.post(apiBase(`/private-api/boosted-post`), data).then((resp) => resp.data);
 };
@@ -450,7 +450,7 @@ export const commentHistory = (
   permlink: string,
   onlyMeta: boolean = false
 ): Promise<CommentHistory> => {
-  const data = { author, permlink, onlyMeta: onlyMeta ? '1' : '' };
+  const data = { author, permlink, onlyMeta: onlyMeta ? "1" : "" };
   return axios.post(apiBase(`/private-api/comment-history`), data).then((resp) => resp.data);
 };
 

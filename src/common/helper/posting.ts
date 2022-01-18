@@ -1,12 +1,12 @@
-import getSlug from 'speakingurl';
+import getSlug from "speakingurl";
 
-import { diff_match_patch } from 'diff-match-patch';
+import { diff_match_patch } from "diff-match-patch";
 
-import { MetaData, CommentOptions, RewardType } from '../api/operations';
+import { MetaData, CommentOptions, RewardType } from "../api/operations";
 
-import isElectron from '../util/is-electron';
+import isElectron from "../util/is-electron";
 
-import { BeneficiaryRoute } from '../api/operations';
+import { BeneficiaryRoute } from "../api/operations";
 
 const permlinkRnd = () => (Math.random() + 1).toString(16).substring(2);
 
@@ -15,9 +15,9 @@ export const createPermlink = (title: string, random: boolean = false): string =
   let perm = slug.toString();
 
   // make shorter url if possible
-  let shortp = perm.split('-');
+  let shortp = perm.split("-");
   if (shortp.length > 5) {
-    perm = shortp.slice(0, 5).join('-');
+    perm = shortp.slice(0, 5).join("-");
   }
 
   if (random) {
@@ -31,7 +31,7 @@ export const createPermlink = (title: string, random: boolean = false): string =
   }
 
   // only letters numbers and dashes
-  perm = perm.toLowerCase().replace(/[^a-z0-9-]+/g, '');
+  perm = perm.toLowerCase().replace(/[^a-z0-9-]+/g, "");
 
   if (perm.length === 0) {
     return permlinkRnd();
@@ -85,19 +85,19 @@ export const extractMetaData = (body: string): MetaData => {
   return out;
 };
 
-export const makeApp = (appVer: string) => `ecency/${appVer}-${isElectron() ? 'surfer' : 'vision'}`;
+export const makeApp = (appVer: string) => `ecency/${appVer}-${isElectron() ? "surfer" : "vision"}`;
 
 export const makeJsonMetaData = (meta: MetaData, tags: string[], appVer: string): MetaData =>
   Object.assign({}, meta, {
     tags,
     app: makeApp(appVer),
-    format: 'markdown+html'
+    format: "markdown+html"
   });
 
 export const makeJsonMetaDataReply = (tags: string[], appVer: string) => ({
   tags,
   app: makeApp(appVer),
-  format: 'markdown+html'
+  format: "markdown+html"
 });
 
 export const makeCommentOptions = (
@@ -111,23 +111,23 @@ export const makeCommentOptions = (
     allow_votes: true,
     author,
     permlink,
-    max_accepted_payout: '1000000.000 HBD',
+    max_accepted_payout: "1000000.000 HBD",
     percent_hbd: 10000,
     extensions:
       beneficiaries && beneficiaries.length > 0 ? [[0, { beneficiaries: beneficiaries }]] : []
   };
 
   switch (rewardType) {
-    case 'sp':
-      opt.max_accepted_payout = '1000000.000 HBD';
+    case "sp":
+      opt.max_accepted_payout = "1000000.000 HBD";
       opt.percent_hbd = 0;
       break;
-    case 'dp':
-      opt.max_accepted_payout = '0.000 HBD';
+    case "dp":
+      opt.max_accepted_payout = "0.000 HBD";
       opt.percent_hbd = 10000;
       break;
-    case 'default':
-      opt.max_accepted_payout = '1000000.000 HBD';
+    case "default":
+      opt.max_accepted_payout = "1000000.000 HBD";
       opt.percent_hbd = 10000;
       break;
   }
@@ -144,12 +144,12 @@ export const createReplyPermlink = (toAuthor: string) => {
     .getSeconds()
     .toString()}${t.getMilliseconds().toString()}z`;
 
-  return `re-${toAuthor.replace(/\./g, '')}-${timeFormat}`;
+  return `re-${toAuthor.replace(/\./g, "")}-${timeFormat}`;
 };
 
 export const createPatch = (text1: string, text2: string): string | undefined => {
   const dmp = new diff_match_patch();
-  if (text1 === '') return undefined;
+  if (text1 === "") return undefined;
   const patches = dmp.patch_make(text1, text2);
   const patch = dmp.patch_toText(patches);
   return patch;

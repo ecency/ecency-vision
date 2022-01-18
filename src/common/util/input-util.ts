@@ -1,6 +1,6 @@
-import { _t } from '../i18n';
+import { _t } from "../i18n";
 
-export const insertOrReplace = (txtEl: HTMLInputElement, before: string, after: string = '') => {
+export const insertOrReplace = (txtEl: HTMLInputElement, before: string, after: string = "") => {
   const startPos = txtEl.selectionStart;
   const endPos = txtEl.selectionEnd;
 
@@ -17,18 +17,18 @@ export const insertOrReplace = (txtEl: HTMLInputElement, before: string, after: 
 
   txtEl.focus();
 
-  if (typeof txtEl.setRangeText === 'function') {
+  if (typeof txtEl.setRangeText === "function") {
     // Firefox
     txtEl.setRangeText(insertText);
     txtEl.setSelectionRange(newStartPos, newEndPos);
   } else {
     // Webkit
-    document.execCommand('insertText', false, insertText);
+    document.execCommand("insertText", false, insertText);
     txtEl.selectionStart = newStartPos;
     txtEl.selectionEnd = newEndPos;
   }
 
-  txtEl.dispatchEvent(new Event('change', { bubbles: true }));
+  txtEl.dispatchEvent(new Event("change", { bubbles: true }));
 };
 
 export const replace = (txtEl: HTMLInputElement, find: string, rep: string) => {
@@ -38,7 +38,7 @@ export const replace = (txtEl: HTMLInputElement, find: string, rep: string) => {
   }
   const endPos = startPos + find.length;
 
-  if (typeof txtEl.setRangeText === 'function') {
+  if (typeof txtEl.setRangeText === "function") {
     // Firefox
     txtEl.setSelectionRange(startPos, endPos);
     txtEl.setRangeText(rep);
@@ -50,18 +50,18 @@ export const replace = (txtEl: HTMLInputElement, find: string, rep: string) => {
     txtEl.selectionStart = startPos;
     txtEl.selectionEnd = endPos;
 
-    document.execCommand('insertText', false, rep);
+    document.execCommand("insertText", false, rep);
 
     const newPos = txtEl.value.length;
     txtEl.selectionStart = newPos;
     txtEl.selectionEnd = newPos;
   }
 
-  txtEl.dispatchEvent(new Event('change', { bubbles: true }));
+  txtEl.dispatchEvent(new Event("change", { bubbles: true }));
 };
 
 export const handleInvalid = (e: any, parentKey: string, childKey: string) => {
   e.target.setCustomValidity(_t(parentKey + childKey));
 };
 
-export const handleOnInput = (e: any) => e.target.setCustomValidity('');
+export const handleOnInput = (e: any) => e.target.setCustomValidity("");

@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { match } from 'react-router';
-import { getAccountFull } from '../../api/hive';
-import accountReputation from '../../helper/account-reputation';
-import { PageProps } from '../../pages/common';
-import { Entry } from '../../store/entries/types';
-import truncate from '../../util/truncate';
-import BookmarkBtn from '../bookmark-btn';
-import FavoriteBtn from '../favorite-btn';
-import FollowControls from '../follow-controls';
-import ProfileLink from '../profile-link';
-import { Skeleton } from '../skeleton';
-import UserAvatar from '../user-avatar';
+import React, { useEffect, useState } from "react";
+import { match } from "react-router";
+import { getAccountFull } from "../../api/hive";
+import accountReputation from "../../helper/account-reputation";
+import { PageProps } from "../../pages/common";
+import { Entry } from "../../store/entries/types";
+import truncate from "../../util/truncate";
+import BookmarkBtn from "../bookmark-btn";
+import FavoriteBtn from "../favorite-btn";
+import FollowControls from "../follow-controls";
+import ProfileLink from "../profile-link";
+import { Skeleton } from "../skeleton";
+import UserAvatar from "../user-avatar";
 
 interface MatchParams {
   category: string;
@@ -25,11 +25,11 @@ interface Props extends PageProps {
 const AuthorInfoCard = (props: Props) => {
   const reputation = accountReputation(props?.entry?.author_reputation);
   const { username } = props?.match?.params;
-  const author = username.replace('@', '');
+  const author = username.replace("@", "");
 
   const [authorInfo, setAuthorInfo] = useState({
-    name: '',
-    about: ''
+    name: "",
+    about: ""
   });
 
   const [loading, setLoading] = useState(false);
@@ -50,8 +50,8 @@ const AuthorInfoCard = (props: Props) => {
 
     _isMounted &&
       setAuthorInfo({
-        name: _authorInfo?.name || '',
-        about: _authorInfo?.about || _authorInfo?.location || ''
+        name: _authorInfo?.name || "",
+        about: _authorInfo?.about || _authorInfo?.location || ""
       });
     setLoading(false);
   };
@@ -77,7 +77,7 @@ const AuthorInfoCard = (props: Props) => {
                 {UserAvatar({
                   ...props,
                   username: props?.entry?.author,
-                  size: 'medium'
+                  size: "medium"
                 })}
               </div>
             )

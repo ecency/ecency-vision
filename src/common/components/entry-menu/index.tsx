@@ -1,39 +1,39 @@
-import React from 'react';
+import React from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import BaseComponent from '../base';
+import BaseComponent from "../base";
 
-import { ActiveUser } from '../../store/active-user/types';
-import { Entry, EntryStat } from '../../store/entries/types';
-import { Communities, Community, ROLES } from '../../store/communities/types';
-import { EntryPinTracker } from '../../store/entry-pin-tracker/types';
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
-import { DynamicProps } from '../../store/dynamic-props/types';
-import { ToggleType } from '../../store/ui/types';
+import { ActiveUser } from "../../store/active-user/types";
+import { Entry, EntryStat } from "../../store/entries/types";
+import { Communities, Community, ROLES } from "../../store/communities/types";
+import { EntryPinTracker } from "../../store/entry-pin-tracker/types";
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
+import { ToggleType } from "../../store/ui/types";
 
-import { clone } from '../../store/util';
+import { clone } from "../../store/util";
 
-import EditHistory from '../edit-history';
-import EntryShare, { shareReddit, shareTwitter, shareFacebook } from '../entry-share';
-import MuteBtn from '../mute-btn';
-import Promote from '../promote';
-import Boost from '../boost';
-import ModalConfirm from '../modal-confirm';
-import { error, success } from '../feedback';
-import DropDown, { MenuItem } from '../dropdown';
-import CrossPost from '../cross-post';
+import EditHistory from "../edit-history";
+import EntryShare, { shareReddit, shareTwitter, shareFacebook } from "../entry-share";
+import MuteBtn from "../mute-btn";
+import Promote from "../promote";
+import Boost from "../boost";
+import ModalConfirm from "../modal-confirm";
+import { error, success } from "../feedback";
+import DropDown, { MenuItem } from "../dropdown";
+import CrossPost from "../cross-post";
 
-import isCommunity from '../../helper/is-community';
+import isCommunity from "../../helper/is-community";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import clipboard from '../../util/clipboard';
+import clipboard from "../../util/clipboard";
 
-import { deleteComment, formatError, pinPost } from '../../api/operations';
+import { deleteComment, formatError, pinPost } from "../../api/operations";
 
-import * as bridgeApi from '../../api/bridge';
+import * as bridgeApi from "../../api/bridge";
 
 import {
   dotsHorizontal,
@@ -50,7 +50,7 @@ import {
   bullHornSvg,
   rocketLaunchSvg,
   shuffleVariantSvg
-} from '../../img/svg';
+} from "../../img/svg";
 
 interface Props {
   history: History;
@@ -169,7 +169,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
     const u = `https://ecency.com/${entry.category}/@${entry.author}/${entry.permlink}`;
     clipboard(u);
-    success(_t('entry.address-copied'));
+    success(_t("entry.address-copied"));
   };
 
   edit = () => {
@@ -183,7 +183,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
     const { history, activeUser, entry } = this.props;
     deleteComment(activeUser!.username, entry.author, entry.permlink)
       .then(() => {
-        history.push('/');
+        history.push("/");
       })
       .catch((e) => {
         error(formatError(e));
@@ -205,9 +205,9 @@ export class EntryMenu extends BaseComponent<Props, State> {
         updateEntry(nEntry);
 
         if (pin) {
-          success(_t('entry-menu.pin-success'));
+          success(_t("entry-menu.pin-success"));
         } else {
-          success(_t('entry-menu.unpin-success'));
+          success(_t("entry-menu.unpin-success"));
         }
       })
       .catch((err) => {
@@ -241,7 +241,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
   };
 
   toggleLoginModal = () => {
-    this.props.toggleUIProp('login');
+    this.props.toggleUIProp("login");
   };
 
   render() {
@@ -268,7 +268,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
     if (activeUser && !isComment) {
       menuItems = [
         {
-          label: _t('entry-menu.cross-post'),
+          label: _t("entry-menu.cross-post"),
           onClick: this.toggleCross,
           icon: shuffleVariantSvg
         }
@@ -279,7 +279,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
       menuItems = [
         ...menuItems,
         {
-          label: _t('entry-menu.share'),
+          label: _t("entry-menu.share"),
           onClick: this.toggleShare,
           icon: shareVariantSvg
         }
@@ -290,7 +290,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
       menuItems = [
         ...menuItems,
         {
-          label: _t('entry-menu.edit-history'),
+          label: _t("entry-menu.edit-history"),
           onClick: this.toggleEditHistory,
           icon: historySvg
         }
@@ -302,7 +302,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         ...menuItems,
         ...[
           {
-            label: _t('g.edit'),
+            label: _t("g.edit"),
             onClick: this.edit,
             icon: pencilOutlineSvg
           }
@@ -315,7 +315,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         ...menuItems,
         ...[
           {
-            label: _t('g.delete'),
+            label: _t("g.delete"),
             onClick: this.toggleDelete,
             icon: deleteForeverSvg
           }
@@ -328,7 +328,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         menuItems = [
           ...menuItems,
           {
-            label: _t('entry-menu.unpin'),
+            label: _t("entry-menu.unpin"),
             onClick: this.toggleUnpin,
             icon: pinSvg
           }
@@ -337,7 +337,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         menuItems = [
           ...menuItems,
           {
-            label: _t('entry-menu.pin'),
+            label: _t("entry-menu.pin"),
             onClick: this.togglePin,
             icon: pinSvg
           }
@@ -349,7 +349,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         ...menuItems,
         ...[
           {
-            label: isMuted ? _t('entry-menu.unmute') : _t('entry-menu.mute'),
+            label: isMuted ? _t("entry-menu.unmute") : _t("entry-menu.mute"),
             onClick: this.toggleMute,
             icon: volumeOffSvg
           }
@@ -362,12 +362,12 @@ export class EntryMenu extends BaseComponent<Props, State> {
         ...menuItems,
         ...[
           {
-            label: _t('entry-menu.promote'),
+            label: _t("entry-menu.promote"),
             onClick: activeUser !== null ? this.togglePromote : this.toggleLoginModal,
             icon: bullHornSvg
           },
           {
-            label: _t('entry-menu.boost'),
+            label: _t("entry-menu.boost"),
             onClick: activeUser !== null ? this.toggleBoost : this.toggleLoginModal,
             icon: rocketLaunchSvg
           }
@@ -379,7 +379,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
       menuItems = [
         ...menuItems,
         {
-          label: _t('entry.address-copy'),
+          label: _t("entry.address-copy"),
           onClick: this.copyAddress,
           icon: linkVariantSvg
         }
@@ -391,18 +391,18 @@ export class EntryMenu extends BaseComponent<Props, State> {
     }
 
     if (menuItems) {
-      let deleteItems = menuItems.filter((item) => item.label === _t('g.delete'));
+      let deleteItems = menuItems.filter((item) => item.label === _t("g.delete"));
       if (deleteItems.length === 1) {
-        let items = menuItems.filter((item) => item.label !== '');
+        let items = menuItems.filter((item) => item.label !== "");
         menuItems = items;
       }
       let updatedItems: MenuItem[] = [];
       menuItems.forEach((item) => {
         if (
-          item.label === _t('entry-menu.promote') ||
-          item.label === _t('entry-menu.boost') ||
-          item.label === _t('entry-menu.pin') ||
-          item.label === _t('entry-menu.unpin')
+          item.label === _t("entry-menu.promote") ||
+          item.label === _t("entry-menu.boost") ||
+          item.label === _t("entry-menu.pin") ||
+          item.label === _t("entry-menu.unpin")
         ) {
           updatedItems.unshift(item);
         } else {
@@ -414,7 +414,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
     const menuConfig = {
       history: this.props.history,
-      label: '',
+      label: "",
       icon: dotsHorizontal,
       items: menuItems
     };
@@ -520,9 +520,9 @@ export class EntryMenu extends BaseComponent<Props, State> {
               this.toggleMute();
 
               if (pin) {
-                success(_t('entry-menu.mute-success'));
+                success(_t("entry-menu.mute-success"));
               } else {
-                success(_t('entry-menu.unmute-success'));
+                success(_t("entry-menu.unmute-success"));
               }
             },
             onCancel: this.toggleMute

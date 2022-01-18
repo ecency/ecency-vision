@@ -1,41 +1,41 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal } from "react-bootstrap";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import { Global } from '../../store/global/types';
-import { Account, FullAccount } from '../../store/accounts/types';
-import { Community, roleMap, ROLES } from '../../store/communities/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { User } from '../../store/users/types';
+import { Global } from "../../store/global/types";
+import { Account, FullAccount } from "../../store/accounts/types";
+import { Community, roleMap, ROLES } from "../../store/communities/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { User } from "../../store/users/types";
 
-import BaseComponent from '../base';
-import UserAvatar from '../user-avatar';
-import ProfileLink from '../profile-link';
-import CommunitySettings from '../community-settings';
-import CommunityRewardsRegistrationDialog from '../community-rewards-registration';
-import ImageUploadDialog from '../image-upload';
-import Tooltip from '../tooltip';
-import { error, success } from '../feedback';
+import BaseComponent from "../base";
+import UserAvatar from "../user-avatar";
+import ProfileLink from "../profile-link";
+import CommunitySettings from "../community-settings";
+import CommunityRewardsRegistrationDialog from "../community-rewards-registration";
+import ImageUploadDialog from "../image-upload";
+import Tooltip from "../tooltip";
+import { error, success } from "../feedback";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { getAccount } from '../../api/hive';
-import { updateProfile } from '../../api/operations';
+import { getAccount } from "../../api/hive";
+import { updateProfile } from "../../api/operations";
 
-import ln2list from '../../util/nl2list';
+import ln2list from "../../util/nl2list";
 
 import {
   accountGroupSvg,
   informationOutlineSvg,
   scriptTextOutlineSvg,
   pencilOutlineSvg
-} from '../../img/svg';
+} from "../../img/svg";
 
 interface EditPicProps {
   activeUser: ActiveUser;
@@ -76,17 +76,17 @@ export class EditPic extends BaseComponent<EditPicProps, EditPicState> {
     const { profile } = account;
 
     const newProfile = {
-      name: profile?.name || '',
-      about: profile?.about || '',
-      cover_image: profile?.cover_image || '',
+      name: profile?.name || "",
+      about: profile?.about || "",
+      cover_image: profile?.cover_image || "",
       profile_image: url,
-      website: profile?.website || '',
-      location: profile?.location || ''
+      website: profile?.website || "",
+      location: profile?.location || ""
     };
 
     updateProfile(account, newProfile)
       .then((r) => {
-        success(_t('community-card.profile-image-updated'));
+        success(_t("community-card.profile-image-updated"));
         return getAccount(account.name);
       })
       .then((account) => {
@@ -98,7 +98,7 @@ export class EditPic extends BaseComponent<EditPicProps, EditPicState> {
         onUpdate();
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       })
       .finally(() => {
         this.stateSet({ inProgress: false });
@@ -111,7 +111,7 @@ export class EditPic extends BaseComponent<EditPicProps, EditPicState> {
 
     return (
       <>
-        <Tooltip content={_t('community-card.profile-image-edit')}>
+        <Tooltip content={_t("community-card.profile-image-edit")}>
           <div className="edit-button" onClick={this.toggleDialog}>
             {pencilOutlineSvg}
           </div>
@@ -119,8 +119,8 @@ export class EditPic extends BaseComponent<EditPicProps, EditPicState> {
         {dialog && (
           <ImageUploadDialog
             activeUser={activeUser!}
-            title={_t('community-card.profile-image')}
-            defImage={account.profile?.profile_image || ''}
+            title={_t("community-card.profile-image")}
+            defImage={account.profile?.profile_image || ""}
             inProgress={inProgress}
             onDone={this.save}
             onHide={this.toggleDialog}
@@ -200,7 +200,7 @@ export class CommunityCard extends Component<Props, State> {
     );
 
     const description: JSX.Element | null =
-      community.description.trim() !== '' ? (
+      community.description.trim() !== "" ? (
         <>
           {ln2list(community.description).map((x, i) => (
             <p key={i}>{x}</p>
@@ -209,11 +209,11 @@ export class CommunityCard extends Component<Props, State> {
       ) : null;
 
     const rules: JSX.Element | null =
-      community.flag_text.trim() !== '' ? (
+      community.flag_text.trim() !== "" ? (
         <>
           {ln2list(community.flag_text).map((x, i) => (
             <p key={i}>
-              {'- '}
+              {"- "}
               {x}
             </p>
           ))}
@@ -223,7 +223,7 @@ export class CommunityCard extends Component<Props, State> {
     const team: JSX.Element = (
       <>
         {community.team.map((m, i) => {
-          if (m[0].startsWith('hive-')) {
+          if (m[0].startsWith("hive-")) {
             return null;
           }
 
@@ -235,7 +235,7 @@ export class CommunityCard extends Component<Props, State> {
                 children: <a className="username">{`@${m[0]}`}</a>
               })}
               <span className="role">{m[1]}</span>
-              {m[2] !== '' && <span className="extra">{m[2]}</span>}
+              {m[2] !== "" && <span className="extra">{m[2]}</span>}
             </div>
           );
         })}
@@ -260,7 +260,7 @@ export class CommunityCard extends Component<Props, State> {
           {UserAvatar({
             ...this.props,
             username: community.name,
-            size: 'xLarge',
+            size: "xLarge",
             src: account.__loaded && useNewImage ? account.profile?.profile_image : undefined
           })}
         </div>
@@ -278,12 +278,12 @@ export class CommunityCard extends Component<Props, State> {
                 className="section-header"
                 onClick={() => {
                   this.toggleInfo({
-                    title: _t('community-card.description'),
+                    title: _t("community-card.description"),
                     content: description
                   });
                 }}
               >
-                {informationOutlineSvg} {_t('community-card.description')}
+                {informationOutlineSvg} {_t("community-card.description")}
               </div>
               <div className="section-content">{description}</div>
             </div>
@@ -293,10 +293,10 @@ export class CommunityCard extends Component<Props, State> {
               <div
                 className="section-header"
                 onClick={() => {
-                  this.toggleInfo({ title: _t('community-card.rules'), content: rules });
+                  this.toggleInfo({ title: _t("community-card.rules"), content: rules });
                 }}
               >
-                {scriptTextOutlineSvg} {_t('community-card.rules')}
+                {scriptTextOutlineSvg} {_t("community-card.rules")}
               </div>
               <div className="section-content">{rules}</div>
             </div>
@@ -305,10 +305,10 @@ export class CommunityCard extends Component<Props, State> {
             <div
               className="section-header"
               onClick={() => {
-                this.toggleInfo({ title: _t('community-card.team'), content: team });
+                this.toggleInfo({ title: _t("community-card.team"), content: team });
               }}
             >
-              {accountGroupSvg} {_t('community-card.team')}
+              {accountGroupSvg} {_t("community-card.team")}
             </div>
             <div className="section-content">{team}</div>
           </div>
@@ -318,13 +318,13 @@ export class CommunityCard extends Component<Props, State> {
           <div className="community-controls">
             {canEditCommunity && (
               <p className="community-control" onClick={this.toggleSettings}>
-                <Button size="sm">{_t('community-card.edit')}</Button>
+                <Button size="sm">{_t("community-card.edit")}</Button>
               </p>
             )}
             {canEditTeam && (
               <p className="community-control">
                 <Link className="btn btn-sm btn-primary" to={`/roles/${community.name}`}>
-                  {_t('community-card.edit-team')}
+                  {_t("community-card.edit-team")}
                 </Link>
               </p>
             )}
@@ -339,7 +339,7 @@ export class CommunityCard extends Component<Props, State> {
                 this.toggleRewards();
               }}
             >
-              {_t('community-card.community-rewards')}
+              {_t("community-card.community-rewards")}
             </a>
           </p>
         )}

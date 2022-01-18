@@ -1,4 +1,4 @@
-import { SMTAsset } from '@hiveio/dhive';
+import { SMTAsset } from "@hiveio/dhive";
 
 interface BaseTransaction {
   num: number;
@@ -8,7 +8,7 @@ interface BaseTransaction {
 }
 
 export interface CurationReward extends BaseTransaction {
-  type: 'curation_reward';
+  type: "curation_reward";
   comment_author: string;
   comment_permlink: string;
   curator: string;
@@ -16,7 +16,7 @@ export interface CurationReward extends BaseTransaction {
 }
 
 export interface AuthorReward extends BaseTransaction {
-  type: 'author_reward';
+  type: "author_reward";
   author: string;
   permlink: string;
   hbd_payout: string;
@@ -25,7 +25,7 @@ export interface AuthorReward extends BaseTransaction {
 }
 
 export interface CommentBenefactor extends BaseTransaction {
-  type: 'comment_benefactor_reward';
+  type: "comment_benefactor_reward";
   benefactor: string;
   author: string;
   permlink: string;
@@ -35,7 +35,7 @@ export interface CommentBenefactor extends BaseTransaction {
 }
 
 export interface ClaimRewardBalance extends BaseTransaction {
-  type: 'claim_reward_balance';
+  type: "claim_reward_balance";
   account: string;
   reward_hbd: string;
   reward_hive: string;
@@ -43,7 +43,7 @@ export interface ClaimRewardBalance extends BaseTransaction {
 }
 
 export interface Transfer extends BaseTransaction {
-  type: 'transfer';
+  type: "transfer";
   amount: string;
   memo: string;
   from: string;
@@ -51,7 +51,7 @@ export interface Transfer extends BaseTransaction {
 }
 
 export interface TransferToVesting extends BaseTransaction {
-  type: 'transfer_to_vesting';
+  type: "transfer_to_vesting";
   amount: string;
   memo?: string;
   from: string;
@@ -59,7 +59,7 @@ export interface TransferToVesting extends BaseTransaction {
 }
 
 export interface TransferToSavings extends BaseTransaction {
-  type: 'transfer_to_savings';
+  type: "transfer_to_savings";
   amount: string;
   memo?: string;
   from: string;
@@ -69,41 +69,41 @@ export interface TransferToSavings extends BaseTransaction {
 export interface CancelTransferFromSavings extends BaseTransaction {
   from: string;
   request_id: number;
-  type: 'cancel_transfer_from_savings';
+  type: "cancel_transfer_from_savings";
 }
 
 export interface WithdrawVesting extends BaseTransaction {
-  type: 'withdraw_vesting';
+  type: "withdraw_vesting";
   acc: string;
   vesting_shares: string;
 }
 
 export interface FillOrder extends BaseTransaction {
-  type: 'fill_order';
+  type: "fill_order";
   current_pays: string;
   open_pays: string;
 }
 
 export interface ProducerReward extends BaseTransaction {
-  type: 'producer_reward';
+  type: "producer_reward";
   vesting_shares: string;
   producer: string;
 }
 
 export interface Interest extends BaseTransaction {
-  type: 'interest';
+  type: "interest";
   owner: string;
   interest: string;
 }
 
 export interface FillConvertRequest extends BaseTransaction {
-  type: 'fill_convert_request';
+  type: "fill_convert_request";
   amount_in: string;
   amount_out: string;
 }
 
 export interface FillCollateralizedConvertRequest extends BaseTransaction {
-  type: 'fill_collateralized_convert_request';
+  type: "fill_collateralized_convert_request";
   owner: string;
   requestid: number;
   amount_in: string;
@@ -112,44 +112,44 @@ export interface FillCollateralizedConvertRequest extends BaseTransaction {
 }
 
 export interface ReturnVestingDelegation extends BaseTransaction {
-  type: 'return_vesting_delegation';
+  type: "return_vesting_delegation";
   vesting_shares: string;
 }
 
 export interface ProposalPay extends BaseTransaction {
-  type: 'proposal_pay';
+  type: "proposal_pay";
   payment: string;
 }
 
 export interface UpdateProposalVotes extends BaseTransaction {
-  type: 'update_proposal_votes';
+  type: "update_proposal_votes";
   voter: string;
   proposal_ids: [number];
   approve: boolean;
 }
 
 export interface CommentPayoutUpdate extends BaseTransaction {
-  type: 'comment_payout_update';
+  type: "comment_payout_update";
   author: string;
   permlink: string;
 }
 
 export interface CommentReward extends BaseTransaction {
-  type: 'comment_reward';
+  type: "comment_reward";
   author: string;
   permlink: string;
   payout: string;
 }
 
 export interface CollateralizedConvert extends BaseTransaction {
-  type: 'collateralized_convert';
+  type: "collateralized_convert";
   owner: string;
   requestid: number;
   amount: string;
 }
 
 export interface RecurrentTransfers extends BaseTransaction {
-  type: 'recurrent_transfer';
+  type: "recurrent_transfer";
   amount: string;
   memo: string;
   from: string;
@@ -159,7 +159,7 @@ export interface RecurrentTransfers extends BaseTransaction {
 }
 
 export interface FillRecurrentTransfers extends BaseTransaction {
-  type: 'fill_recurrent_transfer';
+  type: "fill_recurrent_transfer";
   amount: SMTAsset;
   memo: string;
   from: string;
@@ -168,14 +168,14 @@ export interface FillRecurrentTransfers extends BaseTransaction {
 }
 
 export interface DelegateVestingShares extends BaseTransaction {
-  type: 'delegate_vesting_shares';
+  type: "delegate_vesting_shares";
   delegator: string;
   delegatee: string;
   vesting_shares: string;
 }
 
 export interface LimitOrderCreate extends BaseTransaction {
-  type: 'limit_order_create';
+  type: "limit_order_create";
   owner: string;
   orderid: number;
   amount_to_sell: string;
@@ -184,7 +184,7 @@ export interface LimitOrderCreate extends BaseTransaction {
 }
 
 export interface FillVestingWithdraw extends BaseTransaction {
-  type: 'fill_vesting_withdraw';
+  type: "fill_vesting_withdraw";
   from_account: string;
   to_account: string;
   withdrawn: string;
@@ -192,7 +192,7 @@ export interface FillVestingWithdraw extends BaseTransaction {
 }
 
 export interface EffectiveCommentVote extends BaseTransaction {
-  type: 'effective_comment_vote';
+  type: "effective_comment_vote";
   voter: string;
   author: string;
   permlink: string;
@@ -231,28 +231,28 @@ export type Transaction =
   | DelegateVestingShares;
 
 export type OperationGroup =
-  | 'transfers'
-  | 'market-orders'
-  | 'interests'
-  | 'stake-operations'
-  | 'rewards';
+  | "transfers"
+  | "market-orders"
+  | "interests"
+  | "stake-operations"
+  | "rewards";
 
 export interface Transactions {
   list: Transaction[];
   loading: boolean;
-  group: OperationGroup | '';
+  group: OperationGroup | "";
 }
 
 export enum ActionTypes {
-  FETCH = '@transactions/FETCH',
-  FETCHED = '@transactions/FETCHED',
-  FETCH_ERROR = '@transactions/FETCH_ERROR',
-  RESET = '@transactions/RESET'
+  FETCH = "@transactions/FETCH",
+  FETCHED = "@transactions/FETCHED",
+  FETCH_ERROR = "@transactions/FETCH_ERROR",
+  RESET = "@transactions/RESET"
 }
 
 export interface FetchAction {
   type: ActionTypes.FETCH;
-  group: OperationGroup | '';
+  group: OperationGroup | "";
 }
 
 export interface FetchedAction {

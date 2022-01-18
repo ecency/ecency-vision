@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Pagination } from 'react-bootstrap';
+import React, { Component } from "react";
+import { Pagination } from "react-bootstrap";
 
 interface Props {
   dataLength: number;

@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History, Location } from 'history';
+import { History, Location } from "history";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 
-import { Global } from '../../store/global/types';
-import { Community, roleMap } from '../../store/communities/types';
-import { Account } from '../../store/accounts/types';
-import { ActiveUser } from '../../store/active-user/types';
+import { Global } from "../../store/global/types";
+import { Community, roleMap } from "../../store/communities/types";
+import { Account } from "../../store/accounts/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import ProfileLink from '../profile-link';
-import UserAvatar from '../user-avatar';
-import CommunityRoleEditDialog from '../community-role-edit';
+import ProfileLink from "../profile-link";
+import UserAvatar from "../user-avatar";
+import CommunityRoleEditDialog from "../community-role-edit";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 interface Props {
   history: History;
@@ -36,8 +36,8 @@ interface State {
 export class CommunityRoles extends Component<Props, State> {
   state: State = {
     dialog: false,
-    dialogUser: '',
-    dialogRole: ''
+    dialogUser: "",
+    dialogRole: ""
   };
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
@@ -48,12 +48,12 @@ export class CommunityRoles extends Component<Props, State> {
     );
   }
 
-  showDialog = (user: string = '', role: string = '') => {
+  showDialog = (user: string = "", role: string = "") => {
     this.setState({ dialog: true, dialogUser: user, dialogRole: role });
   };
 
   hideDialog = () => {
-    this.setState({ dialog: false, dialogUser: '', dialogRole: '' });
+    this.setState({ dialog: false, dialogUser: "", dialogRole: "" });
   };
 
   render() {
@@ -67,13 +67,13 @@ export class CommunityRoles extends Component<Props, State> {
 
     return (
       <div className="community-roles">
-        <h2>{_t('community.roles-title')}</h2>
+        <h2>{_t("community.roles-title")}</h2>
         <table className="table table-striped table-bordered table-roles">
           <thead>
             <tr>
-              <th style={{ width: '200px' }}>{_t('community.roles-account')}</th>
-              <th style={{ width: '74px' }}>{_t('community.roles-role')}</th>
-              <th>{_t('community.roles-account-title')}</th>
+              <th style={{ width: "200px" }}>{_t("community.roles-account")}</th>
+              <th style={{ width: "74px" }}>{_t("community.roles-role")}</th>
+              <th>{_t("community.roles-account-title")}</th>
             </tr>
           </thead>
           <tbody>
@@ -88,7 +88,7 @@ export class CommunityRoles extends Component<Props, State> {
                       username,
                       children: (
                         <a className="user">
-                          {UserAvatar({ ...this.props, username, size: 'medium' })}{' '}
+                          {UserAvatar({ ...this.props, username, size: "medium" })}{" "}
                           <span className="username">{username}</span>
                         </a>
                       )
@@ -121,7 +121,7 @@ export class CommunityRoles extends Component<Props, State> {
               this.showDialog();
             }}
           >
-            {_t('community.roles-add')}
+            {_t("community.roles-add")}
           </Button>
         )}
 

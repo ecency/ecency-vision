@@ -1,22 +1,22 @@
-import React from 'react';
-import { Entry } from '../../store/entries/types';
-import { ActiveUser } from '../../store/active-user/types';
+import React from "react";
+import { Entry } from "../../store/entries/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import { getBookmarks, addBookmark, deleteBookmark } from '../../api/private-api';
+import { getBookmarks, addBookmark, deleteBookmark } from "../../api/private-api";
 
-import BaseComponent from '../base';
-import LoginRequired from '../login-required';
-import { User } from '../../store/users/types';
-import { ToggleType, UI } from '../../store/ui/types';
-import { Account } from '../../store/accounts/types';
-import Tooltip from '../tooltip';
-import { success, error } from '../feedback';
+import BaseComponent from "../base";
+import LoginRequired from "../login-required";
+import { User } from "../../store/users/types";
+import { ToggleType, UI } from "../../store/ui/types";
+import { Account } from "../../store/accounts/types";
+import Tooltip from "../tooltip";
+import { success, error } from "../feedback";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
-import { bookmarkOutlineSvg, bookmarkSvg } from '../../img/svg';
+import { bookmarkOutlineSvg, bookmarkSvg } from "../../img/svg";
 
 export interface Props {
   entry: Entry;
@@ -82,9 +82,9 @@ export class BookmarkBtn extends BaseComponent<Props> {
     addBookmark(activeUser?.username!, entry.author, entry.permlink)
       .then(() => {
         this.detect();
-        success(_t('bookmark-btn.added'));
+        success(_t("bookmark-btn.added"));
       })
-      .catch(() => error(_t('g.server-error')))
+      .catch(() => error(_t("g.server-error")))
       .finally(() => this.stateSet({ inProgress: false }));
   };
 
@@ -100,9 +100,9 @@ export class BookmarkBtn extends BaseComponent<Props> {
     deleteBookmark(activeUser?.username!, bookmarkId)
       .then(() => {
         this.detect();
-        success(_t('bookmark-btn.deleted'));
+        success(_t("bookmark-btn.deleted"));
       })
-      .catch(() => error(_t('g.server-error')))
+      .catch(() => error(_t("g.server-error")))
       .finally(() => this.stateSet({ inProgress: false }));
   };
 
@@ -114,7 +114,7 @@ export class BookmarkBtn extends BaseComponent<Props> {
         ...this.props,
         children: (
           <div className="bookmark-btn">
-            <Tooltip content={_t('bookmark-btn.add')}>
+            <Tooltip content={_t("bookmark-btn.add")}>
               <span>{bookmarkOutlineSvg}</span>
             </Tooltip>
           </div>
@@ -127,10 +127,10 @@ export class BookmarkBtn extends BaseComponent<Props> {
     if (bookmarkId) {
       return (
         <div
-          className={_c(`bookmark-btn bookmarked ${inProgress ? 'in-progress' : ''}`)}
+          className={_c(`bookmark-btn bookmarked ${inProgress ? "in-progress" : ""}`)}
           onClick={this.delete}
         >
-          <Tooltip content={_t('bookmark-btn.delete')}>
+          <Tooltip content={_t("bookmark-btn.delete")}>
             <span>{bookmarkSvg}</span>
           </Tooltip>
         </div>
@@ -138,8 +138,8 @@ export class BookmarkBtn extends BaseComponent<Props> {
     }
 
     return (
-      <div className={_c(`bookmark-btn ${inProgress ? 'in-progress' : ''}`)} onClick={this.add}>
-        <Tooltip content={_t('bookmark-btn.add')}>
+      <div className={_c(`bookmark-btn ${inProgress ? "in-progress" : ""}`)} onClick={this.add}>
+        <Tooltip content={_t("bookmark-btn.add")}>
           <span>{bookmarkOutlineSvg}</span>
         </Tooltip>
       </div>

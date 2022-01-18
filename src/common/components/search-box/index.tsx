@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Button, FormControl, InputGroup } from 'react-bootstrap';
-import { _t } from '../../i18n';
+import { Button, FormControl, InputGroup } from "react-bootstrap";
+import { _t } from "../../i18n";
 
-import { copyContent, magnifySvg } from '../../img/svg';
-import { success } from '../feedback';
+import { copyContent, magnifySvg } from "../../img/svg";
+import { success } from "../feedback";
 
 type Props = any;
 
 export default class SearchBox extends Component<Props> {
   copyToClipboard = (text: string) => {
-    const textField = document.createElement('textarea');
+    const textField = document.createElement("textarea");
     textField.innerText = text;
     document.body.appendChild(textField);
     textField.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     textField.remove();
-    success(_t('profile-info.link-copied'));
+    success(_t("profile-info.link-copied"));
   };
 
   render() {
@@ -28,7 +28,7 @@ export default class SearchBox extends Component<Props> {
             <FormControl
               type="text"
               {...{ ...other, value, username, filter }}
-              className={'input-with-copy rounded-right'}
+              className={"input-with-copy rounded-right"}
             />
             <InputGroup.Append>
               <Button

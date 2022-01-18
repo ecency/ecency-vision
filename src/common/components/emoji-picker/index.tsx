@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import { FormControl } from 'react-bootstrap';
+import { FormControl } from "react-bootstrap";
 
-import BaseComponent from '../base';
-import SearchBox from '../search-box';
+import BaseComponent from "../base";
+import SearchBox from "../search-box";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { getEmojiData } from '../../api/misc';
+import { getEmojiData } from "../../api/misc";
 
-import * as ls from '../../util/local-storage';
+import * as ls from "../../util/local-storage";
 
-import { insertOrReplace } from '../../util/input-util';
+import { insertOrReplace } from "../../util/input-util";
 
 interface Emoji {
   a: string;
@@ -50,7 +50,7 @@ export default class EmojiPicker extends BaseComponent<Props> {
   state: State = {
     data: null,
     cache: null,
-    filter: ''
+    filter: ""
   };
 
   _target: HTMLInputElement | null = null;
@@ -59,21 +59,21 @@ export default class EmojiPicker extends BaseComponent<Props> {
     getEmojiData().then((data) => this.setData(data));
 
     this.watchTarget(); // initial
-    document.querySelectorAll('.accepts-emoji').forEach((i) => {
-      i.addEventListener('focus', this.watchTarget);
+    document.querySelectorAll(".accepts-emoji").forEach((i) => {
+      i.addEventListener("focus", this.watchTarget);
     });
   }
 
   componentWillUnmount() {
     super.componentWillUnmount();
 
-    document.querySelectorAll('.accepts-emoji').forEach((i) => {
-      i.removeEventListener('focus', this.watchTarget);
+    document.querySelectorAll(".accepts-emoji").forEach((i) => {
+      i.removeEventListener("focus", this.watchTarget);
     });
   }
 
   watchTarget = () => {
-    if (document.activeElement && document.activeElement.classList.contains('accepts-emoji')) {
+    if (document.activeElement && document.activeElement.classList.contains("accepts-emoji")) {
       this._target = document.activeElement as HTMLInputElement;
     }
   };
@@ -96,10 +96,10 @@ export default class EmojiPicker extends BaseComponent<Props> {
   };
 
   clicked = (id: string, native: string) => {
-    const recent = ls.get('recent-emoji', []);
+    const recent = ls.get("recent-emoji", []);
     if (!recent.includes(id)) {
       const newRecent = [...new Set([id, ...recent])].slice(0, 18);
-      ls.set('recent-emoji', newRecent);
+      ls.set("recent-emoji", newRecent);
       this.forceUpdate(); // Re-render recent list
     }
 
@@ -117,7 +117,7 @@ export default class EmojiPicker extends BaseComponent<Props> {
     if (!em) {
       return null;
     }
-    const unicodes = em.b.split('-');
+    const unicodes = em.b.split("-");
     const codePoints = unicodes.map((u) => Number(`0x${u}`));
     const native = String.fromCodePoint(...codePoints);
 
@@ -141,7 +141,7 @@ export default class EmojiPicker extends BaseComponent<Props> {
       return null;
     }
 
-    const recent: string[] = ls.get('recent-emoji', []);
+    const recent: string[] = ls.get("recent-emoji", []);
 
     return (
       <div className="emoji-picker">
@@ -150,7 +150,7 @@ export default class EmojiPicker extends BaseComponent<Props> {
           autoCorrect="off"
           autoCapitalize="off"
           spellCheck="false"
-          placeholder={_t('emoji-picker.filter-placeholder')}
+          placeholder={_t("emoji-picker.filter-placeholder")}
           value={filter}
           onChange={this.filterChanged}
         />
@@ -170,7 +170,7 @@ export default class EmojiPicker extends BaseComponent<Props> {
               <div className="emoji-cat-list">
                 <div className="emoji-cat">
                   <div className="emoji-list">
-                    {results.length === 0 && _t('emoji-picker.filter-no-match')}
+                    {results.length === 0 && _t("emoji-picker.filter-no-match")}
                     {results.length > 0 && results.map((emoji) => this.renderEmoji(emoji))}
                   </div>
                 </div>
@@ -181,7 +181,7 @@ export default class EmojiPicker extends BaseComponent<Props> {
               <div className="emoji-cat-list">
                 {recent.length > 0 && (
                   <div className="emoji-cat">
-                    <div className="cat-title">{_t('emoji-picker.recently-used')}</div>
+                    <div className="cat-title">{_t("emoji-picker.recently-used")}</div>
                     <div className="emoji-list">
                       {recent.map((emoji) => this.renderEmoji(emoji))}
                     </div>

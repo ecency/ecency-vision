@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 
-import { CrossPost } from './index';
+import { CrossPost } from "./index";
 
-import TestRenderer from 'react-test-renderer';
+import TestRenderer from "react-test-renderer";
 
-import { globalInstance, entryInstance1, activeUserMaker, allOver } from '../../helper/test-helper';
+import { globalInstance, entryInstance1, activeUserMaker, allOver } from "../../helper/test-helper";
 
 let MOCK = 1;
 
-jest.mock('../../api/bridge', () => ({
+jest.mock("../../api/bridge", () => ({
   getSubscriptions: () =>
     new Promise((resolve) => {
       if (MOCK === 1) {
         resolve([
-          ['hive-125125', 'Ecency'],
-          ['hive-252252', 'Foo']
+          ["hive-125125", "Ecency"],
+          ["hive-252252", "Foo"]
         ]);
       }
 
@@ -24,10 +24,10 @@ jest.mock('../../api/bridge', () => ({
     })
 }));
 
-it('(1) Default render', async () => {
+it("(1) Default render", async () => {
   const props = {
     global: globalInstance,
-    activeUser: activeUserMaker('foo'),
+    activeUser: activeUserMaker("foo"),
     entry: entryInstance1,
     onSuccess: () => {},
     onHide: () => {}
@@ -38,11 +38,11 @@ it('(1) Default render', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(2) No subscription', async () => {
+it("(2) No subscription", async () => {
   MOCK = 2;
   const props = {
     global: globalInstance,
-    activeUser: activeUserMaker('foo'),
+    activeUser: activeUserMaker("foo"),
     entry: entryInstance1,
     onSuccess: () => {},
     onHide: () => {}

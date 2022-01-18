@@ -1,21 +1,21 @@
-import moment from 'moment';
-import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { getRelationshipBetweenAccounts } from '../../api/bridge';
-import { getAccount, getFollowCount } from '../../api/hive';
-import accountReputation from '../../helper/account-reputation';
-import { _t } from '../../i18n';
-import { closeSvg } from '../../img/svg';
-import { Account } from '../../store/accounts/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { Global } from '../../store/global/types';
-import { ToggleType, UI } from '../../store/ui/types';
-import { User } from '../../store/users/types';
-import { FavoriteBtn } from '../favorite-btn';
-import FollowControls from '../follow-controls';
-import { Skeleton } from '../skeleton';
+import moment from "moment";
+import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { getRelationshipBetweenAccounts } from "../../api/bridge";
+import { getAccount, getFollowCount } from "../../api/hive";
+import accountReputation from "../../helper/account-reputation";
+import { _t } from "../../i18n";
+import { closeSvg } from "../../img/svg";
+import { Account } from "../../store/accounts/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { Global } from "../../store/global/types";
+import { ToggleType, UI } from "../../store/ui/types";
+import { User } from "../../store/users/types";
+import { FavoriteBtn } from "../favorite-btn";
+import FollowControls from "../follow-controls";
+import { Skeleton } from "../skeleton";
 
 interface Props {
   username: string;
@@ -86,11 +86,11 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
   }, []);
 
   const coverFallbackDay = global.isElectron
-    ? './img/cover-fallback-day.png'
-    : require('../../img/cover-fallback-day.png');
+    ? "./img/cover-fallback-day.png"
+    : require("../../img/cover-fallback-day.png");
   const coverFallbackNight = global.isElectron
-    ? './img/cover-fallback-night.png'
-    : require('../../img/cover-fallback-night.png');
+    ? "./img/cover-fallback-night.png"
+    : require("../../img/cover-fallback-night.png");
   const reputation = profile && accountReputation(profile.reputation);
   const loggedIn = activeUser && activeUser.username;
 
@@ -109,9 +109,9 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                 src={
                   profile.profile.cover_image
                     ? `https://images.ecency.com/${
-                        global.canUseWebp ? 'webp/' : ''
+                        global.canUseWebp ? "webp/" : ""
                       }u/${username}/cover`
-                    : global.theme === 'day'
+                    : global.theme === "day"
                     ? coverFallbackDay
                     : coverFallbackNight
                 }
@@ -124,7 +124,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
             <div className="d-flex align-items-center info-container flex-column text-center">
               <div
                 className={`rounded-circle mb-3 profile-img-container ${
-                  profile && profile.profile.profile_image ? '' : 'no-image'
+                  profile && profile.profile.profile_image ? "" : "no-image"
                 }`}
               >
                 {loading ? (
@@ -134,7 +134,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                     <Link to={`/@${username}`} onClick={(e) => onClose(e, true)}>
                       <img
                         src={`https://images.ecency.com/${
-                          global.canUseWebp ? 'webp/' : ''
+                          global.canUseWebp ? "webp/" : ""
                         }u/${username}/avatar/medium`}
                         alt="img"
                         className="profile-img rounded-circle bg-primary"
@@ -164,7 +164,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                     {loggedIn && followsActiveUserLoading ? (
                       <Skeleton className="loading-md my-3" />
                     ) : followsActiveUser ? (
-                      _t('profile.follows-you')
+                      _t("profile.follows-you")
                     ) : null}
                   </div>
                 </Link>
@@ -187,27 +187,27 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
             <div className="d-flex justify-content-between flex-wrap">
               <div className="flex-grow-1 d-flex border-bottom">
                 <div className="p-3 flex-grow-1">
-                  <b>{_t('profile-info.joined')}</b>
+                  <b>{_t("profile-info.joined")}</b>
                   <div className="text-break-wrap">
                     {loading ? (
                       <Skeleton className="loading-md" />
                     ) : (
-                      profile && moment(profile.created, 'YYYY-MM-DD').fromNow()
+                      profile && moment(profile.created, "YYYY-MM-DD").fromNow()
                     )}
                   </div>
                 </div>
 
                 <div
                   className={`p-3 flex-grow-1 ${
-                    loading ? '' : profile && profile.profile.location ? '' : 'd-none'
+                    loading ? "" : profile && profile.profile.location ? "" : "d-none"
                   }`}
                 >
-                  <b>{_t('profile-edit.location')}</b>
+                  <b>{_t("profile-edit.location")}</b>
                   <div className="text-break-wrap">
                     {loading ? (
                       <Skeleton className="loading-md" />
                     ) : (
-                      (profile && profile.profile.location) || '---'
+                      (profile && profile.profile.location) || "---"
                     )}
                   </div>
                 </div>
@@ -215,7 +215,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
 
               <div className="flex-grow-1 d-flex border-bottom">
                 <div className="p-3 flex-grow-1">
-                  <b>{_t('profile.section-posts')}</b>
+                  <b>{_t("profile.section-posts")}</b>
                   <div className="text-break-wrap">
                     {loading ? (
                       <Skeleton className="loading-md" />
@@ -230,7 +230,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                 </div>
 
                 <div className="p-3 flex-grow-1">
-                  <b>{_t('profile.voting-power')}</b>
+                  <b>{_t("profile.voting-power")}</b>
                   <div className="text-break-wrap">
                     {loading ? (
                       <Skeleton className="loading-md" />
@@ -243,7 +243,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
 
               <div className="flex-grow-1 d-flex border-bottom">
                 <div className="p-3 flex-grow-1">
-                  <b>{_t('profile.followers')}</b>
+                  <b>{_t("profile.followers")}</b>
                   <div className="text-break-wrap">
                     {loadingFollowCount ? (
                       <Skeleton className="loading-md" />
@@ -254,7 +254,7 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
                 </div>
 
                 <div className="p-3 flex-grow-1">
-                  <b>{_t('profile.following')}</b>
+                  <b>{_t("profile.following")}</b>
                   <div className="text-break-wrap">
                     {loadingFollowCount ? (
                       <Skeleton className="loading-md" />
@@ -266,8 +266,8 @@ export const ProfilePreview = ({ username, global, onClose, activeUser, ...props
               </div>
             </div>
             <div className={`p-3 about-container`}>
-              <b className={`${loading ? '' : profile && profile.profile.about ? '' : 'd-none'}`}>
-                {_t('profile-edit.about')}
+              <b className={`${loading ? "" : profile && profile.profile.about ? "" : "d-none"}`}>
+                {_t("profile-edit.about")}
               </b>
               <div className="limited-about-text">
                 {loading ? (

@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import renderer from 'react-test-renderer';
-import { createBrowserHistory, createLocation } from 'history';
+import renderer from "react-test-renderer";
+import { createBrowserHistory, createLocation } from "history";
 
-import { CommunityRoles } from './index';
+import { CommunityRoles } from "./index";
 
-import { communityInstance1, globalInstance, activeUserMaker } from '../../helper/test-helper';
+import { communityInstance1, globalInstance, activeUserMaker } from "../../helper/test-helper";
 
-it('(1) Default render', () => {
+it("(1) Default render", () => {
   const props = {
     history: createBrowserHistory(),
     location: createLocation({}),
@@ -22,13 +22,13 @@ it('(1) Default render', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Should not show add user button', () => {
+it("(2) Should not show add user button", () => {
   const props = {
     history: createBrowserHistory(),
     location: createLocation({}),
     global: globalInstance,
     community: { ...communityInstance1 },
-    activeUser: activeUserMaker('foo'),
+    activeUser: activeUserMaker("foo"),
     addAccount: () => {},
     addCommunity: () => {}
   };
@@ -37,13 +37,13 @@ it('(2) Should not show add user button', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(3) Should show add user button', () => {
+it("(3) Should show add user button", () => {
   const props = {
     history: createBrowserHistory(),
     location: createLocation({}),
     global: globalInstance,
     community: { ...communityInstance1 },
-    activeUser: activeUserMaker('hive-148441'),
+    activeUser: activeUserMaker("hive-148441"),
     addAccount: () => {},
     addCommunity: () => {}
   };

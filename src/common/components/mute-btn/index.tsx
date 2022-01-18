@@ -1,22 +1,22 @@
-import React from 'react';
+import React from "react";
 
-import { Button, Form, FormControl, InputGroup, Modal } from 'react-bootstrap';
+import { Button, Form, FormControl, InputGroup, Modal } from "react-bootstrap";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import { Entry, EntryStat } from '../../store/entries/types';
-import { Community } from '../../store/communities/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { clone } from '../../store/util';
+import { Entry, EntryStat } from "../../store/entries/types";
+import { Community } from "../../store/communities/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { clone } from "../../store/util";
 
-import BaseComponent from '../base';
+import BaseComponent from "../base";
 
-import { formatError, mutePost } from '../../api/operations';
-import { error } from '../feedback';
+import { formatError, mutePost } from "../../api/operations";
+import { error } from "../feedback";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
 interface DialogProps {
   entry: Entry;
@@ -30,7 +30,7 @@ interface DialogState {
 
 export class DialogBody extends React.Component<DialogProps, DialogState> {
   state: DialogState = {
-    value: ''
+    value: ""
   };
 
   valueChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
@@ -56,14 +56,14 @@ export class DialogBody extends React.Component<DialogProps, DialogState> {
               autoComplete="off"
               autoFocus={true}
               value={value}
-              placeholder={_t('mute-btn.notes')}
+              placeholder={_t("mute-btn.notes")}
               onChange={this.valueChanged}
               maxLength={120}
             />
           </InputGroup>
           <Form.Text>
-            {!isMuted && _t('mute-btn.note-placeholder-mute')}
-            {isMuted && 'unmute' && _t('mute-btn.note-placeholder-unmute')}
+            {!isMuted && _t("mute-btn.note-placeholder-mute")}
+            {isMuted && "unmute" && _t("mute-btn.note-placeholder-unmute")}
           </Form.Text>
         </Form.Group>
         <div>
@@ -74,9 +74,9 @@ export class DialogBody extends React.Component<DialogProps, DialogState> {
               onSubmit(value);
             }}
           >
-            {!isMuted && _t('mute-btn.mute')}
-            {isMuted && 'unmute' && _t('mute-btn.unmute')}
-            {inProgress && ' ...'}
+            {!isMuted && _t("mute-btn.mute")}
+            {isMuted && "unmute" && _t("mute-btn.unmute")}
+            {inProgress && " ..."}
           </Button>
         </div>
       </div>
@@ -137,7 +137,7 @@ export class MuteBtn extends BaseComponent<Props, State> {
     const { inProgress, dialog } = this.state;
     const isMuted = !!entry.stats?.gray;
 
-    const cls = _c(`mute-btn ${inProgress ? 'in-progress' : ''}`);
+    const cls = _c(`mute-btn ${inProgress ? "in-progress" : ""}`);
 
     const modal =
       dialog || onlyDialog ? (
@@ -185,7 +185,7 @@ export class MuteBtn extends BaseComponent<Props, State> {
               this.toggleDialog();
             }}
           >
-            {_t('mute-btn.unmute')}
+            {_t("mute-btn.unmute")}
           </a>
           {modal}
         </>
@@ -202,7 +202,7 @@ export class MuteBtn extends BaseComponent<Props, State> {
             this.toggleDialog();
           }}
         >
-          {_t('mute-btn.mute')}
+          {_t("mute-btn.mute")}
         </a>
         {modal}
       </>

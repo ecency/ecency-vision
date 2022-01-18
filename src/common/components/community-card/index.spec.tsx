@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import renderer from 'react-test-renderer';
-import { createBrowserHistory } from 'history';
-import { StaticRouter } from 'react-router-dom';
+import renderer from "react-test-renderer";
+import { createBrowserHistory } from "history";
+import { StaticRouter } from "react-router-dom";
 
-import { CommunityCard } from './index';
+import { CommunityCard } from "./index";
 
-import { communityInstance1, globalInstance, activeUserMaker } from '../../helper/test-helper';
+import { communityInstance1, globalInstance, activeUserMaker } from "../../helper/test-helper";
 
-it('(1) Default render', () => {
+it("(1) Default render", () => {
   const props = {
     history: createBrowserHistory(),
     global: globalInstance,
@@ -17,7 +17,7 @@ it('(1) Default render', () => {
       name: communityInstance1.name
     },
     users: [],
-    signingKey: '',
+    signingKey: "",
     activeUser: null,
     setSigningKey: () => {},
     addAccount: () => {},
@@ -28,7 +28,7 @@ it('(1) Default render', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Should show edit buttons with nsfw label', () => {
+it("(2) Should show edit buttons with nsfw label", () => {
   const props = {
     history: createBrowserHistory(),
     global: globalInstance,
@@ -37,8 +37,8 @@ it('(2) Should show edit buttons with nsfw label', () => {
       name: communityInstance1.name
     },
     users: [],
-    signingKey: '',
-    activeUser: activeUserMaker('hive-148441'),
+    signingKey: "",
+    activeUser: activeUserMaker("hive-148441"),
     setSigningKey: () => {},
     addAccount: () => {},
     addCommunity: () => {}
@@ -52,7 +52,7 @@ it('(2) Should show edit buttons with nsfw label', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(3) usePrivate = false', () => {
+it("(3) usePrivate = false", () => {
   const props = {
     history: createBrowserHistory(),
     global: {
@@ -64,8 +64,8 @@ it('(3) usePrivate = false', () => {
       name: communityInstance1.name
     },
     users: [],
-    signingKey: '',
-    activeUser: activeUserMaker('hive-148441'),
+    signingKey: "",
+    activeUser: activeUserMaker("hive-148441"),
     setSigningKey: () => {},
     addAccount: () => {},
     addCommunity: () => {}

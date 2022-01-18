@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 
-import { Account } from '../../store/accounts/types';
-import { User } from '../../store/users/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { UI, ToggleType } from '../../store/ui/types';
+import { Account } from "../../store/accounts/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { UI, ToggleType } from "../../store/ui/types";
 
-import BaseComponent from '../base';
-import LoginRequired from '../login-required';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import LoginRequired from "../login-required";
+import { error } from "../feedback";
 
-import { getRelationshipBetweenAccounts } from '../../api/bridge';
-import { follow, unFollow, ignore, formatError } from '../../api/operations';
+import { getRelationshipBetweenAccounts } from "../../api/bridge";
+import { follow, unFollow, ignore, formatError } from "../../api/operations";
 
-import { _t } from '../../i18n';
-import * as ls from '../../util/local-storage';
+import { _t } from "../../i18n";
+import * as ls from "../../util/local-storage";
 
 interface Props {
   users: User[];
@@ -104,11 +104,11 @@ export default class FollowControls extends BaseComponent<Props, State> {
     this.stateSet({ inProgress: true });
     try {
       await unFollow(activeUser?.username!, targetUsername);
-      let muted_list = ls.get('muted-list');
+      let muted_list = ls.get("muted-list");
       if (muted_list) {
         muted_list = muted_list.filter((item: string) => item !== targetUsername);
       }
-      ls.set('muted-list', muted_list);
+      ls.set("muted-list", muted_list);
       this.stateSet({ following: false, muted: false });
     } catch (err) {
       error(formatError(err));
@@ -124,10 +124,10 @@ export default class FollowControls extends BaseComponent<Props, State> {
     try {
       await ignore(activeUser?.username!, targetUsername);
       let muted_list = [targetUsername];
-      if (ls.get('muted-list')) {
-        muted_list = ls.get('muted-list').concat(muted_list);
+      if (ls.get("muted-list")) {
+        muted_list = ls.get("muted-list").concat(muted_list);
       }
-      ls.set('muted-list', muted_list);
+      ls.set("muted-list", muted_list);
       this.stateSet({ following: false, muted: true });
     } catch (err) {
       error(formatError(err));
@@ -138,17 +138,17 @@ export default class FollowControls extends BaseComponent<Props, State> {
 
   render() {
     const { following, muted, fetching, inProgress } = this.state;
-    const followMsg = _t('follow-controls.follow');
-    const unFollowMsg = _t('follow-controls.unFollow');
-    const muteMsg = _t('follow-controls.mute');
-    const unMuteMsg = _t('follow-controls.unMute');
+    const followMsg = _t("follow-controls.follow");
+    const unFollowMsg = _t("follow-controls.unFollow");
+    const muteMsg = _t("follow-controls.mute");
+    const unMuteMsg = _t("follow-controls.unMute");
 
     const btnFollow = LoginRequired({
       ...this.props,
       children: (
         <Button
           variant="primary"
-          style={{ marginRight: '5px' }}
+          style={{ marginRight: "5px" }}
           disabled={inProgress}
           onClick={this.follow}
         >
@@ -162,7 +162,7 @@ export default class FollowControls extends BaseComponent<Props, State> {
       children: (
         <Button
           variant="primary"
-          style={{ marginRight: '5px' }}
+          style={{ marginRight: "5px" }}
           disabled={inProgress}
           onClick={this.unFollow}
         >
@@ -192,7 +192,7 @@ export default class FollowControls extends BaseComponent<Props, State> {
     if (fetching) {
       return (
         <>
-          <Button variant="primary" disabled={true} style={{ marginRight: '5px' }}>
+          <Button variant="primary" disabled={true} style={{ marginRight: "5px" }}>
             {followMsg}
           </Button>
           <Button disabled={true}>{muteMsg}</Button>

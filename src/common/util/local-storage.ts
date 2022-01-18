@@ -1,7 +1,7 @@
-const PREFIX = 'ecency';
+const PREFIX = "ecency";
 
 export const get = (k: string, def: any = null): any => {
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     return null;
   }
 
@@ -11,7 +11,7 @@ export const get = (k: string, def: any = null): any => {
 };
 
 export const set = (k: string, v: any): void => {
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     return;
   }
 
@@ -20,7 +20,7 @@ export const set = (k: string, v: any): void => {
 };
 
 export const remove = (k: string): void => {
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     return;
   }
 
@@ -29,7 +29,7 @@ export const remove = (k: string): void => {
 };
 
 export const getByPrefix = (prefix: string): any[] => {
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     return [];
   }
 

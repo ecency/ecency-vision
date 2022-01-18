@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 
-import { Modal } from 'react-bootstrap';
+import { Modal } from "react-bootstrap";
 
-import BaseComponent from '../base';
+import BaseComponent from "../base";
 
-import { Entry } from '../../store/entries/types';
+import { Entry } from "../../store/entries/types";
 
-import { redditSvg, twitterSvg, facebookSvg } from '../../img/svg';
+import { redditSvg, twitterSvg, facebookSvg } from "../../img/svg";
 
 import {
   makeShareUrlFacebook,
   makeShareUrlReddit,
   makeShareUrlTwitter
-} from '../../helper/url-share';
+} from "../../helper/url-share";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 interface Props {
   entry: Entry;
@@ -23,17 +23,17 @@ interface Props {
 
 export const shareReddit = (entry: Entry) => {
   const u = makeShareUrlReddit(entry.category, entry.author, entry.permlink, entry.title);
-  window.open(u, '_blank');
+  window.open(u, "_blank");
 };
 
 export const shareTwitter = (entry: Entry) => {
   const u = makeShareUrlTwitter(entry.category, entry.author, entry.permlink, entry.title);
-  window.open(u, '_blank');
+  window.open(u, "_blank");
 };
 
 export const shareFacebook = (entry: Entry) => {
   const u = makeShareUrlFacebook(entry.category, entry.author, entry.permlink);
-  window.open(u, '_blank');
+  window.open(u, "_blank");
 };
 
 export default class EntryShare extends BaseComponent<Props> {
@@ -60,7 +60,7 @@ export default class EntryShare extends BaseComponent<Props> {
         className="entry-share-dialog"
       >
         <Modal.Header closeButton={true}>
-          <Modal.Title>{_t('entry-share.title')}</Modal.Title>
+          <Modal.Title>{_t("entry-share.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="share-buttons">

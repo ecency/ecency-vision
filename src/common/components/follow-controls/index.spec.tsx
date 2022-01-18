@@ -1,13 +1,13 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import React from "react";
+import renderer from "react-test-renderer";
 
-import { UiInstance, activeUserMaker, allOver } from '../../helper/test-helper';
+import { UiInstance, activeUserMaker, allOver } from "../../helper/test-helper";
 
-import FollowControls from './index';
+import FollowControls from "./index";
 
 let MOCK_MODE: number = 0;
 
-jest.mock('../../api/bridge', () => ({
+jest.mock("../../api/bridge", () => ({
   getRelationshipBetweenAccounts: () =>
     new Promise((resolve) => {
       if (MOCK_MODE === 1) {
@@ -42,7 +42,7 @@ jest.mock('../../api/bridge', () => ({
 const defProps = {
   users: [],
   activeUser: null,
-  targetUsername: 'bar',
+  targetUsername: "bar",
   ui: UiInstance,
   setActiveUser: () => {},
   updateActiveUser: () => {},
@@ -50,18 +50,18 @@ const defProps = {
   toggleUIProp: () => {}
 };
 
-describe('FollowControls', () => {
-  it('(1) Default render. No active user.', () => {
+describe("FollowControls", () => {
+  it("(1) Default render. No active user.", () => {
     const props = { ...defProps };
 
     const component = renderer.create(<FollowControls {...props} />);
     expect(component.toJSON()).toMatchSnapshot();
   });
 
-  it('(2) Default Render with active account.', async () => {
+  it("(2) Default Render with active account.", async () => {
     MOCK_MODE = 1;
 
-    const activeUser = activeUserMaker('fooo1');
+    const activeUser = activeUserMaker("fooo1");
 
     const props = {
       ...defProps,
@@ -73,10 +73,10 @@ describe('FollowControls', () => {
     expect(component.toJSON()).toMatchSnapshot();
   });
 
-  it('(2) Following.', async () => {
+  it("(2) Following.", async () => {
     MOCK_MODE = 2;
 
-    const activeUser = activeUserMaker('fooo1');
+    const activeUser = activeUserMaker("fooo1");
 
     const props = {
       ...defProps,
@@ -88,10 +88,10 @@ describe('FollowControls', () => {
     expect(component.toJSON()).toMatchSnapshot();
   });
 
-  it('(2) Muted.', async () => {
+  it("(2) Muted.", async () => {
     MOCK_MODE = 3;
 
-    const activeUser = activeUserMaker('fooo1');
+    const activeUser = activeUserMaker("fooo1");
 
     const props = {
       ...defProps,

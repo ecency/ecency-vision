@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
+import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 
-import { cryptoUtils, PrivateKey } from '@hiveio/dhive';
+import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
 
-import { ActiveUser } from '../../store/active-user/types';
-import { Global } from '../../store/global/types';
+import { ActiveUser } from "../../store/active-user/types";
+import { Global } from "../../store/global/types";
 
-import OrDivider from '../or-divider';
-import { error } from '../feedback';
+import OrDivider from "../or-divider";
+import { error } from "../feedback";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { keySvg } from '../../img/svg';
+import { keySvg } from "../../img/svg";
 
 interface Props {
   global: Global;
@@ -50,12 +50,12 @@ export class KeyOrHot extends Component<Props, State> {
       try {
         pKey = PrivateKey.fromString(key);
       } catch (e) {
-        error('Invalid active private key!');
+        error("Invalid active private key!");
         return;
       }
     } else {
       // master key
-      pKey = PrivateKey.fromLogin(activeUser.username, key, 'active');
+      pKey = PrivateKey.fromLogin(activeUser.username, key, "active");
     }
 
     const { onKey, setSigningKey } = this.props;
@@ -83,11 +83,11 @@ export class KeyOrHot extends Component<Props, State> {
     const { inProgress, global } = this.props;
     const { key } = this.state;
     const hsLogo = global.isElectron
-      ? './img/hive-signer.svg'
-      : require('../../img/hive-signer.svg');
+      ? "./img/hive-signer.svg"
+      : require("../../img/hive-signer.svg");
     const keyChainLogo = global.isElectron
-      ? './img/keychain.png'
-      : require('../../img/keychain.png');
+      ? "./img/keychain.png"
+      : require("../../img/keychain.png");
 
     return (
       <>
@@ -106,12 +106,12 @@ export class KeyOrHot extends Component<Props, State> {
                 type="password"
                 autoFocus={true}
                 autoComplete="off"
-                placeholder={_t('key-or-hot.key-placeholder')}
+                placeholder={_t("key-or-hot.key-placeholder")}
                 onChange={this.keyChanged}
               />
               <InputGroup.Append>
                 <Button disabled={inProgress} onClick={this.keyEntered}>
-                  {_t('key-or-hot.sign')}
+                  {_t("key-or-hot.sign")}
                 </Button>
               </InputGroup.Append>
             </InputGroup>
@@ -119,16 +119,16 @@ export class KeyOrHot extends Component<Props, State> {
           <OrDivider />
           <div className="hs-sign">
             <Button variant="outline-primary" onClick={this.hotClicked}>
-              <img src={hsLogo} className="hs-logo" alt="hivesigner" />{' '}
-              {_t('key-or-hot.with-hivesigner')}
+              <img src={hsLogo} className="hs-logo" alt="hivesigner" />{" "}
+              {_t("key-or-hot.with-hivesigner")}
             </Button>
           </div>
 
           {global.hasKeyChain && (
             <div className="kc-sign">
               <Button variant="outline-primary" onClick={this.kcClicked}>
-                <img src={keyChainLogo} className="kc-logo" alt="keychain" />{' '}
-                {_t('key-or-hot.with-keychain')}
+                <img src={keyChainLogo} className="kc-logo" alt="keychain" />{" "}
+                {_t("key-or-hot.with-keychain")}
               </Button>
             </div>
           )}

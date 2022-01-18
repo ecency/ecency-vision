@@ -8,25 +8,25 @@
  * When running `yarn build` or `yarn build-main`, this file is compiled to
  * `./app/main.prod.js` using webpack. This gives us some performance wins.
  */
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-import path from 'path';
-import { app, BrowserWindow, ipcMain, shell } from 'electron';
-import { autoUpdater } from 'electron-updater';
-import MenuBuilder from './menu';
-import { HandlerDetails } from 'electron/main';
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+import path from "path";
+import { app, BrowserWindow, ipcMain, shell } from "electron";
+import { autoUpdater } from "electron-updater";
+import MenuBuilder from "./menu";
+import { HandlerDetails } from "electron/main";
 
-const osPlatform = require('os').platform();
+const osPlatform = require("os").platform();
 
 let mainWindow: BrowserWindow | null = null;
 
-if (process.env.NODE_ENV === 'production') {
-  const sourceMapSupport = require('source-map-support');
+if (process.env.NODE_ENV === "production") {
+  const sourceMapSupport = require("source-map-support");
   sourceMapSupport.install();
 }
 
-if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
-  require('electron-debug')();
+if (process.env.NODE_ENV === "development" || process.env.DEBUG_PROD === "true") {
+  require("electron-debug")();
 }
 
 /**
@@ -35,12 +35,12 @@ if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true')
 
 let deepUrl: any;
 
-app.setAsDefaultProtocolClient('hive');
-app.setAsDefaultProtocolClient('ecency');
-app.setAsDefaultProtocolClient('esteem');
+app.setAsDefaultProtocolClient("hive");
+app.setAsDefaultProtocolClient("ecency");
+app.setAsDefaultProtocolClient("esteem");
 
 const sendProtocolUrl2Window = (u: any): void => {
-  if (typeof u !== 'string') {
+  if (typeof u !== "string") {
     return;
   }
 
@@ -60,7 +60,7 @@ if (!sLock) {
   app.quit();
 }
 
-app.on('open-url', (event, url) => {
+app.on("open-url", (event, url) => {
   event.preventDefault();
 
   if (!mainWindow) {
@@ -77,9 +77,9 @@ app.on('open-url', (event, url) => {
 });
 
 const installExtensions = async () => {
-  const installer = require('electron-devtools-installer');
+  const installer = require("electron-devtools-installer");
   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-  const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
+  const extensions = ["REACT_DEVELOPER_TOOLS", "REDUX_DEVTOOLS"];
 
   return Promise.all(
     extensions.map((name) => installer.default(installer[name], forceDownload))
@@ -87,13 +87,13 @@ const installExtensions = async () => {
 };
 
 const createWindow = async () => {
-  if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
+  if (process.env.NODE_ENV === "development" || process.env.DEBUG_PROD === "true") {
     await installExtensions();
   }
 
   const RESOURCES_PATH = app.isPackaged
-    ? path.join(process.resourcesPath, 'resources')
-    : path.join(__dirname, '../resources');
+    ? path.join(process.resourcesPath, "resources")
+    : path.join(__dirname, "../resources");
 
   const getAssetPath = (...paths: string[]): string => {
     return path.join(RESOURCES_PATH, ...paths);
@@ -105,7 +105,7 @@ const createWindow = async () => {
     height: 800,
     minWidth: 992,
     minHeight: 600,
-    icon: getAssetPath('icon.png'),
+    icon: getAssetPath("icon.png"),
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
@@ -118,7 +118,7 @@ const createWindow = async () => {
 
   // @TODO: Use 'ready-to-show' event
   // https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
-  mainWindow.webContents.on('did-finish-load', () => {
+  mainWindow.webContents.on("did-finish-load", () => {
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
@@ -133,7 +133,7 @@ const createWindow = async () => {
     mainWindow.webContents.setVisualZoomLevelLimits(1, 3);
 
     // Auto updater checks
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === "production") {
       autoUpdater.autoDownload = false;
 
       autoUpdater.checkForUpdates();
@@ -145,7 +145,7 @@ const createWindow = async () => {
     }
 
     // Deeplink protocol handler for win32 and linux
-    if (process.platform === 'win32' || process.platform === 'linux') {
+    if (process.platform === "win32" || process.platform === "linux") {
       deepUrl = process.argv.slice(1);
     }
 
@@ -158,10 +158,10 @@ const createWindow = async () => {
 
   mainWindow.webContents.setWindowOpenHandler(({ url }: HandlerDetails) => {
     shell.openExternal(url);
-    return { action: 'allow' };
+    return { action: "allow" };
   });
 
-  mainWindow.on('closed', () => {
+  mainWindow.on("closed", () => {
     mainWindow = null;
   });
 
@@ -173,18 +173,18 @@ const createWindow = async () => {
  * Add event listeners...
  */
 
-app.on('window-all-closed', () => {
+app.on("window-all-closed", () => {
   app.quit();
 });
 
-if (process.env.E2E_BUILD === 'true') {
+if (process.env.E2E_BUILD === "true") {
   // eslint-disable-next-line promise/catch-or-return
   app.whenReady().then(createWindow);
 } else {
-  app.on('ready', createWindow);
+  app.on("ready", createWindow);
 }
 
-app.on('activate', () => {
+app.on("activate", () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) createWindow();
@@ -194,31 +194,31 @@ app.on('activate', () => {
  * Event handlers for auto updater
  */
 
-autoUpdater.on('update-available', (info) => {
-  mainWindow!.webContents.send('update-available', info.releaseName);
+autoUpdater.on("update-available", (info) => {
+  mainWindow!.webContents.send("update-available", info.releaseName);
 });
 
-autoUpdater.on('download-progress', (progressObj) => {
-  mainWindow!.webContents.send('download-progress', progressObj.percent);
+autoUpdater.on("download-progress", (progressObj) => {
+  mainWindow!.webContents.send("download-progress", progressObj.percent);
 });
 
-autoUpdater.on('update-downloaded', () => {
-  mainWindow!.webContents.send('update-downloaded');
+autoUpdater.on("update-downloaded", () => {
+  mainWindow!.webContents.send("update-downloaded");
 });
 
-ipcMain.on('download-update', (event: any, version: any) => {
+ipcMain.on("download-update", (event: any, version: any) => {
   // Windows
-  if (osPlatform === 'win32') {
+  if (osPlatform === "win32") {
     const u = `https://github.com/ecency/ecency-vision/releases/download/${version}/Ecency-Setup-${version}.exe`;
     shell.openExternal(u);
     return;
   }
 
   autoUpdater.downloadUpdate();
-  mainWindow!.webContents.send('download-started');
+  mainWindow!.webContents.send("download-started");
 });
 
-ipcMain.on('update-restart', () => {
+ipcMain.on("update-restart", () => {
   autoUpdater.quitAndInstall();
-  console.log('Restart');
+  console.log("Restart");
 });

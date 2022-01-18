@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
 interface Props {
   title?: string;

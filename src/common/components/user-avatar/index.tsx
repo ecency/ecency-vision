@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Global } from '../../store/global/types';
+import { Global } from "../../store/global/types";
 
-import defaults from '../../constants/defaults.json';
-import { proxifyImageSrc } from '@ecency/render-helper';
+import defaults from "../../constants/defaults.json";
+import { proxifyImageSrc } from "@ecency/render-helper";
 
 interface Props {
   global: Global;
@@ -16,11 +16,11 @@ export class UserAvatar extends Component<Props> {
   render() {
     const { username, size, global, src } = this.props;
     const imgSize =
-      size === 'xLarge' ? 'large' : size === 'normal' || size === 'small' ? 'small' : 'medium';
+      size === "xLarge" ? "large" : size === "normal" || size === "small" ? "small" : "medium";
     const cls = `user-avatar ${size}`;
     const imageSrc =
-      proxifyImageSrc(src, 0, 0, global?.canUseWebp ? 'webp' : 'match') ||
-      `${defaults.imageServer}${global?.canUseWebp ? '/webp' : ''}/u/${username}/avatar/${imgSize}`;
+      proxifyImageSrc(src, 0, 0, global?.canUseWebp ? "webp" : "match") ||
+      `${defaults.imageServer}${global?.canUseWebp ? "/webp" : ""}/u/${username}/avatar/${imgSize}`;
 
     return <span className={cls} style={{ backgroundImage: `url(${imageSrc})` }} />;
   }

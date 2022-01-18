@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import renderer from 'react-test-renderer';
-import { createBrowserHistory, createLocation } from 'history';
+import renderer from "react-test-renderer";
+import { createBrowserHistory, createLocation } from "history";
 
-import { globalInstance, UiInstance, activeUserMaker, allOver } from '../../helper/test-helper';
+import { globalInstance, UiInstance, activeUserMaker, allOver } from "../../helper/test-helper";
 
-import { ProposalVoteBtn } from './index';
+import { ProposalVoteBtn } from "./index";
 
 let MOCK_MODE: number = 1;
 
-jest.mock('../../api/hive', () => ({
-  getProposalVotes: (proposalId: number, voter: string = '', limit: number = 300) =>
+jest.mock("../../api/hive", () => ({
+  getProposalVotes: (proposalId: number, voter: string = "", limit: number = 300) =>
     new Promise((resolve) => {
       if (MOCK_MODE === 1) {
         resolve([]);
@@ -20,7 +20,7 @@ jest.mock('../../api/hive', () => ({
       if (MOCK_MODE === 2) {
         resolve([
           {
-            voter: 'foo'
+            voter: "foo"
           }
         ]);
         return;
@@ -33,9 +33,9 @@ const defProps = {
   location: createLocation({}),
   global: globalInstance,
   users: [],
-  activeUser: activeUserMaker('foo'),
+  activeUser: activeUserMaker("foo"),
   ui: UiInstance,
-  signingKey: '',
+  signingKey: "",
   proposal: 12,
   setActiveUser: () => {},
   updateActiveUser: () => {},
@@ -44,7 +44,7 @@ const defProps = {
   setSigningKey: () => {}
 };
 
-it('(1) Default render.', async () => {
+it("(1) Default render.", async () => {
   const props = { ...defProps };
 
   const component = renderer.create(<ProposalVoteBtn {...props} />);
@@ -52,7 +52,7 @@ it('(1) Default render.', async () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Voted.', async () => {
+it("(2) Voted.", async () => {
   MOCK_MODE = 2;
 
   const props = { ...defProps };

@@ -1,9 +1,9 @@
-import { pathToRegexp } from 'path-to-regexp';
-import defaults from '../constants/defaults.json';
+import { pathToRegexp } from "path-to-regexp";
+import defaults from "../constants/defaults.json";
 
-import routes from '../routes';
+import routes from "../routes";
 
-import { ProfileFilter } from '../store/global/types';
+import { ProfileFilter } from "../store/global/types";
 
 type FilterTag = {
   filter: string;
@@ -14,7 +14,7 @@ export default (location: string): FilterTag | null => {
   if (location === routes.HOME) {
     return {
       filter: defaults.filter,
-      tag: ''
+      tag: ""
     };
   }
 
@@ -27,7 +27,7 @@ export default (location: string): FilterTag | null => {
   if (params && params[1]) {
     return {
       filter: params[1],
-      tag: ''
+      tag: ""
     };
   }
 

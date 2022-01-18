@@ -1,4 +1,4 @@
-import { LoginAction, LogoutAction } from '../active-user/types';
+import { LoginAction, LogoutAction } from "../active-user/types";
 
 // Web socket notification types
 
@@ -9,7 +9,7 @@ interface BaseWsNotification {
 }
 
 export interface WsVoteNotification extends BaseWsNotification {
-  type: 'vote';
+  type: "vote";
   extra: {
     permlink: string;
     weight: number;
@@ -19,7 +19,7 @@ export interface WsVoteNotification extends BaseWsNotification {
 }
 
 export interface WsMentionNotification extends BaseWsNotification {
-  type: 'mention';
+  type: "mention";
   extra: {
     permlink: string;
     is_post: 0 | 1;
@@ -29,14 +29,14 @@ export interface WsMentionNotification extends BaseWsNotification {
 }
 
 export interface WsFollowNotification extends BaseWsNotification {
-  type: 'follow';
+  type: "follow";
   extra: {
     what: string[];
   };
 }
 
 export interface WsReplyNotification extends BaseWsNotification {
-  type: 'reply';
+  type: "reply";
   extra: {
     title: string;
     body: string;
@@ -50,7 +50,7 @@ export interface WsReplyNotification extends BaseWsNotification {
 }
 
 export interface WsReblogNotification extends BaseWsNotification {
-  type: 'reblog';
+  type: "reblog";
   extra: {
     permlink: string;
     title: string | null;
@@ -59,7 +59,7 @@ export interface WsReblogNotification extends BaseWsNotification {
 }
 
 export interface WsTransferNotification extends BaseWsNotification {
-  type: 'transfer';
+  type: "transfer";
   extra: {
     amount: string;
     memo: string;
@@ -67,15 +67,15 @@ export interface WsTransferNotification extends BaseWsNotification {
 }
 
 export interface WsSpinNotification extends BaseWsNotification {
-  type: 'spin';
+  type: "spin";
 }
 
 export interface WsInactiveNotification extends BaseWsNotification {
-  type: 'inactive';
+  type: "inactive";
 }
 
 export interface WsReferralNotification extends BaseWsNotification {
-  type: 'referral';
+  type: "referral";
 }
 
 export type WsNotification =
@@ -102,7 +102,7 @@ interface BaseAPiNotification {
 }
 
 export interface ApiVoteNotification extends BaseAPiNotification {
-  type: 'vote' | 'unvote';
+  type: "vote" | "unvote";
   voter: string;
   weight: number;
   author: string;
@@ -112,7 +112,7 @@ export interface ApiVoteNotification extends BaseAPiNotification {
 }
 
 export interface ApiMentionNotification extends BaseAPiNotification {
-  type: 'mention';
+  type: "mention";
   author: string;
   account: string;
   permlink: string;
@@ -122,14 +122,14 @@ export interface ApiMentionNotification extends BaseAPiNotification {
 }
 
 export interface ApiFollowNotification extends BaseAPiNotification {
-  type: 'follow' | 'unfollow' | 'ignore';
+  type: "follow" | "unfollow" | "ignore";
   follower: string;
   following: string;
   blog: boolean;
 }
 
 export interface ApiReblogNotification extends BaseAPiNotification {
-  type: 'reblog';
+  type: "reblog";
   account: string;
   author: string;
   permlink: string;
@@ -138,7 +138,7 @@ export interface ApiReblogNotification extends BaseAPiNotification {
 }
 
 export interface ApiReplyNotification extends BaseAPiNotification {
-  type: 'reply';
+  type: "reply";
   author: string;
   permlink: string;
   title: string;
@@ -152,22 +152,22 @@ export interface ApiReplyNotification extends BaseAPiNotification {
 }
 
 export interface ApiTransferNotification extends BaseAPiNotification {
-  type: 'transfer';
+  type: "transfer";
   to: string;
   amount: string;
   memo: string | null;
 }
 
 export interface ApiSpinNotification extends BaseAPiNotification {
-  type: 'spin';
+  type: "spin";
 }
 
 export interface ApiInactiveNotification extends BaseAPiNotification {
-  type: 'inactive';
+  type: "inactive";
 }
 
 export interface ApiReferralNotification extends BaseAPiNotification {
-  type: 'referral';
+  type: "referral";
 }
 
 export type ApiNotification =
@@ -182,17 +182,17 @@ export type ApiNotification =
   | ApiReferralNotification;
 
 export enum NotificationFilter {
-  VOTES = 'rvotes',
-  MENTIONS = 'mentions',
-  FOLLOWS = 'follows',
-  REPLIES = 'replies',
-  REBLOGS = 'reblogs',
-  TRANSFERS = 'transfers'
+  VOTES = "rvotes",
+  MENTIONS = "mentions",
+  FOLLOWS = "follows",
+  REPLIES = "replies",
+  REBLOGS = "reblogs",
+  TRANSFERS = "transfers"
 }
 
 export enum NFetchMode {
-  REPLACE = 'REPLACE',
-  APPEND = 'APPEND'
+  REPLACE = "REPLACE",
+  APPEND = "APPEND"
 }
 
 export interface Notifications {
@@ -205,11 +205,11 @@ export interface Notifications {
 }
 
 export enum ActionTypes {
-  FETCH = '@notifications/FETCH',
-  FETCHED = '@notifications/FETCHED',
-  SET_FILTER = '@notifications/SET_FILTER',
-  SET_UNREAD_COUNT = '@notifications/SET_UNREAD_COUNT',
-  MARK = '@notifications/MARK'
+  FETCH = "@notifications/FETCH",
+  FETCHED = "@notifications/FETCHED",
+  SET_FILTER = "@notifications/SET_FILTER",
+  SET_UNREAD_COUNT = "@notifications/SET_UNREAD_COUNT",
+  MARK = "@notifications/MARK"
 }
 
 export interface FetchAction {

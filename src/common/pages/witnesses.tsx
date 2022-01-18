@@ -1,37 +1,37 @@
-import React from 'react';
+import React from "react";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { pathToRegexp } from 'path-to-regexp';
+import { pathToRegexp } from "path-to-regexp";
 
-import BaseComponent from '../components/base';
-import Meta from '../components/meta';
-import Feedback from '../components/feedback';
-import ScrollToTop from '../components/scroll-to-top';
-import Theme from '../components/theme';
-import NavBar from '../components/navbar';
-import NavBarElectron from '../../desktop/app/components/navbar';
-import LinearProgress from '../components/linear-progress';
-import ProfileLink from '../components/profile-link';
-import UserAvatar from '../components/user-avatar';
-import EntryLink, { PartialEntry } from '../components/entry-link';
-import WitnessVoteBtn from '../components/witness-vote-btn';
-import WitnessesExtra from '../components/witnesses-extra';
-import WitnessesProxy from '../components/witnesses-proxy';
-import WitnessesActiveProxy from '../components/witnesses-active-proxy';
+import BaseComponent from "../components/base";
+import Meta from "../components/meta";
+import Feedback from "../components/feedback";
+import ScrollToTop from "../components/scroll-to-top";
+import Theme from "../components/theme";
+import NavBar from "../components/navbar";
+import NavBarElectron from "../../desktop/app/components/navbar";
+import LinearProgress from "../components/linear-progress";
+import ProfileLink from "../components/profile-link";
+import UserAvatar from "../components/user-avatar";
+import EntryLink, { PartialEntry } from "../components/entry-link";
+import WitnessVoteBtn from "../components/witness-vote-btn";
+import WitnessesExtra from "../components/witnesses-extra";
+import WitnessesProxy from "../components/witnesses-proxy";
+import WitnessesActiveProxy from "../components/witnesses-active-proxy";
 
-import routes from '../../common/routes';
+import routes from "../../common/routes";
 
-import { getAccount, getAccounts, getWitnessesByVote, Witness } from '../api/hive';
+import { getAccount, getAccounts, getWitnessesByVote, Witness } from "../api/hive";
 
-import { _t } from '../i18n';
-import { Tsx } from '../i18n/helper';
+import { _t } from "../i18n";
+import { Tsx } from "../i18n/helper";
 
-import { linkSvg, openInNewSvg } from '../img/svg';
+import { linkSvg, openInNewSvg } from "../img/svg";
 
-import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from './common';
-import moment from 'moment';
-import { FullAccount } from '../store/accounts/types';
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
+import moment from "moment";
+import { FullAccount } from "../store/accounts/types";
 
 interface WitnessTransformed {
   rank: number;
@@ -67,13 +67,13 @@ const transform = (list: Witness[]): WitnessTransformed[] => {
     const { last_hbd_exchange_update: priceAge } = x;
 
     let parsedUrl;
-    const oUrl = new URL(url, 'https://ecency.com');
+    const oUrl = new URL(url, "https://ecency.com");
     const ex = pathToRegexp(routes.ENTRY).exec(oUrl.pathname);
 
     if (ex) {
       parsedUrl = {
         category: ex[1],
-        author: ex[2].replace('@', ''),
+        author: ex[2].replace("@", ""),
         permlink: ex[3]
       };
     }
@@ -162,7 +162,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         (item: WitnessTransformed, index: number) => {
           try {
             const parsedArray = JSON.parse(
-              accounts[index].posting_json_metadata ? accounts[index].posting_json_metadata : ''
+              accounts[index].posting_json_metadata ? accounts[index].posting_json_metadata : ""
             );
             return {
               ...item,
@@ -177,15 +177,15 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
       );
       this.stateSet({ witnesses: byWitnessState, loading: false });
     } catch (error) {
-      console.log('Something went wrong: ', error);
+      console.log("Something went wrong: ", error);
     }
   };
 
   render() {
     //  Meta config
     const metaProps = {
-      title: _t('witnesses.page-title'),
-      description: _t('witnesses.page-description')
+      title: _t("witnesses.page-title"),
+      description: _t("witnesses.page-description")
     };
 
     const { global, activeUser } = this.props;
@@ -196,13 +196,13 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
       <table className="table">
         <thead>
           <tr>
-            <th className="col-rank">{_t('witnesses.list-rank')}</th>
-            <th>{_t('witnesses.list-witness')}</th>
-            <th className="col-miss">{_t('witnesses.list-miss')}</th>
-            <th className="col-url">{_t('witnesses.list-url')}</th>
-            <th className="col-fee">{_t('witnesses.list-fee')}</th>
-            <th className="col-feed">{_t('witnesses.list-feed')}</th>
-            <th className="col-version">{_t('witnesses.list-version')}</th>
+            <th className="col-rank">{_t("witnesses.list-rank")}</th>
+            <th>{_t("witnesses.list-witness")}</th>
+            <th className="col-miss">{_t("witnesses.list-miss")}</th>
+            <th className="col-url">{_t("witnesses.list-url")}</th>
+            <th className="col-fee">{_t("witnesses.list-fee")}</th>
+            <th className="col-feed">{_t("witnesses.list-feed")}</th>
+            <th className="col-version">{_t("witnesses.list-version")}</th>
           </tr>
         </thead>
         <tbody>
@@ -232,20 +232,20 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                     username: row.name,
                     children: (
                       <span className="witness-card notranslate">
-                        {' '}
+                        {" "}
                         {UserAvatar({
                           ...this.props,
                           username: row.name,
-                          size: 'medium'
+                          size: "medium"
                         })}
-                        <div className={'witness-ctn'}>
-                          {row.signingKey === 'STM1111111111111111111111111111111114T1Anm' ? (
+                        <div className={"witness-ctn"}>
+                          {row.signingKey === "STM1111111111111111111111111111111114T1Anm" ? (
                             <s>{row.name}</s>
                           ) : (
                             row.name
                           )}
                           {row.witnessBy && (
-                            <div className={'notranslate'}>
+                            <div className={"notranslate"}>
                               <small>by {row.witnessBy}</small>
                             </div>
                           )}
@@ -282,7 +282,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                 <td>
                   <div className="witness-feed">
                     <span className="inner">
-                      ${row.feed.replace(' HBD', '')} | {moment(row.priceAge).fromNow(true)}
+                      ${row.feed.replace(" HBD", "")} | {moment(row.priceAge).fromNow(true)}
                     </span>
                   </div>
                 </td>
@@ -300,7 +300,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
 
     const header = (
       <div className="page-header mt-5">
-        <div className="header-title">{_t('witnesses.page-title')}</div>
+        <div className="header-title">{_t("witnesses.page-title")}</div>
         <Tsx k="witnesses.page-description-long">
           <div className="header-description" />
         </Tsx>
@@ -311,7 +311,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         )}
       </div>
     );
-    let containerClasses = global.isElectron ? ' mt-0 pt-6' : '';
+    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
     return (
       <>
@@ -326,7 +326,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
               reloading: loading
             })
           : NavBar({ ...this.props })}
-        <div className={'app-content witnesses-page' + containerClasses}>
+        <div className={"app-content witnesses-page" + containerClasses}>
           {(() => {
             if (loading) {
               return (

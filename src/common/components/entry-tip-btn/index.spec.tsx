@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import EntryTipBtn, { TippingDialog } from './index';
+import EntryTipBtn, { TippingDialog } from "./index";
 
 import {
   globalInstance,
@@ -8,30 +8,30 @@ import {
   UiInstance,
   entryInstance1,
   fullAccountInstance
-} from '../../helper/test-helper';
+} from "../../helper/test-helper";
 
-import TestRenderer from 'react-test-renderer';
+import TestRenderer from "react-test-renderer";
 
 const defProps = {
   global: globalInstance,
   dynamicProps: dynamicPropsIntance1,
   users: [],
   account: {
-    name: 'user1'
+    name: "user1"
   },
   ui: UiInstance,
   activeUser: {
-    username: 'foo',
+    username: "foo",
     data: {
       ...fullAccountInstance
     },
     points: {
-      points: '200.000',
-      uPoints: '0.000'
+      points: "200.000",
+      uPoints: "0.000"
     }
   },
   entry: entryInstance1,
-  signingKey: '',
+  signingKey: "",
   addAccount: () => {},
   setActiveUser: () => {},
   updateActiveUser: () => {},
@@ -42,13 +42,13 @@ const defProps = {
   updateWalletValues: () => {}
 };
 
-it('(1) Default render', async () => {
+it("(1) Default render", async () => {
   const renderer = TestRenderer.create(<EntryTipBtn {...defProps} />);
 
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Dialog', async () => {
+it("(2) Dialog", async () => {
   const props = {
     ...defProps,
     onHide: () => {}

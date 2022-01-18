@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Popover, OverlayTrigger, Button } from 'react-bootstrap';
+import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 interface Props {
   titleText?: string;
   okText?: string;
-  okVariant?: 'primary' | 'danger';
+  okVariant?: "primary" | "danger";
   cancelText?: string;
   children: JSX.Element;
   onConfirm?: () => void;
@@ -71,19 +71,19 @@ export default class PopoverConfirm extends Component<Props> {
           e.stopPropagation();
         }}
       >
-        <Popover.Title>{titleText || _t('confirm.title')}</Popover.Title>
+        <Popover.Title>{titleText || _t("confirm.title")}</Popover.Title>
         <Popover.Content>
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ textAlign: "center" }}>
             <Button
               size="sm"
-              variant={okVariant || 'primary'}
-              style={{ marginRight: '10px' }}
+              variant={okVariant || "primary"}
+              style={{ marginRight: "10px" }}
               onClick={this.confirm}
             >
-              {okText || _t('confirm.ok')}
+              {okText || _t("confirm.ok")}
             </Button>
             <Button size="sm" variant="secondary" onClick={this.cancel}>
-              {cancelText || _t('confirm.cancel')}
+              {cancelText || _t("confirm.cancel")}
             </Button>
           </div>
         </Popover.Content>
@@ -100,7 +100,7 @@ export default class PopoverConfirm extends Component<Props> {
           defaultShow={true}
           trigger={trigger || []}
           overlay={popover}
-          placement={placement || 'auto'}
+          placement={placement || "auto"}
           rootClose={true}
           container={containerRef || null}
         >

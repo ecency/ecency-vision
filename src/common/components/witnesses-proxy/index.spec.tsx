@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import { WitnessesProxy } from './index';
+import { WitnessesProxy } from "./index";
 
-import renderer from 'react-test-renderer';
+import renderer from "react-test-renderer";
 
-import { globalInstance, UiInstance } from '../../helper/test-helper';
+import { globalInstance, UiInstance } from "../../helper/test-helper";
 
 const defProps = {
   global: globalInstance,
   users: [],
   activeUser: null,
   ui: UiInstance,
-  signingKey: '',
+  signingKey: "",
   setActiveUser: () => {},
   updateActiveUser: () => {},
   deleteUser: () => {},
@@ -20,7 +20,7 @@ const defProps = {
   onDone: () => {}
 };
 
-it('(1) Default render', () => {
+it("(1) Default render", () => {
   const component = renderer.create(<WitnessesProxy {...defProps} />);
   expect(component.toJSON()).toMatchSnapshot();
 });

@@ -1,10 +1,10 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
-import { Actions, ActionTypes, SetAction } from './types';
+import { Actions, ActionTypes, SetAction } from "./types";
 
-import { ActionTypes as ActiveUserActionTypes } from '../active-user/types';
+import { ActionTypes as ActiveUserActionTypes } from "../active-user/types";
 
-export const initialState: string = '';
+export const initialState: string = "";
 
 export default (state: string = initialState, action: Actions): string => {
   switch (action.type) {

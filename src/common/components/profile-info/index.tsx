@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
-import moment from 'moment';
+import moment from "moment";
 
-import { RCAccount } from '@hiveio/dhive/lib/chain/rc';
+import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 
-import { Account, FullAccount } from '../../store/accounts/types';
-import { DynamicProps } from '../../store/dynamic-props/types';
+import { Account, FullAccount } from "../../store/accounts/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
 
-import BaseComponent from '../base';
+import BaseComponent from "../base";
 
 import {
   findRcAccounts,
@@ -18,11 +18,11 @@ import {
   votingValue,
   powerRechargeTime,
   rcPower
-} from '../../api/hive';
+} from "../../api/hive";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { informationVariantSvg, hiveSvg } from '../../img/svg';
+import { informationVariantSvg, hiveSvg } from "../../img/svg";
 
 interface ContentProps {
   account: FullAccount;
@@ -38,14 +38,14 @@ export class InfoContent extends BaseComponent<ContentProps> {
     const vPower = votingPower(account);
     const vPowerFixed = vPower.toFixed(2);
     const vPowerRecharge = powerRechargeTime(vPower);
-    const vPowerRechargeDate = moment().add(vPowerRecharge, 'seconds');
+    const vPowerRechargeDate = moment().add(vPowerRecharge, "seconds");
 
     // Voting value
     const vValue = votingValue(account, dynamicProps, vPower * 100).toFixed(3);
     const vValueFull = votingValue(account, dynamicProps, 10000).toFixed(3);
 
     // Join date
-    const created = moment.utc(account.created).format('LL');
+    const created = moment.utc(account.created).format("LL");
 
     // Last active
     const lastVoteDate = moment.utc(account.last_vote_time);
@@ -59,30 +59,30 @@ export class InfoContent extends BaseComponent<ContentProps> {
     const rcp = rcPower(rcAccount);
     const rcpFixed = rcp.toFixed(2);
     const rcpRecharge = powerRechargeTime(rcp);
-    const rcpRechargeDate = moment().add(rcpRecharge, 'seconds');
+    const rcpRechargeDate = moment().add(rcpRecharge, "seconds");
 
     return (
       <div className="profile-info-tooltip-content">
-        <p>{_t('profile-info.joined', { n: created })}</p>
-        <p>{_t('profile-info.last-active', { n: lastActive.fromNow() })}</p>
+        <p>{_t("profile-info.joined", { n: created })}</p>
+        <p>{_t("profile-info.last-active", { n: lastActive.fromNow() })}</p>
         <p>
-          {_t('profile-info.vote-value', { n: vValue })}
+          {_t("profile-info.vote-value", { n: vValue })}
           {hiveSvg}
           {vValue !== vValueFull && (
-            <small>{_t('profile-info.vote-value-max', { n: vValueFull })}</small>
+            <small>{_t("profile-info.vote-value-max", { n: vValueFull })}</small>
           )}
         </p>
         <p>
-          {_t('profile-info.vote-power', { n: vPowerFixed })}
-          {vPowerFixed !== '100.00' && (
-            <small>{_t('profile-info.recharge-time', { n: vPowerRechargeDate.fromNow() })}</small>
+          {_t("profile-info.vote-power", { n: vPowerFixed })}
+          {vPowerFixed !== "100.00" && (
+            <small>{_t("profile-info.recharge-time", { n: vPowerRechargeDate.fromNow() })}</small>
           )}
         </p>
-        <p>{_t('profile-info.down-vote-power', { n: dvPower.toFixed(2) })}</p>
+        <p>{_t("profile-info.down-vote-power", { n: dvPower.toFixed(2) })}</p>
         <p>
-          {_t('profile-info.rc-power', { n: rcpFixed })}
-          {rcpFixed !== '100.00' && (
-            <small>{_t('profile-info.recharge-time', { n: rcpRechargeDate.fromNow() })}</small>
+          {_t("profile-info.rc-power", { n: rcpFixed })}
+          {rcpFixed !== "100.00" && (
+            <small>{_t("profile-info.recharge-time", { n: rcpRechargeDate.fromNow() })}</small>
           )}
         </p>
       </div>

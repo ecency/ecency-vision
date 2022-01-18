@@ -1,1 +1,1 @@
-export default (s: string) => s.replace(/(<([^>]+)>)/gi, '');
+export default (s: string) => s.replace(/(<([^>]+)>)/gi, "");

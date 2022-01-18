@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import mediumZoom, { Zoom } from 'medium-zoom';
+import mediumZoom, { Zoom } from "medium-zoom";
 
-import { Entry } from '../../store/entries/types';
+import { Entry } from "../../store/entries/types";
 
-import { injectTwitter } from '../../util/twitter';
+import { injectTwitter } from "../../util/twitter";
 
 interface Props {
   entry: Entry;
@@ -23,8 +23,8 @@ class EntryBodyExtra extends Component<Props> {
 
     // Medium style image zoom
     const elements: HTMLElement[] = [
-      ...document.querySelectorAll<HTMLElement>('.entry-body img')
-    ].filter((x) => x.parentNode?.nodeName !== 'A');
+      ...document.querySelectorAll<HTMLElement>(".entry-body img")
+    ].filter((x) => x.parentNode?.nodeName !== "A");
     this.zoom = mediumZoom(elements);
   }
 

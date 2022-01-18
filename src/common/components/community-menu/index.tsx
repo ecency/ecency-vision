@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History, Location } from 'history';
+import { History, Location } from "history";
 
-import { Link } from 'react-router-dom';
-import { match } from 'react-router';
-import isEqual from 'react-fast-compare';
+import { Link } from "react-router-dom";
+import { match } from "react-router";
+import isEqual from "react-fast-compare";
 
-import { EntryFilter, Global } from '../../store/global/types';
-import { Community } from '../../store/communities/types';
+import { EntryFilter, Global } from "../../store/global/types";
+import { Community } from "../../store/communities/types";
 
-import ListStyleToggle from '../list-style-toggle/index';
-import DropDown, { MenuItem } from '../dropdown';
+import ListStyleToggle from "../list-style-toggle/index";
+import DropDown, { MenuItem } from "../dropdown";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
 interface MatchParams {
   filter: string;
@@ -50,7 +50,7 @@ export class CommunityMenu extends Component<Props> {
       history: this.props.history,
       label:
         filter === EntryFilter.trending
-          ? _t('community.posts')
+          ? _t("community.posts")
           : _t(`entry-filter.filter-${filter}`),
       items: [
         ...[
@@ -79,7 +79,7 @@ export class CommunityMenu extends Component<Props> {
             <div className="d-none d-lg-flex align-items-center">
               {menuConfig.items.map((menuItem) => (
                 <Link
-                  className={_c(`community-menu-item ${menuItem.active ? 'selected-item' : ''}`)}
+                  className={_c(`community-menu-item ${menuItem.active ? "selected-item" : ""}`)}
                   to={menuItem.href!}
                   key={`community-menu-item-${menuItem.label}`}
                 >
@@ -91,15 +91,15 @@ export class CommunityMenu extends Component<Props> {
 
           <Link
             to={`/subscribers/${name}`}
-            className={_c(`community-menu-item ${filter === 'subscribers' ? 'selected-item' : ''}`)}
+            className={_c(`community-menu-item ${filter === "subscribers" ? "selected-item" : ""}`)}
           >
-            {_t('community.subscribers')}
+            {_t("community.subscribers")}
           </Link>
           <Link
             to={`/activities/${name}`}
-            className={_c(`community-menu-item ${filter === 'activities' ? 'selected-item' : ''}`)}
+            className={_c(`community-menu-item ${filter === "activities" ? "selected-item" : ""}`)}
           >
-            {_t('community.activities')}
+            {_t("community.activities")}
           </Link>
         </div>
 

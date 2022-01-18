@@ -1,27 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import queryString from 'query-string';
+import queryString from "query-string";
 
-import { Button, Form, FormControl, Spinner, Row, Col } from 'react-bootstrap';
+import { Button, Form, FormControl, Spinner, Row, Col } from "react-bootstrap";
 
-import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from './common';
+import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
 
-import Meta from '../components/meta';
-import Theme from '../components/theme/index';
-import NavBar from '../components/navbar/index';
-import NavBarElectron from '../../desktop/app/components/navbar';
-import Feedback, { error } from '../components/feedback';
-import ScrollToTop from '../components/scroll-to-top';
+import Meta from "../components/meta";
+import Theme from "../components/theme/index";
+import NavBar from "../components/navbar/index";
+import NavBarElectron from "../../desktop/app/components/navbar";
+import Feedback, { error } from "../components/feedback";
+import ScrollToTop from "../components/scroll-to-top";
 
-import { signUp } from '../api/private-api';
+import { signUp } from "../api/private-api";
 
-import { _t } from '../i18n';
-import { Tsx } from '../i18n/helper';
+import { _t } from "../i18n";
+import { Tsx } from "../i18n/helper";
 
-import { hiveSvg, checkSvg } from '../img/svg';
-import { handleInvalid, handleOnInput } from '../util/input-util';
+import { hiveSvg, checkSvg } from "../img/svg";
+import { handleInvalid, handleOnInput } from "../util/input-util";
 
 interface State {
   username: string;
@@ -36,9 +36,9 @@ class SignUpPage extends Component<PageProps, State> {
   form = React.createRef<HTMLFormElement>();
 
   state: State = {
-    username: '',
-    email: '',
-    referral: '',
+    username: "",
+    email: "",
+    referral: "",
     lockReferral: false,
     inProgress: false,
     done: false
@@ -92,23 +92,23 @@ class SignUpPage extends Component<PageProps, State> {
   render() {
     const { global } = this.props;
 
-    const signupSvg = global.isElectron ? './img/signup.png' : require('../img/signup.png');
+    const signupSvg = global.isElectron ? "./img/signup.png" : require("../img/signup.png");
     const logoCircle = global.isElectron
-      ? './img/logo-circle.svg'
-      : require('../img/logo-circle.svg');
+      ? "./img/logo-circle.svg"
+      : require("../img/logo-circle.svg");
 
     //  Meta config
     const metaProps = {
-      title: _t('sign-up.header')
+      title: _t("sign-up.header")
     };
 
     const { username, email, referral, lockReferral, inProgress, done } = this.state;
     const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: '6px' }} />
+      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
     );
-    let containerClasses = global.isElectron
-      ? 'app-content sign-up-page mb-lg-0 mt-0 pt-6'
-      : 'app-content sign-up-page mb-lg-0';
+    const containerClasses = global.isElectron
+      ? "app-content sign-up-page mb-lg-0 mt-0 pt-6"
+      : "app-content sign-up-page mb-lg-0";
 
     return (
       <>
@@ -127,8 +127,8 @@ class SignUpPage extends Component<PageProps, State> {
               <img src={signupSvg} alt="Signup" />
             </div>
             <div className="the-form">
-              <div className="form-title">{_t('sign-up.header')}</div>
-              <div className="form-sub-title">{_t('sign-up.description')}</div>
+              <div className="form-title">{_t("sign-up.header")}</div>
+              <div className="form-sub-title">{_t("sign-up.description")}</div>
               <div className="form-icons">
                 <img src={logoCircle} alt="Ecency" title="Ecency" />
                 <span title="Hive">{hiveSvg}</span>
@@ -148,8 +148,8 @@ class SignUpPage extends Component<PageProps, State> {
                     <div className="form-done">
                       <div className="done-icon">{checkSvg}</div>
                       <div className="done-text">
-                        <p>{_t('sign-up.success', { email })}</p>
-                        <p>{_t('sign-up.success-2')}</p>
+                        <p>{_t("sign-up.success", { email })}</p>
+                        <p>{_t("sign-up.success-2")}</p>
                       </div>
                     </div>
                   );
@@ -177,13 +177,13 @@ class SignUpPage extends Component<PageProps, State> {
                       <Form.Group>
                         <Form.Control
                           type="text"
-                          placeholder={_t('sign-up.username')}
+                          placeholder={_t("sign-up.username")}
                           value={username}
                           onChange={this.usernameChanged}
                           autoFocus={true}
                           required={true}
                           onInvalid={(e: any) =>
-                            handleInvalid(e, 'sign-up.', 'validation-username')
+                            handleInvalid(e, "sign-up.", "validation-username")
                           }
                           onInput={handleOnInput}
                         />
@@ -191,18 +191,18 @@ class SignUpPage extends Component<PageProps, State> {
                       <Form.Group>
                         <Form.Control
                           type="email"
-                          placeholder={_t('sign-up.email')}
+                          placeholder={_t("sign-up.email")}
                           value={email}
                           onChange={this.emailChanged}
                           required={true}
-                          onInvalid={(e: any) => handleInvalid(e, 'sign-up.', 'validation-email')}
+                          onInvalid={(e: any) => handleInvalid(e, "sign-up.", "validation-email")}
                           onInput={handleOnInput}
                         />
                       </Form.Group>
                       <Form.Group>
                         <Form.Control
                           type="text"
-                          placeholder={_t('sign-up.ref')}
+                          placeholder={_t("sign-up.ref")}
                           value={referral}
                           onChange={this.refCodeChanged}
                           disabled={lockReferral}
@@ -210,28 +210,28 @@ class SignUpPage extends Component<PageProps, State> {
                       </Form.Group>
                       <div className="d-flex justify-content-center">
                         <Button variant="primary" block={true} type="submit" disabled={inProgress}>
-                          {inProgress && spinner} {_t('sign-up.submit')}
+                          {inProgress && spinner} {_t("sign-up.submit")}
                         </Button>
                       </div>
                     </Form>
 
                     <div className="text-center">
-                      {_t('sign-up.login-text-1')}
+                      {_t("sign-up.login-text-1")}
                       <a
                         href="#"
                         onClick={(e) => {
                           e.preventDefault();
                           const { toggleUIProp } = this.props;
-                          toggleUIProp('login');
+                          toggleUIProp("login");
                         }}
                       >
-                        {' '}
-                        {_t('sign-up.login-text-2')}
+                        {" "}
+                        {_t("sign-up.login-text-2")}
                       </a>
                     </div>
 
                     <div className="form-bottom-description text-center">
-                      {_t('sign-up.bottom-description')}
+                      {_t("sign-up.bottom-description")}
                     </div>
                   </div>
                 );

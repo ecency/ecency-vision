@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 
-import { Button, FormControl, Spinner } from 'react-bootstrap';
+import { Button, FormControl, Spinner } from "react-bootstrap";
 
-import { Global } from '../../store/global/types';
-import { User } from '../../store/users/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { ToggleType, UI } from '../../store/ui/types';
-import { Account } from '../../store/accounts/types';
+import { Global } from "../../store/global/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { ToggleType, UI } from "../../store/ui/types";
+import { Account } from "../../store/accounts/types";
 
-import BaseComponent from '../base';
-import LoginRequired from '../login-required';
-import KeyOrHotDialog from '../key-or-hot-dialog';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import LoginRequired from "../login-required";
+import KeyOrHotDialog from "../key-or-hot-dialog";
+import { error } from "../feedback";
 
-import { formatError, witnessProxy, witnessProxyHot, witnessProxyKc } from '../../api/operations';
+import { formatError, witnessProxy, witnessProxyHot, witnessProxyKc } from "../../api/operations";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 interface Props {
   global: Global;
@@ -38,7 +38,7 @@ interface State {
 
 export class WitnessesProxy extends BaseComponent<Props, State> {
   state: State = {
-    username: '',
+    username: "",
     inProgress: false
   };
 
@@ -52,7 +52,7 @@ export class WitnessesProxy extends BaseComponent<Props, State> {
     const fnArgs = [...args];
     const call = fn(...fnArgs);
 
-    if (typeof call?.then === 'function') {
+    if (typeof call?.then === "function") {
       this.stateSet({ inProgress: true });
 
       call
@@ -73,12 +73,12 @@ export class WitnessesProxy extends BaseComponent<Props, State> {
     const { username, inProgress } = this.state;
 
     const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: '6px' }} />
+      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
     );
     const btn = (
       <Button disabled={inProgress}>
         {inProgress && spinner}
-        {_t('witnesses.proxy-btn-label')}
+        {_t("witnesses.proxy-btn-label")}
       </Button>
     );
     const theBtn = activeUser
@@ -103,12 +103,12 @@ export class WitnessesProxy extends BaseComponent<Props, State> {
 
     return (
       <div className="witnesses-proxy">
-        <p className="description">{_t('witnesses.proxy-description')}</p>
+        <p className="description">{_t("witnesses.proxy-description")}</p>
         <div className="proxy-form">
           <div className="txt-username">
             <FormControl
               type="text"
-              placeholder={_t('witnesses.username-placeholder')}
+              placeholder={_t("witnesses.username-placeholder")}
               value={username}
               maxLength={20}
               onChange={this.usernameChanged}

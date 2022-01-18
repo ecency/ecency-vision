@@ -1,31 +1,31 @@
-import React from 'react';
+import React from "react";
 
-import Tag from './index';
-import TestRenderer from 'react-test-renderer';
-import { createBrowserHistory } from 'history';
+import Tag from "./index";
+import TestRenderer from "react-test-renderer";
+import { createBrowserHistory } from "history";
 
-import { globalInstance, communityInstance1 } from '../../helper/test-helper';
+import { globalInstance, communityInstance1 } from "../../helper/test-helper";
 
-import { EntryFilter, AllFilter } from '../../store/global/types';
+import { EntryFilter, AllFilter } from "../../store/global/types";
 
-jest.mock('../../api/bridge', () => ({
+jest.mock("../../api/bridge", () => ({
   getCommunity: () =>
     new Promise((resolve) => {
       resolve(communityInstance1);
     })
 }));
 
-it('(1) Link', () => {
+it("(1) Link", () => {
   const props = {
     history: createBrowserHistory(),
     global: {
       ...globalInstance,
       ...{
         filter: EntryFilter.hot,
-        tag: 'bitcoin'
+        tag: "bitcoin"
       }
     },
-    tag: 'bitcoin'
+    tag: "bitcoin"
   };
 
   const renderer = TestRenderer.create(
@@ -36,17 +36,17 @@ it('(1) Link', () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Span', () => {
+it("(2) Span", () => {
   const props = {
     history: createBrowserHistory(),
     global: {
       ...globalInstance,
       ...{
         filter: EntryFilter.hot,
-        tag: 'bitcoin'
+        tag: "bitcoin"
       }
     },
-    tag: 'bitcoin'
+    tag: "bitcoin"
   };
 
   const renderer = TestRenderer.create(
@@ -57,17 +57,17 @@ it('(2) Span', () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(3) Community as Link', () => {
+it("(3) Community as Link", () => {
   const props = {
     history: createBrowserHistory(),
     global: {
       ...globalInstance,
       ...{
         filter: EntryFilter.hot,
-        tag: 'bitcoin'
+        tag: "bitcoin"
       }
     },
-    tag: 'hive-2321'
+    tag: "hive-2321"
   };
 
   const renderer = TestRenderer.create(
@@ -85,10 +85,10 @@ it("(4) Should use default filter if the globl filter is 'feed'", () => {
       ...globalInstance,
       ...{
         filter: AllFilter.feed,
-        tag: 'bitcoin'
+        tag: "bitcoin"
       }
     },
-    tag: 'bitcoin'
+    tag: "bitcoin"
   };
 
   const renderer = TestRenderer.create(
@@ -99,13 +99,13 @@ it("(4) Should use default filter if the globl filter is 'feed'", () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(5) Link with community tag', () => {
+it("(5) Link with community tag", () => {
   const props = {
     history: createBrowserHistory(),
     global: {
       ...globalInstance
     },
-    tag: { name: 'hive-125125', title: 'Ecency' }
+    tag: { name: "hive-125125", title: "Ecency" }
   };
 
   const renderer = TestRenderer.create(

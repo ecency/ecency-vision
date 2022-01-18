@@ -1,34 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History, Location } from 'history';
+import { History, Location } from "history";
 
-import moment from 'moment';
+import moment from "moment";
 
-import { Form, FormControl, Modal } from 'react-bootstrap';
+import { Form, FormControl, Modal } from "react-bootstrap";
 
-import { Global } from '../../store/global/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { FullAccount } from '../../store/accounts/types';
+import { Global } from "../../store/global/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { FullAccount } from "../../store/accounts/types";
 
-import BaseComponent from '../base';
-import UserAvatar from '../user-avatar';
-import LinearProgress from '../linear-progress';
-import PopoverConfirm from '../popover-confirm';
-import Tooltip from '../tooltip';
-import Tag from '../tag';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import UserAvatar from "../user-avatar";
+import LinearProgress from "../linear-progress";
+import PopoverConfirm from "../popover-confirm";
+import Tooltip from "../tooltip";
+import Tag from "../tag";
+import { error } from "../feedback";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { getDrafts, Draft, deleteDraft } from '../../api/private-api';
+import { getDrafts, Draft, deleteDraft } from "../../api/private-api";
 
-import accountReputation from '../../helper/account-reputation';
+import accountReputation from "../../helper/account-reputation";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
-import { deleteForeverSvg, pencilOutlineSvg } from '../../img/svg';
+import { deleteForeverSvg, pencilOutlineSvg } from "../../img/svg";
 
-import { catchPostImage, postBodySummary, setProxyBase } from '@ecency/render-helper';
+import { catchPostImage, postBodySummary, setProxyBase } from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
@@ -48,9 +48,9 @@ export class ListItem extends Component<ItemProps> {
       return null;
     }
     const fallbackImage = global.isElectron
-      ? './img/fallback.png'
-      : require('../../img/fallback.png');
-    const noImage = global.isElectron ? './img/noimage.svg' : require('../../img/noimage.svg');
+      ? "./img/fallback.png"
+      : require("../../img/fallback.png");
+    const noImage = global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg");
 
     const account = activeUser.data as FullAccount;
 
@@ -58,14 +58,14 @@ export class ListItem extends Component<ItemProps> {
     const reputation = account.reputation;
 
     const tags = draft.tags ? draft.tags.split(/[ ,]+/) : [];
-    const tag = tags[0] || '';
+    const tag = tags[0] || "";
     const img =
-      catchPostImage(draft.body, 600, 500, global.canUseWebp ? 'webp' : 'match') || noImage;
+      catchPostImage(draft.body, 600, 500, global.canUseWebp ? "webp" : "match") || noImage;
     const summary = postBodySummary(draft.body, 200);
 
     const date = moment(new Date(draft.created));
     const dateRelative = date.fromNow(true);
-    const dateFormatted = date.format('LLLL');
+    const dateFormatted = date.format("LLLL");
 
     return (
       <div className="drafts-list-item">
@@ -73,7 +73,7 @@ export class ListItem extends Component<ItemProps> {
           <div className="item-header-main">
             <div className="author-part">
               <a className="author-avatar">
-                {UserAvatar({ ...this.props, username: author, size: 'medium' })}
+                {UserAvatar({ ...this.props, username: author, size: "medium" })}
               </a>
               <a className="author">
                 {author}
@@ -83,7 +83,7 @@ export class ListItem extends Component<ItemProps> {
             {Tag({
               ...this.props,
               tag,
-              type: 'span',
+              type: "span",
               children: <a className="category">{tag}</a>
             })}
             <span className="date" title={dateFormatted}>
@@ -106,7 +106,7 @@ export class ListItem extends Component<ItemProps> {
                   const target = e.target as HTMLImageElement;
                   target.src = fallbackImage;
                 }}
-                className={img === noImage ? 'no-img' : ''}
+                className={img === noImage ? "no-img" : ""}
               />
             </div>
           </div>
@@ -139,7 +139,7 @@ export class ListItem extends Component<ItemProps> {
                   editFn(draft);
                 }}
               >
-                <Tooltip content={_t('g.edit')}>
+                <Tooltip content={_t("g.edit")}>
                   <span>{pencilOutlineSvg}</span>
                 </Tooltip>
               </a>
@@ -149,7 +149,7 @@ export class ListItem extends Component<ItemProps> {
                 }}
               >
                 <a className="btn-delete">
-                  <Tooltip content={_t('g.delete')}>
+                  <Tooltip content={_t("g.delete")}>
                     <span>{deleteForeverSvg}</span>
                   </Tooltip>
                 </a>
@@ -181,7 +181,7 @@ export class Drafts extends BaseComponent<Props, State> {
   state: State = {
     loading: true,
     list: [],
-    filter: ''
+    filter: ""
   };
 
   componentDidMount() {
@@ -197,7 +197,7 @@ export class Drafts extends BaseComponent<Props, State> {
         this.stateSet({ list: this.sort(items) });
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       })
       .finally(() => {
         this.stateSet({ loading: false });
@@ -221,11 +221,11 @@ export class Drafts extends BaseComponent<Props, State> {
 
         // if user editing the draft, redirect to submit page
         if (location.pathname === `/draft/${item._id}`) {
-          history.push('/submit');
+          history.push("/submit");
         }
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       });
   };
 
@@ -252,7 +252,7 @@ export class Drafts extends BaseComponent<Props, State> {
           }
 
           if (list.length === 0) {
-            return <div className="drafts-list">{_t('g.empty-list')}</div>;
+            return <div className="drafts-list">{_t("g.empty-list")}</div>;
           }
 
           const items = list.filter(
@@ -264,13 +264,13 @@ export class Drafts extends BaseComponent<Props, State> {
               <div className="dialog-filter">
                 <Form.Control
                   type="text"
-                  placeholder={_t('drafts.filter')}
+                  placeholder={_t("drafts.filter")}
                   value={filter}
                   onChange={this.filterChanged}
                 />
               </div>
 
-              {items.length === 0 && <span className="text-muted">{_t('g.no-matches')}</span>}
+              {items.length === 0 && <span className="text-muted">{_t("g.no-matches")}</span>}
 
               {items.length > 0 && (
                 <div className="drafts-list">
@@ -305,7 +305,7 @@ export default class DraftsDialog extends Component<Props> {
     return (
       <Modal show={true} centered={true} onHide={this.hide} size="lg" className="drafts-modal">
         <Modal.Header closeButton={true}>
-          <Modal.Title>{_t('drafts.title')}</Modal.Title>
+          <Modal.Title>{_t("drafts.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Drafts {...this.props} />

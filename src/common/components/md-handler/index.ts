@@ -1,7 +1,7 @@
-import { Component } from 'react';
-import { History } from 'history';
+import { Component } from "react";
+import { History } from "history";
 
-import { Global } from '../../store/global/types';
+import { Global } from "../../store/global/types";
 
 interface Props {
   history: History;
@@ -10,11 +10,11 @@ interface Props {
 
 export default class MdHandler extends Component<Props> {
   componentDidMount() {
-    document.addEventListener('click', this.clicked);
+    document.addEventListener("click", this.clicked);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.clicked);
+    document.removeEventListener("click", this.clicked);
   }
 
   clicked = (e: MouseEvent): void => {
@@ -23,25 +23,25 @@ export default class MdHandler extends Component<Props> {
     let el = e.target as HTMLElement;
 
     // A element can be wrapped with inline element. Look parent elements.
-    while (el.tagName !== 'A') {
+    while (el.tagName !== "A") {
       if (!el.parentNode) {
         break;
       }
       el = el.parentNode as HTMLElement;
     }
 
-    if (!el || el.tagName !== 'A') {
+    if (!el || el.tagName !== "A") {
       return;
     }
 
     if (
-      el.classList.contains('markdown-author-link') ||
-      el.classList.contains('markdown-post-link') ||
-      el.classList.contains('markdown-community-link') ||
-      el.classList.contains('markdown-tag-link')
+      el.classList.contains("markdown-author-link") ||
+      el.classList.contains("markdown-post-link") ||
+      el.classList.contains("markdown-community-link") ||
+      el.classList.contains("markdown-tag-link")
     ) {
       e.preventDefault();
-      const href = el.getAttribute('href');
+      const href = el.getAttribute("href");
       if (!href) {
         return;
       }
@@ -49,13 +49,13 @@ export default class MdHandler extends Component<Props> {
       history.push(href);
     }
 
-    if (el.classList.contains('markdown-video-link')) {
-      const embedSrc = el.getAttribute('data-embed-src');
+    if (el.classList.contains("markdown-video-link")) {
+      const embedSrc = el.getAttribute("data-embed-src");
       if (embedSrc) {
         el.innerHTML = `<iframe frameborder='0' allowfullscreen src='${embedSrc}'></iframe>`;
         return;
       }
-      const videoHref = el.getAttribute('data-video-href');
+      const videoHref = el.getAttribute("data-video-href");
       if (videoHref) {
         window.open(videoHref);
         e.preventDefault();
@@ -63,9 +63,9 @@ export default class MdHandler extends Component<Props> {
       }
     }
     // TODO: check if moving markdown-img-link from <a> into <img> didn't break this
-    if (global.isElectron && el.classList.contains('markdown-img-link')) {
+    if (global.isElectron && el.classList.contains("markdown-img-link")) {
       e.preventDefault();
-      const href = el.getAttribute('href');
+      const href = el.getAttribute("href");
       if (!href) {
         return;
       }

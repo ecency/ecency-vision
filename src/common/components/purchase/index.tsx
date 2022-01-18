@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Form, FormControl, Modal, Button } from 'react-bootstrap';
+import { Form, FormControl, Modal, Button } from "react-bootstrap";
 
-import { Global } from '../../store/global/types';
-import { DynamicProps } from '../../store/dynamic-props/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { Transactions } from '../../store/transactions/types';
-import { Account } from '../../store/accounts/types';
+import { Global } from "../../store/global/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { Transactions } from "../../store/transactions/types";
+import { Account } from "../../store/accounts/types";
 
-import BaseComponent from '../base';
-import { Transfer, TransferAsset } from '../transfer';
+import BaseComponent from "../base";
+import { Transfer, TransferAsset } from "../transfer";
 
-import { calcPoints } from '../../api/private-api';
+import { calcPoints } from "../../api/private-api";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
-import formattedNumber from '../../util/formatted-number';
+import _c from "../../util/fix-class-names";
+import formattedNumber from "../../util/formatted-number";
 
 interface Props {
   global: Global;
@@ -44,7 +44,7 @@ interface State {
 export class Purchase extends BaseComponent<Props, State> {
   state: State = {
     submitted: false,
-    asset: 'HIVE',
+    asset: "HIVE",
     amount: 250,
     points: 0,
     usd: 0
@@ -103,16 +103,16 @@ export class Purchase extends BaseComponent<Props, State> {
     return (
       <div className="purchase-dialog-content">
         <div className="curr-select">
-          <div className="curr-label">{_t('purchase.select-asset')}</div>
+          <div className="curr-label">{_t("purchase.select-asset")}</div>
           <div className="nav nav-pills">
             <div className="nav-item">
               <a
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  this.setAsset('HIVE');
+                  this.setAsset("HIVE");
                 }}
-                className={_c(`nav-link ${asset === 'HIVE' ? 'active' : ''}`)}
+                className={_c(`nav-link ${asset === "HIVE" ? "active" : ""}`)}
               >
                 HIVE
               </a>
@@ -122,9 +122,9 @@ export class Purchase extends BaseComponent<Props, State> {
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  this.setAsset('HBD');
+                  this.setAsset("HBD");
                 }}
-                className={_c(`nav-link ${asset === 'HBD' ? 'active' : ''}`)}
+                className={_c(`nav-link ${asset === "HBD" ? "active" : ""}`)}
               >
                 HBD
               </a>
@@ -137,7 +137,7 @@ export class Purchase extends BaseComponent<Props, State> {
           </div>
 
           <div className="usd-amount">
-            {formattedNumber(usd, { fractionDigits: 3 })} {'$'}
+            {formattedNumber(usd, { fractionDigits: 3 })} {"$"}
           </div>
         </div>
         <div className="slider-area">
@@ -151,15 +151,15 @@ export class Purchase extends BaseComponent<Props, State> {
             value={amount}
             onChange={this.sliderChanged}
           />
-          <Form.Text className="text-muted">{_t('purchase.slider-hint')}</Form.Text>
+          <Form.Text className="text-muted">{_t("purchase.slider-hint")}</Form.Text>
         </div>
         <div className="point-amount">
-          {formattedNumber(points, { fractionDigits: 3 })} {'POINTS'}
+          {formattedNumber(points, { fractionDigits: 3 })} {"POINTS"}
         </div>
         <div className="text-center d-flex flex-column align-items-center">
-          <Button onClick={this.submit}>{_t('purchase.submit')}</Button>
-          <span className={'d-flex text-muted mt-3 align-items-center'}>
-            <h4 className={'text-white my-0 mr-1'}>&#9432;</h4> {_t('purchase.purchase-message')}
+          <Button onClick={this.submit}>{_t("purchase.submit")}</Button>
+          <span className={"d-flex text-muted mt-3 align-items-center"}>
+            <h4 className={"text-white my-0 mr-1"}>&#9432;</h4> {_t("purchase.purchase-message")}
           </span>
         </div>
       </div>

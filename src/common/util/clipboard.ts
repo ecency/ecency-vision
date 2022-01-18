@@ -1,10 +1,10 @@
 export default (str: string) => {
-  const i = document.createElement('input');
-  i.setAttribute('type', 'text');
+  const i = document.createElement("input");
+  i.setAttribute("type", "text");
   i.value = str;
   document.body.appendChild(i);
   i.select();
-  document.execCommand('Copy');
+  document.execCommand("Copy");
   document.body.removeChild(i);
 };
 
@@ -13,6 +13,6 @@ export const readClipboard = (): Promise<string> => {
     ? navigator.clipboard
         .readText()
         .then((r) => r)
-        .catch(() => '')
-    : new Promise((resolve) => resolve(''));
+        .catch(() => "")
+    : new Promise((resolve) => resolve(""));
 };

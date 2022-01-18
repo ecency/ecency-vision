@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import Comment from './index';
+import Comment from "./index";
 
-import { UiInstance, globalInstance } from '../../helper/test-helper';
+import { UiInstance, globalInstance } from "../../helper/test-helper";
 
-import renderer from 'react-test-renderer';
+import renderer from "react-test-renderer";
 
-import emojiData from '../../../../public/emoji.json';
+import emojiData from "../../../../public/emoji.json";
 
-jest.mock('../../api/misc', () => ({
+jest.mock("../../api/misc", () => ({
   getEmojiData: () =>
     new Promise((resolve) => {
       resolve(emojiData);
@@ -16,8 +16,8 @@ jest.mock('../../api/misc', () => ({
 }));
 
 const defProps = {
-  defText: '',
-  submitText: 'Reply',
+  defText: "",
+  submitText: "Reply",
   users: [],
   global: globalInstance,
   activeUser: null,
@@ -29,15 +29,15 @@ const defProps = {
   toggleUIProp: () => {}
 };
 
-it('(1) Default render', () => {
+it("(1) Default render", () => {
   const props = { ...defProps };
 
   const component = renderer.create(<Comment {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Cancellable, in progress', () => {
-  const props = { ...{ inProgress: true, cancellable: true, defText: 'foo' }, ...defProps };
+it("(2) Cancellable, in progress", () => {
+  const props = { ...{ inProgress: true, cancellable: true, defText: "foo" }, ...defProps };
 
   const component = renderer.create(<Comment {...props} />);
   expect(component.toJSON()).toMatchSnapshot();

@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory } from "history";
 
-import { EntryMenu } from './index';
+import { EntryMenu } from "./index";
 
-import TestRenderer from 'react-test-renderer';
+import TestRenderer from "react-test-renderer";
 
-import { entryInstance1, globalInstance, dynamicPropsIntance1 } from '../../helper/test-helper';
+import { entryInstance1, globalInstance, dynamicPropsIntance1 } from "../../helper/test-helper";
 
 const defProps = {
   history: createBrowserHistory(),
@@ -16,7 +16,7 @@ const defProps = {
   entry: entryInstance1,
   communities: [],
   entryPinTracker: {},
-  signingKey: '',
+  signingKey: "",
   setSigningKey: () => {},
   updateActiveUser: () => {},
   updateEntry: () => {},
@@ -26,13 +26,13 @@ const defProps = {
   toggleUIProp: () => {}
 };
 
-it('(1) Default render', () => {
+it("(1) Default render", () => {
   const props = { ...defProps };
   const renderer = TestRenderer.create(<EntryMenu {...props} />);
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Separated sharing buttons', () => {
+it("(2) Separated sharing buttons", () => {
   const props = {
     ...defProps,
     separatedSharing: true

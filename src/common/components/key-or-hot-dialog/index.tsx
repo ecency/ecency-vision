@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Modal } from 'react-bootstrap';
+import { Modal } from "react-bootstrap";
 
-import { PrivateKey } from '@hiveio/dhive';
+import { PrivateKey } from "@hiveio/dhive";
 
-import { Global } from '../../store/global/types';
-import { ActiveUser } from '../../store/active-user/types';
+import { Global } from "../../store/global/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import KeyOrHot from '../key-or-hot';
+import KeyOrHot from "../key-or-hot";
 
 interface Props {
   global: Global;

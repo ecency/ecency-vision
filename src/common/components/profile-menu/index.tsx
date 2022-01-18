@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { History, Location } from 'history';
+import { History, Location } from "history";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import { ProfileFilter, Global } from '../../store/global/types';
-import { ActiveUser } from '../../store/active-user/types';
+import { ProfileFilter, Global } from "../../store/global/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import DropDown, { MenuItem } from '../dropdown';
-import ListStyleToggle from '../list-style-toggle/index';
+import DropDown, { MenuItem } from "../dropdown";
+import ListStyleToggle from "../list-style-toggle/index";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
-import { menuDownSvg } from '../../img/svg';
+import _c from "../../util/fix-class-names";
+import { menuDownSvg } from "../../img/svg";
 
 interface Props {
   history: History;
@@ -45,7 +45,7 @@ export class ProfileMenu extends Component<Props> {
       items: MenuItem[];
     } = {
       history: this.props.history,
-      label: ProfileFilter[section] ? _t(`profile.section-${section}`) : '',
+      label: ProfileFilter[section] ? _t(`profile.section-${section}`) : "",
       items: [
         ...[
           ProfileFilter.blog,
@@ -71,7 +71,7 @@ export class ProfileMenu extends Component<Props> {
           <>
             <span
               className={`d-flex d-lg-none ${
-                showDropdown ? 'selected-item profile-menu-item' : ''
+                showDropdown ? "selected-item profile-menu-item" : ""
               }`}
             >
               {showDropdown ? (
@@ -79,8 +79,8 @@ export class ProfileMenu extends Component<Props> {
               ) : (
                 <Link
                   className={_c(
-                    `${!showDropdown ? 'profile-menu-item ' : ''}${
-                      section === 'blog' ? 'selected-item' : ''
+                    `${!showDropdown ? "profile-menu-item " : ""}${
+                      section === "blog" ? "selected-item" : ""
                     }`
                   )}
                   to={`/@${username}/blog`}
@@ -92,7 +92,7 @@ export class ProfileMenu extends Component<Props> {
             <div className="d-none d-lg-flex align-items-center">
               {menuConfig.items.map((menuItem) => (
                 <Link
-                  className={_c(`profile-menu-item ${menuItem.active ? 'selected-item' : ''}`)}
+                  className={_c(`profile-menu-item ${menuItem.active ? "selected-item" : ""}`)}
                   to={menuItem.href!}
                   key={`profile-menu-item-${menuItem.label}`}
                 >
@@ -103,7 +103,7 @@ export class ProfileMenu extends Component<Props> {
           </>
 
           <Link
-            className={_c(`profile-menu-item ${section === 'communities' ? 'selected-item' : ''}`)}
+            className={_c(`profile-menu-item ${section === "communities" ? "selected-item" : ""}`)}
             to={`/@${username}/communities`}
           >
             {_t(`profile.section-communities`)}
@@ -111,7 +111,7 @@ export class ProfileMenu extends Component<Props> {
           <Link
             className={_c(
               `profile-menu-item ${
-                ['wallet', 'points', 'engine'].includes(section) ? 'selected-item' : ''
+                ["wallet", "points", "engine"].includes(section) ? "selected-item" : ""
               }`
             )}
             to={`/@${username}/wallet`}
@@ -120,7 +120,7 @@ export class ProfileMenu extends Component<Props> {
           </Link>
           {activeUser && activeUser.username === username && (
             <Link
-              className={_c(`profile-menu-item ${section === 'settings' ? 'selected-item' : ''}`)}
+              className={_c(`profile-menu-item ${section === "settings" ? "selected-item" : ""}`)}
               to={`/@${username}/settings`}
             >
               {_t(`profile.section-settings`)}

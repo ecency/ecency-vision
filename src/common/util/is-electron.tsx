@@ -1,1 +1,1 @@
-export default () => window.location.href.startsWith('file://');
+export default () => window.location.href.startsWith("file://");

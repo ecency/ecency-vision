@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import { Entry } from '../../store/entries/types';
-import { ActiveUser } from '../../store/active-user/types';
+import { Entry } from "../../store/entries/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import BaseComponent from '../base';
-import PopoverConfirm from '../popover-confirm';
+import BaseComponent from "../base";
+import PopoverConfirm from "../popover-confirm";
 
-import { error } from '../feedback';
+import { error } from "../feedback";
 
-import { deleteComment, formatError } from '../../api/operations';
+import { deleteComment, formatError } from "../../api/operations";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
 interface Props {
   children: JSX.Element;
@@ -53,10 +53,10 @@ export class EntryDeleteBtn extends BaseComponent<Props> {
     const { inProgress } = this.state;
 
     const { className } = children.props;
-    const baseCls = className ? className.replace('in-progress') : '';
+    const baseCls = className ? className.replace("in-progress") : "";
 
     const clonedChildren = React.cloneElement(children, {
-      className: _c(`${baseCls} ${inProgress ? 'in-progress' : ''}`)
+      className: _c(`${baseCls} ${inProgress ? "in-progress" : ""}`)
     });
 
     if (inProgress) {

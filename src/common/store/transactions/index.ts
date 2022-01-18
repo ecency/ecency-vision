@@ -1,5 +1,5 @@
-import { Dispatch } from 'redux';
-import { utils } from '@hiveio/dhive';
+import { Dispatch } from "redux";
+import { utils } from "@hiveio/dhive";
 
 import {
   OperationGroup,
@@ -11,9 +11,9 @@ import {
   FetchedAction,
   FetchErrorAction,
   ResetAction
-} from './types';
+} from "./types";
 
-import { getAccountHistory } from '../../api/hive';
+import { getAccountHistory } from "../../api/hive";
 
 const ops = utils.operationOrders;
 
@@ -26,7 +26,7 @@ export const ACCOUNT_OPERATION_GROUPS: Record<OperationGroup, number[]> = {
     ops.fill_recurrent_transfer,
     ops.proposal_pay
   ],
-  'market-orders': [
+  "market-orders": [
     ops.fill_convert_request,
     ops.fill_order,
     ops.fill_collateralized_convert_request,
@@ -35,7 +35,7 @@ export const ACCOUNT_OPERATION_GROUPS: Record<OperationGroup, number[]> = {
     ops.limit_order_cancel
   ],
   interests: [ops.interest],
-  'stake-operations': [
+  "stake-operations": [
     ops.return_vesting_delegation,
     ops.withdraw_vesting,
     ops.transfer_to_vesting,
@@ -64,7 +64,7 @@ const ALL_ACCOUNT_OPERATIONS = [...Object.values(ACCOUNT_OPERATION_GROUPS)].redu
 export const initialState: Transactions = {
   list: [],
   loading: false,
-  group: ''
+  group: ""
 };
 
 export default (state: Transactions = initialState, action: Actions): Transactions => {
@@ -101,28 +101,28 @@ export default (state: Transactions = initialState, action: Actions): Transactio
 
 /* Actions */
 export const fetchTransactions =
-  (username: string, group: OperationGroup | '' = '', start: number = -1, limit: number = 20) =>
+  (username: string, group: OperationGroup | "" = "", start: number = -1, limit: number = 20) =>
   (dispatch: Dispatch) => {
     dispatch(fetchAct(group));
 
-    const name = username.replace('@', '');
+    const name = username.replace("@", "");
 
     let filters: any[] = [];
     switch (group) {
-      case 'transfers':
-        filters = utils.makeBitMaskFilter(ACCOUNT_OPERATION_GROUPS['transfers']);
+      case "transfers":
+        filters = utils.makeBitMaskFilter(ACCOUNT_OPERATION_GROUPS["transfers"]);
         break;
-      case 'market-orders':
-        filters = utils.makeBitMaskFilter(ACCOUNT_OPERATION_GROUPS['market-orders']);
+      case "market-orders":
+        filters = utils.makeBitMaskFilter(ACCOUNT_OPERATION_GROUPS["market-orders"]);
         break;
-      case 'interests':
-        filters = utils.makeBitMaskFilter(ACCOUNT_OPERATION_GROUPS['interests']);
+      case "interests":
+        filters = utils.makeBitMaskFilter(ACCOUNT_OPERATION_GROUPS["interests"]);
         break;
-      case 'stake-operations':
-        filters = utils.makeBitMaskFilter(ACCOUNT_OPERATION_GROUPS['stake-operations']);
+      case "stake-operations":
+        filters = utils.makeBitMaskFilter(ACCOUNT_OPERATION_GROUPS["stake-operations"]);
         break;
-      case 'rewards':
-        filters = utils.makeBitMaskFilter(ACCOUNT_OPERATION_GROUPS['rewards']);
+      case "rewards":
+        filters = utils.makeBitMaskFilter(ACCOUNT_OPERATION_GROUPS["rewards"]);
         break;
       default:
         filters = utils.makeBitMaskFilter(ALL_ACCOUNT_OPERATIONS); // all
@@ -152,7 +152,7 @@ export const fetchTransactions =
         dispatch(fetchedAct(transactions));
       })
       .catch(() => {
-        console.log('catch');
+        console.log("catch");
         dispatch(fetchErrorAct());
       });
   };
@@ -162,7 +162,7 @@ export const resetTransactions = () => (dispatch: Dispatch) => {
 };
 
 /* Action Creators */
-export const fetchAct = (group: OperationGroup | ''): FetchAction => {
+export const fetchAct = (group: OperationGroup | ""): FetchAction => {
   return {
     type: ActionTypes.FETCH,
     group

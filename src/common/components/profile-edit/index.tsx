@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
 
-import { Form, FormControl, InputGroup, Button, Spinner, Col } from 'react-bootstrap';
+import { Form, FormControl, InputGroup, Button, Spinner, Col } from "react-bootstrap";
 
-import { ActiveUser } from '../../store/active-user/types';
-import { Account, FullAccount } from '../../store/accounts/types';
+import { ActiveUser } from "../../store/active-user/types";
+import { Account, FullAccount } from "../../store/accounts/types";
 
-import BaseComponent from '../base';
-import UploadButton from '../image-upload-button';
-import { error, success } from '../feedback';
+import BaseComponent from "../base";
+import UploadButton from "../image-upload-button";
+import { error, success } from "../feedback";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { updateProfile } from '../../api/operations';
-import { getAccount } from '../../api/hive';
+import { updateProfile } from "../../api/operations";
+import { getAccount } from "../../api/hive";
 
 interface Props {
   activeUser: ActiveUser;
@@ -43,12 +43,12 @@ const pureState = (props: Props): State => {
     uploading: false,
     inProgress: false,
     changed: false,
-    name: profile.name || '',
-    about: profile.about || '',
-    website: profile.website || '',
-    location: profile.location || '',
-    coverImage: profile.cover_image || '',
-    profileImage: profile.profile_image || ''
+    name: profile.name || "",
+    about: profile.about || "",
+    website: profile.website || "",
+    location: profile.location || "",
+    coverImage: profile.cover_image || "",
+    profileImage: profile.profile_image || ""
   };
 };
 
@@ -56,7 +56,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
   state: State = pureState(this.props);
 
   valueChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
-    const id = e.target.getAttribute('data-var') as string;
+    const id = e.target.getAttribute("data-var") as string;
     const { value } = e.target;
 
     // @ts-ignore
@@ -90,7 +90,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
     this.stateSet({ inProgress: true });
     updateProfile(activeUser.data, newProfile)
       .then((r) => {
-        success(_t('profile-edit.updated'));
+        success(_t("profile-edit.updated"));
         return getAccount(activeUser.username);
       })
       .then((account) => {
@@ -100,7 +100,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
         this.stateSet({ changed: false });
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       })
       .finally(() => {
         this.stateSet({ inProgress: false });
@@ -121,16 +121,16 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
     } = this.state;
 
     const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: '6px' }} />
+      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
     );
 
     return (
       <div className="profile-edit">
-        <div className="profile-edit-header">{_t('profile-edit.title')}</div>
+        <div className="profile-edit-header">{_t("profile-edit.title")}</div>
         <Form.Row>
           <Col lg={6} xl={4}>
             <Form.Group>
-              <Form.Label>{_t('profile-edit.name')}</Form.Label>
+              <Form.Label>{_t("profile-edit.name")}</Form.Label>
               <Form.Control
                 type="text"
                 disabled={inProgress}
@@ -143,7 +143,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
           </Col>
           <Col lg={6} xl={4}>
             <Form.Group>
-              <Form.Label>{_t('profile-edit.about')}</Form.Label>
+              <Form.Label>{_t("profile-edit.about")}</Form.Label>
               <Form.Control
                 type="text"
                 disabled={inProgress}
@@ -156,7 +156,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
           </Col>
           <Col lg={6} xl={4}>
             <Form.Group>
-              <Form.Label>{_t('profile-edit.profile-image')}</Form.Label>
+              <Form.Label>{_t("profile-edit.profile-image")}</Form.Label>
               <InputGroup className="mb-3">
                 <Form.Control
                   type="text"
@@ -183,7 +183,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
           </Col>
           <Col lg={6} xl={4}>
             <Form.Group>
-              <Form.Label>{_t('profile-edit.cover-image')}</Form.Label>
+              <Form.Label>{_t("profile-edit.cover-image")}</Form.Label>
               <InputGroup className="mb-3">
                 <Form.Control
                   type="text"
@@ -210,7 +210,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
           </Col>
           <Col lg={6} xl={4}>
             <Form.Group>
-              <Form.Label>{_t('profile-edit.website')}</Form.Label>
+              <Form.Label>{_t("profile-edit.website")}</Form.Label>
               <Form.Control
                 type="text"
                 disabled={inProgress}
@@ -224,7 +224,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
           </Col>
           <Col lg={6} xl={4}>
             <Form.Group>
-              <Form.Label>{_t('profile-edit.location')}</Form.Label>
+              <Form.Label>{_t("profile-edit.location")}</Form.Label>
               <Form.Control
                 type="text"
                 disabled={inProgress}
@@ -238,7 +238,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
         </Form.Row>
         {changed && (
           <Button onClick={this.update} disabled={inProgress || uploading}>
-            {inProgress && spinner} {_t('g.update')}
+            {inProgress && spinner} {_t("g.update")}
           </Button>
         )}
       </div>

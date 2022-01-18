@@ -1,10 +1,10 @@
-import React from 'react';
-import { StaticRouter } from 'react-router-dom';
+import React from "react";
+import { StaticRouter } from "react-router-dom";
 
-import { createBrowserHistory, createLocation } from 'history';
+import { createBrowserHistory, createLocation } from "history";
 
-import UserNav from './index';
-import renderer from 'react-test-renderer';
+import UserNav from "./index";
+import renderer from "react-test-renderer";
 
 import {
   notificationsInstance1,
@@ -12,7 +12,7 @@ import {
   globalInstance,
   fullAccountInstance,
   dynamicPropsIntance1
-} from '../../helper/test-helper';
+} from "../../helper/test-helper";
 
 const defProps = {
   global: globalInstance,
@@ -22,13 +22,13 @@ const defProps = {
   users: [],
   ui: UiInstance,
   activeUser: {
-    username: 'foo',
+    username: "foo",
     data: {
-      name: 'foo'
+      name: "foo"
     },
     points: {
-      points: '0.000',
-      uPoints: '0.000'
+      points: "0.000",
+      uPoints: "0.000"
     }
   },
   notifications: notificationsInstance1,
@@ -45,7 +45,7 @@ const defProps = {
   unMuteNotifications: () => {}
 };
 
-it('(1) Default render', () => {
+it("(1) Default render", () => {
   const component = renderer.create(
     <StaticRouter location="/@username" context={{}}>
       <UserNav {...defProps} />
@@ -54,22 +54,22 @@ it('(1) Default render', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Has rewards ', () => {
+it("(2) Has rewards ", () => {
   const props = {
     ...defProps,
     ...{
       activeUser: {
-        username: 'foo',
+        username: "foo",
         data: {
           ...fullAccountInstance,
-          name: 'foo',
-          reward_hbd_balance: '0.000 HBD',
-          reward_steem_balance: '0.000 HIVE',
-          reward_vesting_hive: '10.207 HIVE'
+          name: "foo",
+          reward_hbd_balance: "0.000 HBD",
+          reward_steem_balance: "0.000 HIVE",
+          reward_vesting_hive: "10.207 HIVE"
         },
         points: {
-          points: '0.000',
-          uPoints: '1.500'
+          points: "0.000",
+          uPoints: "1.500"
         }
       }
     }
@@ -83,7 +83,7 @@ it('(2) Has rewards ', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(3) usePrivate = false', () => {
+it("(3) usePrivate = false", () => {
   const props = {
     ...defProps,
     global: {

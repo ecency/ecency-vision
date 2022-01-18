@@ -1,33 +1,33 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import moment from 'moment';
+import moment from "moment";
 
-import htmlParse from 'html-react-parser';
-import { Element } from 'domhandler';
+import htmlParse from "html-react-parser";
+import { Element } from "domhandler";
 
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
 
-import EntryLink from '../entry-link';
-import ProfileLink from '../profile-link';
-import UserAvatar from '../user-avatar';
-import Tag from '../tag';
+import EntryLink from "../entry-link";
+import ProfileLink from "../profile-link";
+import UserAvatar from "../user-avatar";
+import Tag from "../tag";
 
-import FormattedCurrency from '../formatted-currency';
+import FormattedCurrency from "../formatted-currency";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
-import { catchPostImage, postBodySummary, setProxyBase } from '@ecency/render-helper';
+import { catchPostImage, postBodySummary, setProxyBase } from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
-import accountReputation from '../../helper/account-reputation';
+import accountReputation from "../../helper/account-reputation";
 
-import { SearchResult } from '../../api/search-api';
+import { SearchResult } from "../../api/search-api";
 
-import { peopleSvg, commentSvg } from '../../img/svg';
+import { peopleSvg, commentSvg } from "../../img/svg";
 
 interface Props {
   history: History;
@@ -40,7 +40,7 @@ const transformMarkedContent = (content: string) => {
   return htmlParse(content, {
     replace: (domNode) => {
       // Only text and <mark> elements
-      if (domNode.type === 'text' || (domNode instanceof Element && domNode.name === 'mark')) {
+      if (domNode.type === "text" || (domNode instanceof Element && domNode.name === "mark")) {
         return domNode;
       }
 
@@ -57,9 +57,9 @@ class SearchListItem extends Component<Props> {
   render() {
     const { global, res } = this.props;
     const fallbackImage = global.isElectron
-      ? './img/fallback.png'
-      : require('../../img/fallback.png');
-    const noImage = global.isElectron ? './img/noimage.svg' : require('../../img/noimage.svg');
+      ? "./img/fallback.png"
+      : require("../../img/fallback.png");
+    const noImage = global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg");
 
     const entry = {
       category: res.category,
@@ -73,7 +73,7 @@ class SearchListItem extends Component<Props> {
       : postBodySummary(res.body, 200);
     const img: string =
       (global.canUseWebp
-        ? catchPostImage(res.body, 600, 500, 'webp')
+        ? catchPostImage(res.body, 600, 500, "webp")
         : catchPostImage(res.body, 600, 500)) || noImage;
 
     let thumb = (
@@ -84,13 +84,13 @@ class SearchListItem extends Component<Props> {
           const target = e.target as HTMLImageElement;
           target.src = fallbackImage;
         }}
-        className={img === noImage ? 'no-img' : ''}
+        className={img === noImage ? "no-img" : ""}
       />
     );
 
     const date = moment(res.created_at);
     const dateRelative = date.fromNow(true);
-    const dateFormatted = date.format('LLLL');
+    const dateFormatted = date.format("LLLL");
     const reputation = accountReputation(res.author_rep);
 
     return (
@@ -103,7 +103,7 @@ class SearchListItem extends Component<Props> {
                 username: res.author,
                 children: (
                   <a className="author-avatar">
-                    {UserAvatar({ ...this.props, username: res.author, size: 'small' })}
+                    {UserAvatar({ ...this.props, username: res.author, size: "small" })}
                   </a>
                 )
               })}
@@ -121,7 +121,7 @@ class SearchListItem extends Component<Props> {
             {Tag({
               ...this.props,
               tag: res.category,
-              type: 'link',
+              type: "link",
               children: <a className="category">{res.category}</a>
             })}
 
@@ -165,7 +165,7 @@ class SearchListItem extends Component<Props> {
               entry,
               children: (
                 <a className="result-votes">
-                  {' '}
+                  {" "}
                   {peopleSvg} {res.total_votes}
                 </a>
               )

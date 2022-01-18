@@ -1,26 +1,26 @@
-import React from 'react';
+import React from "react";
 
-import { Modal } from 'react-bootstrap';
+import { Modal } from "react-bootstrap";
 
-import { FormControl } from 'react-bootstrap';
+import { FormControl } from "react-bootstrap";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import { ActiveUser } from '../../store/active-user/types';
-import { Community } from '../../store/communities/types';
-import { Global } from '../../store/global/types';
-import { Subscription } from '../../store/subscriptions/types';
+import { ActiveUser } from "../../store/active-user/types";
+import { Community } from "../../store/communities/types";
+import { Global } from "../../store/global/types";
+import { Subscription } from "../../store/subscriptions/types";
 
-import BaseComponent from '../base';
-import UserAvatar from '../user-avatar/index';
+import BaseComponent from "../base";
+import UserAvatar from "../user-avatar/index";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import isCommunity from '../../helper/is-community';
+import isCommunity from "../../helper/is-community";
 
-import { getCommunities, getCommunity, getSubscriptions } from '../../api/bridge';
+import { getCommunities, getCommunity, getSubscriptions } from "../../api/bridge";
 
-import { menuDownSvg } from '../../img/svg';
+import { menuDownSvg } from "../../img/svg";
 
 interface BrowserProps {
   global: Global;
@@ -38,7 +38,7 @@ interface BrowserState {
 export class Browser extends BaseComponent<BrowserProps, BrowserState> {
   state: BrowserState = {
     subscriptions: [],
-    query: '',
+    query: "",
     results: []
   };
 
@@ -46,7 +46,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
 
   componentDidMount() {
     this.fetchSubscriptions().then();
-    document.getElementById('search-communities-input')?.focus();
+    document.getElementById("search-communities-input")?.focus();
   }
 
   fetchSubscriptions = () => {
@@ -74,7 +74,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
   search = () => {
     const { query } = this.state;
 
-    getCommunities('', 14, query, 'rank').then((results) => {
+    getCommunities("", 14, query, "rank").then((results) => {
       if (results) {
         this.stateSet({ results });
       }
@@ -90,7 +90,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
         <FormControl
           type="text"
           size="sm"
-          placeholder={_t('community-selector.search-placeholder')}
+          placeholder={_t("community-selector.search-placeholder")}
           value={query}
           onChange={this.queryChanged}
           id="search-communities-input"
@@ -120,7 +120,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
                       }}
                     >
                       <div className="item-main">
-                        {UserAvatar({ ...this.props, username: x.name, size: 'small' })}
+                        {UserAvatar({ ...this.props, username: x.name, size: "small" })}
                         <div className="item-info">
                           <span className="item-name notransalte">{x.title}</span>
                         </div>
@@ -129,7 +129,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
                   ))}
                 </>
               )}
-              {results.length === 0 && <div className="empty-list">{_t('g.empty-list')}</div>}
+              {results.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
             </div>
           </div>
         </div>
@@ -152,9 +152,9 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
               }}
             >
               <div className="item-main">
-                {UserAvatar({ ...this.props, username: activeUser.username, size: 'small' })}
+                {UserAvatar({ ...this.props, username: activeUser.username, size: "small" })}
                 <div className="item-info">
-                  <span className="item-name notransalte">{_t('community-selector.my-blog')}</span>
+                  <span className="item-name notransalte">{_t("community-selector.my-blog")}</span>
                 </div>
               </div>
             </a>
@@ -173,7 +173,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
                     }}
                   >
                     <div className="item-main">
-                      {UserAvatar({ ...this.props, username: x[0], size: 'small' })}
+                      {UserAvatar({ ...this.props, username: x[0], size: "small" })}
                       <div className="item-info">
                         <span className="item-name notransalte">{x[1]}</span>
                       </div>
@@ -269,7 +269,7 @@ export class CommunitySelector extends BaseComponent<Props, State> {
     if (community) {
       content = (
         <>
-          {UserAvatar({ ...this.props, username: community.name, size: 'small' })}
+          {UserAvatar({ ...this.props, username: community.name, size: "small" })}
           <span className="label">{community.title}</span> {menuDownSvg}
         </>
       );
@@ -277,14 +277,14 @@ export class CommunitySelector extends BaseComponent<Props, State> {
       if (tags.length > 0 || picked) {
         content = (
           <>
-            {UserAvatar({ ...this.props, username: activeUser.username, size: 'small' })}
-            <span className="label">{_t('community-selector.my-blog')}</span> {menuDownSvg}
+            {UserAvatar({ ...this.props, username: activeUser.username, size: "small" })}
+            <span className="label">{_t("community-selector.my-blog")}</span> {menuDownSvg}
           </>
         );
       } else {
         content = (
           <>
-            <span className="label">{_t('community-selector.choose')}</span> {menuDownSvg}
+            <span className="label">{_t("community-selector.choose")}</span> {menuDownSvg}
           </>
         );
       }

@@ -1,22 +1,22 @@
-import React from 'react';
+import React from "react";
 
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 
-import { Account } from '../../store/accounts/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { ToggleType, UI } from '../../store/ui/types';
-import { User } from '../../store/users/types';
+import { Account } from "../../store/accounts/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { ToggleType, UI } from "../../store/ui/types";
+import { User } from "../../store/users/types";
 
-import BaseComponent from '../base';
-import Tooltip from '../tooltip';
-import LoginRequired from '../login-required';
-import { error, success } from '../feedback';
+import BaseComponent from "../base";
+import Tooltip from "../tooltip";
+import LoginRequired from "../login-required";
+import { error, success } from "../feedback";
 
-import { checkFavorite, addFavorite, deleteFavorite } from '../../api/private-api';
+import { checkFavorite, addFavorite, deleteFavorite } from "../../api/private-api";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { starSvg, starOutlineSvg } from '../../img/svg';
+import { starSvg, starOutlineSvg } from "../../img/svg";
 
 interface Props {
   targetUsername: string;
@@ -77,9 +77,9 @@ export class FavoriteBtn extends BaseComponent<Props, State> {
     addFavorite(activeUser?.username!, targetUsername)
       .then((r) => {
         this.detect();
-        success(_t('favorite-btn.added'));
+        success(_t("favorite-btn.added"));
       })
-      .catch(() => error(_t('g.server-error')))
+      .catch(() => error(_t("g.server-error")))
       .finally(() => this.stateSet({ inProgress: false }));
   };
 
@@ -95,9 +95,9 @@ export class FavoriteBtn extends BaseComponent<Props, State> {
     deleteFavorite(activeUser?.username!, targetUsername)
       .then(() => {
         this.detect();
-        success(_t('favorite-btn.deleted'));
+        success(_t("favorite-btn.deleted"));
       })
-      .catch(() => error(_t('g.server-error')))
+      .catch(() => error(_t("g.server-error")))
       .finally(() => this.stateSet({ inProgress: false }));
   };
 
@@ -110,7 +110,7 @@ export class FavoriteBtn extends BaseComponent<Props, State> {
         ...this.props,
         children: (
           <span className="favorite-btn">
-            <Tooltip content={_t('favorite-btn.add')}>
+            <Tooltip content={_t("favorite-btn.add")}>
               <Button disabled={inProgress} onClick={this.delete}>
                 {starOutlineSvg}
               </Button>
@@ -123,7 +123,7 @@ export class FavoriteBtn extends BaseComponent<Props, State> {
     if (favorited) {
       return (
         <span className="favorite-btn">
-          <Tooltip content={_t('favorite-btn.delete')}>
+          <Tooltip content={_t("favorite-btn.delete")}>
             <Button disabled={inProgress} onClick={this.delete}>
               {starSvg}
             </Button>
@@ -134,7 +134,7 @@ export class FavoriteBtn extends BaseComponent<Props, State> {
 
     return (
       <span className="favorite-btn">
-        <Tooltip content={_t('favorite-btn.add')}>
+        <Tooltip content={_t("favorite-btn.add")}>
           <Button disabled={inProgress} onClick={this.add}>
             {starOutlineSvg}
           </Button>

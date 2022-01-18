@@ -1,27 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button } from "react-bootstrap";
 
-import { PrivateKey } from '@hiveio/dhive';
+import { PrivateKey } from "@hiveio/dhive";
 
-import { Global } from '../../store/global/types';
-import { Community } from '../../store/communities/types';
-import { ActiveUser } from '../../store/active-user/types';
+import { Global } from "../../store/global/types";
+import { Community } from "../../store/communities/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import BaseComponent from '../base';
-import { error } from '../feedback';
-import KeyOrHot from '../key-or-hot';
-import LinearProgress from '../linear-progress';
+import BaseComponent from "../base";
+import { error } from "../feedback";
+import KeyOrHot from "../key-or-hot";
+import LinearProgress from "../linear-progress";
 
 import {
   communityRewardsRegister,
   communityRewardsRegisterHot,
   communityRewardsRegisterKc,
   formatError
-} from '../../api/operations';
-import { getRewardedCommunities } from '../../api/private-api';
+} from "../../api/operations";
+import { getRewardedCommunities } from "../../api/private-api";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 interface Props {
   global: Global;
@@ -119,19 +119,19 @@ export class CommunityRewardsRegistration extends BaseComponent<Props, State> {
 
     const btnClose = (
       <Button size="sm" onClick={this.hide}>
-        {_t('g.close')}
+        {_t("g.close")}
       </Button>
     );
     const btnNext = (
       <Button size="sm" onClick={this.next}>
-        {_t('community-rewards-registration.btn-next-label')}
+        {_t("community-rewards-registration.btn-next-label")}
       </Button>
     );
 
     if (done) {
       return (
         <div className="dialog-content">
-          <p className="text-info">{_t('community-rewards-registration.done-body-text')}</p>
+          <p className="text-info">{_t("community-rewards-registration.done-body-text")}</p>
           {btnClose}
         </div>
       );
@@ -154,7 +154,7 @@ export class CommunityRewardsRegistration extends BaseComponent<Props, State> {
     if (registered) {
       return (
         <div className="dialog-content">
-          <p className="text-info">{_t('community-rewards-registration.conflict-body-text')}</p>
+          <p className="text-info">{_t("community-rewards-registration.conflict-body-text")}</p>
           {btnClose}
         </div>
       );
@@ -164,7 +164,7 @@ export class CommunityRewardsRegistration extends BaseComponent<Props, State> {
       return (
         <div className="dialog-content">
           <p className="text-danger">
-            {_t('community-rewards-registration.min-required-body-text')}
+            {_t("community-rewards-registration.min-required-body-text")}
           </p>
           {btnClose}
         </div>
@@ -173,7 +173,7 @@ export class CommunityRewardsRegistration extends BaseComponent<Props, State> {
 
     return (
       <div className="dialog-content">
-        <p>{_t('community-rewards-registration.body-text')}</p>
+        <p>{_t("community-rewards-registration.body-text")}</p>
         {btnNext}
       </div>
     );

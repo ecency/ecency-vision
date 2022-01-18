@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { Global } from '../../store/global/types';
+import { Global } from "../../store/global/types";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
-import { hiveSvg } from '../../img/svg';
-import { hiveEngineSvg } from '../../img/svg';
+import { hiveSvg } from "../../img/svg";
+import { hiveEngineSvg } from "../../img/svg";
 
 interface Props {
   global: Global;
@@ -19,14 +19,14 @@ export default class WalletMenu extends Component<Props> {
   render() {
     const { global, username, active } = this.props;
     const logo = global.isElectron
-      ? './img/logo-small-transparent.png'
-      : require('../../img/logo-small-transparent.png');
+      ? "./img/logo-small-transparent.png"
+      : require("../../img/logo-small-transparent.png");
 
     return (
       <div className="wallet-menu">
         {global.usePrivate && (
           <Link
-            className={_c(`menu-item ecency ${active === 'ecency' ? 'active' : ''}`)}
+            className={_c(`menu-item ecency ${active === "ecency" ? "active" : ""}`)}
             to={`/@${username}/points`}
           >
             <span className="title">Ecency</span>
@@ -37,7 +37,7 @@ export default class WalletMenu extends Component<Props> {
           </Link>
         )}
         <Link
-          className={_c(`menu-item hive ${active === 'hive' ? 'active' : ''}`)}
+          className={_c(`menu-item hive ${active === "hive" ? "active" : ""}`)}
           to={`/@${username}/wallet`}
         >
           <span className="title">Hive</span>
@@ -45,7 +45,7 @@ export default class WalletMenu extends Component<Props> {
           <span className="platform-logo">{hiveSvg}</span>
         </Link>
         <Link
-          className={_c(`menu-item hive-engine ${active === 'engine' ? 'active' : ''}`)}
+          className={_c(`menu-item hive-engine ${active === "engine" ? "active" : ""}`)}
           to={`/@${username}/engine`}
         >
           <span className="title">Engine</span>

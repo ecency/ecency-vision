@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal } from "react-bootstrap";
 
-import { proxifyImageSrc, setProxyBase } from '@ecency/render-helper';
+import { proxifyImageSrc, setProxyBase } from "@ecency/render-helper";
 
-import { Global } from '../../store/global/types';
-import { ActiveUser } from '../../store/active-user/types';
+import { Global } from "../../store/global/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import BaseComponent from '../base';
-import LinearProgress from '../linear-progress';
+import BaseComponent from "../base";
+import LinearProgress from "../linear-progress";
 
-import { getImages, UserImage } from '../../api/private-api';
+import { getImages, UserImage } from "../../api/private-api";
 
-import { error } from '../feedback';
+import { error } from "../feedback";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
 setProxyBase(defaults.imageServer);
 
@@ -61,7 +61,7 @@ export class AddImage extends BaseComponent<Props, State> {
       })
       .catch(() => {
         this.stateSet({ loading: false });
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       });
   };
 
@@ -95,9 +95,9 @@ export class AddImage extends BaseComponent<Props, State> {
     }
 
     const btnGallery = global.usePrivate ? (
-      <Button onClick={this.gallery}>{_t('add-image-mobile.gallery')}</Button>
+      <Button onClick={this.gallery}>{_t("add-image-mobile.gallery")}</Button>
     ) : null;
-    const btnUpload = <Button onClick={this.upload}>{_t('add-image-mobile.upload')}</Button>;
+    const btnUpload = <Button onClick={this.upload}>{_t("add-image-mobile.upload")}</Button>;
 
     if (items.length === 0) {
       return (
@@ -113,14 +113,14 @@ export class AddImage extends BaseComponent<Props, State> {
         <div className="recent-list">
           {items.length > 0 && (
             <>
-              <div className="recent-list-title">{_t('add-image-mobile.recent-title')}</div>
+              <div className="recent-list-title">{_t("add-image-mobile.recent-title")}</div>
               <div className="recent-list-body">
                 {items.map((item) => {
                   const src = proxifyImageSrc(
                     item.url,
                     600,
                     500,
-                    global.canUseWebp ? 'webp' : 'match'
+                    global.canUseWebp ? "webp" : "match"
                   );
                   return (
                     <div
@@ -162,7 +162,7 @@ export default class AddImageDialog extends Component<Props> {
         animation={false}
       >
         <Modal.Header closeButton={true}>
-          <Modal.Title>{_t('add-image-mobile.title')}</Modal.Title>
+          <Modal.Title>{_t("add-image-mobile.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <AddImage {...this.props} />

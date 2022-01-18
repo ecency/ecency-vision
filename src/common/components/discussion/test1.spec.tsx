@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import Discussion from './index';
+import Discussion from "./index";
 
-import { Discussion as DiscussionType, SortOrder } from '../../store/discussion/types';
+import { Discussion as DiscussionType, SortOrder } from "../../store/discussion/types";
 
-import { create, act } from 'react-test-renderer';
+import { create, act } from "react-test-renderer";
 
-import { createBrowserHistory, createLocation } from 'history';
+import { createBrowserHistory, createLocation } from "history";
 
 import {
   globalInstance,
@@ -16,11 +16,11 @@ import {
   communityInstance1,
   UiInstance,
   allOver
-} from '../../helper/test-helper';
+} from "../../helper/test-helper";
 
-jest.mock('moment', () => () => ({
-  fromNow: () => '3 days ago',
-  format: (f: string, s: string) => '2020-01-01 23:12:00'
+jest.mock("moment", () => () => ({
+  fromNow: () => "3 days ago",
+  format: (f: string, s: string) => "2020-01-01 23:12:00"
 }));
 
 const [parent] = discussionInstace1;
@@ -39,7 +39,7 @@ const defProps = {
   global: globalInstance,
   dynamicProps: dynamicPropsIntance1,
   users: [],
-  activeUser: activeUserMaker('foo'),
+  activeUser: activeUserMaker("foo"),
   ui: UiInstance,
   parent,
   community: null,
@@ -57,7 +57,7 @@ const defProps = {
   toggleUIProp: () => {}
 };
 
-it('(1) Full render with active user', async () => {
+it("(1) Full render with active user", async () => {
   // render the component
   let component = await create(<Discussion {...defProps} />);
 
@@ -65,7 +65,7 @@ it('(1) Full render with active user', async () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Full render with no active user', async () => {
+it("(2) Full render with no active user", async () => {
   const props = {
     ...defProps,
     activeUser: null
@@ -77,10 +77,10 @@ it('(2) Full render with no active user', async () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(3) With selected item', async () => {
+it("(3) With selected item", async () => {
   const props = {
     ...defProps,
-    location: createLocation({ hash: '#@forykw/re-esteemapp-202067t12246786z' })
+    location: createLocation({ hash: "#@forykw/re-esteemapp-202067t12246786z" })
   };
   // render the component
   let component = await create(<Discussion {...props} />);
@@ -89,7 +89,7 @@ it('(3) With selected item', async () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(4) Show mute button, muted comment', async () => {
+it("(4) Show mute button, muted comment", async () => {
   let [reply] = replies;
   reply = { ...reply, stats: { hide: false, gray: true, total_votes: 180, flag_weight: 0 } };
 
@@ -103,7 +103,7 @@ it('(4) Show mute button, muted comment', async () => {
   const nProps = {
     ...defProps,
     discussion,
-    activeUser: activeUserMaker('hive-148441'),
+    activeUser: activeUserMaker("hive-148441"),
     community: communityInstance1
   };
 

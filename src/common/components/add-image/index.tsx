@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Button, Form, FormControl, Modal } from 'react-bootstrap';
+import { Button, Form, FormControl, Modal } from "react-bootstrap";
 
-import { _t } from '../../i18n';
-import { handleInvalid, handleOnInput } from '../../util/input-util';
+import { _t } from "../../i18n";
+import { handleInvalid, handleOnInput } from "../../util/input-util";
 
 interface Props {
   onHide: () => void;
@@ -17,8 +17,8 @@ interface State {
 
 export class AddImage extends Component<Props, State> {
   state: State = {
-    text: '',
-    link: ''
+    text: "",
+    link: ""
   };
 
   form = React.createRef<HTMLFormElement>();
@@ -56,11 +56,11 @@ export class AddImage extends Component<Props, State> {
               type="text"
               autoComplete="off"
               value={text}
-              placeholder={_t('add-image.text-label')}
+              placeholder={_t("add-image.text-label")}
               onChange={this.textChanged}
               autoFocus={true}
               required={true}
-              onInvalid={(e: any) => handleInvalid(e, 'add-image.', 'validation-text')}
+              onInvalid={(e: any) => handleInvalid(e, "add-image.", "validation-text")}
               onInput={handleOnInput}
             />
           </Form.Group>
@@ -69,15 +69,15 @@ export class AddImage extends Component<Props, State> {
               type="text"
               autoComplete="off"
               value={link}
-              placeholder={_t('add-image.link-label')}
+              placeholder={_t("add-image.link-label")}
               onChange={this.linkChanged}
               required={true}
-              onInvalid={(e: any) => handleInvalid(e, 'add-image.', 'validation-image')}
+              onInvalid={(e: any) => handleInvalid(e, "add-image.", "validation-image")}
               onInput={handleOnInput}
             />
           </Form.Group>
           <div className="d-flex justify-content-end">
-            <Button type="submit">{_t('g.add')}</Button>
+            <Button type="submit">{_t("g.add")}</Button>
           </div>
         </Form>
       </div>
@@ -101,7 +101,7 @@ export default class AddImageDialog extends Component<Props> {
         animation={false}
       >
         <Modal.Header closeButton={true}>
-          <Modal.Title>{_t('add-image.title')}</Modal.Title>
+          <Modal.Title>{_t("add-image.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <AddImage {...this.props} />

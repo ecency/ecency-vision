@@ -1,25 +1,25 @@
-import React from 'react';
+import React from "react";
 
-import { History, Location } from 'history';
+import { History, Location } from "history";
 
-import { Global } from '../../store/global/types';
-import { User } from '../../store/users/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { ToggleType, UI } from '../../store/ui/types';
-import { Account } from '../../store/accounts/types';
+import { Global } from "../../store/global/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { ToggleType, UI } from "../../store/ui/types";
+import { Account } from "../../store/accounts/types";
 
-import BaseComponent from '../base';
-import LoginRequired from '../login-required';
-import KeyOrHotDialog from '../key-or-hot-dialog';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import LoginRequired from "../login-required";
+import KeyOrHotDialog from "../key-or-hot-dialog";
+import { error } from "../feedback";
 
-import { getProposalVotes } from '../../api/hive';
+import { getProposalVotes } from "../../api/hive";
 
-import { proposalVote, proposalVoteHot, proposalVoteKc, formatError } from '../../api/operations';
+import { proposalVote, proposalVoteHot, proposalVoteKc, formatError } from "../../api/operations";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
-import { chevronUpSvg } from '../../img/svg';
+import { chevronUpSvg } from "../../img/svg";
 
 interface Props {
   history: History;
@@ -83,7 +83,7 @@ export class ProposalVoteBtn extends BaseComponent<Props, State> {
     const fnArgs = [...args, approve];
     const call = fn(...fnArgs);
 
-    if (typeof call?.then === 'function') {
+    if (typeof call?.then === "function") {
       this.stateSet({ inProgress: true });
 
       call
@@ -104,8 +104,8 @@ export class ProposalVoteBtn extends BaseComponent<Props, State> {
     const { loading, inProgress, voted } = this.state;
 
     const cls = _c(
-      `btn-proposal-vote btn-up-vote vote-btn-lg ${inProgress || loading ? 'in-progress' : ''} ${
-        voted ? 'voted' : ''
+      `btn-proposal-vote btn-up-vote vote-btn-lg ${inProgress || loading ? "in-progress" : ""} ${
+        voted ? "voted" : ""
       }`
     );
     const btn = (

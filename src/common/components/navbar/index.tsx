@@ -1,40 +1,40 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History, Location } from 'history';
+import { History, Location } from "history";
 
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import queryString from 'query-string';
+import queryString from "query-string";
 
-import { Global, Theme } from '../../store/global/types';
-import { TrendingTags } from '../../store/trending-tags/types';
-import { Account, FullAccount } from '../../store/accounts/types';
-import { User } from '../../store/users/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { UI, ToggleType } from '../../store/ui/types';
-import { NotificationFilter, Notifications } from '../../store/notifications/types';
-import { DynamicProps } from '../../store/dynamic-props/types';
-import NotificationHandler from '../notification-handler';
-import SwitchLang from '../switch-lang';
+import { Global, Theme } from "../../store/global/types";
+import { TrendingTags } from "../../store/trending-tags/types";
+import { Account, FullAccount } from "../../store/accounts/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { UI, ToggleType } from "../../store/ui/types";
+import { NotificationFilter, Notifications } from "../../store/notifications/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
+import NotificationHandler from "../notification-handler";
+import SwitchLang from "../switch-lang";
 
-import ToolTip from '../tooltip';
-import Search from '../search';
-import Login from '../login';
-import UserNav from '../user-nav';
-import UserNotifications from '../notifications';
-import Gallery from '../gallery';
-import Drafts from '../drafts';
-import Bookmarks from '../bookmarks';
-import Schedules from '../schedules';
-import Fragments from '../fragments';
+import ToolTip from "../tooltip";
+import Search from "../search";
+import Login from "../login";
+import UserNav from "../user-nav";
+import UserNotifications from "../notifications";
+import Gallery from "../gallery";
+import Drafts from "../drafts";
+import Bookmarks from "../bookmarks";
+import Schedules from "../schedules";
+import Fragments from "../fragments";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
 import {
   brightnessSvg,
@@ -59,9 +59,9 @@ import {
   keySvg,
   sunSvg,
   gifCardSvg
-} from '../../img/svg';
-import userAvatar from '../user-avatar';
-import { downVotingPower, votingPower } from '../../api/hive';
+} from "../../img/svg";
+import userAvatar from "../user-avatar";
+import { downVotingPower, votingPower } from "../../api/hive";
 //const logo = require('../../img/logo-circle.svg');
 
 interface Props {
@@ -128,22 +128,22 @@ export class NavBar extends Component<Props, State> {
     // referral check / redirect
     const { location, history } = this.props;
     const qs = queryString.parse(location.search);
-    if (!location.pathname.startsWith('/signup') && qs.referral) {
+    if (!location.pathname.startsWith("/signup") && qs.referral) {
       history.push(`/signup?referral=${qs.referral}`);
     }
 
     window
-      .matchMedia('(prefers-color-scheme: dark)')
-      .addEventListener('change', this.handleAutoDetectTheme); // listen to dark theme
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", this.handleAutoDetectTheme); // listen to dark theme
     // this.handleSetTheme(); // detect default set theme on load page
   }
 
   componentWillUnmount() {
-    document.getElementsByTagName('body')[0].classList.remove('overflow-hidden');
+    document.getElementsByTagName("body")[0].classList.remove("overflow-hidden");
 
     window
-      .matchMedia('(prefers-color-scheme: dark)')
-      .removeEventListener('change', this.handleAutoDetectTheme);
+      .matchMedia("(prefers-color-scheme: dark)")
+      .removeEventListener("change", this.handleAutoDetectTheme);
   }
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
@@ -163,10 +163,10 @@ export class NavBar extends Component<Props, State> {
   componentDidUpdate(prevProps: Props, prevStates: State) {
     if (prevStates.smVisible !== this.state.smVisible) {
       if (this.state.smVisible) {
-        document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
+        document.getElementsByTagName("body")[0].classList.add("overflow-hidden");
       }
       if (!this.state.smVisible) {
-        document.getElementsByTagName('body')[0].classList.remove('overflow-hidden');
+        document.getElementsByTagName("body")[0].classList.remove("overflow-hidden");
       }
     }
 
@@ -174,7 +174,7 @@ export class NavBar extends Component<Props, State> {
       prevProps.location.pathname !== this.props.location.pathname ||
       prevProps.activeUser !== this.props.activeUser
     ) {
-      if (this.props.location.pathname === '/' && !this.props.activeUser) {
+      if (this.props.location.pathname === "/" && !this.props.activeUser) {
         this.props.setStepOne!();
       } else {
         this.props.setStepTwo && this.props.setStepTwo();
@@ -190,19 +190,19 @@ export class NavBar extends Component<Props, State> {
     const { smVisible } = this.state;
     this.setState({ smVisible: !smVisible });
     if (!smVisible) {
-      let rootElement = document.getElementById('root');
+      let rootElement = document.getElementById("root");
       rootElement && rootElement.scrollIntoView();
     }
   };
 
   handleIconClick = () => {
     if (
-      '/' !== this.props?.location?.pathname ||
-      this.props?.location?.pathname?.startsWith('/hot') ||
-      this.props?.location?.pathname?.startsWith('/created') ||
-      this.props?.location?.pathname?.startsWith('/trending')
+      "/" !== this.props?.location?.pathname ||
+      this.props?.location?.pathname?.startsWith("/hot") ||
+      this.props?.location?.pathname?.startsWith("/created") ||
+      this.props?.location?.pathname?.startsWith("/trending")
     ) {
-      this.props.history.push('/');
+      this.props.history.push("/");
     }
     if (this.props.setStepOne) {
       return this.props.setStepOne();
@@ -221,9 +221,9 @@ export class NavBar extends Component<Props, State> {
 
   render() {
     const { global, activeUser, ui, step, toggleUIProp, setActiveUser } = this.props;
-    const logo = global.isElectron ? './img/logo-circle.svg' : require('../../img/logo-circle.svg');
-    const themeText = global.theme == Theme.day ? _t('navbar.night-theme') : _t('navbar.day-theme');
-    const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
+    const logo = global.isElectron ? "./img/logo-circle.svg" : require("../../img/logo-circle.svg");
+    const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
+    const logoHref = activeUser ? `/@${activeUser.username}/feed` : "/";
     const {
       smVisible,
       floating,
@@ -237,29 +237,29 @@ export class NavBar extends Component<Props, State> {
     } = this.state;
 
     const transparentVerify =
-      this.props?.location?.pathname?.startsWith('/hot') ||
-      this.props?.location?.pathname?.startsWith('/created') ||
-      this.props?.location?.pathname?.startsWith('/trending');
+      this.props?.location?.pathname?.startsWith("/hot") ||
+      this.props?.location?.pathname?.startsWith("/created") ||
+      this.props?.location?.pathname?.startsWith("/trending");
 
     const textMenu = (
       <div className="text-menu">
         <Link className="menu-item mt-0" to="/discover">
-          {_t('navbar.discover')}
+          {_t("navbar.discover")}
         </Link>
         <Link className="menu-item mt-0" to="/communities">
-          {_t('navbar.communities')}
+          {_t("navbar.communities")}
         </Link>
       </div>
     );
 
     return (
-      <div className={'sticky-container'} id="sticky-container">
+      <div className={"sticky-container"} id="sticky-container">
         {floating && smVisible && <div className="nav-bar-rep" />}
-        <div className={`nav-bar-toggle ${'position-fixed'}`} onClick={this.toggleSmVisible}>
+        <div className={`nav-bar-toggle ${"position-fixed"}`} onClick={this.toggleSmVisible}>
           {smVisible ? closeSvg : menuSvg}
         </div>
 
-        <div className={`nav-bar-sm ${'sticky'} ${step === 1 ? 'transparent' : ''}`}>
+        <div className={`nav-bar-sm ${"sticky"} ${step === 1 ? "transparent" : ""}`}>
           <div className="brand">
             {activeUser !== null ? (
               <Link to={logoHref}>
@@ -274,9 +274,9 @@ export class NavBar extends Component<Props, State> {
         </div>
 
         {!smVisible && (
-          <div className={`nav-bar ${!transparentVerify && step === 1 ? 'transparent' : ''} `}>
+          <div className={`nav-bar ${!transparentVerify && step === 1 ? "transparent" : ""} `}>
             <div
-              className={`nav-bar-inner ${!transparentVerify && step === 1 ? 'transparent' : ''}`}
+              className={`nav-bar-inner ${!transparentVerify && step === 1 ? "transparent" : ""}`}
             >
               <div className="brand">
                 {activeUser !== null ? (
@@ -302,7 +302,7 @@ export class NavBar extends Component<Props, State> {
                   </ToolTip>
                 )}
                 {(step !== 1 || transparentVerify) && (
-                  <ToolTip content={_t('navbar.post')}>
+                  <ToolTip content={_t("navbar.post")}>
                     <Link className="switch-theme pencil" to="/submit">
                       {pencilOutlineSvg}
                     </Link>
@@ -317,18 +317,18 @@ export class NavBar extends Component<Props, State> {
                         className="btn-login btn-primary"
                         onClick={() => {
                           const { toggleUIProp } = this.props;
-                          toggleUIProp('login');
+                          toggleUIProp("login");
                         }}
                       >
-                        {_t('g.login')}
+                        {_t("g.login")}
                       </Button>
 
                       <Link className="btn btn-primary" to="/signup">
-                        {_t('g.signup')}
+                        {_t("g.signup")}
                       </Link>
                     </div>
                     <div className="submit-post">
-                      <ToolTip content={_t('navbar.post')}>
+                      <ToolTip content={_t("navbar.post")}>
                         <Link className="btn btn-outline-primary" to="/submit">
                           {pencilOutlineSvg}
                         </Link>
@@ -341,7 +341,7 @@ export class NavBar extends Component<Props, State> {
                 <div>
                   <UserNav {...this.props} activeUser={activeUser} />
                   <div className="submit-post">
-                    <ToolTip content={_t('navbar.post')}>
+                    <ToolTip content={_t("navbar.post")}>
                       <Link className="btn btn-outline-primary" to="/submit">
                         {pencilOutlineSvg}
                       </Link>
@@ -355,8 +355,8 @@ export class NavBar extends Component<Props, State> {
         <div
           ref={this.nav}
           className={_c(
-            `nav-bar ${!transparentVerify && step === 1 ? 'transparent' : ''} ${
-              smVisible ? 'visible-sm' : 'd-none'
+            `nav-bar ${!transparentVerify && step === 1 ? "transparent" : ""} ${
+              smVisible ? "visible-sm" : "d-none"
             }`
           )}
         >
@@ -365,14 +365,14 @@ export class NavBar extends Component<Props, State> {
               {activeUser && (
                 <Link to={`/@${activeUser.username}`}>
                   <div className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0 mb-3 position-relative">
-                    {userAvatar({ ...this.props, username: activeUser.username, size: 'large' })}
+                    {userAvatar({ ...this.props, username: activeUser.username, size: "large" })}
                     <div className="ml-2">
                       <b>@{activeUser.username}</b>
                       <div className="mt-1 text-white">
-                        {_t('user-nav.vote-power')} <span>{upArrowSvg}</span>{' '}
+                        {_t("user-nav.vote-power")} <span>{upArrowSvg}</span>{" "}
                         {(activeUser.data as FullAccount).active &&
                           votingPower(activeUser.data as FullAccount).toFixed(0)}
-                        % <span>{downArrowSvg}</span>{' '}
+                        % <span>{downArrowSvg}</span>{" "}
                         {(activeUser.data as FullAccount).active &&
                           downVotingPower(activeUser.data as FullAccount).toFixed(0)}
                         %
@@ -385,7 +385,7 @@ export class NavBar extends Component<Props, State> {
                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                   {showMobileSearch ? (
                     <>
-                      {Search({ ...this.props, containerClassName: 'w-100' })}
+                      {Search({ ...this.props, containerClassName: "w-100" })}
                       <div
                         onClick={() => this.setState({ showMobileSearch: false })}
                         className="navbar-icon text-secondary ml-2"
@@ -396,7 +396,7 @@ export class NavBar extends Component<Props, State> {
                   ) : (
                     <>
                       <div className="navbar-icon">{magnifySvg}</div>
-                      <div className="ml-3 text-15">{_t('g.search')}</div>
+                      <div className="ml-3 text-15">{_t("g.search")}</div>
                     </>
                   )}
                 </div>
@@ -406,10 +406,10 @@ export class NavBar extends Component<Props, State> {
                 <>
                   <div
                     className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
-                    onClick={() => toggleUIProp('login')}
+                    onClick={() => toggleUIProp("login")}
                   >
                     <div className="navbar-icon">{userOutlineSvg}</div>
-                    <div className="ml-3 text-15">{_t('g.login')}</div>
+                    <div className="ml-3 text-15">{_t("g.login")}</div>
                   </div>
                   <Link
                     to="/signup"
@@ -417,7 +417,7 @@ export class NavBar extends Component<Props, State> {
                   >
                     <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                       <div className="navbar-icon">{keySvg}</div>
-                      <div className="ml-3 text-15">{_t('g.signup')}</div>
+                      <div className="ml-3 text-15">{_t("g.signup")}</div>
                     </div>
                   </Link>
                 </>
@@ -426,7 +426,7 @@ export class NavBar extends Component<Props, State> {
               <Link to="/submit" onClick={() => this.setState({ smVisible: false })}>
                 <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                   <div className="navbar-icon">{pencilOutlinedSvg}</div>
-                  <div className="ml-3 text-15">{_t('g.submit')}</div>
+                  <div className="ml-3 text-15">{_t("g.submit")}</div>
                 </div>
               </Link>
 
@@ -437,7 +437,7 @@ export class NavBar extends Component<Props, State> {
                     onClick={() => this.setState({ showProfileMenu: !showProfileMenu })}
                   >
                     <div className="navbar-icon">{userOutlineSvg}</div>
-                    <div className="ml-3 text-15">{_t('user-nav.profile-menu')}</div>
+                    <div className="ml-3 text-15">{_t("user-nav.profile-menu")}</div>
                     <div className="ml-3 text-15 icon-stroke">
                       {showProfileMenu ? upArrowSvg : downArrowSvg}
                     </div>
@@ -451,35 +451,35 @@ export class NavBar extends Component<Props, State> {
                         className="p-1 menu-item"
                         onClick={() => this.setState({ drafts: !drafts })}
                       >
-                        <div className="item-text">{_t('user-nav.drafts')}</div>
+                        <div className="item-text">{_t("user-nav.drafts")}</div>
                       </div>
 
                       <div
                         className="p-1 menu-item"
                         onClick={() => this.setState({ gallery: !gallery })}
                       >
-                        <div className="item-text">{_t('user-nav.gallery')}</div>
+                        <div className="item-text">{_t("user-nav.gallery")}</div>
                       </div>
 
                       <div
                         className="p-1 menu-item"
                         onClick={() => this.setState({ bookmarks: !bookmarks })}
                       >
-                        <div className="item-text">{_t('user-nav.bookmarks')}</div>
+                        <div className="item-text">{_t("user-nav.bookmarks")}</div>
                       </div>
 
                       <div
                         className="p-1 menu-item"
                         onClick={() => this.setState({ schedules: !schedules })}
                       >
-                        <div className="item-text">{_t('user-nav.schedules')}</div>
+                        <div className="item-text">{_t("user-nav.schedules")}</div>
                       </div>
 
                       <div
                         className="p-1 menu-item"
                         onClick={() => this.setState({ fragments: !fragments })}
                       >
-                        <div className="item-text">{_t('user-nav.fragments')}</div>
+                        <div className="item-text">{_t("user-nav.fragments")}</div>
                       </div>
 
                       <div className="p-1 menu-item">
@@ -487,16 +487,16 @@ export class NavBar extends Component<Props, State> {
                           to={`/@${activeUser.username}/settings`}
                           onClick={() => this.setState({ smVisible: false })}
                         >
-                          <div className="item-text">{_t('user-nav.settings')}</div>
+                          <div className="item-text">{_t("user-nav.settings")}</div>
                         </Link>
                       </div>
 
-                      <div className="p-1 menu-item" onClick={() => toggleUIProp('login')}>
-                        <div className="item-text">{_t('g.login-as')}</div>
+                      <div className="p-1 menu-item" onClick={() => toggleUIProp("login")}>
+                        <div className="item-text">{_t("g.login-as")}</div>
                       </div>
 
                       <div className="p-1 menu-item" onClick={() => setActiveUser(null)}>
-                        <div className="item-text">{_t('user-nav.logout')}</div>
+                        <div className="item-text">{_t("user-nav.logout")}</div>
                       </div>
                     </div>
                   </div>
@@ -507,10 +507,10 @@ export class NavBar extends Component<Props, State> {
                 <>
                   <div
                     className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
-                    onClick={() => toggleUIProp('notifications')}
+                    onClick={() => toggleUIProp("notifications")}
                   >
                     <div className="navbar-icon text-dark">{notificationSvg}</div>
-                    <div className="ml-3 text-15">{_t('user-nav.notifications')}</div>
+                    <div className="ml-3 text-15">{_t("user-nav.notifications")}</div>
                   </div>
                   <Link
                     to={`/@${activeUser.username}/points`}
@@ -518,7 +518,7 @@ export class NavBar extends Component<Props, State> {
                   >
                     <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                       <div className="navbar-icon text-dark">{gifCardSvg}</div>
-                      <div className="ml-3 text-15">{_t('user-nav.points')}</div>
+                      <div className="ml-3 text-15">{_t("user-nav.points")}</div>
                     </div>
                   </Link>
                   <Link
@@ -528,7 +528,7 @@ export class NavBar extends Component<Props, State> {
                     <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                       <div className="icon-stroke text-dark">{walletSvg}</div>
                       <div className="ml-3 text-15 d-flex">
-                        {_t('user-nav.wallet')} <div className="dot align-self-start ml-1" />
+                        {_t("user-nav.wallet")} <div className="dot align-self-start ml-1" />
                       </div>
                     </div>
                   </Link>
@@ -538,7 +538,7 @@ export class NavBar extends Component<Props, State> {
               <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative">
                 <div className="navbar-icon">{globeSvg}</div>
                 <div className="text-15 switch-menu">
-                  {SwitchLang({ ...this.props, label: _t('community-settings.lang') })}
+                  {SwitchLang({ ...this.props, label: _t("community-settings.lang") })}
                 </div>
               </div>
 
@@ -548,8 +548,8 @@ export class NavBar extends Component<Props, State> {
               >
                 <div className="navbar-icon">{global.theme == Theme.day ? moonSvg : sunSvg}</div>
                 <div className="ml-3 text-15">
-                  {_t('user-nav.switch-to')}{' '}
-                  {global.theme == Theme.day ? _t('user-nav.dark') : _t('user-nav.light')}
+                  {_t("user-nav.switch-to")}{" "}
+                  {global.theme == Theme.day ? _t("user-nav.dark") : _t("user-nav.light")}
                 </div>
               </div>
             </div>

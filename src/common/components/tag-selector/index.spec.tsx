@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import { TagSelector } from './index';
-import TestRenderer from 'react-test-renderer';
+import { TagSelector } from "./index";
+import TestRenderer from "react-test-renderer";
 
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory } from "history";
 
-import { globalInstance, TrendingTagsInstance } from '../../helper/test-helper';
+import { globalInstance, TrendingTagsInstance } from "../../helper/test-helper";
 
-it('(1) No tags', () => {
+it("(1) No tags", () => {
   const props = {
     global: globalInstance,
     history: createBrowserHistory(),
@@ -22,12 +22,12 @@ it('(1) No tags', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) With tags', () => {
+it("(2) With tags", () => {
   const props = {
     global: globalInstance,
     history: createBrowserHistory(),
     trendingTags: TrendingTagsInstance,
-    tags: ['foo', 'bar'],
+    tags: ["foo", "bar"],
     maxItem: 10,
     onChange: () => {},
     onValid: () => {}
@@ -37,7 +37,7 @@ it('(2) With tags', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(3) No tags with focus', () => {
+it("(3) No tags with focus", () => {
   const props = {
     global: globalInstance,
     history: createBrowserHistory(),

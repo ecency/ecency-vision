@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { Global } from '../../store/global/types';
+import { Global } from "../../store/global/types";
 
-import i18n from 'i18next';
+import i18n from "i18next";
 
-import DropDown from '../dropdown';
+import DropDown from "../dropdown";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { langOptions } from '../../i18n';
+import { langOptions } from "../../i18n";
 
-import * as ls from '../../util/local-storage';
+import * as ls from "../../util/local-storage";
 
 interface Props {
   history: History;
@@ -27,8 +27,8 @@ export class SwitchLang extends Component<Props> {
   render() {
     const { global, setLang, label } = this.props;
 
-    const languageFromLS = ls && ls.get('lang');
-    const lang = languageFromLS !== null ? languageFromLS.slice(0, 2).toUpperCase() : 'EN';
+    const languageFromLS = ls && ls.get("lang");
+    const lang = languageFromLS !== null ? languageFromLS.slice(0, 2).toUpperCase() : "EN";
     const langMenuConfig = {
       history: this.props.history,
       label: label || lang,
@@ -40,20 +40,20 @@ export class SwitchLang extends Component<Props> {
             i18n.changeLanguage(f.code).then(() => {
               setLang(f.code);
             });
-            ls.set('current-language', f.code);
+            ls.set("current-language", f.code);
           }
         };
       }),
       postElem: (
         <div className="drop-down-menu-contributors">
-          <Link to="/contributors">{_t('switch-lang.contributors')}</Link>
+          <Link to="/contributors">{_t("switch-lang.contributors")}</Link>
         </div>
       )
     };
 
     return (
       <div className="switch-language">
-        <DropDown {...langMenuConfig} float={label ? 'left' : 'right'} />
+        <DropDown {...langMenuConfig} float={label ? "left" : "right"} />
       </div>
     );
   }

@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Modal } from 'react-bootstrap';
+import { Modal } from "react-bootstrap";
 
-import numeral from 'numeral';
+import numeral from "numeral";
 
-import { History } from 'history';
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
-import { DynamicProps } from '../../store/dynamic-props/types';
+import { History } from "history";
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
 
-import BaseComponent from '../base';
-import ProfileLink from '../profile-link';
-import UserAvatar from '../user-avatar';
-import LinearProgress from '../linear-progress';
+import BaseComponent from "../base";
+import ProfileLink from "../profile-link";
+import UserAvatar from "../user-avatar";
+import LinearProgress from "../linear-progress";
 
-import { Proposal, getProposalVotes, getAccounts } from '../../api/hive';
+import { Proposal, getProposalVotes, getAccounts } from "../../api/hive";
 
-import parseAsset from '../../helper/parse-asset';
-import accountReputation from '../../helper/account-reputation';
+import parseAsset from "../../helper/parse-asset";
+import accountReputation from "../../helper/account-reputation";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 interface Voter {
   name: string;
@@ -99,8 +99,8 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
       <div className="voters-list">
         <div className="list-body">
           {voters.map((x) => {
-            const strHp = numeral(x.hp).format('0.00,');
-            const strProxyHp = numeral(x.proxyHp).format('0.00,');
+            const strHp = numeral(x.hp).format("0.00,");
+            const strProxyHp = numeral(x.proxyHp).format("0.00,");
 
             return (
               <div className="list-item" key={x.name}>
@@ -108,7 +108,7 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
                   {ProfileLink({
                     ...this.props,
                     username: x.name,
-                    children: <>{UserAvatar({ ...this.props, username: x.name, size: 'small' })}</>
+                    children: <>{UserAvatar({ ...this.props, username: x.name, size: "small" })}</>
                   })}
 
                   <div className="item-info">
@@ -124,10 +124,10 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
                   <span>{`${strHp} HP`}</span>
                   {x.proxyHp > 0 && (
                     <>
-                      {' + '}
+                      {" + "}
                       <span>
                         {`${strProxyHp} HP`}
-                        {' (proxy) '}
+                        {" (proxy) "}
                       </span>
                     </>
                   )}
@@ -155,7 +155,7 @@ export class ProposalVotes extends Component<Props> {
         className="proposal-votes-dialog"
       >
         <Modal.Header closeButton={true}>
-          <Modal.Title>{_t('proposals.votes-dialog-title', { n: proposal.id })}</Modal.Title>
+          <Modal.Title>{_t("proposals.votes-dialog-title", { n: proposal.id })}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ProposalVotesDetail {...this.props} />

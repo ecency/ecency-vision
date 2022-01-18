@@ -1,9 +1,9 @@
-import { b64uEnc } from '../util/b64';
+import { b64uEnc } from "../util/b64";
 
 export const getAuthUrl = (redir: string = `${window.location.origin}/auth`) => {
-  const app = 'ecency.app';
+  const app = "ecency.app";
   const scope =
-    'vote,comment,delete_comment,comment_options,custom_json,claim_reward_balance,offline';
+    "vote,comment,delete_comment,comment_options,custom_json,claim_reward_balance,offline";
 
   return `https://hivesigner.com/oauth2/authorize?client_id=${app}&redirect_uri=${encodeURIComponent(
     redir
@@ -25,9 +25,9 @@ export interface HiveSignerMessage {
 }
 
 export const decodeToken = (code: string): HiveSignerMessage | null => {
-  const buff = new Buffer(code, 'base64');
+  const buff = new Buffer(code, "base64");
   try {
-    const s = buff.toString('ascii');
+    const s = buff.toString("ascii");
     return JSON.parse(s);
   } catch (e) {
     return null;
@@ -41,7 +41,7 @@ export const makeHsCode = async (
   const timestamp = new Date().getTime() / 1000;
 
   const messageObj: HiveSignerMessage = {
-    signed_message: { type: 'code', app: 'ecency.app' },
+    signed_message: { type: "code", app: "ecency.app" },
     authors: [account],
     timestamp
   };
@@ -79,6 +79,6 @@ export const hotSign = (
   redirect: string
 ) => {
   const webUrl = buildHotSignUrl(endpoint, params, redirect);
-  const win = window.open(webUrl, '_blank');
+  const win = window.open(webUrl, "_blank");
   return win!.focus();
 };

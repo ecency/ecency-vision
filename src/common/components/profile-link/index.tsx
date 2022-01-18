@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { History } from 'history';
+import React, { Component } from "react";
+import { History } from "history";
 
-import { Account } from '../../store/accounts/types';
+import { Account } from "../../store/accounts/types";
 
 export const makePath = (username: string) => `/@${username}`;
 
@@ -37,7 +37,7 @@ export class ProfileLink extends Component<Props> {
       onClick: this.clicked
     });
 
-    return React.createElement('a', props);
+    return React.createElement("a", props);
   }
 }
 

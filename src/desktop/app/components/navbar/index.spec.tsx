@@ -1,11 +1,11 @@
-import React from 'react';
-import { StaticRouter } from 'react-router-dom';
-import TestRenderer from 'react-test-renderer';
-import { createBrowserHistory, createLocation } from 'history';
+import React from "react";
+import { StaticRouter } from "react-router-dom";
+import TestRenderer from "react-test-renderer";
+import { createBrowserHistory, createLocation } from "history";
 
-import NavBar from './index';
+import NavBar from "./index";
 
-import { Theme } from '../../../../common/store/global/types';
+import { Theme } from "../../../../common/store/global/types";
 
 import {
   globalInstance,
@@ -13,8 +13,8 @@ import {
   notificationsInstance1,
   activeUserInstance,
   dynamicPropsIntance1
-} from '../../../../common/helper/test-helper';
-import { initialState as trendingTags } from '../../../../common/store/trending-tags';
+} from "../../../../common/helper/test-helper";
+import { initialState as trendingTags } from "../../../../common/store/trending-tags";
 
 const defProps = {
   history: createBrowserHistory(),
@@ -46,7 +46,7 @@ const defProps = {
   reloading: false
 };
 
-it('(1) Default render', () => {
+it("(1) Default render", () => {
   const component = <NavBar {...defProps} />;
 
   const renderer = TestRenderer.create(
@@ -58,13 +58,13 @@ it('(1) Default render', () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(2) With updater', () => {
+it("(2) With updater", () => {
   const props = {
     ...defProps,
     ...{
       global: {
         ...globalInstance,
-        newVersion: '3.5.1'
+        newVersion: "3.5.1"
       }
     }
   };
@@ -79,7 +79,7 @@ it('(2) With updater', () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(3) Night Theme', () => {
+it("(3) Night Theme", () => {
   const props = {
     ...defProps,
     ...{
@@ -100,7 +100,7 @@ it('(3) Night Theme', () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(4) With active user', () => {
+it("(4) With active user", () => {
   const props = {
     ...defProps,
     ...{
@@ -118,7 +118,7 @@ it('(4) With active user', () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(5) With active user && usePrivate = false', () => {
+it("(5) With active user && usePrivate = false", () => {
   const props = {
     ...defProps,
     ...{

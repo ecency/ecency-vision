@@ -1,22 +1,22 @@
-import React from 'react';
+import React from "react";
 
-import { History, Location } from 'history';
+import { History, Location } from "history";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import queryString from 'query-string';
+import queryString from "query-string";
 
-import BaseComponent from '../base';
-import LinearProgress from '../linear-progress';
-import { makePath } from '../tag';
+import BaseComponent from "../base";
+import LinearProgress from "../linear-progress";
+import { makePath } from "../tag";
 
-import SearchQuery from '../../helper/search-query';
+import SearchQuery from "../../helper/search-query";
 
-import { searchTag, TagSearchResult } from '../../api/search-api';
+import { searchTag, TagSearchResult } from "../../api/search-api";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
 interface Props {
   history: History;
@@ -33,7 +33,7 @@ const grabSearch = (location: Location) => {
   const qs = queryString.parse(location.search);
   const q = qs.q as string;
 
-  return new SearchQuery(q).search.split(' ')[0].replace('@', '');
+  return new SearchQuery(q).search.split(" ")[0].replace("@", "");
 };
 
 export class SearchTopics extends BaseComponent<Props, State> {
@@ -73,7 +73,7 @@ export class SearchTopics extends BaseComponent<Props, State> {
     return (
       <div className="card search-topics">
         <div className="card-header">
-          <strong>{_t('search-topics.title')}</strong>
+          <strong>{_t("search-topics.title")}</strong>
         </div>
         <div className="card-body">
           {(() => {
@@ -82,7 +82,7 @@ export class SearchTopics extends BaseComponent<Props, State> {
             }
 
             if (results.length === 0) {
-              return <span className="text-muted">{_t('g.no-matches')}</span>;
+              return <span className="text-muted">{_t("g.no-matches")}</span>;
             }
 
             return (

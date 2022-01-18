@@ -1,29 +1,29 @@
-import React from 'react';
+import React from "react";
 
-import { History, Location } from 'history';
+import { History, Location } from "history";
 
-import queryString from 'query-string';
+import queryString from "query-string";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { Global } from '../../store/global/types';
-import { Community } from '../../store/communities/types';
+import { Global } from "../../store/global/types";
+import { Community } from "../../store/communities/types";
 
-import BaseComponent from '../base';
-import LinearProgress from '../linear-progress';
-import UserAvatar from '../user-avatar';
-import { makePath } from '../tag';
+import BaseComponent from "../base";
+import LinearProgress from "../linear-progress";
+import UserAvatar from "../user-avatar";
+import { makePath } from "../tag";
 
-import SearchQuery from '../../helper/search-query';
+import SearchQuery from "../../helper/search-query";
 
-import { getCommunities } from '../../api/bridge';
+import { getCommunities } from "../../api/bridge";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import truncate from '../../util/truncate';
-import formattedNumber from '../../util/formatted-number';
+import truncate from "../../util/truncate";
+import formattedNumber from "../../util/formatted-number";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
 interface Props {
   history: History;
@@ -41,7 +41,7 @@ const grabSearch = (location: Location) => {
   const qs = queryString.parse(location.search);
   const q = qs.q as string;
 
-  return new SearchQuery(q).search.split(' ')[0].replace('@', '');
+  return new SearchQuery(q).search.split(" ")[0].replace("@", "");
 };
 
 export class SearchCommunities extends BaseComponent<Props, State> {
@@ -66,7 +66,7 @@ export class SearchCommunities extends BaseComponent<Props, State> {
     const { search } = this.state;
 
     this.stateSet({ results: [], loading: true });
-    getCommunities('', 4, search, 'rank')
+    getCommunities("", 4, search, "rank")
       .then((results) => {
         if (results) {
           this.stateSet({ results: results });
@@ -83,7 +83,7 @@ export class SearchCommunities extends BaseComponent<Props, State> {
     return (
       <div className="card search-communities">
         <div className="card-header">
-          <strong>{_t('search-communities.title')}</strong>
+          <strong>{_t("search-communities.title")}</strong>
         </div>
         <div className="card-body">
           {(() => {
@@ -92,7 +92,7 @@ export class SearchCommunities extends BaseComponent<Props, State> {
             }
 
             if (results.length === 0) {
-              return <span className="text-muted">{_t('g.no-matches')}</span>;
+              return <span className="text-muted">{_t("g.no-matches")}</span>;
             }
 
             return (
@@ -107,13 +107,13 @@ export class SearchCommunities extends BaseComponent<Props, State> {
                     <div key={community.name} className="list-item">
                       <div className="item-header">
                         <Link to={link}>
-                          {UserAvatar({ ...this.props, username: community.name, size: 'medium' })}
+                          {UserAvatar({ ...this.props, username: community.name, size: "medium" })}
                         </Link>
                         <div className="item-title">
                           <Link to={link}>{community.title}</Link>
 
                           <div className="item-sub-title">
-                            {_t('communities.n-subscribers', { n: subscribers })}
+                            {_t("communities.n-subscribers", { n: subscribers })}
                           </div>
                         </div>
                       </div>

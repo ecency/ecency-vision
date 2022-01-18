@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Modal, Button, FormControl } from 'react-bootstrap';
+import { Modal, Button, FormControl } from "react-bootstrap";
 
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
 
-import BaseComponent from '../base';
-import ProfileLink from '../profile-link';
-import UserAvatar from '../user-avatar';
-import LinearProgress from '../linear-progress';
+import BaseComponent from "../base";
+import ProfileLink from "../profile-link";
+import UserAvatar from "../user-avatar";
+import LinearProgress from "../linear-progress";
 
-import { getFollowing, getFollowers, getAccounts } from '../../api/hive';
-import { searchFollowing, searchFollower, FriendSearchResult } from '../../api/search-api';
+import { getFollowing, getFollowers, getAccounts } from "../../api/hive";
+import { searchFollowing, searchFollower, FriendSearchResult } from "../../api/search-api";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import accountReputation from '../../helper/account-reputation';
-import formattedNumber from '../../util/formatted-number';
+import accountReputation from "../../helper/account-reputation";
+import formattedNumber from "../../util/formatted-number";
 
 interface Friend {
   name: string;
@@ -29,7 +29,7 @@ interface ListProps {
   global: Global;
   history: History;
   account: Account;
-  mode: 'follower' | 'following';
+  mode: "follower" | "following";
   addAccount: (data: Account) => void;
 }
 
@@ -49,7 +49,7 @@ export class List extends BaseComponent<ListProps, ListState> {
     data: [],
     results: [],
     hasMore: false,
-    search: ''
+    search: ""
   };
 
   _timer: any = null;
@@ -61,15 +61,15 @@ export class List extends BaseComponent<ListProps, ListState> {
   fKey = () => {
     const { mode } = this.props;
 
-    return mode === 'following' ? 'following' : 'follower';
+    return mode === "following" ? "following" : "follower";
   };
 
-  fetch = async (start = '', limit = loadLimit): Promise<Friend[]> => {
+  fetch = async (start = "", limit = loadLimit): Promise<Friend[]> => {
     const { account, mode } = this.props;
 
-    const loadFn = mode === 'following' ? getFollowing : getFollowers;
+    const loadFn = mode === "following" ? getFollowing : getFollowers;
 
-    return loadFn(account.name, start, 'blog', limit)
+    return loadFn(account.name, start, "blog", limit)
       .then((resp) => {
         const accountNames = resp.map((e) => e[this.fKey()]);
         return getAccounts(accountNames).then((resp2) => resp2);
@@ -141,7 +141,7 @@ export class List extends BaseComponent<ListProps, ListState> {
     let results: FriendSearchResult[];
 
     try {
-      if (mode === 'following') {
+      if (mode === "following") {
         results = await searchFollowing(account.name, search);
       } else {
         results = await searchFollower(account.name, search);
@@ -175,7 +175,7 @@ export class List extends BaseComponent<ListProps, ListState> {
   renderList = (loading: boolean, list: Friend[]) => {
     return (
       <>
-        {!loading && list.length === 0 && <div className="empty-list"> {_t('g.empty-list')}</div>}
+        {!loading && list.length === 0 && <div className="empty-list"> {_t("g.empty-list")}</div>}
 
         {list.map((item) => (
           <div className="list-item" key={item.name}>
@@ -183,7 +183,7 @@ export class List extends BaseComponent<ListProps, ListState> {
               {ProfileLink({
                 ...this.props,
                 username: item.name,
-                children: <>{UserAvatar({ ...this.props, username: item.name, size: 'small' })}</>
+                children: <>{UserAvatar({ ...this.props, username: item.name, size: "small" })}</>
               })}
               <div className="item-info">
                 {ProfileLink({
@@ -220,7 +220,7 @@ export class List extends BaseComponent<ListProps, ListState> {
             <div className="friend-search-box">
               <FormControl
                 value={search}
-                placeholder={_t('friends.search-placeholder')}
+                placeholder={_t("friends.search-placeholder")}
                 onChange={this.searchChanged}
                 onKeyDown={this.searchKeyDown}
               />
@@ -235,7 +235,7 @@ export class List extends BaseComponent<ListProps, ListState> {
           {!inSearch && data.length > 1 && (
             <div className="load-more">
               <Button disabled={loading || !hasMore} onClick={this.fetchMore}>
-                {_t('g.load-more')}
+                {_t("g.load-more")}
               </Button>
             </div>
           )}
@@ -258,10 +258,10 @@ export class Followers extends Component<Props> {
     const { account, onHide } = this.props;
     const title =
       account.__loaded && account.follow_stats
-        ? _t('friends.followers', {
+        ? _t("friends.followers", {
             n: formattedNumber(account.follow_stats.follower_count, { fractionDigits: 0 })
           })
-        : '';
+        : "";
 
     return (
       <>
@@ -283,10 +283,10 @@ export class Following extends Component<Props> {
     const { account, onHide } = this.props;
     const title =
       account.__loaded && account.follow_stats
-        ? _t('friends.following', {
+        ? _t("friends.following", {
             n: formattedNumber(account.follow_stats.following_count, { fractionDigits: 0 })
           })
-        : '';
+        : "";
 
     return (
       <>

@@ -1,41 +1,41 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import { Global } from '../../store/global/types';
-import { User } from '../../store/users/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { Account, FullAccount } from '../../store/accounts/types';
-import { UI, ToggleType } from '../../store/ui/types';
-import { Community } from '../../store/communities/types';
-import { Subscription } from '../../store/subscriptions/types';
+import { Global } from "../../store/global/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { Account, FullAccount } from "../../store/accounts/types";
+import { UI, ToggleType } from "../../store/ui/types";
+import { Community } from "../../store/communities/types";
+import { Subscription } from "../../store/subscriptions/types";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
-import { proxifyImageSrc, setProxyBase } from '@ecency/render-helper';
+import { proxifyImageSrc, setProxyBase } from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
-import BaseComponent from '../base';
-import SubscriptionBtn from '../subscription-btn';
-import CommunityPostBtn from '../community-post-btn';
-import Tooltip from '../tooltip';
-import ImageUploadDialog from '../image-upload';
+import BaseComponent from "../base";
+import SubscriptionBtn from "../subscription-btn";
+import CommunityPostBtn from "../community-post-btn";
+import Tooltip from "../tooltip";
+import ImageUploadDialog from "../image-upload";
 
-import formattedNumber from '../../util/formatted-number';
+import formattedNumber from "../../util/formatted-number";
 
-import { updateProfile } from '../../api/operations';
-import { error, success } from '../feedback';
-import { getAccount } from '../../api/hive';
+import { updateProfile } from "../../api/operations";
+import { error, success } from "../feedback";
+import { getAccount } from "../../api/hive";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { pencilOutlineSvg } from '../../img/svg';
+import { pencilOutlineSvg } from "../../img/svg";
 
-const coverFallbackDay = require('../../img/cover-fallback-day.png');
-const coverFallbackNight = require('../../img/cover-fallback-night.png');
+const coverFallbackDay = require("../../img/cover-fallback-day.png");
+const coverFallbackNight = require("../../img/cover-fallback-night.png");
 
 interface EditCoverImageProps {
   activeUser: ActiveUser;
@@ -73,17 +73,17 @@ class EditCoverImage extends BaseComponent<EditCoverImageProps, EditCoverImageSt
     const { profile } = account;
 
     const newProfile = {
-      name: profile?.name || '',
-      about: profile?.about || '',
+      name: profile?.name || "",
+      about: profile?.about || "",
       cover_image: url,
-      profile_image: profile?.profile_image || '',
-      website: profile?.website || '',
-      location: profile?.location || ''
+      profile_image: profile?.profile_image || "",
+      website: profile?.website || "",
+      location: profile?.location || ""
     };
 
     updateProfile(account, newProfile)
       .then((r) => {
-        success(_t('community-cover.cover-image-updated'));
+        success(_t("community-cover.cover-image-updated"));
         return getAccount(account.name);
       })
       .then((account) => {
@@ -94,7 +94,7 @@ class EditCoverImage extends BaseComponent<EditCoverImageProps, EditCoverImageSt
         this.toggleDialog();
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       })
       .finally(() => {
         this.stateSet({ inProgress: false });
@@ -107,7 +107,7 @@ class EditCoverImage extends BaseComponent<EditCoverImageProps, EditCoverImageSt
 
     return (
       <>
-        <Tooltip content={_t('community-cover.cover-image-edit')}>
+        <Tooltip content={_t("community-cover.cover-image-edit")}>
           <div className="btn-edit-cover-image" onClick={this.toggleDialog}>
             {pencilOutlineSvg}
           </div>
@@ -115,8 +115,8 @@ class EditCoverImage extends BaseComponent<EditCoverImageProps, EditCoverImageSt
         {dialog && (
           <ImageUploadDialog
             activeUser={activeUser!}
-            title={_t('community-cover.cover-image')}
-            defImage={account.profile?.cover_image || ''}
+            title={_t("community-cover.cover-image")}
+            defImage={account.profile?.cover_image || ""}
             inProgress={inProgress}
             onDone={this.save}
             onHide={this.toggleDialog}
@@ -160,16 +160,16 @@ export class CommunityCover extends Component<Props> {
   render() {
     const { global, account, community, activeUser, users } = this.props;
 
-    let bgImage = '';
+    let bgImage = "";
 
     if (account.__loaded) {
-      bgImage = global.theme === 'day' ? coverFallbackDay : coverFallbackNight;
+      bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
       if (account.profile?.cover_image) {
         bgImage = proxifyImageSrc(
           account.profile.cover_image,
           0,
           0,
-          global.canUseWebp ? 'webp' : 'match'
+          global.canUseWebp ? "webp" : "match"
         );
       }
     }
@@ -191,22 +191,22 @@ export class CommunityCover extends Component<Props> {
         <div className="community-stats">
           <div className="community-stat">
             <div className="stat-value">{subscribers}</div>
-            <div className="stat-label">{_t('community.subscribers')}</div>
+            <div className="stat-label">{_t("community.subscribers")}</div>
           </div>
           <div className="community-stat">
             <div className="stat-value">
-              {'$'} {rewards}
+              {"$"} {rewards}
             </div>
-            <div className="stat-label">{_t('community-cover.rewards')}</div>
+            <div className="stat-label">{_t("community-cover.rewards")}</div>
           </div>
           <div className="community-stat">
             <div className="stat-value">{authors}</div>
-            <div className="stat-label">{_t('community-cover.authors')}</div>
+            <div className="stat-label">{_t("community-cover.authors")}</div>
           </div>
-          {community.lang.trim() !== '' && (
+          {community.lang.trim() !== "" && (
             <div className="community-stat">
               <div className="stat-value">{community.lang.toUpperCase()}</div>
-              <div className="stat-label">{_t('community-cover.lang')}</div>
+              <div className="stat-label">{_t("community-cover.lang")}</div>
             </div>
           )}
         </div>

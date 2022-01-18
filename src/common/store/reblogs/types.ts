@@ -1,4 +1,4 @@
-import { LoginAction, LogoutAction } from '../active-user/types';
+import { LoginAction, LogoutAction } from "../active-user/types";
 
 export interface Reblog {
   author: string;
@@ -11,11 +11,11 @@ export interface Reblogs {
 }
 
 export enum ActionTypes {
-  FETCH = '@reblogs/FETCH',
-  FETCHED = '@reblogs/FETCHED',
-  FETCH_ERROR = '@reblogs/FETCH_ERROR',
-  ADD = '@reblogs/ADD',
-  DELETE = '@reblogs/DELETE'
+  FETCH = "@reblogs/FETCH",
+  FETCHED = "@reblogs/FETCHED",
+  FETCH_ERROR = "@reblogs/FETCH_ERROR",
+  ADD = "@reblogs/ADD",
+  DELETE = "@reblogs/DELETE"
 }
 
 export interface FetchAction {

@@ -1,8 +1,8 @@
-import React from 'react';
-import ClickAwayListener from './index';
-import TestRenderer from 'react-test-renderer';
+import React from "react";
+import ClickAwayListener from "./index";
+import TestRenderer from "react-test-renderer";
 
-it('(1) triggers onClickAway', async () => {
+it("(1) triggers onClickAway", async () => {
   const onClickaway = () => {
     return null;
   };
@@ -18,6 +18,6 @@ it('(1) triggers onClickAway', async () => {
   );
 
   const renderer = TestRenderer.create(<ComponentToTest />);
-  renderer.root.findByProps({ id: 'inside' }).props.onClick();
-  expect(renderer.root.findByProps({ id: 'inside' })).toBeFalsy;
+  renderer.root.findByProps({ id: "inside" }).props.onClick();
+  expect(renderer.root.findByProps({ id: "inside" })).toBeFalsy;
 });

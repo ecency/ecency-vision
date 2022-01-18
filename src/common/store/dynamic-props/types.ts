@@ -16,7 +16,7 @@ export interface DynamicProps {
 export type State = DynamicProps;
 
 export enum ActionTypes {
-  FETCHED = '@dynamic-props/FETCHED'
+  FETCHED = "@dynamic-props/FETCHED"
 }
 
 export interface FetchedAction {

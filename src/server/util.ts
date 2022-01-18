@@ -1,6 +1,6 @@
-import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse, Method } from "axios";
 
-import { Response } from 'express';
+import { Response } from "express";
 
 export const pipe = (promise: Promise<AxiosResponse>, res: Response) => {
   promise
@@ -8,7 +8,7 @@ export const pipe = (promise: Promise<AxiosResponse>, res: Response) => {
       res.status(r.status).send(r.data);
     })
     .catch(() => {
-      res.status(500).send('Server Error');
+      res.status(500).send("Server Error");
     });
 };
 
@@ -22,7 +22,7 @@ export const baseApiRequest = (
     url,
     method,
     validateStatus: () => true,
-    responseType: 'json',
+    responseType: "json",
     headers: { ...headers },
     data: { ...payload }
   };

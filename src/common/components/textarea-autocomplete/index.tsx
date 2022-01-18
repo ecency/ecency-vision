@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactTextareaAutocomplete from '@webscopeio/react-textarea-autocomplete';
-import '@webscopeio/react-textarea-autocomplete/style.css';
+import React from "react";
+import ReactTextareaAutocomplete from "@webscopeio/react-textarea-autocomplete";
+import "@webscopeio/react-textarea-autocomplete/style.css";
 
-import BaseComponent from '../base';
-import UserAvatar from '../user-avatar';
-import { _t } from '../../i18n';
+import BaseComponent from "../base";
+import UserAvatar from "../user-avatar";
+import { _t } from "../../i18n";
 
-import { lookupAccounts } from '../../api/hive';
-import { searchPath } from '../../api/search-api';
+import { lookupAccounts } from "../../api/hive";
+import { searchPath } from "../../api/search-api";
 
 interface State {
   value: string;
@@ -16,7 +16,7 @@ interface State {
   maxRows: number;
 }
 
-const Loading = () => <div>{_t('g.loading')}</div>;
+const Loading = () => <div>{_t("g.loading")}</div>;
 
 let timer: any = null;
 
@@ -38,7 +38,7 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
   }
 
   handleChange = (event: any) => {
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 570;
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 570;
     if (isMobile) {
       const textareaLineHeight = 24;
       const { minRows, maxRows } = this.state;
@@ -77,28 +77,28 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
         value={this.state.value}
         placeholder={this.props.placeholder}
         onChange={this.handleChange}
-        boundariesElement={'.body-input'}
+        boundariesElement={".body-input"}
         minChar={2}
         trigger={{
-          ['@']: {
+          ["@"]: {
             dataProvider: (token) => {
               clearTimeout(timer);
               return new Promise((resolve) => {
                 timer = setTimeout(async () => {
-                  if (token.includes('/')) {
+                  if (token.includes("/")) {
                     let ignoreList = [
-                      'wallet',
-                      'feed',
-                      'followers',
-                      'following',
-                      'points',
-                      'communities',
-                      'posts',
-                      'blog',
-                      'comments',
-                      'replies',
-                      'settings',
-                      'engine'
+                      "wallet",
+                      "feed",
+                      "followers",
+                      "following",
+                      "points",
+                      "communities",
+                      "posts",
+                      "blog",
+                      "comments",
+                      "replies",
+                      "settings",
+                      "engine"
                     ];
                     let searchIsInvalid = ignoreList.some((item) => token.includes(`/${item}`));
                     if (!searchIsInvalid) {
@@ -118,14 +118,14 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
             component: (props: any) => {
               return (
                 <>
-                  {props.entity.includes('/')
+                  {props.entity.includes("/")
                     ? null
                     : UserAvatar({
                         global: this.props.global,
                         username: props.entity,
-                        size: 'small'
+                        size: "small"
                       })}
-                  <span style={{ marginLeft: '8px' }}>{props.entity}</span>
+                  <span style={{ marginLeft: "8px" }}>{props.entity}</span>
                 </>
               );
             },

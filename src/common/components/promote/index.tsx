@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import { Form, FormControl, Modal, Button, Col, Row } from 'react-bootstrap';
+import { Form, FormControl, Modal, Button, Col, Row } from "react-bootstrap";
 
-import { PrivateKey } from '@hiveio/dhive';
+import { PrivateKey } from "@hiveio/dhive";
 
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { Entry } from '../../store/entries/types';
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { Entry } from "../../store/entries/types";
 
-import BaseComponent from '../base';
-import LinearProgress from '../linear-progress';
-import SuggestionList from '../suggestion-list';
-import KeyOrHot from '../key-or-hot';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import LinearProgress from "../linear-progress";
+import SuggestionList from "../suggestion-list";
+import KeyOrHot from "../key-or-hot";
+import { error } from "../feedback";
 
-import { getPromotePrice, PromotePrice, getPromotedPost } from '../../api/private-api';
-import { searchPath } from '../../api/search-api';
-import { getPost } from '../../api/bridge';
-import { promote, promoteHot, promoteKc, formatError } from '../../api/operations';
+import { getPromotePrice, PromotePrice, getPromotedPost } from "../../api/private-api";
+import { searchPath } from "../../api/search-api";
+import { getPost } from "../../api/bridge";
+import { promote, promoteHot, promoteKc, formatError } from "../../api/operations";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
-import { checkAllSvg } from '../../img/svg';
+import { checkAllSvg } from "../../img/svg";
 
 interface Props {
   global: Global;
@@ -49,14 +49,14 @@ interface State {
   step: 1 | 2 | 3;
 }
 
-const pathComponents = (p: string): string[] => p.replace('@', '').split('/');
+const pathComponents = (p: string): string[] => p.replace("@", "").split("/");
 
 export class Promote extends BaseComponent<Props, State> {
   state: State = {
-    balanceError: '',
-    path: '',
+    balanceError: "",
+    path: "",
     paths: [],
-    postError: '',
+    postError: "",
     prices: [],
     duration: 1,
     inProgress: true,
@@ -97,7 +97,7 @@ export class Promote extends BaseComponent<Props, State> {
         });
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       });
   };
 
@@ -110,7 +110,7 @@ export class Promote extends BaseComponent<Props, State> {
 
   pathChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const path = e.target.value;
-    this.stateSet({ path, postError: '' });
+    this.stateSet({ path, postError: "" });
 
     clearTimeout(this._timer);
 
@@ -142,13 +142,13 @@ export class Promote extends BaseComponent<Props, State> {
     const { price } = prices.find((x) => x.duration === duration)!;
 
     const balanceError =
-      parseFloat(activeUser.points.points) < price ? _t('trx-common.insufficient-funds') : '';
+      parseFloat(activeUser.points.points) < price ? _t("trx-common.insufficient-funds") : "";
 
     this.stateSet({ balanceError });
   };
 
   isValidPath = (p: string) => {
-    if (p.indexOf('/') === -1) {
+    if (p.indexOf("/") === -1) {
       return;
     }
 
@@ -173,14 +173,14 @@ export class Promote extends BaseComponent<Props, State> {
     }
 
     if (!post) {
-      this.stateSet({ postError: _t('redeem-common.post-error'), inProgress: false });
+      this.stateSet({ postError: _t("redeem-common.post-error"), inProgress: false });
       return;
     }
 
     // Check if the post already promoted
     const promoted = await getPromotedPost(activeUser.username, author, permlink);
     if (promoted) {
-      this.stateSet({ postError: _t('redeem-common.post-error-exists'), inProgress: false });
+      this.stateSet({ postError: _t("redeem-common.post-error-exists"), inProgress: false });
       return;
     }
 
@@ -246,23 +246,23 @@ export class Promote extends BaseComponent<Props, State> {
     return (
       <div className="promote-dialog-content">
         {step === 1 && (
-          <div className={`transaction-form ${inProgress ? 'in-progress' : ''}`}>
+          <div className={`transaction-form ${inProgress ? "in-progress" : ""}`}>
             <div className="transaction-form-header">
               <div className="step-no">1</div>
               <div className="box-titles">
-                <div className="main-title">{_t('promote.title')}</div>
-                <div className="sub-title">{_t('promote.sub-title')}</div>
+                <div className="main-title">{_t("promote.title")}</div>
+                <div className="sub-title">{_t("promote.sub-title")}</div>
               </div>
             </div>
             {inProgress && <LinearProgress />}
             <div className="transaction-form-body">
               <Form.Group as={Row}>
                 <Form.Label column={true} sm="2">
-                  {_t('redeem-common.balance')}
+                  {_t("redeem-common.balance")}
                 </Form.Label>
                 <Col sm="10">
                   <Form.Control
-                    className={_c(`balance-input ${balanceError ? 'is-invalid' : ''}`)}
+                    className={_c(`balance-input ${balanceError ? "is-invalid" : ""}`)}
                     plaintext={true}
                     readOnly={true}
                     value={`${activeUser.points.points} POINTS`}
@@ -272,28 +272,28 @@ export class Promote extends BaseComponent<Props, State> {
               </Form.Group>
               <Form.Group as={Row}>
                 <Form.Label column={true} sm="2">
-                  {_t('redeem-common.post')}
+                  {_t("redeem-common.post")}
                 </Form.Label>
                 <Col sm="10">
                   <SuggestionList items={paths} renderer={(i) => i} onSelect={this.pathSelected}>
                     <Form.Control
-                      className={postError ? 'is-invalid' : ''}
+                      className={postError ? "is-invalid" : ""}
                       type="text"
                       value={path}
                       onChange={this.pathChanged}
-                      placeholder={_t('redeem-common.post-placeholder')}
+                      placeholder={_t("redeem-common.post-placeholder")}
                       disabled={inProgress}
                     />
                   </SuggestionList>
                   {postError && <Form.Text className="text-danger">{postError}</Form.Text>}
                   {!postError && (
-                    <Form.Text className="text-muted">{_t('redeem-common.post-hint')}</Form.Text>
+                    <Form.Text className="text-muted">{_t("redeem-common.post-hint")}</Form.Text>
                   )}
                 </Col>
               </Form.Group>
               <Form.Group as={Row}>
                 <Form.Label column={true} sm="2">
-                  {_t('promote.duration')}
+                  {_t("promote.duration")}
                 </Form.Label>
                 <Col sm="10">
                   <Form.Control
@@ -304,7 +304,7 @@ export class Promote extends BaseComponent<Props, State> {
                   >
                     {prices.map((p) => {
                       const { duration: d, price: pr } = p;
-                      const label = `${d} ${d === 1 ? _t('g.day') : _t('g.days')} - ${pr} POINTS`;
+                      const label = `${d} ${d === 1 ? _t("g.day") : _t("g.days")} - ${pr} POINTS`;
                       return (
                         <option value={p.duration} key={p.duration}>
                           {label}
@@ -323,7 +323,7 @@ export class Promote extends BaseComponent<Props, State> {
                     disabled={!canSubmit || inProgress}
                     variant="primary"
                   >
-                    {_t('g.next')}
+                    {_t("g.next")}
                   </Button>
                 </Col>
               </Form.Group>
@@ -332,12 +332,12 @@ export class Promote extends BaseComponent<Props, State> {
         )}
 
         {step === 2 && (
-          <div className={`transaction-form ${inProgress ? 'in-progress' : ''}`}>
+          <div className={`transaction-form ${inProgress ? "in-progress" : ""}`}>
             <div className="transaction-form-header">
               <div className="step-no">2</div>
               <div className="box-titles">
-                <div className="main-title">{_t('trx-common.sign-title')}</div>
-                <div className="sub-title">{_t('trx-common.sign-sub-title')}</div>
+                <div className="main-title">{_t("trx-common.sign-title")}</div>
+                <div className="sub-title">{_t("trx-common.sign-sub-title")}</div>
               </div>
             </div>
             {inProgress && <LinearProgress />}
@@ -354,22 +354,22 @@ export class Promote extends BaseComponent<Props, State> {
         )}
 
         {step === 3 && (
-          <div className={`transaction-form ${inProgress ? 'in-progress' : ''}`}>
+          <div className={`transaction-form ${inProgress ? "in-progress" : ""}`}>
             <div className="transaction-form-header">
               <div className="step-no">3</div>
               <div className="box-titles">
-                <div className="main-title">{_t('trx-common.success-title')}</div>
-                <div className="sub-title">{_t('trx-common.success-sub-title')}</div>
+                <div className="main-title">{_t("trx-common.success-title")}</div>
+                <div className="sub-title">{_t("trx-common.success-sub-title")}</div>
               </div>
             </div>
             {inProgress && <LinearProgress />}
             <div className="transaction-form-body">
               <p className="d-flex justify-content-center align-content-center">
-                <span className="svg-icon text-success">{checkAllSvg}</span>{' '}
-                {_t('redeem-common.success-message')}
+                <span className="svg-icon text-success">{checkAllSvg}</span>{" "}
+                {_t("redeem-common.success-message")}
               </p>
               <div className="d-flex justify-content-center">
-                <Button onClick={this.finish}>{_t('g.finish')}</Button>
+                <Button onClick={this.finish}>{_t("g.finish")}</Button>
               </div>
             </div>
           </div>

@@ -1,29 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Form, Modal } from 'react-bootstrap';
+import { Form, Modal } from "react-bootstrap";
 
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
-import { DynamicProps } from '../../store/dynamic-props/types';
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
 
-import BaseComponent from '../base';
-import ProfileLink from '../profile-link';
-import UserAvatar from '../user-avatar';
-import Tooltip from '../tooltip';
-import LinearProgress from '../linear-progress';
+import BaseComponent from "../base";
+import ProfileLink from "../profile-link";
+import UserAvatar from "../user-avatar";
+import Tooltip from "../tooltip";
+import LinearProgress from "../linear-progress";
 
-import { ReceivedVestingShare, getReceivedVestingShares } from '../../api/private-api';
+import { ReceivedVestingShare, getReceivedVestingShares } from "../../api/private-api";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { vestsToHp } from '../../helper/vesting';
+import { vestsToHp } from "../../helper/vesting";
 
-import parseAsset from '../../helper/parse-asset';
+import parseAsset from "../../helper/parse-asset";
 
-import formattedNumber from '../../util/formatted-number';
-import MyPagination from '../pagination';
+import formattedNumber from "../../util/formatted-number";
+import MyPagination from "../pagination";
 
 interface Props {
   global: Global;
@@ -107,7 +107,7 @@ export class List extends BaseComponent<Props, State> {
       <div className="received-vesting-content">
         <div className="user-list">
           <div className="list-body">
-            {sliced.length === 0 && <div className="empty-list">{_t('g.empty-list')}</div>}
+            {sliced.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
             {sliced.map((x) => {
               const vestingShares = parseAsset(x.vesting_shares).amount;
               const { delegator: username } = x;
@@ -118,7 +118,7 @@ export class List extends BaseComponent<Props, State> {
                     {ProfileLink({
                       ...this.props,
                       username,
-                      children: <>{UserAvatar({ ...this.props, username, size: 'small' })}</>
+                      children: <>{UserAvatar({ ...this.props, username, size: "small" })}</>
                     })}
                     <div className="item-info">
                       {ProfileLink({
@@ -131,7 +131,7 @@ export class List extends BaseComponent<Props, State> {
                   <div className="item-extra">
                     <Tooltip content={x.vesting_shares}>
                       <span>
-                        {formattedNumber(vestsToHp(vestingShares, hivePerMVests), { suffix: 'HP' })}
+                        {formattedNumber(vestsToHp(vestingShares, hivePerMVests), { suffix: "HP" })}
                       </span>
                     </Tooltip>
                   </div>
@@ -165,7 +165,7 @@ export default class ReceivedVesting extends Component<Props, ReceivedVestingSta
   constructor(props: Props) {
     super(props);
     this.state = {
-      searchText: '',
+      searchText: "",
       searchTextDisabled: true
     };
   }
@@ -178,12 +178,12 @@ export default class ReceivedVesting extends Component<Props, ReceivedVestingSta
       <>
         <Modal onHide={onHide} show={true} centered={true} animation={false}>
           <Modal.Header closeButton={true}>
-            <Modal.Title>{_t('received-vesting.title')}</Modal.Title>
+            <Modal.Title>{_t("received-vesting.title")}</Modal.Title>
           </Modal.Header>
           <Form.Group className="w-100 px-3">
             <Form.Control
               type="text"
-              placeholder={_t('friends.search-placeholder')}
+              placeholder={_t("friends.search-placeholder")}
               value={searchText}
               onChange={(e: any) => {
                 let text = e.target.value;

@@ -1,10 +1,10 @@
-import { getAuthUrl } from '../../../common/helper/hive-signer';
+import { getAuthUrl } from "../../../common/helper/hive-signer";
 
-import { DesktopWindow } from '../window';
+import { DesktopWindow } from "../window";
 
 declare var window: DesktopWindow;
 
-const REDIR = 'http://127.0.0.1:3415/';
+const REDIR = "http://127.0.0.1:3415/";
 
 const windowSettings = {
   center: true,
@@ -87,13 +87,13 @@ export const hsLogin = (): Promise<{ code: string }> =>
         url = win.webContents.getURL();
       } catch (e) {
         clearInterval(windowInt);
-        reject('Window is not reachable');
+        reject("Window is not reachable");
         return;
       }
 
       if (url.startsWith(REDIR)) {
         const parsedUrl = new URL(url);
-        const code = parsedUrl.searchParams.get('code');
+        const code = parsedUrl.searchParams.get("code");
 
         if (code) {
           resolve({

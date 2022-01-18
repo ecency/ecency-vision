@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import SubscriptionBtn from './index';
-import renderer from 'react-test-renderer';
+import SubscriptionBtn from "./index";
+import renderer from "react-test-renderer";
 
-import { communityInstance1, UiInstance } from '../../helper/test-helper';
+import { communityInstance1, UiInstance } from "../../helper/test-helper";
 
 const defProps = {
   users: [],
@@ -18,25 +18,25 @@ const defProps = {
   updateSubscriptions: () => {}
 };
 
-it('(1) Default render', () => {
+it("(1) Default render", () => {
   const props = { ...defProps };
   const component = renderer.create(<SubscriptionBtn {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Subscribed', () => {
+it("(2) Subscribed", () => {
   const props = {
     ...defProps,
-    subscriptions: [['hive-148441', 'GEMS', 'quest']]
+    subscriptions: [["hive-148441", "GEMS", "quest"]]
   };
   const component = renderer.create(<SubscriptionBtn {...props} />);
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(3) With button props', () => {
+it("(3) With button props", () => {
   const props = {
     ...defProps,
-    subscriptions: [['hive-148441', 'GEMS', 'quest']],
+    subscriptions: [["hive-148441", "GEMS", "quest"]],
     buttonProps: { block: true }
   };
   const component = renderer.create(<SubscriptionBtn {...props} />);

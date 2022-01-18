@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import Meta from '../meta';
-import { Global } from '../../store/global/types';
-import isElectron from '../../util/is-electron';
+import Meta from "../meta";
+import { Global } from "../../store/global/types";
+import isElectron from "../../util/is-electron";
 
-const logoCircle = require('../../img/logo-circle.svg');
+const logoCircle = require("../../img/logo-circle.svg");
 
 interface Props {
   history: History;
@@ -37,11 +37,11 @@ export class NotFound extends Component<Props, State> {
   render() {
     const { loaded } = this.state;
     if (!loaded) {
-      return '';
+      return "";
     }
 
     const metaProps = {
-      title: '404'
+      title: "404"
     };
 
     const { history, global } = this.props;
@@ -58,7 +58,7 @@ export class NotFound extends Component<Props, State> {
         <Meta {...metaProps} />
         <div className="not-found-404">
           <img
-            src={isElectron() ? './img/logo-circle.svg' : logoCircle}
+            src={isElectron() ? "./img/logo-circle.svg" : logoCircle}
             className="logo"
             alt="Ecency"
           />

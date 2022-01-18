@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import ReactTextareaAutocomplete from './index';
-import renderer from 'react-test-renderer';
+import ReactTextareaAutocomplete from "./index";
+import renderer from "react-test-renderer";
 
-import { globalInstance } from '../../helper/test-helper';
+import { globalInstance } from "../../helper/test-helper";
 
 const props = {
   global: globalInstance,
-  id: 'the-editor',
-  className: 'the-editor accepts-emoji form-control',
-  as: 'textarea',
-  placeholder: 'placeholder',
-  value: '',
+  id: "the-editor",
+  className: "the-editor accepts-emoji form-control",
+  as: "textarea",
+  placeholder: "placeholder",
+  value: "",
   onChange: () => {},
   rows: 10,
   spellCheck: true
@@ -19,6 +19,6 @@ const props = {
 
 const component = renderer.create(<ReactTextareaAutocomplete {...props} />);
 
-it('(1) Default render', () => {
+it("(1) Default render", () => {
   expect(component.toJSON()).toMatchSnapshot();
 });

@@ -1,23 +1,23 @@
-import BaseComponent from '../base';
-import React, { Component } from 'react';
+import BaseComponent from "../base";
+import React, { Component } from "react";
 
-import { Button, Form, FormControl, Modal } from 'react-bootstrap';
+import { Button, Form, FormControl, Modal } from "react-bootstrap";
 
-import { Entry } from '../../store/entries/types';
-import { ActiveUser } from '../../store/active-user/types';
+import { Entry } from "../../store/entries/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import { error, success } from '../feedback';
-import SuggestionList from '../suggestion-list';
+import { error, success } from "../feedback";
+import SuggestionList from "../suggestion-list";
 
-import { comment, formatError } from '../../api/operations';
-import { getSubscriptions } from '../../api/bridge';
+import { comment, formatError } from "../../api/operations";
+import { getSubscriptions } from "../../api/bridge";
 
-import { makeCommentOptions, makeApp } from '../../helper/posting';
-import { makeCrossPostMessage } from '../../helper/cross-post';
+import { makeCommentOptions, makeApp } from "../../helper/posting";
+import { makeCrossPostMessage } from "../../helper/cross-post";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { version } from '../../../../package.json';
+import { version } from "../../../../package.json";
 
 interface Props {
   activeUser: ActiveUser;
@@ -40,8 +40,8 @@ interface State {
 export class CrossPost extends BaseComponent<Props, State> {
   state: State = {
     communities: [],
-    community: '',
-    message: '',
+    community: "",
+    message: "",
     posting: false,
     loading: true
   };
@@ -88,20 +88,20 @@ export class CrossPost extends BaseComponent<Props, State> {
     const body = makeCrossPostMessage(entry, author, message);
     const jsonMeta = {
       app: makeApp(version),
-      tags: ['cross-post'],
+      tags: ["cross-post"],
       original_author: entry.author,
       original_permlink: entry.permlink
     };
 
     const options = {
-      ...makeCommentOptions(author, permlink, 'dp'),
+      ...makeCommentOptions(author, permlink, "dp"),
       allow_curation_rewards: false
     };
 
     this.stateSet({ posting: true });
-    comment(author, '', theCommunity.id, permlink, title, body, jsonMeta, options)
+    comment(author, "", theCommunity.id, permlink, title, body, jsonMeta, options)
       .then(() => {
-        success(_t('cross-post.published'));
+        success(_t("cross-post.published"));
         this.props.onSuccess(theCommunity.id);
       })
       .catch((e) => {
@@ -123,10 +123,10 @@ export class CrossPost extends BaseComponent<Props, State> {
       (x) => x.name.toLowerCase().indexOf(community.toLowerCase()) !== -1
     );
     const theCommunity = communities.find((x) => x.name.toLowerCase() === community.toLowerCase());
-    const canSubmit = theCommunity && message.trim() !== '';
+    const canSubmit = theCommunity && message.trim() !== "";
 
     if (!loading && communities.length === 0) {
-      return <span className="text-info">{_t('cross-post.no-subscription')}</span>;
+      return <span className="text-info">{_t("cross-post.no-subscription")}</span>;
     }
 
     return (
@@ -141,7 +141,7 @@ export class CrossPost extends BaseComponent<Props, State> {
               value={community}
               onChange={this.communityChanged}
               type="text"
-              placeholder={_t('cross-post.community-placeholder')}
+              placeholder={_t("cross-post.community-placeholder")}
             />
           </SuggestionList>
         </Form.Group>
@@ -150,16 +150,16 @@ export class CrossPost extends BaseComponent<Props, State> {
             value={message}
             onChange={this.messageChanged}
             maxLength={200}
-            placeholder={_t('cross-post.message-placeholder')}
+            placeholder={_t("cross-post.message-placeholder")}
           />
         </Form.Group>
-        <p className="small text-muted">{_t('cross-post.info')}</p>
+        <p className="small text-muted">{_t("cross-post.info")}</p>
         <div className="d-flex justify-content-between">
           <Button variant="outline-secondary" onClick={this.hide} disabled={posting}>
-            {_t('g.cancel')}
+            {_t("g.cancel")}
           </Button>
           <Button variant="primary" disabled={!canSubmit || posting} onClick={this.submit}>
-            {_t('cross-post.submit-label')} {posting ? '...' : ''}
+            {_t("cross-post.submit-label")} {posting ? "..." : ""}
           </Button>
         </div>
       </>
@@ -181,7 +181,7 @@ export default class CrossPostDialog extends Component<Props> {
         className="cross-post-dialog"
       >
         <Modal.Header closeButton={true}>
-          <Modal.Title>{_t('cross-post.title')}</Modal.Title>
+          <Modal.Title>{_t("cross-post.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <CrossPost {...this.props} />

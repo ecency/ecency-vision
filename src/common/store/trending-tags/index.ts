@@ -1,8 +1,8 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
-import { getTrendingTags } from '../../api/hive';
+import { getTrendingTags } from "../../api/hive";
 
-import { AppState } from '../index';
+import { AppState } from "../index";
 
 import {
   TrendingTags,
@@ -11,7 +11,7 @@ import {
   FetchAction,
   FetchedAction,
   FetchErrorAction
-} from './types';
+} from "./types";
 
 export const initialState: TrendingTags = {
   list: [],

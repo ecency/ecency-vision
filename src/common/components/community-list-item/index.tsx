@@ -1,29 +1,29 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 
-import { History } from 'history';
-import { Link } from 'react-router-dom';
+import { History } from "history";
+import { Link } from "react-router-dom";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import { Account } from '../../store/accounts/types';
-import { Community } from '../../store/communities/types';
-import { Subscription } from '../../store/subscriptions/types';
-import { User } from '../../store/users/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { ToggleType, UI } from '../../store/ui/types';
+import { Account } from "../../store/accounts/types";
+import { Community } from "../../store/communities/types";
+import { Subscription } from "../../store/subscriptions/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { ToggleType, UI } from "../../store/ui/types";
 
-import ProfileLink from '../../components/profile-link';
-import SubscriptionBtn from '../subscription-btn';
-import UserAvatar from '../user-avatar';
-import { Global } from '../../store/global/types';
+import ProfileLink from "../../components/profile-link";
+import SubscriptionBtn from "../subscription-btn";
+import UserAvatar from "../user-avatar";
+import { Global } from "../../store/global/types";
 
-import { makePath } from '../tag';
+import { makePath } from "../tag";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import formattedNumber from '../../util/formatted-number';
+import formattedNumber from "../../util/formatted-number";
 
 interface Props {
   history: History;
@@ -62,18 +62,18 @@ export class CommunityListItem extends Component<Props> {
       <div className="community-list-item">
         <div className="item-content">
           <h2 className="item-title">
-            {UserAvatar({ ...this.props, username: community.name, size: 'medium' })}
+            {UserAvatar({ ...this.props, username: community.name, size: "medium" })}
             <Link to={makePath(defaults.filter, community.name)}>{community.title}</Link>
           </h2>
           <div className="item-about">{community.about}</div>
           <div className="item-stats">
-            <div className="stat">{_t('communities.n-subscribers', { n: subscribers })}</div>
-            <div className="stat">{_t('communities.n-authors', { n: authors })}</div>
-            <div className="stat">{_t('communities.n-posts', { n: posts })}</div>
+            <div className="stat">{_t("communities.n-subscribers", { n: subscribers })}</div>
+            <div className="stat">{_t("communities.n-authors", { n: authors })}</div>
+            <div className="stat">{_t("communities.n-posts", { n: posts })}</div>
           </div>
           {community.admins && (
             <div className="item-admins">
-              {_t('communities.admins')}
+              {_t("communities.admins")}
               {community.admins.map((x, i) => (
                 <Fragment key={i}>
                   {ProfileLink({

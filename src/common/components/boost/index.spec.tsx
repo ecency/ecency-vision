@@ -1,41 +1,41 @@
-import React from 'react';
+import React from "react";
 
-import { Boost } from './index';
+import { Boost } from "./index";
 
-import TestRenderer from 'react-test-renderer';
+import TestRenderer from "react-test-renderer";
 
 import {
   dynamicPropsIntance1,
   globalInstance,
   entryInstance1,
   allOver
-} from '../../helper/test-helper';
+} from "../../helper/test-helper";
 
-jest.mock('../../api/private-api', () => ({
+jest.mock("../../api/private-api", () => ({
   getBoostOptions: () =>
     new Promise((resolve) => {
       resolve([150, 200, 250, 300, 350, 400, 450, 500, 550]);
     })
 }));
 
-it('(1) Default render', async () => {
+it("(1) Default render", async () => {
   const props = {
     global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
     activeUser: {
-      username: 'foo',
+      username: "foo",
       data: {
-        name: 'foo',
-        balance: '12.234 HIVE',
-        hbd_balance: '4321.212',
-        savings_balance: '2123.000 HIVE'
+        name: "foo",
+        balance: "12.234 HIVE",
+        hbd_balance: "4321.212",
+        savings_balance: "2123.000 HIVE"
       },
       points: {
-        points: '500.000',
-        uPoints: '0.000'
+        points: "500.000",
+        uPoints: "0.000"
       }
     },
-    signingKey: '',
+    signingKey: "",
     updateActiveUser: () => {},
     setSigningKey: () => {},
     onHide: () => {}
@@ -46,24 +46,24 @@ it('(1) Default render', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Insufficient Funds', async () => {
+it("(2) Insufficient Funds", async () => {
   const props = {
     global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
     activeUser: {
-      username: 'foo',
+      username: "foo",
       data: {
-        name: 'foo',
-        balance: '12.234 HIVE',
-        hbd_balance: '4321.212',
-        savings_balance: '2123.000 HIVE'
+        name: "foo",
+        balance: "12.234 HIVE",
+        hbd_balance: "4321.212",
+        savings_balance: "2123.000 HIVE"
       },
       points: {
-        points: '10.000',
-        uPoints: '0.000'
+        points: "10.000",
+        uPoints: "0.000"
       }
     },
-    signingKey: '',
+    signingKey: "",
     updateActiveUser: () => {},
     setSigningKey: () => {},
     onHide: () => {}
@@ -74,24 +74,24 @@ it('(2) Insufficient Funds', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(2) With entry', async () => {
+it("(2) With entry", async () => {
   const props = {
     global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
     activeUser: {
-      username: 'foo',
+      username: "foo",
       data: {
-        name: 'foo',
-        balance: '12.234 HIVE',
-        hbd_balance: '4321.212',
-        savings_balance: '2123.000 HIVE'
+        name: "foo",
+        balance: "12.234 HIVE",
+        hbd_balance: "4321.212",
+        savings_balance: "2123.000 HIVE"
       },
       points: {
-        points: '500.000',
-        uPoints: '0.000'
+        points: "500.000",
+        uPoints: "0.000"
       }
     },
-    signingKey: '',
+    signingKey: "",
     entry: entryInstance1,
     updateActiveUser: () => {},
     setSigningKey: () => {},

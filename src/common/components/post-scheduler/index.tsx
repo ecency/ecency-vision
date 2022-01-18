@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import Datetime from 'react-datetime';
+import Datetime from "react-datetime";
 
-import moment, { Moment } from 'moment';
+import moment, { Moment } from "moment";
 
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal } from "react-bootstrap";
 
-import BaseComponent from '../base';
+import BaseComponent from "../base";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { closeSvg, timeSvg } from '../../img/svg';
+import { closeSvg, timeSvg } from "../../img/svg";
 
 interface Props {
   date: Moment | null;
@@ -27,12 +27,12 @@ interface DialogBodyState {
 
 export class DialogBody extends BaseComponent<DialogBodyProps, DialogBodyState> {
   state: DialogBodyState = {
-    date: this.props.date || moment().add(2, 'hour')
+    date: this.props.date || moment().add(2, "hour")
   };
 
   render() {
     const { date } = this.state;
-    const todayTs = moment().hour(0).minute(0).second(0).milliseconds(0).format('x');
+    const todayTs = moment().hour(0).minute(0).second(0).milliseconds(0).format("x");
 
     return (
       <>
@@ -43,7 +43,7 @@ export class DialogBody extends BaseComponent<DialogBodyProps, DialogBodyState> 
             value={date}
             timeFormat="HH:mm"
             isValidDate={(d) => {
-              return d.format('x') >= todayTs;
+              return d.format("x") >= todayTs;
             }}
             onChange={(date) => {
               this.setState({ date: date as Moment });
@@ -59,7 +59,7 @@ export class DialogBody extends BaseComponent<DialogBodyProps, DialogBodyState> 
               onHide();
             }}
           >
-            {_t('g.apply')}
+            {_t("g.apply")}
           </Button>
         </div>
       </>
@@ -98,7 +98,7 @@ export class PostSchedulerDialog extends Component<Props, State> {
         className="post-scheduler-dialog"
       >
         <Modal.Header closeButton={true}>
-          <Modal.Title>{_t('post-scheduler.title')}</Modal.Title>
+          <Modal.Title>{_t("post-scheduler.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <DialogBody {...this.props} onHide={this.toggle} />
@@ -111,7 +111,7 @@ export class PostSchedulerDialog extends Component<Props, State> {
         <>
           <div className="post-scheduler-scheduled">
             <span className="date" onClick={this.toggle}>
-              {date.format('YYYY-MM-DD HH:mm')}
+              {date.format("YYYY-MM-DD HH:mm")}
             </span>
             <span className="reset-date" onClick={this.reset}>
               {closeSvg}
@@ -125,8 +125,8 @@ export class PostSchedulerDialog extends Component<Props, State> {
     return (
       <>
         <Button className="d-inline-flex align-items-center" size="sm" onClick={this.toggle}>
-          {_t('post-scheduler.btn-label')}
-          <span style={{ marginLeft: '6px' }}>{timeSvg}</span>
+          {_t("post-scheduler.btn-label")}
+          <span style={{ marginLeft: "6px" }}>{timeSvg}</span>
         </Button>
         {dialog}
       </>

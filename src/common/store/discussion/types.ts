@@ -1,10 +1,10 @@
-import { Entry } from '../entries/types';
+import { Entry } from "../entries/types";
 
 export enum SortOrder {
-  trending = 'trending',
-  author_reputation = 'author_reputation',
-  votes = 'votes',
-  created = 'created'
+  trending = "trending",
+  author_reputation = "author_reputation",
+  votes = "votes",
+  created = "created"
 }
 
 export interface Discussion {
@@ -15,11 +15,11 @@ export interface Discussion {
 }
 
 export enum ActionTypes {
-  FETCH = '@discussions/FETCH',
-  FETCHED = '@discussions/FETCHED',
-  FETCH_ERROR = '@discussions/FETCH_ERROR',
-  RESET = '@discussions/RESET',
-  SET_ORDER = '@discussions/SET_ORDER'
+  FETCH = "@discussions/FETCH",
+  FETCHED = "@discussions/FETCHED",
+  FETCH_ERROR = "@discussions/FETCH_ERROR",
+  RESET = "@discussions/RESET",
+  SET_ORDER = "@discussions/SET_ORDER"
 }
 
 export interface FetchAction {

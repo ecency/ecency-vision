@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import xss from 'xss';
+import xss from "xss";
 
-import { _t } from './index';
+import { _t } from "./index";
 
 export const HTML_WHITELIST = {
-  a: ['class', 'href', 'target', 'rel'],
-  span: ['class'],
+  a: ["class", "href", "target", "rel"],
+  span: ["class"],
   h3: [],
   p: [],
   strong: [],
   b: [],
-  img: ['src', 'alt'],
+  img: ["src", "alt"],
   ul: [],
   li: [],
   br: []

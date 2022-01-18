@@ -1,42 +1,42 @@
-import React from 'react';
+import React from "react";
 
-import BaseComponent from '../base';
+import BaseComponent from "../base";
 
-import random from '../../util/rnd';
+import random from "../../util/rnd";
 
-import { checkSvg, alertCircleSvg, informationSvg } from '../../img/svg';
+import { checkSvg, alertCircleSvg, informationSvg } from "../../img/svg";
 
 export const error = (message: string) => {
   const detail: FeedbackObject = {
     id: random(),
-    type: 'error',
+    type: "error",
     message
   };
-  const ev = new CustomEvent('feedback', { detail });
+  const ev = new CustomEvent("feedback", { detail });
   window.dispatchEvent(ev);
 };
 
 export const success = (message: string) => {
   const detail: FeedbackObject = {
     id: random(),
-    type: 'success',
+    type: "success",
     message
   };
-  const ev = new CustomEvent('feedback', { detail });
+  const ev = new CustomEvent("feedback", { detail });
   window.dispatchEvent(ev);
 };
 
 export const info = (message: string) => {
   const detail: FeedbackObject = {
     id: random(),
-    type: 'info',
+    type: "info",
     message
   };
-  const ev = new CustomEvent('feedback', { detail });
+  const ev = new CustomEvent("feedback", { detail });
   window.dispatchEvent(ev);
 };
 
-type FeedbackType = 'error' | 'success' | 'info';
+type FeedbackType = "error" | "success" | "info";
 
 export interface FeedbackObject {
   id: string;
@@ -56,13 +56,13 @@ export default class Feedback extends BaseComponent<Props, State> {
   };
 
   componentDidMount() {
-    window.addEventListener('feedback', this.onFeedback);
+    window.addEventListener("feedback", this.onFeedback);
   }
 
   componentWillUnmount() {
     super.componentWillUnmount();
 
-    window.removeEventListener('feedback', this.onFeedback);
+    window.removeEventListener("feedback", this.onFeedback);
   }
 
   onFeedback = (e: Event) => {
@@ -93,19 +93,19 @@ export default class Feedback extends BaseComponent<Props, State> {
       <div className="feedback-container">
         {list.map((x) => {
           switch (x.type) {
-            case 'success':
+            case "success":
               return (
                 <div key={x.id} className="feedback-success">
                   {checkSvg} {x.message}
                 </div>
               );
-            case 'error':
+            case "error":
               return (
                 <div key={x.id} className="feedback-error">
                   {alertCircleSvg} {x.message}
                 </div>
               );
-            case 'info':
+            case "info":
               return (
                 <div key={x.id} className="feedback-info">
                   {informationSvg} {x.message}

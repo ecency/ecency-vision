@@ -1,4 +1,4 @@
-import { LocationChangeAction } from '../common';
+import { LocationChangeAction } from "../common";
 
 export interface EntryBeneficiaryRoute {
   account: string;
@@ -76,11 +76,11 @@ export interface EntryGroup {
 export interface Entries extends Record<string, EntryGroup> {}
 
 export enum ActionTypes {
-  FETCH = '@entries/FETCH',
-  FETCHED = '@entries/FETCHED',
-  FETCH_ERROR = '@entries/FETCH_ERROR',
-  INVALIDATE = '@entries/INVALIDATE',
-  UPDATE = '@entries/UPDATE'
+  FETCH = "@entries/FETCH",
+  FETCHED = "@entries/FETCHED",
+  FETCH_ERROR = "@entries/FETCH_ERROR",
+  INVALIDATE = "@entries/INVALIDATE",
+  UPDATE = "@entries/UPDATE"
 }
 
 export interface FetchAction {

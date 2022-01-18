@@ -1,8 +1,8 @@
-import { Entry } from '../entries/types';
+import { Entry } from "../entries/types";
 
-import { SortOrder } from './types';
+import { SortOrder } from "./types";
 
-import parseAsset from '../../helper/parse-asset';
+import parseAsset from "../../helper/parse-asset";
 
 export default (discussion: Entry[], order: SortOrder) => {
   const allPayout = (c: Entry) =>

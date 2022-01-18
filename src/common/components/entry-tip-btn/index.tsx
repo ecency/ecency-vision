@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Modal } from 'react-bootstrap';
+import { Modal } from "react-bootstrap";
 
-import { Global } from '../../store/global/types';
-import { DynamicProps } from '../../store/dynamic-props/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { Account } from '../../store/accounts/types';
-import { Entry } from '../../store/entries/types';
-import { User } from '../../store/users/types';
-import { ToggleType, UI } from '../../store/ui/types';
-import { Transactions } from '../../store/transactions/types';
+import { Global } from "../../store/global/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { Account } from "../../store/accounts/types";
+import { Entry } from "../../store/entries/types";
+import { User } from "../../store/users/types";
+import { ToggleType, UI } from "../../store/ui/types";
+import { Transactions } from "../../store/transactions/types";
 
-import LoginRequired from '../login-required';
-import { Transfer } from '../transfer';
-import Tooltip from '../tooltip';
+import LoginRequired from "../login-required";
+import { Transfer } from "../transfer";
+import Tooltip from "../tooltip";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { giftOutlineSvg } from '../../img/svg';
+import { giftOutlineSvg } from "../../img/svg";
 
 interface Props {
   global: Global;
@@ -55,7 +55,7 @@ export class TippingDialog extends Component<DialogProps> {
     const transactions: Transactions = {
       list: [],
       loading: false,
-      group: ''
+      group: ""
     };
 
     return (
@@ -63,9 +63,9 @@ export class TippingDialog extends Component<DialogProps> {
         {...this.props}
         activeUser={activeUser}
         transactions={transactions}
-        asset={global.usePrivate ? 'POINT' : 'HIVE'}
+        asset={global.usePrivate ? "POINT" : "HIVE"}
         mode="transfer"
-        amount={global.usePrivate ? '100.000' : '1.000'}
+        amount={global.usePrivate ? "100.000" : "1.000"}
         to={to}
         memo={memo}
       />
@@ -97,7 +97,7 @@ export class EntryTipBtn extends Component<Props, State> {
           ...this.props,
           children: (
             <div className="entry-tip-btn" onClick={this.toggleDialog}>
-              <Tooltip content={_t('entry-tip.title')}>
+              <Tooltip content={_t("entry-tip.title")}>
                 <span className="inner-btn">{giftOutlineSvg}</span>
               </Tooltip>
             </div>

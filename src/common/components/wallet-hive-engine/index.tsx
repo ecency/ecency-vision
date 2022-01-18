@@ -1,29 +1,29 @@
-import React from 'react';
+import React from "react";
 
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
-import { DynamicProps } from '../../store/dynamic-props/types';
-import { ActiveUser } from '../../store/active-user/types';
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import BaseComponent from '../base';
-import HiveEngineToken from '../../helper/hive-engine-wallet';
-import LinearProgress from '../linear-progress';
-import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import WalletMenu from '../wallet-menu';
+import BaseComponent from "../base";
+import HiveEngineToken from "../../helper/hive-engine-wallet";
+import LinearProgress from "../linear-progress";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import WalletMenu from "../wallet-menu";
 
 import {
   claimRewards,
   getHiveEngineTokenBalances,
   getUnclaimedRewards,
   TokenStatus
-} from '../../api/hive-engine';
-import { proxifyImageSrc } from '@ecency/render-helper';
-import { informationVariantSvg, plusCircle } from '../../img/svg';
-import { error, success } from '../feedback';
-import { formatError } from '../../api/operations';
-import formattedNumber from '../../util/formatted-number';
+} from "../../api/hive-engine";
+import { proxifyImageSrc } from "@ecency/render-helper";
+import { informationVariantSvg, plusCircle } from "../../img/svg";
+import { error, success } from "../feedback";
+import { formatError } from "../../api/operations";
+import formattedNumber from "../../util/formatted-number";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 interface Props {
   global: Global;
@@ -71,7 +71,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       items = this.sort(items);
       this._isMounted && this.setState({ tokens: items });
     } catch (e) {
-      console.log('engine tokens', e);
+      console.log("engine tokens", e);
     }
 
     this.setState({ loading: false });
@@ -96,7 +96,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       const rewards = await getUnclaimedRewards(account.name);
       this._isMounted && this.setState({ rewards });
     } catch (e) {
-      console.log('fetchUnclaimedRewards', e);
+      console.log("fetchUnclaimedRewards", e);
     }
   };
 
@@ -115,7 +115,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       tokens.map((t) => t.symbol)
     )
       .then((account) => {
-        success(_t('wallet.claim-reward-balance-ok'));
+        success(_t("wallet.claim-reward-balance-ok"));
       })
       .then(() => {
         this.setState({ rewards: [] });
@@ -148,15 +148,15 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
           <div className="wallet-info">
             {hasUnclaimedRewards && (
               <div className="unclaimed-rewards">
-                <div className="title">{_t('wallet.unclaimed-rewards')}</div>
+                <div className="title">{_t("wallet.unclaimed-rewards")}</div>
 
                 {hasMultipleUnclaimedRewards ? (
                   <div className="rewards">
                     <span className="reward-type">
                       <OverlayTrigger
                         delay={{ show: 0, hide: 500 }}
-                        key={'bottom'}
-                        placement={'bottom'}
+                        key={"bottom"}
+                        placement={"bottom"}
                         overlay={
                           <Tooltip id={`tooltip-token`}>
                             <div className="tooltip-inner rewards-container">
@@ -180,7 +180,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                     </span>
                     {isMyPage && (
                       <a
-                        className={`claim-btn ${claiming ? 'in-progress' : ''}`}
+                        className={`claim-btn ${claiming ? "in-progress" : ""}`}
                         onClick={() => this.claimRewards(rewards)}
                       >
                         {plusCircle}
@@ -203,7 +203,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                         </span>
                         {isMyPage && (
                           <a
-                            className={`claim-btn ${claiming ? 'in-progress' : ''}`}
+                            className={`claim-btn ${claiming ? "in-progress" : ""}`}
                             onClick={() => this.claimRewards([r])}
                           >
                             {plusCircle}
@@ -218,8 +218,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
             <div className="balance-row alternative">
               <div className="balance-info">
-                <div className="title">{_t('wallet-engine.title')}</div>
-                <div className="description">{_t('wallet-engine.description')}</div>
+                <div className="title">{_t("wallet-engine.title")}</div>
+                <div className="description">{_t("wallet-engine.description")}</div>
               </div>
             </div>
 
@@ -229,7 +229,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                   <LinearProgress />
                 </div>
               ) : tokens.length === 0 ? (
-                <div className="no-results">{_t('wallet-engine.no-results')}</div>
+                <div className="no-results">{_t("wallet-engine.no-results")}</div>
               ) : (
                 <div className="entry-list-body">
                   {tokens.map((b, i) => {
@@ -237,9 +237,9 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                       b.icon,
                       0,
                       0,
-                      global?.canUseWebp ? 'webp' : 'match'
+                      global?.canUseWebp ? "webp" : "match"
                     );
-                    const fallbackImage = require('../../img/noimage.svg');
+                    const fallbackImage = require("../../img/noimage.svg");
 
                     return (
                       <div className="entry-list-item" key={i}>
@@ -259,20 +259,20 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                         <div className="ml-auto mr-1">
                           <OverlayTrigger
                             delay={{ show: 0, hide: 500 }}
-                            key={'bottom'}
-                            placement={'bottom'}
+                            key={"bottom"}
+                            placement={"bottom"}
                             overlay={
                               <Tooltip id={`tooltip-${b.symbol}`}>
                                 <div className="tooltip-inner">
                                   <div className="profile-info-tooltip-content">
                                     <p>
-                                      {_t('wallet-engine.token')}: {b.name}
+                                      {_t("wallet-engine.token")}: {b.name}
                                     </p>
                                     <p>
-                                      {_t('wallet-engine.balance')}: {b.balanced()}
+                                      {_t("wallet-engine.balance")}: {b.balanced()}
                                     </p>
                                     <p>
-                                      {_t('wallet-engine.staked')}: {b.staked()}
+                                      {_t("wallet-engine.staked")}: {b.staked()}
                                     </p>
                                     {b.hasDelegations() && `<p>${b.delegations()}</p>`}
                                   </div>

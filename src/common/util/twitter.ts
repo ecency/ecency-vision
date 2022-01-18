@@ -1,4 +1,4 @@
-import { AppWindow } from '../../client/window';
+import { AppWindow } from "../../client/window";
 
 declare var window: AppWindow;
 
@@ -10,9 +10,9 @@ export const injectTwitter = () => {
 };
 
 export const injectScript = () => {
-  if (!document.getElementById('twttr-script')) {
-    const script = document.createElement('script');
-    script.setAttribute('id', 'twttr-script');
+  if (!document.getElementById("twttr-script")) {
+    const script = document.createElement("script");
+    script.setAttribute("id", "twttr-script");
     const js = document.createTextNode(`window.twttr = (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0],
             t = window.twttr || {};

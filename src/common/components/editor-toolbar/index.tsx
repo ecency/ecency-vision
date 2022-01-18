@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import { ActiveUser } from '../../store/active-user/types';
-import { User } from '../../store/users/types';
-import { Global } from '../../store/global/types';
+import { ActiveUser } from "../../store/active-user/types";
+import { User } from "../../store/users/types";
+import { Global } from "../../store/global/types";
 
-import Tooltip from '../tooltip';
-import EmojiPicker from '../emoji-picker';
-import Gallery from '../gallery';
-import Fragments from '../fragments';
-import AddImage from '../add-image';
-import AddImageMobile from '../add-image-mobile';
-import AddLink from '../add-link';
+import Tooltip from "../tooltip";
+import EmojiPicker from "../emoji-picker";
+import Gallery from "../gallery";
+import Fragments from "../fragments";
+import AddImage from "../add-image";
+import AddImageMobile from "../add-image-mobile";
+import AddLink from "../add-link";
 
-import { uploadImage } from '../../api/misc';
+import { uploadImage } from "../../api/misc";
 
-import { addImage } from '../../api/private-api';
+import { addImage } from "../../api/private-api";
 
-import { error } from '../feedback';
+import { error } from "../feedback";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { insertOrReplace, replace } from '../../util/input-util';
+import { insertOrReplace, replace } from "../../util/input-util";
 
-import { getAccessToken } from '../../helper/user-token';
+import { getAccessToken } from "../../helper/user-token";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
 import {
   formatBoldSvg,
@@ -41,7 +41,7 @@ import {
   gridSvg,
   emoticonHappyOutlineSvg,
   textShortSvg
-} from '../../img/svg';
+} from "../../img/svg";
 
 interface Props {
   global: Global;
@@ -118,18 +118,18 @@ export class EditorToolbar extends Component<Props> {
   componentDidMount() {
     const el = this.getTargetEl();
     if (el) {
-      el.addEventListener('dragover', this.onDragOver);
-      el.addEventListener('drop', this.drop);
-      el.addEventListener('paste', this.onPaste);
+      el.addEventListener("dragover", this.onDragOver);
+      el.addEventListener("drop", this.drop);
+      el.addEventListener("paste", this.onPaste);
     }
   }
 
   componentWillUnmount() {
     const el = this.getTargetEl();
     if (el) {
-      el.removeEventListener('dragover', this.onDragOver);
-      el.removeEventListener('drop', this.drop);
-      el.removeEventListener('paste', this.onPaste);
+      el.removeEventListener("dragover", this.onDragOver);
+      el.removeEventListener("drop", this.drop);
+      el.removeEventListener("paste", this.onPaste);
     }
   }
 
@@ -139,10 +139,10 @@ export class EditorToolbar extends Component<Props> {
       return null;
     }
 
-    return holder.parentElement.querySelector('.the-editor');
+    return holder.parentElement.querySelector(".the-editor");
   };
 
-  insertText = (before: string, after: string = '') => {
+  insertText = (before: string, after: string = "") => {
     const el = this.getTargetEl();
     if (el) {
       insertOrReplace(el, before, after);
@@ -166,8 +166,8 @@ export class EditorToolbar extends Component<Props> {
     e.stopPropagation();
 
     if (e.dataTransfer) {
-      e.dataTransfer.effectAllowed = 'copy';
-      e.dataTransfer.dropEffect = 'copy';
+      e.dataTransfer.effectAllowed = "copy";
+      e.dataTransfer.dropEffect = "copy";
     }
   };
 
@@ -199,13 +199,13 @@ export class EditorToolbar extends Component<Props> {
     // when text copied from ms word, it adds screenshot of selected text to clipboard.
     // check if data in clipboard is long string and skip upload.
     // (i think no one uses more than 50 chars for a image file)
-    const txtData = e.clipboardData.getData('text/plain');
+    const txtData = e.clipboardData.getData("text/plain");
     if (txtData.length >= 50) {
       return;
     }
 
     const files = [...e.clipboardData.items]
-      .map((item) => (item.type.indexOf('image') !== -1 ? item.getAsFile() : null))
+      .map((item) => (item.type.indexOf("image") !== -1 ? item.getAsFile() : null))
       .filter((i) => i);
 
     if (files.length > 0) {
@@ -219,32 +219,32 @@ export class EditorToolbar extends Component<Props> {
   };
 
   bold = () => {
-    this.insertText('**', '**');
+    this.insertText("**", "**");
   };
 
   italic = () => {
-    this.insertText('*', '*');
+    this.insertText("*", "*");
   };
 
   header = (w: number) => {
-    const h = '#'.repeat(w);
+    const h = "#".repeat(w);
     this.insertText(`${h} `);
   };
 
   code = () => {
-    this.insertText('<code>', '</code>');
+    this.insertText("<code>", "</code>");
   };
 
   quote = () => {
-    this.insertText('>');
+    this.insertText(">");
   };
 
   ol = () => {
-    this.insertText('1. item1\n2. item2\n3. item3');
+    this.insertText("1. item1\n2. item2\n3. item3");
   };
 
   ul = () => {
-    this.insertText('* item1\n* item2\n* item3');
+    this.insertText("* item1\n* item2\n* item3");
   };
 
   link = (text: string, url: string) => {
@@ -258,25 +258,25 @@ export class EditorToolbar extends Component<Props> {
   table = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     const t =
-      '\n|\tColumn 1\t|\tColumn 2\t|\tColumn 3\t|\n' +
-      '|\t------------\t|\t------------\t|\t------------\t|\n' +
-      '|\t     Text     \t|\t     Text     \t|\t     Text     \t|\n';
+      "\n|\tColumn 1\t|\tColumn 2\t|\tColumn 3\t|\n" +
+      "|\t------------\t|\t------------\t|\t------------\t|\n" +
+      "|\t     Text     \t|\t     Text     \t|\t     Text     \t|\n";
     this.insertText(t);
   };
 
   table1 = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
 
-    const t = '\n|\tColumn 1\t|\n' + '|\t------------\t|\n' + '|\t     Text     \t|\n';
+    const t = "\n|\tColumn 1\t|\n" + "|\t------------\t|\n" + "|\t     Text     \t|\n";
     this.insertText(t);
   };
 
   table2 = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     const t =
-      '\n|\tColumn 1\t|\tColumn 2\t|\n' +
-      '|\t------------\t|\t------------\t|\n' +
-      '|\t     Text     \t|\t     Text     \t|\n';
+      "\n|\tColumn 1\t|\tColumn 2\t|\n" +
+      "|\t------------\t|\t------------\t|\n" +
+      "|\t     Text     \t|\t     Text     \t|\n";
     this.insertText(t);
   };
 
@@ -295,7 +295,7 @@ export class EditorToolbar extends Component<Props> {
     }
 
     if (files.length > 1 && isElectron) {
-      let isWindows = process.platform === 'win32';
+      let isWindows = process.platform === "win32";
       if (isWindows) {
         files = files.reverse();
       }
@@ -304,7 +304,7 @@ export class EditorToolbar extends Component<Props> {
     files.forEach((file) => this.upload(file));
 
     // reset input
-    e.target.value = '';
+    e.target.value = "";
   };
 
   upload = async (file: File) => {
@@ -326,18 +326,18 @@ export class EditorToolbar extends Component<Props> {
           addImage(username, imageUrl).then();
         }
 
-        const imageName = imageUrl.length > 0 && imageUrl.split('/').pop();
+        const imageName = imageUrl.length > 0 && imageUrl.split("/").pop();
         const imgTag = imageUrl.length > 0 && `![${imageName}](${imageUrl})\n\n`;
 
         imgTag && this.replaceText(tempImgTag, imgTag);
       } else {
-        error(_t('editor-toolbar.image-error-cache'));
+        error(_t("editor-toolbar.image-error-cache"));
       }
     } catch (e) {
       if (e.response?.status === 413) {
-        error(_t('editor-toolbar.image-error-size'));
+        error(_t("editor-toolbar.image-error-size"));
       } else {
-        error(_t('editor-toolbar.image-error'));
+        error(_t("editor-toolbar.image-error"));
       }
       return;
     }
@@ -345,7 +345,7 @@ export class EditorToolbar extends Component<Props> {
 
   checkFile = (filename: string) => {
     const filenameLow = filename.toLowerCase();
-    return ['jpg', 'jpeg', 'gif', 'png'].some((el) => filenameLow.endsWith(el));
+    return ["jpg", "jpeg", "gif", "png"].some((el) => filenameLow.endsWith(el));
   };
 
   render() {
@@ -354,18 +354,18 @@ export class EditorToolbar extends Component<Props> {
 
     return (
       <>
-        <div className={_c(`editor-toolbar ${sm ? 'toolbar-sm' : ''}`)} ref={this.holder}>
-          <Tooltip content={_t('editor-toolbar.bold')}>
+        <div className={_c(`editor-toolbar ${sm ? "toolbar-sm" : ""}`)} ref={this.holder}>
+          <Tooltip content={_t("editor-toolbar.bold")}>
             <div className="editor-tool" onClick={this.bold}>
               {formatBoldSvg}
             </div>
           </Tooltip>
-          <Tooltip content={_t('editor-toolbar.italic')}>
+          <Tooltip content={_t("editor-toolbar.italic")}>
             <div className="editor-tool" onClick={this.italic}>
               {formatItalicSvg}
             </div>
           </Tooltip>
-          <Tooltip content={_t('editor-toolbar.header')}>
+          <Tooltip content={_t("editor-toolbar.header")}>
             <div
               className="editor-tool"
               onClick={() => {
@@ -390,29 +390,29 @@ export class EditorToolbar extends Component<Props> {
             </div>
           </Tooltip>
           <div className="tool-separator" />
-          <Tooltip content={_t('editor-toolbar.code')}>
+          <Tooltip content={_t("editor-toolbar.code")}>
             <div className="editor-tool" onClick={this.code}>
               {codeTagsSvg}
             </div>
           </Tooltip>
-          <Tooltip content={_t('editor-toolbar.quote')}>
+          <Tooltip content={_t("editor-toolbar.quote")}>
             <div className="editor-tool" onClick={this.quote}>
               {formatQuoteCloseSvg}
             </div>
           </Tooltip>
           <div className="tool-separator" />
-          <Tooltip content={_t('editor-toolbar.ol')}>
+          <Tooltip content={_t("editor-toolbar.ol")}>
             <div className="editor-tool" onClick={this.ol}>
               {formatListNumberedSvg}
             </div>
           </Tooltip>
-          <Tooltip content={_t('editor-toolbar.ul')}>
+          <Tooltip content={_t("editor-toolbar.ul")}>
             <div className="editor-tool" onClick={this.ul}>
               {formatListBulletedSvg}
             </div>
           </Tooltip>
           <div className="tool-separator" />
-          <Tooltip content={_t('editor-toolbar.link')}>
+          <Tooltip content={_t("editor-toolbar.link")}>
             <div className="editor-tool" onClick={this.toggleLink}>
               {linkSvg}
             </div>
@@ -421,7 +421,7 @@ export class EditorToolbar extends Component<Props> {
           {(() => {
             if (activeUser && global.isMobile) {
               return (
-                <Tooltip content={_t('editor-toolbar.image')}>
+                <Tooltip content={_t("editor-toolbar.image")}>
                   <div className="editor-tool" onClick={this.toggleMobileImage}>
                     {imageSvg}
                   </div>
@@ -430,7 +430,7 @@ export class EditorToolbar extends Component<Props> {
             }
 
             return (
-              <Tooltip content={_t('editor-toolbar.image')}>
+              <Tooltip content={_t("editor-toolbar.image")}>
                 <div className="editor-tool" onClick={this.toggleImage}>
                   {imageSvg}
 
@@ -444,7 +444,7 @@ export class EditorToolbar extends Component<Props> {
                           if (el) el.click();
                         }}
                       >
-                        {_t('editor-toolbar.upload')}
+                        {_t("editor-toolbar.upload")}
                       </div>
                       {global.usePrivate && (
                         <div
@@ -454,7 +454,7 @@ export class EditorToolbar extends Component<Props> {
                             this.toggleGallery();
                           }}
                         >
-                          {_t('editor-toolbar.gallery')}
+                          {_t("editor-toolbar.gallery")}
                         </div>
                       )}
                     </div>
@@ -464,36 +464,36 @@ export class EditorToolbar extends Component<Props> {
             );
           })()}
 
-          <Tooltip content={_t('editor-toolbar.table')}>
+          <Tooltip content={_t("editor-toolbar.table")}>
             <div className="editor-tool" onClick={this.table}>
               {gridSvg}
               <div className="sub-tool-menu">
                 <div className="sub-tool-menu-item" onClick={this.table}>
-                  {_t('editor-toolbar.table-3-col')}
+                  {_t("editor-toolbar.table-3-col")}
                 </div>
                 <div className="sub-tool-menu-item" onClick={this.table2}>
-                  {_t('editor-toolbar.table-2-col')}
+                  {_t("editor-toolbar.table-2-col")}
                 </div>
                 <div className="sub-tool-menu-item" onClick={this.table1}>
-                  {_t('editor-toolbar.table-1-col')}
+                  {_t("editor-toolbar.table-1-col")}
                 </div>
               </div>
             </div>
           </Tooltip>
-          <Tooltip content={_t('editor-toolbar.emoji')}>
+          <Tooltip content={_t("editor-toolbar.emoji")}>
             <div className="editor-tool" role="none">
               {emoticonHappyOutlineSvg}
               {showEmoji && (
                 <EmojiPicker
                   fallback={(e) => {
-                    this.insertText(e, '');
+                    this.insertText(e, "");
                   }}
                 />
               )}
             </div>
           </Tooltip>
           {global.usePrivate && (
-            <Tooltip content={_t('editor-toolbar.fragments')}>
+            <Tooltip content={_t("editor-toolbar.fragments")}>
               <div className="editor-tool" onClick={this.toggleFragments}>
                 {textShortSvg}
               </div>
@@ -507,7 +507,7 @@ export class EditorToolbar extends Component<Props> {
           type="file"
           accept="image/*"
           multiple={true}
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
         />
         {gallery && activeUser && (
           <Gallery
@@ -515,7 +515,7 @@ export class EditorToolbar extends Component<Props> {
             activeUser={activeUser}
             onHide={this.toggleGallery}
             onPick={(url: string) => {
-              const fileName = url.split('/').pop() || '';
+              const fileName = url.split("/").pop() || "";
               this.image(fileName, url);
               this.toggleGallery();
             }}
@@ -555,7 +555,7 @@ export class EditorToolbar extends Component<Props> {
             activeUser={activeUser}
             onHide={this.toggleMobileImage}
             onPick={(url) => {
-              const fileName = url.split('/').pop() || '';
+              const fileName = url.split("/").pop() || "";
               this.image(fileName, url);
               this.toggleMobileImage();
             }}

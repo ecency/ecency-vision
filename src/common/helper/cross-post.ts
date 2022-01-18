@@ -1,12 +1,12 @@
-import { postBodySummary } from '@ecency/render-helper';
-import { Entry } from '../store/entries/types';
+import { postBodySummary } from "@ecency/render-helper";
+import { Entry } from "../store/entries/types";
 
 export const crossPostMessage = (body: string) => {
   const crossPostRegex =
     /^This is a cross post of \[@(.*?)\/(.*?)\]\(\/.*?@.*?\/.*?\) by @.*?\.<br>/;
 
   if (body.match(crossPostRegex)) {
-    const message = body.replace(crossPostRegex, '');
+    const message = body.replace(crossPostRegex, "");
     return postBodySummary(message);
   }
 

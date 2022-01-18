@@ -1,9 +1,9 @@
-import { LoginAction, LogoutAction } from '../active-user/types';
+import { LoginAction, LogoutAction } from "../active-user/types";
 
 export type Subscription = Array<string>;
 
 export enum ActionTypes {
-  UPDATE = '@subscriptions/UPDATE'
+  UPDATE = "@subscriptions/UPDATE"
 }
 
 export interface UpdateAction {

@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { List } from './index';
-import renderer from 'react-test-renderer';
-import { createBrowserHistory } from 'history';
+import { List } from "./index";
+import renderer from "react-test-renderer";
+import { createBrowserHistory } from "history";
 
 import {
   entryInstance1,
@@ -11,15 +11,15 @@ import {
   globalInstance,
   activeUserMaker,
   allOver
-} from '../../helper/test-helper';
+} from "../../helper/test-helper";
 
-jest.mock('../../constants/defaults.json', () => ({
-  imageServer: 'https://images.ecency.com'
+jest.mock("../../constants/defaults.json", () => ({
+  imageServer: "https://images.ecency.com"
 }));
 
 let MOCK_MODE = 1;
 
-jest.mock('../../api/hive', () => ({
+jest.mock("../../api/hive", () => ({
   getVestingDelegations: () =>
     new Promise((resolve) => {
       if (MOCK_MODE === 1) {
@@ -36,43 +36,43 @@ const defaultProps = {
   global: globalInstance,
   history: createBrowserHistory(),
   activeUser: null,
-  account: { name: 'foo' },
+  account: { name: "foo" },
   dynamicProps: dynamicPropsIntance1,
-  signingKey: '',
+  signingKey: "",
   entry: { ...entryInstance1 },
-  totalDelegated: '',
+  totalDelegated: "",
   addAccount: () => {},
   setSigningKey: () => {},
   onHide: () => {}
 };
 
-it('(1) Default render', async () => {
+it("(1) Default render", async () => {
   const component = renderer.create(<List {...defaultProps} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) With active user', async () => {
+it("(2) With active user", async () => {
   const props = {
     ...defaultProps,
-    activeUser: activeUserMaker('bar')
+    activeUser: activeUserMaker("bar")
   };
   const component = renderer.create(<List {...props} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(3) With delegator active user', async () => {
+it("(3) With delegator active user", async () => {
   const props = {
     ...defaultProps,
-    activeUser: activeUserMaker('foo')
+    activeUser: activeUserMaker("foo")
   };
   const component = renderer.create(<List {...props} />);
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(4) Empty List', async () => {
+it("(4) Empty List", async () => {
   MOCK_MODE = 2;
   const component = renderer.create(<List {...defaultProps} />);
   await allOver();

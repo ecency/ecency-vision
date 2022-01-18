@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { User } from '../../store/users/types';
-import { Account } from '../../store/accounts/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { UI, ToggleType } from '../../store/ui/types';
+import { User } from "../../store/users/types";
+import { Account } from "../../store/accounts/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { UI, ToggleType } from "../../store/ui/types";
 
 interface Props {
   users: User[];
@@ -19,7 +19,7 @@ interface Props {
 export class LoginRequired extends Component<Props> {
   toggle = () => {
     const { toggleUIProp } = this.props;
-    toggleUIProp('login');
+    toggleUIProp("login");
   };
 
   render() {

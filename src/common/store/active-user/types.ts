@@ -1,4 +1,4 @@
-import { Account } from '../accounts/types';
+import { Account } from "../accounts/types";
 
 export interface UserPoints {
   points: string;
@@ -12,9 +12,9 @@ export interface ActiveUser {
 }
 
 export enum ActionTypes {
-  LOGIN = '@active-user/LOGIN',
-  LOGOUT = '@active-user/LOGOUT',
-  UPDATE = '@active-user/UPDATE'
+  LOGIN = "@active-user/LOGIN",
+  LOGOUT = "@active-user/LOGOUT",
+  UPDATE = "@active-user/UPDATE"
 }
 
 export interface LoginAction {

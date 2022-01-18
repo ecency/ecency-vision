@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import { AddImage } from './index';
+import { AddImage } from "./index";
 
-import TestRenderer from 'react-test-renderer';
+import TestRenderer from "react-test-renderer";
 
-it('(1) Default render', async () => {
+it("(1) Default render", async () => {
   const props = {
     onHide: () => {},
     onSubmit: () => {}

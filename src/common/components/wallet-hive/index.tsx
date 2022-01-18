@@ -1,48 +1,48 @@
-import React from 'react';
+import React from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import moment from 'moment';
+import moment from "moment";
 
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
-import { DynamicProps } from '../../store/dynamic-props/types';
-import { OperationGroup, Transactions } from '../../store/transactions/types';
-import { ActiveUser } from '../../store/active-user/types';
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
+import { OperationGroup, Transactions } from "../../store/transactions/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import BaseComponent from '../base';
-import Tooltip from '../tooltip';
-import FormattedCurrency from '../formatted-currency';
-import TransactionList from '../transactions';
-import DelegatedVesting from '../delegated-vesting';
-import ReceivedVesting from '../received-vesting';
-import DropDown from '../dropdown';
-import Transfer, { TransferMode, TransferAsset } from '../transfer';
-import { error, success } from '../feedback';
-import WalletMenu from '../wallet-menu';
-import WithdrawRoutes from '../withdraw-routes';
+import BaseComponent from "../base";
+import Tooltip from "../tooltip";
+import FormattedCurrency from "../formatted-currency";
+import TransactionList from "../transactions";
+import DelegatedVesting from "../delegated-vesting";
+import ReceivedVesting from "../received-vesting";
+import DropDown from "../dropdown";
+import Transfer, { TransferMode, TransferAsset } from "../transfer";
+import { error, success } from "../feedback";
+import WalletMenu from "../wallet-menu";
+import WithdrawRoutes from "../withdraw-routes";
 
-import HiveWallet from '../../helper/hive-wallet';
+import HiveWallet from "../../helper/hive-wallet";
 
-import { vestsToHp } from '../../helper/vesting';
+import { vestsToHp } from "../../helper/vesting";
 
 import {
   DynamicGlobalProperties,
   getAccount,
   getConversionRequests,
   getDynamicGlobalProperties
-} from '../../api/hive';
+} from "../../api/hive";
 
-import { claimRewardBalance, formatError } from '../../api/operations';
+import { claimRewardBalance, formatError } from "../../api/operations";
 
-import formattedNumber from '../../util/formatted-number';
+import formattedNumber from "../../util/formatted-number";
 
-import parseAsset from '../../helper/parse-asset';
+import parseAsset from "../../helper/parse-asset";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { plusCircle } from '../../img/svg';
-import { addAccount } from '../../store/accounts';
+import { plusCircle } from "../../img/svg";
+import { addAccount } from "../../store/accounts";
 
 interface Props {
   history: History;
@@ -55,7 +55,7 @@ interface Props {
   addAccount: (data: Account) => void;
   updateActiveUser: (data?: Account) => void;
   setSigningKey: (key: string) => void;
-  fetchTransactions: (username: string, group?: OperationGroup | '') => void;
+  fetchTransactions: (username: string, group?: OperationGroup | "") => void;
   fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
 }
@@ -185,7 +185,7 @@ export class WalletHive extends BaseComponent<Props, State> {
       })
       .then(() => getAccount(activeUser.username))
       .then((account) => {
-        success(_t('wallet.claim-reward-balance-ok'));
+        success(_t("wallet.claim-reward-balance-ok"));
         this.stateSet({ claiming: false, claimed: true });
         updateActiveUser(account);
       })
@@ -222,10 +222,10 @@ export class WalletHive extends BaseComponent<Props, State> {
     const { hivePerMVests } = dynamicProps;
     const isMyPage = activeUser && activeUser.username === account.name;
     const w = new HiveWallet(account, dynamicProps, converting);
-    const totalHP = formattedNumber(vestsToHp(w.vestingShares, hivePerMVests), { suffix: 'HP' });
+    const totalHP = formattedNumber(vestsToHp(w.vestingShares, hivePerMVests), { suffix: "HP" });
     const totalDelegated = formattedNumber(vestsToHp(w.vestingSharesDelegated, hivePerMVests), {
-      prefix: '-',
-      suffix: 'HP'
+      prefix: "-",
+      suffix: "HP"
     });
 
     return (
@@ -234,7 +234,7 @@ export class WalletHive extends BaseComponent<Props, State> {
           <div className="wallet-info">
             {w.hasUnclaimedRewards && !claimed && (
               <div className="unclaimed-rewards">
-                <div className="title">{_t('wallet.unclaimed-rewards')}</div>
+                <div className="title">{_t("wallet.unclaimed-rewards")}</div>
                 <div className="rewards">
                   {w.rewardHiveBalance > 0 && (
                     <span className="reward-type">{`${w.rewardHiveBalance} HIVE`}</span>
@@ -246,9 +246,9 @@ export class WalletHive extends BaseComponent<Props, State> {
                     <span className="reward-type">{`${w.rewardVestingHive} HP`}</span>
                   )}
                   {isMyPage && (
-                    <Tooltip content={_t('wallet.claim-reward-balance')}>
+                    <Tooltip content={_t("wallet.claim-reward-balance")}>
                       <a
-                        className={`claim-btn ${claiming ? 'in-progress' : ''}`}
+                        className={`claim-btn ${claiming ? "in-progress" : ""}`}
                         onClick={this.claimRewardBalance}
                       >
                         {plusCircle}
@@ -261,8 +261,8 @@ export class WalletHive extends BaseComponent<Props, State> {
 
             <div className="balance-row estimated alternative">
               <div className="balance-info">
-                <div className="title">{_t('wallet.estimated')}</div>
-                <div className="description">{_t('wallet.estimated-description')}</div>
+                <div className="title">{_t("wallet.estimated")}</div>
+                <div className="description">{_t("wallet.estimated-description")}</div>
               </div>
               <div className="balance-values">
                 <div className="amount amount-bold">
@@ -273,8 +273,8 @@ export class WalletHive extends BaseComponent<Props, State> {
 
             <div className="balance-row hive">
               <div className="balance-info">
-                <div className="title">{_t('wallet.hive')}</div>
-                <div className="description">{_t('wallet.hive-description')}</div>
+                <div className="title">{_t("wallet.hive")}</div>
+                <div className="description">{_t("wallet.hive-description")}</div>
               </div>
               <div className="balance-values">
                 <div className="amount">
@@ -283,24 +283,24 @@ export class WalletHive extends BaseComponent<Props, State> {
                     if (isMyPage) {
                       dropDownConfig = {
                         history: this.props.history,
-                        label: '',
+                        label: "",
                         items: [
                           {
-                            label: _t('wallet.transfer'),
+                            label: _t("wallet.transfer"),
                             onClick: () => {
-                              this.openTransferDialog('transfer', 'HIVE');
+                              this.openTransferDialog("transfer", "HIVE");
                             }
                           },
                           {
-                            label: _t('wallet.transfer-to-savings'),
+                            label: _t("wallet.transfer-to-savings"),
                             onClick: () => {
-                              this.openTransferDialog('transfer-saving', 'HIVE');
+                              this.openTransferDialog("transfer-saving", "HIVE");
                             }
                           },
                           {
-                            label: _t('wallet.power-up'),
+                            label: _t("wallet.power-up"),
                             onClick: () => {
-                              this.openTransferDialog('power-up', 'HIVE');
+                              this.openTransferDialog("power-up", "HIVE");
                             }
                           }
                         ]
@@ -308,12 +308,12 @@ export class WalletHive extends BaseComponent<Props, State> {
                     } else if (activeUser) {
                       dropDownConfig = {
                         history: this.props.history,
-                        label: '',
+                        label: "",
                         items: [
                           {
-                            label: _t('wallet.transfer'),
+                            label: _t("wallet.transfer"),
                             onClick: () => {
-                              this.openTransferDialog('transfer', 'HIVE');
+                              this.openTransferDialog("transfer", "HIVE");
                             }
                           }
                         ]
@@ -326,17 +326,17 @@ export class WalletHive extends BaseComponent<Props, State> {
                     );
                   })()}
 
-                  <span>{formattedNumber(w.balance, { suffix: 'HIVE' })}</span>
+                  <span>{formattedNumber(w.balance, { suffix: "HIVE" })}</span>
                 </div>
               </div>
             </div>
 
             <div className="balance-row hive-power alternative">
               <div className="balance-info">
-                <div className="title">{_t('wallet.hive-power')}</div>
-                <div className="description">{_t('wallet.hive-power-description')}</div>
+                <div className="title">{_t("wallet.hive-power")}</div>
+                <div className="description">{_t("wallet.hive-power-description")}</div>
                 <div className="description font-weight-bold mt-2">
-                  {_t('wallet.hive-power-apr-rate', { value: hp })}
+                  {_t("wallet.hive-power-apr-rate", { value: hp })}
                 </div>
               </div>
 
@@ -347,22 +347,22 @@ export class WalletHive extends BaseComponent<Props, State> {
                     if (isMyPage) {
                       dropDownConfig = {
                         history: this.props.history,
-                        label: '',
+                        label: "",
                         items: [
                           {
-                            label: _t('wallet.delegate'),
+                            label: _t("wallet.delegate"),
                             onClick: () => {
-                              this.openTransferDialog('delegate', 'HP');
+                              this.openTransferDialog("delegate", "HP");
                             }
                           },
                           {
-                            label: _t('wallet.power-down'),
+                            label: _t("wallet.power-down"),
                             onClick: () => {
-                              this.openTransferDialog('power-down', 'HP');
+                              this.openTransferDialog("power-down", "HP");
                             }
                           },
                           {
-                            label: _t('wallet.withdraw-routes'),
+                            label: _t("wallet.withdraw-routes"),
                             onClick: () => {
                               this.toggleWithdrawRoutes();
                             }
@@ -372,18 +372,18 @@ export class WalletHive extends BaseComponent<Props, State> {
                     } else if (activeUser) {
                       dropDownConfig = {
                         history: this.props.history,
-                        label: '',
+                        label: "",
                         items: [
                           {
-                            label: _t('wallet.delegate'),
+                            label: _t("wallet.delegate"),
                             onClick: () => {
-                              this.openTransferDialog('delegate', 'HP');
+                              this.openTransferDialog("delegate", "HP");
                             }
                           },
                           {
-                            label: _t('wallet.power-up'),
+                            label: _t("wallet.power-up"),
                             onClick: () => {
-                              this.openTransferDialog('power-up', 'HIVE');
+                              this.openTransferDialog("power-up", "HIVE");
                             }
                           }
                         ]
@@ -400,11 +400,11 @@ export class WalletHive extends BaseComponent<Props, State> {
 
                 {w.vestingSharesDelegated > 0 && (
                   <div className="amount amount-passive delegated-shares">
-                    <Tooltip content={_t('wallet.hive-power-delegated')}>
+                    <Tooltip content={_t("wallet.hive-power-delegated")}>
                       <span className="amount-btn" onClick={this.toggleDelegatedList}>
                         {formattedNumber(vestsToHp(w.vestingSharesDelegated, hivePerMVests), {
-                          prefix: '-',
-                          suffix: 'HP'
+                          prefix: "-",
+                          suffix: "HP"
                         })}
                       </span>
                     </Tooltip>
@@ -418,13 +418,13 @@ export class WalletHive extends BaseComponent<Props, State> {
 
                   const strReceived = formattedNumber(
                     vestsToHp(w.vestingSharesReceived, hivePerMVests),
-                    { prefix: '+', suffix: 'HP' }
+                    { prefix: "+", suffix: "HP" }
                   );
 
                   if (global.usePrivate) {
                     return (
                       <div className="amount amount-passive received-shares">
-                        <Tooltip content={_t('wallet.hive-power-received')}>
+                        <Tooltip content={_t("wallet.hive-power-received")}>
                           <span className="amount-btn" onClick={this.toggleReceivedList}>
                             {strReceived}
                           </span>
@@ -435,7 +435,7 @@ export class WalletHive extends BaseComponent<Props, State> {
 
                   return (
                     <div className="amount amount-passive received-shares">
-                      <Tooltip content={_t('wallet.hive-power-received')}>
+                      <Tooltip content={_t("wallet.hive-power-received")}>
                         <span className="amount">{strReceived}</span>
                       </Tooltip>
                     </div>
@@ -444,11 +444,11 @@ export class WalletHive extends BaseComponent<Props, State> {
 
                 {w.nextVestingSharesWithdrawal > 0 && (
                   <div className="amount amount-passive next-power-down-amount">
-                    <Tooltip content={_t('wallet.next-power-down-amount')}>
+                    <Tooltip content={_t("wallet.next-power-down-amount")}>
                       <span>
                         {formattedNumber(vestsToHp(w.nextVestingSharesWithdrawal, hivePerMVests), {
-                          prefix: '-',
-                          suffix: 'HP'
+                          prefix: "-",
+                          suffix: "HP"
                         })}
                       </span>
                     </Tooltip>
@@ -459,11 +459,11 @@ export class WalletHive extends BaseComponent<Props, State> {
                   w.vestingSharesReceived > 0 ||
                   w.nextVestingSharesWithdrawal > 0) && (
                   <div className="amount total-hive-power">
-                    <Tooltip content={_t('wallet.hive-power-total')}>
+                    <Tooltip content={_t("wallet.hive-power-total")}>
                       <span>
                         {formattedNumber(vestsToHp(w.vestingSharesTotal, hivePerMVests), {
-                          prefix: '=',
-                          suffix: 'HP'
+                          prefix: "=",
+                          suffix: "HP"
                         })}
                       </span>
                     </Tooltip>
@@ -474,8 +474,8 @@ export class WalletHive extends BaseComponent<Props, State> {
 
             <div className="balance-row hive-dollars">
               <div className="balance-info">
-                <div className="title">{_t('wallet.hive-dollars')}</div>
-                <div className="description">{_t('wallet.hive-dollars-description')}</div>
+                <div className="title">{_t("wallet.hive-dollars")}</div>
+                <div className="description">{_t("wallet.hive-dollars-description")}</div>
               </div>
               <div className="balance-values">
                 <div className="amount">
@@ -484,24 +484,24 @@ export class WalletHive extends BaseComponent<Props, State> {
                     if (isMyPage) {
                       dropDownConfig = {
                         history: this.props.history,
-                        label: '',
+                        label: "",
                         items: [
                           {
-                            label: _t('wallet.transfer'),
+                            label: _t("wallet.transfer"),
                             onClick: () => {
-                              this.openTransferDialog('transfer', 'HBD');
+                              this.openTransferDialog("transfer", "HBD");
                             }
                           },
                           {
-                            label: _t('wallet.transfer-to-savings'),
+                            label: _t("wallet.transfer-to-savings"),
                             onClick: () => {
-                              this.openTransferDialog('transfer-saving', 'HBD');
+                              this.openTransferDialog("transfer-saving", "HBD");
                             }
                           },
                           {
-                            label: _t('wallet.convert'),
+                            label: _t("wallet.convert"),
                             onClick: () => {
-                              this.openTransferDialog('convert', 'HBD');
+                              this.openTransferDialog("convert", "HBD");
                             }
                           }
                         ]
@@ -509,12 +509,12 @@ export class WalletHive extends BaseComponent<Props, State> {
                     } else if (activeUser) {
                       dropDownConfig = {
                         history: this.props.history,
-                        label: '',
+                        label: "",
                         items: [
                           {
-                            label: _t('wallet.transfer'),
+                            label: _t("wallet.transfer"),
                             onClick: () => {
-                              this.openTransferDialog('transfer', 'HBD');
+                              this.openTransferDialog("transfer", "HBD");
                             }
                           }
                         ]
@@ -526,14 +526,14 @@ export class WalletHive extends BaseComponent<Props, State> {
                       </div>
                     );
                   })()}
-                  <span>{formattedNumber(w.hbdBalance, { prefix: '$' })}</span>
+                  <span>{formattedNumber(w.hbdBalance, { prefix: "$" })}</span>
                 </div>
 
                 {converting > 0 && (
                   <div className="amount amount-passive converting-hbd">
-                    <Tooltip content={_t('wallet.converting-hbd-amount')}>
+                    <Tooltip content={_t("wallet.converting-hbd-amount")}>
                       <span>
-                        {'+'} {formattedNumber(converting, { prefix: '$' })}
+                        {"+"} {formattedNumber(converting, { prefix: "$" })}
                       </span>
                     </Tooltip>
                   </div>
@@ -543,10 +543,10 @@ export class WalletHive extends BaseComponent<Props, State> {
 
             <div className="balance-row savings alternative">
               <div className="balance-info">
-                <div className="title">{_t('wallet.savings')}</div>
-                <div className="description">{_t('wallet.savings-description')}</div>
+                <div className="title">{_t("wallet.savings")}</div>
+                <div className="description">{_t("wallet.savings-description")}</div>
                 <div className="description font-weight-bold mt-2">
-                  {_t('wallet.hive-dollars-apr-rate', { value: hbd })}
+                  {_t("wallet.hive-dollars-apr-rate", { value: hbd })}
                 </div>
               </div>
               <div className="balance-values">
@@ -556,12 +556,12 @@ export class WalletHive extends BaseComponent<Props, State> {
                     if (isMyPage) {
                       dropDownConfig = {
                         history: this.props.history,
-                        label: '',
+                        label: "",
                         items: [
                           {
-                            label: _t('wallet.withdraw-hive'),
+                            label: _t("wallet.withdraw-hive"),
                             onClick: () => {
-                              this.openTransferDialog('withdraw-saving', 'HIVE');
+                              this.openTransferDialog("withdraw-saving", "HIVE");
                             }
                           }
                         ]
@@ -569,12 +569,12 @@ export class WalletHive extends BaseComponent<Props, State> {
                     } else if (activeUser) {
                       dropDownConfig = {
                         history: this.props.history,
-                        label: '',
+                        label: "",
                         items: [
                           {
-                            label: _t('wallet.transfer'),
+                            label: _t("wallet.transfer"),
                             onClick: () => {
-                              this.openTransferDialog('transfer-saving', 'HIVE');
+                              this.openTransferDialog("transfer-saving", "HIVE");
                             }
                           }
                         ]
@@ -586,7 +586,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                       </div>
                     );
                   })()}
-                  <span>{formattedNumber(w.savingBalance, { suffix: 'HIVE' })}</span>
+                  <span>{formattedNumber(w.savingBalance, { suffix: "HIVE" })}</span>
                 </div>
                 <div className="amount">
                   {(() => {
@@ -594,12 +594,12 @@ export class WalletHive extends BaseComponent<Props, State> {
                     if (isMyPage) {
                       dropDownConfig = {
                         history: this.props.history,
-                        label: '',
+                        label: "",
                         items: [
                           {
-                            label: _t('wallet.withdraw-hbd'),
+                            label: _t("wallet.withdraw-hbd"),
                             onClick: () => {
-                              this.openTransferDialog('withdraw-saving', 'HBD');
+                              this.openTransferDialog("withdraw-saving", "HBD");
                             }
                           }
                         ]
@@ -607,12 +607,12 @@ export class WalletHive extends BaseComponent<Props, State> {
                     } else if (activeUser) {
                       dropDownConfig = {
                         history: this.props.history,
-                        label: '',
+                        label: "",
                         items: [
                           {
-                            label: _t('wallet.transfer'),
+                            label: _t("wallet.transfer"),
                             onClick: () => {
-                              this.openTransferDialog('transfer-saving', 'HBD');
+                              this.openTransferDialog("transfer-saving", "HBD");
                             }
                           }
                         ]
@@ -625,16 +625,16 @@ export class WalletHive extends BaseComponent<Props, State> {
                     );
                   })()}
 
-                  <span>{formattedNumber(w.savingBalanceHbd, { suffix: '$' })}</span>
+                  <span>{formattedNumber(w.savingBalanceHbd, { suffix: "$" })}</span>
                 </div>
               </div>
             </div>
 
             {w.isPoweringDown && (
               <div className="next-power-down">
-                {_t('wallet.next-power-down', {
+                {_t("wallet.next-power-down", {
                   time: moment(w.nextVestingWithdrawalDate).fromNow(),
-                  amount: formattedNumber(w.nextVestingSharesWithdrawalHive, { suffix: 'HIVE' })
+                  amount: formattedNumber(w.nextVestingSharesWithdrawalHive, { suffix: "HIVE" })
                 })}
               </div>
             )}
@@ -660,7 +660,7 @@ export class WalletHive extends BaseComponent<Props, State> {
             {...this.props}
             account={account}
             onHide={this.toggleDelegatedList}
-            totalDelegated={totalDelegated.replace('- ', '')}
+            totalDelegated={totalDelegated.replace("- ", "")}
           />
         )}
 

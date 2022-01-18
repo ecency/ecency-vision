@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import renderer from 'react-test-renderer';
+import renderer from "react-test-renderer";
 
-import { CommunitySettings } from './index';
+import { CommunitySettings } from "./index";
 
-import { communityInstance1, globalInstance, activeUserMaker } from '../../helper/test-helper';
+import { communityInstance1, globalInstance, activeUserMaker } from "../../helper/test-helper";
 
-it('(1) Render', () => {
+it("(1) Render", () => {
   const props = {
     global: globalInstance,
     community: { ...communityInstance1 },
-    activeUser: activeUserMaker('foo'),
+    activeUser: activeUserMaker("foo"),
     addCommunity: () => {},
     onHide: () => {}
   };

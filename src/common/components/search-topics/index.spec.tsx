@@ -1,25 +1,25 @@
-import React from 'react';
+import React from "react";
 
-import TestRenderer from 'react-test-renderer';
+import TestRenderer from "react-test-renderer";
 
-import { allOver } from '../../helper/test-helper';
-import { createBrowserHistory, createLocation } from 'history';
-import { StaticRouter } from 'react-router-dom';
-import { SearchTopics } from './index';
+import { allOver } from "../../helper/test-helper";
+import { createBrowserHistory, createLocation } from "history";
+import { StaticRouter } from "react-router-dom";
+import { SearchTopics } from "./index";
 
 let TEST_MODE = 0;
 
-jest.mock('../../api/search-api', () => ({
+jest.mock("../../api/search-api", () => ({
   searchTag: () =>
     new Promise((resolve) => {
       if (TEST_MODE === 0) {
         resolve([
           {
-            tag: 'foo',
+            tag: "foo",
             repeat: 10
           },
           {
-            tag: 'bar',
+            tag: "bar",
             repeat: 5
           }
         ]);
@@ -33,10 +33,10 @@ jest.mock('../../api/search-api', () => ({
 
 const defProps = {
   history: createBrowserHistory(),
-  location: createLocation({ search: 'q=foo' })
+  location: createLocation({ search: "q=foo" })
 };
 
-it('(1) Default render', async () => {
+it("(1) Default render", async () => {
   const props = { ...defProps };
 
   const renderer = TestRenderer.create(
@@ -48,7 +48,7 @@ it('(1) Default render', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(2) No matches', async () => {
+it("(2) No matches", async () => {
   TEST_MODE = 1;
   const props = { ...defProps };
 

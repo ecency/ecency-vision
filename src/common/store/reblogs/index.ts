@@ -1,6 +1,6 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
-import { AppState } from '../index';
+import { AppState } from "../index";
 import {
   Reblog,
   Reblogs,
@@ -10,10 +10,10 @@ import {
   FetchedAction,
   AddAction,
   DeleteAction
-} from './types';
-import { ActionTypes as ActiveUserActionTypes } from '../active-user/types';
+} from "./types";
+import { ActionTypes as ActiveUserActionTypes } from "../active-user/types";
 
-import { getBlogEntries } from '../../api/hive';
+import { getBlogEntries } from "../../api/hive";
 
 export const initialState: Reblogs = {
   list: [],
@@ -74,7 +74,7 @@ export const fetchReblogs = () => (dispatch: Dispatch, getState: () => AppState)
 
   getBlogEntries(activeUser.username, 200).then((resp) => {
     const items: Reblog[] = resp
-      .filter((i) => i.author !== activeUser.username && !i.reblogged_on.startsWith('1970-'))
+      .filter((i) => i.author !== activeUser.username && !i.reblogged_on.startsWith("1970-"))
       .map((i) => ({ author: i.author, permlink: i.permlink }));
 
     dispatch(fetchedAct(items));

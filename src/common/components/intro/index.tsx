@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { Global } from '../../store/global/types';
+import { Global } from "../../store/global/types";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { closeSvg } from '../../img/svg';
+import { closeSvg } from "../../img/svg";
 
 // const friends = require('../../img/welcome_community.png');
 // const friendsWebp = require('../../img/welcome_community.webp');
@@ -29,12 +29,12 @@ const Intro = (props: Props) => {
         {closeSvg}
       </div>
       <div className="text-content">
-        <h1 className="intro-header">{_t('intro.title')}</h1>
+        <h1 className="intro-header">{_t("intro.title")}</h1>
         <h1 className="intro-sub-header">
-          <div className="title">{_t('intro.sub-title')}</div>
+          <div className="title">{_t("intro.sub-title")}</div>
           <div className="get-started">
             <Link to="/signup" className="btn btn-primary">
-              {_t('intro.c2a')}
+              {_t("intro.c2a")}
             </Link>
           </div>
         </h1>

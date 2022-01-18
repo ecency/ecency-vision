@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 interface WordStat {
   charactersNoSpaces: number;
@@ -15,7 +15,7 @@ export const wordCounter = (val: string): WordStat => {
   const wom = val.match(/\S+/g);
 
   return {
-    charactersNoSpaces: val.replace(/\s+/g, '').length,
+    charactersNoSpaces: val.replace(/\s+/g, "").length,
     characters: val.length,
     words: wom ? wom.length : 0,
     lines: val.split(/\r*\n/).length
@@ -81,15 +81,15 @@ export default class WordCount extends Component<Props, State> {
     let timeEl = null;
 
     if (time <= 0.8) {
-      timeEl = _t('word-count.read-time-less-1-min');
+      timeEl = _t("word-count.read-time-less-1-min");
     } else {
-      timeEl = _t('word-count.read-time-n-min', { n: Math.ceil(time) });
+      timeEl = _t("word-count.read-time-n-min", { n: Math.ceil(time) });
     }
 
     if (count > 0) {
       return (
         <div className="words-count">
-          <span className="words">{_t('word-count.label', { n: count })}</span>
+          <span className="words">{_t("word-count.label", { n: count })}</span>
           <span className="time"> {timeEl} </span>
         </div>
       );

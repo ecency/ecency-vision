@@ -1,18 +1,18 @@
-import * as React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from "react";
+import renderer from "react-test-renderer";
 
-import { Fragments, AddFragment, EditFragment } from './index';
+import { Fragments, AddFragment, EditFragment } from "./index";
 
 import {
   activeUserInstance,
   fullAccountInstance,
   communityInstance1,
   allOver
-} from '../../helper/test-helper';
+} from "../../helper/test-helper";
 
 let TEST_MODE = 0;
 
-jest.mock('../../api/private-api', () => ({
+jest.mock("../../api/private-api", () => ({
   getFragments: () =>
     new Promise((resolve) => {
       if (TEST_MODE === 0) {
@@ -22,25 +22,25 @@ jest.mock('../../api/private-api', () => ({
       if (TEST_MODE === 1) {
         resolve([
           {
-            id: 'id1',
-            title: 'foo',
-            body: 'lorem ipsum dolor sit amet',
-            created: '2020-10-10T10:00:00',
-            modified: '2020-10-10T10:00:00'
+            id: "id1",
+            title: "foo",
+            body: "lorem ipsum dolor sit amet",
+            created: "2020-10-10T10:00:00",
+            modified: "2020-10-10T10:00:00"
           },
           {
-            id: 'id2',
-            title: 'bar',
-            body: 'lorem ipsum dolor sit amet',
-            created: '2020-10-10T10:00:00',
-            modified: '2020-10-10T10:00:00'
+            id: "id2",
+            title: "bar",
+            body: "lorem ipsum dolor sit amet",
+            created: "2020-10-10T10:00:00",
+            modified: "2020-10-10T10:00:00"
           },
           {
-            id: 'id3',
-            title: 'baz',
-            body: 'lorem ipsum dolor sit amet',
-            created: '2020-10-10T10:00:00',
-            modified: '2020-10-10T10:00:00'
+            id: "id3",
+            title: "baz",
+            body: "lorem ipsum dolor sit amet",
+            created: "2020-10-10T10:00:00",
+            modified: "2020-10-10T10:00:00"
           }
         ]);
       }
@@ -49,7 +49,7 @@ jest.mock('../../api/private-api', () => ({
 
 const activeUser = { ...activeUserInstance, data: fullAccountInstance };
 
-it('(1) Default render.', async () => {
+it("(1) Default render.", async () => {
   const props = {
     activeUser: { ...activeUser },
     onHide: () => {}
@@ -60,7 +60,7 @@ it('(1) Default render.', async () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) With data.', async () => {
+it("(2) With data.", async () => {
   TEST_MODE = 1;
 
   const props = {
@@ -73,7 +73,7 @@ it('(2) With data.', async () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(3) Add', async () => {
+it("(3) Add", async () => {
   const props = {
     activeUser: { ...activeUser },
     onAdd: () => {},
@@ -85,15 +85,15 @@ it('(3) Add', async () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(4) Edit', async () => {
+it("(4) Edit", async () => {
   const props = {
     activeUser: { ...activeUser },
     item: {
-      id: 'id3',
-      title: 'baz',
-      body: 'lorem ipsum dolor sit amet',
-      created: '2020-10-10T10:00:00',
-      modified: '2020-10-10T10:00:00'
+      id: "id3",
+      title: "baz",
+      body: "lorem ipsum dolor sit amet",
+      created: "2020-10-10T10:00:00",
+      modified: "2020-10-10T10:00:00"
     },
     onUpdate: () => {},
     onCancel: () => {}

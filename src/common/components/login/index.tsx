@@ -1,47 +1,47 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Modal, Form, Button, FormControl, Spinner } from 'react-bootstrap';
+import { Modal, Form, Button, FormControl, Spinner } from "react-bootstrap";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import { PrivateKey, PublicKey, cryptoUtils } from '@hiveio/dhive';
+import { PrivateKey, PublicKey, cryptoUtils } from "@hiveio/dhive";
 
-import { History, Location } from 'history';
-import * as ls from '../../util/local-storage';
+import { History, Location } from "history";
+import * as ls from "../../util/local-storage";
 
-import { AppWindow } from '../../../client/window';
+import { AppWindow } from "../../../client/window";
 
-import { Global } from '../../store/global/types';
-import { UI } from '../../store/ui/types';
-import { User } from '../../store/users/types';
-import { Account } from '../../store/accounts/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { ToggleType } from '../../store/ui/types';
+import { Global } from "../../store/global/types";
+import { UI } from "../../store/ui/types";
+import { User } from "../../store/users/types";
+import { Account } from "../../store/accounts/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { ToggleType } from "../../store/ui/types";
 
-import BaseComponent from '../base';
-import UserAvatar from '../user-avatar';
-import Tooltip from '../tooltip';
-import PopoverConfirm from '../popover-confirm';
-import OrDivider from '../or-divider';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import UserAvatar from "../user-avatar";
+import Tooltip from "../tooltip";
+import PopoverConfirm from "../popover-confirm";
+import OrDivider from "../or-divider";
+import { error } from "../feedback";
 
-import { getAuthUrl, makeHsCode } from '../../helper/hive-signer';
-import { hsLogin } from '../../../desktop/app/helper/hive-signer';
+import { getAuthUrl, makeHsCode } from "../../helper/hive-signer";
+import { hsLogin } from "../../../desktop/app/helper/hive-signer";
 
-import { getAccount } from '../../api/hive';
-import { usrActivity } from '../../api/private-api';
-import { hsTokenRenew } from '../../api/auth-api';
-import { formatError, grantPostingPermission, revokePostingPermission } from '../../api/operations';
+import { getAccount } from "../../api/hive";
+import { usrActivity } from "../../api/private-api";
+import { hsTokenRenew } from "../../api/auth-api";
+import { formatError, grantPostingPermission, revokePostingPermission } from "../../api/operations";
 
-import { getRefreshToken } from '../../helper/user-token';
+import { getRefreshToken } from "../../helper/user-token";
 
-import { addAccountAuthority, removeAccountAuthority, signBuffer } from '../../helper/keychain';
+import { addAccountAuthority, removeAccountAuthority, signBuffer } from "../../helper/keychain";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
-import { deleteForeverSvg } from '../../img/svg';
+import { deleteForeverSvg } from "../../img/svg";
 
 declare var window: AppWindow;
 
@@ -62,7 +62,7 @@ interface LoginKcState {
 
 export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
   state: LoginKcState = {
-    username: '',
+    username: "",
     inProgress: false
   };
 
@@ -72,14 +72,14 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
   };
 
   inputKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       this.login().then();
     }
   };
 
   hide = () => {
     const { toggleUIProp } = this.props;
-    toggleUIProp('login');
+    toggleUIProp("login");
   };
 
   login = async () => {
@@ -95,28 +95,28 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     try {
       account = await getAccount(username);
     } catch (err) {
-      error(_t('login.error-user-fetch'));
+      error(_t("login.error-user-fetch"));
       return;
     } finally {
       this.stateSet({ inProgress: false });
     }
 
     if (!(account && account.name === username)) {
-      error(_t('login.error-user-not-found'));
+      error(_t("login.error-user-not-found"));
       return;
     }
 
     const hasPostingPerm =
-      account?.posting!.account_auths.filter((x) => x[0] === 'ecency.app').length > 0;
+      account?.posting!.account_auths.filter((x) => x[0] === "ecency.app").length > 0;
 
     if (!hasPostingPerm) {
       const weight = account.posting!.weight_threshold;
 
       this.stateSet({ inProgress: true });
       try {
-        await addAccountAuthority(username, 'ecency.app', 'Posting', weight);
+        await addAccountAuthority(username, "ecency.app", "Posting", weight);
       } catch (err) {
-        error(_t('login.error-permission'));
+        error(_t("login.error-permission"));
         return;
       } finally {
         this.stateSet({ inProgress: false });
@@ -126,7 +126,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     this.stateSet({ inProgress: true });
 
     const signer = (message: string): Promise<string> =>
-      signBuffer(username, message, 'Active').then((r) => r.result);
+      signBuffer(username, message, "Active").then((r) => r.result);
 
     let code: string;
     try {
@@ -144,7 +144,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
         this.hide();
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       })
       .finally(() => {
         this.stateSet({ inProgress: false });
@@ -153,7 +153,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
 
   back = () => {
     const { toggleUIProp } = this.props;
-    toggleUIProp('loginKc');
+    toggleUIProp("loginKc");
   };
 
   render() {
@@ -161,18 +161,18 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     const { global } = this.props;
 
     const keyChainLogo = global.isElectron
-      ? './img/keychain.png'
-      : require('../../img/keychain.png');
+      ? "./img/keychain.png"
+      : require("../../img/keychain.png");
 
     const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: '6px' }} />
+      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
     );
 
     return (
       <>
         <div className="dialog-header">
           <img src={keyChainLogo} alt="Logo" />
-          <h2>{_t('login.with-keychain')}</h2>
+          <h2>{_t("login.with-keychain")}</h2>
         </div>
 
         <Form
@@ -186,17 +186,17 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
               type="text"
               value={username}
               onChange={this.usernameChanged}
-              placeholder={_t('login.username-placeholder')}
+              placeholder={_t("login.username-placeholder")}
               autoFocus={true}
               onKeyDown={this.inputKeyDown}
             />
           </Form.Group>
           <Button disabled={inProgress} block={true} onClick={this.login}>
             {inProgress && spinner}
-            {_t('g.login')}
+            {_t("g.login")}
           </Button>
           <Button variant="outline-primary" disabled={inProgress} block={true} onClick={this.back}>
-            {_t('g.back')}
+            {_t("g.back")}
           </Button>
         </Form>
       </>
@@ -221,8 +221,8 @@ export class UserItem extends Component<UserItemProps> {
     return (
       <div
         className={_c(
-          `user-list-item ${disabled ? 'disabled' : ''} ${
-            activeUser && activeUser.username === user.username ? 'active' : ''
+          `user-list-item ${disabled ? "disabled" : ""} ${
+            activeUser && activeUser.username === user.username ? "active" : ""
           }`
         )}
         onClick={() => {
@@ -230,7 +230,7 @@ export class UserItem extends Component<UserItemProps> {
           onSelect(user);
         }}
       >
-        {UserAvatar({ ...this.props, username: user.username, size: 'medium' })}
+        {UserAvatar({ ...this.props, username: user.username, size: "medium" })}
         <span className="username">@{user.username}</span>
         {activeUser && activeUser.username === user.username && <div className="check-mark" />}
         <div className="flex-spacer" />
@@ -249,7 +249,7 @@ export class UserItem extends Component<UserItemProps> {
               e.stopPropagation();
             }}
           >
-            <Tooltip content={_t('g.delete')}>
+            <Tooltip content={_t("g.delete")}>
               <span>{deleteForeverSvg}</span>
             </Tooltip>
           </div>
@@ -283,8 +283,8 @@ interface State {
 
 export class Login extends BaseComponent<LoginProps, State> {
   state: State = {
-    username: '',
-    key: '',
+    username: "",
+    key: "",
     inProgress: false
   };
 
@@ -298,7 +298,7 @@ export class Login extends BaseComponent<LoginProps, State> {
 
   hide = () => {
     const { toggleUIProp } = this.props;
-    toggleUIProp('login');
+    toggleUIProp("login");
   };
 
   userSelect = (user: User) => {
@@ -310,7 +310,7 @@ export class Login extends BaseComponent<LoginProps, State> {
       .then((account) => {
         let token = getRefreshToken(user.username);
         if (!token) {
-          error(`${_t('login.error-user-not-found-cache')}`);
+          error(`${_t("login.error-user-not-found-cache")}`);
         }
         return token ? doLogin(token, user.postingKey, account) : this.userDelete(user);
       })
@@ -321,13 +321,13 @@ export class Login extends BaseComponent<LoginProps, State> {
         if (
           !shouldShowTutorialJourney &&
           shouldShowTutorialJourney &&
-          shouldShowTutorialJourney !== 'true'
+          shouldShowTutorialJourney !== "true"
         ) {
-          ls.set(`${user.username}HadTutorial`, 'false');
+          ls.set(`${user.username}HadTutorial`, "false");
         }
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       })
       .finally(() => {
         this.stateSet({ inProgress: false });
@@ -355,7 +355,7 @@ export class Login extends BaseComponent<LoginProps, State> {
   };
 
   inputKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       this.login().then();
     }
   };
@@ -379,21 +379,21 @@ export class Login extends BaseComponent<LoginProps, State> {
 
   kcLogin = () => {
     const { toggleUIProp } = this.props;
-    toggleUIProp('loginKc');
+    toggleUIProp("loginKc");
   };
 
   login = async () => {
     const { username, key } = this.state;
 
-    if (username === '' || key === '') {
-      error(_t('login.error-fields-required'));
+    if (username === "" || key === "") {
+      error(_t("login.error-fields-required"));
       return;
     }
 
     // Warn if the code is a public key
     try {
       PublicKey.fromString(key);
-      error(_t('login.error-public-key'));
+      error(_t("login.error-public-key"));
       return;
     } catch (e) {}
 
@@ -404,14 +404,14 @@ export class Login extends BaseComponent<LoginProps, State> {
     try {
       account = await getAccount(username);
     } catch (err) {
-      error(_t('login.error-user-fetch'));
+      error(_t("login.error-user-fetch"));
       return;
     } finally {
       this.stateSet({ inProgress: false });
     }
 
     if (!(account && account.name === username)) {
-      error(_t('login.error-user-not-found'));
+      error(_t("login.error-user-not-found"));
       return;
     }
 
@@ -436,7 +436,7 @@ export class Login extends BaseComponent<LoginProps, State> {
       // Login with master or active private key
       // Get active private key from user entered code
       if (isPlainPassword) {
-        thePrivateKey = PrivateKey.fromLogin(account.name, key, 'active');
+        thePrivateKey = PrivateKey.fromLogin(account.name, key, "active");
       } else {
         thePrivateKey = PrivateKey.fromString(key);
       }
@@ -449,19 +449,19 @@ export class Login extends BaseComponent<LoginProps, State> {
 
       // Compare keys
       if (!activePublic.includes(activePublicInput)) {
-        error(_t('login.error-authenticate')); // enter master or active key
+        error(_t("login.error-authenticate")); // enter master or active key
         return;
       }
 
       const hasPostingPerm =
-        account?.posting!.account_auths.filter((x) => x[0] === 'ecency.app').length > 0;
+        account?.posting!.account_auths.filter((x) => x[0] === "ecency.app").length > 0;
 
       if (!hasPostingPerm) {
         this.stateSet({ inProgress: true });
         try {
-          await grantPostingPermission(thePrivateKey, account, 'ecency.app');
+          await grantPostingPermission(thePrivateKey, account, "ecency.app");
         } catch (err) {
-          error(_t('login.error-permission'));
+          error(_t("login.error-permission"));
           return;
         } finally {
           this.stateSet({ inProgress: false });
@@ -484,9 +484,9 @@ export class Login extends BaseComponent<LoginProps, State> {
       .then(() => {
         if (
           !ls.get(`${username}HadTutorial`) ||
-          (ls.get(`${username}HadTutorial`) && ls.get(`${username}HadTutorial`) !== 'true')
+          (ls.get(`${username}HadTutorial`) && ls.get(`${username}HadTutorial`) !== "true")
         ) {
-          ls.set(`${username}HadTutorial`, 'false');
+          ls.set(`${username}HadTutorial`, "false");
         }
 
         let shouldShowTutorialJourney = ls.get(`${username}HadTutorial`);
@@ -494,14 +494,14 @@ export class Login extends BaseComponent<LoginProps, State> {
         if (
           !shouldShowTutorialJourney &&
           shouldShowTutorialJourney &&
-          shouldShowTutorialJourney === 'false'
+          shouldShowTutorialJourney === "false"
         ) {
-          ls.set(`${username}HadTutorial`, 'false');
+          ls.set(`${username}HadTutorial`, "false");
         }
         this.hide();
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       })
       .finally(() => {
         this.stateSet({ inProgress: false });
@@ -511,16 +511,16 @@ export class Login extends BaseComponent<LoginProps, State> {
   render() {
     const { username, key, inProgress } = this.state;
     const { users, activeUser, global, userListRef } = this.props;
-    const logo = global.isElectron ? './img/logo-circle.svg' : require('../../img/logo-circle.svg');
+    const logo = global.isElectron ? "./img/logo-circle.svg" : require("../../img/logo-circle.svg");
     const hsLogo = global.isElectron
-      ? './img/hive-signer.svg'
-      : require('../../img/hive-signer.svg');
+      ? "./img/hive-signer.svg"
+      : require("../../img/hive-signer.svg");
     const keyChainLogo = global.isElectron
-      ? './img/keychain.png'
-      : require('../../img/keychain.png');
+      ? "./img/keychain.png"
+      : require("../../img/keychain.png");
 
     const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: '6px' }} />
+      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
     );
 
     return (
@@ -528,14 +528,14 @@ export class Login extends BaseComponent<LoginProps, State> {
         {users.length === 0 && (
           <div className="dialog-header">
             <img src={logo} alt="Logo" />
-            <h2>{_t('login.title')}</h2>
+            <h2>{_t("login.title")}</h2>
           </div>
         )}
 
         {users.length > 0 && (
           <>
             <div className="user-list" ref={userListRef}>
-              <div className="user-list-header">{_t('g.login-as')}</div>
+              <div className="user-list-header">{_t("g.login-as")}</div>
               <div className="user-list-body">
                 {users.map((u) => {
                   return (
@@ -562,13 +562,13 @@ export class Login extends BaseComponent<LoginProps, State> {
             e.preventDefault();
           }}
         >
-          <p className="login-form-text">{_t('login.with-user-pass')}</p>
+          <p className="login-form-text">{_t("login.with-user-pass")}</p>
           <Form.Group>
             <Form.Control
               type="text"
               value={username}
               onChange={this.usernameChanged}
-              placeholder={_t('login.username-placeholder')}
+              placeholder={_t("login.username-placeholder")}
               autoFocus={true}
               onKeyDown={this.inputKeyDown}
             />
@@ -579,61 +579,61 @@ export class Login extends BaseComponent<LoginProps, State> {
               value={key}
               autoComplete="off"
               onChange={this.keyChanged}
-              placeholder={_t('login.key-placeholder')}
+              placeholder={_t("login.key-placeholder")}
               onKeyDown={this.inputKeyDown}
             />
           </Form.Group>
           <p className="login-form-text">
-            {_t('login.login-info-1')}{' '}
+            {_t("login.login-info-1")}{" "}
             <a
               onClick={(e) => {
                 e.preventDefault();
                 this.hide();
                 const { history } = this.props;
-                history.push('/faq#how-to-signin');
+                history.push("/faq#how-to-signin");
                 setTimeout(() => {
-                  const el = document.getElementById('how-to-signin');
+                  const el = document.getElementById("how-to-signin");
                   if (el) el.scrollIntoView();
                 }, 300);
               }}
               href="#"
             >
-              {_t('login.login-info-2')}
+              {_t("login.login-info-2")}
             </a>
           </p>
           <Button disabled={inProgress} block={true} onClick={this.login}>
             {inProgress && username && key && spinner}
-            {_t('g.login')}
+            {_t("g.login")}
           </Button>
         </Form>
         <OrDivider />
         <div className="hs-login">
           <a
-            className={_c(`btn btn-outline-primary ${inProgress ? 'disabled' : ''}`)}
+            className={_c(`btn btn-outline-primary ${inProgress ? "disabled" : ""}`)}
             onClick={this.hsLogin}
           >
             <img
-              src={global.isElectron ? './img/hive-signer.svg' : hsLogo}
+              src={global.isElectron ? "./img/hive-signer.svg" : hsLogo}
               className="hs-logo"
               alt="hivesigner"
-            />{' '}
-            {_t('login.with-hive-signer')}
+            />{" "}
+            {_t("login.with-hive-signer")}
           </a>
         </div>
         {global.hasKeyChain && (
           <div className="kc-login">
             <a
-              className={_c(`btn btn-outline-primary ${inProgress ? 'disabled' : ''}`)}
+              className={_c(`btn btn-outline-primary ${inProgress ? "disabled" : ""}`)}
               onClick={this.kcLogin}
             >
-              <img src={keyChainLogo} className="kc-logo" alt="keychain" />{' '}
-              {_t('login.with-keychain')}
+              <img src={keyChainLogo} className="kc-logo" alt="keychain" />{" "}
+              {_t("login.with-keychain")}
             </a>
           </div>
         )}
         {activeUser === null && (
           <p>
-            {_t('login.sign-up-text-1')}
+            {_t("login.sign-up-text-1")}
             &nbsp;
             <a
               href="#"
@@ -642,10 +642,10 @@ export class Login extends BaseComponent<LoginProps, State> {
                 this.hide();
 
                 const { history } = this.props;
-                history.push('/signup');
+                history.push("/signup");
               }}
             >
-              {_t('login.sign-up-text-2')}
+              {_t("login.sign-up-text-2")}
             </a>
           </p>
         )}
@@ -673,13 +673,13 @@ export default class LoginDialog extends Component<Props> {
 
   hide = () => {
     const { toggleUIProp } = this.props;
-    toggleUIProp('login');
+    toggleUIProp("login");
   };
 
   componentWillUnmount() {
     const { toggleUIProp, ui } = this.props;
     if (ui.loginKc) {
-      toggleUIProp('loginKc');
+      toggleUIProp("loginKc");
     }
   }
 
@@ -712,7 +712,7 @@ export default class LoginDialog extends Component<Props> {
 
       // redirection based on path name
       const { location, history } = this.props;
-      if (location.pathname.startsWith('/signup')) {
+      if (location.pathname.startsWith("/signup")) {
         const u = `/@${x.username}/feed`;
         history.push(u);
       }

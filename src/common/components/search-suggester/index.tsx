@@ -1,23 +1,23 @@
-import React from 'react';
+import React from "react";
 
-import { History, Location } from 'history';
+import { History, Location } from "history";
 
-import { Global } from '../../store/global/types';
-import { Community } from '../../store/communities/types';
-import { TrendingTags } from '../../store/trending-tags/types';
+import { Global } from "../../store/global/types";
+import { Community } from "../../store/communities/types";
+import { TrendingTags } from "../../store/trending-tags/types";
 
-import BaseComponent from '../base';
-import UserAvatar from '../user-avatar';
-import SuggestionList from '../suggestion-list';
-import { makePath as makePathTag } from '../tag';
-import { makePath as makePathProfile } from '../profile-link';
+import BaseComponent from "../base";
+import UserAvatar from "../user-avatar";
+import SuggestionList from "../suggestion-list";
+import { makePath as makePathTag } from "../tag";
+import { makePath as makePathProfile } from "../profile-link";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
-import { lookupAccounts } from '../../api/hive';
-import { dataLimit, getCommunities } from '../../api/bridge';
+import { lookupAccounts } from "../../api/hive";
+import { dataLimit, getCommunities } from "../../api/bridge";
 
 interface Props {
   history: History;
@@ -37,13 +37,13 @@ interface State {
   suggestionWithMode: any[];
 }
 
-const MODE__ALL = 'all';
+const MODE__ALL = "all";
 
 export class SearchSuggester extends BaseComponent<Props, State> {
   state: State = {
     suggestions: [],
     loading: false,
-    mode: '',
+    mode: "",
     suggestionWithMode: []
   };
 
@@ -54,7 +54,7 @@ export class SearchSuggester extends BaseComponent<Props, State> {
       this.stateSet({
         suggestions: [],
         loading: false,
-        mode: ''
+        mode: ""
       });
       return;
     }
@@ -73,54 +73,54 @@ export class SearchSuggester extends BaseComponent<Props, State> {
     }
 
     // # Tags
-    if (value.startsWith('#')) {
-      const tag = value.replace('#', '');
+    if (value.startsWith("#")) {
+      const tag = value.replace("#", "");
       const suggestions = trendingTags.list
         .filter((x: string) => x.toLowerCase().indexOf(tag.toLowerCase()) === 0)
-        .filter((x: string) => x.indexOf('hive-') === -1)
+        .filter((x: string) => x.indexOf("hive-") === -1)
         .map((x) => `#${x}`)
         .slice(0, 20);
 
       const suggestionWithMode = [
         {
-          header: _t('search.header-tag'),
+          header: _t("search.header-tag"),
           onSelect: (i: string) => {
-            this.tagSelected(i.replace('#', ''));
+            this.tagSelected(i.replace("#", ""));
           },
           items: suggestions
         }
       ];
-      this.stateSet({ mode: 'tag', suggestions, suggestionWithMode });
+      this.stateSet({ mode: "tag", suggestions, suggestionWithMode });
 
       return;
     }
 
     // Account
-    if (value.startsWith('@')) {
-      const name = value.replace('@', '');
+    if (value.startsWith("@")) {
+      const name = value.replace("@", "");
       this.stateSet({ loading: true });
       lookupAccounts(name, 20)
         .then((r) => {
           const suggestions = r.map((x) => `@${x}`);
           const suggestionWithMode = [
             {
-              header: _t('search.header-account'),
+              header: _t("search.header-account"),
               renderer: (i: string) => {
-                const name = i.replace('@', '');
+                const name = i.replace("@", "");
                 return (
                   <>
-                    {UserAvatar({ ...this.props, username: name, size: 'medium' })}
-                    <span style={{ marginLeft: '8px' }}>{name}</span>
+                    {UserAvatar({ ...this.props, username: name, size: "medium" })}
+                    <span style={{ marginLeft: "8px" }}>{name}</span>
                   </>
                 );
               },
               onSelect: (i: string) => {
-                this.accountSelected(i.replace('@', ''));
+                this.accountSelected(i.replace("@", ""));
               },
               items: suggestions
             }
           ];
-          this.stateSet({ mode: 'account', suggestions, suggestionWithMode });
+          this.stateSet({ mode: "account", suggestions, suggestionWithMode });
         })
         .finally(() => {
           this.stateSet({ loading: false });
@@ -130,14 +130,14 @@ export class SearchSuggester extends BaseComponent<Props, State> {
     }
 
     // Community
-    if (value.startsWith('$')) {
-      const q = value.replace('$', '');
-      getCommunities('', dataLimit, q)
+    if (value.startsWith("$")) {
+      const q = value.replace("$", "");
+      getCommunities("", dataLimit, q)
         .then((r) => {
           if (r) {
             const suggestionWithMode = [
               {
-                header: _t('search.header-community'),
+                header: _t("search.header-community"),
                 renderer: (i: Community) => {
                   return i.title;
                 },
@@ -147,7 +147,7 @@ export class SearchSuggester extends BaseComponent<Props, State> {
                 items: r
               }
             ];
-            this.stateSet({ mode: 'comm', suggestions: r, suggestionWithMode });
+            this.stateSet({ mode: "comm", suggestions: r, suggestionWithMode });
           }
         })
         .finally(() => {
@@ -163,41 +163,41 @@ export class SearchSuggester extends BaseComponent<Props, State> {
       // tags
       const tags_suggestions = trendingTags.list
         .filter((x: string) => x.toLowerCase().indexOf(value.toLowerCase()) === 0)
-        .filter((x: string) => x.indexOf('hive-') === -1)
+        .filter((x: string) => x.indexOf("hive-") === -1)
         .map((x) => `#${x}`)
         .slice(0, limit_result);
       // account
       const lookup_accounts = await lookupAccounts(value, limit_result - 2);
       const accounts_suggestions = lookup_accounts.map((x) => `@${x}`);
       // Community
-      const get_communities = await getCommunities('', limit_result, value);
+      const get_communities = await getCommunities("", limit_result, value);
       const communities_suggestions = get_communities || [];
       const suggestionWithMode = [
         {
-          header: _t('search.header-tag'),
+          header: _t("search.header-tag"),
           onSelect: (i: string) => {
-            this.tagSelected(i.replace('#', ''));
+            this.tagSelected(i.replace("#", ""));
           },
           items: tags_suggestions
         },
         {
-          header: _t('search.header-account'),
+          header: _t("search.header-account"),
           renderer: (i: string) => {
-            const name = i.replace('@', '');
+            const name = i.replace("@", "");
             return (
               <>
-                {UserAvatar({ ...this.props, username: name, size: 'medium' })}
-                <span style={{ marginLeft: '8px' }}>{name}</span>
+                {UserAvatar({ ...this.props, username: name, size: "medium" })}
+                <span style={{ marginLeft: "8px" }}>{name}</span>
               </>
             );
           },
           onSelect: (i: string) => {
-            this.accountSelected(i.replace('@', ''));
+            this.accountSelected(i.replace("@", ""));
           },
           items: accounts_suggestions
         },
         {
-          header: _t('search.header-community'),
+          header: _t("search.header-community"),
           renderer: (i: Community) => {
             return i.title;
           },
@@ -209,7 +209,7 @@ export class SearchSuggester extends BaseComponent<Props, State> {
       ];
       this.stateSet({ loading: false, mode: MODE__ALL, suggestions: [], suggestionWithMode });
     } else {
-      this.stateSet({ suggestions: [], mode: '', suggestionWithMode: [] });
+      this.stateSet({ suggestions: [], mode: "", suggestionWithMode: [] });
     }
   };
 

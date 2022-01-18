@@ -33,10 +33,10 @@ export interface Points {
 }
 
 export enum ActionTypes {
-  ERROR = '@points/ERROR',
-  FETCH = '@points/FETCH',
-  FETCHED = '@points/FETCHED',
-  RESET = '@points/RESET'
+  ERROR = "@points/ERROR",
+  FETCH = "@points/FETCH",
+  FETCHED = "@points/FETCHED",
+  RESET = "@points/RESET"
 }
 
 export interface FetchedAction {

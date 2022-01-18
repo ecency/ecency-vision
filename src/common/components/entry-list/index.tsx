@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import { History, Location } from 'history';
-import _ from 'lodash';
+import React, { Component } from "react";
+import { History, Location } from "history";
+import _ from "lodash";
 
-import { Global, ProfileFilter } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
-import { DynamicProps } from '../../store/dynamic-props/types';
-import { Entry } from '../../store/entries/types';
-import { Community, Communities } from '../../store/communities/types';
-import { User } from '../../store/users/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { Reblogs } from '../../store/reblogs/types';
-import { UI, ToggleType } from '../../store/ui/types';
+import { Global, ProfileFilter } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
+import { Entry } from "../../store/entries/types";
+import { Community, Communities } from "../../store/communities/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { Reblogs } from "../../store/reblogs/types";
+import { UI, ToggleType } from "../../store/ui/types";
 
-import EntryListItem from '../entry-list-item/index';
-import { EntryPinTracker } from '../../store/entry-pin-tracker/types';
-import MessageNoData from '../message-no-data';
-import { Link } from 'react-router-dom';
-import { _t } from '../../i18n';
-import LinearProgress from '../linear-progress';
-import { getFollowing } from '../../api/hive';
+import EntryListItem from "../entry-list-item/index";
+import { EntryPinTracker } from "../../store/entry-pin-tracker/types";
+import MessageNoData from "../message-no-data";
+import { Link } from "react-router-dom";
+import { _t } from "../../i18n";
+import LinearProgress from "../linear-progress";
+import { getFollowing } from "../../api/hive";
 
 interface Props {
   history: History;
@@ -68,7 +68,7 @@ export class EntryListContent extends Component<Props, State> {
     if (!loadingMutedUsers) {
       if (activeUser) {
         this.setState({ loadingMutedUsers: true });
-        getFollowing(activeUser.username, '', 'ignore', 100)
+        getFollowing(activeUser.username, "", "ignore", 100)
           .then((r) => {
             if (r) {
               let filterList = r.map((user) => user.following);
@@ -155,15 +155,15 @@ export class EntryListContent extends Component<Props, State> {
         ) : (
           !loading && (
             <MessageNoData>
-              {global.tag === `@${activeUser?.username}` && global.filter === 'posts' ? (
+              {global.tag === `@${activeUser?.username}` && global.filter === "posts" ? (
                 <div className="text-center">
-                  <div className="info">{_t('profile-info.no-posts')}</div>
+                  <div className="info">{_t("profile-info.no-posts")}</div>
                   <Link to="/submit" className="action">
-                    <b>{_t('profile-info.create-posts')}</b>
+                    <b>{_t("profile-info.create-posts")}</b>
                   </Link>
                 </div>
               ) : (
-                <div className="info">{`${_t('g.no')} ${_t(`g.${filter}`)} ${_t('g.found')}.`}</div>
+                <div className="info">{`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}</div>
               )}
             </MessageNoData>
           )

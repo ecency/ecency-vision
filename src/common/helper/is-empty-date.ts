@@ -3,5 +3,5 @@ export default (s: string | undefined): boolean => {
     return true;
   }
 
-  return parseInt(s.split('-')[0], 10) < 1980;
+  return parseInt(s.split("-")[0], 10) < 1980;
 };

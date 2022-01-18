@@ -1,10 +1,10 @@
-import { Account } from '../store/accounts/types';
-import { DynamicProps } from '../store/dynamic-props/types';
+import { Account } from "../store/accounts/types";
+import { DynamicProps } from "../store/dynamic-props/types";
 
-import parseAsset from './parse-asset';
-import { vestsToHp } from './vesting';
-import isEmptyDate from './is-empty-date';
-import parseDate from './parse-date';
+import parseAsset from "./parse-asset";
+import { vestsToHp } from "./vesting";
+import isEmptyDate from "./is-empty-date";
+import parseDate from "./parse-date";
 
 export default class HiveWallet {
   public balance: number = 0;

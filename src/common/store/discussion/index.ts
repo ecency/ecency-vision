@@ -1,7 +1,7 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
-import { AppState } from '../index';
-import { Entry } from '../entries/types';
+import { AppState } from "../index";
+import { Entry } from "../entries/types";
 
 import {
   Actions,
@@ -13,12 +13,12 @@ import {
   ResetAction,
   SetOrderAction,
   SortOrder
-} from './types';
+} from "./types";
 
-import { clone } from '../util';
-import sorter from './sorter';
+import { clone } from "../util";
+import sorter from "./sorter";
 
-import { getDiscussion } from '../../api/bridge';
+import { getDiscussion } from "../../api/bridge";
 
 export const initialState: Discussion = {
   list: [],

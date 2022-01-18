@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
-import { Modal } from 'react-bootstrap';
+import React, { Component } from "react";
+import { Modal } from "react-bootstrap";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Global } from '../../store/global/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { Account } from '../../store/accounts/types';
+import { Global } from "../../store/global/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { Account } from "../../store/accounts/types";
 
-import BaseComponent from '../base';
-import EntryLink from '../entry-link';
-import ProfileLink from '../profile-link';
-import UserAvatar from '../user-avatar';
-import LinearProgress from '../linear-progress';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import EntryLink from "../entry-link";
+import ProfileLink from "../profile-link";
+import UserAvatar from "../user-avatar";
+import LinearProgress from "../linear-progress";
+import { error } from "../feedback";
 
-import { getBookmarks, Bookmark, getFavorites, Favorite } from '../../api/private-api';
+import { getBookmarks, Bookmark, getFavorites, Favorite } from "../../api/private-api";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 interface BookmarksProps {
   history: History;
@@ -51,7 +51,7 @@ export class Bookmarks extends BaseComponent<BookmarksProps, BookmarksState> {
       })
       .catch(() => {
         this.stateSet({ loading: false });
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       });
   };
 
@@ -70,7 +70,7 @@ export class Bookmarks extends BaseComponent<BookmarksProps, BookmarksState> {
                     {EntryLink({
                       ...this.props,
                       entry: {
-                        category: 'foo',
+                        category: "foo",
                         author: item.author,
                         permlink: item.permlink
                       },
@@ -83,7 +83,7 @@ export class Bookmarks extends BaseComponent<BookmarksProps, BookmarksState> {
                           {UserAvatar({
                             ...this.props,
                             username: item.author,
-                            size: 'medium'
+                            size: "medium"
                           })}
                           <div className="item-body">
                             <span className="author with-slash">{item.author}</span>
@@ -98,7 +98,7 @@ export class Bookmarks extends BaseComponent<BookmarksProps, BookmarksState> {
             </div>
           </div>
         )}
-        {!loading && items.length === 0 && <div className="dialog-list">{_t('g.empty-list')}</div>}
+        {!loading && items.length === 0 && <div className="dialog-list">{_t("g.empty-list")}</div>}
       </div>
     );
   }
@@ -138,7 +138,7 @@ export class Favorites extends BaseComponent<FavoritesProps, FavoritesState> {
       })
       .catch(() => {
         this.stateSet({ loading: false });
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       });
   };
 
@@ -166,7 +166,7 @@ export class Favorites extends BaseComponent<FavoritesProps, FavoritesState> {
                           {UserAvatar({
                             ...this.props,
                             username: item.account,
-                            size: 'medium'
+                            size: "medium"
                           })}
                           <div className="item-body">
                             <span className="author notranslate">{item.account}</span>
@@ -180,7 +180,7 @@ export class Favorites extends BaseComponent<FavoritesProps, FavoritesState> {
             </div>
           </div>
         )}
-        {!loading && items.length === 0 && <div className="dialog-list">{_t('g.empty-list')}</div>}
+        {!loading && items.length === 0 && <div className="dialog-list">{_t("g.empty-list")}</div>}
       </div>
     );
   }
@@ -194,7 +194,7 @@ interface DialogProps {
   onHide: () => void;
 }
 
-type DialogSection = 'bookmarks' | 'favorites';
+type DialogSection = "bookmarks" | "favorites";
 
 interface DialogState {
   section: DialogSection;
@@ -202,7 +202,7 @@ interface DialogState {
 
 export default class BookmarksDialog extends Component<DialogProps, DialogState> {
   state: DialogState = {
-    section: 'bookmarks'
+    section: "bookmarks"
   };
 
   changeSection = (section: DialogSection) => {
@@ -229,24 +229,24 @@ export default class BookmarksDialog extends Component<DialogProps, DialogState>
         <Modal.Body>
           <div className="dialog-menu">
             <div
-              className={`menu-item ${section === 'bookmarks' ? 'active' : ''}`}
+              className={`menu-item ${section === "bookmarks" ? "active" : ""}`}
               onClick={() => {
-                this.changeSection('bookmarks');
+                this.changeSection("bookmarks");
               }}
             >
-              {_t('bookmarks.title')}
+              {_t("bookmarks.title")}
             </div>
             <div
-              className={`menu-item ${section === 'favorites' ? 'active' : ''}`}
+              className={`menu-item ${section === "favorites" ? "active" : ""}`}
               onClick={() => {
-                this.changeSection('favorites');
+                this.changeSection("favorites");
               }}
             >
-              {_t('favorites.title')}
+              {_t("favorites.title")}
             </div>
           </div>
-          {section === 'bookmarks' && <Bookmarks {...this.props} />}
-          {section === 'favorites' && <Favorites {...this.props} />}
+          {section === "bookmarks" && <Bookmarks {...this.props} />}
+          {section === "favorites" && <Favorites {...this.props} />}
         </Modal.Body>
       </Modal>
     );

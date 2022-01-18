@@ -1,8 +1,8 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
-import { Account, Accounts, Actions, ActionTypes, AddAction } from './types';
+import { Account, Accounts, Actions, ActionTypes, AddAction } from "./types";
 
-import { getAccountFull } from '../../api/hive';
+import { getAccountFull } from "../../api/hive";
 
 export const initialState: Accounts = [];
 

@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import CommunityListItem from './index';
-import TestRenderer from 'react-test-renderer';
+import CommunityListItem from "./index";
+import TestRenderer from "react-test-renderer";
 
-import { createBrowserHistory } from 'history';
-import { StaticRouter } from 'react-router-dom';
+import { createBrowserHistory } from "history";
+import { StaticRouter } from "react-router-dom";
 
-import { communityInstance1, UiInstance, globalInstance } from '../../helper/test-helper';
+import { communityInstance1, UiInstance, globalInstance } from "../../helper/test-helper";
 
-it('(1) Default render', () => {
+it("(1) Default render", () => {
   const props = {
     history: createBrowserHistory(),
     global: globalInstance,

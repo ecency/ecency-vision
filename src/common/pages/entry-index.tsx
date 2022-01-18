@@ -1,40 +1,40 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { ListStyle } from '../store/global/types';
+import { ListStyle } from "../store/global/types";
 
-import { makeGroupKey } from '../store/entries';
+import { makeGroupKey } from "../store/entries";
 
-import Meta from '../components/meta';
-import Theme from '../components/theme';
-import Feedback from '../components/feedback';
-import NavBar from '../components/navbar';
-import NavBarElectron from '../../desktop/app/components/navbar';
-import EntryIndexMenu from '../components/entry-index-menu';
-import LinearProgress from '../components/linear-progress';
-import EntryListLoadingItem from '../components/entry-list-loading-item';
-import DetectBottom from '../components/detect-bottom';
-import EntryListContent from '../components/entry-list';
-import TrendingTagsCard from '../components/trending-tags-card';
-import ScrollToTop from '../components/scroll-to-top';
-import MarketData from '../components/market-data';
-import DownloadTrigger from '../components/download-trigger';
-import LandingPage from '../components/landing-page';
+import Meta from "../components/meta";
+import Theme from "../components/theme";
+import Feedback from "../components/feedback";
+import NavBar from "../components/navbar";
+import NavBarElectron from "../../desktop/app/components/navbar";
+import EntryIndexMenu from "../components/entry-index-menu";
+import LinearProgress from "../components/linear-progress";
+import EntryListLoadingItem from "../components/entry-list-loading-item";
+import DetectBottom from "../components/detect-bottom";
+import EntryListContent from "../components/entry-list";
+import TrendingTagsCard from "../components/trending-tags-card";
+import ScrollToTop from "../components/scroll-to-top";
+import MarketData from "../components/market-data";
+import DownloadTrigger from "../components/download-trigger";
+import LandingPage from "../components/landing-page";
 
-import { _t } from '../i18n';
+import { _t } from "../i18n";
 
-import _c from '../util/fix-class-names';
+import _c from "../util/fix-class-names";
 
-import capitalize from '../util/capitalize';
+import capitalize from "../util/capitalize";
 
-import defaults from '../constants/defaults.json';
+import defaults from "../constants/defaults.json";
 
-import { appleSvg, desktopSvg, googleSvg } from '../img/svg';
+import { appleSvg, desktopSvg, googleSvg } from "../img/svg";
 
-import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from './common';
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 
 interface State {
   step: number;
@@ -114,24 +114,24 @@ class EntryIndexPage extends Component<PageProps, State> {
 
     //  Meta config
     const fC = capitalize(filter);
-    let title = _t('entry-index.title', { f: fC });
-    let description = _t('entry-index.description', { f: fC });
+    let title = _t("entry-index.title", { f: fC });
+    let description = _t("entry-index.description", { f: fC });
     let url = `/${filter}`;
     let canonical = `${defaults.base}/${filter}`;
-    let rss = '';
+    let rss = "";
 
     if (tag) {
-      if (activeUser && tag === 'my') {
+      if (activeUser && tag === "my") {
         title = `@${activeUser.username}'s community feed on decentralized web`;
-        description = _t('entry-index.description-user-feed', { u: tag });
+        description = _t("entry-index.description-user-feed", { u: tag });
         canonical = `${defaults.base}/@${tag}/${filter}`;
-      } else if (tag.startsWith('@')) {
+      } else if (tag.startsWith("@")) {
         title = `${tag}'s ${filter} on decentralized web`;
-        description = _t('entry-index.description-user-feed', { u: tag });
+        description = _t("entry-index.description-user-feed", { u: tag });
         canonical = `${defaults.base}/@${tag}/${filter}`;
       } else {
         title = `latest #${tag} ${filter} topics on internet`;
-        description = _t('entry-index.description-tag', { f: fC, t: tag });
+        description = _t("entry-index.description-tag", { f: fC, t: tag });
 
         url = `/${filter}/${tag}`;
         canonical = `${defaults.base}/${filter}/${tag}`;
@@ -141,19 +141,19 @@ class EntryIndexPage extends Component<PageProps, State> {
 
     const metaProps = { title, description, url, canonical, rss };
 
-    const promoted = entries['__promoted__'].entries;
+    const promoted = entries["__promoted__"].entries;
 
     const showEntryPage =
       this.state.step === 2 ||
       activeUser !== null ||
-      location?.pathname?.startsWith('/hot') ||
-      location?.pathname?.startsWith('/created') ||
-      location?.pathname?.startsWith('/trending') ||
-      location?.pathname?.startsWith('/payout') ||
-      location?.pathname?.startsWith('/payout_comments');
+      location?.pathname?.startsWith("/hot") ||
+      location?.pathname?.startsWith("/created") ||
+      location?.pathname?.startsWith("/trending") ||
+      location?.pathname?.startsWith("/payout") ||
+      location?.pathname?.startsWith("/payout_comments");
     let containerClasses = global.isElectron
-      ? 'app-content entry-index-page mt-0 pt-6'
-      : 'app-content entry-index-page';
+      ? "app-content entry-index-page mt-0 pt-6"
+      : "app-content entry-index-page";
 
     return (
       <>
@@ -175,7 +175,7 @@ class EntryIndexPage extends Component<PageProps, State> {
               setStepOne: this.changeStepOne,
               setStepTwo: this.changeStepTwo
             })}
-        {this.state.step === 1 && activeUser === null && location && '/' === location?.pathname && (
+        {this.state.step === 1 && activeUser === null && location && "/" === location?.pathname && (
           <LandingPage {...this.props} changeState={this.changeStepTwo} />
         )}
         {showEntryPage && (
@@ -183,14 +183,14 @@ class EntryIndexPage extends Component<PageProps, State> {
             <div className="tags-side">
               {!global.isMobile && <>{TrendingTagsCard({ ...this.props })}</>}
             </div>
-            <div className={_c(`entry-page-content ${loading ? 'loading' : ''}`)}>
+            <div className={_c(`entry-page-content ${loading ? "loading" : ""}`)}>
               <div className="page-tools">{EntryIndexMenu({ ...this.props })}</div>
-              {loading && entryList.length === 0 ? <LinearProgress /> : ''}
-              <div className={_c(`entry-list ${loading ? 'loading' : ''}`)}>
+              {loading && entryList.length === 0 ? <LinearProgress /> : ""}
+              <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                 <div
                   className={_c(
                     `entry-list-body limited-area ${
-                      global.listStyle === ListStyle.grid ? 'grid-view' : ''
+                      global.listStyle === ListStyle.grid ? "grid-view" : ""
                     }`
                   )}
                 >
@@ -203,7 +203,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                   })}
                 </div>
               </div>
-              {loading && entryList.length > 0 ? <LinearProgress /> : ''}
+              {loading && entryList.length > 0 ? <LinearProgress /> : ""}
             </div>
             <div className="side-menu">
               {!global.isMobile && (
@@ -213,7 +213,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                   <div className="menu-nav">
                     <DownloadTrigger>
                       <div className="downloads">
-                        <span className="label">{_t('g.downloads')}</span>
+                        <span className="label">{_t("g.downloads")}</span>
                         <span className="icons">
                           <span className="img-apple">{appleSvg}</span>
                           <span className="img-google">{googleSvg}</span>
@@ -224,13 +224,13 @@ class EntryIndexPage extends Component<PageProps, State> {
 
                     <div className="text-menu">
                       <Link className="menu-item" to="/faq">
-                        {_t('entry-index.faq')}
+                        {_t("entry-index.faq")}
                       </Link>
                       <Link className="menu-item" to="/terms-of-service">
-                        {_t('entry-index.tos')}
+                        {_t("entry-index.tos")}
                       </Link>
                       <Link className="menu-item" to="/privacy-policy">
-                        {_t('entry-index.pp')}
+                        {_t("entry-index.pp")}
                       </Link>
                     </div>
                   </div>

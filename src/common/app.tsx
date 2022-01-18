@@ -1,24 +1,24 @@
-import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { Route, Switch } from "react-router-dom";
 
-import EntryIndexContainer from './pages/entry-index';
-import ProfileContainer from './pages/profile';
-import EntryContainer from './pages/entry';
+import EntryIndexContainer from "./pages/entry-index";
+import ProfileContainer from "./pages/profile";
+import EntryContainer from "./pages/entry";
 import CommunitiesContainer, {
   CommunityCreateContainer,
   CommunityCreateHSContainer
-} from './pages/communities';
-import CommunityContainer from './pages/community';
-import DiscoverContainer from './pages/discover';
-import { SearchPageContainer, SearchMorePageContainer } from './pages/search';
-import WitnessesContainer from './pages/witnesses';
-import { ProposalsIndexContainer, ProposalDetailContainer } from './pages/proposals';
-import AuthContainer from './pages/auth';
-import SubmitContainer from './pages/submit';
-import SignUpContainer from './pages/sign-up';
-import NotFound from './components/404';
+} from "./pages/communities";
+import CommunityContainer from "./pages/community";
+import DiscoverContainer from "./pages/discover";
+import { SearchPageContainer, SearchMorePageContainer } from "./pages/search";
+import WitnessesContainer from "./pages/witnesses";
+import { ProposalsIndexContainer, ProposalDetailContainer } from "./pages/proposals";
+import AuthContainer from "./pages/auth";
+import SubmitContainer from "./pages/submit";
+import SignUpContainer from "./pages/sign-up";
+import NotFound from "./components/404";
 
-import Tracker from './tracker';
+import Tracker from "./tracker";
 
 import {
   AboutPageContainer,
@@ -29,20 +29,20 @@ import {
   TosPageContainer,
   FaqPageContainer,
   ContributorsPageContainer
-} from './pages/static';
+} from "./pages/static";
 
-import routes from './routes';
-import * as ls from './util/local-storage';
+import routes from "./routes";
+import * as ls from "./util/local-storage";
 
-import i18n from 'i18next';
-import { pageMapDispatchToProps, pageMapStateToProps } from './pages/common';
-import { connect } from 'react-redux';
+import i18n from "i18next";
+import { pageMapDispatchToProps, pageMapStateToProps } from "./pages/common";
+import { connect } from "react-redux";
 
 const App = ({ setLang }: any) => {
   useEffect(() => {
     let pathname = window.location.pathname;
-    if (pathname !== '/faq') {
-      const currentLang = ls.get('current-language');
+    if (pathname !== "/faq") {
+      const currentLang = ls.get("current-language");
       if (currentLang) {
         setLang(currentLang);
         i18n.changeLanguage(currentLang);

@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import { MuteBtn, DialogBody } from './index';
-import TestRenderer from 'react-test-renderer';
+import { MuteBtn, DialogBody } from "./index";
+import TestRenderer from "react-test-renderer";
 
-import { entryInstance1, communityInstance1, activeUserMaker } from '../../helper/test-helper';
-import { Entry, EntryStat } from '../../store/entries/types';
+import { entryInstance1, communityInstance1, activeUserMaker } from "../../helper/test-helper";
+import { Entry, EntryStat } from "../../store/entries/types";
 
 const defProps = {
   entry: { ...entryInstance1 },
   community: { ...communityInstance1 },
-  activeUser: activeUserMaker('foo'),
+  activeUser: activeUserMaker("foo"),
   onSuccess: () => {}
 };
 

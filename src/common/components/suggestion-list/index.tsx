@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { History, Location } from 'history';
-import { _t } from '../../i18n';
-import ClickAwayListener from '../clickaway-listener';
+import React, { Component } from "react";
+import { History, Location } from "history";
+import { _t } from "../../i18n";
+import ClickAwayListener from "../clickaway-listener";
 
 interface Props {
   history?: History;
@@ -28,25 +28,25 @@ export default class SuggestionList extends Component<Props> {
   parent = React.createRef<HTMLDivElement>();
 
   componentDidMount() {
-    document.addEventListener('keydown', this.watchKb);
-    document.addEventListener('click', this.watchClick);
+    document.addEventListener("keydown", this.watchKb);
+    document.addEventListener("click", this.watchClick);
 
     const input = this.getPossibleInput();
     if (input) {
       if (input === document.activeElement) {
         this.setState({ showList: true });
       }
-      input.addEventListener('focus', this.watchInputFocus);
+      input.addEventListener("focus", this.watchInputFocus);
     }
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.watchKb);
-    document.removeEventListener('click', this.watchClick);
+    document.removeEventListener("keydown", this.watchKb);
+    document.removeEventListener("click", this.watchClick);
 
     const input = this.getPossibleInput();
     if (input) {
-      input.removeEventListener('focus', this.watchInputFocus);
+      input.removeEventListener("focus", this.watchInputFocus);
     }
   }
 
@@ -62,14 +62,14 @@ export default class SuggestionList extends Component<Props> {
   };
 
   focusItem = (index: number) => {
-    const el = this.parent.current?.querySelectorAll('.list-item')[index] as HTMLLinkElement;
+    const el = this.parent.current?.querySelectorAll(".list-item")[index] as HTMLLinkElement;
     if (el) {
       el.focus();
     }
   };
 
   getFocusedIndex = (): number => {
-    const el = this.parent.current?.querySelector('.list-item:focus') as HTMLLinkElement;
+    const el = this.parent.current?.querySelector(".list-item:focus") as HTMLLinkElement;
     if (el && el.parentElement) {
       return [...el.parentElement.children].indexOf(el);
     }
@@ -132,7 +132,7 @@ export default class SuggestionList extends Component<Props> {
     const { history, location, searchValue } = this.props;
     this.setState({ showList: false });
     if (!!searchValue && !!history && !!location) {
-      if (['/search-more', '/search-more/'].includes(location.pathname)) {
+      if (["/search-more", "/search-more/"].includes(location.pathname)) {
         history.push(`/search-more/?q=${encodeURIComponent(searchValue)}`);
       } else {
         history.push(`/search/?q=${encodeURIComponent(searchValue)}`);
@@ -177,7 +177,7 @@ export default class SuggestionList extends Component<Props> {
         <div className="suggestion-list mt-1">
           <div className="list-body">
             <a href="#" className="list-item" onClick={this.moreResultsClick}>
-              {_t('g.more-results')}
+              {_t("g.more-results")}
             </a>
           </div>
         </div>
@@ -187,7 +187,7 @@ export default class SuggestionList extends Component<Props> {
     return (
       <>
         <div
-          className={containerClassName ? `suggestion ${containerClassName}` : 'suggestion'}
+          className={containerClassName ? `suggestion ${containerClassName}` : "suggestion"}
           ref={this.parent}
         >
           {children}

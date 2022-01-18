@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Button, Form, FormControl, Modal, Spinner } from 'react-bootstrap';
+import { Button, Form, FormControl, Modal, Spinner } from "react-bootstrap";
 
-import { ActiveUser } from '../../store/active-user/types';
+import { ActiveUser } from "../../store/active-user/types";
 
-import BaseComponent from '../base';
-import LinearProgress from '../linear-progress';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import LinearProgress from "../linear-progress";
+import { error } from "../feedback";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { postBodySummary } from '@ecency/render-helper';
+import { postBodySummary } from "@ecency/render-helper";
 
 import {
   getFragments,
@@ -18,10 +18,10 @@ import {
   addFragment,
   deleteFragment,
   updateFragment
-} from '../../api/private-api';
+} from "../../api/private-api";
 
-import PopoverConfirm from '../popover-confirm';
-import { handleInvalid, handleOnInput } from '../../util/input-util';
+import PopoverConfirm from "../popover-confirm";
+import { handleInvalid, handleOnInput } from "../../util/input-util";
 
 // ADD
 interface AddProps {
@@ -38,8 +38,8 @@ interface AddState {
 
 export class AddFragment extends BaseComponent<AddProps, AddState> {
   state: AddState = {
-    title: '',
-    body: '',
+    title: "",
+    body: "",
     inProgress: false
   };
 
@@ -80,7 +80,7 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
                 onAdd();
               })
               .catch(() => {
-                error(_t('g.server-error'));
+                error(_t("g.server-error"));
               })
               .finally(() => {
                 this.stateSet({ inProgress: false });
@@ -88,7 +88,7 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
           }}
         >
           <Form.Group controlId="title">
-            <Form.Label>{_t('fragments.form-title')}</Form.Label>
+            <Form.Label>{_t("fragments.form-title")}</Form.Label>
             <Form.Control
               value={title}
               onChange={this.titleChanged}
@@ -96,17 +96,17 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
               type="text"
               maxLength={255}
               autoFocus={true}
-              onInvalid={(e: any) => handleInvalid(e, 'fragments.', 'validation-title')}
+              onInvalid={(e: any) => handleInvalid(e, "fragments.", "validation-title")}
               onInput={handleOnInput}
             />
           </Form.Group>
           <Form.Group controlId="body">
-            <Form.Label>{_t('fragments.form-body')}</Form.Label>
+            <Form.Label>{_t("fragments.form-body")}</Form.Label>
             <Form.Control
-              onInvalid={(e: any) => handleInvalid(e, 'fragments.', 'validation-value')}
+              onInvalid={(e: any) => handleInvalid(e, "fragments.", "validation-value")}
               onInput={handleOnInput}
               as="textarea"
-              style={{ height: '300px' }}
+              style={{ height: "300px" }}
               value={body}
               onChange={this.bodyChanged}
               required={true}
@@ -121,7 +121,7 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
               disabled={inProgress}
               onClick={this.back}
             >
-              {_t('g.back')}
+              {_t("g.back")}
             </Button>
             <Button variant="primary" type="submit" disabled={inProgress}>
               {inProgress && (
@@ -129,10 +129,10 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
                   animation="grow"
                   variant="light"
                   size="sm"
-                  style={{ marginRight: '6px' }}
+                  style={{ marginRight: "6px" }}
                 />
               )}
-              {_t('g.add')}
+              {_t("g.add")}
             </Button>
           </div>
         </Form>
@@ -185,7 +185,7 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
         onUpdate();
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       })
       .finally(() => {
         this.stateSet({ inProgress: false });
@@ -214,7 +214,7 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
                 onUpdate();
               })
               .catch(() => {
-                error(_t('g.server-error'));
+                error(_t("g.server-error"));
               })
               .finally(() => {
                 this.stateSet({ inProgress: false });
@@ -222,7 +222,7 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
           }}
         >
           <Form.Group controlId="title">
-            <Form.Label>{_t('fragments.form-title')}</Form.Label>
+            <Form.Label>{_t("fragments.form-title")}</Form.Label>
             <Form.Control
               value={title}
               onChange={this.titleChanged}
@@ -230,21 +230,21 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
               type="text"
               maxLength={255}
               autoFocus={true}
-              onInvalid={(e: any) => handleInvalid(e, 'fragments.', 'validation-title')}
+              onInvalid={(e: any) => handleInvalid(e, "fragments.", "validation-title")}
               onInput={handleOnInput}
             />
           </Form.Group>
           <Form.Group controlId="body">
-            <Form.Label>{_t('fragments.form-body')}</Form.Label>
+            <Form.Label>{_t("fragments.form-body")}</Form.Label>
             <Form.Control
               as="textarea"
-              style={{ height: '300px' }}
+              style={{ height: "300px" }}
               value={body}
               onChange={this.bodyChanged}
               required={true}
               type="text"
               maxLength={5000}
-              onInvalid={(e: any) => handleInvalid(e, 'fragments.', 'validation-body')}
+              onInvalid={(e: any) => handleInvalid(e, "fragments.", "validation-body")}
               onInput={handleOnInput}
             />
           </Form.Group>
@@ -259,9 +259,9 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
                   variant="outline-danger"
                   type="button"
                   disabled={inProgress}
-                  style={{ marginRight: '6px' }}
+                  style={{ marginRight: "6px" }}
                 >
-                  {_t('g.delete')}
+                  {_t("g.delete")}
                 </Button>
               </PopoverConfirm>
               <Button
@@ -270,7 +270,7 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
                 disabled={inProgress}
                 onClick={this.back}
               >
-                {_t('g.back')}
+                {_t("g.back")}
               </Button>
             </div>
             <Button variant="primary" type="submit" disabled={inProgress}>
@@ -279,10 +279,10 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
                   animation="grow"
                   variant="light"
                   size="sm"
-                  style={{ marginRight: '6px' }}
+                  style={{ marginRight: "6px" }}
                 />
               )}
-              {_t('g.update')}
+              {_t("g.update")}
             </Button>
           </div>
         </Form>
@@ -302,7 +302,7 @@ interface State {
   loading: boolean;
   list: Fragment[];
   filter: string;
-  mode: '' | 'add' | 'edit';
+  mode: "" | "add" | "edit";
   editingItem?: Fragment;
 }
 
@@ -310,8 +310,8 @@ export class Fragments extends BaseComponent<Props, State> {
   state: State = {
     loading: true,
     list: [],
-    filter: '',
-    mode: ''
+    filter: "",
+    mode: ""
   };
 
   componentDidMount() {
@@ -327,7 +327,7 @@ export class Fragments extends BaseComponent<Props, State> {
         this.stateSet({ list: this.sort(items) });
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       })
       .finally(() => {
         this.stateSet({ loading: false });
@@ -347,34 +347,34 @@ export class Fragments extends BaseComponent<Props, State> {
   render() {
     const { list, filter, loading, mode, editingItem } = this.state;
 
-    if (mode === 'add') {
+    if (mode === "add") {
       return (
         <AddFragment
           {...this.props}
           onAdd={() => {
-            this.stateSet({ mode: '' }, () => {
+            this.stateSet({ mode: "" }, () => {
               this.fetch();
             });
           }}
           onCancel={() => {
-            this.stateSet({ mode: '' });
+            this.stateSet({ mode: "" });
           }}
         />
       );
     }
 
-    if (mode === 'edit' && editingItem) {
+    if (mode === "edit" && editingItem) {
       return (
         <EditFragment
           {...this.props}
           item={editingItem}
           onUpdate={() => {
-            this.stateSet({ mode: '' }, () => {
+            this.stateSet({ mode: "" }, () => {
               this.fetch();
             });
           }}
           onCancel={() => {
-            this.stateSet({ mode: '' });
+            this.stateSet({ mode: "" });
           }}
         />
       );
@@ -390,16 +390,16 @@ export class Fragments extends BaseComponent<Props, State> {
           if (list.length === 0) {
             return (
               <div className="fragments-list">
-                <p>{_t('g.empty-list')}</p>
+                <p>{_t("g.empty-list")}</p>
                 <p>
                   <a
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
-                      this.stateSet({ mode: 'add' });
+                      this.stateSet({ mode: "add" });
                     }}
                   >
-                    {_t('fragments.create-first')}
+                    {_t("fragments.create-first")}
                   </a>
                 </p>
               </div>
@@ -415,23 +415,23 @@ export class Fragments extends BaseComponent<Props, State> {
               <div className="dialog-controls">
                 <Form.Control
                   type="text"
-                  placeholder={_t('fragments.filter')}
+                  placeholder={_t("fragments.filter")}
                   value={filter}
                   onChange={this.filterChanged}
-                  style={{ marginRight: '6px' }}
+                  style={{ marginRight: "6px" }}
                 />
                 <div>
                   <Button
                     onClick={() => {
-                      this.stateSet({ mode: 'add' });
+                      this.stateSet({ mode: "add" });
                     }}
                   >
-                    {_t('g.add')}
+                    {_t("g.add")}
                   </Button>
                 </div>
               </div>
 
-              {items.length === 0 && <span className="text-muted">{_t('g.no-matches')}</span>}
+              {items.length === 0 && <span className="text-muted">{_t("g.no-matches")}</span>}
 
               {items.length > 0 && (
                 <div className="fragments-list">
@@ -449,7 +449,7 @@ export class Fragments extends BaseComponent<Props, State> {
                             return;
                           }
 
-                          this.setState({ editingItem: item, mode: 'edit' });
+                          this.setState({ editingItem: item, mode: "edit" });
                         }}
                       >
                         <div className="item-title">{item.title}</div>
@@ -477,7 +477,7 @@ export default class FragmentsDialog extends Component<Props> {
     return (
       <Modal show={true} centered={true} onHide={this.hide} size="lg" className="fragments-modal">
         <Modal.Header closeButton={true}>
-          <Modal.Title>{_t('fragments.title')}</Modal.Title>
+          <Modal.Title>{_t("fragments.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Fragments {...this.props} />

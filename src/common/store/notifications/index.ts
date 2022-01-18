@@ -1,6 +1,6 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
-import { ActionTypes as ActiveUserActionTypes } from '../active-user/types';
+import { ActionTypes as ActiveUserActionTypes } from "../active-user/types";
 
 import {
   Actions,
@@ -14,15 +14,15 @@ import {
   Notifications,
   SetFilterAction,
   SetUnreadCountAction
-} from './types';
+} from "./types";
 
-import { AppState } from '../index';
+import { AppState } from "../index";
 
 import {
   getNotifications,
   getUnreadNotificationCount,
   markNotifications as markNotificationsFn
-} from '../../api/private-api';
+} from "../../api/private-api";
 
 export const initialState: Notifications = {
   filter: null,

@@ -1,11 +1,11 @@
-import React from 'react';
-import { StaticRouter } from 'react-router-dom';
-import TestRenderer from 'react-test-renderer';
-import { createBrowserHistory, createLocation } from 'history';
+import React from "react";
+import { StaticRouter } from "react-router-dom";
+import TestRenderer from "react-test-renderer";
+import { createBrowserHistory, createLocation } from "history";
 
-import NavBar from './index';
+import NavBar from "./index";
 
-import { Theme } from '../../store/global/types';
+import { Theme } from "../../store/global/types";
 
 import {
   globalInstance,
@@ -14,8 +14,8 @@ import {
   notificationsInstance1,
   activeUserInstance,
   dynamicPropsIntance1
-} from '../../helper/test-helper';
-import './matchMedia';
+} from "../../helper/test-helper";
+import "./matchMedia";
 
 const defProps = {
   history: createBrowserHistory(),
@@ -48,7 +48,7 @@ const defProps = {
 
 //const itif = (condition) => condition ? it : it.skip;
 
-it('(1) Default render', () => {
+it("(1) Default render", () => {
   const component = <NavBar {...defProps} />;
 
   const renderer = TestRenderer.create(
@@ -60,7 +60,7 @@ it('(1) Default render', () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Night Theme', () => {
+it("(2) Night Theme", () => {
   const props = {
     ...defProps,
     ...{
@@ -81,7 +81,7 @@ it('(2) Night Theme', () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(3) With active user', () => {
+it("(3) With active user", () => {
   const props = {
     ...defProps,
     ...{
@@ -99,7 +99,7 @@ it('(3) With active user', () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(4) With active user && usePrivate = false', () => {
+it("(4) With active user && usePrivate = false", () => {
   const props = {
     ...defProps,
     ...{

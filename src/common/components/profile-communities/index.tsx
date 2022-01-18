@@ -1,23 +1,23 @@
-import React from 'react';
+import React from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { Subscription } from '../../store/subscriptions/types';
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { Subscription } from "../../store/subscriptions/types";
 
-import BaseComponent from '../base';
-import LinearProgress from '../linear-progress';
-import Tag from '../tag';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import LinearProgress from "../linear-progress";
+import Tag from "../tag";
+import { error } from "../feedback";
 
-import { getSubscriptions } from '../../api/bridge';
+import { getSubscriptions } from "../../api/bridge";
 
-import { _t } from '../../i18n';
-import { Link } from 'react-router-dom';
+import { _t } from "../../i18n";
+import { Link } from "react-router-dom";
 
 interface Props {
   global: Global;
@@ -45,7 +45,7 @@ export class ProfileCommunities extends BaseComponent<Props, State> {
           this.stateSet({ items });
         }
       })
-      .catch(() => error(_t('g.server-error')))
+      .catch(() => error(_t("g.server-error")))
       .finally(() => this.stateSet({ loading: false }));
   }
 
@@ -73,12 +73,12 @@ export class ProfileCommunities extends BaseComponent<Props, State> {
           if (items.length === 0) {
             return (
               <>
-                <h2>{_t('profile.communities-title')}</h2>
-                <p className="text-muted">{_t('g.empty-list')}</p>
+                <h2>{_t("profile.communities-title")}</h2>
+                <p className="text-muted">{_t("g.empty-list")}</p>
                 {showCreateLink && (
                   <p>
                     <Link to="/communities/create" className="create-link">
-                      {_t('profile.create-community')}
+                      {_t("profile.create-community")}
                     </Link>
                   </p>
                 )}
@@ -88,7 +88,7 @@ export class ProfileCommunities extends BaseComponent<Props, State> {
 
           return (
             <>
-              <h2>{_t('profile.communities-title')}</h2>
+              <h2>{_t("profile.communities-title")}</h2>
               <ul className="community-list">
                 {items.map((i, k) => {
                   return (
@@ -96,9 +96,9 @@ export class ProfileCommunities extends BaseComponent<Props, State> {
                       {Tag({
                         ...this.props,
                         tag: i[0],
-                        type: 'link',
+                        type: "link",
                         children: <span>{i[1]}</span>
-                      })}{' '}
+                      })}{" "}
                       <span className="user-role">{i[2]}</span>
                     </li>
                   );
@@ -107,7 +107,7 @@ export class ProfileCommunities extends BaseComponent<Props, State> {
               {showCreateLink && (
                 <p>
                   <Link to="/communities/create" className="create-link">
-                    {_t('profile.create-community')}
+                    {_t("profile.create-community")}
                   </Link>
                 </p>
               )}

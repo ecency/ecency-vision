@@ -1,22 +1,22 @@
-import React from 'react';
+import React from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
 
-import LinearProgress from '../linear-progress';
-import UserAvatar from '../user-avatar';
-import ProfileLink from '../profile-link';
-import BaseComponent from '../base';
+import LinearProgress from "../linear-progress";
+import UserAvatar from "../user-avatar";
+import ProfileLink from "../profile-link";
+import BaseComponent from "../base";
 
-import { searchAccount, AccountSearchResult } from '../../api/search-api';
+import { searchAccount, AccountSearchResult } from "../../api/search-api";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { syncSvg } from '../../img/svg';
+import { syncSvg } from "../../img/svg";
 
 interface Props {
   global: Global;
@@ -55,12 +55,12 @@ export class PopularUsers extends BaseComponent<Props, State> {
     const { list, loading } = this.state;
 
     return (
-      <div className={_c(`popular-users-list ${loading ? 'loading' : ''}`)}>
+      <div className={_c(`popular-users-list ${loading ? "loading" : ""}`)}>
         <div className="list-header">
           <h1>
-            <div className="list-title">{_t('popular-users.title')}</div>
+            <div className="list-title">{_t("popular-users.title")}</div>
           </h1>
-          <div className={_c(`list-refresh ${loading ? 'disabled' : ''}`)} onClick={this.fetch}>
+          <div className={_c(`list-refresh ${loading ? "disabled" : ""}`)} onClick={this.fetch}>
             {syncSvg}
           </div>
         </div>
@@ -75,7 +75,7 @@ export class PopularUsers extends BaseComponent<Props, State> {
                     ...this.props,
                     username: r.name,
                     children: (
-                      <a>{UserAvatar({ ...this.props, size: 'medium', username: r.name })}</a>
+                      <a>{UserAvatar({ ...this.props, size: "medium", username: r.name })}</a>
                     )
                   })}
                   <div className="user-info">
@@ -89,8 +89,8 @@ export class PopularUsers extends BaseComponent<Props, State> {
                       username: r.name,
                       children: (
                         <a className="name notranslate">
-                          {' '}
-                          {'@'}
+                          {" "}
+                          {"@"}
                           {r.name}
                         </a>
                       )

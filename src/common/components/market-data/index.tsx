@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import moment from 'moment';
+import moment from "moment";
 
-import numeral from 'numeral';
+import numeral from "numeral";
 
-import Graph from 'react-chartist';
+import Graph from "react-chartist";
 
-import { ILineChartOptions } from 'chartist';
+import { ILineChartOptions } from "chartist";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import BaseComponent from '../base';
+import BaseComponent from "../base";
 
-import { getMarketData } from '../../api/misc';
+import { getMarketData } from "../../api/misc";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { Tsx } from '../../i18n/helper';
+import { Tsx } from "../../i18n/helper";
 
 interface Price {
   time: number;
@@ -56,7 +56,7 @@ export class Market extends BaseComponent<Props, State> {
           });
         }
       })
-      .catch((err) => console.log('market_data_error', err));
+      .catch((err) => console.log("market_data_error", err));
   }
 
   componentWillUnmount() {
@@ -73,17 +73,17 @@ export class Market extends BaseComponent<Props, State> {
     const node = this.node.current;
     if (!node) return;
 
-    const graph = node.querySelector('.graph')!;
+    const graph = node.querySelector(".graph")!;
 
-    node.querySelectorAll('.ct-point').forEach((el) => {
-      const left = el.getAttribute('x1');
+    node.querySelectorAll(".ct-point").forEach((el) => {
+      const left = el.getAttribute("x1");
 
-      const graphBar = document.createElement('span');
-      graphBar.setAttribute('class', 'graph-bar');
+      const graphBar = document.createElement("span");
+      graphBar.setAttribute("class", "graph-bar");
       graphBar.style.left = `${left}px`;
 
-      graphBar.addEventListener('mouseover', this.pointMouseMove);
-      graphBar.addEventListener('mouseout', this.pointMouseOut);
+      graphBar.addEventListener("mouseover", this.pointMouseMove);
+      graphBar.addEventListener("mouseout", this.pointMouseOut);
 
       graph.appendChild(graphBar);
     });
@@ -93,9 +93,9 @@ export class Market extends BaseComponent<Props, State> {
     const node = this.node.current;
     if (!node) return;
 
-    node.querySelectorAll('.graph-bar').forEach((el) => {
-      el.removeEventListener('mouseover', this.pointMouseMove);
-      el.removeEventListener('mouseout', this.pointMouseOut);
+    node.querySelectorAll(".graph-bar").forEach((el) => {
+      el.removeEventListener("mouseover", this.pointMouseMove);
+      el.removeEventListener("mouseout", this.pointMouseOut);
     });
   };
 
@@ -106,16 +106,16 @@ export class Market extends BaseComponent<Props, State> {
     const { formatter } = this.props;
 
     const circle = e.currentTarget;
-    const circles = node.querySelectorAll('.graph-bar');
+    const circles = node.querySelectorAll(".graph-bar");
     const index = Array.prototype.indexOf.call(circles, circle);
     const item = this.state.prices[index];
 
     const strPrice = numeral(item.price).format(formatter);
-    const strDate = moment(item.time).format('YYYY-MM-DD HH:mm:ss');
+    const strDate = moment(item.time).format("YYYY-MM-DD HH:mm:ss");
     const html = `<strong>${strPrice}</strong> ${strDate}`;
 
-    const tooltip = node.querySelector('.tooltip') as HTMLElement;
-    tooltip.style.visibility = 'visible';
+    const tooltip = node.querySelector(".tooltip") as HTMLElement;
+    tooltip.style.visibility = "visible";
     tooltip!.innerHTML = html;
   };
 
@@ -123,9 +123,9 @@ export class Market extends BaseComponent<Props, State> {
     const node = this.node.current;
     if (!node) return;
 
-    const tooltip = node.querySelector('.tooltip') as HTMLElement;
-    tooltip.style.visibility = 'hidden';
-    tooltip!.innerHTML = '';
+    const tooltip = node.querySelector(".tooltip") as HTMLElement;
+    tooltip.style.visibility = "hidden";
+    tooltip!.innerHTML = "";
   };
 
   render() {
@@ -133,8 +133,8 @@ export class Market extends BaseComponent<Props, State> {
     const { prices } = this.state;
 
     const options: ILineChartOptions = {
-      width: '100%',
-      height: '90px',
+      width: "100%",
+      height: "90px",
       showPoint: true,
       showArea: true,
       lineSmooth: false,
@@ -159,7 +159,7 @@ export class Market extends BaseComponent<Props, State> {
 
     const data = { series: [prices.map((x) => x.price)] };
 
-    let strPrice = '...';
+    let strPrice = "...";
     if (prices.length) {
       const price = prices[prices.length - 1].price;
       strPrice = numeral(price).format(formatter);
@@ -183,13 +183,13 @@ export class Market extends BaseComponent<Props, State> {
 
 export default class MarketData extends Component {
   render() {
-    const fromTs = moment().subtract(2, 'days').format('X');
-    const toTs = moment().format('X');
+    const fromTs = moment().subtract(2, "days").format("X");
+    const toTs = moment().format("X");
 
     return (
       <div className="market-data">
         <div className="market-data-header">
-          <span className="title">{_t('market-data.title')}</span>
+          <span className="title">{_t("market-data.title")}</span>
           <Tsx k="market-data.credits" args={{}}>
             <div className="credits" />
           </Tsx>

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Manager, Reference, Popper } from 'react-popper';
-import { ProfilePreview } from '../profile-preview';
-import { menuDownSvg } from '../../img/svg';
+import React, { useState } from "react";
+import { Manager, Reference, Popper } from "react-popper";
+import { ProfilePreview } from "../profile-preview";
+import { menuDownSvg } from "../../img/svg";
 
 export const ProfilePopover = (props: any) => {
   const { global, entry } = props;
@@ -14,10 +14,10 @@ export const ProfilePopover = (props: any) => {
     const timeout = setTimeout(
       () => {
         e.stopPropagation();
-        if (global.isMobile && e.type == 'click') {
+        if (global.isMobile && e.type == "click") {
         }
         setShowProfile(true);
-        document.getElementsByTagName('body')[0].classList.add('overflow-sm-hidden');
+        document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden");
       },
       global.isMobile ? 0 : 600
     );
@@ -31,7 +31,7 @@ export const ProfilePopover = (props: any) => {
     setTimeout(
       () => {
         !doNotSetState && setShowProfile(false);
-        document.getElementsByTagName('body')[0].classList.remove('overflow-sm-hidden');
+        document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
       },
       global.isMobile ? 0 : 200
     );
@@ -73,9 +73,9 @@ export const ProfilePopover = (props: any) => {
             placement="bottom-start"
             modifiers={[
               {
-                name: 'offset',
+                name: "offset",
                 options: {
-                  offset: () => [0, window.matchMedia('(max-width: 576px)').matches ? 0 : -30]
+                  offset: () => [0, window.matchMedia("(max-width: 576px)").matches ? 0 : -30]
                 }
               }
             ]}

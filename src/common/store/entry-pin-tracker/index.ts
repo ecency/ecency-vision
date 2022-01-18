@@ -1,14 +1,14 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
-import { Entry } from '../entries/types';
-import { ActionTypes as ActiveUserActionTypes } from '../active-user/types';
-import { AppState } from '../index';
+import { Entry } from "../entries/types";
+import { ActionTypes as ActiveUserActionTypes } from "../active-user/types";
+import { AppState } from "../index";
 
-import { EntryPinTracker, Actions, ActionTypes, FetchAction, SetAction } from './types';
+import { EntryPinTracker, Actions, ActionTypes, FetchAction, SetAction } from "./types";
 
-import { CommonActionTypes } from '../common';
+import { CommonActionTypes } from "../common";
 
-import { dataLimit, getPostsRanked } from '../../api/bridge';
+import { dataLimit, getPostsRanked } from "../../api/bridge";
 
 export const initialState: EntryPinTracker = {};
 
@@ -56,7 +56,7 @@ export const trackEntryPin = (entry: Entry) => (dispatch: Dispatch, getState: ()
 
   dispatch(fetchAct(entry));
 
-  getPostsRanked('created', '', '', dataLimit, entry.category)
+  getPostsRanked("created", "", "", dataLimit, entry.category)
     .then((r) => {
       if (r) {
         const isPinned =

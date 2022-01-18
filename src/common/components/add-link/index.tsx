@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Button, Form, FormControl, Modal } from 'react-bootstrap';
+import { Button, Form, FormControl, Modal } from "react-bootstrap";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { readClipboard } from '../../util/clipboard';
+import { readClipboard } from "../../util/clipboard";
 
-import { parseUrl } from '../../util/misc';
-import { handleInvalid, handleOnInput } from '../../util/input-util';
+import { parseUrl } from "../../util/misc";
+import { handleInvalid, handleOnInput } from "../../util/input-util";
 
 interface Props {
   onHide: () => void;
@@ -21,8 +21,8 @@ interface State {
 
 export class AddLink extends Component<Props, State> {
   state: State = {
-    text: '',
-    link: 'https://'
+    text: "",
+    link: "https://"
   };
 
   componentDidMount() {
@@ -32,7 +32,7 @@ export class AddLink extends Component<Props, State> {
   handleClipboard = async () => {
     const clipboard = await readClipboard();
 
-    if (clipboard && (clipboard.startsWith('https://') || clipboard.startsWith('http://'))) {
+    if (clipboard && (clipboard.startsWith("https://") || clipboard.startsWith("http://"))) {
       this.setState({ link: clipboard });
     }
   };
@@ -72,11 +72,11 @@ export class AddLink extends Component<Props, State> {
               type="text"
               autoComplete="off"
               value={text}
-              placeholder={_t('add-link.text-label')}
+              placeholder={_t("add-link.text-label")}
               onChange={this.textChanged}
               autoFocus={true}
               required={true}
-              onInvalid={(e: any) => handleInvalid(e, 'add-link.', 'validation-text')}
+              onInvalid={(e: any) => handleInvalid(e, "add-link.", "validation-text")}
               onInput={handleOnInput}
             />
           </Form.Group>
@@ -85,15 +85,15 @@ export class AddLink extends Component<Props, State> {
               type="text"
               autoComplete="off"
               value={link}
-              placeholder={_t('add-link.link-label')}
+              placeholder={_t("add-link.link-label")}
               onChange={this.linkChanged}
               required={true}
-              onInvalid={(e: any) => handleInvalid(e, 'add-link.', 'validation-link')}
+              onInvalid={(e: any) => handleInvalid(e, "add-link.", "validation-link")}
               onInput={handleOnInput}
             />
           </Form.Group>
           <div className="d-flex justify-content-end">
-            <Button type="submit">{_t('g.add')}</Button>
+            <Button type="submit">{_t("g.add")}</Button>
           </div>
         </Form>
       </div>
@@ -117,7 +117,7 @@ export default class AddLinkDialog extends Component<Props> {
         animation={false}
       >
         <Modal.Header closeButton={true}>
-          <Modal.Title>{_t('add-link.title')}</Modal.Title>
+          <Modal.Title>{_t("add-link.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <AddLink {...this.props} />

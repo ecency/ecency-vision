@@ -1,35 +1,35 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Form, FormControl } from 'react-bootstrap';
+import { Form, FormControl } from "react-bootstrap";
 
-import { History } from 'history';
+import { History } from "history";
 
-import moment from 'moment';
+import moment from "moment";
 
-import { Modal, Spinner } from 'react-bootstrap';
+import { Modal, Spinner } from "react-bootstrap";
 
-import { Global } from '../../store/global/types';
-import { Entry } from '../../store/entries/types';
-import { Account } from '../../store/accounts/types';
+import { Global } from "../../store/global/types";
+import { Entry } from "../../store/entries/types";
+import { Account } from "../../store/accounts/types";
 
-import BaseComponent from '../base';
-import UserAvatar from '../user-avatar/index';
-import FormattedCurrency from '../formatted-currency';
-import ProfileLink from '../profile-link/index';
-import Tooltip from '../tooltip';
-import Pagination from '../pagination';
+import BaseComponent from "../base";
+import UserAvatar from "../user-avatar/index";
+import FormattedCurrency from "../formatted-currency";
+import ProfileLink from "../profile-link/index";
+import Tooltip from "../tooltip";
+import Pagination from "../pagination";
 
-import { Vote, getActiveVotes } from '../../api/hive';
+import { Vote, getActiveVotes } from "../../api/hive";
 
-import parseAsset from '../../helper/parse-asset';
-import parseDate from '../../helper/parse-date';
-import accountReputation from '../../helper/account-reputation';
+import parseAsset from "../../helper/parse-asset";
+import parseDate from "../../helper/parse-date";
+import accountReputation from "../../helper/account-reputation";
 
-import formattedNumber from '../../util/formatted-number';
+import formattedNumber from "../../util/formatted-number";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { heartSvg } from '../../img/svg';
+import { heartSvg } from "../../img/svg";
 
 export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
   const totalPayout =
@@ -51,7 +51,7 @@ export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
   });
 };
 
-type SortOption = 'reward' | 'timestamp' | 'voter' | 'percent';
+type SortOption = "reward" | "timestamp" | "voter" | "percent";
 
 interface DetailProps {
   history: History;
@@ -76,7 +76,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
     votes: [],
     originalVotes: [],
     page: 1,
-    sort: 'reward'
+    sort: "reward"
   };
 
   componentDidMount() {
@@ -156,7 +156,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
                           ...this.props,
                           username: x.voter,
                           children: (
-                            <>{UserAvatar({ ...this.props, username: x.voter, size: 'small' })}</>
+                            <>{UserAvatar({ ...this.props, username: x.voter, size: "small" })}</>
                           )
                         })}
 
@@ -172,16 +172,16 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
                       <div className="item-extra">
                         <FormattedCurrency {...this.props} value={x.reward} fixAt={3} />
                         <span className="separator" />
-                        {formattedNumber(x.percent, { fractionDigits: 1, suffix: '%' })}
+                        {formattedNumber(x.percent, { fractionDigits: 1, suffix: "%" })}
                         <span className="separator" />
-                        <Tooltip content={moment(x.timestamp).format('LLLL')}>
+                        <Tooltip content={moment(x.timestamp).format("LLLL")}>
                           <span>{moment(x.timestamp).fromNow()}</span>
                         </Tooltip>
                       </div>
                     </div>
                   );
                 })
-              : _t('communities.no-results')}
+              : _t("communities.no-results")}
           </div>
         </div>
 
@@ -200,12 +200,12 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
             )}
           </div>
           <div className="sorter">
-            <span className="label">{_t('entry-votes.sort')}</span>
+            <span className="label">{_t("entry-votes.sort")}</span>
             <Form.Control as="select" onChange={this.sortChanged} value={sort}>
-              <option value="reward">{_t('entry-votes.sort-reward')}</option>
-              <option value="timestamp">{_t('entry-votes.sort-timestamp')}</option>
-              <option value="reputation">{_t('entry-votes.sort-reputation')}</option>
-              <option value="percent">{_t('entry-votes.sort-percent')}</option>
+              <option value="reward">{_t("entry-votes.sort-reward")}</option>
+              <option value="timestamp">{_t("entry-votes.sort-timestamp")}</option>
+              <option value="reputation">{_t("entry-votes.sort-reputation")}</option>
+              <option value="percent">{_t("entry-votes.sort-percent")}</option>
             </Form.Control>
           </div>
         </div>
@@ -230,13 +230,13 @@ interface State {
 export class EntryVotes extends Component<Props, State> {
   state: State = {
     visible: false,
-    searchText: '',
+    searchText: "",
     searchTextDisabled: true
   };
 
   toggle = () => {
     const { visible } = this.state;
-    this.setState({ visible: !visible, searchText: '' });
+    this.setState({ visible: !visible, searchText: "" });
   };
 
   render() {
@@ -246,10 +246,10 @@ export class EntryVotes extends Component<Props, State> {
 
     const title =
       totalVotes === 0
-        ? _t('entry-votes.title-empty')
+        ? _t("entry-votes.title-empty")
         : totalVotes === 1
-        ? _t('entry-votes.title')
-        : _t('entry-votes.title-n', { n: totalVotes });
+        ? _t("entry-votes.title")
+        : _t("entry-votes.title-n", { n: totalVotes });
 
     const child = (
       <>
@@ -291,7 +291,7 @@ export class EntryVotes extends Component<Props, State> {
             <Form.Group className="w-100 mb-3">
               <Form.Control
                 type="text"
-                placeholder={_t('friends.search-placeholder')}
+                placeholder={_t("friends.search-placeholder")}
                 value={searchText}
                 onChange={(e) => {
                   this.setState({ searchText: e.target.value });

@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-import { apiBase } from './helper';
+import { apiBase } from "./helper";
 
 export const hsTokenRenew = (
   code: string

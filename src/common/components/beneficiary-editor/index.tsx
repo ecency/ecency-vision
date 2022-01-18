@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Button, Modal, Form, InputGroup, FormControl } from 'react-bootstrap';
+import { Button, Modal, Form, InputGroup, FormControl } from "react-bootstrap";
 
-import BaseComponent from '../base';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import { error } from "../feedback";
 
-import { BeneficiaryRoute } from '../../api/operations';
+import { BeneficiaryRoute } from "../../api/operations";
 
-import { getAccount } from '../../api/hive';
+import { getAccount } from "../../api/hive";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { plusSvg, deleteForeverSvg, accountMultipleSvg } from '../../img/svg';
-import { handleInvalid, handleOnInput } from '../../util/input-util';
+import { plusSvg, deleteForeverSvg, accountMultipleSvg } from "../../img/svg";
+import { handleInvalid, handleOnInput } from "../../util/input-util";
 
 interface Props {
   author?: string;
@@ -29,8 +29,8 @@ interface DialogBodyState {
 
 export class DialogBody extends BaseComponent<Props, DialogBodyState> {
   state: DialogBodyState = {
-    username: '',
-    percentage: '',
+    username: "",
+    percentage: "",
     inProgress: false
   };
 
@@ -67,7 +67,7 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
           const { username, percentage } = this.state;
 
           if (list.find((x) => x.account === username) !== undefined) {
-            error(_t('beneficiary-editor.user-exists-error', { n: username }));
+            error(_t("beneficiary-editor.user-exists-error", { n: username }));
             return;
           }
 
@@ -75,7 +75,7 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
           getAccount(username)
             .then((r) => {
               if (!r) {
-                error(_t('beneficiary-editor.user-error', { n: username }));
+                error(_t("beneficiary-editor.user-error", { n: username }));
                 return;
               }
 
@@ -84,7 +84,7 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                 weight: Number(percentage) * 100
               });
 
-              this.stateSet({ username: '', percentage: '' });
+              this.stateSet({ username: "", percentage: "" });
             })
             .finally(() => this.stateSet({ inProgress: false }));
         }}
@@ -93,8 +93,8 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
           <table className="table table-bordered">
             <thead>
               <tr>
-                <th>{_t('beneficiary-editor.username')}</th>
-                <th>{_t('beneficiary-editor.reward')}</th>
+                <th>{_t("beneficiary-editor.username")}</th>
+                <th>{_t("beneficiary-editor.reward")}</th>
                 <th />
               </tr>
             </thead>
@@ -120,7 +120,7 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                       maxLength={20}
                       value={username}
                       onInvalid={(e: any) =>
-                        handleInvalid(e, 'beneficiary-editor.', 'validation-username')
+                        handleInvalid(e, "beneficiary-editor.", "validation-username")
                       }
                       onInput={handleOnInput}
                       onChange={this.usernameChanged}
@@ -140,7 +140,7 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                       value={percentage}
                       onChange={this.percentageChanged}
                       onInvalid={(e: any) =>
-                        handleInvalid(e, 'beneficiary-editor.', 'validation-percentage')
+                        handleInvalid(e, "beneficiary-editor.", "validation-percentage")
                       }
                       onInput={handleOnInput}
                     />
@@ -203,14 +203,14 @@ export default class BeneficiaryEditorDialog extends Component<Props, State> {
 
     const btnLabel =
       list.length > 0
-        ? _t('beneficiary-editor.btn-label-n', { n: list.length })
-        : _t('beneficiary-editor.btn-label');
+        ? _t("beneficiary-editor.btn-label-n", { n: list.length })
+        : _t("beneficiary-editor.btn-label");
 
     return (
       <>
         <Button size="sm" onClick={this.toggle}>
           {btnLabel}
-          <span style={{ marginLeft: '6px' }}>{accountMultipleSvg}</span>
+          <span style={{ marginLeft: "6px" }}>{accountMultipleSvg}</span>
         </Button>
 
         {visible && (
@@ -222,14 +222,14 @@ export default class BeneficiaryEditorDialog extends Component<Props, State> {
             className="beneficiary-editor-dialog"
           >
             <Modal.Header closeButton={true}>
-              <Modal.Title>{_t('beneficiary-editor.title')}</Modal.Title>
+              <Modal.Title>{_t("beneficiary-editor.title")}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <DialogBody {...this.props} />
             </Modal.Body>
             <Modal.Footer>
               <Button variant="primary" onClick={this.toggle}>
-                {_t('g.done')}
+                {_t("g.done")}
               </Button>
             </Modal.Footer>
           </Modal>

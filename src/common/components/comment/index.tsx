@@ -1,23 +1,23 @@
-import React, { Component, Ref } from 'react';
+import React, { Component, Ref } from "react";
 
-import { Form, FormControl, Button, Spinner } from 'react-bootstrap';
+import { Form, FormControl, Button, Spinner } from "react-bootstrap";
 
-import { User } from '../../store/users/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { Account } from '../../store/accounts/types';
-import { UI, ToggleType } from '../../store/ui/types';
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { Account } from "../../store/accounts/types";
+import { UI, ToggleType } from "../../store/ui/types";
 
-import EditorToolbar from '../editor-toolbar';
-import LoginRequired from '../login-required';
+import EditorToolbar from "../editor-toolbar";
+import LoginRequired from "../login-required";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
-import { renderPostBody, setProxyBase } from '@ecency/render-helper';
+import { renderPostBody, setProxyBase } from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
-import { _t } from '../../i18n';
-import { Global } from '../../store/global/types';
+import { _t } from "../../i18n";
+import { Global } from "../../store/global/types";
 
 interface PreviewProps {
   text: string;
@@ -32,16 +32,18 @@ export class CommentPreview extends Component<PreviewProps> {
   render() {
     const { text, global } = this.props;
 
-    if (text === '') {
+    if (text === "") {
       return null;
     }
 
     return (
       <div className="comment-preview">
-        <div className="comment-preview-header">{_t('comment.preview')}</div>
+        <div className="comment-preview-header">{_t("comment.preview")}</div>
         <div
           className="preview-body markdown-view"
-          dangerouslySetInnerHTML={{ __html: renderPostBody(text, false, global.canUseWebp) }}
+          dangerouslySetInnerHTML={{
+            __html: renderPostBody(text, false, global.canUseWebp)
+          }}
         />
       </div>
     );
@@ -76,8 +78,8 @@ interface State {
 
 export class Comment extends Component<Props, State> {
   state: State = {
-    text: '',
-    preview: '',
+    text: "",
+    preview: "",
     showEmoji: false
   };
 
@@ -85,13 +87,13 @@ export class Comment extends Component<Props, State> {
 
   componentDidMount(): void {
     const { defText } = this.props;
-    this.setState({ text: defText || '', preview: defText || '' });
+    this.setState({ text: defText || "", preview: defText || "" });
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
     const { defText } = this.props;
     if (defText !== prevProps.defText) {
-      this.setState({ text: defText || '', preview: defText || '' });
+      this.setState({ text: defText || "", preview: defText || "" });
     }
   }
 
@@ -113,7 +115,7 @@ export class Comment extends Component<Props, State> {
 
     this._updateTimer = setTimeout(() => {
       const { text } = this.state;
-      this.setState({ preview: text || '' });
+      this.setState({ preview: text || "" });
     }, 500);
   };
 
@@ -140,9 +142,9 @@ export class Comment extends Component<Props, State> {
           {EditorToolbar({ ...this.props, sm: true, showEmoji })}
           <div className="comment-body">
             <Form.Control
-              className={`the-editor accepts-emoji ${text.length > 20 ? 'expanded' : ''}`}
+              className={`the-editor accepts-emoji ${text.length > 20 ? "expanded" : ""}`}
               as="textarea"
-              placeholder={_t('comment.body-placeholder')}
+              placeholder={_t("comment.body-placeholder")}
               value={text}
               onChange={this.textChanged}
               disabled={inProgress}
@@ -160,7 +162,7 @@ export class Comment extends Component<Props, State> {
                 disabled={inProgress}
                 onClick={this.cancel}
               >
-                {_t('g.cancel')}
+                {_t("g.cancel")}
               </Button>
             )}
             {LoginRequired({
@@ -177,9 +179,9 @@ export class Comment extends Component<Props, State> {
                       animation="grow"
                       variant="light"
                       size="sm"
-                      style={{ marginRight: '6px' }}
+                      style={{ marginRight: "6px" }}
                     />
-                  )}{' '}
+                  )}{" "}
                   {submitText}
                 </Button>
               )

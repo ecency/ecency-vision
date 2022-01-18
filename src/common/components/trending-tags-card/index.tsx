@@ -1,16 +1,16 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Global } from '../../store/global/types';
-import { TrendingTags } from '../../store/trending-tags/types';
+import { Global } from "../../store/global/types";
+import { TrendingTags } from "../../store/trending-tags/types";
 
-import Tag, { makePath } from '../tag';
+import Tag, { makePath } from "../tag";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
-import { ActiveUser } from '../../store/active-user/types';
+import _c from "../../util/fix-class-names";
+import { ActiveUser } from "../../store/active-user/types";
 
 interface Props {
   history: History;
@@ -26,7 +26,7 @@ export class TrendingTagsCard extends Component<Props> {
       global: { filter },
       activeUser
     } = this.props;
-    history.push('/' + filter + ((activeUser && activeUser.username && '/my') || ''));
+    history.push("/" + filter + ((activeUser && activeUser.username && "/my") || ""));
   };
 
   render() {
@@ -34,10 +34,10 @@ export class TrendingTagsCard extends Component<Props> {
 
     return (
       <div className="trending-tags-card">
-        <h2 className="list-header">{_t('trending-tags.title')}</h2>
+        <h2 className="list-header">{_t("trending-tags.title")}</h2>
         {trendingTags.list.slice(0, 30).map((t) => {
           const cls = _c(
-            `tag-list-item ${global.tag === t ? 'selected-item' : ''} d-flex align-items-center`
+            `tag-list-item ${global.tag === t ? "selected-item" : ""} d-flex align-items-center`
           );
 
           return (
@@ -46,7 +46,7 @@ export class TrendingTagsCard extends Component<Props> {
                 {Tag({
                   ...this.props,
                   tag: t,
-                  type: 'link',
+                  type: "link",
                   children: (
                     <a href={makePath(global.filter, t)} className={cls}>
                       {t}

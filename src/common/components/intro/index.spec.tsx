@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import { StaticRouter } from 'react-router-dom';
-import TestRenderer from 'react-test-renderer';
+import { StaticRouter } from "react-router-dom";
+import TestRenderer from "react-test-renderer";
 
-import Intro from './index';
+import Intro from "./index";
 
-import { globalInstance } from '../../helper/test-helper';
+import { globalInstance } from "../../helper/test-helper";
 
-it('(1) Render', () => {
+it("(1) Render", () => {
   const props = {
     global: globalInstance,
     hideIntro: () => {}

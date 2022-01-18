@@ -1,26 +1,26 @@
-import React from 'react';
+import React from "react";
 
-import { Button, Spinner } from 'react-bootstrap';
+import { Button, Spinner } from "react-bootstrap";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Global } from '../../store/global/types';
-import { User } from '../../store/users/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { ToggleType, UI } from '../../store/ui/types';
-import { Account, FullAccount } from '../../store/accounts/types';
+import { Global } from "../../store/global/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { ToggleType, UI } from "../../store/ui/types";
+import { Account, FullAccount } from "../../store/accounts/types";
 
-import BaseComponent from '../base';
-import KeyOrHotDialog from '../key-or-hot-dialog';
-import LoginRequired from '../login-required';
-import ProfileLink from '../profile-link';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import KeyOrHotDialog from "../key-or-hot-dialog";
+import LoginRequired from "../login-required";
+import ProfileLink from "../profile-link";
+import { error } from "../feedback";
 
-import { getAccount } from '../../api/hive';
+import { getAccount } from "../../api/hive";
 
-import { formatError, witnessProxy, witnessProxyHot, witnessProxyKc } from '../../api/operations';
+import { formatError, witnessProxy, witnessProxyHot, witnessProxyKc } from "../../api/operations";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 interface Props {
   history: History;
@@ -62,7 +62,7 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
     const fnArgs = [...args];
     const call = fn(...fnArgs);
 
-    if (typeof call?.then === 'function') {
+    if (typeof call?.then === "function") {
       this.stateSet({ inProgress: true });
 
       call
@@ -83,12 +83,12 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
     const { activeUser, username } = this.props;
 
     const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: '6px' }} />
+      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
     );
     const btn = (
       <Button disabled={inProgress}>
         {inProgress && spinner}
-        {_t('witnesses.proxy-active-btn-label')}
+        {_t("witnesses.proxy-active-btn-label")}
       </Button>
     );
     const theBtn = activeUser
@@ -97,13 +97,13 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
           activeUser: activeUser!,
           children: btn,
           onKey: (key) => {
-            this.proxy(witnessProxy, [activeUser!.username, key, '']);
+            this.proxy(witnessProxy, [activeUser!.username, key, ""]);
           },
           onHot: () => {
-            this.proxy(witnessProxyHot, [activeUser!.username, '']);
+            this.proxy(witnessProxyHot, [activeUser!.username, ""]);
           },
           onKc: () => {
-            this.proxy(witnessProxyKc, [activeUser!.username, '']);
+            this.proxy(witnessProxyKc, [activeUser!.username, ""]);
           }
         })
       : LoginRequired({
@@ -113,10 +113,10 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
 
     return (
       <div className="witnesses-active-proxy">
-        <p className="description">{_t('witnesses.proxy-active-description')}</p>
+        <p className="description">{_t("witnesses.proxy-active-description")}</p>
         <div className="proxy-form">
           <div className="current-proxy">
-            {_t('witnesses.proxy-active-current')}{' '}
+            {_t("witnesses.proxy-active-current")}{" "}
             {ProfileLink({
               ...this.props,
               username,
@@ -129,7 +129,7 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
           {account && account.witness_votes && account.witness_votes.length > 0 && (
             <div className="proxy-votes">
               <div className="proxy-votes-title">
-                {_t('witnesses.proxy-votes-for', { username })}
+                {_t("witnesses.proxy-votes-for", { username })}
               </div>
               {account.witness_votes.map((x) => {
                 return (

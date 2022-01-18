@@ -1,51 +1,51 @@
-import React, { Fragment } from 'react';
-import { match } from 'react-router';
+import React, { Fragment } from "react";
+import { match } from "react-router";
 
-import { Redirect } from 'react-router-dom';
-import { History } from 'history';
-import _ from 'lodash';
-import { _t } from '../i18n';
-import { ListStyle } from '../store/global/types';
+import { Redirect } from "react-router-dom";
+import { History } from "history";
+import _ from "lodash";
+import { _t } from "../i18n";
+import { ListStyle } from "../store/global/types";
 
-import { makeGroupKey } from '../store/entries';
-import { ProfileFilter } from '../store/global/types';
+import { makeGroupKey } from "../store/entries";
+import { ProfileFilter } from "../store/global/types";
 
-import BaseComponent from '../components/base';
-import Meta from '../components/meta';
-import Theme from '../components/theme';
-import Feedback from '../components/feedback';
-import NavBar from '../components/navbar';
-import NavBarElectron from '../../desktop/app/components/navbar';
-import NotFound from '../components/404';
-import LinearProgress from '../components/linear-progress/index';
-import EntryListLoadingItem from '../components/entry-list-loading-item';
-import DetectBottom from '../components/detect-bottom';
-import EntryListContent from '../components/entry-list';
-import ProfileCard from '../components/profile-card';
-import ProfileMenu from '../components/profile-menu';
-import ProfileCover from '../components/profile-cover';
-import ProfileCommunities from '../components/profile-communities';
-import ProfileSettings from '../components/profile-settings';
-import WalletHive from '../components/wallet-hive';
-import WalletHiveEngine from '../components/wallet-hive-engine';
-import WalletEcency from '../components/wallet-ecency';
-import ScrollToTop from '../components/scroll-to-top';
-import SearchListItem from '../components/search-list-item';
-import { SearchType } from '../helper/search-query';
-import SearchBox from '../components/search-box';
+import BaseComponent from "../components/base";
+import Meta from "../components/meta";
+import Theme from "../components/theme";
+import Feedback from "../components/feedback";
+import NavBar from "../components/navbar";
+import NavBarElectron from "../../desktop/app/components/navbar";
+import NotFound from "../components/404";
+import LinearProgress from "../components/linear-progress/index";
+import EntryListLoadingItem from "../components/entry-list-loading-item";
+import DetectBottom from "../components/detect-bottom";
+import EntryListContent from "../components/entry-list";
+import ProfileCard from "../components/profile-card";
+import ProfileMenu from "../components/profile-menu";
+import ProfileCover from "../components/profile-cover";
+import ProfileCommunities from "../components/profile-communities";
+import ProfileSettings from "../components/profile-settings";
+import WalletHive from "../components/wallet-hive";
+import WalletHiveEngine from "../components/wallet-hive-engine";
+import WalletEcency from "../components/wallet-ecency";
+import ScrollToTop from "../components/scroll-to-top";
+import SearchListItem from "../components/search-list-item";
+import { SearchType } from "../helper/search-query";
+import SearchBox from "../components/search-box";
 
-import { search as searchApi, SearchResult } from '../api/search-api';
-import ViewKeys from '../components/view-keys';
-import { PasswordUpdate } from '../components/password-update';
+import { search as searchApi, SearchResult } from "../api/search-api";
+import ViewKeys from "../components/view-keys";
+import { PasswordUpdate } from "../components/password-update";
 
-import { getAccountFull } from '../api/hive';
+import { getAccountFull } from "../api/hive";
 
-import defaults from '../constants/defaults.json';
-import _c from '../util/fix-class-names';
-import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from './common';
+import defaults from "../constants/defaults.json";
+import _c from "../util/fix-class-names";
+import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
 
-import { FormControl } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import { FormControl } from "react-bootstrap";
+import { connect } from "react-redux";
 
 interface MatchParams {
   username: string;
@@ -74,9 +74,9 @@ class ProfilePage extends BaseComponent<Props, State> {
     super(props);
 
     const { location } = props;
-    let searchParam = location.search.replace('?', '');
-    searchParam = searchParam.replace('q', '');
-    searchParam = searchParam.replace('=', '');
+    let searchParam = location.search.replace("?", "");
+    searchParam = searchParam.replace("q", "");
+    searchParam = searchParam.replace("=", "");
 
     this.state = {
       loading: false,
@@ -84,7 +84,7 @@ class ProfilePage extends BaseComponent<Props, State> {
       isDefaultPost: false,
       searchDataLoading: searchParam.length > 0,
       search: searchParam,
-      author: '',
+      author: "",
       type: SearchType.ALL,
       searchData: []
     };
@@ -93,9 +93,9 @@ class ProfilePage extends BaseComponent<Props, State> {
   async componentDidMount() {
     const { match, global, fetchEntries, fetchTransactions, fetchPoints, location } = this.props;
 
-    let searchParam = location.search.replace('?', '');
-    searchParam = searchParam.replace('q', '');
-    searchParam = searchParam.replace('=', '');
+    let searchParam = location.search.replace("?", "");
+    searchParam = searchParam.replace("q", "");
+    searchParam = searchParam.replace("=", "");
     if (searchParam.length) {
       this.handleInputChange(searchParam);
     }
@@ -137,8 +137,8 @@ class ProfilePage extends BaseComponent<Props, State> {
     const { isDefaultPost } = this.state;
 
     if (prevSearch !== search) {
-      let searchText = search.replace('?q=', '');
-      this.setState({ search: searchText || '', searchDataLoading: searchText.length > 0 });
+      let searchText = search.replace("?q=", "");
+      this.setState({ search: searchText || "", searchDataLoading: searchText.length > 0 });
       searchText.length > 0 && this.handleInputChange(searchText);
     }
 
@@ -156,7 +156,7 @@ class ProfilePage extends BaseComponent<Props, State> {
     // Wallet and points are not a correct filter to fetch posts
     if (section && !Object.keys(ProfileFilter).includes(section)) {
       if (section !== prevMatch.params.section) {
-        this.setState({ search: '' });
+        this.setState({ search: "" });
       }
       return;
     }
@@ -189,7 +189,7 @@ class ProfilePage extends BaseComponent<Props, State> {
     }
 
     if (prevProps.global.filter !== this.props.global.filter) {
-      this.setState({ search: '' });
+      this.setState({ search: "" });
     }
   }
 
@@ -206,7 +206,7 @@ class ProfilePage extends BaseComponent<Props, State> {
   ensureAccount = () => {
     const { match, accounts, addAccount } = this.props;
 
-    const username = match.params.username.replace('@', '');
+    const username = match.params.username.replace("@", "");
     const account = accounts.find((x) => x.name === username);
 
     if (!account) {
@@ -288,7 +288,7 @@ class ProfilePage extends BaseComponent<Props, State> {
 
   handleInputChange = async (value: string): Promise<void> => {
     this.setState({ typing: false });
-    if (value.trim() === '') {
+    if (value.trim() === "") {
       // this.setState({proposals: this.state.allProposals});
     } else {
       const { global } = this.props;
@@ -296,14 +296,14 @@ class ProfilePage extends BaseComponent<Props, State> {
 
       let query = `${value} author:${global.tag.substring(1)}`;
 
-      if (global.filter === 'posts') {
+      if (global.filter === "posts") {
         query += ` type:post`;
-      } else if (global.filter === 'comments') {
+      } else if (global.filter === "comments") {
         query += ` type:comment`;
       }
       let data: any;
       try {
-        data = await searchApi(query, 'newest', '0');
+        data = await searchApi(query, "newest", "0");
       } catch (error) {
         data = null;
       }
@@ -351,7 +351,7 @@ class ProfilePage extends BaseComponent<Props, State> {
       );
     }
 
-    const username = match.params.username.replace('@', '');
+    const username = match.params.username.replace("@", "");
     const { section = ProfileFilter.blog } = match.params;
     const account = accounts.find((x) => x.name === username);
 
@@ -360,19 +360,19 @@ class ProfilePage extends BaseComponent<Props, State> {
     }
 
     //  Meta config
-    const url = `${defaults.base}/@${username}${section ? `/${section}` : ''}`;
+    const url = `${defaults.base}/@${username}${section ? `/${section}` : ""}`;
     const metaProps = account.__loaded
       ? {
           title: `${account.profile?.name || account.name}'s ${
-            section ? (section === 'engine' ? 'tokens' : `${section}`) : ''
+            section ? (section === "engine" ? "tokens" : `${section}`) : ""
           } on decentralized web`,
           description:
             `${
               account.profile?.about
-                ? `${account.profile?.about} ${section ? `${section}` : ''}`
-                : `${account.profile?.name || account.name} ${section ? `${section}` : ''}`
-            }` || '',
-          url: `/@${username}${section ? `/${section}` : ''}`,
+                ? `${account.profile?.about} ${section ? `${section}` : ""}`
+                : `${account.profile?.name || account.name} ${section ? `${section}` : ""}`
+            }` || "",
+          url: `/@${username}${section ? `/${section}` : ""}`,
           canonical: url,
           image: `${defaults.imageServer}/u/${username}/avatar/medium`,
           rss: `${defaults.base}/@${username}/rss`,
@@ -384,8 +384,8 @@ class ProfilePage extends BaseComponent<Props, State> {
     const groupKey = makeGroupKey(filter, tag);
     const data = entries[groupKey];
     let containerClasses = global.isElectron
-      ? 'app-content profile-page mt-0 pt-6'
-      : 'app-content profile-page';
+      ? "app-content profile-page mt-0 pt-6"
+      : "app-content profile-page";
 
     return (
       <>
@@ -415,16 +415,16 @@ class ProfilePage extends BaseComponent<Props, State> {
               section
             })}
 
-            {[...Object.keys(ProfileFilter), 'communities'].includes(section) &&
+            {[...Object.keys(ProfileFilter), "communities"].includes(section) &&
               ProfileCover({
                 ...this.props,
                 account
               })}
 
-            {(filter === 'posts' || filter === 'comments') && section === filter && (
+            {(filter === "posts" || filter === "comments") && section === filter && (
               <div className="searchProfile">
                 <SearchBox
-                  placeholder={_t('search-comment.search-placeholder')}
+                  placeholder={_t("search-comment.search-placeholder")}
                   value={search}
                   onChange={this.handleChangeSearch}
                   autoComplete="off"
@@ -454,13 +454,13 @@ class ProfilePage extends BaseComponent<Props, State> {
                     ))}
                   </div>
                 ) : (
-                  _t('g.no-matches')
+                  _t("g.no-matches")
                 )}
               </>
             ) : (
               <>
                 {(() => {
-                  if (section === 'wallet') {
+                  if (section === "wallet") {
                     return WalletHive({
                       ...this.props,
                       account,
@@ -468,14 +468,14 @@ class ProfilePage extends BaseComponent<Props, State> {
                     });
                   }
 
-                  if (section === 'engine') {
+                  if (section === "engine") {
                     return WalletHiveEngine({
                       ...this.props,
                       account
                     });
                   }
 
-                  if (section === 'points') {
+                  if (section === "points") {
                     return WalletEcency({
                       ...this.props,
                       account,
@@ -483,31 +483,31 @@ class ProfilePage extends BaseComponent<Props, State> {
                     });
                   }
 
-                  if (section === 'communities') {
+                  if (section === "communities") {
                     return ProfileCommunities({
                       ...this.props,
                       account
                     });
                   }
 
-                  if (section === 'settings') {
+                  if (section === "settings") {
                     return ProfileSettings({
                       ...this.props,
                       account
                     });
                   }
 
-                  if (section === 'permissions' && activeUser) {
+                  if (section === "permissions" && activeUser) {
                     if (account.name === activeUser.username) {
                       return (
                         <div className="container-fluid">
                           <div className="row">
                             <div className="col-12 col-md-6">
-                              <h6 className="border-bottom pb-3">{_t('view-keys.header')}</h6>
+                              <h6 className="border-bottom pb-3">{_t("view-keys.header")}</h6>
                               <ViewKeys activeUser={activeUser} />
                             </div>
                             <div className="col-12 col-md-6">
-                              <h6 className="border-bottom pb-3">{_t('password-update.title')}</h6>
+                              <h6 className="border-bottom pb-3">{_t("password-update.title")}</h6>
                               <PasswordUpdate activeUser={activeUser} />
                             </div>
                           </div>
@@ -523,11 +523,11 @@ class ProfilePage extends BaseComponent<Props, State> {
                     const loading = data?.loading;
                     return (
                       <>
-                        <div className={_c(`entry-list ${loading ? 'loading' : ''}`)}>
+                        <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                           <div
                             className={_c(
                               `entry-list-body ${
-                                global.listStyle === ListStyle.grid ? 'grid-view' : ''
+                                global.listStyle === ListStyle.grid ? "grid-view" : ""
                               }`
                             )}
                           >
@@ -540,7 +540,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                             })}
                           </div>
                         </div>
-                        {loading && entryList.length > 0 ? <LinearProgress /> : ''}
+                        {loading && entryList.length > 0 ? <LinearProgress /> : ""}
                         <DetectBottom onBottom={this.bottomReached} />
                       </>
                     );

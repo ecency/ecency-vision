@@ -1,13 +1,13 @@
-import { LoginAction, LogoutAction } from '../active-user/types';
+import { LoginAction, LogoutAction } from "../active-user/types";
 
-import { LocationChangeAction } from '../common';
+import { LocationChangeAction } from "../common";
 
 export type EntryPinTracker = Record<string, boolean>;
 
 export enum ActionTypes {
-  FETCH = '@entry-pin-tracker/FETCH',
-  FETCHED = '@entry-pin-tracker/FETCHED',
-  SET = '@entry-pin-tracker/SET'
+  FETCH = "@entry-pin-tracker/FETCH",
+  FETCHED = "@entry-pin-tracker/FETCHED",
+  SET = "@entry-pin-tracker/SET"
 }
 
 export interface FetchAction {

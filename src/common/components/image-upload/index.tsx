@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Form, FormControl, InputGroup, Modal, Button, Spinner } from 'react-bootstrap';
+import { Form, FormControl, InputGroup, Modal, Button, Spinner } from "react-bootstrap";
 
-import { ActiveUser } from '../../store/active-user/types';
+import { ActiveUser } from "../../store/active-user/types";
 
-import BaseComponent from '../base';
-import UploadButton from '../image-upload-button';
+import BaseComponent from "../base";
+import UploadButton from "../image-upload-button";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 interface Props {
   activeUser: ActiveUser;
@@ -46,7 +46,7 @@ export class ImageUpload extends BaseComponent<Props, State> {
     const { image, uploading } = this.state;
 
     const spinner = (
-      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: '6px' }} />
+      <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
     );
 
     return (
@@ -76,7 +76,7 @@ export class ImageUpload extends BaseComponent<Props, State> {
           </InputGroup>
         </Form.Group>
         <Button onClick={this.done} disabled={inProgress || uploading}>
-          {inProgress && spinner} {_t('g.save')}
+          {inProgress && spinner} {_t("g.save")}
         </Button>
       </div>
     );

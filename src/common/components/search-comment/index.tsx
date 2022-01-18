@@ -1,40 +1,40 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 
-import { Button, Col, Form, FormControl, Row } from 'react-bootstrap';
+import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
 
-import { History, Location } from 'history';
+import { History, Location } from "history";
 
-import numeral from 'numeral';
+import numeral from "numeral";
 
-import moment, { Moment } from 'moment';
+import moment, { Moment } from "moment";
 
-import queryString from 'query-string';
+import queryString from "query-string";
 
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
 
-import BaseComponent from '../base';
-import SearchListItem from '../search-list-item';
-import LinearProgress from '../linear-progress';
-import DetectBottom from '../detect-bottom';
+import BaseComponent from "../base";
+import SearchListItem from "../search-list-item";
+import LinearProgress from "../linear-progress";
+import DetectBottom from "../detect-bottom";
 
-import SearchQuery, { SearchType } from '../../helper/search-query';
+import SearchQuery, { SearchType } from "../../helper/search-query";
 
-import { search, SearchResult } from '../../api/search-api';
+import { search, SearchResult } from "../../api/search-api";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 enum SearchSort {
-  POPULARITY = 'popularity',
-  NEWEST = 'newest',
-  RELEVANCE = 'relevance'
+  POPULARITY = "popularity",
+  NEWEST = "newest",
+  RELEVANCE = "relevance"
 }
 
 enum DateOpt {
-  W = 'week',
-  M = 'month',
-  Y = 'year',
-  A = 'all'
+  W = "week",
+  M = "month",
+  Y = "year",
+  A = "all"
 }
 
 interface Props {
@@ -68,8 +68,8 @@ const pureState = (props: Props): State => {
   const q = qs.q as string;
   const sort = (qs.sort as SearchSort) || SearchSort.POPULARITY;
   const date = (qs.date as DateOpt) || DateOpt.Y;
-  const hideLow = !(qs.hd && qs.hd === '0');
-  const advanced = !!(qs.adv && qs.adv === '1');
+  const hideLow = !(qs.hd && qs.hd === "0");
+  const advanced = !!(qs.adv && qs.adv === "1");
   const sq = new SearchQuery(q);
 
   return {
@@ -77,7 +77,7 @@ const pureState = (props: Props): State => {
     author: sq.author,
     type: sq.type || SearchType.ALL,
     category: sq.category,
-    tags: sq.tags.join(','),
+    tags: sq.tags.join(","),
     date,
     sort,
     hideLow,
@@ -85,7 +85,7 @@ const pureState = (props: Props): State => {
     inProgress: false,
     hits: 0,
     results: [],
-    scrollId: ''
+    scrollId: ""
   };
 };
 
@@ -179,10 +179,10 @@ export class SearchComment extends BaseComponent<Props, State> {
       q,
       date,
       sort,
-      adv: '1'
+      adv: "1"
     };
 
-    if (!hideLow) uqObj.hd = '0';
+    if (!hideLow) uqObj.hd = "0";
 
     const uq = queryString.stringify(uqObj);
 
@@ -197,23 +197,23 @@ export class SearchComment extends BaseComponent<Props, State> {
 
     switch (date) {
       case DateOpt.W:
-        sinceDate = moment().subtract('1', 'week');
+        sinceDate = moment().subtract("1", "week");
         break;
       case DateOpt.M:
-        sinceDate = moment().subtract('1', 'month');
+        sinceDate = moment().subtract("1", "month");
         break;
       case DateOpt.Y:
-        sinceDate = moment().subtract('1', 'year');
+        sinceDate = moment().subtract("1", "year");
         break;
       default:
         sinceDate = undefined;
     }
 
-    const since = sinceDate ? sinceDate.format('YYYY-MM-DDTHH:mm:ss') : undefined;
+    const since = sinceDate ? sinceDate.format("YYYY-MM-DDTHH:mm:ss") : undefined;
 
     const q = this.buildQuery();
 
-    const hideLow_ = hideLow ? '1' : '0';
+    const hideLow_ = hideLow ? "1" : "0";
     const scrollId_ = results.length > 0 && scrollId ? scrollId : undefined;
 
     this.stateSet({ inProgress: true });
@@ -230,7 +230,7 @@ export class SearchComment extends BaseComponent<Props, State> {
         this.stateSet({
           hits: r.hits,
           results: newResults,
-          scrollId: r.scroll_id || ''
+          scrollId: r.scroll_id || ""
         });
       })
       .finally(() => {
@@ -278,27 +278,27 @@ export class SearchComment extends BaseComponent<Props, State> {
       <div className="advanced-section">
         <Row>
           <Form.Group as={Col} sm="4" controlId="form-search">
-            <Form.Label>{_t('search-comment.search')}</Form.Label>
+            <Form.Label>{_t("search-comment.search")}</Form.Label>
             <Form.Control
               type="text"
-              placeholder={_t('search-comment.search-placeholder')}
+              placeholder={_t("search-comment.search-placeholder")}
               value={search}
               onChange={this.searchChanged}
               onKeyDown={this.textInputDown}
             />
           </Form.Group>
           <Form.Group as={Col} sm="4" controlId="form-author">
-            <Form.Label>{_t('search-comment.author')}</Form.Label>
+            <Form.Label>{_t("search-comment.author")}</Form.Label>
             <Form.Control
               type="text"
-              placeholder={_t('search-comment.author-placeholder')}
+              placeholder={_t("search-comment.author-placeholder")}
               value={author}
               onChange={this.authorChanged}
               onKeyDown={this.textInputDown}
             />
           </Form.Group>
           <Form.Group as={Col} sm="2" controlId="form-type">
-            <Form.Label>{_t('search-comment.type')}</Form.Label>
+            <Form.Label>{_t("search-comment.type")}</Form.Label>
             <Form.Control as="select" value={type} onChange={this.typeChanged}>
               {Object.values(SearchType).map((x) => (
                 <option value={x} key={x}>
@@ -308,10 +308,10 @@ export class SearchComment extends BaseComponent<Props, State> {
             </Form.Control>
           </Form.Group>
           <Form.Group as={Col} sm="2" controlId="form-category">
-            <Form.Label>{_t('search-comment.category')}</Form.Label>
+            <Form.Label>{_t("search-comment.category")}</Form.Label>
             <Form.Control
               type="text"
-              placeholder={_t('search-comment.category-placeholder')}
+              placeholder={_t("search-comment.category-placeholder")}
               value={category}
               onChange={this.categoryChanged}
               onKeyDown={this.textInputDown}
@@ -320,17 +320,17 @@ export class SearchComment extends BaseComponent<Props, State> {
         </Row>
         <Row>
           <Form.Group as={Col} sm="8" controlId="form-tag">
-            <Form.Label>{_t('search-comment.tags')}</Form.Label>
+            <Form.Label>{_t("search-comment.tags")}</Form.Label>
             <Form.Control
               type="text"
-              placeholder={_t('search-comment.tags-placeholder')}
+              placeholder={_t("search-comment.tags-placeholder")}
               value={tags}
               onChange={this.tagsChanged}
               onKeyDown={this.textInputDown}
             />
           </Form.Group>
           <Form.Group as={Col} sm="2" controlId="form-date">
-            <Form.Label>{_t('search-comment.date')}</Form.Label>
+            <Form.Label>{_t("search-comment.date")}</Form.Label>
             <Form.Control as="select" value={date} onChange={this.dateChanged}>
               {Object.values(DateOpt).map((x) => (
                 <option value={x} key={x}>
@@ -340,7 +340,7 @@ export class SearchComment extends BaseComponent<Props, State> {
             </Form.Control>
           </Form.Group>
           <Form.Group as={Col} sm="2" controlId="form-sort">
-            <Form.Label>{_t('search-comment.sort')}</Form.Label>
+            <Form.Label>{_t("search-comment.sort")}</Form.Label>
             <Form.Control as="select" value={sort} onChange={this.sortChanged}>
               {Object.values(SearchSort).map((x) => (
                 <option value={x} key={x}>
@@ -354,13 +354,13 @@ export class SearchComment extends BaseComponent<Props, State> {
           <Form.Check
             id="hide-low"
             type="checkbox"
-            label={_t('search-comment.hide-low')}
+            label={_t("search-comment.hide-low")}
             checked={hideLow}
             onChange={this.hideLowChanged}
           />
 
           <Button type="button" onClick={this.apply}>
-            {_t('g.apply')}
+            {_t("g.apply")}
           </Button>
         </div>
       </div>
@@ -370,16 +370,16 @@ export class SearchComment extends BaseComponent<Props, State> {
       <div className="card search-comment">
         <div className="card-header d-flex justify-content-between align-items-center">
           <div>
-            <strong>{_t('search-comment.title')}</strong>
+            <strong>{_t("search-comment.title")}</strong>
             {(() => {
               if (hits === 1) {
-                return <span className="matches">{_t('search-comment.matches-singular')}</span>;
+                return <span className="matches">{_t("search-comment.matches-singular")}</span>;
               }
 
               if (hits > 1) {
-                const strHits = numeral(hits).format('0,0');
+                const strHits = numeral(hits).format("0,0");
                 return (
-                  <span className="matches">{_t('search-comment.matches', { n: strHits })}</span>
+                  <span className="matches">{_t("search-comment.matches", { n: strHits })}</span>
                 );
               }
 
@@ -393,7 +393,7 @@ export class SearchComment extends BaseComponent<Props, State> {
               this.toggleAdvanced();
             }}
           >
-            {advanced ? _t('g.close') : _t('search-comment.advanced')}
+            {advanced ? _t("g.close") : _t("search-comment.advanced")}
           </a>
         </div>
         <div className="card-body">
@@ -417,7 +417,7 @@ export class SearchComment extends BaseComponent<Props, State> {
                           this.showMore();
                         }}
                       >
-                        {_t('search-comment.show-more')}
+                        {_t("search-comment.show-more")}
                       </a>
                     </div>
                   )}
@@ -426,7 +426,7 @@ export class SearchComment extends BaseComponent<Props, State> {
             }
 
             if (!inProgress) {
-              return <span>{_t('g.no-matches')}</span>;
+              return <span>{_t("g.no-matches")}</span>;
             }
 
             return null;

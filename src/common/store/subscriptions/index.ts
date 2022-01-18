@@ -1,7 +1,7 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
-import { ActionTypes as ActiveUserActionTypes } from '../active-user/types';
-import { Actions, ActionTypes, Subscription, UpdateAction } from './types';
+import { ActionTypes as ActiveUserActionTypes } from "../active-user/types";
+import { Actions, ActionTypes, Subscription, UpdateAction } from "./types";
 
 export const initialState: Subscription[] = [];
 

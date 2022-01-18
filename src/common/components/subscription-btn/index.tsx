@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 
-import { Button, Spinner, ButtonProps } from 'react-bootstrap';
+import { Button, Spinner, ButtonProps } from "react-bootstrap";
 
-import { Subscription } from '../../store/subscriptions/types';
-import { Community } from '../../store/communities/types';
-import { User } from '../../store/users/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { ToggleType, UI } from '../../store/ui/types';
-import { Account } from '../../store/accounts/types';
+import { Subscription } from "../../store/subscriptions/types";
+import { Community } from "../../store/communities/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { ToggleType, UI } from "../../store/ui/types";
+import { Account } from "../../store/accounts/types";
 
-import BaseComponent from '../base';
-import LoginRequired from '../login-required';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import LoginRequired from "../login-required";
+import { error } from "../feedback";
 
-import { formatError, subscribe, unSubscribe } from '../../api/operations';
+import { formatError, subscribe, unSubscribe } from "../../api/operations";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 interface Props {
   users: User[];
@@ -47,7 +47,7 @@ export default class SubscriptionBtn extends BaseComponent<Props, State> {
     this.stateSet({ inProgress: true });
     subscribe(activeUser?.username!, community.name)
       .then(() => {
-        const s: Subscription = [community.name, community.title, 'guest', ''];
+        const s: Subscription = [community.name, community.title, "guest", ""];
         updateSubscriptions([...subscriptions, s]);
         this.stateSet({ inProgress: false });
       })
@@ -96,10 +96,10 @@ export default class SubscriptionBtn extends BaseComponent<Props, State> {
           onMouseEnter={this.toggleHover}
           onMouseLeave={this.toggleHover}
           onClick={this.unSubscribe}
-          variant={hover ? 'outline-danger' : 'outline-primary'}
+          variant={hover ? "outline-danger" : "outline-primary"}
           {...buttonProps}
         >
-          {hover ? _t('community.unsubscribe') : _t('community.subscribed')}
+          {hover ? _t("community.unsubscribe") : _t("community.subscribed")}
         </Button>
       );
     }
@@ -108,7 +108,7 @@ export default class SubscriptionBtn extends BaseComponent<Props, State> {
       ...this.props,
       children: (
         <Button onClick={this.subscribe} {...buttonProps}>
-          {_t('community.subscribe')}
+          {_t("community.subscribe")}
         </Button>
       )
     });

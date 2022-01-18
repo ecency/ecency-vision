@@ -1,39 +1,39 @@
-import { remote, shell, clipboard } from 'electron';
+import { remote, shell, clipboard } from "electron";
 
-import { _t } from '../../common/i18n';
+import { _t } from "../../common/i18n";
 
 const { Menu, MenuItem } = remote;
 
-const isAnyTextSelected = () => window.getSelection() && window.getSelection()!.toString() !== '';
+const isAnyTextSelected = () => window.getSelection() && window.getSelection()!.toString() !== "";
 
 const itemCut = () =>
   new MenuItem({
-    label: _t('context-menu.cut'),
+    label: _t("context-menu.cut"),
     click: () => {
-      document.execCommand('cut');
+      document.execCommand("cut");
     }
   });
 
 const itemCopy = () =>
   new MenuItem({
-    label: _t('context-menu.copy'),
+    label: _t("context-menu.copy"),
     click: () => {
-      document.execCommand('copy');
+      document.execCommand("copy");
     }
   });
 
 const itemPaste = () =>
   new MenuItem({
-    label: _t('context-menu.paste'),
+    label: _t("context-menu.paste"),
     click: () => {
-      document.execCommand('paste');
+      document.execCommand("paste");
     }
   });
 
-let imgUrlToOpen = '';
+let imgUrlToOpen = "";
 const itemImgOpen = () =>
   new MenuItem({
-    label: _t('context-menu.open-image-browser'),
+    label: _t("context-menu.open-image-browser"),
     click: () => {
       shell.openExternal(imgUrlToOpen);
     }
@@ -41,7 +41,7 @@ const itemImgOpen = () =>
 
 const itemImgCopyUrl = () =>
   new MenuItem({
-    label: _t('context-menu.copy-image-url'),
+    label: _t("context-menu.copy-image-url"),
     click: () => {
       clipboard.writeText(imgUrlToOpen);
     }
@@ -68,20 +68,20 @@ const imgMenu = () => {
 };
 
 document.addEventListener(
-  'contextmenu',
+  "contextmenu",
   (e: MouseEvent) => {
     const target = e.target as HTMLElement;
 
     switch (target.nodeName) {
-      case 'IMG':
-        imgUrlToOpen = target.getAttribute('src') || '';
-        if (imgUrlToOpen.startsWith('https://')) {
+      case "IMG":
+        imgUrlToOpen = target.getAttribute("src") || "";
+        if (imgUrlToOpen.startsWith("https://")) {
           e.preventDefault();
           imgMenu().popup({ window: remote.getCurrentWindow() });
         }
         break;
-      case 'TEXTAREA':
-      case 'INPUT':
+      case "TEXTAREA":
+      case "INPUT":
         e.preventDefault();
         textEditMenu().popup({ window: remote.getCurrentWindow() });
         break;

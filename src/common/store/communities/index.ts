@@ -1,6 +1,6 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
-import { Community, Communities, Actions, ActionTypes, AddAction } from './types';
+import { Community, Communities, Actions, ActionTypes, AddAction } from "./types";
 
 export const initialState: Communities = [];
 

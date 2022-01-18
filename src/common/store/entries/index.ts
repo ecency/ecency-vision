@@ -1,8 +1,8 @@
-import update from 'immutability-helper';
+import update from "immutability-helper";
 
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
-import { AppState } from '../index';
+import { AppState } from "../index";
 
 import {
   Actions,
@@ -14,17 +14,17 @@ import {
   UpdateAction,
   Entries,
   Entry
-} from './types';
+} from "./types";
 
-import { CommonActionTypes } from '../common';
+import { CommonActionTypes } from "../common";
 
-import { clone } from '../util';
+import { clone } from "../util";
 
-import filterTagExtract from '../../helper/filter-tag-extract';
+import filterTagExtract from "../../helper/filter-tag-extract";
 
-import { getPostsRanked, getAccountPosts, dataLimit } from '../../api/bridge';
+import { getPostsRanked, getAccountPosts, dataLimit } from "../../api/bridge";
 
-export const makeGroupKey = (what: string, tag: string = ''): string => {
+export const makeGroupKey = (what: string, tag: string = ""): string => {
   if (tag) {
     return `${what}-${tag}`;
   }
@@ -60,7 +60,7 @@ export default (state: Entries = initialState, action: Actions): Entries => {
       const groupKey = makeGroupKey(filter, tag);
 
       // Create a new group if group is not exists in store or PUSH action triggered.
-      if (state[`${groupKey}`] === undefined || action.payload.action === 'PUSH') {
+      if (state[`${groupKey}`] === undefined || action.payload.action === "PUSH") {
         return update(state, {
           [`${groupKey}`]: {
             $set: { entries: [], error: null, loading: true, hasMore: false }
@@ -136,7 +136,7 @@ export default (state: Entries = initialState, action: Actions): Entries => {
 
 /* Actions */
 export const fetchEntries =
-  (what: string = '', tag: string = '', more: boolean = false) =>
+  (what: string = "", tag: string = "", more: boolean = false) =>
   (dispatch: Dispatch, getState: () => AppState) => {
     const { entries, activeUser } = getState();
     const pageSize = dataLimit;
@@ -151,8 +151,8 @@ export const fetchEntries =
 
     const lastEntry = theEntries[theEntries.length - 1];
 
-    let start_author = '';
-    let start_permlink = '';
+    let start_author = "";
+    let start_permlink = "";
 
     if (lastEntry) {
       start_author = lastEntry.author;
@@ -161,12 +161,12 @@ export const fetchEntries =
 
     dispatch(fetchAct(groupKey));
 
-    const observer = activeUser?.username || '';
+    const observer = activeUser?.username || "";
 
     let promise: Promise<Entry[] | null>;
-    if (tag.startsWith('@')) {
+    if (tag.startsWith("@")) {
       // @username/posts|replies|comments|feed
-      const username = tag.replace('@', '');
+      const username = tag.replace("@", "");
 
       promise = getAccountPosts(what, username, start_author, start_permlink, dataLimit, observer);
     } else {
@@ -179,16 +179,16 @@ export const fetchEntries =
         if (resp) {
           dispatch(fetchedAct(groupKey, resp, resp.length >= dataLimit));
         } else {
-          dispatch(fetchErrorAct(groupKey, 'server error'));
+          dispatch(fetchErrorAct(groupKey, "server error"));
         }
       })
       .catch((e) => {
-        dispatch(fetchErrorAct(groupKey, 'network error'));
+        dispatch(fetchErrorAct(groupKey, "network error"));
       });
   };
 
 export const addEntry = (entry: Entry) => (dispatch: Dispatch) => {
-  dispatch(fetchedAct('__manual__', [entry], false));
+  dispatch(fetchedAct("__manual__", [entry], false));
 };
 
 export const updateEntry = (entry: Entry) => (dispatch: Dispatch) => {

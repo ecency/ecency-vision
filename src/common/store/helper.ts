@@ -1,43 +1,43 @@
-import { Store } from 'redux';
+import { Store } from "redux";
 
-import i18n from 'i18next';
+import i18n from "i18next";
 
-import { AppState } from './index';
-import { ActiveUser, UserPoints } from './active-user/types';
+import { AppState } from "./index";
+import { ActiveUser, UserPoints } from "./active-user/types";
 import {
   loginAct as loginActiveUser,
   logoutAct as logoutActiveUser,
   updateAct as updateActiveUserAct
-} from './active-user';
+} from "./active-user";
 
-import { getAccount, getDynamicProps } from '../api/hive';
-import { getPoints, usrActivity, getPromotedEntries } from '../api/private-api';
-import { reloadAct as reloadUsers } from './users';
-import { fetchedAct as loadDynamicProps } from './dynamic-props';
-import { fetchedAct as entriesFetchedAct } from './entries';
+import { getAccount, getDynamicProps } from "../api/hive";
+import { getPoints, usrActivity, getPromotedEntries } from "../api/private-api";
+import { reloadAct as reloadUsers } from "./users";
+import { fetchedAct as loadDynamicProps } from "./dynamic-props";
+import { fetchedAct as entriesFetchedAct } from "./entries";
 import {
   setCurrencyAct as setCurrency,
   muteNotificationsAct as muteNotifications,
   setLangAct as setLang,
   setNsfwAct as setNsfw
-} from './global';
+} from "./global";
 
-import { getCurrencyRate } from '../api/misc';
+import { getCurrencyRate } from "../api/misc";
 
-import currencies from '../constants/currencies.json';
+import currencies from "../constants/currencies.json";
 
-import * as ls from '../../common/util/local-storage';
+import * as ls from "../../common/util/local-storage";
 
-import currencySymbol from '../../common/helper/currency-symbol';
+import currencySymbol from "../../common/helper/currency-symbol";
 
-import { AppWindow } from '../../client/window';
+import { AppWindow } from "../../client/window";
 
 declare var window: AppWindow;
 
 export const activeUserMaker = (
   name: string,
-  points: string = '0.000',
-  uPoints: string = '0.000'
+  points: string = "0.000",
+  uPoints: string = "0.000"
 ): ActiveUser => {
   return {
     username: name,
@@ -67,8 +67,8 @@ export const activeUserUpdater = async (store: Store<AppState>) => {
       points = { points: p.points, uPoints: p.unclaimed_points };
     } catch (e) {
       points = {
-        points: '0.000',
-        uPoints: '0.000'
+        points: "0.000",
+        uPoints: "0.000"
       };
     }
 
@@ -79,7 +79,7 @@ export const activeUserUpdater = async (store: Store<AppState>) => {
 export const syncActiveUser = (store: Store<AppState>) => {
   const state = store.getState();
 
-  const activeUser = ls.get('active_user');
+  const activeUser = ls.get("active_user");
 
   // logout
   if (!activeUser && state.activeUser) {
@@ -143,14 +143,14 @@ export const clientStoreTasks = (store: Store<AppState>) => {
   // Inject / update promoted entries to store
   const promotedEntries = () => {
     getPromotedEntries().then((r) => {
-      store.dispatch(entriesFetchedAct('__promoted__', r, false));
+      store.dispatch(entriesFetchedAct("__promoted__", r, false));
     });
   };
   promotedEntries();
   setInterval(promotedEntries, 1000 * 60 * 5);
 
   // Currency
-  const currency = ls.get('currency');
+  const currency = ls.get("currency");
   if (currency && currencies.find((x) => x.id === currency)) {
     const symbol = currencySymbol(currency);
     getCurrencyRate(currency).then((rate) => {
@@ -159,12 +159,12 @@ export const clientStoreTasks = (store: Store<AppState>) => {
   }
 
   // Notifications
-  if (ls.get('notifications') === false) {
+  if (ls.get("notifications") === false) {
     store.dispatch(muteNotifications());
   }
 
   // Language
-  const lang = ls.get('lang');
+  const lang = ls.get("lang");
   if (lang) {
     if (store.getState().global.lang !== lang) {
       i18n.changeLanguage(lang).then(() => {
@@ -174,7 +174,7 @@ export const clientStoreTasks = (store: Store<AppState>) => {
   }
 
   // NSFW
-  if (ls.get('nsfw') === true) {
+  if (ls.get("nsfw") === true) {
     store.dispatch(setNsfw(true));
   }
 };

@@ -1,24 +1,24 @@
-import React from 'react';
-import { createBrowserHistory } from 'history';
-import renderer from 'react-test-renderer';
+import React from "react";
+import { createBrowserHistory } from "history";
+import renderer from "react-test-renderer";
 
-import CommunityCover from './index';
+import CommunityCover from "./index";
 
-import { Theme } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
+import { Theme } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
 
 import {
   globalInstance,
   UiInstance,
   communityInstance1,
   fullAccountInstance
-} from '../../helper/test-helper';
+} from "../../helper/test-helper";
 
-jest.mock('../../constants/defaults.json', () => ({
-  imageServer: 'https://images.ecency.com'
+jest.mock("../../constants/defaults.json", () => ({
+  imageServer: "https://images.ecency.com"
 }));
 
-jest.mock('../../api/hive', () => ({
+jest.mock("../../api/hive", () => ({
   getFollowing: () =>
     new Promise((resolve) => {
       resolve([]);
@@ -41,12 +41,12 @@ const defProps = {
   addAccount: () => {}
 };
 
-it('(1) Render with loaded account object', () => {
+it("(1) Render with loaded account object", () => {
   const account: Account = {
     ...fullAccountInstance,
-    name: 'user1',
+    name: "user1",
     profile: {
-      cover_image: 'https://img.esteem.app/rwd380.jpg'
+      cover_image: "https://img.esteem.app/rwd380.jpg"
     }
   };
 
@@ -59,9 +59,9 @@ it('(1) Render with loaded account object', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Render with not loaded account object', () => {
+it("(2) Render with not loaded account object", () => {
   const account: Account = {
-    name: 'user1'
+    name: "user1"
   };
 
   const props = {
@@ -73,10 +73,10 @@ it('(2) Render with not loaded account object', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(3) No bg image - Day theme', () => {
+it("(3) No bg image - Day theme", () => {
   const account: Account = {
     ...fullAccountInstance,
-    name: 'user1',
+    name: "user1",
     profile: {}
   };
 
@@ -89,10 +89,10 @@ it('(3) No bg image - Day theme', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(4) No bg image - Night theme', () => {
+it("(4) No bg image - Night theme", () => {
   const account: Account = {
     ...fullAccountInstance,
-    name: 'user1',
+    name: "user1",
     profile: {}
   };
 

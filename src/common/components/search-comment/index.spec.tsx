@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 
-import TestRenderer from 'react-test-renderer';
+import TestRenderer from "react-test-renderer";
 
-import mockDate from 'mockdate';
-import { createBrowserHistory, createLocation } from 'history';
-import { StaticRouter } from 'react-router-dom';
+import mockDate from "mockdate";
+import { createBrowserHistory, createLocation } from "history";
+import { StaticRouter } from "react-router-dom";
 
-import { globalInstance, allOver, searchResponseInstance } from '../../helper/test-helper';
+import { globalInstance, allOver, searchResponseInstance } from "../../helper/test-helper";
 
-import { SearchComment } from './index';
+import { SearchComment } from "./index";
 
 mockDate.set(1591398131174);
 
 let TEST_MODE = 0;
 
-jest.mock('../../api/search-api', () => ({
+jest.mock("../../api/search-api", () => ({
   search: () =>
     new Promise((resolve) => {
       if (TEST_MODE === 0) {
@@ -40,12 +40,12 @@ jest.mock('../../api/search-api', () => ({
 
 const defProps = {
   history: createBrowserHistory(),
-  location: createLocation({ search: 'q=foo' }),
+  location: createLocation({ search: "q=foo" }),
   global: globalInstance,
   addAccount: () => {}
 };
 
-it('(1) Default render', async () => {
+it("(1) Default render", async () => {
   const props = { ...defProps };
 
   const renderer = TestRenderer.create(
@@ -57,7 +57,7 @@ it('(1) Default render', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(2) With limit', async () => {
+it("(2) With limit", async () => {
   const props = {
     ...defProps,
     limit: 8
@@ -72,7 +72,7 @@ it('(2) With limit', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(3) Hide show more button', async () => {
+it("(3) Hide show more button", async () => {
   TEST_MODE = 1;
 
   const props = {
@@ -89,7 +89,7 @@ it('(3) Hide show more button', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(4) No matches', async () => {
+it("(4) No matches", async () => {
   TEST_MODE = 2;
 
   const props = {

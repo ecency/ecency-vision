@@ -1,8 +1,8 @@
-import { createStore, applyMiddleware, compose, Middleware, Store } from 'redux';
-import thunk from 'redux-thunk';
-import { routerMiddleware } from 'connected-react-router';
+import { createStore, applyMiddleware, compose, Middleware, Store } from "redux";
+import thunk from "redux-thunk";
+import { routerMiddleware } from "connected-react-router";
 
-import rootReducer, { AppState, history } from './index';
+import rootReducer, { AppState, history } from "./index";
 
 const enhancers = [];
 let middleware: Middleware[] = [thunk];
@@ -12,10 +12,10 @@ if (history) {
   middleware = [...middleware, routerMiddleware(history)];
 }
 
-if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
-  const devToolsExtension = window['__REDUX_DEVTOOLS_EXTENSION__'];
+if (process.env.NODE_ENV === "development" && typeof window !== "undefined") {
+  const devToolsExtension = window["__REDUX_DEVTOOLS_EXTENSION__"];
 
-  if (typeof devToolsExtension === 'function') {
+  if (typeof devToolsExtension === "function") {
     enhancers.push(devToolsExtension());
   }
 }
@@ -27,8 +27,8 @@ const configureStore = (preLoadedState: AppState): Store<AppState> => {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('./index', () => {
-      const nextRootReducer = require('./index').default;
+    module.hot.accept("./index", () => {
+      const nextRootReducer = require("./index").default;
       store.replaceReducer(nextRootReducer);
     });
   }

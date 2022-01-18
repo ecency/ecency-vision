@@ -1,4 +1,4 @@
-import defaults from '../constants/defaults.json';
+import defaults from "../constants/defaults.json";
 
 export const makeEsteemUrl = (cat: string, author: string, permlink: string): string =>
   `${defaults.base}/${cat}/@${author}/${permlink}`;

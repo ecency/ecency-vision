@@ -1,20 +1,20 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import React from "react";
+import renderer from "react-test-renderer";
 
-import { createBrowserHistory, createLocation } from 'history';
+import { createBrowserHistory, createLocation } from "history";
 
-import { SimilarEntries } from './index';
+import { SimilarEntries } from "./index";
 
 import {
   globalInstance,
   entryInstance1,
   allOver,
   searchResponseInstance
-} from '../../helper/test-helper';
+} from "../../helper/test-helper";
 
 let TEST_MODE = 0;
 
-jest.mock('../../api/search-api', () => ({
+jest.mock("../../api/search-api", () => ({
   search: () =>
     new Promise((resolve) => {
       if (TEST_MODE === 0) {
@@ -37,7 +37,7 @@ jest.mock('../../api/search-api', () => ({
             searchResponseInstance.results[1],
             {
               ...searchResponseInstance.results[2],
-              author: 'good-karmax'
+              author: "good-karmax"
             }
           ]
         };
@@ -46,11 +46,11 @@ jest.mock('../../api/search-api', () => ({
     })
 }));
 
-jest.mock('moment', () => () => ({
-  fromNow: () => '3 days ago'
+jest.mock("moment", () => () => ({
+  fromNow: () => "3 days ago"
 }));
 
-it('(1) No data.', async () => {
+it("(1) No data.", async () => {
   const props = {
     history: createBrowserHistory(),
     location: createLocation({}),
@@ -63,7 +63,7 @@ it('(1) No data.', async () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Less than 3 entries. Should render null', async () => {
+it("(2) Less than 3 entries. Should render null", async () => {
   TEST_MODE = 1;
 
   const props = {
@@ -78,7 +78,7 @@ it('(2) Less than 3 entries. Should render null', async () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(3) Should render entries', async () => {
+it("(3) Should render entries", async () => {
   TEST_MODE = 2;
 
   const props = {

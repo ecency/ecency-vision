@@ -1,13 +1,13 @@
-import moment from 'moment';
+import moment from "moment";
 
-import { FullAccount } from '../store/accounts/types';
-import { Entry } from '../store/entries/types';
+import { FullAccount } from "../store/accounts/types";
+import { Entry } from "../store/entries/types";
 
-import accountReputation from './account-reputation';
+import accountReputation from "./account-reputation";
 
-import isElectron from '../util/is-electron';
+import isElectron from "../util/is-electron";
 
-import { version } from '../../../package.json';
+import { version } from "../../../package.json";
 
 export interface TempEntryProps {
   author: FullAccount;
@@ -19,18 +19,18 @@ export interface TempEntryProps {
   tags: string[];
 }
 
-export const correctIsoDate = (d: string): string => d.split('.')[0];
+export const correctIsoDate = (d: string): string => d.split(".")[0];
 
 export default (p: TempEntryProps): Entry => {
   const now = moment(Date.now());
-  const payout = moment(Date.now()).add(7, 'days');
+  const payout = moment(Date.now()).add(7, "days");
 
   const category = p.tags[0];
 
   return {
     active_votes: [],
     author: p.author.name,
-    author_payout_value: '0.000 HBD',
+    author_payout_value: "0.000 HBD",
     author_reputation: Number(p.author.reputation!),
     beneficiaries: [],
     blacklists: [],
@@ -38,23 +38,23 @@ export default (p: TempEntryProps): Entry => {
     category,
     children: 0,
     created: correctIsoDate(now.toISOString()),
-    curator_payout_value: '0.000 HBD',
+    curator_payout_value: "0.000 HBD",
     depth: 0,
     is_paidout: false,
     json_metadata: {
-      app: `ecency/${version}-${isElectron() ? 'surfer' : 'vision'}`,
-      format: 'markdown+html',
+      app: `ecency/${version}-${isElectron() ? "surfer" : "vision"}`,
+      format: "markdown+html",
       tags: p.tags
     },
-    max_accepted_payout: '1000000.000 HBD',
+    max_accepted_payout: "1000000.000 HBD",
     net_rshares: 0,
     payout: 0,
     payout_at: correctIsoDate(payout.toISOString()),
-    pending_payout_value: '0.000 HBD',
+    pending_payout_value: "0.000 HBD",
     percent_hbd: 10000,
     permlink: p.permlink,
     post_id: 1,
-    promoted: '0.000 HBD',
+    promoted: "0.000 HBD",
     replies: [],
     stats: { flag_weight: 0, gray: false, hide: false, total_votes: 0 },
     title: p.title,

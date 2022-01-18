@@ -1,10 +1,10 @@
 export enum ROLES {
-  OWNER = 'owner',
-  ADMIN = 'admin',
-  MOD = 'mod',
-  MEMBER = 'member',
-  GUEST = 'guest',
-  MUTED = 'muted'
+  OWNER = "owner",
+  ADMIN = "admin",
+  MOD = "mod",
+  MEMBER = "member",
+  GUEST = "guest",
+  MUTED = "muted"
 }
 
 export const roleMap: Record<string, string[]> = {
@@ -39,7 +39,7 @@ export interface Community {
 export type Communities = Community[];
 
 export enum ActionTypes {
-  ADD = '@communities/ADD'
+  ADD = "@communities/ADD"
 }
 
 export interface AddAction {

@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Entry } from '../../store/entries/types';
+import { Entry } from "../../store/entries/types";
 
-import { getPost } from '../../api/bridge';
+import { getPost } from "../../api/bridge";
 
 export const makePath = (
   category: string,
   author: string,
   permlink: string,
   toReplies: boolean = false
-) => `/${category}/@${author}/${permlink}${toReplies ? '#replies' : ''}`;
+) => `/${category}/@${author}/${permlink}${toReplies ? "#replies" : ""}`;
 
 export interface PartialEntry {
   category: string;
@@ -36,7 +36,7 @@ export class EntryLink extends Component<Props> {
 
     let { entry: _entry } = this.props;
 
-    if (!('title' in _entry)) {
+    if (!("title" in _entry)) {
       // Get full content if the "entry" passed is "PartialEntry"
       try {
         const resp = await getPost(_entry.author, _entry.permlink);
@@ -60,7 +60,7 @@ export class EntryLink extends Component<Props> {
 
     const props = Object.assign({}, children.props, { href, onClick: this.clicked });
 
-    return React.createElement('a', props);
+    return React.createElement("a", props);
   }
 }
 

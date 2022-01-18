@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 
-import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
+import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 
-import { PrivateKey, KeyRole } from '@hiveio/dhive';
+import { PrivateKey, KeyRole } from "@hiveio/dhive";
 
-import { ActiveUser } from '../../store/active-user/types';
+import { ActiveUser } from "../../store/active-user/types";
 
-import BaseComponent from '../base';
-import { error, success } from '../feedback';
+import BaseComponent from "../base";
+import { error, success } from "../feedback";
 
-import { formatError } from '../../api/operations';
+import { formatError } from "../../api/operations";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { copyContent } from '../../img/svg';
-import truncate from '../../util/truncate';
+import { copyContent } from "../../img/svg";
+import truncate from "../../util/truncate";
 
 interface Props {
   activeUser: ActiveUser;
@@ -29,7 +29,7 @@ interface State {
 
 export default class ViewKeys extends BaseComponent<Props, State> {
   state: State = {
-    curPass: '',
+    curPass: "",
     keys: {},
     inProgress: false
   };
@@ -50,21 +50,21 @@ export default class ViewKeys extends BaseComponent<Props, State> {
 
     this.stateSet({ inProgress: true });
 
-    const newPrivateKeys = { active: '', memo: '', owner: '', posting: '' };
-    let keyCheck = '';
+    const newPrivateKeys = { active: "", memo: "", owner: "", posting: "" };
+    let keyCheck = "";
 
     try {
-      ['owner', 'active', 'posting', 'memo'].forEach((r) => {
+      ["owner", "active", "posting", "memo"].forEach((r) => {
         const k = PrivateKey.fromLogin(activeUser.username, curPass, r as KeyRole);
         newPrivateKeys[r] = k.toString();
-        if (r === 'memo') keyCheck = k.createPublic().toString();
+        if (r === "memo") keyCheck = k.createPublic().toString();
       });
     } catch (err) {
       error(formatError(err));
     }
 
     if (activeUser.data.memo_key !== keyCheck) {
-      error(_t('view-keys.error'));
+      error(_t("view-keys.error"));
       this.stateSet({ inProgress: false, keys: {} });
     } else {
       this.stateSet({ inProgress: false, keys: newPrivateKeys });
@@ -72,13 +72,13 @@ export default class ViewKeys extends BaseComponent<Props, State> {
   };
 
   copyToClipboard = (text: string) => {
-    const textField = document.createElement('textarea');
+    const textField = document.createElement("textarea");
     textField.innerText = text;
     document.body.appendChild(textField);
     textField.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     textField.remove();
-    success(_t('view-keys.copied'));
+    success(_t("view-keys.copied"));
   };
 
   render() {
@@ -101,11 +101,11 @@ export default class ViewKeys extends BaseComponent<Props, State> {
           }}
         >
           <Form.Group controlId="account-name">
-            <Form.Label>{_t('view-keys.account')}</Form.Label>
+            <Form.Label>{_t("view-keys.account")}</Form.Label>
             <Form.Control type="text" readOnly={true} value={activeUser.username} />
           </Form.Group>
           <Form.Group controlId="cur-pass">
-            <Form.Label>{_t('view-keys.cur-pass')}</Form.Label>
+            <Form.Label>{_t("view-keys.cur-pass")}</Form.Label>
             <Form.Control
               value={curPass}
               onChange={this.curPassChanged}
@@ -119,13 +119,13 @@ export default class ViewKeys extends BaseComponent<Props, State> {
             <div>
               {!keys.memo && (
                 <Button variant="outline-primary" onClick={this.genKeys}>
-                  {_t('view-keys.view-keys')}
+                  {_t("view-keys.view-keys")}
                 </Button>
               )}
               {keys.memo && (
                 <div>
                   <Form.Group>
-                    <Form.Label>{_t('view-keys.owner')}</Form.Label>
+                    <Form.Label>{_t("view-keys.owner")}</Form.Label>
                     <InputGroup onClick={() => this.copyToClipboard(keys.owner)}>
                       <Form.Control
                         value={truncate(keys.owner, 30)}
@@ -145,7 +145,7 @@ export default class ViewKeys extends BaseComponent<Props, State> {
                     </InputGroup>
                   </Form.Group>
                   <Form.Group>
-                    <Form.Label>{_t('view-keys.active')}</Form.Label>
+                    <Form.Label>{_t("view-keys.active")}</Form.Label>
                     <InputGroup onClick={() => this.copyToClipboard(keys.active)}>
                       <Form.Control
                         value={truncate(keys.active, 30)}
@@ -165,7 +165,7 @@ export default class ViewKeys extends BaseComponent<Props, State> {
                     </InputGroup>
                   </Form.Group>
                   <Form.Group>
-                    <Form.Label>{_t('view-keys.posting')}</Form.Label>
+                    <Form.Label>{_t("view-keys.posting")}</Form.Label>
                     <InputGroup onClick={() => this.copyToClipboard(keys.posting)}>
                       <Form.Control
                         value={truncate(keys.posting, 30)}
@@ -185,7 +185,7 @@ export default class ViewKeys extends BaseComponent<Props, State> {
                     </InputGroup>
                   </Form.Group>
                   <Form.Group>
-                    <Form.Label>{_t('view-keys.memo')}</Form.Label>
+                    <Form.Label>{_t("view-keys.memo")}</Form.Label>
                     <InputGroup onClick={() => this.copyToClipboard(keys.memo)}>
                       <Form.Control
                         value={truncate(keys.memo, 30)}

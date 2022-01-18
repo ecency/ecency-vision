@@ -1,55 +1,55 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { match } from 'react-router';
+import { match } from "react-router";
 
-import numeral from 'numeral';
+import numeral from "numeral";
 
 // import { debounce } from 'lodash';
-import _ from 'lodash';
+import _ from "lodash";
 
-import moment from 'moment';
+import moment from "moment";
 
-import defaults from '../constants/defaults.json';
+import defaults from "../constants/defaults.json";
 
-import { renderPostBody, setProxyBase, catchPostImage } from '@ecency/render-helper';
+import { renderPostBody, setProxyBase, catchPostImage } from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
-import { Entry } from '../store/entries/types';
+import { Entry } from "../store/entries/types";
 
-import BaseComponent from '../components/base';
-import Meta from '../components/meta';
-import ScrollToTop from '../components/scroll-to-top';
-import Theme from '../components/theme';
-import Feedback from '../components/feedback';
-import NavBar from '../components/navbar';
-import NavBarElectron from '../../desktop/app/components/navbar';
-import LinearProgress from '../components/linear-progress';
-import ProposalListItem from '../components/proposal-list-item';
-import NotFound from '../components/404';
-import SearchBox from '../components/search-box';
+import BaseComponent from "../components/base";
+import Meta from "../components/meta";
+import ScrollToTop from "../components/scroll-to-top";
+import Theme from "../components/theme";
+import Feedback from "../components/feedback";
+import NavBar from "../components/navbar";
+import NavBarElectron from "../../desktop/app/components/navbar";
+import LinearProgress from "../components/linear-progress";
+import ProposalListItem from "../components/proposal-list-item";
+import NotFound from "../components/404";
+import SearchBox from "../components/search-box";
 
-import { _t } from '../i18n';
-import { Tsx } from '../i18n/helper';
+import { _t } from "../i18n";
+import { Tsx } from "../i18n/helper";
 
-import { getProposals, Proposal, getPost, getAccount } from '../api/hive';
+import { getProposals, Proposal, getPost, getAccount } from "../api/hive";
 
-import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from './common';
+import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
 
-import parseAsset from '../helper/parse-asset';
-import parseDate from '../helper/parse-date';
+import parseAsset from "../helper/parse-asset";
+import parseDate from "../helper/parse-date";
 
-import { closeSvg } from '../img/svg';
+import { closeSvg } from "../img/svg";
 
 enum Filter {
-  ALL = 'all',
-  ACTIVE = 'active',
-  INACTIVE = 'inactive',
-  TEAM = 'team'
+  ALL = "all",
+  ACTIVE = "active",
+  INACTIVE = "inactive",
+  TEAM = "team"
 }
 
 interface State {
@@ -79,7 +79,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
     filter: Filter.ALL,
     loading: true,
     inProgress: false,
-    search: '',
+    search: "",
     minVotes: 0,
     isReturnProposalId: null,
     thresholdProposalIds: []
@@ -100,8 +100,8 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
     getProposals()
       .then((proposals) => {
         // put expired proposals in the end of the list
-        const expired = proposals.filter((x) => x.status === 'expired');
-        const others = proposals.filter((x) => x.status !== 'expired');
+        const expired = proposals.filter((x) => x.status === "expired");
+        const others = proposals.filter((x) => x.status !== "expired");
         return [...others, ...expired];
       })
       .then((proposals) => {
@@ -114,7 +114,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
 
         this.stateSet({ proposals, proposals_: proposals, allProposals: proposals, minVotes });
 
-        return getAccount('hive.fund');
+        return getAccount("hive.fund");
       })
       .then((fund) => {
         const { proposals, minVotes } = this.state;
@@ -123,7 +123,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
 
         // find eligible proposals and
         // const eligible = proposals.filter(x => this.eligibleFilter(x, minVotes));
-        const eligible = proposals.filter((proposal) => proposal.status !== 'expired');
+        const eligible = proposals.filter((proposal) => proposal.status !== "expired");
         //  add up total votes
         let _thresholdProposalIds: any[] = [];
         const dailyFunded = eligible.reduce((a, b) => {
@@ -149,7 +149,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
 
   eligibleFilter = (proposal: Proposal, minVotes: number) => {
     return (
-      proposal.id > 0 && Number(proposal.total_votes) >= minVotes && proposal.status !== 'expired'
+      proposal.id > 0 && Number(proposal.total_votes) >= minVotes && proposal.status !== "expired"
     );
   };
 
@@ -162,17 +162,17 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         proposals = [...proposals_];
         break;
       case Filter.ACTIVE:
-        proposals = proposals_.filter((x) => x.status == 'active');
+        proposals = proposals_.filter((x) => x.status == "active");
         break;
       case Filter.INACTIVE:
-        proposals = proposals_.filter((x) => x.status == 'inactive');
+        proposals = proposals_.filter((x) => x.status == "inactive");
         break;
       case Filter.TEAM:
         proposals = [
           ...proposals_.filter(
             (x) =>
-              ['ecency', 'good-karma', 'hivesearcher', 'hivesigner'].includes(x.creator) &&
-              x.status === 'active'
+              ["ecency", "good-karma", "hivesearcher", "hivesigner"].includes(x.creator) &&
+              x.status === "active"
           )
         ];
         break;
@@ -192,7 +192,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
   };
 
   handleInputChange = (value: any) => {
-    if (value.trim() === '') {
+    if (value.trim() === "") {
       this.setState({ proposals: this.state.allProposals });
     } else {
       let results: Proposal[] = [];
@@ -211,8 +211,8 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
   render() {
     //  Meta config
     const metaProps = {
-      title: _t('proposals.page-title'),
-      description: _t('proposals.page-description')
+      title: _t("proposals.page-title"),
+      description: _t("proposals.page-description")
     };
 
     const { global } = this.props;
@@ -245,8 +245,8 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
       );
     }
     let containerClasses = global.isElectron
-      ? 'app-content proposals-page mt-0 pt-6'
-      : 'app-content proposals-page';
+      ? "app-content proposals-page mt-0 pt-6"
+      : "app-content proposals-page";
 
     return (
       <>
@@ -257,35 +257,35 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         {navBar}
         <div className={containerClasses}>
           <div className="page-header mt-5">
-            <h1 className="header-title">{_t('proposals.page-title')}</h1>
+            <h1 className="header-title">{_t("proposals.page-title")}</h1>
             <Tsx k="proposals.page-description">
               <div className="header-description" />
             </Tsx>
             <div className="funding-numbers">
               <div className="funding-number">
                 <div className="value">
-                  {numeral(dailyFunded).format('0.00,')} {'HBD'}
+                  {numeral(dailyFunded).format("0.00,")} {"HBD"}
                 </div>
-                <div className="label">{_t('daily-funded')}</div>
+                <div className="label">{_t("daily-funded")}</div>
               </div>
               <div className="funding-number">
                 <div className="value">
-                  {numeral(dailyBudget).format('0.00,')} {'HBD'}
+                  {numeral(dailyBudget).format("0.00,")} {"HBD"}
                 </div>
-                <div className="label">{_t('daily-budget')}</div>
+                <div className="label">{_t("daily-budget")}</div>
               </div>
 
               <div className="funding-number">
                 <div className="value">
-                  {numeral(totalBudget).format('0.00,')} {'HBD'}
+                  {numeral(totalBudget).format("0.00,")} {"HBD"}
                 </div>
-                <div className="label">{_t('total-budget')}</div>
+                <div className="label">{_t("total-budget")}</div>
               </div>
             </div>
 
             <div className="search-proposals">
               <SearchBox
-                placeholder={_t('search.placeholder-proposals')}
+                placeholder={_t("search.placeholder-proposals")}
                 onChange={this.handleChangeSearch}
                 value={this.state.search}
               />
@@ -293,7 +293,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
 
             <div className="filter-menu">
               {Object.values(Filter).map((x) => {
-                const cls = `menu-item ${filter === x ? 'active-item' : ''}`;
+                const cls = `menu-item ${filter === x ? "active-item" : ""}`;
                 return (
                   <a
                     key={x}
@@ -423,17 +423,17 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
 
     //  Meta config
     const metaProps = {
-      title: `${_t('proposals.page-title')} | ${proposal.subject}`,
+      title: `${_t("proposals.page-title")} | ${proposal.subject}`,
       description: `${proposal.subject} by @${proposal.creator}`,
       url: `/proposals/${proposal.id}`,
       canonical: `/proposals/${proposal.id}`,
       published: moment(parseDate(entry.created)).toISOString(),
       modified: moment(parseDate(entry.updated)).toISOString(),
-      image: catchPostImage(entry.body, 600, 500, global.canUseWebp ? 'webp' : 'match')
+      image: catchPostImage(entry.body, 600, 500, global.canUseWebp ? "webp" : "match")
     };
     let containerClasses = global.isElectron
-      ? 'app-content proposals-page proposals-detail-page mt-0 pt-6'
-      : 'app-content proposals-page proposals-detail-page';
+      ? "app-content proposals-page proposals-detail-page mt-0 pt-6"
+      : "app-content proposals-page proposals-detail-page";
 
     return (
       <>
@@ -444,9 +444,9 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
         {navBar}
         <div className={containerClasses}>
           <div className="page-header mt-5">
-            <h1 className="header-title">{_t('proposals.page-title')}</h1>
+            <h1 className="header-title">{_t("proposals.page-title")}</h1>
             <p className="see-all">
-              <Link to="/proposals">{_t('proposals.see-all')}</Link>
+              <Link to="/proposals">{_t("proposals.see-all")}</Link>
             </p>
           </div>
           <div className="proposal-list">

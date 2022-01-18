@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import Meta from '../components/meta';
+import Meta from "../components/meta";
 
-import i18n from 'i18next';
-import Theme from '../components/theme/index';
-import NavBar from '../components/navbar/index';
-import NavBarElectron from '../../desktop/app/components/navbar';
-import ScrollToTop from '../components/scroll-to-top';
-import Contributors from '../components/contributors';
+import i18n from "i18next";
+import Theme from "../components/theme/index";
+import NavBar from "../components/navbar/index";
+import NavBarElectron from "../../desktop/app/components/navbar";
+import ScrollToTop from "../components/scroll-to-top";
+import Contributors from "../components/contributors";
 
-import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from './common';
+import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
 
-import { langOptions, _t } from '../i18n';
-import { Tsx } from '../i18n/helper';
+import { langOptions, _t } from "../i18n";
+import { Tsx } from "../i18n/helper";
 
 import {
   blogSvg,
@@ -27,54 +27,54 @@ import {
   telegramSvg,
   discordSvg,
   copyContent
-} from '../img/svg';
-import { apiBase } from '../api/helper';
-import { Button, Form, InputGroup } from 'react-bootstrap';
-import { removeDiacritics } from '../../common/store/diacritics';
-import Feedback, { success } from '../components/feedback';
-import clipboard from '../util/clipboard';
-import * as ls from '../util/local-storage';
+} from "../img/svg";
+import { apiBase } from "../api/helper";
+import { Button, Form, InputGroup } from "react-bootstrap";
+import { removeDiacritics } from "../../common/store/diacritics";
+import Feedback, { success } from "../components/feedback";
+import clipboard from "../util/clipboard";
+import * as ls from "../util/local-storage";
 
 const faqKeysGeneral = [
-  'what-is-ecency',
-  'what-is-difference',
-  'what-is-hive',
-  'why-choose-ecency',
-  'how-ecency-works',
-  'how-to-join',
-  'can-change-username',
-  'can-delete-account',
-  'how-to-signin',
-  'how-to-contribute',
-  'how-referrals-work',
-  'what-is-points',
-  'where-tokens-come',
-  'what-are-rc',
-  'how-promotion-work',
-  'how-boosting-work',
-  'why-refund-points',
-  'boosting-vote-buying',
-  'different-reward-choices',
-  'can-guest-post',
-  'can-link-post',
-  'source-label',
-  'how-to-transfer',
-  'how-see-rewards',
-  'when-claim-rewards',
-  'how-boost-account',
-  'how-dhf-work',
-  'what-spam-abuse'
+  "what-is-ecency",
+  "what-is-difference",
+  "what-is-hive",
+  "why-choose-ecency",
+  "how-ecency-works",
+  "how-to-join",
+  "can-change-username",
+  "can-delete-account",
+  "how-to-signin",
+  "how-to-contribute",
+  "how-referrals-work",
+  "what-is-points",
+  "where-tokens-come",
+  "what-are-rc",
+  "how-promotion-work",
+  "how-boosting-work",
+  "why-refund-points",
+  "boosting-vote-buying",
+  "different-reward-choices",
+  "can-guest-post",
+  "can-link-post",
+  "source-label",
+  "how-to-transfer",
+  "how-see-rewards",
+  "when-claim-rewards",
+  "how-boost-account",
+  "how-dhf-work",
+  "what-spam-abuse"
 ];
 
 class AboutPage extends Component<PageProps> {
   render() {
     //  Meta config
     const metaProps = {
-      title: _t('static.about.page-title')
+      title: _t("static.about.page-title")
     };
 
     const { global } = this.props;
-    let containerClasses = global.isElectron ? ' mt-0 pt-6' : '';
+    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
     return (
       <>
@@ -87,7 +87,7 @@ class AboutPage extends Component<PageProps> {
             })
           : NavBar({ ...this.props })}
 
-        <div className={'app-content static-page about-page' + containerClasses}>
+        <div className={"app-content static-page about-page" + containerClasses}>
           <div className="about-cloud">
             <div className="up-cloud" />
             <div className="about-inner">
@@ -97,7 +97,7 @@ class AboutPage extends Component<PageProps> {
                 <Tsx k="static.about.intro-title">
                   <h1 className="about-title" />
                 </Tsx>
-                <p>{_t('static.about.intro-content')}</p>
+                <p>{_t("static.about.intro-content")}</p>
               </div>
               <div className="sub-cloud">
                 <div className="cloud-1" />
@@ -142,7 +142,7 @@ class AboutPage extends Component<PageProps> {
           </div>
 
           <div className="faq">
-            <h2 className="faq-title">{_t('static.about.faq-title')}</h2>
+            <h2 className="faq-title">{_t("static.about.faq-title")}</h2>
             <div className="faq-links">
               {[...faqKeysGeneral].slice(0, 4).map((x) => {
                 return (
@@ -154,13 +154,13 @@ class AboutPage extends Component<PageProps> {
                 );
               })}
               <p>
-                <Link to="/faq">{_t('static.about.faqs')}</Link>
+                <Link to="/faq">{_t("static.about.faqs")}</Link>
               </p>
             </div>
           </div>
 
           <div className="contacts">
-            <h2 className="contacts-title">{_t('static.about.contact-title')}</h2>
+            <h2 className="contacts-title">{_t("static.about.contact-title")}</h2>
             <div className="contacts-links">
               <a
                 className="contacts-link"
@@ -168,7 +168,7 @@ class AboutPage extends Component<PageProps> {
                 href="https://ecency.com/@good-karma"
                 rel="noopener noreferrer"
               >
-                {blogSvg} {_t('static.about.contact-blog')}
+                {blogSvg} {_t("static.about.contact-blog")}
               </a>
               <a
                 className="contacts-link"
@@ -176,7 +176,7 @@ class AboutPage extends Component<PageProps> {
                 href="https://ecency.com/@ecency"
                 rel="noopener noreferrer"
               >
-                {newsSvg} {_t('static.about.contact-news')}
+                {newsSvg} {_t("static.about.contact-news")}
               </a>
               <a
                 className="contacts-link"
@@ -184,7 +184,7 @@ class AboutPage extends Component<PageProps> {
                 href="mailto:info@esteem.app?subject=Feedback"
                 rel="noopener noreferrer"
               >
-                {mailSvg} {_t('static.about.contact-email')}
+                {mailSvg} {_t("static.about.contact-email")}
               </a>
               <a
                 className="contacts-link"
@@ -230,11 +230,11 @@ class GuestPostPage extends Component<PageProps> {
   render() {
     //  Meta config
     const metaProps = {
-      title: 'Guest Posts'
+      title: "Guest Posts"
     };
 
     const { global } = this.props;
-    let containerClasses = global.isElectron ? ' mt-0 pt-6' : '';
+    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
     return (
       <>
@@ -247,7 +247,7 @@ class GuestPostPage extends Component<PageProps> {
             })
           : NavBar({ ...this.props })}
 
-        <div className={'app-content static-page guest-post-page' + containerClasses}>
+        <div className={"app-content static-page guest-post-page" + containerClasses}>
           <iframe
             title="Esteem contribution form"
             src="https://docs.google.com/forms/d/e/1FAIpQLSf3Pt8DQ79edkQK7XHrlIZkZYcueJvgJso6OXz2pgGCplLbaA/viewform?embedded=true"
@@ -269,11 +269,11 @@ class ContributePage extends Component<PageProps> {
   render() {
     //  Meta config
     const metaProps = {
-      title: 'Contribute'
+      title: "Contribute"
     };
 
     const { global } = this.props;
-    let containerClasses = global.isElectron ? ' mt-0 pt-6' : '';
+    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
     return (
       <>
@@ -286,12 +286,12 @@ class ContributePage extends Component<PageProps> {
             })
           : NavBar({ ...this.props })}
 
-        <div className={'app-content static-page contribute-page' + containerClasses}>
+        <div className={"app-content static-page contribute-page" + containerClasses}>
           <div className="static-content">
             <h1 className="page-title">Contribute to Esteem</h1>
             <p>
               Esteem is a decentralized platform which rewards contributors. Content on platform is
-              100% user generated. You can{' '}
+              100% user generated. You can{" "}
               <a href="https://esteem.app/signup">signup to get your own account</a> and start
               earning cryptocurrency. If you do not mind for rewards, you can get publicity for
               free, just fill out form below and we will make sure to handle rest.
@@ -310,7 +310,7 @@ class ContributePage extends Component<PageProps> {
             <h2 id="submit">Submit</h2>
             <p>
               We accept contributions through <a href="https://esteem.app/guest-posts">this form</a>
-              . For formating your post use{' '}
+              . For formating your post use{" "}
               <a href="https://hackmd.io" target="_blank" rel="noopener noreferrer">
                 Hackmd
               </a>
@@ -340,11 +340,11 @@ class PrivacyPage extends Component<PageProps> {
   render() {
     //  Meta config
     const metaProps = {
-      title: 'Privacy Policy'
+      title: "Privacy Policy"
     };
 
     const { global } = this.props;
-    let containerClasses = global.isElectron ? ' mt-0 pt-6' : '';
+    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
     return (
       <>
@@ -357,7 +357,7 @@ class PrivacyPage extends Component<PageProps> {
             })
           : NavBar({ ...this.props })}
 
-        <div className={'app-content static-page privacy-page' + containerClasses}>
+        <div className={"app-content static-page privacy-page" + containerClasses}>
           <div className="static-content">
             <h1 className="page-title">Privacy Policy</h1>
             <p className="static-last-updated">Effective: August 20, 2020</p>
@@ -512,7 +512,7 @@ class PrivacyPage extends Component<PageProps> {
             </p>
             <h2>CONTACT INFORMATION.</h2>
             <p>
-              We welcome your comments or questions about this Policy, and you may contact us at:{' '}
+              We welcome your comments or questions about this Policy, and you may contact us at:{" "}
               <code>info@ecency.com</code>.
             </p>
             <h2>CHANGES TO THIS PRIVACY POLICY.</h2>
@@ -682,41 +682,41 @@ class PrivacyPage extends Component<PageProps> {
               settings through your browser:
             </p>
             <p>
-              Click{' '}
+              Click{" "}
               <a
                 href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop"
                 target="_blank"
               >
                 here
-              </a>{' '}
+              </a>{" "}
               to learn more about the "Private Browsing" setting and managing cookie settings in
               Firefox;
             </p>
             <p>
-              Click{' '}
+              Click{" "}
               <a
                 href="https://support.google.com/chrome/answer/95647?hl%3Den&sa=D&ust=1527292847109000"
                 target="_blank"
               >
                 here
-              </a>{' '}
+              </a>{" "}
               to learn more about "Incognito" and managing cookie settings in Chrome;
             </p>
             <p>
-              Click{' '}
+              Click{" "}
               <a
                 href="https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies&sa=D&ust=1527292847110000"
                 target="_blank"
               >
                 here
-              </a>{' '}
+              </a>{" "}
               to learn more about "InPrivate" and managing cookie settings in Internet Explorer; or
             </p>
             <p>
-              Click{' '}
+              Click{" "}
               <a href="https://support.apple.com/en-gb/guide/safari/ibrw1069/mac" target="_blank">
                 here
-              </a>{' '}
+              </a>{" "}
               to learn more about "Private Browsing" and managing cookie settings in Safari.
             </p>
             <p>
@@ -746,11 +746,11 @@ class WhitePaperPage extends Component<PageProps> {
   render() {
     //  Meta config
     const metaProps = {
-      title: 'Whitepaper'
+      title: "Whitepaper"
     };
 
     const { global } = this.props;
-    let containerClasses = global.isElectron ? ' mt-0 pt-6' : '';
+    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
     return (
       <>
@@ -763,7 +763,7 @@ class WhitePaperPage extends Component<PageProps> {
             })
           : NavBar({ ...this.props })}
 
-        <div className={'app-content static-page white-paper-page' + containerClasses}>
+        <div className={"app-content static-page white-paper-page" + containerClasses}>
           <div className="static-content">
             <h1 className="page-title">Whitepaper</h1>
 
@@ -792,11 +792,11 @@ class TosPage extends Component<PageProps> {
   render() {
     //  Meta config
     const metaProps = {
-      title: 'Terms Of Service'
+      title: "Terms Of Service"
     };
 
     const { global } = this.props;
-    let containerClasses = global.isElectron ? ' mt-0 pt-6' : '';
+    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
     return (
       <>
@@ -809,7 +809,7 @@ class TosPage extends Component<PageProps> {
             })
           : NavBar({ ...this.props })}
 
-        <div className={'app-content static-page tos-page' + containerClasses}>
+        <div className={"app-content static-page tos-page" + containerClasses}>
           <div className="static-content">
             <h1 className="page-title">Terms Of Service</h1>
             <p className="static-last-updated">Last Updated August 20, 2020</p>
@@ -1292,11 +1292,11 @@ interface FAQPageState {
 class FaqPage extends Component<PageProps, FAQPageState> {
   constructor(props: PageProps) {
     super(props);
-    let searchFromUrl: any = props.location.search.split('&lang=')[0].replace('?q=', '');
+    let searchFromUrl: any = props.location.search.split("&lang=")[0].replace("?q=", "");
     searchFromUrl = removeDiacritics(searchFromUrl);
-    const languageFromUrl = props.location.search.split('&lang=')[1];
+    const languageFromUrl = props.location.search.split("&lang=")[1];
     const languageFromList = langOptions.find(
-      (item) => item.code.split('-')[0] === languageFromUrl
+      (item) => item.code.split("-")[0] === languageFromUrl
     );
 
     if (languageFromList) {
@@ -1304,23 +1304,23 @@ class FaqPage extends Component<PageProps, FAQPageState> {
       i18n.changeLanguage(languageFromList.code);
     }
     this.state = {
-      search: searchFromUrl || '',
+      search: searchFromUrl || "",
       currentLanguage: props.global.lang
     };
 
     if (languageFromList && props.global.lang !== languageFromList.code) {
-      ls.set('current-language', props.global.lang);
+      ls.set("current-language", props.global.lang);
     }
   }
 
   componentWillUnmount() {
-    const currentLang = ls.get('current-language');
+    const currentLang = ls.get("current-language");
     this.props.setLang(currentLang);
     i18n.changeLanguage(currentLang);
   }
 
   copyToClipboard = (text: string) => {
-    success(_t('static.faq.search-link-copied'));
+    success(_t("static.faq.search-link-copied"));
     clipboard(text);
   };
 
@@ -1328,12 +1328,12 @@ class FaqPage extends Component<PageProps, FAQPageState> {
     const { search } = this.state;
     //  Meta config
     const metaProps = {
-      title: _t('static.faq.page-title')
+      title: _t("static.faq.page-title")
     };
 
     const { global } = this.props;
-    const imgs = apiBase(`/assets/ecency-faq.${this.props.global.canUseWebp ? 'webp' : 'jpg'}`);
-    let containerClasses = global.isElectron ? ' mt-0 pt-6' : '';
+    const imgs = apiBase(`/assets/ecency-faq.${this.props.global.canUseWebp ? "webp" : "jpg"}`);
+    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
     let faqKeys = [...faqKeysGeneral];
     let searchResult: string[] = [];
     if (search && search.length > 0) {
@@ -1361,7 +1361,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
           : NavBar({ ...this.props })}
 
         <div
-          className={'app-content static-page faq-page' + containerClasses}
+          className={"app-content static-page faq-page" + containerClasses}
           itemScope={true}
           itemType="https://schema.org/FAQPage"
         >
@@ -1370,11 +1370,11 @@ class FaqPage extends Component<PageProps, FAQPageState> {
               <img src={imgs} className="rounded" />
               <div className="position-absolute search-container d-flex justify-content-center align-items-center flex-column rounded p-3">
                 <h1 className="text-white faq-title text-center mb-3">
-                  {_t('static.faq.page-title')}
+                  {_t("static.faq.page-title")}
                 </h1>
                 <InputGroup className="mb-3 w-75">
                   <Form.Control
-                    placeholder={`${_t('static.faq.search-placeholder')}`}
+                    placeholder={`${_t("static.faq.search-placeholder")}`}
                     className="w-75"
                     onChange={(e) => {
                       this.setState({ search: e.target.value });
@@ -1390,7 +1390,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                       disabled={search.length === 0}
                       onClick={() => {
                         this.copyToClipboard(
-                          `https://ecency.com/faq?q=${search}&lang=${global.lang.split('-')[0]}`
+                          `https://ecency.com/faq?q=${search}&lang=${global.lang.split("-")[0]}`
                         );
                       }}
                     >
@@ -1401,10 +1401,10 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                 {search.length > 0 && (
                   <Form.Text className="text-white mt-2 mt-sm-3 w-75 text-center helper-text">
                     {searchResult.length > 0 ? (
-                      _t('static.faq.search', { search: `"${search}"` })
+                      _t("static.faq.search", { search: `"${search}"` })
                     ) : (
                       <div className="text-not-found">
-                        {_t('static.faq.search-not-found')}
+                        {_t("static.faq.search-not-found")}
                         <Link to="https://discord.me/ecency" target="_blank">
                           Discord
                         </Link>
@@ -1415,7 +1415,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                 )}
               </div>
             </div>
-            <h3>{_t('static.faq.page-sub-title')}</h3>
+            <h3>{_t("static.faq.page-sub-title")}</h3>
             <ul className="table-contents">
               {dataToShow.map((x) => {
                 return (
@@ -1464,11 +1464,11 @@ class ContributorsPage extends Component<PageProps> {
   render() {
     //  Meta config
     const metaProps = {
-      title: _t('contributors.title')
+      title: _t("contributors.title")
     };
 
     const { global } = this.props;
-    let containerClasses = global.isElectron ? ' mt-0 pt-6' : '';
+    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
     return (
       <>
@@ -1481,7 +1481,7 @@ class ContributorsPage extends Component<PageProps> {
             })
           : NavBar({ ...this.props })}
 
-        <div className={'app-content static-page contributors-page' + containerClasses}>
+        <div className={"app-content static-page contributors-page" + containerClasses}>
           {Contributors({ ...this.props })}
         </div>
       </>

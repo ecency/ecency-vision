@@ -1,43 +1,43 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { History, Location } from 'history';
+import { History, Location } from "history";
 
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import queryString from 'query-string';
+import queryString from "query-string";
 
-import { Global, Theme } from '../../../../common/store/global/types';
-import { TrendingTags } from '../../../../common/store/trending-tags/types';
-import { Account } from '../../../../common/store/accounts/types';
-import { User } from '../../../../common/store/users/types';
-import { ActiveUser } from '../../../../common/store/active-user/types';
-import { UI, ToggleType } from '../../../../common/store/ui/types';
-import { NotificationFilter, Notifications } from '../../../../common/store/notifications/types';
-import { DynamicProps } from '../../../../common/store/dynamic-props/types';
+import { Global, Theme } from "../../../../common/store/global/types";
+import { TrendingTags } from "../../../../common/store/trending-tags/types";
+import { Account } from "../../../../common/store/accounts/types";
+import { User } from "../../../../common/store/users/types";
+import { ActiveUser } from "../../../../common/store/active-user/types";
+import { UI, ToggleType } from "../../../../common/store/ui/types";
+import { NotificationFilter, Notifications } from "../../../../common/store/notifications/types";
+import { DynamicProps } from "../../../../common/store/dynamic-props/types";
 
-import ToolTip from '../../../../common/components/tooltip';
-import Login from '../../../../common/components/login';
-import UserNav from '../../../../common/components/user-nav';
-import DropDown from '../../../../common/components/dropdown';
-import SearchSuggester from '../../../../common/components/search-suggester';
-import Updater from '../updater';
-import SwitchLang from '../../../../common/components/switch-lang';
+import ToolTip from "../../../../common/components/tooltip";
+import Login from "../../../../common/components/login";
+import UserNav from "../../../../common/components/user-nav";
+import DropDown from "../../../../common/components/dropdown";
+import SearchSuggester from "../../../../common/components/search-suggester";
+import Updater from "../updater";
+import SwitchLang from "../../../../common/components/switch-lang";
 
-import NotificationHandler from '../../../../common/components/notification-handler';
+import NotificationHandler from "../../../../common/components/notification-handler";
 
-import { _t } from '../../../../common/i18n';
+import { _t } from "../../../../common/i18n";
 
-import _c from '../../../../common/util/fix-class-names';
+import _c from "../../../../common/util/fix-class-names";
 
-import defaults from '../../../../common/constants/defaults.json';
+import defaults from "../../../../common/constants/defaults.json";
 
-import routes from '../../../../common/routes';
+import routes from "../../../../common/routes";
 
-import { version } from '../../../package.json';
+import { version } from "../../../package.json";
 
 import {
   brightnessSvg,
@@ -48,14 +48,14 @@ import {
   magnifySvg,
   dotsHorizontal,
   translateSvg
-} from '../../../../common/img/svg';
-import isElectron from '../../../../common/util/is-electron';
+} from "../../../../common/img/svg";
+import isElectron from "../../../../common/util/is-electron";
 
 // why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
 
-const pathToRegexp = require('path-to-regexp');
+const pathToRegexp = require("path-to-regexp");
 
-const logo = './img/logo-circle.svg';
+const logo = "./img/logo-circle.svg";
 
 interface AddressBarProps {
   history: History;
@@ -72,8 +72,8 @@ interface AddressBarState {
 
 export class AddressBar extends Component<AddressBarProps, AddressBarState> {
   state: AddressBarState = {
-    address: '',
-    realAddress: '',
+    address: "",
+    realAddress: "",
     changed: false
   };
 
@@ -106,11 +106,11 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
     // @ts-ignore
     const index = history.index || 0;
 
-    const curPath = entries[index]?.pathname || '/';
-    let address = curPath === '/' ? `${defaults.filter}` : curPath.replace('/', '');
+    const curPath = entries[index]?.pathname || "/";
+    let address = curPath === "/" ? `${defaults.filter}` : curPath.replace("/", "");
 
     // persist search string
-    if (curPath.startsWith('/search')) {
+    if (curPath.startsWith("/search")) {
       const qs = queryString.parse(location.search);
       if (qs.q as string) {
         address = qs.q;
@@ -119,16 +119,16 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
 
     if (location.search && location.search.length > 0) {
       address = location.pathname + location.search;
-      if (address[0] === '/') {
-        address = address.replace('/', '');
+      if (address[0] === "/") {
+        address = address.replace("/", "");
       }
     }
 
-    const spt = address.split('/');
+    const spt = address.split("/");
     if (spt[0] == spt[1]) {
       address = spt;
       address.shift();
-      address = address.join('/');
+      address = address.join("/");
     }
 
     this.setState({ address, realAddress: address });
@@ -148,12 +148,12 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
 
       if (!changed) return;
 
-      if (address.trim() === '') {
+      if (address.trim() === "") {
         return;
       }
 
       // website address is just a placeholder here
-      const url = new URL(address, 'https://ecency.com');
+      const url = new URL(address, "https://ecency.com");
 
       // check if entered value matches with a route
       const pathMatch = Object.values(routes).find((p) => {
@@ -161,15 +161,15 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
       });
 
       if (pathMatch) {
-        let isAddressValidForElectron = isElectron() && address.includes('?');
+        let isAddressValidForElectron = isElectron() && address.includes("?");
         if (isAddressValidForElectron) {
-          let validAddress = address[0] == '/' ? address.replace('/', '') : address;
+          let validAddress = address[0] == "/" ? address.replace("/", "") : address;
           this.setState({ address: validAddress });
 
           history.push(`/${validAddress}`);
           return;
         }
-        let validAddress = url.pathname[0] == '/' ? url.pathname.replace('/', '') : url.pathname;
+        let validAddress = url.pathname[0] == "/" ? url.pathname.replace("/", "") : url.pathname;
         this.setState({ address: validAddress });
 
         history.push(`/${validAddress}`);
@@ -199,7 +199,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
             value={address}
             onChange={this.addressChanged}
             onKeyUp={this.addressKeyup}
-            placeholder={_t('navbar.address-placeholder')}
+            placeholder={_t("navbar.address-placeholder")}
             spellCheck={false}
           />
           {/* </SearchSuggester> */}
@@ -233,12 +233,12 @@ export class NavControls extends Component<NavControlsProps> {
     history.goBack();
 
     // scroll to anchor element
-    let href = (history as any).entries.lastItem.pathname.split('/');
+    let href = (history as any).entries.lastItem.pathname.split("/");
     if (href.length === 4) {
       href = href[href.length - 2] + href[href.length - 1];
       setTimeout(() => {
         if (href.length > 0) {
-          href = href.replace(/[0-9]/g, '').replace(/@/g, '');
+          href = href.replace(/[0-9]/g, "").replace(/@/g, "");
           let element = document.getElementById(href);
           if (element) {
             let elementSibling = element!.previousElementSibling;
@@ -277,9 +277,9 @@ export class NavControls extends Component<NavControlsProps> {
     const canGoBack = !!entries[index - 1];
     const canGoForward = !!entries[index + 1];
 
-    const backClassName = _c(`back ${!canGoBack ? 'disabled' : ''}`);
-    const forwardClassName = _c(`forward ${!canGoForward ? 'disabled' : ''}`);
-    const reloadClassName = _c(`reload ${!reloadFn || reloading ? 'disabled' : ''}`);
+    const backClassName = _c(`back ${!canGoBack ? "disabled" : ""}`);
+    const forwardClassName = _c(`forward ${!canGoForward ? "disabled" : ""}`);
+    const reloadClassName = _c(`reload ${!reloadFn || reloading ? "disabled" : ""}`);
 
     return (
       <div className="nav-controls">
@@ -343,8 +343,8 @@ export class NavBar extends Component<Props, State> {
 
   componentDidMount() {
     this.detect();
-    window.addEventListener('scroll', this.scrollChanged);
-    window.addEventListener('resize', this.scrollChanged);
+    window.addEventListener("scroll", this.scrollChanged);
+    window.addEventListener("resize", this.scrollChanged);
 
     // fetch trending tags for global usage
     const { fetchTrendingTags } = this.props;
@@ -352,8 +352,8 @@ export class NavBar extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.scrollChanged);
-    window.removeEventListener('resize', this.scrollChanged);
+    window.removeEventListener("scroll", this.scrollChanged);
+    window.removeEventListener("resize", this.scrollChanged);
   }
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
@@ -372,7 +372,7 @@ export class NavBar extends Component<Props, State> {
 
   componentDidUpdate(prevProps: Props) {
     const { location, activeUser, setStepTwo } = this.props;
-    if (location.pathname == '/' && activeUser && activeUser.username && setStepTwo) {
+    if (location.pathname == "/" && activeUser && activeUser.username && setStepTwo) {
       setStepTwo();
     }
   }
@@ -393,25 +393,25 @@ export class NavBar extends Component<Props, State> {
 
   render() {
     const { global, activeUser, history, location, ui, step } = this.props;
-    const themeText = global.theme == Theme.day ? _t('navbar.night-theme') : _t('navbar.day-theme');
-    const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
+    const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
+    const logoHref = activeUser ? `/@${activeUser.username}/feed` : "/";
 
     const { floating } = this.state;
 
     const textMenuConfig = {
       history: this.props.history,
-      label: '',
+      label: "",
       icon: dotsHorizontal,
       items: [
         {
-          label: _t('navbar.discover'),
+          label: _t("navbar.discover"),
           href: `/discover`,
-          active: location.pathname === '/discover'
+          active: location.pathname === "/discover"
         },
         {
-          label: _t('navbar.communities'),
+          label: _t("navbar.communities"),
           href: `/communities`,
-          active: location.pathname === '/communities'
+          active: location.pathname === "/communities"
         }
       ],
       postElem: <div className="drop-down-menu-version">Ecency Surfer {version}</div>
@@ -421,7 +421,7 @@ export class NavBar extends Component<Props, State> {
     return (
       <>
         {floating && <div className="nav-bar-electron-rep" />}
-        <div ref={this.nav} className={_c(`nav-bar-electron ${noMargin ? 'mb-0' : ''}`)}>
+        <div ref={this.nav} className={_c(`nav-bar-electron ${noMargin ? "mb-0" : ""}`)}>
           <div className="nav-bar-inner">
             <div className="brand">
               <Link to={logoHref}>
@@ -465,20 +465,20 @@ export class NavBar extends Component<Props, State> {
                   variant="outline-primary"
                   onClick={() => {
                     const { toggleUIProp } = this.props;
-                    toggleUIProp('login');
+                    toggleUIProp("login");
                   }}
                 >
-                  {_t('g.login')}
+                  {_t("g.login")}
                 </Button>
 
                 <Link className="btn btn-primary" to="/signup">
-                  {_t('g.signup')}
+                  {_t("g.signup")}
                 </Link>
               </div>
             )}
 
             <div className="submit-post">
-              <ToolTip content={_t('navbar.post')}>
+              <ToolTip content={_t("navbar.post")}>
                 <Link className="btn btn-outline-primary" to="/submit">
                   {pencilOutlineSvg}
                 </Link>

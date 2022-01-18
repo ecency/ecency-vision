@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface Props {
   onBottom: () => any;
@@ -6,11 +6,11 @@ interface Props {
 
 export default class DetectBottom extends React.Component<Props> {
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener("scroll", this.handleScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener("scroll", this.handleScroll);
   }
 
   handleScroll = () => {

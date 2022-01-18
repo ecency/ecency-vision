@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import { FormControl } from 'react-bootstrap';
+import { FormControl } from "react-bootstrap";
 
-import { ReactSortable, ItemInterface } from 'react-sortablejs';
+import { ReactSortable, ItemInterface } from "react-sortablejs";
 
-import { Global } from '../../store/global/types';
-import { TrendingTags } from '../../store/trending-tags/types';
+import { Global } from "../../store/global/types";
+import { TrendingTags } from "../../store/trending-tags/types";
 
-import SuggestionList from '../suggestion-list';
-import { error } from '../feedback';
+import SuggestionList from "../suggestion-list";
+import { error } from "../feedback";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
-import { closeSvg, poundSvg } from '../../img/svg';
+import { closeSvg, poundSvg } from "../../img/svg";
 
 interface Props {
   global: Global;
@@ -43,8 +43,8 @@ export class TagSelector extends Component<Props, State> {
 
   state: State = {
     hasFocus: false,
-    value: '',
-    warning: ''
+    value: "",
+    warning: ""
   };
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>): boolean {
@@ -53,26 +53,26 @@ export class TagSelector extends Component<Props, State> {
 
   filter = (cats: string[]) => {
     cats.length > 10
-      ? this.setState({ ...this.state, warning: _t('tag-selector.limited_tags') })
+      ? this.setState({ ...this.state, warning: _t("tag-selector.limited_tags") })
       : cats.find((c) => c.length > 24)
-      ? this.setState({ ...this.state, warning: _t('tag-selector.limited_length') })
-      : cats.find((c) => c.split('-').length > 2)
-      ? this.setState({ ...this.state, warning: _t('tag-selector.limited_dash') })
-      : cats.find((c) => c.indexOf(',') >= 0)
-      ? this.setState({ ...this.state, warning: _t('tag-selector.limited_space') })
+      ? this.setState({ ...this.state, warning: _t("tag-selector.limited_length") })
+      : cats.find((c) => c.split("-").length > 2)
+      ? this.setState({ ...this.state, warning: _t("tag-selector.limited_dash") })
+      : cats.find((c) => c.indexOf(",") >= 0)
+      ? this.setState({ ...this.state, warning: _t("tag-selector.limited_space") })
       : cats.find((c) => /[A-Z]/.test(c))
-      ? this.setState({ ...this.state, warning: _t('tag-selector.limited_lowercase') })
+      ? this.setState({ ...this.state, warning: _t("tag-selector.limited_lowercase") })
       : cats.find((c) => !/^[a-z0-9-#]+$/.test(c))
-      ? this.setState({ ...this.state, warning: _t('tag-selector.limited_characters') })
+      ? this.setState({ ...this.state, warning: _t("tag-selector.limited_characters") })
       : cats.find((c) => !/^[a-z-#]/.test(c))
-      ? this.setState({ ...this.state, warning: _t('tag-selector.limited_firstchar') })
+      ? this.setState({ ...this.state, warning: _t("tag-selector.limited_firstchar") })
       : cats.find((c) => !/[a-z0-9]$/.test(c))
-      ? this.setState({ ...this.state, warning: _t('tag-selector.limited_lastchar') })
-      : this.setState({ ...this.state, warning: '' });
+      ? this.setState({ ...this.state, warning: _t("tag-selector.limited_lastchar") })
+      : this.setState({ ...this.state, warning: "" });
   };
 
   focusInput = () => {
-    const input = document.getElementById('the-tag-input');
+    const input = document.getElementById("the-tag-input");
     input?.focus();
   };
 
@@ -85,11 +85,11 @@ export class TagSelector extends Component<Props, State> {
   };
 
   onChange = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-    const value = e.target.value.toLocaleLowerCase().trim().replace(/,/g, ' ').replace(/#/g, '');
-    let cats = value.split(' ');
+    const value = e.target.value.toLocaleLowerCase().trim().replace(/,/g, " ").replace(/#/g, "");
+    let cats = value.split(" ");
     if (cats.length > 0) {
       this.filter(cats);
-      this.setState({ value: cats.join(' ') });
+      this.setState({ value: cats.join(" ") });
     }
   };
 
@@ -99,14 +99,14 @@ export class TagSelector extends Component<Props, State> {
     e.stopPropagation();
     e.preventDefault();
     clipboardData = e.clipboardData;
-    pastedData = clipboardData.getData('Text');
-    this.setState({ value: '' });
+    pastedData = clipboardData.getData("Text");
+    this.setState({ value: "" });
 
-    let isMultiTagsWithSpace = pastedData.split(' ').join(',').split('\n').join(',').split(',');
+    let isMultiTagsWithSpace = pastedData.split(" ").join(",").split("\n").join(",").split(",");
     if (isMultiTagsWithSpace.length > 1) {
       for (const item of isMultiTagsWithSpace) {
-        await this.filter(item.split(' '));
-        if (this.state.warning === '') {
+        await this.filter(item.split(" "));
+        if (this.state.warning === "") {
           setTimeout(() => this.add(item), 250);
         }
       }
@@ -114,7 +114,7 @@ export class TagSelector extends Component<Props, State> {
   };
 
   onKeyDown = (e: React.KeyboardEvent) => {
-    if ([13, 32, 188].includes(e.keyCode) && this.state.warning === '') {
+    if ([13, 32, 188].includes(e.keyCode) && this.state.warning === "") {
       e.preventDefault();
       const { value } = this.state;
       this.add(value);
@@ -124,7 +124,7 @@ export class TagSelector extends Component<Props, State> {
   add = (value: string): boolean => {
     const { tags, maxItem, onChange } = this.props;
 
-    if (value === '') {
+    if (value === "") {
       return false;
     }
 
@@ -133,13 +133,13 @@ export class TagSelector extends Component<Props, State> {
     }
 
     if (tags.length >= maxItem) {
-      error(_t('tag-selector.error-max', { n: maxItem }));
+      error(_t("tag-selector.error-max", { n: maxItem }));
       return false;
     }
 
     const newTags = [...tags, value];
     onChange(newTags);
-    this.setState({ value: '' });
+    this.setState({ value: "" });
     return true;
   };
 
@@ -156,7 +156,7 @@ export class TagSelector extends Component<Props, State> {
   };
 
   componentDidUpdate(prevProps: any, prevState: any) {
-    if (prevState.warning !== this.state.warning && this.state.warning !== '') {
+    if (prevState.warning !== this.state.warning && this.state.warning !== "") {
       this.props.onValid(true);
     } else {
       this.props.onValid(false);
@@ -168,10 +168,10 @@ export class TagSelector extends Component<Props, State> {
     const { hasFocus, value } = this.state;
     const placeholder =
       tags.length > 0
-        ? _t('tag-selector.placeholder-has-tags')
+        ? _t("tag-selector.placeholder-has-tags")
         : hasFocus
-        ? _t('tag-selector.placeholder-focus')
-        : _t('tag-selector.placeholder-empty');
+        ? _t("tag-selector.placeholder-focus")
+        : _t("tag-selector.placeholder-empty");
 
     let suggestions: string[] = [];
 
@@ -184,7 +184,7 @@ export class TagSelector extends Component<Props, State> {
 
     return (
       <>
-        <div className={_c(`tag-selector ${tags.length > 0 ? 'has-tags' : ''}`)}>
+        <div className={_c(`tag-selector ${tags.length > 0 ? "has-tags" : ""}`)}>
           <SuggestionList
             renderer={(x: string) => {
               return (
@@ -194,7 +194,7 @@ export class TagSelector extends Component<Props, State> {
               );
             }}
             items={suggestions}
-            header={_t('tag-selector.suggestion-header')}
+            header={_t("tag-selector.suggestion-header")}
             onSelect={(value: string) => {
               if (this.add(value)) {
                 setTimeout(() => {

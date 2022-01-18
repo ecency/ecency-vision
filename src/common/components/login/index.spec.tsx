@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import renderer from 'react-test-renderer';
+import renderer from "react-test-renderer";
 
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory } from "history";
 
-import { Login } from './index';
+import { Login } from "./index";
 
-import { globalInstance, activeUserMaker } from '../../helper/test-helper';
+import { globalInstance, activeUserMaker } from "../../helper/test-helper";
 
 const defProps = {
   history: createBrowserHistory(),
@@ -19,24 +19,24 @@ const defProps = {
   doLogin: async () => {}
 };
 
-it('(1) Default render', () => {
+it("(1) Default render", () => {
   const component = renderer.create(<Login {...defProps} />);
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) With users', () => {
+it("(2) With users", () => {
   const users = [
     {
-      username: 'user1',
-      accessToken: 'aa',
-      refreshToken: 'bb',
+      username: "user1",
+      accessToken: "aa",
+      refreshToken: "bb",
       expiresIn: 2,
       postingKey: null
     },
     {
-      username: 'user2',
-      accessToken: 'aa',
-      refreshToken: 'bb',
+      username: "user2",
+      accessToken: "aa",
+      refreshToken: "bb",
       expiresIn: 2,
       postingKey: null
     }
@@ -48,25 +48,25 @@ it('(2) With users', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(3) With users and active user', () => {
+it("(3) With users and active user", () => {
   const users = [
     {
-      username: 'user1',
-      accessToken: 'aa',
-      refreshToken: 'bb',
+      username: "user1",
+      accessToken: "aa",
+      refreshToken: "bb",
       expiresIn: 2,
       postingKey: null
     },
     {
-      username: 'user2',
-      accessToken: 'aa',
-      refreshToken: 'bb',
+      username: "user2",
+      accessToken: "aa",
+      refreshToken: "bb",
       expiresIn: 2,
       postingKey: null
     }
   ];
 
-  const activeUser = activeUserMaker('user2');
+  const activeUser = activeUserMaker("user2");
 
   const props = { ...defProps, users, activeUser };
 
@@ -74,7 +74,7 @@ it('(3) With users and active user', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(4) Show keychain option', () => {
+it("(4) Show keychain option", () => {
   const props = {
     ...defProps,
     global: { ...globalInstance, hasKeyChain: true }

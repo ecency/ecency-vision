@@ -1,30 +1,30 @@
-import React, { useState } from 'react';
-import { Manager, Popper } from 'react-popper';
+import React, { useState } from "react";
+import { Manager, Popper } from "react-popper";
 
-import SelectionReference from './selection-reference';
-import { copyContent, quotes, twitterSvg } from '../../img/svg';
-import { success } from '../feedback';
-import { _t } from '../../i18n';
-import ClickAwayListener from '../clickaway-listener';
+import SelectionReference from "./selection-reference";
+import { copyContent, quotes, twitterSvg } from "../../img/svg";
+import { success } from "../feedback";
+import { _t } from "../../i18n";
+import ClickAwayListener from "../clickaway-listener";
 
 let tooltipStyle = {
-  background: 'rgb(0 0 0 / 78%)',
-  maxWidth: '50%',
+  background: "rgb(0 0 0 / 78%)",
+  maxWidth: "50%",
   borderRadius: 6
 };
 
 export const SelectionPopover = ({ children, onQuotesClick, postUrl }: any) => {
-  let [selectedText, setSelectedText] = useState('');
+  let [selectedText, setSelectedText] = useState("");
 
   const copyToClipboard = (text: string) => {
-    const textField = document.createElement('textarea');
+    const textField = document.createElement("textarea");
     textField.innerText = text;
     document.body.appendChild(textField);
     textField.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     textField.remove();
-    success(_t('entry.content-copied'));
-    setSelectedText('');
+    success(_t("entry.content-copied"));
+    setSelectedText("");
   };
   return (
     <div>
@@ -53,7 +53,7 @@ export const SelectionPopover = ({ children, onQuotesClick, postUrl }: any) => {
               selectedText.length !== 0 && (
                 <ClickAwayListener
                   onClickAway={() => {
-                    setSelectedText('');
+                    setSelectedText("");
                     document.getSelection()?.removeAllRanges();
                   }}
                 >
@@ -66,7 +66,7 @@ export const SelectionPopover = ({ children, onQuotesClick, postUrl }: any) => {
                       {copyContent}
                     </div>
                     <a
-                      onClick={() => setSelectedText('')}
+                      onClick={() => setSelectedText("")}
                       href={`https://twitter.com/intent/tweet?text=${selectedText} https://ecency.com${postUrl}`}
                       target="_blank"
                       className="mx-2 pointer twitter"
@@ -75,11 +75,11 @@ export const SelectionPopover = ({ children, onQuotesClick, postUrl }: any) => {
                     </a>
                     <div
                       onClick={() => {
-                        setSelectedText('');
+                        setSelectedText("");
                         onQuotesClick(selectedText);
                         document
-                          .getElementsByClassName('comment-box')[0]
-                          .scrollIntoView({ block: 'center' });
+                          .getElementsByClassName("comment-box")[0]
+                          .scrollIntoView({ block: "center" });
                       }}
                       className="pointer quotes"
                     >

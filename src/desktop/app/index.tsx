@@ -1,49 +1,49 @@
-import React from 'react';
-import { render } from 'react-dom';
+import React from "react";
+import { render } from "react-dom";
 
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
+import { Provider } from "react-redux";
+import { ConnectedRouter } from "connected-react-router";
 
 // why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
-const pathToRegexp = require('path-to-regexp');
+const pathToRegexp = require("path-to-regexp");
 
-import { AppState, history } from '../../common/store';
-import { ListStyle, Theme } from '../../common/store/global/types';
-import { Global } from '../../common/store/global/types';
-import { newVersionChangeAct } from '../../common/store/global';
+import { AppState, history } from "../../common/store";
+import { ListStyle, Theme } from "../../common/store/global/types";
+import { Global } from "../../common/store/global/types";
+import { newVersionChangeAct } from "../../common/store/global";
 
-import { activeUserMaker, clientStoreTasks } from '../../common/store/helper';
+import { activeUserMaker, clientStoreTasks } from "../../common/store/helper";
 
-import configureStore from '../../common/store/configure';
-import initialState from '../../common/store/initial-state';
+import configureStore from "../../common/store/configure";
+import initialState from "../../common/store/initial-state";
 
-import App from '../../common/app';
+import App from "../../common/app";
 
-import defaults from '../../common/constants/defaults.json';
+import defaults from "../../common/constants/defaults.json";
 
-import * as ls from '../../common/util/local-storage';
+import * as ls from "../../common/util/local-storage";
 
-import routes from '../../common/routes';
+import routes from "../../common/routes";
 
-import { DesktopWindow } from './window';
+import { DesktopWindow } from "./window";
 
-import '../../style/theme-day.scss';
-import '../../style/theme-night.scss';
+import "../../style/theme-day.scss";
+import "../../style/theme-night.scss";
 
-import '../../client/base-handlers';
+import "../../client/base-handlers";
 
-import './context-menu';
+import "./context-menu";
 
 declare var window: DesktopWindow;
 
 // Add electron dependencies into window.
-window.ipcRenderer = require('electron').ipcRenderer;
-window.remote = require('electron').remote;
+window.ipcRenderer = require("electron").ipcRenderer;
+window.remote = require("electron").remote;
 
 // Create store
-const theme = ls.get('theme') || defaults.theme;
-const intro = !ls.get('hide-intro');
-const listStyle = ls.get('list-style') || defaults.listStyle;
+const theme = ls.get("theme") || defaults.theme;
+const intro = !ls.get("hide-intro");
+const listStyle = ls.get("list-style") || defaults.listStyle;
 
 const globalState: Global = {
   ...initialState.global,
@@ -53,7 +53,7 @@ const globalState: Global = {
   isElectron: true
 };
 
-const activeUser = ls.get('active_user');
+const activeUser = ls.get("active_user");
 
 const preloadedState: AppState = {
   ...initialState,
@@ -63,20 +63,20 @@ const preloadedState: AppState = {
 
 const store = configureStore(preloadedState);
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   render(
     <Provider store={store}>
       <ConnectedRouter history={history!}>
         <App />
       </ConnectedRouter>
     </Provider>,
-    document.getElementById('root')
+    document.getElementById("root")
   );
 
   // To prevent blinking on initial window load
-  document.body.style.visibility = 'hidden';
+  document.body.style.visibility = "hidden";
   setTimeout(() => {
-    document.body.style.visibility = 'visible';
+    document.body.style.visibility = "visible";
   }, 300);
 });
 
@@ -84,16 +84,16 @@ document.addEventListener('DOMContentLoaded', () => {
 clientStoreTasks(store);
 
 // Deep link handler
-window.addEventListener('deep-link', (e) => {
+window.addEventListener("deep-link", (e) => {
   const urlToPath = (url: string): string => {
-    let path = url.split('://')[1];
+    let path = url.split("://")[1];
     // add "/" to beginning
-    if (!path.startsWith('/')) {
+    if (!path.startsWith("/")) {
       path = `/${path}`;
     }
 
     // remove last char if "/"
-    if (path.endsWith('/')) {
+    if (path.endsWith("/")) {
       path = path.substring(0, path.length - 1);
     }
 
@@ -115,6 +115,6 @@ window.addEventListener('deep-link', (e) => {
 });
 
 // Auto updater.
-window['ipcRenderer'].on('update-available', (event: any, version: string) => {
+window["ipcRenderer"].on("update-available", (event: any, version: string) => {
   store.dispatch(newVersionChangeAct(version));
 });

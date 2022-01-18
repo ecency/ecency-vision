@@ -1,5 +1,5 @@
 export enum CommonActionTypes {
-  LOCATION_CHANGE = '@@router/LOCATION_CHANGE'
+  LOCATION_CHANGE = "@@router/LOCATION_CHANGE"
 }
 
 export interface LocationChangeAction {
@@ -8,7 +8,7 @@ export interface LocationChangeAction {
     location: {
       pathname: string;
     };
-    action?: 'PUSH' | 'POP';
+    action?: "PUSH" | "POP";
   };
 }
 

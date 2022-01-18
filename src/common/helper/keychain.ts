@@ -1,6 +1,6 @@
-import { AppWindow } from '../../client/window';
+import { AppWindow } from "../../client/window";
 
-import { Symbol } from './parse-asset';
+import { Symbol } from "./parse-asset";
 
 declare var window: AppWindow;
 
@@ -9,7 +9,7 @@ interface TxResponse {
   result: string;
 }
 
-type AuthorityTypes = 'Posting' | 'Active' | 'Memo';
+type AuthorityTypes = "Posting" | "Active" | "Memo";
 
 type Keys = { active: any; posting: any; memo: any };
 
@@ -30,10 +30,10 @@ export const signBuffer = (
     window.hive_keychain?.requestSignBuffer(
       account,
       message,
-      'Active',
+      "Active",
       (resp) => {
         if (!resp.success) {
-          reject({ message: 'Operation cancelled' });
+          reject({ message: "Operation cancelled" });
         }
 
         resolve(resp);
@@ -53,11 +53,11 @@ export const addAccountAuthority = (
     window.hive_keychain?.requestAddAccountAuthority(
       account,
       authorizedUsername,
-      'Posting',
+      "Posting",
       weight,
       (resp) => {
         if (!resp.success) {
-          reject({ message: 'Operation cancelled' });
+          reject({ message: "Operation cancelled" });
         }
 
         resolve(resp);
@@ -76,10 +76,10 @@ export const removeAccountAuthority = (
     window.hive_keychain?.requestRemoveAccountAuthority(
       account,
       authorizedUsername,
-      'Posting',
+      "Posting",
       (resp) => {
         if (!resp.success) {
-          reject({ message: 'Operation cancelled' });
+          reject({ message: "Operation cancelled" });
         }
 
         resolve(resp);
@@ -106,7 +106,7 @@ export const transfer = (
       currency,
       (resp) => {
         if (!resp.success) {
-          reject({ message: 'Operation cancelled' });
+          reject({ message: "Operation cancelled" });
         }
 
         resolve(resp);
@@ -133,7 +133,7 @@ export const customJson = (
       display_msg,
       (resp) => {
         if (!resp.success) {
-          reject({ message: 'Operation cancelled' });
+          reject({ message: "Operation cancelled" });
         }
 
         resolve(resp);
@@ -155,7 +155,7 @@ export const broadcast = (
       key,
       (resp) => {
         if (!resp.success) {
-          reject({ message: 'Operation cancelled' });
+          reject({ message: "Operation cancelled" });
         }
 
         resolve(resp);
@@ -168,7 +168,7 @@ export const addAccount = (username: string, keys: Keys): Promise<TxResponse> =>
   new Promise<TxResponse>((resolve, reject) => {
     window.hive_keychain?.requestAddAccount(username, keys, (resp) => {
       if (!resp.success) {
-        reject({ message: 'Operation cancelled' });
+        reject({ message: "Operation cancelled" });
       }
 
       resolve(resp);
@@ -188,7 +188,7 @@ export const witnessVote = (
       vote,
       (resp) => {
         if (!resp.success) {
-          reject({ message: 'Operation cancelled' });
+          reject({ message: "Operation cancelled" });
         }
 
         resolve(resp);
@@ -208,7 +208,7 @@ export const witnessProxy = (
       proxy,
       (resp) => {
         if (!resp.success) {
-          reject({ message: 'Operation cancelled' });
+          reject({ message: "Operation cancelled" });
         }
 
         resolve(resp);

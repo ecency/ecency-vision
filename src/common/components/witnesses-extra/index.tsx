@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import { FormControl } from 'react-bootstrap';
+import { FormControl } from "react-bootstrap";
 
-import { Global } from '../../store/global/types';
-import { User } from '../../store/users/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { ToggleType, UI } from '../../store/ui/types';
-import { Account } from '../../store/accounts/types';
+import { Global } from "../../store/global/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { ToggleType, UI } from "../../store/ui/types";
+import { Account } from "../../store/accounts/types";
 
-import BaseComponent from '../base';
-import WitnessVoteBtn from '../witness-vote-btn';
+import BaseComponent from "../base";
+import WitnessVoteBtn from "../witness-vote-btn";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 interface Props {
   global: Global;
@@ -36,7 +36,7 @@ interface State {
 
 export class WitnessesExtra extends BaseComponent<Props, State> {
   state: State = {
-    username: '',
+    username: "",
     inProgress: false
   };
 
@@ -50,12 +50,12 @@ export class WitnessesExtra extends BaseComponent<Props, State> {
 
     return (
       <div className="extra-witnesses">
-        <p className="description">{_t('witnesses.extra-description')}</p>
+        <p className="description">{_t("witnesses.extra-description")}</p>
         <div className="vote-form">
           <div className="txt-username">
             <FormControl
               type="text"
-              placeholder={_t('witnesses.username-placeholder')}
+              placeholder={_t("witnesses.username-placeholder")}
               value={username}
               maxLength={20}
               onChange={this.usernameChanged}
@@ -75,7 +75,7 @@ export class WitnessesExtra extends BaseComponent<Props, State> {
               },
               onSuccess: (approve) => {
                 onAdd(username);
-                this.stateSet({ username: '' });
+                this.stateSet({ username: "" });
               }
             })}
           </div>

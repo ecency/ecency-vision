@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import { FavoriteBtn } from './index';
+import { FavoriteBtn } from "./index";
 
-import TestRenderer from 'react-test-renderer';
+import TestRenderer from "react-test-renderer";
 
-import { UiInstance, activeUserInstance, allOver } from '../../helper/test-helper';
+import { UiInstance, activeUserInstance, allOver } from "../../helper/test-helper";
 
 let TEST_MODE = 0;
 
-jest.mock('../../api/private-api', () => ({
+jest.mock("../../api/private-api", () => ({
   checkFavorite: () =>
     new Promise((resolve) => {
       if (TEST_MODE === 0) {
@@ -22,7 +22,7 @@ jest.mock('../../api/private-api', () => ({
 }));
 
 const defProps = {
-  targetUsername: 'bar',
+  targetUsername: "bar",
   activeUser: null,
   users: [],
   ui: UiInstance,
@@ -32,13 +32,13 @@ const defProps = {
   toggleUIProp: () => {}
 };
 
-it('(1) No active user', () => {
+it("(1) No active user", () => {
   const props = { ...defProps };
   const renderer = TestRenderer.create(<FavoriteBtn {...props} />);
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Not Favorited', async () => {
+it("(2) Not Favorited", async () => {
   const props = {
     ...defProps,
     activeUser: { ...activeUserInstance }
@@ -49,7 +49,7 @@ it('(2) Not Favorited', async () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(3) Favorited', async () => {
+it("(3) Favorited", async () => {
   TEST_MODE = 1;
 
   const props = {

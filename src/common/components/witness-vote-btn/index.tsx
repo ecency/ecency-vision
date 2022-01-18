@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 
-import { ActiveUser } from '../../store/active-user/types';
-import { User } from '../../store/users/types';
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
-import { ToggleType, UI } from '../../store/ui/types';
+import { ActiveUser } from "../../store/active-user/types";
+import { User } from "../../store/users/types";
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
+import { ToggleType, UI } from "../../store/ui/types";
 
-import BaseComponent from '../base';
-import LoginRequired from '../login-required';
-import KeyOrHotDialog from '../key-or-hot-dialog';
-import { error } from '../feedback';
+import BaseComponent from "../base";
+import LoginRequired from "../login-required";
+import KeyOrHotDialog from "../key-or-hot-dialog";
+import { error } from "../feedback";
 
-import { witnessVote, witnessVoteHot, witnessVoteKc, formatError } from '../../api/operations';
+import { witnessVote, witnessVoteHot, witnessVoteKc, formatError } from "../../api/operations";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
-import { chevronUpSvg } from '../../img/svg';
+import { chevronUpSvg } from "../../img/svg";
 
 interface Props {
   global: Global;
@@ -50,7 +50,7 @@ export class WitnessVoteBtn extends BaseComponent<Props, State> {
     const fnArgs = [...args, approve];
     const call = fn(...fnArgs);
 
-    if (typeof call?.then === 'function') {
+    if (typeof call?.then === "function") {
       if (onStart) onStart();
       this.stateSet({ inProgress: true });
 
@@ -73,8 +73,8 @@ export class WitnessVoteBtn extends BaseComponent<Props, State> {
     const { inProgress } = this.state;
 
     const cls = _c(
-      `btn-witness-vote btn-up-vote ${inProgress ? 'in-progress' : ''} ${voted ? 'voted' : ''} ${
-        witness === '' ? 'disabled' : ''
+      `btn-witness-vote btn-up-vote ${inProgress ? "in-progress" : ""} ${voted ? "voted" : ""} ${
+        witness === "" ? "disabled" : ""
       }`
     );
     const btn = (

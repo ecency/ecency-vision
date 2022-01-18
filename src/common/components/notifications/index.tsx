@@ -1,46 +1,46 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal } from "react-bootstrap";
 
-import moment from 'moment';
+import moment from "moment";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Global } from '../../store/global/types';
-import { Account } from '../../store/accounts/types';
-import { ToggleType } from '../../store/ui/types';
-import { NotificationFilter, Notifications } from '../../store/notifications/types';
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
+import { ToggleType } from "../../store/ui/types";
+import { NotificationFilter, Notifications } from "../../store/notifications/types";
 
-import { ApiNotification } from '../../store/notifications/types';
-import ProfileLink from '../profile-link';
-import UserAvatar from '../user-avatar';
-import EntryLink from '../entry-link';
-import LinearProgress from '../linear-progress';
-import DropDown from '../dropdown';
-import Tooltip from '../tooltip';
+import { ApiNotification } from "../../store/notifications/types";
+import ProfileLink from "../profile-link";
+import UserAvatar from "../user-avatar";
+import EntryLink from "../entry-link";
+import LinearProgress from "../linear-progress";
+import DropDown from "../dropdown";
+import Tooltip from "../tooltip";
 
-import { postBodySummary } from '@ecency/render-helper';
+import { postBodySummary } from "@ecency/render-helper";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
-import { syncSvg, checkSvg, bellOffSvg, bellCheckSvg } from '../../img/svg';
+import { syncSvg, checkSvg, bellOffSvg, bellCheckSvg } from "../../img/svg";
 
-import { hiveNotifySetLastRead } from '../../api/operations';
-import { ActiveUser } from '../../store/active-user/types';
+import { hiveNotifySetLastRead } from "../../api/operations";
+import { ActiveUser } from "../../store/active-user/types";
 
 export const date2key = (s: string): string => {
-  if (s === 'Yesterday') {
-    return moment().subtract(1, 'days').fromNow();
+  if (s === "Yesterday") {
+    return moment().subtract(1, "days").fromNow();
   }
 
-  if (s.indexOf('hours') > -1) {
+  if (s.indexOf("hours") > -1) {
     const h = parseInt(s, 10);
-    return moment().subtract(h, 'hours').fromNow();
+    return moment().subtract(h, "hours").fromNow();
   }
 
-  if (s.split('-').length === 3) {
+  if (s.split("-").length === 3) {
     return moment.utc(s).fromNow();
   }
 
@@ -70,7 +70,7 @@ export class NotificationListItem extends Component<{
 
   afterClick = () => {
     const { toggleUIProp } = this.props;
-    toggleUIProp('notifications');
+    toggleUIProp("notifications");
     this.markAsRead();
   };
 
@@ -83,7 +83,7 @@ export class NotificationListItem extends Component<{
       afterClick: this.afterClick,
       children: (
         <a className="source-avatar">
-          {UserAvatar({ ...this.props, username: notification.source, size: 'medium' })}
+          {UserAvatar({ ...this.props, username: notification.source, size: "medium" })}
         </a>
       )
     });
@@ -99,12 +99,12 @@ export class NotificationListItem extends Component<{
       <>
         <div
           title={notification.timestamp}
-          className={_c(`list-item ${notification.read === 0 ? 'not-read' : ' '}`)}
+          className={_c(`list-item ${notification.read === 0 ? "not-read" : " "}`)}
         >
           <div className="item-inner">
             <div className="item-control">
               {notification.read === 0 && (
-                <Tooltip content={_t('notifications.mark-read')}>
+                <Tooltip content={_t("notifications.mark-read")}>
                   <span onClick={this.markAsRead} className="mark-read" />
                 </Tooltip>
               )}
@@ -113,19 +113,19 @@ export class NotificationListItem extends Component<{
             <div className="source">{sourceLinkMain}</div>
 
             {/* Votes */}
-            {(notification.type === 'vote' || notification.type === 'unvote') && (
+            {(notification.type === "vote" || notification.type === "unvote") && (
               <div className="item-content">
                 <div className="first-line">
                   {sourceLink}
                   <span className="item-action">
-                    {_t('notifications.vote-str', { p: notification.weight / 100 })}
+                    {_t("notifications.vote-str", { p: notification.weight / 100 })}
                   </span>
                 </div>
                 <div className="second-line">
                   {EntryLink({
                     ...this.props,
                     entry: {
-                      category: 'category',
+                      category: "category",
                       author: notification.author,
                       permlink: notification.permlink
                     },
@@ -137,16 +137,16 @@ export class NotificationListItem extends Component<{
             )}
 
             {/* Replies */}
-            {notification.type === 'reply' && (
+            {notification.type === "reply" && (
               <div className="item-content">
                 <div className="first-line">
                   {sourceLink}
-                  <span className="item-action">{_t('notifications.reply-str')}</span>
+                  <span className="item-action">{_t("notifications.reply-str")}</span>
                   <div className="vert-separator" />
                   {EntryLink({
                     ...this.props,
                     entry: {
-                      category: 'category',
+                      category: "category",
                       author: notification.parent_author,
                       permlink: notification.parent_permlink
                     },
@@ -158,7 +158,7 @@ export class NotificationListItem extends Component<{
                   {EntryLink({
                     ...this.props,
                     entry: {
-                      category: 'category',
+                      category: "category",
                       author: notification.author,
                       permlink: notification.permlink
                     },
@@ -174,17 +174,17 @@ export class NotificationListItem extends Component<{
             )}
 
             {/* Mentions */}
-            {notification.type === 'mention' && (
+            {notification.type === "mention" && (
               <div className="item-content">
                 <div className="first-line">
                   {sourceLink}
-                  <span className="item-action">{_t('notifications.mention-str')}</span>
+                  <span className="item-action">{_t("notifications.mention-str")}</span>
                 </div>
                 <div className="second-line">
                   {EntryLink({
                     ...this.props,
                     entry: {
-                      category: 'category',
+                      category: "category",
                       author: notification.author,
                       permlink: notification.permlink
                     },
@@ -196,37 +196,37 @@ export class NotificationListItem extends Component<{
             )}
 
             {/* Follows */}
-            {(notification.type === 'follow' ||
-              notification.type === 'unfollow' ||
-              notification.type === 'ignore') && (
+            {(notification.type === "follow" ||
+              notification.type === "unfollow" ||
+              notification.type === "ignore") && (
               <div className="item-content">
                 <div className="first-line">{sourceLink}</div>
                 <div className="second-line">
-                  {notification.type === 'follow' && (
-                    <span className="follow-label">{_t('notifications.followed-str')}</span>
+                  {notification.type === "follow" && (
+                    <span className="follow-label">{_t("notifications.followed-str")}</span>
                   )}
-                  {notification.type === 'unfollow' && (
-                    <span className="unfollow-label">{_t('notifications.unfollowed-str')}</span>
+                  {notification.type === "unfollow" && (
+                    <span className="unfollow-label">{_t("notifications.unfollowed-str")}</span>
                   )}
-                  {notification.type === 'ignore' && (
-                    <span className="ignore-label">{_t('notifications.ignored-str')}</span>
+                  {notification.type === "ignore" && (
+                    <span className="ignore-label">{_t("notifications.ignored-str")}</span>
                   )}
                 </div>
               </div>
             )}
 
             {/* Reblogs */}
-            {notification.type === 'reblog' && (
+            {notification.type === "reblog" && (
               <div className="item-content">
                 <div className="first-line">
                   {sourceLink}
-                  <span className="item-action">{_t('notifications.reblog-str')}</span>
+                  <span className="item-action">{_t("notifications.reblog-str")}</span>
                 </div>
                 <div className="second-line">
                   {EntryLink({
                     ...this.props,
                     entry: {
-                      category: 'category',
+                      category: "category",
                       author: notification.author,
                       permlink: notification.permlink
                     },
@@ -238,12 +238,12 @@ export class NotificationListItem extends Component<{
             )}
 
             {/* Transfer */}
-            {notification.type === 'transfer' && (
+            {notification.type === "transfer" && (
               <div className="item-content">
                 <div className="first-line">
                   {sourceLink}
                   <span className="item-action">
-                    {_t('notifications.transfer-str')}{' '}
+                    {_t("notifications.transfer-str")}{" "}
                     <span className="transfer-amount">{notification.amount}</span>
                   </span>
                 </div>
@@ -256,31 +256,31 @@ export class NotificationListItem extends Component<{
             )}
 
             {/* Spin */}
-            {notification.type === 'spin' && (
+            {notification.type === "spin" && (
               <div className="item-content">
                 <div className="first-line">
                   {sourceLink}
-                  <span className="item-action">{_t('notifications.spin-str')}</span>
+                  <span className="item-action">{_t("notifications.spin-str")}</span>
                 </div>
               </div>
             )}
 
             {/* Inactive */}
-            {notification.type === 'inactive' && (
+            {notification.type === "inactive" && (
               <div className="item-content">
                 <div className="first-line">
                   {sourceLink}
-                  <span className="item-action">{_t('notifications.inactive-str')}</span>
+                  <span className="item-action">{_t("notifications.inactive-str")}</span>
                 </div>
               </div>
             )}
 
             {/* Referral */}
-            {notification.type === 'referral' && (
+            {notification.type === "referral" && (
               <div className="item-content">
                 <div className="first-line">
                   {sourceLink}
-                  <span className="item-action">{_t('notifications.referral-str')}</span>
+                  <span className="item-action">{_t("notifications.referral-str")}</span>
                 </div>
               </div>
             )}
@@ -345,7 +345,7 @@ export class DialogContent extends Component<NotificationProps> {
 
   hide = () => {
     const { toggleUIProp } = this.props;
-    toggleUIProp('login');
+    toggleUIProp("login");
   };
 
   mute = () => {
@@ -362,7 +362,7 @@ export class DialogContent extends Component<NotificationProps> {
     const filters = Object.values(NotificationFilter);
     const menuItems = [
       {
-        label: _t('notifications.type-all-short'),
+        label: _t("notifications.type-all-short"),
         onClick: () => {
           const { setNotificationsFilter, fetchNotifications } = this.props;
           setNotificationsFilter(null);
@@ -383,7 +383,7 @@ export class DialogContent extends Component<NotificationProps> {
 
     const dropDownConfig = {
       history: this.props.history,
-      label: '',
+      label: "",
       items: menuItems
     };
 
@@ -395,15 +395,15 @@ export class DialogContent extends Component<NotificationProps> {
         <div className="list-header">
           <div className="list-filter">
             <span>
-              {filter ? _t(`notifications.type-${filter}`) : _t('notifications.type-all')}
+              {filter ? _t(`notifications.type-${filter}`) : _t("notifications.type-all")}
             </span>
             <DropDown {...dropDownConfig} float="left" />
           </div>
           <div className="list-actions">
             {global.notifications && (
-              <Tooltip content={_t('notifications.mute')}>
+              <Tooltip content={_t("notifications.mute")}>
                 <span
-                  className={_c(`list-action ${loading ? 'disabled' : ''}`)}
+                  className={_c(`list-action ${loading ? "disabled" : ""}`)}
                   onClick={this.mute}
                 >
                   {bellOffSvg}
@@ -411,26 +411,26 @@ export class DialogContent extends Component<NotificationProps> {
               </Tooltip>
             )}
             {!global.notifications && (
-              <Tooltip content={_t('notifications.unmute')}>
+              <Tooltip content={_t("notifications.unmute")}>
                 <span
-                  className={_c(`list-action ${loading ? 'disabled' : ''}`)}
+                  className={_c(`list-action ${loading ? "disabled" : ""}`)}
                   onClick={this.unMute}
                 >
                   {bellCheckSvg}
                 </span>
               </Tooltip>
             )}
-            <Tooltip content={_t('notifications.refresh')}>
+            <Tooltip content={_t("notifications.refresh")}>
               <span
-                className={_c(`list-action ${loading ? 'disabled' : ''}`)}
+                className={_c(`list-action ${loading ? "disabled" : ""}`)}
                 onClick={this.refresh}
               >
                 {syncSvg}
               </span>
             </Tooltip>
-            <Tooltip content={_t('notifications.mark-all-read')}>
+            <Tooltip content={_t("notifications.mark-all-read")}>
               <span
-                className={_c(`list-action ${loading || unread === 0 ? 'disabled' : ''}`)}
+                className={_c(`list-action ${loading || unread === 0 ? "disabled" : ""}`)}
                 onClick={this.markAsRead}
               >
                 {checkSvg}
@@ -443,7 +443,7 @@ export class DialogContent extends Component<NotificationProps> {
 
         {!loading && list.length === 0 && (
           <div className="list-body empty-list">
-            <span className="empty-text">{_t('g.empty-list')}</span>
+            <span className="empty-text">{_t("g.empty-list")}</span>
           </div>
         )}
 
@@ -489,7 +489,7 @@ interface Props {
 export default class NotificationsDialog extends Component<Props> {
   hide = () => {
     const { toggleUIProp } = this.props;
-    toggleUIProp('notifications');
+    toggleUIProp("notifications");
   };
 
   render() {

@@ -1,28 +1,28 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import moment from 'moment';
+import moment from "moment";
 
-import { Global } from '../../store/global/types';
-import { Account, FullAccount } from '../../store/accounts/types';
-import { ActiveUser } from '../../store/active-user/types';
+import { Global } from "../../store/global/types";
+import { Account, FullAccount } from "../../store/accounts/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import UserAvatar from '../user-avatar';
-import Tooltip from '../tooltip';
-import { Followers, Following } from '../friends';
+import UserAvatar from "../user-avatar";
+import Tooltip from "../tooltip";
+import { Followers, Following } from "../friends";
 
-import accountReputation from '../../helper/account-reputation';
+import accountReputation from "../../helper/account-reputation";
 
-import formattedNumber from '../../util/formatted-number';
+import formattedNumber from "../../util/formatted-number";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
-import { votingPower } from '../../api/hive';
+import { votingPower } from "../../api/hive";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 import {
   formatListBulledttedSvg,
@@ -32,11 +32,11 @@ import {
   earthSvg,
   calendarRangeSvg,
   rssSvg
-} from '../../img/svg';
+} from "../../img/svg";
 
-import { EditPic } from '../community-card';
-import { getRelationshipBetweenAccounts } from '../../api/bridge';
-import { Skeleton } from '../skeleton';
+import { EditPic } from "../community-card";
+import { getRelationshipBetweenAccounts } from "../../api/bridge";
+import { Skeleton } from "../skeleton";
 
 interface Props {
   global: Global;
@@ -112,7 +112,7 @@ export const ProfileCard = (props: Props) => {
     return (
       <div className="profile-card">
         <div className="profile-avatar">
-          {UserAvatar({ ...props, username: account.name, size: 'xLarge' })}
+          {UserAvatar({ ...props, username: account.name, size: "xLarge" })}
         </div>
 
         <h1>
@@ -129,7 +129,7 @@ export const ProfileCard = (props: Props) => {
     activeUser.username === account.name &&
     activeUser.data.__loaded &&
     activeUser.data.profile;
-  const isSettings = section === 'settings';
+  const isSettings = section === "settings";
 
   return (
     <div className="profile-card">
@@ -137,7 +137,7 @@ export const ProfileCard = (props: Props) => {
         {UserAvatar({
           ...props,
           username: account.name,
-          size: 'xLarge',
+          size: "xLarge",
           src: account.profile?.profile_image
         })}
         {isMyProfile && isSettings && (
@@ -164,7 +164,7 @@ export const ProfileCard = (props: Props) => {
       </div>
 
       <div className="vpower-percentage">
-        <Tooltip content={_t('profile.voting-power')}>
+        <Tooltip content={_t("profile.voting-power")}>
           <span>{vPower.toFixed(2)}</span>
         </Tooltip>
       </div>
@@ -173,7 +173,7 @@ export const ProfileCard = (props: Props) => {
           {followsActiveUserLoading ? (
             <Skeleton className="loading-follows-you" />
           ) : followsActiveUser ? (
-            <div className="follow-pill d-inline text-lowercase">{_t('profile.follows-you')}</div>
+            <div className="follow-pill d-inline text-lowercase">{_t("profile.follows-you")}</div>
           ) : null}
         </div>
       )}
@@ -188,9 +188,9 @@ export const ProfileCard = (props: Props) => {
       {account.__loaded && (
         <div className="stats">
           <div className="stat">
-            <Tooltip content={_t('profile.post-count')}>
+            <Tooltip content={_t("profile.post-count")}>
               <span>
-                {formatListBulledttedSvg}{' '}
+                {formatListBulledttedSvg}{" "}
                 {formattedNumber(account.post_count!, { fractionDigits: 0 })}
               </span>
             </Tooltip>
@@ -198,9 +198,9 @@ export const ProfileCard = (props: Props) => {
 
           {account.follow_stats?.follower_count !== undefined && (
             <div className="stat followers">
-              <Tooltip content={_t('profile.followers')}>
+              <Tooltip content={_t("profile.followers")}>
                 <span onClick={toggleFollowers}>
-                  {accountMultipleSvg}{' '}
+                  {accountMultipleSvg}{" "}
                   {formattedNumber(account.follow_stats.follower_count, { fractionDigits: 0 })}
                 </span>
               </Tooltip>
@@ -209,9 +209,9 @@ export const ProfileCard = (props: Props) => {
 
           {account.follow_stats?.following_count !== undefined && (
             <div className="stat following">
-              <Tooltip content={_t('profile.following')}>
+              <Tooltip content={_t("profile.following")}>
                 <span onClick={toggleFollowing}>
-                  {accountPlusSvg}{' '}
+                  {accountPlusSvg}{" "}
                   {formattedNumber(account.follow_stats.following_count, { fractionDigits: 0 })}
                 </span>
               </Tooltip>
@@ -233,7 +233,7 @@ export const ProfileCard = (props: Props) => {
             <a
               target="_external"
               className="website-link"
-              href={`https://${account.profile.website.replace(/^(https?|ftp):\/\//, '')}`}
+              href={`https://${account.profile.website.replace(/^(https?|ftp):\/\//, "")}`}
             >
               {account.profile.website}
             </a>
@@ -242,7 +242,7 @@ export const ProfileCard = (props: Props) => {
 
         {account.created && (
           <div className="prop">
-            {calendarRangeSvg} {moment(new Date(account.created)).format('LL')}
+            {calendarRangeSvg} {moment(new Date(account.created)).format("LL")}
           </div>
         )}
 
@@ -257,10 +257,10 @@ export const ProfileCard = (props: Props) => {
       {isMyProfile && (
         <div className="btn-controls">
           <Link className="btn btn-sm btn-primary" to="/witnesses">
-            {_t('profile.witnesses')}
+            {_t("profile.witnesses")}
           </Link>
           <Link className="btn btn-sm btn-primary" to="/proposals">
-            {_t('profile.proposals')}
+            {_t("profile.proposals")}
           </Link>
         </div>
       )}

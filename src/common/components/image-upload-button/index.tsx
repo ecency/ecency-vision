@@ -1,17 +1,17 @@
-import React from 'react';
-import { Button, Spinner } from 'react-bootstrap';
+import React from "react";
+import { Button, Spinner } from "react-bootstrap";
 
-import { ActiveUser } from '../../store/active-user/types';
+import { ActiveUser } from "../../store/active-user/types";
 
-import BaseComponent from '../base';
-import { error, success } from '../feedback';
+import BaseComponent from "../base";
+import { error, success } from "../feedback";
 
-import { uploadImage } from '../../api/misc';
-import { getAccessToken } from '../../helper/user-token';
+import { uploadImage } from "../../api/misc";
+import { getAccessToken } from "../../helper/user-token";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { uploadSvg } from '../../img/svg';
+import { uploadSvg } from "../../img/svg";
 
 interface UploadButtonProps {
   activeUser: ActiveUser;
@@ -54,16 +54,16 @@ export default class UploadButton extends BaseComponent<UploadButtonProps, Uploa
       uploadImage(file, token)
         .then((r) => {
           onEnd(r.url);
-          success(_t('image-upload-button.uploaded'));
+          success(_t("image-upload-button.uploaded"));
         })
         .catch(() => {
-          error(_t('g.server-error'));
+          error(_t("g.server-error"));
         })
         .finally(() => {
           this.stateSet({ inProgress: false });
         });
     } else {
-      error(_t('editor-toolbar.image-error-cache'));
+      error(_t("editor-toolbar.image-error-cache"));
     }
   };
 
@@ -86,7 +86,7 @@ export default class UploadButton extends BaseComponent<UploadButtonProps, Uploa
             type="file"
             ref={this.input}
             accept="image/*"
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
             onChange={this.handleFileInput}
           />
         </Button>

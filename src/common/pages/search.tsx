@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import queryString from 'query-string';
+import queryString from "query-string";
 
-import Meta from '../components/meta';
-import Theme from '../components/theme/index';
-import NavBar from '../components/navbar/index';
-import NavBarElectron from '../../desktop/app/components/navbar';
-import SearchComment from '../components/search-comment';
-import SearchPeople from '../components/search-people';
-import SearchTopics from '../components/search-topics';
-import SearchCommunities from '../components/search-communities';
+import Meta from "../components/meta";
+import Theme from "../components/theme/index";
+import NavBar from "../components/navbar/index";
+import NavBarElectron from "../../desktop/app/components/navbar";
+import SearchComment from "../components/search-comment";
+import SearchPeople from "../components/search-people";
+import SearchTopics from "../components/search-topics";
+import SearchCommunities from "../components/search-communities";
 
-import { _t } from '../i18n';
+import { _t } from "../i18n";
 
-import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from './common';
+import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
 
 interface State {
   q: string;
@@ -23,7 +23,7 @@ interface State {
 
 export default class SearchBase extends Component<PageProps, State> {
   state: State = {
-    q: ''
+    q: ""
   };
 
   componentDidMount() {
@@ -31,7 +31,7 @@ export default class SearchBase extends Component<PageProps, State> {
     const qs = queryString.parse(location.search);
 
     if (!qs.q) {
-      history.push('/');
+      history.push("/");
       return;
     }
 
@@ -48,14 +48,14 @@ class SearchPage extends SearchBase {
 
     //  Meta config
     const metaProps = {
-      title: _t('search-page.title'),
-      description: _t('search-page.description')
+      title: _t("search-page.title"),
+      description: _t("search-page.description")
     };
 
     const { global } = this.props;
     let containerClasses = global.isElectron
-      ? 'app-content search-page mt-0 pt-6'
-      : 'app-content search-page';
+      ? "app-content search-page mt-0 pt-6"
+      : "app-content search-page";
 
     return (
       <>
@@ -93,14 +93,14 @@ class SearchMorePage extends SearchBase {
 
     //  Meta config
     const metaProps = {
-      title: _t('search-page.title'),
-      description: _t('search-page.description')
+      title: _t("search-page.title"),
+      description: _t("search-page.description")
     };
 
     const { global } = this.props;
     let containerClasses = global.isElectron
-      ? 'app-content search-more-page mt-0 pt-6'
-      : 'app-content search-more-page';
+      ? "app-content search-more-page mt-0 pt-6"
+      : "app-content search-more-page";
 
     return (
       <>

@@ -1,28 +1,28 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Modal } from 'react-bootstrap';
+import { Modal } from "react-bootstrap";
 
-import { ActiveUser } from '../../store/active-user/types';
+import { ActiveUser } from "../../store/active-user/types";
 
-import { proxifyImageSrc, setProxyBase } from '@ecency/render-helper';
+import { proxifyImageSrc, setProxyBase } from "@ecency/render-helper";
 
-import BaseComponent from '../base';
-import LinearProgress from '../linear-progress';
-import PopoverConfirm from '../popover-confirm';
-import Tooltip from '../tooltip';
+import BaseComponent from "../base";
+import LinearProgress from "../linear-progress";
+import PopoverConfirm from "../popover-confirm";
+import Tooltip from "../tooltip";
 
-import { getImages, deleteImage, UserImage } from '../../api/private-api';
+import { getImages, deleteImage, UserImage } from "../../api/private-api";
 
-import { success, error } from '../feedback';
+import { success, error } from "../feedback";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { deleteForeverSvg } from '../../img/svg';
+import { deleteForeverSvg } from "../../img/svg";
 
-import clipboard from '../../util/clipboard';
+import clipboard from "../../util/clipboard";
 
-import defaults from '../../constants/defaults.json';
-import { Global } from '../../store/global/types';
+import defaults from "../../constants/defaults.json";
+import { Global } from "../../store/global/types";
 
 setProxyBase(defaults.imageServer);
 
@@ -58,7 +58,7 @@ export class Gallery extends BaseComponent<Props, State> {
       })
       .catch(() => {
         this.stateSet({ loading: false });
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       });
   };
 
@@ -75,7 +75,7 @@ export class Gallery extends BaseComponent<Props, State> {
     }
 
     clipboard(item.url);
-    success(_t('gallery.copied'));
+    success(_t("gallery.copied"));
   };
 
   delete = (item: UserImage) => {
@@ -88,7 +88,7 @@ export class Gallery extends BaseComponent<Props, State> {
         this.stateSet({ items: this.sort(nItems) });
       })
       .catch(() => {
-        error(_t('g.server-error'));
+        error(_t("g.server-error"));
       });
   };
 
@@ -107,7 +107,7 @@ export class Gallery extends BaseComponent<Props, State> {
                   item.url,
                   600,
                   500,
-                  global.canUseWebp ? 'webp' : 'match'
+                  global.canUseWebp ? "webp" : "match"
                 );
                 return (
                   <div
@@ -128,7 +128,7 @@ export class Gallery extends BaseComponent<Props, State> {
                         }}
                       >
                         <span className="btn-delete">
-                          <Tooltip content={_t('g.delete')}>{deleteForeverSvg}</Tooltip>
+                          <Tooltip content={_t("g.delete")}>{deleteForeverSvg}</Tooltip>
                         </span>
                       </PopoverConfirm>
                     </div>
@@ -138,7 +138,7 @@ export class Gallery extends BaseComponent<Props, State> {
             </div>
           </div>
         )}
-        {!loading && items.length === 0 && <div className="gallery-list">{_t('g.empty-list')}</div>}
+        {!loading && items.length === 0 && <div className="gallery-list">{_t("g.empty-list")}</div>}
       </div>
     );
   }
@@ -154,7 +154,7 @@ export default class GalleryDialog extends Component<Props> {
     return (
       <Modal show={true} centered={true} onHide={this.hide} size="lg" className="gallery-modal">
         <Modal.Header closeButton={true}>
-          <Modal.Title>{_t('gallery.title')}</Modal.Title>
+          <Modal.Title>{_t("gallery.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Gallery {...this.props} />

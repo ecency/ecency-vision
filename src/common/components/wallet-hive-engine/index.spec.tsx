@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import Wallet from './index';
+import Wallet from "./index";
 
-import TestRenderer from 'react-test-renderer';
+import TestRenderer from "react-test-renderer";
 
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory } from "history";
 
-import { initialState as transactionsInitialState } from '../../store/transactions/index';
+import { initialState as transactionsInitialState } from "../../store/transactions/index";
 
 import {
   globalInstance,
@@ -14,13 +14,13 @@ import {
   activeUserInstance,
   allOver,
   fullAccountInstance
-} from '../../helper/test-helper';
-import { StaticRouter } from 'react-router-dom';
-import { FullAccount } from '../../store/accounts/types';
+} from "../../helper/test-helper";
+import { StaticRouter } from "react-router-dom";
+import { FullAccount } from "../../store/accounts/types";
 
 let MOCK_MODE = 1;
 
-jest.mock('../../api/hive-engine', () => ({
+jest.mock("../../api/hive-engine", () => ({
   getHiveEngineTokenBalances: () =>
     new Promise((resolve) => {
       if (MOCK_MODE === 1) {
@@ -30,9 +30,9 @@ jest.mock('../../api/hive-engine', () => ({
       if (MOCK_MODE === 2 || MOCK_MODE === 3) {
         resolve([
           {
-            symbol: 'POB',
-            name: 'Proof of Brain',
-            icon: 'https://images.hive.blog/DQmebUEYTFmi2g4pqExAjaQrv9E9nzNtuEDbttRBRShkVYy/brain.png',
+            symbol: "POB",
+            name: "Proof of Brain",
+            icon: "https://images.hive.blog/DQmebUEYTFmi2g4pqExAjaQrv9E9nzNtuEDbttRBRShkVYy/brain.png",
             precision: 8,
             stakingEnabled: true,
             delegationEnabled: true,
@@ -44,14 +44,14 @@ jest.mock('../../api/hive-engine', () => ({
             delegationsOut: 0,
             pendingUndelegations: 0,
             hasDelegations: () => false,
-            delegations: () => '',
-            staked: () => '8.10882833',
-            balanced: () => '0'
+            delegations: () => "",
+            staked: () => "8.10882833",
+            balanced: () => "0"
           },
           {
-            symbol: 'PIZZA',
-            name: 'PIZZA',
-            icon: 'https://cdn.discordapp.com/attachments/829112115822198805/853854448936812574/Hive3.png',
+            symbol: "PIZZA",
+            name: "PIZZA",
+            icon: "https://cdn.discordapp.com/attachments/829112115822198805/853854448936812574/Hive3.png",
             precision: 2,
             stakingEnabled: true,
             delegationEnabled: false,
@@ -61,9 +61,9 @@ jest.mock('../../api/hive-engine', () => ({
             delegationsIn: 1.12,
             delegationsOut: 0.1,
             hasDelegations: () => true,
-            delegations: () => '(0.11 + 1.12 - 0.10)',
-            staked: () => '1.13',
-            balanced: () => '1.0'
+            delegations: () => "(0.11 + 1.12 - 0.10)",
+            staked: () => "1.13",
+            balanced: () => "1.0"
           }
         ]);
       }
@@ -71,9 +71,9 @@ jest.mock('../../api/hive-engine', () => ({
       if (MOCK_MODE === 4) {
         resolve([
           {
-            symbol: 'POB',
-            name: 'Proof of Brain',
-            icon: 'https://images.hive.blog/DQmebUEYTFmi2g4pqExAjaQrv9E9nzNtuEDbttRBRShkVYy/brain.png',
+            symbol: "POB",
+            name: "Proof of Brain",
+            icon: "https://images.hive.blog/DQmebUEYTFmi2g4pqExAjaQrv9E9nzNtuEDbttRBRShkVYy/brain.png",
             precision: 8,
             stakingEnabled: true,
             delegationEnabled: true,
@@ -85,9 +85,9 @@ jest.mock('../../api/hive-engine', () => ({
             delegationsOut: 0,
             pendingUndelegations: 0,
             hasDelegations: () => false,
-            delegations: () => '',
-            staked: () => '0',
-            balanced: () => '0'
+            delegations: () => "",
+            staked: () => "0",
+            balanced: () => "0"
           }
         ]);
       }
@@ -103,7 +103,7 @@ jest.mock('../../api/hive-engine', () => ({
           {
             pending_token: 883586,
             precision: 8,
-            symbol: 'POB'
+            symbol: "POB"
           }
         ]);
       }
@@ -112,7 +112,7 @@ jest.mock('../../api/hive-engine', () => ({
 
 const account: FullAccount = {
   ...fullAccountInstance,
-  name: 'user1'
+  name: "user1"
 };
 
 const defProps = {
@@ -124,7 +124,7 @@ const defProps = {
   account
 };
 
-it('(1) Render an empty list when no tokens found', async () => {
+it("(1) Render an empty list when no tokens found", async () => {
   const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
       <Wallet {...defProps} />
@@ -134,7 +134,7 @@ it('(1) Render an empty list when no tokens found', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Render with some hive engine tokens', async () => {
+it("(2) Render with some hive engine tokens", async () => {
   MOCK_MODE = 2;
 
   const renderer = await TestRenderer.create(
@@ -146,7 +146,7 @@ it('(2) Render with some hive engine tokens', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(3) Render with an unclaimed rewards', async () => {
+it("(3) Render with an unclaimed rewards", async () => {
   MOCK_MODE = 3;
 
   const renderer = await TestRenderer.create(
@@ -158,7 +158,7 @@ it('(3) Render with an unclaimed rewards', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(4) Render an empty list if tokens equals zero', async () => {
+it("(4) Render an empty list if tokens equals zero", async () => {
   MOCK_MODE = 4;
 
   const renderer = await TestRenderer.create(
@@ -170,7 +170,7 @@ it('(4) Render an empty list if tokens equals zero', async () => {
   expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(5) usePrivate = false', async () => {
+it("(5) usePrivate = false", async () => {
   const props = {
     ...defProps,
     global: {

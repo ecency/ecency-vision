@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import renderer from 'react-test-renderer';
+import renderer from "react-test-renderer";
 
-import { createBrowserHistory, createLocation } from 'history';
-import { StaticRouter } from 'react-router-dom';
+import { createBrowserHistory, createLocation } from "history";
+import { StaticRouter } from "react-router-dom";
 
 import {
   globalInstance,
@@ -12,14 +12,14 @@ import {
   dynamicPropsIntance1,
   activeUserMaker,
   allOver
-} from '../../helper/test-helper';
+} from "../../helper/test-helper";
 
-import { ProposalListItem } from './index';
+import { ProposalListItem } from "./index";
 
-jest.mock('../../util/now', () => () => new Date('November 22, 2020 03:24:00'));
+jest.mock("../../util/now", () => () => new Date("November 22, 2020 03:24:00"));
 
-jest.mock('../../api/hive', () => ({
-  getProposalVotes: (proposalId: number, voter: string = '', limit: number = 300) =>
+jest.mock("../../api/hive", () => ({
+  getProposalVotes: (proposalId: number, voter: string = "", limit: number = 300) =>
     new Promise((resolve) => {
       resolve([]);
     })
@@ -31,9 +31,9 @@ const defProps = {
   global: globalInstance,
   dynamicProps: dynamicPropsIntance1,
   users: [],
-  activeUser: activeUserMaker('foo'),
+  activeUser: activeUserMaker("foo"),
   ui: UiInstance,
-  signingKey: '',
+  signingKey: "",
   addAccount: () => {},
   proposal: proposalInstance,
   setActiveUser: () => {},
@@ -43,7 +43,7 @@ const defProps = {
   setSigningKey: () => {}
 };
 
-it('(1) Default render.', async () => {
+it("(1) Default render.", async () => {
   const props = { ...defProps };
   const component = renderer.create(
     <StaticRouter location="/" context={{}}>

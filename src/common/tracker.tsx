@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class Tracker extends Component {
   state = {
@@ -41,7 +41,7 @@ export default class Tracker extends Component {
           <p>
             <img
               src="//analytics.ecency.com/matomo.php?idsite=1&amp;rec=1"
-              style={{ border: '0' }}
+              style={{ border: "0" }}
               alt="Ecency analytics"
             />
           </p>

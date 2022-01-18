@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Global } from '../../store/global/types';
+import { Global } from "../../store/global/types";
 
-import { makePath } from '../tag';
+import { makePath } from "../tag";
 
-import _c from '../../util/fix-class-names';
+import _c from "../../util/fix-class-names";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 import {
   paletteOutlineSvg,
@@ -27,7 +27,7 @@ import {
   reactSvg,
   spaSvg,
   walletTravelSvg
-} from '../../img/svg';
+} from "../../img/svg";
 
 interface Props {
   history: History;
@@ -36,73 +36,73 @@ interface Props {
 
 const tags = [
   {
-    label: 'Art & Design',
-    tag: 'hive-174301',
+    label: "Art & Design",
+    tag: "hive-174301",
     icon: paletteOutlineSvg
   },
   {
-    label: 'Coronavirus',
-    tag: 'covid-19',
+    label: "Coronavirus",
+    tag: "covid-19",
     icon: virusOutline
   },
   {
-    label: 'Election',
-    tag: 'election',
+    label: "Election",
+    tag: "election",
     icon: voteOutline
   },
   {
-    label: 'Gaming',
-    tag: 'hive-140217',
+    label: "Gaming",
+    tag: "hive-140217",
     icon: gamepadSquareOutline
   },
   {
-    label: 'Finance',
-    tag: 'finance',
+    label: "Finance",
+    tag: "finance",
     icon: financeSvg
   },
   {
-    label: 'Politics',
-    tag: 'hive-160545',
+    label: "Politics",
+    tag: "hive-160545",
     icon: accountTieSvg
   },
   {
-    label: 'Photography',
-    tag: 'hive-194913',
+    label: "Photography",
+    tag: "hive-194913",
     icon: cameraSvg
   },
   {
-    label: 'Programming',
-    tag: 'hive-169321',
+    label: "Programming",
+    tag: "hive-169321",
     icon: codeTags
   },
   {
-    label: 'Movies & TV',
-    tag: 'hive-166847',
+    label: "Movies & TV",
+    tag: "hive-166847",
     icon: televisionSvg
   },
   {
-    label: 'Marketing',
-    tag: 'marketing',
+    label: "Marketing",
+    tag: "marketing",
     icon: bullHornSvg
   },
   {
-    label: 'Sport & Fitness',
-    tag: 'hive-176853',
+    label: "Sport & Fitness",
+    tag: "hive-176853",
     icon: basketballSvg
   },
   {
-    label: 'Science',
-    tag: 'science',
+    label: "Science",
+    tag: "science",
     icon: reactSvg
   },
   {
-    label: 'Spirituality',
-    tag: 'hive-183196',
+    label: "Spirituality",
+    tag: "hive-183196",
     icon: spaSvg
   },
   {
-    label: 'Travel',
-    tag: 'hive-163772',
+    label: "Travel",
+    tag: "hive-163772",
     icon: walletTravelSvg
   }
 ];
@@ -113,9 +113,9 @@ export class SelectedTagsCard extends Component<Props> {
 
     return (
       <div className="selected-tags-card">
-        <h2 className="list-header">{_t('selected-tags.title')}</h2>
+        <h2 className="list-header">{_t("selected-tags.title")}</h2>
         {tags.map((t) => {
-          const cls = _c(`tag-list-item ${global.tag === t.tag ? 'selected-item' : ''}`);
+          const cls = _c(`tag-list-item ${global.tag === t.tag ? "selected-item" : ""}`);
           return (
             <Link key={t.tag} to={makePath(global.filter, t.tag)} className={cls}>
               <span>

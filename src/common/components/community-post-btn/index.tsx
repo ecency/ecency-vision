@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { History } from 'history';
+import { History } from "history";
 
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 
-import { Community } from '../../store/communities/types';
+import { Community } from "../../store/communities/types";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
 interface Props {
   history: History;
@@ -20,7 +20,7 @@ export class CommunityPostBtn extends Component<Props> {
   };
 
   render() {
-    return <Button onClick={this.clicked}>{_t('community.post')}</Button>;
+    return <Button onClick={this.clicked}>{_t("community.post")}</Button>;
   }
 }
 
