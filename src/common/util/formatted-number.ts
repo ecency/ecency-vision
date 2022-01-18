@@ -1,4 +1,4 @@
-import numeral from "numeral";
+import numeral from 'numeral';
 
 interface Options {
   fractionDigits?: number;
@@ -9,8 +9,8 @@ interface Options {
 export default (value: number | string, options: Options | undefined = undefined) => {
   let opts: Options = {
     fractionDigits: 3,
-    prefix: "",
-    suffix: "",
+    prefix: '',
+    suffix: ''
   };
 
   if (options) {
@@ -19,19 +19,19 @@ export default (value: number | string, options: Options | undefined = undefined
 
   const { fractionDigits, prefix, suffix } = opts;
 
-  let format = "0,0";
+  let format = '0,0';
 
   if (fractionDigits) {
-    format += "." + "0".repeat(fractionDigits);
+    format += '.' + '0'.repeat(fractionDigits);
   }
 
-  let out = "";
+  let out = '';
 
-  if (prefix) out += prefix + " ";
+  if (prefix) out += prefix + ' ';
   // turn too small values to zero. Bug: https://github.com/adamwdraper/Numeral-js/issues/563
   const av = Math.abs(parseFloat(value.toString())) < 0.0001 ? 0 : value;
   out += numeral(av).format(format);
-  if (suffix) out += " " + suffix;
+  if (suffix) out += ' ' + suffix;
 
   return out;
 };

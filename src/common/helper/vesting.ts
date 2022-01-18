@@ -1,4 +1,5 @@
-export const vestsToHp = (vests: number, hivePerMVests: number): number => (vests / 1e6) * hivePerMVests;
+export const vestsToHp = (vests: number, hivePerMVests: number): number =>
+  (vests / 1e6) * hivePerMVests;
 
 export const hpToVests = (sp: number, hivePerMVests: number) => (sp * 1e6) / hivePerMVests;
 

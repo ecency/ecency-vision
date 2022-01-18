@@ -23,46 +23,45 @@ export default merge(baseConfig, {
 
   target: process.env.E2E_BUILD ? 'electron-renderer' : 'electron-preload',
 
-  entry: [
-    'core-js',
-    'regenerator-runtime/runtime',
-    path.join(__dirname, '..', 'app/index.tsx'),
-  ],
+  entry: ['core-js', 'regenerator-runtime/runtime', path.join(__dirname, '..', 'app/index.tsx')],
 
   output: {
     path: path.join(__dirname, '..', 'app/dist'),
     publicPath: './dist/',
-    filename: 'renderer.prod.js',
+    filename: 'renderer.prod.js'
   },
 
   module: {
     rules: [
       {
-      test: /\.tsx?$/,
-      use: 'ts-loader',
-      exclude: /node_modules/
-    },
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
       // CSS
       {
         test: /\.*\.css$/,
         use: [
           {
-            loader: 'style-loader',
+            loader: 'style-loader'
           },
           {
             loader: 'css-loader',
             options: {
-              modules: true, importLoaders: 1, sourceMap: true, url: false
-            },
-          },
-        ],
+              modules: true,
+              importLoaders: 1,
+              sourceMap: true,
+              url: false
+            }
+          }
+        ]
       },
       // SASS
       {
         test: /\.*\.(scss|sass)$/,
         use: [
           {
-            loader: 'style-loader',
+            loader: 'style-loader'
           },
           {
             loader: 'css-loader',
@@ -70,12 +69,12 @@ export default merge(baseConfig, {
               sourceMap: true,
               importLoaders: 1,
               url: false
-            },
+            }
           },
           {
-            loader: 'sass-loader',
-          },
-        ],
+            loader: 'sass-loader'
+          }
+        ]
       },
       // WOFF Font
       {
@@ -84,9 +83,9 @@ export default merge(baseConfig, {
           loader: 'url-loader',
           options: {
             limit: 10000,
-            mimetype: 'application/font-woff',
-          },
-        },
+            mimetype: 'application/font-woff'
+          }
+        }
       },
       // WOFF2 Font
       {
@@ -95,16 +94,16 @@ export default merge(baseConfig, {
           loader: 'url-loader',
           options: {
             limit: 10000,
-            mimetype: 'application/font-woff',
-          },
-        },
+            mimetype: 'application/font-woff'
+          }
+        }
       },
       // Common Image Formats
       {
         test: /\.(?:ico|png|jpg|jpeg|webp|svg|mp3)$/,
-        use: 'url-loader',
-      },
-    ],
+        use: 'url-loader'
+      }
+    ]
   },
 
   optimization: {
@@ -114,17 +113,17 @@ export default merge(baseConfig, {
           new TerserPlugin({
             parallel: true,
             sourceMap: true,
-            cache: true,
+            cache: true
           }),
           new OptimizeCSSAssetsPlugin({
             cssProcessorOptions: {
               map: {
                 inline: false,
-                annotation: true,
-              },
-            },
-          }),
-        ],
+                annotation: true
+              }
+            }
+          })
+        ]
   },
 
   plugins: [
@@ -140,17 +139,16 @@ export default merge(baseConfig, {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
       DEBUG_PROD: false,
-      E2E_BUILD: false,
+      E2E_BUILD: false
     }),
 
     new MiniCssExtractPlugin({
-      filename: 'style.css',
+      filename: 'style.css'
     }),
 
     new BundleAnalyzerPlugin({
-      analyzerMode:
-        process.env.OPEN_ANALYZER === 'true' ? 'server' : 'disabled',
-      openAnalyzer: process.env.OPEN_ANALYZER === 'true',
-    }),
-  ],
+      analyzerMode: process.env.OPEN_ANALYZER === 'true' ? 'server' : 'disabled',
+      openAnalyzer: process.env.OPEN_ANALYZER === 'true'
+    })
+  ]
 });

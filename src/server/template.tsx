@@ -1,34 +1,40 @@
-import express from "express";
+import express from 'express';
 
-import React from "react";
-import { Provider } from "react-redux";
-import { renderToString } from "react-dom/server";
-import { StaticRouter } from "react-router-dom";
+import React from 'react';
+import { Provider } from 'react-redux';
+import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
 
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet';
 
-import serialize from "serialize-javascript";
+import serialize from 'serialize-javascript';
 
-import App from "../common/app";
+import App from '../common/app';
 
-import { AppState } from "../common/store/index";
+import { AppState } from '../common/store/index';
 
-import configureStore from "../common/store/configure";
+import configureStore from '../common/store/configure';
 
-let assets: any = require(process.env.RAZZLE_ASSETS_MANIFEST || "");
+let assets: any = require(process.env.RAZZLE_ASSETS_MANIFEST || '');
 
-const cssLinksFromAssets = (assets:any, entrypoint:string) => {
-  return assets[entrypoint] ? assets[entrypoint].css ?
-  assets[entrypoint].css.map((asset:any)=>
-    `<link rel="stylesheet" href="${asset}">`
-  ).join('') : '' : '';
+const cssLinksFromAssets = (assets: any, entrypoint: string) => {
+  return assets[entrypoint]
+    ? assets[entrypoint].css
+      ? assets[entrypoint].css
+          .map((asset: any) => `<link rel="stylesheet" href="${asset}">`)
+          .join('')
+      : ''
+    : '';
 };
 
 const jsScriptTagsFromAssets = (assets: any, entrypoint: any, extra = '') => {
-  return assets[entrypoint] ? assets[entrypoint].js ?
-  assets[entrypoint].js.map((asset:any)=>
-    `<script src="${asset}"${extra}></script>`
-  ).join('') : '' : '';
+  return assets[entrypoint]
+    ? assets[entrypoint].js
+      ? assets[entrypoint].js
+          .map((asset: any) => `<script src="${asset}"${extra}></script>`)
+          .join('')
+      : ''
+    : '';
 };
 
 export const render = (req: express.Request, state: AppState) => {
@@ -39,7 +45,7 @@ export const render = (req: express.Request, state: AppState) => {
   const markup = renderToString(
     <Provider store={store}>
       <StaticRouter location={req.originalUrl} context={context}>
-        <App/>
+        <App />
       </StaticRouter>
     </Provider>
   );
@@ -47,8 +53,7 @@ export const render = (req: express.Request, state: AppState) => {
   const finalState = store.getState();
 
   const helmet = Helmet.renderStatic();
-  const headHelmet =
-    helmet.meta.toString() + helmet.title.toString() + helmet.link.toString();
+  const headHelmet = helmet.meta.toString() + helmet.title.toString() + helmet.link.toString();
 
   return `<!DOCTYPE html>
             <html lang="en">

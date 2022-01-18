@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { Global } from "../../store/global/types";
+import { Global } from '../../store/global/types';
 
-import formattedNumber from "../../util/formatted-number";
+import formattedNumber from '../../util/formatted-number';
 
 interface Props {
   global: Global;
@@ -12,7 +12,7 @@ interface Props {
 
 export default class FormattedCurrency extends Component<Props> {
   public static defaultProps: Partial<Props> = {
-    fixAt: 2,
+    fixAt: 2
   };
 
   render() {

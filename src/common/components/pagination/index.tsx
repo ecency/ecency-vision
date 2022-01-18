@@ -1,72 +1,94 @@
-import React, {Component} from "react";
-import {Pagination} from "react-bootstrap";
+import React, { Component } from 'react';
+import { Pagination } from 'react-bootstrap';
 
 interface Props {
-    dataLength: number,
-    pageSize: number,
-    maxItems: number,
-    page?: number,
-    onPageChange: (num: number) => void,
-    className?: string;
+  dataLength: number;
+  pageSize: number;
+  maxItems: number;
+  page?: number;
+  onPageChange: (num: number) => void;
+  className?: string;
 }
 
 interface State {
-    page: number;
+  page: number;
 }
 
 export default class MyPagination extends Component<Props, State> {
-    state: State = {
-        page: this.props.page || 1
+  state: State = {
+    page: this.props.page || 1
+  };
+
+  changePage = (num: number) => {
+    const { onPageChange } = this.props;
+    this.setState({ page: num });
+    onPageChange(num);
+  };
+
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.page !== this.props.page && this.props.page) {
+      this.setState({ page: this.props.page });
     }
+  }
 
-    changePage = (num: number) => {
-        const {onPageChange} = this.props;
-        this.setState({page: num});
-        onPageChange(num);
-    }
+  render() {
+    const { dataLength, maxItems, pageSize, className } = this.props;
+    const { page } = this.state;
 
-    componentDidUpdate(prevProps: Props){
-        if(prevProps.page !== this.props.page && this.props.page){
-            this.setState({ page: this.props.page })
-        }
-    }
+    const pages = Math.ceil(dataLength / pageSize);
 
-    render() {
-        const {dataLength, maxItems, pageSize, className} = this.props;
-        const {page} = this.state;
+    const records = [...Array(pages).keys()];
 
-        const pages = Math.ceil(dataLength / pageSize);
+    let sliceStart = page - maxItems / 2;
+    if (sliceStart < 0) sliceStart = 0;
+    let sliceEnd = sliceStart + maxItems;
 
-        const records = [...Array(pages).keys()];
+    const allItems = records.map((i, x) => {
+      const num = i + 1;
 
-        let sliceStart = (page - maxItems / 2);
-        if (sliceStart < 0) sliceStart = 0;
-        let sliceEnd = sliceStart + maxItems;
+      return (
+        <Pagination.Item
+          active={num === page}
+          onClick={() => {
+            this.changePage(num);
+          }}
+          key={num}
+        >
+          {num}
+        </Pagination.Item>
+      );
+    });
 
-        const allItems = records.map((i, x) => {
-            const num = i + 1;
+    const items = allItems.slice(sliceStart, sliceEnd);
 
-            return <Pagination.Item active={num === page} onClick={() => {
-                this.changePage(num);
-            }} key={num}>{num}</Pagination.Item>
-        });
-
-        const items = allItems.slice(sliceStart, sliceEnd);
-
-        return <Pagination className={className}>
-            <Pagination.First disabled={!(sliceStart > 0)} onClick={() => {
-                this.changePage(1);
-            }}/>
-            <Pagination.Prev disabled={!(page > 1)} onClick={() => {
-                this.changePage(page - 1);
-            }}/>
-            {items}
-            <Pagination.Next disabled={page >= pages} onClick={() => {
-                this.changePage(page + 1);
-            }}/>
-            <Pagination.Last disabled={page >= pages} onClick={() => {
-                this.changePage(pages);
-            }}/>
-        </Pagination>;
-    }
+    return (
+      <Pagination className={className}>
+        <Pagination.First
+          disabled={!(sliceStart > 0)}
+          onClick={() => {
+            this.changePage(1);
+          }}
+        />
+        <Pagination.Prev
+          disabled={!(page > 1)}
+          onClick={() => {
+            this.changePage(page - 1);
+          }}
+        />
+        {items}
+        <Pagination.Next
+          disabled={page >= pages}
+          onClick={() => {
+            this.changePage(page + 1);
+          }}
+        />
+        <Pagination.Last
+          disabled={page >= pages}
+          onClick={() => {
+            this.changePage(pages);
+          }}
+        />
+      </Pagination>
+    );
+  }
 }

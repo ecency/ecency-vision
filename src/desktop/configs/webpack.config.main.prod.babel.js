@@ -25,7 +25,7 @@ export default merge(baseConfig, {
 
   output: {
     path: path.join(__dirname, '..'),
-    filename: './app/main.prod.js',
+    filename: './app/main.prod.js'
   },
 
   optimization: {
@@ -35,16 +35,15 @@ export default merge(baseConfig, {
           new TerserPlugin({
             parallel: true,
             sourceMap: true,
-            cache: true,
-          }),
-        ],
+            cache: true
+          })
+        ]
   },
 
   plugins: [
     new BundleAnalyzerPlugin({
-      analyzerMode:
-        process.env.OPEN_ANALYZER === 'true' ? 'server' : 'disabled',
-      openAnalyzer: process.env.OPEN_ANALYZER === 'true',
+      analyzerMode: process.env.OPEN_ANALYZER === 'true' ? 'server' : 'disabled',
+      openAnalyzer: process.env.OPEN_ANALYZER === 'true'
     }),
 
     /**
@@ -60,8 +59,8 @@ export default merge(baseConfig, {
       NODE_ENV: 'production',
       DEBUG_PROD: false,
       START_MINIMIZED: false,
-      E2E_BUILD: false,
-    }),
+      E2E_BUILD: false
+    })
   ],
 
   /**
@@ -71,6 +70,6 @@ export default merge(baseConfig, {
    */
   node: {
     __dirname: false,
-    __filename: false,
-  },
+    __filename: false
+  }
 });

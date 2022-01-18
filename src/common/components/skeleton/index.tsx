@@ -1,9 +1,9 @@
 import React from 'react';
 
 interface Props {
-    className?: string;
+  className?: string;
 }
 
-export const Skeleton = ({className}:Props) => {
-    return <div className={`skeleton ${className}`} />
-}
+export const Skeleton = ({ className }: Props) => {
+  return <div className={`skeleton ${className}`} />;
+};

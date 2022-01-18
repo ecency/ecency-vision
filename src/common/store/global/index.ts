@@ -1,10 +1,10 @@
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
-import { Dispatch } from "redux";
+import { Dispatch } from 'redux';
 
-import defaults from "../../constants/defaults.json";
+import defaults from '../../constants/defaults.json';
 
-import { AppState } from "../index";
+import { AppState } from '../index';
 
 import {
   Actions,
@@ -22,25 +22,25 @@ import {
   LangSetAction,
   NsfwSetAction,
   Theme,
-  ThemeChangeAction,
-} from "./types";
+  ThemeChangeAction
+} from './types';
 
-import { CommonActionTypes } from "../common";
+import { CommonActionTypes } from '../common';
 
-import * as ls from "../../util/local-storage";
+import * as ls from '../../util/local-storage';
 
-import filterTagExtract from "../../helper/filter-tag-extract";
+import filterTagExtract from '../../helper/filter-tag-extract';
 
 export const initialState: Global = {
   filter: AllFilter[defaults.filter],
-  tag: "",
+  tag: '',
   theme: Theme[defaults.theme],
   listStyle: ListStyle[defaults.listStyle],
   intro: true,
   currency: defaults && defaults.currency && defaults.currency.currency,
   currencyRate: defaults && defaults.currency && defaults.currency.rate,
   currencySymbol: defaults && defaults.currency && defaults.currency.symbol,
-  lang: "en-US",
+  lang: 'en-US',
   searchIndexCount: 0,
   canUseWebp: false,
   hasKeyChain: false,
@@ -49,7 +49,7 @@ export const initialState: Global = {
   notifications: true,
   nsfw: false,
   isMobile: false,
-  usePrivate: true,
+  usePrivate: true
 };
 
 export default (state: Global = initialState, action: Actions): Global => {
@@ -64,7 +64,7 @@ export default (state: Global = initialState, action: Actions): Global => {
 
       const { filter, tag } = params;
 
-      return { ...state, filter: AllFilter[filter] || "", tag: tag };
+      return { ...state, filter: AllFilter[filter] || '', tag: tag };
     }
     case ActionTypes.THEME_CHANGE: {
       const { theme } = action;
@@ -108,56 +108,52 @@ export default (state: Global = initialState, action: Actions): Global => {
 };
 
 /* Actions */
-export const toggleTheme = (theme_key?:Theme) => (
-  dispatch: Dispatch,
-  getState: () => AppState
-) => {
-  const { global } = getState();
+export const toggleTheme =
+  (theme_key?: Theme) => (dispatch: Dispatch, getState: () => AppState) => {
+    const { global } = getState();
 
-  const { theme, isMobile } = global;
-  let newTheme: any = theme === Theme.day ? Theme.night : Theme.day;
-  
-  if (!!theme_key) {
-    newTheme = theme_key;
-  }
+    const { theme, isMobile } = global;
+    let newTheme: any = theme === Theme.day ? Theme.night : Theme.day;
 
-  ls.set("theme", newTheme);
-  Cookies.set("theme", newTheme);
+    if (!!theme_key) {
+      newTheme = theme_key;
+    }
 
-  dispatch(themeChangeAct(newTheme));
-  if (isMobile) {
-    let body: any = document.getElementsByTagName("body");
-    if (!body) return;
-    body = body[0];
-    body.classList.remove(`theme-${theme}`);
-    body.classList.add(`theme-${newTheme}`);
-  }
-};
+    ls.set('theme', newTheme);
+    Cookies.set('theme', newTheme);
 
-export const toggleListStyle = (view: string | null) => (
-  dispatch: Dispatch,
-  getState: () => AppState
-) => {
-  const { global } = getState();
+    dispatch(themeChangeAct(newTheme));
+    if (isMobile) {
+      let body: any = document.getElementsByTagName('body');
+      if (!body) return;
+      body = body[0];
+      body.classList.remove(`theme-${theme}`);
+      body.classList.add(`theme-${newTheme}`);
+    }
+  };
 
-  const { listStyle } = global;
-  let newStyle: any = null;
+export const toggleListStyle =
+  (view: string | null) => (dispatch: Dispatch, getState: () => AppState) => {
+    const { global } = getState();
 
-  if (view) {
-    newStyle = view === ListStyle.row ? ListStyle.row : ListStyle.grid;
-  } else {
-    newStyle = listStyle === ListStyle.row ? ListStyle.grid : ListStyle.row;
-  }
+    const { listStyle } = global;
+    let newStyle: any = null;
 
-  ls.set("list-style", newStyle);
-  Cookies.set("list-style", newStyle);
+    if (view) {
+      newStyle = view === ListStyle.row ? ListStyle.row : ListStyle.grid;
+    } else {
+      newStyle = listStyle === ListStyle.row ? ListStyle.grid : ListStyle.row;
+    }
 
-  dispatch(listStyleChangeAct(newStyle));
-};
+    ls.set('list-style', newStyle);
+    Cookies.set('list-style', newStyle);
+
+    dispatch(listStyleChangeAct(newStyle));
+  };
 
 export const hideIntro = () => (dispatch: Dispatch) => {
-  ls.set("hide-intro", "1");
-  Cookies.set("hide-intro", "1");
+  ls.set('hide-intro', '1');
+  Cookies.set('hide-intro', '1');
 
   dispatch(hideIntroAct());
 };
@@ -167,33 +163,32 @@ export const dismissNewVersion = () => (dispatch: Dispatch) => {
 };
 
 export const muteNotifications = () => (dispatch: Dispatch) => {
-  ls.set("notifications", false);
+  ls.set('notifications', false);
 
   dispatch(muteNotificationsAct());
 };
 
 export const unMuteNotifications = () => (dispatch: Dispatch) => {
-  ls.set("notifications", true);
+  ls.set('notifications', true);
 
   dispatch(unMuteNotificationsAct());
 };
 
-export const setCurrency = (currency: string, rate: number, symbol: string) => (
-  dispatch: Dispatch
-) => {
-  ls.set("currency", currency);
+export const setCurrency =
+  (currency: string, rate: number, symbol: string) => (dispatch: Dispatch) => {
+    ls.set('currency', currency);
 
-  dispatch(setCurrencyAct(currency, rate, symbol));
-};
+    dispatch(setCurrencyAct(currency, rate, symbol));
+  };
 
 export const setLang = (lang: string) => (dispatch: Dispatch) => {
-  ls.set("lang", lang);
+  ls.set('lang', lang);
 
   dispatch(setLangAct(lang));
 };
 
 export const setNsfw = (value: boolean) => (dispatch: Dispatch) => {
-  ls.set("nsfw", value);
+  ls.set('nsfw', value);
 
   dispatch(setNsfwAct(value));
 };
@@ -202,43 +197,39 @@ export const setNsfw = (value: boolean) => (dispatch: Dispatch) => {
 export const themeChangeAct = (theme: Theme): ThemeChangeAction => {
   return {
     type: ActionTypes.THEME_CHANGE,
-    theme,
+    theme
   };
 };
 
 export const hideIntroAct = (): IntroHideAction => {
   return {
-    type: ActionTypes.INTRO_HIDE,
+    type: ActionTypes.INTRO_HIDE
   };
 };
 
-export const listStyleChangeAct = (
-  listStyle: ListStyle
-): ListStyleChangeAction => {
+export const listStyleChangeAct = (listStyle: ListStyle): ListStyleChangeAction => {
   return {
     type: ActionTypes.LIST_STYLE_CHANGE,
-    listStyle,
+    listStyle
   };
 };
 
-export const newVersionChangeAct = (
-  version: string | null
-): NewVersionChangeAction => {
+export const newVersionChangeAct = (version: string | null): NewVersionChangeAction => {
   return {
     type: ActionTypes.NEW_VERSION_CHANGE,
-    version,
+    version
   };
 };
 
 export const muteNotificationsAct = (): NotificationsMuteAction => {
   return {
-    type: ActionTypes.NOTIFICATIONS_MUTE,
+    type: ActionTypes.NOTIFICATIONS_MUTE
   };
 };
 
 export const unMuteNotificationsAct = (): NotificationsUnMuteAction => {
   return {
-    type: ActionTypes.NOTIFICATIONS_UNMUTE,
+    type: ActionTypes.NOTIFICATIONS_UNMUTE
   };
 };
 
@@ -251,26 +242,26 @@ export const setCurrencyAct = (
     type: ActionTypes.CURRENCY_SET,
     currency,
     currencyRate,
-    currencySymbol,
+    currencySymbol
   };
 };
 
 export const setLangAct = (lang: string): LangSetAction => {
   return {
     type: ActionTypes.LANG_SET,
-    lang,
+    lang
   };
 };
 
 export const setNsfwAct = (value: boolean): NsfwSetAction => {
   return {
     type: ActionTypes.NSFW_SET,
-    value,
+    value
   };
 };
 
 export const hasKeyChainAct = (): HasKeyChainAction => {
   return {
-    type: ActionTypes.HAS_KEYCHAIN,
+    type: ActionTypes.HAS_KEYCHAIN
   };
 };

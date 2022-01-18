@@ -1,17 +1,17 @@
 import React from 'react';
 
 interface Props {
-    children: any;
+  children: any;
 }
 
-const MessageNoData = ({children}:Props) => {
-    return <div className="container-no-message">{children}</div>
-}
+const MessageNoData = ({ children }: Props) => {
+  return <div className="container-no-message">{children}</div>;
+};
 
 export default (p: Props) => {
-    const props: Props = {
-        children: p.children,
-    }
+  const props: Props = {
+    children: p.children
+  };
 
-    return <MessageNoData {...props} />;
-}
+  return <MessageNoData {...props} />;
+};
