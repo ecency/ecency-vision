@@ -61,8 +61,8 @@
   },
   "entry-filter": {
     "filter-trending": "Trendda",
-    "filter-hot": "Hot",
-    "filter-created": "New",
+    "filter-hot": "Qaynoq",
+    "filter-created": "Yangi",
     "filter-promoted": "Promoted",
     "filter-payout": "Payouts",
     "filter-muted": "Muted",
