@@ -48,19 +48,19 @@
     "apply": "Murojaat qilish",
     "warning": "Ogohlantirish",
     "payout": "To'lov",
-    "learn-more": "Learn more in our",
-    "faq": "FAQ",
-    "more-results": "More results",
-    "close": "Close",
+    "learn-more": "Batafsil bizning",
+    "faq": "Ko'p so'ralgan savollar",
+    "more-results": "To'liq natijalar",
+    "close": "Yopish",
     "loading": "Yuklanmoqda"
   },
   "confirm": {
-    "title": "Are you sure?",
-    "ok": "Confirm",
-    "cancel": "Cancel"
+    "title": "Aminmisiz?",
+    "ok": "Tasdiqlash",
+    "cancel": "Rad etish"
   },
   "entry-filter": {
-    "filter-trending": "Trending",
+    "filter-trending": "Trendda",
     "filter-hot": "Hot",
     "filter-created": "New",
     "filter-promoted": "Promoted",
