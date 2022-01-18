@@ -29,11 +29,6 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
         }
     },[peakValue])
 
-    useEffect(()=>{
-        let refinedAmount = amount;
-        setTotal(parseFloat(`${(parseFloat(price) * refinedAmount)}`).toFixed(3));
-    },[price, amount])
-
     const buyHive = () => {
             placeHiveOrder(username, `${amount}`, total).then(res=>{
         })
@@ -83,7 +78,12 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
                     <Form.Control
                         value={price}
                         placeholder="0.0"
-                        onChange={({target:{value}}) => setPrice(value.includes('.') ? fixToThree(value) : value)}
+                        onChange={({target:{value}}) => {
+                            setPrice(value.includes('.') ? fixToThree(value) : value);
+                            let refinedAmount = amount ? parseFloat(amount) : 0;
+                            let total = parseFloat(`${(parseFloat(value) * refinedAmount as any)}`);
+                            setTotal(total);
+                        }}
                     />
                     <InputGroup.Text className="rounded-left">{_t("market.hbd")}/{_t("wallet.hive")}</InputGroup.Text>
                 </InputGroup>
@@ -97,6 +97,9 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
                         value={isNaN(amount)? 0 : amount}
                         onChange={({target:{value}}) => {
                                 setAmount(value.includes('.') ? fixToThree(value) : value)
+                                let refinedAmount = value ? parseFloat(value) : 0;
+                                let total = parseFloat(`${(parseFloat(price) * refinedAmount as any)}`);
+                                setTotal(total);
                             }
                         }
                     />
@@ -110,7 +113,10 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
                     <Form.Control
                         placeholder="0.0"
                         value={isNaN(total) ? 0 : total}
-                        onChange={({target:{value}})=>{ setTotal(isNaN(value as any) ? 0 : value.includes('.') ? fixToThree(value) : value); setAmount(isNaN(`${parseFloat(value)/parseFloat(price)}` as any)? 0 : `${parseFloat(value)/parseFloat(price)}`)}}
+                        onChange={({target:{value}})=>{
+                            setTotal(isNaN(value as any) ? 0 : value.includes('.') ? fixToThree(value) : value);
+                            setAmount(isNaN(`${parseFloat(value)/parseFloat(price)}` as any) ? 0 : 
+                            parseFloat(`${parseFloat(value)/parseFloat(price)}`).toFixed(3))}}
                     />
                     <InputGroup.Text className="rounded-left">{_t("market.hbd")}($)</InputGroup.Text>
                 </InputGroup>
