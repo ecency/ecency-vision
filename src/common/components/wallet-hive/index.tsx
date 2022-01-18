@@ -38,6 +38,7 @@ import {_t} from "../../i18n";
 
 import {plusCircle} from "../../img/svg";
 import { addAccount } from "../../store/accounts";
+import { history } from "../../store";
 
 interface Props {
     history: History;
@@ -286,6 +287,12 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                             this.openTransferDialog('power-up', 'HIVE');
                                                         }
                                                     },
+                                                    {
+                                                        label: _t('market-data.title'),
+                                                        onClick: () => {
+                                                            this.props.history.push("/market");
+                                                        }
+                                                    },
                                                 ],
                                             };
                                             
@@ -299,7 +306,13 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                         onClick: () => {
                                                             this.openTransferDialog('transfer', 'HIVE');
                                                         }
-                                                    }
+                                                    },
+                                                    {
+                                                        label: _t('market-data.title'),
+                                                        onClick: () => {
+                                                            this.props.history.push("/market");
+                                                        }
+                                                    },
                                                 ],
                                             };
                                         }
@@ -347,6 +360,12 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                         onClick: () => {
                                                             this.toggleWithdrawRoutes();
                                                         },
+                                                    },
+                                                    {
+                                                        label: _t('market-data.title'),
+                                                        onClick: () => {
+                                                            this.props.history.push("/market");
+                                                        }
                                                     },
                                                 ],
                                             };
@@ -464,6 +483,12 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                             this.openTransferDialog('convert', 'HBD');
                                                         }
                                                     },
+                                                    {
+                                                        label: _t('market-data.title'),
+                                                        onClick: () => {
+                                                            this.props.history.push("/market");
+                                                        }
+                                                    },
                                                 ],
                                             };
                                         } else if (activeUser) {
@@ -520,7 +545,13 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                         onClick: () => {
                                                             this.openTransferDialog('withdraw-saving', 'HIVE');
                                                         }
-                                                    }
+                                                    },
+                                                    {
+                                                        label: _t('market-data.title'),
+                                                        onClick: () => {
+                                                            this.props.history.push("/market");
+                                                        }
+                                                    },
                                                 ],
                                             };
                                         } else if (activeUser) {
@@ -570,7 +601,13 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                         onClick: () => {
                                                             this.openTransferDialog('transfer-saving', 'HBD');
                                                         }
-                                                    }
+                                                    },
+                                                    {
+                                                        label: _t('market-data.title'),
+                                                        onClick: () => {
+                                                            this.props.history.push("/market");
+                                                        }
+                                                    },
                                                 ],
                                             };
                                         }
