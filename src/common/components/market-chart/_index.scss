@@ -17,8 +17,5 @@
 }
 
 .DepthChart {
-  width: 75%;
-  @media (max-width: $md-break) {
-    width: 106%;
-  }
+  width: 106%;
 }

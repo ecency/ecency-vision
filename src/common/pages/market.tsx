@@ -71,7 +71,7 @@ const MarketPage = (props: PageProps) => {
                         <h2>{_t("market.title")}</h2>
                         <Tsx k="market.description"><div className="header-description" /></Tsx>
                     </div>
-                    <div className='d-flex justify-content-md-between flex-column flex-md-row'>
+                    <div className='d-flex justify-content-md-between flex-column'>
                         <div className='mb-5'>
                             <h4 className='mb-3'>{loading ? <Skeleton className='skeleton-loading'/> : _t("market.stock-info")}</h4>
                             <ChartStats data={data} loading={loading} />
@@ -153,8 +153,8 @@ const MarketPage = (props: PageProps) => {
 
                                 <div className="row mt-5 mx-0 justify-content-between">
                                     {!openOrdersDataLoading && openOrdersdata.length > 0 && <div className="col-12 px-0 mb-5"><OpenOrders data={openOrdersdata || []} loading={openOrdersDataLoading} username={(activeUser && activeUser.username) || ""}/></div>}
-                                    <div className="col-12 col-xl-5 px-0"><Orders onPriceClick={(value)=> setBidValues({...bidValues,lowest:value})} type={1} loading={loadingTablesData} data={tablesData ? tablesData!.bids : []}/></div>
-                                    <div className="col-12 col-xl-5 px-0 px-sm-auto mt-5 mt-lg-0"><Orders onPriceClick={(value)=>setBidValues({...bidValues, highest:value})} type={2} loading={loadingTablesData} data={tablesData ? tablesData!.asks : []}/></div>
+                                    <div className="col-12 col-xl-5 px-0"><Orders onPriceClick={(value)=> setBidValues({highest:value,lowest:value})} type={1} loading={loadingTablesData} data={tablesData ? tablesData!.bids : []}/></div>
+                                    <div className="col-12 col-xl-5 px-0 px-sm-auto mt-5 mt-lg-0"><Orders onPriceClick={(value)=>setBidValues({lowest:value, highest:value})} type={2} loading={loadingTablesData} data={tablesData ? tablesData!.asks : []}/></div>
                                     <div className="col-12 px-0 px-sm-auto mt-5"><Orders type={3} loading={loadingTablesData} data={tablesData ? tablesData!.trading : []}/></div>
                                 </div>
                             </div>

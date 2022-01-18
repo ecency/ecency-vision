@@ -99,11 +99,11 @@ export const Orders = ({type, loading, data, onPriceClick}: Props) => {
                     </tr>
                     </thead>
                     <tbody>
-                    {sliced.map((item, index) => <tr key={`${item.key1}-${index}`}>
+                    {sliced.map((item, index) => <tr key={`${item.key1}-${index}`} className={type===1 || type===2 ? 'pointer' : ''} onClick={() => onPriceClick ? onPriceClick(item.key1) : {}}>
                             <td>{item.key1}</td>
                             <td className={type === 3 ? item.key5 === "bid" ? "text-success" : "text-danger" : ""}>{item.key2}</td>
                             <td>{item.key3}</td>
-                            <td className={type===1 || type===2 ? 'pointer' : ''} onClick={() => onPriceClick ? onPriceClick(item.key4) : {}}>{item.key4}</td>
+                            <td>{item.key4}</td>
                         </tr>)}
                     </tbody>
                 </Table>
