@@ -17,7 +17,7 @@ import { Form } from "react-bootstrap";
 import { informationVariantSvg } from "../../img/svg";
 import { apiBase } from "../../api/helper";
 import { Introduction } from "../introduction";
-import { Temp } from './temp'
+import { EntryIndexMenuDropdown } from "../entry-index-menu-dropdown";
 
 interface Props {
     history: History;
@@ -271,9 +271,6 @@ export class EntryIndexMenu extends Component<Props, States> {
             ],
         };
 
-        console.log("MENU CONFIG ===> ", menuConfig);
-        
-
         const mobileMenuConfig = !isActive ? menuConfig : {...menuConfig, items:[{
             label: _t(`entry-filter.filter-feed-friends`),
             href: `/@${activeUser?.username}/feed`,
@@ -394,7 +391,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                 /> */}
                                 <div className="border-left ml-3 ml-md-5 dropDown-left-border-height" />
                                 <span id="check-isGlobal" className="d-flex align-items-center pl-3">
-                                <Temp {...this.props} />
+                                    <EntryIndexMenuDropdown {...this.props} />
                                 </span>
                                 
                                 </>
