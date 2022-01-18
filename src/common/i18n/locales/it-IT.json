@@ -563,7 +563,7 @@
     "delegation-list-desc": "Ricompensa dalla delega",
     "referral-list-desc": "Ricompense da raccomandazioni",
     "community-list-desc": "Ricompensa della community",
-    "transfer": "Fai un regalo a qualcuno",
+    "transfer": "Gift",
     "claim-ok": "Punti richiesti",
     "promote": "Promuovi",
     "boost": "Boost",
@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Indice",
       "what-is-ecency-header": "Che cos'è Ecency?",
       "search": "Related results for {{search}} filtered below",

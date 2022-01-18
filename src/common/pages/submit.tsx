@@ -99,7 +99,7 @@ class PreviewContent extends Component<PreviewProps> {
 
     render() {
         const {title, tags, body, global} = this.props;
-
+        let renderedPreview = renderPostBody(body, false, global.canUseWebp);
         return (
             <>
                 <div className="preview-title">{title}</div>
@@ -121,7 +121,7 @@ class PreviewContent extends Component<PreviewProps> {
                     })}
                 </div>
 
-                <div className="preview-body markdown-view" dangerouslySetInnerHTML={{__html: renderPostBody(body, false, global.canUseWebp)}}/>
+                <div className="preview-body markdown-view" dangerouslySetInnerHTML={{__html: renderedPreview }}/>
             </>
         );
     }
@@ -550,6 +550,10 @@ class SubmitPage extends BaseComponent<Props, State> {
         else {
             meta.image = [selectedThumbnail]
         }
+        if(meta.image){
+            meta.image = [...new Set(meta.image)]
+        }
+        
         const jsonMeta = makeJsonMetaData(meta, tags, version);
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
         this.stateSet({posting: true});
@@ -598,7 +602,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const {activeUser, updateEntry, history} = this.props;
-        const {title, tags, body, editingEntry} = this.state;
+        const {title, tags, body, editingEntry, selectionTouched, selectedThumbnail} = this.state;
 
         if (!editingEntry) {
             return;
@@ -613,9 +617,25 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const meta = extractMetaData(body);
+        if(meta.image){
+            if(selectionTouched){
+                meta.image = [selectedThumbnail, ...meta.image!.splice(0,9)]
+            }
+            else {
+                meta.image = [ ...meta.image!.splice(0,9)]
+            }
+        }
+        else if(selectionTouched){
+            meta.image = [selectedThumbnail]
+        }
+        if(meta.image){
+            meta.image = [...new Set(meta.image)]
+        }
+        
         const jsonMeta = Object.assign({}, json_metadata, meta, {tags});
 
         this.stateSet({posting: true});
+        
         comment(activeUser?.username!, "", category, permlink, title, newBody, jsonMeta, null)
             .then(() => {
                 this.stateSet({posting: false});
@@ -808,7 +828,6 @@ class SubmitPage extends BaseComponent<Props, State> {
                         <div className="body-input">
                             <TextareaAutocomplete
                                 global={this.props.global}
-                                activeUser={this.props.activeUser}
                                 id="the-editor"
                                 className="the-editor accepts-emoji form-control"
                                 as="textarea"
@@ -818,23 +837,25 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 minrows={10}
                                 maxrows={100}
                                 spellCheck={true}
+                                activeUser={activeUser && activeUser.username || ""}
                             />
                         </div>
-                        {editingEntry === null && (
-                            <div className="bottom-toolbar">
+                        <div className="bottom-toolbar">
+                            {editingEntry === null && (
                                 <Button variant="outline-info" onClick={()=>this.setState({clearModal: true})}>
                                     {_t("submit.clear")}
                                 </Button>
-                                <Button variant="outline-primary" onClick={this.toggleAdvanced}>
-                                    {advanced ?
-                                        _t("submit.preview") :
-                                        <>
-                                            {_t("submit.advanced")}
-                                            {this.hasAdvanced() ? " •••" : null}
-                                        </>}
-                                </Button>
-                            </div>
-                        )}
+                            )}
+
+                            <Button variant="outline-primary" onClick={this.toggleAdvanced} className="ml-auto">
+                            {advanced ?
+                                _t("submit.preview") :
+                                <>
+                                    {_t("submit.advanced")}
+                                    {this.hasAdvanced() ? " •••" : null}
+                                </>}
+                            </Button>
+                        </div>
                     </div>
                     <div className="flex-spacer"/>
                     {(() => {
@@ -904,60 +925,62 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 </div>
                                 <div className="panel-body">
                                     <div className="container">
-                                        <Form.Group as={Row}>
-                                            <Form.Label column={true} sm="3">
-                                                {_t("submit.reward")}
-                                            </Form.Label>
-                                            <Col sm="9">
-                                                <Form.Control as="select" value={reward} onChange={this.rewardChanged}>
-                                                    <option value="default">{_t("submit.reward-default")}</option>
-                                                    <option value="sp">{_t("submit.reward-sp")}</option>
-                                                    <option value="dp">{_t("submit.reward-dp")}</option>
-                                                </Form.Control>
-                                                <Form.Text muted={true}>{_t("submit.reward-hint")}</Form.Text>
-                                            </Col>
-                                        </Form.Group>
-                                        <Form.Group as={Row}>
-                                            <Form.Label column={true} sm="3">
-                                                {_t("submit.beneficiaries")}
-                                            </Form.Label>
-                                            <Col sm="9">
-                                                <BeneficiaryEditor author={activeUser?.username} list={beneficiaries} onAdd={this.beneficiaryAdded}
-                                                                   onDelete={this.beneficiaryDeleted}/>
-                                                <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
-                                            </Col>
-                                        </Form.Group>
-                                        {global.usePrivate && <Form.Group as={Row}>
-                                          <Form.Label column={true} sm="3">
-                                              {_t("submit.schedule")}
-                                          </Form.Label>
-                                          <Col sm="9">
-                                            <PostScheduler date={schedule ? moment(schedule) : null} onChange={this.scheduleChanged}/>
-                                            <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
-                                          </Col>
-                                        </Form.Group>}
-                                        {tags.length > 0 && isCommunity(tags[0]) && (
+                                        {editingEntry === null && <>
                                             <Form.Group as={Row}>
-                                                <Col sm="3"/>
+                                                <Form.Label column={true} sm="3">
+                                                    {_t("submit.reward")}
+                                                </Form.Label>
                                                 <Col sm="9">
-                                                    <Form.Check
-                                                        type="switch"
-                                                        id="reblog-switch"
-                                                        label={_t("submit.reblog")}
-                                                        checked={reblogSwitch}
-                                                        onChange={this.reblogSwitchChanged}
-                                                    />
-                                                    <Form.Text muted={true}>{_t("submit.reblog-hint")}</Form.Text>
+                                                    <Form.Control as="select" value={reward} onChange={this.rewardChanged}>
+                                                        <option value="default">{_t("submit.reward-default")}</option>
+                                                        <option value="sp">{_t("submit.reward-sp")}</option>
+                                                        <option value="dp">{_t("submit.reward-dp")}</option>
+                                                    </Form.Control>
+                                                    <Form.Text muted={true}>{_t("submit.reward-hint")}</Form.Text>
                                                 </Col>
                                             </Form.Group>
-                                        )}
+                                            <Form.Group as={Row}>
+                                                <Form.Label column={true} sm="3">
+                                                    {_t("submit.beneficiaries")}
+                                                </Form.Label>
+                                                <Col sm="9">
+                                                    <BeneficiaryEditor author={activeUser?.username} list={beneficiaries} onAdd={this.beneficiaryAdded}
+                                                                    onDelete={this.beneficiaryDeleted}/>
+                                                    <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
+                                                </Col>
+                                            </Form.Group>
+                                            {global.usePrivate && <Form.Group as={Row}>
+                                            <Form.Label column={true} sm="3">
+                                                {_t("submit.schedule")}
+                                            </Form.Label>
+                                            <Col sm="9">
+                                                <PostScheduler date={schedule ? moment(schedule) : null} onChange={this.scheduleChanged}/>
+                                                <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
+                                            </Col>
+                                            </Form.Group>}
+                                            {tags.length > 0 && isCommunity(tags[0]) && (
+                                                <Form.Group as={Row}>
+                                                    <Col sm="3"/>
+                                                    <Col sm="9">
+                                                        <Form.Check
+                                                            type="switch"
+                                                            id="reblog-switch"
+                                                            label={_t("submit.reblog")}
+                                                            checked={reblogSwitch}
+                                                            onChange={this.reblogSwitchChanged}
+                                                        />
+                                                        <Form.Text muted={true}>{_t("submit.reblog-hint")}</Form.Text>
+                                                    </Col>
+                                                </Form.Group>
+                                            )}
+                                        </>}
                                         {thumbnails.length > 0 && 
                                             <Form.Group as={Row}>
                                                 <Form.Label column={true} sm="3">
                                                     {_t("submit.thumbnail")}
                                                 </Form.Label>
                                                 <div className="col-sm-9 d-flex flex-wrap selection-container">
-                                                    {thumbnails!.map((item, i)=> {
+                                                    {[...new Set(thumbnails)]!.map((item, i)=> {
                                                         let selectedItem = selectedThumbnail;
                                                         switch(selectedItem){
                                                             case '':

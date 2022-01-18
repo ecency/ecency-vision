@@ -78,6 +78,16 @@ exports[`(1) Default Render 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             <span>
               0.000 HIVE
             </span>
@@ -112,6 +122,16 @@ exports[`(1) Default Render 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             42,924.395 HP
           </div>
           <div
@@ -168,6 +188,16 @@ exports[`(1) Default Render 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             <span>
               $ 447.514
             </span>
@@ -202,6 +232,16 @@ exports[`(1) Default Render 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             <span>
               0.001 HIVE
             </span>
@@ -209,6 +249,16 @@ exports[`(1) Default Render 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             <span>
               0.000 $
             </span>
@@ -440,6 +490,16 @@ exports[`(2) Render with converting HBD 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             <span>
               0.000 HIVE
             </span>
@@ -474,6 +534,16 @@ exports[`(2) Render with converting HBD 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             42,924.395 HP
           </div>
           <div
@@ -530,6 +600,16 @@ exports[`(2) Render with converting HBD 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             <span>
               $ 447.514
             </span>
@@ -575,6 +655,16 @@ exports[`(2) Render with converting HBD 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             <span>
               0.001 HIVE
             </span>
@@ -582,6 +672,16 @@ exports[`(2) Render with converting HBD 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             <span>
               0.000 $
             </span>
@@ -813,6 +913,16 @@ exports[`(3) usePrivate = false 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             <span>
               0.000 HIVE
             </span>
@@ -847,6 +957,16 @@ exports[`(3) usePrivate = false 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             42,924.395 HP
           </div>
           <div
@@ -902,6 +1022,16 @@ exports[`(3) usePrivate = false 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             <span>
               $ 447.514
             </span>
@@ -947,6 +1077,16 @@ exports[`(3) usePrivate = false 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             <span>
               0.001 HIVE
             </span>
@@ -954,6 +1094,16 @@ exports[`(3) usePrivate = false 1`] = `
           <div
             className="amount"
           >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             <span>
               0.000 $
             </span>

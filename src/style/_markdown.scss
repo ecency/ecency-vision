@@ -404,12 +404,12 @@
       font-size: 16px;
     }
 
-    img {
-      @media (min-width: $md-break) {
-        width: 100%;
-        max-width: 400px;
-      }
-    }
+    // img {
+    //   @media (min-width: $md-break) {
+    //     width: 100%;
+    //     max-width: 400px;
+    //   }
+    // }
 
     .markdown-video-link {
       width: 240px;

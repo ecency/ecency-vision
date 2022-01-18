@@ -563,7 +563,7 @@
     "delegation-list-desc": "مكافأة التفويض",
     "referral-list-desc": "مكافأة الإحالة",
     "community-list-desc": "مكافأة المجتمع",
-    "transfer": "هدية لشخص ما",
+    "transfer": "Gift",
     "claim-ok": "تمت المطالبة بالنقاط",
     "promote": "قم بالترويج لمقالك",
     "boost": "تعزيز",
@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Table of Contents",
       "what-is-ecency-header": "What is Ecency?",
       "search": "Related results for {{search}} filtered below",

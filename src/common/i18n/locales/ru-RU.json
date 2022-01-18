@@ -8,7 +8,7 @@
     "login": "Войти",
     "login-as": "Войти как",
     "signup": "Регистрация",
-    "permissions": "Permissions",
+    "permissions": "Разрешения",
     "delete": "Удалить",
     "cancel": "Отменить",
     "reply": "Ответить",
@@ -25,7 +25,7 @@
     "back": "Назад",
     "load-more": "Загрузить больше",
     "empty-list": "Здесь пусто",
-    "no-matches": "Nothing found",
+    "no-matches": "Ничего не найдено",
     "save": "Сохранить",
     "try-again": "Попрoбуйте снова",
     "show": "Показать",
@@ -52,7 +52,7 @@
     "faq": "ЧаВо",
     "more-results": "Показать больше результатов",
     "close": "Закрыть",
-    "loading": "Loading"
+    "loading": "Загрузка"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -176,7 +176,7 @@
     "replies": "1 ответ. Нажмите чтобы ответить.",
     "replies-n": "{{n}} ответов. Нажмите для ответа.",
     "vote-error": "Предыдущее значение неприемлемо. Голосуйте с другой ценностью.",
-    "vote-remove": "Voting 0% unvotes the content.",
+    "vote-remove": "Голосование 0 % u означает отменить голосование.",
     "vote-warning": "Changing vote...",
     "no-replies": "Ответов пока нет. Нажмите чтобы ответить."
   },
@@ -563,7 +563,7 @@
     "delegation-list-desc": "Награда за делегирование",
     "referral-list-desc": "Реферальная награда",
     "community-list-desc": "Награды сообщества",
-    "transfer": "Подарить кому-то",
+    "transfer": "Gift",
     "claim-ok": "Очки зачислены",
     "promote": "Продвинуть",
     "boost": "Усилить",
@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "Чем мы можем вам помочь?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Таблица с содержимым",
       "what-is-ecency-header": "Что такое Ecency?",
       "search": "Похожие результаты по {{search}} отфильтрованны ниже",

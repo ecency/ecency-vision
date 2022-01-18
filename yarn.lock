@@ -998,10 +998,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@ecency/render-helper@^2.2.7":
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.2.7.tgz#aa101605c1d8956a82bb3130c165d4a98dc189fe"
-  integrity sha512-5YcSvHtGJpaHsN8V+/fqSGiPFCBTsMJQNgG6RDctB7T5+uebnvMYMb2ZBkvYcpR4o0M+lWySlaT16vXopQnSAw==
+"@ecency/render-helper@^2.2.13":
+  version "2.2.13"
+  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.2.13.tgz#ec2cc95cd24f532264c679dadc30397f52d98c3b"
+  integrity sha512-iI8BHKqLUjMsZyJKH0o0Bl+kyhbZb55UeUXpHAcoKsKN9OuXkxiqlf0FWBTdsoWWGCcvAUd2OKM1K/Dh/7x6+A==
   dependencies:
     he "^1.2.0"
     lolight "^1.4.0"
@@ -1009,6 +1009,7 @@
     multihashes "0.4.13"
     path "^0.12.7"
     querystring "^0.2.0"
+    react-native-crypto-js "^1.0.0"
     remarkable "^2.0.1"
     url "^0.11.0"
     xmldom "^0.5.0"
@@ -8998,6 +8999,11 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-native-crypto-js@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-crypto-js/-/react-native-crypto-js-1.0.0.tgz#e677e022e147f41b35614416c92d655f87e2450a"
+  integrity sha512-FNbLuG/HAdapQoybeZSoes1PWdOj0w242gb+e1R0hicf3Gyj/Mf8M9NaED2AnXVOX01b2FXomwUiw1xP1K+8sA==
 
 react-overlays@^5.0.1:
   version "5.1.1"

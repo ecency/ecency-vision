@@ -10,7 +10,7 @@ import {renderPostBody, setProxyBase, catchPostImage, postBodySummary} from "@ec
 
 import {Entry, EntryVote} from "../store/entries/types";
 import {Community} from "../store/communities/types";
-import {FullAccount} from "../store/accounts/types";
+import {Account, FullAccount} from "../store/accounts/types";
 
 import EntryLink, {makePath as makeEntryPath} from "../components/entry-link";
 
@@ -84,6 +84,8 @@ interface MatchParams {
 
 interface Props extends PageProps {
     match: match<MatchParams>;
+    account: Account;
+    updateWalletValues: () => void
 }
 
 interface State {
@@ -191,7 +193,7 @@ class EntryPage extends BaseComponent<Props, State> {
        const infoCard:HTMLElement | null = document.getElementById("avatar-fixed-container");
        const top = this?.viewElement?.getBoundingClientRect()?.top || 120;
         
-       if(infoCard != null && window.scrollY > 180  && top && !(top <= 0)) {
+       if(infoCard != null && window.scrollY > 180  && top && !(top <= 0)) {
             infoCard.classList.replace('invisible','visible');
             if(!showProfileBox){
                 this.setState({showProfileBox:true})

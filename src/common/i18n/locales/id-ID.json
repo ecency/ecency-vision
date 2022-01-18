@@ -563,7 +563,7 @@
     "delegation-list-desc": "Reward delegasi",
     "referral-list-desc": "Reward referral",
     "community-list-desc": "Rewards komunitas",
-    "transfer": "Hadiah untuk seseorang",
+    "transfer": "Gift",
     "claim-ok": "Poin yang diklaim",
     "promote": "Promosikan",
     "boost": "Tingkatkan",
@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "Bagaimana kami dapat membantu Anda?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Daftar Isi",
       "what-is-ecency-header": "Apa itu Ecency?",
       "search": "Berikut ini adalah hasil pencarian yang berkaitan dengan {{search}}",

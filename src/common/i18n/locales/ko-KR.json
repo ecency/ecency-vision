@@ -563,7 +563,7 @@
     "delegation-list-desc": "임대 보상",
     "referral-list-desc": "추천인 보상",
     "community-list-desc": "커뮤니티 보상",
-    "transfer": "선물하기",
+    "transfer": "Gift",
     "claim-ok": "포인트 요청했습니다",
     "promote": "홍보",
     "boost": "부스트",
@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "어떻게 도와 드릴까요?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "목차",
       "what-is-ecency-header": "Ecency란?",
       "search": "아래 필터링된 {{search}} 관련 결과",

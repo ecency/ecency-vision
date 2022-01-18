@@ -563,7 +563,7 @@
     "delegation-list-desc": "Recompensă delegare",
     "referral-list-desc": "Premiu pentru referenți",
     "community-list-desc": "Community reward",
-    "transfer": "Dăruiește cuiva",
+    "transfer": "Gift",
     "claim-ok": "Puncte colectate",
     "promote": "Promovează",
     "boost": "Boost",
@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Tabla de materii",
       "what-is-ecency-header": "Ce este Ecency?",
       "search": "Related results for {{search}} filtered below",

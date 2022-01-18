@@ -563,7 +563,7 @@
     "delegation-list-desc": "Αμοιβή εξουσιοδότησης",
     "referral-list-desc": "Αμοιβή προτεινόμενων",
     "community-list-desc": "Community reward",
-    "transfer": "Δώρο σε κάποιον",
+    "transfer": "Gift",
     "claim-ok": "Πόντοι διεκδικήθηκαν",
     "promote": "Προώθηση",
     "boost": "Ενίσχυση",
@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Πίνακας Περιεχομένων",
       "what-is-ecency-header": "Τι είναι η πλατφόρμα Ecency;",
       "search": "Related results for {{search}} filtered below",

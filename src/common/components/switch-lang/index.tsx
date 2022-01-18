@@ -30,7 +30,6 @@ export class SwitchLang extends Component<Props> {
 
         const languageFromLS = ls && ls.get("lang");
         const lang = languageFromLS !== null ? languageFromLS.slice(0, 2).toUpperCase() : "EN";
-
         const langMenuConfig = {
             history: this.props.history,
             label: label || lang,
@@ -42,6 +41,7 @@ export class SwitchLang extends Component<Props> {
                         i18n.changeLanguage(f.code).then(() => {
                             setLang(f.code);
                         });
+                        ls.set("current-language", f.code)
                     }
                 }
             })),

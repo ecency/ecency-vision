@@ -17,6 +17,9 @@ const defProps = {
     global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
     users: [],
+    account: {
+        name: "user1",
+    },
     activeUser: {
         username: 'foo',
         data: {
@@ -36,7 +39,10 @@ const defProps = {
     updateActiveUser: () => {
     },
     setSigningKey: () => {
-
+    },
+    fetchPoints: () => {
+    },
+    updateWalletValues: () => {
     },
     onHide: () => {
     }

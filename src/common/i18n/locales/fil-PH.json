@@ -563,7 +563,7 @@
     "delegation-list-desc": "Delegasyon na gantimpala",
     "referral-list-desc": "Gantimpala sa mga Referral",
     "community-list-desc": "Community reward",
-    "transfer": "I-regalo sa iba",
+    "transfer": "Gift",
     "claim-ok": "Mga puntos na naangkin",
     "promote": "Isulong",
     "boost": "Palakasin",
@@ -1072,6 +1072,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Talaan ng mga Nilalaman",
       "what-is-ecency-header": "Ano ang Ecency?",
       "search": "Related results for {{search}} filtered below",
