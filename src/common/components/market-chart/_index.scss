@@ -18,4 +18,10 @@
 
 .DepthChart {
   width: 106%;
+  @media (max-width: $sm-break) {
+    width: 156%;
+  }
+  @media (max-width: 570px) {
+    width: 100%;
+  }
 }

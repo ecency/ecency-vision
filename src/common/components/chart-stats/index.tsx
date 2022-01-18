@@ -2,6 +2,7 @@ import React from 'react';
 import { Table } from 'react-bootstrap';
 import { MarketStatistics } from '../../api/hive';
 import { _t } from '../../i18n';
+import { isMobile } from '../../util/is-mobile';
 import { Skeleton } from '../skeleton';
 
 interface Props {
@@ -30,7 +31,7 @@ export const ChartStats = ({loading, data}: Props) =>{
                     <td><Skeleton className="skeleton-loading mr-5" /></td>
                 </tr>
             </tbody>
-        </Table> :  <Table striped={true} bordered={true} hover={true}>
+        </Table> :  <Table striped={true} bordered={true} hover={true} size={isMobile() ? 'sm' : 'lg'}>
                             <thead>
                                 <tr>
                                     <th>{_t("market.last-price")}</th>
