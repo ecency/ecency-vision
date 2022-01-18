@@ -14,6 +14,7 @@ import { Skeleton } from '../components/skeleton';
 import { _t } from '../i18n';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import { Tsx } from '../i18n/helper';
+import Feedback from '../components/feedback';
 
 const MarketChart = React.lazy(()=> import ("../components/market-chart"));
 
@@ -66,6 +67,7 @@ const MarketPage = (props: PageProps) => {
         }) : <NavBar {...props} />;
         
     return mounted ? <>
+            <Feedback />
             <div className="d-flex justify-content-center">
                 <div className="w-sm-75 p-3 p-sm-0">
                     <div style={{marginBottom: '6rem'}}>{navbar}</div>

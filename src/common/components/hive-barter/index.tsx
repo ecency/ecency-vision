@@ -4,6 +4,7 @@ import { useState } from 'react';
 import {Button, Form, InputGroup} from 'react-bootstrap';
 import { placeHiveOrder } from '../../api/hive';
 import { _t } from '../../i18n';
+import { error } from '../feedback';
 import { Skeleton } from '../skeleton';
 
 interface Props {
@@ -17,29 +18,29 @@ interface Props {
 }
 
 export const HiveBarter = ({type, available, peakValue, loading, username, basePeakValue, onClickPeakValue}: Props) => {
-    const [price, setPrice] = useState(peakValue.toFixed(6));
+    const [price, setPrice] = useState(peakValue.toFixed(3));
     const [amount, setAmount] = useState<any>(0.000);
     const [total, setTotal] = useState<any>(0.000);
     const [placingOrder, setPlacingOrder] = useState(false);
 
     useEffect(()=>{
         if(peakValue){
-            setPrice(peakValue.toFixed(6))
+            setPrice(peakValue.toFixed(3))
         }
     },[peakValue])
 
     useEffect(()=>{
         let refinedAmount = amount;
-        setTotal((parseFloat(price) * refinedAmount));
+        setTotal(parseFloat(`${(parseFloat(price) * refinedAmount)}`).toFixed(3));
     },[price, amount])
 
     const buyHive = () => {
-        placeHiveOrder(username, `${amount}`, total).then(res=>{
+            placeHiveOrder(username, `${amount}`, total).then(res=>{
         })
     };
 
     const sellHive = () => {
-        placeHiveOrder(username, total, `${amount}`).then(res=>{
+            placeHiveOrder(username, total, `${amount}`).then(res=>{
         })
     };
 
@@ -47,6 +48,17 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
         setPlacingOrder(true);
         e.preventDefault();
         type===1 ? buyHive() :sellHive()
+    }
+
+    const fixToThree = (value: string): string => {
+        let splittedValue = value.split(".");
+        let valueAfterPoints = splittedValue[1];
+        if(valueAfterPoints && valueAfterPoints.length>3){
+            valueAfterPoints = valueAfterPoints.substring(0,3);
+            error("Only 3 digits after decimal are allowed!");
+            return `${splittedValue[0] + "." + valueAfterPoints}`
+        }
+        return value
     }
 
     return loading ? <Skeleton className="loading-hive"/> : <div className="border p-3 rounded">
@@ -59,7 +71,7 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
                 </small>
                 <small className="d-flex">
                     <div className="mr-1 text-primary">{type === 1 ? _t("market.lowest-ask") : _t("market.highest-bid")}:</div>
-                    <div onClick={onClickPeakValue} className='pointer'>{basePeakValue.toFixed(6)}</div>
+                    <div onClick={onClickPeakValue} className='pointer'>{basePeakValue.toFixed(3)}</div>
                 </small>
             </div>
         </div>
@@ -71,7 +83,7 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
                     <Form.Control
                         value={price}
                         placeholder="0.0"
-                        onChange={({target:{value}}) => setPrice(value)}
+                        onChange={({target:{value}}) => setPrice(value.includes('.') ? fixToThree(value) : value)}
                     />
                     <InputGroup.Text className="rounded-left">{_t("market.hbd")}/{_t("wallet.hive")}</InputGroup.Text>
                 </InputGroup>
@@ -82,9 +94,11 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
                 <InputGroup >
                     <Form.Control
                         placeholder="0.0"
-                        value={`${amount}`}
+                        value={isNaN(amount)? 0 : amount}
                         onChange={({target:{value}}) => {
-                            setAmount(value)}}
+                                setAmount(value.includes('.') ? fixToThree(value) : value)
+                            }
+                        }
                     />
                     <InputGroup.Text className="rounded-left">{_t("wallet.hive")}</InputGroup.Text>
                 </InputGroup>
@@ -95,8 +109,8 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
                 <InputGroup >
                     <Form.Control
                         placeholder="0.0"
-                        value={total}
-                        onChange={({target:{value}})=>{ setTotal(isNaN(value as any)? 0 : value); setAmount(isNaN(`${parseFloat(value)/parseFloat(price)}` as any)? 0 : `${parseFloat(value)/parseFloat(price)}`)}}
+                        value={isNaN(total) ? 0 : total}
+                        onChange={({target:{value}})=>{ setTotal(isNaN(value as any) ? 0 : value.includes('.') ? fixToThree(value) : value); setAmount(isNaN(`${parseFloat(value)/parseFloat(price)}` as any)? 0 : `${parseFloat(value)/parseFloat(price)}`)}}
                     />
                     <InputGroup.Text className="rounded-left">{_t("market.hbd")}($)</InputGroup.Text>
                 </InputGroup>
