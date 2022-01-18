@@ -20,6 +20,7 @@ const MarketChart = React.lazy(()=> import ("../components/market-chart"));
 const MarketPage = (props: PageProps) => {
     const [data, setData] = useState<MarketStatistics | null>(null);
     const [loading, setLoading] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const [bidValues, setBidValues] = useState<any>({lowest: 0, highest: 0});
     const [openOrdersdata, setopenOrdersdata] = useState<OpenOrdersData[]>([]);
     const [openOrdersDataLoading, setopenOrdersDataLoading] = useState(false);
@@ -30,6 +31,7 @@ const MarketPage = (props: PageProps) => {
 
     useEffect(()=>{
         setLoading(true);
+        setMounted(true);
         setLoadingTablesData(true);
         setopenOrdersDataLoading(true)
         updateData();
@@ -63,7 +65,7 @@ const MarketPage = (props: PageProps) => {
             reloading: false,
         }) : <NavBar {...props} />;
         
-    return <>
+    return mounted ? <>
             <div className="d-flex justify-content-center">
                 <div className="w-sm-75 p-3 p-sm-0">
                     <div style={{marginBottom: '6rem'}}>{navbar}</div>
@@ -162,7 +164,7 @@ const MarketPage = (props: PageProps) => {
                     </div>
                 </div>
             </div>
-        </>
+        </> : <></>
 }
 
 export default connect(pageMapStateToProps, pageMapDispatchToProps)(MarketPage as any);

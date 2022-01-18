@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Table } from 'react-bootstrap';
 import { OrdersDataItem, TradeDataItem } from '../../api/hive';
 import { Skeleton } from '../skeleton';
@@ -37,7 +37,8 @@ interface Props {
 }
 
 export const Orders = ({type, loading, data, onPriceClick}: Props) => {
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
+    const [mounted, setMounted] = useState(false);
     let columns = buyColumns;
     let title = `${_t("market.buy")} ${_t("market.orders")}`;
     let mappedData: MappedData[] = [];
@@ -85,12 +86,14 @@ export const Orders = ({type, loading, data, onPriceClick}: Props) => {
             break;
     }
 
+    useEffect(()=>{setMounted(true)},[])
+
     const pageSize = 12;
     const start = (page - 1) * pageSize;
     const end = start + pageSize;
     const sliced = mappedData.slice(start, end);
 
-    return loading ? <Skeleton className="loading-hive" /> : <div className="rounded">
+    return loading ? <Skeleton className="loading-hive" /> : mounted ? <div className="rounded">
                 <h5>{title}</h5>
                 <Table striped={true} bordered={true} hover={true} size="sm">
                     <thead>
@@ -117,5 +120,5 @@ export const Orders = ({type, loading, data, onPriceClick}: Props) => {
                         onPageChange={(page) => setPage(page)}
                     />
                 }
-            </div>
+            </div> : <></>
 }
