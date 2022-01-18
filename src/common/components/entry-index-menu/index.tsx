@@ -263,6 +263,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                     return {
                         label: _t(`entry-filter.filter-${x}`),
                         href: isActive ? tag === "" ? `/${x}` : `/${x}/my` : `/${x}`,
+                        // href: isActive ? isGlobal ? `/${x}` : `/${x}/my` : `/${x}`,
                         active: filter === x || filter === x + '/my',
                         id: x,
                         flash: (x === 'trending' && introduction === IntroductionType.TRENDING) || (x === 'hot' && introduction === IntroductionType.HOT) || (x === 'created' && introduction === IntroductionType.NEW)
