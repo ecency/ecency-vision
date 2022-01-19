@@ -61,6 +61,12 @@
         .author {
           font-weight: 700;
           word-break: keep-all;
+          padding: 2px;
+
+          .author-name {
+            font-weight: 700;
+            word-break: keep-all;
+          }
 
           @include themify(day) {
             color: $charcoal-grey;
@@ -81,6 +87,16 @@
 
             &::after {
               content: ")";
+            }
+          }
+          
+          &:hover {
+            @include themify(day) {
+              background: $duck-egg-blue;
+            }
+  
+            @include themify(night) {
+              background: $metallic-blue;
             }
           }
         }
