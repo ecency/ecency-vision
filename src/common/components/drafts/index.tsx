@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Ref} from "react";
 
 import {History, Location} from "history";
 
@@ -29,6 +29,7 @@ import defaults from "../../constants/defaults.json";
 import {deleteForeverSvg, pencilOutlineSvg} from "../../img/svg";
 
 import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-helper";
+import { BsPrefixRefForwardingComponent } from "react-bootstrap/esm/helpers";
 
 setProxyBase(defaults.imageServer);
 
@@ -147,18 +148,29 @@ interface Props {
 interface State {
     loading: boolean,
     list: Draft[],
-    filter: string
+    filter: string,
+    innerRef: any
 }
 
 export class Drafts extends BaseComponent<Props, State> {
-    state: State = {
-        loading: true,
-        list: [],
-        filter: ""
+    constructor(props:Props){
+        super(props);
+        this.state = {
+            loading: true,
+            list: [],
+            filter: "",
+            innerRef: React.createRef()
+        }
     }
 
     componentDidMount() {
         this.fetch();
+    }
+
+    componentDidUpdate(prevProps:Props, prevState: State){
+        if(this.state.loading !== prevState.loading && !this.state.loading && this.state.list.length > 0){
+            this.state!.innerRef!.current && this.state!.innerRef!.current!.focus()
+        }
     }
 
     fetch = () => {
@@ -229,7 +241,7 @@ export class Drafts extends BaseComponent<Props, State> {
 
                 return <>
                     <div className="dialog-filter">
-                        <Form.Control type="text" placeholder={_t("drafts.filter")} value={filter} onChange={this.filterChanged}/>
+                        <Form.Control ref={this.state.innerRef} type="text" placeholder={_t("drafts.filter")} value={filter} onChange={this.filterChanged}/>
                     </div>
 
                     {items.length === 0 && <span className="text-muted">{_t("g.no-matches")}</span>}
