@@ -86,16 +86,16 @@
     "address-placeholder": "URL yoki savolni kiriting"
   },
   "search": {
-    "placeholder": "Search",
-    "placeholder-proposals": "Search proposals",
-    "placeholder-count": "Search {{n}} posts",
-    "header-tag": "Tags",
-    "header-account": "Users",
-    "header-community": "Communities"
+    "placeholder": "Izlash",
+    "placeholder-proposals": "Takliflarni qidirish",
+    "placeholder-count": "{{n}} postlarni qidirish",
+    "header-tag": "Teglar",
+    "header-account": "Foydalanuvchilar",
+    "header-community": "Guruhlar"
   },
   "tag": {
-    "unmoderated": "Unmoderated topics",
-    "moderated": "Moderated community"
+    "unmoderated": "Moderatsiya qilinmagan mavzular",
+    "moderated": "Moderatsiya qilingan guruhlar"
   },
   "switch-lang": {
     "contributors": "Contributors"
