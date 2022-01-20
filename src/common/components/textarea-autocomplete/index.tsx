@@ -8,6 +8,7 @@ import { _t } from "../../i18n";
 
 import { lookupAccounts } from "../../api/hive";
 import { searchPath } from '../../api/search-api';
+import { isMobile } from '../../util/is-mobile';
 
 interface State {
 	value: string;
@@ -104,10 +105,17 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 							});
 						},
 						component: (props: any) => {
+							let textToShow: string = props.entity.includes("/") ? props.entity.split("/")[1] : props.entity;
+							let charLimit = isMobile() ? 16 : 30
+							
+							if(textToShow.length > charLimit && props.entity.includes("/")){
+								textToShow = textToShow.substring(0, charLimit - 5) + "..." + textToShow.substring(textToShow.length - 6, textToShow.length-1)
+							}
+
 							return (
 								<>
 									{props.entity.includes("/") ? null : UserAvatar({ global: this.props.global, username: props.entity, size: "small" })}
-									<span style={{ marginLeft: "8px" }}>{props.entity}</span>
+									<span style={{ marginLeft: "8px" }}>{textToShow}</span>
 								</>
 							)
 						},
