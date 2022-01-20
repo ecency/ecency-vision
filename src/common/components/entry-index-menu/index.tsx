@@ -107,6 +107,9 @@ export class EntryIndexMenu extends Component<Props, States> {
         
         if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){
             history.push(history.location.pathname.replace('/my', ''))
+        } 
+        else if (!isActiveUser(activeUser) && (filter === 'feed')) {
+            history.push('/trending')
         }
         else if(!isActiveUser(prevProps.activeUser) !== !isActiveUser(activeUser) && filter !== 'feed'){
             this.setState({isGlobal: tag.length > 0});
