@@ -29,6 +29,7 @@ import {DesktopWindow} from "./window";
 
 import "../../style/theme-day.scss";
 import "../../style/theme-night.scss";
+import "./override.style.css";
 
 import "../../client/base-handlers";
 

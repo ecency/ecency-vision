@@ -1,0 +1,10 @@
+.rta {
+    width: 100% !important;
+}
+.rta__autocomplete {
+    position: absolute !important;
+}
+
+.rta__list {
+    list-style: none !important;
+}

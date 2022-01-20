@@ -1,5 +1,4 @@
 .rta {
-  width: 100%;
   & > textarea {
     height: 100% !important;
   }
@@ -8,10 +7,8 @@
     max-height: 150px !important;
     overflow: auto !important;
     min-width: 200px;
-    position: absolute;
 
     .rta__list {
-      list-style: none;
       overflow-x: auto;
       @include themify(day) {
         background: $white-two;
