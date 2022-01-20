@@ -106,7 +106,7 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 						},
 						component: (props: any) => {
 							let textToShow: string = props.entity.includes("/") ? props.entity.split("/")[1] : props.entity;
-							let charLimit = isMobile() ? 10 : 30
+							let charLimit = isMobile() ? 16 : 30
 							
 							if(textToShow.length > charLimit && props.entity.includes("/")){
 								textToShow = textToShow.substring(0, charLimit - 5) + "..." + textToShow.substring(textToShow.length - 6, textToShow.length-1)
