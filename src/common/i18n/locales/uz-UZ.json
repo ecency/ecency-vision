@@ -74,16 +74,16 @@
     "filter-global-part2": " butun platforma muhokamalari.",
     "filter-global-part3": " obuna bo'lgan guruhlaringizdan muhokamalar. Bu tasmani toʻldirish uchun koʻproq guruhlarga qoʻshilishingiz mumkin.",
     "filter-global-part4": " obuna bo'lgan odamlaringizdan muhokamalar. Bu tasmani toʻldirish uchun koʻproq odamlarga qoʻshilishingiz mumkin.",
-    "filter-global-discover": "Discover People",
-    "filter-global-join-communities": "Join Communities"
+    "filter-global-discover": "Odamlarni Kashf qilish",
+    "filter-global-join-communities": "Guruhlarga Qo'shilish"
   },
   "navbar": {
-    "discover": "Discover",
-    "communities": "Communities",
-    "post": "Create Post",
-    "day-theme": "Day Theme",
-    "night-theme": "Night Theme",
-    "address-placeholder": "enter url or search query"
+    "discover": "Kashf qilish\n",
+    "communities": "Guruhlar",
+    "post": "Post Yaratish",
+    "day-theme": "Kun Mavzusi",
+    "night-theme": "Oqshom Mavzusi",
+    "address-placeholder": "URL yoki savolni kiriting"
   },
   "search": {
     "placeholder": "Search",
