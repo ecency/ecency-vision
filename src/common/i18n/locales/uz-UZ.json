@@ -98,18 +98,18 @@
     "moderated": "Moderatsiya qilingan guruhlar"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Qatnashchilar"
   },
   "user-nav": {
-    "wallet": "Wallet",
-    "unclaimed-reward-notice": "You have unclaimed rewards",
-    "points": "Points",
-    "unclaimed-points-notice": "You have unclaimed points",
-    "notifications": "Notifications",
-    "profile": "Profile",
-    "profile-menu": "Profile menu",
-    "gallery": "Gallery",
-    "drafts": "Drafts",
+    "wallet": "Hamyon",
+    "unclaimed-reward-notice": "Sizda qolib ketgan mukofotlar bor",
+    "points": "Ballar",
+    "unclaimed-points-notice": "Sizda qolib ketgan ballar bor",
+    "notifications": "Bildirishnomalar",
+    "profile": "Profil",
+    "profile-menu": "Profil menyusi",
+    "gallery": "Galereya",
+    "drafts": "Qoralamalar",
     "bookmarks": "Bookmarks",
     "schedules": "Schedules",
     "fragments": "Snippets",
