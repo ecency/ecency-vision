@@ -1,4 +1,4 @@
-import React, {Component, Ref} from "react";
+import React, {Component} from "react";
 
 import {History, Location} from "history";
 
@@ -29,7 +29,6 @@ import defaults from "../../constants/defaults.json";
 import {deleteForeverSvg, pencilOutlineSvg} from "../../img/svg";
 
 import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-helper";
-import { BsPrefixRefForwardingComponent } from "react-bootstrap/esm/helpers";
 
 setProxyBase(defaults.imageServer);
 
