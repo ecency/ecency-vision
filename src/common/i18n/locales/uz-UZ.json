@@ -116,13 +116,13 @@
     "settings": "Sozlamalar",
     "logout": "Chiqish",
     "theme": "mavzu",
-    "light": "light",
-    "dark": "dark",
-    "switch-to": "Switch",
-    "vote-power": "Vote Power:"
+    "light": "yorug'",
+    "dark": "qorong'u",
+    "switch-to": "O'zgartirish",
+    "vote-power": "Ovoz kuchi:"
   },
   "intro": {
-    "title": "Aspire to greatness",
+    "title": "Buyuklikka intiling",
     "sub-title": "rewarding communities",
     "c2a": "Get Started"
   },
