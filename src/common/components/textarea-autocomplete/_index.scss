@@ -13,8 +13,6 @@
     .rta__list {
       list-style: none;
       overflow-x: auto;
-      padding-left: 10px;
-      margin-left: 30px;
       @include themify(day) {
         background: $white-two;
       }

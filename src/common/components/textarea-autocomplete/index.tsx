@@ -8,6 +8,7 @@ import { _t } from "../../i18n";
 
 import { lookupAccounts } from "../../api/hive";
 import { searchPath } from '../../api/search-api';
+import { isMobile } from '../../util/is-mobile';
 
 interface State {
 	value: string;
@@ -105,9 +106,10 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 						},
 						component: (props: any) => {
 							let textToShow: string = props.entity.includes("/") ? props.entity.split("/")[1] : props.entity;
+							let charLimit = isMobile() ? 10 : 30
 							
-							if(textToShow.length > 30){
-								textToShow = textToShow.substring(0, 25) + "..." + textToShow.substring(textToShow.length - 6, textToShow.length-1)
+							if(textToShow.length > charLimit){
+								textToShow = textToShow.substring(0, charLimit - 5) + "..." + textToShow.substring(textToShow.length - 6, textToShow.length-1)
 							}
 
 							return (
