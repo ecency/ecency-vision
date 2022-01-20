@@ -104,10 +104,16 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 							});
 						},
 						component: (props: any) => {
+							let textToShow: string = props.entity.includes("/") ? props.entity.split("/")[1] : props.entity;
+							
+							if(textToShow.length > 30){
+								textToShow = textToShow.substring(0, 25) + "..." + textToShow.substring(textToShow.length - 6, textToShow.length-1)
+							}
+
 							return (
 								<>
 									{props.entity.includes("/") ? null : UserAvatar({ global: this.props.global, username: props.entity, size: "small" })}
-									<span style={{ marginLeft: "8px" }}>{props.entity}</span>
+									<span style={{ marginLeft: "8px" }}>{textToShow}</span>
 								</>
 							)
 						},
