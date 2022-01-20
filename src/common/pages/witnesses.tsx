@@ -32,6 +32,7 @@ import {linkSvg, openInNewSvg} from "../img/svg";
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
 import moment from "moment";
 import {FullAccount} from "../store/accounts/types";
+import { WitnessCard } from "../components/witness-card";
 
 interface WitnessTransformed {
     rank: number;
@@ -187,7 +188,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         const {witnesses, loading, witnessVotes, proxy} = this.state;
         const extraWitnesses = witnessVotes.filter(w => !witnesses.find(y => y.name === w));
 
-        const table = <table className="table">
+        const table = <><table className="table d-none d-md-block">
             <thead>
             <tr>
                 <th className="col-rank">
@@ -279,7 +280,13 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                 </tr>
             })}
             </tbody>
-        </table>;
+        </table>
+        <div className="d-md-none">
+        {witnesses.map((row, i) => {
+                return <WitnessCard />
+            })}
+        </div>
+        </>;
 
         const header = <div className="page-header mt-5">
             <div className="header-title">
