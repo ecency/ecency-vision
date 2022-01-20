@@ -10,10 +10,13 @@ import {
 interface Props {
   global: Global;
   history: History;
+  onChangeGlobal: () => void;
+  isGlobal: boolean;
 }
 
 export const EntryIndexMenuDropdown = (props: Props) => {
-  const { global: { filter, tag }, history } = props;
+  // const { global: { filter, tag }, history } = props;
+  const { global: { filter, tag }, history, onChangeGlobal, isGlobal } = props;
 
   let dropDownItems: MenuItem[] = [
     {
@@ -68,7 +71,12 @@ export const EntryIndexMenuDropdown = (props: Props) => {
   };
 
   const onTagValueClick = (key: string) => {
-    filter !== 'feed' && history.push('/' + filter + key)
+    // filter !== 'feed' && history.push('/' + filter + key)
+    if ((isGlobal && (key.length < 1)) || (!isGlobal && (key.length > 0))) {
+      return
+    } else {
+      onChangeGlobal()
+    }
   }
 
   return (

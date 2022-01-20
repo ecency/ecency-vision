@@ -73,7 +73,7 @@ export class EntryIndexMenu extends Component<Props, States> {
             showInitialIntroductionJourney = IntroductionType.NONE
         }
         this.state = { isGlobal, introduction: showInitialIntroductionJourney, isMounted: false };
-        // this.onChangeGlobal = this.onChangeGlobal.bind(this);
+        this.onChangeGlobal = this.onChangeGlobal.bind(this);
     }
 
     componentDidMount() {
@@ -92,15 +92,15 @@ export class EntryIndexMenu extends Component<Props, States> {
         this.setState({isMounted: true})         
     }
 
-    // onChangeGlobal() {
-    //     const { history, global : { tag, filter } } = this.props;
-    //     this.setState({ isGlobal: !this.state.isGlobal });
-    //     if(history.location.pathname.includes('/my')){
-    //         history.push(history.location.pathname.replace('/my', ''))
-    //     } else {
-    //          filter!=='feed' && history.push('/' + filter + (tag.length > 0 ? "" : '/my'))
-    //     }
-    // }
+    onChangeGlobal() {
+        const { history, global : { tag, filter } } = this.props;
+        this.setState({ isGlobal: !this.state.isGlobal });
+        if(history.location.pathname.includes('/my')){
+            history.push(history.location.pathname.replace('/my', ''))
+        } else {
+             filter!=='feed' && history.push('/' + filter + (tag.length > 0 ? "" : '/my'))
+        }
+    }
 
     componentDidUpdate(prevProps: Props){
         const { history, activeUser, global: { tag, filter } } = this.props;
@@ -108,23 +108,23 @@ export class EntryIndexMenu extends Component<Props, States> {
         if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){
             history.push(history.location.pathname.replace('/my', ''))
         }
-        // else if(!isActiveUser(prevProps.activeUser) !== !isActiveUser(activeUser) && filter !== 'feed'){
-        //     this.setState({isGlobal: tag.length > 0});
-        //     let path = history.location.pathname + (tag.length > 0 ? "" : '/');
-        //     path = path.replace('//',"/");
-        //     history.push(path);
-        // }
-        // else if(prevProps.global.tag !== tag && filter !== 'feed' && tag !== ""){
-        //     let isGlobal = tag !== "my"
-        //     this.setState({isGlobal})
-        // }
-        // else if(prevProps.global.filter !== 'feed' && prevProps.global.tag !== tag && filter !== 'feed' && tag === ""){
-        //     if(prevProps.global.tag !== "my"){
-        //         let isGlobal = false
-        //         history.push(history.location.pathname + '/my');
-        //         this.setState({ isGlobal })
-        //     }
-        // }
+        else if(!isActiveUser(prevProps.activeUser) !== !isActiveUser(activeUser) && filter !== 'feed'){
+            this.setState({isGlobal: tag.length > 0});
+            let path = history.location.pathname + (tag.length > 0 ? "" : '/');
+            path = path.replace('//',"/");
+            history.push(path);
+        }
+        else if(prevProps.global.tag !== tag && filter !== 'feed' && tag !== ""){
+            let isGlobal = tag !== "my"
+            this.setState({isGlobal})
+        }
+        else if(prevProps.global.filter !== 'feed' && prevProps.global.tag !== tag && filter !== 'feed' && tag === ""){
+            if(prevProps.global.tag !== "my"){
+                let isGlobal = false
+                history.push(history.location.pathname + '/my');
+                this.setState({ isGlobal })
+            }
+        }
 
         let showInitialIntroductionJourney = activeUser && isActiveUser(activeUser) && ls.get(`${activeUser.username}HadTutorial`);
         if(prevProps.activeUser !==activeUser && activeUser && isActiveUser(activeUser) && (showInitialIntroductionJourney==='false' || showInitialIntroductionJourney===null)){
@@ -251,6 +251,8 @@ export class EntryIndexMenu extends Component<Props, States> {
         const isActive = isActiveUser(activeUser);
         const OurVision = apiBase(`/assets/our-vision.${global.canUseWebp?"webp":"png"}`);
 
+        let menuTagValue = tag ? `/${tag}` : ''
+
         const menuConfig: {
             history: History,
             label: string,
@@ -262,8 +264,21 @@ export class EntryIndexMenu extends Component<Props, States> {
                 ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
                     return {
                         label: _t(`entry-filter.filter-${x}`),
-                        href: isActive ? tag === "" ? `/${x}` : `/${x}/my` : `/${x}`,
+                        // href: isActive ? tag === "" ? `/${x}` : `/${x}/my` : `/${x}`,
+                        // href: isActive ? filter === 'feed'  ? `/${x}` : tag.length > 0 && tag === 'my' && !isGlobal ? `/${x}` : tag.length > 0 ? `/${x}/${tag}` : `/${x}` : `/${x}`,
                         // href: isActive ? isGlobal ? `/${x}` : `/${x}/my` : `/${x}`,
+
+
+                        href: isActive ?
+                        ((filter === 'feed') && !isGlobal) ?
+                        `/${x}/my`
+                        : ((filter === 'feed') && isGlobal) ?
+                        `/${x}`
+                        : `/${x}${menuTagValue}`
+                        : `/${x}${menuTagValue}`,
+
+
+
                         active: filter === x || filter === x + '/my',
                         id: x,
                         flash: (x === 'trending' && introduction === IntroductionType.TRENDING) || (x === 'hot' && introduction === IntroductionType.HOT) || (x === 'created' && introduction === IntroductionType.NEW)
@@ -278,6 +293,9 @@ export class EntryIndexMenu extends Component<Props, States> {
             active: filter === 'feed',
             id: 'feed'
         }, ...menuConfig.items]}
+
+        console.log('Menu Config Values: ', menuConfig);
+        
 
         const introductionDescription = (
         <>
@@ -392,7 +410,8 @@ export class EntryIndexMenu extends Component<Props, States> {
                                 /> */}
                                 <div className="border-left ml-3 ml-md-5 dropDown-left-border-height" />
                                 <span id="check-isGlobal" className="d-flex align-items-center pl-3">
-                                    <EntryIndexMenuDropdown {...this.props} />
+                                    {/* <EntryIndexMenuDropdown {...this.props} /> */}
+                                    <EntryIndexMenuDropdown {...this.props} isGlobal={isGlobal} onChangeGlobal={this.onChangeGlobal} />
                                 </span>
                                 
                                 </>
