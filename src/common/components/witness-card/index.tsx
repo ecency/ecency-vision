@@ -1,15 +1,15 @@
 import React from "react";
-import witnessVoteBtn from "../witness-vote-btn";
+import WitnessVoteBtn from "../witness-vote-btn";
 
-export const WitnessCard = () => {
+export const WitnessCard = (props:any) => {
   return (
     <div className="p-3 mb-3 border rounded">
       <div>
             <div><b>Rank: 1</b></div>
-            
-          <div>
-              {witnessVoteBtn({
-                ...this.props,
+                
+            <div>
+                {WitnessVoteBtn({
+                ...props,
                 voted: witnessVotes.includes(row.name),
                 witness: row.name,
                 onSuccess: (approve) => {
@@ -21,7 +21,7 @@ export const WitnessCard = () => {
                     }
                 })}
             </div>
-            </div>
+        </div>
       <div className="d-flex align-items-center">
         <div>
             <img src="https://images.ecency.com/webp/u/blocktrades/avatar/medium" alt="" className="rounded-circle avatar"/>
