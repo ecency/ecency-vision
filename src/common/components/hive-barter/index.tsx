@@ -81,7 +81,7 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
                         onChange={({target:{value}}) => {
                             setPrice(value.includes('.') ? fixDecimals(value, 6) : value);
                             let refinedAmount = amount ? parseFloat(amount) : 0;
-                            let total = parseFloat(`${(parseFloat(value) * refinedAmount as any)}`);
+                            let total = parseFloat(`${(parseFloat(value) * refinedAmount as any)}`).toFixed(3);
                             setTotal(total);
                         }}
                     />
@@ -98,7 +98,7 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
                         onChange={({target:{value}}) => {
                                 setAmount(value.includes('.') ? fixDecimals(value, 3) : value)
                                 let refinedAmount = value ? parseFloat(value) : 0;
-                                let total = parseFloat(`${(parseFloat(price) * refinedAmount as any)}`);
+                                let total = parseFloat(`${(parseFloat(price) * refinedAmount as any)}`).toFixed(3);
                                 setTotal(total);
                             }
                         }
