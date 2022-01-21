@@ -21,11 +21,11 @@ export const EntryIndexMenuDropdown = (props: Props) => {
   let dropDownItems: MenuItem[] = [
     {
       label: <span>{_t('entry-filter.filter-global')}</span>,
-      active: tag === "",
+      active: tag === "" || ((tag.length > 0) && (tag !== 'my')),
       onClick: () => onTagValueClick('')
     },
     {
-      label: <span>My Community</span>,
+      label: <span>{_t('entry-filter.filter-community')}</span>,
       active: tag === "my",
       onClick: () => onTagValueClick('/my')
 
@@ -35,26 +35,26 @@ export const EntryIndexMenuDropdown = (props: Props) => {
   if (filter === 'created') {
     dropDownItems = [
       ...dropDownItems,
-      {
-        label: <span>Now</span>,
-        active: tag === "right_now",
-        onClick: () => console.log('right_now clicked'),
-      },
-      {
-        label: <span>Today</span>,
-        active: tag === "to_day",
-        onClick: () => console.log('to_day clicked'),
-      },
-      {
-        label: <span>This Week</span>,
-        active: tag === "this_week",
-        onClick: () => console.log('this_week clicked'),
-      },
-      {
-        label: <span>This Month</span>,
-        active: tag === "this_month",
-        onClick: () => console.log('this_month clicked'),
-      }
+      // {
+      //   label: <span>Now</span>,
+      //   active: tag === "right_now",
+      //   onClick: () => console.log('right_now clicked'),
+      // },
+      // {
+      //   label: <span>Today</span>,
+      //   active: tag === "to_day",
+      //   onClick: () => console.log('to_day clicked'),
+      // },
+      // {
+      //   label: <span>This Week</span>,
+      //   active: tag === "this_week",
+      //   onClick: () => console.log('this_week clicked'),
+      // },
+      // {
+      //   label: <span>This Month</span>,
+      //   active: tag === "this_month",
+      //   onClick: () => console.log('this_month clicked'),
+      // }
     ]
   }
 
@@ -62,7 +62,7 @@ export const EntryIndexMenuDropdown = (props: Props) => {
     history: null,
     label: (
       <div className='tagDropDown'>
-        {tag === "" ? 'Global' : tag === 'my' ? 'My Community' : tag}
+        {tag === "" ? _t('entry-filter.filter-global') : tag === 'my' ? _t('entry-filter.filter-community') : tag}
         {""}
         {menuDownSvg}
       </div>

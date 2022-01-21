@@ -267,11 +267,6 @@ export class EntryIndexMenu extends Component<Props, States> {
                 ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
                     return {
                         label: _t(`entry-filter.filter-${x}`),
-                        // href: isActive ? tag === "" ? `/${x}` : `/${x}/my` : `/${x}`,
-                        // href: isActive ? filter === 'feed'  ? `/${x}` : tag.length > 0 && tag === 'my' && !isGlobal ? `/${x}` : tag.length > 0 ? `/${x}/${tag}` : `/${x}` : `/${x}`,
-                        // href: isActive ? isGlobal ? `/${x}` : `/${x}/my` : `/${x}`,
-
-
                         href: isActive ?
                         ((filter === 'feed') && !isGlobal) ?
                         `/${x}/my`
@@ -279,9 +274,6 @@ export class EntryIndexMenu extends Component<Props, States> {
                         `/${x}`
                         : `/${x}${menuTagValue}`
                         : `/${x}${menuTagValue}`,
-
-
-
                         active: filter === x || filter === x + '/my',
                         id: x,
                         flash: (x === 'trending' && introduction === IntroductionType.TRENDING) || (x === 'hot' && introduction === IntroductionType.HOT) || (x === 'created' && introduction === IntroductionType.NEW)
@@ -295,10 +287,7 @@ export class EntryIndexMenu extends Component<Props, States> {
             href: `/@${activeUser?.username}/feed`,
             active: filter === 'feed',
             id: 'feed'
-        }, ...menuConfig.items]}
-
-        console.log('Menu Config Values: ', menuConfig);
-        
+        }, ...menuConfig.items]}        
 
         const introductionDescription = (
         <>
@@ -398,27 +387,30 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     </ul>
                                 </div>
                             </div>
-
-                            {isActive && filter !== "feed" &&
-                            <>
-                                {/* <Form.Check
-                                    id="check-isGlobal"
-                                    type="checkbox"
-                                    label={_t('entry-filter.filter-global')}
-                                    name="isGlobal"
-                                    className="d-flex align-items-center ml-3 ml-md-5 border-left pl-5"
-                                    checked={isGlobal}
-                                    onChange={this.onChangeGlobal}
-                                    custom={true}
-                                /> */}
-                                <div className="border-left ml-3 ml-md-5 dropDown-left-border-height" />
+                            {
+                                filter !== 'feed' ?
+                                isActive ?(
+                                    <>
+                                    <div className="border-left ml-3 dropDown-left-border-height" />
+                                    <span id="check-isGlobal" className="d-flex align-items-center pl-3">
+                                        <EntryIndexMenuDropdown {...this.props} isGlobal={isGlobal} onChangeGlobal={this.onChangeGlobal} />
+                                    </span>
+                                    </>
+                                )
+                                : (
+                                    <>
+                                <div className="border-left ml-3 dropDown-left-border-height" />
                                 <span id="check-isGlobal" className="d-flex align-items-center pl-3">
-                                    {/* <EntryIndexMenuDropdown {...this.props} /> */}
-                                    <EntryIndexMenuDropdown {...this.props} isGlobal={isGlobal} onChangeGlobal={this.onChangeGlobal} />
+                                    <div className='tagDropDown'>
+                                        {tag === "" ? 'Global' : tag === 'my' ? 'My Community' : tag}
+                                    </div>
                                 </span>
                                 
                                 </>
+                                )
+                                : null
                             }
+
                             </div>
                         </div>
                         <div className="d-flex align-items-center ml-auto ml-md-0">
