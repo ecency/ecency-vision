@@ -188,7 +188,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         const {witnesses, loading, witnessVotes, proxy} = this.state;
         const extraWitnesses = witnessVotes.filter(w => !witnesses.find(y => y.name === w));
 
-        const table = <><table className="table d-none d-md-block">
+        const table = <><table className="table d-none d-sm-block">
             <thead>
             <tr>
                 <th className="col-rank">
