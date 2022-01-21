@@ -283,8 +283,20 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         </table>
         <div className="d-md-none">
         {witnesses.map((row, i) => {
-                return <WitnessCard />
-            })}
+            return <WitnessCard
+                    voted={witnessVotes.includes(row.name)}
+                    witness={row.name}
+                    row={row}
+                    onSuccess={(approve:any) => {
+                            if (approve) {
+                                this.addWitness(row.name);
+                            } else {
+                                this.deleteWitness(row.name);
+                            }
+                        }}
+                        {...this.props}
+                    />
+        })}
         </div>
         </>;
 
