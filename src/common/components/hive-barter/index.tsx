@@ -18,14 +18,14 @@ interface Props {
 }
 
 export const HiveBarter = ({type, available, peakValue, loading, username, basePeakValue, onClickPeakValue}: Props) => {
-    const [price, setPrice] = useState(peakValue.toFixed(3));
+    const [price, setPrice] = useState(peakValue.toFixed(6));
     const [amount, setAmount] = useState<any>(0.000);
     const [total, setTotal] = useState<any>(0.000);
     const [placingOrder, setPlacingOrder] = useState(false);
 
     useEffect(()=>{
         if(peakValue){
-            setPrice(peakValue.toFixed(3))
+            setPrice(peakValue.toFixed(6))
         }
     },[peakValue])
 
@@ -45,12 +45,12 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
         type===1 ? buyHive() :sellHive()
     }
 
-    const fixToThree = (value: string): string => {
+    const fixDecimals = (value: string, decimals: number): string => {
         let splittedValue = value.split(".");
         let valueAfterPoints = splittedValue[1];
-        if(valueAfterPoints && valueAfterPoints.length>3){
-            valueAfterPoints = valueAfterPoints.substring(0,3);
-            error("Only 3 digits after decimal are allowed!");
+        if(valueAfterPoints && valueAfterPoints.length>decimals){
+            valueAfterPoints = valueAfterPoints.substring(0,decimals);
+            error(`Only ${decimals} digits after decimal are allowed!`);
             return `${splittedValue[0] + "." + valueAfterPoints}`
         }
         return value
@@ -79,7 +79,7 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
                         value={price}
                         placeholder="0.0"
                         onChange={({target:{value}}) => {
-                            setPrice(value.includes('.') ? fixToThree(value) : value);
+                            setPrice(value.includes('.') ? fixDecimals(value, 6) : value);
                             let refinedAmount = amount ? parseFloat(amount) : 0;
                             let total = parseFloat(`${(parseFloat(value) * refinedAmount as any)}`);
                             setTotal(total);
@@ -96,7 +96,7 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
                         placeholder="0.0"
                         value={isNaN(amount)? 0 : amount}
                         onChange={({target:{value}}) => {
-                                setAmount(value.includes('.') ? fixToThree(value) : value)
+                                setAmount(value.includes('.') ? fixDecimals(value, 3) : value)
                                 let refinedAmount = value ? parseFloat(value) : 0;
                                 let total = parseFloat(`${(parseFloat(price) * refinedAmount as any)}`);
                                 setTotal(total);
@@ -114,7 +114,7 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
                         placeholder="0.0"
                         value={isNaN(total) ? 0 : total}
                         onChange={({target:{value}})=>{
-                            setTotal(isNaN(value as any) ? 0 : value.includes('.') ? fixToThree(value) : value);
+                            setTotal(isNaN(value as any) ? 0 : value.includes('.') ? fixDecimals(value, 3) : value);
                             setAmount(isNaN(`${parseFloat(value)/parseFloat(price)}` as any) ? 0 : 
                             parseFloat(`${parseFloat(value)/parseFloat(price)}`).toFixed(3))}}
                     />
