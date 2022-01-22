@@ -147,41 +147,41 @@
   },
   "sign-up": {
     "header": "Ecencyga xush kelibsiz",
-    "description": "Home of Free speech and Rewarding communities!",
-    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
-    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
-    "username": "Pick a username",
-    "email": "Enter your email address",
-    "ref": "Referred user (optional)",
-    "submit": "Continue",
-    "validation-username": "Username is required.",
-    "validation-email": "Email is required.",
-    "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "description": "Erkin muloqot va taqdirlanishlar makoni!",
+    "bottom-description": "Har bir hisob blokcheynda yaratilgan va faqat siz ushbu hisobni boshqarishingiz mumkin. Bitta akkunt blockcheyn va Ecencyda hamma narsani boshqaradi.",
+    "learn-more": "\nImtiyozlar haqida batafsil ma'lumotni <a href=\"/faq#how-to-join\">FAQ</a> bo‘limida o‘qing",
+    "username": "Foydalanuvchi nomini tanlang",
+    "email": "Pochta manzilingizni kiriting",
+    "ref": "Taklif qilgan foydalanuvchi (ixtiyoriy)",
+    "submit": "Davom etish",
+    "validation-username": "Foydalanuvchi nomi talab qilinadi.",
+    "validation-email": "Email talab qilinadi.",
+    "success": "Biz {{email}} manziliga xat yubordik.",
+    "success-2": "Roʻyxatdan oʻtish jarayonini yakunlash uchun koʻrsatmalarga amal qiling.",
+    "login-text-1": "Akkauntingiz bormi?",
+    "login-text-2": "Kirish"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Mavzular"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "Tanlanganlar"
   },
   "entry-list-item": {
-    "cross-posted": "cross-posted",
-    "cross-posted-to": "to",
+    "cross-posted": "oʻzaro joylashtirilgan",
+    "cross-posted-to": "ga",
     "reblogged": "{{n}} Tarqatildi",
-    "promoted": "Promoted",
-    "pinned": "Pinned Post",
-    "replies": "1 response. Click to respond.",
-    "replies-n": "{{n}} responses. Click to respond.",
-    "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-remove": "Voting 0% unvotes the content.",
-    "vote-warning": "Changing vote...",
-    "no-replies": "No responses yet. Click to respond."
+    "promoted": "Ko'tarilgan",
+    "pinned": "Belgilangan post",
+    "replies": "1 javob. Javob berish uchun bosing.",
+    "replies-n": "{{n}} javob. Javob berish uchun bosing.",
+    "vote-error": "Oldingi qiymat qabul qilinmadi. Boshqa qiymat bilan ovoz bering.",
+    "vote-remove": "0% ovoz berish kontentni bekor qiladi.",
+    "vote-warning": "Ovozni o'zgartirish...",
+    "no-replies": "Hozircha javoblar yoʻq. Javob berish uchun bosing."
   },
   "nsfw": {
-    "reveal": "Reveal this post",
+    "reveal": "Xabarni o'chirish",
     "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
     "settings-1": "adjust your",
     "settings-2": "display preferences"
