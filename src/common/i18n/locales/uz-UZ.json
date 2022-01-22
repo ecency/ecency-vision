@@ -182,25 +182,25 @@
   },
   "nsfw": {
     "reveal": "Xabarni o'chirish",
-    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
-    "settings-1": "adjust your",
-    "settings-2": "display preferences"
+    "signup": "Afzalliklaringizni saqlash uchun <a href=\"/signup\" class=\"push-link\">akkaunt yarating</a>",
+    "settings-1": "sozlang",
+    "settings-2": "afzalliklarni aks etish"
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "Xatcho‘plarga qo‘shish",
+    "added": "Xatcho'plarga qo'shildi",
+    "delete": "Xatcho'plardan olib tashlash",
+    "deleted": "Xatcho'plardan olib tashlandi"
   },
   "entry-reblog": {
-    "reblog": "Reblog",
-    "confirm-title": "Reblog to @{{n}}'s blog?",
-    "confirm-ok": "Reblog",
-    "success": "Reblogged!",
-    "delete-reblog": "Undo Reblog",
-    "delete-confirm-title": "Undo reblog?",
-    "delete-confirm-ok": "Undo",
-    "delete-success": "Reblog removed"
+    "reblog": "Qayta bloglash",
+    "confirm-title": "@{{n}} ning blogi qayta bloglansinmi?",
+    "confirm-ok": "Qayta bloglash",
+    "success": "Qayta bloglandi!",
+    "delete-reblog": "Qayta bloglashni bekor qilish",
+    "delete-confirm-title": "Qayta bloglash bekor qilinsinmi?",
+    "delete-confirm-ok": "Bekor qilish",
+    "delete-success": "Qayta bloglash o'chirildi"
   },
   "entry-tip": {
     "title": "Tip"
