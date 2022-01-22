@@ -138,15 +138,15 @@
     "error-user-fetch": "Foydalanuvchi maʼlumotlarini olib boʻlmadi",
     "error-user-not-found": "Foydalanuvchi mavjud emas",
     "error-user-not-found-cache": "Kesh nomuvofiqligi aniqlandi. Iltimos, hisob maʼlumotlaringiz bilan tizimga qaytadan kirishga urinib koʻring.",
-    "error-permission": "Couldn't get posting permission",
-    "error-authenticate": "Wrong private key. Master or active or posting private key required.",
-    "with-hive-signer": "Login with hivesigner",
-    "with-keychain": "Login with keychain",
-    "sign-up-text-1": "Don't have an account?",
-    "sign-up-text-2": "Sign up now!"
+    "error-permission": "Postni e'lon qilishga ruxsat berilmadi",
+    "error-authenticate": "Shaxsiy kalit noto'g'ri. Asosiy yoki faol yoki eʼlon qilingan shaxsiy kalit talab qilinadi.",
+    "with-hive-signer": "Hivesigner orqali tizimga kiring",
+    "with-keychain": "Keychain orqali tizimga kiring",
+    "sign-up-text-1": "Akkauntingiz bormi?",
+    "sign-up-text-2": "Hoziroq ro'yxatdan o'ting!"
   },
   "sign-up": {
-    "header": "Welcome to Ecency",
+    "header": "Ecencyga xush kelibsiz",
     "description": "Home of Free speech and Rewarding communities!",
     "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
     "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
