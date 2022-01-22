@@ -112,10 +112,12 @@ export class EntryIndexMenu extends Component<Props, States> {
             history.push('/trending')
         }
         else if(!isActiveUser(prevProps.activeUser) !== !isActiveUser(activeUser) && filter !== 'feed'){
-            this.setState({isGlobal: tag.length > 0});
-            let path = history.location.pathname + (tag.length > 0 ? "" : '/');
-            path = path.replace('//',"/");
-            history.push(path);
+            console.log('%c Check 2 ', "background-color: #FFFF00; color: #000000;");
+            let isGlobalValue = ((tag.length > 0) && (tag === 'my')) ? false : true
+            this.setState({isGlobal: isGlobalValue});
+            // let path = history.location.pathname + (tag.length > 0 ? "" : '/');
+            // path = path.replace('//',"/");
+            // history.push(path);
         }
         else if(prevProps.global.tag !== tag && filter !== 'feed' && tag !== ""){
             let isGlobal = tag !== "my"
