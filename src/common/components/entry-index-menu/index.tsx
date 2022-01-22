@@ -18,12 +18,18 @@ import { informationVariantSvg } from "../../img/svg";
 import { apiBase } from "../../api/helper";
 import { Introduction } from "../introduction";
 import { EntryIndexMenuDropdown } from "../entry-index-menu-dropdown";
+import {UI, ToggleType} from "../../store/ui/types";
+import {
+    menuDownSvg,
+  } from "../../img/svg";
 
 interface Props {
     history: History;
     global: Global;
     activeUser: ActiveUser | null;
+    ui: UI;
     toggleListStyle: (view: string | null) => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
 export enum IntroductionType {
@@ -402,8 +408,13 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     <>
                                 <div className="border-left ml-3 dropDown-left-border-height" />
                                 <span id="check-isGlobal" className="d-flex align-items-center pl-3">
-                                    <div className='tagDropDown'>
-                                        {tag === "" ? 'Global' : tag === 'my' ? 'My Community' : tag}
+                                    <div className='tagDropDown' onClick={() => {
+                                        const {toggleUIProp} = this.props;
+                                        toggleUIProp('login');
+                                    }}>
+                                        {tag === "" ? _t('entry-filter.filter-global') : tag === 'my' ? _t('entry-filter.filter-community') : tag}
+                                        {""}
+                                        {menuDownSvg}
                                     </div>
                                 </span>
                                 
@@ -433,7 +444,9 @@ export default (p: Props) => {
         history: p.history,
         global: p.global,
         activeUser: p.activeUser,
-        toggleListStyle: p.toggleListStyle
+        ui: p.ui,
+        toggleListStyle: p.toggleListStyle,
+        toggleUIProp: p.toggleUIProp,
     }
 
     return <EntryIndexMenu {...props} />
