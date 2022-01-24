@@ -209,9 +209,9 @@
     "title": "Ulashish"
   },
   "entry-menu": {
-    "cross-post": "Cross post",
-    "share": "Share",
-    "edit-history": "Edit History",
+    "cross-post": "Tarqatish",
+    "share": "Ulashish",
+    "edit-history": "Tarixni Tahrirlash",
     "pin": "Pin",
     "pin-success": "Post pinned",
     "unpin": "Unpin",
