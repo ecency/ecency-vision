@@ -3,6 +3,7 @@ import DropDown, { MenuItem } from "../dropdown";
 import { Global } from "../../store/global/types";
 import { History } from "history";
 import { _t } from "../../i18n";
+import {ToggleType} from "../../store/ui/types";
 import {
   menuDownSvg,
 } from "../../img/svg";
@@ -12,6 +13,8 @@ interface Props {
   history: History;
   onChangeGlobal: (value: boolean) => void;
   isGlobal: boolean;
+  toggleUIProp: (what: ToggleType) => void;
+  isActive: boolean;
 }
 
 export const EntryIndexMenuDropdown = (props: Props) => {
@@ -23,13 +26,14 @@ export const EntryIndexMenuDropdown = (props: Props) => {
       label: <span>{_t('entry-filter.filter-global')}</span>,
       // active: tag === "" || ((tag.length > 0) && (tag !== 'my')),
       active: tag === "",
-      // onClick: () => onTagValueClick('')
-      onClick: () => onChangeGlobal(true)
+      onClick: () => onTagValueClick('')
+      // onClick: () => onChangeGlobal(true)
     },
     {
       label: <span>{_t('entry-filter.filter-community')}</span>,
       active: tag === "my",
-      onClick: () => onChangeGlobal(false)
+      onClick: () => onTagValueClick('my')
+      // onClick: () => onChangeGlobal(false)
 
     }
   ]
@@ -73,13 +77,18 @@ export const EntryIndexMenuDropdown = (props: Props) => {
   };
 
   const onTagValueClick = (key: string) => {
+    const { toggleUIProp, isActive } = props;
     // filter !== 'feed' && history.push('/' + filter + key)
     // if ((isGlobal && (key.length < 1)) || (!isGlobal && (key.length > 0))) {
     //   return
     // } else {
     //   onChangeGlobal()
     // }
-    onChangeGlobal(!(key.length > 0))
+    if(key === 'my' && !isActive) {
+      toggleUIProp('login')
+    } else {
+      onChangeGlobal(!(key.length > 0))
+    }
   }
 
   return (

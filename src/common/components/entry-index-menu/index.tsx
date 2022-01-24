@@ -19,15 +19,15 @@ import { apiBase } from "../../api/helper";
 import { Introduction } from "../introduction";
 import { EntryIndexMenuDropdown } from "../entry-index-menu-dropdown";
 import {UI, ToggleType} from "../../store/ui/types";
-import {
-    menuDownSvg,
-  } from "../../img/svg";
+// import {
+//     menuDownSvg,
+//   } from "../../img/svg";
 
 interface Props {
     history: History;
     global: Global;
     activeUser: ActiveUser | null;
-    ui: UI;
+    // ui: UI;
     toggleListStyle: (view: string | null) => void;
     toggleUIProp: (what: ToggleType) => void;
 }
@@ -404,7 +404,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     </ul>
                                 </div>
                             </div>
-                            {
+                            {/* {
                                 filter !== 'feed' ?
                                 isActive ?(
                                     <>
@@ -431,6 +431,19 @@ export class EntryIndexMenu extends Component<Props, States> {
                                 </>
                                 )
                                 : null
+                            } */}
+
+{
+                                filter !== 'feed' ?
+                                (
+                                    <>
+                                    <div className="border-left ml-3 dropDown-left-border-height" />
+                                    <span id="check-isGlobal" className="d-flex align-items-center pl-3">
+                                        <EntryIndexMenuDropdown {...this.props} isGlobal={isGlobal} isActive={isActive} onChangeGlobal={this.onChangeGlobal} />
+                                    </span>
+                                    </>
+                                )
+                                : null
                             }
 
                             </div>
@@ -454,7 +467,7 @@ export default (p: Props) => {
         history: p.history,
         global: p.global,
         activeUser: p.activeUser,
-        ui: p.ui,
+        // ui: p.ui,
         toggleListStyle: p.toggleListStyle,
         toggleUIProp: p.toggleUIProp,
     }
