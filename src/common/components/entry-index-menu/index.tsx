@@ -98,20 +98,27 @@ export class EntryIndexMenu extends Component<Props, States> {
         this.setState({isMounted: true})         
     }
 
-    onChangeGlobal() {
+    onChangeGlobal(value: boolean) {
+        console.log('====> ', value);
+        
         const { history, global : { tag, filter } } = this.props;
-        this.setState({ isGlobal: !this.state.isGlobal });
-        if(history.location.pathname.includes('/my')){
-            history.push(history.location.pathname.replace('/my', ''))
+        this.setState({ isGlobal: value });
+        if (value) {
+            history.push(`/${filter}`)
         } else {
-             filter!=='feed' && history.push('/' + filter + (tag.length > 0 ? "" : '/my'))
+            history.push(`/${filter}/my`)
         }
+        // if(history.location.pathname.includes('/my')){
+        //     history.push(history.location.pathname.replace('/my', ''))
+        // } else {
+        //      filter!=='feed' && history.push('/' + filter + (tag.length > 0 ? "" : '/my'))
+        // }
     }
 
     componentDidUpdate(prevProps: Props){
         const { history, activeUser, global: { tag, filter } } = this.props;
         
-        if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){
+        if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){            
             history.push(history.location.pathname.replace('/my', ''))
         } 
         else if (!isActiveUser(activeUser) && (filter === 'feed')) {
@@ -124,17 +131,17 @@ export class EntryIndexMenu extends Component<Props, States> {
             // path = path.replace('//',"/");
             // history.push(path);
         }
-        else if(prevProps.global.tag !== tag && filter !== 'feed' && tag !== ""){
-            let isGlobal = tag !== "my"
-            this.setState({isGlobal})
-        }
-        else if(prevProps.global.filter !== 'feed' && prevProps.global.tag !== tag && filter !== 'feed' && tag === ""){
-            if(prevProps.global.tag !== "my"){
-                let isGlobal = false
-                history.push(history.location.pathname + '/my');
-                this.setState({ isGlobal })
-            }
-        }
+        // else if(prevProps.global.tag !== tag && filter !== 'feed' && tag !== ""){
+        //     let isGlobal = tag !== "my"
+        //     this.setState({isGlobal})
+        // }
+        // else if(prevProps.global.filter !== 'feed' && prevProps.global.tag !== tag && filter !== 'feed' && tag === ""){
+        //     if(prevProps.global.tag !== "my"){
+        //         let isGlobal = false
+        //         history.push(history.location.pathname + '/my');
+        //         this.setState({ isGlobal })
+        //     }
+        // }
         else if(prevProps.activeUser?.username !== activeUser?.username && filter === 'feed') {
             history.push(`/@${activeUser?.username}/${filter}`)
         }

@@ -10,7 +10,7 @@ import {
 interface Props {
   global: Global;
   history: History;
-  onChangeGlobal: () => void;
+  onChangeGlobal: (value: boolean) => void;
   isGlobal: boolean;
 }
 
@@ -21,13 +21,15 @@ export const EntryIndexMenuDropdown = (props: Props) => {
   let dropDownItems: MenuItem[] = [
     {
       label: <span>{_t('entry-filter.filter-global')}</span>,
-      active: tag === "" || ((tag.length > 0) && (tag !== 'my')),
-      onClick: () => onTagValueClick('')
+      // active: tag === "" || ((tag.length > 0) && (tag !== 'my')),
+      active: tag === "",
+      // onClick: () => onTagValueClick('')
+      onClick: () => onChangeGlobal(true)
     },
     {
       label: <span>{_t('entry-filter.filter-community')}</span>,
       active: tag === "my",
-      onClick: () => onTagValueClick('/my')
+      onClick: () => onChangeGlobal(false)
 
     }
   ]
@@ -72,11 +74,12 @@ export const EntryIndexMenuDropdown = (props: Props) => {
 
   const onTagValueClick = (key: string) => {
     // filter !== 'feed' && history.push('/' + filter + key)
-    if ((isGlobal && (key.length < 1)) || (!isGlobal && (key.length > 0))) {
-      return
-    } else {
-      onChangeGlobal()
-    }
+    // if ((isGlobal && (key.length < 1)) || (!isGlobal && (key.length > 0))) {
+    //   return
+    // } else {
+    //   onChangeGlobal()
+    // }
+    onChangeGlobal(!(key.length > 0))
   }
 
   return (
