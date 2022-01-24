@@ -135,6 +135,9 @@ export class EntryIndexMenu extends Component<Props, States> {
                 this.setState({ isGlobal })
             }
         }
+        else if(prevProps.activeUser?.username !== activeUser?.username && filter === 'feed') {
+            history.push(`/@${activeUser?.username}/${filter}`)
+        }
 
         let showInitialIntroductionJourney = activeUser && isActiveUser(activeUser) && ls.get(`${activeUser.username}HadTutorial`);
         if(prevProps.activeUser !==activeUser && activeUser && isActiveUser(activeUser) && (showInitialIntroductionJourney==='false' || showInitialIntroductionJourney===null)){
