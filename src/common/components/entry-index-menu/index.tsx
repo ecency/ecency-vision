@@ -19,15 +19,11 @@ import { apiBase } from "../../api/helper";
 import { Introduction } from "../introduction";
 import { EntryIndexMenuDropdown } from "../entry-index-menu-dropdown";
 import {UI, ToggleType} from "../../store/ui/types";
-// import {
-//     menuDownSvg,
-//   } from "../../img/svg";
 
 interface Props {
     history: History;
     global: Global;
     activeUser: ActiveUser | null;
-    // ui: UI;
     toggleListStyle: (view: string | null) => void;
     toggleUIProp: (what: ToggleType) => void;
 }
@@ -98,9 +94,7 @@ export class EntryIndexMenu extends Component<Props, States> {
         this.setState({isMounted: true})         
     }
 
-    onChangeGlobal(value: boolean) {
-        console.log('====> ', value);
-        
+    onChangeGlobal(value: boolean) {        
         const { history, global : { tag, filter } } = this.props;
         this.setState({ isGlobal: value });
         if (value) {
@@ -108,11 +102,6 @@ export class EntryIndexMenu extends Component<Props, States> {
         } else {
             history.push(`/${filter}/my`)
         }
-        // if(history.location.pathname.includes('/my')){
-        //     history.push(history.location.pathname.replace('/my', ''))
-        // } else {
-        //      filter!=='feed' && history.push('/' + filter + (tag.length > 0 ? "" : '/my'))
-        // }
     }
 
     componentDidUpdate(prevProps: Props){
@@ -127,21 +116,7 @@ export class EntryIndexMenu extends Component<Props, States> {
         else if(!isActiveUser(prevProps.activeUser) !== !isActiveUser(activeUser) && filter !== 'feed'){
             let isGlobalValue = ((tag.length > 0) && (tag === 'my')) ? false : true
             this.setState({isGlobal: isGlobalValue});
-            // let path = history.location.pathname + (tag.length > 0 ? "" : '/');
-            // path = path.replace('//',"/");
-            // history.push(path);
         }
-        // else if(prevProps.global.tag !== tag && filter !== 'feed' && tag !== ""){
-        //     let isGlobal = tag !== "my"
-        //     this.setState({isGlobal})
-        // }
-        // else if(prevProps.global.filter !== 'feed' && prevProps.global.tag !== tag && filter !== 'feed' && tag === ""){
-        //     if(prevProps.global.tag !== "my"){
-        //         let isGlobal = false
-        //         history.push(history.location.pathname + '/my');
-        //         this.setState({ isGlobal })
-        //     }
-        // }
         else if(prevProps.activeUser?.username !== activeUser?.username && filter === 'feed') {
             history.push(`/@${activeUser?.username}/${filter}`)
         }
@@ -404,36 +379,8 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     </ul>
                                 </div>
                             </div>
-                            {/* {
-                                filter !== 'feed' ?
-                                isActive ?(
-                                    <>
-                                    <div className="border-left ml-3 dropDown-left-border-height" />
-                                    <span id="check-isGlobal" className="d-flex align-items-center pl-3">
-                                        <EntryIndexMenuDropdown {...this.props} isGlobal={isGlobal} onChangeGlobal={this.onChangeGlobal} />
-                                    </span>
-                                    </>
-                                )
-                                : (
-                                    <>
-                                <div className="border-left ml-3 dropDown-left-border-height" />
-                                <span id="check-isGlobal" className="d-flex align-items-center pl-3">
-                                    <div className='tagDropDown' onClick={() => {
-                                        const {toggleUIProp} = this.props;
-                                        toggleUIProp('login');
-                                    }}>
-                                        {tag === "" ? _t('entry-filter.filter-global') : tag === 'my' ? _t('entry-filter.filter-community') : tag}
-                                        {""}
-                                        {menuDownSvg}
-                                    </div>
-                                </span>
-                                
-                                </>
-                                )
-                                : null
-                            } */}
 
-{
+                            {
                                 filter !== 'feed' ?
                                 (
                                     <>
@@ -467,7 +414,6 @@ export default (p: Props) => {
         history: p.history,
         global: p.global,
         activeUser: p.activeUser,
-        // ui: p.ui,
         toggleListStyle: p.toggleListStyle,
         toggleUIProp: p.toggleUIProp,
     }
