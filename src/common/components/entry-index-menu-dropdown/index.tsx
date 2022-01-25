@@ -50,7 +50,7 @@ export const EntryIndexMenuDropdown = (props: Props) => {
     history: null,
     label: (
       <div className='tagDropDown'>
-        <span className='pl-1' />
+        <span className='pl-2' />
         {tag === "" ? _t('entry-filter.filter-global') : tag === 'my' ? _t('entry-filter.filter-community') : tag}
         {" "}
         {menuDownSvg}
