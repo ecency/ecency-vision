@@ -260,6 +260,7 @@
   },
   "market-data": {
     "title": "Market price",
+    "trade": "Trade token",
     "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "market": {

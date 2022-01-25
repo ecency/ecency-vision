@@ -288,7 +288,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                         }
                                                     },
                                                     {
-                                                        label: _t('market-data.title'),
+                                                        label: _t('market-data.trade'),
                                                         onClick: () => {
                                                             this.props.history.push("/market");
                                                         }
@@ -305,12 +305,6 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                         label: _t('wallet.transfer'),
                                                         onClick: () => {
                                                             this.openTransferDialog('transfer', 'HIVE');
-                                                        }
-                                                    },
-                                                    {
-                                                        label: _t('market-data.title'),
-                                                        onClick: () => {
-                                                            this.props.history.push("/market");
                                                         }
                                                     },
                                                 ],
@@ -360,12 +354,6 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                         onClick: () => {
                                                             this.toggleWithdrawRoutes();
                                                         },
-                                                    },
-                                                    {
-                                                        label: _t('market-data.title'),
-                                                        onClick: () => {
-                                                            this.props.history.push("/market");
-                                                        }
                                                     },
                                                 ],
                                             };
@@ -484,7 +472,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                         }
                                                     },
                                                     {
-                                                        label: _t('market-data.title'),
+                                                        label: _t('market-data.trade'),
                                                         onClick: () => {
                                                             this.props.history.push("/market");
                                                         }
@@ -546,12 +534,6 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                             this.openTransferDialog('withdraw-saving', 'HIVE');
                                                         }
                                                     },
-                                                    {
-                                                        label: _t('market-data.title'),
-                                                        onClick: () => {
-                                                            this.props.history.push("/market");
-                                                        }
-                                                    },
                                                 ],
                                             };
                                         } else if (activeUser) {
@@ -600,12 +582,6 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                         label: _t('wallet.transfer'),
                                                         onClick: () => {
                                                             this.openTransferDialog('transfer-saving', 'HBD');
-                                                        }
-                                                    },
-                                                    {
-                                                        label: _t('market-data.title'),
-                                                        onClick: () => {
-                                                            this.props.history.push("/market");
                                                         }
                                                     },
                                                 ],
