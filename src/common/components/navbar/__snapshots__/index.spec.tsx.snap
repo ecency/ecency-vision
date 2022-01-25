@@ -28,7 +28,7 @@ exports[`(1) Default render 1`] = `
         alt="Logo"
         className="logo"
         onClick={[Function]}
-        src="logo-circle-santa.svg"
+        src="logo-circle.svg"
       />
     </div>
     <div
@@ -63,7 +63,7 @@ exports[`(1) Default render 1`] = `
           alt="Logo"
           className="logo"
           onClick={[Function]}
-          src="logo-circle-santa.svg"
+          src="logo-circle.svg"
         />
       </div>
       <div
@@ -440,7 +440,7 @@ exports[`(2) Night Theme 1`] = `
         alt="Logo"
         className="logo"
         onClick={[Function]}
-        src="logo-circle-santa.svg"
+        src="logo-circle.svg"
       />
     </div>
     <div
@@ -475,7 +475,7 @@ exports[`(2) Night Theme 1`] = `
           alt="Logo"
           className="logo"
           onClick={[Function]}
-          src="logo-circle-santa.svg"
+          src="logo-circle.svg"
         />
       </div>
       <div
@@ -954,13 +954,13 @@ exports[`(3) With active user 1`] = `
       className="brand"
     >
       <a
-        href="/@foo/feed"
+        href="/hot"
         onClick={[Function]}
       >
         <img
           alt="Logo"
           className="logo"
-          src="logo-circle-santa.svg"
+          src="logo-circle.svg"
         />
       </a>
     </div>
@@ -993,13 +993,13 @@ exports[`(3) With active user 1`] = `
         className="brand"
       >
         <a
-          href="/@foo/feed"
+          href="/hot"
           onClick={[Function]}
         >
           <img
             alt="Logo"
             className="logo"
-            src="logo-circle-santa.svg"
+            src="logo-circle.svg"
           />
         </a>
       </div>
@@ -1564,13 +1564,13 @@ exports[`(4) With active user && usePrivate = false 1`] = `
       className="brand"
     >
       <a
-        href="/@foo/feed"
+        href="/hot"
         onClick={[Function]}
       >
         <img
           alt="Logo"
           className="logo"
-          src="logo-circle-santa.svg"
+          src="logo-circle.svg"
         />
       </a>
     </div>
@@ -1603,13 +1603,13 @@ exports[`(4) With active user && usePrivate = false 1`] = `
         className="brand"
       >
         <a
-          href="/@foo/feed"
+          href="/hot"
           onClick={[Function]}
         >
           <img
             alt="Logo"
             className="logo"
-            src="logo-circle-santa.svg"
+            src="logo-circle.svg"
           />
         </a>
       </div>
