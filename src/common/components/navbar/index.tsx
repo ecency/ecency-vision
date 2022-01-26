@@ -20,6 +20,7 @@ import {NotificationFilter, Notifications} from "../../store/notifications/types
 import {DynamicProps} from "../../store/dynamic-props/types";
 import NotificationHandler from "../notification-handler";
 import SwitchLang from "../switch-lang";
+import { match } from "react-router";
 
 import ToolTip from "../tooltip";
 import Search from "../search";
@@ -41,6 +42,13 @@ import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
 //const logo = require('../../img/logo-circle.svg');
 
+const communityPattern = "^hive-[0-9]{6}$";
+
+interface MatchParams {
+    filter: string;
+    name: string;
+}
+
 interface Props {
     history: History;
     location: Location;
@@ -52,6 +60,7 @@ interface Props {
     ui: UI;
     notifications: Notifications;
     step?: number;
+    match: match<MatchParams>;
     fetchTrendingTags: () => void;
     toggleTheme: (theme_key?: string) => void;
     addUser: (user: User) => void;
@@ -189,11 +198,12 @@ export class NavBar extends Component<Props, State> {
     }
 
     render() {
-        const {global, activeUser, ui, step, toggleUIProp, setActiveUser } = this.props;
+        const {global, activeUser, ui, step, toggleUIProp, setActiveUser, match } = this.props;
         const logo = global.isElectron ? "./img/logo-circle.svg" : require('../../img/logo-circle.svg');
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
+        const re = new RegExp(communityPattern);
         const tagValue = global.tag ? `/${global.tag}` : ''
-        const logoHref = activeUser ? global.filter === 'feed' ? `${tagValue}/${global.filter}` : `/${global.filter}${tagValue}` : '/';
+        const logoHref = activeUser ? (re.test(match.params.name) || ((global.tag === `@${activeUser.username}`) && (global.filter !== 'feed'))) ? '/hot' : global.filter === 'feed' ? `${tagValue}/${global.filter}` : `/${global.filter}${tagValue}` : '/';
         const {smVisible, floating, showMobileSearch, showProfileMenu, drafts, bookmarks, fragments, gallery, schedules } = this.state;        
 
         const transparentVerify = this.props?.location?.pathname?.startsWith("/hot")
@@ -490,7 +500,8 @@ export default (p: Props) => {
         unMuteNotifications: p.unMuteNotifications,
         setLang: p.setLang,
         setStepOne: p.setStepOne,
-        setStepTwo: p.setStepTwo
+        setStepTwo: p.setStepTwo,
+        match: p.match,
     }
 
     return <NavBar {...props} />;
