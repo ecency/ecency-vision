@@ -4,6 +4,7 @@ import { useState } from 'react';
 import {Button, Form, InputGroup} from 'react-bootstrap';
 import { placeHiveOrder } from '../../api/hive';
 import { _t } from '../../i18n';
+import { BuySellHive, TransactionType } from '../buy-sell-hive';
 import { error } from '../feedback';
 import { Skeleton } from '../skeleton';
 
@@ -21,6 +22,7 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
     const [price, setPrice] = useState(peakValue.toFixed(6));
     const [amount, setAmount] = useState<any>(0.000);
     const [total, setTotal] = useState<any>(0.000);
+    const [transaction, setTransaction] = useState<TransactionType.Sell | TransactionType.Buy | "">('');
     const [placingOrder, setPlacingOrder] = useState(false);
 
     useEffect(()=>{
@@ -71,7 +73,7 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
             </div>
         </div>
         <hr />
-        <Form onSubmit={placeOrder}>
+        <Form onSubmit={()=>setTransaction(type===1?TransactionType.Buy:TransactionType.Sell)}>
             <Form.Group>
                 <Form.Label>{_t("market.price")}</Form.Label>
                 <InputGroup >
@@ -123,5 +125,6 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
             </Form.Group>
             <Button block={true} type="submit">{type === 1 ? _t("market.buy") : _t("market.sell")}</Button>
         </Form>
+        {transaction.length > 0 && <BuySellHive type={transaction as TransactionType} onConfirm={placeOrder} onHide={() => setTransaction("")}/>}
     </div>
 }
