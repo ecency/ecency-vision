@@ -1,6 +1,6 @@
 {
   "name": "ecency-vision",
-  "version": "3.0.20",
+  "version": "3.0.21",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -10,7 +10,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@ecency/render-helper": "^2.2.8",
+    "@ecency/render-helper": "^2.2.13",
     "@hiveio/dhive": "^1.1.0",
     "@hiveio/hivescript": "^1.2.7",
     "@types/bs58": "^4.0.1",

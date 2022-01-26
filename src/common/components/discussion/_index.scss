@@ -153,10 +153,10 @@
             .author {
               align-items: center;
               display: inline-flex;
+              padding: 2px;
 
               .author-name {
                 font-weight: 700;
-                margin-right: 2px;
                 word-break: keep-all;
               }
 
@@ -178,6 +178,14 @@
 
                 &::after {
                   content: ")";
+                }
+              }
+              &:hover {
+                @include themify(day) {
+                  background: $duck-egg-blue;
+                }
+                @include themify(night) {
+                  background: $metallic-blue;
                 }
               }
             }

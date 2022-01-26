@@ -86,7 +86,7 @@ export const ProfilePreview = ({username, global, onClose, activeUser, ...props}
 
     return isMounted ? <div className="profile-parent">
                 <div 
-                    className={`position-fixed shadow bg-white profile-container rounded`}
+                    className="shadow bg-white profile-container rounded"
                 >
                 <div className="close-icon rounded-circle" onClick={onClose}>
                     {closeSvg}

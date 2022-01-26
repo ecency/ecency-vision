@@ -72,7 +72,10 @@ const defProps = {
     setSigningKey: () => {
     },
     fetchTransactions: () => {
-
+    },
+    fetchPoints: () => {
+    },
+    updateWalletValues: () => {
     }
 }
 
