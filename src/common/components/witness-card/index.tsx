@@ -28,7 +28,7 @@ export const WitnessCard = ({
         </div>
         <div>
           <img
-            src={`https://images.ecency.com/${global.canUseWebp ? "webp" : ""}/u/${row.name}/avatar/medium`}
+            src={`https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${row.name}/avatar/medium`}
             alt=""
             className="rounded-circle avatar mr-3"
           />
