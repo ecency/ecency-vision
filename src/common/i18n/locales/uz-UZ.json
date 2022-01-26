@@ -16,7 +16,7 @@
     "learnMore": "To'liq ma'lumot",
     "or": "Yoki",
     "muted-message": "O'chirilgan muallif, mazmunni oshkor qilish",
-    "modmuted-message": "Community Moderators muted, Reveal content",
+    "modmuted-message": "Guruh Moderatorlari o'chirilgan, Kontentni ko'rsatish",
     "server-error": "Server xatosi tugayli jarayon tugallanmadi",
     "day": "kun",
     "days": "kunlar",
@@ -71,7 +71,7 @@
     "filter-feed-friends": "Do'stlar",
     "filter-feed-subscriptions": "Guruhlar",
     "filter-global": "Xalqaro",
-    "filter-community": "My Community",
+    "filter-community": "Mening guruhim",
     "filter-global-part1": "Xabar o'z ichiga oladi ",
     "filter-global-part2": " butun platforma muhokamalari.",
     "filter-global-part3": " obuna bo'lgan guruhlaringizdan muhokamalar. Bu tasmani toʻldirish uchun koʻproq guruhlarga qoʻshilishingiz mumkin.",
@@ -243,23 +243,23 @@
     "curators-payout": "Kuratorlar to'lovi",
     "payout-date": "To'lov",
     "beneficiary": "Haq egasi",
-    "breakdown": "Breakdown",
-    "max-accepted": "Max accepted"
+    "breakdown": "Bo'linish",
+    "max-accepted": "Maksimal olindi"
   },
   "entry-index": {
-    "feed": "Feed",
-    "tags": "Popular",
-    "title": "{{f}} topics",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed",
-    "faq": "FAQ",
-    "tos": "Terms of service",
-    "pp": "Privacy Policy"
+    "feed": "Lenta",
+    "tags": "Mashhur",
+    "title": "{{f}} mavzular",
+    "description": "{{f}} ijtimoit tarmoqdagi mavzular uning foydalanuvchilariga tegishli va ular tomonidan boshqariladi.",
+    "description-tag": "{{f}} #{{t}} mavzular",
+    "description-user-feed": "{{u}} ning tasmasi",
+    "faq": "Ko'p so'ralgan savollar",
+    "tos": "Xizmat shartlari",
+    "pp": "Maxfiylik Siyosati"
   },
   "market-data": {
-    "title": "Market price",
-    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "title": "Bozor narxi",
+    "credits": "<a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a> ma'lumotlari"
   },
   "list-style": {
     "title": "Toggle list style"
