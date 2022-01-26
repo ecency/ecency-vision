@@ -143,54 +143,80 @@ class FormText extends Component<{
 }
 
 export enum TransactionType {
-    Sell = 2,
-    Buy = 1,
+  None = 0,
+  Sell = 2,
+  Buy = 1,
 }
 
 interface Props {
-  type: "sell" | "buy";
-  onConfirm: () => void;
+  type: TransactionType;
+  onConfirm: (e: any) => void;
   onHide: () => void;
+  values: { total: number; amount: number; price: number; available: number };
 }
 
 interface State {
   step: 1 | 2;
-  asset: TransferAsset;
-  delegationList: DelegateVestingShares[];
-  to: string;
-  toData: Account | null;
-  toError: string;
-  toWarning: string;
-  amount: string;
-  amountError: string;
-  memo: string;
-  inProgress: boolean;
 }
 
 export class BuySellHive extends BaseComponent<Props, State> {
-
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      step: 1,
+    };
+  }
 
   render() {
     const { step } = this.state;
-
+    const {
+      values: { amount, price, total, available },
+      onHide,
+    } = this.props;
 
     const formHeader1 = (
-      <div className="transaction-form-header">
-        <div className="step-no">1</div>
-        <div className="box-titles">
+      <div className="d-flex align-items-center border-bottom pb-3">
+        <div className="step-no ml-3">1</div>
+        <div className="flex-grow-1">
           <div className="main-title">{_t("transfer.confirm-title")}</div>
           <div className="sub-title">{_t("transfer.confirm-sub-title")}</div>
         </div>
       </div>
     );
-
-    // Powering down
     if (step === 1) {
-      return formHeader1
+      return (
+        <div className="mb-3">
+          {formHeader1}
+          <div className="d-flex justify-content-center">
+            <div className="mt-5 w-75 text-center sub-title text-wrap">
+              {available < total
+                ? "Your total amount exceeds your available balance. Please recharge and try again."
+                : TransactionType.Buy
+                ? `You're buying ${amount} HIVEs for ${price} and your total is ${total} HBDs. Your available remaining amount will be ${
+                    available - total
+                  } HBDs`
+                : ``}
+            </div>
+          </div>
+          {available < total ? (
+            <></>
+          ) : (
+            <div className="d-flex justify-content-end mt-5">
+              <div className="d-flex">
+                <Button variant="secondary" className="mr-3" onClick={onHide}>
+                  Cancel transaction
+                </Button>
+                <Button onClick={() => this.setState({ step: 2 })}>
+                  Proceed
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+      );
     }
 
-    return (<></>
-    );
+    return <></>;
   }
 }
 
