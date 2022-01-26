@@ -10,6 +10,7 @@ export const WitnessCard = ({
   row,
   witness,
   onSuccess,
+  global,
   ...other
 }: any) => {
   return (
@@ -27,7 +28,7 @@ export const WitnessCard = ({
         </div>
         <div>
           <img
-            src={`https://images.ecency.com/webp/u/${row.name}/avatar/medium`}
+            src={`https://images.ecency.com/${global.canUseWebp ? "webp" : "png"}/u/${row.name}/avatar/medium`}
             alt=""
             className="rounded-circle avatar mr-3"
           />
