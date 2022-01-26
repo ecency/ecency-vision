@@ -88,7 +88,6 @@ export class EntryListContent extends Component<Props, State> {
         if(prevProps.activeUser !== this.props.activeUser && !this.props.activeUser){
             this.setState({mutedUsers:[]})
         }
-       
     }
 
     componentDidMount(){

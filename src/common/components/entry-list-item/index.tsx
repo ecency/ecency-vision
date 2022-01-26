@@ -80,6 +80,7 @@ interface Props {
 interface State {
     showNsfw: boolean;
     showMuted: boolean;
+    showModMuted: boolean;
     mounted: boolean;
 }
 
@@ -87,6 +88,7 @@ export default class EntryListItem extends Component<Props, State> {
     state: State = {
         showNsfw: false,
         showMuted: false,
+        showModMuted: false,
         mounted: false,
     }
 
@@ -129,8 +131,11 @@ export default class EntryListItem extends Component<Props, State> {
 
     componentDidMount(){
         const { entry, muted } = this.props;
-        if(muted){
+        if (muted) {
             this.setState({ showMuted: true })
+        }
+        if (entry.stats?.gray) {
+            this.setState({ showModMuted: true })
         }
         document.getElementsByTagName("html")[0].style.position = 'relative';
         this.setState({ mounted: true })
@@ -146,8 +151,7 @@ export default class EntryListItem extends Component<Props, State> {
             this.setState({ showMuted: false })
         }
         if(this.props.entry !== prevProps.entry && this.props.muted !== prevProps.muted){
-            this.setState({ showMuted: this.props.muted || false })
-
+            this.setState({ showMuted: this.props.muted || false , showModMuted: this.props.entry.stats?.gray || false})
         }
     }
 
@@ -340,9 +344,23 @@ export default class EntryListItem extends Component<Props, State> {
                                             this.setState({ showMuted: false })
                                         }}>{_t("g.muted-message")}</a>
 
-                                        {!activeUser && <>
-                                          <Tsx k="nsfw.signup"><span/></Tsx>{"."}
-                                        </>}
+                                    </div>
+                                </div>
+                            </>
+                        }
+                        if (this.state.showModMuted) {
+                            return <>
+                                <div className="item-image item-image-nsfw">
+                                    <img src={nsfwImage} alt={title}/>
+                                </div>
+                                <div className="item-summary">
+                                    <div className="item-nsfw"><span className="nsfw-badge text-capitalize d-inline-flex align-items-center"><div className="mute-icon">{volumeOffSvg}</div> <div>{_t("g.muted")}</div></span></div>
+                                    <div className="item-nsfw-options">
+                                        <a href="#" onClick={(e) => {
+                                            e.preventDefault();
+                                            this.setState({ showModMuted: false })
+                                        }}>{_t("g.modmuted-message")}</a>
+
                                     </div>
                                 </div>
                             </>
