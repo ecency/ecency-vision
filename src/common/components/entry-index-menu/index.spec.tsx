@@ -16,6 +16,8 @@ const defaultProps = {
     global: globalInstance,
     activeUser: null,
     toggleListStyle: () => {
+    },
+    toggleUIProp: () => {
     }
 }
 

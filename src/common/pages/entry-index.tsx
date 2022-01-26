@@ -53,8 +53,8 @@ class EntryIndexPage extends Component<PageProps, State> {
     }
 
     componentDidUpdate(prevProps: Readonly<PageProps>): void {
-        const {global, fetchEntries} = this.props;
-        const {global: pGlobal} = prevProps;
+        const {global, fetchEntries, activeUser} = this.props;
+        const {global: pGlobal, activeUser: pActiveUser} = prevProps;
 
         // page changed.
         if (!global.filter) {
@@ -63,6 +63,9 @@ class EntryIndexPage extends Component<PageProps, State> {
 
         if (!(global.filter === pGlobal.filter && global.tag === pGlobal.tag)) {
             fetchEntries(global.filter, global.tag, false);
+        }
+        else if(pActiveUser?.username !== activeUser?.username) {
+            this.reload()
         }
 
     }

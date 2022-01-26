@@ -192,8 +192,9 @@ export class NavBar extends Component<Props, State> {
         const {global, activeUser, ui, step, toggleUIProp, setActiveUser } = this.props;
         const logo = global.isElectron ? "./img/logo-circle.svg" : require('../../img/logo-circle.svg');
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
-        const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
-        const {smVisible, floating, showMobileSearch, showProfileMenu, drafts, bookmarks, fragments, gallery, schedules } = this.state;
+        const tagValue = global.tag ? `/${global.tag}` : ''
+        const logoHref = activeUser ? global.filter === 'feed' ? `${tagValue}/${global.filter}` : `/${global.filter}${tagValue}` : '/';
+        const {smVisible, floating, showMobileSearch, showProfileMenu, drafts, bookmarks, fragments, gallery, schedules } = this.state;        
 
         const transparentVerify = this.props?.location?.pathname?.startsWith("/hot")
         || this.props?.location?.pathname?.startsWith("/created")

@@ -248,7 +248,8 @@ interface State {
     list: Fragment[],
     filter: string,
     mode: "" | "add" | "edit",
-    editingItem?: Fragment
+    editingItem?: Fragment,
+    innerRef: any
 }
 
 export class Fragments extends BaseComponent<Props, State> {
@@ -256,11 +257,18 @@ export class Fragments extends BaseComponent<Props, State> {
         loading: true,
         list: [],
         filter: "",
+        innerRef: React.createRef(),
         mode: ""
     }
 
     componentDidMount() {
         this.fetch();
+    }
+
+    componentDidUpdate(prevProps:Props, prevState: State){
+        if(this.state.loading !== prevState.loading && !this.state.loading && this.state.list.length > 0){
+            this.state!.innerRef!.current && this.state!.innerRef!.current!.focus()
+        }
     }
 
     fetch = () => {
@@ -287,7 +295,7 @@ export class Fragments extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {list, filter, loading, mode, editingItem} = this.state;
+        const {list, filter, loading, mode, editingItem, innerRef} = this.state;
 
         if (mode === "add") {
             return <AddFragment
@@ -337,7 +345,7 @@ export class Fragments extends BaseComponent<Props, State> {
 
                 return <>
                     <div className="dialog-controls">
-                        <Form.Control type="text" placeholder={_t("fragments.filter")} value={filter} onChange={this.filterChanged} style={{marginRight: "6px"}}/>
+                        <Form.Control ref={innerRef} type="text" placeholder={_t("fragments.filter")} value={filter} onChange={this.filterChanged} style={{marginRight: "6px"}}/>
                         <div><Button onClick={() => {
                             this.stateSet({mode: "add"});
                         }}>{_t("g.add")}</Button></div>

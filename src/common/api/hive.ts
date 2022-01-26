@@ -433,27 +433,28 @@ export const votingValue = (account: FullAccount, dynamicProps: DynamicProps, vo
     return rShares / fundRecentClaims * fundRewardBalance * (base / quote);
 }
 
+const HIVE_VOTING_MANA_REGENERATION_SECONDS = 5*60*60*24; //5 days
+
 export const downVotingPower = (account: FullAccount): number => {
-    const curMana = Number(account.voting_manabar.current_mana);
-    const curDownMana = Number(account.downvote_manabar.current_mana);
-    const downManaLastUpdate = account.downvote_manabar.last_update_time;
+    const totalShares = parseFloat(account.vesting_shares) + parseFloat(account.received_vesting_shares) - parseFloat(account.delegated_vesting_shares) - parseFloat(account.vesting_withdraw_rate);
+    const elapsed = Math.floor(Date.now() / 1000) - account.downvote_manabar.last_update_time;
+    const maxMana = totalShares * 1000000 / 4;
 
-    const downVotePerc = curDownMana / (curMana / (account.voting_power / 100) / 4);
+    let currentMana = parseFloat(account.downvote_manabar.current_mana.toString()) + elapsed * maxMana / HIVE_VOTING_MANA_REGENERATION_SECONDS;
 
-    const secondsDiff = (Date.now() - (downManaLastUpdate * 1000)) / 1000;
+    if (currentMana > maxMana) {
+        currentMana = maxMana;
+    }
+    const currentManaPerc = currentMana * 100 / maxMana;
 
-    const pow = downVotePerc * 100 + (10000 * secondsDiff / 432000);
-
-    const rv = Math.max(pow / 100, 100);
-
-    if (isNaN(rv)) {
+    if (isNaN(currentManaPerc)) {
         return 0;
     }
 
-    if (rv > 100) {
+    if (currentManaPerc > 100) {
         return 100;
     }
-    return rv;
+    return currentManaPerc;
 };
 
 export const rcPower = (account: RCAccount): number => {
