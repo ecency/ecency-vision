@@ -150,18 +150,18 @@ class EntryPage extends BaseComponent<Props, State> {
             this.setState({isMounted:false})
             this.ensureEntry()
         }
-        if (prevStates.selection !== selection && !prevStates.selection && entry) {
+        // if (prevStates.selection !== selection && !prevStates.selection && entry) {
             
-        let text = selection ? (entry.body ? entry.body + `\n` : "") + selection : entry.body ? entry.body : "";
-        if(activeUser && activeUser.username){
-            let storageText = ls.get(`reply_draft_${entry.author}_${entry.permlink}`);
-            storageText = storageText && storageText.trim()
-            text = selection ? storageText ?
-            storageText + `\n` + selection : "" + selection : storageText ? storageText : "";
-            this.replyTextChanged(text);
-            this.setState({commentText: text, selection:""})
-        }
-        }
+        // let text = selection ? (entry.body ? entry.body + `\n` : "") + selection : entry.body ? entry.body : "";
+        // if(activeUser && activeUser.username){
+        //     let storageText = ls.get(`reply_draft_${entry.author}_${entry.permlink}`);
+        //     storageText = storageText && storageText.trim()
+        //     text = selection ? storageText ?
+        //     storageText + `\n` + selection : "" + selection : storageText ? storageText : "";
+        //     this.replyTextChanged(text);
+        //     this.setState({commentText: text, selection:""})
+        // }
+        // }
     }
 
     componentWillUnmount() {
@@ -450,8 +450,8 @@ class EntryPage extends BaseComponent<Props, State> {
 
     replyTextChanged = (text: string) => {
         const entry = this.getEntry()!;
-        ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
-        this.setState({commentText:text})
+        // ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
+        this.setState({selection:""})
     }
 
     reload = () => {
@@ -866,7 +866,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 </> :
                                                 Comment({
                                                     ...this.props,
-                                                    defText: commentText,
+                                                    defText: this.state.selection,
                                                     submitText: _t('g.update'),
                                                     cancellable: true,
                                                     onSubmit: this.updateReply,
@@ -998,7 +998,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                     {activeUser && Comment({
                                         ...this.props,
-                                        defText: commentText,
+                                        defText: this.state.selection,
                                         submitText: _t('g.reply'),
                                         onChange: this.replyTextChanged,
                                         onSubmit: this.replySubmitted,
@@ -1013,7 +1013,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                     {!activeUser && Comment({
                                         ...this.props,
-                                        defText: commentText,
+                                        defText: this.state.selection,
                                         submitText: _t('g.reply'),
                                         onChange: this.replyTextChanged,
                                         onSubmit: this.replySubmitted,
