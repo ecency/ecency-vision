@@ -115,6 +115,13 @@ exports[`(1) No active user. Default filter 1`] = `
             </ul>
           </div>
         </div>
+        <div
+          className="border-left ml-3 dropDown-left-border-height"
+        />
+        <span
+          className="d-flex align-items-center pl-3"
+          id="check-isGlobal"
+        />
       </div>
     </div>
     <div
@@ -256,6 +263,13 @@ exports[`(2) No active user. Trending filter 1`] = `
             </ul>
           </div>
         </div>
+        <div
+          className="border-left ml-3 dropDown-left-border-height"
+        />
+        <span
+          className="d-flex align-items-center pl-3"
+          id="check-isGlobal"
+        />
       </div>
     </div>
     <div
@@ -606,25 +620,12 @@ exports[`(3) Active user. Trending filter 1`] = `
           </div>
         </div>
         <div
-          className="d-flex align-items-center ml-3 ml-md-5 border-left pl-5 custom-control custom-checkbox"
-        >
-          <input
-            checked={true}
-            className="custom-control-input"
-            disabled={false}
-            id="check-isGlobal"
-            name="isGlobal"
-            onChange={[Function]}
-            type="checkbox"
-          />
-          <label
-            className="custom-control-label"
-            htmlFor="check-isGlobal"
-            title=""
-          >
-            Global
-          </label>
-        </div>
+          className="border-left ml-3 dropDown-left-border-height"
+        />
+        <span
+          className="d-flex align-items-center pl-3"
+          id="check-isGlobal"
+        />
       </div>
     </div>
     <div
@@ -876,7 +877,7 @@ exports[`(5) Active user. Communities 1`] = `
               >
                 <a
                   className="nav-link link-trending active"
-                  href="/trending"
+                  href="/trending/my"
                   id="trending"
                   onClick={[Function]}
                 >
@@ -888,7 +889,7 @@ exports[`(5) Active user. Communities 1`] = `
               >
                 <a
                   className="nav-link link-hot"
-                  href="/hot"
+                  href="/hot/my"
                   id="hot"
                   onClick={[Function]}
                 >
@@ -900,7 +901,7 @@ exports[`(5) Active user. Communities 1`] = `
               >
                 <a
                   className="nav-link link-created"
-                  href="/created"
+                  href="/created/my"
                   id="created"
                   onClick={[Function]}
                 >
@@ -938,7 +939,7 @@ exports[`(5) Active user. Communities 1`] = `
               >
                 <a
                   className="nav-link link-trending active"
-                  href="/trending"
+                  href="/trending/my"
                   onClick={[Function]}
                 >
                   Trending
@@ -949,7 +950,7 @@ exports[`(5) Active user. Communities 1`] = `
               >
                 <a
                   className="nav-link link-hot"
-                  href="/hot"
+                  href="/hot/my"
                   onClick={[Function]}
                 >
                   Hot
@@ -960,7 +961,7 @@ exports[`(5) Active user. Communities 1`] = `
               >
                 <a
                   className="nav-link link-created"
-                  href="/created"
+                  href="/created/my"
                   onClick={[Function]}
                 >
                   New
@@ -970,25 +971,12 @@ exports[`(5) Active user. Communities 1`] = `
           </div>
         </div>
         <div
-          className="d-flex align-items-center ml-3 ml-md-5 border-left pl-5 custom-control custom-checkbox"
-        >
-          <input
-            checked={true}
-            className="custom-control-input"
-            disabled={false}
-            id="check-isGlobal"
-            name="isGlobal"
-            onChange={[Function]}
-            type="checkbox"
-          />
-          <label
-            className="custom-control-label"
-            htmlFor="check-isGlobal"
-            title=""
-          >
-            Global
-          </label>
-        </div>
+          className="border-left ml-3 dropDown-left-border-height"
+        />
+        <span
+          className="d-flex align-items-center pl-3"
+          id="check-isGlobal"
+        />
       </div>
     </div>
     <div
@@ -1048,7 +1036,7 @@ exports[`(6) No active user. Communities 1`] = `
               >
                 <a
                   className="nav-link link-trending active"
-                  href="/trending"
+                  href="/trending/my"
                   id="trending"
                   onClick={[Function]}
                 >
@@ -1060,7 +1048,7 @@ exports[`(6) No active user. Communities 1`] = `
               >
                 <a
                   className="nav-link link-hot"
-                  href="/hot"
+                  href="/hot/my"
                   id="hot"
                   onClick={[Function]}
                 >
@@ -1072,7 +1060,7 @@ exports[`(6) No active user. Communities 1`] = `
               >
                 <a
                   className="nav-link link-created"
-                  href="/created"
+                  href="/created/my"
                   id="created"
                   onClick={[Function]}
                 >
@@ -1099,7 +1087,7 @@ exports[`(6) No active user. Communities 1`] = `
               >
                 <a
                   className="nav-link link-trending active"
-                  href="/trending"
+                  href="/trending/my"
                   onClick={[Function]}
                 >
                   Trending
@@ -1110,7 +1098,7 @@ exports[`(6) No active user. Communities 1`] = `
               >
                 <a
                   className="nav-link link-hot"
-                  href="/hot"
+                  href="/hot/my"
                   onClick={[Function]}
                 >
                   Hot
@@ -1121,7 +1109,7 @@ exports[`(6) No active user. Communities 1`] = `
               >
                 <a
                   className="nav-link link-created"
-                  href="/created"
+                  href="/created/my"
                   onClick={[Function]}
                 >
                   New
@@ -1130,6 +1118,13 @@ exports[`(6) No active user. Communities 1`] = `
             </ul>
           </div>
         </div>
+        <div
+          className="border-left ml-3 dropDown-left-border-height"
+        />
+        <span
+          className="d-flex align-items-center pl-3"
+          id="check-isGlobal"
+        />
       </div>
     </div>
     <div
