@@ -262,21 +262,21 @@
     "credits": "<a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a> ma'lumotlari"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Ro'yxat stilini o'zgartirish"
   },
   "entry-votes": {
-    "title": "1 Vote",
-    "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
-    "sort": "Sort",
-    "sort-reward": "Reward",
-    "sort-timestamp": "Time",
-    "sort-reputation": "Reputation",
-    "sort-percent": "Percentage"
+    "title": "1 Ovoz",
+    "title-n": "{{n}} ovozlar",
+    "title-empty": "Ovozlar yo'q",
+    "sort": "Saralash",
+    "sort-reward": "Mukofot",
+    "sort-timestamp": "Vaqt",
+    "sort-reputation": "Reputatsiya",
+    "sort-percent": "Foiz"
   },
   "entry": {
-    "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "author-reputation": "Author's reputation",
+    "via-app": "<span class=\"app-name\">{{app}}</span> orqali",
+    "author-reputation": "Avtorning reputatsiyasi",
     "comment-entry-title": "You are viewing a single comment's thread from: ",
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent",
