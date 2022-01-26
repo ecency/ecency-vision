@@ -97,7 +97,7 @@ export class EntryListContent extends Component<Props, State> {
 
     render() {
         const {entries, promotedEntries, global, activeUser, loading } = this.props;
-        const {filter} = global;
+        const {filter, tag} = global;
         const { mutedUsers, loadingMutedUsers } = this.state;
         let dataToRender = entries;
 
@@ -105,7 +105,8 @@ export class EntryListContent extends Component<Props, State> {
         if(mutedUsers && mutedUsers.length > 0 && activeUser && activeUser.username){
             mutedList = mutedList.concat(mutedUsers)
         }
-
+        const isMyProfile = activeUser && activeUser.username === tag.replace("@",'');
+        debugger
         return (
             <>
                 {
@@ -141,12 +142,14 @@ export class EntryListContent extends Component<Props, State> {
                         </>
                     ) : !loading &&  (global.tag===`@${activeUser?.username}` && global.filter === "posts") ? 
                             <MessageNoData
-                                title={_t("profile-info.no-posts")}
+                                title={isMyProfile ? _t("profile-info.no-posts") : 
+                                _t("profile-info.no-posts-user",{n:tag, m:filter === 'blog' ? "blogs" : filter})}
                                 description={`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}
                                 buttonText={_t("profile-info.create-posts")}
                                 buttonTo="/submit"
                             /> : <MessageNoData
-                                    title={_t("profile-info.no-posts")}
+                                    title={isMyProfile ? _t("profile-info.no-posts") : 
+                                    _t("profile-info.no-posts-user",{n:tag, m:filter === 'blog' ? "blogs" : filter})}
                                     description={`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}
                                     buttonText={_t("profile-info.create-posts")}
                                     buttonTo="/submit"

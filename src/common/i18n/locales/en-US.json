@@ -457,6 +457,7 @@
     "recharge-time": "(fully charged {{n}})",
     "down-vote-power": "Downvote Power: {{n}}%",
     "no-posts": "Here you will see your posts, looks like no content exists.",
+    "no-posts-user": "Follow to know when {{n}} {{m}}",
     "create-posts": "Let's create a new post",
     "link-copied": "Search link copied to clipboard",
     "no-posts-found": "Found nothing!"
