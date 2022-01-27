@@ -145,21 +145,25 @@ export class EntryListContent extends Component<Props, State> {
                                 description={filter == 'feed' ? _t("g.fill-feed") : `${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}`}
                                 buttonText={filter == 'feed' ? _t("navbar.discover") : _t("profile-info.create-posts")}
                                 buttonTo={filter == 'feed' ? "/discover" : "/submit"}
+                                global={global}
                             /> : (isCommunity(tag) ? <MessageNoData
                                     title={_t("profile-info.no-posts-community")}
                                     description={`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}
                                     buttonText={_t("profile-info.create-posts")}
                                     buttonTo="/submit"
+                                    global={global}
                                 /> : (tag == 'my' ? <MessageNoData
                                     title={_t("g.no-matches")}
                                     description={_t("g.fill-community-feed")}
                                     buttonText={_t("navbar.discover")}
                                     buttonTo="/communities"
+                                    global={global}
                                 /> : <MessageNoData
                                     title={_t("profile-info.no-posts-user")}
                                     description={`${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}.`}
                                     buttonText={isMyProfile ? _t("profile-info.create-posts"):""}
                                     buttonTo="/submit"
+                                    global={global}
                                 />
                                 )
                             )

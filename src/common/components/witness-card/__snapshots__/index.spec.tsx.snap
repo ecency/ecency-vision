@@ -21,7 +21,7 @@ exports[`(1) renders witness card successfully 1`] = `
       <img
         alt=""
         className="rounded-circle avatar mr-3"
-        src="https://images.ecency.com/png/u/undefined/avatar/medium"
+        src="https://images.ecency.com/u/undefined/avatar/medium"
       />
     </div>
   </div>

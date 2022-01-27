@@ -1,17 +1,18 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import writer from '../../img/writer.png'
 
 interface Props {
     buttonTo: string;
     buttonText: string;
     title: string;
     description: string;
-    img?: any
+    img?: any;
+    global: any;
 }
 
-const MessageNoData = ({buttonText, buttonTo, title, description, img}:Props) => {
+const MessageNoData = ({buttonText, buttonTo, title, description, img, global}:Props) => {
+    const writer = global.isElectron ? "./img/writer.png" : require("../../img/writer.png");
     return <div className="d-flex justify-content-center align-items-center mt-5">
         <div className='w-25'>
             <img src={img || writer} className='w-100 h-100'/>
@@ -30,7 +31,8 @@ export default (p: Props) => {
         buttonText: p.buttonText,
         title: p.title,
         description: p.description,
-        img: p.img
+        img: p.img,
+        global: p.global
     }
 
     return <MessageNoData {...props} />;
