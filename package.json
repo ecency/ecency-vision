@@ -7,8 +7,8 @@
     "start": "razzle start",
     "build": "razzle build --noninteractive",
     "test": "TZ=UTC razzle test --env=jsdom",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix './src/**/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.eslintrc.js",
+    "lint": "eslint src/ --ext .ts,.tsx",
+    "lint:fix": "eslint src/ --ext .ts,.tsx --fix",
     "format": "prettier --write './src/**/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "start:prod": "NODE_ENV=production node build/server.js"
   },
