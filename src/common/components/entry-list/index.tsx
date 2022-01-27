@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import { _t } from "../../i18n";
 import LinearProgress from "../linear-progress";
 import { getFollowing } from "../../api/hive";
+import isCommunity from '../../helper/is-community';
 
 
 interface Props {
@@ -105,8 +106,7 @@ export class EntryListContent extends Component<Props, State> {
         if(mutedUsers && mutedUsers.length > 0 && activeUser && activeUser.username){
             mutedList = mutedList.concat(mutedUsers)
         }
-        const isMyProfile = activeUser && activeUser.username === tag.replace("@",'');
-        debugger
+        const isMyProfile = activeUser && tag.includes('@') && activeUser.username === tag.replace("@",'');
         return (
             <>
                 {
@@ -140,22 +140,31 @@ export class EntryListContent extends Component<Props, State> {
                                 return [...l];
                             })}
                         </>
-                    ) : !loading &&  (global.tag===`@${activeUser?.username}` && global.filter === "posts") ? 
+                    ) : !loading &&  (isMyProfile) ?
                             <MessageNoData
-                                title={isMyProfile ? _t("profile-info.no-posts") : 
-                                _t("profile-info.no-posts-user",{n:tag, m:filter === 'blog' ? "blogs" : filter})}
-                                description={`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}
-                                buttonText={_t("profile-info.create-posts")}
-                                buttonTo="/submit"
-                            /> : <MessageNoData
-                                    title={isMyProfile ? _t("profile-info.no-posts") : 
-                                    _t("profile-info.no-posts-user",{n:tag, m:filter === 'blog' ? "blogs" : filter})}
+                                title={ filter == 'feed' ? `${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}` : _t("profile-info.no-posts")}
+                                description={filter == 'feed' ? _t("g.fill-feed") : `${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}`}
+                                buttonText={filter == 'feed' ? _t("navbar.discover") : _t("profile-info.create-posts")}
+                                buttonTo={filter == 'feed' ? "/discover" : "/submit"}
+                            /> : (isCommunity(tag) ? <MessageNoData
+                                    title={_t("profile-info.no-posts-community")}
                                     description={`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}
                                     buttonText={_t("profile-info.create-posts")}
                                     buttonTo="/submit"
+                                /> : (tag == 'my' ? <MessageNoData
+                                    title={_t("g.no-matches")}
+                                    description={_t("g.fill-community-feed")}
+                                    buttonText={_t("navbar.discover")}
+                                    buttonTo="/communities"
+                                /> : <MessageNoData
+                                    title={_t("profile-info.no-posts-user")}
+                                    description={`${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}.`}
+                                    buttonText={isMyProfile ? _t("profile-info.create-posts"):""}
+                                    buttonTo="/submit"
                                 />
+                                )
+                            )
                 }
-            
             </>
         );
     }
