@@ -18,13 +18,18 @@ module.exports = {
       sourceType: "module"
     },
     plugins: ["react", "@typescript-eslint"],
+    settings: {
+      "react": {
+        "version": "detect",
+      },
+    },
     rules: {
-      indent: ["error", 2],
+      "indent": ["error", 2],
       "linebreak-style": ["error", "unix"],
-      quotes: ["error", "double"],
-      semi: ["error", "always"],
+      "quotes": ["error", "double"],
+      "semi": ["error", "always"],
       "react/display-name": "off",
-      "prefer-const": "off",
+      "prefer-const": "error",
       "@typescript-eslint/no-explicit-any": "off",
       "no-undef": "off"
     }
