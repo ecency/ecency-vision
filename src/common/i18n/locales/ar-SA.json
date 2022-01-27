@@ -684,8 +684,9 @@
     "type-transfer": "تحويل",
     "type-transfer_to_vesting": "رفع الطاقة",
     "type-withdraw_vesting": "تخفيض الطاقة",
+    "type-set_withdraw_vesting_route": "Withdraw route changed",
     "type-fill_vesting_withdraw": "حدث تخفيض جزئي في الطاقة",
-    "type-fill_order": "طلب ملئ",
+    "type-fill_order": "Open trade filled",
     "type-producer_reward": "مكافأة المنتج",
     "type-interest": "الفائدة",
     "type-transfer_to_savings": "تحويل إلى المدخرات",
@@ -707,7 +708,8 @@
     "type-collateralized_convert": "التحويل المرهون",
     "type-collateralized_convert-detail": "معرف الطلب: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "معرف الاقتراح: <strong>{{pid}}</strong>",
-    "type-limit_order_create": "متاجرة جديدة",
+    "type-limit_order_create": "New trade created",
+    "type-limit_order_cancel": "Open trade cancelled",
     "type-effective_comment_vote": "التصويت الفعال"
   },
   "key-or-hot": {
