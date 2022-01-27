@@ -684,8 +684,9 @@
     "type-transfer": "송금",
     "type-transfer_to_vesting": "파워업",
     "type-withdraw_vesting": "파워 다운",
+    "type-set_withdraw_vesting_route": "Withdraw route changed",
     "type-fill_vesting_withdraw": "일부 파워다운 차단이 발생했습니다",
-    "type-fill_order": "주문 체결",
+    "type-fill_order": "Open trade filled",
     "type-producer_reward": "생산자 보상",
     "type-interest": "이자",
     "type-transfer_to_savings": "금고로 전송",
@@ -707,7 +708,8 @@
     "type-collateralized_convert": "담보 전환",
     "type-collateralized_convert-detail": "요청 ID: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "제안서 id: <strong>{{pid}}</strong>",
-    "type-limit_order_create": "신규 거래",
+    "type-limit_order_create": "New trade created",
+    "type-limit_order_cancel": "Open trade cancelled",
     "type-effective_comment_vote": "유효 투표"
   },
   "key-or-hot": {
