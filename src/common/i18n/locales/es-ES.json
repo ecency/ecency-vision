@@ -684,8 +684,9 @@
     "type-transfer": "Transferir",
     "type-transfer_to_vesting": "Power up",
     "type-withdraw_vesting": "Apagar",
+    "type-set_withdraw_vesting_route": "Withdraw route changed",
     "type-fill_vesting_withdraw": "Se ha producido un apagado parcial",
-    "type-fill_order": "Completar orden",
+    "type-fill_order": "Open trade filled",
     "type-producer_reward": "Recompensa del productor",
     "type-interest": "Interés",
     "type-transfer_to_savings": "Transferir a ahorros",
@@ -707,7 +708,8 @@
     "type-collateralized_convert": "Conversión Collateralizada",
     "type-collateralized_convert-detail": "Identificación de solicitud: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "ID de la propuesta: <strong>{{pid}}</strong>",
-    "type-limit_order_create": "Nueva operación",
+    "type-limit_order_create": "New trade created",
+    "type-limit_order_cancel": "Open trade cancelled",
     "type-effective_comment_vote": "Voto efectivo"
   },
   "key-or-hot": {
