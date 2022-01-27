@@ -684,8 +684,9 @@
     "type-transfer": "Aktar",
     "type-transfer_to_vesting": "Gücü arttır",
     "type-withdraw_vesting": "Gücü azalt",
+    "type-set_withdraw_vesting_route": "Withdraw route changed",
     "type-fill_vesting_withdraw": "Kısmi güç azaltma gerçekleşti",
-    "type-fill_order": "Gerçekleşen emir",
+    "type-fill_order": "Open trade filled",
     "type-producer_reward": "Üretici ödülü",
     "type-interest": "Faiz",
     "type-transfer_to_savings": "Birikimlere aktar",
@@ -707,7 +708,8 @@
     "type-collateralized_convert": "Teminatlı dönüştürme",
     "type-collateralized_convert-detail": "İstek kimliği: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Teklif kimliği: <strong>{{pid}}</strong>",
-    "type-limit_order_create": "Yeni ticaret",
+    "type-limit_order_create": "New trade created",
+    "type-limit_order_cancel": "Open trade cancelled",
     "type-effective_comment_vote": "Etkili oy"
   },
   "key-or-hot": {
