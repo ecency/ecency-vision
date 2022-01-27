@@ -4,6 +4,8 @@ import { useState } from 'react';
 import {Button, Form, InputGroup} from 'react-bootstrap';
 import { placeHiveOrder } from '../../api/hive';
 import { _t } from '../../i18n';
+import { ActiveUser } from '../../store/active-user/types';
+import { Global } from '../../store/global/types';
 import BuySellHiveDialog, { BuySellHive, TransactionType } from '../buy-sell-hive';
 import { error } from '../feedback';
 import { Skeleton } from '../skeleton';
@@ -15,10 +17,12 @@ interface Props {
     peakValue: number;
     basePeakValue: number;
     loading: boolean;
+    activeUser: ActiveUser,
+    global: Global,
     onClickPeakValue: () => void;
 }
 
-export const HiveBarter = ({type, available, peakValue, loading, username, basePeakValue, onClickPeakValue}: Props) => {
+export const HiveBarter = ({type, available, peakValue, loading, username, basePeakValue, onClickPeakValue, activeUser, global}: Props) => {
     const [price, setPrice] = useState(peakValue.toFixed(6));
     const [amount, setAmount] = useState<any>(0.000);
     const [total, setTotal] = useState<any>(0.000);
@@ -135,6 +139,8 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
             type={transaction}
             onConfirm={placeOrder}
             onHide={() => setTransaction(TransactionType.None)}
+            global={global}
+            activeUser={activeUser}
             values={{total: parseFloat(total), amount: parseFloat(amount), price: parseFloat(price), available: parseFloat(available)}}
         />
         }

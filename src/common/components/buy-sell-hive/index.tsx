@@ -82,6 +82,8 @@ import { Tsx } from "../../i18n/helper";
 import { arrowRightSvg } from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
 import activeUser from "../../store/active-user";
+import keyOrHot from "../key-or-hot";
+import { activeUserInstance } from "../../helper/test-helper";
 
 export type TransferMode =
   | "transfer"
@@ -153,6 +155,8 @@ interface Props {
   onConfirm: (e: any) => void;
   onHide: () => void;
   values: { total: number; amount: number; price: number; available: number };
+  global: Global,
+  activeUser: ActiveUser
 }
 
 interface State {
@@ -172,11 +176,13 @@ export class BuySellHive extends BaseComponent<Props, State> {
     const {
       values: { amount, price, total, available },
       onHide,
+      global,
+      activeUser
     } = this.props;
 
     const formHeader1 = (
       <div className="d-flex align-items-center border-bottom pb-3">
-        <div className="step-no ml-3">1</div>
+        <div className="step-no ml-3">{step}</div>
         <div className="flex-grow-1">
           <div className="main-title">{_t("transfer.confirm-title")}</div>
           <div className="sub-title">{_t("transfer.confirm-sub-title")}</div>
@@ -215,6 +221,33 @@ export class BuySellHive extends BaseComponent<Props, State> {
         </div>
       );
     }
+
+    if(step === 2) {
+      return <div className="transaction-form">
+          {formHeader1}
+          <div className="transaction-form">
+              {keyOrHot({
+                  inProgress:false,
+                  // onKey: this.sign,
+                  // onHot: this.signHs,
+                  // onKc: this.signKs
+                  onKey: ()=>{},
+                  onHot: ()=>{},
+                  onKc: ()=>{},
+                  global: global,
+                  activeUser: activeUserInstance,
+                  signingKey: 'string',
+                  setSigningKey: (key: string) => {}
+              })}
+              <p className="text-center">
+                  <a href="#" onClick={(e) => {
+                      e.preventDefault();
+
+                      this.stateSet({step: 1});
+                  }}>{_t("g.back")}</a>
+              </p>
+          </div>
+      </div>}
 
     return <></>;
   }

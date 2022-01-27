@@ -97,12 +97,16 @@ const MarketPage = (props: PageProps) => {
                                             basePeakValue={data ? parseFloat(data!.lowest_ask): 0}
                                             loading={loading}
                                             username={activeUser!.username}
+                                            activeUser={activeUser}
+                                            global={global}
                                             onClickPeakValue={()=>setBidValues({...bidValues, lowest: data ? parseFloat(data!.lowest_ask): 0})}
                                         />
                                     </div>
                                     <div className="col-12 col-sm-5 p-0">
                                         <HiveBarter
                                             type={2}
+                                            activeUser={activeUser}
+                                            global={global}
                                             available={activeUser && (activeUser.data as FullAccount).balance || ""}
                                             peakValue={parseFloat(bidValues.highest)}
                                             basePeakValue={data ? parseFloat(data!.highest_bid): 0}
@@ -137,6 +141,8 @@ const MarketPage = (props: PageProps) => {
                                         </div>
 
                                         {exchangeType === 1 ? <HiveBarter
+                                            activeUser={activeUser}
+                                            global={global}
                                             type={1}
                                             available={activeUser && (activeUser.data as FullAccount).hbd_balance || ""}
                                             peakValue={parseFloat(bidValues.lowest)}
@@ -145,6 +151,8 @@ const MarketPage = (props: PageProps) => {
                                             username={activeUser!.username}
                                             onClickPeakValue={()=>setBidValues({...bidValues, lowest: data ? parseFloat(data!.lowest_ask): 0})}
                                         /> : <HiveBarter
+                                        activeUser={activeUser}
+                                        global={global}
                                         type={2}
                                         available={activeUser && (activeUser.data as FullAccount).balance || ""}
                                         peakValue={parseFloat(bidValues.highest)}
