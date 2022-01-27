@@ -287,6 +287,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                     voted={witnessVotes.includes(row.name)}
                     witness={row.name}
                     row={row}
+                    key={i}
                     onSuccess={(approve:any) => {
                             if (approve) {
                                 this.addWitness(row.name);

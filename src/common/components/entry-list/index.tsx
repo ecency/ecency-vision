@@ -15,7 +15,6 @@ import {UI, ToggleType} from "../../store/ui/types";
 import EntryListItem from "../entry-list-item/index";
 import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 import MessageNoData from "../message-no-data";
-import { Link } from "react-router-dom";
 import { _t } from "../../i18n";
 import LinearProgress from "../linear-progress";
 import { getFollowing } from "../../api/hive";
@@ -141,7 +140,7 @@ export class EntryListContent extends Component<Props, State> {
                         </>
                     ) : !loading &&  (isMyProfile) ?
                             <MessageNoData
-                                title={ filter == 'feed' ? `${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}` : _t("profile-info.no-posts")}
+                                title={filter == 'feed' ? `${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}` : _t("profile-info.no-posts")}
                                 description={filter == 'feed' ? _t("g.fill-feed") : `${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}`}
                                 buttonText={filter == 'feed' ? _t("navbar.discover") : _t("profile-info.create-posts")}
                                 buttonTo={filter == 'feed' ? "/discover" : "/submit"}
