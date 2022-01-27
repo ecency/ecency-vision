@@ -293,33 +293,33 @@
     "address-copied": "Almashish buferiga nusxalandi",
     "content-copied": "Asboblar paneliga nusxalandi",
     "browse-original": "Original postni ochish",
-    "cross-post-by": "Cross post by",
-    "cross-post-community": "community",
-    "community-in": "in"
+    "cross-post-by": "Tomonidan tarqatish",
+    "cross-post-community": "guruh",
+    "community-in": "ichida"
   },
   "edit-history": {
-    "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "title": "Tarixni Tahrirlash",
+    "show-diff": "Farqni Ko'rsatish",
+    "version": "Variant {{n}}"
   },
   "similar-entries": {
-    "title": "Read next"
+    "title": "Keyingisini o'qish"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "Xabarni kiriting",
+    "preview": "Ko'rish"
   },
   "discussion": {
-    "join": "Join the conversation now",
-    "btn-join": "Join",
-    "replies": "1 Comment",
-    "n-replies": "{{n}} Comments",
-    "order": "Sort Order",
-    "order-trending": "Trending",
-    "order-reputation": "Reputation",
-    "order-votes": "Votes",
-    "order-created": "Age",
-    "read-more": "...read more replies...",
+    "join": "Suhbatga qo'shilish",
+    "btn-join": "Qo'shilish",
+    "replies": "1 Izoh",
+    "n-replies": "{{n}} izohlar",
+    "order": "Tartiblash tartibi",
+    "order-trending": "Trendda",
+    "order-reputation": "Reputatsiya",
+    "order-votes": "Ovozlar",
+    "order-created": "Yosh",
+    "read-more": "....javoblarni o'qish...",
     "reveal-muted": "Muted author - Reveal comment",
     "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
     "reveal": "Reveal comment"
