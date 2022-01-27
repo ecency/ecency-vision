@@ -684,8 +684,9 @@
     "type-transfer": "स्थानांतरण",
     "type-transfer_to_vesting": "पावर उप",
     "type-withdraw_vesting": "पावर नीचे करे",
+    "type-set_withdraw_vesting_route": "Withdraw route changed",
     "type-fill_vesting_withdraw": "आंशिक पावर डाउन हुआ",
-    "type-fill_order": "आर्डर भरें",
+    "type-fill_order": "Open trade filled",
     "type-producer_reward": "निर्माता इनाम",
     "type-interest": "ब्याज",
     "type-transfer_to_savings": "बचत खाते में स्थांतरण करें",
@@ -707,7 +708,8 @@
     "type-collateralized_convert": "संपार्श्विक रूपांतरण",
     "type-collateralized_convert-detail": "अनुरोध आईडी:<strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "प्रस्ताव आईडी: <strong>{{pid}}</strong>",
-    "type-limit_order_create": "नया व्यापार",
+    "type-limit_order_create": "New trade created",
+    "type-limit_order_cancel": "Open trade cancelled",
     "type-effective_comment_vote": "प्रभावी वोट"
   },
   "key-or-hot": {
