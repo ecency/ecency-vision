@@ -110,14 +110,17 @@ export class EntryIndexMenu extends Component<Props, States> {
         if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){            
             history.push(history.location.pathname.replace('/my', ''))
         } 
-        else if (!isActiveUser(activeUser) && (filter === 'feed')) {
-            history.push('/trending')
-        }
+        // else if (!isActiveUser(activeUser) && (filter === 'feed')) {
+        //     history.push('/trending')
+        // }
+        // else if (!isActiveUser(activeUser) && (prevProps.global.filter === 'feed') && (filter === 'trending' || filter === 'hot' || filter === 'created') && (tag.includes('@'))) {
+        //     history.push(`/${filter}`)
+        // }
         else if(!isActiveUser(prevProps.activeUser) !== !isActiveUser(activeUser) && filter !== 'feed'){
             let isGlobalValue = ((tag.length > 0) && (tag === 'my')) ? false : true
             this.setState({isGlobal: isGlobalValue});
         }
-        else if(prevProps.activeUser?.username !== activeUser?.username && filter === 'feed') {
+        else if(prevProps.activeUser && activeUser && prevProps.activeUser?.username !== activeUser?.username && filter === 'feed') {
             history.push(`/@${activeUser?.username}/${filter}`)
         }
 
@@ -265,7 +268,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                         : ((filter === 'feed') && isGlobal) ?
                         `/${x}`
                         : `/${x}${menuTagValue}`
-                        : `/${x}${menuTagValue}`,
+                        : tag[0] === '@' ? `/${x}` : `/${x}${menuTagValue}`,
                         active: filter === x || filter === x + '/my',
                         id: x,
                         flash: (x === 'trending' && introduction === IntroductionType.TRENDING) || (x === 'hot' && introduction === IntroductionType.HOT) || (x === 'created' && introduction === IntroductionType.NEW)

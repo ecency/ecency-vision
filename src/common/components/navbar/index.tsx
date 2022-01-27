@@ -20,7 +20,6 @@ import {NotificationFilter, Notifications} from "../../store/notifications/types
 import {DynamicProps} from "../../store/dynamic-props/types";
 import NotificationHandler from "../notification-handler";
 import SwitchLang from "../switch-lang";
-import { match } from "react-router";
 
 import ToolTip from "../tooltip";
 import Search from "../search";
@@ -44,11 +43,6 @@ import { downVotingPower, votingPower } from "../../api/hive";
 
 const communityPattern = "^hive-[0-9]{6}$";
 
-interface MatchParams {
-    filter: string;
-    name: string;
-}
-
 interface Props {
     history: History;
     location: Location;
@@ -60,7 +54,7 @@ interface Props {
     ui: UI;
     notifications: Notifications;
     step?: number;
-    match: match<MatchParams>;
+    match?: any;
     fetchTrendingTags: () => void;
     toggleTheme: (theme_key?: string) => void;
     addUser: (user: User) => void;
@@ -203,7 +197,11 @@ export class NavBar extends Component<Props, State> {
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const re = new RegExp(communityPattern);
         const tagValue = global.tag ? `/${global.tag}` : ''
-        const logoHref = activeUser ? (re.test(match.params.name) || ((global.tag === `@${activeUser.username}`) && (global.filter !== 'feed'))) ? '/hot' : global.filter === 'feed' ? `${tagValue}/${global.filter}` : `/${global.filter}${tagValue}` : '/';
+        const logoHref = activeUser ? 
+        (match && (re.test(match.params.name)) || ((global.tag === `@${activeUser.username}`) && (global.filter !== 'feed'))) ?
+        '/hot' : 
+        global.filter === 'feed' ? `${tagValue}/${global.filter}` : `/${global.filter}${tagValue}` 
+        : '/';
         const {smVisible, floating, showMobileSearch, showProfileMenu, drafts, bookmarks, fragments, gallery, schedules } = this.state;        
 
         const transparentVerify = this.props?.location?.pathname?.startsWith("/hot")
