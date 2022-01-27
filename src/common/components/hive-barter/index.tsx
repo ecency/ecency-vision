@@ -36,20 +36,16 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
     },[peakValue])
 
     const buyHive = () => {
-            placeHiveOrder(username, `${amount}`, total).then(res=>{
-        })
+            return placeHiveOrder(username, `${amount}`, total)
     };
 
     const sellHive = () => {
-            placeHiveOrder(username, total, `${amount}`).then(res=>{
+            return placeHiveOrder(username, total, `${amount}`).then(res=>{
         })
     };
 
-    const placeOrder = (e:any) => {
-        setPlacingOrder(true);
-        e.preventDefault();
-        type===1 ? buyHive() :sellHive()
-    }
+    const placeOrder = type ===1 ? buyHive :sellHive
+    
 
     const fixDecimals = (value: string, decimals: number): string => {
         let splittedValue = value.split(".");

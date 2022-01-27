@@ -1,89 +1,37 @@
-import React, { Component } from "react";
-
-import { PrivateKey } from "@hiveio/dhive";
-
-import numeral from "numeral";
-
-import moment from "moment";
-
-import isEqual from "react-fast-compare";
+import React, { Component,  } from "react";
+import {addUser} from "../../store/users";
+import {setActiveUser, updateActiveUser} from "../../store/active-user";
 
 import {
   Modal,
   Form,
   Row,
   Col,
-  InputGroup,
-  FormControl,
   Button,
 } from "react-bootstrap";
 
-import badActors from "@hiveio/hivescript/bad-actors.json";
-
 import { Global } from "../../store/global/types";
-import { DynamicProps } from "../../store/dynamic-props/types";
-import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
-import {
-  DelegateVestingShares,
-  Transactions,
-} from "../../store/transactions/types";
 
 import BaseComponent from "../base";
-import LinearProgress from "../linear-progress";
-import UserAvatar from "../user-avatar";
-import SuggestionList from "../suggestion-list";
-import KeyOrHot from "../key-or-hot";
 import { error } from "../feedback";
 
-import HiveWallet from "../../helper/hive-wallet";
-import amountFormatCheck from "../../helper/amount-format-check";
-import parseAsset from "../../helper/parse-asset";
-import { vestsToHp, hpToVests } from "../../helper/vesting";
 
 import {
-  DelegatedVestingShare,
-  getAccount,
   getAccountFull,
-  getVestingDelegations,
 } from "../../api/hive";
 
 import {
-  transfer,
-  transferHot,
-  transferKc,
-  transferPoint,
-  transferPointHot,
-  transferPointKc,
-  transferToSavings,
-  transferToSavingsHot,
-  transferToSavingsKc,
-  transferFromSavings,
-  transferFromSavingsHot,
-  transferFromSavingsKc,
-  transferToVesting,
-  transferToVestingHot,
-  transferToVestingKc,
-  convert,
-  convertHot,
-  convertKc,
-  delegateVestingShares,
-  delegateVestingSharesHot,
-  delegateVestingSharesKc,
-  withdrawVesting,
-  withdrawVestingHot,
-  withdrawVestingKc,
   formatError,
 } from "../../api/operations";
 
 import { _t } from "../../i18n";
-import { Tsx } from "../../i18n/helper";
-
-import { arrowRightSvg } from "../../img/svg";
-import formattedNumber from "../../util/formatted-number";
-import activeUser from "../../store/active-user";
 import keyOrHot from "../key-or-hot";
 import { activeUserInstance } from "../../helper/test-helper";
+import { AnyAction, bindActionCreators, Dispatch } from "redux";
+import { connect } from "react-redux";
+import { AppState } from "../../store";
+import { PageProps } from "../../pages/common";
 
 export type TransferMode =
   | "transfer"
@@ -152,32 +100,55 @@ export enum TransactionType {
 
 interface Props {
   type: TransactionType;
-  onConfirm: (e: any) => void;
+  onConfirm: Promise<void>;
   onHide: () => void;
   values: { total: number; amount: number; price: number; available: number };
   global: Global,
-  activeUser: ActiveUser
+  activeUser: ActiveUser,
+  addAccount: (arg: any) => void,
+  updateActiveUser: (arg: any) => void
 }
 
 interface State {
-  step: 1 | 2;
+  step: 1 | 2 | 3;
+  inProgress: boolean;
 }
 
-export class BuySellHive extends BaseComponent<Props, State> {
+export class BuySellHive extends BaseComponent<any, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
       step: 1,
+      inProgress: false
     };
   }
 
+  onClickKey = () => {
+    this.setState({inProgress: true})
+    let promise: Promise<any>;
+    promise = this.props.onConfirm();
+    promise.then(() => getAccountFull(this.props.activeUser!.username))
+            .then((a) => {
+                const {addAccount, updateActiveUser} = this.props;
+                // refresh
+                addAccount(a);
+                // update active
+                updateActiveUser(a);
+                this.stateSet({step: 3});
+                this.setState({inProgress: false})
+            })
+            .catch(err => {
+                error(formatError(err));
+                this.setState({inProgress: false})
+            });
+  }
+
   render() {
-    const { step } = this.state;
+    const { step, inProgress } = this.state;
     const {
       values: { amount, price, total, available },
       onHide,
-      global,
-      activeUser
+      global
     } = this.props;
 
     const formHeader1 = (
@@ -227,12 +198,11 @@ export class BuySellHive extends BaseComponent<Props, State> {
           {formHeader1}
           <div className="transaction-form">
               {keyOrHot({
-                  inProgress:false,
+                  inProgress,
                   // onKey: this.sign,
-                  // onHot: this.signHs,
+                  onHot: this.onClickKey,
                   // onKc: this.signKs
-                  onKey: ()=>{},
-                  onHot: ()=>{},
+                  onKey: ()=>{alert("key")},
                   onKc: ()=>{},
                   global: global,
                   activeUser: activeUserInstance,
@@ -253,7 +223,7 @@ export class BuySellHive extends BaseComponent<Props, State> {
   }
 }
 
-export default class BuySellHiveDialog extends Component<Props> {
+class BuySellHiveDialog extends Component<any> {
   render() {
     const { onHide } = this.props;
     return (
@@ -274,3 +244,18 @@ export default class BuySellHiveDialog extends Component<Props> {
     );
   }
 }
+const mapStateToProps = (state: AppState) => ({
+    global: state.global,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
+    bindActionCreators(
+        {
+            addUser,
+            setActiveUser,
+            updateActiveUser,
+        },
+        dispatch
+    );
+
+export default connect(mapStateToProps, mapDispatchToProps)(BuySellHiveDialog);
