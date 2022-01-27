@@ -684,8 +684,9 @@
     "type-transfer": "Siirto",
     "type-transfer_to_vesting": "Tehostus",
     "type-withdraw_vesting": "Tehonalennus",
+    "type-set_withdraw_vesting_route": "Withdraw route changed",
     "type-fill_vesting_withdraw": "Osittainen tehonalennus syntyi",
-    "type-fill_order": "Täytä tilaus",
+    "type-fill_order": "Open trade filled",
     "type-producer_reward": "Tuottajapalkkio",
     "type-interest": "Korot",
     "type-transfer_to_savings": "Siirrä säästöihin",
@@ -707,7 +708,8 @@
     "type-collateralized_convert": "Vakuutetut muunnokset",
     "type-collateralized_convert-detail": "Pyyntö id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
-    "type-limit_order_create": "Uusi vaihto",
+    "type-limit_order_create": "New trade created",
+    "type-limit_order_cancel": "Open trade cancelled",
     "type-effective_comment_vote": "Tehokas äänestys"
   },
   "key-or-hot": {
