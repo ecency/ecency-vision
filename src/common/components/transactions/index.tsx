@@ -88,10 +88,6 @@ export class TransactionRow extends Component<RowProps> {
             });
         }
 
-        if (tr.type === "comment_benefactor_reward") {
-            icon = commentSvg;
-        }
-
         if (tr.type === "claim_reward_balance") {
             flag = true;
 
@@ -130,6 +126,20 @@ export class TransactionRow extends Component<RowProps> {
             );
 
             numbers = <span className="number">{tr.amount}</span>;
+        }
+
+        if (tr.type === "set_withdraw_vesting_route") {
+            flag = true;
+            icon = compareHorizontalSvg;
+
+            details = (
+                <span>
+                    {"Auto Vest:"} {tr.auto_vest} <br/>{"Percent:"} {tr.percent}  <br/>
+                    <><strong>@{tr.from_account}</strong> -&gt; <strong>@{tr.to_account}</strong></>
+                </span>
+            );
+
+            numbers = <span className="number">{tr.percent}</span>;
         }
 
         if (tr.type ==="recurrent_transfer" || tr.type ==="fill_recurrent_transfer") {
@@ -235,6 +245,20 @@ export class TransactionRow extends Component<RowProps> {
             numbers = (
                 <span className="number">{tr.amount_to_sell} = {tr.min_to_receive}</span>
             );
+        }
+
+        if (tr.type === "limit_order_cancel") {
+            flag = true;
+            icon = reOrderHorizontalSvg;
+
+            numbers = (
+                <span className="number">{tr.num}</span>
+            );
+            details = tr.owner ? (
+                <span>
+                    <strong>Order ID: {tr.orderid}</strong>
+                </span>
+            ) : null;
         }
 
         if (tr.type === "producer_reward") {
