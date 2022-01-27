@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import { _t } from "../../i18n";
 import LinearProgress from "../linear-progress";
 import { getFollowing } from "../../api/hive";
+import isCommunity from '../../helper/is-community';
 
 
 interface Props {
@@ -96,7 +97,7 @@ export class EntryListContent extends Component<Props, State> {
 
     render() {
         const {entries, promotedEntries, global, activeUser, loading } = this.props;
-        const {filter} = global;
+        const {filter, tag} = global;
         const { mutedUsers, loadingMutedUsers } = this.state;
         let dataToRender = entries;
 
@@ -104,7 +105,7 @@ export class EntryListContent extends Component<Props, State> {
         if(mutedUsers && mutedUsers.length > 0 && activeUser && activeUser.username){
             mutedList = mutedList.concat(mutedUsers)
         }
-
+        const isMyProfile = activeUser && tag.includes('@') && activeUser.username === tag.replace("@",'');
         return (
             <>
                 {
@@ -138,16 +139,31 @@ export class EntryListContent extends Component<Props, State> {
                                 return [...l];
                             })}
                         </>
-                    ) : !loading &&  <MessageNoData>
-                            {(global.tag===`@${activeUser?.username}` && global.filter === "posts") ? 
-                            <div className='text-center'>
-                                <div className="info">{_t("profile-info.no-posts")}</div>
-                                <Link to='/submit' className="action"><b>{_t("profile-info.create-posts")}</b></Link>
-                            </div>:
-                            <div className="info">{`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}</div>}
-                        </MessageNoData>
+                    ) : !loading &&  (isMyProfile) ?
+                            <MessageNoData
+                                title={ filter == 'feed' ? `${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}` : _t("profile-info.no-posts")}
+                                description={filter == 'feed' ? _t("g.fill-feed") : `${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}`}
+                                buttonText={filter == 'feed' ? _t("navbar.discover") : _t("profile-info.create-posts")}
+                                buttonTo={filter == 'feed' ? "/discover" : "/submit"}
+                            /> : (isCommunity(tag) ? <MessageNoData
+                                    title={_t("profile-info.no-posts-community")}
+                                    description={`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}
+                                    buttonText={_t("profile-info.create-posts")}
+                                    buttonTo="/submit"
+                                /> : (tag == 'my' ? <MessageNoData
+                                    title={_t("g.no-matches")}
+                                    description={_t("g.fill-community-feed")}
+                                    buttonText={_t("navbar.discover")}
+                                    buttonTo="/communities"
+                                /> : <MessageNoData
+                                    title={_t("profile-info.no-posts-user")}
+                                    description={`${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}.`}
+                                    buttonText={isMyProfile ? _t("profile-info.create-posts"):""}
+                                    buttonTo="/submit"
+                                />
+                                )
+                            )
                 }
-            
             </>
         );
     }

@@ -370,7 +370,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                             account
                         })}
 
-                        {
+                        {data && data.entries.length > 0 && 
                           (filter === 'posts' || filter === 'comments') && (section === filter) && (
                               <div className='searchProfile'>
                                 <SearchBox
