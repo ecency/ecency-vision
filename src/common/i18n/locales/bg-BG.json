@@ -684,8 +684,9 @@
     "type-transfer": "Прехвърляне",
     "type-transfer_to_vesting": "Power up",
     "type-withdraw_vesting": "Power down",
+    "type-set_withdraw_vesting_route": "Withdraw route changed",
     "type-fill_vesting_withdraw": "Partial Power down occurred",
-    "type-fill_order": "Попълнете поръчка",
+    "type-fill_order": "Open trade filled",
     "type-producer_reward": "Producer reward",
     "type-interest": "Interest",
     "type-transfer_to_savings": "Transfer to savings",
@@ -707,7 +708,8 @@
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
-    "type-limit_order_create": "New trade",
+    "type-limit_order_create": "New trade created",
+    "type-limit_order_cancel": "Open trade cancelled",
     "type-effective_comment_vote": "Effective vote"
   },
   "key-or-hot": {
