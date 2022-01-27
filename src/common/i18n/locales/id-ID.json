@@ -684,8 +684,9 @@
     "type-transfer": "Transfer",
     "type-transfer_to_vesting": "Peningkatan kekuatan",
     "type-withdraw_vesting": "Menurunkan kekuatan",
+    "type-set_withdraw_vesting_route": "Withdraw route changed",
     "type-fill_vesting_withdraw": "Penurunan kekuatan sedang berlangsung sebagian",
-    "type-fill_order": "Isi pesanan",
+    "type-fill_order": "Open trade filled",
     "type-producer_reward": "Reward produser",
     "type-interest": "Bunga",
     "type-transfer_to_savings": "Transfer untuk tabungan",
@@ -707,7 +708,8 @@
     "type-collateralized_convert": "Konversi yang dijamin",
     "type-collateralized_convert-detail": "Permintaan id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Id proposal:<strong>{{pid}}</strong>",
-    "type-limit_order_create": "Perdagangan baru",
+    "type-limit_order_create": "New trade created",
+    "type-limit_order_cancel": "Open trade cancelled",
     "type-effective_comment_vote": "Vote efektif"
   },
   "key-or-hot": {
