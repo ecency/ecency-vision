@@ -374,13 +374,13 @@ export const transferToSavingsHot = (from: string, to: string, amount: string, m
     });
 }
 
-export const limitOrderCreateKey = (
+export const limitOrderCreateHS = (
     owner:string,
     amount_to_sell:string,
     min_to_receive:string) => {
         let today = new Date(Date.now());
         let expiration = new Date(today);
-        expiration.setDate(today.getDate() + 90);
+        expiration.setDate(today.getDate() + 28);
 
         const op: Operation = ['limit_order_create', {
             orderid: new Date().getTime(),
@@ -403,7 +403,7 @@ export const limitOrderCreateHotKeyChain = (
 
     let today = new Date(Date.now());
     let expiration = new Date(today);
-    expiration.setDate(today.getDate() + 90);
+    expiration.setDate(today.getDate() + 28);
     const op: Operation = [
         'limit_order_create',
         {

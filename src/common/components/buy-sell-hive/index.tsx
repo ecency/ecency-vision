@@ -22,7 +22,7 @@ import {
 } from "../../api/hive";
 
 import {
-  formatError, limitOrderCreateHotKeyChain, limitOrderCreateKey,
+  formatError, limitOrderCreateHotKeyChain, limitOrderCreateHS,
 } from "../../api/operations";
 
 import { _t } from "../../i18n";
@@ -127,9 +127,10 @@ export class BuySellHive extends BaseComponent<any, State> {
     this.setState({inProgress: true})
     const {activeUser, values: {total, amount}, onHide } = this.props
     let promise: Promise<any>;
-    promise = authType ==='key' ? limitOrderCreateKey(activeUser!.username, total, amount) 
+    promise = authType ==='hs' ? limitOrderCreateHS(activeUser!.username, total, amount) 
     : authType === "kc" ? limitOrderCreateHotKeyChain(activeUser!.username, total, amount) 
     : this.props.onConfirm();
+    if(!authType){
     promise.then(() => getAccountFull(this.props.activeUser!.username))
             .then((a) => {
                 const {addAccount, updateActiveUser} = this.props;
@@ -143,7 +144,7 @@ export class BuySellHive extends BaseComponent<any, State> {
             .catch(err => {
                 error(formatError(err));
                 this.setState({inProgress: false})
-            });
+            });}
     onHide()
   }
 
@@ -203,8 +204,8 @@ export class BuySellHive extends BaseComponent<any, State> {
           <div className="transaction-form">
               {keyOrHot({
                   inProgress,
-                  onHot: () => this.onClickKey('key'),
-                  onKey: ()=> this.onClickKey("key"),
+                  onHot: () => this.onClickKey('hs'),
+                  onKey: ()=> this.onClickKey(),
                   onKc: ()=> this.onClickKey("kc"),
                   global: global,
                   activeUser: activeUserInstance,
