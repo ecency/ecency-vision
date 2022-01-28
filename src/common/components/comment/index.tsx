@@ -62,8 +62,6 @@ interface Props {
     onChange?: (text: string) => void;
     onCancel?: () => void;
     inputRef?: Ref<any>;
-    entryAuthor?: 'string';
-    entryPermLink?: 'string';
 }
 
 interface State {
@@ -88,8 +86,9 @@ export class Comment extends Component<Props, State> {
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
         const {defText, activeUser, onChange} = this.props;
+        const {text} = this.state;
         if ((defText !== prevProps.defText) && !prevProps.defText && activeUser?.username) {
-            let commentText = this.state.text + '\n' + defText
+            let commentText = text ? text + '\n' + defText : defText
             if (onChange) onChange(commentText)
             this.setState({text: commentText || "", preview: commentText || ""});
         }
@@ -98,8 +97,8 @@ export class Comment extends Component<Props, State> {
     textChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: text} = e.target;
         this.setState({text}, () => {
-            // const {onChange} = this.props;
-            // if (onChange) onChange(text);
+            const {onChange} = this.props;
+            if (onChange) onChange(text);
 
             this.updatePreview();
         });
@@ -185,8 +184,6 @@ export default (p: Props) => {
         onChange: p.onChange,
         onCancel: p.onCancel,
         inputRef: p.inputRef,
-        entryAuthor: p.entryAuthor,
-        entryPermLink: p.entryPermLink
     }
 
     return <Comment {...props} />

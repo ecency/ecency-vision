@@ -131,7 +131,8 @@ class EntryPage extends BaseComponent<Props, State> {
 
     componentDidMount() {
         this.ensureEntry();
-        this.fetchMutedUsers()
+        this.fetchMutedUsers();
+        const entry = this.getEntry();
 
         const {location, global} = this.props;
         if (global.usePrivate && location.search === "?history") {
@@ -139,16 +140,20 @@ class EntryPage extends BaseComponent<Props, State> {
         }
         window.addEventListener("scroll", this.detect);
         window.addEventListener("resize", this.detect);
-        this.setState({isMounted:true})
+        let replyDraft = ls.get(`reply_draft_${entry?.author}_${entry?.permlink}`)
+        replyDraft = replyDraft && replyDraft.trim() || ""
+        this.setState({isMounted:true, selection: replyDraft})
     }
 
     componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
-        const {location, activeUser} = this.props;
-        const {selection} = this.state;
-        const entry = this.getEntry();
+        const {location, 
+            // activeUser
+        } = this.props;
+        // const {selection} = this.state;
+        // const entry = this.getEntry();
         if (location.pathname !== prevProps.location.pathname) {
             this.setState({isMounted:false})
-            this.ensureEntry()
+            // this.ensureEntry()
         }
         // if (prevStates.selection !== selection && !prevStates.selection && entry) {
             
@@ -450,7 +455,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
     replyTextChanged = (text: string) => {
         const entry = this.getEntry()!;
-        // ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
+        ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
         this.setState({selection:""})
     }
 
