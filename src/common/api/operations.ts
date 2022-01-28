@@ -379,14 +379,15 @@ export const limitOrderCreateHS = (
     amount_to_sell:string,
     min_to_receive:string) => {
         let today = new Date(Date.now());
-        let expiration = new Date(today);
+        let expiration:any = new Date(today);
         expiration.setDate(today.getDate() + 28);
-
+        expiration = expiration.toString().split(".")[0] 
+        debugger
         const op: Operation = ['limit_order_create', {
             orderid: new Date().getTime(),
             owner,
-            amount_to_sell,
-            min_to_receive,
+            amount_to_sell: `${amount_to_sell} HBD`,
+            min_to_receive: `${min_to_receive} HIVE`,
             fill_or_kill: false,
             expiration
         }];
@@ -398,19 +399,28 @@ export const limitOrderCreateHS = (
 
 export const limitOrderCreateHotKeyChain = (
     owner:string,
-    amount_to_sell:string,
-    min_to_receive:string) => {
+    amount_to_sell:any,
+    min_to_receive:any) => {
 
     let today = new Date(Date.now());
-    let expiration = new Date(today);
+    let expiration:any = new Date(today);
     expiration.setDate(today.getDate() + 28);
+    expiration = expiration.toISOString().split(".")[0]
     const op: Operation = [
         'limit_order_create',
         {
             orderid: new Date().getTime(),
             owner,
-            amount_to_sell,
-            min_to_receive,
+            "amount_to_sell": {
+                "amount": `${amount_to_sell*1000}`,
+                "precision": 3,
+                "nai": "@@000000021"
+              },
+            min_to_receive: {
+                "amount": `${min_to_receive*1000}`,
+                "precision": 3,
+                "nai": "@@000000013"
+              },
             fill_or_kill: false,
             expiration
         }
