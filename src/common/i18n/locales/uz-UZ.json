@@ -333,36 +333,36 @@
     "posts": "Postlar",
     "subscribers": "A'zolar",
     "activities": "Faoliyatlar",
-    "roles-title": "User Roles",
-    "roles-account": "Account",
-    "roles-role": "Role",
-    "roles-account-title": "Title",
-    "roles-add": "Add User"
+    "roles-title": "Foydalanuvchi Rollari",
+    "roles-account": "Akkaunt",
+    "roles-role": "Rol",
+    "roles-account-title": "Sarlavha",
+    "roles-add": "Foydalanuvchi qo‘shish"
   },
   "community-cover": {
-    "rewards": "rewards",
-    "authors": "posters",
-    "lang": "language",
-    "cover-image": "Community cover image",
-    "cover-image-edit": "Edit cover image",
-    "cover-image-updated": "Cover image updated!"
+    "rewards": "mukofotlar",
+    "authors": "posterlar",
+    "lang": "til",
+    "cover-image": "Guruh sahifasidagi sur'at",
+    "cover-image-edit": "Sahifadagi rasmni tahrirlash",
+    "cover-image-updated": "Rasm yangilandi!"
   },
   "community-card": {
-    "description": "Description",
-    "rules": "Rules",
-    "team": "Leadership",
-    "edit": "Edit settings",
-    "edit-team": "Edit roles",
-    "community-rewards": "Community Rewards",
-    "profile-image": "Profile image",
-    "profile-image-edit": "Edit profile image",
-    "profile-image-updated": "Profile image updated!"
+    "description": "Tavsif",
+    "rules": "Qoidalar",
+    "team": "Yetakchilik",
+    "edit": "Sozlamalarni sozlash",
+    "edit-team": "Qoidalarni tahrirlash",
+    "community-rewards": "Guruh mukofotlari",
+    "profile-image": "Profil rasmi",
+    "profile-image-edit": "Profil rasmini tahrirlash",
+    "profile-image-updated": "Rasm yangilandi!"
   },
   "community-role-edit": {
-    "title": "Set user role",
-    "username": "Username",
-    "role": "Role",
-    "user-not-found": "The user does not exist!",
+    "title": "Foydalanuvchi rolini taqsimlash",
+    "username": "Foydalanuvchi nomi",
+    "role": "Rol",
+    "user-not-found": "Foydalanuvchi mavjud emas!",
     "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
   },
   "community-settings": {
