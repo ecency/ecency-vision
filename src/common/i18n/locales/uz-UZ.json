@@ -363,20 +363,20 @@
     "username": "Foydalanuvchi nomi",
     "role": "Rol",
     "user-not-found": "Foydalanuvchi mavjud emas!",
-    "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
+    "explanations": "<h3> Rol Taqsimoti</h3><p><strong>Egasi-admin tayinlash</p><p><strong>Admin-sozlamalarni tahrirlash, moderatorlar tayinlash</p><p><strong>Moderator</strong>-ovozsiz qilish, pin qilish, foydalanuvchi sarlavhasini qo'yish</p><p><strong>A'zo</strong>yetakchilar ro'yxatiga kiritilgan</p><p><strong>Mehmon</strong>post va komment yoza oladi</p><p><strong>Ovozsiz qilingan</strong>-yangi postlar avtomatik ovozsiz qilinadi</p>"
   },
   "community-settings": {
-    "dialog-title": "Community Settings",
-    "title": "Title",
-    "about": "About",
-    "lang": "Language",
-    "description": "Description",
-    "rules": "Rules",
-    "rules-help": "One per line",
-    "validation-title": "Title is required."
+    "dialog-title": "Guruh Sozlamalari",
+    "title": "Sarlavha",
+    "about": "Haqida",
+    "lang": "Til",
+    "description": "Tavsif",
+    "rules": "Qoidalar",
+    "rules-help": "Har qatorda bitta",
+    "validation-title": "Sarlavha talab qilinadi."
   },
   "communities": {
-    "title": "Communities",
+    "title": "Guruhlar",
     "description": "Best online, decentralized, immutable, rewarding communities",
     "n-subscribers": "{{n}} members",
     "n-authors": "{{n}} posters",
