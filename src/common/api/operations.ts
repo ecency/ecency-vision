@@ -409,20 +409,12 @@ export const limitOrderCreateHotKeyChain = (
     const op: Operation = [
         'limit_order_create',
         {
-            orderid: new Date().getTime(),
-            owner,
-            "amount_to_sell": {
-                "amount": `${amount_to_sell*1000}`,
-                "precision": 3,
-                "nai": "@@000000021"
-              },
-            min_to_receive: {
-                "amount": `${min_to_receive*1000}`,
-                "precision": 3,
-                "nai": "@@000000013"
-              },
-            fill_or_kill: false,
-            expiration
+            "orderid": Math.floor(Date.now() / 1000),
+            "owner": owner,
+            "amount_to_sell": `${amount_to_sell.toFixed(3)} HBD`,
+            "min_to_receive": `${min_to_receive.toFixed(3)} HIVE`,
+            "fill_or_kill": false,
+            "expiration": expiration
         }
     ]
 
