@@ -19,7 +19,7 @@ interface Props {
     loading: boolean;
     activeUser: ActiveUser,
     global: Global,
-    onClickPeakValue: () => void;
+    onClickPeakValue: (value:any) => void;
 }
 
 export const HiveBarter = ({type, available, peakValue, loading, username, basePeakValue, onClickPeakValue, activeUser, global}: Props) => {
@@ -70,7 +70,7 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
                 </small>
                 <small className="d-flex">
                     <div className="mr-1 text-primary">{type === 1 ? _t("market.lowest-ask") : _t("market.highest-bid")}:</div>
-                    <div onClick={onClickPeakValue} className='pointer'>{basePeakValue.toFixed(3)}</div>
+                    <div onClick={() => onClickPeakValue(basePeakValue.toFixed(3))} className='pointer'>{basePeakValue.toFixed(3)}</div>
                 </small>
             </div>
         </div>

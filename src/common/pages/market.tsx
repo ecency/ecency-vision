@@ -27,6 +27,7 @@ const MarketPage = (props: PageProps) => {
     const [openOrdersDataLoading, setopenOrdersDataLoading] = useState(false);
     const [tablesData, setTablesData] = useState<OrdersData | null>(null);
     const [loadingTablesData, setLoadingTablesData] = useState(false);
+    const [dataLoadedFirstTime, setDataLoadedFirstTime] = useState(false);
     const [exchangeType, setExchangeType] = useState(1);
     const {global, activeUser} = props;
 
@@ -40,7 +41,10 @@ const MarketPage = (props: PageProps) => {
     }, []);
 
     useEffect(()=>{
-        data && setBidValues({lowest: parseFloat(data!.lowest_ask), highest: parseFloat(data!.highest_bid)})
+        !dataLoadedFirstTime && data && setBidValues({lowest: parseFloat(data!.lowest_ask), highest: parseFloat(data!.highest_bid)});
+        if(!dataLoadedFirstTime && data){
+            setDataLoadedFirstTime(true)
+        }
     },[data])
 
     const updateData = () => {
@@ -99,7 +103,7 @@ const MarketPage = (props: PageProps) => {
                                             username={activeUser!.username}
                                             activeUser={activeUser}
                                             global={global}
-                                            onClickPeakValue={()=>setBidValues({...bidValues, lowest: data ? parseFloat(data!.lowest_ask): 0})}
+                                            onClickPeakValue={(value:any)=>setBidValues({...bidValues, lowest: value})}
                                         />
                                     </div>
                                     <div className="col-12 col-sm-5 p-0">
@@ -112,7 +116,7 @@ const MarketPage = (props: PageProps) => {
                                             basePeakValue={data ? parseFloat(data!.highest_bid): 0}
                                             loading={loading}
                                             username={activeUser!.username}
-                                            onClickPeakValue={()=>setBidValues({...bidValues, highest: data ? parseFloat(data!.highest_bid): 0})}
+                                            onClickPeakValue={(value:any)=>setBidValues({...bidValues, highest: value})}
                                         />
                                     </div>
                                 </div>}
