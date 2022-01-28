@@ -2,6 +2,7 @@
   "g": {
     "add": "Add",
     "edit": "Edit",
+    "continue": "Continue",
     "submit": "Write a post",
     "search": "Search",
     "loading-chunk": "Loading chunked component",

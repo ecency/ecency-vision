@@ -22,7 +22,7 @@ import {
 } from "../../api/hive";
 
 import {
-  formatError,
+  formatError, limitOrderCreateHotKeyChain, limitOrderCreateKey,
 } from "../../api/operations";
 
 import { _t } from "../../i18n";
@@ -123,10 +123,13 @@ export class BuySellHive extends BaseComponent<any, State> {
     };
   }
 
-  onClickKey = () => {
+  onClickKey = (authType?:string) => {
     this.setState({inProgress: true})
+    const {activeUser, values: {total, amount}, onHide } = this.props
     let promise: Promise<any>;
-    promise = this.props.onConfirm();
+    promise = authType ==='key' ? limitOrderCreateKey(activeUser!.username, total, amount) 
+    : authType === "kc" ? limitOrderCreateHotKeyChain(activeUser!.username, total, amount) 
+    : this.props.onConfirm();
     promise.then(() => getAccountFull(this.props.activeUser!.username))
             .then((a) => {
                 const {addAccount, updateActiveUser} = this.props;
@@ -141,6 +144,7 @@ export class BuySellHive extends BaseComponent<any, State> {
                 error(formatError(err));
                 this.setState({inProgress: false})
             });
+    onHide()
   }
 
   render() {
@@ -181,10 +185,10 @@ export class BuySellHive extends BaseComponent<any, State> {
             <div className="d-flex justify-content-end mt-5">
               <div className="d-flex">
                 <Button variant="secondary" className="mr-3" onClick={onHide}>
-                  Cancel transaction
+                  {_t("g.cancel")}
                 </Button>
                 <Button onClick={() => this.setState({ step: 2 })}>
-                  Proceed
+                {_t("g.continue")}
                 </Button>
               </div>
             </div>
@@ -199,11 +203,9 @@ export class BuySellHive extends BaseComponent<any, State> {
           <div className="transaction-form">
               {keyOrHot({
                   inProgress,
-                  // onKey: this.sign,
-                  onHot: this.onClickKey,
-                  // onKc: this.signKs
-                  onKey: ()=>{alert("key")},
-                  onKc: ()=>{},
+                  onHot: () => this.onClickKey('key'),
+                  onKey: ()=> this.onClickKey("key"),
+                  onKc: ()=> this.onClickKey("kc"),
                   global: global,
                   activeUser: activeUserInstance,
                   signingKey: 'string',

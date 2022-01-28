@@ -374,6 +374,51 @@ export const transferToSavingsHot = (from: string, to: string, amount: string, m
     });
 }
 
+export const limitOrderCreateKey = (
+    owner:string,
+    amount_to_sell:string,
+    min_to_receive:string) => {
+        let today = new Date(Date.now());
+        let expiration = new Date(today);
+        expiration.setDate(today.getDate() + 90);
+
+        const op: Operation = ['limit_order_create', {
+            orderid: new Date().getTime(),
+            owner,
+            amount_to_sell,
+            min_to_receive,
+            fill_or_kill: false,
+            expiration
+        }];
+
+        const params: Parameters = {callback: `https://ecency.com/market`};
+        return hs.sendOperation(op, params, () => {
+    });
+}
+
+export const limitOrderCreateHotKeyChain = (
+    owner:string,
+    amount_to_sell:string,
+    min_to_receive:string) => {
+
+    let today = new Date(Date.now());
+    let expiration = new Date(today);
+    expiration.setDate(today.getDate() + 90);
+    const op: Operation = [
+        'limit_order_create',
+        {
+            orderid: new Date().getTime(),
+            owner,
+            amount_to_sell,
+            min_to_receive,
+            fill_or_kill: false,
+            expiration
+        }
+    ]
+
+    return keychain.broadcast(owner, [op], "Active");
+}
+
 export const transferToSavingsKc = (from: string, to: string, amount: string, memo: string) => {
     const op: Operation = [
         'transfer_to_savings',
