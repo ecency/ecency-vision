@@ -140,12 +140,13 @@ export class BuySellHive extends BaseComponent<any, State> {
                 updateActiveUser(a);
                 this.stateSet({step: 3});
                 this.setState({inProgress: false})
+                onHide()
             })
             .catch(err => {
                 error(formatError(err));
                 this.setState({inProgress: false})
+                onHide()
             });}
-    onHide()
   }
 
   render() {

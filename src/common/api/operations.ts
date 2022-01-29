@@ -376,21 +376,23 @@ export const transferToSavingsHot = (from: string, to: string, amount: string, m
 
 export const limitOrderCreateHS = (
     owner:string,
-    amount_to_sell:string,
-    min_to_receive:string) => {
+    amount_to_sell:any,
+    min_to_receive:any) => {
         let today = new Date(Date.now());
         let expiration:any = new Date(today);
         expiration.setDate(today.getDate() + 28);
-        expiration = expiration.toString().split(".")[0] 
-        debugger
-        const op: Operation = ['limit_order_create', {
-            orderid: new Date().getTime(),
-            owner,
-            amount_to_sell: `${amount_to_sell} HBD`,
-            min_to_receive: `${min_to_receive} HIVE`,
-            fill_or_kill: false,
-            expiration
-        }];
+        expiration = expiration.toISOString().split(".")[0]
+        const op: Operation = [
+            'limit_order_create',
+            {
+                "orderid": Math.floor(Date.now() / 1000),
+                "owner": owner,
+                "amount_to_sell": `${amount_to_sell.toFixed(3)} HBD`,
+                "min_to_receive": `${min_to_receive.toFixed(3)} HIVE`,
+                "fill_or_kill": false,
+                "expiration": expiration
+            }
+        ]
 
         const params: Parameters = {callback: `https://ecency.com/market`};
         return hs.sendOperation(op, params, () => {
