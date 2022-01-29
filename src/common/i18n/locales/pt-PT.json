@@ -684,9 +684,9 @@
     "type-transfer": "Transferir",
     "type-transfer_to_vesting": "Carregar Poder",
     "type-withdraw_vesting": "Baixar poder",
-    "type-set_withdraw_vesting_route": "Withdraw route changed",
+    "type-set_withdraw_vesting_route": "Destino de saque alterado",
     "type-fill_vesting_withdraw": "Ocorrência de Parcial Redução de Poder",
-    "type-fill_order": "Open trade filled",
+    "type-fill_order": "Ordem preenchida",
     "type-producer_reward": "Recompensa de criador",
     "type-interest": "Rendimentos",
     "type-transfer_to_savings": "Transferir para a poupança",
@@ -708,8 +708,8 @@
     "type-collateralized_convert": "Conversão de colateral",
     "type-collateralized_convert-detail": "Id de solicitação: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Id da proposta: <strong>{{pid}}</strong>",
-    "type-limit_order_create": "New trade created",
-    "type-limit_order_cancel": "Open trade cancelled",
+    "type-limit_order_create": "Nova ordem criada",
+    "type-limit_order_cancel": "Ordem cancelada",
     "type-effective_comment_vote": "Voto efetivo"
   },
   "key-or-hot": {
