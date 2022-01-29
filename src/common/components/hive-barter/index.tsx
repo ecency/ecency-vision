@@ -36,12 +36,11 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
     },[peakValue])
 
     const buyHive = () => {
-            return placeHiveOrder(username, `${amount}`, total)
+            return placeHiveOrder(username, `${amount}`, total, "buy")
     };
 
     const sellHive = () => {
-            return placeHiveOrder(username, total, `${amount}`).then(res=>{
-        })
+            return placeHiveOrder(username, `${amount}`, total, "sell")
     };
 
     const placeOrder = type ===1 ? buyHive :sellHive

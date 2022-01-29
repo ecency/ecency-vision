@@ -19,6 +19,7 @@ import parseAsset from "../helper/parse-asset";
 import {hotSign} from "../helper/hive-signer";
 
 import {_t} from "../i18n";
+import { TransactionType } from "../components/buy-sell-hive";
 
 export interface MetaData {
     links?: string[];
@@ -377,7 +378,8 @@ export const transferToSavingsHot = (from: string, to: string, amount: string, m
 export const limitOrderCreateHS = (
     owner:string,
     amount_to_sell:any,
-    min_to_receive:any) => {
+    min_to_receive:any,
+    orderType: TransactionType) => {
         let today = new Date(Date.now());
         let expiration:any = new Date(today);
         expiration.setDate(today.getDate() + 28);
@@ -387,8 +389,8 @@ export const limitOrderCreateHS = (
             {
                 "orderid": Math.floor(Date.now() / 1000),
                 "owner": owner,
-                "amount_to_sell": `${amount_to_sell.toFixed(3)} HBD`,
-                "min_to_receive": `${min_to_receive.toFixed(3)} HIVE`,
+                "amount_to_sell": `${amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
+                "min_to_receive": `${min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
                 "fill_or_kill": false,
                 "expiration": expiration
             }
@@ -402,7 +404,8 @@ export const limitOrderCreateHS = (
 export const limitOrderCreateHotKeyChain = (
     owner:string,
     amount_to_sell:any,
-    min_to_receive:any) => {
+    min_to_receive:any,
+    orderType: TransactionType) => {
 
     let today = new Date(Date.now());
     let expiration:any = new Date(today);
@@ -413,8 +416,8 @@ export const limitOrderCreateHotKeyChain = (
         {
             "orderid": Math.floor(Date.now() / 1000),
             "owner": owner,
-            "amount_to_sell": `${amount_to_sell.toFixed(3)} HBD`,
-            "min_to_receive": `${min_to_receive.toFixed(3)} HIVE`,
+            "amount_to_sell": `${amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
+            "min_to_receive": `${min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
             "fill_or_kill": false,
             "expiration": expiration
         }

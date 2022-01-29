@@ -125,10 +125,10 @@ export class BuySellHive extends BaseComponent<any, State> {
 
   onClickKey = (authType?:string) => {
     this.setState({inProgress: true})
-    const {activeUser, values: {total, amount}, onHide } = this.props
+    const {activeUser, values: {total, amount}, onHide, type } = this.props
     let promise: Promise<any>;
-    promise = authType ==='hs' ? limitOrderCreateHS(activeUser!.username, total, amount) 
-    : authType === "kc" ? limitOrderCreateHotKeyChain(activeUser!.username, total, amount) 
+    promise = authType ==='hs' ? limitOrderCreateHS(activeUser!.username, total, amount, type) 
+    : authType === "kc" ? limitOrderCreateHotKeyChain(activeUser!.username, total, amount, type) 
     : this.props.onConfirm();
     if(!authType){
     promise.then(() => getAccountFull(this.props.activeUser!.username))
