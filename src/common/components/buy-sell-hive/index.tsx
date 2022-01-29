@@ -22,16 +22,17 @@ import {
 } from "../../api/hive";
 
 import {
-  formatError, limitOrderCreateHotKeyChain, limitOrderCreateHS,
+  formatError, limitOrderCreateHot, limitOrderCreateKc, limitOrderCreate,
 } from "../../api/operations";
 
 import { _t } from "../../i18n";
-import keyOrHot from "../key-or-hot";
+import KeyOrHot from "../key-or-hot";
 import { activeUserInstance } from "../../helper/test-helper";
 import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "../../store";
 import { PageProps } from "../../pages/common";
+import { PrivateKey } from '@hiveio/dhive';
 
 export type TransferMode =
   | "transfer"
@@ -125,11 +126,12 @@ export class BuySellHive extends BaseComponent<any, State> {
 
   onClickKey = (authType?:string) => {
     this.setState({inProgress: true})
-    const {activeUser, values: {total, amount}, onHide, type } = this.props
+    const {activeUser, values: {total, amount}, onHide, type, signingKey } = this.props
+
     let promise: Promise<any>;
-    promise = authType ==='hs' ? limitOrderCreateHS(activeUser!.username, total, amount, type) 
-    : authType === "kc" ? limitOrderCreateHotKeyChain(activeUser!.username, total, amount, type) 
-    : this.props.onConfirm();
+    promise = authType === "hs" ? limitOrderCreateHot(activeUser!.username, total, amount, type) 
+    : authType === "kc" ? limitOrderCreateKc(activeUser!.username, total, amount, type) 
+    : limitOrderCreate(activeUser!.username, signingKey as PrivateKey, total, amount, type);
     if(!authType){
     promise.then(() => getAccountFull(this.props.activeUser!.username))
             .then((a) => {
@@ -173,11 +175,11 @@ export class BuySellHive extends BaseComponent<any, State> {
           <div className="d-flex justify-content-center">
             <div className="mt-5 w-75 text-center sub-title text-wrap">
               {available < total
-                ? "Your total amount exceeds your available balance. Please recharge and try again."
+                ? "Trade total amount exceeds your available balance. Please add more funds or try with smaller amount."
                 : TransactionType.Buy
-                ? `You're buying ${amount} HIVEs for ${price} and your total is ${total} HBDs. Your available remaining amount will be ${
+                ? `You're buying ${amount} HIVE for ${price} and total will be ${total} HBD. Remaining balance will be ${
                     available - total
-                  } HBDs`
+                  } HBD`
                 : ``}
             </div>
           </div>
@@ -203,9 +205,9 @@ export class BuySellHive extends BaseComponent<any, State> {
       return <div className="transaction-form">
           {formHeader1}
           <div className="transaction-form">
-              {keyOrHot({
+              {KeyOrHot({
                   inProgress,
-                  onHot: () => this.onClickKey('hs'),
+                  onHot: () => this.onClickKey("hs"),
                   onKey: ()=> this.onClickKey(),
                   onKc: ()=> this.onClickKey("kc"),
                   global: global,

@@ -375,14 +375,32 @@ export const transferToSavingsHot = (from: string, to: string, amount: string, m
     });
 }
 
-export const limitOrderCreateHS = (
+export const limitOrderCreate = (owner: string, key: PrivateKey, amount_to_sell: any, min_to_receive: any, orderType: TransactionType): Promise<TransactionConfirmation> => {
+    let expiration:any = new Date();
+        expiration.setDate(expiration.getDate() + 28);
+        expiration = expiration.toISOString().split(".")[0]
+    const op: Operation = [
+        'limit_order_create',
+        {
+            "orderid": Math.floor(Date.now() / 1000),
+            "owner": owner,
+            "amount_to_sell": `${amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
+            "min_to_receive": `${min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
+            "fill_or_kill": false,
+            "expiration": expiration
+        }
+    ]
+
+    return hiveClient.broadcast.sendOperations([op], key);
+}
+
+export const limitOrderCreateHot = (
     owner:string,
     amount_to_sell:any,
     min_to_receive:any,
     orderType: TransactionType) => {
-        let today = new Date(Date.now());
-        let expiration:any = new Date(today);
-        expiration.setDate(today.getDate() + 28);
+        let expiration:any = new Date();
+        expiration.setDate(expiration.getDate() + 28);
         expiration = expiration.toISOString().split(".")[0]
         const op: Operation = [
             'limit_order_create',
@@ -401,15 +419,13 @@ export const limitOrderCreateHS = (
     });
 }
 
-export const limitOrderCreateHotKeyChain = (
+export const limitOrderCreateKc = (
     owner:string,
     amount_to_sell:any,
     min_to_receive:any,
     orderType: TransactionType) => {
-
-    let today = new Date(Date.now());
-    let expiration:any = new Date(today);
-    expiration.setDate(today.getDate() + 28);
+    let expiration:any = new Date();
+    expiration.setDate(expiration.getDate() + 28);
     expiration = expiration.toISOString().split(".")[0]
     const op: Operation = [
         'limit_order_create',
