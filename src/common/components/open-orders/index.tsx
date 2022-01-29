@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React from 'react';
 import { useState } from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { cancelOpenOrder, OpenOrdersData } from '../../api/hive';
 import { _t } from '../../i18n';
 import ModalConfirm from '../modal-confirm';

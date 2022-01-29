@@ -6,13 +6,6 @@ import TestRenderer from "react-test-renderer";
 
 import {allOver} from "../../helper/test-helper";
 
-jest.mock("../../api/private-api", () => ({
-    getBoostOptions: () =>
-        new Promise((resolve) => {
-            resolve([150, 200, 250, 300, 350, 400, 450, 500, 550]);
-        }),
-}));
-
 it("(1) Default render", async () => {
     const props = {
         loading: false,
