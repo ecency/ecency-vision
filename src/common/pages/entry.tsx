@@ -98,7 +98,7 @@ interface State {
     showProfileBox: boolean;
     entryIsMuted: boolean;
     selection: string;
-    commentText: string;
+    // commentText: string;
     isMounted: boolean;
     postIsDeleted: boolean;
     deletedEntry: {title: string, body: string, tags: any} | null;
@@ -112,7 +112,7 @@ class EntryPage extends BaseComponent<Props, State> {
         showIfNsfw: false,
         editHistory: false,
         comment: "",
-        commentText: "",
+        // commentText: "",
         showProfileBox: false,
         entryIsMuted: false,
         isMounted: false,
@@ -153,7 +153,7 @@ class EntryPage extends BaseComponent<Props, State> {
         // const entry = this.getEntry();
         if (location.pathname !== prevProps.location.pathname) {
             this.setState({isMounted:false})
-            // this.ensureEntry()
+            this.ensureEntry()
         }
         // if (prevStates.selection !== selection && !prevStates.selection && entry) {
             
@@ -244,7 +244,11 @@ class EntryPage extends BaseComponent<Props, State> {
                 ...entry,
                 body: text
             }
+            
+            //D: need to update state which will trigger Comment didUpdate and reset text state to "" .
+            //D: may be use commentText state for above purpose .
             this.setState({comment: text})
+
             updateReply(nReply); // update store
             this.toggleEdit(); // close comment box
             this.reload()
@@ -256,7 +260,7 @@ class EntryPage extends BaseComponent<Props, State> {
         });
     }
 }
-
+    //D: need to check its functionality and discuss with Ghazanfar
     toggleEdit = () => {
         const {edit} = this.state;
         this.stateSet({edit: !edit});
@@ -435,7 +439,8 @@ class EntryPage extends BaseComponent<Props, State> {
 
             // remove reply draft
             ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
-            this.stateSet({commentText:""})
+            //D: need to update state which will trigger Comment didUpdate and reset text state to "" .
+            // this.stateSet({commentText:""})
             
             if (entry.children === 0) {
                 // Activate discussion section with first comment.
@@ -453,9 +458,11 @@ class EntryPage extends BaseComponent<Props, State> {
         })
     }
 
-    replyTextChanged = (text: string) => {
-        const entry = this.getEntry()!;
-        ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
+
+    //D: Move this logic to Comment component so less rendering of this entry page .
+    replyTextChanged = () => {
+        // const entry = this.getEntry()!;
+        // ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
         this.setState({selection:""})
     }
 
@@ -480,7 +487,7 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, commentText, isMounted, postIsDeleted, deletedEntry, showProfileBox} = this.state;
+        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, /*commentText,*/ isMounted, postIsDeleted, deletedEntry, showProfileBox} = this.state;
         const {global, history, match} = this.props;
 
         let navBar = global.isElectron ? NavBarElectron({
@@ -859,7 +866,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 </div>
                                             </div>
                                             <meta itemProp="headline name" content={entry.title}/>
-                                            {!edit ? 
+                                            {/* {!edit ? 
                                                <>
                                                     <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
                                                         <div
@@ -878,8 +885,19 @@ class EntryPage extends BaseComponent<Props, State> {
                                                     onCancel: this.toggleEdit,
                                                     inProgress: loading,
                                                     autoFocus: true,
-                                                    inputRef: this.commentInput
-                                                })}
+                                                    inputRef: this.commentInput,
+                                                    entry: entry
+                                                })} */}
+
+                                                <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
+                                                    <div
+                                                        itemProp="articleBody"
+                                                        className="entry-body markdown-view user-selectable"
+                                                        dangerouslySetInnerHTML={renderedBody}
+                                                    />
+                                                </SelectionPopover>
+
+
                                             <meta itemProp="image" content={metaProps.image}/>
                                         </>
                                     })()}
@@ -1005,10 +1023,11 @@ class EntryPage extends BaseComponent<Props, State> {
                                         ...this.props,
                                         defText: this.state.selection,
                                         submitText: _t('g.reply'),
-                                        onChange: this.replyTextChanged,
+                                        resetSelection: this.replyTextChanged,
                                         onSubmit: this.replySubmitted,
                                         inProgress: replying,
-                                        inputRef: this.commentInput
+                                        inputRef: this.commentInput,
+                                        entry: entry
                                     })}
 
                                     {(!originalEntry && !isComment) && SimilarEntries({
@@ -1020,10 +1039,11 @@ class EntryPage extends BaseComponent<Props, State> {
                                         ...this.props,
                                         defText: this.state.selection,
                                         submitText: _t('g.reply'),
-                                        onChange: this.replyTextChanged,
+                                        resetSelection: this.replyTextChanged,
                                         onSubmit: this.replySubmitted,
                                         inProgress: replying,
-                                        inputRef: this.commentInput
+                                        inputRef: this.commentInput,
+                                        entry: entry, 
                                     })}
 
                                     {Discussion({
