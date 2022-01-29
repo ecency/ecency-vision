@@ -104,10 +104,12 @@ interface Props {
   onConfirm: Promise<void>;
   onHide: () => void;
   values: { total: number; amount: number; price: number; available: number };
-  global: Global,
-  activeUser: ActiveUser,
-  addAccount: (arg: any) => void,
-  updateActiveUser: (arg: any) => void
+  global: Global;
+  activeUser: ActiveUser;
+  addAccount: (arg: any) => void;
+  updateActiveUser: (arg: any) => void;
+  signingKey: string;
+  setSigningKey: (key: string) => void;
 }
 
 interface State {
@@ -124,31 +126,47 @@ export class BuySellHive extends BaseComponent<any, State> {
     };
   }
 
-  onClickKey = (authType?:string) => {
-    this.setState({inProgress: true})
-    const {activeUser, values: {total, amount}, onHide, type, signingKey } = this.props
+  updateAll = (a: any) => {
+    const {addAccount, updateActiveUser, onHide} = this.props;
+    // refresh
+    addAccount(a);
+    // update active
+    updateActiveUser(a);
+    this.stateSet({step: 3});
+    this.setState({inProgress: false})
+    onHide();
+  }
 
-    let promise: Promise<any>;
-    promise = authType === "hs" ? limitOrderCreateHot(activeUser!.username, total, amount, type) 
-    : authType === "kc" ? limitOrderCreateKc(activeUser!.username, total, amount, type) 
-    : limitOrderCreate(activeUser!.username, signingKey as PrivateKey, total, amount, type);
-    if(!authType){
-    promise.then(() => getAccountFull(this.props.activeUser!.username))
-            .then((a) => {
-                const {addAccount, updateActiveUser} = this.props;
-                // refresh
-                addAccount(a);
-                // update active
-                updateActiveUser(a);
-                this.stateSet({step: 3});
-                this.setState({inProgress: false})
-                onHide()
-            })
-            .catch(err => {
-                error(formatError(err));
-                this.setState({inProgress: false})
-                onHide()
-            });}
+  promiseCheck = (p: Promise<any>) => {
+    const {onHide} = this.props;
+    p.then(() => getAccountFull(this.props.activeUser!.username))
+      .then((a: any) => this.updateAll(a))
+      .catch(err => {
+        error(formatError(err));
+        this.setState({inProgress: false})
+        onHide()
+      });
+  }
+
+  sign = (key: PrivateKey) => {
+    this.setState({inProgress: true})
+    const {activeUser, values: {total, amount}, Ttype } = this.props;
+    console.log(key, key.toString());
+    this.promiseCheck(limitOrderCreate(activeUser!.username, key, total, amount, Ttype));
+  }
+
+  signHs = () => {
+    this.setState({inProgress: true})
+    const {activeUser, values: {total, amount}, Ttype } = this.props;
+
+    this.promiseCheck(limitOrderCreateHot(activeUser!.username, total, amount, Ttype));
+  }
+
+  signKc = () => {
+    this.setState({inProgress: true})
+    const {activeUser, values: {total, amount}, Ttype } = this.props;
+
+    this.promiseCheck(limitOrderCreateKc(activeUser!.username, total, amount, Ttype));
   }
 
   render() {
@@ -156,7 +174,10 @@ export class BuySellHive extends BaseComponent<any, State> {
     const {
       values: { amount, price, total, available },
       onHide,
-      global
+      global,
+      activeUser,
+      signingKey,
+      setSigningKey
     } = this.props;
 
     const formHeader1 = (
@@ -206,14 +227,14 @@ export class BuySellHive extends BaseComponent<any, State> {
           {formHeader1}
           <div className="transaction-form">
               {KeyOrHot({
+                  global,
+                  activeUser,
+                  signingKey,
+                  setSigningKey,
                   inProgress,
-                  onHot: () => this.onClickKey("hs"),
-                  onKey: ()=> this.onClickKey(),
-                  onKc: ()=> this.onClickKey("kc"),
-                  global: global,
-                  activeUser: activeUserInstance,
-                  signingKey: 'string',
-                  setSigningKey: (key: string) => {}
+                  onHot: this.signHs,
+                  onKey: this.sign,
+                  onKc: this.signKc
               })}
               <p className="text-center">
                   <a href="#" onClick={(e) => {
@@ -250,6 +271,7 @@ class BuySellHiveDialog extends Component<any> {
     );
   }
 }
+
 const mapStateToProps = (state: AppState) => ({
     global: state.global,
 });

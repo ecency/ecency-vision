@@ -375,6 +375,20 @@ export const transferToSavingsHot = (from: string, to: string, amount: string, m
     });
 }
 
+export const transferToSavingsKc = (from: string, to: string, amount: string, memo: string) => {
+    const op: Operation = [
+        'transfer_to_savings',
+        {
+            from,
+            to,
+            amount,
+            memo
+        }
+    ]
+
+    return keychain.broadcast(from, [op], "Active");
+}
+
 export const limitOrderCreate = (owner: string, key: PrivateKey, amount_to_sell: any, min_to_receive: any, orderType: TransactionType): Promise<TransactionConfirmation> => {
     let expiration:any = new Date();
         expiration.setDate(expiration.getDate() + 28);
@@ -394,36 +408,27 @@ export const limitOrderCreate = (owner: string, key: PrivateKey, amount_to_sell:
     return hiveClient.broadcast.sendOperations([op], key);
 }
 
-export const limitOrderCreateHot = (
-    owner:string,
-    amount_to_sell:any,
-    min_to_receive:any,
-    orderType: TransactionType) => {
-        let expiration:any = new Date();
-        expiration.setDate(expiration.getDate() + 28);
-        expiration = expiration.toISOString().split(".")[0]
-        const op: Operation = [
-            'limit_order_create',
-            {
-                "orderid": Math.floor(Date.now() / 1000),
-                "owner": owner,
-                "amount_to_sell": `${amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
-                "min_to_receive": `${min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
-                "fill_or_kill": false,
-                "expiration": expiration
-            }
-        ]
+export const limitOrderCreateHot = (owner:string, amount_to_sell:any, min_to_receive:any, orderType: TransactionType) => {
+    let expiration:any = new Date();
+    expiration.setDate(expiration.getDate() + 28);
+    expiration = expiration.toISOString().split(".")[0]
+    const op: Operation = [
+        'limit_order_create',
+        {
+            "orderid": Math.floor(Date.now() / 1000),
+            "owner": owner,
+            "amount_to_sell": `${amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
+            "min_to_receive": `${min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
+            "fill_or_kill": false,
+            "expiration": expiration
+        }
+    ]
 
-        const params: Parameters = {callback: `https://ecency.com/market`};
-        return hs.sendOperation(op, params, () => {
-    });
+    const params: Parameters = {callback: `https://ecency.com/market`};
+    return hs.sendOperation(op, params, () => {});
 }
 
-export const limitOrderCreateKc = (
-    owner:string,
-    amount_to_sell:any,
-    min_to_receive:any,
-    orderType: TransactionType) => {
+export const limitOrderCreateKc = (owner:string, amount_to_sell:any, min_to_receive:any, orderType: TransactionType) => {
     let expiration:any = new Date();
     expiration.setDate(expiration.getDate() + 28);
     expiration = expiration.toISOString().split(".")[0]
@@ -440,20 +445,6 @@ export const limitOrderCreateKc = (
     ]
 
     return keychain.broadcast(owner, [op], "Active");
-}
-
-export const transferToSavingsKc = (from: string, to: string, amount: string, memo: string) => {
-    const op: Operation = [
-        'transfer_to_savings',
-        {
-            from,
-            to,
-            amount,
-            memo
-        }
-    ]
-
-    return keychain.broadcast(from, [op], "Active");
 }
 
 export const convert = (owner: string, key: PrivateKey, amount: string): Promise<TransactionConfirmation> => {

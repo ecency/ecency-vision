@@ -131,7 +131,7 @@ export const HiveBarter = ({type, available, peakValue, loading, username, baseP
         </Form>
         {transaction !== TransactionType.None && 
         <BuySellHiveDialog
-            type={transaction}
+            Ttype={transaction}
             onConfirm={placeOrder}
             onHide={() => setTransaction(TransactionType.None)}
             global={global}
