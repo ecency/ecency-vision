@@ -972,11 +972,22 @@ export const hiveNotifySetLastRead = (username: string): Promise<TransactionConf
     const now = new Date().toISOString();
     const date = now.split(".")[0];
 
-    const json = [
-        'setLastRead', {date}
-    ];
+    const params = {
+        id: "notify",
+        required_auths: [],
+        required_posting_auths: [username],
+        json: JSON.stringify(['setLastRead', {date}])
+    }
+    const params1 = {
+        id: "ecency_notify",
+        required_auths: [],
+        required_posting_auths: [username],
+        json: JSON.stringify(['setLastRead', {date}])
+    }
 
-    return broadcastPostingJSON(username, "notify", json);
+    const opArray: Operation[] = [['custom_json', params], ['custom_json', params1]];
+
+    return broadcastPostingOperations(username, opArray);
 }
 
 export const updatePassword = (update: AccountUpdateOperation[1], ownerKey: PrivateKey): Promise<TransactionConfirmation> => hiveClient.broadcast.updateAccount(update, ownerKey)
