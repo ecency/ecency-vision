@@ -68,20 +68,18 @@ export class BuySellHive extends BaseComponent<any, State> {
   }
 
   updateAll = (a: any) => {
-    const { addAccount, updateActiveUser, onHide, onTransactionSuccess } =
+    const { addAccount, updateActiveUser, onTransactionSuccess } =
       this.props;
     // refresh
     addAccount(a);
     // update active
     updateActiveUser(a);
-    this.stateSet({ step: 3 });
-    this.setState({ inProgress: false });
+    this.setState({ inProgress: false,step: 3 });
     onTransactionSuccess();
-    // onHide();
   };
 
   promiseCheck = (p: any) => {
-    const { onHide } = this.props;
+    const { onHide, } = this.props;
     p && p.then(() => getAccountFull(this.props.activeUser!.username))
       .then((a: any) => this.updateAll(a))
       .catch((err: any) => {
@@ -157,6 +155,7 @@ export class BuySellHive extends BaseComponent<any, State> {
       signingKey,
       setSigningKey,
       Ttype,
+      id
     } = this.props;
 
     const formHeader1 = (
@@ -176,7 +175,7 @@ export class BuySellHive extends BaseComponent<any, State> {
           <div className="d-flex justify-content-center">
             {Ttype === TransactionType.Cancel ? (
               <div className="mt-5 w-75 text-center sub-title text-wrap">
-                {_t("market.confirm-cancel")}
+                {_t("market.confirm-cancel", {orderid:id})}
               </div>
             ) : (
               <div className="mt-5 w-75 text-center sub-title text-wrap">

@@ -31,7 +31,7 @@ interface State {
 
 export class KeyOrHot extends Component<Props, State> {
     state: State = {
-        key: this.props.signingKey
+        key: this.props.signingKey || ""
     }
 
     keyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {

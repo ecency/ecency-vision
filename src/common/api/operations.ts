@@ -393,6 +393,7 @@ export const limitOrderCreate = (owner: string, key: PrivateKey, amount_to_sell:
     let expiration:any = new Date(Date.now());
         expiration.setDate(expiration.getDate() + 28);
         expiration = expiration.toISOString().split(".")[0];
+
     const op: Operation = [
         'limit_order_create',
         {
