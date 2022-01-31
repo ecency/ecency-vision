@@ -315,12 +315,15 @@ interface Props {
     reloadFn?: () => any,
     setStepTwo?: () => any,
     reloading?: boolean,
-    step?: number
+    step?: number,
+    match?: any;
 }
 
 interface State {
     floating: boolean,
 }
+
+const communityPattern = "^hive-[0-9]{6}$";
 
 export class NavBar extends Component<Props, State> {
     state: State = {
@@ -380,9 +383,15 @@ export class NavBar extends Component<Props, State> {
     };
 
     render() {
-        const {global, activeUser, history, location, ui, step} = this.props;
+        const {global, activeUser, history, location, ui, step, match} = this.props;        
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
-        const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
+        const re = new RegExp(communityPattern);
+        const tagValue = global.tag ? `/${global.tag}` : ''
+        const logoHref = activeUser ? 
+        (match && (re.test(match.params.name)) || ((global.tag === `@${activeUser.username}`) && (global.filter !== 'feed'))) ?
+        '/hot' : 
+        global.filter === 'feed' ? `${tagValue}/${global.filter}` : `/${global.filter}${tagValue}` 
+        : '/';
 
         const {floating} = this.state;
 
@@ -502,7 +511,8 @@ export default (p: Props) => {
         reloadFn: p.reloadFn,
         reloading: p.reloading,
         step: p.step,
-        setStepTwo: p.setStepTwo
+        setStepTwo: p.setStepTwo,
+        match: p.match,
     }
 
     return <NavBar {...props} />;
