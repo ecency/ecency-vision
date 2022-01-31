@@ -20,7 +20,7 @@ const profileFilters = Object.values(ProfileFilter);
 
 const lowerCase = (req: any, res: any, next: any) => {
     if (req.url.includes('//')) {
-        res.redirect(req.url.replace(new RegExp('//', 'g'),'/'));
+        res.redirect(req.url.replace(new RegExp('/{2,}', 'g'),'/'));
     }
     if(req.url.includes('-hs?code')){
         next();
