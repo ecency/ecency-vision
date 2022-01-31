@@ -999,7 +999,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                         </div>
                                     )}
 
-                                    {(!originalEntry && !isComment) && SimilarEntries({
+                                    {(!originalEntry && !isComment) && !activeUser && SimilarEntries({
                                         ...this.props,
                                         entry
                                     })}
@@ -1014,6 +1014,11 @@ class EntryPage extends BaseComponent<Props, State> {
                                         isCommented: this.state.isCommented,
                                         inputRef: this.commentInput,
                                         entry: entry
+                                    })}
+
+                                    {(!originalEntry && !isComment) && activeUser && SimilarEntries({
+                                        ...this.props,
+                                        entry
                                     })}
 
                                     {Discussion({
