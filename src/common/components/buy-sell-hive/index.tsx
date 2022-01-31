@@ -4,7 +4,7 @@ import { setActiveUser, updateActiveUser } from "../../store/active-user";
 import { setSigningKey } from "../../store/signing-key";
 import { addAccount } from "../../store/accounts";
 
-import { Modal, Form, Row, Col, Button } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -30,16 +30,6 @@ import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "../../store";
 import { PrivateKey } from "@hiveio/dhive";
-
-export type TransferMode =
-  | "transfer"
-  | "transfer-saving"
-  | "withdraw-saving"
-  | "convert"
-  | "power-up"
-  | "power-down"
-  | "delegate";
-export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT";
 
 export enum TransactionType {
   None = 0,

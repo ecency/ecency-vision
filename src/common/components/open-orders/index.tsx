@@ -75,7 +75,7 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: 
                 <td className="p-2">
                   <div
                     className="rounded text-white bg-primary p-1 d-inline pointer"
-                    onClick={() => setIsModalOpen(item.id)}
+                    onClick={() => setIsModalOpen(item.orderid)}
                   >
                     Cancel
                   </div>
