@@ -7,7 +7,6 @@ import { _t } from "../../i18n";
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
 import BuySellHiveDialog, {
-  BuySellHive,
   TransactionType,
 } from "../buy-sell-hive";
 import { error } from "../feedback";

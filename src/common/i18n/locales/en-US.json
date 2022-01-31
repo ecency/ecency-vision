@@ -293,6 +293,11 @@
     "stock-info": "Stock information",
     "barter": "Exchange tokens",
     "stock-values": "Values",
+    "transaction-low": "Trade total amount exceeds your available balance. Please add more funds or try with smaller amount.",
+    "confirm-cancel": "Are you sure you want to cancel your order?",
+    "confirm-buy": "You're buying {{amount}} HIVE for {{price}} and total will be {{total}} HBD. Remaining balance will be {{balance}} HBD",
+    "confirm-sell": "Values",
+    
     "lowest-ask": "Lowest ask"
   },
   "list-style": {

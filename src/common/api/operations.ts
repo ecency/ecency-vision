@@ -408,6 +408,19 @@ export const limitOrderCreate = (owner: string, key: PrivateKey, amount_to_sell:
     return hiveClient.broadcast.sendOperations([op], key);
 }
 
+export const cancelOrderKeyed = (owner: string, key: PrivateKey, orderid:number, ): Promise<TransactionConfirmation> => {
+
+    const op: Operation = [
+        'limit_order_cancel',
+        {
+            "owner": owner,
+            "orderid": orderid,
+        }
+    ]
+
+    return hiveClient.broadcast.sendOperations([op], key);
+}
+
 export const limitOrderCreateHot = (owner:string, amount_to_sell:any, min_to_receive:any, orderType: TransactionType) => {
     let expiration:any = new Date();
     expiration.setDate(expiration.getDate() + 28);
@@ -428,6 +441,19 @@ export const limitOrderCreateHot = (owner:string, amount_to_sell:any, min_to_rec
     return hs.sendOperation(op, params, () => {});
 }
 
+export const cancelOrderHot = (owner:string, orderid:number) => {
+    const op: Operation = [
+        'limit_order_cancel',
+        {
+            "orderid": orderid,
+            "owner": owner,
+        }
+    ]
+
+    const params: Parameters = {callback: `https://ecency.com/market`};
+    return hs.sendOperation(op, params, () => {});
+}
+
 export const limitOrderCreateKc = (owner:string, amount_to_sell:any, min_to_receive:any, orderType: TransactionType) => {
     let expiration:any = new Date();
     expiration.setDate(expiration.getDate() + 28);
@@ -441,6 +467,18 @@ export const limitOrderCreateKc = (owner:string, amount_to_sell:any, min_to_rece
             "min_to_receive": `${min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
             "fill_or_kill": false,
             "expiration": expiration
+        }
+    ]
+
+    return keychain.broadcast(owner, [op], "Active");
+}
+
+export const cancelOrderKc = (owner:string, orderid:any) => {
+    const op: Operation = [
+        'limit_order_cancel',
+        {
+            "orderid": orderid,
+            "owner": owner,
         }
     ]
 
