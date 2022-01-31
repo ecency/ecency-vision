@@ -55,6 +55,7 @@ interface Props {
     global: Global;
     entry: Entry;
     inProgress?: boolean;
+    isCommented?: boolean;
     cancellable?: boolean;
     autoFocus?: boolean;
     setActiveUser: (username: string | null) => void;
@@ -88,13 +89,16 @@ export class Comment extends Component<Props, State> {
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {defText, activeUser, resetSelection} = this.props;
+        const {defText, /*activeUser,*/ resetSelection, isCommented} = this.props;
         const {text} = this.state;
         if ((defText !== prevProps.defText) && !prevProps.defText) {
             let commentText = text ? text + '\n' + defText : defText
             this.setState({text: commentText || "", preview: commentText || ""});
             if (resetSelection) resetSelection()
             this.updateLsCommentDraft(commentText)
+        }
+        if(prevProps.isCommented && !isCommented) {
+            this.setState({text: "", preview: ""})
         }
     }
 
@@ -185,6 +189,7 @@ export default (p: Props) => {
         global: p.global,
         entry: p.entry,
         inProgress: p.inProgress,
+        isCommented: p.isCommented,
         cancellable: p.cancellable,
         autoFocus: p.autoFocus,
         setActiveUser: p.setActiveUser,

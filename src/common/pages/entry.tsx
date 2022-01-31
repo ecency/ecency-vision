@@ -98,6 +98,7 @@ interface State {
     showProfileBox: boolean;
     entryIsMuted: boolean;
     selection: string;
+    isCommented: boolean;
     // commentText: string;
     isMounted: boolean;
     postIsDeleted: boolean;
@@ -112,6 +113,7 @@ class EntryPage extends BaseComponent<Props, State> {
         showIfNsfw: false,
         editHistory: false,
         comment: "",
+        isCommented: false,
         // commentText: "",
         showProfileBox: false,
         entryIsMuted: false,
@@ -217,50 +219,51 @@ class EntryPage extends BaseComponent<Props, State> {
 
     }
     
-    updateReply = (text: string) => {
-        const entry = this.getEntry();
-        const {activeUser, updateReply} = this.props;
+    //TBD: Why we have the following function here which is used in Comment component, edit state and SelectionPopover component. 
+//     updateReply = (text: string) => {
+//         const entry = this.getEntry();
+//         const {activeUser, updateReply} = this.props;
 
-        if(entry){
-            const {permlink, parent_author: parentAuthor, parent_permlink: parentPermlink} = entry;
-        const jsonMeta = makeJsonMetaDataReply(
-            entry.json_metadata.tags || ['ecency'],
-            version
-        );
+//         if(entry){
+//             const {permlink, parent_author: parentAuthor, parent_permlink: parentPermlink} = entry;
+//         const jsonMeta = makeJsonMetaDataReply(
+//             entry.json_metadata.tags || ['ecency'],
+//             version
+//         );
 
-        this.stateSet({loading: true});
+//         this.stateSet({loading: true});
 
-        comment(
-            activeUser?.username!,
-            parentAuthor!,
-            parentPermlink!,
-            permlink,
-            '',
-            text,
-            jsonMeta,
-            null,
-        ).then(() => {
-            const nReply: Entry = {
-                ...entry,
-                body: text
-            }
+//         comment(
+//             activeUser?.username!,
+//             parentAuthor!,
+//             parentPermlink!,
+//             permlink,
+//             '',
+//             text,
+//             jsonMeta,
+//             null,
+//         ).then(() => {
+//             const nReply: Entry = {
+//                 ...entry,
+//                 body: text
+//             }
             
-            //D: need to update state which will trigger Comment didUpdate and reset text state to "" .
-            //D: may be use commentText state for above purpose .
-            this.setState({comment: text})
+//             this.setState({comment: text, isCommented: true})
 
-            updateReply(nReply); // update store
-            this.toggleEdit(); // close comment box
-            this.reload()
+//             updateReply(nReply); // update store
+//             this.toggleEdit(); // close comment box
+//             this.reload()
 
-        }).catch((e) => {
-            error(formatError(e));
-        }).finally(() => {
-            this.stateSet({loading: false});
-        });
-    }
-}
-    //D: need to check its functionality and discuss with Ghazanfar
+//         }).catch((e) => {
+//             error(formatError(e));
+//         }).finally(() => {
+//             this.stateSet({loading: false, isCommented: false});
+//         });
+//     }
+// }
+
+
+    //TBD: Need to discuss this one, in which scenario we are using this function which is mentioned in edit button in cross post UI. Also cross post understanding. 
     toggleEdit = () => {
         const {edit} = this.state;
         this.stateSet({edit: !edit});
@@ -439,8 +442,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
             // remove reply draft
             ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
-            //D: need to update state which will trigger Comment didUpdate and reset text state to "" .
-            // this.stateSet({commentText:""})
+            this.stateSet({isCommented: true})
             
             if (entry.children === 0) {
                 // Activate discussion section with first comment.
@@ -454,13 +456,11 @@ class EntryPage extends BaseComponent<Props, State> {
         }).catch((e) => {
             error(formatError(e));
         }).finally(() => {
-            this.stateSet({replying: false});
+            this.stateSet({replying: false, isCommented: false});
         })
     }
 
-
-    //D: Move this logic to Comment component so less rendering of this entry page .
-    replyTextChanged = () => {
+    resetSelection = () => {
         // const entry = this.getEntry()!;
         // ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
         this.setState({selection:""})
@@ -866,6 +866,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 </div>
                                             </div>
                                             <meta itemProp="headline name" content={entry.title}/>
+
+                                            //D: this is commented by me. Need to discuss .
                                             {/* {!edit ? 
                                                <>
                                                     <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
@@ -1018,8 +1020,10 @@ class EntryPage extends BaseComponent<Props, State> {
                                             })}
                                         </div>
                                     )}
+                                    
 
-                                    {activeUser && Comment({
+                                    //D: commented by me and need to discuss .
+                                    {/* {activeUser && Comment({
                                         ...this.props,
                                         defText: this.state.selection,
                                         submitText: _t('g.reply'),
@@ -1028,14 +1032,14 @@ class EntryPage extends BaseComponent<Props, State> {
                                         inProgress: replying,
                                         inputRef: this.commentInput,
                                         entry: entry
-                                    })}
+                                    })} */}
 
                                     {(!originalEntry && !isComment) && SimilarEntries({
                                         ...this.props,
                                         entry
                                     })}
 
-                                    {!activeUser && Comment({
+                                    {/* {!activeUser && Comment({
                                         ...this.props,
                                         defText: this.state.selection,
                                         submitText: _t('g.reply'),
@@ -1044,6 +1048,18 @@ class EntryPage extends BaseComponent<Props, State> {
                                         inProgress: replying,
                                         inputRef: this.commentInput,
                                         entry: entry, 
+                                    })} */}
+
+                                    {Comment({
+                                        ...this.props,
+                                        defText: this.state.selection,
+                                        submitText: _t('g.reply'),
+                                        resetSelection: this.resetSelection,
+                                        onSubmit: this.replySubmitted,
+                                        inProgress: replying,
+                                        isCommented: this.state.isCommented,
+                                        inputRef: this.commentInput,
+                                        entry: entry
                                     })}
 
                                     {Discussion({

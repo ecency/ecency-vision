@@ -114,16 +114,30 @@ export const Item = (props: ItemProps) => {
     const [inProgress, setInProgress] = useState(false);
     const [mutedData, setMutedData] = useState([] as string[]);
     const [isMounted, setIsMounted] = useState(false);
+    const [lsDraft, setLsDraft] = useState("");
 
     const {entry, updateReply, activeUser, addReply, deleteReply, global, community, location, history} = props;
 
     useEffect(() => {
         setIsMounted(true);
         isMounted && fetchMutedUsers();
+        checkLsDraft()
         return () => {
           setIsMounted(false);
         }
     }, []);
+
+    useEffect(() => {
+      if (edit || reply) {
+        checkLsDraft()
+      }
+    }, [edit, reply]);
+
+    const checkLsDraft = () => {
+        let replyDraft = ls.get(`reply_draft_${entry?.author}_${entry?.permlink}`)
+        replyDraft = replyDraft && replyDraft.trim() || ""
+        setLsDraft(replyDraft)
+    }
 
     const afterVote = (votes: EntryVote[], estimated: number) => { 
         const {payout} = entry;
@@ -151,12 +165,11 @@ export const Item = (props: ItemProps) => {
         setEdit(!edit);
     }
 
-    const replyTextChanged = (text: string) => {
-        ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
-    }
+    // const replyTextChanged = (text: string) => {
+    //     ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
+    // }
 
     const submitReply = (text: string) => {
-
         if (!activeUser || !activeUser.data.__loaded) {
             return;
         }
@@ -240,6 +253,7 @@ export const Item = (props: ItemProps) => {
                 ...entry,
                 body: text
             }
+            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
 
             updateReply(nReply); // update store
             toggleEdit(); // close comment box
@@ -413,10 +427,11 @@ export const Item = (props: ItemProps) => {
 
             {reply && Comment({
                 ...props,
-                defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
+                // defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
+                defText: lsDraft,
                 submitText: _t('g.reply'),
                 cancellable: true,
-                onChange: replyTextChanged,
+                // onChange: replyTextChanged,
                 onSubmit: submitReply,
                 onCancel: toggleReply,
                 inProgress: inProgress,
@@ -485,6 +500,14 @@ export class List extends Component<ListProps> {
         this.setState({isMounted: true});
         document.getElementsByTagName("html")[0].style.position = 'relative';
         this.state.isMounted && this.fetchMutedUsers();
+    }
+
+    shouldComponentUpdate(nextProps: Readonly<Props>) {
+        if(this.props.discussion === nextProps.discussion && this.props.activeUser === nextProps.activeUser) {            
+            return false
+        } else {
+            return true
+        }
     }
 
     fetchMutedUsers = () => {
@@ -647,6 +670,7 @@ export class Discussion extends Component<Props, State> {
             return <div className="discussion">{join}</div>;
         }
 
+        //CBI:  when user is logged in and post has no comments then it should show some message with Start conversation now like it shows when user is logout and no comments are present - Join the conversation now and button 
         if (count < 1) {
             return <div className="discussion empty"/>
         }
