@@ -99,7 +99,6 @@ interface State {
     entryIsMuted: boolean;
     selection: string;
     isCommented: boolean;
-    // commentText: string;
     isMounted: boolean;
     postIsDeleted: boolean;
     deletedEntry: {title: string, body: string, tags: any} | null;
@@ -114,7 +113,6 @@ class EntryPage extends BaseComponent<Props, State> {
         editHistory: false,
         comment: "",
         isCommented: false,
-        // commentText: "",
         showProfileBox: false,
         entryIsMuted: false,
         isMounted: false,
@@ -149,26 +147,11 @@ class EntryPage extends BaseComponent<Props, State> {
 
     componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
         const {location, 
-            // activeUser
         } = this.props;
-        // const {selection} = this.state;
-        // const entry = this.getEntry();
         if (location.pathname !== prevProps.location.pathname) {
             this.setState({isMounted:false})
             this.ensureEntry()
         }
-        // if (prevStates.selection !== selection && !prevStates.selection && entry) {
-            
-        // let text = selection ? (entry.body ? entry.body + `\n` : "") + selection : entry.body ? entry.body : "";
-        // if(activeUser && activeUser.username){
-        //     let storageText = ls.get(`reply_draft_${entry.author}_${entry.permlink}`);
-        //     storageText = storageText && storageText.trim()
-        //     text = selection ? storageText ?
-        //     storageText + `\n` + selection : "" + selection : storageText ? storageText : "";
-        //     this.replyTextChanged(text);
-        //     this.setState({commentText: text, selection:""})
-        // }
-        // }
     }
 
     componentWillUnmount() {
@@ -219,7 +202,6 @@ class EntryPage extends BaseComponent<Props, State> {
 
     }
     
-    //TBD: Why we have the following function here which is used in Comment component, edit state and SelectionPopover component. 
 //     updateReply = (text: string) => {
 //         const entry = this.getEntry();
 //         const {activeUser, updateReply} = this.props;
@@ -263,7 +245,6 @@ class EntryPage extends BaseComponent<Props, State> {
 // }
 
 
-    //TBD: Need to discuss this one, in which scenario we are using this function which is mentioned in edit button in cross post UI. Also cross post understanding. 
     toggleEdit = () => {
         const {edit} = this.state;
         this.stateSet({edit: !edit});
@@ -461,8 +442,6 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     resetSelection = () => {
-        // const entry = this.getEntry()!;
-        // ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
         this.setState({selection:""})
     }
 
@@ -867,7 +846,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                             </div>
                                             <meta itemProp="headline name" content={entry.title}/>
 
-                                            //D: this is commented by me. Need to discuss .
                                             {/* {!edit ? 
                                                <>
                                                     <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
@@ -1020,35 +998,11 @@ class EntryPage extends BaseComponent<Props, State> {
                                             })}
                                         </div>
                                     )}
-                                    
-
-                                    //D: commented by me and need to discuss .
-                                    {/* {activeUser && Comment({
-                                        ...this.props,
-                                        defText: this.state.selection,
-                                        submitText: _t('g.reply'),
-                                        resetSelection: this.replyTextChanged,
-                                        onSubmit: this.replySubmitted,
-                                        inProgress: replying,
-                                        inputRef: this.commentInput,
-                                        entry: entry
-                                    })} */}
 
                                     {(!originalEntry && !isComment) && SimilarEntries({
                                         ...this.props,
                                         entry
                                     })}
-
-                                    {/* {!activeUser && Comment({
-                                        ...this.props,
-                                        defText: this.state.selection,
-                                        submitText: _t('g.reply'),
-                                        resetSelection: this.replyTextChanged,
-                                        onSubmit: this.replySubmitted,
-                                        inProgress: replying,
-                                        inputRef: this.commentInput,
-                                        entry: entry, 
-                                    })} */}
 
                                     {Comment({
                                         ...this.props,

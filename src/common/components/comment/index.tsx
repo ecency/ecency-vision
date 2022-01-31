@@ -89,7 +89,7 @@ export class Comment extends Component<Props, State> {
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {defText, /*activeUser,*/ resetSelection, isCommented} = this.props;
+        const {defText, resetSelection, isCommented} = this.props;
         const {text} = this.state;
         if ((defText !== prevProps.defText) && !prevProps.defText) {
             let commentText = text ? text + '\n' + defText : defText
@@ -110,10 +110,7 @@ export class Comment extends Component<Props, State> {
     textChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: text} = e.target;
         this.setState({text}, () => {
-            // const {onChange} = this.props;
-            // if (onChange) onChange(text);
             this.updateLsCommentDraft(text)
-
             this.updatePreview();
         });
     };
