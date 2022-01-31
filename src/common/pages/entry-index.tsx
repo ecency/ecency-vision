@@ -148,7 +148,7 @@ class EntryIndexPage extends Component<PageProps, State> {
         const promoted = entries['__promoted__'].entries;
 
         const showEntryPage = this.state.step === 2 
-        || activeUser !== null
+        || activeUser !== null || activeUser === null
         || location?.pathname?.startsWith("/hot")
         || location?.pathname?.startsWith("/created")
         || location?.pathname?.startsWith("/trending")
