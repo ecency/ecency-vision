@@ -45,7 +45,7 @@ export const OpenOrders = ({data, loading, username}: Props) => {
             date = date.substring(0, date.indexOf('+'))
         return <tr key={item.id}>
                 <td>{date}</td>
-                <td>{item.seller ? "Sell" : "Buy"}</td>
+                <td>{item.sell_price.base.indexOf("HIVE") > 0 ? "Sell" : "Buy"}</td>
                 <td>{parseFloat(item.real_price).toFixed(6)}</td>
                 <td>{item.sell_price.base}</td>
                 <td>{item.sell_price.quote}</td>
