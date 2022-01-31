@@ -1,6 +1,8 @@
 import React, { Component,  } from "react";
 import {addUser} from "../../store/users";
 import {setActiveUser, updateActiveUser} from "../../store/active-user";
+import {setSigningKey} from "../../store/signing-key";
+import {addAccount} from "../../store/accounts";
 
 import {
   Modal,
@@ -16,7 +18,6 @@ import { ActiveUser } from "../../store/active-user/types";
 import BaseComponent from "../base";
 import { error } from "../feedback";
 
-
 import {
   getAccountFull,
 } from "../../api/hive";
@@ -27,11 +28,9 @@ import {
 
 import { _t } from "../../i18n";
 import KeyOrHot from "../key-or-hot";
-import { activeUserInstance } from "../../helper/test-helper";
 import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "../../store";
-import { PageProps } from "../../pages/common";
 import { PrivateKey } from '@hiveio/dhive';
 
 export type TransferMode =
@@ -110,6 +109,7 @@ interface Props {
   updateActiveUser: (arg: any) => void;
   signingKey: string;
   setSigningKey: (key: string) => void;
+  onTransactionSuccess: () => void;
 }
 
 interface State {
@@ -127,21 +127,22 @@ export class BuySellHive extends BaseComponent<any, State> {
   }
 
   updateAll = (a: any) => {
-    const {addAccount, updateActiveUser, onHide} = this.props;
+    const {addAccount, updateActiveUser, onHide, onTransactionSuccess} = this.props;
     // refresh
     addAccount(a);
     // update active
     updateActiveUser(a);
     this.stateSet({step: 3});
     this.setState({inProgress: false})
+    onTransactionSuccess()
     onHide();
   }
 
-  promiseCheck = (p: Promise<any>) => {
+  promiseCheck = (p: any) => {
     const {onHide} = this.props;
     p.then(() => getAccountFull(this.props.activeUser!.username))
       .then((a: any) => this.updateAll(a))
-      .catch(err => {
+      .catch((err:any) => {
         error(formatError(err));
         this.setState({inProgress: false})
         onHide()
@@ -152,6 +153,7 @@ export class BuySellHive extends BaseComponent<any, State> {
     this.setState({inProgress: true})
     const {activeUser, values: {total, amount}, Ttype } = this.props;
     console.log(key, key.toString());
+    
     this.promiseCheck(limitOrderCreate(activeUser!.username, key, total, amount, Ttype));
   }
 
@@ -189,6 +191,7 @@ export class BuySellHive extends BaseComponent<any, State> {
         </div>
       </div>
     );
+    
     if (step === 1) {
       return (
         <div className="mb-3">
@@ -282,6 +285,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             addUser,
             setActiveUser,
             updateActiveUser,
+            addAccount,
+            setSigningKey,
         },
         dispatch
     );

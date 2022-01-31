@@ -62,6 +62,15 @@ const MarketPage = (props: PageProps) => {
             setopenOrdersDataLoading(false);
         })
     }
+
+    const updateOpenData = () => {
+        if(activeUser){
+            setopenOrdersDataLoading(true);
+            getOpenOrder(activeUser.username).then(res=>{
+            setopenOrdersdata(res);
+            setopenOrdersDataLoading(false);
+        })}
+    }
     
     let navbar = global.isElectron ?
         NavBarElectron({
@@ -103,6 +112,7 @@ const MarketPage = (props: PageProps) => {
                                             username={activeUser!.username}
                                             activeUser={activeUser}
                                             global={global}
+                                            onTransactionSuccess={updateOpenData}
                                             onClickPeakValue={(value:any)=>setBidValues({...bidValues, lowest: value})}
                                         />
                                     </div>
@@ -116,6 +126,7 @@ const MarketPage = (props: PageProps) => {
                                             basePeakValue={data ? parseFloat(data!.highest_bid): 0}
                                             loading={loading}
                                             username={activeUser!.username}
+                                            onTransactionSuccess={updateOpenData}
                                             onClickPeakValue={(value:any)=>setBidValues({...bidValues, highest: value})}
                                         />
                                     </div>
@@ -153,6 +164,7 @@ const MarketPage = (props: PageProps) => {
                                             basePeakValue={data ? parseFloat(data!.lowest_ask): 0}
                                             loading={loading}
                                             username={activeUser!.username}
+                                            onTransactionSuccess={updateOpenData}
                                             onClickPeakValue={()=>setBidValues({...bidValues, lowest: data ? parseFloat(data!.lowest_ask): 0})}
                                         /> : <HiveBarter
                                         activeUser={activeUser}
@@ -162,6 +174,7 @@ const MarketPage = (props: PageProps) => {
                                         peakValue={parseFloat(bidValues.highest)}
                                         basePeakValue={data ? parseFloat(data!.highest_bid): 0}
                                         loading={loading}
+                                        onTransactionSuccess={updateOpenData}
                                         username={activeUser!.username}
                                         onClickPeakValue={()=>setBidValues({...bidValues, highest: data ? parseFloat(data!.highest_bid): 0})}
                                     />}
