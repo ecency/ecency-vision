@@ -246,7 +246,9 @@ exports[`(1) Default render 1`] = `
     className="comment-body"
   >
     <textarea
+      autoFocus={true}
       className="the-editor accepts-emoji  form-control"
+      disabled={false}
       onChange={[Function]}
       placeholder="Write your reply here"
       rows={1}
@@ -515,8 +517,9 @@ exports[`(2) Cancellable, in progress 1`] = `
     className="comment-body"
   >
     <textarea
+      autoFocus={true}
       className="the-editor accepts-emoji  form-control"
-      disabled={true}
+      disabled={false}
       onChange={[Function]}
       placeholder="Write your reply here"
       rows={1}
@@ -527,27 +530,11 @@ exports[`(2) Cancellable, in progress 1`] = `
     className="comment-buttons"
   >
     <button
-      className="btn-cancel btn btn-outline-primary btn-sm"
-      disabled={true}
-      onClick={[Function]}
-      type="button"
-    >
-      Cancel
-    </button>
-    <button
       className="btn-submit btn btn-primary btn-sm"
-      disabled={true}
+      disabled={false}
       onClick={[Function]}
       type="button"
     >
-      <div
-        className="spinner-grow spinner-grow-sm text-light"
-        style={
-          Object {
-            "marginRight": "6px",
-          }
-        }
-      />
        
       Reply
     </button>
