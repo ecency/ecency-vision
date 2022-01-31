@@ -77,7 +77,7 @@ export class BuySellHive extends BaseComponent<any, State> {
     this.stateSet({ step: 3 });
     this.setState({ inProgress: false });
     onTransactionSuccess();
-    onHide();
+    // onHide();
   };
 
   promiseCheck = (p: any) => {
@@ -135,6 +135,12 @@ export class BuySellHive extends BaseComponent<any, State> {
       );
     }
   };
+
+  finish = () => {
+    const { onHide, onTransactionSuccess } = this.props;
+    onTransactionSuccess();
+    onHide();
+  }
 
   render() {
     const { step, inProgress } = this.state;
@@ -234,6 +240,37 @@ export class BuySellHive extends BaseComponent<any, State> {
             </p>
           </div>
         </div>
+      );
+    }
+
+    if (step === 3) {
+
+      const formHeader4 = <div className="transaction-form-header">
+          <div className="step-no">{step}</div>
+          <div className="box-titles">
+              <div className="main-title">
+                  {_t('trx-common.success-title')}
+              </div>
+              <div className="sub-title">
+                  {_t('trx-common.success-sub-title')}
+              </div>
+          </div>
+      </div>;
+      return (
+        <div className="transaction-form">
+        {formHeader4}
+        <div className="transaction-form-body d-flex flex-column align-items-center">
+            <div className="my-5 w-75 text-center sub-title text-wrap">
+              Transaction succeeded
+            </div>
+            <div className="d-flex justify-content-center">
+                <span className="hr-6px-btn-spacer"/>
+                <Button onClick={this.finish}>
+                    {_t("g.finish")}
+                </Button>
+            </div>
+        </div>
+    </div>
       );
     }
 
