@@ -19,9 +19,9 @@ import {
   limitOrderCreateHot,
   limitOrderCreateKc,
   limitOrderCreate,
-  cancelOrderKc,
-  cancelOrderHot,
-  cancelOrderKeyed,
+  limitOrderCancelKc,
+  limitOrderCancelHot,
+  limitOrderCancel,
 } from "../../api/operations";
 
 import { _t } from "../../i18n";
@@ -92,7 +92,7 @@ export class BuySellHive extends BaseComponent<any, State> {
     this.setState({ inProgress: true });
     const { activeUser, Ttype, id } = this.props;
     if (Ttype === TransactionType.Cancel && id) {
-      this.promiseCheck(cancelOrderKeyed(activeUser!.username, key, id));
+      this.promiseCheck(limitOrderCancel(activeUser!.username, key, id));
     } else {
       const {
         values: { total, amount },
@@ -107,7 +107,7 @@ export class BuySellHive extends BaseComponent<any, State> {
     this.setState({ inProgress: true });
     const { activeUser, Ttype, id } = this.props;
     if (Ttype === TransactionType.Cancel && id) {
-      this.promiseCheck(cancelOrderHot(activeUser!.username, id));
+      this.promiseCheck(limitOrderCancelHot(activeUser!.username, id));
     } else {
       const {
         values: { total, amount },
@@ -122,7 +122,7 @@ export class BuySellHive extends BaseComponent<any, State> {
     this.setState({ inProgress: true });
     const { activeUser, Ttype, id } = this.props;
     if (Ttype === TransactionType.Cancel && id) {
-      this.promiseCheck(cancelOrderKc(activeUser!.username, id));
+      this.promiseCheck(limitOrderCancelKc(activeUser!.username, id));
     } else {
       const {
         values: { total, amount },
