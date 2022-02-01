@@ -41,7 +41,7 @@ import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
 //const logo = require('../../img/logo-circle.svg');
 
-const communityPattern = "^hive-[0-9]{6}$";
+const communityPattern = "^hive-[0-9]*$";
 
 interface Props {
     history: History;
@@ -193,12 +193,13 @@ export class NavBar extends Component<Props, State> {
 
     render() {
         const {global, activeUser, ui, step, toggleUIProp, setActiveUser, match } = this.props;
+
         const logo = global.isElectron ? "./img/logo-circle.svg" : require('../../img/logo-circle.svg');
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const re = new RegExp(communityPattern);
         const tagValue = global.tag ? `/${global.tag}` : ''
         const logoHref = activeUser ? 
-        (match && (re.test(match.params.name)) || ((global.tag === `@${activeUser.username}`) && (global.filter !== 'feed'))) ?
+        ((match && re.test(match.params.name)) || ((global.tag.includes('@')) && (['engine','wallet','points','communities','settings','permissions','comments','replies','blog', 'posts'].includes(global.filter)))) ?
         '/hot' : 
         global.filter === 'feed' ? `${tagValue}/${global.filter}` : `/${global.filter}${tagValue}` 
         : '/';
