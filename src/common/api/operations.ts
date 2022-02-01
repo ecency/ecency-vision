@@ -409,7 +409,7 @@ export const limitOrderCreate = (owner: string, key: PrivateKey, amount_to_sell:
     return hiveClient.broadcast.sendOperations([op], key);
 }
 
-export const cancelOrderKeyed = (owner: string, key: PrivateKey, orderid:number, ): Promise<TransactionConfirmation> => {
+export const limitOrderCancel = (owner: string, key: PrivateKey, orderid:number, ): Promise<TransactionConfirmation> => {
 
     const op: Operation = [
         'limit_order_cancel',
@@ -442,7 +442,7 @@ export const limitOrderCreateHot = (owner:string, amount_to_sell:any, min_to_rec
     return hs.sendOperation(op, params, () => {});
 }
 
-export const cancelOrderHot = (owner:string, orderid:number) => {
+export const limitOrderCancelHot = (owner:string, orderid:number) => {
     const op: Operation = [
         'limit_order_cancel',
         {
@@ -474,7 +474,7 @@ export const limitOrderCreateKc = (owner:string, amount_to_sell:any, min_to_rece
     return keychain.broadcast(owner, [op], "Active");
 }
 
-export const cancelOrderKc = (owner:string, orderid:any) => {
+export const limitOrderCancelKc = (owner:string, orderid:any) => {
     const op: Operation = [
         'limit_order_cancel',
         {

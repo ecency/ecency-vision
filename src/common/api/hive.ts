@@ -120,24 +120,6 @@ export const getPost = (username: string, permlink: string): Promise<any> =>
 export const getMarketStatistics = (): Promise<MarketStatistics> =>
     client.call("condenser_api", "get_ticker", []);
 
-export const cancelOpenOrder = (username:string, orderId: string|number): Promise<MarketStatistics> =>
-    client.call("condenser_api", "broadcast_transaction", [{operations:[["limit_order_cancel",{
-        "owner":username,"orderid":orderId}]]}]);
-
-export const placeHiveOrder = (username:string, min_to_receive: any, amount_to_sell:any, orderType:any): Promise<MarketStatistics> =>
-    {
-        let expiration:any = new Date(Date.now()).toISOString().split(".")[0];
-
-        return client.call("condenser_api", "broadcast_transaction", [{operations:[["limit_order_create",{
-            "orderid": Math.floor(Date.now() / 1000),
-            "owner": username,
-            "amount_to_sell": `${parseFloat(amount_to_sell).toFixed(3)} ${orderType === "buy" ? 'HBD' : "HIVE"}`,
-            "min_to_receive": `${parseFloat(min_to_receive).toFixed(3)} ${orderType === "buy" ? 'HIVE' : "HBD"}`,
-            "fill_or_kill": false,
-            "expiration": expiration
-        }]]}])
-};
-
 export const getOrderBook = (limit: number = 500): Promise<OrdersData> =>
     client.call("condenser_api", "get_order_book", [limit]);
 
