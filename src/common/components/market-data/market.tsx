@@ -161,9 +161,9 @@ class Market extends BaseComponent<Props, State> {
                 formatter: (({chart}:any) => {
                     let date = moment(chart.hoverPoint.options.x).calendar();
                     let rate = chart.hoverPoint.options.y;
-                    return `<div><div>${_t("g.when")}: <b>${date}</b></div><div>${_t("g.price")}:<b>${rate}</b></div></div>`
+                    return `<div><div>${_t("g.when")}: <b>${date}</b></div><div>${_t("g.price")}:<b>${rate.toFixed(3)}</b></div></div>`
                 }) as any,
-                enabled: false
+                enabled: true
             },
             xAxis: {
                 lineWidth: 0,
@@ -198,7 +198,7 @@ class Market extends BaseComponent<Props, State> {
                   name: ' ',
                   data: prices.map(item=>[item.time, item.price]),
                   type: 'line',
-                  enableMouseTracking: false
+                  enableMouseTracking: true
               },
             ],
           };
