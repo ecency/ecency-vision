@@ -76,11 +76,11 @@ export default class MarketData extends Component<MarketDataProps,MarketDataStat
                 </div>           
             </SSRSuspense> : <div className="p-3 border-left">
                 <div>
-                <Link to="/faqs">FAQ</Link></div>
+                <Link to="/faq">FAQ</Link></div>
                 <div className="my-3">
-                <Link to="/faqs">Terms of service</Link></div>
+                <Link to="/terms-of-service">Terms of service</Link></div>
                 <div>
-                <Link to="/faqs">Privacy Policy</Link></div>
+                <Link to="/privacy-policy">Privacy Policy</Link></div>
                 <div className="mt-3">
                 <Link to="/market">Market</Link></div>
                 </div>}
