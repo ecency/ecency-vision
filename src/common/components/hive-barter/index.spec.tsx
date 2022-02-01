@@ -15,7 +15,8 @@ it("(1) Buying render", async () => {
         loading: false,
         activeUser: activeUserInstance,
         global: globalInstance,
-        onClickPeakValue: (value:any) => {}
+        onClickPeakValue: (value:any) => {},
+        onTransactionSuccess: () => {}
     };
 
     const renderer = await TestRenderer.create(<HiveBarter {...props} type={1}/>);
@@ -32,7 +33,8 @@ it("(1) Selling render", async () => {
         loading: false,
         activeUser: activeUserInstance,
         global: globalInstance,
-        onClickPeakValue: (value:any) => {}
+        onClickPeakValue: (value:any) => {},
+        onTransactionSuccess: () => {}
     };
 
     const renderer = await TestRenderer.create(<HiveBarter {...props} type={2}/>);

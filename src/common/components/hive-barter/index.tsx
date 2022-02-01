@@ -21,7 +21,7 @@ interface Props {
   activeUser: ActiveUser;
   global: Global;
   onClickPeakValue: (value: any) => void;
-  onTransactionSuccess: () => void
+  onTransactionSuccess: () => void;
 }
 
 export const HiveBarter = ({

@@ -13,7 +13,7 @@ exports[`(1) Open orders render default 1`] = `
     <thead>
       <tr>
         <th>
-          Date Created
+          Date
         </th>
         <th>
           Type
@@ -38,7 +38,7 @@ exports[`(1) Open orders render default 1`] = `
           
         </td>
         <td>
-          Sell
+          Buy
         </td>
         <td>
           NaN

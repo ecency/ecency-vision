@@ -16,7 +16,7 @@ exports[`(1) Default render 1`] = `
         Bid
       </th>
       <th>
-        Last Price
+        Ask
       </th>
       <th>
         Spread

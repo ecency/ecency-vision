@@ -71,9 +71,7 @@ exports[`(1) Buying render 1`] = `
         <span
           className="rounded-left input-group-text"
         >
-          HBD
-          /
-          HIVE
+          HBD/HIVE
         </span>
       </div>
     </div>
@@ -121,8 +119,7 @@ exports[`(1) Buying render 1`] = `
         <span
           className="rounded-left input-group-text"
         >
-          HBD
-          ($)
+          HBD($)
         </span>
       </div>
     </div>
@@ -208,9 +205,7 @@ exports[`(1) Selling render 1`] = `
         <span
           className="rounded-left input-group-text"
         >
-          HBD
-          /
-          HIVE
+          HBD/HIVE
         </span>
       </div>
     </div>
@@ -258,8 +253,7 @@ exports[`(1) Selling render 1`] = `
         <span
           className="rounded-left input-group-text"
         >
-          HBD
-          ($)
+          HBD($)
         </span>
       </div>
     </div>
