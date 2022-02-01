@@ -70,8 +70,8 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: 
                   {item.sell_price.base.indexOf("HIVE") > 0 ? "Sell" : "Buy"}
                 </td>
                 <td>{parseFloat(item.real_price).toFixed(6)}</td>
-                <td>{item.sell_price.base}</td>
-                <td>{item.sell_price.quote}</td>
+                <td>{item.sell_price.base.indexOf("HIVE") > 0 ? item.sell_price.base.replace("HIVE","") : item.sell_price.quote.replace("HIVE","")}</td>
+                <td>{item.sell_price.base.indexOf("HIVE") > 0 ? item.sell_price.quote.replace("HBD","") : item.sell_price.base.replace("HBD","")}</td>
                 <td className="p-2">
                   <div
                     className="rounded text-white bg-primary p-1 d-inline pointer"

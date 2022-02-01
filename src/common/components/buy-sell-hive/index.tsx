@@ -260,7 +260,7 @@ export class BuySellHive extends BaseComponent<any, State> {
         {formHeader4}
         <div className="transaction-form-body d-flex flex-column align-items-center">
             <div className="my-5 w-75 text-center sub-title text-wrap">
-              Transaction succeeded
+              {_t("market.transaction-succeeded")}
             </div>
             <div className="d-flex justify-content-center">
                 <span className="hr-6px-btn-spacer"/>

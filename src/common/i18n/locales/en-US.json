@@ -295,10 +295,11 @@
     "stock-values": "Values",
     "transaction-low": "Trade total amount exceeds your available balance. Please add more funds or try with smaller amount.",
     "confirm-cancel": "Are you sure? You are cancelling order #{{orderid}}!",
-    "confirm-buy": "You're buying {{amount}} HIVE for {{price}} and total will be {{total}} HBD. Remaining balance will be {{balance}} HBD",
+    "confirm-buy": "You're trading {{amount}} HIVE for {{price}} HBD/HIVE and total will be {{total}} HBD.",
     "confirm-sell": "Values",
-    
-    "lowest-ask": "Lowest ask"
+    "transaction-succeeded": "Transaction succeeded",
+    "lowest-ask": "Lowest ask",
+    "decimal-error":"Only {{decimals}} digits after decimal are allowed!"
   },
   "list-style": {
     "title": "Toggle list style"

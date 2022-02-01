@@ -66,7 +66,7 @@ export const HiveBarter = ({
     let valueAfterPoints = splittedValue[1];
     if (valueAfterPoints && valueAfterPoints.length > decimals) {
       valueAfterPoints = valueAfterPoints.substring(0, decimals);
-      error(`Only ${decimals} digits after decimal are allowed!`);
+      error(_t("market.decimal-error",{decimals}));
       return `${splittedValue[0] + "." + valueAfterPoints}`;
     }
     return value;
