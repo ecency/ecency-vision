@@ -134,14 +134,18 @@ exports[`(1) Full render with active user 1`] = `
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  forykw
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    forykw
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -308,14 +312,18 @@ exports[`(1) Full render with active user 1`] = `
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  brittandjosie
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    brittandjosie
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -484,14 +492,18 @@ exports[`(1) Full render with active user 1`] = `
                     </svg>
                   </span>
                   <div
-                    className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
-                    <span
-                      className="author-name"
+                    <div
+                      className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                      onMouseEnter={[Function]}
                     >
-                      ardpien
-                    </span>
+                      <span
+                        className="author-name"
+                      >
+                        ardpien
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <span
@@ -660,14 +672,18 @@ exports[`(1) Full render with active user 1`] = `
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  ardpien
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    ardpien
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -835,14 +851,18 @@ exports[`(1) Full render with active user 1`] = `
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  iliyan90
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    iliyan90
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -1010,14 +1030,18 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  trincowski
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    trincowski
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -1185,14 +1209,18 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  foxkoit
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    foxkoit
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -1360,14 +1388,18 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  irisworld
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    irisworld
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -1535,14 +1567,18 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  behiver
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    behiver
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -1815,14 +1851,18 @@ exports[`(3) With selected item 1`] = `
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  forykw
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    forykw
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -1989,14 +2029,18 @@ exports[`(3) With selected item 1`] = `
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  brittandjosie
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    brittandjosie
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -2165,14 +2209,18 @@ exports[`(3) With selected item 1`] = `
                     </svg>
                   </span>
                   <div
-                    className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
-                    <span
-                      className="author-name"
+                    <div
+                      className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                      onMouseEnter={[Function]}
                     >
-                      ardpien
-                    </span>
+                      <span
+                        className="author-name"
+                      >
+                        ardpien
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <span
@@ -2341,14 +2389,18 @@ exports[`(3) With selected item 1`] = `
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  ardpien
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    ardpien
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -2516,14 +2568,18 @@ exports[`(3) With selected item 1`] = `
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  iliyan90
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    iliyan90
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -2691,14 +2747,18 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  trincowski
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    trincowski
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -2866,14 +2926,18 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  foxkoit
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    foxkoit
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -3041,14 +3105,18 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  irisworld
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    irisworld
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -3216,14 +3284,18 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  behiver
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    behiver
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -3460,14 +3532,18 @@ exports[`(4) Show mute button, muted comment 1`] = `
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  forykw
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    forykw
+                  </span>
+                </div>
               </div>
             </div>
             <span
@@ -3654,14 +3730,18 @@ exports[`(4) Show mute button, muted comment 1`] = `
                 </svg>
               </span>
               <div
-                className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                <span
-                  className="author-name"
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
                 >
-                  brittandjosie
-                </span>
+                  <span
+                    className="author-name"
+                  >
+                    brittandjosie
+                  </span>
+                </div>
               </div>
             </div>
             <span

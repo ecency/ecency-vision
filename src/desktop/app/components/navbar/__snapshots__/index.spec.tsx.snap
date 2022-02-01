@@ -740,7 +740,7 @@ exports[`(4) With active user 1`] = `
       className="brand"
     >
       <a
-        href="/@foo/feed"
+        href="/hot"
         onClick={[Function]}
       >
         <img
@@ -1024,7 +1024,7 @@ exports[`(5) With active user && usePrivate = false 1`] = `
       className="brand"
     >
       <a
-        href="/@foo/feed"
+        href="/hot"
         onClick={[Function]}
       >
         <img
