@@ -21,7 +21,7 @@ export const DeckView = () => {
         <div className="my-4 pointer">{person}</div>
         <div>{plusEncircled}</div>
       </div>
-      <div className="decks-container d-flex justify-content-between p-5 mt-5">
+      <div className="decks-container d-flex justify-content-between p-5 mt-5 overflow-auto">
           <Deck />
           <Deck />
           <Deck />
