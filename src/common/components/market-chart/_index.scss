@@ -1,0 +1,27 @@
+.ct-series-a .ct-line,
+.ct-series-a .ct-point {
+  stroke: green;
+}
+
+.ct-series-a .ct-area {
+    fill: green;
+}
+
+.ct-series-b .ct-line,
+.ct-series-b .ct-point {
+  stroke: #960000;
+}
+
+.ct-series-b .ct-area {
+    fill: #960000;
+}
+
+.DepthChart {
+  width: 106%;
+  @media (max-width: $sm-break) {
+    width: 156%;
+  }
+  @media (max-width: 570px) {
+    width: 100%;
+  }
+}

@@ -202,33 +202,9 @@ class EntryIndexPage extends Component<PageProps, State> {
                         <div className="side-menu">
                             {!global.isMobile && (
                                 <>
-                                    {1 !== this.state.step && <MarketData />}
+                                    {1 !== this.state.step && <MarketData global={global}/>}
 
-                                    <div className="menu-nav">
-                                        <DownloadTrigger>
-                                            <div className="downloads">
-                                                <span className="label">{_t("g.downloads")}</span>
-                                                <span className="icons">
-                                                    <span className="img-apple">{appleSvg}</span>
-                                                    <span className="img-google">{googleSvg}</span>
-                                                    <span className="img-desktop">{desktopSvg}</span>
-                                                </span>
-                                            </div>
-                                        </DownloadTrigger>
-
-                                        <div className="text-menu">
-                                            <Link className="menu-item" to="/faq">
-                                                {_t("entry-index.faq")}
-                                            </Link>
-                                            <Link className="menu-item" to="/terms-of-service">
-                                                {_t("entry-index.tos")}
-                                            </Link>
-                                            <Link className="menu-item" to="/privacy-policy">
-                                                {_t("entry-index.pp")}
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </>
+                                     </>
                             )}
                         </div>
                     </div>

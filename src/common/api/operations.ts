@@ -19,6 +19,7 @@ import parseAsset from "../helper/parse-asset";
 import {hotSign} from "../helper/hive-signer";
 
 import {_t} from "../i18n";
+import { TransactionType } from "../components/buy-sell-hive";
 
 export interface MetaData {
     links?: string[];
@@ -386,6 +387,103 @@ export const transferToSavingsKc = (from: string, to: string, amount: string, me
     ]
 
     return keychain.broadcast(from, [op], "Active");
+}
+
+export const limitOrderCreate = (owner: string, key: PrivateKey, amount_to_sell: any, min_to_receive: any, orderType: TransactionType): Promise<TransactionConfirmation> => {
+    let expiration:any = new Date(Date.now());
+        expiration.setDate(expiration.getDate() + 28);
+        expiration = expiration.toISOString().split(".")[0];
+
+    const op: Operation = [
+        'limit_order_create',
+        {
+            "orderid": Math.floor(Date.now() / 1000),
+            "owner": owner,
+            "amount_to_sell": `${amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
+            "min_to_receive": `${min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
+            "fill_or_kill": false,
+            "expiration": expiration
+        }
+    ]
+
+    return hiveClient.broadcast.sendOperations([op], key);
+}
+
+export const limitOrderCancel = (owner: string, key: PrivateKey, orderid:number, ): Promise<TransactionConfirmation> => {
+
+    const op: Operation = [
+        'limit_order_cancel',
+        {
+            "owner": owner,
+            "orderid": orderid,
+        }
+    ]
+
+    return hiveClient.broadcast.sendOperations([op], key);
+}
+
+export const limitOrderCreateHot = (owner:string, amount_to_sell:any, min_to_receive:any, orderType: TransactionType) => {
+    let expiration:any = new Date();
+    expiration.setDate(expiration.getDate() + 28);
+    expiration = expiration.toISOString().split(".")[0]
+    const op: Operation = [
+        'limit_order_create',
+        {
+            "orderid": Math.floor(Date.now() / 1000),
+            "owner": owner,
+            "amount_to_sell": `${amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
+            "min_to_receive": `${min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
+            "fill_or_kill": false,
+            "expiration": expiration
+        }
+    ]
+
+    const params: Parameters = {callback: `https://ecency.com/market`};
+    return hs.sendOperation(op, params, () => {});
+}
+
+export const limitOrderCancelHot = (owner:string, orderid:number) => {
+    const op: Operation = [
+        'limit_order_cancel',
+        {
+            "orderid": orderid,
+            "owner": owner,
+        }
+    ]
+
+    const params: Parameters = {callback: `https://ecency.com/market`};
+    return hs.sendOperation(op, params, () => {});
+}
+
+export const limitOrderCreateKc = (owner:string, amount_to_sell:any, min_to_receive:any, orderType: TransactionType) => {
+    let expiration:any = new Date();
+    expiration.setDate(expiration.getDate() + 28);
+    expiration = expiration.toISOString().split(".")[0]
+    const op: Operation = [
+        'limit_order_create',
+        {
+            "orderid": Math.floor(Date.now() / 1000),
+            "owner": owner,
+            "amount_to_sell": `${amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
+            "min_to_receive": `${min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
+            "fill_or_kill": false,
+            "expiration": expiration
+        }
+    ]
+
+    return keychain.broadcast(owner, [op], "Active");
+}
+
+export const limitOrderCancelKc = (owner:string, orderid:any) => {
+    const op: Operation = [
+        'limit_order_cancel',
+        {
+            "orderid": orderid,
+            "owner": owner,
+        }
+    ]
+
+    return keychain.broadcast(owner, [op], "Active");
 }
 
 export const convert = (owner: string, key: PrivateKey, amount: string): Promise<TransactionConfirmation> => {

@@ -1404,11 +1404,6 @@
     "@types/long" "*"
     "@types/node" "*"
 
-"@types/chartist@^0.11.0":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@types/chartist/-/chartist-0.11.1.tgz#3825e6cee87f5f548e8631b2c25e3a7b597b2522"
-  integrity sha512-85eNd7rF+e5sLnpprgcDdeqARgNvczEXaBfnrkw0292TBCE4KF/2HmOPA6dIblyHUWV4OZ2kuQBH2R12F+VwYg==
-
 "@types/connect@*":
   version "3.4.35"
   resolved "https://registry.yarnpkg.com/@types/connect/-/connect-3.4.35.tgz#5fcf6ae445e4021d1fc2219a4873cc73a3bb2ad1"
@@ -1447,6 +1442,11 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/geojson@*":
+  version "7946.0.8"
+  resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.8.tgz#30744afdb385e2945e22f3b033f897f76b1f12ca"
+  integrity sha512-1rkryxURpr6aWP7R786/UQOkJ3PcpQiWkAXBmdWc7ryFWqN6a4xfK7BtjXvFBKO9LjQ+MWQSWxYeZX1OApnArA==
+
 "@types/glob@^7.1.1":
   version "7.1.4"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.4.tgz#ea59e21d2ee5c517914cb4bc8e4153b99e566672"
@@ -1461,6 +1461,13 @@
   integrity sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==
   dependencies:
     "@types/node" "*"
+
+"@types/highcharts@^5.0.44":
+  version "5.0.44"
+  resolved "https://registry.yarnpkg.com/@types/highcharts/-/highcharts-5.0.44.tgz#39f677e8e637555ace4c3e690e8627a61abc9563"
+  integrity sha512-Rby1gj3GbK7zzsbK/g9T9hoybUfM+x0sBIXrOlTnj25TIvuTkLend3nKRLLz2upvLJNo36GntO6KmTFoVQXWZA==
+  dependencies:
+    "@types/geojson" "*"
 
 "@types/history@*":
   version "4.7.9"
@@ -1624,6 +1631,14 @@
   resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-6.1.2.tgz#e9d7d16b29e4ec5716711c52c35c3cec45819eac"
   integrity sha512-dcfAZNlWb5JYFbO9CGfrPWLJAyFcT6UeR3u35eBbv8liY2Rg4K7fM1G5+HnwVgot+C+kVwXAZ8pLEn2jsMfTDg==
   dependencies:
+    "@types/react" "*"
+
+"@types/react-highcharts@^16.0.3":
+  version "16.0.3"
+  resolved "https://registry.yarnpkg.com/@types/react-highcharts/-/react-highcharts-16.0.3.tgz#27ea80db6c8d491b831adef6bc031c977c37c052"
+  integrity sha512-JrrrANNA2wN4th3Wznqg6E8aUUspAR7L5gV8qXw48Cbj3J+McZW3CTHbOR7uEr6pGoa/Sl2XsZBzgEBR1DMlsw==
+  dependencies:
+    "@types/highcharts" "^5.0.44"
     "@types/react" "*"
 
 "@types/react-redux@^7.1.16", "@types/react-redux@^7.1.9":
@@ -3019,11 +3034,6 @@ chardet@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
-
-chartist@^0.11.4:
-  version "0.11.4"
-  resolved "https://registry.yarnpkg.com/chartist/-/chartist-0.11.4.tgz#e96e1c573d8b67478920a3a6ae52359d9fc8d8b7"
-  integrity sha512-H4AimxaUD738/u9Mq8t27J4lh6STsLi4BQHt65nOtpLk3xyrBPaLiLMrHw7/WV9CmsjGA02WihjuL5qpSagLYw==
 
 "chokidar@>=3.0.0 <4.0.0", chokidar@^3.3.0, chokidar@^3.4.1:
   version "3.5.2"
@@ -5274,6 +5284,11 @@ hex-color-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
   integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
+
+highcharts@^6.0.4:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-6.2.0.tgz#2a6d04652eb43c66f462ca7e2d2808f1f2782b61"
+  integrity sha512-A4E89MA+kto8giic7zyLU6ZxfXnVeCUlKOyzFsah3+n4BROx4bgonl92KIBtwLud/mIWir8ahqhuhe2by9LakQ==
 
 history@^4.7.2, history@^4.9.0:
   version "4.10.1"
@@ -8545,7 +8560,7 @@ prop-types-extra@^1.1.0:
     react-is "^16.3.2"
     warning "^4.0.0"
 
-prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.7, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -8861,13 +8876,6 @@ react-bootstrap@^1.0.1:
     uncontrollable "^7.2.1"
     warning "^4.0.3"
 
-react-chartist@^0.14.3:
-  version "0.14.4"
-  resolved "https://registry.yarnpkg.com/react-chartist/-/react-chartist-0.14.4.tgz#a70bdc78a92a7208973cab4253e177e99dc7bd29"
-  integrity sha512-1riwO5CjT5IdrilCM788waUYpIdl8Y4vsIc6Y5bbR3PIX46NYYtcq5bcaBEkIZfKEThuoJDEV6FU1rDmfbogsg==
-  dependencies:
-    prop-types "^15.5.8"
-
 react-datetime@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-datetime/-/react-datetime-3.0.4.tgz#176159d08d35c9e750f0be2f0b974e4f9532ffa5"
@@ -8964,6 +8972,13 @@ react-helmet@^6.0.0:
     prop-types "^15.7.2"
     react-fast-compare "^3.1.1"
     react-side-effect "^2.1.0"
+
+react-highcharts@^16.1.0:
+  version "16.1.0"
+  resolved "https://registry.yarnpkg.com/react-highcharts/-/react-highcharts-16.1.0.tgz#aa2d451171197462e07fa8652a42bac43da6068a"
+  integrity sha512-CHpCSMN96lXKeTIpx8UJPsUgeNeJqh81NN6cbzraiHQBiQz2mzXa5aaIWYbMEQ2NHhAEWU5uj5DPhZY1f1Rq+A==
+  dependencies:
+    highcharts "^6.0.4"
 
 react-img-webp@^2.0.2:
   version "2.0.2"

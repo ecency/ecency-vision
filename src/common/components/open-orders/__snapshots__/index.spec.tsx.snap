@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Open orders render default 1`] = `
+<div
+  className="rounded"
+>
+  <h5>
+    Open Orders
+  </h5>
+  <table
+    className="table table-sm table-striped table-bordered table-hover"
+  >
+    <thead>
+      <tr>
+        <th>
+          Date
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Price
+        </th>
+        <th>
+          HIVE
+        </th>
+        <th>
+          HBD ($)
+        </th>
+        <th>
+          Action
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          
+        </td>
+        <td>
+          Buy
+        </td>
+        <td>
+          NaN
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          string
+        </td>
+        <td
+          className="p-2"
+        >
+          <div
+            className="rounded text-white bg-primary p-1 d-inline pointer"
+            onClick={[Function]}
+          >
+            Cancel
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
