@@ -1,0 +1,13 @@
+.navbar {
+    height: 100vh;
+    background: linear-gradient($dark-sky-blue,$dusk-blue);
+    
+    @include themify(night) {
+        background: linear-gradient($metallic-blue,$dark-grey-blue);
+    }
+}
+
+.decks-container {
+    background-color: $duck-egg-blue;
+    overflow-x: auto;
+}
