@@ -42,7 +42,7 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: 
                 global={global}
                 onTransactionSuccess={onTransactionSuccess}
                 activeUser={activeUser}
-                id={isModalOpen}
+                orderid={isModalOpen}
         />
         </>
       ) : null}

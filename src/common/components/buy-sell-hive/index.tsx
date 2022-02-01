@@ -49,7 +49,7 @@ interface Props {
   signingKey: string;
   setSigningKey: (key: string) => void;
   onTransactionSuccess: () => void;
-  id?: any;
+  orderid?: any;
 }
 
 interface State {
@@ -90,9 +90,9 @@ export class BuySellHive extends BaseComponent<any, State> {
 
   sign = (key: PrivateKey) => {
     this.setState({ inProgress: true });
-    const { activeUser, Ttype, id } = this.props;
-    if (Ttype === TransactionType.Cancel && id) {
-      this.promiseCheck(limitOrderCancel(activeUser!.username, key, id));
+    const { activeUser, Ttype, orderid } = this.props;
+    if (Ttype === TransactionType.Cancel && orderid) {
+      this.promiseCheck(limitOrderCancel(activeUser!.username, key, orderid));
     } else {
       const {
         values: { total, amount },
@@ -105,9 +105,9 @@ export class BuySellHive extends BaseComponent<any, State> {
 
   signHs = () => {
     this.setState({ inProgress: true });
-    const { activeUser, Ttype, id } = this.props;
-    if (Ttype === TransactionType.Cancel && id) {
-      this.promiseCheck(limitOrderCancelHot(activeUser!.username, id));
+    const { activeUser, Ttype, orderid } = this.props;
+    if (Ttype === TransactionType.Cancel && orderid) {
+      this.promiseCheck(limitOrderCancelHot(activeUser!.username, orderid));
     } else {
       const {
         values: { total, amount },
@@ -120,9 +120,9 @@ export class BuySellHive extends BaseComponent<any, State> {
 
   signKc = () => {
     this.setState({ inProgress: true });
-    const { activeUser, Ttype, id } = this.props;
-    if (Ttype === TransactionType.Cancel && id) {
-      this.promiseCheck(limitOrderCancelKc(activeUser!.username, id));
+    const { activeUser, Ttype, orderid } = this.props;
+    if (Ttype === TransactionType.Cancel && orderid) {
+      this.promiseCheck(limitOrderCancelKc(activeUser!.username, orderid));
     } else {
       const {
         values: { total, amount },
@@ -154,7 +154,7 @@ export class BuySellHive extends BaseComponent<any, State> {
       signingKey,
       setSigningKey,
       Ttype,
-      id
+      orderid
     } = this.props;
 
     const formHeader1 = (
@@ -174,7 +174,7 @@ export class BuySellHive extends BaseComponent<any, State> {
           <div className="d-flex justify-content-center">
             {Ttype === TransactionType.Cancel ? (
               <div className="mt-5 w-75 text-center sub-title text-wrap">
-                {_t("market.confirm-cancel", {orderid:id})}
+                {_t("market.confirm-cancel", {orderid:orderid})}
               </div>
             ) : (
               <div className="mt-5 w-75 text-center sub-title text-wrap">
