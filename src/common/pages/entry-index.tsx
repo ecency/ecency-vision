@@ -35,6 +35,7 @@ import defaults from "../constants/defaults.json";
 import {appleSvg, desktopSvg, googleSvg} from "../img/svg";
 
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
+import { DeckView } from "../components/deck-view";
 
 interface State {
     step: number;
@@ -154,7 +155,7 @@ class EntryIndexPage extends Component<PageProps, State> {
         || location?.pathname?.startsWith("/trending")
         || location?.pathname?.startsWith("/payout")
         || location?.pathname?.startsWith("/payout_comments");
-        let containerClasses = global.isElectron ? "app-content entry-index-page mt-0 pt-6" : "app-content entry-index-page";
+        let containerClasses = global.isElectron ? "app-content entry-index-page mt-0 pt-6" : `app-content entry-index-page ${global.listStyle===ListStyle.deck ? "p-0 m-0" : ""}`;
         return (
             <>
                 <Meta {...metaProps} />
@@ -178,7 +179,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                 }
                 {
                     showEntryPage && <div className={containerClasses}>
-                        {global.listStyle === ListStyle.deck ? <div>Deck</div> : <>
+                        {global.listStyle === ListStyle.deck ? <DeckView /> : <>
                         <div className="tags-side">
                             {!global.isMobile && (
                                 <>
