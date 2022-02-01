@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { _t } from '../../i18n';
 import { Theme } from '../../store/global/types';
 const ReactHighcharts = require('react-highcharts/dist/ReactHighstock');
@@ -6,6 +6,8 @@ const power = 100;
 const precision = 1000;
 
 const MarketChart = ({ bids, asks, theme }:any) => {
+    const [mounted, setMounted] = useState<boolean>(false);
+    useEffect(()=>setMounted(true),[]);
 
   if (!bids.length && !asks.length) {
       return null;
@@ -30,9 +32,9 @@ const MarketChart = ({ bids, asks, theme }:any) => {
   },[theme])
 
   const depth_chart_config = generateDepthChart(bids, asks, theme);
-  return <div className="DepthChart">
+  return mounted ? <div className="DepthChart">
       <ReactHighcharts config={depth_chart_config} />
-  </div>
+  </div> : <></>
 }
 
 export default MarketChart;

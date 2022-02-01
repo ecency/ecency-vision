@@ -1,5 +1,5 @@
 import moment from "moment";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Table } from "react-bootstrap";
 import { OpenOrdersData } from "../../api/hive";
@@ -29,10 +29,12 @@ interface Props {
 
 export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState<number>(0);
+  const [mounted, setMounted] = useState<boolean>(false);
+  useEffect(()=>setMounted(true),[]);
 
   return loading ? (
     <Skeleton className="loading-hive" />
-  ) : (
+  ) : mounted ? (
     <div className="rounded">
       {isModalOpen ? (
         <>
@@ -86,5 +88,5 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: 
         </tbody>
       </Table>
     </div>
-  );
+  ) : <></>;
 };
