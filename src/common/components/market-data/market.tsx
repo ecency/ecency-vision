@@ -197,7 +197,7 @@ class Market extends BaseComponent<Props, State> {
               {
                   name: ' ',
                   data: prices.map(item=>[item.time, item.price]),
-                  type: 'area',
+                  type: 'line',
                   enableMouseTracking: false
               },
             ],
