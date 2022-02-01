@@ -43,7 +43,8 @@ export const HiveBarter = ({
   const [transaction, setTransaction] = useState<
     TransactionType.Sell | TransactionType.Buy | TransactionType.None
   >(TransactionType.None);
-  const [placingOrder, setPlacingOrder] = useState(false);
+  const [mounted, setMounted] = useState<boolean>(false);
+  useEffect(()=>setMounted(true),[]);
 
   useEffect(() => {
     if (peakValue) {
@@ -76,7 +77,7 @@ export const HiveBarter = ({
 
   return loading ? (
     <Skeleton className="loading-hive" />
-  ) : (
+  ) : mounted ? (
     <div className="border p-3 rounded">
       <div className="d-flex justify-content-between align-items-center">
         <h3 className="mb-0">
@@ -201,5 +202,5 @@ export const HiveBarter = ({
         />
       )}
     </div>
-  );
+  ) : <></>;
 };

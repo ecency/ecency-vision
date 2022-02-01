@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { MarketStatistics } from '../../api/hive';
 import { _t } from '../../i18n';
@@ -10,6 +10,8 @@ interface Props {
     data: MarketStatistics | null;
 }
 export const ChartStats = ({loading, data}: Props) =>{
+    const [mounted, setMounted] = useState(false);
+    useEffect(()=>setMounted(true),[]);
 
     return loading ?
         <Table striped={true} bordered={true} hover={true}>
@@ -31,7 +33,7 @@ export const ChartStats = ({loading, data}: Props) =>{
                     <td><Skeleton className="skeleton-loading mr-5" /></td>
                 </tr>
             </tbody>
-        </Table> :  <Table striped={true} bordered={true} hover={true} size={isMobile() ? 'sm' : 'lg'}>
+        </Table> :  mounted ? <Table striped={true} bordered={true} hover={true} size={isMobile() ? 'sm' : 'lg'}>
                             <thead>
                                 <tr>
                                     <th>{_t("market.last-price")}</th>
@@ -50,5 +52,5 @@ export const ChartStats = ({loading, data}: Props) =>{
                                     <td>{data? ((200 * (parseFloat(data.lowest_ask) - parseFloat(data.highest_bid))) / (parseFloat(data.highest_bid) + parseFloat(data.lowest_ask))).toFixed(3) : null}%</td>
                                 </tr>
                             </tbody>
-                    </Table>
+                    </Table> : <></>
 } 
