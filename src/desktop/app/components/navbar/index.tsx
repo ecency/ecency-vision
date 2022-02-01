@@ -323,7 +323,7 @@ interface State {
     floating: boolean,
 }
 
-const communityPattern = "^hive-[0-9]{6}$";
+const communityPattern = "^hive-[0-9]*$";
 
 export class NavBar extends Component<Props, State> {
     state: State = {
@@ -388,7 +388,7 @@ export class NavBar extends Component<Props, State> {
         const re = new RegExp(communityPattern);
         const tagValue = global.tag ? `/${global.tag}` : ''
         const logoHref = activeUser ? 
-        (match && (re.test(match.params.name)) || ((global.tag === `@${activeUser.username}`) && (global.filter !== 'feed'))) ?
+        ((match && re.test(match.params.name)) || ((global.tag.includes('@')) && (['engine','wallet','points','communities','settings','permissions','comments','replies','blog', 'posts'].includes(global.filter)))) ?
         '/hot' : 
         global.filter === 'feed' ? `${tagValue}/${global.filter}` : `/${global.filter}${tagValue}` 
         : '/';
