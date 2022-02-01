@@ -52,6 +52,7 @@ const faqKeysGeneral = [
     'how-to-transfer',
     'how-see-rewards',
     'when-claim-rewards',
+    'how-exchange-work',
     'how-boost-account',
     'how-dhf-work',
     'what-spam-abuse',
