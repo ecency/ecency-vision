@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
-import { placeHiveOrder } from "../../api/hive";
 import { _t } from "../../i18n";
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
@@ -50,16 +49,6 @@ export const HiveBarter = ({
       setPrice(peakValue.toFixed(6));
     }
   }, [peakValue]);
-
-  const buyHive = () => {
-    return placeHiveOrder(username, `${amount}`, total, "buy");
-  };
-
-  const sellHive = () => {
-    return placeHiveOrder(username, `${amount}`, total, "sell");
-  };
-
-  const placeOrder = type === 1 ? buyHive : sellHive;
 
   const fixDecimals = (value: string, decimals: number): string => {
     let splittedValue = value.split(".");
@@ -187,7 +176,6 @@ export const HiveBarter = ({
       {transaction !== TransactionType.None && (
         <BuySellHiveDialog
           Ttype={transaction}
-          onConfirm={placeOrder}
           onHide={() => setTransaction(TransactionType.None)}
           global={global}
           onTransactionSuccess={onTransactionSuccess}

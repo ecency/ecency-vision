@@ -283,13 +283,11 @@ class EntryPage extends BaseComponent<Props, State> {
             // let urlPartOne = match.url.split('/')[1];
             // let urlPartTwo = match.url.split('/')[2];
             // let isInvalidUrl = urlPartOne == urlPartTwo;
-            // debugger
             // if(isInvalidUrl){
             //     let address: any = match.url.split('/');
             //     address.shift();
             //     address.shift();
             //     address = address.join("/");
-            //     debugger
             //     history.push('/' + address);
             // } else {
             // The entry isn't in reducer. Fetch it and add to reducer.

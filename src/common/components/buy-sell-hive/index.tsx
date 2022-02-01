@@ -40,7 +40,6 @@ export enum TransactionType {
 
 interface Props {
   type: TransactionType;
-  onConfirm?: Promise<void>;
   onHide: () => void;
   values?: { total: number; amount: number; price: number; available: number };
   global: Global;
