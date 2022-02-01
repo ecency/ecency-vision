@@ -72,7 +72,7 @@ export const Orders = ({ type, loading, data, onPriceClick }: Props) => {
           let price = hbd / hive;
           let type = item.current_pays.indexOf("HBD") !== -1 ? "bid" : "ask";
           let stringPrice = price.toFixed(6);
-          debugger
+          
           return {
             key5: type,
             key4: type === "bid" ? (item as TradeDataItem).current_pays.replace(" HBD","") : (item as TradeDataItem).open_pays.replace(" HBD",""),
