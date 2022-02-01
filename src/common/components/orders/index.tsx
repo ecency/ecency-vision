@@ -9,15 +9,15 @@ import { _t } from "../../i18n";
 
 const buyColumns = [
   `${_t("market.price")}`,
-  `${_t("wallet.hive")}`,
-  `${_t("market.total")} ${_t("market.hbd")} ($)`,
+  `HIVE`,
+  `${_t("market.total")} HBD ($)`,
 ];
 
 const tradeColumns = [
   `${_t("market.date")}`,
   `${_t("market.price")}`,
-  `${_t("wallet.hive")}`,
-  `${_t("market.hbd")} ($)`,
+  `HIVE`,
+  `HBD ($)`,
 ];
 
 export interface MappedData {

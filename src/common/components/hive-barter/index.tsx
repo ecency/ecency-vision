@@ -70,7 +70,7 @@ export const HiveBarter = ({
       <div className="d-flex justify-content-between align-items-center">
         <h3 className="mb-0">
           {type === 1 ? _t("market.buy") : _t("market.sell")}{" "}
-          {_t("wallet.hive")}
+          HIVE
         </h3>
         <div>
           <small className="d-flex">
@@ -115,7 +115,7 @@ export const HiveBarter = ({
               }}
             />
             <InputGroup.Text className="rounded-left">
-              {_t("market.hbd")}/{_t("wallet.hive")}
+              HBD/HIVE
             </InputGroup.Text>
           </InputGroup>
         </Form.Group>
@@ -136,7 +136,7 @@ export const HiveBarter = ({
               }}
             />
             <InputGroup.Text className="rounded-left">
-              {_t("wallet.hive")}
+              HIVE
             </InputGroup.Text>
           </InputGroup>
         </Form.Group>
@@ -165,7 +165,7 @@ export const HiveBarter = ({
               }}
             />
             <InputGroup.Text className="rounded-left">
-              {_t("market.hbd")}($)
+              HBD($)
             </InputGroup.Text>
           </InputGroup>
         </Form.Group>

@@ -14,8 +14,8 @@ const columns = [
   `${_t("market.date-created")}`,
   `${_t("market.type")}`,
   `${_t("market.price")}`,
-  `${_t("wallet.hive")}`,
-  `${_t("market.hbd")} ($)`,
+  `HIVE`,
+  `HBD ($)`,
   `${_t("market.action")}`,
 ];
 
