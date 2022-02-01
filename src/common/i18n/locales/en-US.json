@@ -284,7 +284,6 @@
     "orders": "Orders",
     "date": "Date",
     "open-orders": "Open Orders",
-    "date-created": "Date Created",
     "type": "Type",
     "action": "Action",
     "trade-history": "Trade History",
@@ -292,13 +291,13 @@
     "stock-info": "Stock information",
     "barter": "Exchange tokens",
     "stock-values": "Values",
-    "transaction-low": "Trade total amount exceeds your available balance. Please add more funds or try with smaller amount.",
+    "transaction-low": "Total amount exceeds your available balance. Please add more funds or try with smaller amount.",
     "confirm-cancel": "Are you sure? You are cancelling order #{{orderid}}!",
     "confirm-buy": "You're trading {{amount}} HIVE for {{price}} HBD/HIVE and total will be {{total}} HBD.",
     "confirm-sell": "Values",
     "transaction-succeeded": "Transaction succeeded",
     "lowest-ask": "Lowest ask",
-    "decimal-error":"Only {{decimals}} digits after decimal are allowed!"
+    "decimal-error":"Only {{decimals}} decimal digits allowed!"
   },
   "list-style": {
     "title": "Toggle list style"

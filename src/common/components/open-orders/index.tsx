@@ -11,7 +11,7 @@ import { Skeleton } from "../skeleton";
 import { ActiveUser } from "../../store/active-user/types";
 
 const columns = [
-  `${_t("market.date-created")}`,
+  `${_t("market.date")}`,
   `${_t("market.type")}`,
   `${_t("market.price")}`,
   `HIVE`,
