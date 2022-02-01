@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Table } from 'react-bootstrap';
 import { MarketStatistics } from '../../api/hive';
 import { _t } from '../../i18n';
