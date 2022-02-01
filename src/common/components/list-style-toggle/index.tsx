@@ -16,6 +16,7 @@ import {
     gridView,
     listView,
     menuDownSvg,
+    viewStackedSvg,
 } from "../../img/svg";
 
 interface Props {
@@ -33,24 +34,29 @@ export default class ListStyleToggle extends Component<Props> {
 
     changeStyle = (view: string) => {
         const { toggleListStyle } = this.props;
-
+        debugger
         toggleListStyle(view);
     };
 
     render() {
         const { global } = this.props;
         const { listStyle } = global;
-
+        debugger
         const dropDownItems: MenuItem[] = [
             {
                 label: <span className="gridMenu">{gridView} {_t("layouts.grid")}</span>,
-                active: global.listStyle === "grid",
+                active: listStyle === "grid",
                 onClick: () => {this.changeStyle("grid")},
             },
             {
                 label: <span className="gridMenu">{listView} {_t("layouts.classic")}</span>,
-                active: global.listStyle === "row",
+                active: listStyle === "row",
                 onClick: () => {this.changeStyle("row")},
+            },
+            {
+                label: <span className="gridMenu">{viewStackedSvg} {_t("layouts.deck")}</span>,
+                active: listStyle === "deck",
+                onClick: () => {this.changeStyle("deck")},
             },
         ];
 
@@ -65,7 +71,6 @@ export default class ListStyleToggle extends Component<Props> {
             items: dropDownItems,
             preElem: undefined,
         };
-
         return (
             <div className="viewLayouts">
                 <DropDown {...dropDownConfig} float="right" header="" />

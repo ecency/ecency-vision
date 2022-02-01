@@ -155,7 +155,6 @@ class EntryIndexPage extends Component<PageProps, State> {
         || location?.pathname?.startsWith("/payout")
         || location?.pathname?.startsWith("/payout_comments");
         let containerClasses = global.isElectron ? "app-content entry-index-page mt-0 pt-6" : "app-content entry-index-page";
-    
         return (
             <>
                 <Meta {...metaProps} />
@@ -179,6 +178,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                 }
                 {
                     showEntryPage && <div className={containerClasses}>
+                        {global.listStyle === ListStyle.deck ? <div>Deck</div> : <>
                         <div className="tags-side">
                             {!global.isMobile && (
                                 <>
@@ -230,7 +230,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                                     </div>
                                 </>
                             )}
-                        </div>
+                        </div></>}
                     </div>
                 }
                 <DetectBottom onBottom={this.bottomReached}/>
