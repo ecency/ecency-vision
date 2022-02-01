@@ -14,8 +14,8 @@ const columns = [
   `${_t("market.date")}`,
   `${_t("market.type")}`,
   `${_t("market.price")}`,
-  `${_t("wallet.hive")}`,
-  `${_t("market.hbd")} ($)`,
+  `HIVE`,
+  `HBD ($)`,
   `${_t("market.action")}`,
 ];
 
@@ -42,7 +42,7 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: 
                 global={global}
                 onTransactionSuccess={onTransactionSuccess}
                 activeUser={activeUser}
-                id={isModalOpen}
+                orderid={isModalOpen}
         />
         </>
       ) : null}
