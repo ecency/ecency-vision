@@ -564,7 +564,8 @@
     "withdraw-routes": "Ricompense assegnate",
     "calculating": "Calculating",
     "converting-hbd-amount": "In attesa di conversione in HIVE",
-    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings",
+    "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
     "title": "Token Hive Engine",
