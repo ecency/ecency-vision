@@ -399,8 +399,8 @@ export const limitOrderCreate = (owner: string, key: PrivateKey, amount_to_sell:
         {
             "orderid": Math.floor(Date.now() / 1000),
             "owner": owner,
-            "amount_to_sell": `${amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
-            "min_to_receive": `${min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
+            "amount_to_sell": `${orderType === TransactionType.Buy ? amount_to_sell.toFixed(3) : min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
+            "min_to_receive": `${orderType === TransactionType.Buy ? min_to_receive.toFixed(3): amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
             "fill_or_kill": false,
             "expiration": expiration
         }
@@ -431,8 +431,8 @@ export const limitOrderCreateHot = (owner:string, amount_to_sell:any, min_to_rec
         {
             "orderid": Math.floor(Date.now() / 1000),
             "owner": owner,
-            "amount_to_sell": `${amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
-            "min_to_receive": `${min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
+            "amount_to_sell": `${orderType === TransactionType.Buy ? amount_to_sell.toFixed(3) : min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
+            "min_to_receive": `${orderType === TransactionType.Buy ? min_to_receive.toFixed(3): amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
             "fill_or_kill": false,
             "expiration": expiration
         }
@@ -464,8 +464,8 @@ export const limitOrderCreateKc = (owner:string, amount_to_sell:any, min_to_rece
         {
             "orderid": Math.floor(Date.now() / 1000),
             "owner": owner,
-            "amount_to_sell": `${amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
-            "min_to_receive": `${min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
+            "amount_to_sell": `${orderType === TransactionType.Buy ? amount_to_sell.toFixed(3) : min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
+            "min_to_receive": `${orderType === TransactionType.Buy ? min_to_receive.toFixed(3): amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
             "fill_or_kill": false,
             "expiration": expiration
         }
