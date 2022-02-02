@@ -564,7 +564,8 @@
     "withdraw-routes": "Rotas de Saque",
     "calculating": "Calculando",
     "converting-hbd-amount": "Convertendo em HIVE",
-    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings",
+    "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
     "title": "Tokens da Hive Engine",
