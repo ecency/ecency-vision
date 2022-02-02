@@ -275,8 +275,8 @@
     "last-price": "Último precio",
     "volume": "Volumen de 24 horas",
     "bid": "Oferta",
-    "spread": "Propagar",
-    "ask": "Preguntar",
+    "spread": "Margen (spread)",
+    "ask": "Pedir",
     "buy": "Comprar",
     "sell": "Vender",
     "available": "Disponible",
@@ -1182,7 +1182,7 @@
       "boosting-vote-buying-header": "¿Impulsar se considera una compra de votos?",
       "boosting-vote-buying-body": "<p>¡No! Porque, no hay garantía de recibir votos, no hay garantía de cantidad exacta de voto. Impulsar la cantidad máxima es limitado, cada contenido revisado por nuestros curadores, no hay ganancia en ello. Todas las recompensas de curación son enviadas de vuelta a los delegadores al 100%. El único éxito alcanzable que buscamos es ver el compromiso y el crecimiento en todo el ecosistema. Impulsar es simplemente crear un caso de uso adicional para que los puntos de emisión mejoren el compromiso en la plataforma, por lo que es esencialmente igual que cualquier otro gremio de curación en Colmena. El objetivo de esos gremios en última instancia para mejorar el compromiso en la plataforma y aumentar la actividad, la manera en que se evalúa cada medida de éxito es la diferencia.</p>",
       "how-exchange-work-header": "¿Cómo funciona el intercambio de tokens?",
-      "how-exchange-work-body": "<p>El intercambio y el comercio de tokens en Ecencia es muy simple. Utilizamos el tipo de cambio interno para el tipo de cambio descentralizado incorporado en la cadena de bloques de Hive. Ofrece una interfaz fácil de usar para que puedas intercambiar un token a otro, completamente descentralizado. Crea una orden de compra o venta y espera a que otras personas llenen tu pedido. Si desea intercambiar tokens rápidamente, entonces puede llenar la orden abierta de otra persona para un intercambio rápido.</p>"
+      "how-exchange-work-body": "<p>El intercambio y el comercio de tokens en Ecency es muy simple. Utilizamos el intercambio P2P, persona a persona, descentralizado e incorporado en la cadena de bloques de Hive. Ofrece una interfaz fácil de usar para que puedas intercambiar un token a otro, completamente descentralizado. Crea una orden de compra o venta y espera a que otras personas llenen tu pedido. Si desea intercambiar tokens rápidamente, entonces puede llenar la orden abierta de otra persona para un intercambio rápido.</p>"
     }
   },
   "contributors": {
