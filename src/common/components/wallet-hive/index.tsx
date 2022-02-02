@@ -67,6 +67,7 @@ interface State {
     transferAsset: null | TransferAsset;
     converting: number;
     withdrawSavings: number;
+    openOrders: { hbd:string | number, hive: string | number };
     aprs: { hbd:string | number, hp: string | number }
 }
 
@@ -82,12 +83,14 @@ export class WalletHive extends BaseComponent<Props, State> {
         transferAsset: null,
         converting: 0,
         withdrawSavings: 0,
+        openOrders: {hbd: 0, hive: 0},
         aprs: { hbd:0, hp: 0 }
     };
 
     componentDidMount() {
         this.fetchConvertingAmount();
         this.fetchWithdrawFromSavings();
+        this.getOrders();
     }
 
     getCurrentHpApr = (gprops:DynamicProps) => {
@@ -159,6 +162,27 @@ export class WalletHive extends BaseComponent<Props, State> {
         this.stateSet({withdrawSavings});
     }
 
+    getOrders = async() => {
+        const {account} = this.props;
+
+        const oo = await getOpenOrder(account.name);
+        if (oo.length === 0) {
+            return;
+        }
+
+        let openOrders = {hive: 0, hbd: 0};
+        oo.forEach(x => {
+            const bb = x.sell_price.base;
+            if (bb.includes('HIVE')) {
+                openOrders.hive += parseAsset(bb).amount;
+            } else {
+                openOrders.hbd += parseAsset(bb).amount;
+            }
+        });
+
+        this.stateSet({openOrders});
+    }
+
     toggleDelegatedList = () => {
         const {delegatedList} = this.state;
         this.stateSet({delegatedList: !delegatedList});
@@ -213,8 +237,8 @@ export class WalletHive extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, dynamicProps, account, activeUser} = this.props;
-        const {claiming, claimed, transfer, transferAsset, transferMode, converting, withdrawSavings, aprs: {hbd, hp}} = this.state;
+        const {global, dynamicProps, account, activeUser, history} = this.props;
+        const {claiming, claimed, transfer, transferAsset, transferMode, converting, withdrawSavings, aprs: {hbd, hp}, openOrders} = this.state;
 
         if (!account.__loaded) {
             return null;
@@ -335,6 +359,18 @@ export class WalletHive extends BaseComponent<Props, State> {
 
                                     <span>{formattedNumber(w.balance, {suffix: "HIVE"})}</span>
                                 </div>
+                                {openOrders && openOrders.hive > 0 && (
+                                    <div className="amount amount-passive converting-hbd">
+                                        <Tooltip content={_t("wallet.reserved-amount")}>
+                                      <span className="amount-btn" onClick={(e) => {
+                                              e.preventDefault();
+                                              history.push(`/market`);
+                                          }}>
+                                          {"+"} {formattedNumber(openOrders.hive, {suffix: "HIVE"})}
+                                      </span>
+                                        </Tooltip>
+                                    </div>
+                                )}
                             </div>
                         </div>
 
@@ -533,6 +569,19 @@ export class WalletHive extends BaseComponent<Props, State> {
                                         <Tooltip content={_t("wallet.withdrawing-hbd-amount")}>
                                       <span>
                                           {"+"} {formattedNumber(withdrawSavings, {prefix: "$"})}
+                                      </span>
+                                        </Tooltip>
+                                    </div>
+                                )}
+
+                                {openOrders && openOrders.hbd > 0 && (
+                                    <div className="amount amount-passive converting-hbd">
+                                        <Tooltip content={_t("wallet.reserved-amount")}>
+                                      <span className="amount-btn" onClick={(e) => {
+                                              e.preventDefault();
+                                              history.push(`/market`);
+                                          }}>
+                                          {"+"} {formattedNumber(openOrders.hbd, {prefix: "$"})}
                                       </span>
                                         </Tooltip>
                                     </div>
