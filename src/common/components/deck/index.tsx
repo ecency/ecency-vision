@@ -1,15 +1,18 @@
 import React from "react";
-import { hot } from "../../img/svg";
+import { burgerGrey, hot } from "../../img/svg";
 
 const DeckHeader = () => {
   return (
-    <div className="border-bottom p-3 d-flex justify-content-between align-items-center">
+    <div className="border-bottom d-flex justify-content-between align-items-center deck-header position-relative">
       <div className="d-flex align-items-center">
-        <div>2</div>
-        <div className="d-flex align-items-center">
-          <div>{hot}</div>
-          <div>title</div>
+        <div className="index">2</div>
+        <div className="d-flex align-items-center ml-3">
+          <div className="icon">{hot}</div>
+          <div className="header-title">Title</div>
         </div>
+      </div>
+      <div>
+          {burgerGrey}
       </div>
     </div>
   );
