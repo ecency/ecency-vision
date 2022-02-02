@@ -178,11 +178,10 @@ export class BuySellHive extends BaseComponent<any, State> {
               </div>
             ) : (
               <div className="mt-5 w-75 text-center sub-title text-wrap">
-                {available < total
+                {available < (Ttype === TransactionType.Buy ? total : amount)
                   ? _t("market.transaction-low")
-                  : TransactionType.Buy
-                  ? _t("market.confirm-buy", {amount, price, total, balance: parseFloat(available - total as any).toFixed(3)})
-                  : ``}
+                  : _t("market.confirm-buy", {amount, price, total, balance: parseFloat(available - total as any).toFixed(3)})
+                }
               </div>
             )}
           </div>
