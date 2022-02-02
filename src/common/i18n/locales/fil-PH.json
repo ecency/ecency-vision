@@ -564,7 +564,8 @@
     "withdraw-routes": "Ilabas ang mga ruta",
     "calculating": "Calculating",
     "converting-hbd-amount": "Ipinapalit sa Hive",
-    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings",
+    "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",
