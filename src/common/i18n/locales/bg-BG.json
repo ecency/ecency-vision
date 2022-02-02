@@ -564,7 +564,8 @@
     "withdraw-routes": "Пътища за теглене",
     "calculating": "Calculating",
     "converting-hbd-amount": "Преобразувай HBD към HIVE",
-    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings",
+    "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",
