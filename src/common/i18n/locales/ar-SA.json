@@ -564,7 +564,8 @@
     "withdraw-routes": "طرق السحب",
     "calculating": "جاري الحساب",
     "converting-hbd-amount": "التحويل إلى HIVE",
-    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings",
+    "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
     "title": "رموز Hive Engine",
