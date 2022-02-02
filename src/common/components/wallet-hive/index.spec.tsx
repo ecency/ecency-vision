@@ -36,6 +36,25 @@ jest.mock("../../api/hive", () => ({
                 }]);
             }
         }),
+    getSavingsWithdrawFrom: () =>
+        new Promise((resolve) => {
+
+            if (MOCK_MODE === 1) {
+                resolve([]);
+            }
+
+            if (MOCK_MODE === 2) {
+                resolve([{
+                    "id":137852,
+                    "from":"ecency",
+                    "to":"ecency",
+                    "memo":"",
+                    "request_id":3123100728,
+                    "amount":"10100.297 HBD",
+                    "complete":"2022-02-05T11:16:54"
+                }]);
+            }
+        }),
 }));
 
 const account: FullAccount = {

@@ -625,6 +625,17 @@ exports[`(2) Render with converting HBD 1`] = `
               $ 1,200.000
             </span>
           </div>
+          <div
+            className="amount amount-passive converting-hbd"
+          >
+            <span
+              title="Withdrawing HBD from Savings"
+            >
+              +
+               
+              $ 10,100.297
+            </span>
+          </div>
         </div>
       </div>
       <div
@@ -1045,6 +1056,17 @@ exports[`(3) usePrivate = false 1`] = `
               +
                
               $ 1,200.000
+            </span>
+          </div>
+          <div
+            className="amount amount-passive converting-hbd"
+          >
+            <span
+              title="Withdrawing HBD from Savings"
+            >
+              +
+               
+              $ 10,100.297
             </span>
           </div>
         </div>

@@ -131,35 +131,32 @@ export class WalletHive extends BaseComponent<Props, State> {
         let hp = this.getCurrentHpApr(dynamicProps).toFixed(3);
         this.setState({aprs: {...aprs, hbd: hbdInterestRate/100, hp}})
 
-        getConversionRequests(account.name).then(r => {
-            if (r.length === 0) {
-                return;
-            }
+        const crd = await getConversionRequests(account.name);
+        if (crd.length === 0) {
+            return;
+        }
 
-            let converting = 0;
-            r.forEach(x => {
-                converting += parseAsset(x.amount).amount;
-            });
-
-            this.stateSet({converting});
+        let converting = 0;
+        crd.forEach(x => {
+            converting += parseAsset(x.amount).amount;
         });
+        this.stateSet({converting});
     }
 
     fetchWithdrawFromSavings = async() => {
         const {account} = this.props;
 
-        getSavingsWithdrawFrom(account.name).then(r => {
-            if (r.length === 0) {
-                return;
-            }
+        const swf = await getSavingsWithdrawFrom(account.name);
+        if (swf.length === 0) {
+            return;
+        }
 
-            let withdrawSavings = 0;
-            r.forEach(x => {
-                withdrawSavings += parseAsset(x.amount).amount;
-            });
-
-            this.stateSet({withdrawSavings});
+        let withdrawSavings = 0;
+        swf.forEach(x => {
+            withdrawSavings += parseAsset(x.amount).amount;
         });
+
+        this.stateSet({withdrawSavings});
     }
 
     toggleDelegatedList = () => {
