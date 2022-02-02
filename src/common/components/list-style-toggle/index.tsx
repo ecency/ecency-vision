@@ -22,6 +22,7 @@ import {
 interface Props {
     global: Global;
     toggleListStyle: (view: string | null) => void;
+    iconClass?: string
 }
 
 export default class ListStyleToggle extends Component<Props> {
@@ -34,14 +35,12 @@ export default class ListStyleToggle extends Component<Props> {
 
     changeStyle = (view: string) => {
         const { toggleListStyle } = this.props;
-        debugger
         toggleListStyle(view);
     };
 
     render() {
-        const { global } = this.props;
+        const { global, iconClass } = this.props;
         const { listStyle } = global;
-        debugger
         const dropDownItems: MenuItem[] = [
             {
                 label: <span className="gridMenu">{gridView} {_t("layouts.grid")}</span>,
@@ -64,8 +63,8 @@ export default class ListStyleToggle extends Component<Props> {
             history: null,
             label: (
                 <span className="view-feed">
-                    <span className="view-layout">{viewModuleSvg}</span>{" "}
-                    <span className="menu-down-icon">{menuDownSvg}</span>
+                    <span className={"view-layout " + iconClass}>{viewModuleSvg}</span>{" "}
+                    <span className={"menu-down-icon " + iconClass}>{menuDownSvg}</span>
                 </span>
             ),
             items: dropDownItems,

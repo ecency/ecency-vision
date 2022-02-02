@@ -1,3 +1,13 @@
+@keyframes containerAnimation { 
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+
 .navbar {
     height: 100vh;
     background: linear-gradient($dark-sky-blue,$dusk-blue);
@@ -11,6 +21,7 @@
     background-color: $duck-egg-blue;
     overflow-x: auto;
     max-width: 100vw;
+    animation: containerAnimation 2s;
 }
 
 .cursor-pointer {
@@ -20,4 +31,8 @@
 .my-icons-5{
     margin-top: 2rem !important;
     margin-bottom: 2rem !important;
+}
+
+.menu-icon path {
+    fill: $white;
 }

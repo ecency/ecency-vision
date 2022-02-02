@@ -1,4 +1,6 @@
-import React from "react";
+import React, { Dispatch } from "react";
+import { connect } from "react-redux";
+import { AnyAction, bindActionCreators } from "redux";
 import {
   burger,
   communities,
@@ -11,14 +13,17 @@ import {
   tags,
   wallet,
 } from "../../img/svg";
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../../pages/common";
 import { Deck } from "../deck";
+import ListStyleToggle from "../list-style-toggle";
 
-export const DeckView = () => {
+const DeckViewContainer = ({global, toggleListStyle}:PageProps) => {
   return (
     <div className="d-flex flex-grow-1">
       <div className="navbar d-flex flex-column align-items-center pt-5 p-3">
-        <div className="pt-5 cursor-pointer">{burger}</div>
-        <div className="my-icons-5 cursor-pointer">{grid}</div>
+        <div className="mt-5 my-icons-5 cursor-pointer">
+            <ListStyleToggle global={global} toggleListStyle={toggleListStyle} iconClass="menu-icon"/>
+        </div>
         <div className="cursor-pointer">{person}</div>
         <div className="my-icons-5 cursor-pointer">{hot}</div>
         <div className="cursor-pointer">{magnify}</div>
@@ -40,3 +45,5 @@ export const DeckView = () => {
     </div>
   );
 };
+
+export const DeckView = connect(pageMapStateToProps, pageMapDispatchToProps)(DeckViewContainer);
