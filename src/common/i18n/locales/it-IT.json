@@ -563,7 +563,8 @@
     "power-down": "Depotenziamento",
     "withdraw-routes": "Ricompense assegnate",
     "calculating": "Calculating",
-    "converting-hbd-amount": "In attesa di conversione in HIVE"
+    "converting-hbd-amount": "In attesa di conversione in HIVE",
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
   },
   "wallet-engine": {
     "title": "Token Hive Engine",

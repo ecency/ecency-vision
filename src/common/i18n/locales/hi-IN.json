@@ -563,7 +563,8 @@
     "power-down": "पावर नीचे करे",
     "withdraw-routes": "निकाशी मार्ग",
     "calculating": "गिना जा रहा है",
-    "converting-hbd-amount": "हाइव में परिवर्तित हो रहा हैं"
+    "converting-hbd-amount": "हाइव में परिवर्तित हो रहा हैं",
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
   },
   "wallet-engine": {
     "title": "हाइव इंजन टोकनस",

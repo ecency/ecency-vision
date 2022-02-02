@@ -391,7 +391,7 @@ export const transferToSavingsKc = (from: string, to: string, amount: string, me
 
 export const limitOrderCreate = (owner: string, key: PrivateKey, amount_to_sell: any, min_to_receive: any, orderType: TransactionType): Promise<TransactionConfirmation> => {
     let expiration:any = new Date(Date.now());
-        expiration.setDate(expiration.getDate() + 28);
+        expiration.setDate(expiration.getDate() + 27);
         expiration = expiration.toISOString().split(".")[0];
 
     const op: Operation = [
@@ -399,8 +399,8 @@ export const limitOrderCreate = (owner: string, key: PrivateKey, amount_to_sell:
         {
             "orderid": Math.floor(Date.now() / 1000),
             "owner": owner,
-            "amount_to_sell": `${amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
-            "min_to_receive": `${min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
+            "amount_to_sell": `${orderType === TransactionType.Buy ? amount_to_sell.toFixed(3) : min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
+            "min_to_receive": `${orderType === TransactionType.Buy ? min_to_receive.toFixed(3): amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
             "fill_or_kill": false,
             "expiration": expiration
         }
@@ -424,15 +424,15 @@ export const limitOrderCancel = (owner: string, key: PrivateKey, orderid:number,
 
 export const limitOrderCreateHot = (owner:string, amount_to_sell:any, min_to_receive:any, orderType: TransactionType) => {
     let expiration:any = new Date();
-    expiration.setDate(expiration.getDate() + 28);
+    expiration.setDate(expiration.getDate() + 27);
     expiration = expiration.toISOString().split(".")[0]
     const op: Operation = [
         'limit_order_create',
         {
             "orderid": Math.floor(Date.now() / 1000),
             "owner": owner,
-            "amount_to_sell": `${amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
-            "min_to_receive": `${min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
+            "amount_to_sell": `${orderType === TransactionType.Buy ? amount_to_sell.toFixed(3) : min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
+            "min_to_receive": `${orderType === TransactionType.Buy ? min_to_receive.toFixed(3): amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
             "fill_or_kill": false,
             "expiration": expiration
         }
@@ -457,15 +457,15 @@ export const limitOrderCancelHot = (owner:string, orderid:number) => {
 
 export const limitOrderCreateKc = (owner:string, amount_to_sell:any, min_to_receive:any, orderType: TransactionType) => {
     let expiration:any = new Date();
-    expiration.setDate(expiration.getDate() + 28);
+    expiration.setDate(expiration.getDate() + 27);
     expiration = expiration.toISOString().split(".")[0]
     const op: Operation = [
         'limit_order_create',
         {
             "orderid": Math.floor(Date.now() / 1000),
             "owner": owner,
-            "amount_to_sell": `${amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
-            "min_to_receive": `${min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
+            "amount_to_sell": `${orderType === TransactionType.Buy ? amount_to_sell.toFixed(3) : min_to_receive.toFixed(3)} ${orderType === TransactionType.Buy ? 'HBD' : "HIVE"}`,
+            "min_to_receive": `${orderType === TransactionType.Buy ? min_to_receive.toFixed(3): amount_to_sell.toFixed(3)} ${orderType === TransactionType.Buy ? 'HIVE' : "HBD"}`,
             "fill_or_kill": false,
             "expiration": expiration
         }

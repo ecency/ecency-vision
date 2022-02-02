@@ -457,6 +457,19 @@ export interface ConversionRequest {
 export const getConversionRequests = (account: string): Promise<ConversionRequest[]> =>
     client.database.call("get_conversion_requests", [account]);
 
+export interface SavingsWithdrawRequest {
+    id: number;
+    from: string;
+    to: string;
+    memo: string;
+    request_id: number;
+    amount: string;
+    complete: string;
+}   
+
+export const getSavingsWithdrawFrom = (account: string): Promise<SavingsWithdrawRequest[]> =>
+    client.database.call("get_savings_withdraw_from", [account]);
+
 export interface BlogEntry {
     blog: string,
     entry_id: number,

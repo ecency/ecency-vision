@@ -563,7 +563,8 @@
     "power-down": "Power Down",
     "withdraw-routes": "Rute Penarikan",
     "calculating": "Menghitung",
-    "converting-hbd-amount": "Konversi ke HIVE"
+    "converting-hbd-amount": "Konversi ke HIVE",
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
   },
   "wallet-engine": {
     "title": "Token Hive Engine",

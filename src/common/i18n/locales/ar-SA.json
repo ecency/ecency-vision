@@ -563,7 +563,8 @@
     "power-down": "تخفيض الطاقة",
     "withdraw-routes": "طرق السحب",
     "calculating": "جاري الحساب",
-    "converting-hbd-amount": "التحويل إلى HIVE"
+    "converting-hbd-amount": "التحويل إلى HIVE",
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
   },
   "wallet-engine": {
     "title": "رموز Hive Engine",

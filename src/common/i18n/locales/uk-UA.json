@@ -563,7 +563,8 @@
     "power-down": "Зменшення сили голосу",
     "withdraw-routes": "Маршрути виведення",
     "calculating": "Розрахунок",
-    "converting-hbd-amount": "Converting to HIVE"
+    "converting-hbd-amount": "Converting to HIVE",
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",
