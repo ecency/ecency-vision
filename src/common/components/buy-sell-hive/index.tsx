@@ -185,7 +185,7 @@ export class BuySellHive extends BaseComponent<any, State> {
               </div>
             )}
           </div>
-          {available < total ? (
+          {available < (Ttype === TransactionType.Buy ? total : amount) ? (
             <></>
           ) : (
             <div className="d-flex justify-content-end mt-5">
