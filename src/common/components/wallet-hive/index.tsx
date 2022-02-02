@@ -26,7 +26,7 @@ import HiveWallet from "../../helper/hive-wallet";
 
 import {vestsToHp} from "../../helper/vesting";
 
-import {DynamicGlobalProperties, getAccount, getConversionRequests, getDynamicGlobalProperties} from "../../api/hive";
+import {DynamicGlobalProperties, getAccount, getConversionRequests, getSavingsWithdrawFrom, getDynamicGlobalProperties, getOpenOrder} from "../../api/hive";
 
 import {claimRewardBalance, formatError} from "../../api/operations";
 
@@ -66,6 +66,7 @@ interface State {
     transferMode: null | TransferMode;
     transferAsset: null | TransferAsset;
     converting: number;
+    withdrawSavings: number;
     aprs: { hbd:string | number, hp: string | number }
 }
 
@@ -80,11 +81,13 @@ export class WalletHive extends BaseComponent<Props, State> {
         transferMode: null,
         transferAsset: null,
         converting: 0,
+        withdrawSavings: 0,
         aprs: { hbd:0, hp: 0 }
     };
 
     componentDidMount() {
         this.fetchConvertingAmount();
+        this.fetchWithdrawFromSavings();
     }
 
     getCurrentHpApr = (gprops:DynamicProps) => {
@@ -139,6 +142,23 @@ export class WalletHive extends BaseComponent<Props, State> {
             });
 
             this.stateSet({converting});
+        });
+    }
+
+    fetchWithdrawFromSavings = async() => {
+        const {account} = this.props;
+
+        getSavingsWithdrawFrom(account.name).then(r => {
+            if (r.length === 0) {
+                return;
+            }
+
+            let withdrawSavings = 0;
+            r.forEach(x => {
+                withdrawSavings += parseAsset(x.amount).amount;
+            });
+
+            this.stateSet({withdrawSavings});
         });
     }
 
@@ -197,7 +217,7 @@ export class WalletHive extends BaseComponent<Props, State> {
 
     render() {
         const {global, dynamicProps, account, activeUser} = this.props;
-        const {claiming, claimed, transfer, transferAsset, transferMode, converting, aprs: {hbd, hp}} = this.state;
+        const {claiming, claimed, transfer, transferAsset, transferMode, converting, withdrawSavings, aprs: {hbd, hp}} = this.state;
 
         if (!account.__loaded) {
             return null;
@@ -506,6 +526,16 @@ export class WalletHive extends BaseComponent<Props, State> {
                                         <Tooltip content={_t("wallet.converting-hbd-amount")}>
                                       <span>
                                           {"+"} {formattedNumber(converting, {prefix: "$"})}
+                                      </span>
+                                        </Tooltip>
+                                    </div>
+                                )}
+
+                                {withdrawSavings > 0 && (
+                                    <div className="amount amount-passive converting-hbd">
+                                        <Tooltip content={_t("wallet.withdrawing-hbd-amount")}>
+                                      <span>
+                                          {"+"} {formattedNumber(withdrawSavings, {prefix: "$"})}
                                       </span>
                                         </Tooltip>
                                     </div>
