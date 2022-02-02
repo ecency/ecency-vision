@@ -28,9 +28,8 @@ import { Button, ButtonGroup } from "react-bootstrap";
 import { Tsx } from "../i18n/helper";
 import Feedback from "../components/feedback";
 import Meta from "../components/meta";
-import MarketChart from "../components/market-chart";
 
-// const MarketChart = React.lazy(() => import("../components/market-chart"));
+const MarketChart = React.lazy(() => import("../components/market-chart"));
 
 const MarketPage = (props: PageProps) => {
   const [data, setData] = useState<MarketStatistics | null>(null);
@@ -134,13 +133,13 @@ const MarketPage = (props: PageProps) => {
             </div>
 
             {data && tablesData ? (
-              // <SSRSuspense fallback={<div>{_t("g.loading-chunk")}...</div>}>
+              <SSRSuspense fallback={<div>{_t("g.loading-chunk")}...</div>}>
                 <MarketChart
                   bids={tablesData!.bids || []}
                   asks={tablesData!.asks || []}
                   theme={global.theme}
                 />
-              // </SSRSuspense>
+              </SSRSuspense>
             ) : (
               _t("g.loading") + "..."
             )}
