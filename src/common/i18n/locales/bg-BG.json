@@ -563,7 +563,8 @@
     "power-down": "Намаляне на силата",
     "withdraw-routes": "Пътища за теглене",
     "calculating": "Calculating",
-    "converting-hbd-amount": "Преобразувай HBD към HIVE"
+    "converting-hbd-amount": "Преобразувай HBD към HIVE",
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",
