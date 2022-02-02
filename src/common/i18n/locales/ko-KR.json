@@ -563,7 +563,8 @@
     "power-down": "파워 다운",
     "withdraw-routes": "출금 루트",
     "calculating": "계산중",
-    "converting-hbd-amount": "HIVE로 전환"
+    "converting-hbd-amount": "HIVE로 전환",
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
   },
   "wallet-engine": {
     "title": "Hive Engine 토큰",

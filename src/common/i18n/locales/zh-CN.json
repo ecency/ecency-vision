@@ -563,7 +563,8 @@
     "power-down": "减少能量",
     "withdraw-routes": "取出到其它账户",
     "calculating": "Calculating",
-    "converting-hbd-amount": "正在转换为 HIVE"
+    "converting-hbd-amount": "正在转换为 HIVE",
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",

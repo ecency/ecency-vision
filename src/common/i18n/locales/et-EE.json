@@ -563,7 +563,8 @@
     "power-down": "Power down",
     "withdraw-routes": "Withdraw Routes",
     "calculating": "Calculating",
-    "converting-hbd-amount": "Vaheta HIVEks"
+    "converting-hbd-amount": "Vaheta HIVEks",
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",

@@ -563,7 +563,8 @@
     "power-down": "Понижение Силы",
     "withdraw-routes": "Пути вывода",
     "calculating": "Идет расчет",
-    "converting-hbd-amount": "Конвертация в HIVE"
+    "converting-hbd-amount": "Конвертация в HIVE",
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
   },
   "wallet-engine": {
     "title": "Токены Hive Engine",
