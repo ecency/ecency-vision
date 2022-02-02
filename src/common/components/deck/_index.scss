@@ -1,12 +1,15 @@
 .deck {
     background-color: $white;
     min-width: 379px;
-    height: fit-content
+    height: fit-content;
+}
+
+.deck-header {
+    padding: 0.69rem !important
 }
 
 .deck-header path {
     fill: $black !important;
-    padding: 0.69rem !important
 }
 
 .icon {
