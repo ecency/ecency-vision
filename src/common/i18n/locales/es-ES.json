@@ -564,7 +564,8 @@
     "withdraw-routes": "Rutas de Retiro",
     "calculating": "Calculando",
     "converting-hbd-amount": "Convirtiendo a HIVE",
-    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings",
+    "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
     "title": "Motor de Tokens de Hive",
