@@ -564,7 +564,8 @@
     "withdraw-routes": "Rute Penarikan",
     "calculating": "Menghitung",
     "converting-hbd-amount": "Konversi ke HIVE",
-    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings",
+    "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
     "title": "Token Hive Engine",
