@@ -563,7 +563,8 @@
     "power-down": "Apagar",
     "withdraw-routes": "Rutas de Retiro",
     "calculating": "Calculando",
-    "converting-hbd-amount": "Convirtiendo a HIVE"
+    "converting-hbd-amount": "Convirtiendo a HIVE",
+    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
   },
   "wallet-engine": {
     "title": "Motor de Tokens de Hive",
