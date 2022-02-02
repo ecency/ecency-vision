@@ -11,6 +11,8 @@
 .navbar {
     height: 100vh;
     background: linear-gradient($dark-sky-blue,$dusk-blue);
+    display: flex;
+    animation: display 0.5s forwards;
     
     @include themify(night) {
         background: linear-gradient($metallic-blue,$dark-grey-blue);

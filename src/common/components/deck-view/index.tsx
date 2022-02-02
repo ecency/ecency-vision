@@ -1,10 +1,7 @@
-import React, { Dispatch } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { AnyAction, bindActionCreators } from "redux";
 import {
-  burger,
   communities,
-  grid,
   hot,
   magnify,
   notifications,
