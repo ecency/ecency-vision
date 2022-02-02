@@ -45,7 +45,7 @@ import isElectron from "../../../../common/util/is-electron";
 // why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
 
 const pathToRegexp = require("path-to-regexp");
-
+import isCommunity from "../../../../common/helper/is-community";
 const logo = "./img/logo-circle.svg";
 
 
@@ -323,8 +323,6 @@ interface State {
     floating: boolean,
 }
 
-const communityPattern = "^hive-[0-9]*$";
-
 export class NavBar extends Component<Props, State> {
     state: State = {
         floating: false
@@ -385,10 +383,10 @@ export class NavBar extends Component<Props, State> {
     render() {
         const {global, activeUser, history, location, ui, step, match} = this.props;        
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
-        const re = new RegExp(communityPattern);
+        const communityPage = match && match.params.name && isCommunity(match.params.name)
         const tagValue = global.tag ? `/${global.tag}` : ''
         const logoHref = activeUser ? 
-        ((match && re.test(match.params.name)) || ((global.tag.includes('@')) && (['engine','wallet','points','communities','settings','permissions','comments','replies','blog', 'posts'].includes(global.filter)))) ?
+        (communityPage || ((global.tag.includes('@')) && (['engine','wallet','points','communities','settings','permissions','comments','replies','blog', 'posts'].includes(global.filter)))) ?
         '/hot' : 
         global.filter === 'feed' ? `${tagValue}/${global.filter}` : `/${global.filter}${tagValue}` 
         : '/';
