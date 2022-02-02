@@ -2,8 +2,10 @@
   "g": {
     "add": "Adicionar",
     "edit": "Editar",
+    "continue": "Continue",
     "submit": "Escrever uma publicação",
     "search": "Procurar",
+    "loading-chunk": "Loading chunked component",
     "downloads": "Transferências",
     "login": "Entrar",
     "login-as": "Entrar como",
@@ -54,6 +56,8 @@
     "payout": "Pagamento",
     "learn-more": "Saiba mais em",
     "faq": "Perguntas Frequentes",
+    "when": "When",
+    "price": "Price",
     "more-results": "Mais resultados",
     "close": "Fechar",
     "loading": "Carregando"
@@ -262,7 +266,41 @@
   },
   "market-data": {
     "title": "Preço mercado",
+    "trade": "Trade token",
     "credits": "dados por <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+  },
+  "market": {
+    "title": "Token exchange",
+    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "last-price": "Last Price",
+    "volume": "24h volume",
+    "bid": "Bid",
+    "spread": "Spread",
+    "ask": "Ask",
+    "buy": "Buy",
+    "sell": "Sell",
+    "available": "Available",
+    "highest-bid": "Highest bid",
+    "price": "Price",
+    "amount": "Amount",
+    "total": "Total",
+    "orders": "Orders",
+    "date": "Date",
+    "open-orders": "Open Orders",
+    "type": "Type",
+    "action": "Action",
+    "trade-history": "Trade History",
+    "stock-params": "Params",
+    "stock-info": "Stock information",
+    "barter": "Exchange tokens",
+    "stock-values": "Values",
+    "transaction-low": "Total amount exceeds your available balance. Please add more funds or try with smaller amount.",
+    "confirm-cancel": "Are you sure? You are cancelling order #{{orderid}}!",
+    "confirm-buy": "You're trading {{amount}} HIVE for {{price}} HBD/HIVE and total will be {{total}} HBD.",
+    "confirm-sell": "Values",
+    "transaction-succeeded": "Transaction succeeded",
+    "lowest-ask": "Lowest ask",
+    "decimal-error": "Only {{decimals}} decimal digits allowed!"
   },
   "list-style": {
     "title": "Alternar estilo da lista"
@@ -500,6 +538,7 @@
     "estimated-description": "O valor estimado é sobre preço médio da HIVE nos últimos 7 dias.",
     "estimated-description-points": "O valor estimado é baseado no valor de compra dos Pontos.",
     "hive": "HIVE",
+    "hbd": "HBD",
     "hive-description": "HIVE são tokens comercializáveis que podem ser transferidos a qualquer momento. HIVE pode ser convertido para Hive Power, através do procedimento chamado Power Up.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power são tokens de influência que ganham mais força pelo tempo guardado e trabalho de curadoria. Quanto mais Hive Power uma pessoa detém, mais influência ela terá nas recompensas obtidas através de seus votos. Hive Power é basicamente Hive token guardado em uma carteira específica, a qual requer 13 semanas para realizar o saque completo solicitado.",
@@ -1141,7 +1180,9 @@
       "different-reward-choices-header": "Quais são as diferenças nos tipos de recompensa?",
       "different-reward-choices-body": "<p>Você verá que existem 3 diferentes tipos de recompensas dentro seção de configurações da publicação,.<ul><li>50%/50% - Esta recompensa paga metade em Hive Power e metade em HIVE líquido / Hive Dollars. A proporção de HIVE e Hive Dollars recompensados é baseada nas condições da rede no momento do pagamento. Esta é a opção padrão para as recompensas.</li><li>Aumentar o Poder em 100% - Esta opção recompensa o post em 100% de Hive Power.</li><li>Recusar Pagamento - Use esta opção caso não deseje receber remuneração. Os votos obtidos afetarão a posição do seu post no ranking de publicações, e nenhuma recompensa é paga pelo pool de recompensas da Hive. Respostas feitas à postagem também são elegíveis para remuneração.</li></ul></p>",
       "boosting-vote-buying-header": "Impulsionamento é considerado compra de voto?",
-      "boosting-vote-buying-body": "<p>Não! Você não tem garantia que a publicação será votada, nem da exata quantidade de votos, bem como há limite de impulsionamento. Cada conteúdo é avaliado por nossos curadores, de forma gratuita. Todos ganhos de curadoria são enviados de volta para nossos delegadores. O único sucesso quantificado que buscamos está no engajamento e crescimento de todo o ecossistema. Impulsionar é simplesmente criar um uso adicional para os Points da Ecency, aumentando o engajamento na plataforma. Portanto, é essencialmente o mesmo que qualquer grupo de curadoria dentro da Hive. O objetivo desses grupos é aumentar o envolvimento em última instância, e aumentar as atividades dos usuários. A forma que cada um mede o sucesso é diferente</p>"
+      "boosting-vote-buying-body": "<p>Não! Você não tem garantia que a publicação será votada, nem da exata quantidade de votos, bem como há limite de impulsionamento. Cada conteúdo é avaliado por nossos curadores, de forma gratuita. Todos ganhos de curadoria são enviados de volta para nossos delegadores. O único sucesso quantificado que buscamos está no engajamento e crescimento de todo o ecossistema. Impulsionar é simplesmente criar um uso adicional para os Points da Ecency, aumentando o engajamento na plataforma. Portanto, é essencialmente o mesmo que qualquer grupo de curadoria dentro da Hive. O objetivo desses grupos é aumentar o envolvimento em última instância, e aumentar as atividades dos usuários. A forma que cada um mede o sucesso é diferente</p>",
+      "how-exchange-work-header": "How token exchange works?",
+      "how-exchange-work-body": "<p>Exchanging and trading tokens on Ecency is very simple. We utilize internal peer to peer, decentralized exchange built into Hive blockchain. Offer easy to use interface so you can exchange one token to another, completely decentralized manner. Create buy or sell order and wait for other people to fill your order. If you want to quickly swap tokens then you can fill someone else's open order for quick trade.</p>"
     }
   },
   "contributors": {

@@ -12,6 +12,7 @@ import isCommunity from "../helper/is-community";
 
 import SERVERS from "../constants/servers.json";
 import { dataLimit } from './bridge';
+import moment from "moment";
 
 export const client = new Client(SERVERS, {
     timeout: 4000,
@@ -66,8 +67,68 @@ export interface Follow {
     what: string[];
 }
 
+export interface MarketStatistics {
+    hbd_volume: string;
+    highest_bid: string;
+    hive_volume: string;
+    latest: string;
+    lowest_ask: string;
+    percent_change: string;
+}
+
+export interface OpenOrdersData {
+    id: number,
+    created: string,
+    expiration: string,
+    seller: string,
+    orderid: number,
+    for_sale: number,
+    sell_price: {
+        base: string,
+        quote: string
+    },
+    real_price: string,
+    rewarded: boolean
+}
+
+export interface OrdersDataItem {
+    created: string;
+    hbd: number;
+    hive: number;
+    order_price: {
+        base: string;
+        quote: string;
+    }
+    real_price: string;
+}
+
+export interface TradeDataItem {
+    current_pays: string;
+    date: number;
+    open_pays: string;
+}
+
+export interface OrdersData {
+    bids: OrdersDataItem[];
+    asks: OrdersDataItem[];
+    trading: OrdersDataItem[];
+}
+
 export const getPost = (username: string, permlink: string): Promise<any> =>
     client.call("condenser_api", "get_content", [username, permlink]);
+
+export const getMarketStatistics = (): Promise<MarketStatistics> =>
+    client.call("condenser_api", "get_ticker", []);
+
+export const getOrderBook = (limit: number = 500): Promise<OrdersData> =>
+    client.call("condenser_api", "get_order_book", [limit]);
+
+export const getOpenOrder = (user: string): Promise<OpenOrdersData[]> =>
+    client.call("condenser_api", "get_open_orders", [user]);
+
+export const getTradeHistory = (limit: number = 1000): Promise<OrdersDataItem[]> => {
+    let today = moment(Date.now()).subtract(10, 'h').format().split('+')[0];
+    return client.call("condenser_api", "get_trade_history", [today, "1969-12-31T23:59:59",limit]);}
 
 export const getActiveVotes = (author: string, permlink: string): Promise<Vote[]> =>
     client.database.call("get_active_votes", [author, permlink]);

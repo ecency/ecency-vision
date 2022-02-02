@@ -19,6 +19,7 @@
 @import "../common/components/search-box";
 @import "../common/components/witness-card/";
 @import "../common/components/suggestion-list";
+@import "../common/components/buy-sell-hive/";
 @import "../common/components/download-trigger";
 @import "../common/components/list-style-toggle";
 @import "../common/components/linear-progress";
@@ -114,6 +115,8 @@
 @import "../common/components/profile-preview/";
 @import "../common/components/profile-popover/";
 @import "../common/components/skeleton/";
+@import "../common/components/chart-stats/";
+@import "../common/components/market-chart/";
 @import "../common/components/textarea-autocomplete/";
 
 @import "../desktop/app/components/navbar";
@@ -126,6 +129,7 @@
 @import "../common/pages/communities";
 @import "../common/pages/community";
 @import "../common/pages/submit";
+@import "../common/pages/market";
 @import "../common/pages/static";
 @import "../common/pages/discover";
 @import "../common/pages/search";
