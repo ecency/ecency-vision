@@ -564,7 +564,7 @@
     "withdraw-routes": "Ricompense assegnate",
     "calculating": "Calculating",
     "converting-hbd-amount": "In attesa di conversione in HIVE",
-    "withdrawing-hbd-amount": "Withdrawing HBD from Savings",
+    "withdrawing-amount": "Withdrawing from Savings",
     "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
@@ -772,6 +772,10 @@
     "request-id": "Request id",
     "amount": "Amount",
     "pending": "Pending"
+  },
+  "savings-withdraw": {
+    "title": "Withdraw from Savings",
+    "to": "To"
   },
   "friends": {
     "followers": "({{n}}) Seguaci",
