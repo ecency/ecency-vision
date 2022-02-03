@@ -113,3 +113,24 @@ export const tagsListItems = [
     },
   ];
   
+
+export const notificationListItems = [
+  {
+    avatar: "https://mui.com/static/images/avatar/3.jpg",
+    author: "@rommel22",
+    community: "replied to your post:",
+    description: "All thanks to you 😉",
+  },
+  {
+    avatar: "https://mui.com/static/images/avatar/3.jpg",
+    author: "@rommel22",
+    community: "replied to your post:",
+    description: "Sounds good.",
+  },
+  {
+    avatar: "https://mui.com/static/images/avatar/3.jpg",
+    author: "@rommel22",
+    community: "replied to your post:",
+    description: "OK! Let's go",
+  },
+];

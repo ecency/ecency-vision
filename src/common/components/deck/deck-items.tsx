@@ -60,13 +60,13 @@ export const SearchListItem = ({
   index
 }: SearchItemProps) => {
   return (
-    <div className={`p${index===1 ? "b" : "y"}-5 d-flex flex-column border-bottom`}>
+    <div className={`p${index===1 ? "b" : "y"}-${postImage?"5":"4"} d-flex flex-column border-bottom`}>
       <div className="d-flex">
-        <img
+        {avatar && <img
           src={avatar}
           alt={title}
           className="rounded-circle search-item-avatar"
-        />
+        />}
         <div className="ml-3">
           <div className="d-flex align-items-start flex-grow-1 hot-item-link">
             <div>
@@ -76,10 +76,10 @@ export const SearchListItem = ({
               <div className="ml-2 flex-grow-1"> in {community}</div>
             )}
           </div>
-          <div className="hot-item-link font-weight-bold my-3">{title}</div>
-          <img src={postImage} className="search-post-image" />
+          {title && <div className="hot-item-link font-weight-bold my-3">{title}</div>}
+          {postImage && <img src={postImage} className="search-post-image" />}
           <div className="mt-3 hot-item-post-count">{description}</div>
-          <div className="mt-4 d-flex justify-content-between flex-grow-1">
+          {votesPayment &&  <div className="mt-4 d-flex justify-content-between flex-grow-1">
             <div className="hot-item-post-count">
               {upvote} {votesPayment}
             </div>
@@ -93,7 +93,7 @@ export const SearchListItem = ({
               <div>{repeatSvg}</div>
               <div>{dotsHorizontal}</div>
             </div>
-          </div>
+          </div>}
         </div>
 
         <div>{time}</div>
