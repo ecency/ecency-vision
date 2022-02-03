@@ -298,7 +298,7 @@
     "confirm-cancel": "¿Estás seguro? ¡Estás cancelando el pedido #{{orderid}}!",
     "confirm-buy": "Estás intercambiando con {{amount}} HIVE por {{price}} HBD/HIVE y el total será de {{total}} HBD.",
     "confirm-sell": "Valores",
-    "transaction-succeeded": "Transacción exitosa",
+    "transaction-succeeded": "Transaction submitted",
     "lowest-ask": "Pedido más bajo",
     "decimal-error": "¡Sólo se permiten {{decimals}} dígitos decimales!"
   },
@@ -695,7 +695,7 @@
     "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferido desde <span class=\"from-user\">{{from}}</span> hacia <span class=\"to-user\">{{to}}</span>",
     "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferido de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferido de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> convertido",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> being converted",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> estacar de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegado de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Apagado completado como <span class=\"amount\">{{amount}}</span>",
@@ -766,6 +766,12 @@
   },
   "received-vesting": {
     "title": "Hive power recibido"
+  },
+  "conversion-requests": {
+    "title": "Convert requests",
+    "request-id": "Request id",
+    "amount": "Amount",
+    "pending": "Pending"
   },
   "friends": {
     "followers": "Seguidores ({{n}})",
