@@ -298,7 +298,7 @@
     "confirm-cancel": "Are you sure? You are cancelling order #{{orderid}}!",
     "confirm-buy": "You're trading {{amount}} HIVE for {{price}} HBD/HIVE and total will be {{total}} HBD.",
     "confirm-sell": "Values",
-    "transaction-succeeded": "Transaction succeeded",
+    "transaction-succeeded": "Transaction submitted",
     "lowest-ask": "Lowest ask",
     "decimal-error": "Only {{decimals}} decimal digits allowed!"
   },
@@ -695,7 +695,7 @@
     "transfer-summary": "Перевод <span class=\"amount\">{{amount}}</span> от <span class=\"from-user\">{{from}}</span> для <span class=\"to-user\">{{to}}</span>",
     "transfer-saving-summary": "Перевод <span class=\"amount\">{{amount}}</span> от <span class=\"from-user\">{{from}}</span> для <span class=\"to-user\">{{to}}</span>",
     "withdraw-saving-summary": "Перевод <span class=\"amount\">{{amount}}</span> от <span class=\"from-user\">{{from}}</span> для <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "Конвертация <span class=\"amount\">{{amount}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> being converted",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> зачислено в Силу от <span class=\"from-user\">{{from}}</span> для <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> делегировано пользователем <span class=\"from-user\">{{from}}</span> для <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Проведено понижение Силы в размере <span class=\"amount\">{{amount}}</span>",
@@ -766,6 +766,12 @@
   },
   "received-vesting": {
     "title": "Полученная Hive Сила"
+  },
+  "conversion-requests": {
+    "title": "Convert requests",
+    "request-id": "Request id",
+    "amount": "Amount",
+    "pending": "Pending"
   },
   "friends": {
     "followers": "Подписчики ({{n}})",
