@@ -2,27 +2,27 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="savings-withdraw-content"
+  className="open-orders-content"
 >
   <div
     className="list-body"
   >
     <table
-      className="table table-striped table-bordered table-hover"
+      className="oo-table table table-striped table-bordered table-hover"
     >
       <thead>
         <tr>
           <th>
-            Request id
+            Order id
           </th>
           <th>
             Amount
           </th>
           <th>
-            To
+            Created
           </th>
           <th>
-            Pending
+            Expires
           </th>
         </tr>
       </thead>
@@ -134,7 +134,7 @@ exports[`(1) Default render 1`] = `
 
 exports[`(2) Empty list 1`] = `
 <div
-  className="savings-withdraw-content"
+  className="open-orders-content"
 >
   <div
     className="list-body"
@@ -145,21 +145,21 @@ exports[`(2) Empty list 1`] = `
       Nothing here
     </div>
     <table
-      className="table table-striped table-bordered table-hover"
+      className="oo-table table table-striped table-bordered table-hover"
     >
       <thead>
         <tr>
           <th>
-            Request id
+            Order id
           </th>
           <th>
             Amount
           </th>
           <th>
-            To
+            Created
           </th>
           <th>
-            Pending
+            Expires
           </th>
         </tr>
       </thead>
