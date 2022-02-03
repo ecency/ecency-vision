@@ -298,7 +298,7 @@
     "confirm-cancel": "Are you sure? You are cancelling order #{{orderid}}!",
     "confirm-buy": "You're trading {{amount}} HIVE for {{price}} HBD/HIVE and total will be {{total}} HBD.",
     "confirm-sell": "Values",
-    "transaction-succeeded": "Transaction succeeded",
+    "transaction-succeeded": "Transaction submitted",
     "lowest-ask": "Lowest ask",
     "decimal-error":"Only {{decimals}} decimal digits allowed!"
   },
@@ -695,13 +695,15 @@
     "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> being converted",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
     "reset": "Reset",
     "powering-down": "You are currently powering down.",
-    "stop-power-down": "Stop"
+    "stop-power-down": "Stop",
+    "request-id": "Request id",
+    "pending": "Pending"
   },
   "trx-common": {
     "insufficient-funds": "Insufficient funds",
@@ -766,6 +768,12 @@
   },
   "received-vesting": {
     "title": "Received Hive Power"
+  },
+  "conversion-requests": {
+    "title": "Convert requests",
+    "request-id": "Request id",
+    "amount": "Amount",
+    "pending": "Pending"
   },
   "friends": {
     "followers": "Followers ({{n}})",

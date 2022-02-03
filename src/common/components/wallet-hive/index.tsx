@@ -16,6 +16,7 @@ import FormattedCurrency from "../formatted-currency";
 import TransactionList from "../transactions";
 import DelegatedVesting from "../delegated-vesting";
 import ReceivedVesting from "../received-vesting";
+import ConversionRequests from '../converts';
 import DropDown from "../dropdown";
 import Transfer, {TransferMode, TransferAsset} from "../transfer";
 import {error, success} from "../feedback";
@@ -26,7 +27,7 @@ import HiveWallet from "../../helper/hive-wallet";
 
 import {vestsToHp} from "../../helper/vesting";
 
-import {DynamicGlobalProperties, getAccount, getConversionRequests, getSavingsWithdrawFrom, getDynamicGlobalProperties, getOpenOrder} from "../../api/hive";
+import {getAccount, getConversionRequests, getSavingsWithdrawFrom, getOpenOrder} from "../../api/hive";
 
 import {claimRewardBalance, formatError} from "../../api/operations";
 
@@ -37,8 +38,7 @@ import parseAsset from "../../helper/parse-asset";
 import {_t} from "../../i18n";
 
 import {plusCircle} from "../../img/svg";
-import { addAccount } from "../../store/accounts";
-import { history } from "../../store";
+
 
 interface Props {
     history: History;
@@ -58,6 +58,7 @@ interface Props {
 
 interface State {
     delegatedList: boolean;
+    convertList: boolean;
     receivedList: boolean;
     claiming: boolean;
     claimed: boolean;
@@ -75,6 +76,7 @@ export class WalletHive extends BaseComponent<Props, State> {
     state: State = {
         delegatedList: false,
         receivedList: false,
+        convertList: false,
         claiming: false,
         claimed: false,
         transfer: false,
@@ -186,6 +188,11 @@ export class WalletHive extends BaseComponent<Props, State> {
     toggleDelegatedList = () => {
         const {delegatedList} = this.state;
         this.stateSet({delegatedList: !delegatedList});
+    };
+
+    toggleConvertList = () => {
+        const {convertList} = this.state;
+        this.stateSet({convertList: !convertList});
     };
 
     toggleReceivedList = () => {
@@ -557,7 +564,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                                 {converting > 0 && (
                                     <div className="amount amount-passive converting-hbd">
                                         <Tooltip content={_t("wallet.converting-hbd-amount")}>
-                                      <span>
+                                      <span className="amount-btn" onClick={this.toggleConvertList}>
                                           {"+"} {formattedNumber(converting, {prefix: "$"})}
                                       </span>
                                         </Tooltip>
@@ -696,6 +703,10 @@ export class WalletHive extends BaseComponent<Props, State> {
 
                 {this.state.receivedList && (
                     <ReceivedVesting {...this.props} account={account} onHide={this.toggleReceivedList}/>
+                )}
+
+                {this.state.convertList && (
+                    <ConversionRequests {...this.props} account={account} onHide={this.toggleConvertList}/>
                 )}
 
                 {this.state.withdrawRoutes && (
