@@ -298,7 +298,7 @@
     "confirm-cancel": "Are you sure? You are cancelling order #{{orderid}}!",
     "confirm-buy": "You're trading {{amount}} HIVE for {{price}} HBD/HIVE and total will be {{total}} HBD.",
     "confirm-sell": "Values",
-    "transaction-succeeded": "Transaction succeeded",
+    "transaction-succeeded": "Transaction submitted",
     "lowest-ask": "Lowest ask",
     "decimal-error": "Only {{decimals}} decimal digits allowed!"
   },
@@ -564,7 +564,8 @@
     "withdraw-routes": "Пътища за теглене",
     "calculating": "Calculating",
     "converting-hbd-amount": "Преобразувай HBD към HIVE",
-    "withdrawing-hbd-amount": "Withdrawing HBD from Savings"
+    "withdrawing-amount": "Withdrawing from Savings",
+    "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",
@@ -694,7 +695,7 @@
     "transfer-summary": "<span class=\"amount\">{{amount}}</span> изпратени от <span class=\"from-user\">{{from}}</span> на <span class=\"to-user\">{{to}}</span>",
     "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> изпратени от <span class=\"from-user\">{{from}}</span> на <span class=\"to-user\">{{to}}</span>",
     "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> изпратени от <span class=\"from-user\">{{from}}</span> на <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> преобразувани",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> being converted",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> заложени от <span class=\"from-user\">{{from}}</span>на <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> делегирани от <span class=\"from-user\">{{from}}</span> на <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Намалянето на силата завърши като <span class=\"amount\">{{amount}}</span>",
@@ -765,6 +766,16 @@
   },
   "received-vesting": {
     "title": "Получен Hive сила/стойност"
+  },
+  "conversion-requests": {
+    "title": "Convert requests",
+    "request-id": "Request id",
+    "amount": "Amount",
+    "pending": "Pending"
+  },
+  "savings-withdraw": {
+    "title": "Withdraw from Savings",
+    "to": "To"
   },
   "friends": {
     "followers": "Последователи ({{n}})",
