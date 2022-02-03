@@ -777,6 +777,12 @@
     "title": "Withdraw from Savings",
     "to": "To"
   },
+  "open-orders-list": {
+    "title": "Open orders",
+    "created": "Created",
+    "expires": "Expires",
+    "order-id": "Order id"
+  },
   "friends": {
     "followers": "Seguidores ({{n}})",
     "following": "Seguindo ({{n}})",
