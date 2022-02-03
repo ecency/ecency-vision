@@ -2,7 +2,7 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="conversion-content"
+  className="savings-withdraw-content"
 >
   <div
     className="list-body"
@@ -19,32 +19,14 @@ exports[`(1) Default render 1`] = `
             Amount
           </th>
           <th>
+            To
+          </th>
+          <th>
             Pending
           </th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>
-            3179660325
-          </td>
-          <td>
-            <span
-              title="1.000 HBD"
-            >
-              $ 1.000
-            </span>
-          </td>
-          <td>
-            <div
-              className="date"
-              title="Sunday, February 6, 2022 2:59 AM"
-            >
-              in 3 days
-            </div>
-          </td>
-        </tr>
-      </tbody>
+      <tbody />
     </table>
   </div>
   <ul
@@ -152,7 +134,7 @@ exports[`(1) Default render 1`] = `
 
 exports[`(2) Empty list 1`] = `
 <div
-  className="conversion-content"
+  className="savings-withdraw-content"
 >
   <div
     className="list-body"
@@ -172,6 +154,9 @@ exports[`(2) Empty list 1`] = `
           </th>
           <th>
             Amount
+          </th>
+          <th>
+            To
           </th>
           <th>
             Pending
