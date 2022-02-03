@@ -6,7 +6,7 @@ import {Reblogs} from "../store/reblogs/types";
 import {DynamicProps} from "../store/dynamic-props/types";
 import {UI} from "../store/ui/types";
 import {PointTransaction} from "../store/points/types";
-import {Vote, DelegatedVestingShare, Proposal, SavingsWithdrawRequest, ConversionRequest} from "../api/hive";
+import {Vote, DelegatedVestingShare, Proposal, SavingsWithdrawRequest, ConversionRequest, OpenOrdersData} from "../api/hive";
 import {ReceivedVestingShare} from "../api/private-api";
 import {
     ApiFollowNotification,
@@ -454,6 +454,19 @@ export const conversionRequestInstance: ConversionRequest[] = [
         id: 137870,
         owner: "ecency",
         requestid: 3179660325
+    },
+];
+export const openOrdersInstance: OpenOrdersData[] = [
+    {
+        seller: "ecency",
+        created: "2022-02-02T17:48:36",
+        expiration: "2022-03-01T17:48:33",
+        for_sale: 200000,
+        id: 5824689,
+        orderid: 1643824113,
+        real_price: "1.50000000000000000",
+        rewarded: false,
+        sell_price: {base: '200.000 HIVE', quote: '300.000 HBD'}
     },
 ];
 export const discussionInstace1: Entry[] = [
