@@ -1,7 +1,5 @@
 import React from "react";
 import { burgerGrey, hot } from "../../img/svg";
-import { HotListItem } from "./deck-items";
-import { hotListItems } from "./mockData";
 
 export interface DeckHeaderProps { title: string; icon: any; index: number }
 
@@ -11,7 +9,7 @@ const DeckHeader = ({title, icon, index}:DeckHeaderProps) => {
       <div className="d-flex align-items-center">
         <div className="index">{index}</div>
         <div className="d-flex align-items-center ml-3">
-          <div className="icon">{icon || hot}</div>
+          <div className="icon mr-2">{icon || hot}</div>
           <div className="header-title">{title}</div>
         </div>
       </div>

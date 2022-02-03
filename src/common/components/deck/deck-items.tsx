@@ -69,11 +69,11 @@ export const SearchListItem = ({
         />}
         <div className="ml-3">
           <div className="d-flex align-items-start flex-grow-1 hot-item-link">
-            <div>
+            {author && <div>
               <Link to={`/${author}`}>{author}</Link>
-            </div>
+            </div>}
             {community && (
-              <div className="ml-2 flex-grow-1"> in {community}</div>
+              <div className="ml-2 flex-grow-1">{community}</div>
             )}
           </div>
           {title && <div className="hot-item-link font-weight-bold my-3">{title}</div>}

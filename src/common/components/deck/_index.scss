@@ -23,6 +23,10 @@
   height: 100%;
 }
 
+.icon path {
+  fill: $dark-sky-blue !important;
+}
+
 .header-title {
   font-size: 16px;
   font-weight: 600;

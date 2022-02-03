@@ -66,7 +66,7 @@ export const searchListItems = [
     votesPayment:'$14',
     likes:'1.5k',
     comments:'1.9k',
-    community:"gaming",
+    community:"in gaming",
     postImage:
       "https://cdn4.buysellads.net/uu/1/50798/1565723204-1548360785-Authentic2.jpg",
   },
@@ -79,7 +79,7 @@ export const searchListItems = [
     votesPayment:'$14',
     likes:'1.5k',
     comments:'1.9k',
-    community:"gaming",
+    community:"in gaming",
     postImage:
       "https://cdn4.buysellads.net/uu/1/50798/1565723204-1548360785-Authentic2.jpg",
   },
@@ -92,7 +92,7 @@ export const searchListItems = [
     votesPayment:'$14',
     likes:'1.5k',
     comments:'1.9k',
-    community:"gaming",
+    community:"in gaming",
     postImage:
       "https://cdn4.buysellads.net/uu/1/50798/1565723204-1548360785-Authentic2.jpg",
   },
@@ -132,5 +132,24 @@ export const notificationListItems = [
     author: "@rommel22",
     community: "replied to your post:",
     description: "OK! Let's go",
+  },
+];
+
+
+export const walletListItems = [
+  {
+    avatar: "https://mui.com/static/images/avatar/3.jpg",
+    community: "Transferred 100 points to",
+    description: "@goodkarma",
+  },
+  {
+    avatar: "https://mui.com/static/images/avatar/3.jpg",
+    community: "Received 70 points from",
+    description: "@goodkarma",
+  },
+  {
+    avatar: "https://mui.com/static/images/avatar/3.jpg",
+    community: "Points for heartbeat",
+    description: "0.250 points",
   },
 ];
