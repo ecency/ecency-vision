@@ -19,6 +19,7 @@ import DelegatedVesting from "../delegated-vesting";
 import ReceivedVesting from "../received-vesting";
 import ConversionRequests from "../converts";
 import SavingsWithdraw from '../savings-withdraw';
+import OpenOrdersList from '../open-orders-list';
 
 import DropDown from "../dropdown";
 import Transfer, {TransferMode, TransferAsset} from "../transfer";
@@ -64,6 +65,7 @@ interface State {
     convertList: boolean;
     receivedList: boolean;
     savingsWithdrawList: boolean;
+    openOrdersList: boolean;
     tokenType: AssetSymbol;
     claiming: boolean;
     claimed: boolean;
@@ -83,6 +85,7 @@ export class WalletHive extends BaseComponent<Props, State> {
         receivedList: false,
         convertList: false,
         savingsWithdrawList: false,
+        openOrdersList: false,
         tokenType: 'HBD',
         claiming: false,
         claimed: false,
@@ -210,6 +213,11 @@ export class WalletHive extends BaseComponent<Props, State> {
     toggleSavingsWithdrawList = (tType:AssetSymbol) => {
         const {savingsWithdrawList} = this.state;
         this.stateSet({savingsWithdrawList: !savingsWithdrawList, tokenType: tType});
+    };
+
+    toggleOpenOrdersList = (tType:AssetSymbol) => {
+        const {openOrdersList} = this.state;
+        this.stateSet({openOrdersList: !openOrdersList, tokenType: tType});
     };
 
     toggleReceivedList = () => {
@@ -386,10 +394,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                                 {openOrders && openOrders.hive > 0 && (
                                     <div className="amount amount-passive converting-hbd">
                                         <Tooltip content={_t("wallet.reserved-amount")}>
-                                      <span className="amount-btn" onClick={(e) => {
-                                              e.preventDefault();
-                                              history.push(`/market`);
-                                          }}>
+                                      <span className="amount-btn" onClick={()=>this.toggleOpenOrdersList('HIVE')}>
                                           {"+"} {formattedNumber(openOrders.hive, {suffix: "HIVE"})}
                                       </span>
                                         </Tooltip>
@@ -610,10 +615,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                                 {openOrders && openOrders.hbd > 0 && (
                                     <div className="amount amount-passive converting-hbd">
                                         <Tooltip content={_t("wallet.reserved-amount")}>
-                                      <span className="amount-btn" onClick={(e) => {
-                                              e.preventDefault();
-                                              history.push(`/market`);
-                                          }}>
+                                      <span className="amount-btn" onClick={()=>this.toggleOpenOrdersList('HBD')}>
                                           {"+"} {formattedNumber(openOrders.hbd, {prefix: "$"})}
                                       </span>
                                         </Tooltip>
@@ -737,6 +739,10 @@ export class WalletHive extends BaseComponent<Props, State> {
 
                 {this.state.savingsWithdrawList && (
                     <SavingsWithdraw {...this.props} tokenType={tokenType} account={account} onHide={()=>this.toggleSavingsWithdrawList('HBD')}/>
+                )}
+
+                {this.state.openOrdersList && (
+                    <OpenOrdersList {...this.props} tokenType={tokenType} account={account} onHide={()=>this.toggleOpenOrdersList('HBD')}/>
                 )}
 
                 {this.state.withdrawRoutes && (
