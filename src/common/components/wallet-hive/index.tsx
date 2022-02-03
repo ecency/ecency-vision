@@ -3,6 +3,7 @@ import React from "react";
 import {History} from "history";
 
 import moment from "moment";
+import { AssetSymbol } from '@hiveio/dhive';
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
@@ -16,7 +17,9 @@ import FormattedCurrency from "../formatted-currency";
 import TransactionList from "../transactions";
 import DelegatedVesting from "../delegated-vesting";
 import ReceivedVesting from "../received-vesting";
-import ConversionRequests from '../converts';
+import ConversionRequests from "../converts";
+import SavingsWithdraw from '../savings-withdraw';
+
 import DropDown from "../dropdown";
 import Transfer, {TransferMode, TransferAsset} from "../transfer";
 import {error, success} from "../feedback";
@@ -60,6 +63,8 @@ interface State {
     delegatedList: boolean;
     convertList: boolean;
     receivedList: boolean;
+    savingsWithdrawList: boolean;
+    tokenType: AssetSymbol;
     claiming: boolean;
     claimed: boolean;
     transfer: boolean;
@@ -67,7 +72,7 @@ interface State {
     transferMode: null | TransferMode;
     transferAsset: null | TransferAsset;
     converting: number;
-    withdrawSavings: number;
+    withdrawSavings: { hbd:string | number, hive: string | number };
     openOrders: { hbd:string | number, hive: string | number };
     aprs: { hbd:string | number, hp: string | number }
 }
@@ -77,6 +82,8 @@ export class WalletHive extends BaseComponent<Props, State> {
         delegatedList: false,
         receivedList: false,
         convertList: false,
+        savingsWithdrawList: false,
+        tokenType: 'HBD',
         claiming: false,
         claimed: false,
         transfer: false,
@@ -84,7 +91,7 @@ export class WalletHive extends BaseComponent<Props, State> {
         transferMode: null,
         transferAsset: null,
         converting: 0,
-        withdrawSavings: 0,
+        withdrawSavings: {hbd: 0, hive: 0},
         openOrders: {hbd: 0, hive: 0},
         aprs: { hbd:0, hp: 0 }
     };
@@ -156,9 +163,14 @@ export class WalletHive extends BaseComponent<Props, State> {
             return;
         }
 
-        let withdrawSavings = 0;
+        let withdrawSavings = {hbd: 0, hive: 0};
         swf.forEach(x => {
-            withdrawSavings += parseAsset(x.amount).amount;
+            const aa = x.amount;
+            if (aa.includes('HIVE')) {
+                withdrawSavings.hive += parseAsset(x.amount).amount;
+            } else {
+                withdrawSavings.hbd += parseAsset(x.amount).amount;
+            }
         });
 
         this.stateSet({withdrawSavings});
@@ -193,6 +205,11 @@ export class WalletHive extends BaseComponent<Props, State> {
     toggleConvertList = () => {
         const {convertList} = this.state;
         this.stateSet({convertList: !convertList});
+    };
+
+    toggleSavingsWithdrawList = (tType:AssetSymbol) => {
+        const {savingsWithdrawList} = this.state;
+        this.stateSet({savingsWithdrawList: !savingsWithdrawList, tokenType: tType});
     };
 
     toggleReceivedList = () => {
@@ -245,7 +262,7 @@ export class WalletHive extends BaseComponent<Props, State> {
 
     render() {
         const {global, dynamicProps, account, activeUser, history} = this.props;
-        const {claiming, claimed, transfer, transferAsset, transferMode, converting, withdrawSavings, aprs: {hbd, hp}, openOrders} = this.state;
+        const {claiming, claimed, transfer, transferAsset, transferMode, converting, withdrawSavings, aprs: {hbd, hp}, openOrders, tokenType} = this.state;
 
         if (!account.__loaded) {
             return null;
@@ -374,6 +391,15 @@ export class WalletHive extends BaseComponent<Props, State> {
                                               history.push(`/market`);
                                           }}>
                                           {"+"} {formattedNumber(openOrders.hive, {suffix: "HIVE"})}
+                                      </span>
+                                        </Tooltip>
+                                    </div>
+                                )}
+                                {withdrawSavings && withdrawSavings.hive > 0 && (
+                                    <div className="amount amount-passive converting-hbd">
+                                        <Tooltip content={_t("wallet.withdrawing-amount")}>
+                                      <span className="amount-btn" onClick={()=>this.toggleSavingsWithdrawList('HIVE')}>
+                                          {"+"} {formattedNumber(withdrawSavings.hive, {suffix: "HIVE"})}
                                       </span>
                                         </Tooltip>
                                     </div>
@@ -571,11 +597,11 @@ export class WalletHive extends BaseComponent<Props, State> {
                                     </div>
                                 )}
 
-                                {withdrawSavings > 0 && (
+                                {withdrawSavings && withdrawSavings.hbd > 0 && (
                                     <div className="amount amount-passive converting-hbd">
-                                        <Tooltip content={_t("wallet.withdrawing-hbd-amount")}>
-                                      <span>
-                                          {"+"} {formattedNumber(withdrawSavings, {prefix: "$"})}
+                                        <Tooltip content={_t("wallet.withdrawing-amount")}>
+                                      <span className="amount-btn" onClick={()=>this.toggleSavingsWithdrawList('HBD')}>
+                                          {"+"} {formattedNumber(withdrawSavings.hbd, {prefix: "$"})}
                                       </span>
                                         </Tooltip>
                                     </div>
@@ -707,6 +733,10 @@ export class WalletHive extends BaseComponent<Props, State> {
 
                 {this.state.convertList && (
                     <ConversionRequests {...this.props} account={account} onHide={this.toggleConvertList}/>
+                )}
+
+                {this.state.savingsWithdrawList && (
+                    <SavingsWithdraw {...this.props} tokenType={tokenType} account={account} onHide={()=>this.toggleSavingsWithdrawList('HBD')}/>
                 )}
 
                 {this.state.withdrawRoutes && (

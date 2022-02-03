@@ -4,7 +4,7 @@ import {List} from "./index";
 import renderer from "react-test-renderer";
 import {createBrowserHistory} from "history";
 
-import {dynamicPropsIntance1, globalInstance, allOver, conversionRequestInstance} from "../../helper/test-helper";
+import {dynamicPropsIntance1, globalInstance, allOver, assetSymbolInstance, withdrawSavingsInstance} from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
     imageServer: "https://images.ecency.com",
@@ -13,10 +13,10 @@ jest.mock("../../constants/defaults.json", () => ({
 let MOCK_MODE = 1;
 
 jest.mock("../../api/hive", () => ({
-    getConversionRequests: () =>
+    getSavingsWithdrawFrom: () =>
         new Promise((resolve) => {
             if (MOCK_MODE === 1) {
-                resolve(conversionRequestInstance);
+                resolve(withdrawSavingsInstance);
             }
 
             if (MOCK_MODE === 2) {
@@ -27,6 +27,7 @@ jest.mock("../../api/hive", () => ({
 
 const defaultProps = {
     global: globalInstance,
+    tokenType: assetSymbolInstance,
     history: createBrowserHistory(),
     account: {name: "foo"},
     dynamicProps: dynamicPropsIntance1,
