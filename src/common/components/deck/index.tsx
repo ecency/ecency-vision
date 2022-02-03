@@ -23,15 +23,17 @@ const DeckHeader = ({title, icon, index}:DeckHeaderProps) => {
 export interface DeckProps {
   header: { title: string; icon: any };
   listItemComponent: any;
-  index: number
+  index: number;
+  data: any[]
 }
 
-export const Deck = ({ header, listItemComponent: ListItem, index }: DeckProps) => {
+export const Deck = ({ header, listItemComponent: ListItem, index, data }: DeckProps) => {
+
   return (
-    <div className="deck mr-5">
+    <div className="deck mr-5 rounded-top">
       <DeckHeader {...header} index={index}/>
-      <div className="py-4 pr-4 pl-3">
-        {hotListItems.map((item, index) => (
+      <div className="py-4 pr-4 pl-3 item-container">
+        {data.map((item, index) => (
           <ListItem index={index + 1} {...item} />
         ))}
       </div>

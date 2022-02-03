@@ -42,7 +42,7 @@ const DeckViewContainer = ({ global, toggleListStyle }: PageProps) => {
       </div>
       <div className="decks-container d-flex justify-content-between p-5 mt-5 overflow-auto flex-grow-1">
         {decks.map((deck, index) => (
-          <Deck {...deck} index={index+1} />
+          <Deck {...deck} index={index + 1} />
         ))}
       </div>
     </div>
