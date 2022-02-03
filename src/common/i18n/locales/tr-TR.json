@@ -564,7 +564,7 @@
     "withdraw-routes": "Çekim Hesapları",
     "calculating": "Hesaplanıyor",
     "converting-hbd-amount": "HIVE'a Dönüştür",
-    "withdrawing-hbd-amount": "Withdrawing HBD from Savings",
+    "withdrawing-amount": "Withdrawing from Savings",
     "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
@@ -772,6 +772,10 @@
     "request-id": "Request id",
     "amount": "Amount",
     "pending": "Pending"
+  },
+  "savings-withdraw": {
+    "title": "Withdraw from Savings",
+    "to": "To"
   },
   "friends": {
     "followers": "Takipçi ({{n}})",
