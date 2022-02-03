@@ -22,7 +22,8 @@ import {
 interface Props {
     global: Global;
     toggleListStyle: (view: string | null) => void;
-    iconClass?: string
+    iconClass?: string;
+    float?: "left" | "right"
 }
 
 export default class ListStyleToggle extends Component<Props> {
@@ -39,7 +40,7 @@ export default class ListStyleToggle extends Component<Props> {
     };
 
     render() {
-        const { global, iconClass } = this.props;
+        const { global, iconClass, float } = this.props;
         const { listStyle } = global;
         const dropDownItems: MenuItem[] = [
             {
@@ -72,7 +73,7 @@ export default class ListStyleToggle extends Component<Props> {
         };
         return (
             <div className="viewLayouts">
-                <DropDown {...dropDownConfig} float="right" header="" />
+                <DropDown {...dropDownConfig} float={float || "right"} header="" />
             </div>
         );
     }
