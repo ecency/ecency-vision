@@ -564,7 +564,7 @@
     "withdraw-routes": "Пути вывода",
     "calculating": "Идет расчет",
     "converting-hbd-amount": "Конвертация в HIVE",
-    "withdrawing-hbd-amount": "Withdrawing HBD from Savings",
+    "withdrawing-amount": "Withdrawing from Savings",
     "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
@@ -772,6 +772,10 @@
     "request-id": "Request id",
     "amount": "Amount",
     "pending": "Pending"
+  },
+  "savings-withdraw": {
+    "title": "Withdraw from Savings",
+    "to": "To"
   },
   "friends": {
     "followers": "Подписчики ({{n}})",
