@@ -57,7 +57,7 @@ export class InfoContent extends BaseComponent<ContentProps> {
 
         return <div className="profile-info-tooltip-content">
             <p>{_t("profile-info.joined", {n: created})}</p>
-            <p>{_t("profile-info.post-count", {n: formattedNumber(account.post_count!, {fractionDigits: 0})}) }</p>
+            <p>{_t("profile-info.post-count", {n: formattedNumber(account.post_count!, {fractionDigits: 0})})}</p>
             <p>{_t("profile-info.last-active", {n: lastActive.fromNow()})}</p>
             <p>
                 {_t("profile-info.vote-value", {n: vValue})}
