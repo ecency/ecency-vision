@@ -473,7 +473,6 @@
   },
   "profile": {
     "voting-power": "Сила голоса",
-    "post-count": "Количество записей",
     "followers": "Подписчики",
     "following": "Подписки",
     "follows-you": "Подписан(а) на вас",
@@ -499,6 +498,7 @@
     "rc-power": "Ресурс Кредиты: {{n}}%",
     "recharge-time": "(полностью оплачено {{n}})",
     "down-vote-power": "Понижающая сила голоса: {{n}}%",
+    "post-count": "Post Count: {{n}}",
     "no-posts": "No content published, yet",
     "no-posts-user": "Follow, be first to know",
     "no-posts-community": "Join and post in this community",
