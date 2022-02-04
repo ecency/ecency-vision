@@ -173,7 +173,7 @@ class AboutPage extends Component<PageProps> {
                             <a
                                 className="contacts-link"
                                 target="_blank"
-                                href="https://twitter.com/esteem_app"
+                                href="https://twitter.com/ecency_official"
                                 rel="noopener noreferrer"
                             >
                                 {twitterSvg} Twitter

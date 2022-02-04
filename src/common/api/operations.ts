@@ -309,7 +309,7 @@ export const transferPoint = (from: string, key: PrivateKey, to: string, amount:
     });
 
     const op = {
-        id: 'esteem_point_transfer',
+        id: 'ecency_point_transfer',
         json,
         required_auths: [from],
         required_posting_auths: []
@@ -323,7 +323,7 @@ export const transferPointHot = (from: string, to: string, amount: string, memo:
         authority: "active",
         required_auths: `["${from}"]`,
         required_posting_auths: "[]",
-        id: "esteem_point_transfer",
+        id: "ecency_point_transfer",
         json: JSON.stringify({
             sender: from,
             receiver: to,
@@ -343,7 +343,7 @@ export const transferPointKc = (from: string, to: string, amount: string, memo: 
         memo
     });
 
-    return keychain.customJson(from, "esteem_point_transfer", "Active", json, "Point Transfer")
+    return keychain.customJson(from, "ecency_point_transfer", "Active", json, "Point Transfer")
 }
 
 export const transferToSavings = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
@@ -842,7 +842,7 @@ export const promote = (key: PrivateKey, user: string, author: string, permlink:
     });
 
     const op = {
-        id: 'esteem_promote',
+        id: 'ecency_promote',
         json,
         required_auths: [user],
         required_posting_auths: []
@@ -856,7 +856,7 @@ export const promoteHot = (user: string, author: string, permlink: string, durat
         authority: "active",
         required_auths: `["${user}"]`,
         required_posting_auths: "[]",
-        id: "esteem_promote",
+        id: "ecency_promote",
         json: JSON.stringify({
             user,
             author,
@@ -876,7 +876,7 @@ export const promoteKc = (user: string, author: string, permlink: string, durati
         duration
     });
 
-    return keychain.customJson(user, "esteem_promote", "Active", json, "Promote");
+    return keychain.customJson(user, "ecency_promote", "Active", json, "Promote");
 }
 
 export const boost = (key: PrivateKey, user: string, author: string, permlink: string, amount: string): Promise<TransactionConfirmation> => {
@@ -888,7 +888,7 @@ export const boost = (key: PrivateKey, user: string, author: string, permlink: s
     });
 
     const op = {
-        id: 'esteem_boost',
+        id: 'ecency_boost',
         json,
         required_auths: [user],
         required_posting_auths: []
@@ -902,7 +902,7 @@ export const boostHot = (user: string, author: string, permlink: string, amount:
         authority: "active",
         required_auths: `["${user}"]`,
         required_posting_auths: "[]",
-        id: "esteem_boost",
+        id: "ecency_boost",
         json: JSON.stringify({
             user,
             author,
@@ -922,7 +922,7 @@ export const boostKc = (user: string, author: string, permlink: string, amount: 
         amount
     });
 
-    return keychain.customJson(user, "esteem_boost", "Active", json, "Boost");
+    return keychain.customJson(user, "ecency_boost", "Active", json, "Boost");
 }
 
 export const communityRewardsRegister = (key: PrivateKey, name: string): Promise<TransactionConfirmation> => {
@@ -931,7 +931,7 @@ export const communityRewardsRegister = (key: PrivateKey, name: string): Promise
     });
 
     const op = {
-        id: 'esteem_registration',
+        id: 'ecency_registration',
         json,
         required_auths: [name],
         required_posting_auths: []
@@ -945,7 +945,7 @@ export const communityRewardsRegisterHot = (name: string) => {
         authority: "active",
         required_auths: `["${name}"]`,
         required_posting_auths: "[]",
-        id: "esteem_registration",
+        id: "ecency_registration",
         json: JSON.stringify({
             name
         })
@@ -959,7 +959,7 @@ export const communityRewardsRegisterKc = (name: string) => {
         name
     });
 
-    return keychain.customJson(name, "esteem_registration", "Active", json, "Community Registration");
+    return keychain.customJson(name, "ecency_registration", "Active", json, "Community Registration");
 }
 
 export const updateProfile = (account: Account, newProfile: {
