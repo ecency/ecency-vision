@@ -473,7 +473,6 @@
   },
   "profile": {
     "voting-power": "Oylama Gücü",
-    "post-count": "Gönderi sayısı",
     "followers": "Takipçiler",
     "following": "Takip edilenler",
     "follows-you": "Sizi takip ediyor",
@@ -499,6 +498,7 @@
     "rc-power": "Kaynak Kredileri: %{{n}}",
     "recharge-time": "(tam dolu {{n}})",
     "down-vote-power": "Eksi Oy Gücü: %{{n}}",
+    "post-count": "Post Count: {{n}}",
     "no-posts": "No content published, yet",
     "no-posts-user": "Follow, be first to know",
     "no-posts-community": "Join and post in this community",
