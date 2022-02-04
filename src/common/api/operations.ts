@@ -969,6 +969,7 @@ export const updateProfile = (account: Account, newProfile: {
     location: string,
     cover_image: string,
     profile_image: string,
+    pinned: string,
 }): Promise<TransactionConfirmation> => {
     const params = {
         account: account.name,

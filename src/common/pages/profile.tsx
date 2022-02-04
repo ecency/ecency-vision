@@ -46,6 +46,7 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import { FormControl } from 'react-bootstrap'
 import { connect } from "react-redux";
+import { FullAccount } from "../store/accounts/types";
 
 interface MatchParams {
     username: string;
@@ -466,6 +467,9 @@ class ProfilePage extends BaseComponent<Props, State> {
 
                                 if (data !== undefined) {
                                     const entryList = data?.entries;
+                                    const {profile} = activeUser?.data as FullAccount
+                                    const pinnedPost = entryList.findIndex(item => item.permlink === profile?.pinned)
+                                    entryList.push(...entryList.splice(0, pinnedPost))
                                     const loading = data?.loading;
                                     return (
                                         <>

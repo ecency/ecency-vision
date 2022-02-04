@@ -9,7 +9,7 @@ import {Entry, EntryStat} from "../../store/entries/types";
 import {Communities, Community, ROLES} from "../../store/communities/types";
 import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 import {Global} from "../../store/global/types";
-import {Account} from "../../store/accounts/types";
+import {Account, FullAccount} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {ToggleType} from "../../store/ui/types";
 
@@ -31,7 +31,8 @@ import {_t} from "../../i18n";
 
 import clipboard from "../../util/clipboard";
 
-import {deleteComment, formatError, pinPost} from "../../api/operations";
+import {deleteComment, formatError, pinPost, updateProfile} from "../../api/operations";
+import {getAccount} from "../../api/hive";
 
 import * as bridgeApi from "../../api/bridge";
 
@@ -55,6 +56,7 @@ interface Props {
     alignBottom?: boolean,
     signingKey: string;
     setSigningKey: (key: string) => void;
+    addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
     updateEntry: (entry: Entry) => void;
     addCommunity: (data: Community) => void;
@@ -140,14 +142,15 @@ export class EntryMenu extends BaseComponent<Props, State> {
     }
 
     canPinOrMute = () => {
-        const {activeUser} = this.props;
+        const {activeUser, entry} = this.props;
 
         const community = this.getCommunity();
+        const ownEntry = activeUser && activeUser.username === entry.author;
 
         return activeUser && community ? !!community.team.find(m => {
             return m[0] === activeUser.username &&
                 [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
-        }) : false;
+        }) : ownEntry;
     }
 
     copyAddress = () => {
@@ -177,11 +180,12 @@ export class EntryMenu extends BaseComponent<Props, State> {
     }
 
     pin = (pin: boolean) => {
-        const {entry, activeUser, setEntryPin, updateEntry} = this.props;
+        const {entry, activeUser, setEntryPin, updateEntry, addAccount, updateActiveUser} = this.props;
 
         const community = this.getCommunity();
 
-        pinPost(activeUser!.username, community!.name, entry.author, entry.permlink, pin)
+        if (community) {
+            pinPost(activeUser!.username, community!.name, entry.author, entry.permlink, pin)
             .then(() => {
                 setEntryPin(entry, pin);
 
@@ -200,6 +204,56 @@ export class EntryMenu extends BaseComponent<Props, State> {
             .catch(err => {
                 error(formatError(err));
             })
+        }
+
+        const ownEntry = activeUser && activeUser.username === entry.author;
+        const {profile, name} = activeUser?.data as FullAccount
+        if (ownEntry && pin && profile) {
+            console.log('here');
+            
+            const newProfile = {
+                name: profile?.name || '',
+                about: profile?.about || '',
+                cover_image: profile?.cover_image || '',
+                profile_image: profile?.profile_image || '',
+                website: profile?.website || '',
+                location: profile?.location || '',
+                pinned: entry.permlink
+            };
+            updateProfile(activeUser.data, newProfile).then(r => {
+                success(_t("entry-menu.pin-success"));
+                return getAccount(name);
+            }).then((account) => {
+                // update reducers
+                addAccount(account);
+                updateActiveUser(account);
+            }).catch(() => {
+                error(_t('g.server-error'));
+            })
+        } else if (ownEntry && !pin && profile) {
+            console.log(' not here');
+            
+            const newProfile = {
+                name: profile?.name || '',
+                about: profile?.about || '',
+                cover_image: profile?.cover_image || '',
+                profile_image: profile?.profile_image || '',
+                website: profile?.website || '',
+                location: profile?.location || '',
+                pinned: ""
+            };
+            updateProfile(activeUser.data, newProfile).then(r => {
+                success(_t("entry-menu.unpin-success"));
+                return getAccount(name);
+            }).then((account) => {
+                // update reducers
+                addAccount(account);
+                updateActiveUser(account);
+            }).catch(() => {
+                error(_t('g.server-error'));
+            })
+        }
+        
     }
 
     onMenuShow = () => {
@@ -233,7 +287,8 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
     render() {
         const {global, activeUser, entry, entryPinTracker, alignBottom, separatedSharing, extraMenuItems} = this.props;
-       
+
+        const {profile} = activeUser?.data as FullAccount       
         const isComment = !!entry.parent_author;
 
         const ownEntry = activeUser && activeUser.username === entry.author;
@@ -301,7 +356,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         }
 
         if (this.canPinOrMute()) {
-            if (entryPinTracker[`${entry.author}-${entry.permlink}`]) {
+            if (entryPinTracker[`${entry.author}-${entry.permlink}`] || entry.permlink === profile?.pinned) {
                 menuItems = [...menuItems, {
                     label: _t("entry-menu.unpin"),
                     onClick: this.toggleUnpin,
@@ -327,6 +382,14 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 ]
             ];
         }
+
+        // if(ownEntry) {
+        //     menuItems = [...menuItems, {
+        //         label: _t("entry-menu.pin"),
+        //         onClick: this.togglePin,
+        //         icon: pinSvg
+        //     }];
+        // }
 
         if (global.usePrivate) {
             menuItems = [
@@ -477,6 +540,7 @@ export default (p: Props) => {
         signingKey: p.signingKey,
         extraMenuItems: p.extraMenuItems,
         setSigningKey: p.setSigningKey,
+        addAccount: p.addAccount,
         updateActiveUser: p.updateActiveUser,
         updateEntry: p.updateEntry,
         addCommunity: p.addCommunity,

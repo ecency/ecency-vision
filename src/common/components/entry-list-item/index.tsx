@@ -10,7 +10,7 @@ import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-help
 
 import {Entry, EntryVote} from "../../store/entries/types";
 import {Global} from "../../store/global/types";
-import {Account} from "../../store/accounts/types";
+import {Account, FullAccount} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Community, Communities} from "../../store/communities/types";
 import {User} from "../../store/users/types";
@@ -158,6 +158,7 @@ export default class EntryListItem extends Component<Props, State> {
     render() {
         const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order} = this.props;
         const { mounted } = this.state;
+        const {profile} = activeUser?.data as FullAccount
 
         const fallbackImage = global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png");
         const noImage = global.isElectron ?  "./img/noimage.svg" : require("../../img/noimage.svg");
@@ -182,7 +183,7 @@ export default class EntryListItem extends Component<Props, State> {
         const title = entry.title;
 
         const isVisited = false;
-        const isPinned = community && !!entry.stats?.is_pinned;
+        const isPinned = (community && !!entry.stats?.is_pinned) || (entry.permlink === profile?.pinned);
 
         let reBlogged: string | undefined;
         if (asAuthor && asAuthor !== entry.author && !isChild) {
