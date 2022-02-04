@@ -473,7 +473,6 @@
   },
   "profile": {
     "voting-power": "वोटिंग पावर",
-    "post-count": "लेखन गिनती",
     "followers": "अनुयायी",
     "following": "अनुगामी",
     "follows-you": "आपको फॉलो करता है",
@@ -499,6 +498,7 @@
     "rc-power": "संसाधन क्रेडिट: {{n}}%",
     "recharge-time": "(पूर्णतःउर्जित {{n}})",
     "down-vote-power": "डाउनवोट पावर: {{n}}%",
+    "post-count": "Post Count: {{n}}",
     "no-posts": "No content published, yet",
     "no-posts-user": "Follow, be first to know",
     "no-posts-community": "Join and post in this community",
