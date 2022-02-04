@@ -207,10 +207,8 @@ export class EntryMenu extends BaseComponent<Props, State> {
         }
 
         const ownEntry = activeUser && activeUser.username === entry.author;
-        const {profile, name} = activeUser?.data as FullAccount
-        if (ownEntry && pin && profile) {
-            console.log('here');
-            
+        const {profile, name} = activeUser!.data as FullAccount
+        if (ownEntry && pin && profile && activeUser) {            
             const newProfile = {
                 name: profile?.name || '',
                 about: profile?.about || '',
@@ -230,9 +228,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
             }).catch(() => {
                 error(_t('g.server-error'));
             })
-        } else if (ownEntry && !pin && profile) {
-            console.log(' not here');
-            
+        } else if (ownEntry && !pin && profile && activeUser) {            
             const newProfile = {
                 name: profile?.name || '',
                 about: profile?.about || '',
