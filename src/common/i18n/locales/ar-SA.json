@@ -473,7 +473,6 @@
   },
   "profile": {
     "voting-power": "قوة التصويت",
-    "post-count": "عدد المنشورات",
     "followers": "المتابِعون",
     "following": "المتابَعين",
     "follows-you": "يُتابِعُك",
@@ -499,6 +498,7 @@
     "rc-power": "رصيد الموارد: {{n}}%",
     "recharge-time": "(مشحون بالكامل {{n}})",
     "down-vote-power": "قوة التصويت السلبي: {{n}}%",
+    "post-count": "Post Count: {{n}}",
     "no-posts": "No content published, yet",
     "no-posts-user": "Follow, be first to know",
     "no-posts-community": "Join and post in this community",
