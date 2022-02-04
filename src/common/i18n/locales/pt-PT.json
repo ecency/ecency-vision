@@ -473,7 +473,6 @@
   },
   "profile": {
     "voting-power": "Poder de Voto",
-    "post-count": "Contagem de Postagem",
     "followers": "Seguidores",
     "following": "Seguindo",
     "follows-you": "Segue você",
@@ -499,6 +498,7 @@
     "rc-power": "Créditos de Recursos: {{n}}%",
     "recharge-time": "( {{n}} para carregamento completo)",
     "down-vote-power": "Poder de Voto Negativo: {{n}}%",
+    "post-count": "Post Count: {{n}}",
     "no-posts": "Nenhum conteúdo publicado ainda",
     "no-posts-user": "Conecte-se e descubra mais",
     "no-posts-community": "Participe e publique nesta comunidade",
