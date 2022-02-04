@@ -473,7 +473,6 @@
   },
   "profile": {
     "voting-power": "Kekuatan Voting",
-    "post-count": "Hitungan Postingan",
     "followers": "Pengikut",
     "following": "Mengikuti",
     "follows-you": "Follows you",
@@ -499,6 +498,7 @@
     "rc-power": "Sumber Kredit: {{n}}%",
     "recharge-time": "(terisi penuh {{n}})",
     "down-vote-power": "Power Downvote: {{n}}%",
+    "post-count": "Post Count: {{n}}",
     "no-posts": "No content published, yet",
     "no-posts-user": "Follow, be first to know",
     "no-posts-community": "Join and post in this community",
