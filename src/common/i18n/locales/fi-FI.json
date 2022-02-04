@@ -473,7 +473,6 @@
   },
   "profile": {
     "voting-power": "Äänivalta",
-    "post-count": "Julkaisujen määrä",
     "followers": "Seuraajat",
     "following": "Seuratut",
     "follows-you": "Follows you",
@@ -499,6 +498,7 @@
     "rc-power": "Resurssihyvitykset: {{n}}%",
     "recharge-time": "(täysin veloitettu {{n}})",
     "down-vote-power": "Äänen laskuteho: {{n}}%",
+    "post-count": "Post Count: {{n}}",
     "no-posts": "No content published, yet",
     "no-posts-user": "Follow, be first to know",
     "no-posts-community": "Join and post in this community",
