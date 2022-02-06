@@ -298,9 +298,9 @@
     "confirm-cancel": "Aminmisiz? Buyurtmani bekor qilyapsiz #{{orderid}}!",
     "confirm-buy": "Siz {{amount}} HIVEni {{price}} HBD/HIVE ga sotyapsiz va jami {{total}} HBD boʻladi.",
     "confirm-sell": "Qiymatlar",
-    "transaction-succeeded": "Transaction submitted",
-    "lowest-ask": "Lowest ask",
-    "decimal-error": "Only {{decimals}} decimal digits allowed!"
+    "transaction-succeeded": "Transaksiya yuborildi",
+    "lowest-ask": "Eng past narx",
+    "decimal-error": "Faqatgina {{decimals}} \no'nlik raqamlarga ruxsat beriladi!"
   },
   "list-style": {
     "title": "Ro'yxat stilini o'zgartirish"
@@ -456,10 +456,10 @@
     "done-link-label": "Boshlash."
   },
   "community-rewards-registration": {
-    "body-text": "Register your community to get Ecency POINTS",
-    "btn-next-label": "Register",
-    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
-    "conflict-body-text": "This community is already registered.",
+    "body-text": "Ecency POINTS olish uchun guruhingizni roʻyxatdan oʻtkazing",
+    "btn-next-label": "Roʻyxatdan oʻtish",
+    "done-body-text": "Roʻyxatdan oʻtish tugallandi. A'zolaringiz Ecency ilovalari orqali postlar joylashtirganida guruhingiz OCHKO mukofotlarini oladi.",
+    "conflict-body-text": "Bu guruh oldin ro'yxatdan o'tgan.",
     "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "mute-btn": {
