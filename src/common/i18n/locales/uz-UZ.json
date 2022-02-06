@@ -460,14 +460,14 @@
     "btn-next-label": "Roʻyxatdan oʻtish",
     "done-body-text": "Roʻyxatdan oʻtish tugallandi. A'zolaringiz Ecency ilovalari orqali postlar joylashtirganida guruhingiz OCHKO mukofotlarini oladi.",
     "conflict-body-text": "Bu guruh oldin ro'yxatdan o'tgan.",
-    "min-required-body-text": "Minimum 100 subscribers required to register."
+    "min-required-body-text": "Ro'yxatdan o'tish uchun kamida 100 ta obunachi kerak."
   },
   "mute-btn": {
-    "mute": "Mute",
-    "unmute": "Unmute",
-    "dialog-title-mute": "Mute post/comment",
-    "dialog-title-unmute": "Unmute post/comment",
-    "notes": "Notes",
+    "mute": "Ovozsiz",
+    "unmute": "Ovozli",
+    "dialog-title-mute": "Post\\kommentni ovozsiz qilish",
+    "dialog-title-unmute": "Post\\kommentni ovozli qilish",
+    "notes": "Izohlar",
     "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
     "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
   },
