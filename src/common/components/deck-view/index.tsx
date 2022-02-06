@@ -18,6 +18,7 @@ import {
 import { Deck } from "../deck";
 import ListStyleToggle from "../list-style-toggle";
 import { decks } from "./decks.data";
+import { DraggableDeckView } from "./draggable-deck-view";
 
 const DeckViewContainer = ({ global, toggleListStyle }: any) => {
   return (
@@ -40,11 +41,12 @@ const DeckViewContainer = ({ global, toggleListStyle }: any) => {
         <div className="cursor-pointer">{wallet}</div>
         <div className="my-icons-5 cursor-pointer">{plusEncircled}</div>
       </div>
-      <div className="decks-container d-flex p-5 mt-5 overflow-auto flex-grow-1">
+      {/* <div className="decks-container d-flex p-5 mt-5 overflow-auto flex-grow-1">
         {decks.map((deck, index) => (
           <Deck {...deck} index={index + 1} key={deck.header.title}/>
         ))}
-      </div>
+      </div> */}
+      <DraggableDeckView />
     </div>
   );
 };

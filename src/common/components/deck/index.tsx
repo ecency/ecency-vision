@@ -25,10 +25,10 @@ export interface DeckProps {
   data: any[]
 }
 
-export const Deck = ({ header, listItemComponent: ListItem, index, data }: DeckProps) => {
+export const Deck = ({ header, listItemComponent: ListItem, index, data, ...rest }: DeckProps) => {
 
   return (
-    <div className="deck mr-5 rounded-top">
+    <div className={rest.className + " deck mr-5 rounded-top"} {...rest}>
       <DeckHeader {...header} index={index}/>
       <div className="py-4 pr-4 pl-3 item-container">
         {data.map((item, index) => (
