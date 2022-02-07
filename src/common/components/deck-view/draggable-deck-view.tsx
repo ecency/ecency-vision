@@ -1,18 +1,23 @@
 import React, { useState } from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  resetServerContext,
+} from "react-beautiful-dnd";
 import { Deck } from "../deck";
 import { decks } from "./decks.data";
 
 // fake data generator
-const getItems = (items: any) =>
-  items.map((k:any) => ({
-      ...k,
-    id: `item-${k.id}`,
-    content: `item ${k.content}`,
+const getItems = () =>
+  decks.map((k, index) => ({
+    id: `item-${index}`,
+    content: `item ${index}`,
+    ...decks[index],
   }));
 
 // a little function to help us with reordering the result
-const reorder = (list: any, startIndex: number, endIndex: number) => {
+const reorder = (list: any, startIndex: any, endIndex: any) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
@@ -23,73 +28,67 @@ const reorder = (list: any, startIndex: number, endIndex: number) => {
 const grid = 8;
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
-  // some basic styles to make the items look a bit nicer
-  userSelect: "none",
-
-  // change background colour if dragging
-  background: isDragging ? "lightgreen" : "white",
-
-  // styles we need to apply on draggables
   ...draggableStyle,
 });
 
 const getListStyle = (isDraggingOver: boolean) => ({
-  background: isDraggingOver ? "lightblue" : "#e9f2fc",
+  background: "#e9f2fc",
   display: "flex",
   padding: grid,
   overflow: "auto",
 });
-export const DraggableDeckView = () => {
-  const [items, setItems] = useState<any>(getItems(decks));
+
+resetServerContext();
+
+const DraggableDeckView = () => {
+  const [items, setItems] = useState<any>(getItems());
 
   const onDragEnd = (result: any) => {
-    // dropped outside the list
     if (!result.destination) {
       return;
     }
 
-    const reOrderedItems = reorder(
+    const reorderedItems = reorder(
       items,
       result.source.index,
       result.destination.index
     );
-    setItems(reOrderedItems);
+
+    setItems(reorderedItems);
   };
 
   return (
-    <div className="decks-container d-flex p-5 mt-5 overflow-auto flex-grow-1">
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="droppable" direction="horizontal">
-          {(provided, snapshot) => (
-            <div
-              ref={provided.innerRef}
-              style={getListStyle(snapshot.isDraggingOver)}
-              {...provided.droppableProps}
-            >
-              {items.map((item: any, index: number) => {
-                  debugger
-                  return (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      style={getItemStyle(
-                        snapshot.isDragging,
-                        provided.draggableProps.style
-                      )}
-                      index={index + 1}
-                      {...item}
-                    >{item.content}</div>
-                  )}
-                </Draggable>
-              )})}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
-    </div>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Droppable droppableId="droppable" direction="horizontal">
+        {(provided, snapshot) => (
+          <div
+            ref={provided.innerRef}
+            style={getListStyle(snapshot.isDraggingOver)}
+            {...provided.droppableProps}
+          >
+            {items.map((item: any, index: any) => (
+              <Draggable key={item.id} draggableId={item.id} index={index}>
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    style={getItemStyle(
+                      snapshot.isDragging,
+                      provided.draggableProps.style
+                    )}
+                  >
+                    <Deck {...item} />
+                  </div>
+                )}
+              </Draggable>
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+    </DragDropContext>
   );
 };
+
+export { DraggableDeckView };

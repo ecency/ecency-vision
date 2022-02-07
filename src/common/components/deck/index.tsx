@@ -26,12 +26,11 @@ export interface DeckProps {
 }
 
 export const Deck = ({ header, listItemComponent: ListItem, index, data, ...rest }: DeckProps) => {
-
   return (
-    <div className={rest.className + " deck mr-5 rounded-top"} {...rest}>
+    <div className={"deck mr-5 rounded-top"} {...rest}>
       <DeckHeader {...header} index={index}/>
       <div className="py-4 pr-4 pl-3 item-container">
-        {data.map((item, index) => (
+        {data && data.map((item, index) => (
           <ListItem index={index + 1} {...item} key={item.title}/>
         ))}
       </div>
