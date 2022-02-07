@@ -9,7 +9,7 @@ import {ListStyle} from "../store/global/types";
 
 import {makeGroupKey} from "../store/entries";
 import {ProfileFilter} from "../store/global/types";
-
+import {Entry} from "../store/entries/types";
 import BaseComponent from "../components/base";
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -33,7 +33,7 @@ import ScrollToTop from "../components/scroll-to-top";
 import SearchListItem from "../components/search-list-item";
 import {SearchType} from "../helper/search-query";
 import SearchBox from '../components/search-box'
-
+import * as bridgeApi from "../api/bridge";
 import {search as searchApi, SearchResult} from "../api/search-api";
 import ViewKeys from "../components/view-keys";
 import { PasswordUpdate } from "../components/password-update";
@@ -47,6 +47,7 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import { FormControl } from 'react-bootstrap'
 import { connect } from "react-redux";
 import { FullAccount } from "../store/accounts/types";
+import tag from "../components/tag";
 
 interface MatchParams {
     username: string;
@@ -68,6 +69,7 @@ interface State {
     type: SearchType;
     searchData: SearchResult[];
     searchDataLoading: boolean;
+    pinnedEntry: Entry | null;
 }
 
 class ProfilePage extends BaseComponent<Props, State> {
@@ -87,13 +89,15 @@ class ProfilePage extends BaseComponent<Props, State> {
             search: searchParam,
             author: "",
             type: SearchType.ALL,
+            pinnedEntry: null,
             searchData: []
         };
 
     }
 
     async componentDidMount() {
-        const {match, global, fetchEntries, fetchTransactions, fetchPoints, location} = this.props;
+        const {activeUser, match, global, fetchEntries, fetchTransactions, fetchPoints, location} = this.props;
+        const activeUserWithProfile = activeUser?.data as FullAccount
 
         let searchParam = location.search.replace("?","")
         searchParam = searchParam.replace("q","")
@@ -115,11 +119,27 @@ class ProfilePage extends BaseComponent<Props, State> {
 
         // fetch points
         fetchPoints(username);
+
+        console.log(activeUserWithProfile);
+        console.log(activeUserWithProfile.profile?.pinned);
+        console.log(['blog', 'posts'].includes(global.filter));
+        console.log(global.tag.includes(activeUserWithProfile.name));
+        
+        
+        
+        
+        if (activeUserWithProfile && activeUserWithProfile.profile?.pinned && ['blog', 'posts'].includes(global.filter) && global.tag.includes(activeUserWithProfile.name)) {
+            bridgeApi.getPost(username, activeUserWithProfile.profile?.pinned).then((entry) => {
+                console.log('Entry => ', entry);
+                
+            })
+            
+        }
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints, history, location : {search} } = this.props;
-        const {match: prevMatch, entries, location: {search: prevSearch}} = prevProps;
+        const {activeUser, match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints, history, location : {search} } = this.props;
+        const {activeUser: prevActiveUser, match: prevMatch, entries, location: {search: prevSearch}} = prevProps;
 
         const {username, section} = match.params;
         const { isDefaultPost } = this.state;
@@ -173,6 +193,16 @@ class ProfilePage extends BaseComponent<Props, State> {
 
         if(prevProps.global.filter !== this.props.global.filter) {
           this.setState({search: ''});
+        }
+
+        const activeUserWithProfile = activeUser?.data as FullAccount
+        const prevActiveUserWithProfile = prevActiveUser?.data as FullAccount
+        if (activeUserWithProfile && (activeUserWithProfile.profile?.pinned !== prevActiveUserWithProfile.profile?.pinned)) {
+            console.log('did update');
+            bridgeApi.getPost(username.replace("@", ""), activeUserWithProfile.profile?.pinned).then((entry) => {
+                console.log('Entry => ', entry);
+                
+            })
         }
     }
 

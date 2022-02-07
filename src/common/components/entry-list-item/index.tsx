@@ -158,7 +158,8 @@ export default class EntryListItem extends Component<Props, State> {
     render() {
         const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order} = this.props;
         const { mounted } = this.state;
-        const {profile} = activeUser?.data as FullAccount
+        const activeUserWithProfile = activeUser?.data as FullAccount
+        const profile = activeUserWithProfile && activeUserWithProfile.profile
 
         const fallbackImage = global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png");
         const noImage = global.isElectron ?  "./img/noimage.svg" : require("../../img/noimage.svg");

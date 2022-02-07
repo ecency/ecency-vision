@@ -284,7 +284,8 @@ export class EntryMenu extends BaseComponent<Props, State> {
     render() {
         const {global, activeUser, entry, entryPinTracker, alignBottom, separatedSharing, extraMenuItems} = this.props;
 
-        const {profile} = activeUser?.data as FullAccount       
+        const activeUserWithProfile = activeUser?.data as FullAccount
+        const profile = activeUserWithProfile && activeUserWithProfile.profile
         const isComment = !!entry.parent_author;
 
         const ownEntry = activeUser && activeUser.username === entry.author;
