@@ -96,8 +96,7 @@ class ProfilePage extends BaseComponent<Props, State> {
     }
 
     async componentDidMount() {
-        const {activeUser, match, global, fetchEntries, fetchTransactions, fetchPoints, location} = this.props;
-        const activeUserWithProfile = activeUser?.data as FullAccount
+        const {accounts, match, global, fetchEntries, fetchTransactions, fetchPoints, location} = this.props;
 
         let searchParam = location.search.replace("?","")
         searchParam = searchParam.replace("q","")
@@ -119,27 +118,22 @@ class ProfilePage extends BaseComponent<Props, State> {
 
         // fetch points
         fetchPoints(username);
+        
+        const accountUsername = username.replace("@", "");
+        const account = accounts.find((x) => x.name === accountUsername) as FullAccount        
 
-        console.log(activeUserWithProfile);
-        console.log(activeUserWithProfile.profile?.pinned);
-        console.log(['blog', 'posts'].includes(global.filter));
-        console.log(global.tag.includes(activeUserWithProfile.name));
-        
-        
-        
-        
-        if (activeUserWithProfile && activeUserWithProfile.profile?.pinned && ['blog', 'posts'].includes(global.filter) && global.tag.includes(activeUserWithProfile.name)) {
-            bridgeApi.getPost(username, activeUserWithProfile.profile?.pinned).then((entry) => {
-                console.log('Entry => ', entry);
-                
-            })
-            
+        if (account && account.profile && account.profile?.pinned && ['blog', 'posts'].includes(global.filter)) {
+            bridgeApi.getPost(accountUsername, account.profile?.pinned).then(entry => {
+                this.setState({pinnedEntry: entry})
+            }).catch(e=>{
+                console.log(e);
+                })
         }
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {activeUser, match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints, history, location : {search} } = this.props;
-        const {activeUser: prevActiveUser, match: prevMatch, entries, location: {search: prevSearch}} = prevProps;
+        const {accounts, match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints, history, location : {search} } = this.props;
+        const {accounts: prevAccounts, match: prevMatch, entries, location: {search: prevSearch}, global: prevGlobal} = prevProps;
 
         const {username, section} = match.params;
         const { isDefaultPost } = this.state;
@@ -195,14 +189,24 @@ class ProfilePage extends BaseComponent<Props, State> {
           this.setState({search: ''});
         }
 
-        const activeUserWithProfile = activeUser?.data as FullAccount
-        const prevActiveUserWithProfile = prevActiveUser?.data as FullAccount
-        if (activeUserWithProfile && (activeUserWithProfile.profile?.pinned !== prevActiveUserWithProfile.profile?.pinned)) {
-            console.log('did update');
-            bridgeApi.getPost(username.replace("@", ""), activeUserWithProfile.profile?.pinned).then((entry) => {
-                console.log('Entry => ', entry);
-                
-            })
+        if(['comments', 'replies'].includes(global.filter) && (global.filter !== prevGlobal.filter)) {
+            this.setState({pinnedEntry: null})
+        }
+
+        let accountUsername = username.replace("@", "");
+        const account = accounts.find((x) => x.name === accountUsername) as FullAccount
+        const prevAccount = prevAccounts.find((x) => x.name === accountUsername) as FullAccount
+
+        if (['blog', 'posts'].includes(global.filter)) {
+            if ((account && prevAccount && account.profile && prevAccount.profile && (account.profile.pinned !== prevAccount.profile.pinned)) || (account && account.profile && account.profile.pinned && global.filter !== prevGlobal.filter) || (account !== prevAccount && account.profile)) {
+                this.setState({pinnedEntry: null})
+                            
+                bridgeApi.getPost(accountUsername, account.profile.pinned).then(entry => {
+                    this.setState({pinnedEntry: entry})
+                }).catch(e=>{
+                    console.log(e);
+                    })
+            }
         }
     }
 
@@ -496,17 +500,19 @@ class ProfilePage extends BaseComponent<Props, State> {
                                 }
 
                                 if (data !== undefined) {
-                                    const entryList = data?.entries;
-                                    const {profile} = activeUser?.data as FullAccount
-                                    const pinnedPost = entryList.findIndex(item => item.permlink === profile?.pinned)
-                                    entryList.push(...entryList.splice(0, pinnedPost))
+                                    let entryList = data?.entries;
+                                    const {profile} = account as FullAccount
+                                    entryList = entryList.filter(item => item.permlink !== profile?.pinned)
+                                    if(this.state.pinnedEntry) {
+                                        entryList.unshift(this.state.pinnedEntry)
+                                    }
                                     const loading = data?.loading;
                                     return (
                                         <>
                                             <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                                                 <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                                                     {loading && entryList.length === 0 && <EntryListLoadingItem/>}
-                                                    {EntryListContent({...this.props, entries: entryList, promotedEntries: [], loading})}
+                                                    {EntryListContent({...this.props, entries: entryList, promotedEntries: [], loading, account})}
                                                 </div>
                                             </div>
                                             {loading && entryList.length > 0 ? <LinearProgress/> : ""}
