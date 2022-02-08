@@ -94,7 +94,7 @@ const AddColumn = ({ setSelectedValue }: any) => {
           ))}
         </Form.Control>
       </Form.Group>
-      <Button className="align-self-start mb-5 w-25">Add</Button>
+      <Button className="align-self-start mb-5">Add</Button>
 
       <div className="mt-5 d-flex align-items-center back-icon pointer w-100" onClick={()=>setSelectedValue(null)}>
         <div className="mr-2">{arrowLeftSvg}</div>
