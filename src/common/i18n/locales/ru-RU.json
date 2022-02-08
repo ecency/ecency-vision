@@ -30,7 +30,7 @@
     "empty-list": "Здесь пусто",
     "no-matches": "Ничего не найдено",
     "nothing-found-in": "Ничего не найдено",
-    "fill-feed": "You can follow more people to fill up this feed.",
+    "fill-feed": "Вы можете следить за большим количеством людей, чтобы заполнить эту ленту.",
     "fill-community-feed": "Вы можете присоединиться к большему количеству сообществ, чтобы заполнить эту ленту.",
     "save": "Сохранить",
     "try-again": "Попрoбуйте снова",
@@ -271,7 +271,7 @@
   },
   "market": {
     "title": "Обмен токенов",
-    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "description": "Децентрализованная биржа для покупки и продажи токенов на Hive blockchain. Чтобы узнать больше, прочитайте наш <a href=\"/faq#how-exchange-work\">FAQ</a>.",
     "last-price": "Последняя Цена",
     "volume": "Объем за 24 часа",
     "bid": "Бид",
@@ -280,7 +280,7 @@
     "buy": "Купить",
     "sell": "Продать",
     "available": "Доступно",
-    "highest-bid": "Highest bid",
+    "highest-bid": "Самый высокий бид",
     "price": "Цена",
     "amount": "Количество",
     "total": "Всего",
@@ -294,13 +294,13 @@
     "stock-info": "Stock information",
     "barter": "Обмен токенов",
     "stock-values": "Значения",
-    "transaction-low": "Total amount exceeds your available balance. Please add more funds or try with smaller amount.",
-    "confirm-cancel": "Are you sure? You are cancelling order #{{orderid}}!",
-    "confirm-buy": "You're trading {{amount}} HIVE for {{price}} HBD/HIVE and total will be {{total}} HBD.",
+    "transaction-low": "Общая сумма превышает доступный баланс. Пожалуйста, добавьте больше средств или попробуйте уменьшить сумму.",
+    "confirm-cancel": "Вы уверены? Вы отмените ордер #{{orderid}}!",
+    "confirm-buy": "Вы торгуете {{amount}} HIVE за {{price}} HBD/HIVE, в общей сложности {{total}} HBD.",
     "confirm-sell": "Значения",
     "transaction-succeeded": "Транзакция отправлена",
-    "lowest-ask": "Lowest ask",
-    "decimal-error": "Only {{decimals}} decimal digits allowed!"
+    "lowest-ask": "Самый низкий аск",
+    "decimal-error": "Разрешены только {{decimals}} знаков после запятой!"
   },
   "list-style": {
     "title": "Переключить стиль списка"
@@ -328,8 +328,8 @@
     "deleted-content-warning": "Это содержимое было удалено автором. Вы можете увидеть его из блокчейна ",
     "comments-hidden": "Автор сообщения отключен вами.",
     "address-copy": "Скопировать адрес поста",
-    "address-copied": "Post address copied to clipboard",
-    "content-copied": "Content copied to clipboard",
+    "address-copied": "Ссылка на публикацию скопирована в буфер обмена",
+    "content-copied": "Скопировано в буфер обмена",
     "browse-original": "Открыть оригинальный пост",
     "cross-post-by": "Кросс-пост от",
     "cross-post-community": "сообщество",
@@ -348,7 +348,7 @@
     "preview": "Превью"
   },
   "discussion": {
-    "join": "Join the conversation now",
+    "join": "Присоединиться к беседе",
     "btn-join": "Присоединиться",
     "replies": "1 коммент",
     "n-replies": "{{n}} Комментов",
@@ -499,11 +499,11 @@
     "recharge-time": "(полностью оплачено {{n}})",
     "down-vote-power": "Понижающая сила голоса: {{n}}%",
     "post-count": "Количество сообщений: {{n}}",
-    "no-posts": "No content published, yet",
-    "no-posts-user": "Follow, be first to know",
+    "no-posts": "Нет опубликованного контента",
+    "no-posts-user": "Подпишитесь и следите за новостями",
     "no-posts-community": "Присоединитесь и публикуйте в этом сообществе",
     "create-posts": "Давайте создадим новый пост",
-    "link-copied": "Search link copied to clipboard",
+    "link-copied": "Ссылка скопирована в буфер обмена",
     "no-posts-found": "Ничего не найдено!"
   },
   "profile-edit": {
@@ -514,7 +514,7 @@
     "profile-image": "Фото профиля",
     "website": "Вебсайт",
     "location": "Локация",
-    "copied": "Referral link copied to clipboard",
+    "copied": "Реферальная ссылка скопирована в буфер обмена",
     "updated": "Профиль обновлен!"
   },
   "image-upload-button": {
@@ -564,8 +564,8 @@
     "withdraw-routes": "Пути вывода",
     "calculating": "Идет расчет",
     "converting-hbd-amount": "Конвертация в HIVE",
-    "withdrawing-amount": "Withdrawing from Savings",
-    "reserved-amount": "Reserved for Open order in Market"
+    "withdrawing-amount": "Вывод из сбережений",
+    "reserved-amount": "Зарезервировано для открытого ордера на рынке"
   },
   "wallet-engine": {
     "title": "Токены Hive Engine",
@@ -725,9 +725,9 @@
     "type-transfer": "Перевод",
     "type-transfer_to_vesting": "Повысить Силу",
     "type-withdraw_vesting": "Понижение Силы",
-    "type-set_withdraw_vesting_route": "Withdraw route changed",
+    "type-set_withdraw_vesting_route": "Маршрут вывода изменен",
     "type-fill_vesting_withdraw": "Произошло частичное отключение питания",
-    "type-fill_order": "Open trade filled",
+    "type-fill_order": "Открытая сделка заполнена",
     "type-producer_reward": "Вознаграждение продюсера",
     "type-interest": "Интерес",
     "type-transfer_to_savings": "Перевод в сейф",
@@ -749,8 +749,8 @@
     "type-collateralized_convert": "Обеспеченная конвертация",
     "type-collateralized_convert-detail": "Идентификатор запроса: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Идентификатор предложения: <strong>{{pid}}</strong>",
-    "type-limit_order_create": "New trade created",
-    "type-limit_order_cancel": "Open trade cancelled",
+    "type-limit_order_create": "Создана новая сделка",
+    "type-limit_order_cancel": "Открытая сделка отменена",
     "type-effective_comment_vote": "Эффективное голосование"
   },
   "key-or-hot": {
@@ -769,19 +769,19 @@
   },
   "conversion-requests": {
     "title": "Convert requests",
-    "request-id": "Request id",
-    "amount": "Amount",
-    "pending": "Pending"
+    "request-id": "ID запроса",
+    "amount": "Количество",
+    "pending": "В обработке"
   },
   "savings-withdraw": {
-    "title": "Withdraw from Savings",
-    "to": "To"
+    "title": "Вывести из сбережений",
+    "to": "В"
   },
   "open-orders-list": {
-    "title": "Open orders",
-    "created": "Created",
-    "expires": "Expires",
-    "order-id": "Order id"
+    "title": "Открытые ордера",
+    "created": "Создано",
+    "expires": "Срок истекает",
+    "order-id": "ID заказа"
   },
   "friends": {
     "followers": "Подписчики ({{n}})",
@@ -970,7 +970,7 @@
     "matches-singular": "1 совпадение",
     "advanced": "Расширенный режим",
     "search": "Поиск",
-    "search-placeholder": "Search content",
+    "search-placeholder": "Поиск контента",
     "author": "Автор",
     "author-placeholder": "пользователь",
     "type": "Тип",
@@ -1090,7 +1090,7 @@
   },
   "view-keys": {
     "title": "Просмотр закрытых ключей",
-    "header": "Manage keys",
+    "header": "Управление ключами",
     "account": "Аккаунт",
     "cur-pass": "Действующий пароль",
     "owner": "Владелец",
@@ -1138,7 +1138,7 @@
     },
     "faq": {
       "page-title": "Чем мы можем вам помочь?",
-      "search-link-copied": "Search link copied to clipboard",
+      "search-link-copied": "Ссылка скопирована в буфер обмена",
       "page-sub-title": "Таблица с содержимым",
       "what-is-ecency-header": "Что такое Ecency?",
       "search": "Похожие результаты по {{search}} отфильтрованны ниже",
@@ -1194,8 +1194,8 @@
       "can-change-username-header": "Могу ли я изменить свое имя пользователя?",
       "can-change-username-body": "<p>Account names on Ecency and Hive blockchain can not be changed. If you would like a new account name, you can create new account.</p>",
       "can-delete-account-header": "Могу ли я удалить или деактивировать свой аккаунт?",
-      "can-delete-account-body": "<p>Accounts on Ecency can not be deactivated or deleted. The account along with all of its activity is permanently stored in the Hive blockchain.</p>",
-      "different-reward-choices-header": "What are the differences in Reward types?",
+      "can-delete-account-body": "<p>Аккаунты на Ecency не могут быть деактивированы или удалены. Аккаунт вместе со всей его активностью постоянно хранится в блокчейне Hive.</p>",
+      "different-reward-choices-header": "Каковы различия в видах наград?",
       "different-reward-choices-body": "<p>In publishing settings section, you can see 3 different Reward types/choices.<ul><li>50%/50% - This rewards in half Hive Power, and half liquid HIVE / Hive Dollars. The ratio of liquid HIVE to Hive Dollars rewarded is based on network conditions at the time of payout. This is the default payout option.</li><li>Power Up 100% - This option rewards the post in 100% Hive Power.</li><li>Decline Payout - Use this option to receive no post rewards. Votes will affect the post's position on the trending ranking but no rewards are paid from Hive's reward pool. Replies made to the post are still eligible for rewards.</li></ul></p>",
       "boosting-vote-buying-header": "Является ли буст покупкой голоса?",
       "boosting-vote-buying-body": "<p>No! Because, there is no guarantee of receiving vote, there is no guarantee of exact amount of vote, boosting maximum amount is limited, each content reviewed by our curators, there is no profit in it. All curation rewards are sent back to delegators 100%. Only measurable success we seek is to see engagement and growth on entire ecosystem. Boosting is simply creating additional use case for Ecency Points to improve engagement on platform, so it is essentially same as any other curation guilds on Hive. Goal of those guilds ultimately to improve engagement on platform and grow activity, the way each measures that success is the different.</p>",
