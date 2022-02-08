@@ -1,0 +1,21 @@
+.option {
+    border-radius: 8px;
+    width: 108px;
+    height: 86px;
+    &:hover {
+        background-color: #EBF2FC;
+    }
+}
+
+.option path {
+    fill: #1B68DA;
+}
+
+.header {
+    font-size: 21px;
+    font-weight: 500;
+}
+
+.w-80 {
+    width: 80% !important;
+}
