@@ -518,7 +518,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                 <div className="mt-3">
                                     {SimilarEntries({
                                         ...this.props,
-                                        entry: {permlink, author, json_metadata: { tags: deletedEntry.tags}} as any
+                                        entry: {permlink, author, json_metadata: { tags: deletedEntry.tags}} as any,
+                                        display: ""
                                     })}
                                 </div>
                             </div>
@@ -997,9 +998,10 @@ class EntryPage extends BaseComponent<Props, State> {
                                         </div>
                                     )}
 
-                                    {(!originalEntry && !isComment) && !activeUser && SimilarEntries({
+                                    {(!originalEntry && !isComment) && SimilarEntries({
                                         ...this.props,
-                                        entry
+                                        entry,
+                                        display: !activeUser ? "" : "d-none"
                                     })}
 
                                     {Comment({
@@ -1014,9 +1016,10 @@ class EntryPage extends BaseComponent<Props, State> {
                                         entry: entry
                                     })}
 
-                                    {(!originalEntry && !isComment) && activeUser && SimilarEntries({
+                                    {(!originalEntry && !isComment) && SimilarEntries({
                                         ...this.props,
-                                        entry
+                                        entry,
+                                        display: !activeUser ? "d-none" : ""
                                     })}
 
                                     {Discussion({
