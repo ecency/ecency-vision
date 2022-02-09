@@ -288,6 +288,7 @@ export class NavBar extends Component<Props, State> {
                                                 <Button className="btn-login btn-primary" onClick={() => {
                                                     const {toggleUIProp} = this.props;
                                                     toggleUIProp('login');
+                                                    this.setState({ smVisible: false} )
                                                 }}>{_t("g.login")}</Button>
 
                                                 <Link className="btn btn-primary" to="/signup">{_t("g.signup")}</Link>
@@ -355,7 +356,7 @@ export class NavBar extends Component<Props, State> {
 
                             {!activeUser &&
                             <>
-                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={()=>toggleUIProp("login")}>
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={()=>{toggleUIProp("login"); this.setState({ smVisible: false} )}}>
                                         <div className="navbar-icon">{userOutlineSvg}</div>
                                         <div className="ml-3 text-15">{_t("g.login")}</div>
                                 </div>
@@ -386,23 +387,23 @@ export class NavBar extends Component<Props, State> {
                                 <div className="pl-3 position-relative menu-container">
                                     <div className="menu-container-inner">
 
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({drafts: !drafts})}>
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({drafts: !drafts, smVisible: false})}>
                                             <div className="item-text">{_t("user-nav.drafts")}</div>
                                         </div>
 
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({gallery: !gallery})}>
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({gallery: !gallery, smVisible: false})}>
                                             <div className="item-text">{_t("user-nav.gallery")}</div>
                                         </div>
 
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({bookmarks: !bookmarks})}>
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({bookmarks: !bookmarks, smVisible: false})}>
                                             <div className="item-text">{_t("user-nav.bookmarks")}</div>
                                         </div>
 
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({schedules: !schedules})}>
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({schedules: !schedules, smVisible: false})}>
                                             <div className="item-text">{_t("user-nav.schedules")}</div>
                                         </div>
 
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({fragments: !fragments})}>
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({fragments: !fragments, smVisible: false})}>
                                             <div className="item-text">{_t("user-nav.fragments")}</div>
                                         </div>
 
@@ -412,7 +413,7 @@ export class NavBar extends Component<Props, State> {
                                             </Link>
                                         </div>
 
-                                        <div className="p-1 menu-item" onClick={() => toggleUIProp('login')}>
+                                        <div className="p-1 menu-item" onClick={() => {toggleUIProp('login'); this.setState({ smVisible: false} )}}>
                                             <div className="item-text">{_t("g.login-as")}</div>
                                         </div>
 
