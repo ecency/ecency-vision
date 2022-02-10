@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, InputGroup, Modal, ModalBody } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/esm/ModalHeader";
 import { lookupAccounts } from "../../api/hive";
@@ -82,7 +82,7 @@ const contentTypes = [
   { code: "replies", name: "Replies" },
 ];
 
-const AddColumn = ({ setSelectedValue }: any) => {
+const AddColumn = ({ setSelectedValue, onSelect }: any) => {
   const [to, setTo] = useState("");
   const [contentType, setContentType] = useState("");
   const [toSelected, setToSelected] = useState("");
@@ -119,6 +119,7 @@ const AddColumn = ({ setSelectedValue }: any) => {
         });
     }, 500);
   };
+
   const suggestionProps = {
     renderer: (i: string) => {
       return (
@@ -133,6 +134,10 @@ const AddColumn = ({ setSelectedValue }: any) => {
       setToSelected(selectedText);
     },
   };
+  
+  const handleAddColumn = () => {
+    onSelect(toSelected, contentType)
+  }
 
   return (
     <div className="d-flex flex-column align-items-center mt-5">
@@ -161,7 +166,7 @@ const AddColumn = ({ setSelectedValue }: any) => {
               placeholder={_t("transfer.to-placeholder")}
               value={to}
               onChange={toChanged}
-            //   className={toError ? "is-invalid" : ""}
+              //   className={toError ? "is-invalid" : ""}
             />
           </InputGroup>
         </SuggestionList>
@@ -184,7 +189,13 @@ const AddColumn = ({ setSelectedValue }: any) => {
           ))}
         </Form.Control>
       </Form.Group>
-      <Button className="align-self-start mb-5" disabled={contentType==="" || toSelected.length ===0}>Add</Button>
+      <Button
+        className="align-self-start mb-5"
+        disabled={contentType === "" || toSelected.length === 0}
+        onClick={handleAddColumn}
+      >
+        Add
+      </Button>
 
       <div
         className="mt-5 d-flex align-items-center back-icon pointer w-100"
@@ -197,7 +208,7 @@ const AddColumn = ({ setSelectedValue }: any) => {
   );
 };
 
-export const DeckAddModal = ({ open, onClose }: any) => {
+export const DeckAddModal = ({ open, onClose, onSelect }: any) => {
   const [selectedOption, setSelectedOption] = useState(null);
   return (
     <Modal show={open} centered={true} onHide={onClose}>
@@ -227,6 +238,7 @@ export const DeckAddModal = ({ open, onClose }: any) => {
           <AddColumn
             selectedValue={selectedOption}
             setSelectedValue={setSelectedOption}
+            onSelect={onSelect}
           />
         ) : (
           <div className="d-flex w-100 flex-wrap">

@@ -15,21 +15,21 @@ import {
 } from "../deck/mockData";
 
 export const decks = [
-  {
-    data: hotListItems,
-    listItemComponent: HotListItem,
-    header: { title: "Trending", icon: hot },
-  },
-  {
-    data: searchListItems,
-    listItemComponent: SearchListItem,
-    header: { title: "Games", icon: magnifySvg },
-  },
-  {
-    data: tagsListItems,
-    listItemComponent: SearchListItem,
-    header: { title: "@gems", icon: communities },
-  },
+  // {
+  //   data: hotListItems,
+  //   listItemComponent: HotListItem,
+  //   header: { title: "Trending", icon: hot },
+  // },
+  // {
+  //   data: searchListItems,
+  //   listItemComponent: SearchListItem,
+  //   header: { title: "Games", icon: magnifySvg },
+  // },
+  // {
+  //   data: tagsListItems,
+  //   listItemComponent: SearchListItem,
+  //   header: { title: "@gems", icon: communities },
+  // },
   {
     data: notificationListItems,
     listItemComponent: SearchListItem,

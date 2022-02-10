@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   DragDropContext,
   Droppable,
@@ -6,10 +6,9 @@ import {
   resetServerContext,
 } from "react-beautiful-dnd";
 import { Deck } from "../deck";
-import { decks } from "./decks.data";
 
 // fake data generator
-const getItems = () =>
+const getItems = (decks:any[]) =>
   decks.map((k, index) => ({
     id: `item-${index}`,
     content: `item ${index}`,
@@ -40,8 +39,8 @@ const getListStyle = (isDraggingOver: boolean) => ({
 
 resetServerContext();
 
-const DraggableDeckView = () => {
-  const [items, setItems] = useState<any>(getItems());
+const DraggableDeckView = ({decks}:any) => {
+  const [items, setItems] = useState<any>(getItems(decks));
 
   const onDragEnd = (result: any) => {
     if (!result.destination) {
@@ -56,6 +55,10 @@ const DraggableDeckView = () => {
 
     setItems(reorderedItems);
   };
+
+  useEffect(()=>{
+    setItems(decks)
+  },[decks])
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
