@@ -11,6 +11,10 @@
     fill: #1B68DA;
 }
 
+.header-icon path {
+    fill: #1B68DA;
+}
+
 .header {
     font-size: 21px;
     font-weight: 500;
@@ -27,4 +31,8 @@
 .back-icon {
     color :#1B68DA;
     width: 25px;
+}
+
+.suggestion .suggestion-list {
+    position: absolute !important;
 }
