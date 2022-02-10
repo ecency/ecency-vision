@@ -210,6 +210,12 @@ const AddColumn = ({ setSelectedValue, onSelect }: any) => {
 
 export const DeckAddModal = ({ open, onClose, onSelect }: any) => {
   const [selectedOption, setSelectedOption] = useState(null);
+  useEffect(()=> {
+      if(selectedOption && selectedOption !== "Users"){
+          onClose();
+          onSelect(selectedOption,)
+        }},[selectedOption]);
+
   return (
     <Modal show={open} centered={true} onHide={onClose}>
       <ModalHeader
@@ -217,7 +223,7 @@ export const DeckAddModal = ({ open, onClose, onSelect }: any) => {
         closeButton={true}
       >
         <div className="flex-grow-1">
-          {selectedOption ? (
+          {selectedOption && selectedOption !== "Users" ? (
             <div className="d-flex align-items-center">
               <div className="header-icon mr-2 d-flex">
                 {options.find((item) => item.title === selectedOption)?.icon}
@@ -234,7 +240,7 @@ export const DeckAddModal = ({ open, onClose, onSelect }: any) => {
         </div>
       </ModalHeader>
       <ModalBody className="d-flex justify-content-center">
-        {selectedOption ? (
+        {selectedOption && selectedOption === "Users" ? (
           <AddColumn
             selectedValue={selectedOption}
             setSelectedValue={setSelectedOption}
