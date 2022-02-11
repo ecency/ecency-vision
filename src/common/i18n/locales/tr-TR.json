@@ -300,7 +300,7 @@
     "confirm-sell": "Values",
     "transaction-succeeded": "Transaction submitted",
     "lowest-ask": "Lowest ask",
-    "decimal-error": "Only {{decimals}} decimal digits allowed!"
+    "decimal-error": "Yalnızca {{decimals}} ondalık basamağa izin verilir!"
   },
   "list-style": {
     "title": "Liste biçimine geçiş"
@@ -498,9 +498,9 @@
     "rc-power": "Kaynak Kredileri: %{{n}}",
     "recharge-time": "(tam dolu {{n}})",
     "down-vote-power": "Eksi Oy Gücü: %{{n}}",
-    "post-count": "Post Count: {{n}}",
-    "no-posts": "No content published, yet",
-    "no-posts-user": "Follow, be first to know",
+    "post-count": "Gönderi Sayısı: {{n}}",
+    "no-posts": "Henüz yayınlanmış içerik yok",
+    "no-posts-user": "Takip edin, ilk siz haberdar olun",
     "no-posts-community": "Join and post in this community",
     "create-posts": "Yeni bir gönderi oluştur",
     "link-copied": "Search link copied to clipboard",
@@ -686,7 +686,7 @@
     "memo-placeholder": "notlarınızı buraya girin",
     "memo-help": "Bu notlar herkese açıktır",
     "available-hp-hint": "* mevcut hive power",
-    "override-warning-1": "The new amount overrides the previous one.",
+    "override-warning-1": "Yeni miktar öncekini geçersiz kılar.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
     "confirm-title": "İşleminizi onaylayın",
     "confirm-sub-title": "Lütfen her şeyin doğru olup olmadığını kontrol edin",
@@ -768,7 +768,7 @@
     "title": "Alınan Hive Power"
   },
   "conversion-requests": {
-    "title": "Convert requests",
+    "title": "Dönüştürme istekleri",
     "request-id": "Request id",
     "amount": "Amount",
     "pending": "Pending"
