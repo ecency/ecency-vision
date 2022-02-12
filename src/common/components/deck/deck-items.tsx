@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -36,68 +37,71 @@ export interface SearchItemProps {
   avatar: string;
   author: string;
   title: string;
-  description: string;
-  time: string;
+  body: string;
+  created: string;
   votesPayment: string;
   likes: string;
   comments: string;
   community: string;
-  postImage: string;
-  index: number
+  url: string;
+  index: number;
+  json_metadata: any
 }
 
 export const SearchListItem = ({
   author,
-  avatar,
   comments,
   community,
-  description,
+  body,
   likes,
-  postImage,
-  time,
+  json_metadata,
+  created,
   title,
   votesPayment,
-  index
+  index,
+  url
 }: SearchItemProps) => {
-  debugger
+  debugger;
   return (
-    <div className={`p${index===1 ? "b" : "y"}-${postImage?"5":"4"} d-flex flex-column border-bottom`}>
+    <div className={`p${index===1 ? "b" : "y"}-${json_metadata && json_metadata.image?"5":"4"} d-flex flex-column border-bottom`}>
       <div className="d-flex">
-        {avatar && <img
+        {author && <img
           src={`https://images.ecency.com/webp/u/${author}/avatar/medium`}
           alt={title}
           className="rounded-circle search-item-avatar"
         />}
         <div className="ml-3">
-          <div className="d-flex align-items-start flex-grow-1 hot-item-link">
-            {author && <div>
-              <Link to={`/${author}`}>{author}</Link>
+          <Link to={url} className="pointer text-dark">
+            <div className="d-flex align-items-start flex-grow-1 hot-item-link">
+              {author && <div>
+                <Link to={`/@${author}`}>{author}</Link>
+              </div>}
+              {community && (
+                <div className="ml-2 flex-grow-1"> in {community}</div>
+              )}
+            </div>
+            {title && <div className="hot-item-link font-weight-bold my-3">{title}</div>}
+            {json_metadata && json_metadata.image && <img src={json_metadata.image[0]} className="search-post-image" />}
+            <div className="mt-3 hot-item-post-count deck-item-body text-secondary" dangerouslySetInnerHTML={{__html:body}} />
+            {votesPayment &&  <div className="mt-4 d-flex justify-content-between flex-grow-1">
+              <div className="hot-item-post-count">
+                {upvote} {votesPayment}
+              </div>
+              <div className="d-flex justify-content-between footer-icons">
+                <div className="hot-item-post-count d-flex align-items-center">
+                  {peopleSvg} {likes}
+                </div>
+                <div className="hot-item-post-count d-flex align-items-center">
+                  {commentSvg} {comments}
+                </div>
+                <div>{repeatSvg}</div>
+                <div>{dotsHorizontal}</div>
+              </div>
             </div>}
-            {community && (
-              <div className="ml-2 flex-grow-1">{community}</div>
-            )}
-          </div>
-          {title && <div className="hot-item-link font-weight-bold my-3">{title}</div>}
-          {postImage && <img src={postImage} className="search-post-image" />}
-          <div className="mt-3 hot-item-post-count">{description}</div>
-          {votesPayment &&  <div className="mt-4 d-flex justify-content-between flex-grow-1">
-            <div className="hot-item-post-count">
-              {upvote} {votesPayment}
-            </div>
-            <div className="d-flex justify-content-between footer-icons">
-              <div className="hot-item-post-count d-flex align-items-center">
-                {peopleSvg} {likes}
-              </div>
-              <div className="hot-item-post-count d-flex align-items-center">
-                {commentSvg} {comments}
-              </div>
-              <div>{repeatSvg}</div>
-              <div>{dotsHorizontal}</div>
-            </div>
-          </div>}
+          </Link>
         </div>
 
-        <div>{time}</div>
+        <div>{`${moment(created).fromNow(true).split(" ")[0]}${moment(created).fromNow(true).split(" ")[1][0]}`}</div>
       </div>
     </div>
   );

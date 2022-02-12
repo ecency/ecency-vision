@@ -32,7 +32,6 @@ const DeckViewContainer = ({ global, toggleListStyle }: any) => {
     setLoadingNewContent(true);
     if(contentType){
       getAccountPosts(contentType, account).then(res=>{
-        debugger;
         setDecks(getItems([...decks, 
           {
             data: res,

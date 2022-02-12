@@ -30,14 +30,14 @@ export const decks = [
   //   listItemComponent: SearchListItem,
   //   header: { title: "@gems", icon: communities },
   // },
-  {
-    data: notificationListItems,
-    listItemComponent: SearchListItem,
-    header: { title: "mentions, replies", icon: notifications },
-  },
-  {
-    data: walletListItems,
-    listItemComponent: SearchListItem,
-    header: { title: "wallet", icon: wallet },
-  },
+  // {
+  //   data: notificationListItems,
+  //   listItemComponent: SearchListItem,
+  //   header: { title: "mentions, replies", icon: notifications },
+  // },
+  // {
+  //   data: walletListItems,
+  //   listItemComponent: SearchListItem,
+  //   header: { title: "wallet", icon: wallet },
+  // },
 ];

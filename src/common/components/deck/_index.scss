@@ -85,3 +85,15 @@
 .footer-icons {
   flex: 0.8;
 }
+
+.deck-item-body {
+  max-width: 370px;
+  word-break: break-all;
+  line-height: 1.4;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 120px;
+  display: -webkit-box;
+}

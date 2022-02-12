@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, InputGroup, Modal, ModalBody } from "react-bootstrap";
-import ModalHeader from "react-bootstrap/esm/ModalHeader";
 import { lookupAccounts } from "../../api/hive";
 import { formatError } from "../../api/operations";
 import { _t } from "../../i18n";
@@ -20,6 +19,7 @@ import {
 import { error } from "../feedback";
 import SuggestionList from "../suggestion-list";
 import userAvatar from "../user-avatar";
+const ModalHeader = Modal.Header
 
 const OptionWithIcon = ({ title, icon, onOptionClick }: any) => (
   <div
