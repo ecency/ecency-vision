@@ -16,22 +16,22 @@ import {
 } from "../../pages/common";
 import { DeckAddModal } from "../deck-add-modal";
 import ListStyleToggle from "../list-style-toggle";
-import { DraggableDeckView } from "./draggable-deck-view";
+import { DraggableDeckView, getItems } from "./draggable-deck-view";
 import { decks as initialDeckItems } from "./decks.data";
 import { HotListItem, SearchListItem } from "../deck/deck-items";
 import { hotListItems, searchListItems } from "../deck/mockData";
 
 const DeckViewContainer = ({ global, toggleListStyle }: any) => {
   const [openModal, setOpenModal] = useState(false);
-  const [decks, setDecks] = useState<any>(initialDeckItems);
+  const [decks, setDecks] = useState<any>(getItems(initialDeckItems));
   const onSelectColumn = (account:string,contentType:string) => {
     setOpenModal(false)
-    setDecks([...decks, 
+    setDecks(getItems([...decks, 
       {
         data: account==="Trending topics" ? hotListItems : searchListItems,
         listItemComponent: account==="Trending topics" ? HotListItem : SearchListItem,
         header: { title: `${contentType} for ${account}`, icon: notifications },
-      }].reverse())
+      }]))
   }
   return (
     <>

@@ -8,7 +8,7 @@ import {
 import { Deck } from "../deck";
 
 // fake data generator
-const getItems = (decks:any[]) =>
+export const getItems = (decks:any[]) =>
   decks.map((k, index) => ({
     id: `item-${index}`,
     content: `item ${index}`,
