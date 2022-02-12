@@ -681,7 +681,7 @@ export class Discussion extends Component<Props, State> {
         }
 
         return (
-            <div className="discussion">
+            <div className="discussion" id="discussion">
                 {!activeUser && <>{join}</>}
                 <div className="discussion-header">
                     <div className="count"> {commentSvg} {strCount}</div>

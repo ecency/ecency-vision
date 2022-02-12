@@ -97,3 +97,26 @@
   max-height: 120px;
   display: -webkit-box;
 }
+
+.deck-body .tooltiptext{
+max-width: 295px !important;
+}
+
+.deck-body .item-controls{
+  .comments {
+    path {
+      fill: $light-grey !important;
+    }
+  }
+  div {
+    margin: 0px !important;
+  }
+  font-size: 12px !important;
+  svg {
+    width: 16px !important
+  }
+  .menu-down {
+    height: auto !important;
+    width: auto !important;
+  }
+}

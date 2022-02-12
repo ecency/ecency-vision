@@ -8,6 +8,11 @@ import {
   repeatSvg,
   upvote,
 } from "../../img/svg";
+import entryMenu from "../entry-menu";
+import entryPayout from "../entry-payout";
+import entryReblogBtn from "../entry-reblog-btn";
+import entryVoteBtn from "../entry-vote-btn";
+import entryVotes from "../entry-votes";
 
 export interface HotListItemProps {
   index: number;
@@ -41,17 +46,20 @@ export interface SearchItemProps {
   created: string;
   votesPayment: string;
   likes: string;
-  comments: string;
+  children: string;
   community: string;
+  community_title: string;
   url: string;
   index: number;
-  json_metadata: any
+  json_metadata: any;
+  entry: any
 }
 
 export const SearchListItem = ({
   author,
-  comments,
+  children,
   community,
+  community_title,
   body,
   likes,
   json_metadata,
@@ -59,7 +67,9 @@ export const SearchListItem = ({
   title,
   votesPayment,
   index,
-  url
+  url,
+  entry,
+  ...rest
 }: SearchItemProps) => {
   debugger;
   return (
@@ -70,35 +80,53 @@ export const SearchListItem = ({
           alt={title}
           className="rounded-circle search-item-avatar"
         />}
-        <div className="ml-3">
+        <div className="ml-3 deck-body">
           <Link to={url} className="pointer text-dark">
             <div className="d-flex align-items-start flex-grow-1 hot-item-link">
               {author && <div>
                 <Link to={`/@${author}`}>{author}</Link>
               </div>}
               {community && (
-                <div className="ml-2 flex-grow-1"> in {community}</div>
+                <div className="ml-2 flex-grow-1"> in <Link to={`/@${community}`}> {community_title} </Link></div>
               )}
             </div>
             {title && <div className="hot-item-link font-weight-bold my-3">{title}</div>}
             {json_metadata && json_metadata.image && <img src={json_metadata.image[0]} className="search-post-image" />}
             <div className="mt-3 hot-item-post-count deck-item-body text-secondary" dangerouslySetInnerHTML={{__html:body}} />
-            {votesPayment &&  <div className="mt-4 d-flex justify-content-between flex-grow-1">
-              <div className="hot-item-post-count">
-                {upvote} {votesPayment}
-              </div>
-              <div className="d-flex justify-content-between footer-icons">
-                <div className="hot-item-post-count d-flex align-items-center">
-                  {peopleSvg} {likes}
-                </div>
-                <div className="hot-item-post-count d-flex align-items-center">
-                  {commentSvg} {comments}
-                </div>
-                <div>{repeatSvg}</div>
-                <div>{dotsHorizontal}</div>
-              </div>
-            </div>}
           </Link>
+          <div className="item-controls mt-3 d-flex justify-content-between align-items-center">
+            {entryVoteBtn({
+                afterVote: () => {},
+                entry,
+                ...rest
+            } as any)}
+
+            {entryPayout({
+                ...rest,
+                entry
+            } as any)}
+
+            {entryVotes({
+                ...rest,
+                entry
+            } as any)}
+            <Link to={`${url}#discussion`} className="text-secondary">
+              <div className="d-flex align-items-center comments">
+                <div>{commentSvg}</div>
+                <div>{children}</div>
+              </div>
+            </Link>
+
+            {entryReblogBtn({
+                ...rest,
+            } as any)}
+
+            {entryMenu({
+                ...rest,
+                alignBottom:false,
+                entry,
+            } as any)}
+          </div>
         </div>
 
         <div>{`${moment(created).fromNow(true).split(" ")[0]}${moment(created).fromNow(true).split(" ")[1][0]}`}</div>

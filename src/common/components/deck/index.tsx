@@ -31,7 +31,7 @@ export const Deck = ({ header, listItemComponent: ListItem, index, data, ...rest
       <DeckHeader {...header} index={index}/>
       <div className="py-4 pr-4 pl-3 item-container">
         {data && data.map((item, index) => (
-          <ListItem index={index + 1} {...item} key={item.title}/>
+          <ListItem index={index + 1} {...item} key={item.title} entry={item} {...rest}/>
         ))}
       </div>
     </div>

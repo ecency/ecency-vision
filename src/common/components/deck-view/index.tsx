@@ -22,7 +22,7 @@ import { HotListItem, SearchListItem } from "../deck/deck-items";
 import { hotListItems, searchListItems } from "../deck/mockData";
 import { getAccountPosts } from "../../api/bridge";
 
-const DeckViewContainer = ({ global, toggleListStyle }: any) => {
+const DeckViewContainer = ({ global, toggleListStyle, ...rest }: any) => {
   const [openModal, setOpenModal] = useState(false);
   const [loadingNewContent, setLoadingNewContent] = useState(false);
   const [decks, setDecks] = useState<any>(getItems(initialDeckItems));
@@ -65,7 +65,7 @@ const DeckViewContainer = ({ global, toggleListStyle }: any) => {
         <div className="my-icons-5 cursor-pointer" onClick={()=>setOpenModal(true)}>{plusEncircled}</div>
       </div>
       <div className="decks-container d-flex p-5 mt-5 overflow-auto flex-grow-1">
-        <DraggableDeckView decks={decks} />
+        <DraggableDeckView decks={decks} {...rest} global={global}/>
         {loadingNewContent && <div
                     className="spinner-border text-primary spinner-border-sm"
                     role="status"

@@ -39,7 +39,7 @@ const getListStyle = (isDraggingOver: boolean) => ({
 
 resetServerContext();
 
-const DraggableDeckView = ({decks}:any) => {
+const DraggableDeckView = ({decks, ...rest}:any) => {
   const [items, setItems] = useState<any>(getItems(decks));
 
   const onDragEnd = (result: any) => {
@@ -81,7 +81,7 @@ const DraggableDeckView = ({decks}:any) => {
                       provided.draggableProps.style
                     )}
                   >
-                    <Deck {...item} />
+                    <Deck {...item} {...rest}/>
                   </div>
                 )}
               </Draggable>
