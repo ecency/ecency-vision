@@ -20,18 +20,28 @@ import { DraggableDeckView, getItems } from "./draggable-deck-view";
 import { decks as initialDeckItems } from "./decks.data";
 import { HotListItem, SearchListItem } from "../deck/deck-items";
 import { hotListItems, searchListItems } from "../deck/mockData";
+import { getAccountPosts } from "../../api/bridge";
 
 const DeckViewContainer = ({ global, toggleListStyle }: any) => {
   const [openModal, setOpenModal] = useState(false);
+  const [loadingNewContent, setLoadingNewContent] = useState(false);
   const [decks, setDecks] = useState<any>(getItems(initialDeckItems));
+
   const onSelectColumn = (account:string,contentType:string) => {
-    setOpenModal(false)
-    setDecks(getItems([...decks, 
-      {
-        data: account==="Trending topics" ? hotListItems : searchListItems,
-        listItemComponent: account==="Trending topics" ? HotListItem : SearchListItem,
-        header: { title: `${contentType} for ${account}`, icon: notifications },
-      }]))
+    setOpenModal(false);
+    setLoadingNewContent(true);
+    if(contentType){
+      getAccountPosts(contentType, account).then(res=>{
+        debugger;
+        setDecks(getItems([...decks, 
+          {
+            data: res,
+            listItemComponent: SearchListItem,
+            header: { title: `${contentType} for ${account}`, icon: notifications },
+          }]))
+        setLoadingNewContent(false);
+      })
+    }
   }
   return (
     <>
@@ -57,6 +67,12 @@ const DeckViewContainer = ({ global, toggleListStyle }: any) => {
       </div>
       <div className="decks-container d-flex p-5 mt-5 overflow-auto flex-grow-1">
         <DraggableDeckView decks={decks} />
+        {loadingNewContent && <div
+                    className="spinner-border text-primary spinner-border-sm"
+                    role="status"
+                  >
+                    <span className="sr-only">Loading...</span>
+                  </div>}
       </div>
     </div>
     </>

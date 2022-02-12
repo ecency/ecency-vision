@@ -76,7 +76,7 @@ const options = [
 
 const contentTypes = [
   { code: "", name: "Select content type" },
-  { code: "blogs", name: "Blogs" },
+  { code: "blog", name: "Blogs" },
   { code: "posts", name: "Posts" },
   { code: "comments", name: "Comments" },
   { code: "replies", name: "Replies" },
@@ -253,6 +253,7 @@ export const DeckAddModal = ({ open, onClose, onSelect }: any) => {
                 title={option.title}
                 icon={option.icon}
                 onOptionClick={setSelectedOption}
+                key={option.title}
               />
             ))}
           </div>

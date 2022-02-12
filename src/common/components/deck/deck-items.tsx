@@ -59,11 +59,12 @@ export const SearchListItem = ({
   votesPayment,
   index
 }: SearchItemProps) => {
+  debugger
   return (
     <div className={`p${index===1 ? "b" : "y"}-${postImage?"5":"4"} d-flex flex-column border-bottom`}>
       <div className="d-flex">
         {avatar && <img
-          src={avatar}
+          src={`https://images.ecency.com/webp/u/${author}/avatar/medium`}
           alt={title}
           className="rounded-circle search-item-avatar"
         />}
