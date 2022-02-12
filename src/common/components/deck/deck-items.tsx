@@ -8,6 +8,7 @@ import {
   repeatSvg,
   upvote,
 } from "../../img/svg";
+import { ListStyle } from "../../store/global/types";
 import entryMenu from "../entry-menu";
 import entryPayout from "../entry-payout";
 import entryReblogBtn from "../entry-reblog-btn";
@@ -16,24 +17,24 @@ import entryVotes from "../entry-votes";
 
 export interface HotListItemProps {
   index: number;
-  link: string;
-  linkText: string;
+  entry: string;
   postCount: string;
+  toggleListStyle?: (listStyle: ListStyle) => void
 }
 
 export const HotListItem = ({
   index,
-  link,
-  linkText,
+  entry,
   postCount,
+  toggleListStyle
 }: HotListItemProps) => {
   return (
     <div className="pb-5 d-flex align-items-center">
       <div className="hot-item-index">{index}</div>
-      <div className="flex-grow-1 ml-3 hot-item-link">
-        <Link to={link}>{linkText}</Link>
+      <div className="flex-grow-1 ml-3 hot-item-link" onClick={() => toggleListStyle && toggleListStyle(ListStyle.row)}>
+        <Link to={`/trending/${entry}`}>#{entry}</Link>
       </div>
-      <div className="hot-item-post-count">Posts: {postCount}</div>
+      <div className="hot-item-post-count">Posts: {postCount || "Not available"}</div>
     </div>
   );
 };

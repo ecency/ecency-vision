@@ -213,7 +213,7 @@ export const DeckAddModal = ({ open, onClose, onSelect }: any) => {
   useEffect(()=> {
       if(selectedOption && selectedOption !== "Users"){
           onClose();
-          onSelect(selectedOption,)
+          onSelect(selectedOption)
         }},[selectedOption]);
 
   return (

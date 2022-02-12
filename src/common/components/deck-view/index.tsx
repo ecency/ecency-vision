@@ -19,8 +19,8 @@ import ListStyleToggle from "../list-style-toggle";
 import { DraggableDeckView, getItems } from "./draggable-deck-view";
 import { decks as initialDeckItems } from "./decks.data";
 import { HotListItem, SearchListItem } from "../deck/deck-items";
-import { hotListItems, searchListItems } from "../deck/mockData";
 import { getAccountPosts } from "../../api/bridge";
+import { getTrendingTags } from "../../api/hive";
 
 const DeckViewContainer = ({ global, toggleListStyle, ...rest }: any) => {
   const [openModal, setOpenModal] = useState(false);
@@ -37,6 +37,16 @@ const DeckViewContainer = ({ global, toggleListStyle, ...rest }: any) => {
             data: res,
             listItemComponent: SearchListItem,
             header: { title: `${contentType} for ${account}`, icon: notifications },
+          }]))
+        setLoadingNewContent(false);
+      })
+    } else if(account === "Trending topics"){
+      getTrendingTags().then(res=>{
+        setDecks(getItems([...decks, 
+          {
+            data: res,
+            listItemComponent: HotListItem,
+            header: { title: `${account}`, icon: notifications },
           }]))
         setLoadingNewContent(false);
       })
@@ -65,9 +75,9 @@ const DeckViewContainer = ({ global, toggleListStyle, ...rest }: any) => {
         <div className="my-icons-5 cursor-pointer" onClick={()=>setOpenModal(true)}>{plusEncircled}</div>
       </div>
       <div className="decks-container d-flex p-5 mt-5 overflow-auto flex-grow-1">
-        <DraggableDeckView decks={decks} {...rest} global={global}/>
+        <DraggableDeckView decks={decks} {...rest} global={global} toggleListStyle={toggleListStyle} />
         {loadingNewContent && <div
-                    className="spinner-border text-primary spinner-border-sm"
+                    className="spinner-border text-primary spinner-border"
                     role="status"
                   >
                     <span className="sr-only">Loading...</span>

@@ -1,5 +1,6 @@
 import React from "react";
 import { burgerGrey, hot } from "../../img/svg";
+import { ListStyle } from "../../store/global/types";
 
 export interface DeckHeaderProps { title: string; icon: any; index: number }
 
@@ -22,16 +23,17 @@ export interface DeckProps {
   header: { title: string; icon: any };
   listItemComponent: any;
   index: number;
-  data: any[]
+  data: any[];
+  toggleListStyle: (listStyle: ListStyle) => void
 }
 
-export const Deck = ({ header, listItemComponent: ListItem, index, data, ...rest }: DeckProps) => {
+export const Deck = ({ header, listItemComponent: ListItem, toggleListStyle, index, data, ...rest }: DeckProps) => {
   return (
     <div className={"deck mr-5 rounded-top"} {...rest}>
       <DeckHeader {...header} index={index}/>
       <div className="py-4 pr-4 pl-3 item-container">
         {data && data.map((item, index) => (
-          <ListItem index={index + 1} {...item} key={item.title} entry={item} {...rest}/>
+          <ListItem toggleListStyle={toggleListStyle} index={index + 1} {...item} key={item.title} entry={item} {...rest}/>
         ))}
       </div>
     </div>
