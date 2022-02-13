@@ -19,7 +19,7 @@ import {
 import { error } from "../feedback";
 import SuggestionList from "../suggestion-list";
 import userAvatar from "../user-avatar";
-const ModalHeader = Modal.Header
+const ModalHeader = Modal.Header;
 
 const OptionWithIcon = ({ title, icon, onOptionClick }: any) => (
   <div
@@ -53,7 +53,7 @@ const options = [
     icon: tags,
   },
   {
-    title: "Notification",
+    title: "Notifications",
     icon: notificationSvg,
   },
   {
@@ -82,7 +82,7 @@ const contentTypes = [
   { code: "replies", name: "Replies" },
 ];
 
-const AddColumn = ({ setSelectedValue, onSelect }: any) => {
+const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
   const [to, setTo] = useState("");
   const [contentType, setContentType] = useState("");
   const [toSelected, setToSelected] = useState("");
@@ -134,10 +134,13 @@ const AddColumn = ({ setSelectedValue, onSelect }: any) => {
       setToSelected(selectedText);
     },
   };
-  
+
   const handleAddColumn = () => {
-    onSelect(toSelected, contentType)
-  }
+    onSelect(
+      toSelected,
+      selectedValue === "Notifications" ? "Notifications" : contentType
+    );
+  };
 
   return (
     <div className="d-flex flex-column align-items-center mt-5">
@@ -172,26 +175,32 @@ const AddColumn = ({ setSelectedValue, onSelect }: any) => {
         </SuggestionList>
       </Form.Group>
 
-      <Form.Group className="w-100">
-        <Form.Label>Type of content</Form.Label>
-        <Form.Control
-          type="text"
-          as="select"
-          onChange={(e) => {
-            setContentType(e.target.value);
-          }}
-          value={contentType}
-        >
-          {contentTypes.map((x: any) => (
-            <option key={x.code} value={x.code}>
-              {x.name}
-            </option>
-          ))}
-        </Form.Control>
-      </Form.Group>
+      {selectedValue === "Users" && (
+        <Form.Group className="w-100">
+          <Form.Label>Type of content</Form.Label>
+          <Form.Control
+            type="text"
+            as="select"
+            onChange={(e) => {
+              setContentType(e.target.value);
+            }}
+            value={contentType}
+          >
+            {contentTypes.map((x: any) => (
+              <option key={x.code} value={x.code}>
+                {x.name}
+              </option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+      )}
       <Button
         className="align-self-start mb-5"
-        disabled={contentType === "" || toSelected.length === 0}
+        disabled={
+          selectedValue === "Notifications"
+            ? toSelected.length === 0
+            : contentType === "" || toSelected.length === 0
+        }
         onClick={handleAddColumn}
       >
         Add
@@ -210,11 +219,13 @@ const AddColumn = ({ setSelectedValue, onSelect }: any) => {
 
 export const DeckAddModal = ({ open, onClose, onSelect }: any) => {
   const [selectedOption, setSelectedOption] = useState(null);
-  useEffect(()=> {
-      if(selectedOption && selectedOption !== "Users"){
-          onClose();
-          onSelect(selectedOption)
-        }},[selectedOption]);
+  useEffect(() => {
+    if (selectedOption && (selectedOption !== "Users" && selectedOption !== "Notifications")) {
+      debugger
+      onClose();
+      onSelect(selectedOption);
+    }
+  }, [selectedOption]);
 
   return (
     <Modal show={open} centered={true} onHide={onClose}>
@@ -223,7 +234,8 @@ export const DeckAddModal = ({ open, onClose, onSelect }: any) => {
         closeButton={true}
       >
         <div className="flex-grow-1">
-          {selectedOption && selectedOption !== "Users" ? (
+          {selectedOption &&
+          (selectedOption !== "Users" || selectedOption !== "Notifications") ? (
             <div className="d-flex align-items-center">
               <div className="header-icon mr-2 d-flex">
                 {options.find((item) => item.title === selectedOption)?.icon}
@@ -240,7 +252,8 @@ export const DeckAddModal = ({ open, onClose, onSelect }: any) => {
         </div>
       </ModalHeader>
       <ModalBody className="d-flex justify-content-center">
-        {selectedOption && selectedOption === "Users" ? (
+        {selectedOption &&
+        (selectedOption === "Users" || selectedOption === "Notifications") ? (
           <AddColumn
             selectedValue={selectedOption}
             setSelectedValue={setSelectedOption}

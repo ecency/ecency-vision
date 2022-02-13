@@ -19,8 +19,8 @@ import ListStyleToggle from "../list-style-toggle";
 import { DraggableDeckView, getItems } from "./draggable-deck-view";
 import { decks as initialDeckItems } from "./decks.data";
 import { HotListItem, SearchListItem } from "../deck/deck-items";
-import { getAccountPosts } from "../../api/bridge";
-import { getFullTrendingTags, getTrendingTags } from "../../api/hive";
+import { getAccountNotifications, getAccountPosts } from "../../api/bridge";
+import { getFullTrendingTags } from "../../api/hive";
 
 const DeckViewContainer = ({ global, toggleListStyle, ...rest }: any) => {
   const [openModal, setOpenModal] = useState(false);
@@ -31,15 +31,27 @@ const DeckViewContainer = ({ global, toggleListStyle, ...rest }: any) => {
     setOpenModal(false);
     setLoadingNewContent(true);
     if(contentType){
-      getAccountPosts(contentType, account).then(res=>{
-        setDecks(getItems([...decks, 
-          {
-            data: res,
-            listItemComponent: SearchListItem,
-            header: { title: `${contentType} for ${account}`, icon: notifications },
-          }]))
-        setLoadingNewContent(false);
-      })
+      if(contentType==="Notifications"){
+        getAccountNotifications(account).then(res=>{
+          setDecks(getItems([...decks, 
+            {
+              data: res,
+              listItemComponent: SearchListItem,
+              header: { title: `${contentType} for @${account}`, icon: notifications },
+            }]))
+          setLoadingNewContent(false);
+        })
+      }
+      else {
+        getAccountPosts(contentType, account).then(res=>{
+          setDecks(getItems([...decks, 
+            {
+              data: res,
+              listItemComponent: SearchListItem,
+              header: { title: `${contentType} for ${account}`, icon: notifications },
+            }]))
+          setLoadingNewContent(false);
+        })}
     } else if(account === "Trending topics"){
       getFullTrendingTags().then(res=>{
         setDecks(getItems([...decks, 
