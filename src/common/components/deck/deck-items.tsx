@@ -17,24 +17,22 @@ import entryVotes from "../entry-votes";
 
 export interface HotListItemProps {
   index: number;
-  entry: string;
-  postCount: string;
+  entry: any;
   toggleListStyle?: (listStyle: ListStyle) => void
 }
 
 export const HotListItem = ({
   index,
   entry,
-  postCount,
   toggleListStyle
 }: HotListItemProps) => {
   return (
     <div className="pb-5 d-flex align-items-center">
       <div className="hot-item-index">{index}</div>
       <div className="flex-grow-1 ml-3 hot-item-link" onClick={() => toggleListStyle && toggleListStyle(ListStyle.row)}>
-        <Link to={`/trending/${entry}`}>#{entry}</Link>
+        <Link to={`/trending/${entry}`}>#{entry.name}</Link>
       </div>
-      <div className="hot-item-post-count">Posts: {postCount || "Not available"}</div>
+      <div className="hot-item-post-count">Posts: {entry.top_posts || "Not available"}</div>
     </div>
   );
 };

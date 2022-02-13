@@ -20,7 +20,7 @@ import { DraggableDeckView, getItems } from "./draggable-deck-view";
 import { decks as initialDeckItems } from "./decks.data";
 import { HotListItem, SearchListItem } from "../deck/deck-items";
 import { getAccountPosts } from "../../api/bridge";
-import { getTrendingTags } from "../../api/hive";
+import { getFullTrendingTags, getTrendingTags } from "../../api/hive";
 
 const DeckViewContainer = ({ global, toggleListStyle, ...rest }: any) => {
   const [openModal, setOpenModal] = useState(false);
@@ -41,7 +41,7 @@ const DeckViewContainer = ({ global, toggleListStyle, ...rest }: any) => {
         setLoadingNewContent(false);
       })
     } else if(account === "Trending topics"){
-      getTrendingTags().then(res=>{
+      getFullTrendingTags().then(res=>{
         setDecks(getItems([...decks, 
           {
             data: res,

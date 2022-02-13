@@ -144,6 +144,16 @@ export const getTrendingTags = (afterTag: string = "", limit: number = 250): Pro
             }
         );
 
+export const getFullTrendingTags = (afterTag: string = "", limit: number = 250): Promise<TrendingTag[]> =>
+    client.database
+        .call("get_trending_tags", [afterTag, limit])
+        .then((tags: TrendingTag[]) => {
+                return tags
+                    .filter((x) => x.name !== "")
+                    .filter((x) => !isCommunity(x.name))
+            }
+        );
+
 export const lookupAccounts = (q: string, limit = 50): Promise<string[]> =>
     client.database.call("lookup_accounts", [q, limit]);
 
