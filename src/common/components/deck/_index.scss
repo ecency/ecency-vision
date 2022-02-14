@@ -98,8 +98,12 @@
   display: -webkit-box;
 }
 
+.deck-body {
+  max-width: 250px !important;
+}
+
 .deck-body .tooltiptext{
-max-width: 295px !important;
+  max-width: 295px !important;
 }
 
 .deck-body .item-controls{

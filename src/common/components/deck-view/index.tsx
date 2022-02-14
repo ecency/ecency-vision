@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
+  arrowRightSvg,
   communities,
   hot,
   magnify,
@@ -62,7 +63,7 @@ const DeckViewContainer = ({ global, toggleListStyle, fetchTransactions, transac
                 listItemComponent: SearchListItem,
                 header: {
                   title: `${contentType} for ${account}`,
-                  icon: notifications,
+                  icon: person,
                 },
               },
             ])
@@ -78,7 +79,7 @@ const DeckViewContainer = ({ global, toggleListStyle, fetchTransactions, transac
             {
               data: res,
               listItemComponent: HotListItem,
-              header: { title: `${account}`, icon: notifications },
+              header: { title: `${account}`, icon: hot },
             },
           ])
         );
@@ -92,7 +93,7 @@ const DeckViewContainer = ({ global, toggleListStyle, fetchTransactions, transac
             {
               data: res,
               listItemComponent: SearchListItem,
-              header: { title: `${account}`, icon: notifications },
+              header: { title: `${account}`, icon: arrowRightSvg },
             },
           ])
         );
@@ -104,7 +105,6 @@ const DeckViewContainer = ({ global, toggleListStyle, fetchTransactions, transac
   useEffect(()=>{
     if(transactionsList && transactionsList.length > 0 && loadingNewContent){
       setLoadingNewContent(false)
-      debugger
       setDecks(
         getItems([
           ...decks,
@@ -137,13 +137,17 @@ const DeckViewContainer = ({ global, toggleListStyle, fetchTransactions, transac
               float="left"
             />
           </div>
-          <div className="cursor-pointer">{person}</div>
-          <div className="my-icons-5 cursor-pointer">{hot}</div>
+          {decks && decks.length > 0 && decks.map((deck:any,index:number)=> 
+            <div className={`${(index%2===1) ? "my-icons-5 ":""}cursor-pointer`}>{deck.header.icon}</div>
+          )}
+
+          {/* Need this comment to use icon names when working on advanced options
+           <div className="cursor-pointer">{person}</div>
           <div className="cursor-pointer">{magnify}</div>
           <div className="my-icons-5 cursor-pointer">{communities}</div>
           <div className="cursor-pointer">{tags}</div>
           <div className="my-icons-5 cursor-pointer">{notifications}</div>
-          <div className="cursor-pointer">{wallet}</div>
+          <div className="cursor-pointer">{wallet}</div> */}
           <div
             className="my-icons-5 cursor-pointer"
             onClick={() => setOpenModal(true)}
