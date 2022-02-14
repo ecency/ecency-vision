@@ -138,7 +138,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
   const handleAddColumn = () => {
     onSelect(
       toSelected,
-      selectedValue === "Notifications" ? "Notifications" : contentType
+      selectedValue === "Users" ? contentType : selectedValue
     );
   };
 
@@ -175,7 +175,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
         </SuggestionList>
       </Form.Group>
 
-      {selectedValue === "Users" && (
+      {(selectedValue === "Users") && (
         <Form.Group className="w-100">
           <Form.Label>Type of content</Form.Label>
           <Form.Control
@@ -197,7 +197,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
       <Button
         className="align-self-start mb-5"
         disabled={
-          selectedValue === "Notifications"
+          (selectedValue === "Notifications" || selectedValue === "Wallet")
             ? toSelected.length === 0
             : contentType === "" || toSelected.length === 0
         }
@@ -220,8 +220,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
 export const DeckAddModal = ({ open, onClose, onSelect }: any) => {
   const [selectedOption, setSelectedOption] = useState(null);
   useEffect(() => {
-    if (selectedOption && (selectedOption !== "Users" && selectedOption !== "Notifications")) {
-      debugger
+    if (selectedOption && (selectedOption !== "Users" && selectedOption !== "Notifications" && selectedOption !== "Wallet")) {
       onClose();
       onSelect(selectedOption);
     }
@@ -253,7 +252,7 @@ export const DeckAddModal = ({ open, onClose, onSelect }: any) => {
       </ModalHeader>
       <ModalBody className="d-flex justify-content-center">
         {selectedOption &&
-        (selectedOption === "Users" || selectedOption === "Notifications") ? (
+        (selectedOption === "Users" || selectedOption === "Notifications" || selectedOption === "Wallet") ? (
           <AddColumn
             selectedValue={selectedOption}
             setSelectedValue={setSelectedOption}

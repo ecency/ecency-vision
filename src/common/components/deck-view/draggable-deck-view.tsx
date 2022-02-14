@@ -8,7 +8,7 @@ import {
 import { Deck } from "../deck";
 
 // fake data generator
-export const getItems = (decks:any[]) =>
+export const getItems = (decks: any[]) =>
   decks.map((k, index) => ({
     id: `item-${index}`,
     content: `item ${index}`,
@@ -39,7 +39,12 @@ const getListStyle = (isDraggingOver: boolean) => ({
 
 resetServerContext();
 
-const DraggableDeckView = ({decks, toggleListStyle, ...rest}:any) => {
+const DraggableDeckView = ({
+  decks,
+  toggleListStyle,
+  loading,
+  ...rest
+}: any) => {
   const [items, setItems] = useState<any>(getItems(decks));
 
   const onDragEnd = (result: any) => {
@@ -56,9 +61,9 @@ const DraggableDeckView = ({decks, toggleListStyle, ...rest}:any) => {
     setItems(reorderedItems);
   };
 
-  useEffect(()=>{
-    setItems(decks)
-  },[decks])
+  useEffect(() => {
+    setItems(decks);
+  }, [decks]);
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
@@ -81,12 +86,27 @@ const DraggableDeckView = ({decks, toggleListStyle, ...rest}:any) => {
                       provided.draggableProps.style
                     )}
                   >
-                    <Deck toggleListStyle={toggleListStyle} {...item} {...rest}/>
+                    <Deck
+                      toggleListStyle={toggleListStyle}
+                      {...item}
+                      {...rest}
+                    />
                   </div>
                 )}
               </Draggable>
             ))}
             {provided.placeholder}
+
+            {loading && (
+              <div className="d-flex justify-content-center align-items-center h-100 w-100 deck">
+                <div
+                  className="spinner-border text-primary spinner-border"
+                  role="status"
+                >
+                  <span className="sr-only">Loading...</span>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </Droppable>

@@ -19,7 +19,7 @@ import {vestsToHp} from "../../helper/vesting";
 
 import formattedNumber from "../../util/formatted-number";
 
-import {ticketSvg, commentSvg, compareHorizontalSvg, cashMultiple, reOrderHorizontalSvg, pickAxeSvg, closeSvg, exchangeSvg, cashCoinSvg, powerDownSvg, powerUpSvg, starsSvg, chevronUpSvgForVote, chevronDownSvgForSlider, starSvg} from "../../img/svg";
+import {ticketSvg, compareHorizontalSvg, cashMultiple, reOrderHorizontalSvg, pickAxeSvg, closeSvg, exchangeSvg, cashCoinSvg, powerDownSvg, powerUpSvg, starsSvg, chevronUpSvgForVote, chevronDownSvgForSlider, starSvg} from "../../img/svg";
 
 import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
@@ -28,12 +28,14 @@ interface RowProps {
     history: History;
     dynamicProps: DynamicProps;
     transaction: Transaction;
+    entry?: Transaction
 }
 
 export class TransactionRow extends Component<RowProps> {
     render() {
-        const {dynamicProps, transaction: tr} = this.props;
+        const {dynamicProps, transaction: item, entry} = this.props;
         const {hivePerMVests} = dynamicProps;
+        const tr = item || entry;
 
         let flag = false;
         let icon = ticketSvg;

@@ -26,7 +26,7 @@ import HiveWallet from "../../helper/hive-wallet";
 
 import {vestsToHp} from "../../helper/vesting";
 
-import {DynamicGlobalProperties, getAccount, getConversionRequests, getSavingsWithdrawFrom, getDynamicGlobalProperties, getOpenOrder} from "../../api/hive";
+import {getAccount, getConversionRequests, getSavingsWithdrawFrom} from "../../api/hive";
 
 import {claimRewardBalance, formatError} from "../../api/operations";
 
@@ -37,8 +37,6 @@ import parseAsset from "../../helper/parse-asset";
 import {_t} from "../../i18n";
 
 import {plusCircle} from "../../img/svg";
-import { addAccount } from "../../store/accounts";
-import { history } from "../../store";
 
 interface Props {
     history: History;

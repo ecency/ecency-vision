@@ -24,10 +24,11 @@ export interface DeckProps {
   listItemComponent: any;
   index: number;
   data: any[];
+  extras: any;
   toggleListStyle: (listStyle: ListStyle) => void
 }
 
-export const Deck = ({ header, listItemComponent: ListItem, toggleListStyle, index, data, ...rest }: DeckProps) => {
+export const Deck = ({ header, listItemComponent: ListItem, toggleListStyle, index, data, extras, ...rest }: DeckProps) => {
   return (
     <div className={"deck mr-5 rounded-top"} {...rest}>
       <DeckHeader {...header} index={index}/>

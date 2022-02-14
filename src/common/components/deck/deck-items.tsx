@@ -2,9 +2,7 @@ import moment from "moment";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import parseDate from "../../helper/parse-date";
-import {
-  commentSvg,
-} from "../../img/svg";
+import { commentSvg } from "../../img/svg";
 import { ListStyle } from "../../store/global/types";
 import entryLink from "../entry-link";
 import entryMenu from "../entry-menu";
@@ -17,21 +15,26 @@ import profileLink from "../profile-link";
 export interface HotListItemProps {
   index: number;
   entry: any;
-  toggleListStyle?: (listStyle: ListStyle) => void
+  toggleListStyle?: (listStyle: ListStyle) => void;
 }
 
 export const HotListItem = ({
   index,
   entry,
-  toggleListStyle
+  toggleListStyle,
 }: HotListItemProps) => {
   return (
     <div className="pb-5 d-flex align-items-center">
       <div className="hot-item-index">{index}</div>
-      <div className="flex-grow-1 ml-3 hot-item-link" onClick={() => toggleListStyle && toggleListStyle(ListStyle.row)}>
-        <Link to={`/trending/${entry}`}>#{entry.name}</Link>
+      <div
+        className="flex-grow-1 ml-3 hot-item-link"
+        onClick={() => toggleListStyle && toggleListStyle(ListStyle.row)}
+      >
+        <Link to={`/trending/${entry.name}`}>#{entry.name}</Link>
       </div>
-      <div className="hot-item-post-count">Posts: {entry.top_posts || "Not available"}</div>
+      <div className="hot-item-post-count">
+        Posts: {entry.top_posts || "Not available"}
+      </div>
     </div>
   );
 };
@@ -50,7 +53,7 @@ export interface SearchItemProps {
   url: string;
   index: number;
   json_metadata: any;
-  entry: any
+  entry: any;
 }
 
 export const SearchListItem = ({
@@ -69,121 +72,156 @@ export const SearchListItem = ({
   entry,
   ...rest
 }: SearchItemProps) => {
-
-
   const formatMessage = (patterns: string[]): JSX.Element => {
-    
-    const {msg} = entry;
+    const { msg } = entry;
 
-    const parts = msg.split(new RegExp(`(${patterns.join('|')})`, 'gi'));
+    const parts = msg.split(new RegExp(`(${patterns.join("|")})`, "gi"));
 
-    return <>{parts.map((part:any, i:number) => {
-
-        if (part.trim() === '') {
+    return (
+      <>
+        {parts.map((part: any, i: number) => {
+          if (part.trim() === "") {
             return null;
-        }
+          }
 
-        if (patterns.includes(part.toLowerCase())) {
-
+          if (patterns.includes(part.toLowerCase())) {
             // post link
             if (part.includes("/")) {
-                const s = part.split("/")
-                return <Fragment key={i}>{entryLink({
+              const s = part.split("/");
+              return (
+                <Fragment key={i}>
+                  {entryLink({
                     entry: {
-                        category: "post",
-                        author: s[0].replace("@", ""),
-                        permlink: s[1]
+                      category: "post",
+                      author: s[0].replace("@", ""),
+                      permlink: s[1],
                     },
-                    children: <>{part}</>
-                } as any)}</Fragment>
+                    children: <>{part}</>,
+                  } as any)}
+                </Fragment>
+              );
             }
 
             // user link
-            return <div key={i} className="mr-1">{profileLink({
-                username: part.replace("@", ""),
-                children: <>{part}</>
-            } as any)}</div>
-        }
+            return (
+              <div key={i} className="mr-1">
+                {profileLink({
+                  username: part.replace("@", ""),
+                  children: <>{part}</>,
+                } as any)}
+              </div>
+            );
+          }
 
-        return <span key={i}>{part}</span>
-    })}</>;
-}
+          return <span key={i}>{part}</span>;
+        })}
+      </>
+    );
+  };
 
-  if(entry.msg){
-    let mentions = entry.msg.match(/@[\w.\d-]+/gi)
+  if (entry.msg) {
+    let mentions = entry.msg.match(/@[\w.\d-]+/gi);
     if (!mentions) {
-        return null;
+      return null;
     }
 
     let formatPatterns = [];
 
     // @username/permlink
-    if (entry.url.startsWith('@')) {
-        formatPatterns.push(entry.url);
+    if (entry.url.startsWith("@")) {
+      formatPatterns.push(entry.url);
     }
 
     // @usernames
     formatPatterns = [...formatPatterns, ...mentions];
 
-    const username = mentions[0].replace('@', '');
+    const username = mentions[0].replace("@", "");
     const msg = formatMessage(formatPatterns);
     const date = moment(parseDate(entry.date));
-    return  <div className={`p${index===1 ? "b" : "y"}-${json_metadata && json_metadata.image?"5":"4"} d-flex flex-column border-bottom`}>
-      <div className="d-flex">
-        {username && <img
-          src={`https://images.ecency.com/webp/u/${username}/avatar/medium`}
-          alt={username}
-          className="rounded-circle search-item-avatar"
-        />}
-        <div className="ml-3 deck-body">
-          <Link to={url} className="pointer text-dark">
-            <div className="d-flex align-items-start flex-grow-1 hot-item-link">
-              {msg}
-            </div>
-          </Link>
-        </div>
+    return (
+      <div
+        className={`p${index === 1 ? "b" : "y"}-${
+          json_metadata && json_metadata.image ? "5" : "4"
+        } d-flex flex-column border-bottom`}
+      >
+        <div className="d-flex">
+          {username && (
+            <img
+              src={`https://images.ecency.com/webp/u/${username}/avatar/medium`}
+              alt={username}
+              className="rounded-circle search-item-avatar"
+            />
+          )}
+          <div className="ml-3 deck-body">
+            <Link to={url} className="pointer text-dark">
+              <div className="d-flex align-items-start flex-grow-1 hot-item-link">
+                {msg}
+              </div>
+            </Link>
+          </div>
 
-        <div className="ml-auto">{`${moment(date).fromNow(true).split(" ")[0]}${moment(date).fromNow(true).split(" ")[1][0]}`}</div>
+          <div className="ml-auto">{`${
+            moment(date).fromNow(true).split(" ")[0]
+          }${moment(date).fromNow(true).split(" ")[1][0]}`}</div>
+        </div>
       </div>
-    </div>
+    );
   }
   return (
-    <div className={`p${index===1 ? "b" : "y"}-${json_metadata && json_metadata.image?"5":"4"} d-flex flex-column border-bottom`}>
+    <div
+      className={`p${index === 1 ? "b" : "y"}-${
+        json_metadata && json_metadata.image ? "5" : "4"
+      } d-flex flex-column border-bottom`}
+    >
       <div className="d-flex">
-        {author && <img
-          src={`https://images.ecency.com/webp/u/${author}/avatar/medium`}
-          alt={title}
-          className="rounded-circle search-item-avatar"
-        />}
+        {author && (
+          <img
+            src={`https://images.ecency.com/webp/u/${author}/avatar/medium`}
+            alt={title}
+            className="rounded-circle search-item-avatar"
+          />
+        )}
         <div className="ml-3 deck-body">
           <Link to={url} className="pointer text-dark">
             <div className="d-flex align-items-start flex-grow-1 hot-item-link">
-              {author && <div>
-                <Link to={`/@${author}`}>{author}</Link>
-              </div>}
+              {author && (
+                <div>
+                  <Link to={`/@${author}`}>{author}</Link>
+                </div>
+              )}
               {community && (
-                <div className="ml-2 flex-grow-1"> in <Link to={`/@${community}`}> {community_title} </Link></div>
+                <div className="ml-2 flex-grow-1">
+                  {" "}
+                  in <Link to={`/@${community}`}> {community_title} </Link>
+                </div>
               )}
             </div>
-            {title && <div className="hot-item-link font-weight-bold my-3">{title}</div>}
-            {json_metadata && json_metadata.image && <img src={json_metadata.image[0]} className="search-post-image" />}
-            <div className="mt-3 hot-item-post-count deck-item-body text-secondary" dangerouslySetInnerHTML={{__html:body}} />
+            {title && (
+              <div className="hot-item-link font-weight-bold my-3">{title}</div>
+            )}
+            {json_metadata && json_metadata.image && (
+              <img src={json_metadata.image[0]} className="search-post-image" />
+            )}
+            <div
+              className="mt-3 hot-item-post-count deck-item-body text-secondary"
+              dangerouslySetInnerHTML={{ __html: body }}
+            />
           </Link>
           <div className="item-controls mt-3 d-flex justify-content-between align-items-center">
             {entryVoteBtn({
-                afterVote: () => {},
-                entry,
-                ...rest
+              afterVote: () => {},
+              entry,
+              ...rest,
             } as any)}
 
             {entryPayout({
-                ...rest,
-                entry
+              ...rest,
+              entry,
             } as any)}
 
             {entryVotes({
-                ...rest,
-                entry
+              ...rest,
+              entry,
             } as any)}
             <Link to={`${url}#discussion`} className="text-secondary">
               <div className="d-flex align-items-center comments">
@@ -193,18 +231,20 @@ export const SearchListItem = ({
             </Link>
 
             {entryReblogBtn({
-                ...rest,
+              ...rest,
             } as any)}
 
             {entryMenu({
-                ...rest,
-                alignBottom:false,
-                entry,
+              ...rest,
+              alignBottom: false,
+              entry,
             } as any)}
           </div>
         </div>
 
-        <div>{`${moment(created).fromNow(true).split(" ")[0]}${moment(created).fromNow(true).split(" ")[1][0]}`}</div>
+        <div>{`${moment(created).fromNow(true).split(" ")[0]}${
+          moment(created).fromNow(true).split(" ")[1][0]
+        }`}</div>
       </div>
     </div>
   );
