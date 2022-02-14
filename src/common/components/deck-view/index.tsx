@@ -19,7 +19,7 @@ import ListStyleToggle from "../list-style-toggle";
 import { DraggableDeckView, getItems } from "./draggable-deck-view";
 import { decks as initialDeckItems } from "./decks.data";
 import { HotListItem, SearchListItem } from "../deck/deck-items";
-import { getAccountNotifications, getAccountPosts } from "../../api/bridge";
+import { getAccountNotifications, getAccountPosts, getPostsRanked } from "../../api/bridge";
 import { getFullTrendingTags } from "../../api/hive";
 import { TransactionRow } from "../transactions";
 
@@ -78,6 +78,20 @@ const DeckViewContainer = ({ global, toggleListStyle, fetchTransactions, transac
             {
               data: res,
               listItemComponent: HotListItem,
+              header: { title: `${account}`, icon: notifications },
+            },
+          ])
+        );
+        setLoadingNewContent(false);
+      });
+    } else if (account === "Trending") {
+      getPostsRanked("trending").then((res) => {
+        setDecks(
+          getItems([
+            ...decks,
+            {
+              data: res,
+              listItemComponent: SearchListItem,
               header: { title: `${account}`, icon: notifications },
             },
           ])

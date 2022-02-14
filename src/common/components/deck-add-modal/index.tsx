@@ -140,6 +140,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
       toSelected,
       selectedValue === "Users" ? contentType : selectedValue
     );
+    setSelectedValue(null)
   };
 
   return (
