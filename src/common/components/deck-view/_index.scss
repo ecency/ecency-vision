@@ -17,6 +17,9 @@
     @include themify(night) {
         background: linear-gradient($metallic-blue,$dark-grey-blue);
     }
+    path {
+        fill: $white !important;
+    }
 }
 
 .decks-container {

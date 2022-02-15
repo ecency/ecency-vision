@@ -6,6 +6,7 @@ import { _t } from "../../i18n";
 import {
   arrowLeftSvg,
   arrowRightSvg,
+  globalTrending,
   hot,
   magnify,
   newSvg,
@@ -21,10 +22,10 @@ import SuggestionList from "../suggestion-list";
 import userAvatar from "../user-avatar";
 const ModalHeader = Modal.Header;
 
-const OptionWithIcon = ({ title, icon, onOptionClick }: any) => (
+const OptionWithIcon = ({ title, icon, onOptionClick, disabled }: any) => (
   <div
-    className="d-flex flex-column align-items-center justify-content-center option mr-2 pointer mt-2"
-    onClick={() => onOptionClick(title)}
+    className={`d-flex flex-column align-items-center justify-content-center option mr-2 pointer mt-2${disabled ? " bg-light text-muted" : ""}`}
+    onClick={() => !disabled && onOptionClick(title)}
   >
     <div>{icon}</div>
     <div className="mt-2 text-center">{title}</div>
@@ -66,12 +67,12 @@ const options = [
   },
   {
     title: "Trending",
-    icon: arrowRightSvg,
+    icon: globalTrending,
   },
-  {
-    title: "New content",
-    icon: newSvg,
-  },
+  // {
+  //   title: "New content",
+  //   icon: newSvg,
+  // },
 ];
 
 const contentTypes = [
@@ -218,7 +219,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
   );
 };
 
-export const DeckAddModal = ({ open, onClose, onSelect }: any) => {
+export const DeckAddModal = ({ open, onClose, onSelect, currentlyActivatedOptions }: any) => {
   const [selectedOption, setSelectedOption] = useState(null);
   useEffect(() => {
     if (selectedOption && (selectedOption !== "Users" && selectedOption !== "Notifications" && selectedOption !== "Wallet")) {
@@ -235,7 +236,7 @@ export const DeckAddModal = ({ open, onClose, onSelect }: any) => {
       >
         <div className="flex-grow-1">
           {selectedOption &&
-          (selectedOption !== "Users" || selectedOption !== "Notifications") ? (
+          (selectedOption === "Users" || selectedOption === "Notifications" || selectedOption === "Wallet") ? (
             <div className="d-flex align-items-center">
               <div className="header-icon mr-2 d-flex">
                 {options.find((item) => item.title === selectedOption)?.icon}
@@ -267,6 +268,7 @@ export const DeckAddModal = ({ open, onClose, onSelect }: any) => {
                 icon={option.icon}
                 onOptionClick={setSelectedOption}
                 key={option.title}
+                disabled={currentlyActivatedOptions.some((item:any)=>item.header.title === option.title)}
               />
             ))}
           </div>

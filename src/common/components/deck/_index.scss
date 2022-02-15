@@ -9,10 +9,6 @@
   padding: 0.69rem !important;
 }
 
-.deck-header path {
-  fill: $black !important;
-}
-
 .icon {
   width: 20px;
   height: 20px;
@@ -24,7 +20,7 @@
 }
 
 .icon path {
-  fill: $dark-sky-blue !important;
+  fill: $dark-sky-blue;
 }
 
 .header-title {

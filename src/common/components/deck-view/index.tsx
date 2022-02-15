@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {
   arrowRightSvg,
   communities,
+  globalTrending,
   hot,
   magnify,
   notifications,
@@ -103,7 +104,7 @@ const DeckViewContainer = ({
             {
               data: res,
               listItemComponent: SearchListItem,
-              header: { title: `${account}`, icon: arrowRightSvg },
+              header: { title: `${account}`, icon: globalTrending },
             },
           ])
         );
@@ -116,7 +117,6 @@ const DeckViewContainer = ({
     if (transactionsList && transactionsList.length > 0 && loadingNewContent) {
       setLoadingNewContent(false);
       let firstTransaction = transactionsList[0];
-      debugger
       setDecks(
         getItems([
           ...decks,
@@ -139,6 +139,7 @@ const DeckViewContainer = ({
         open={openModal}
         onClose={() => setOpenModal(false)}
         onSelect={onSelectColumn}
+        currentlyActivatedOptions={decks}
       />
       <div className="d-flex flex-grow-1">
         <div className="navbar d-flex flex-column align-items-center pt-5 p-3">
