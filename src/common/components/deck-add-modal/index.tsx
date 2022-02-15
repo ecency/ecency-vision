@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { Button, Form, InputGroup, Modal, ModalBody } from "react-bootstrap";
 import { lookupAccounts } from "../../api/hive";
@@ -93,34 +94,47 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
   const [toDataLoading, setToDataLoading] = useState(false);
   let _timer: any = null;
 
+  const afterToChange = (toValue:string) => {
+    if (_timer) {
+    clearTimeout(_timer);
+  }
+  
+  if (toValue === "") {
+    setTo("");
+    setToDataLoading(false);
+    return;
+  }
+  _timer = setTimeout(() => {
+    return lookupAccounts(toValue, 5)
+    .then((resp) => {
+      if (resp) {
+        setToData(resp);
+      }
+    })
+    .catch((err) => {
+      error(formatError(err));
+    })
+    .finally(() => {
+      setToDataLoading(false);
+    });
+  }, 500);
+
+  }
+  useEffect(() => {
+    if(to && to.length>0){
+    const delayDebounceFn = setTimeout(() => {
+      afterToChange(to);
+      setToDataLoading(true);
+    }, 2000)
+    return () => clearTimeout(delayDebounceFn)
+  }
+  return () => {}
+
+  }, [to])
+   
   const toChanged = (e: any) => {
     let toValue = e.target.value;
-    setToDataLoading(true);
     setTo(toValue);
-    if (_timer) {
-      clearTimeout(_timer);
-    }
-
-    if (toValue === "") {
-      setTo("");
-      setToDataLoading(false);
-      return;
-    }
-
-    _timer = setTimeout(() => {
-      return lookupAccounts(toValue, 5)
-        .then((resp) => {
-          if (resp) {
-            setToData(resp);
-          }
-        })
-        .catch((err) => {
-          error(formatError(err));
-        })
-        .finally(() => {
-          setToDataLoading(false);
-        });
-    }, 500);
   };
 
   const suggestionProps = {
@@ -175,7 +189,6 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
               placeholder={_t("transfer.to-placeholder")}
               value={to}
               onChange={toChanged}
-              //   className={toError ? "is-invalid" : ""}
             />
           </InputGroup>
         </SuggestionList>

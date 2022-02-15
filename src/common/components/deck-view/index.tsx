@@ -164,7 +164,7 @@ const DeckViewContainer = ({
               if (avatar) {
                 avatar = `https://images.ecency.com/webp/u/${avatar}/avatar/medium`;
               }
-              debugger;
+
               return (
                 <div
                   className={`${
