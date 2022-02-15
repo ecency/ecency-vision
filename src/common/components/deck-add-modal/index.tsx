@@ -18,6 +18,7 @@ import {
   wallet,
 } from "../../img/svg";
 import { error } from "../feedback";
+import { SearchComment } from "../search-comment";
 import SuggestionList from "../suggestion-list";
 import userAvatar from "../user-avatar";
 const ModalHeader = Modal.Header;
@@ -146,6 +147,8 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
 
   return (
     <div className="d-flex flex-column align-items-center mt-5">
+      {/* {selectedValue === "Search" ? <><SearchComment /></> : <> */}
+      {selectedValue === "Search" ? <>Search Coming soon!</> : <>
       <Form.Group>
         <Form.Label>Username</Form.Label>
 
@@ -207,6 +210,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
       >
         Add
       </Button>
+      </>}
 
       <div
         className="mt-5 d-flex align-items-center back-icon pointer w-100"
@@ -222,7 +226,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
 export const DeckAddModal = ({ open, onClose, onSelect, currentlyActivatedOptions }: any) => {
   const [selectedOption, setSelectedOption] = useState(null);
   useEffect(() => {
-    if (selectedOption && (selectedOption !== "Users" && selectedOption !== "Notifications" && selectedOption !== "Wallet")) {
+    if (selectedOption && (selectedOption !== "Users" && selectedOption !== "Notifications" && selectedOption !== "Wallet" && selectedOption !== "Search")) {
       onClose();
       onSelect(selectedOption);
     }
@@ -236,7 +240,7 @@ export const DeckAddModal = ({ open, onClose, onSelect, currentlyActivatedOption
       >
         <div className="flex-grow-1">
           {selectedOption &&
-          (selectedOption === "Users" || selectedOption === "Notifications" || selectedOption === "Wallet") ? (
+          (selectedOption === "Users" || selectedOption === "Notifications" || selectedOption === "Wallet" || selectedOption === "Search") ? (
             <div className="d-flex align-items-center">
               <div className="header-icon mr-2 d-flex">
                 {options.find((item) => item.title === selectedOption)?.icon}
@@ -254,7 +258,7 @@ export const DeckAddModal = ({ open, onClose, onSelect, currentlyActivatedOption
       </ModalHeader>
       <ModalBody className="d-flex justify-content-center">
         {selectedOption &&
-        (selectedOption === "Users" || selectedOption === "Notifications" || selectedOption === "Wallet") ? (
+        (selectedOption === "Users" || selectedOption === "Notifications" || selectedOption === "Wallet" || selectedOption === "Search") ? (
           <AddColumn
             selectedValue={selectedOption}
             setSelectedValue={setSelectedOption}

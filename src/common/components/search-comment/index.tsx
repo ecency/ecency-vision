@@ -43,7 +43,8 @@ interface Props {
     location: Location;
     global: Global;
     addAccount: (data: Account) => void;
-    limit?: number
+    limit?: number;
+    disableResults: boolean;
 }
 
 interface State {
@@ -251,11 +252,11 @@ export class SearchComment extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {limit} = this.props;
+        const {limit, disableResults} = this.props;
         const {search, author, type, category, tags, date, sort, hideLow, advanced, inProgress, hits, results} = this.state;
         const showMore = !!(limit && hits > limit);
 
-        const advancedForm = advanced ?
+        const advancedForm = (advanced || disableResults) ?
             <div className="advanced-section">
                 <Row>
                     <Form.Group as={Col} sm="4" controlId="form-search">
@@ -354,7 +355,7 @@ export class SearchComment extends BaseComponent<Props, State> {
             <div className="card-body">
                 {advancedForm}
                 {(() => {
-                    if (results.length > 0) {
+                    if (results.length > 0 && !disableResults) {
                         return <div className="search-list">
                             {results.map(res => <Fragment key={`${res.author}-${res.permlink}`}>
                                 {SearchListItem({...this.props, res: res})}
@@ -376,7 +377,7 @@ export class SearchComment extends BaseComponent<Props, State> {
                     return null;
                 })()}
 
-                {inProgress && <LinearProgress/>}
+                {!disableResults && inProgress && <LinearProgress/>}
             </div>
             {!limit && <DetectBottom onBottom={this.bottomReached}/>}
         </div>
@@ -389,7 +390,8 @@ export default (p: Props) => {
         location: p.location,
         global: p.global,
         addAccount: p.addAccount,
-        limit: p.limit
+        limit: p.limit,
+        disableResults: p.disableResults,
     }
 
     return <SearchComment {...props} />
