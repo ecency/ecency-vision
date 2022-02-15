@@ -203,7 +203,7 @@ export const SearchListItem = ({
             {json_metadata && json_metadata.image && (
               <div
                 className="search-post-image d-flex align-self-center"
-                style={{ backgroundImage: `url(${json_metadata.image})` }}
+                style={{ backgroundImage: `url(${json_metadata.image[0]})` }}
               />
             )}
             <div
