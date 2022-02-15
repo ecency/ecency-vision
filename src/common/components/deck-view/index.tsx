@@ -28,6 +28,7 @@ import {
 } from "../../api/bridge";
 import { getFullTrendingTags } from "../../api/hive";
 import { TransactionRow } from "../transactions";
+import MyTooltip from "../tooltip";
 
 const DeckViewContainer = ({
   global,
@@ -124,7 +125,12 @@ const DeckViewContainer = ({
             data: transactionsList,
             listItemComponent: TransactionRow,
             header: {
-              title: `Wallet for @${firstTransaction.curator || firstTransaction.to || firstTransaction.delegator || firstTransaction.receiver}`,
+              title: `Wallet for @${
+                firstTransaction.curator ||
+                firstTransaction.to ||
+                firstTransaction.delegator ||
+                firstTransaction.receiver
+              }`,
               icon: wallet,
             },
           },
@@ -153,23 +159,36 @@ const DeckViewContainer = ({
           </div>
           {decks &&
             decks.length > 0 &&
-            decks.map((deck: any, index: number) => (
-              <div
-                className={`${
-                  index % 2 === 1 ? "my-icons-5 " : ""
-                }cursor-pointer`}
-              >
-                {deck.header.icon}
-              </div>
-            ))}
+            decks.map((deck: any, index: number) => {
+              let avatar = deck.header.title.split("@")[1];
+              if (avatar) {
+                avatar = `https://images.ecency.com/webp/u/${avatar}/avatar/medium`;
+              }
+              debugger;
+              return (
+                <div
+                  className={`${
+                    index % 2 === 1 ? "my-icons-5 " : ""
+                  }cursor-pointer position-relative`}
+                >
+                  {avatar && (
+                    <div className="position-absolute avatar-xs rounded-circle">
+                      <MyTooltip content={deck.header.title}>
+                        <img
+                          src={avatar}
+                          className="w-100 h-100 rounded-circle"
+                        />
+                      </MyTooltip>
+                    </div>
+                  )}
+                  {deck.header.icon}
+                </div>
+              );
+            })}
 
           {/* Need this comment to use icon names when working on advanced options
-           <div className="my-icons-5 cursor-pointer">{communities}</div>
-           <div className="cursor-pointer">{person}</div>
           <div className="cursor-pointer">{magnify}</div>
-          <div className="cursor-pointer">{tags}</div>
-          <div className="my-icons-5 cursor-pointer">{notifications}</div>
-          <div className="cursor-pointer">{wallet}</div> */}
+          <div className="cursor-pointer">{tags}</div> */}
           <div
             className="my-icons-5 cursor-pointer"
             onClick={() => setOpenModal(true)}
