@@ -69,8 +69,11 @@
 }
 
 .search-post-image {
-  width: 100%;
+  width: 146px;
   height: 146px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
 }
 
 .footer-icons svg {
@@ -95,7 +98,7 @@
 }
 
 .deck-body {
-  max-width: 250px !important;
+  width: 250px !important;
 }
 
 .deck-body .tooltiptext{

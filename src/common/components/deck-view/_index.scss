@@ -41,3 +41,11 @@
 .menu-icon path {
     fill: $white;
 }
+
+.the-menu path {
+    fill: $dark-sky-blue !important;
+}
+
+.the-menu .active path {
+    fill: $white !important;
+}

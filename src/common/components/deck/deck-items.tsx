@@ -1,3 +1,4 @@
+import { postBodySummary } from "@ecency/render-helper";
 import moment from "moment";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
@@ -182,7 +183,7 @@ export const SearchListItem = ({
           />
         )}
         <div className="ml-3 deck-body">
-          <Link to={url} className="pointer text-dark">
+          <Link to={url} className="pointer text-dark d-flex flex-column">
             <div className="d-flex align-items-start flex-grow-1 hot-item-link">
               {author && (
                 <div>
@@ -200,11 +201,14 @@ export const SearchListItem = ({
               <div className="hot-item-link font-weight-bold my-3">{title}</div>
             )}
             {json_metadata && json_metadata.image && (
-              <img src={json_metadata.image[0]} className="search-post-image" />
+              <div
+                className="search-post-image d-flex align-self-center"
+                style={{ backgroundImage: `url(${json_metadata.image})` }}
+              />
             )}
             <div
               className="mt-3 hot-item-post-count deck-item-body text-secondary"
-              dangerouslySetInnerHTML={{ __html: body }}
+              dangerouslySetInnerHTML={{ __html: postBodySummary(body) }}
             />
           </Link>
           <div className="item-controls mt-3 d-flex justify-content-between align-items-center">
@@ -242,9 +246,9 @@ export const SearchListItem = ({
           </div>
         </div>
 
-        <div>{`${moment(created).fromNow(true).split(" ")[0]}${
-          moment(created).fromNow(true).split(" ")[1][0]
-        }`}</div>
+        <div>
+          <small>{`${moment(created).fromNow(true)}`}</small>
+        </div>
       </div>
     </div>
   );

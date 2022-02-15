@@ -73,7 +73,7 @@ const DeckViewContainer = ({
                 data: res,
                 listItemComponent: SearchListItem,
                 header: {
-                  title: `${contentType} for ${account}`,
+                  title: `${contentType} for @${account}`,
                   icon: person,
                 },
               },
@@ -124,7 +124,7 @@ const DeckViewContainer = ({
             data: transactionsList,
             listItemComponent: TransactionRow,
             header: {
-              title: `Wallet for ${firstTransaction.curator || firstTransaction.to || firstTransaction.delegator || firstTransaction.receiver}`,
+              title: `Wallet for @${firstTransaction.curator || firstTransaction.to || firstTransaction.delegator || firstTransaction.receiver}`,
               icon: wallet,
             },
           },
@@ -164,9 +164,9 @@ const DeckViewContainer = ({
             ))}
 
           {/* Need this comment to use icon names when working on advanced options
+           <div className="my-icons-5 cursor-pointer">{communities}</div>
            <div className="cursor-pointer">{person}</div>
           <div className="cursor-pointer">{magnify}</div>
-          <div className="my-icons-5 cursor-pointer">{communities}</div>
           <div className="cursor-pointer">{tags}</div>
           <div className="my-icons-5 cursor-pointer">{notifications}</div>
           <div className="cursor-pointer">{wallet}</div> */}

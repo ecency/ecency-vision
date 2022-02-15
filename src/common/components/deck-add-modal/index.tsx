@@ -6,6 +6,7 @@ import { _t } from "../../i18n";
 import {
   arrowLeftSvg,
   arrowRightSvg,
+  communities,
   globalTrending,
   hot,
   magnify,
@@ -48,7 +49,7 @@ const options = [
   },
   {
     title: "Community",
-    icon: peopleSvg,
+    icon: communities,
   },
   {
     title: "Topic",
