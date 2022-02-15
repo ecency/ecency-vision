@@ -20,11 +20,21 @@ import ListStyleToggle from "../list-style-toggle";
 import { DraggableDeckView, getItems } from "./draggable-deck-view";
 import { decks as initialDeckItems } from "./decks.data";
 import { HotListItem, SearchListItem } from "../deck/deck-items";
-import { getAccountNotifications, getAccountPosts, getPostsRanked } from "../../api/bridge";
+import {
+  getAccountNotifications,
+  getAccountPosts,
+  getPostsRanked,
+} from "../../api/bridge";
 import { getFullTrendingTags } from "../../api/hive";
 import { TransactionRow } from "../transactions";
 
-const DeckViewContainer = ({ global, toggleListStyle, fetchTransactions, transactions: { list: transactionsList }, ...rest }: any) => {
+const DeckViewContainer = ({
+  global,
+  toggleListStyle,
+  fetchTransactions,
+  transactions: { list: transactionsList },
+  ...rest
+}: any) => {
   const [openModal, setOpenModal] = useState(false);
   const [loadingNewContent, setLoadingNewContent] = useState(false);
   const [decks, setDecks] = useState<any>(getItems(initialDeckItems));
@@ -51,8 +61,8 @@ const DeckViewContainer = ({ global, toggleListStyle, fetchTransactions, transac
           setLoadingNewContent(false);
         });
       } else if (contentType === "Wallet") {
-        setLoadingNewContent(true)
-        fetchTransactions(account)
+        setLoadingNewContent(true);
+        fetchTransactions(account);
       } else {
         getAccountPosts(contentType, account).then((res) => {
           setDecks(
@@ -102,9 +112,11 @@ const DeckViewContainer = ({ global, toggleListStyle, fetchTransactions, transac
     }
   };
 
-  useEffect(()=>{
-    if(transactionsList && transactionsList.length > 0 && loadingNewContent){
-      setLoadingNewContent(false)
+  useEffect(() => {
+    if (transactionsList && transactionsList.length > 0 && loadingNewContent) {
+      setLoadingNewContent(false);
+      let firstTransaction = transactionsList[0];
+      debugger
       setDecks(
         getItems([
           ...decks,
@@ -112,14 +124,15 @@ const DeckViewContainer = ({ global, toggleListStyle, fetchTransactions, transac
             data: transactionsList,
             listItemComponent: TransactionRow,
             header: {
-              title: `Wallet`,
+              title: `Wallet for ${firstTransaction.curator || firstTransaction.to || firstTransaction.delegator || firstTransaction.receiver}`,
               icon: wallet,
             },
           },
         ])
       );
     }
-  },[transactionsList])
+  }, [transactionsList]);
+
   return (
     <>
       <DeckAddModal
@@ -137,9 +150,17 @@ const DeckViewContainer = ({ global, toggleListStyle, fetchTransactions, transac
               float="left"
             />
           </div>
-          {decks && decks.length > 0 && decks.map((deck:any,index:number)=> 
-            <div className={`${(index%2===1) ? "my-icons-5 ":""}cursor-pointer`}>{deck.header.icon}</div>
-          )}
+          {decks &&
+            decks.length > 0 &&
+            decks.map((deck: any, index: number) => (
+              <div
+                className={`${
+                  index % 2 === 1 ? "my-icons-5 " : ""
+                }cursor-pointer`}
+              >
+                {deck.header.icon}
+              </div>
+            ))}
 
           {/* Need this comment to use icon names when working on advanced options
            <div className="cursor-pointer">{person}</div>

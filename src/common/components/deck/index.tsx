@@ -1,10 +1,15 @@
 import React from "react";
 import { burgerGrey, hot } from "../../img/svg";
 import { ListStyle } from "../../store/global/types";
+import { TransactionRow } from "../transactions";
 
-export interface DeckHeaderProps { title: string; icon: any; index: number }
+export interface DeckHeaderProps {
+  title: string;
+  icon: any;
+  index: number;
+}
 
-const DeckHeader = ({title, icon, index}:DeckHeaderProps) => {
+const DeckHeader = ({ title, icon, index }: DeckHeaderProps) => {
   return (
     <div className="border-bottom d-flex justify-content-between align-items-center deck-header position-relative">
       <div className="d-flex align-items-center">
@@ -25,17 +30,39 @@ export interface DeckProps {
   index: number;
   data: any[];
   extras: any;
-  toggleListStyle: (listStyle: ListStyle) => void
+  toggleListStyle: (listStyle: ListStyle) => void;
 }
 
-export const Deck = ({ header, listItemComponent: ListItem, toggleListStyle, index, data, extras, ...rest }: DeckProps) => {
+export const Deck = ({
+  header,
+  listItemComponent: ListItem,
+  toggleListStyle,
+  index,
+  data,
+  extras,
+  ...rest
+}: DeckProps) => {
   return (
     <div className={"deck mr-5 rounded-top"} {...rest}>
-      <DeckHeader {...header} index={index}/>
-      <div className="py-4 pr-4 pl-3 item-container">
-        {data && data.map((item, index) => (
-          <ListItem toggleListStyle={toggleListStyle} index={index + 1} {...item} key={item.title} entry={item} {...rest}/>
-        ))}
+      <DeckHeader {...header} index={index} />
+      <div
+        className={
+          `py-4 pr-4 pl-3 item-container ${header.title.includes("Wallet")
+          ? "transaction-list"
+          : ""}`
+        }
+      >
+        {data &&
+          data.map((item, index) => (
+            <ListItem
+              toggleListStyle={toggleListStyle}
+              index={index + 1}
+              key={item.title}
+              entry={item}
+              {...item}
+              {...rest}
+            />
+          ))}
       </div>
     </div>
   );
