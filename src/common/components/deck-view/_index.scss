@@ -17,6 +17,7 @@
     @include themify(night) {
         background: linear-gradient($metallic-blue,$dark-grey-blue);
     }
+    
     path {
         fill: $white !important;
     }
@@ -27,6 +28,10 @@
     overflow-x: auto;
     max-width: 100vw;
     animation: containerAnimation 2s;
+    
+    @include themify(night) {
+        background-color: #232e3b;
+    }
 }
 
 .cursor-pointer {

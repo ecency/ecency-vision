@@ -30,10 +30,11 @@ const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
   ...draggableStyle,
 });
 
-const getListStyle = (isDraggingOver: boolean) => ({
-  background: "#e9f2fc",
+const getListStyle = (isDraggingOver: boolean, theme: string) => ({
+  background: theme === "night" ? "#232e3b" : "#e9f2fc",
   display: "flex",
   padding: grid,
+  paddingBottom: grid*4,
   overflow: "auto",
 });
 
@@ -71,7 +72,7 @@ const DraggableDeckView = ({
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}
-            style={getListStyle(snapshot.isDraggingOver)}
+            style={getListStyle(snapshot.isDraggingOver, rest.global.theme)}
             {...provided.droppableProps}
           >
             {items.map((item: any, index: any) => (

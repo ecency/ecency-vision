@@ -4,6 +4,10 @@
     height: 86px;
     &:hover {
         background-color: #EBF2FC;
+    
+        @include themify(night) {
+            background-color: $steel-grey;
+        }
     }
 }
 

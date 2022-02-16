@@ -3,6 +3,10 @@
   min-width: 379px;
   max-width: 379px;
   height: fit-content;
+    
+  @include themify(night) {
+      background-color: $dark-two;
+  }
 }
 
 .deck-header {
@@ -42,6 +46,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 10px;
 }
 
 .hot-item-index {
