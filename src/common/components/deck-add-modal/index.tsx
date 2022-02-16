@@ -227,7 +227,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
       </>}
 
       <div
-        className="mt-5 d-flex align-items-center back-icon pointer w-100"
+        className="my-5 d-flex align-items-center back-icon pointer w-100"
         onClick={() => setSelectedValue(null)}
       >
         <div className="mr-2">{arrowLeftSvg}</div>
@@ -249,13 +249,13 @@ export const DeckAddModal = ({ open, onClose, onSelect, currentlyActivatedOption
   return (
     <Modal show={open} centered={true} onHide={onClose}>
       <ModalHeader
-        className="header mt-3 justify-content-center"
+        className="header mt-5 justify-content-center mb-3"
         closeButton={true}
       >
-        <div className="flex-grow-1">
+        <div className="flex-grow-1 text-center">
           {selectedOption &&
           (selectedOption === "Users" || selectedOption === "Notifications" || selectedOption === "Wallet" || selectedOption === "Search") ? (
-            <div className="d-flex align-items-center">
+            <div className="d-flex align-items-center justify-content-center">
               <div className="header-icon mr-2 d-flex">
                 {options.find((item) => item.title === selectedOption)?.icon}
               </div>

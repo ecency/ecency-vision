@@ -22,6 +22,12 @@ svg #hot {
 .header {
     font-size: 21px;
     font-weight: 500;
+    position: relative;
+    button {
+        position: absolute;
+        right: 13px;
+        top: -37px;
+    }
 }
 
 .w-80 {
