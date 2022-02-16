@@ -148,7 +148,7 @@ export const SearchListItem = ({
         <div className="d-flex">
           {username && (
             <img
-              src={`https://images.ecency.com/webp/u/${username}/avatar/medium`}
+              src={`https://images.ecency.com/${(rest as any).global.canUseWebp?"webp/":""}u/${username}/avatar/medium`}
               alt={username}
               className="rounded-circle search-item-avatar"
             />
@@ -177,7 +177,7 @@ export const SearchListItem = ({
       <div className="d-flex">
         {author && (
           <img
-            src={`https://images.ecency.com/webp/u/${author}/avatar/medium`}
+            src={`https://images.ecency.com/${(rest as any).global.canUseWebp?"webp/":""}u/${author}/avatar/medium`}
             alt={title}
             className="rounded-circle search-item-avatar"
           />

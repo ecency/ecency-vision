@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
-  arrowRightSvg,
   communities,
   globalTrending,
   hot,
@@ -26,9 +25,10 @@ import {
   getAccountPosts,
   getPostsRanked,
 } from "../../api/bridge";
-import { getFullTrendingTags } from "../../api/hive";
+import { getAccountHistory, getFullTrendingTags } from "../../api/hive";
 import { TransactionRow } from "../transactions";
 import MyTooltip from "../tooltip";
+import { Transaction } from "../../store/transactions/types";
 
 const DeckViewContainer = ({
   global,
@@ -66,14 +66,23 @@ const DeckViewContainer = ({
         setLoadingNewContent(true);
         fetchTransactions(account);
       } else if (account.includes("hive-")) {
-        getPostsRanked(contentType, undefined, undefined, undefined, account).then((res) => {
+        getPostsRanked(
+          contentType,
+          undefined,
+          undefined,
+          undefined,
+          account
+        ).then((res) => {
           setDecks(
             getItems([
               ...decks,
               {
                 data: res,
                 listItemComponent: SearchListItem,
-                header: { title: `${contentType} for @${account}`, icon: communities },
+                header: {
+                  title: `${contentType} for @${account}`,
+                  icon: communities,
+                },
               },
             ])
           );
@@ -128,6 +137,41 @@ const DeckViewContainer = ({
     }
   };
 
+  let fetched = false;
+
+  useEffect(() => {
+    let accountName = rest.activeUser && rest.activeUser.username;
+    if (accountName && !fetched) {
+      fetched = true;
+      let defaultDecks: any = [];
+      setLoadingNewContent(true);
+      getAccountPosts("posts", accountName)
+        .then((accountData) => {
+          defaultDecks.push({
+            data: accountData,
+            listItemComponent: SearchListItem,
+            header: {
+              title: `posts for @${accountName}`,
+              icon: person,
+            },
+          });
+          setDecks(getItems([...defaultDecks]));
+          setLoadingNewContent(false);
+
+          // getAccountNotifications(accountName).then((notificationsData) => {
+          //   defaultDecks.push({
+          //     data: notificationsData,
+          //     listItemComponent: SearchListItem,
+          //     header: {
+          //       title: `Notifications for @${accountName}`,
+          //       icon: notifications,
+          //     },
+          //   });
+          // });
+        })
+    }
+  }, [rest.activeUser]);
+
   useEffect(() => {
     if (transactionsList && transactionsList.length > 0 && loadingNewContent) {
       setLoadingNewContent(false);
@@ -176,7 +220,9 @@ const DeckViewContainer = ({
             decks.map((deck: any, index: number) => {
               let avatar = deck.header.title.split("@")[1];
               if (avatar) {
-                avatar = `https://images.ecency.com/webp/u/${avatar}/avatar/medium`;
+                avatar = `https://images.ecency.com/${
+                  global.canUseWebp ? "webp/" : ""
+                }u/${avatar}/avatar/medium`;
               }
 
               return (
@@ -187,7 +233,12 @@ const DeckViewContainer = ({
                 >
                   {avatar && (
                     <div className="position-absolute avatar-xs rounded-circle">
-                      <MyTooltip content={deck.header.title.replace(/^./, deck.header.title[0].toUpperCase())}>
+                      <MyTooltip
+                        content={deck.header.title.replace(
+                          /^./,
+                          deck.header.title[0].toUpperCase()
+                        )}
+                      >
                         <img
                           src={avatar}
                           className="w-100 h-100 rounded-circle"
