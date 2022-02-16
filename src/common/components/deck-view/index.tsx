@@ -65,6 +65,20 @@ const DeckViewContainer = ({
       } else if (contentType === "Wallet") {
         setLoadingNewContent(true);
         fetchTransactions(account);
+      } else if (account.includes("hive-")) {
+        getPostsRanked(contentType, undefined, undefined, undefined, undefined, account).then((res) => {
+          setDecks(
+            getItems([
+              ...decks,
+              {
+                data: res,
+                listItemComponent: SearchListItem,
+                header: { title: `${contentType} for @${account}`, icon: communities },
+              },
+            ])
+          );
+          setLoadingNewContent(false);
+        });
       } else {
         getAccountPosts(contentType, account).then((res) => {
           setDecks(

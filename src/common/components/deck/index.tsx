@@ -1,7 +1,6 @@
 import React from "react";
 import { burgerGrey, hot } from "../../img/svg";
 import { ListStyle } from "../../store/global/types";
-import { TransactionRow } from "../transactions";
 
 export interface DeckHeaderProps {
   title: string;

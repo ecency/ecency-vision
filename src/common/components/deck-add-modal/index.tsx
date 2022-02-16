@@ -1,8 +1,10 @@
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { Button, Form, InputGroup, Modal, ModalBody } from "react-bootstrap";
+import { getCommunities } from "../../api/bridge";
 import { lookupAccounts } from "../../api/hive";
 import { formatError } from "../../api/operations";
+import { searchAccount } from "../../api/search-api";
 import { _t } from "../../i18n";
 import {
   arrowLeftSvg,
@@ -27,7 +29,9 @@ const ModalHeader = Modal.Header;
 
 const OptionWithIcon = ({ title, icon, onOptionClick, disabled }: any) => (
   <div
-    className={`d-flex flex-column align-items-center justify-content-center option mr-2 pointer mt-2${disabled ? " bg-light text-muted" : ""}`}
+    className={`d-flex flex-column align-items-center justify-content-center option mr-2 pointer mt-2${
+      disabled ? " bg-light text-muted" : ""
+    }`}
     onClick={() => !disabled && onOptionClick(title)}
   >
     <div>{icon}</div>
@@ -86,6 +90,15 @@ const contentTypes = [
   { code: "replies", name: "Replies" },
 ];
 
+const communityContentTypes = [
+  { code: "", name: "Select content type" },
+  { code: "trending", name: "Trending" },
+  { code: "hot", name: "Hot" },
+  { code: "created", name: "New" },
+  { code: "payout", name: "Payouts" },
+  { code: "muted", name: "Muted" },
+];
+
 const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
   const [to, setTo] = useState("");
   const [contentType, setContentType] = useState("");
@@ -94,44 +107,46 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
   const [toDataLoading, setToDataLoading] = useState(false);
   let _timer: any = null;
 
-  const afterToChange = (toValue:string) => {
+  const afterToChange = (toValue: string) => {
     if (_timer) {
-    clearTimeout(_timer);
-  }
-  
-  if (toValue === "") {
-    setTo("");
-    setToDataLoading(false);
-    return;
-  }
-  _timer = setTimeout(() => {
-    return lookupAccounts(toValue, 5)
-    .then((resp) => {
-      if (resp) {
-        setToData(resp);
-      }
-    })
-    .catch((err) => {
-      error(formatError(err));
-    })
-    .finally(() => {
+      clearTimeout(_timer);
+    }
+
+    if (toValue === "") {
+      setTo("");
       setToDataLoading(false);
-    });
-  }, 500);
-
-  }
+      return;
+    }
+    _timer = setTimeout(() => {
+      let fetchData =
+        selectedValue === "Community" ? getCommunities : lookupAccounts;
+        let searchTerm = 
+        selectedValue === "Community" ? "" : toValue;
+      return (fetchData as any)(searchTerm, 5, toValue)
+        .then((resp:any) => {
+          if (resp) {
+            setToData(selectedValue === "Community" ? resp.map((item:any)=>item.name) : resp);
+          }
+        })
+        .catch((err:any) => {
+          error(formatError(err));
+        })
+        .finally(() => {
+          setToDataLoading(false);
+        });
+    }, 500);
+  };
   useEffect(() => {
-    if(to && to.length>0){
-    const delayDebounceFn = setTimeout(() => {
-      afterToChange(to);
-      setToDataLoading(true);
-    }, 2000)
-    return () => clearTimeout(delayDebounceFn)
-  }
-  return () => {}
+    if (to && to.length > 0) {
+      const delayDebounceFn = setTimeout(() => {
+        afterToChange(to);
+        setToDataLoading(true);
+      }, 2000);
+      return () => clearTimeout(delayDebounceFn);
+    }
+    return () => {};
+  }, [to]);
 
-  }, [to])
-   
   const toChanged = (e: any) => {
     let toValue = e.target.value;
     setTo(toValue);
@@ -155,76 +170,85 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
   const handleAddColumn = () => {
     onSelect(
       toSelected,
-      selectedValue === "Users" ? contentType : selectedValue
+      (selectedValue === "Users" || selectedValue === "Community") ? contentType : selectedValue
     );
-    setSelectedValue(null)
+    setSelectedValue(null);
   };
+
+  let type =
+    selectedValue === "Community" ? communityContentTypes : contentTypes;
 
   return (
     <div className="d-flex flex-column align-items-center mt-5">
       {/* {selectedValue === "Search" ? <><SearchComment /></> : <> */}
-      {selectedValue === "Search" ? <>Search Coming soon!</> : <>
-      <Form.Group>
-        <Form.Label>Username</Form.Label>
+      {selectedValue === "Search" ? (
+        <>Search Coming soon!</>
+      ) : (
+        <>
+          <Form.Group>
+            <Form.Label>
+              {selectedValue === "Community" ? "Community" : "Username"}
+            </Form.Label>
 
-        <SuggestionList items={toData} {...suggestionProps}>
-          <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text>
-                {toDataLoading ? (
-                  <div
-                    className="spinner-border text-primary spinner-border-sm"
-                    role="status"
-                  >
-                    <span className="sr-only">Loading...</span>
-                  </div>
-                ) : (
-                  "@"
-                )}
-              </InputGroup.Text>
-            </InputGroup.Prepend>
-            <Form.Control
-              type="text"
-              autoFocus={true}
-              placeholder={_t("transfer.to-placeholder")}
-              value={to}
-              onChange={toChanged}
-            />
-          </InputGroup>
-        </SuggestionList>
-      </Form.Group>
+            <SuggestionList items={toData} {...suggestionProps}>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text>
+                    {toDataLoading ? (
+                      <div
+                        className="spinner-border text-primary spinner-border-sm"
+                        role="status"
+                      >
+                        <span className="sr-only">Loading...</span>
+                      </div>
+                    ) : (
+                      "@"
+                    )}
+                  </InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control
+                  type="text"
+                  autoFocus={true}
+                  placeholder={_t("transfer.to-placeholder")}
+                  value={to}
+                  onChange={toChanged}
+                />
+              </InputGroup>
+            </SuggestionList>
+          </Form.Group>
 
-      {(selectedValue === "Users") && (
-        <Form.Group className="w-100">
-          <Form.Label>Type of content</Form.Label>
-          <Form.Control
-            type="text"
-            as="select"
-            onChange={(e) => {
-              setContentType(e.target.value);
-            }}
-            value={contentType}
+          {(selectedValue === "Users" || selectedValue === "Community") && (
+            <Form.Group className="w-100">
+              <Form.Label>Type of content</Form.Label>
+              <Form.Control
+                type="text"
+                as="select"
+                onChange={(e) => {
+                  setContentType(e.target.value);
+                }}
+                value={contentType}
+              >
+                {type.map((x: any) => (
+                  <option key={x.code} value={x.code}>
+                    {x.name}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+          )}
+          <Button
+            className="align-self-start mb-5"
+            disabled={
+              selectedValue === "Notifications" || selectedValue === "Wallet"
+                ? toSelected.length === 0
+                : contentType === "" || toSelected.length === 0
+            }
+            onClick={handleAddColumn}
           >
-            {contentTypes.map((x: any) => (
-              <option key={x.code} value={x.code}>
-                {x.name}
-              </option>
-            ))}
-          </Form.Control>
-        </Form.Group>
+            Add
+          </Button>
+        </>
       )}
-      <Button
-        className="align-self-start mb-5"
-        disabled={
-          (selectedValue === "Notifications" || selectedValue === "Wallet")
-            ? toSelected.length === 0
-            : contentType === "" || toSelected.length === 0
-        }
-        onClick={handleAddColumn}
-      >
-        Add
-      </Button>
-      </>}
 
       <div
         className="my-5 d-flex align-items-center back-icon pointer w-100"
@@ -237,10 +261,22 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
   );
 };
 
-export const DeckAddModal = ({ open, onClose, onSelect, currentlyActivatedOptions }: any) => {
+export const DeckAddModal = ({
+  open,
+  onClose,
+  onSelect,
+  currentlyActivatedOptions,
+}: any) => {
   const [selectedOption, setSelectedOption] = useState(null);
   useEffect(() => {
-    if (selectedOption && (selectedOption !== "Users" && selectedOption !== "Notifications" && selectedOption !== "Wallet" && selectedOption !== "Search")) {
+    if (
+      selectedOption &&
+      selectedOption !== "Users" &&
+      selectedOption !== "Notifications" &&
+      selectedOption !== "Wallet" &&
+      selectedOption !== "Search" &&
+      selectedOption !== "Community"
+    ) {
       onClose();
       onSelect(selectedOption);
     }
@@ -254,7 +290,12 @@ export const DeckAddModal = ({ open, onClose, onSelect, currentlyActivatedOption
       >
         <div className="flex-grow-1 text-center">
           {selectedOption &&
-          (selectedOption === "Users" || selectedOption === "Notifications" || selectedOption === "Wallet" || selectedOption === "Search") ? (
+          (selectedOption === "Users" ||
+            selectedOption === "Notifications" ||
+            selectedOption === "Wallet" ||
+            selectedOption === "Search" ||
+            selectedOption === "Search" ||
+            selectedOption === "Community") ? (
             <div className="d-flex align-items-center justify-content-center">
               <div className="header-icon mr-2 d-flex">
                 {options.find((item) => item.title === selectedOption)?.icon}
@@ -272,7 +313,11 @@ export const DeckAddModal = ({ open, onClose, onSelect, currentlyActivatedOption
       </ModalHeader>
       <ModalBody className="d-flex justify-content-center">
         {selectedOption &&
-        (selectedOption === "Users" || selectedOption === "Notifications" || selectedOption === "Wallet" || selectedOption === "Search") ? (
+        (selectedOption === "Users" ||
+          selectedOption === "Notifications" ||
+          selectedOption === "Wallet" ||
+          selectedOption === "Search" ||
+          selectedOption === "Community") ? (
           <AddColumn
             selectedValue={selectedOption}
             setSelectedValue={setSelectedOption}
@@ -286,7 +331,9 @@ export const DeckAddModal = ({ open, onClose, onSelect, currentlyActivatedOption
                 icon={option.icon}
                 onOptionClick={setSelectedOption}
                 key={option.title}
-                disabled={currentlyActivatedOptions.some((item:any)=>item.header.title === option.title)}
+                disabled={currentlyActivatedOptions.some(
+                  (item: any) => item.header.title === option.title
+                )}
               />
             ))}
           </div>
