@@ -66,7 +66,7 @@ const DeckViewContainer = ({
         setLoadingNewContent(true);
         fetchTransactions(account);
       } else if (account.includes("hive-")) {
-        getPostsRanked(contentType, undefined, undefined, undefined, undefined, account).then((res) => {
+        getPostsRanked(contentType, undefined, undefined, undefined, account).then((res) => {
           setDecks(
             getItems([
               ...decks,
@@ -187,7 +187,7 @@ const DeckViewContainer = ({
                 >
                   {avatar && (
                     <div className="position-absolute avatar-xs rounded-circle">
-                      <MyTooltip content={deck.header.title}>
+                      <MyTooltip content={deck.header.title.replace(/^./, deck.header.title[0].toUpperCase())}>
                         <img
                           src={avatar}
                           className="w-100 h-100 rounded-circle"

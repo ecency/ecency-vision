@@ -117,6 +117,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
       setToDataLoading(false);
       return;
     }
+
     _timer = setTimeout(() => {
       let fetchData =
         selectedValue === "Community" ? getCommunities : lookupAccounts;
@@ -125,7 +126,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
       return (fetchData as any)(searchTerm, 5, toValue)
         .then((resp:any) => {
           if (resp) {
-            setToData(selectedValue === "Community" ? resp.map((item:any)=>item.name) : resp);
+            setToData(resp);
           }
         })
         .catch((err:any) => {
@@ -136,6 +137,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
         });
     }, 500);
   };
+
   useEffect(() => {
     if (to && to.length > 0) {
       const delayDebounceFn = setTimeout(() => {
@@ -153,17 +155,20 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
   };
 
   const suggestionProps = {
-    renderer: (i: string) => {
+    renderer: (i: any) => {
+      let valueToShow = selectedValue === "Community" ? i.title : i;
+
       return (
         <>
-          {userAvatar({ username: i, size: "medium", global: {} as any })}{" "}
-          <span style={{ marginLeft: "4px" }}>{i}</span>
+          {userAvatar({ username: i.name || i, size: "medium", global: {} as any })}{" "}
+          <span style={{ marginLeft: "4px" }}>{valueToShow}</span>
         </>
       );
     },
-    onSelect: (selectedText: string) => {
-      setTo(selectedText);
-      setToSelected(selectedText);
+    onSelect: (selectedText: any) => {
+      let valueToSelect = selectedValue === "Community" ? selectedText.name : selectedText
+      setTo(valueToSelect);
+      setToSelected(valueToSelect);
     },
   };
 
@@ -190,7 +195,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
               {selectedValue === "Community" ? "Community" : "Username"}
             </Form.Label>
 
-            <SuggestionList items={toData} {...suggestionProps}>
+            <SuggestionList items={toData} {...suggestionProps} >
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text>
