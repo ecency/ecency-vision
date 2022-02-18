@@ -10,6 +10,9 @@ const defProps = {
     global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
     users: [],
+    account: {
+        name: "user1",
+    },
     ui: UiInstance,
     activeUser: {
         username: 'foo',
@@ -34,7 +37,9 @@ const defProps = {
     toggleUIProp: () => {
     },
     setSigningKey: () => {
-    }
+    },
+    fetchPoints: () => {},
+    updateWalletValues: () => {}
 };
 
 it("(1) Default render", async () => {

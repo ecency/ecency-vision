@@ -82,9 +82,9 @@ exports[`(1) Full render with active user 1`] = `
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="forykw-re-esteemapp-202067t12246786z"
+          <a
+            className="d-sm-inline-block"
+            href="/@forykw"
             onClick={[Function]}
           >
             <span
@@ -95,26 +95,7 @@ exports[`(1) Full render with active user 1`] = `
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@forykw"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -125,45 +106,47 @@ exports[`(1) Full render with active user 1`] = `
             <div
               className="d-flex align-items-center"
               id="forykw-re-esteemapp-202067t12246786z"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="forykw-re-esteemapp-202067t12246786z"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="forykw-re-esteemapp-202067t12246786z"
                 >
                   forykw
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="forykw-re-esteemapp-202067t12246786z"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@forykw"
+              <span
+                className="author-down-arrow mx-1"
+                id="forykw-re-esteemapp-202067t12246786z"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  forykw
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    forykw
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -277,9 +260,9 @@ exports[`(1) Full render with active user 1`] = `
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="brittandjosie-re-esteemapp-qbi6t3"
+          <a
+            className="d-sm-inline-block"
+            href="/@brittandjosie"
             onClick={[Function]}
           >
             <span
@@ -290,26 +273,7 @@ exports[`(1) Full render with active user 1`] = `
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@brittandjosie"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -320,45 +284,47 @@ exports[`(1) Full render with active user 1`] = `
             <div
               className="d-flex align-items-center"
               id="brittandjosie-re-esteemapp-qbi6t3"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="brittandjosie-re-esteemapp-qbi6t3"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="brittandjosie-re-esteemapp-qbi6t3"
                 >
                   brittandjosie
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="brittandjosie-re-esteemapp-qbi6t3"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@brittandjosie"
+              <span
+                className="author-down-arrow mx-1"
+                id="brittandjosie-re-esteemapp-qbi6t3"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  brittandjosie
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    brittandjosie
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -474,9 +440,9 @@ exports[`(1) Full render with active user 1`] = `
             <div
               className="item-figure"
             >
-              <div
-                className="d-sm-none"
-                id="ardpien-re-brittandjosie-qbjoep"
+              <a
+                className="d-sm-inline-block"
+                href="/@ardpien"
                 onClick={[Function]}
               >
                 <span
@@ -487,26 +453,7 @@ exports[`(1) Full render with active user 1`] = `
                     }
                   }
                 />
-              </div>
-              <div
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-              >
-                <a
-                  className="d-none d-sm-inline-block"
-                  href="/@ardpien"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="user-avatar medium"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
-                      }
-                    }
-                  />
-                </a>
-              </div>
+              </a>
             </div>
             <div
               className="item-content"
@@ -517,45 +464,47 @@ exports[`(1) Full render with active user 1`] = `
                 <div
                   className="d-flex align-items-center"
                   id="ardpien-re-brittandjosie-qbjoep"
-                  onMouseEnter={[Function]}
-                  onMouseLeave={[Function]}
                 >
                   <div
-                    className="author notranslate d-flex align-items-center d-sm-none"
+                    className="author btn notranslate d-flex d-sm-none align-items-center"
                     id="ardpien-re-brittandjosie-qbjoep"
                     onClick={[Function]}
                   >
                     <span
                       className="author-name"
-                      id="ardpien-re-brittandjosie-qbjoep"
                     >
                       ardpien
-                    </span>
-                    <span
-                      className="author-down-arrow mx-2"
-                      id="ardpien-re-brittandjosie-qbjoep"
-                    >
-                      <svg
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M7,10L12,15L17,10H7Z"
-                          fill="currentColor"
-                        />
-                      </svg>
                     </span>
                   </div>
-                  <a
-                    className="author notranslate d-none align-items-center d-sm-flex"
-                    href="/@ardpien"
+                  <span
+                    className="author-down-arrow mx-1"
+                    id="ardpien-re-brittandjosie-qbjoep"
                     onClick={[Function]}
+                    role="button"
                   >
-                    <span
-                      className="author-name"
+                    <svg
+                      viewBox="0 0 24 24"
                     >
-                      ardpien
-                    </span>
-                  </a>
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                  <div
+                    onMouseLeave={[Function]}
+                  >
+                    <div
+                      className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                      onMouseEnter={[Function]}
+                    >
+                      <span
+                        className="author-name"
+                      >
+                        ardpien
+                      </span>
+                    </div>
+                  </div>
                 </div>
                 <span
                   className="separator"
@@ -671,9 +620,9 @@ exports[`(1) Full render with active user 1`] = `
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="ardpien-qbi303"
+          <a
+            className="d-sm-inline-block"
+            href="/@ardpien"
             onClick={[Function]}
           >
             <span
@@ -684,26 +633,7 @@ exports[`(1) Full render with active user 1`] = `
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@ardpien"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -714,45 +644,47 @@ exports[`(1) Full render with active user 1`] = `
             <div
               className="d-flex align-items-center"
               id="ardpien-qbi303"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="ardpien-qbi303"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="ardpien-qbi303"
                 >
                   ardpien
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="ardpien-qbi303"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@ardpien"
+              <span
+                className="author-down-arrow mx-1"
+                id="ardpien-qbi303"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  ardpien
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    ardpien
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -867,9 +799,9 @@ exports[`(1) Full render with active user 1`] = `
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="iliyan90-re-esteemapp-202066t124616772z"
+          <a
+            className="d-sm-inline-block"
+            href="/@iliyan90"
             onClick={[Function]}
           >
             <span
@@ -880,26 +812,7 @@ exports[`(1) Full render with active user 1`] = `
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@iliyan90"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -910,45 +823,47 @@ exports[`(1) Full render with active user 1`] = `
             <div
               className="d-flex align-items-center"
               id="iliyan90-re-esteemapp-202066t124616772z"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="iliyan90-re-esteemapp-202066t124616772z"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="iliyan90-re-esteemapp-202066t124616772z"
                 >
                   iliyan90
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="iliyan90-re-esteemapp-202066t124616772z"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@iliyan90"
+              <span
+                className="author-down-arrow mx-1"
+                id="iliyan90-re-esteemapp-202066t124616772z"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  iliyan90
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    iliyan90
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -1063,9 +978,9 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="trincowski-re-esteemapp-202066t84137915z"
+          <a
+            className="d-sm-inline-block"
+            href="/@trincowski"
             onClick={[Function]}
           >
             <span
@@ -1076,26 +991,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@trincowski"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -1106,45 +1002,47 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             <div
               className="d-flex align-items-center"
               id="trincowski-re-esteemapp-202066t84137915z"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="trincowski-re-esteemapp-202066t84137915z"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="trincowski-re-esteemapp-202066t84137915z"
                 >
                   trincowski
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="trincowski-re-esteemapp-202066t84137915z"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@trincowski"
+              <span
+                className="author-down-arrow mx-1"
+                id="trincowski-re-esteemapp-202066t84137915z"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  trincowski
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    trincowski
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -1259,9 +1157,9 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="foxkoit-re-esteemapp-202066t8590757z"
+          <a
+            className="d-sm-inline-block"
+            href="/@foxkoit"
             onClick={[Function]}
           >
             <span
@@ -1272,26 +1170,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@foxkoit"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -1302,45 +1181,47 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             <div
               className="d-flex align-items-center"
               id="foxkoit-re-esteemapp-202066t8590757z"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="foxkoit-re-esteemapp-202066t8590757z"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="foxkoit-re-esteemapp-202066t8590757z"
                 >
                   foxkoit
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="foxkoit-re-esteemapp-202066t8590757z"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@foxkoit"
+              <span
+                className="author-down-arrow mx-1"
+                id="foxkoit-re-esteemapp-202066t8590757z"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  foxkoit
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    foxkoit
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -1455,9 +1336,9 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="irisworld-re-esteemapp-202066t14588243z"
+          <a
+            className="d-sm-inline-block"
+            href="/@irisworld"
             onClick={[Function]}
           >
             <span
@@ -1468,26 +1349,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@irisworld"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -1498,45 +1360,47 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             <div
               className="d-flex align-items-center"
               id="irisworld-re-esteemapp-202066t14588243z"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="irisworld-re-esteemapp-202066t14588243z"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="irisworld-re-esteemapp-202066t14588243z"
                 >
                   irisworld
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="irisworld-re-esteemapp-202066t14588243z"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@irisworld"
+              <span
+                className="author-down-arrow mx-1"
+                id="irisworld-re-esteemapp-202066t14588243z"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  irisworld
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    irisworld
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -1651,9 +1515,9 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="behiver-re-esteemapp-202066t85739415z"
+          <a
+            className="d-sm-inline-block"
+            href="/@behiver"
             onClick={[Function]}
           >
             <span
@@ -1664,26 +1528,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@behiver"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -1694,45 +1539,47 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             <div
               className="d-flex align-items-center"
               id="behiver-re-esteemapp-202066t85739415z"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="behiver-re-esteemapp-202066t85739415z"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="behiver-re-esteemapp-202066t85739415z"
                 >
                   behiver
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="behiver-re-esteemapp-202066t85739415z"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@behiver"
+              <span
+                className="author-down-arrow mx-1"
+                id="behiver-re-esteemapp-202066t85739415z"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  behiver
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    behiver
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -1952,9 +1799,9 @@ exports[`(3) With selected item 1`] = `
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="forykw-re-esteemapp-202067t12246786z"
+          <a
+            className="d-sm-inline-block"
+            href="/@forykw"
             onClick={[Function]}
           >
             <span
@@ -1965,26 +1812,7 @@ exports[`(3) With selected item 1`] = `
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@forykw"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -1995,45 +1823,47 @@ exports[`(3) With selected item 1`] = `
             <div
               className="d-flex align-items-center"
               id="forykw-re-esteemapp-202067t12246786z"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="forykw-re-esteemapp-202067t12246786z"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="forykw-re-esteemapp-202067t12246786z"
                 >
                   forykw
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="forykw-re-esteemapp-202067t12246786z"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@forykw"
+              <span
+                className="author-down-arrow mx-1"
+                id="forykw-re-esteemapp-202067t12246786z"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  forykw
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    forykw
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -2147,9 +1977,9 @@ exports[`(3) With selected item 1`] = `
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="brittandjosie-re-esteemapp-qbi6t3"
+          <a
+            className="d-sm-inline-block"
+            href="/@brittandjosie"
             onClick={[Function]}
           >
             <span
@@ -2160,26 +1990,7 @@ exports[`(3) With selected item 1`] = `
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@brittandjosie"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -2190,45 +2001,47 @@ exports[`(3) With selected item 1`] = `
             <div
               className="d-flex align-items-center"
               id="brittandjosie-re-esteemapp-qbi6t3"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="brittandjosie-re-esteemapp-qbi6t3"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="brittandjosie-re-esteemapp-qbi6t3"
                 >
                   brittandjosie
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="brittandjosie-re-esteemapp-qbi6t3"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@brittandjosie"
+              <span
+                className="author-down-arrow mx-1"
+                id="brittandjosie-re-esteemapp-qbi6t3"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  brittandjosie
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    brittandjosie
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -2344,9 +2157,9 @@ exports[`(3) With selected item 1`] = `
             <div
               className="item-figure"
             >
-              <div
-                className="d-sm-none"
-                id="ardpien-re-brittandjosie-qbjoep"
+              <a
+                className="d-sm-inline-block"
+                href="/@ardpien"
                 onClick={[Function]}
               >
                 <span
@@ -2357,26 +2170,7 @@ exports[`(3) With selected item 1`] = `
                     }
                   }
                 />
-              </div>
-              <div
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-              >
-                <a
-                  className="d-none d-sm-inline-block"
-                  href="/@ardpien"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="user-avatar medium"
-                    style={
-                      Object {
-                        "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
-                      }
-                    }
-                  />
-                </a>
-              </div>
+              </a>
             </div>
             <div
               className="item-content"
@@ -2387,45 +2181,47 @@ exports[`(3) With selected item 1`] = `
                 <div
                   className="d-flex align-items-center"
                   id="ardpien-re-brittandjosie-qbjoep"
-                  onMouseEnter={[Function]}
-                  onMouseLeave={[Function]}
                 >
                   <div
-                    className="author notranslate d-flex align-items-center d-sm-none"
+                    className="author btn notranslate d-flex d-sm-none align-items-center"
                     id="ardpien-re-brittandjosie-qbjoep"
                     onClick={[Function]}
                   >
                     <span
                       className="author-name"
-                      id="ardpien-re-brittandjosie-qbjoep"
                     >
                       ardpien
-                    </span>
-                    <span
-                      className="author-down-arrow mx-2"
-                      id="ardpien-re-brittandjosie-qbjoep"
-                    >
-                      <svg
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M7,10L12,15L17,10H7Z"
-                          fill="currentColor"
-                        />
-                      </svg>
                     </span>
                   </div>
-                  <a
-                    className="author notranslate d-none align-items-center d-sm-flex"
-                    href="/@ardpien"
+                  <span
+                    className="author-down-arrow mx-1"
+                    id="ardpien-re-brittandjosie-qbjoep"
                     onClick={[Function]}
+                    role="button"
                   >
-                    <span
-                      className="author-name"
+                    <svg
+                      viewBox="0 0 24 24"
                     >
-                      ardpien
-                    </span>
-                  </a>
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                  <div
+                    onMouseLeave={[Function]}
+                  >
+                    <div
+                      className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                      onMouseEnter={[Function]}
+                    >
+                      <span
+                        className="author-name"
+                      >
+                        ardpien
+                      </span>
+                    </div>
+                  </div>
                 </div>
                 <span
                   className="separator"
@@ -2541,9 +2337,9 @@ exports[`(3) With selected item 1`] = `
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="ardpien-qbi303"
+          <a
+            className="d-sm-inline-block"
+            href="/@ardpien"
             onClick={[Function]}
           >
             <span
@@ -2554,26 +2350,7 @@ exports[`(3) With selected item 1`] = `
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@ardpien"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -2584,45 +2361,47 @@ exports[`(3) With selected item 1`] = `
             <div
               className="d-flex align-items-center"
               id="ardpien-qbi303"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="ardpien-qbi303"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="ardpien-qbi303"
                 >
                   ardpien
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="ardpien-qbi303"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@ardpien"
+              <span
+                className="author-down-arrow mx-1"
+                id="ardpien-qbi303"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  ardpien
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    ardpien
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -2737,9 +2516,9 @@ exports[`(3) With selected item 1`] = `
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="iliyan90-re-esteemapp-202066t124616772z"
+          <a
+            className="d-sm-inline-block"
+            href="/@iliyan90"
             onClick={[Function]}
           >
             <span
@@ -2750,26 +2529,7 @@ exports[`(3) With selected item 1`] = `
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@iliyan90"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -2780,45 +2540,47 @@ exports[`(3) With selected item 1`] = `
             <div
               className="d-flex align-items-center"
               id="iliyan90-re-esteemapp-202066t124616772z"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="iliyan90-re-esteemapp-202066t124616772z"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="iliyan90-re-esteemapp-202066t124616772z"
                 >
                   iliyan90
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="iliyan90-re-esteemapp-202066t124616772z"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@iliyan90"
+              <span
+                className="author-down-arrow mx-1"
+                id="iliyan90-re-esteemapp-202066t124616772z"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  iliyan90
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    iliyan90
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -2933,9 +2695,9 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="trincowski-re-esteemapp-202066t84137915z"
+          <a
+            className="d-sm-inline-block"
+            href="/@trincowski"
             onClick={[Function]}
           >
             <span
@@ -2946,26 +2708,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@trincowski"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -2976,45 +2719,47 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             <div
               className="d-flex align-items-center"
               id="trincowski-re-esteemapp-202066t84137915z"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="trincowski-re-esteemapp-202066t84137915z"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="trincowski-re-esteemapp-202066t84137915z"
                 >
                   trincowski
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="trincowski-re-esteemapp-202066t84137915z"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@trincowski"
+              <span
+                className="author-down-arrow mx-1"
+                id="trincowski-re-esteemapp-202066t84137915z"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  trincowski
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    trincowski
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -3129,9 +2874,9 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="foxkoit-re-esteemapp-202066t8590757z"
+          <a
+            className="d-sm-inline-block"
+            href="/@foxkoit"
             onClick={[Function]}
           >
             <span
@@ -3142,26 +2887,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@foxkoit"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -3172,45 +2898,47 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             <div
               className="d-flex align-items-center"
               id="foxkoit-re-esteemapp-202066t8590757z"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="foxkoit-re-esteemapp-202066t8590757z"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="foxkoit-re-esteemapp-202066t8590757z"
                 >
                   foxkoit
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="foxkoit-re-esteemapp-202066t8590757z"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@foxkoit"
+              <span
+                className="author-down-arrow mx-1"
+                id="foxkoit-re-esteemapp-202066t8590757z"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  foxkoit
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    foxkoit
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -3325,9 +3053,9 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="irisworld-re-esteemapp-202066t14588243z"
+          <a
+            className="d-sm-inline-block"
+            href="/@irisworld"
             onClick={[Function]}
           >
             <span
@@ -3338,26 +3066,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@irisworld"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -3368,45 +3077,47 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             <div
               className="d-flex align-items-center"
               id="irisworld-re-esteemapp-202066t14588243z"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="irisworld-re-esteemapp-202066t14588243z"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="irisworld-re-esteemapp-202066t14588243z"
                 >
                   irisworld
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="irisworld-re-esteemapp-202066t14588243z"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@irisworld"
+              <span
+                className="author-down-arrow mx-1"
+                id="irisworld-re-esteemapp-202066t14588243z"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  irisworld
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    irisworld
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -3521,9 +3232,9 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="behiver-re-esteemapp-202066t85739415z"
+          <a
+            className="d-sm-inline-block"
+            href="/@behiver"
             onClick={[Function]}
           >
             <span
@@ -3534,26 +3245,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@behiver"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -3564,45 +3256,47 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             <div
               className="d-flex align-items-center"
               id="behiver-re-esteemapp-202066t85739415z"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="behiver-re-esteemapp-202066t85739415z"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="behiver-re-esteemapp-202066t85739415z"
                 >
                   behiver
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="behiver-re-esteemapp-202066t85739415z"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@behiver"
+              <span
+                className="author-down-arrow mx-1"
+                id="behiver-re-esteemapp-202066t85739415z"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  behiver
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    behiver
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -3786,9 +3480,9 @@ exports[`(4) Show mute button, muted comment 1`] = `
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="forykw-re-esteemapp-202067t12246786z"
+          <a
+            className="d-sm-inline-block"
+            href="/@forykw"
             onClick={[Function]}
           >
             <span
@@ -3799,26 +3493,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@forykw"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -3829,45 +3504,47 @@ exports[`(4) Show mute button, muted comment 1`] = `
             <div
               className="d-flex align-items-center"
               id="forykw-re-esteemapp-202067t12246786z"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="forykw-re-esteemapp-202067t12246786z"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="forykw-re-esteemapp-202067t12246786z"
                 >
                   forykw
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="forykw-re-esteemapp-202067t12246786z"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@forykw"
+              <span
+                className="author-down-arrow mx-1"
+                id="forykw-re-esteemapp-202067t12246786z"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  forykw
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    forykw
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"
@@ -4001,9 +3678,9 @@ exports[`(4) Show mute button, muted comment 1`] = `
         <div
           className="item-figure"
         >
-          <div
-            className="d-sm-none"
-            id="brittandjosie-re-esteemapp-qbi6t3"
+          <a
+            className="d-sm-inline-block"
+            href="/@brittandjosie"
             onClick={[Function]}
           >
             <span
@@ -4014,26 +3691,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
                 }
               }
             />
-          </div>
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <a
-              className="d-none d-sm-inline-block"
-              href="/@brittandjosie"
-              onClick={[Function]}
-            >
-              <span
-                className="user-avatar medium"
-                style={
-                  Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
-                  }
-                }
-              />
-            </a>
-          </div>
+          </a>
         </div>
         <div
           className="item-content"
@@ -4044,45 +3702,47 @@ exports[`(4) Show mute button, muted comment 1`] = `
             <div
               className="d-flex align-items-center"
               id="brittandjosie-re-esteemapp-qbi6t3"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
             >
               <div
-                className="author notranslate d-flex align-items-center d-sm-none"
+                className="author btn notranslate d-flex d-sm-none align-items-center"
                 id="brittandjosie-re-esteemapp-qbi6t3"
                 onClick={[Function]}
               >
                 <span
                   className="author-name"
-                  id="brittandjosie-re-esteemapp-qbi6t3"
                 >
                   brittandjosie
-                </span>
-                <span
-                  className="author-down-arrow mx-2"
-                  id="brittandjosie-re-esteemapp-qbi6t3"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7,10L12,15L17,10H7Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </div>
-              <a
-                className="author notranslate d-none align-items-center d-sm-flex"
-                href="/@brittandjosie"
+              <span
+                className="author-down-arrow mx-1"
+                id="brittandjosie-re-esteemapp-qbi6t3"
                 onClick={[Function]}
+                role="button"
               >
-                <span
-                  className="author-name"
+                <svg
+                  viewBox="0 0 24 24"
                 >
-                  brittandjosie
-                </span>
-              </a>
+                  <path
+                    d="M7,10L12,15L17,10H7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <div
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+                  onMouseEnter={[Function]}
+                >
+                  <span
+                    className="author-name"
+                  >
+                    brittandjosie
+                  </span>
+                </div>
+              </div>
             </div>
             <span
               className="separator"

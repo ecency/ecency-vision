@@ -177,7 +177,8 @@ interface Props {
 interface State {
     loading: boolean,
     list: Schedule[],
-    filter: string
+    filter: string,
+    innerRef: any
 }
 
 
@@ -185,11 +186,18 @@ export class Schedules extends BaseComponent<Props, State> {
     state: State = {
         loading: true,
         list: [],
-        filter: ""
+        filter: "",
+        innerRef: React.createRef()
     }
 
     componentDidMount() {
         this.fetch();
+    }
+
+    componentDidUpdate(prevProps:Props, prevState: State){
+        if(this.state.loading !== prevState.loading && !this.state.loading && this.state.list.length > 0){
+            this.state!.innerRef!.current && this.state!.innerRef!.current!.focus()
+        }
     }
 
     fetch = () => {
@@ -236,7 +244,7 @@ export class Schedules extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {list, filter, loading} = this.state;
+        const {list, filter, loading, innerRef} = this.state;
 
         return <div className="dialog-content">
 
@@ -255,7 +263,7 @@ export class Schedules extends BaseComponent<Props, State> {
 
                 return <>
                     <div className="dialog-filter">
-                        <Form.Control type="text" placeholder={_t("drafts.filter")} value={filter} onChange={this.filterChanged}/>
+                        <Form.Control ref={innerRef} type="text" placeholder={_t("drafts.filter")} value={filter} onChange={this.filterChanged}/>
                     </div>
 
                     {items.length === 0 && <span className="text-muted">{_t("g.no-matches")}</span>}

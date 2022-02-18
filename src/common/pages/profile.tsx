@@ -370,7 +370,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                             account
                         })}
 
-                        {
+                        {data && data.entries.length > 0 && 
                           (filter === 'posts' || filter === 'comments') && (section === filter) && (
                               <div className='searchProfile'>
                                 <SearchBox
@@ -378,7 +378,10 @@ class ProfilePage extends BaseComponent<Props, State> {
                                   value={search}
                                   onChange={this.handleChangeSearch}
                                   autoComplete="off"
-                                /> 
+                                  showcopybutton={true}
+                                  username={`@${username}`}
+                                  filter={filter}
+                                />
                               </div>
                           )
                         }
@@ -407,7 +410,8 @@ class ProfilePage extends BaseComponent<Props, State> {
                                 if (section === "wallet") {
                                     return WalletHive({
                                         ...this.props,
-                                        account
+                                        account,
+                                        updateWalletValues: this.ensureAccount
                                     });
                                 }
 
@@ -421,7 +425,8 @@ class ProfilePage extends BaseComponent<Props, State> {
                                 if (section === "points") {
                                     return WalletEcency({
                                         ...this.props,
-                                        account
+                                        account,
+                                        updateWalletValues: this.ensureAccount
                                     });
                                 }
 

@@ -2,8 +2,10 @@
   "g": {
     "add": "Agregar",
     "edit": "Editar",
+    "continue": "Continuar",
     "submit": "Escribe una publicación",
     "search": "Buscar",
+    "loading-chunk": "Cargando componente troceado",
     "downloads": "Descargas",
     "login": "Iniciar Sesión",
     "login-as": "Ingresar como",
@@ -16,6 +18,7 @@
     "learnMore": "Aprende más",
     "or": "O",
     "muted-message": "Autor silenciado, Revelar contenido",
+    "modmuted-message": "Moderadores de la comunidad silenciados, mostrar contenido",
     "server-error": "El proceso no se pudo completar debido a un error del servidor",
     "day": "día",
     "days": "días",
@@ -26,6 +29,9 @@
     "load-more": "Cargar más",
     "empty-list": "Nada por aquí",
     "no-matches": "No se ha encontrado nada",
+    "nothing-found-in": "No se ha encontrado nada",
+    "fill-feed": "Puedes seguir a más personas para llenar esta fuente.",
+    "fill-community-feed": "Puedes unirte a más comunidades para llenar esta fuente.",
     "save": "Guardar",
     "try-again": "Reintentar",
     "show": "Mostrar",
@@ -50,6 +56,8 @@
     "payout": "Pago",
     "learn-more": "Aprende más en nuestro",
     "faq": "Preguntas Frecuentes (FAQ)",
+    "when": "Cuando",
+    "price": "Precio",
     "more-results": "Más resultados",
     "close": "Cerrar",
     "loading": "Cargando"
@@ -70,6 +78,7 @@
     "filter-feed-friends": "Amigos",
     "filter-feed-subscriptions": "Comunidades",
     "filter-global": "Global",
+    "filter-community": "Mi Comunidad",
     "filter-global-part1": "Esta entrada contiene ",
     "filter-global-part2": " discusiones en toda la plataforma.",
     "filter-global-part3": " discusiones de tus comunidades suscritas. Puedes unirte a más comunidades para llenar esta fuente.",
@@ -257,7 +266,41 @@
   },
   "market-data": {
     "title": "Precio de mercado",
+    "trade": "Token de intercambio",
     "credits": "datos de mercado de <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+  },
+  "market": {
+    "title": "Intercambio de Token",
+    "description": "Intercambio descentralizado para comprar y vender tokens en la cadena de bloques de Hive. Para obtener más información, lea nuestras <a href=\"/faq#how-exchange-work\">preguntas frecuentes</a>.",
+    "last-price": "Último precio",
+    "volume": "Volumen de 24 horas",
+    "bid": "Oferta",
+    "spread": "Margen (spread)",
+    "ask": "Pedir",
+    "buy": "Comprar",
+    "sell": "Vender",
+    "available": "Disponible",
+    "highest-bid": "Puja más alta",
+    "price": "Precio",
+    "amount": "Cantidad",
+    "total": "Total",
+    "orders": "Órdenes",
+    "date": "Fecha",
+    "open-orders": "Órdenes abiertas",
+    "type": "Tipo",
+    "action": "Acción",
+    "trade-history": "Historial de Intercambios",
+    "stock-params": "Parámetros",
+    "stock-info": "Información de existencias",
+    "barter": "Intercambiar tokens",
+    "stock-values": "Valores",
+    "transaction-low": "La cantidad total supera tu saldo disponible. Por favor, añade más fondos o prueba con una cantidad más pequeña.",
+    "confirm-cancel": "¿Estás seguro? ¡Estás cancelando el pedido #{{orderid}}!",
+    "confirm-buy": "Estás intercambiando con {{amount}} HIVE por {{price}} HBD/HIVE y el total será de {{total}} HBD.",
+    "confirm-sell": "Valores",
+    "transaction-succeeded": "Transaction submitted",
+    "lowest-ask": "Pedido más bajo",
+    "decimal-error": "¡Sólo se permiten {{decimals}} dígitos decimales!"
   },
   "list-style": {
     "title": "Alternar estilo de líneas"
@@ -285,8 +328,8 @@
     "deleted-content-warning": "Este contenido fue eliminado por el autor. Puedes verlo desde la Blockchain ",
     "comments-hidden": "Silenciaste al autor de esta publicación.",
     "address-copy": "Copiar la dirección de la Publicación",
-    "address-copied": "Dirección de publicación copiada al portapapeles.",
-    "content-copied": "Contenido copiado al portapapeles.",
+    "address-copied": "Dirección de publicación copiada al portapapeles",
+    "content-copied": "Contenido copiado al portapapeles",
     "browse-original": "Abrir publicación original",
     "cross-post-by": "Publicación cruzada por",
     "cross-post-community": "comunidad",
@@ -456,8 +499,11 @@
     "rc-power": "Créditos de recursos: {{n}}%",
     "recharge-time": "(Cargado completamente en {{n}})",
     "down-vote-power": "Poder de Votos Negativos: {{n}}%",
-    "no-posts": "Aquí verás tus mensajes, parece que no existe contenido.",
+    "no-posts": "No hay contenido publicado, aún",
+    "no-posts-user": "Seguir, sé el primero en enterarte",
+    "no-posts-community": "Únete y publica en esta comunidad",
     "create-posts": "Vamos a crear una nueva publicación",
+    "link-copied": "Enlace de búsqueda copiado al portapapeles",
     "no-posts-found": "¡No se encontró nada!"
   },
   "profile-edit": {
@@ -468,7 +514,7 @@
     "profile-image": "Imagen de perfil",
     "website": "Página Web",
     "location": "Localización",
-    "copied": "El enlace de referido se ha copiado en el portapapeles.",
+    "copied": "El enlace de referido se ha copiado en el portapapeles",
     "updated": "¡Perfil actualizado exitosamente!"
   },
   "image-upload-button": {
@@ -492,6 +538,7 @@
     "estimated-description": "El valor estimado se basa en un valor promedio de 7 días de HIVE.",
     "estimated-description-points": "El valor estimado se basa en el valor de compra de los puntos.",
     "hive": "HIVE",
+    "hbd": "HBD",
     "hive-description": "HIVE es una moneda que puede transferirse en cualquier momento. HIVE se puede convertir a Hive Power en un proceso llamado Power Up.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power son fichas de influencia que ganan más poder por mantenerlas a largo plazo y votar sobre el contenido. Cuanto más Hive Power se tenga, más influye uno en las recompensas de los demás y se gana más recompensas por votar. Hive Power es HIVE en Estaca (Staked) que puede retirado (Unstaked) en 13 semanas.",
@@ -516,7 +563,9 @@
     "power-down": "Apagar",
     "withdraw-routes": "Rutas de Retiro",
     "calculating": "Calculando",
-    "converting-hbd-amount": "Convirtiendo a HIVE"
+    "converting-hbd-amount": "Convirtiendo a HIVE",
+    "withdrawing-amount": "Withdrawing from Savings",
+    "reserved-amount": "Reservado para Orden Abierta en Mercado"
   },
   "wallet-engine": {
     "title": "Motor de Tokens de Hive",
@@ -562,7 +611,7 @@
     "delegation-list-desc": "Recompensa por delegación",
     "referral-list-desc": "Recompensa por referido",
     "community-list-desc": "Recompensa de la comunidad",
-    "transfer": "Regalar a alguien",
+    "transfer": "Regalo",
     "claim-ok": "Puntos reclamados",
     "promote": "Promocionar",
     "boost": "Boost",
@@ -646,7 +695,7 @@
     "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferido desde <span class=\"from-user\">{{from}}</span> hacia <span class=\"to-user\">{{to}}</span>",
     "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferido de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferido de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> convertido",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> being converted",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> estacar de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegado de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Apagado completado como <span class=\"amount\">{{amount}}</span>",
@@ -676,8 +725,9 @@
     "type-transfer": "Transferir",
     "type-transfer_to_vesting": "Power up",
     "type-withdraw_vesting": "Apagar",
+    "type-set_withdraw_vesting_route": "Ruta de retiro cambiada",
     "type-fill_vesting_withdraw": "Se ha producido un apagado parcial",
-    "type-fill_order": "Completar orden",
+    "type-fill_order": "Operación abierta rellenada",
     "type-producer_reward": "Recompensa del productor",
     "type-interest": "Interés",
     "type-transfer_to_savings": "Transferir a ahorros",
@@ -699,7 +749,8 @@
     "type-collateralized_convert": "Conversión Collateralizada",
     "type-collateralized_convert-detail": "Identificación de solicitud: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "ID de la propuesta: <strong>{{pid}}</strong>",
-    "type-limit_order_create": "Nueva operación",
+    "type-limit_order_create": "Nueva operación creada",
+    "type-limit_order_cancel": "Operación abierta cancelada",
     "type-effective_comment_vote": "Voto efectivo"
   },
   "key-or-hot": {
@@ -715,6 +766,22 @@
   },
   "received-vesting": {
     "title": "Hive power recibido"
+  },
+  "conversion-requests": {
+    "title": "Convert requests",
+    "request-id": "Request id",
+    "amount": "Amount",
+    "pending": "Pending"
+  },
+  "savings-withdraw": {
+    "title": "Withdraw from Savings",
+    "to": "To"
+  },
+  "open-orders-list": {
+    "title": "Open orders",
+    "created": "Created",
+    "expires": "Expires",
+    "order-id": "Order id"
   },
   "friends": {
     "followers": "Seguidores ({{n}})",
@@ -1071,6 +1138,7 @@
     },
     "faq": {
       "page-title": "¿Cómo podemos ayudarte?",
+      "search-link-copied": "Enlace de búsqueda copiado al portapapeles",
       "page-sub-title": "Lista de contenidos",
       "what-is-ecency-header": "¿Qué es Ecency?",
       "search": "Resultados relacionados para {{search}} filtrados a continuación",
@@ -1130,7 +1198,9 @@
       "different-reward-choices-header": "¿Cuáles son las diferencias en los tipos de recompensas?",
       "different-reward-choices-body": "<p>En la sección de configuración de publicación, puedes ver 3 tipos de recompensas/opciones de recompensa.<ul><li>50%/50% - Recompensa la mitad en Poder de Hive y mitad Hive / Hive Dólar líquido. La relación entre el Hive líquido y los Hive Dólares se basa en las condiciones de la red en el momento del pago. Esta es la opción de pago predeterminada.</li><li>Power Up 100% - Esta opción recompensa el post en 100% Poder de Hive.</li><li>Rechazar pagos - Utilice esta opción para no recibir recompensas por la publicación. Los votos afectarán a la posición del post en la clasificación de tendencia pero no se pagarán recompensas del grupo de recompensas de Hive. Las respuestas hechas al post todavía son elegibles para las recompensas.</li></ul></p>",
       "boosting-vote-buying-header": "¿Impulsar se considera una compra de votos?",
-      "boosting-vote-buying-body": "<p>¡No! Porque, no hay garantía de recibir votos, no hay garantía de cantidad exacta de voto. Impulsar la cantidad máxima es limitado, cada contenido revisado por nuestros curadores, no hay ganancia en ello. Todas las recompensas de curación son enviadas de vuelta a los delegadores al 100%. El único éxito alcanzable que buscamos es ver el compromiso y el crecimiento en todo el ecosistema. Impulsar es simplemente crear un caso de uso adicional para que los puntos de emisión mejoren el compromiso en la plataforma, por lo que es esencialmente igual que cualquier otro gremio de curación en Colmena. El objetivo de esos gremios en última instancia para mejorar el compromiso en la plataforma y aumentar la actividad, la manera en que se evalúa cada medida de éxito es la diferencia.</p>"
+      "boosting-vote-buying-body": "<p>¡No! Porque, no hay garantía de recibir votos, no hay garantía de cantidad exacta de voto. Impulsar la cantidad máxima es limitado, cada contenido revisado por nuestros curadores, no hay ganancia en ello. Todas las recompensas de curación son enviadas de vuelta a los delegadores al 100%. El único éxito alcanzable que buscamos es ver el compromiso y el crecimiento en todo el ecosistema. Impulsar es simplemente crear un caso de uso adicional para que los puntos de emisión mejoren el compromiso en la plataforma, por lo que es esencialmente igual que cualquier otro gremio de curación en Colmena. El objetivo de esos gremios en última instancia para mejorar el compromiso en la plataforma y aumentar la actividad, la manera en que se evalúa cada medida de éxito es la diferencia.</p>",
+      "how-exchange-work-header": "¿Cómo funciona el intercambio de tokens?",
+      "how-exchange-work-body": "<p>El intercambio y el comercio de tokens en Ecency es muy simple. Utilizamos el intercambio P2P, persona a persona, descentralizado e incorporado en la cadena de bloques de Hive. Ofrece una interfaz fácil de usar para que puedas intercambiar un token a otro, completamente descentralizado. Crea una orden de compra o venta y espera a que otras personas llenen tu pedido. Si desea intercambiar tokens rápidamente, entonces puede llenar la orden abierta de otra persona para un intercambio rápido.</p>"
     }
   },
   "contributors": {

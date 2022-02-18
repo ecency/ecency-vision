@@ -91,7 +91,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
             const query = this.buildQuery(entry);
             search(query, "newest", "0", undefined, undefined).then(r => {
 
-                const rawEntries: SearchResult[] = r.results.filter(r => r.permlink !== permlink);
+                const rawEntries: SearchResult[] = r.results.filter(r => r.permlink !== permlink && r.tags.indexOf('nsfw')===-1);
 
                 let entries: SearchResult[] = [];
 

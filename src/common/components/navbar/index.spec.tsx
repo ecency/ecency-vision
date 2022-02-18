@@ -55,6 +55,8 @@ const defProps = {
     },
 };
 
+//const itif = (condition) => condition ? it : it.skip;
+
 it("(1) Default render", () => {
     const component = <NavBar {...defProps} />;
 

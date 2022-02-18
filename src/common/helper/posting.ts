@@ -82,7 +82,6 @@ export const extractMetaData = (body: string): MetaData => {
     if (matchedUsers.length) {
         out.users = matchedUsers.slice(0,10);
     }
-
     return out;
 };
 

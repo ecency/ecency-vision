@@ -2,8 +2,10 @@
   "g": {
     "add": "Tambahkan",
     "edit": "Edit",
+    "continue": "Continue",
     "submit": "Tulislah sebuah postingan",
     "search": "Cari",
+    "loading-chunk": "Loading chunked component",
     "downloads": "Download",
     "login": "Masuk",
     "login-as": "Masuk sebagai",
@@ -16,6 +18,7 @@
     "learnMore": "Pelajari lebih lanjut",
     "or": "ATAU",
     "muted-message": "Pengarang dibisukan, Konten diperlihatkan",
+    "modmuted-message": "Community Moderators muted, Reveal content",
     "server-error": "Proses tidak dapat di selesaikan karena kesalahan server",
     "day": "hari",
     "days": "hari",
@@ -26,6 +29,9 @@
     "load-more": "Muat Lebih Banyak",
     "empty-list": "Tidak ada apa-apa di sini",
     "no-matches": "Nothing found",
+    "nothing-found-in": "Nothing found in",
+    "fill-feed": "You can follow more people to fill up this feed.",
+    "fill-community-feed": "You can join more communities to fill up this feed.",
     "save": "Simpan",
     "try-again": "Coba lagi",
     "show": "Tampilkan",
@@ -50,6 +56,8 @@
     "payout": "Bayaran",
     "learn-more": "Pelajari lebih banyak di",
     "faq": "FAQ",
+    "when": "When",
+    "price": "Price",
     "more-results": "More results",
     "close": "Tutup",
     "loading": "Loading"
@@ -70,6 +78,7 @@
     "filter-feed-friends": "Teman",
     "filter-feed-subscriptions": "Komunitas",
     "filter-global": "Global",
+    "filter-community": "My Community",
     "filter-global-part1": "Umpan ini berisi ",
     "filter-global-part2": " diskusi pada seluruh platform.",
     "filter-global-part3": " diskusi dari komunitas langganan Anda. Anda dapat bergabung dengan lebih banyak komunitas untuk mengisi umpan ini.",
@@ -257,7 +266,41 @@
   },
   "market-data": {
     "title": "Harga pasar",
+    "trade": "Trade token",
     "credits": "data dari <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+  },
+  "market": {
+    "title": "Token exchange",
+    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "last-price": "Last Price",
+    "volume": "24h volume",
+    "bid": "Bid",
+    "spread": "Spread",
+    "ask": "Ask",
+    "buy": "Buy",
+    "sell": "Sell",
+    "available": "Available",
+    "highest-bid": "Highest bid",
+    "price": "Price",
+    "amount": "Amount",
+    "total": "Total",
+    "orders": "Orders",
+    "date": "Date",
+    "open-orders": "Open Orders",
+    "type": "Type",
+    "action": "Action",
+    "trade-history": "Trade History",
+    "stock-params": "Params",
+    "stock-info": "Stock information",
+    "barter": "Exchange tokens",
+    "stock-values": "Values",
+    "transaction-low": "Total amount exceeds your available balance. Please add more funds or try with smaller amount.",
+    "confirm-cancel": "Are you sure? You are cancelling order #{{orderid}}!",
+    "confirm-buy": "You're trading {{amount}} HIVE for {{price}} HBD/HIVE and total will be {{total}} HBD.",
+    "confirm-sell": "Values",
+    "transaction-succeeded": "Transaction submitted",
+    "lowest-ask": "Lowest ask",
+    "decimal-error": "Only {{decimals}} decimal digits allowed!"
   },
   "list-style": {
     "title": "Gaya daftar kotak"
@@ -285,8 +328,8 @@
     "deleted-content-warning": "Konten ini telah dihapus oleh penulis. Anda dapat melihatnya dari Blockchain ",
     "comments-hidden": "Penulis konten ini diheningkan oleh Anda.",
     "address-copy": "Salin alamat postingan",
-    "address-copied": "Tempel alamat yang disalin ke papan klip.",
-    "content-copied": "Konten disalin ke papan klip.",
+    "address-copied": "Post address copied to clipboard",
+    "content-copied": "Content copied to clipboard",
     "browse-original": "Tampilan tulisan asli",
     "cross-post-by": "Postingan bersilangan dengan",
     "cross-post-community": "komunitas",
@@ -456,8 +499,11 @@
     "rc-power": "Sumber Kredit: {{n}}%",
     "recharge-time": "(terisi penuh {{n}})",
     "down-vote-power": "Power Downvote: {{n}}%",
-    "no-posts": "Di sini Anda akan melihat postingan Anda, sepertinya tidak ada konten.",
+    "no-posts": "No content published, yet",
+    "no-posts-user": "Follow, be first to know",
+    "no-posts-community": "Join and post in this community",
     "create-posts": "Mari kita buat postingan baru",
+    "link-copied": "Search link copied to clipboard",
     "no-posts-found": "Tidak ditemukan apa-apa!"
   },
   "profile-edit": {
@@ -468,7 +514,7 @@
     "profile-image": "Gambar Profil",
     "website": "Website",
     "location": "Lokasi",
-    "copied": "Link referral sudah tersalin.",
+    "copied": "Referral link copied to clipboard",
     "updated": "Profil diperbaharui dengan sukses!"
   },
   "image-upload-button": {
@@ -492,6 +538,7 @@
     "estimated-description": "Harga estimasi berdasarkan nilai rata-rata HIVE dalam 7 hari.",
     "estimated-description-points": "Nilai estimasi berdasarkan nilai pembayaran Poin.",
     "hive": "HIVE",
+    "hbd": "HBD",
     "hive-description": "HIVE adalah Token yang dapat diperdagangkan juga dapat dipindahkan kapan saja. HIVE dapat pula dikonversi menjadi Hive Power yang prosesnya dinamakan Powering Up.",
     "hive-power": "KEKUATAN HIVE",
     "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
@@ -516,7 +563,9 @@
     "power-down": "Power Down",
     "withdraw-routes": "Rute Penarikan",
     "calculating": "Menghitung",
-    "converting-hbd-amount": "Konversi ke HIVE"
+    "converting-hbd-amount": "Konversi ke HIVE",
+    "withdrawing-amount": "Withdrawing from Savings",
+    "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
     "title": "Token Hive Engine",
@@ -562,7 +611,7 @@
     "delegation-list-desc": "Reward delegasi",
     "referral-list-desc": "Reward referral",
     "community-list-desc": "Rewards komunitas",
-    "transfer": "Hadiah untuk seseorang",
+    "transfer": "Gift",
     "claim-ok": "Poin yang diklaim",
     "promote": "Promosikan",
     "boost": "Tingkatkan",
@@ -646,7 +695,7 @@
     "transfer-summary": "<span class=\"amount\">{{jumlah}}</span> ditransfer dari <span class=\"from-user\">{{dari}}</span> ke<span class=\"to-user\">{{ke}}</span>",
     "transfer-saving-summary": "<span class=\"amount\">{{jumlah}}</span> ditransfer dari <span class=\"from-user\">{{dari}}</span> ke<span class=\"to-user\">{{ke}}</span>",
     "withdraw-saving-summary": "<span class=\"amount\">{{jumlah}}</span> ditransfer dari <span class=\"from-user\">{{dari}}</span> ke<span class=\"to-user\">{{ke}}</span>",
-    "convert-summary": "<span class=\"amount\">{{jumlah}}</span> dikonfersi",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> being converted",
     "power-up-summary": "<span class=\"amount\">{{jumlah}}</span> distake dari <span class=\"from-user\">{{dari}}</span> ke <span class=\"to-user\">{{ke}}</span>",
     "delegate-summary": "<span class=\"amount\">{{jumlah}}</span> didelagasikan dari <span class=\"from-user\">{{dari}}</span> ke <span class=\"to-user\">{{ke}}</span>",
     "power-down-summary": "Power down selesai pada <span class=\"amount\">{{jumlah}}</span>",
@@ -676,8 +725,9 @@
     "type-transfer": "Transfer",
     "type-transfer_to_vesting": "Peningkatan kekuatan",
     "type-withdraw_vesting": "Menurunkan kekuatan",
+    "type-set_withdraw_vesting_route": "Withdraw route changed",
     "type-fill_vesting_withdraw": "Penurunan kekuatan sedang berlangsung sebagian",
-    "type-fill_order": "Isi pesanan",
+    "type-fill_order": "Open trade filled",
     "type-producer_reward": "Reward produser",
     "type-interest": "Bunga",
     "type-transfer_to_savings": "Transfer untuk tabungan",
@@ -699,7 +749,8 @@
     "type-collateralized_convert": "Konversi yang dijamin",
     "type-collateralized_convert-detail": "Permintaan id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Id proposal:<strong>{{pid}}</strong>",
-    "type-limit_order_create": "Perdagangan baru",
+    "type-limit_order_create": "New trade created",
+    "type-limit_order_cancel": "Open trade cancelled",
     "type-effective_comment_vote": "Vote efektif"
   },
   "key-or-hot": {
@@ -715,6 +766,22 @@
   },
   "received-vesting": {
     "title": "Hive Power yang Diterima"
+  },
+  "conversion-requests": {
+    "title": "Convert requests",
+    "request-id": "Request id",
+    "amount": "Amount",
+    "pending": "Pending"
+  },
+  "savings-withdraw": {
+    "title": "Withdraw from Savings",
+    "to": "To"
+  },
+  "open-orders-list": {
+    "title": "Open orders",
+    "created": "Created",
+    "expires": "Expires",
+    "order-id": "Order id"
   },
   "friends": {
     "followers": "Pengikut ({{n}})",
@@ -1071,6 +1138,7 @@
     },
     "faq": {
       "page-title": "Bagaimana kami dapat membantu Anda?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Daftar Isi",
       "what-is-ecency-header": "Apa itu Ecency?",
       "search": "Berikut ini adalah hasil pencarian yang berkaitan dengan {{search}}",
@@ -1130,7 +1198,9 @@
       "different-reward-choices-header": "What are the differences in Reward types?",
       "different-reward-choices-body": "<p>In publishing settings section, you can see 3 different Reward types/choices.<ul><li>50%/50% - This rewards in half Hive Power, and half liquid HIVE / Hive Dollars. The ratio of liquid HIVE to Hive Dollars rewarded is based on network conditions at the time of payout. This is the default payout option.</li><li>Power Up 100% - This option rewards the post in 100% Hive Power.</li><li>Decline Payout - Use this option to receive no post rewards. Votes will affect the post's position on the trending ranking but no rewards are paid from Hive's reward pool. Replies made to the post are still eligible for rewards.</li></ul></p>",
       "boosting-vote-buying-header": "Is boosting considered a vote buying?",
-      "boosting-vote-buying-body": "<p>No! Because, there is no guarantee of receiving vote, there is no guarantee of exact amount of vote, boosting maximum amount is limited, each content reviewed by our curators, there is no profit in it. All curation rewards are sent back to delegators 100%. Only measurable success we seek is to see engagement and growth on entire ecosystem. Boosting is simply creating additional use case for Ecency Points to improve engagement on platform, so it is essentially same as any other curation guilds on Hive. Goal of those guilds ultimately to improve engagement on platform and grow activity, the way each measures that success is the different.</p>"
+      "boosting-vote-buying-body": "<p>No! Because, there is no guarantee of receiving vote, there is no guarantee of exact amount of vote, boosting maximum amount is limited, each content reviewed by our curators, there is no profit in it. All curation rewards are sent back to delegators 100%. Only measurable success we seek is to see engagement and growth on entire ecosystem. Boosting is simply creating additional use case for Ecency Points to improve engagement on platform, so it is essentially same as any other curation guilds on Hive. Goal of those guilds ultimately to improve engagement on platform and grow activity, the way each measures that success is the different.</p>",
+      "how-exchange-work-header": "How token exchange works?",
+      "how-exchange-work-body": "<p>Exchanging and trading tokens on Ecency is very simple. We utilize internal peer to peer, decentralized exchange built into Hive blockchain. Offer easy to use interface so you can exchange one token to another, completely decentralized manner. Create buy or sell order and wait for other people to fill your order. If you want to quickly swap tokens then you can fill someone else's open order for quick trade.</p>"
     }
   },
   "contributors": {

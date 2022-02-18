@@ -2,8 +2,10 @@
   "g": {
     "add": "Lisa",
     "edit": "Muuda",
+    "continue": "Continue",
     "submit": "Write a post",
     "search": "Otsi",
+    "loading-chunk": "Loading chunked component",
     "downloads": "Allalaadimised",
     "login": "Logi sisse",
     "login-as": "Logi sisse teise kasutajaga",
@@ -16,6 +18,7 @@
     "learnMore": "Learn more",
     "or": "VÕI",
     "muted-message": "Muted author, Reveal content",
+    "modmuted-message": "Community Moderators muted, Reveal content",
     "server-error": "Protsess katkes serveri probleemide tõttu",
     "day": "päev",
     "days": "päeva",
@@ -26,6 +29,9 @@
     "load-more": "Laadi veel",
     "empty-list": "Siin pole midagi",
     "no-matches": "Nothing found",
+    "nothing-found-in": "Nothing found in",
+    "fill-feed": "You can follow more people to fill up this feed.",
+    "fill-community-feed": "You can join more communities to fill up this feed.",
     "save": "Salvesta",
     "try-again": "Proovige uuesti",
     "show": "Näita",
@@ -50,6 +56,8 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "when": "When",
+    "price": "Price",
     "more-results": "More results",
     "close": "Sulge",
     "loading": "Loading"
@@ -70,6 +78,7 @@
     "filter-feed-friends": "Sõbrad",
     "filter-feed-subscriptions": "Kogukonnad",
     "filter-global": "Global",
+    "filter-community": "My Community",
     "filter-global-part1": "This feed contains ",
     "filter-global-part2": " discussions on entire platform.",
     "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
@@ -257,7 +266,41 @@
   },
   "market-data": {
     "title": "Turuhind",
+    "trade": "Trade token",
     "credits": "andmed<a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingeckost</a>"
+  },
+  "market": {
+    "title": "Token exchange",
+    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "last-price": "Last Price",
+    "volume": "24h volume",
+    "bid": "Bid",
+    "spread": "Spread",
+    "ask": "Ask",
+    "buy": "Buy",
+    "sell": "Sell",
+    "available": "Available",
+    "highest-bid": "Highest bid",
+    "price": "Price",
+    "amount": "Amount",
+    "total": "Total",
+    "orders": "Orders",
+    "date": "Date",
+    "open-orders": "Open Orders",
+    "type": "Type",
+    "action": "Action",
+    "trade-history": "Trade History",
+    "stock-params": "Params",
+    "stock-info": "Stock information",
+    "barter": "Exchange tokens",
+    "stock-values": "Values",
+    "transaction-low": "Total amount exceeds your available balance. Please add more funds or try with smaller amount.",
+    "confirm-cancel": "Are you sure? You are cancelling order #{{orderid}}!",
+    "confirm-buy": "You're trading {{amount}} HIVE for {{price}} HBD/HIVE and total will be {{total}} HBD.",
+    "confirm-sell": "Values",
+    "transaction-succeeded": "Transaction submitted",
+    "lowest-ask": "Lowest ask",
+    "decimal-error": "Only {{decimals}} decimal digits allowed!"
   },
   "list-style": {
     "title": "Vaheta loendi stiili"
@@ -285,8 +328,8 @@
     "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard.",
-    "content-copied": "Content copied to clipboard.",
+    "address-copied": "Post address copied to clipboard",
+    "content-copied": "Content copied to clipboard",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -456,8 +499,11 @@
     "rc-power": "Resource Credits: {{n}}%",
     "recharge-time": "(fully charged {{n}})",
     "down-vote-power": "Downvote Power: {{n}}%",
-    "no-posts": "Here you will see your posts, looks like no content exists.",
+    "no-posts": "No content published, yet",
+    "no-posts-user": "Follow, be first to know",
+    "no-posts-community": "Join and post in this community",
     "create-posts": "Let's create a new post",
+    "link-copied": "Search link copied to clipboard",
     "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
@@ -468,7 +514,7 @@
     "profile-image": "Profile Image",
     "website": "Website",
     "location": "Location",
-    "copied": "Referral link copied to clipboard.",
+    "copied": "Referral link copied to clipboard",
     "updated": "Profile updated successfully!"
   },
   "image-upload-button": {
@@ -492,6 +538,7 @@
     "estimated-description": "The estimated value is based on a 7 day average value of HIVE.",
     "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
+    "hbd": "HBD",
     "hive-description": "HIVE are tradeable tokens that may be transferred at anytime.HIVE can be converted to Hive Power in a process called powering up.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
@@ -516,7 +563,9 @@
     "power-down": "Power down",
     "withdraw-routes": "Withdraw Routes",
     "calculating": "Calculating",
-    "converting-hbd-amount": "Vaheta HIVEks"
+    "converting-hbd-amount": "Vaheta HIVEks",
+    "withdrawing-amount": "Withdrawing from Savings",
+    "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",
@@ -562,7 +611,7 @@
     "delegation-list-desc": "Delegation reward",
     "referral-list-desc": "Referral reward",
     "community-list-desc": "Community reward",
-    "transfer": "Gift to someone",
+    "transfer": "Gift",
     "claim-ok": "Points claimed",
     "promote": "Promote",
     "boost": "Boost",
@@ -646,7 +695,7 @@
     "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> being converted",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
@@ -676,8 +725,9 @@
     "type-transfer": "Transfer",
     "type-transfer_to_vesting": "Power up",
     "type-withdraw_vesting": "Power down",
+    "type-set_withdraw_vesting_route": "Withdraw route changed",
     "type-fill_vesting_withdraw": "Partial Power down occurred",
-    "type-fill_order": "Fill order",
+    "type-fill_order": "Open trade filled",
     "type-producer_reward": "Producer reward",
     "type-interest": "Interest",
     "type-transfer_to_savings": "Transfer to savings",
@@ -699,7 +749,8 @@
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
-    "type-limit_order_create": "New trade",
+    "type-limit_order_create": "New trade created",
+    "type-limit_order_cancel": "Open trade cancelled",
     "type-effective_comment_vote": "Effective vote"
   },
   "key-or-hot": {
@@ -715,6 +766,22 @@
   },
   "received-vesting": {
     "title": "Received Hive Power"
+  },
+  "conversion-requests": {
+    "title": "Convert requests",
+    "request-id": "Request id",
+    "amount": "Amount",
+    "pending": "Pending"
+  },
+  "savings-withdraw": {
+    "title": "Withdraw from Savings",
+    "to": "To"
+  },
+  "open-orders-list": {
+    "title": "Open orders",
+    "created": "Created",
+    "expires": "Expires",
+    "order-id": "Order id"
   },
   "friends": {
     "followers": "Followers ({{n}})",
@@ -1071,6 +1138,7 @@
     },
     "faq": {
       "page-title": "How can we help you?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Table of Contents",
       "what-is-ecency-header": "What is Ecency?",
       "search": "Related results for {{search}} filtered below",
@@ -1130,7 +1198,9 @@
       "different-reward-choices-header": "What are the differences in Reward types?",
       "different-reward-choices-body": "<p>In publishing settings section, you can see 3 different Reward types/choices.<ul><li>50%/50% - This rewards in half Hive Power, and half liquid HIVE / Hive Dollars. The ratio of liquid HIVE to Hive Dollars rewarded is based on network conditions at the time of payout. This is the default payout option.</li><li>Power Up 100% - This option rewards the post in 100% Hive Power.</li><li>Decline Payout - Use this option to receive no post rewards. Votes will affect the post's position on the trending ranking but no rewards are paid from Hive's reward pool. Replies made to the post are still eligible for rewards.</li></ul></p>",
       "boosting-vote-buying-header": "Is boosting considered a vote buying?",
-      "boosting-vote-buying-body": "<p>No! Because, there is no guarantee of receiving vote, there is no guarantee of exact amount of vote, boosting maximum amount is limited, each content reviewed by our curators, there is no profit in it. All curation rewards are sent back to delegators 100%. Only measurable success we seek is to see engagement and growth on entire ecosystem. Boosting is simply creating additional use case for Ecency Points to improve engagement on platform, so it is essentially same as any other curation guilds on Hive. Goal of those guilds ultimately to improve engagement on platform and grow activity, the way each measures that success is the different.</p>"
+      "boosting-vote-buying-body": "<p>No! Because, there is no guarantee of receiving vote, there is no guarantee of exact amount of vote, boosting maximum amount is limited, each content reviewed by our curators, there is no profit in it. All curation rewards are sent back to delegators 100%. Only measurable success we seek is to see engagement and growth on entire ecosystem. Boosting is simply creating additional use case for Ecency Points to improve engagement on platform, so it is essentially same as any other curation guilds on Hive. Goal of those guilds ultimately to improve engagement on platform and grow activity, the way each measures that success is the different.</p>",
+      "how-exchange-work-header": "How token exchange works?",
+      "how-exchange-work-body": "<p>Exchanging and trading tokens on Ecency is very simple. We utilize internal peer to peer, decentralized exchange built into Hive blockchain. Offer easy to use interface so you can exchange one token to another, completely decentralized manner. Create buy or sell order and wait for other people to fill your order. If you want to quickly swap tokens then you can fill someone else's open order for quick trade.</p>"
     }
   },
   "contributors": {

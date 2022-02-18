@@ -59,6 +59,11 @@ export default class NotificationHandler extends Component<Props> {
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any) {
         const {activeUser, fetchUnreadNotificationCount} = this.props;
+        if(!prevProps.activeUser && activeUser && activeUser.username){
+            this.nwsDisconnect();
+            this.nwsConnect();
+            fetchUnreadNotificationCount();
+        }
 
         if (activeUser?.username !== prevProps.activeUser?.username) {
             this.nwsDisconnect();

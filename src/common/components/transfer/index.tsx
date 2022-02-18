@@ -121,9 +121,12 @@ interface Props {
     activeUser: ActiveUser;
     transactions: Transactions;
     signingKey: string;
+    account: Account;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
     setSigningKey: (key: string) => void;
+    fetchPoints: (username: string, type?: number) => void;
+    updateWalletValues: () => void;
     onHide: () => void;
 }
 
@@ -236,13 +239,13 @@ export class Transfer extends BaseComponent<Props, State> {
             }
 
             this.stateSet({inProgress: true, toData: null});
-            const {activeUser, dynamicProps: { hivePerMVests } } = this.props;
+            const {activeUser, mode, dynamicProps: { hivePerMVests } } = this.props;
 
             return getAccount(to)
                 .then(resp => {
                     if (resp) {
                         this.stateSet({toError: '', toData: resp});
-                        activeUser && activeUser.username && getVestingDelegations(activeUser.username, to, 1000).then(res=>{
+                        activeUser && activeUser.username && mode === "delegate" && getVestingDelegations(activeUser.username, to, 1000).then(res=>{
                             const delegateAccount = res && res.length > 0 && 
                             (res!.find(item => (item as any).delegatee===to && (item as any).delegator===activeUser.username));
                             const previousAmount = delegateAccount ? Number(formattedNumber(vestsToHp(Number(parseAsset((delegateAccount!.vesting_shares)).amount), hivePerMVests))) : "";
@@ -547,7 +550,15 @@ export class Transfer extends BaseComponent<Props, State> {
     }
 
     finish = () => {
-        const {onHide} = this.props;
+        const {onHide, mode, asset, account, activeUser, fetchPoints, updateWalletValues} = this.props;
+        if (account && activeUser && (account.name !== activeUser.username)) {
+            if (mode === 'transfer' && asset === 'POINT') {
+                fetchPoints(account.name)
+            } else {
+                updateWalletValues()
+            }
+        }
+        // const {onHide} = this.props;
         onHide();
     }
 

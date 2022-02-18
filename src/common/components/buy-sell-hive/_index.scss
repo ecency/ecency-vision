@@ -1,0 +1,23 @@
+.step-no {
+    color: #c1c5c7;
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-size: 48px;
+    font-weight: 700;
+    margin-right: 8px;
+}
+
+.main-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.sub-title {
+    font-weight: 300;
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #788187
+}

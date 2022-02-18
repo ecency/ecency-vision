@@ -45,7 +45,7 @@ import isElectron from "../../../../common/util/is-electron";
 // why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
 
 const pathToRegexp = require("path-to-regexp");
-
+import isCommunity from "../../../../common/helper/is-community";
 const logo = "./img/logo-circle.svg";
 
 
@@ -315,7 +315,8 @@ interface Props {
     reloadFn?: () => any,
     setStepTwo?: () => any,
     reloading?: boolean,
-    step?: number
+    step?: number,
+    match?: any;
 }
 
 interface State {
@@ -380,9 +381,15 @@ export class NavBar extends Component<Props, State> {
     };
 
     render() {
-        const {global, activeUser, history, location, ui, step} = this.props;
+        const {global, activeUser, history, location, ui, step, match} = this.props;        
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
-        const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
+        const communityPage = match && match.params.name && isCommunity(match.params.name)
+        const tagValue = global.tag ? `/${global.tag}` : ''
+        const logoHref = activeUser ? 
+        (communityPage || ((global.tag.includes('@')) && (['engine','wallet','points','communities','settings','permissions','comments','replies','blog', 'posts'].includes(global.filter)))) ?
+        '/hot' : 
+        global.filter === 'feed' ? `${tagValue}/${global.filter}` : `/${global.filter}${tagValue}` 
+        : '/';
 
         const {floating} = this.state;
 
@@ -502,7 +509,8 @@ export default (p: Props) => {
         reloadFn: p.reloadFn,
         reloading: p.reloading,
         step: p.step,
-        setStepTwo: p.setStepTwo
+        setStepTwo: p.setStepTwo,
+        match: p.match,
     }
 
     return <NavBar {...props} />;

@@ -2,8 +2,28 @@
 
 exports[`Renders a message 1`] = `
 <div
-  className="container-no-message"
+  className="d-flex justify-content-center align-items-center mt-5"
 >
-  No data found!
+  <div
+    className="w-25"
+  >
+    <img
+      className="w-100 h-100"
+      src="writer.png"
+    />
+  </div>
+  <div
+    className="d-flex flex-column w-50 ml-5"
+  >
+    <h2>
+      
+    </h2>
+    <p
+      className="text-muted lead"
+    >
+      
+    </p>
+    
+  </div>
 </div>
 `;

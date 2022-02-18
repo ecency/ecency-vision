@@ -2,8 +2,10 @@
   "g": {
     "add": "Додати",
     "edit": "Редагувати",
+    "continue": "Continue",
     "submit": "Створити допис",
     "search": "Шукати",
+    "loading-chunk": "Loading chunked component",
     "downloads": "Завантажень",
     "login": "Увійти",
     "login-as": "Увійти як",
@@ -16,6 +18,7 @@
     "learnMore": "Докладніше",
     "or": "АБО",
     "muted-message": "Muted author, Reveal content",
+    "modmuted-message": "Community Moderators muted, Reveal content",
     "server-error": "Не вдається завершити процес через помилку сервера",
     "day": "день",
     "days": "дні(ів)",
@@ -26,6 +29,9 @@
     "load-more": "Завантажити ще",
     "empty-list": "Тут порожньо",
     "no-matches": "Nothing found",
+    "nothing-found-in": "Nothing found in",
+    "fill-feed": "You can follow more people to fill up this feed.",
+    "fill-community-feed": "You can join more communities to fill up this feed.",
     "save": "Зберегти",
     "try-again": "Спробувати знову",
     "show": "Показати",
@@ -50,6 +56,8 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "ЧаПи",
+    "when": "When",
+    "price": "Price",
     "more-results": "More results",
     "close": "Close",
     "loading": "Loading"
@@ -70,6 +78,7 @@
     "filter-feed-friends": "Друзі",
     "filter-feed-subscriptions": "Спільноти",
     "filter-global": "Global",
+    "filter-community": "My Community",
     "filter-global-part1": "This feed contains ",
     "filter-global-part2": " discussions on entire platform.",
     "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
@@ -257,7 +266,41 @@
   },
   "market-data": {
     "title": "Ринкова ціна",
+    "trade": "Trade token",
     "credits": "дані від <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+  },
+  "market": {
+    "title": "Token exchange",
+    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "last-price": "Last Price",
+    "volume": "24h volume",
+    "bid": "Bid",
+    "spread": "Spread",
+    "ask": "Ask",
+    "buy": "Buy",
+    "sell": "Sell",
+    "available": "Available",
+    "highest-bid": "Highest bid",
+    "price": "Price",
+    "amount": "Amount",
+    "total": "Total",
+    "orders": "Orders",
+    "date": "Date",
+    "open-orders": "Open Orders",
+    "type": "Type",
+    "action": "Action",
+    "trade-history": "Trade History",
+    "stock-params": "Params",
+    "stock-info": "Stock information",
+    "barter": "Exchange tokens",
+    "stock-values": "Values",
+    "transaction-low": "Total amount exceeds your available balance. Please add more funds or try with smaller amount.",
+    "confirm-cancel": "Are you sure? You are cancelling order #{{orderid}}!",
+    "confirm-buy": "You're trading {{amount}} HIVE for {{price}} HBD/HIVE and total will be {{total}} HBD.",
+    "confirm-sell": "Values",
+    "transaction-succeeded": "Transaction submitted",
+    "lowest-ask": "Lowest ask",
+    "decimal-error": "Only {{decimals}} decimal digits allowed!"
   },
   "list-style": {
     "title": "Перемкнути стиль списку"
@@ -285,8 +328,8 @@
     "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "Author of this post is muted by you.",
     "address-copy": "Скопіювати адресу",
-    "address-copied": "Адреса скопійована в буфер обміну.",
-    "content-copied": "Content copied to clipboard.",
+    "address-copied": "Post address copied to clipboard",
+    "content-copied": "Content copied to clipboard",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
@@ -456,8 +499,11 @@
     "rc-power": "Resource Credits: {{n}}%",
     "recharge-time": "(fully charged {{n}})",
     "down-vote-power": "Downvote Power: {{n}}%",
-    "no-posts": "Here you will see your posts, looks like no content exists.",
+    "no-posts": "No content published, yet",
+    "no-posts-user": "Follow, be first to know",
+    "no-posts-community": "Join and post in this community",
     "create-posts": "Let's create a new post",
+    "link-copied": "Search link copied to clipboard",
     "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
@@ -468,7 +514,7 @@
     "profile-image": "Зображення профілю",
     "website": "Веб-сторінка",
     "location": "Місцеперебування",
-    "copied": "Referral link copied to clipboard.",
+    "copied": "Referral link copied to clipboard",
     "updated": "Профіль успішно оновлено!"
   },
   "image-upload-button": {
@@ -492,6 +538,7 @@
     "estimated-description": "Орієнтовна вартість базується на 7-денній середній вартості HIVE.",
     "estimated-description-points": "Орієнтовна вартість базується на вартості купівлі Балів.",
     "hive": "HIVE",
+    "hbd": "HBD",
     "hive-description": "HIVE - токени вільно торгуються та можуть бути передані будь-коли. HIVE можна конвертувати в Hive Силу за допомогою дії, що зветься \"збільшення сили\" чи анг. (Power Up).",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
@@ -516,7 +563,9 @@
     "power-down": "Зменшення сили голосу",
     "withdraw-routes": "Маршрути виведення",
     "calculating": "Розрахунок",
-    "converting-hbd-amount": "Converting to HIVE"
+    "converting-hbd-amount": "Converting to HIVE",
+    "withdrawing-amount": "Withdrawing from Savings",
+    "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",
@@ -562,7 +611,7 @@
     "delegation-list-desc": "Винагорода за делегування",
     "referral-list-desc": "Реферальна винагорода",
     "community-list-desc": "Community reward",
-    "transfer": "Подарувати комусь",
+    "transfer": "Gift",
     "claim-ok": "Бали зараховані",
     "promote": "Просувати",
     "boost": "Підсилити",
@@ -646,7 +695,7 @@
     "transfer-summary": "Переказ <span class=\"amount\">{{amount}}</span> від <span class=\"from-user\">{{from}}</span> до <span class=\"to-user\">{{to}}</span>",
     "transfer-saving-summary": "Переказ <span class=\"amount\">{{amount}}</span> від <span class=\"from-user\">{{from}}</span> до <span class=\"to-user\">{{to}}</span>",
     "withdraw-saving-summary": "Переказ <span class=\"amount\">{{amount}}</span> від <span class=\"from-user\">{{from}}</span> до <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> конвертовано",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> being converted",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> зробив ставку від <span class=\"from-user\">{{from}}</span> до <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "Делеговано <span class=\"amount\">{{amount}}</span> від <span class=\"from-user\">{{from}}</span> до <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Зменшення сили було завершено як <span class=\"amount\">{{amount}}</span>",
@@ -676,8 +725,9 @@
     "type-transfer": "Переказ",
     "type-transfer_to_vesting": "Power up",
     "type-withdraw_vesting": "Power down",
+    "type-set_withdraw_vesting_route": "Withdraw route changed",
     "type-fill_vesting_withdraw": "Partial Power down occurred",
-    "type-fill_order": "Заповніть замовлення",
+    "type-fill_order": "Open trade filled",
     "type-producer_reward": "Producer reward",
     "type-interest": "Interest",
     "type-transfer_to_savings": "Transfer to savings",
@@ -699,7 +749,8 @@
     "type-collateralized_convert": "Collateralized convert",
     "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
-    "type-limit_order_create": "New trade",
+    "type-limit_order_create": "New trade created",
+    "type-limit_order_cancel": "Open trade cancelled",
     "type-effective_comment_vote": "Effective vote"
   },
   "key-or-hot": {
@@ -715,6 +766,22 @@
   },
   "received-vesting": {
     "title": "Отримана Hive Power"
+  },
+  "conversion-requests": {
+    "title": "Convert requests",
+    "request-id": "Request id",
+    "amount": "Amount",
+    "pending": "Pending"
+  },
+  "savings-withdraw": {
+    "title": "Withdraw from Savings",
+    "to": "To"
+  },
+  "open-orders-list": {
+    "title": "Open orders",
+    "created": "Created",
+    "expires": "Expires",
+    "order-id": "Order id"
   },
   "friends": {
     "followers": "Читачів ({{n}})",
@@ -1071,6 +1138,7 @@
     },
     "faq": {
       "page-title": "Як ми можемо вам допомогти?",
+      "search-link-copied": "Search link copied to clipboard",
       "page-sub-title": "Зміст",
       "what-is-ecency-header": "Що таке Ecency?",
       "search": "Пов'язані результати за {{search}} відфільтровано нижче",
@@ -1130,7 +1198,9 @@
       "different-reward-choices-header": "What are the differences in Reward types?",
       "different-reward-choices-body": "<p>In publishing settings section, you can see 3 different Reward types/choices.<ul><li>50%/50% - This rewards in half Hive Power, and half liquid HIVE / Hive Dollars. The ratio of liquid HIVE to Hive Dollars rewarded is based on network conditions at the time of payout. This is the default payout option.</li><li>Power Up 100% - This option rewards the post in 100% Hive Power.</li><li>Decline Payout - Use this option to receive no post rewards. Votes will affect the post's position on the trending ranking but no rewards are paid from Hive's reward pool. Replies made to the post are still eligible for rewards.</li></ul></p>",
       "boosting-vote-buying-header": "Is boosting considered a vote buying?",
-      "boosting-vote-buying-body": "<p>No! Because, there is no guarantee of receiving vote, there is no guarantee of exact amount of vote, boosting maximum amount is limited, each content reviewed by our curators, there is no profit in it. All curation rewards are sent back to delegators 100%. Only measurable success we seek is to see engagement and growth on entire ecosystem. Boosting is simply creating additional use case for Ecency Points to improve engagement on platform, so it is essentially same as any other curation guilds on Hive. Goal of those guilds ultimately to improve engagement on platform and grow activity, the way each measures that success is the different.</p>"
+      "boosting-vote-buying-body": "<p>No! Because, there is no guarantee of receiving vote, there is no guarantee of exact amount of vote, boosting maximum amount is limited, each content reviewed by our curators, there is no profit in it. All curation rewards are sent back to delegators 100%. Only measurable success we seek is to see engagement and growth on entire ecosystem. Boosting is simply creating additional use case for Ecency Points to improve engagement on platform, so it is essentially same as any other curation guilds on Hive. Goal of those guilds ultimately to improve engagement on platform and grow activity, the way each measures that success is the different.</p>",
+      "how-exchange-work-header": "How token exchange works?",
+      "how-exchange-work-body": "<p>Exchanging and trading tokens on Ecency is very simple. We utilize internal peer to peer, decentralized exchange built into Hive blockchain. Offer easy to use interface so you can exchange one token to another, completely decentralized manner. Create buy or sell order and wait for other people to fill your order. If you want to quickly swap tokens then you can fill someone else's open order for quick trade.</p>"
     }
   },
   "contributors": {

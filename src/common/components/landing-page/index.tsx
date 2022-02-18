@@ -84,7 +84,7 @@ const LandingPage = (props: any) => {
         <div className="text-container text-center">
           <h1>{_t("landing-page.welcome-text")}</h1>
           <div className="d-flex flex-wrap justify-content-center align-items-center">
-            <p className="mb-3">{_t("landing-page.what-is-ecency")}</p>
+            <p className="mb-3 w-88">{_t("landing-page.what-is-ecency")}</p>
           </div>
           <button
             className="get-started mx-auto"
@@ -198,7 +198,7 @@ const LandingPage = (props: any) => {
             </div>
             <ul>
               <li>
-                <h3>96M</h3>
+                <h3>98M</h3>
                 <p>{_t("landing-page.posts")}</p>
               </li>
               <li>
@@ -208,7 +208,7 @@ const LandingPage = (props: any) => {
             </ul>
             <ul>
               <li>
-                <h3>38M</h3>
+                <h3>47M</h3>
                 <p>{_t("landing-page.points-distrubuted")}</p>
               </li>
               <li>

@@ -58,6 +58,14 @@ export interface TransferToVesting extends BaseTransaction {
     to: string;
 }
 
+export interface SetWithdrawRoute extends BaseTransaction {
+    type: "set_withdraw_vesting_route";
+    from_account: string;
+    to_account: string;
+    percent: number;
+    auto_vest: boolean;
+}
+
 export interface TransferToSavings extends BaseTransaction {
     type: "transfer_to_savings";
     amount: string;
@@ -82,6 +90,13 @@ export interface FillOrder extends BaseTransaction {
     type: "fill_order";
     current_pays: string;
     open_pays: string;
+}
+
+export interface LimitOrderCancel extends BaseTransaction {
+    type: "limit_order_cancel";
+    owner: string;
+    orderid: number;
+    num: number;
 }
 
 export interface ProducerReward extends BaseTransaction {
@@ -212,6 +227,7 @@ export type Transaction =
     | TransferToSavings
     | CancelTransferFromSavings
     | WithdrawVesting
+    | SetWithdrawRoute
     | FillOrder
     | ProducerReward
     | Interest
@@ -226,6 +242,7 @@ export type Transaction =
     | RecurrentTransfers
     | FillRecurrentTransfers
     | LimitOrderCreate
+    | LimitOrderCancel
     | FillVestingWithdraw
     | EffectiveCommentVote
     | DelegateVestingShares;

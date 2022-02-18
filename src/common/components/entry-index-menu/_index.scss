@@ -23,6 +23,27 @@
     padding: 0;
   }
 
+  .tagDropDown {
+      border-radius: 25px;
+      cursor: pointer;
+      display: table;
+      // margin-bottom: 8px;
+      padding: 4px 8px;
+      text-decoration: none;
+      transition: 0.5s;
+      font-size: 90%;
+  
+      @include tag;
+
+      svg {
+        width: 20px;
+      }
+  }
+
+  .dropDown-left-border-height {
+    height: 20px;
+  }
+
   .the-menu {
     display: flex;
     flex-direction: column-reverse;

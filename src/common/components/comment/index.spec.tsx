@@ -2,7 +2,7 @@ import React from "react";
 
 import Comment from "./index";
 
-import {UiInstance, globalInstance} from "../../helper/test-helper";
+import {UiInstance, globalInstance, entryInstance1} from "../../helper/test-helper";
 
 import renderer from "react-test-renderer";
 
@@ -22,18 +22,22 @@ const defProps = {
     global: globalInstance,
     activeUser: null,
     ui: UiInstance,
+    entry: entryInstance1,
+    inProgress: false,
+    isCommented: false,
+    cancellable: false,
+    autoFocus: true,
+    inputRef: null,
     setActiveUser: () => {
     },
     updateActiveUser: () => {
     },
     deleteUser: () => {
     },
-    onSubmit: () => {
-
-    },
-    toggleUIProp: () => {
-
-    }
+    onSubmit: () => {},
+    onCancel: () => {},
+    toggleUIProp: () => {},
+    resetSelection: () => {}
 };
 
 it("(1) Default render", () => {

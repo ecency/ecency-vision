@@ -7,7 +7,8 @@ import UserAvatar from "../user-avatar";
 import { _t } from "../../i18n";
 
 import { lookupAccounts } from "../../api/hive";
-//import { searchPath } from '../../api/search-api';
+import { searchPath } from '../../api/search-api';
+import { isMobile } from '../../util/is-mobile';
 
 interface State {
 	value: string;
@@ -68,50 +69,58 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 	};
 
 	render() {
-
+		const {activeUser, ...other} = this.props;
 		return (
 			<ReactTextareaAutocomplete
-				{...this.props}
+				{...other}
 				loadingComponent={Loading}
 				rows={this.state.rows}
 				value={this.state.value}
 				placeholder={this.props.placeholder}
 				onChange={this.handleChange}
+				boundariesElement={".body-input"}
 				minChar={2}
 				trigger={{
-					"@": {
+					["@"]: {
 						dataProvider: token => {
 							clearTimeout(timer);
-							if (token.indexOf('/')===-1) {
-								return new Promise((resolve) => {
-									timer = setTimeout(async () => {
+							return new Promise((resolve) => {
+								timer = setTimeout(async () => {
+									if(token.includes("/")){
+										let ignoreList = ['wallet', 'feed', 'followers', 'following', 'points', 'communities', 'posts', 'blog', 'comments', 'replies', 'settings', 'engine']
+										let searchIsInvalid = ignoreList.some(item => token.includes(`/${item}`))
+										if(!searchIsInvalid){
+											searchPath(activeUser, token).then(resp => {
+											resolve(resp)
+										})
+									} else {
+										resolve([])
+									}
+									}
+									else {
 										let suggestions = await lookupAccounts(token, 5)
 										resolve(suggestions)
-									}, 300);
-								});
-							} else {
-								return [];
-								/*new Promise((resolve) => {
-									const splt = token.split('/');
-									if (splt[1]) {
-										timer = setTimeout(async () => {
-											let suggestions = await searchPath(this.props.activeUser.username, token);
-											resolve(suggestions)
-										}, 1000);
 									}
-								});*/
-							}
+								}, 300);
+							});
 						},
 						component: (props: any) => {
+							let textToShow: string = props.entity.includes("/") ? props.entity.split("/")[1] : props.entity;
+							let charLimit = isMobile() ? 16 : 30
+							
+							if(textToShow.length > charLimit && props.entity.includes("/")){
+								textToShow = textToShow.substring(0, charLimit - 5) + "..." + textToShow.substring(textToShow.length - 6, textToShow.length-1)
+							}
+
 							return (
 								<>
-									{props.entity.indexOf('/')===-1 && UserAvatar({ global: this.props.global, username: props.entity, size: "small" })}
-									<span style={{ marginLeft: "8px" }}>{props.entity}</span>
+									{props.entity.includes("/") ? null : UserAvatar({ global: this.props.global, username: props.entity, size: "small" })}
+									<span style={{ marginLeft: "8px" }}>{textToShow}</span>
 								</>
 							)
 						},
 						output: (item: any, trigger) => `@${item}`
-					},
+					}
 				}}
 			/>
 		);

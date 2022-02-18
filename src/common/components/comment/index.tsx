@@ -6,6 +6,7 @@ import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
 import {UI, ToggleType} from "../../store/ui/types";
+import {Entry} from "../../store/entries/types";
 
 import EditorToolbar from "../editor-toolbar";
 import LoginRequired from "../login-required";
@@ -18,6 +19,7 @@ setProxyBase(defaults.imageServer);
 
 import {_t} from "../../i18n";
 import {Global} from '../../store/global/types';
+import * as ls from "../../util/local-storage";
 
 interface PreviewProps {
     text: string;
@@ -51,7 +53,9 @@ interface Props {
     activeUser: ActiveUser | null;
     ui: UI;
     global: Global;
+    entry: Entry;
     inProgress?: boolean;
+    isCommented?: boolean;
     cancellable?: boolean;
     autoFocus?: boolean;
     setActiveUser: (username: string | null) => void;
@@ -59,9 +63,9 @@ interface Props {
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     onSubmit: (text: string) => void;
-    onChange?: (text: string) => void;
+    resetSelection?: () => void;
     onCancel?: () => void;
-    inputRef?: Ref<any>
+    inputRef?: Ref<any>;
 }
 
 interface State {
@@ -85,18 +89,28 @@ export class Comment extends Component<Props, State> {
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {defText} = this.props;
-        if (defText !== prevProps.defText) {
-            this.setState({text: defText || "", preview: defText || ""});
+        const {defText, resetSelection, isCommented} = this.props;
+        const {text} = this.state;
+        if ((defText !== prevProps.defText) && !prevProps.defText) {
+            let commentText = text ? text + '\n' + defText : defText
+            this.setState({text: commentText || "", preview: commentText || ""});
+            if (resetSelection) resetSelection()
+            this.updateLsCommentDraft(commentText)
         }
+        if(prevProps.isCommented && !isCommented) {
+            this.setState({text: "", preview: ""})
+        }
+    }
+
+    updateLsCommentDraft = (text: string) => {
+        const {entry} = this.props
+        ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
     }
 
     textChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: text} = e.target;
         this.setState({text}, () => {
-            const {onChange} = this.props;
-            if (onChange) onChange(text);
-
+            this.updateLsCommentDraft(text)
             this.updatePreview();
         });
     };
@@ -170,7 +184,9 @@ export default (p: Props) => {
         activeUser: p.activeUser,
         ui: p.ui,
         global: p.global,
+        entry: p.entry,
         inProgress: p.inProgress,
+        isCommented: p.isCommented,
         cancellable: p.cancellable,
         autoFocus: p.autoFocus,
         setActiveUser: p.setActiveUser,
@@ -178,9 +194,9 @@ export default (p: Props) => {
         deleteUser: p.deleteUser,
         toggleUIProp: p.toggleUIProp,
         onSubmit: p.onSubmit,
-        onChange: p.onChange,
+        resetSelection: p.resetSelection,
         onCancel: p.onCancel,
-        inputRef: p.inputRef
+        inputRef: p.inputRef,
     }
 
     return <Comment {...props} />

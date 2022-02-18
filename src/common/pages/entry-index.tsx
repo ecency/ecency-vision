@@ -46,14 +46,15 @@ class EntryIndexPage extends Component<PageProps, State> {
     }
 
     componentDidMount() {
-        const {global, fetchEntries} = this.props;
+        const {global, fetchEntries, fetchTrendingTags} = this.props;
         fetchEntries(global.filter, global.tag, false);
+        fetchTrendingTags();
         this.props.activeUser !== null ? this.changeStepTwo() :this.changeStepOne() 
     }
 
     componentDidUpdate(prevProps: Readonly<PageProps>): void {
-        const {global, fetchEntries} = this.props;
-        const {global: pGlobal} = prevProps;
+        const {global, fetchEntries, activeUser} = this.props;
+        const {global: pGlobal, activeUser: pActiveUser} = prevProps;
 
         // page changed.
         if (!global.filter) {
@@ -62,6 +63,9 @@ class EntryIndexPage extends Component<PageProps, State> {
 
         if (!(global.filter === pGlobal.filter && global.tag === pGlobal.tag)) {
             fetchEntries(global.filter, global.tag, false);
+        }
+        else if(pActiveUser?.username !== activeUser?.username) {
+            this.reload()
         }
 
     }
@@ -144,7 +148,7 @@ class EntryIndexPage extends Component<PageProps, State> {
         const promoted = entries['__promoted__'].entries;
 
         const showEntryPage = this.state.step === 2 
-        || activeUser !== null
+        // || activeUser !== null || activeUser === null
         || location?.pathname?.startsWith("/hot")
         || location?.pathname?.startsWith("/created")
         || location?.pathname?.startsWith("/trending")
@@ -198,33 +202,9 @@ class EntryIndexPage extends Component<PageProps, State> {
                         <div className="side-menu">
                             {!global.isMobile && (
                                 <>
-                                    {1 !== this.state.step && <MarketData />}
+                                    {1 !== this.state.step && <MarketData global={global}/>}
 
-                                    <div className="menu-nav">
-                                        <DownloadTrigger>
-                                            <div className="downloads">
-                                                <span className="label">{_t("g.downloads")}</span>
-                                                <span className="icons">
-                                                    <span className="img-apple">{appleSvg}</span>
-                                                    <span className="img-google">{googleSvg}</span>
-                                                    <span className="img-desktop">{desktopSvg}</span>
-                                                </span>
-                                            </div>
-                                        </DownloadTrigger>
-
-                                        <div className="text-menu">
-                                            <Link className="menu-item" to="/faq">
-                                                {_t("entry-index.faq")}
-                                            </Link>
-                                            <Link className="menu-item" to="/terms-of-service">
-                                                {_t("entry-index.tos")}
-                                            </Link>
-                                            <Link className="menu-item" to="/privacy-policy">
-                                                {_t("entry-index.pp")}
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </>
+                                     </>
                             )}
                         </div>
                     </div>

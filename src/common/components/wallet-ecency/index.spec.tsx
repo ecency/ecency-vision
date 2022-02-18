@@ -38,7 +38,8 @@ const defProps = {
     addAccount: () => {
     },
     updateActiveUser: () => {
-
+    },
+    updateWalletValues: () => {
     },
     setSigningKey: () => {
     }
