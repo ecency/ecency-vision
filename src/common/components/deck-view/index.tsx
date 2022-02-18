@@ -139,38 +139,39 @@ const DeckViewContainer = ({
 
   let fetched = false;
 
-  useEffect(() => {
-    let accountName = rest.activeUser && rest.activeUser.username;
-    if (accountName && !fetched) {
-      fetched = true;
-      let defaultDecks: any = [];
-      setLoadingNewContent(true);
-      getAccountPosts("posts", accountName)
-        .then((accountData) => {
-          defaultDecks.push({
-            data: accountData,
-            listItemComponent: SearchListItem,
-            header: {
-              title: `posts for @${accountName}`,
-              icon: person,
-            },
-          });
-          setDecks(getItems([...defaultDecks]));
-          setLoadingNewContent(false);
+  // useEffect(() => {
+  //   let accountName = rest.activeUser && rest.activeUser.username;
+  //   if (accountName && !fetched) {
+  //     fetched = true;
+  //     let defaultDecks: any = [];
+  //     setLoadingNewContent(true);
+  //     getAccountPosts("posts", accountName)
+  //       .then((accountData) => {
+  //         defaultDecks.push({
+  //           data: accountData,
+  //           listItemComponent: SearchListItem,
+  //           header: {
+  //             title: `posts for @${accountName}`,
+  //             icon: person,
+  //           },
+  //         });
 
-          // getAccountNotifications(accountName).then((notificationsData) => {
-          //   defaultDecks.push({
-          //     data: notificationsData,
-          //     listItemComponent: SearchListItem,
-          //     header: {
-          //       title: `Notifications for @${accountName}`,
-          //       icon: notifications,
-          //     },
-          //   });
-          // });
-        })
-    }
-  }, [rest.activeUser]);
+  //         getAccountNotifications(accountName).then((notificationsData) => {
+  //           defaultDecks.push({
+  //             data: notificationsData,
+  //             listItemComponent: SearchListItem,
+  //             header: {
+  //               title: `Notifications for @${accountName}`,
+  //               icon: notifications,
+  //             },
+  //           });
+  //           setDecks(getItems([...defaultDecks]));
+  //           setLoadingNewContent(false);
+
+  //         });
+  //       })
+  //   }
+  // }, [rest.activeUser]);
 
   useEffect(() => {
     if (transactionsList && transactionsList.length > 0 && loadingNewContent) {
