@@ -74,7 +74,7 @@ export const SearchListItem = ({
   entry,
   ...rest
 }: SearchItemProps) => {
-  debugger;
+
   const formatMessage = (patterns: string[]): JSX.Element => {
     const { msg } = entry;
 
