@@ -150,7 +150,7 @@ const DeckViewContainer = ({
       setFetched(true);
       setLoadingNewContent(true);
       setCurrentUser(accountName)
-      let defaultDecks: any = [];
+      let defaultDecks: any = [...decks];
       if (accountName) {
         getAccountPosts("posts", accountName).then((accountData) => {
           defaultDecks.push({
@@ -177,23 +177,18 @@ const DeckViewContainer = ({
         });
       } else {
         getPostsRanked("trending").then((res) => {
-          defaultDecks = [
-            ...defaultDecks,
-            {
+         defaultDecks.unshift({
               data: res,
               listItemComponent: SearchListItem,
               header: { title: `Trending`, icon: globalTrending },
-            },
-          ];
+            })
+          ;
           getFullTrendingTags().then((res) => {
-            defaultDecks = [
-              ...defaultDecks,
-              {
-                data: res,
-                listItemComponent: HotListItem,
-                header: { title: `Trending Tags`, icon: hot },
-              },
-            ];
+            defaultDecks.unshift({
+              data: res,
+              listItemComponent: HotListItem,
+              header: { title: `Trending Tags`, icon: hot },
+            });
             setDecks(getItems(defaultDecks));
             setLoadingNewContent(false);
           });
