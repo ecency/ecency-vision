@@ -96,9 +96,9 @@ export const usrActivity = (username: string, ty: number, bl: string | number = 
     return axios.post(apiBase(`/private-api/usr-activity`), params);
 };
 
-export const getNotifications = (username: string, filter: NotificationFilter | null, since: string | null = null): Promise<ApiNotification[]> => {
+export const getNotifications = (username: string, filter: NotificationFilter | null, since: string | null = null, user: string | null = null): Promise<ApiNotification[]> => {
 
-    const data: { code: string | undefined; filter?: string, since?: string } = {code: getAccessToken(username)};
+    const data: { code: string | undefined; filter?: string, since?: string, user?: string } = {code: getAccessToken(username)};
 
     if (filter) {
         data.filter = filter;
@@ -106,6 +106,10 @@ export const getNotifications = (username: string, filter: NotificationFilter | 
 
     if (since) {
         data.since = since;
+    }
+
+    if (user) {
+        data.user = user;
     }
 
     return axios.post(apiBase(`/private-api/notifications`), data).then(resp => resp.data);
