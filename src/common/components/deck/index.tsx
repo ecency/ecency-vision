@@ -42,7 +42,7 @@ export const Deck = ({
   ...rest
 }: DeckProps) => {
   return (
-    <div className={"deck mr-5 rounded-top"} {...rest}>
+    <div className={"deck mr-5 rounded-top"}>
       <DeckHeader {...header} index={index} />
       <div
         className={

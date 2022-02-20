@@ -1,6 +1,7 @@
 import { postBodySummary } from "@ecency/render-helper";
 import moment from "moment";
 import React, { Fragment } from "react";
+import {history} from "../../../common/store";
 import { Link } from "react-router-dom";
 import parseDate from "../../helper/parse-date";
 import { commentSvg } from "../../img/svg";
@@ -157,11 +158,11 @@ export const SearchListItem = ({
             />
           )}
           <div className="ml-3 deck-body">
-            <Link to={url} className="pointer text-dark">
+            <div onClick={() => history && history.push(url)} className="pointer text-dark">
               <div className="d-flex align-items-start flex-grow-1 hot-item-link">
                 {msg}
               </div>
-            </Link>
+            </div>
           </div>
 
           <div className="ml-auto">{`${
@@ -189,7 +190,7 @@ export const SearchListItem = ({
         )}
         <div className="ml-3 deck-body">
           <div
-            // onClick={() => history.pushState(undefined, undefined, url)}
+            onClick={() => history && history.push(url)}
             className="pointer text-dark d-flex flex-column"
           >
             <div className="d-flex align-items-start flex-grow-1 hot-item-link">

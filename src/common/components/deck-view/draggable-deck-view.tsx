@@ -47,6 +47,7 @@ const DraggableDeckView = ({
   ...rest
 }: any) => {
   const [items, setItems] = useState<any>(getItems(decks));
+  const [mounted, setMounted] = useState(false);
 
   const onDragEnd = (result: any) => {
     if (!result.destination) {
@@ -66,7 +67,9 @@ const DraggableDeckView = ({
     setItems(decks);
   }, [decks]);
 
-  return (
+  useEffect(()=>{setMounted(true)},[])
+
+  return mounted ? (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="droppable" direction="horizontal">
         {(provided, snapshot) => (
@@ -112,7 +115,7 @@ const DraggableDeckView = ({
         )}
       </Droppable>
     </DragDropContext>
-  );
+  ) : null;
 };
 
 export { DraggableDeckView };
