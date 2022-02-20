@@ -44,7 +44,7 @@ interface Props {
     global: Global;
     addAccount: (data: Account) => void;
     limit?: number;
-    disableResults: boolean;
+    disableResults?: boolean;
 }
 
 interface State {
