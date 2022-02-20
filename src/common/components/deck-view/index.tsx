@@ -138,12 +138,18 @@ const DeckViewContainer = ({
   };
 
   const [fetched, setFetched] = useState(false);
+  const [currentUser, setCurrentUser] = useState("");
 
   useEffect(() => {
     let accountName = rest.activeUser && rest.activeUser.username;
+    if(currentUser!==accountName){
+      setFetched(false);
+      setCurrentUser(accountName)
+    }
     if (!fetched) {
       setFetched(true);
       setLoadingNewContent(true);
+      setCurrentUser(accountName)
       let defaultDecks: any = [];
       if (accountName) {
         getAccountPosts("posts", accountName).then((accountData) => {
@@ -194,7 +200,7 @@ const DeckViewContainer = ({
         });
       }
     }
-  }, [rest.activeUser]);
+  }, [rest.activeUser, fetched]);
 
   useEffect(() => {
     if (transactionsList && transactionsList.length > 0 && loadingNewContent) {
@@ -254,7 +260,7 @@ const DeckViewContainer = ({
                   className={`${
                     index % 2 === 1 ? "my-icons-5 " : ""
                   }cursor-pointer position-relative`}
-                  key={deck.header.title}
+                  key={deck.header.title+index}
                 >
                   {avatar && (
                     <div className="position-absolute avatar-xs rounded-circle">

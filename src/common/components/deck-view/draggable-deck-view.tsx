@@ -76,7 +76,7 @@ const DraggableDeckView = ({
             {...provided.droppableProps}
           >
             {items.map((item: any, index: any) => (
-              <Draggable key={item.id} draggableId={item.id} index={index}>
+              <Draggable key={item.id+index} draggableId={item.id} index={index}>
                 {(provided, snapshot) => (
                   <div
                     ref={provided.innerRef}

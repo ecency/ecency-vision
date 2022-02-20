@@ -56,7 +56,7 @@ export const Deck = ({
             <ListItem
               toggleListStyle={toggleListStyle}
               index={index + 1}
-              key={item.title}
+              key={`${item.title}-${index}`}
               entry={item}
               {...item}
               {...rest}

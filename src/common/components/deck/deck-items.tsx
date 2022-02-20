@@ -73,6 +73,7 @@ export const SearchListItem = ({
   entry,
   ...rest
 }: SearchItemProps) => {
+  debugger;
   const formatMessage = (patterns: string[]): JSX.Element => {
     const { msg } = entry;
 
@@ -148,7 +149,9 @@ export const SearchListItem = ({
         <div className="d-flex">
           {username && (
             <img
-              src={`https://images.ecency.com/${(rest as any).global.canUseWebp?"webp/":""}u/${username}/avatar/medium`}
+              src={`https://images.ecency.com/${
+                (rest as any).global.canUseWebp ? "webp/" : ""
+              }u/${username}/avatar/medium`}
               alt={username}
               className="rounded-circle search-item-avatar"
             />
@@ -177,13 +180,18 @@ export const SearchListItem = ({
       <div className="d-flex">
         {author && (
           <img
-            src={`https://images.ecency.com/${(rest as any).global.canUseWebp?"webp/":""}u/${author}/avatar/medium`}
+            src={`https://images.ecency.com/${
+              (rest as any).global.canUseWebp ? "webp/" : ""
+            }u/${author}/avatar/medium`}
             alt={title}
             className="rounded-circle search-item-avatar"
           />
         )}
         <div className="ml-3 deck-body">
-          <Link to={url} className="pointer text-dark d-flex flex-column">
+          <div
+            // onClick={() => history.pushState(undefined, undefined, url)}
+            className="pointer text-dark d-flex flex-column"
+          >
             <div className="d-flex align-items-start flex-grow-1 hot-item-link">
               {author && (
                 <div>
@@ -210,7 +218,7 @@ export const SearchListItem = ({
               className="mt-3 hot-item-post-count deck-item-body text-secondary"
               dangerouslySetInnerHTML={{ __html: postBodySummary(body) }}
             />
-          </Link>
+          </div>
           <div className="item-controls mt-3 d-flex justify-content-between align-items-center">
             {entryVoteBtn({
               afterVote: () => {},
