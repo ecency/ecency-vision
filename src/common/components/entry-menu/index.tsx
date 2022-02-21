@@ -71,6 +71,7 @@ interface State {
     editHistory: boolean;
     delete_: boolean;
     pin: boolean;
+    pinKey: string;
     unpin: boolean;
     mute: boolean;
     promote: boolean;
@@ -84,6 +85,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         editHistory: false,
         delete_: false,
         pin: false,
+        pinKey: '',
         unpin: false,
         mute: false,
         promote: false,
@@ -110,14 +112,14 @@ export class EntryMenu extends BaseComponent<Props, State> {
         this.stateSet({delete_: !delete_});
     }
 
-    togglePin = () => {
+    togglePin = (key?:string) => {
         const {pin} = this.state;
-        this.stateSet({pin: !pin});
+        this.stateSet({pin: !pin, pinKey: key ? key : ''});
     }
 
-    toggleUnpin = () => {
+    toggleUnpin = (key?:string) => {
         const {unpin} = this.state;
-        this.stateSet({unpin: !unpin});
+        this.stateSet({unpin: !unpin, pinKey: key ? key : ''});
     }
 
     toggleMute = () => {
@@ -141,7 +143,18 @@ export class EntryMenu extends BaseComponent<Props, State> {
         return communities.find((x) => x.name === entry.category) || null
     }
 
-    canPinOrMute = () => {
+    canMute = () => {
+        const {activeUser} = this.props;
+
+        const community = this.getCommunity();
+
+        return activeUser && community ? !!community.team.find(m => {
+            return m[0] === activeUser.username &&
+                [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
+        }) : false;
+    }
+
+    canPin = () => {
         const {activeUser, entry} = this.props;
 
         const community = this.getCommunity();
@@ -151,6 +164,18 @@ export class EntryMenu extends BaseComponent<Props, State> {
             return m[0] === activeUser.username &&
                 [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
         }) : ownEntry;
+    }
+
+    canPinBothOptions = () => {
+        const {activeUser, entry} = this.props;
+
+        const community = this.getCommunity();
+        const ownEntry = activeUser && activeUser.username === entry.author;
+
+        return activeUser && community && ownEntry ? !!community.team.find(m => {
+            return m[0] === activeUser.username &&
+                [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
+        }) : false;
     }
 
     copyAddress = () => {
@@ -184,7 +209,10 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
         const community = this.getCommunity();
 
-        if (community) {
+        console.log('Pinkey => ', this.state.pinKey);
+        
+
+        if (community && this.state.pinKey !== 'blog') {
             pinPost(activeUser!.username, community!.name, entry.author, entry.permlink, pin)
             .then(() => {
                 setEntryPin(entry, pin);
@@ -208,47 +236,98 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
         const ownEntry = activeUser && activeUser.username === entry.author;
         const {profile, name} = activeUser!.data as FullAccount
-        if (ownEntry && pin && profile && activeUser) {            
-            const newProfile = {
-                name: profile?.name || '',
-                about: profile?.about || '',
-                cover_image: profile?.cover_image || '',
-                profile_image: profile?.profile_image || '',
-                website: profile?.website || '',
-                location: profile?.location || '',
-                pinned: entry.permlink
-            };
-            updateProfile(activeUser.data, newProfile).then(r => {
-                success(_t("entry-menu.pin-success"));
-                return getAccount(name);
-            }).then((account) => {
-                // update reducers
-                addAccount(account);
-                updateActiveUser(account);
-            }).catch(() => {
-                error(_t('g.server-error'));
-            })
-        } else if (ownEntry && !pin && profile && activeUser) {            
-            const newProfile = {
-                name: profile?.name || '',
-                about: profile?.about || '',
-                cover_image: profile?.cover_image || '',
-                profile_image: profile?.profile_image || '',
-                website: profile?.website || '',
-                location: profile?.location || '',
-                pinned: ""
-            };
-            updateProfile(activeUser.data, newProfile).then(r => {
-                success(_t("entry-menu.unpin-success"));
-                return getAccount(name);
-            }).then((account) => {
-                // update reducers
-                addAccount(account);
-                updateActiveUser(account);
-            }).catch(() => {
-                error(_t('g.server-error'));
-            })
+        if (this.state.pinKey !== 'community') {
+
+        console.log('in here');
+
+        if (this.canPinBothOptions()) {
+            if (ownEntry && pin && profile && activeUser) {            
+                const newProfile = {
+                    name: profile?.name || '',
+                    about: profile?.about || '',
+                    cover_image: profile?.cover_image || '',
+                    profile_image: profile?.profile_image || '',
+                    website: profile?.website || '',
+                    location: profile?.location || '',
+                    pinned: entry.permlink
+                };
+                updateProfile(activeUser.data, newProfile).then(r => {
+                    success(_t("entry-menu.pin-success"));
+                    return getAccount(name);
+                }).then((account) => {
+                    // update reducers
+                    addAccount(account);
+                    updateActiveUser(account);
+                }).catch(() => {
+                    error(_t('g.server-error'));
+                })
+            } else if (ownEntry && !pin && profile && activeUser) {            
+                const newProfile = {
+                    name: profile?.name || '',
+                    about: profile?.about || '',
+                    cover_image: profile?.cover_image || '',
+                    profile_image: profile?.profile_image || '',
+                    website: profile?.website || '',
+                    location: profile?.location || '',
+                    pinned: ""
+                };
+                updateProfile(activeUser.data, newProfile).then(r => {
+                    success(_t("entry-menu.unpin-success"));
+                    return getAccount(name);
+                }).then((account) => {
+                    // update reducers
+                    addAccount(account);
+                    updateActiveUser(account);
+                }).catch(() => {
+                    error(_t('g.server-error'));
+                })
+            }
+        } else {
+            if (ownEntry && pin && profile && activeUser && !community) {            
+                const newProfile = {
+                    name: profile?.name || '',
+                    about: profile?.about || '',
+                    cover_image: profile?.cover_image || '',
+                    profile_image: profile?.profile_image || '',
+                    website: profile?.website || '',
+                    location: profile?.location || '',
+                    pinned: entry.permlink
+                };
+                updateProfile(activeUser.data, newProfile).then(r => {
+                    success(_t("entry-menu.pin-success"));
+                    return getAccount(name);
+                }).then((account) => {
+                    // update reducers
+                    addAccount(account);
+                    updateActiveUser(account);
+                }).catch(() => {
+                    error(_t('g.server-error'));
+                })
+            } else if (ownEntry && !pin && profile && activeUser && !community) {            
+                const newProfile = {
+                    name: profile?.name || '',
+                    about: profile?.about || '',
+                    cover_image: profile?.cover_image || '',
+                    profile_image: profile?.profile_image || '',
+                    website: profile?.website || '',
+                    location: profile?.location || '',
+                    pinned: ""
+                };
+                updateProfile(activeUser.data, newProfile).then(r => {
+                    success(_t("entry-menu.unpin-success"));
+                    return getAccount(name);
+                }).then((account) => {
+                    // update reducers
+                    addAccount(account);
+                    updateActiveUser(account);
+                }).catch(() => {
+                    error(_t('g.server-error'));
+                })
+            }
         }
+        
+        
+    }
         
     }
 
@@ -295,7 +374,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
         let menuItems: MenuItem[] = [];
 
-        if (activeUser && !isComment) {
+        if (activeUser && !isComment && isCommunity(entry.category)) {
             menuItems = [
                 {
                     label: _t("entry-menu.cross-post"),
@@ -352,7 +431,83 @@ export class EntryMenu extends BaseComponent<Props, State> {
             ];
         }
 
-        if (this.canPinOrMute()) {
+        if (this.canPinBothOptions()) {
+            if (entryPinTracker[`${entry.author}-${entry.permlink}`] && entry.permlink === profile?.pinned) {
+                menuItems = [...menuItems, {
+                    // label: _t("entry-menu.unpin"),
+                    label: "Unpin from Community",
+                    onClick: () => this.toggleUnpin('community'),
+                    icon: pinSvg
+                },{
+                    // label: _t("entry-menu.unpin"),
+                    label: "Unpin from Blog",
+                    onClick: () => this.toggleUnpin('blog'),
+                    icon: pinSvg
+                }];
+            } else if (entryPinTracker[`${entry.author}-${entry.permlink}`]) {
+                menuItems = [...menuItems, {
+                    // label: _t("entry-menu.unpin"),
+                    label: "Unpin from Community",
+                    onClick: () => this.toggleUnpin('community'),
+                    icon: pinSvg
+                },{
+                    // label: _t("entry-menu.unpin"),
+                    label: "Pin to Blog",
+                    onClick: () => this.togglePin('blog'),
+                    icon: pinSvg
+                }];
+            } else if (entry.permlink === profile?.pinned) {
+                menuItems = [...menuItems, {
+                    // label: _t("entry-menu.unpin"),
+                    label: "Pin to Community",
+                    onClick: () => this.togglePin('community'),
+                    icon: pinSvg
+                },{
+                    // label: _t("entry-menu.unpin"),
+                    label: "Unpin from Blog",
+                    onClick: () => this.toggleUnpin('blog'),
+                    icon: pinSvg
+                }];
+            } else {
+                    menuItems = [...menuItems, {
+                    // label: _t("entry-menu.pin"),
+                    label: 'Pin to Blog',
+                    onClick: () => this.togglePin('blog'),
+                    icon: pinSvg
+                },
+                {
+                    // label: _t("entry-menu.pin"),
+                    label: 'Pin to Community',
+                    onClick: () => this.togglePin('community'),
+                    icon: pinSvg
+                }];
+            }
+
+
+
+            // if (entryPinTracker[`${entry.author}-${entry.permlink}`] || entry.permlink === profile?.pinned) {
+            //     menuItems = [...menuItems, {
+            //         label: _t("entry-menu.unpin"),
+            //         onClick: this.toggleUnpin,
+            //         icon: pinSvg
+            //     }];
+            // } else {
+            //     menuItems = [...menuItems, {
+            //         // label: _t("entry-menu.pin"),
+            //         label: 'Pin to Blog',
+            //         onClick: this.togglePin,
+            //         icon: pinSvg
+            //     },
+            //     {
+            //         // label: _t("entry-menu.pin"),
+            //         label: 'Pin to Community',
+            //         onClick: this.togglePin,
+            //         icon: pinSvg
+            //     }];
+            // }
+        }
+        else
+        if (this.canPin()) {
             if (entryPinTracker[`${entry.author}-${entry.permlink}`] || entry.permlink === profile?.pinned) {
                 menuItems = [...menuItems, {
                     label: _t("entry-menu.unpin"),
@@ -366,6 +521,22 @@ export class EntryMenu extends BaseComponent<Props, State> {
                     icon: pinSvg
                 }];
             }
+        }
+
+        if (this.canMute()) {
+            // if (entryPinTracker[`${entry.author}-${entry.permlink}`] || entry.permlink === profile?.pinned) {
+            //     menuItems = [...menuItems, {
+            //         label: _t("entry-menu.unpin"),
+            //         onClick: this.toggleUnpin,
+            //         icon: pinSvg
+            //     }];
+            // } else {
+            //     menuItems = [...menuItems, {
+            //         label: _t("entry-menu.pin"),
+            //         onClick: this.togglePin,
+            //         icon: pinSvg
+            //     }];
+            // }
 
             const isMuted = !!entry.stats?.gray;
             menuItems = [
