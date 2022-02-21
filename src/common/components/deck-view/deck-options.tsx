@@ -14,7 +14,8 @@ export const DeckOptions = ({
 }: DeckOptionsProps) => {
   return (
     <div className="deck mr-3 rounded-top deck-options p-3">
-      <div className="d-flex justify-content-end">
+      <div className="d-flex justify-content-between">
+        <div>Options for: {options}</div>
         <div
           className="deck-options-icon pointer"
           onClick={() => setOptions(null)}
@@ -23,13 +24,13 @@ export const DeckOptions = ({
         </div>
       </div>
 
-      <div className="p-3 mt-3 d-flex align-items-center deck-option rounded">
+      <div className="p-3 mt-3 d-flex align-items-center deck-option rounded pointer">
         <div className="deck-options-icon mr-2">{refreshSvg}</div>
         <div>Reload</div>
       </div>
 
       <div
-        className="p-3 mt-3 d-flex align-items-center deck-option rounded"
+        className="p-3 mt-3 d-flex align-items-center deck-option rounded pointer"
         onClick={() => onRemove(options as string)}
       >
         <div className="deck-options-icon mr-2">{deleteForeverSvg}</div>

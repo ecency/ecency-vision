@@ -1,82 +1,85 @@
-@keyframes containerAnimation { 
-    0% {
-      opacity: 0;
-    }
-  
-    100% {
-      opacity: 1;
-    }
+@keyframes containerAnimation {
+  0% {
+    opacity: 0;
   }
 
+  100% {
+    opacity: 1;
+  }
+}
+
 .navbar {
-    height: 100vh;
-    background: linear-gradient($dark-sky-blue,$dusk-blue);
-    display: flex;
-    
-    @include themify(night) {
-        background: linear-gradient($metallic-blue,$dark-grey-blue);
-    }
-    
-    path {
-        fill: $white !important;
-    }
+  height: 100vh;
+  background: linear-gradient($dark-sky-blue, $dusk-blue);
+  display: flex;
+
+  @include themify(night) {
+    background: linear-gradient($metallic-blue, $dark-grey-blue);
+  }
+
+  path {
+    fill: $white !important;
+  }
 }
 
 .decks-container {
-    background-color: $duck-egg-blue;
-    overflow-x: auto;
-    max-width: 100vw;
-    animation: containerAnimation 2s;
-    
-    @include themify(night) {
-        background-color: #232e3b;
-    }
+  background-color: $duck-egg-blue;
+  overflow-x: auto;
+  max-width: 100vw;
+
+  @include themify(night) {
+    background-color: #232e3b;
+  }
 }
 
 .cursor-pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.my-icons-5{
-    margin-top: 2rem !important;
-    margin-bottom: 2rem !important;
+.my-icons-5 {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
 }
 
 .menu-icon path {
-    fill: $white;
+  fill: $white;
 }
 
 .the-menu path {
-    fill: $dark-sky-blue !important;
+  fill: $dark-sky-blue !important;
 }
 
 .the-menu .active path {
-    fill: $white !important;
+  fill: $white !important;
 }
 
 .avatar-xs {
-    bottom: -7px;
-    right: -10px;
-    width: 16px;
-    height: 16px;
+  bottom: -7px;
+  right: -10px;
+  width: 16px;
+  height: 16px;
 }
 
-.deck-options{
-    min-height: 538px;
+.deck-options {
+  min-height: 538px;
+  animation: containerAnimation 1s backwards;
 }
 
-.deck-options-icon{
-    width: 20px;
-    height: 20px;
+.deck-options-icon {
+  width: 20px;
+  height: 20px;
 }
 
-.deck-option{
-    &:hover{
-        background-color: $powder-blue;
+.deck-option {
+  -webkit-animation: containerAnimation 0.1s forwards;
+  -webkit-animation-delay: 0.1s;
+  animation: containerAnimation 0.1s forwards;
+  animation-delay: 0.1s;
+  &:hover {
+    background-color: $powder-blue;
 
-        @include themify(night) {
-            background-color: $metallic-blue;
-        }
-
+    @include themify(night) {
+      background-color: $metallic-blue;
     }
+  }
 }
