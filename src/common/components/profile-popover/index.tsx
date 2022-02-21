@@ -7,6 +7,7 @@ export const ProfilePopover = (props: any) => {
   const { global, entry } = props;
   const [showProfile, setShowProfile] = useState(false)
   const [delayHandler, setDelayHandler] = useState<any>(null)
+  const author = entry.original_entry ? entry.original_entry.author : entry.author
 
   const handleShowProfile = (e: any) => {
     e.persist();
@@ -35,15 +36,15 @@ export const ProfilePopover = (props: any) => {
 
   return (
     <>
-      <div className="author btn notranslate d-flex d-sm-none align-items-center" onClick={handleShowProfile} id={`${entry.author}-${entry.permlink}`}>
-        <span className='author-name'>{entry.author}</span>
+      <div className="author btn notranslate d-flex d-sm-none align-items-center" onClick={handleShowProfile} id={`${author}-${entry.permlink}`}>
+        <span className='author-name'>{author}</span>
       </div>
 
       <span
         className="author-down-arrow mx-1"
         role="button"
         onClick={handleShowProfile}
-        id={`${entry.author}-${entry.permlink}`}
+        id={`${author}-${entry.permlink}`}
       >
         {menuDownSvg}
       </span>
@@ -52,15 +53,15 @@ export const ProfilePopover = (props: any) => {
         <div onMouseLeave={handleHideProfile}>
           <Reference>
             {({ ref }) => (<div ref={ref} className="author btn notranslate d-none d-sm-flex align-items-center position-relative" onMouseEnter={handleShowProfile}>
-              <span className="author-name">{entry.author}</span>
+              <span className="author-name">{author}</span>
             </div>)}
           </Reference>
-          {showProfile && entry.author &&
+          {showProfile && author &&
             <Popper placement="bottom-start" modifiers={[{ name: 'offset', options: { offset: () => [0, window.matchMedia('(max-width: 576px)').matches ? 0 : -30] } }]}>
               {({ ref, style, placement, arrowProps }) => (<div ref={ref} style={{ ...style }} className="popper-container" data-placement={placement}
                 onMouseLeave={handleHideProfile}>
                 <ProfilePreview
-                  username={entry.author}
+                  username={author}
                   {...props}
                   onClose={(e, doNotSetState) => handleHideProfile(e, doNotSetState)}
                 />

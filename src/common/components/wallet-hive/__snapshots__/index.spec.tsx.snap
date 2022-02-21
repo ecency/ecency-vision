@@ -504,6 +504,19 @@ exports[`(2) Render with converting HBD 1`] = `
               0.000 HIVE
             </span>
           </div>
+          <div
+            className="amount amount-passive converting-hbd"
+          >
+            <span
+              className="amount-btn"
+              onClick={[Function]}
+              title="Reserved for Open order in Market"
+            >
+              +
+               
+              1.000 HIVE
+            </span>
+          </div>
         </div>
       </div>
       <div
@@ -618,6 +631,8 @@ exports[`(2) Render with converting HBD 1`] = `
             className="amount amount-passive converting-hbd"
           >
             <span
+              className="amount-btn"
+              onClick={[Function]}
               title="Converting to HIVE"
             >
               +
@@ -629,7 +644,9 @@ exports[`(2) Render with converting HBD 1`] = `
             className="amount amount-passive converting-hbd"
           >
             <span
-              title="Withdrawing HBD from Savings"
+              className="amount-btn"
+              onClick={[Function]}
+              title="Withdrawing from Savings"
             >
               +
                
@@ -938,6 +955,19 @@ exports[`(3) usePrivate = false 1`] = `
               0.000 HIVE
             </span>
           </div>
+          <div
+            className="amount amount-passive converting-hbd"
+          >
+            <span
+              className="amount-btn"
+              onClick={[Function]}
+              title="Reserved for Open order in Market"
+            >
+              +
+               
+              1.000 HIVE
+            </span>
+          </div>
         </div>
       </div>
       <div
@@ -1051,6 +1081,8 @@ exports[`(3) usePrivate = false 1`] = `
             className="amount amount-passive converting-hbd"
           >
             <span
+              className="amount-btn"
+              onClick={[Function]}
               title="Converting to HIVE"
             >
               +
@@ -1062,7 +1094,9 @@ exports[`(3) usePrivate = false 1`] = `
             className="amount amount-passive converting-hbd"
           >
             <span
-              title="Withdrawing HBD from Savings"
+              className="amount-btn"
+              onClick={[Function]}
+              title="Withdrawing from Savings"
             >
               +
                

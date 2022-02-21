@@ -6,7 +6,7 @@ import {Reblogs} from "../store/reblogs/types";
 import {DynamicProps} from "../store/dynamic-props/types";
 import {UI} from "../store/ui/types";
 import {PointTransaction} from "../store/points/types";
-import {Vote, DelegatedVestingShare, Proposal} from "../api/hive";
+import {Vote, DelegatedVestingShare, Proposal, SavingsWithdrawRequest, ConversionRequest, OpenOrdersData} from "../api/hive";
 import {ReceivedVestingShare} from "../api/private-api";
 import {
     ApiFollowNotification,
@@ -20,6 +20,8 @@ import {
 import {ActiveUser} from "../store/active-user/types";
 import {FullAccount} from "../store/accounts/types";
 import {SearchResponse, AccountSearchResult} from "../api/search-api";
+import { AssetSymbol } from '@hiveio/dhive';
+import ConversionRequests from '../components/converts';
 
 export const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
@@ -434,7 +436,39 @@ export const receivedVestingInstance: ReceivedVestingShare[] = [
         timestamp: "2020-03-24T12:42:39",
     },
 ];
-
+export const withdrawSavingsInstance: SavingsWithdrawRequest[] = [
+    {
+        amount: "1.000 HIVE",
+        complete: "2022-02-06T02:59:27",
+        from: "ecency",
+        id: 137870,
+        memo: "",
+        request_id: 3179660325,
+        to: "ecency"
+    },
+];
+export const conversionRequestInstance: ConversionRequest[] = [
+    {
+        amount: "1.000 HBD",
+        conversion_date: "2022-02-06T02:59:27",
+        id: 137870,
+        owner: "ecency",
+        requestid: 3179660325
+    },
+];
+export const openOrdersInstance: OpenOrdersData[] = [
+    {
+        seller: "ecency",
+        created: "2022-02-02T17:48:36",
+        expiration: "2022-03-01T17:48:33",
+        for_sale: 200000,
+        id: 5824689,
+        orderid: 1643824113,
+        real_price: "1.50000000000000000",
+        rewarded: false,
+        sell_price: {base: '200.000 HIVE', quote: '300.000 HBD'}
+    },
+];
 export const discussionInstace1: Entry[] = [
     {
         post_id: 86423250,
@@ -1140,5 +1174,7 @@ export const accountSearchResultInstance: AccountSearchResult[] = [
     {"name": "bar", "full_name": "Bar", "about": "Lorem ipsum dolor sit amet", "reputation": 72.44},
     {"name": "baz", "full_name": "Baz", "about": "Lorem ipsum dolor sit amet", "reputation": 74.44},
 ]
+
+export const assetSymbolInstance: AssetSymbol = "HBD"
 
 export const emptyReblogs: Reblogs = {list: [], canFetch: true}

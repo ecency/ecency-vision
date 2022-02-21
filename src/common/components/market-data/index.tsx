@@ -45,7 +45,7 @@ export default class MarketData extends Component<MarketDataProps,MarketDataStat
                     <div className="credits"/>
                 </Tsx>}
             </div>
-            {visible ? <SSRSuspense fallback={'Loading chunked charts'}>
+            {visible ? <SSRSuspense fallback={_t("g.loading-chunk")}>
                 <Market label="HIVE" coin="hive" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter="0.000$" theme={theme}/>
                 <Market label="HBD" coin="hive_dollar" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter="0.000$" theme={theme}/>
                 <Market label="BTC" coin="bitcoin" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter=",$" theme={theme}/>

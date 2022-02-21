@@ -16,7 +16,7 @@ import moment from "moment";
 
 export const client = new Client(SERVERS, {
     timeout: 4000,
-    failoverThreshold: 10,
+    failoverThreshold: 2,
     consoleOnFailover: true,
 });
 
