@@ -45,6 +45,7 @@ const DraggableDeckView = ({
   decks,
   toggleListStyle,
   loading,
+  setDecks,
   ...rest
 }: any) => {
   const [items, setItems] = useState<any>(getItems(decks));
@@ -83,7 +84,17 @@ const DraggableDeckView = ({
             {...provided.droppableProps}
           >
             {options && (
-              <DeckOptions options={options} setOptions={setOptions} />
+              <DeckOptions
+                options={options}
+                setOptions={setOptions}
+                onRemove={() => {
+                  let filteredDecks = items.filter(
+                    (item: any) => item.header.title !== options
+                  );
+                  setOptions(null);
+                  setDecks(filteredDecks);
+                }}
+              />
             )}
             {items.map((item: any, index: any) => (
               <Draggable

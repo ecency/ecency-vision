@@ -142,14 +142,14 @@ const DeckViewContainer = ({
 
   useEffect(() => {
     let accountName = rest.activeUser && rest.activeUser.username;
-    if(currentUser!==accountName){
+    if (currentUser !== accountName) {
       setFetched(false);
-      setCurrentUser(accountName)
+      setCurrentUser(accountName);
     }
     if (!fetched) {
       setFetched(true);
       setLoadingNewContent(true);
-      setCurrentUser(accountName)
+      setCurrentUser(accountName);
       let defaultDecks: any = [...decks];
       if (accountName) {
         getAccountPosts("posts", accountName).then((accountData) => {
@@ -177,12 +177,11 @@ const DeckViewContainer = ({
         });
       } else {
         getPostsRanked("trending").then((res) => {
-         defaultDecks.unshift({
-              data: res,
-              listItemComponent: SearchListItem,
-              header: { title: `Trending`, icon: globalTrending },
-            })
-          ;
+          defaultDecks.unshift({
+            data: res,
+            listItemComponent: SearchListItem,
+            header: { title: `Trending`, icon: globalTrending },
+          });
           getFullTrendingTags().then((res) => {
             defaultDecks.unshift({
               data: res,
@@ -255,7 +254,7 @@ const DeckViewContainer = ({
                   className={`${
                     index % 2 === 1 ? "my-icons-5 " : ""
                   }cursor-pointer position-relative`}
-                  key={deck.header.title+index}
+                  key={deck.header.title + index}
                 >
                   {avatar && (
                     <div className="position-absolute avatar-xs rounded-circle">
@@ -290,6 +289,7 @@ const DeckViewContainer = ({
         <div className="decks-container d-flex p-5 mt-5 overflow-auto flex-grow-1">
           <DraggableDeckView
             decks={decks}
+            setDecks={setDecks}
             {...rest}
             global={global}
             toggleListStyle={toggleListStyle}
