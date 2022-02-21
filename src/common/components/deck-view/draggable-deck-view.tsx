@@ -6,7 +6,6 @@ import {
   resetServerContext,
 } from "react-beautiful-dnd";
 import { Deck } from "../deck";
-import { DeckOptions } from "./deck-options";
 
 // fake data generator
 export const getItems = (decks: any[]) =>
@@ -83,19 +82,6 @@ const DraggableDeckView = ({
             style={getListStyle(snapshot.isDraggingOver, rest.global.theme)}
             {...provided.droppableProps}
           >
-            {options && (
-              <DeckOptions
-                options={options}
-                setOptions={setOptions}
-                onRemove={() => {
-                  let filteredDecks = items.filter(
-                    (item: any) => item.header.title !== options
-                  );
-                  setOptions(null);
-                  setDecks(filteredDecks);
-                }}
-              />
-            )}
             {items.map((item: any, index: any) => (
               <Draggable
                 key={item.id + index}
@@ -114,8 +100,13 @@ const DraggableDeckView = ({
                   >
                     <Deck
                       toggleListStyle={toggleListStyle}
-                      options={options}
-                      setOptions={setOptions}
+                      onRemove={(option:string) => {
+                        let filteredDecks = items.filter(
+                          (item: any) => item.header.title !== option
+                        );
+                        setOptions(null);
+                        setDecks(filteredDecks);
+                      }}
                       {...item}
                       {...rest}
                     />

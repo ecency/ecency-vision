@@ -69,17 +69,3 @@
   width: 20px;
   height: 20px;
 }
-
-.deck-option {
-  -webkit-animation: containerAnimation 0.3s forwards;
-  -webkit-animation-delay: 0.3s;
-  animation: containerAnimation 0.3s forwards;
-  animation-delay: 0.3s;
-  &:hover {
-    background-color: $powder-blue;
-
-    @include themify(night) {
-      background-color: $metallic-blue;
-    }
-  }
-}
