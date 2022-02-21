@@ -33,8 +33,7 @@ const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
 const getListStyle = (isDraggingOver: boolean, theme: string) => ({
   background: theme === "night" ? "#232e3b" : "#e9f2fc",
   display: "flex",
-  padding: grid,
-  paddingBottom: grid * 4,
+  padding: '8px 80px 8px 8px',
   overflow: "auto",
 });
 
@@ -97,6 +96,7 @@ const DraggableDeckView = ({
                       snapshot.isDragging,
                       provided.draggableProps.style
                     )}
+                    id={item.id}
                   >
                     <Deck
                       toggleListStyle={toggleListStyle}

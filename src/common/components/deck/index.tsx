@@ -34,8 +34,8 @@ const DeckHeader = ({ title, icon, index, onRemove }: DeckHeaderProps) => {
               <div className="icon mr-2">{icon || hot}</div>
               <div className="header-title">{onlyTitle}</div>
               {username && (
-                <div className="text-lowercase ml-1 text-secondary">
-                  <small>@{username}</small>
+                <div className="ml-1">
+                  <small className="text-lowercase text-secondary">@{username.toLowerCase()}</small>
                 </div>
               )}
             </div>
