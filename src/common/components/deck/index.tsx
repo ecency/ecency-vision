@@ -20,6 +20,10 @@ export interface DeckHeaderProps {
 
 const DeckHeader = ({ title, icon, index, onRemove }: DeckHeaderProps) => {
   const [expanded, setExpanded] = useState(false);
+  let splittedTitle = title.split("@");
+  let onlyTitle = splittedTitle[0];
+  let username = splittedTitle[1];
+
   return (
     <Accordion className={expanded ? "border-bottom" : ""}>
       <div className="d-flex flex-column border-bottom">
@@ -28,7 +32,12 @@ const DeckHeader = ({ title, icon, index, onRemove }: DeckHeaderProps) => {
             <div className="index">{index}</div>
             <div className="d-flex align-items-center ml-3">
               <div className="icon mr-2">{icon || hot}</div>
-              <div className="header-title">{title}</div>
+              <div className="header-title">{onlyTitle}</div>
+              {username && (
+                <div className="text-lowercase ml-1 text-secondary">
+                  <small>@{username}</small>
+                </div>
+              )}
             </div>
           </div>
           <Accordion.Toggle as={Button} variant="link" eventKey="0">

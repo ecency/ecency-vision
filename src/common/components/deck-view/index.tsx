@@ -54,7 +54,7 @@ const DeckViewContainer = ({
                 data: res,
                 listItemComponent: SearchListItem,
                 header: {
-                  title: `${contentType} for @${account}`,
+                  title: `${contentType}  @${account}`,
                   icon: notifications,
                 },
               },
@@ -80,7 +80,7 @@ const DeckViewContainer = ({
                 data: res,
                 listItemComponent: SearchListItem,
                 header: {
-                  title: `${contentType} for @${account}`,
+                  title: `${contentType}  @${account}`,
                   icon: communities,
                 },
               },
@@ -97,7 +97,7 @@ const DeckViewContainer = ({
                 data: res,
                 listItemComponent: SearchListItem,
                 header: {
-                  title: `${contentType} for @${account}`,
+                  title: `${contentType}  @${account}`,
                   icon: person,
                 },
               },
@@ -157,7 +157,7 @@ const DeckViewContainer = ({
             data: accountData,
             listItemComponent: SearchListItem,
             header: {
-              title: `posts for @${accountName}`,
+              title: `posts  @${accountName}`,
               icon: person,
             },
           });
@@ -167,7 +167,7 @@ const DeckViewContainer = ({
               data: notificationsData,
               listItemComponent: SearchListItem,
               header: {
-                title: `Notifications for @${accountName}`,
+                title: `Notifications  @${accountName}`,
                 icon: notifications,
               },
             });
@@ -207,7 +207,7 @@ const DeckViewContainer = ({
             data: transactionsList,
             listItemComponent: TransactionRow,
             header: {
-              title: `Wallet for @${
+              title: `Wallet  @${
                 firstTransaction.curator ||
                 firstTransaction.to ||
                 firstTransaction.delegator ||
