@@ -60,3 +60,23 @@
     width: 16px;
     height: 16px;
 }
+
+.deck-options{
+    min-height: 538px;
+}
+
+.deck-options-icon{
+    width: 20px;
+    height: 20px;
+}
+
+.deck-option{
+    &:hover{
+        background-color: $powder-blue;
+
+        @include themify(night) {
+            background-color: $metallic-blue;
+        }
+
+    }
+}

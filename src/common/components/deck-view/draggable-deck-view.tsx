@@ -6,6 +6,7 @@ import {
   resetServerContext,
 } from "react-beautiful-dnd";
 import { Deck } from "../deck";
+import { DeckOptions } from "./deck-options";
 
 // fake data generator
 export const getItems = (decks: any[]) =>
@@ -34,7 +35,7 @@ const getListStyle = (isDraggingOver: boolean, theme: string) => ({
   background: theme === "night" ? "#232e3b" : "#e9f2fc",
   display: "flex",
   padding: grid,
-  paddingBottom: grid*4,
+  paddingBottom: grid * 4,
   overflow: "auto",
 });
 
@@ -48,6 +49,7 @@ const DraggableDeckView = ({
 }: any) => {
   const [items, setItems] = useState<any>(getItems(decks));
   const [mounted, setMounted] = useState(false);
+  const [options, setOptions] = useState(null);
 
   const onDragEnd = (result: any) => {
     if (!result.destination) {
@@ -67,7 +69,9 @@ const DraggableDeckView = ({
     setItems(decks);
   }, [decks]);
 
-  useEffect(()=>{setMounted(true)},[])
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return mounted ? (
     <DragDropContext onDragEnd={onDragEnd}>
@@ -78,8 +82,15 @@ const DraggableDeckView = ({
             style={getListStyle(snapshot.isDraggingOver, rest.global.theme)}
             {...provided.droppableProps}
           >
+            {options && (
+              <DeckOptions options={options} setOptions={setOptions} />
+            )}
             {items.map((item: any, index: any) => (
-              <Draggable key={item.id+index} draggableId={item.id} index={index}>
+              <Draggable
+                key={item.id + index}
+                draggableId={item.id}
+                index={index}
+              >
                 {(provided, snapshot) => (
                   <div
                     ref={provided.innerRef}
@@ -92,6 +103,8 @@ const DraggableDeckView = ({
                   >
                     <Deck
                       toggleListStyle={toggleListStyle}
+                      options={options}
+                      setOptions={setOptions}
                       {...item}
                       {...rest}
                     />

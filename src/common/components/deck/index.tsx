@@ -6,9 +6,11 @@ export interface DeckHeaderProps {
   title: string;
   icon: any;
   index: number;
+  setOptions: (option: null | string) => void;
+  options: null | string;
 }
 
-const DeckHeader = ({ title, icon, index }: DeckHeaderProps) => {
+const DeckHeader = ({ title, icon, index, setOptions, options }: DeckHeaderProps) => {
   return (
     <div className="border-bottom d-flex justify-content-between align-items-center deck-header position-relative">
       <div className="d-flex align-items-center">
@@ -18,7 +20,7 @@ const DeckHeader = ({ title, icon, index }: DeckHeaderProps) => {
           <div className="header-title">{title}</div>
         </div>
       </div>
-      <div>{burgerGrey}</div>
+      <div className={`${options ? "disabled muted" : "pointer"}`} onClick={() => !options && setOptions(title)}>{burgerGrey}</div>
     </div>
   );
 };
@@ -28,6 +30,8 @@ export interface DeckProps {
   listItemComponent: any;
   index: number;
   data: any[];
+  options: null | string;
+  setOptions: (option: null | string) => void;
   extras: any;
   toggleListStyle: (listStyle: ListStyle) => void;
 }
@@ -39,11 +43,13 @@ export const Deck = ({
   index,
   data,
   extras,
+  options,
+  setOptions,
   ...rest
 }: DeckProps) => {
   return (
-    <div className={"deck mr-5 rounded-top"}>
-      <DeckHeader {...header} index={index} />
+    <div className={"deck mr-3 rounded-top"}>
+      <DeckHeader {...header} index={index} options={options} setOptions={setOptions} />
       <div
         className={
           `py-4 pr-4 pl-3 item-container ${header.title.includes("Wallet")
