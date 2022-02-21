@@ -71,10 +71,10 @@
 }
 
 .deck-option {
-  -webkit-animation: containerAnimation 0.1s forwards;
-  -webkit-animation-delay: 0.1s;
-  animation: containerAnimation 0.1s forwards;
-  animation-delay: 0.1s;
+  -webkit-animation: containerAnimation 0.3s forwards;
+  -webkit-animation-delay: 0.3s;
+  animation: containerAnimation 0.3s forwards;
+  animation-delay: 0.3s;
   &:hover {
     background-color: $powder-blue;
 
