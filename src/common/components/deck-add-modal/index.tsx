@@ -164,7 +164,6 @@ const AddColumn = ({
   const suggestionProps = {
     renderer: (i: any) => {
       let valueToShow = selectedValue === "Community" ? i.title : i;
-
       return (
         <>
           {userAvatar({
@@ -179,7 +178,7 @@ const AddColumn = ({
     onSelect: (selectedText: any) => {
       let valueToSelect =
         selectedValue === "Community" ? selectedText.name : selectedText;
-      setTo(valueToSelect);
+      setTo(selectedValue === "Community" ? selectedText.title :valueToSelect);
       setToSelected(valueToSelect);
     },
   };
@@ -189,7 +188,7 @@ const AddColumn = ({
       selectedValue === "Users" || selectedValue === "Community"
         ? contentType
         : selectedValue
-    } @${toSelected}`;
+    } @${selectedValue === "Community" ? toSelected : to}`;
     if (
       decks.some((deck: any) => {
         let deckExists =
