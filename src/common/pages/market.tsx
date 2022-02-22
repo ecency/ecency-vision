@@ -132,17 +132,13 @@ const MarketPage = (props: PageProps) => {
               <ChartStats data={data} loading={loading} />
             </div>
 
-            {data && tablesData ? (
-              <SSRSuspense fallback={<div>{_t("g.loading-chunk")}...</div>}>
+            <SSRSuspense fallback={<div>{_t("g.loading-chunk")}...</div>}>
                 <MarketChart
                   bids={tablesData!.bids || []}
                   asks={tablesData!.asks || []}
                   theme={global.theme}
                 />
-              </SSRSuspense>
-            ) : (
-              _t("g.loading") + "..."
-            )}
+            </SSRSuspense>
           </div>
           <div className="d-flex justify-content-center">
             <div className="container my-5 mx-0">
