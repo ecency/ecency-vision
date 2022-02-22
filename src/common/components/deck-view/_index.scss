@@ -70,9 +70,13 @@
   height: 20px;
 }
 
+@keyframes blinker {  
+  50% { opacity: 0; }
+}
+
 .active-deck {
   .deck {
     box-shadow: 0 0.5rem 1rem rgb(72 135 230 / 74%) !important;
-    animation: box-shadow 2s backwards;
+    animation: blinker 2s linear forwards;
   }  
 }
