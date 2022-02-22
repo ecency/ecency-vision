@@ -99,15 +99,22 @@ const communityContentTypes = [
   { code: "muted", name: "Muted" },
 ];
 
-const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
+const AddColumn = ({
+  setSelectedValue,
+  onSelect,
+  selectedValue,
+  decks,
+}: any) => {
   const [to, setTo] = useState("");
   const [contentType, setContentType] = useState("");
   const [toSelected, setToSelected] = useState("");
   const [toData, setToData] = useState<any>([]);
   const [toDataLoading, setToDataLoading] = useState(false);
+  const [deckExists, setDeckExists] = useState(false);
   let _timer: any = null;
 
   const afterToChange = (toValue: string) => {
+    setDeckExists(false);
     if (_timer) {
       clearTimeout(_timer);
     }
@@ -121,15 +128,14 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
     _timer = setTimeout(() => {
       let fetchData =
         selectedValue === "Community" ? getCommunities : lookupAccounts;
-        let searchTerm = 
-        selectedValue === "Community" ? "" : toValue;
+      let searchTerm = selectedValue === "Community" ? "" : toValue;
       return (fetchData as any)(searchTerm, 5, toValue)
-        .then((resp:any) => {
+        .then((resp: any) => {
           if (resp) {
             setToData(resp);
           }
         })
-        .catch((err:any) => {
+        .catch((err: any) => {
           error(formatError(err));
         })
         .finally(() => {
@@ -150,6 +156,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
   }, [to]);
 
   const toChanged = (e: any) => {
+    setDeckExists(false)
     let toValue = e.target.value;
     setTo(toValue);
   };
@@ -160,24 +167,47 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
 
       return (
         <>
-          {userAvatar({ username: i.name || i, size: "medium", global: {} as any })}{" "}
+          {userAvatar({
+            username: i.name || i,
+            size: "medium",
+            global: {} as any,
+          })}{" "}
           <span style={{ marginLeft: "4px" }}>{valueToShow}</span>
         </>
       );
     },
     onSelect: (selectedText: any) => {
-      let valueToSelect = selectedValue === "Community" ? selectedText.name : selectedText
+      let valueToSelect =
+        selectedValue === "Community" ? selectedText.name : selectedText;
       setTo(valueToSelect);
       setToSelected(valueToSelect);
     },
   };
 
   const handleAddColumn = () => {
-    onSelect(
-      toSelected,
-      (selectedValue === "Users" || selectedValue === "Community") ? contentType : selectedValue
-    );
-    setSelectedValue(null);
+    let couldBeExistingDeck = `${
+      selectedValue === "Users" || selectedValue === "Community"
+        ? contentType
+        : selectedValue
+    } @${toSelected}`;
+    if (
+      decks.some((deck: any) => {
+        let deckExists =
+          deck.header.title.toLowerCase() === couldBeExistingDeck.toLowerCase();
+        return deckExists;
+      })
+    ) {
+      setDeckExists(true);
+    } else {
+      onSelect(
+        toSelected,
+        selectedValue === "Users" || selectedValue === "Community"
+          ? contentType
+          : selectedValue
+      );
+      setDeckExists(false);
+      setSelectedValue(null);
+    }
   };
 
   let type =
@@ -195,7 +225,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
               {selectedValue === "Community" ? "Community" : "Username"}
             </Form.Label>
 
-            <SuggestionList items={toData} {...suggestionProps} >
+            <SuggestionList items={toData} {...suggestionProps}>
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text>
@@ -217,9 +247,11 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
                   placeholder={_t("transfer.to-placeholder")}
                   value={to}
                   onChange={toChanged}
+                  isInvalid={deckExists}
                 />
               </InputGroup>
             </SuggestionList>
+            {deckExists && <small className="text-danger">The column you're trying to add already exists!</small>}
           </Form.Group>
 
           {(selectedValue === "Users" || selectedValue === "Community") && (
@@ -230,6 +262,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue }: any) => {
                 as="select"
                 onChange={(e) => {
                   setContentType(e.target.value);
+                  setDeckExists(false);
                 }}
                 value={contentType}
               >
@@ -327,6 +360,7 @@ export const DeckAddModal = ({
             selectedValue={selectedOption}
             setSelectedValue={setSelectedOption}
             onSelect={onSelect}
+            decks={currentlyActivatedOptions}
           />
         ) : (
           <div className="d-flex w-100 flex-wrap">
