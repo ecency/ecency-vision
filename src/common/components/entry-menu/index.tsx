@@ -204,16 +204,11 @@ export class EntryMenu extends BaseComponent<Props, State> {
             })
     }
 
-    pin = (pin: boolean) => {
-        const {entry, activeUser, setEntryPin, updateEntry, addAccount, updateActiveUser} = this.props;
-
+    pinToCommunity = (pin: boolean) => {
+        const {entry, activeUser, setEntryPin, updateEntry} = this.props;
         const community = this.getCommunity();
 
-        console.log('Pinkey => ', this.state.pinKey);
-        
-
-        if (community && this.state.pinKey !== 'blog') {
-            pinPost(activeUser!.username, community!.name, entry.author, entry.permlink, pin)
+        pinPost(activeUser!.username, community!.name, entry.author, entry.permlink, pin)
             .then(() => {
                 setEntryPin(entry, pin);
 
@@ -231,104 +226,56 @@ export class EntryMenu extends BaseComponent<Props, State> {
             })
             .catch(err => {
                 error(formatError(err));
-            })
-        }
+            }) 
+    }
+
+    pinToBlog = (pin: boolean) => {
+        const {entry, activeUser, addAccount, updateActiveUser} = this.props;
 
         const ownEntry = activeUser && activeUser.username === entry.author;
         const {profile, name} = activeUser!.data as FullAccount
-        if (this.state.pinKey !== 'community') {
 
-        console.log('in here');
-
-        if (this.canPinBothOptions()) {
-            if (ownEntry && pin && profile && activeUser) {            
-                const newProfile = {
-                    name: profile?.name || '',
-                    about: profile?.about || '',
-                    cover_image: profile?.cover_image || '',
-                    profile_image: profile?.profile_image || '',
-                    website: profile?.website || '',
-                    location: profile?.location || '',
-                    pinned: entry.permlink
-                };
-                updateProfile(activeUser.data, newProfile).then(r => {
-                    success(_t("entry-menu.pin-success"));
-                    return getAccount(name);
-                }).then((account) => {
-                    // update reducers
-                    addAccount(account);
-                    updateActiveUser(account);
-                }).catch(() => {
-                    error(_t('g.server-error'));
-                })
-            } else if (ownEntry && !pin && profile && activeUser) {            
-                const newProfile = {
-                    name: profile?.name || '',
-                    about: profile?.about || '',
-                    cover_image: profile?.cover_image || '',
-                    profile_image: profile?.profile_image || '',
-                    website: profile?.website || '',
-                    location: profile?.location || '',
-                    pinned: ""
-                };
-                updateProfile(activeUser.data, newProfile).then(r => {
-                    success(_t("entry-menu.unpin-success"));
-                    return getAccount(name);
-                }).then((account) => {
-                    // update reducers
-                    addAccount(account);
-                    updateActiveUser(account);
-                }).catch(() => {
-                    error(_t('g.server-error'));
-                })
-            }
-        } else {
-            if (ownEntry && pin && profile && activeUser && !community) {            
-                const newProfile = {
-                    name: profile?.name || '',
-                    about: profile?.about || '',
-                    cover_image: profile?.cover_image || '',
-                    profile_image: profile?.profile_image || '',
-                    website: profile?.website || '',
-                    location: profile?.location || '',
-                    pinned: entry.permlink
-                };
-                updateProfile(activeUser.data, newProfile).then(r => {
-                    success(_t("entry-menu.pin-success"));
-                    return getAccount(name);
-                }).then((account) => {
-                    // update reducers
-                    addAccount(account);
-                    updateActiveUser(account);
-                }).catch(() => {
-                    error(_t('g.server-error'));
-                })
-            } else if (ownEntry && !pin && profile && activeUser && !community) {            
-                const newProfile = {
-                    name: profile?.name || '',
-                    about: profile?.about || '',
-                    cover_image: profile?.cover_image || '',
-                    profile_image: profile?.profile_image || '',
-                    website: profile?.website || '',
-                    location: profile?.location || '',
-                    pinned: ""
-                };
-                updateProfile(activeUser.data, newProfile).then(r => {
-                    success(_t("entry-menu.unpin-success"));
-                    return getAccount(name);
-                }).then((account) => {
-                    // update reducers
-                    addAccount(account);
-                    updateActiveUser(account);
-                }).catch(() => {
-                    error(_t('g.server-error'));
-                })
-            }
+        if (ownEntry && pin && profile && activeUser) {            
+            const newProfile = {
+                name: profile?.name || '',
+                about: profile?.about || '',
+                cover_image: profile?.cover_image || '',
+                profile_image: profile?.profile_image || '',
+                website: profile?.website || '',
+                location: profile?.location || '',
+                pinned: entry.permlink
+            };
+            updateProfile(activeUser.data, newProfile).then(r => {
+                success(_t("entry-menu.pin-success"));
+                return getAccount(name);
+            }).then((account) => {
+                // update reducers
+                addAccount(account);
+                updateActiveUser(account);
+            }).catch(() => {
+                error(_t('g.server-error'));
+            })
+        } else if (ownEntry && !pin && profile && activeUser) {            
+            const newProfile = {
+                name: profile?.name || '',
+                about: profile?.about || '',
+                cover_image: profile?.cover_image || '',
+                profile_image: profile?.profile_image || '',
+                website: profile?.website || '',
+                location: profile?.location || '',
+                pinned: ""
+            };
+            updateProfile(activeUser.data, newProfile).then(r => {
+                success(_t("entry-menu.unpin-success"));
+                return getAccount(name);
+            }).then((account) => {
+                // update reducers
+                addAccount(account);
+                updateActiveUser(account);
+            }).catch(() => {
+                error(_t('g.server-error'));
+            })
         }
-        
-        
-    }
-        
     }
 
     onMenuShow = () => {
@@ -434,110 +381,75 @@ export class EntryMenu extends BaseComponent<Props, State> {
         if (this.canPinBothOptions()) {
             if (entryPinTracker[`${entry.author}-${entry.permlink}`] && entry.permlink === profile?.pinned) {
                 menuItems = [...menuItems, {
-                    // label: _t("entry-menu.unpin"),
-                    label: "Unpin from Community",
+                    label: _t("entry-menu.unpin-from-community"),
                     onClick: () => this.toggleUnpin('community'),
                     icon: pinSvg
                 },{
-                    // label: _t("entry-menu.unpin"),
-                    label: "Unpin from Blog",
+                    label: _t("entry-menu.unpin-from-blog"),
                     onClick: () => this.toggleUnpin('blog'),
                     icon: pinSvg
                 }];
             } else if (entryPinTracker[`${entry.author}-${entry.permlink}`]) {
                 menuItems = [...menuItems, {
-                    // label: _t("entry-menu.unpin"),
-                    label: "Unpin from Community",
+                    label: _t("entry-menu.unpin-from-community"),
                     onClick: () => this.toggleUnpin('community'),
                     icon: pinSvg
                 },{
-                    // label: _t("entry-menu.unpin"),
-                    label: "Pin to Blog",
+                    label: _t("entry-menu.pin-to-blog"),
                     onClick: () => this.togglePin('blog'),
                     icon: pinSvg
                 }];
             } else if (entry.permlink === profile?.pinned) {
                 menuItems = [...menuItems, {
-                    // label: _t("entry-menu.unpin"),
-                    label: "Pin to Community",
+                    label: _t("entry-menu.pin-to-community"),
                     onClick: () => this.togglePin('community'),
                     icon: pinSvg
                 },{
-                    // label: _t("entry-menu.unpin"),
-                    label: "Unpin from Blog",
+                    label: _t("entry-menu.unpin-from-blog"),
                     onClick: () => this.toggleUnpin('blog'),
                     icon: pinSvg
                 }];
             } else {
                     menuItems = [...menuItems, {
-                    // label: _t("entry-menu.pin"),
-                    label: 'Pin to Blog',
+                    label: _t("entry-menu.pin-to-blog"),
                     onClick: () => this.togglePin('blog'),
                     icon: pinSvg
                 },
                 {
-                    // label: _t("entry-menu.pin"),
-                    label: 'Pin to Community',
+                    label: _t("entry-menu.pin-to-community"),
                     onClick: () => this.togglePin('community'),
                     icon: pinSvg
                 }];
             }
-
-
-
-            // if (entryPinTracker[`${entry.author}-${entry.permlink}`] || entry.permlink === profile?.pinned) {
-            //     menuItems = [...menuItems, {
-            //         label: _t("entry-menu.unpin"),
-            //         onClick: this.toggleUnpin,
-            //         icon: pinSvg
-            //     }];
-            // } else {
-            //     menuItems = [...menuItems, {
-            //         // label: _t("entry-menu.pin"),
-            //         label: 'Pin to Blog',
-            //         onClick: this.togglePin,
-            //         icon: pinSvg
-            //     },
-            //     {
-            //         // label: _t("entry-menu.pin"),
-            //         label: 'Pin to Community',
-            //         onClick: this.togglePin,
-            //         icon: pinSvg
-            //     }];
-            // }
-        }
-        else
-        if (this.canPin()) {
-            if (entryPinTracker[`${entry.author}-${entry.permlink}`] || entry.permlink === profile?.pinned) {
+        } else if (this.canPin()) {
+            if (entryPinTracker[`${entry.author}-${entry.permlink}`]) {
                 menuItems = [...menuItems, {
                     label: _t("entry-menu.unpin"),
-                    onClick: this.toggleUnpin,
+                    onClick: () => this.toggleUnpin('community'),
+                    icon: pinSvg
+                }];
+            } else if (entry.permlink === profile?.pinned) {
+                menuItems = [...menuItems, {
+                    label: _t("entry-menu.unpin"),
+                    onClick: () => this.toggleUnpin('blog'),
+                    icon: pinSvg
+                }];
+            } else if (isCommunity(entry.category)) {
+                menuItems = [...menuItems, {
+                    label: _t("entry-menu.pin"),
+                    onClick: () => this.togglePin('community'),
                     icon: pinSvg
                 }];
             } else {
                 menuItems = [...menuItems, {
                     label: _t("entry-menu.pin"),
-                    onClick: this.togglePin,
+                    onClick: () => this.togglePin('blog'),
                     icon: pinSvg
                 }];
             }
         }
 
         if (this.canMute()) {
-            // if (entryPinTracker[`${entry.author}-${entry.permlink}`] || entry.permlink === profile?.pinned) {
-            //     menuItems = [...menuItems, {
-            //         label: _t("entry-menu.unpin"),
-            //         onClick: this.toggleUnpin,
-            //         icon: pinSvg
-            //     }];
-            // } else {
-            //     menuItems = [...menuItems, {
-            //         label: _t("entry-menu.pin"),
-            //         onClick: this.togglePin,
-            //         icon: pinSvg
-            //     }];
-            // }
-
             const isMuted = !!entry.stats?.gray;
             menuItems = [
                 ...menuItems,
@@ -550,14 +462,6 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 ]
             ];
         }
-
-        // if(ownEntry) {
-        //     menuItems = [...menuItems, {
-        //         label: _t("entry-menu.pin"),
-        //         onClick: this.togglePin,
-        //         icon: pinSvg
-        //     }];
-        // }
 
         if (global.usePrivate) {
             menuItems = [
@@ -658,11 +562,21 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 this.toggleDelete();
             }} onCancel={this.toggleDelete}/>}
             {pin && <ModalConfirm onConfirm={() => {
-                this.pin(true);
+                if (this.state.pinKey === 'community') {
+                    this.pinToCommunity(true)
+                } else if (this.state.pinKey === 'blog') {
+                    this.pinToBlog(true)
+                }
+                // this.pin(true); 
                 this.togglePin();
             }} onCancel={this.togglePin}/>}
             {unpin && <ModalConfirm onConfirm={() => {
-                this.pin(false);
+                if (this.state.pinKey === 'community') {
+                    this.pinToCommunity(false)
+                } else if (this.state.pinKey === 'blog') {
+                    this.pinToBlog(false)
+                }
+                // this.pin(false);
                 this.toggleUnpin();
             }} onCancel={this.toggleUnpin}/>}
             {(community && activeUser && mute) && MuteBtn({
