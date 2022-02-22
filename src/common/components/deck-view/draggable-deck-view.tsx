@@ -47,7 +47,6 @@ const DraggableDeckView = ({
 }: any) => {
   const [items, setItems] = useState<any>(getItems(decks));
   const [mounted, setMounted] = useState(false);
-  const [options, setOptions] = useState(null);
 
   const onDragEnd = (result: any) => {
     if (!result.destination) {
@@ -61,6 +60,7 @@ const DraggableDeckView = ({
     );
 
     setItems(reorderedItems);
+    setDecks(reorderedItems)
   };
 
   useEffect(() => {
@@ -104,7 +104,6 @@ const DraggableDeckView = ({
                         let filteredDecks = items.filter(
                           (item: any) => item.header.title !== option
                         );
-                        setOptions(null);
                         setDecks(filteredDecks);
                       }}
                       {...item}

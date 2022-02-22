@@ -40,7 +40,7 @@ const DeckHeader = ({ title, icon, index, onRemove }: DeckHeaderProps) => {
               )}
             </div>
           </div>
-          <Accordion.Toggle as={Button} variant="link" eventKey="0">
+          <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
             <div
               className={`pointer`}
               onClick={() => {
