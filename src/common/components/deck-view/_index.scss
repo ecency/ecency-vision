@@ -69,3 +69,10 @@
   width: 20px;
   height: 20px;
 }
+
+.active-deck {
+  .deck {
+    box-shadow: 0 0.5rem 1rem rgb(72 135 230 / 74%) !important;
+    animation: box-shadow 2s backwards;
+  }  
+}

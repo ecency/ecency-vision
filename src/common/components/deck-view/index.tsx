@@ -256,7 +256,13 @@ const DeckViewContainer = ({
                   }cursor-pointer position-relative`}
                   key={deck.header.title + index}
                   onClick={()=> {
-                    let toScrollValue = document!.getElementById(deck.id)!.getBoundingClientRect().left
+                    let elementToFocus = document!.getElementById(deck.id)
+                    let toScrollValue = elementToFocus!.getBoundingClientRect().left;
+                    elementToFocus?.classList.add("active-deck")
+                    setTimeout(()=>{
+                      elementToFocus?.classList.remove("active-deck")
+                    },5000)
+
                     document!.getElementById('draggable-container')!.scrollLeft = toScrollValue}}
                 >
                   {avatar && (

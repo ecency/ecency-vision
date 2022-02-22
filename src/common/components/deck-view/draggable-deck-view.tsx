@@ -31,7 +31,7 @@ const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
 const getListStyle = (isDraggingOver: boolean, theme: string) => ({
   background: theme === "night" ? "#232e3b" : "#e9f2fc",
   display: "flex",
-  padding: '8px 80px 8px 8px',
+  padding: '8px 80px 28px 28px',
   overflow: "auto",
   scrollBehavior:"smooth"
 });
