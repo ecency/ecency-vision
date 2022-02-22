@@ -255,7 +255,9 @@ const DeckViewContainer = ({
                     index % 2 === 1 ? "my-icons-5 " : ""
                   }cursor-pointer position-relative`}
                   key={deck.header.title + index}
-                  onClick={()=> document!.getElementById(deck.id)!.scrollIntoView({behavior:"smooth", inline:"end"})}
+                  onClick={()=> {
+                    let toScrollValue = document!.getElementById(deck.id)!.getBoundingClientRect().left
+                    document!.getElementById('draggable-container')!.scrollLeft = toScrollValue}}
                 >
                   {avatar && (
                     <div className="position-absolute avatar-xs rounded-circle">

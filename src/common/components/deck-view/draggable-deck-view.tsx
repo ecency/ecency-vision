@@ -24,8 +24,6 @@ const reorder = (list: any, startIndex: any, endIndex: any) => {
   return result;
 };
 
-const grid = 8;
-
 const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
   ...draggableStyle,
 });
@@ -35,6 +33,7 @@ const getListStyle = (isDraggingOver: boolean, theme: string) => ({
   display: "flex",
   padding: '8px 80px 8px 8px',
   overflow: "auto",
+  scrollBehavior:"smooth"
 });
 
 resetServerContext();
@@ -78,8 +77,9 @@ const DraggableDeckView = ({
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}
-            style={getListStyle(snapshot.isDraggingOver, rest.global.theme)}
+            style={getListStyle(snapshot.isDraggingOver, rest.global.theme) as any}
             {...provided.droppableProps}
+            id="draggable-container"
           >
             {items.map((item: any, index: any) => (
               <Draggable
