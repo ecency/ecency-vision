@@ -94,7 +94,7 @@ export const Deck = ({
   ...rest
 }: DeckProps) => {
   return (
-    <div className={"deck mr-3 rounded-top"}>
+    <div className={`deck mr-3 rounded-top ${header.title.includes("Notifications") ? "list-body pb-0" : ""}`}>
       <DeckHeader {...header} index={index} onRemove={onRemove} />
       <div
         className={`py-4 pr-4 pl-3 item-container ${

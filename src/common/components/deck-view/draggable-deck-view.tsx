@@ -97,6 +97,7 @@ const DraggableDeckView = ({
                       provided.draggableProps.style
                     )}
                     id={item.id}
+                    className={item.header.title.includes("Notifications") ? "notification-list" : ""}
                   >
                     <Deck
                       toggleListStyle={toggleListStyle}

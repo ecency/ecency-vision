@@ -29,6 +29,7 @@ import {syncSvg, checkSvg, bellOffSvg, bellCheckSvg} from "../../img/svg";
 
 import {hiveNotifySetLastRead} from "../../api/operations";
 import {ActiveUser} from "../../store/active-user/types";
+import { history } from "../../store";
 
 export const date2key = (s: string): string => {
     if (s === 'Yesterday') {
@@ -57,16 +58,18 @@ export class NotificationListItem extends Component<{
     global: Global;
     history: History;
     notification: ApiNotification;
+    entry?: ApiNotification;
     markNotifications: (id: string | null) => void;
     addAccount: (data: Account) => void;
     toggleUIProp: (what: ToggleType) => void;
 }> {
 
     markAsRead = () => {
-        const {notification, markNotifications} = this.props;
+        const {notification:primaryNotification, entry, markNotifications} = this.props;
+        const notification = primaryNotification || entry
 
-        if (notification.read === 0) {
-            markNotifications(notification.id);
+        if (notification!.read === 0) {
+            markNotifications(notification!.id);
         }
     }
 
@@ -77,8 +80,8 @@ export class NotificationListItem extends Component<{
     }
 
     render() {
-        const {notification} = this.props;
-
+        const {notification:primaryNotification, entry} = this.props;
+        const notification = primaryNotification || entry
         const sourceLinkMain = ProfileLink({
             ...this.props,
             username: notification.source,
@@ -353,7 +356,7 @@ export class DialogContent extends Component<NotificationProps> {
         ]
 
         const dropDownConfig = {
-            history: this.props.history,
+            history: this.props.history || history,
             label: '',
             items: menuItems
         };

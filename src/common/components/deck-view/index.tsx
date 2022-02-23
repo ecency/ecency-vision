@@ -29,6 +29,8 @@ import { getAccountHistory, getFullTrendingTags } from "../../api/hive";
 import { TransactionRow } from "../transactions";
 import MyTooltip from "../tooltip";
 import { Transaction } from "../../store/transactions/types";
+import { getNotifications } from "../../api/private-api";
+import { NotificationListItem } from "../notifications";
 
 const DeckViewContainer = ({
   global,
@@ -46,22 +48,24 @@ const DeckViewContainer = ({
     setLoadingNewContent(true);
     if (contentType) {
       if (contentType === "Notifications") {
-        getAccountNotifications(account).then((res) => {
-          setDecks(
-            getItems([
-              ...decks,
-              {
-                data: res,
-                listItemComponent: SearchListItem,
-                header: {
-                  title: `${contentType} @${account}`,
-                  icon: notifications,
+        getNotifications(rest.activeUser.username, null, null, account).then(
+          (res) => {
+            setDecks(
+              getItems([
+                ...decks,
+                {
+                  data: res,
+                  listItemComponent: NotificationListItem,
+                  header: {
+                    title: `${contentType} @${account}`,
+                    icon: notifications,
+                  },
                 },
-              },
-            ])
-          );
-          setLoadingNewContent(false);
-        });
+              ])
+            );
+            setLoadingNewContent(false);
+          }
+        );
       } else if (contentType === "Wallet") {
         setLoadingNewContent(true);
         fetchTransactions(account);
@@ -162,10 +166,15 @@ const DeckViewContainer = ({
             },
           });
 
-          getAccountNotifications(accountName).then((notificationsData) => {
+          getNotifications(
+            rest.activeUser.username,
+            null,
+            null,
+            accountName
+          ).then((notificationsData) => {
             defaultDecks.push({
               data: notificationsData,
-              listItemComponent: SearchListItem,
+              listItemComponent: NotificationListItem,
               header: {
                 title: `Notifications @${accountName}`,
                 icon: notifications,
@@ -255,15 +264,19 @@ const DeckViewContainer = ({
                     index % 2 === 1 ? "my-icons-5 " : ""
                   }cursor-pointer position-relative`}
                   key={deck.header.title + index}
-                  onClick={()=> {
-                    let elementToFocus = document!.getElementById(deck.id)
-                    let toScrollValue = elementToFocus!.getBoundingClientRect().left;
-                    elementToFocus?.classList.add("active-deck")
-                    setTimeout(()=>{
-                      elementToFocus?.classList.remove("active-deck")
-                    },5000)
+                  onClick={() => {
+                    let elementToFocus = document!.getElementById(deck.id);
+                    let toScrollValue =
+                      elementToFocus!.getBoundingClientRect().left;
+                    elementToFocus?.classList.add("active-deck");
+                    setTimeout(() => {
+                      elementToFocus?.classList.remove("active-deck");
+                    }, 5000);
 
-                    document!.getElementById('draggable-container')!.scrollLeft = toScrollValue}}
+                    document!.getElementById(
+                      "draggable-container"
+                    )!.scrollLeft = toScrollValue;
+                  }}
                 >
                   {avatar && (
                     <div className="position-absolute avatar-xs rounded-circle">

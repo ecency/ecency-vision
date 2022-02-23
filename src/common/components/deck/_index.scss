@@ -2,7 +2,8 @@
   background-color: $white;
   min-width: 379px;
   max-width: 379px;
-  height: fit-content;
+  height: fit-content !important;
+  overflow: hidden !important;
 
   @include themify(night) {
     background-color: $dark-two;
