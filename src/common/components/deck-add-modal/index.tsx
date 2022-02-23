@@ -41,39 +41,39 @@ const OptionWithIcon = ({ title, icon, onOptionClick, disabled }: any) => (
 
 const options = [
   {
-    title: "Users",
+    title: _t("decks.users"),
     icon: person,
   },
   {
-    title: "Trending topics",
+    title: _t("decks.trending-topics"),
     icon: hot,
   },
   {
-    title: "Search",
+    title: _t("decks.search"),
     icon: magnify,
   },
   {
-    title: "Community",
+    title: _t("decks.community"),
     icon: communities,
   },
   {
-    title: "Topic",
+    title: _t("decks.topic"),
     icon: tags,
   },
   {
-    title: "Notifications",
+    title: _t("decks.notifications"),
     icon: notificationSvg,
   },
   {
-    title: "Wallet",
+    title: _t("decks.wallet"),
     icon: wallet,
   },
   {
-    title: "Favorite",
+    title: _t("decks.favorite"),
     icon: starOutlineSvg,
   },
   {
-    title: "Trending",
+    title: _t("decks.trending"),
     icon: globalTrending,
   },
   // {
@@ -83,20 +83,20 @@ const options = [
 ];
 
 const contentTypes = [
-  { code: "", name: "Select content type" },
-  { code: "blog", name: "Blogs" },
-  { code: "posts", name: "Posts" },
-  { code: "comments", name: "Comments" },
-  { code: "replies", name: "Replies" },
+  { code: "", name: _t("decks.select")},
+  { code: "blog", name: _t("decks.blogs") },
+  { code: "posts", name: _t("decks.posts") },
+  { code: "comments", name:_t("decks.comments") },
+  { code: "replies", name: _t("decks.replies") },
 ];
 
 const communityContentTypes = [
-  { code: "", name: "Select content type" },
-  { code: "trending", name: "Trending" },
-  { code: "hot", name: "Hot" },
-  { code: "created", name: "New" },
-  { code: "payout", name: "Payouts" },
-  { code: "muted", name: "Muted" },
+  { code: "", name: _t("decks.select") },
+  { code: "trending", name: _t("decks.trending") },
+  { code: "hot", name: _t("decks.hot") },
+  { code: "created", name: _t("decks.created") },
+  { code: "payout", name: _t("decks.payout") },
+  { code: "muted", name: _t("decks.muted") },
 ];
 
 const AddColumn = ({
@@ -127,8 +127,8 @@ const AddColumn = ({
 
     _timer = setTimeout(() => {
       let fetchData =
-        selectedValue === "Community" ? getCommunities : lookupAccounts;
-      let searchTerm = selectedValue === "Community" ? "" : toValue;
+        selectedValue === _t("decks.community") ? getCommunities : lookupAccounts;
+      let searchTerm = selectedValue ===_t("decks.community") ? "" : toValue;
       return (fetchData as any)(searchTerm, 5, toValue)
         .then((resp: any) => {
           if (resp) {
@@ -163,7 +163,7 @@ const AddColumn = ({
 
   const suggestionProps = {
     renderer: (i: any) => {
-      let valueToShow = selectedValue === "Community" ? i.title : i;
+      let valueToShow = selectedValue === _t("decks.community") ? i.title : i;
       return (
         <>
           {userAvatar({
@@ -177,18 +177,18 @@ const AddColumn = ({
     },
     onSelect: (selectedText: any) => {
       let valueToSelect =
-        selectedValue === "Community" ? selectedText.name : selectedText;
-      setTo(selectedValue === "Community" ? selectedText.title :valueToSelect);
+        selectedValue === _t("decks.community") ? selectedText.name : selectedText;
+      setTo(selectedValue === _t("decks.community") ? selectedText.title :valueToSelect);
       setToSelected(valueToSelect);
     },
   };
 
   const handleAddColumn = () => {
     let couldBeExistingDeck = `${
-      selectedValue === "Users" || selectedValue === "Community"
+      selectedValue === _t("decks.users") || selectedValue === _t("decks.community")
         ? contentType
         : selectedValue
-    } @${selectedValue === "Community" ? toSelected : to}`;
+    } @${selectedValue ===_t("decks.community") ? toSelected : to}`;
     if (
       decks.some((deck: any) => {
         let deckExists =
@@ -200,7 +200,7 @@ const AddColumn = ({
     } else {
       onSelect(
         toSelected,
-        selectedValue === "Users" || selectedValue === "Community"
+        selectedValue === _t("decks.users") || selectedValue === _t("decks.community")
           ? contentType
           : selectedValue
       );
@@ -210,7 +210,7 @@ const AddColumn = ({
   };
 
   let type =
-    selectedValue === "Community" ? communityContentTypes : contentTypes;
+    selectedValue ===_t("decks.community") ? communityContentTypes : contentTypes;
 
   return (
     <div className="d-flex flex-column align-items-center mt-5">
@@ -221,7 +221,7 @@ const AddColumn = ({
         <>
           <Form.Group>
             <Form.Label>
-              {selectedValue === "Community" ? "Community" : "Username"}
+              {selectedValue === _t("decks.community") ? _t("decks.community") : _t("decks.username")}
             </Form.Label>
 
             <SuggestionList items={toData} {...suggestionProps}>
@@ -250,12 +250,12 @@ const AddColumn = ({
                 />
               </InputGroup>
             </SuggestionList>
-            {deckExists && <small className="text-danger">The column you're trying to add already exists!</small>}
+            {deckExists && <small className="text-danger">{_t("decks.deck-exists")}</small>}
           </Form.Group>
 
-          {(selectedValue === "Users" || selectedValue === "Community") && (
+          {(selectedValue === _t("decks.users") || selectedValue === _t("decks.community")) && (
             <Form.Group className="w-100">
-              <Form.Label>Type of content</Form.Label>
+              <Form.Label>{_t("decks.content-type")}</Form.Label>
               <Form.Control
                 type="text"
                 as="select"
@@ -276,13 +276,13 @@ const AddColumn = ({
           <Button
             className="align-self-start mb-5"
             disabled={
-              selectedValue === "Notifications" || selectedValue === "Wallet"
+              selectedValue === _t("decks.notifications") || selectedValue === _t("decks.wallet")
                 ? toSelected.length === 0
                 : contentType === "" || toSelected.length === 0
             }
             onClick={handleAddColumn}
           >
-            Add
+            {_t("decks.add")}
           </Button>
         </>
       )}
@@ -292,7 +292,7 @@ const AddColumn = ({
         onClick={() => setSelectedValue(null)}
       >
         <div className="mr-2">{arrowLeftSvg}</div>
-        <div>Go back</div>
+        <div>{_t("decks.go-back")}</div>
       </div>
     </div>
   );
@@ -308,11 +308,11 @@ export const DeckAddModal = ({
   useEffect(() => {
     if (
       selectedOption &&
-      selectedOption !== "Users" &&
-      selectedOption !== "Notifications" &&
-      selectedOption !== "Wallet" &&
-      selectedOption !== "Search" &&
-      selectedOption !== "Community"
+      selectedOption !== _t("decks.users") &&
+      selectedOption !== _t("decks.notifications") &&
+      selectedOption !== _t("decks.wallet") &&
+      selectedOption !== _t("decks.search") &&
+      selectedOption !==_t("decks.community")
     ) {
       onClose();
       onSelect(selectedOption);
@@ -327,34 +327,33 @@ export const DeckAddModal = ({
       >
         <div className="flex-grow-1 text-center">
           {selectedOption &&
-          (selectedOption === "Users" ||
-            selectedOption === "Notifications" ||
-            selectedOption === "Wallet" ||
-            selectedOption === "Search" ||
-            selectedOption === "Search" ||
-            selectedOption === "Community") ? (
+          (selectedOption === _t("decks.users") ||
+            selectedOption === _t("decks.notifications") ||
+            selectedOption === _t("decks.wallet") ||
+            selectedOption === _t("decks.search") ||
+            selectedOption ===_t("decks.community")) ? (
             <div className="d-flex align-items-center justify-content-center">
               <div className="header-icon mr-2 d-flex">
                 {options.find((item) => item.title === selectedOption)?.icon}
               </div>
               <div>
-                Add{" "}
+                {_t("decks.add")}
                 {options.find((item) => item.title === selectedOption)?.title}{" "}
-                Column
+                {_t("decks.column")}
               </div>
             </div>
           ) : (
-            "Which column type do you want to add?"
+            _t("decks.select-column-type")
           )}
         </div>
       </ModalHeader>
       <ModalBody className="d-flex justify-content-center">
         {selectedOption &&
-        (selectedOption === "Users" ||
-          selectedOption === "Notifications" ||
-          selectedOption === "Wallet" ||
-          selectedOption === "Search" ||
-          selectedOption === "Community") ? (
+        (selectedOption === _t("decks.users") ||
+          selectedOption === _t("decks.notifications") ||
+          selectedOption === _t("decks.wallet") ||
+          selectedOption === _t("decks.search") ||
+          selectedOption === _t("decks.community")) ? (
           <AddColumn
             selectedValue={selectedOption}
             setSelectedValue={setSelectedOption}

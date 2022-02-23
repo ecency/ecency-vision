@@ -5,6 +5,7 @@ import {
   Draggable,
   resetServerContext,
 } from "react-beautiful-dnd";
+import { _t } from "../../i18n";
 import { Deck } from "../deck";
 
 // fake data generator
@@ -31,9 +32,9 @@ const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
 const getListStyle = (isDraggingOver: boolean, theme: string) => ({
   background: theme === "night" ? "#232e3b" : "#e9f2fc",
   display: "flex",
-  padding: '8px 80px 28px 28px',
+  padding: "8px 80px 28px 28px",
   overflow: "auto",
-  scrollBehavior:"smooth"
+  scrollBehavior: "smooth",
 });
 
 resetServerContext();
@@ -60,7 +61,7 @@ const DraggableDeckView = ({
     );
 
     setItems(reorderedItems);
-    setDecks(reorderedItems)
+    setDecks(reorderedItems);
   };
 
   useEffect(() => {
@@ -77,7 +78,9 @@ const DraggableDeckView = ({
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}
-            style={getListStyle(snapshot.isDraggingOver, rest.global.theme) as any}
+            style={
+              getListStyle(snapshot.isDraggingOver, rest.global.theme) as any
+            }
             {...provided.droppableProps}
             id="draggable-container"
           >
@@ -87,31 +90,40 @@ const DraggableDeckView = ({
                 draggableId={item.id}
                 index={index}
               >
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    style={getItemStyle(
-                      snapshot.isDragging,
-                      provided.draggableProps.style
-                    )}
-                    id={item.id}
-                    className={item.header.title.includes("Notifications") ? "notification-list" : ""}
-                  >
-                    <Deck
-                      toggleListStyle={toggleListStyle}
-                      onRemove={(option:string) => {
-                        let filteredDecks = items.filter(
-                          (item: any) => item.header.title !== option
-                        );
-                        setDecks(filteredDecks);
-                      }}
-                      {...item}
-                      {...rest}
-                    />
-                  </div>
-                )}
+                {(provided, snapshot) => {
+                  const notificationTranslated = _t("decks.notifications");
+                  const containerClass = item.header.title.includes(notificationTranslated) ? "list-body pb-0" : ""
+                  
+                  return (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      style={getItemStyle(
+                        snapshot.isDragging,
+                        provided.draggableProps.style
+                      )}
+                      id={item.id}
+                      className={
+                        item.header.title.includes(_t("decks.notifications"))
+                          ? "notification-list"
+                          : ""
+                      }
+                    >
+                      <Deck
+                        toggleListStyle={toggleListStyle}
+                        onRemove={(option: string) => {
+                          let filteredDecks = items.filter(
+                            (item: any) => item.header.title !== option
+                          );
+                          setDecks(filteredDecks);
+                        }}
+                        {...item}
+                        {...rest}
+                      />
+                    </div>
+                  );
+                }}
               </Draggable>
             ))}
             {provided.placeholder}

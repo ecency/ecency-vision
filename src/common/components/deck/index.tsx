@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
+import { _t } from "../../i18n";
 import {
   chevronDownSvgForSlider,
   chevronUpSvg,
@@ -56,7 +57,7 @@ const DeckHeader = ({ title, icon, index, onRemove }: DeckHeaderProps) => {
         <Card.Body className="p-0 d-flex justify-content-end p-3">
           <Button size="sm" className="d-flex align-items-center">
             <div className="deck-options-icon mr-2">{refreshSvg}</div>
-            <div>Reload</div>
+            <div>{_t("decks.reload")}</div>
           </Button>
           <Button
             size="sm"
@@ -65,7 +66,7 @@ const DeckHeader = ({ title, icon, index, onRemove }: DeckHeaderProps) => {
             onClick={() => onRemove(title)}
           >
             <div className="deck-options-icon mr-2">{deleteForeverSvg}</div>
-            <div>Remove</div>
+            <div>{_t("decks.remove")}</div>
           </Button>
         </Card.Body>
       </Accordion.Collapse>
@@ -93,8 +94,10 @@ export const Deck = ({
   onRemove,
   ...rest
 }: DeckProps) => {
+  const notificationTranslated = _t("decks.notifications");
+  const containerClass = header.title.includes(notificationTranslated) ? "list-body pb-0" : ""
   return (
-    <div className={`deck mr-3 rounded-top ${header.title.includes("Notifications") ? "list-body pb-0" : ""}`}>
+    <div className={`deck mr-3 rounded-top ${containerClass}`}>
       <DeckHeader {...header} index={index} onRemove={onRemove} />
       <div
         className={`py-4 pr-4 pl-3 item-container ${

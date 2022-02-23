@@ -31,6 +31,7 @@ import MyTooltip from "../tooltip";
 import { Transaction } from "../../store/transactions/types";
 import { getNotifications } from "../../api/private-api";
 import { NotificationListItem } from "../notifications";
+import { _t } from "../../i18n";
 
 const DeckViewContainer = ({
   global,
@@ -47,7 +48,7 @@ const DeckViewContainer = ({
     setOpenModal(false);
     setLoadingNewContent(true);
     if (contentType) {
-      if (contentType === "Notifications") {
+      if (contentType === _t("decks.notifications")) {
         getNotifications(rest.activeUser.username, null, null, account).then(
           (res) => {
             setDecks(
@@ -66,7 +67,7 @@ const DeckViewContainer = ({
             setLoadingNewContent(false);
           }
         );
-      } else if (contentType === "Wallet") {
+      } else if (contentType === _t("decks.wallet")) {
         setLoadingNewContent(true);
         fetchTransactions(account);
       } else if (account.includes("hive-")) {
@@ -110,7 +111,7 @@ const DeckViewContainer = ({
           setLoadingNewContent(false);
         });
       }
-    } else if (account === "Trending topics") {
+    } else if (account === _t("decks.trending-topics")) {
       getFullTrendingTags().then((res) => {
         setDecks(
           getItems([
@@ -124,7 +125,7 @@ const DeckViewContainer = ({
         );
         setLoadingNewContent(false);
       });
-    } else if (account === "Trending") {
+    } else if (account === _t("decks.trending")) {
       getPostsRanked("trending").then((res) => {
         setDecks(
           getItems([
@@ -161,7 +162,7 @@ const DeckViewContainer = ({
             data: accountData,
             listItemComponent: SearchListItem,
             header: {
-              title: `posts @${accountName}`,
+              title: `${_t("decks.posts")} @${accountName}`,
               icon: person,
             },
           });
@@ -176,7 +177,7 @@ const DeckViewContainer = ({
               data: notificationsData,
               listItemComponent: NotificationListItem,
               header: {
-                title: `Notifications @${accountName}`,
+                title: `${_t("decks.notifications")} @${accountName}`,
                 icon: notifications,
               },
             });
@@ -189,13 +190,13 @@ const DeckViewContainer = ({
           defaultDecks.unshift({
             data: res,
             listItemComponent: SearchListItem,
-            header: { title: `Trending`, icon: globalTrending },
+            header: { title: _t("decks.trending"), icon: globalTrending },
           });
           getFullTrendingTags().then((res) => {
             defaultDecks.unshift({
               data: res,
               listItemComponent: HotListItem,
-              header: { title: `Trending Tags`, icon: hot },
+              header: { title: _t("decks.trending-topics"), icon: hot },
             });
             setDecks(getItems(defaultDecks));
             setLoadingNewContent(false);
@@ -216,7 +217,7 @@ const DeckViewContainer = ({
             data: transactionsList,
             listItemComponent: TransactionRow,
             header: {
-              title: `Wallet @${
+              title: `${_t("decks.wallet")} @${
                 firstTransaction.curator ||
                 firstTransaction.to ||
                 firstTransaction.delegator ||
