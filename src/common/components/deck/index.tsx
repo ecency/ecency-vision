@@ -107,7 +107,7 @@ export const Deck = ({
               toggleListStyle={toggleListStyle}
               index={index + 1}
               key={`${item.title}-${index}`}
-              entry={item}
+              entry={{...item,toggleNotNeeded:true}}
               {...item}
               {...rest}
             />

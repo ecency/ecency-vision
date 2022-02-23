@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {History} from "history";
-
+import {history as historyFromStore} from '../../store'
 import {Account} from "../../store/accounts/types";
 
 export const makePath = (username: string) => `/@${username}`;
@@ -19,11 +19,11 @@ export class ProfileLink extends Component<Props> {
     clicked = async (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
 
-        const {username, history, addAccount, afterClick} = this.props;
+        const {username, history = historyFromStore, addAccount, afterClick} = this.props;
 
         addAccount({name: username});
 
-        history.push(makePath(username));
+        history!.push(makePath(username));
 
         if (afterClick) afterClick();
     };
