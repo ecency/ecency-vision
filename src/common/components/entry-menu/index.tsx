@@ -61,6 +61,7 @@ interface Props {
     trackEntryPin: (entry: Entry) => void;
     setEntryPin: (entry: Entry, pin: boolean) => void;
     toggleUIProp: (what: ToggleType) => void;
+    toggleEdit?: () => void;
 }
 
 interface State {
@@ -232,13 +233,14 @@ export class EntryMenu extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, activeUser, entry, entryPinTracker, alignBottom, separatedSharing, extraMenuItems} = this.props;
+        const {global, activeUser, entry, entryPinTracker, alignBottom, separatedSharing, extraMenuItems, toggleEdit} = this.props;
        
         const isComment = !!entry.parent_author;
 
         const ownEntry = activeUser && activeUser.username === entry.author;
 
-        const editable = ownEntry && !isComment;
+        // const editable = ownEntry && !isComment;
+        const editable = ownEntry;
         const deletable = ownEntry && !(entry.children > 0 || entry.net_rshares > 0 || entry.is_paidout);
 
         let menuItems: MenuItem[] = [];
@@ -281,7 +283,8 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 ...[
                     {
                         label: _t("g.edit"),
-                        onClick: this.edit,
+                        // onClick: this.edit,
+                        onClick: isComment && toggleEdit ? toggleEdit : this.edit,
                         icon: pencilOutlineSvg
                     }
                 ]
@@ -482,7 +485,8 @@ export default (p: Props) => {
         addCommunity: p.addCommunity,
         trackEntryPin: p.trackEntryPin,
         setEntryPin: p.setEntryPin,
-        toggleUIProp: p.toggleUIProp
+        toggleUIProp: p.toggleUIProp,
+        toggleEdit: p.toggleEdit,
     }
 
     return <EntryMenu {...props} />
