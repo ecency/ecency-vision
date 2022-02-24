@@ -142,6 +142,107 @@ const DeckViewContainer = ({
     }
   };
 
+  const onReloadColumn = (title: string) => {
+    let itemToUpdate = decks.find((item: any) => item.header.title === title);
+    let indexOfItemToUpdate = decks.indexOf(itemToUpdate);
+    let account = title.split("@")[1];
+    let updatedDecks = [...decks];
+    updatedDecks[indexOfItemToUpdate] = {
+      ...itemToUpdate,
+      header: { ...itemToUpdate.header, reloading: true },
+    };
+    setDecks(getItems([...updatedDecks]));
+    getNotifications(rest.activeUser.username, null, null, account).then(
+      (res) => {
+        (updatedDecks[indexOfItemToUpdate] = {
+          data: res,
+          listItemComponent: NotificationListItem,
+          header: {
+            title: title,
+            icon: notifications,
+          },
+        }),
+          setDecks(getItems([...updatedDecks]));
+        debugger;
+        setLoadingNewContent(false);
+      }
+    );
+    // else if (contentType === _t("decks.wallet")) {
+    //   setLoadingNewContent(true);
+    //   fetchTransactions(account);
+    // } else if (account.includes("hive-")) {
+    //   getPostsRanked(
+    //     contentType,
+    //     undefined,
+    //     undefined,
+    //     undefined,
+    //     account
+    //   ).then((res) => {
+    //     setDecks(
+    //       getItems([
+    //         ...decks,
+    //         {
+    //           data: res,
+    //           listItemComponent: SearchListItem,
+    //           header: {
+    //             title: `${contentType} @${account}`,
+    //             icon: communities,
+    //           },
+    //         },
+    //       ])
+    //     );
+    //     setLoadingNewContent(false);
+    //   });
+    // } else {
+    //   getAccountPosts(contentType, account).then((res) => {
+    //     setDecks(
+    //       getItems([
+    //         ...decks,
+    //         {
+    //           data: res,
+    //           listItemComponent: SearchListItem,
+    //           header: {
+    //             title: `${contentType} @${account}`,
+    //             icon: person,
+    //           },
+    //         },
+    //       ])
+    //     );
+    //     setLoadingNewContent(false);
+    //   });
+    // }
+
+    // else if (account === _t("decks.trending-topics")) {
+    //   getFullTrendingTags().then((res) => {
+    //     setDecks(
+    //       getItems([
+    //         ...decks,
+    //         {
+    //           data: res,
+    //           listItemComponent: HotListItem,
+    //           header: { title: `${account}`, icon: hot },
+    //         },
+    //       ])
+    //     );
+    //     setLoadingNewContent(false);
+    //   });
+    // } else if (account === _t("decks.trending")) {
+    //   getPostsRanked("trending").then((res) => {
+    //     setDecks(
+    //       getItems([
+    //         ...decks,
+    //         {
+    //           data: res,
+    //           listItemComponent: SearchListItem,
+    //           header: { title: `${account}`, icon: globalTrending },
+    //         },
+    //       ])
+    //     );
+    //     setLoadingNewContent(false);
+    //   });
+    // }
+  };
+
   const [fetched, setFetched] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
 
@@ -317,6 +418,7 @@ const DeckViewContainer = ({
             global={global}
             toggleListStyle={toggleListStyle}
             loading={loadingNewContent}
+            onReloadColumn={onReloadColumn}
           />
         </div>
       </div>

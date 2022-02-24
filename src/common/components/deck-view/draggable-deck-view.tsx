@@ -44,6 +44,7 @@ const DraggableDeckView = ({
   toggleListStyle,
   loading,
   setDecks,
+  onReloadColumn,
   ...rest
 }: any) => {
   const [items, setItems] = useState<any>(getItems(decks));
@@ -118,6 +119,7 @@ const DraggableDeckView = ({
                           );
                           setDecks(filteredDecks);
                         }}
+                        onReloadColumn={onReloadColumn}
                         {...item}
                         {...rest}
                       />
