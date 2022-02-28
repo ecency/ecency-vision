@@ -45,6 +45,7 @@ const DeckViewContainer = ({
   const [decks, setDecks] = useState<any>(getItems(initialDeckItems));
 
   const onSelectColumn = (account: string, contentType: string) => {
+    debugger;
     setOpenModal(false);
     setLoadingNewContent(true);
     if (contentType) {
@@ -94,7 +95,10 @@ const DeckViewContainer = ({
           setLoadingNewContent(false);
         });
       } else {
-        getAccountPosts(contentType, account).then((res) => {
+        getAccountPosts(
+          contentType === "blogs" ? "blog" : contentType,
+          account
+        ).then((res) => {
           setDecks(
             getItems([
               ...decks,
@@ -144,103 +148,110 @@ const DeckViewContainer = ({
 
   const onReloadColumn = (title: string) => {
     let itemToUpdate = decks.find((item: any) => item.header.title === title);
+    let titleSplitted = title.split("@");
     let indexOfItemToUpdate = decks.indexOf(itemToUpdate);
-    let account = title.split("@")[1];
+    let deckType = titleSplitted[0].trim();
+    let account = titleSplitted[1];
     let updatedDecks = [...decks];
     updatedDecks[indexOfItemToUpdate] = {
       ...itemToUpdate,
       header: { ...itemToUpdate.header, reloading: true },
     };
     setDecks(getItems([...updatedDecks]));
-    getNotifications(rest.activeUser.username, null, null, account).then(
-      (res) => {
+    let isPost = deckType === _t("decks.posts").toLocaleLowerCase() ||
+    deckType === _t("decks.blogs").toLocaleLowerCase() ||
+    deckType === _t("decks.comments").toLocaleLowerCase() ||
+    deckType === _t("decks.replies").toLocaleLowerCase()
+    switch (deckType) {
+      case _t("decks.notifications"):
+        getNotifications(rest.activeUser.username, null, null, account).then(
+          (res) => {
+            (updatedDecks[indexOfItemToUpdate] = {
+              data: res,
+              listItemComponent: NotificationListItem,
+              header: {
+                title: title,
+                icon: notifications,
+              },
+            }),
+              setDecks(getItems([...updatedDecks]));
+            setLoadingNewContent(false);
+          }
+        );
+        break;
+      case _t("decks.trending-topics"):
+        getFullTrendingTags().then((res) => {
+          (updatedDecks[indexOfItemToUpdate] = {
+            data: res,
+            listItemComponent: HotListItem,
+            header: {
+              title: title,
+              icon: hot,
+            },
+          }),
+            setDecks(getItems([...updatedDecks]));
+          setLoadingNewContent(false);
+        });
+        break;
+      case _t("decks.trending"):
+        getFullTrendingTags().then((res) => {
+          (updatedDecks[indexOfItemToUpdate] = {
+            data: res,
+            listItemComponent: HotListItem,
+            header: {
+              title: title,
+              icon: hot,
+            },
+          }),
+            setDecks(getItems([...updatedDecks]));
+          setLoadingNewContent(false);
+        });
+        break;
+
+      case _t("decks.wallet"):
+        fetchTransactions(account);
+        break;
+    }
+    if (deckType.includes("hive-")) {
+      getPostsRanked(
+        deckType.toLocaleLowerCase(),
+        undefined,
+        undefined,
+        undefined,
+        account
+      ).then((res) => {
         (updatedDecks[indexOfItemToUpdate] = {
           data: res,
-          listItemComponent: NotificationListItem,
+          listItemComponent: SearchListItem,
           header: {
             title: title,
-            icon: notifications,
+            icon: communities,
           },
         }),
           setDecks(getItems([...updatedDecks]));
-        debugger;
+      });
+    } else if(isPost){
+      let translatedBlogs = _t("decks.blogs").toLocaleLowerCase()
+      let handledSortWithBlogs = 
+      deckType === translatedBlogs
+      ? "blog"
+      : deckType.toLocaleLowerCase()
+      debugger;
+      getAccountPosts(handledSortWithBlogs,
+        account
+      ).then((res) => {
+        (updatedDecks[indexOfItemToUpdate] = {
+          data: res,
+          listItemComponent: SearchListItem,
+          header: {
+            title: title,
+            icon: person,
+          },
+        }),
+          setDecks(getItems([...updatedDecks]));
         setLoadingNewContent(false);
-      }
-    );
-    // else if (contentType === _t("decks.wallet")) {
-    //   setLoadingNewContent(true);
-    //   fetchTransactions(account);
-    // } else if (account.includes("hive-")) {
-    //   getPostsRanked(
-    //     contentType,
-    //     undefined,
-    //     undefined,
-    //     undefined,
-    //     account
-    //   ).then((res) => {
-    //     setDecks(
-    //       getItems([
-    //         ...decks,
-    //         {
-    //           data: res,
-    //           listItemComponent: SearchListItem,
-    //           header: {
-    //             title: `${contentType} @${account}`,
-    //             icon: communities,
-    //           },
-    //         },
-    //       ])
-    //     );
-    //     setLoadingNewContent(false);
-    //   });
-    // } else {
-    //   getAccountPosts(contentType, account).then((res) => {
-    //     setDecks(
-    //       getItems([
-    //         ...decks,
-    //         {
-    //           data: res,
-    //           listItemComponent: SearchListItem,
-    //           header: {
-    //             title: `${contentType} @${account}`,
-    //             icon: person,
-    //           },
-    //         },
-    //       ])
-    //     );
-    //     setLoadingNewContent(false);
-    //   });
-    // }
-
-    // else if (account === _t("decks.trending-topics")) {
-    //   getFullTrendingTags().then((res) => {
-    //     setDecks(
-    //       getItems([
-    //         ...decks,
-    //         {
-    //           data: res,
-    //           listItemComponent: HotListItem,
-    //           header: { title: `${account}`, icon: hot },
-    //         },
-    //       ])
-    //     );
-    //     setLoadingNewContent(false);
-    //   });
-    // } else if (account === _t("decks.trending")) {
-    //   getPostsRanked("trending").then((res) => {
-    //     setDecks(
-    //       getItems([
-    //         ...decks,
-    //         {
-    //           data: res,
-    //           listItemComponent: SearchListItem,
-    //           header: { title: `${account}`, icon: globalTrending },
-    //         },
-    //       ])
-    //     );
-    //     setLoadingNewContent(false);
-    //   });
-    // }
+      });
+    }
   };
 
   const [fetched, setFetched] = useState(false);

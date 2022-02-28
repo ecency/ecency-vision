@@ -84,7 +84,7 @@ const options = [
 
 const contentTypes = [
   { code: "", name: _t("decks.select")},
-  { code: "blog", name: _t("decks.blogs") },
+  { code: "blogs", name: _t("decks.blogs") },
   { code: "posts", name: _t("decks.posts") },
   { code: "comments", name:_t("decks.comments") },
   { code: "replies", name: _t("decks.replies") },
