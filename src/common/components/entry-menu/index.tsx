@@ -481,16 +481,14 @@ export class EntryMenu extends BaseComponent<Props, State> {
             ];
         }
 
-        if (global.isElectron) {
-            menuItems = [
-                ...menuItems,
-                {
-                    label: _t("entry.address-copy"),
-                    onClick: this.copyAddress,
-                    icon: linkVariantSvg
-                }
-            ]
-        }
+        menuItems = [
+            ...menuItems,
+            {
+                label: _t("entry.address-copy"),
+                onClick: this.copyAddress,
+                icon: linkVariantSvg
+            }
+        ];        
 
         if(extraMenuItems){
             menuItems = [
