@@ -45,7 +45,6 @@ const DeckViewContainer = ({
   const [decks, setDecks] = useState<any>(getItems(initialDeckItems));
 
   const onSelectColumn = (account: string, contentType: string) => {
-    debugger;
     setOpenModal(false);
     setLoadingNewContent(true);
     if (contentType) {
@@ -158,61 +157,65 @@ const DeckViewContainer = ({
       header: { ...itemToUpdate.header, reloading: true },
     };
     setDecks(getItems([...updatedDecks]));
-    let isPost = deckType === _t("decks.posts").toLocaleLowerCase() ||
-    deckType === _t("decks.blogs").toLocaleLowerCase() ||
-    deckType === _t("decks.comments").toLocaleLowerCase() ||
-    deckType === _t("decks.replies").toLocaleLowerCase()
-    switch (deckType) {
-      case _t("decks.notifications"):
-        getNotifications(rest.activeUser.username, null, null, account).then(
-          (res) => {
+    let isPost =
+      deckType.toLocaleLowerCase() === _t("decks.posts").toLocaleLowerCase() ||
+      deckType.toLocaleLowerCase() === _t("decks.blogs").toLocaleLowerCase() ||
+      deckType.toLocaleLowerCase() ===
+        _t("decks.comments").toLocaleLowerCase() ||
+      deckType.toLocaleLowerCase() === _t("decks.replies").toLocaleLowerCase();
+      let isCommunity = title.includes("hive-")
+    if (!isPost && !isCommunity) {
+      switch (deckType.toLocaleLowerCase()) {
+        case _t("decks.notifications").toLocaleLowerCase():
+          getNotifications(rest.activeUser.username, null, null, account).then(
+            (res) => {
+              (updatedDecks[indexOfItemToUpdate] = {
+                data: res,
+                listItemComponent: NotificationListItem,
+                header: {
+                  title: title,
+                  icon: notifications,
+                },
+              }),
+                setDecks(getItems([...updatedDecks]));
+              setLoadingNewContent(false);
+            }
+          );
+          break;
+        case _t("decks.trending-topics").toLocaleLowerCase():
+          getFullTrendingTags().then((res) => {
             (updatedDecks[indexOfItemToUpdate] = {
               data: res,
-              listItemComponent: NotificationListItem,
+              listItemComponent: HotListItem,
               header: {
                 title: title,
-                icon: notifications,
+                icon: hot,
               },
             }),
               setDecks(getItems([...updatedDecks]));
             setLoadingNewContent(false);
-          }
-        );
-        break;
-      case _t("decks.trending-topics"):
-        getFullTrendingTags().then((res) => {
-          (updatedDecks[indexOfItemToUpdate] = {
-            data: res,
-            listItemComponent: HotListItem,
-            header: {
-              title: title,
-              icon: hot,
-            },
-          }),
-            setDecks(getItems([...updatedDecks]));
-          setLoadingNewContent(false);
-        });
-        break;
-      case _t("decks.trending"):
-        getFullTrendingTags().then((res) => {
-          (updatedDecks[indexOfItemToUpdate] = {
-            data: res,
-            listItemComponent: HotListItem,
-            header: {
-              title: title,
-              icon: hot,
-            },
-          }),
-            setDecks(getItems([...updatedDecks]));
-          setLoadingNewContent(false);
-        });
-        break;
-
-      case _t("decks.wallet"):
-        fetchTransactions(account);
-        break;
+          });
+          break;
+        case _t("decks.trending").toLocaleLowerCase():
+          getPostsRanked("trending").then((res) => {
+            (updatedDecks[indexOfItemToUpdate] = {
+              data: res,
+              listItemComponent: SearchListItem,
+              header: {
+                title: title,
+                icon: globalTrending,
+              },
+            }),
+              setDecks(getItems([...updatedDecks]));
+            setLoadingNewContent(false);
+          });
+          break;
+        case _t("decks.wallet").toLocaleLowerCase():
+          fetchTransactions(account);
+          break;
+      }
     }
-    if (deckType.includes("hive-")) {
+    else if (isCommunity) {
       getPostsRanked(
         deckType.toLocaleLowerCase(),
         undefined,
@@ -230,16 +233,12 @@ const DeckViewContainer = ({
         }),
           setDecks(getItems([...updatedDecks]));
       });
-    } else if(isPost){
-      let translatedBlogs = _t("decks.blogs").toLocaleLowerCase()
-      let handledSortWithBlogs = 
-      deckType === translatedBlogs
-      ? "blog"
-      : deckType.toLocaleLowerCase()
+    } else if (isPost) {
+      let translatedBlogs = _t("decks.blogs").toLocaleLowerCase();
+      let handledSortWithBlogs =
+        deckType === translatedBlogs ? "blog" : deckType.toLocaleLowerCase();
       debugger;
-      getAccountPosts(handledSortWithBlogs,
-        account
-      ).then((res) => {
+      getAccountPosts(handledSortWithBlogs, account).then((res) => {
         (updatedDecks[indexOfItemToUpdate] = {
           data: res,
           listItemComponent: SearchListItem,

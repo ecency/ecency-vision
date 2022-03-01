@@ -9,7 +9,8 @@
 }
 
 .navbar {
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   background: linear-gradient($dark-sky-blue, $dusk-blue);
   display: flex;
 

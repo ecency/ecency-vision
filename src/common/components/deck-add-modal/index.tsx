@@ -337,7 +337,7 @@ export const DeckAddModal = ({
                 {options.find((item) => item.title === selectedOption)?.icon}
               </div>
               <div>
-                {_t("decks.add")}
+                {_t("decks.add")}{" "}
                 {options.find((item) => item.title === selectedOption)?.title}{" "}
                 {_t("decks.column")}
               </div>
