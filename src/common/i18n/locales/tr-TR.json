@@ -913,7 +913,8 @@
     "followed": "{{source}} seni takip etti",
     "replied": "{{source}} sana cevap verdi",
     "reblogged": "{{source}} gönderini yeniden yayınladı",
-    "transfer": "{{source}} sana {{amount}} gönderdi"
+    "transfer": "{{source}} sana {{amount}} gönderdi",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "Tüm Bildirimler",
@@ -924,6 +925,7 @@
     "type-follows": "Takipler",
     "type-reblogs": "Yeniden Paylaşılanlar",
     "type-transfers": "Transferler",
+    "type-delegations": "Delegations",
     "group-title-recent": "Son",
     "vote-str": "{{p}}% gönderi beğeniniz:",
     "reply-str": "gönderini yanıtladı:",
@@ -933,6 +935,7 @@
     "ignored-str": "engelledi",
     "reblog-str": "gönderini yeniden paylaştı:",
     "transfer-str": "size gönderdi",
+    "delegations-str": "delegated you",
     "spin-str": "Daha fazla Puan kazanma zamanı, Ecency Mobile uygulamasında Çarkı Çevir",
     "inactive-str": "Aktif ol! Yazı yaz, kazanmaya devam et",
     "referral-str": "sizin referansınızla katıldı, hoş geldin deyin",
