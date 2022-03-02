@@ -913,7 +913,8 @@
     "followed": "{{source}} seurasi sinua",
     "replied": "{{source}} vastasi",
     "reblogged": "{{source}} jakoi julkaisusi",
-    "transfer": "{{source}} lähetti sinulle {{amount}}"
+    "transfer": "{{source}} lähetti sinulle {{amount}}",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "Kaikki ilmoitukset",
@@ -924,6 +925,7 @@
     "type-follows": "Seuratut",
     "type-reblogs": "Jaot",
     "type-transfers": "Siirrot",
+    "type-delegations": "Delegations",
     "group-title-recent": "Viimeisimmät",
     "vote-str": "{{p}}% tykkää julkaisustasi:",
     "reply-str": "vastasi julkaisuusi:",
@@ -933,6 +935,7 @@
     "ignored-str": "sivuutetut",
     "reblog-str": "jakoi julkaisusi:",
     "transfer-str": "lähetti sinulle",
+    "delegations-str": "delegated you",
     "spin-str": "Aika ansaita lisää Pisteitä, pyöritä rulettia Ecency Mobile -sovelluksessa",
     "inactive-str": "Ole aktiivinen! Kirjoita ja jatka tienaamista",
     "referral-str": "liittyi suosituksestasi, toivota hänet tervetulleeksi",
