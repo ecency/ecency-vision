@@ -913,7 +913,8 @@
     "followed": "{{source}} obserwuje Cię",
     "replied": "{{source}} odpowiedział Ci",
     "reblogged": "{{source}} reblogował twój post",
-    "transfer": "{{source}} wysłał(a) Ci {{amount}}"
+    "transfer": "{{source}} wysłał(a) Ci {{amount}}",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "Wszystkie powiadomienia",
@@ -924,6 +925,7 @@
     "type-follows": "Obserwują cię",
     "type-reblogs": "Reblogi",
     "type-transfers": "Przelewy",
+    "type-delegations": "Delegations",
     "group-title-recent": "Ostatnie",
     "vote-str": "{{p}}% lubi Twój wpis:",
     "reply-str": "odpowiedział na twój post:",
@@ -933,6 +935,7 @@
     "ignored-str": "ignorowany",
     "reblog-str": "reblogował twój post:",
     "transfer-str": "wysłano do Ciebie",
+    "delegations-str": "delegated you",
     "spin-str": "Czas na zdobycie więcej punktów, Zagraj w Spin na aplikacji Ecency Mobile",
     "inactive-str": "Bądź aktywny! Napisz post, kontynuuj zarabianie",
     "referral-str": "twoi poleceni, powitaj ich",
