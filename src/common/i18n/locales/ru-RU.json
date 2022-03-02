@@ -913,7 +913,8 @@
     "followed": "{{source}} подписался на вас",
     "replied": "{{source}} ответил вам",
     "reblogged": "{{source}} сделал репост вашего поста",
-    "transfer": "{{source}} отправил вам {{amount}}"
+    "transfer": "{{source}} отправил вам {{amount}}",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "Все уведомления",
@@ -924,6 +925,7 @@
     "type-follows": "Подписки",
     "type-reblogs": "Репосты",
     "type-transfers": "Переводы",
+    "type-delegations": "Delegations",
     "group-title-recent": "Недавние",
     "vote-str": "{{p}}% проголосовал за ваш пост:",
     "reply-str": "ответил на ваш пост:",
@@ -933,6 +935,7 @@
     "ignored-str": "заглушил",
     "reblog-str": "сделал репост вашего поста:",
     "transfer-str": "отправил вам",
+    "delegations-str": "delegated you",
     "spin-str": "Пора заработать больше баллов, сыграйте в Рулетку в мобильном приложении Ecency",
     "inactive-str": "Будьте активны! Напишите пост, продолжайте зарабатывать",
     "referral-str": "присоединился по вашей ссылке. Поприветствуйте его",
