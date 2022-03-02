@@ -913,7 +913,8 @@
     "followed": "{{source}} követ téged",
     "replied": "{{source}} válaszolt neked",
     "reblogged": "{{source}} megosztotta a bejegyzésed",
-    "transfer": "{{source}} küldött neked {{amount}}"
+    "transfer": "{{source}} küldött neked {{amount}}",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "Összes értesítés",
@@ -924,6 +925,7 @@
     "type-follows": "Követések",
     "type-reblogs": "Megosztások",
     "type-transfers": "Átutalások",
+    "type-delegations": "Delegations",
     "group-title-recent": "Recent",
     "vote-str": "{{p}}% kedvencelte a bejegyzésed:",
     "reply-str": "válaszolt a bejegyzésedre:",
@@ -933,6 +935,7 @@
     "ignored-str": "mellőzve",
     "reblog-str": "megosztotta a bejegyzésed:",
     "transfer-str": "küldött neked",
+    "delegations-str": "delegated you",
     "spin-str": "Ideje még több pontot szerezni, pörgess az Ecency Mobile-on",
     "inactive-str": "Légy aktív! Írj egy bejegyzést és keress még többet",
     "referral-str": "regisztrált az ajánlásoddal, üdvözöld őt",
