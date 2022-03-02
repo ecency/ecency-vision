@@ -913,7 +913,8 @@
     "followed": "{{source}} ने आपका अनुसरण किया",
     "replied": "{{source}} ने आपको उत्तर दिया",
     "reblogged": "{{source}} ने आपके पोस्ट को रिबॉग किया",
-    "transfer": "{{source}} ने आपको {{amount}} भेजा है"
+    "transfer": "{{source}} ने आपको {{amount}} भेजा है",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "सभी अधिसूचनाएं",
@@ -924,6 +925,7 @@
     "type-follows": "अनुगमन",
     "type-reblogs": "रिब्लॉग्स",
     "type-transfers": "स्थानांतरण",
+    "type-delegations": "Delegations",
     "group-title-recent": "ताजा",
     "vote-str": "{{p}}% आपकी पोस्ट को पसंद किया है:",
     "reply-str": "आपके पोस्ट का जवाब दिया:",
@@ -933,6 +935,7 @@
     "ignored-str": "नज़रअंदाज़ करना",
     "reblog-str": "आपके पोस्ट को रीबॉग किया गया:",
     "transfer-str": "तुम्हें भेजा",
+    "delegations-str": "delegated you",
     "spin-str": "अधिक अंक अर्जित करने का समय, इसेंसी मोबाइल ऐप पर प्ले स्पिन",
     "inactive-str": "सक्रिय हों! एक पोस्ट लिखो, कमाई जारी रखो",
     "referral-str": "अपने रेफरल के साथ शामिल हुए, उनका स्वागत करें",
