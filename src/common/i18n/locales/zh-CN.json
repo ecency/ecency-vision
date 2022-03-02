@@ -913,7 +913,8 @@
     "followed": "{{source}} 关注你",
     "replied": "{{source}} 回复了你",
     "reblogged": "{{source}} 转发了您的帖子",
-    "transfer": "{{source}} 发送给您 {{amount}}"
+    "transfer": "{{source}} 发送给您 {{amount}}",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "所有通知",
@@ -924,6 +925,7 @@
     "type-follows": "关注",
     "type-reblogs": "转发",
     "type-transfers": "转账",
+    "type-delegations": "Delegations",
     "group-title-recent": "最近",
     "vote-str": "{{p}}%喜欢您的帖子：",
     "reply-str": "回复了您的文章:",
@@ -933,6 +935,7 @@
     "ignored-str": "已忽略",
     "reblog-str": "转发了您的文章:",
     "transfer-str": "发送给你",
+    "delegations-str": "delegated you",
     "spin-str": "赚取更多点数的时刻，在Ecency移动版上玩转盘游戏。",
     "inactive-str": "活跃！写一个帖子，继续赚钱",
     "referral-str": "去欢迎您邀请的新用户吧！",
