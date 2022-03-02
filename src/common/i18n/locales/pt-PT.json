@@ -913,7 +913,8 @@
     "followed": "{{source}} segui-te",
     "replied": "{{source}} respondeu-te",
     "reblogged": "{{source}} re-publicou a sua publicação",
-    "transfer": "{{source}} enviou-te {{amount}}"
+    "transfer": "{{source}} enviou-te {{amount}}",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "Todas as notificações",
@@ -924,6 +925,7 @@
     "type-follows": "Segue",
     "type-reblogs": "Republicações",
     "type-transfers": "Transferências",
+    "type-delegations": "Delegations",
     "group-title-recent": "Recente",
     "vote-str": "{{p}}% votou na sua publicação:",
     "reply-str": "respondeu à sua publicação:",
@@ -933,6 +935,7 @@
     "ignored-str": "ignorado",
     "reblog-str": "re-publicou a sua publicação:",
     "transfer-str": "enviou para si",
+    "delegations-str": "delegated you",
     "spin-str": "Hora de ganhar mais pontos, jogue o Giro no Aplicativo Móvel da Ecency",
     "inactive-str": "Seja ativo! Escreva uma publicação, continue a ganhar",
     "referral-str": "entrou com sua indicação, bem-vindo a ele",
