@@ -913,7 +913,8 @@
     "followed": "{{source}} vas je zapratio",
     "replied": "{{source}} vam je odgovorio",
     "reblogged": "{{source}} je podelio vašu objavu",
-    "transfer": "{{source}} vam je poslao {{amount}}"
+    "transfer": "{{source}} vam je poslao {{amount}}",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "Sva obaveštenja",
@@ -924,6 +925,7 @@
     "type-follows": "Pratioci",
     "type-reblogs": "Deljenja",
     "type-transfers": "Prenosi",
+    "type-delegations": "Delegations",
     "group-title-recent": "Recent",
     "vote-str": "{{p}}% se sviđa vaša objava:",
     "reply-str": "je odgovorio na vaš post:",
@@ -933,6 +935,7 @@
     "ignored-str": "ignorisan",
     "reblog-str": "je podelio vašu objavu:",
     "transfer-str": "vam je poslao",
+    "delegations-str": "delegated you",
     "spin-str": "Vreme je da zaradite više poena. Igrajte obrtanje na Ecency mobilnoj aplikaciji",
     "inactive-str": "Budite aktivni! Napišite objavu, nastavite da zarađujete",
     "referral-str": "pridružili su se sa vašom preporukom, pozdravite ih",
