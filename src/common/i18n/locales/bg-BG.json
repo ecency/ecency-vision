@@ -913,7 +913,8 @@
     "followed": "{{source}} ви последва",
     "replied": "{{source}} ви отговори",
     "reblogged": "{{source}} сподели твоя публикация",
-    "transfer": "{{source}} ви изпрати {{amount}}"
+    "transfer": "{{source}} ви изпрати {{amount}}",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "Всички известия",
@@ -924,6 +925,7 @@
     "type-follows": "Последвания",
     "type-reblogs": "Споделяния",
     "type-transfers": "Преводи",
+    "type-delegations": "Delegations",
     "group-title-recent": "Скорошни",
     "vote-str": "{{p}}% хареса вашия пост:",
     "reply-str": "отговори на твоя пост:",
@@ -933,6 +935,7 @@
     "ignored-str": "игнориран",
     "reblog-str": "сподели твоя пост:",
     "transfer-str": "ви изпрати",
+    "delegations-str": "delegated you",
     "spin-str": "Време е да изкарате още точки, Играйте Spin в мобилното приложение на Ecency",
     "inactive-str": "Бъди активен! Напишете публикация, продължете да печелите",
     "referral-str": "се присъедини чрез вашата покана, приветствайте го",
