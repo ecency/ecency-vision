@@ -913,7 +913,8 @@
     "followed": "{{source}} sinundan ka",
     "replied": "{{source}} tumugon sayo",
     "reblogged": "{{source}} ay naireblogged ang iyong post",
-    "transfer": "{{source}} nagpadala sayo {{amount}}"
+    "transfer": "{{source}} nagpadala sayo {{amount}}",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "Lahat ng mga abiso",
@@ -924,6 +925,7 @@
     "type-follows": "Sinundan",
     "type-reblogs": "Mag pag-reblog",
     "type-transfers": "Mga inilipat",
+    "type-delegations": "Delegations",
     "group-title-recent": "Recent",
     "vote-str": "{{p}}% nagustuhan ang iyong post:",
     "reply-str": "tugon o sagot sa iyong post:",
@@ -933,6 +935,7 @@
     "ignored-str": "binalewala",
     "reblog-str": "ni-reblogged ang iyong post:",
     "transfer-str": "pinadalhan ka",
+    "delegations-str": "delegated you",
     "spin-str": "Oras na para kumita ng mga Puntos, laruin ang Spin sa Ecency Mobile app",
     "inactive-str": "Maging aktibo! Magsulat ng post, patuloy na kumit",
     "referral-str": "nakasali gamit ang iyong referral, batiin sila",
