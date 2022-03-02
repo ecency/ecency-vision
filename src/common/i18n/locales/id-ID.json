@@ -913,7 +913,8 @@
     "followed": "{{source}} mengikuti anda",
     "replied": "{{source}} membalas anda",
     "reblogged": "{{source}} menampilkan kembali postingan Anda",
-    "transfer": "{{source}} mengirimkan Anda {{amount}}"
+    "transfer": "{{source}} mengirimkan Anda {{amount}}",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "Semua Notifikasi",
@@ -924,6 +925,7 @@
     "type-follows": "Ikuti",
     "type-reblogs": "Tampilkan kembali",
     "type-transfers": "Transfer",
+    "type-delegations": "Delegations",
     "group-title-recent": "Terbaru",
     "vote-str": "{{p}}% menyukai postingan Anda:",
     "reply-str": "membalas postingan Anda:",
@@ -933,6 +935,7 @@
     "ignored-str": "diabaikan",
     "reblog-str": "ditampilkan kembali post Anda:",
     "transfer-str": "dikirimi Anda",
+    "delegations-str": "delegated you",
     "spin-str": "Saatnya memperoleh lebih banyak Poin, Mainkan Putaran di Ecency Mobile",
     "inactive-str": "Ayo aktif! Tulislah postingan, teruskan mengumpulkan pendapatan",
     "referral-str": "bergabung dengan referral Anda, sambutlah mereka",
