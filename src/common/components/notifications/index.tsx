@@ -218,10 +218,23 @@ export class NotificationListItem extends Component<{
                             {notification.memo && (
                                 <div className="second-line">
                                     <div className="transfer-memo">
-                                        {notification.memo.substring(0, 120)}
+                                        {notification.memo.substring(0, 120).replace('https://peakd.com/','https://ecency.com/')}
                                     </div>
                                 </div>
                             )}
+                        </div>
+                    )}
+
+                    {/* Delegations */}
+                    {notification.type === 'delegations' && (
+                        <div className="item-content">
+                            <div className="first-line">
+                                {sourceLink}
+                                <span className="item-action">
+                                    {_t('notifications.delegations-str')} {' '}
+                                    <span className="transfer-amount">{notification.amount}</span>
+                                </span>
+                            </div>
                         </div>
                     )}
 
