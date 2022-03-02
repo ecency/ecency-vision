@@ -913,7 +913,8 @@
     "followed": "{{source}} слідкують за вами",
     "replied": "{{source}} відповів(-ла) вам",
     "reblogged": "{{source}} поширив(-ла) ваш допис",
-    "transfer": "{{source}} надіслав(-ла) вам {{amount}}"
+    "transfer": "{{source}} надіслав(-ла) вам {{amount}}",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "Усі сповіщення",
@@ -924,6 +925,7 @@
     "type-follows": "Слідкують",
     "type-reblogs": "Розповсюдження",
     "type-transfers": "Перекази",
+    "type-delegations": "Delegations",
     "group-title-recent": "Recent",
     "vote-str": "{{p}}% подобається ваш допис:",
     "reply-str": "відповів(-ла) на ваш допис:",
@@ -933,6 +935,7 @@
     "ignored-str": "ігнорується",
     "reblog-str": "поширив(-ла) ваш допис:",
     "transfer-str": "відправив вам",
+    "delegations-str": "delegated you",
     "spin-str": "Час заробити більше балів, грайте на Ecency Mobile",
     "inactive-str": "Будьте активними! Напишіть допис, продовжуйте заробляти",
     "referral-str": "приєднався за вашим запрошенням, привітайте його",
