@@ -913,7 +913,8 @@
     "followed": "{{source}} تابعك",
     "replied": "{{source}} رد عليك",
     "reblogged": "{{source}} أعاد تدوين منشورك",
-    "transfer": "{{source}} أرسل لك {{amount}}"
+    "transfer": "{{source}} أرسل لك {{amount}}",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "جميع الإشعارات",
@@ -924,6 +925,7 @@
     "type-follows": "المتابعات",
     "type-reblogs": "إعادات التدوين",
     "type-transfers": "التحويلات",
+    "type-delegations": "Delegations",
     "group-title-recent": "الأحدث",
     "vote-str": "{{p}}% يحب منشورك:",
     "reply-str": "رد على منشورك:",
@@ -933,6 +935,7 @@
     "ignored-str": "تجاهل",
     "reblog-str": "أعاد تدوين منشورك:",
     "transfer-str": "أرسل لك",
+    "delegations-str": "delegated you",
     "spin-str": "حان الوقت لكسب المزيد من النقاط، العب الدولاب على تطبيق Ecency للهاتف النقال",
     "inactive-str": "كن نشطًا! اكتب منشور، واصل الكسب",
     "referral-str": "انضم برابط إحالتك ، رحب بهم",
