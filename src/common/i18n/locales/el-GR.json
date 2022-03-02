@@ -913,7 +913,8 @@
     "followed": "{{source}} σας ακολούθησε",
     "replied": "{{source}} σας απάντησε",
     "reblogged": "{{source}} πρόβαλλε την δημοσίευση σας",
-    "transfer": "{{source}} σας έστειλε {{amount}}"
+    "transfer": "{{source}} σας έστειλε {{amount}}",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "Όλες οι ειδοποιήσεις",
@@ -924,6 +925,7 @@
     "type-follows": "Ακολουθεί",
     "type-reblogs": "Αναδημοσιεύσεις",
     "type-transfers": "Μεταφορές",
+    "type-delegations": "Delegations",
     "group-title-recent": "Recent",
     "vote-str": "{{p}}% του αρέσει η δημοσίευση σας:",
     "reply-str": "απάντησε στην δημοσίευση σας:",
@@ -933,6 +935,7 @@
     "ignored-str": "αγνόηση",
     "reblog-str": "αναδημοσίευσε την ανάρτηση σας:",
     "transfer-str": "σας έστειλε",
+    "delegations-str": "delegated you",
     "spin-str": "Ώρα να κερδίσεις περισσότερους πόντους, Παίξτε Spin στην Ecency εφαρμογή για κινητά",
     "inactive-str": "Μείνε ενεργός! Δημοσίευσε κάτι, συνέχισε να κερδίζεις",
     "referral-str": "joined with your referral, welcome them",
