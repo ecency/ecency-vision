@@ -914,7 +914,7 @@
     "replied": "{{source}} te respondió",
     "reblogged": "{{source}} ha reblogueado tu publicación",
     "transfer": "{{source}} te envió {{amount}}",
-    "delegations": "{{source}} delegated you {{amount}}"
+    "delegations": "{{source}} te delegó {{amount}}"
   },
   "notifications": {
     "type-all": "Todas las notificaciones",
