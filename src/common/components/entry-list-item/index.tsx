@@ -10,7 +10,7 @@ import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-help
 
 import {Entry, EntryVote} from "../../store/entries/types";
 import {Global} from "../../store/global/types";
-import {Account} from "../../store/accounts/types";
+import {Account, FullAccount} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Community, Communities} from "../../store/communities/types";
 import {User} from "../../store/users/types";
@@ -40,9 +40,13 @@ import {repeatSvg, pinSvg, commentSvg, muteSvg, volumeOffSvg, closeSvg, downArro
 
 import defaults from "../../constants/defaults.json";
 import { ProfilePopover } from "../profile-popover";
+import { match } from "react-router-dom";
 
 setProxyBase(defaults.imageServer);
 
+interface MatchParams {
+    username: string;
+}
 
 interface Props {
     history: History;
@@ -61,6 +65,8 @@ interface Props {
     asAuthor: string;
     promoted: boolean;
     order: number;
+    account?: Account;
+    match?: match<MatchParams>;
     addAccount: (data: Account) => void;
     updateEntry: (entry: Entry) => void;
     setActiveUser: (username: string | null) => void;
@@ -156,8 +162,12 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     render() {
-        const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order} = this.props;
+        const {entry: theEntry, account, match, community, asAuthor, promoted, global, activeUser, history, order} = this.props;
         const { mounted } = this.state;
+        // const accountUsername = match?.params.username.replace("@", "");
+        // const account = accounts?.find((x) => x.name === accountUsername) as FullAccount
+        const pageAccount = account as FullAccount
+        const pinned = account && pageAccount.profile?.pinned
 
         const fallbackImage = global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png");
         const noImage = global.isElectron ?  "./img/noimage.svg" : require("../../img/noimage.svg");
@@ -182,7 +192,7 @@ export default class EntryListItem extends Component<Props, State> {
         const title = entry.title;
 
         const isVisited = false;
-        const isPinned = community && !!entry.stats?.is_pinned;
+        const isPinned = (community && !!entry.stats?.is_pinned) || (entry.permlink === pinned);
 
         let reBlogged: string | undefined;
         if (asAuthor && asAuthor !== entry.author && !isChild) {
