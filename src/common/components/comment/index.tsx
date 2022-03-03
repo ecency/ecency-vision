@@ -154,7 +154,7 @@ export class Comment extends Component<Props, State> {
                             onChange={this.textChanged}
                             disabled={inProgress}
                             autoFocus={autoFocus}
-                            rows={text.split(/\r\n|\r|\n/).length}
+                            rows={text.split(/\r\n|\r|\n|<br>/).length}
                             ref={inputRef}
                         />
                     </div>

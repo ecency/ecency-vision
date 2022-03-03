@@ -152,6 +152,11 @@ class EntryPage extends BaseComponent<Props, State> {
             this.setState({isMounted:false})
             this.ensureEntry()
         }
+        if (prevProps.activeUser !== this.props.activeUser) {
+            if(this.state.edit) {
+                this.setState({edit: false})
+            }
+        }
     }
 
     componentWillUnmount() {
@@ -202,47 +207,47 @@ class EntryPage extends BaseComponent<Props, State> {
 
     }
     
-//     updateReply = (text: string) => {
-//         const entry = this.getEntry();
-//         const {activeUser, updateReply} = this.props;
+    updateReply = (text: string) => {
+        const entry = this.getEntry();
+        const {activeUser, updateReply} = this.props;
 
-//         if(entry){
-//             const {permlink, parent_author: parentAuthor, parent_permlink: parentPermlink} = entry;
-//         const jsonMeta = makeJsonMetaDataReply(
-//             entry.json_metadata.tags || ['ecency'],
-//             version
-//         );
+        if(entry){
+            const {permlink, parent_author: parentAuthor, parent_permlink: parentPermlink} = entry;
+        const jsonMeta = makeJsonMetaDataReply(
+            entry.json_metadata.tags || ['ecency'],
+            version
+        );
 
-//         this.stateSet({loading: true});
+        this.stateSet({replying: true});
 
-//         comment(
-//             activeUser?.username!,
-//             parentAuthor!,
-//             parentPermlink!,
-//             permlink,
-//             '',
-//             text,
-//             jsonMeta,
-//             null,
-//         ).then(() => {
-//             const nReply: Entry = {
-//                 ...entry,
-//                 body: text
-//             }
+        comment(
+            activeUser?.username!,
+            parentAuthor!,
+            parentPermlink!,
+            permlink,
+            '',
+            text,
+            jsonMeta,
+            null,
+        ).then(() => {
+            const nReply: Entry = {
+                ...entry,
+                body: text
+            }
             
-//             this.setState({comment: text, isCommented: true})
+            this.setState({comment: text, isCommented: true})
+            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
+            updateReply(nReply); // update store
+            this.toggleEdit(); // close comment box
+            this.reload()
 
-//             updateReply(nReply); // update store
-//             this.toggleEdit(); // close comment box
-//             this.reload()
-
-//         }).catch((e) => {
-//             error(formatError(e));
-//         }).finally(() => {
-//             this.stateSet({loading: false, isCommented: false});
-//         });
-//     }
-// }
+        }).catch((e) => {
+            error(formatError(e));
+        }).finally(() => {
+            this.stateSet({replying: false, isCommented: false});
+        });
+    }
+}
 
 
     toggleEdit = () => {
@@ -845,7 +850,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                             </div>
                                             <meta itemProp="headline name" content={entry.title}/>
 
-                                            {/* {!edit ? 
+                                            {!edit ? 
                                                <>
                                                     <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
                                                         <div
@@ -857,24 +862,24 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 </> :
                                                 Comment({
                                                     ...this.props,
-                                                    defText: this.state.selection,
+                                                    defText: entry.body,
                                                     submitText: _t('g.update'),
                                                     cancellable: true,
                                                     onSubmit: this.updateReply,
                                                     onCancel: this.toggleEdit,
-                                                    inProgress: loading,
+                                                    inProgress: replying,
                                                     autoFocus: true,
                                                     inputRef: this.commentInput,
                                                     entry: entry
-                                                })} */}
+                                                })}
 
-                                                <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
+                                                {/* <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
                                                     <div
                                                         itemProp="articleBody"
                                                         className="entry-body markdown-view user-selectable"
                                                         dangerouslySetInnerHTML={renderedBody}
                                                     />
-                                                </SelectionPopover>
+                                                </SelectionPopover> */}
 
 
                                             <meta itemProp="image" content={metaProps.image}/>
@@ -981,7 +986,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 ...this.props,
                                                 entry,
                                                 alignBottom: true,
-                                                separatedSharing: true
+                                                separatedSharing: true,
+                                                toggleEdit: this.toggleEdit
                                             })}
                                         </div>
                                     </div>
