@@ -236,7 +236,7 @@ export class NotificationListItem extends Component<{
                                 {sourceLink}
                                 <span className="item-action">
                                     {_t('notifications.delegations-str')} {' '}
-                                    <span className="transfer-amount">{formattedNumber(vestsToHp(parseFloat(notification.amount), hivePerMVests), {suffix: "HP"}) }</span>
+                                    <span className="transfer-amount">{formattedNumber(vestsToHp(parseFloat(notification.amount), hivePerMVests), {suffix: "HP"})}</span>
                                 </span>
                             </div>
                         </div>
