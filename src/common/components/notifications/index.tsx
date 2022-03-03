@@ -5,13 +5,16 @@ import {Button, Modal} from "react-bootstrap";
 import moment from "moment";
 
 import {History} from "history";
+import {postBodySummary} from "@ecency/render-helper";
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {ToggleType} from "../../store/ui/types";
 import {NotificationFilter, Notifications} from "../../store/notifications/types";
-
+import { DynamicProps } from '../../store/dynamic-props/types';
 import {ApiNotification} from "../../store/notifications/types";
+import {ActiveUser} from "../../store/active-user/types";
+
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import EntryLink from "../entry-link";
@@ -19,16 +22,15 @@ import LinearProgress from "../linear-progress";
 import DropDown from "../dropdown";
 import Tooltip from "../tooltip";
 
-import {postBodySummary} from "@ecency/render-helper";
-
 import {_t} from "../../i18n";
 
 import _c from '../../util/fix-class-names'
+import { vestsToHp } from '../../helper/vesting';
+import formattedNumber from '../../util/formatted-number';
 
 import {syncSvg, checkSvg, bellOffSvg, bellCheckSvg} from "../../img/svg";
 
 import {hiveNotifySetLastRead} from "../../api/operations";
-import {ActiveUser} from "../../store/active-user/types";
 
 export const date2key = (s: string): string => {
     if (s === 'Yesterday') {
@@ -57,6 +59,7 @@ export class NotificationListItem extends Component<{
     global: Global;
     history: History;
     notification: ApiNotification;
+    dynamicProps: DynamicProps;
     markNotifications: (id: string | null) => void;
     addAccount: (data: Account) => void;
     toggleUIProp: (what: ToggleType) => void;
@@ -77,7 +80,8 @@ export class NotificationListItem extends Component<{
     }
 
     render() {
-        const {notification} = this.props;
+        const {notification, dynamicProps} = this.props;
+        const {hivePerMVests} = dynamicProps;
 
         const sourceLinkMain = ProfileLink({
             ...this.props,
@@ -232,7 +236,7 @@ export class NotificationListItem extends Component<{
                                 {sourceLink}
                                 <span className="item-action">
                                     {_t('notifications.delegations-str')} {' '}
-                                    <span className="transfer-amount">{notification.amount}</span>
+                                    <span className="transfer-amount">{formattedNumber(vestsToHp(parseFloat(notification.amount), hivePerMVests), {suffix: "HP"}) }</span>
                                 </span>
                             </div>
                         </div>
@@ -279,6 +283,7 @@ interface NotificationProps {
     global: Global;
     history: History;
     activeUser: ActiveUser;
+    dynamicProps: DynamicProps;
     notifications: Notifications;
     fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;
@@ -437,6 +442,7 @@ interface Props {
     global: Global;
     history: History;
     activeUser: ActiveUser;
+    dynamicProps: DynamicProps;
     notifications: Notifications;
     fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;
