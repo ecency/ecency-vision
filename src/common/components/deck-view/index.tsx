@@ -42,7 +42,7 @@ const DeckViewContainer = ({
 }: any) => {
   const [openModal, setOpenModal] = useState(false);
   const [loadingNewContent, setLoadingNewContent] = useState(false);
-  const [decks, setDecks] = useState<any>(getItems(initialDeckItems));
+  const [decks, setDecks] = useState<any>(getItems(initialDeckItems, (rest.activeUser && rest.activeUser.username || "")));
 
   const onSelectColumn = (account: string, contentType: string) => {
     setOpenModal(false);
@@ -62,7 +62,7 @@ const DeckViewContainer = ({
                     icon: notifications,
                   },
                 },
-              ])
+              ], (rest.activeUser && rest.activeUser.username || ""))
             );
             setLoadingNewContent(false);
           }
@@ -89,7 +89,7 @@ const DeckViewContainer = ({
                   icon: communities,
                 },
               },
-            ])
+            ], (rest.activeUser && rest.activeUser.username || ""))
           );
           setLoadingNewContent(false);
         });
@@ -109,7 +109,7 @@ const DeckViewContainer = ({
                   icon: person,
                 },
               },
-            ])
+            ], (rest.activeUser && rest.activeUser.username || ""))
           );
           setLoadingNewContent(false);
         });
@@ -124,7 +124,7 @@ const DeckViewContainer = ({
               listItemComponent: HotListItem,
               header: { title: `${account}`, icon: hot },
             },
-          ])
+          ], (rest.activeUser && rest.activeUser.username || ""))
         );
         setLoadingNewContent(false);
       });
@@ -138,7 +138,7 @@ const DeckViewContainer = ({
               listItemComponent: SearchListItem,
               header: { title: `${account}`, icon: globalTrending },
             },
-          ])
+          ], (rest.activeUser && rest.activeUser.username || ""))
         );
         setLoadingNewContent(false);
       });
@@ -156,7 +156,7 @@ const DeckViewContainer = ({
       ...itemToUpdate,
       header: { ...itemToUpdate.header, reloading: true },
     };
-    setDecks(getItems([...updatedDecks]));
+    setDecks(getItems([...updatedDecks], (rest.activeUser && rest.activeUser.username || "")));
     let isPost =
       deckType.toLocaleLowerCase() === _t("decks.posts").toLocaleLowerCase() ||
       deckType.toLocaleLowerCase() === _t("decks.blogs").toLocaleLowerCase() ||
@@ -177,7 +177,7 @@ const DeckViewContainer = ({
                   icon: notifications,
                 },
               }),
-                setDecks(getItems([...updatedDecks]));
+                setDecks(getItems([...updatedDecks], (rest.activeUser && rest.activeUser.username || "")));
               setLoadingNewContent(false);
             }
           );
@@ -192,7 +192,7 @@ const DeckViewContainer = ({
                 icon: hot,
               },
             }),
-              setDecks(getItems([...updatedDecks]));
+              setDecks(getItems([...updatedDecks], (rest.activeUser && rest.activeUser.username || "")));
             setLoadingNewContent(false);
           });
           break;
@@ -206,7 +206,7 @@ const DeckViewContainer = ({
                 icon: globalTrending,
               },
             }),
-              setDecks(getItems([...updatedDecks]));
+              setDecks(getItems([...updatedDecks], (rest.activeUser && rest.activeUser.username || "")));
             setLoadingNewContent(false);
           });
           break;
@@ -231,7 +231,7 @@ const DeckViewContainer = ({
             icon: communities,
           },
         }),
-          setDecks(getItems([...updatedDecks]));
+          setDecks(getItems([...updatedDecks], (rest.activeUser && rest.activeUser.username || "")));
       });
     } else if (isPost) {
       let translatedBlogs = _t("decks.blogs").toLocaleLowerCase();
@@ -247,7 +247,7 @@ const DeckViewContainer = ({
             icon: person,
           },
         }),
-          setDecks(getItems([...updatedDecks]));
+          setDecks(getItems([...updatedDecks], (rest.activeUser && rest.activeUser.username || "")));
         setLoadingNewContent(false);
       });
     }
@@ -292,7 +292,7 @@ const DeckViewContainer = ({
                 icon: notifications,
               },
             });
-            setDecks(getItems([...defaultDecks]));
+            setDecks(getItems([...defaultDecks], (rest.activeUser && rest.activeUser.username || "")));
             setLoadingNewContent(false);
           });
         });
@@ -309,7 +309,7 @@ const DeckViewContainer = ({
               listItemComponent: HotListItem,
               header: { title: _t("decks.trending-topics"), icon: hot },
             });
-            setDecks(getItems(defaultDecks));
+            setDecks(getItems(defaultDecks, (rest.activeUser && rest.activeUser.username || "")));
             setLoadingNewContent(false);
           });
         });
@@ -337,7 +337,7 @@ const DeckViewContainer = ({
               icon: wallet,
             },
           },
-        ])
+        ], (rest.activeUser && rest.activeUser.username || ""))
       );
     }
   }, [transactionsList]);

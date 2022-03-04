@@ -7,14 +7,19 @@ import {
 } from "react-beautiful-dnd";
 import { _t } from "../../i18n";
 import { Deck } from "../deck";
+import * as ls from '../../util/local-storage'
 
 // fake data generator
-export const getItems = (decks: any[]) =>
-  decks.map((k, index) => ({
+export const getItems = (decks: any[], user:string) => {
+  if(user){
+    ls.set(`user-${user}-decks`,decks)
+  }
+  return decks.map((k, index) => ({
     id: `item-${index}`,
     content: `item ${index}`,
     ...decks[index],
   }));
+};
 
 // a little function to help us with reordering the result
 const reorder = (list: any, startIndex: any, endIndex: any) => {
@@ -47,7 +52,7 @@ const DraggableDeckView = ({
   onReloadColumn,
   ...rest
 }: any) => {
-  const [items, setItems] = useState<any>(getItems(decks));
+  const [items, setItems] = useState<any>(getItems(decks, (rest.activeUser && rest.activeUser.username || "")));
   const [mounted, setMounted] = useState(false);
 
   const onDragEnd = (result: any) => {
@@ -93,8 +98,12 @@ const DraggableDeckView = ({
               >
                 {(provided, snapshot) => {
                   const notificationTranslated = _t("decks.notifications");
-                  const containerClass = item.header.title.includes(notificationTranslated) ? "list-body pb-0" : ""
-                  
+                  const containerClass = item.header.title.includes(
+                    notificationTranslated
+                  )
+                    ? "list-body pb-0"
+                    : "";
+
                   return (
                     <div
                       ref={provided.innerRef}
