@@ -6,8 +6,11 @@ export enum ListStyle {
 }
 
 export enum Theme {
-    day = "day",
-    night = "night",
+  day = "day",
+  night = "night",
+  sky = "sky",
+  burning = "burning",
+  dusk = "dusk",
 }
 
 export enum EntryFilter {

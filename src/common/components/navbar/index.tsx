@@ -218,255 +218,444 @@ export class NavBar extends Component<Props, State> {
         </div>
 
         return (
-            <div className={"sticky-container"} id='sticky-container'>
-                {floating && smVisible && (<div className="nav-bar-rep" />)}
-                <div className={`nav-bar-toggle ${"position-fixed"}`} onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
-
-                    <div className={`nav-bar-sm ${"sticky"} ${step === 1 ? "transparent" : ""}`}>
-                        <div className="brand">
-                            {
-                                activeUser !== null ? (
-                                    <Link to={logoHref}>
-                                        <img src={logo} className="logo" alt="Logo"/>
-                                    </Link>
-                                ) :
-                                (
-                                    <img src={logo} className="logo" alt="Logo" onClick={this.handleIconClick}/>
-                                )
-                            }
-                        </div>
-
-                        {textMenu}
-                    </div>
-                    
-                {!smVisible && (
-                    <div className={`nav-bar ${(!transparentVerify && step === 1 ? "transparent" : "")} `}>
-                        <div className={`nav-bar-inner ${(!transparentVerify && step === 1 ? "transparent" : "")}`}>
-                            <div className="brand">
-                                    {
-                                        activeUser !== null ? (
-                                            <Link to={logoHref}>
-                                                <img src={logo} className="logo" alt="Logo" />
-                                            </Link>
-                                        ) :
-                                        (
-                                            <img src={logo} className="logo" alt="Logo" onClick={this.handleIconClick}/>
-                                        )
-                                    }
-                                </div>
-                                {textMenu}
-                                <div className="flex-spacer"/>
-                                {
-                                    (step !== 1 || transparentVerify) &&
-                                        <div className="search-bar">
-                                            {Search({...this.props})}
-                                        </div>
-                                }
-                                <div className="switch-menu">
-                                    {SwitchLang({...this.props})}
-                                    {
-                                        (step !== 1 || transparentVerify) &&
-                                            <ToolTip content={themeText}>
-                                                <div className="switch-theme" onClick={this.changeTheme}>
-                                                    {brightnessSvg}
-                                                </div>
-                                            </ToolTip>
-                                    }
-                                    {
-                                        (step !== 1 || transparentVerify) && (
-                                            <ToolTip content={_t("navbar.post")}>
-                                                <Link className="switch-theme pencil" to="/submit">
-                                                    {pencilOutlineSvg}
-                                                </Link>
-                                            </ToolTip>
-                                    )}
-                                </div>
-                                <div className="btn-menu">
-                                    {!activeUser && (
-                                        <div>
-                                            <div className="login-required">
-                                                <Button className="btn-login btn-primary" onClick={() => {
-                                                    const {toggleUIProp} = this.props;
-                                                    toggleUIProp('login');
-                                                    this.setState({ smVisible: false} )
-                                                }}>{_t("g.login")}</Button>
-
-                                                <Link className="btn btn-primary" to="/signup">{_t("g.signup")}</Link>
-                                            </div>
-                                            <div className="submit-post">
-                                                <ToolTip content={_t("navbar.post")}>
-                                                    <Link className="btn btn-outline-primary" to="/submit">
-                                                        {pencilOutlineSvg}
-                                                    </Link>
-                                                </ToolTip>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                                {activeUser && (
-                                    <div>
-                                        <UserNav {...this.props} activeUser={activeUser}/>
-                                        <div className="submit-post">
-                                            <ToolTip content={_t("navbar.post")}>
-                                                <Link className="btn btn-outline-primary" to="/submit">
-                                                    {pencilOutlineSvg}
-                                                </Link>
-                                            </ToolTip>
-                                        </div>
-                                    </div>
-                                )}
-                    </div>
-                </div>
-                )}
-                <div ref={this.nav} className={_c(`nav-bar ${(!transparentVerify && step === 1 ? "transparent" : "")} ${(smVisible ? "visible-sm" : "d-none")}`)}>
-
-                    <div className="nav-bar-inner">
-                        <div className="mt-2 pt-5 w-100">
-                            {activeUser && 
-                                <Link to={`/@${activeUser.username}`}>
-                                    <div className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0 mb-3 position-relative">
-                                        {userAvatar({...this.props, username: activeUser.username, size:"large"})}
-                                        <div className="ml-2">
-                                            <b>@{activeUser.username}</b>
-                                            <div className="mt-1 text-white">{_t("user-nav.vote-power")} <span>{upArrowSvg}</span> {(activeUser.data as FullAccount).active && votingPower(activeUser.data as FullAccount).toFixed(0)}%  <span>{downArrowSvg}</span> {(activeUser.data as FullAccount).active && downVotingPower(activeUser.data as FullAccount).toFixed(0)}%</div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            }
-                            <div onClick={() => !showMobileSearch && this.setState({ showMobileSearch: true })}>
-                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                    
-                                    {showMobileSearch ? 
-                                        <>
-                                            {Search({...this.props, containerClassName:'w-100'})}
-                                            <div
-                                                onClick={() => this.setState({showMobileSearch:false})}
-                                                className="navbar-icon text-secondary ml-2"
-                                            >
-                                                {closeSvg}
-                                            </div>
-                                        </> : 
-                                        <>
-                                            <div className="navbar-icon">{magnifySvg}</div>
-                                            <div className="ml-3 text-15">{_t("g.search")}</div>
-                                        </>
-                                    }
-                                </div>
-                            </div>
-
-                            {!activeUser &&
-                            <>
-                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={()=>{toggleUIProp("login"); this.setState({ smVisible: false} )}}>
-                                        <div className="navbar-icon">{userOutlineSvg}</div>
-                                        <div className="ml-3 text-15">{_t("g.login")}</div>
-                                </div>
-                                <Link to="/signup" onClick={() => !showMobileSearch && this.setState({ smVisible: false })}>
-                                    <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                            <div className="navbar-icon">{keySvg}</div>
-                                            <div className="ml-3 text-15">{_t("g.signup")}</div>
-                                    </div>
-                                </Link>
-                            </>
-                            }
-
-                            <Link to="/submit" onClick={() => this.setState({ smVisible: false} )}>
-                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                    <div className="navbar-icon">{pencilOutlinedSvg}</div>
-                                    <div className="ml-3 text-15">{_t("g.submit")}</div>
-                                </div>
-                            </Link>
-
-                            <div>
-                                {activeUser && <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark" onClick={() => this.setState({showProfileMenu: !showProfileMenu})}>
-                                    <div className="navbar-icon">{userOutlineSvg}</div>
-                                    <div className="ml-3 text-15">{_t("user-nav.profile-menu")}</div>
-                                    <div className="ml-3 text-15 icon-stroke">{showProfileMenu ? upArrowSvg : downArrowSvg}</div>
-                                </div>}
-
-                                {activeUser && showProfileMenu ? 
-                                <div className="pl-3 position-relative menu-container">
-                                    <div className="menu-container-inner">
-
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({drafts: !drafts, smVisible: false})}>
-                                            <div className="item-text">{_t("user-nav.drafts")}</div>
-                                        </div>
-
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({gallery: !gallery, smVisible: false})}>
-                                            <div className="item-text">{_t("user-nav.gallery")}</div>
-                                        </div>
-
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({bookmarks: !bookmarks, smVisible: false})}>
-                                            <div className="item-text">{_t("user-nav.bookmarks")}</div>
-                                        </div>
-
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({schedules: !schedules, smVisible: false})}>
-                                            <div className="item-text">{_t("user-nav.schedules")}</div>
-                                        </div>
-
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({fragments: !fragments, smVisible: false})}>
-                                            <div className="item-text">{_t("user-nav.fragments")}</div>
-                                        </div>
-
-                                        <div className="p-1 menu-item">
-                                            <Link to={`/@${activeUser.username}/settings`} onClick={() => this.setState({ smVisible: false} )}>
-                                                <div className="item-text">{_t("user-nav.settings")}</div>
-                                            </Link>
-                                        </div>
-
-                                        <div className="p-1 menu-item" onClick={() => {toggleUIProp('login'); this.setState({ smVisible: false} )}}>
-                                            <div className="item-text">{_t("g.login-as")}</div>
-                                        </div>
-
-                                        <div className="p-1 menu-item" onClick={() => setActiveUser(null)}>
-                                            <div className="item-text">{_t("user-nav.logout")}</div>
-                                        </div>
-                                    </div>
-                                </div> : null}
-                                
-                            </div>
-
-                            {activeUser && 
-                            <>
-                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={() => toggleUIProp('notifications')}>
-                                    <div className="navbar-icon text-dark">{notificationSvg}</div>
-                                    <div className="ml-3 text-15">{_t("user-nav.notifications")}</div>
-                                </div>
-                                <Link to={`/@${activeUser.username}/points`} onClick={() => this.setState({ smVisible: false} )}>
-                                    <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                        <div className="navbar-icon text-dark">{gifCardSvg}</div>
-                                        <div className="ml-3 text-15">{_t("user-nav.points")}</div>
-                                    </div>
-                                </Link>
-                                <Link to={`/@${activeUser?.username}/wallet`} onClick={() => this.setState({ smVisible: false} )}>
-                                    <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                        <div className="icon-stroke text-dark">{walletSvg}</div>
-                                        <div className="ml-3 text-15 d-flex">{_t("user-nav.wallet")} <div className="dot align-self-start ml-1"/></div>
-                                    </div>
-                                </Link>
-                            </>}
-
-                            <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative">
-                                <div className="navbar-icon">{globeSvg}</div>
-                                <div className="text-15 switch-menu">{SwitchLang({...this.props, label: _t("community-settings.lang")})}</div>
-                            </div>
-
-                            <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={this.changeTheme}>
-                                <div className="navbar-icon">{global.theme == Theme.day ? moonSvg : sunSvg}</div>
-                                <div className="ml-3 text-15">{_t("user-nav.switch-to")} {global.theme == Theme.day ? _t("user-nav.dark") : _t("user-nav.light")}</div>
-                            </div>
-
-                        </div>
-                    </div>
-                    {ui.login && <Login {...this.props} />}
-                    {global.usePrivate && <NotificationHandler {...this.props}/>}
-                    {gallery && <Gallery {...this.props} onHide={() => this.setState({gallery:!gallery})} />}
-                    {ui.notifications && activeUser && <UserNotifications {...this.props} activeUser={activeUser} />}
-                    {drafts && activeUser && <Drafts {...this.props} onHide={() => this.setState({drafts:!drafts})} activeUser={activeUser as ActiveUser} />}
-                    {bookmarks && activeUser && <Bookmarks {...this.props} onHide={() => this.setState({bookmarks:!bookmarks})} activeUser={activeUser as ActiveUser} />}
-                    {schedules && activeUser && <Schedules {...this.props} onHide={() => this.setState({schedules:!schedules})} activeUser={activeUser as ActiveUser} />}
-                    {fragments && activeUser && <Fragments {...this.props} onHide={() => this.setState({fragments:!fragments})} activeUser={activeUser as ActiveUser} />}
-                </div>
+          <div className={"sticky-container"} id="sticky-container">
+            {floating && smVisible && <div className="nav-bar-rep" />}
+            <div
+              className={`nav-bar-toggle ${"position-fixed"}`}
+              onClick={this.toggleSmVisible}
+            >
+              {smVisible ? closeSvg : menuSvg}
             </div>
+
+            <div
+              className={`nav-bar-sm ${"sticky"} ${
+                step === 1 ? "transparent" : ""
+              }`}
+            >
+              <div className="brand">
+                {activeUser !== null ? (
+                  <Link to={logoHref}>
+                    <img src={logo} className="logo" alt="Logo" />
+                  </Link>
+                ) : (
+                  <img
+                    src={logo}
+                    className="logo"
+                    alt="Logo"
+                    onClick={this.handleIconClick}
+                  />
+                )}
+              </div>
+            </div>
+
+            {!smVisible && (
+              <div
+                className={`nav-bar ${
+                  !transparentVerify && step === 1 ? "transparent" : ""
+                } `}
+              >
+                <div
+                  className={`nav-bar-inner ${
+                    !transparentVerify && step === 1 ? "transparent" : ""
+                  }`}
+                >
+                  <div className="brand">
+                    {activeUser !== null ? (
+                      <Link to={logoHref}>
+                        <img src={logo} className="logo" alt="Logo" />
+                      </Link>
+                    ) : (
+                      <img
+                        src={logo}
+                        className="logo"
+                        alt="Logo"
+                        onClick={this.handleIconClick}
+                      />
+                    )}
+                  </div>
+                  <div className="flex-spacer" />
+                  <div className="switch-menu">
+                    {SwitchLang({ ...this.props })}
+                    {(step !== 1 || transparentVerify) && (
+                      <ToolTip content={themeText}>
+                        <div
+                          className="switch-theme"
+                          onClick={this.changeTheme}
+                        >
+                          {brightnessSvg}
+                        </div>
+                      </ToolTip>
+                    )}
+                    {(step !== 1 || transparentVerify) && (
+                      <ToolTip content={_t("navbar.post")}>
+                        <Link className="switch-theme pencil" to="/submit">
+                          {pencilOutlineSvg}
+                        </Link>
+                      </ToolTip>
+                    )}
+                  </div>
+                  <div className="btn-menu">
+                    {!activeUser && (
+                      <div>
+                        <div className="login-required">
+                          <Button
+                            className="btn-login btn-primary"
+                            onClick={() => {
+                              const { toggleUIProp } = this.props;
+                              toggleUIProp("login");
+                              this.setState({ smVisible: false });
+                            }}
+                          >
+                            {_t("g.login")}
+                          </Button>
+
+                          <Link className="btn btn-primary" to="/signup">
+                            {_t("g.signup")}
+                          </Link>
+                        </div>
+                        <div className="submit-post">
+                          <ToolTip content={_t("navbar.post")}>
+                            <Link
+                              className="btn btn-outline-primary"
+                              to="/submit"
+                            >
+                              {pencilOutlineSvg}
+                            </Link>
+                          </ToolTip>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  {activeUser && (
+                    <div>
+                      <UserNav {...this.props} activeUser={activeUser} />
+                      <div className="submit-post">
+                        <ToolTip content={_t("navbar.post")}>
+                          <Link
+                            className="btn btn-outline-primary"
+                            to="/submit"
+                          >
+                            {pencilOutlineSvg}
+                          </Link>
+                        </ToolTip>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+            <div
+              ref={this.nav}
+              className={_c(
+                `nav-bar ${
+                  !transparentVerify && step === 1 ? "transparent" : ""
+                } ${smVisible ? "visible-sm" : "d-none"}`
+              )}
+            >
+              <div className="nav-bar-inner">
+                <div className="mt-2 pt-5 w-100">
+                  {activeUser && (
+                    <Link to={`/@${activeUser.username}`}>
+                      <div className="p-1 menu-item menu-item-profile d-flex text-white text-15 align-items-center mt-0 mb-3 position-relative">
+                        {userAvatar({
+                          ...this.props,
+                          username: activeUser.username,
+                          size: "large",
+                        })}
+                        <div className="ml-2">
+                          <b>@{activeUser.username}</b>
+                          <div className="mt-1 text-white">
+                            {_t("user-nav.vote-power")}{" "}
+                            <span>{upArrowSvg}</span>{" "}
+                            {(activeUser.data as FullAccount).active &&
+                              votingPower(
+                                activeUser.data as FullAccount
+                              ).toFixed(0)}
+                            % <span>{downArrowSvg}</span>{" "}
+                            {(activeUser.data as FullAccount).active &&
+                              downVotingPower(
+                                activeUser.data as FullAccount
+                              ).toFixed(0)}
+                            %
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  )}
+                  {!activeUser && (
+                    <>
+                      <div
+                        className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+                        onClick={() => {
+                          toggleUIProp("login");
+                          this.setState({ smVisible: false });
+                        }}
+                      >
+                        <div className="navbar-icon">{userOutlineSvg}</div>
+                        <div className="ml-3 text-15">{_t("g.login")}</div>
+                      </div>
+                      <Link
+                        to="/signup"
+                        onClick={() =>
+                          !showMobileSearch &&
+                          this.setState({ smVisible: false })
+                        }
+                      >
+                        <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                          <div className="navbar-icon">{keySvg}</div>
+                          <div className="ml-3 text-15">{_t("g.signup")}</div>
+                        </div>
+                      </Link>
+                    </>
+                  )}
+
+                  <Link
+                    to="/submit"
+                    onClick={() => this.setState({ smVisible: false })}
+                  >
+                    <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                      <div className="navbar-icon">{pencilOutlinedSvg}</div>
+                      <div className="ml-3 text-15">{_t("g.submit")}</div>
+                    </div>
+                  </Link>
+
+                  <div>
+                    {activeUser && (
+                      <div
+                        className="p-2 pl-3 w-100 mb-2 d-flex align-items-center text-dark"
+                        onClick={() =>
+                          this.setState({ showProfileMenu: !showProfileMenu })
+                        }
+                      >
+                        <div className="navbar-icon">{userOutlineSvg}</div>
+                        <div className="ml-3 text-15">
+                          {_t("user-nav.profile-menu")}
+                        </div>
+                        <div className="ml-3 text-15 icon-stroke">
+                          {showProfileMenu ? upArrowSvg : downArrowSvg}
+                        </div>
+                      </div>
+                    )}
+
+                    {activeUser && showProfileMenu ? (
+                      <div className="pl-3 position-relative menu-container">
+                        <div className="menu-container-inner">
+                          <div
+                            className="p-1 menu-item"
+                            onClick={() =>
+                              this.setState({
+                                drafts: !drafts,
+                                smVisible: false,
+                              })
+                            }
+                          >
+                            <div className="item-text">
+                              {_t("user-nav.drafts")}
+                            </div>
+                          </div>
+
+                          <div
+                            className="p-1 menu-item"
+                            onClick={() =>
+                              this.setState({
+                                gallery: !gallery,
+                                smVisible: false,
+                              })
+                            }
+                          >
+                            <div className="item-text">
+                              {_t("user-nav.gallery")}
+                            </div>
+                          </div>
+
+                          <div
+                            className="p-1 menu-item"
+                            onClick={() =>
+                              this.setState({
+                                bookmarks: !bookmarks,
+                                smVisible: false,
+                              })
+                            }
+                          >
+                            <div className="item-text">
+                              {_t("user-nav.bookmarks")}
+                            </div>
+                          </div>
+
+                          <div
+                            className="p-1 menu-item"
+                            onClick={() =>
+                              this.setState({
+                                schedules: !schedules,
+                                smVisible: false,
+                              })
+                            }
+                          >
+                            <div className="item-text">
+                              {_t("user-nav.schedules")}
+                            </div>
+                          </div>
+
+                          <div
+                            className="p-1 menu-item"
+                            onClick={() =>
+                              this.setState({
+                                fragments: !fragments,
+                                smVisible: false,
+                              })
+                            }
+                          >
+                            <div className="item-text">
+                              {_t("user-nav.fragments")}
+                            </div>
+                          </div>
+
+                          <div className="p-1 menu-item">
+                            <Link
+                              to={`/@${activeUser.username}/settings`}
+                              onClick={() =>
+                                this.setState({ smVisible: false })
+                              }
+                            >
+                              <div className="item-text">
+                                {_t("user-nav.settings")}
+                              </div>
+                            </Link>
+                          </div>
+
+                          <div
+                            className="p-1 menu-item"
+                            onClick={() => {
+                              toggleUIProp("login");
+                              this.setState({ smVisible: false });
+                            }}
+                          >
+                            <div className="item-text">{_t("g.login-as")}</div>
+                          </div>
+
+                          <div
+                            className="p-1 menu-item"
+                            onClick={() => setActiveUser(null)}
+                          >
+                            <div className="item-text">
+                              {_t("user-nav.logout")}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
+
+                  {activeUser && (
+                    <>
+                      <div
+                        className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+                        onClick={() => toggleUIProp("notifications")}
+                      >
+                        <div className="navbar-icon text-dark">
+                          {notificationSvg}
+                        </div>
+                        <div className="ml-3 text-15">
+                          {_t("user-nav.notifications")}
+                        </div>
+                      </div>
+                      <Link
+                        to={`/@${activeUser.username}/points`}
+                        onClick={() => this.setState({ smVisible: false })}
+                      >
+                        <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                          <div className="navbar-icon text-dark">
+                            {gifCardSvg}
+                          </div>
+                          <div className="ml-3 text-15">
+                            {_t("user-nav.points")}
+                          </div>
+                        </div>
+                      </Link>
+                      <Link
+                        to={`/@${activeUser?.username}/wallet`}
+                        onClick={() => this.setState({ smVisible: false })}
+                      >
+                        <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                          <div className="icon-stroke text-dark">
+                            {walletSvg}
+                          </div>
+                          <div className="ml-3 text-15 d-flex">
+                            {_t("user-nav.wallet")}{" "}
+                            <div className="dot align-self-start ml-1" />
+                          </div>
+                        </div>
+                      </Link>
+                    </>
+                  )}
+
+                  <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark position-relative">
+                    <div className="navbar-icon">{globeSvg}</div>
+                    <div className="text-15 switch-menu">
+                      {SwitchLang({
+                        ...this.props,
+                        label: _t("community-settings.lang"),
+                      })}
+                    </div>
+                  </div>
+
+                  <div
+                    className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark"
+                    onClick={this.changeTheme}
+                  >
+                    <div className="navbar-icon">
+                      {global.theme == Theme.day ? moonSvg : sunSvg}
+                    </div>
+                    <div className="ml-3 text-15">
+                      {_t("user-nav.switch-to")}{" "}
+                      {global.theme == Theme.day
+                        ? _t("user-nav.dark")
+                        : _t("user-nav.light")}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {ui.login && <Login {...this.props} />}
+              {global.usePrivate && <NotificationHandler {...this.props} />}
+              {gallery && (
+                <Gallery
+                  {...this.props}
+                  onHide={() => this.setState({ gallery: !gallery })}
+                />
+              )}
+              {ui.notifications && activeUser && (
+                <UserNotifications {...this.props} activeUser={activeUser} />
+              )}
+              {drafts && activeUser && (
+                <Drafts
+                  {...this.props}
+                  onHide={() => this.setState({ drafts: !drafts })}
+                  activeUser={activeUser as ActiveUser}
+                />
+              )}
+              {bookmarks && activeUser && (
+                <Bookmarks
+                  {...this.props}
+                  onHide={() => this.setState({ bookmarks: !bookmarks })}
+                  activeUser={activeUser as ActiveUser}
+                />
+              )}
+              {schedules && activeUser && (
+                <Schedules
+                  {...this.props}
+                  onHide={() => this.setState({ schedules: !schedules })}
+                  activeUser={activeUser as ActiveUser}
+                />
+              )}
+              {fragments && activeUser && (
+                <Fragments
+                  {...this.props}
+                  onHide={() => this.setState({ fragments: !fragments })}
+                  activeUser={activeUser as ActiveUser}
+                />
+              )}
+            </div>
+          </div>
         );
     }
 }

@@ -1,0 +1,90 @@
+@import "colors";
+
+$font-family-base: -apple-system, BlinkMacSystemFont, sans-serif;
+
+$primary: $dark-sky-blue;
+$success: $green1;
+$danger: $red2;
+
+$link-hover-decoration: none;
+$line-height-base: 1.2;
+
+$input-border-radius: 25px;
+$input-bg: lighten($powder-blue, 2);
+$input-border-color: $dusk-blue;
+$input-box-shadow: none;
+$input-focus-box-shadow: none;
+$input-color: $dark-two;
+$input-placeholder-color: $steel-grey;
+
+$input-group-addon-color: darken($silver, 12);
+
+$btn-border-radius: 25px;
+$btn-border-radius-sm: 25px;
+
+$popover-border-color: $dark-two;
+$popover-bg: lighten($dark-six, 6);
+$popover-body-color: $silver;
+$popover-header-bg: lighten($dark-six, 2);
+$popover-arrow-color: lighten($dark-six, 2);
+
+$modal-content-bg: lighten($dark-six, 2);
+$modal-header-border-color: null default;
+$modal-content-border-color: $dark-two;
+
+$table-accent-bg: $dark-six;
+
+$close-color: $silver;
+
+$table-color: $silver;
+$table-border-color: lighten($dark-six, 10);
+
+$pagination-bg: lighten($dark-six, 10);
+$pagination-border-color: $dark-six;
+$pagination-hover-bg: $dark-six;
+$pagination-hover-border-color: transparent;
+
+$alert-padding-y: 0.6rem;
+$alert-padding-x: 0.6rem;
+
+$card-border-color: $dark-two;
+$card-cap-bg: $dark-two;
+$card-bg: transparent;
+
+$form-check-input-margin-y: 0.15rem;
+
+$tooltip-max-width: 380px;
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/transitions";
+
+.theme-night {
+  @import "bootstrap/scss/alert";
+  @import "bootstrap/scss/buttons";
+  @import "bootstrap/scss/forms";
+  @import "bootstrap/scss/custom-forms";
+  @import "bootstrap/scss/input-group";
+  @import "bootstrap/scss/close";
+  @import "bootstrap/scss/modal";
+  @import "bootstrap/scss/popover";
+  @import "bootstrap/scss/tables";
+  @import "bootstrap/scss/spinners";
+  @import "bootstrap/scss/pagination";
+  @import "bootstrap/scss/utilities";
+  @import "bootstrap/scss/grid";
+  @import "bootstrap/scss/nav";
+  @import "bootstrap/scss/progress";
+  @import "bootstrap/scss/card";
+  @import "bootstrap/scss/tooltip";
+
+  background: $dark-six;
+  color: $silver;
+}
+
+@import "bootstrap";
+@import "base";
+@import "components";

@@ -30,11 +30,14 @@ import { CommonActionTypes } from "../common";
 import * as ls from "../../util/local-storage";
 
 import filterTagExtract from "../../helper/filter-tag-extract";
+import config from "../../../config";
+
+console.log(config.selectedTheme);
 
 export const initialState: Global = {
   filter: AllFilter[defaults.filter],
   tag: "",
-  theme: Theme[defaults.theme],
+  theme: Theme[config.selectedTheme],
   listStyle: ListStyle[defaults.listStyle],
   intro: true,
   currency: defaults && defaults.currency && defaults.currency.currency,
@@ -108,31 +111,31 @@ export default (state: Global = initialState, action: Actions): Global => {
 };
 
 /* Actions */
-export const toggleTheme = (theme_key?:Theme) => (
-  dispatch: Dispatch,
-  getState: () => AppState
-) => {
-  const { global } = getState();
+export const toggleTheme =
+  (theme_key?: Theme) => (dispatch: Dispatch, getState: () => AppState) => {
+    const { global } = getState();
 
-  const { theme, isMobile } = global;
-  let newTheme: any = theme === Theme.day ? Theme.night : Theme.day;
-  
-  if (!!theme_key) {
-    newTheme = theme_key;
-  }
+    const { theme, isMobile } = global;
+    const initialTheme = config.selectedTheme;
+    let newTheme: any =
+      theme === Theme[initialTheme] ? Theme.night : Theme[initialTheme];
 
-  ls.set("theme", newTheme);
-  Cookies.set("theme", newTheme);
+    if (!!theme_key) {
+      newTheme = theme_key;
+    }
 
-  dispatch(themeChangeAct(newTheme));
-  if (isMobile) {
-    let body: any = document.getElementsByTagName("body");
-    if (!body) return;
-    body = body[0];
-    body.classList.remove(`theme-${theme}`);
-    body.classList.add(`theme-${newTheme}`);
-  }
-};
+    ls.set("theme", newTheme);
+    Cookies.set("theme", newTheme);
+
+    dispatch(themeChangeAct(newTheme));
+    if (isMobile) {
+      let body: any = document.getElementsByTagName("body");
+      if (!body) return;
+      body = body[0];
+      body.classList.remove(`theme-${theme}`);
+      body.classList.add(`theme-${newTheme}`);
+    }
+  };
 
 export const toggleListStyle = (view: string | null) => (
   dispatch: Dispatch,
