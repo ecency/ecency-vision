@@ -11,7 +11,8 @@ import * as ls from '../../util/local-storage'
 
 // fake data generator
 export const getItems = (decks: any[], user:string) => {
-  if(user){
+  if(user && decks.length > 0){
+    debugger
     ls.set(`user-${user}-decks`,decks)
   }
   return decks.map((k, index) => ({

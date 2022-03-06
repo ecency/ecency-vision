@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { cloneElement, createElement, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
   communities,
   globalTrending,
   hot,
   magnify,
+  magnifySvg,
   notifications,
+  notificationSvg,
   person,
   plusEncircled,
   tags,
@@ -32,6 +34,7 @@ import { Transaction } from "../../store/transactions/types";
 import { getNotifications } from "../../api/private-api";
 import { NotificationListItem } from "../notifications";
 import { _t } from "../../i18n";
+import * as ls from "../../util/local-storage";
 
 const DeckViewContainer = ({
   global,
@@ -42,7 +45,54 @@ const DeckViewContainer = ({
 }: any) => {
   const [openModal, setOpenModal] = useState(false);
   const [loadingNewContent, setLoadingNewContent] = useState(false);
-  const [decks, setDecks] = useState<any>(getItems(initialDeckItems, (rest.activeUser && rest.activeUser.username || "")));
+  const [decks, setDecks] = useState<any>(
+    getItems(
+      initialDeckItems,
+      (rest.activeUser && rest.activeUser.username) || ""
+    )
+  );
+
+  const normalizeHeader = (data: any) => {
+    return data.map((item: any) => {
+      let icon = person; // Handle conditional icons and listItemComponent
+      let listItemComponent:any = SearchListItem; // Handle conditional icons and listItemComponent
+      let lowercasedTitle = item.header.title.toLowerCase();
+      if (
+        lowercasedTitle.includes(_t("decks.trending-topics").toLowerCase())
+      ) {
+        icon = hot;
+        listItemComponent = HotListItem
+      } else if (
+        lowercasedTitle.includes(_t("decks.trending").toLowerCase())
+      ) {
+        icon = globalTrending;
+        listItemComponent = SearchListItem
+      } else if (
+        lowercasedTitle.includes('hive-')
+      ) {
+        icon = communities;
+        listItemComponent = SearchListItem
+      } else if (
+        lowercasedTitle.includes(_t("decks.notifications").toLowerCase())
+      ) {
+        icon = notificationSvg;
+        listItemComponent = NotificationListItem
+      } else if (
+        lowercasedTitle.includes(_t("decks.wallet").toLowerCase())
+      ) {
+        icon = wallet;
+        listItemComponent = TransactionRow
+      }
+      return {
+        ...item,
+        listItemComponent,
+        header: {
+          ...item.header,
+          icon,
+        },
+      };
+    });
+  };
 
   const onSelectColumn = (account: string, contentType: string) => {
     setOpenModal(false);
@@ -52,17 +102,20 @@ const DeckViewContainer = ({
         getNotifications(rest.activeUser.username, null, null, account).then(
           (res) => {
             setDecks(
-              getItems([
-                ...decks,
-                {
-                  data: res,
-                  listItemComponent: NotificationListItem,
-                  header: {
-                    title: `${contentType} @${account}`,
-                    icon: notifications,
+              getItems(
+                [
+                  ...decks,
+                  {
+                    data: res,
+                    listItemComponent: NotificationListItem,
+                    header: {
+                      title: `${contentType} @${account}`,
+                      icon: notifications,
+                    },
                   },
-                },
-              ], (rest.activeUser && rest.activeUser.username || ""))
+                ],
+                (rest.activeUser && rest.activeUser.username) || ""
+              )
             );
             setLoadingNewContent(false);
           }
@@ -79,17 +132,20 @@ const DeckViewContainer = ({
           account
         ).then((res) => {
           setDecks(
-            getItems([
-              ...decks,
-              {
-                data: res,
-                listItemComponent: SearchListItem,
-                header: {
-                  title: `${contentType} @${account}`,
-                  icon: communities,
+            getItems(
+              [
+                ...decks,
+                {
+                  data: res,
+                  listItemComponent: SearchListItem,
+                  header: {
+                    title: `${contentType} @${account}`,
+                    icon: communities,
+                  },
                 },
-              },
-            ], (rest.activeUser && rest.activeUser.username || ""))
+              ],
+              (rest.activeUser && rest.activeUser.username) || ""
+            )
           );
           setLoadingNewContent(false);
         });
@@ -99,17 +155,20 @@ const DeckViewContainer = ({
           account
         ).then((res) => {
           setDecks(
-            getItems([
-              ...decks,
-              {
-                data: res,
-                listItemComponent: SearchListItem,
-                header: {
-                  title: `${contentType} @${account}`,
-                  icon: person,
+            getItems(
+              [
+                ...decks,
+                {
+                  data: res,
+                  listItemComponent: SearchListItem,
+                  header: {
+                    title: `${contentType} @${account}`,
+                    icon: person,
+                  },
                 },
-              },
-            ], (rest.activeUser && rest.activeUser.username || ""))
+              ],
+              (rest.activeUser && rest.activeUser.username) || ""
+            )
           );
           setLoadingNewContent(false);
         });
@@ -117,28 +176,34 @@ const DeckViewContainer = ({
     } else if (account === _t("decks.trending-topics")) {
       getFullTrendingTags().then((res) => {
         setDecks(
-          getItems([
-            ...decks,
-            {
-              data: res,
-              listItemComponent: HotListItem,
-              header: { title: `${account}`, icon: hot },
-            },
-          ], (rest.activeUser && rest.activeUser.username || ""))
+          getItems(
+            [
+              ...decks,
+              {
+                data: res,
+                listItemComponent: HotListItem,
+                header: { title: `${account}`, icon: hot },
+              },
+            ],
+            (rest.activeUser && rest.activeUser.username) || ""
+          )
         );
         setLoadingNewContent(false);
       });
     } else if (account === _t("decks.trending")) {
       getPostsRanked("trending").then((res) => {
         setDecks(
-          getItems([
-            ...decks,
-            {
-              data: res,
-              listItemComponent: SearchListItem,
-              header: { title: `${account}`, icon: globalTrending },
-            },
-          ], (rest.activeUser && rest.activeUser.username || ""))
+          getItems(
+            [
+              ...decks,
+              {
+                data: res,
+                listItemComponent: SearchListItem,
+                header: { title: `${account}`, icon: globalTrending },
+              },
+            ],
+            (rest.activeUser && rest.activeUser.username) || ""
+          )
         );
         setLoadingNewContent(false);
       });
@@ -156,14 +221,19 @@ const DeckViewContainer = ({
       ...itemToUpdate,
       header: { ...itemToUpdate.header, reloading: true },
     };
-    setDecks(getItems([...updatedDecks], (rest.activeUser && rest.activeUser.username || "")));
+    setDecks(
+      getItems(
+        [...updatedDecks],
+        (rest.activeUser && rest.activeUser.username) || ""
+      )
+    );
     let isPost =
       deckType.toLocaleLowerCase() === _t("decks.posts").toLocaleLowerCase() ||
       deckType.toLocaleLowerCase() === _t("decks.blogs").toLocaleLowerCase() ||
       deckType.toLocaleLowerCase() ===
         _t("decks.comments").toLocaleLowerCase() ||
       deckType.toLocaleLowerCase() === _t("decks.replies").toLocaleLowerCase();
-      let isCommunity = title.includes("hive-")
+    let isCommunity = title.includes("hive-");
     if (!isPost && !isCommunity) {
       switch (deckType.toLocaleLowerCase()) {
         case _t("decks.notifications").toLocaleLowerCase():
@@ -177,7 +247,12 @@ const DeckViewContainer = ({
                   icon: notifications,
                 },
               }),
-                setDecks(getItems([...updatedDecks], (rest.activeUser && rest.activeUser.username || "")));
+                setDecks(
+                  getItems(
+                    [...updatedDecks],
+                    (rest.activeUser && rest.activeUser.username) || ""
+                  )
+                );
               setLoadingNewContent(false);
             }
           );
@@ -192,7 +267,12 @@ const DeckViewContainer = ({
                 icon: hot,
               },
             }),
-              setDecks(getItems([...updatedDecks], (rest.activeUser && rest.activeUser.username || "")));
+              setDecks(
+                getItems(
+                  [...updatedDecks],
+                  (rest.activeUser && rest.activeUser.username) || ""
+                )
+              );
             setLoadingNewContent(false);
           });
           break;
@@ -206,7 +286,12 @@ const DeckViewContainer = ({
                 icon: globalTrending,
               },
             }),
-              setDecks(getItems([...updatedDecks], (rest.activeUser && rest.activeUser.username || "")));
+              setDecks(
+                getItems(
+                  [...updatedDecks],
+                  (rest.activeUser && rest.activeUser.username) || ""
+                )
+              );
             setLoadingNewContent(false);
           });
           break;
@@ -214,8 +299,7 @@ const DeckViewContainer = ({
           fetchTransactions(account);
           break;
       }
-    }
-    else if (isCommunity) {
+    } else if (isCommunity) {
       getPostsRanked(
         deckType.toLocaleLowerCase(),
         undefined,
@@ -231,7 +315,12 @@ const DeckViewContainer = ({
             icon: communities,
           },
         }),
-          setDecks(getItems([...updatedDecks], (rest.activeUser && rest.activeUser.username || "")));
+          setDecks(
+            getItems(
+              [...updatedDecks],
+              (rest.activeUser && rest.activeUser.username) || ""
+            )
+          );
       });
     } else if (isPost) {
       let translatedBlogs = _t("decks.blogs").toLocaleLowerCase();
@@ -247,7 +336,12 @@ const DeckViewContainer = ({
             icon: person,
           },
         }),
-          setDecks(getItems([...updatedDecks], (rest.activeUser && rest.activeUser.username || "")));
+          setDecks(
+            getItems(
+              [...updatedDecks],
+              (rest.activeUser && rest.activeUser.username) || ""
+            )
+          );
         setLoadingNewContent(false);
       });
     }
@@ -268,34 +362,52 @@ const DeckViewContainer = ({
       setCurrentUser(accountName);
       let defaultDecks: any = [...decks];
       if (accountName) {
-        getAccountPosts("posts", accountName).then((accountData) => {
-          defaultDecks.push({
-            data: accountData,
-            listItemComponent: SearchListItem,
-            header: {
-              title: `${_t("decks.posts")} @${accountName}`,
-              icon: person,
-            },
-          });
-
-          getNotifications(
-            rest.activeUser.username,
-            null,
-            null,
-            accountName
-          ).then((notificationsData) => {
+        let cachedDecks = ls.get(`user-${accountName}-decks`);
+        if (cachedDecks && cachedDecks.length > 0) {
+          setLoadingNewContent(false);
+          defaultDecks = [...cachedDecks];
+          defaultDecks = normalizeHeader(defaultDecks);
+          setDecks(
+            getItems(
+              [...defaultDecks],
+              (rest.activeUser && rest.activeUser.username) || ""
+            )
+          );
+        } else {
+          getAccountPosts("posts", accountName).then((accountData) => {
             defaultDecks.push({
-              data: notificationsData,
-              listItemComponent: NotificationListItem,
+              data: accountData,
+              listItemComponent: SearchListItem,
               header: {
-                title: `${_t("decks.notifications")} @${accountName}`,
-                icon: notifications,
+                title: `${_t("decks.posts")} @${accountName}`,
+                icon: person,
               },
             });
-            setDecks(getItems([...defaultDecks], (rest.activeUser && rest.activeUser.username || "")));
-            setLoadingNewContent(false);
+
+            getNotifications(
+              rest.activeUser.username,
+              null,
+              null,
+              accountName
+            ).then((notificationsData) => {
+              defaultDecks.push({
+                data: notificationsData,
+                listItemComponent: NotificationListItem,
+                header: {
+                  title: `${_t("decks.notifications")} @${accountName}`,
+                  icon: notifications,
+                },
+              });
+              setDecks(
+                getItems(
+                  [...defaultDecks],
+                  (rest.activeUser && rest.activeUser.username) || ""
+                )
+              );
+              setLoadingNewContent(false);
+            });
           });
-        });
+        }
       } else {
         getPostsRanked("trending").then((res) => {
           defaultDecks.unshift({
@@ -309,7 +421,12 @@ const DeckViewContainer = ({
               listItemComponent: HotListItem,
               header: { title: _t("decks.trending-topics"), icon: hot },
             });
-            setDecks(getItems(defaultDecks, (rest.activeUser && rest.activeUser.username || "")));
+            setDecks(
+              getItems(
+                defaultDecks,
+                (rest.activeUser && rest.activeUser.username) || ""
+              )
+            );
             setLoadingNewContent(false);
           });
         });
@@ -322,22 +439,25 @@ const DeckViewContainer = ({
       setLoadingNewContent(false);
       let firstTransaction = transactionsList[0];
       setDecks(
-        getItems([
-          ...decks,
-          {
-            data: transactionsList,
-            listItemComponent: TransactionRow,
-            header: {
-              title: `${_t("decks.wallet")} @${
-                firstTransaction.curator ||
-                firstTransaction.to ||
-                firstTransaction.delegator ||
-                firstTransaction.receiver
-              }`,
-              icon: wallet,
+        getItems(
+          [
+            ...decks,
+            {
+              data: transactionsList,
+              listItemComponent: TransactionRow,
+              header: {
+                title: `${_t("decks.wallet")} @${
+                  firstTransaction.curator ||
+                  firstTransaction.to ||
+                  firstTransaction.delegator ||
+                  firstTransaction.receiver
+                }`,
+                icon: wallet,
+              },
             },
-          },
-        ], (rest.activeUser && rest.activeUser.username || ""))
+          ],
+          (rest.activeUser && rest.activeUser.username) || ""
+        )
       );
     }
   }, [transactionsList]);
