@@ -109,6 +109,11 @@
           color: $steel-grey;
         }
 
+        @include themify(dusk) {
+          background: $white-three;
+          color: $steel-grey;
+        }
+
         @include themify(night) {
           background: $dark-two;
           color: $silver;
@@ -159,6 +164,10 @@
       justify-content: flex-start;
       padding-top: 16px;
       @include themify(day) {
+        border-top: 1px solid $white-three;
+      }
+
+      @include themify(dusk) {
         border-top: 1px solid $white-three;
       }
 

@@ -10,6 +10,10 @@
         border-top: 1px solid $white-three;
       }
 
+      @include themify(dusk) {
+        border-top: 1px solid $white-three;
+      }
+
       @include themify(night) {
         border-top: 1px solid $steel-grey;
       }
@@ -29,6 +33,10 @@
         padding: 10px;
 
         @include themify(day) {
+          background: $white-three;
+        }
+
+        @include themify(dusk) {
           background: $white-three;
         }
 
@@ -52,6 +60,10 @@
           background: $white-three;
         }
 
+        @include themify(dusk) {
+          background: $white-three;
+        }
+
         .diff-select {
           padding-left: 40px;
           margin: 20px 0;
@@ -71,6 +83,10 @@
             }
 
             @include themify(day) {
+              background: $duck-egg-blue;
+            }
+
+            @include themify(dusk) {
               background: $duck-egg-blue;
             }
 
@@ -126,6 +142,10 @@
           margin: 0 0 22px 0;
 
           @include themify(day) {
+            color: $charcoal-grey;
+          }
+
+          @include themify(dusk) {
             color: $charcoal-grey;
           }
 

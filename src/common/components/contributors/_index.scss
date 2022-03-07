@@ -11,6 +11,10 @@
         border-bottom: 1px solid lighten($dark-sky-blue, 28);
       }
 
+      @include themify(dusk) {
+        border-bottom: 1px solid lighten($dark-sky-blue, 28);
+      }
+
       @include themify(night) {
         border-bottom: 1px solid lighten($dark, 10);
       }

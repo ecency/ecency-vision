@@ -14,6 +14,10 @@
       color: $steel-grey;
     }
 
+    @include themify(dusk) {
+      color: $steel-grey;
+    }
+
     @include themify(night) {
       color: $duck-egg-blue;
       opacity: 0.8;
@@ -33,6 +37,11 @@
   height: 64px;
 
   @include themify(day) {
+    background: $white-two;
+    box-shadow: 0 0 2px 1px $white-six;
+  }
+
+  @include themify(dusk) {
     background: $white-two;
     box-shadow: 0 0 2px 1px $white-six;
   }
@@ -100,6 +109,11 @@
   }
 
   @include themify(day) {
+    background: $white-two;
+    box-shadow: 0 0 2px 1px $white-six;
+  }
+
+  @include themify(dusk) {
     background: $white-two;
     box-shadow: 0 0 2px 1px $white-six;
   }
@@ -241,6 +255,10 @@
         color: $warm-grey;
       }
 
+      @include themify(dusk) {
+        color: $warm-grey;
+      }
+
       @include themify(night) {
         color: $duck-egg-blue;
       }
@@ -303,6 +321,11 @@
         box-shadow: 0 .5rem 1rem rgba($gray-500, .15)
       }
 
+      @include themify(dusk) {
+        background: $white-two;
+        box-shadow: 0 .5rem 1rem rgba($gray-500, .15)
+      }
+
       @include themify(night) {
         background: $dark-two;
       }
@@ -320,6 +343,10 @@
   .custom-dropdown {
     .dropdown-btn {
       @include themify(day) {
+        color: $warm-grey;
+      }
+
+      @include themify(dusk) {
         color: $warm-grey;
       }
 
@@ -356,6 +383,10 @@ body.medium-zoom--opened {
     color: $warm-grey;
   }
 
+  @include themify(dusk) {
+    color: $warm-grey;
+  }
+
   @include themify(night) {
     color: $duck-egg-blue;
   }
@@ -376,6 +407,10 @@ body.medium-zoom--opened {
   z-index: $zindex-navbar-overlay-sm !important;
 
   @include themify(day) {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  @include themify(dusk) {
     background-color: rgba(255, 255, 255, 0.95) !important;
   }
 
@@ -433,6 +468,9 @@ body.medium-zoom--opened {
         color: $light-grey !important;
       }
       @include themify(day) {
+        color: $dark !important;
+      }
+      @include themify(dusk) {
         color: $dark !important;
       }
     }

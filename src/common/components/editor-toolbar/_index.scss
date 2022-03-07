@@ -3,11 +3,15 @@
   display: flex;
   flex-wrap: wrap;
 
-  @media (max-width: $sm-break - 1px) {
+  @media (max-width: ($sm-break - 1px)) {
     justify-content: center;
   }
 
   @include themify(day) {
+    background: $white-three;
+  }
+
+  @include themify(dusk) {
     background: $white-three;
   }
 
@@ -30,6 +34,14 @@
     }
 
     @include themify(day) {
+      color: $steel-grey;
+
+      &:hover {
+        background: darken($white-three, 5);
+      }
+    }
+
+    @include themify(dusk) {
       color: $steel-grey;
 
       &:hover {
@@ -66,6 +78,10 @@
         background: darken($white-three, 5);
       }
 
+      @include themify(dusk) {
+        background: darken($white-three, 5);
+      }
+
       @include themify(night) {
         background: $dark-two;
       }
@@ -75,6 +91,10 @@
 
         &:hover {
           @include themify(day) {
+            background: $white-three;
+          }
+
+          @include themify(dusk) {
             background: $white-three;
           }
 
@@ -107,6 +127,10 @@
     width: 1px;
 
     @include themify(day) {
+      background: $white-four;
+    }
+
+    @include themify(dusk) {
       background: $white-four;
     }
 

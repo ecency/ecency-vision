@@ -40,7 +40,6 @@ import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountO
 import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
 import isCommunity from "../../helper/is-community";
-import config from "../../../config";
 import { setupConfig } from "../../../setup";
 //const logo = require('../../img/logo-circle.svg');
 

@@ -14,6 +14,11 @@
     border-bottom: 1px solid $white-three;
   }
 
+  @include themify(dusk) {
+    border-bottom: 1px solid $white-three;
+  }
+
+
   @include themify(night) {
     border-bottom: 1px solid $dark-two;
   }
@@ -138,6 +143,13 @@
     opacity: 1;
   }
   @include themify(day) {
+    svg {
+      color: $charcoal-grey;
+      height: 100%;
+    }
+  }
+
+  @include themify(dusk) {
     svg {
       color: $charcoal-grey;
       height: 100%;

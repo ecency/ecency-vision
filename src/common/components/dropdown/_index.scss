@@ -34,6 +34,11 @@
       color: $dark-sky-blue;
     }
 
+     @include themify(dusk) {
+      color: $dark-sky-blue;
+    }
+
+
     @include themify(night) {
       color: $pastel-blue;
     }
@@ -42,6 +47,10 @@
     &:hover {
       .menu-down {
         @include themify(day) {
+          background: $duck-egg-blue;
+        }
+
+        @include themify(dusk) {
           background: $duck-egg-blue;
         }
 
@@ -87,6 +96,10 @@
       background: $white;
     }
 
+    @include themify(dusk) {
+      background: $white;
+    }
+
     @include themify(night) {
       background: lighten($dark-six, 5);
     }
@@ -113,6 +126,10 @@
       border-bottom-right-radius: 25px;
 
       @include themify(day) {
+        color: $warm-grey;
+      }
+
+      @include themify(dusk) {
         color: $warm-grey;
       }
 
@@ -148,6 +165,10 @@
             background: $dark-sky-blue;
           }
 
+          @include themify(dusk) {
+            background: $dark-sky-blue;
+          }
+
           @include themify(night) {
             background: $metallic-blue;
           }
@@ -156,6 +177,11 @@
 
       &:hover:not(.active) {
         @include themify(day) {
+          background: lighten($dark-sky-blue, 40);
+          color: $dark-sky-blue;
+        }
+
+        @include themify(dusk) {
           background: lighten($dark-sky-blue, 40);
           color: $dark-sky-blue;
         }

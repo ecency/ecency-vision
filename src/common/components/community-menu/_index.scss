@@ -7,6 +7,10 @@
     border-bottom: 1px solid $white-four;
   }
 
+  @include themify(dusk) {
+    border-bottom: 1px solid $white-four;
+  }
+
   @include themify(night) {
     border-bottom: 1px solid $dark-two;
   }

@@ -27,6 +27,11 @@
     background-image: linear-gradient(to left, $dusk-blue, $dark-sky-blue);
   }
 
+  @include themify(dusk) {
+    background-image: linear-gradient(to left, $dusk-blue, $dark-sky-blue);
+  }
+
+
   @include themify(night) {
     background-image: linear-gradient(to left, $dark-indigo, $dusky-blue);
   }
@@ -106,6 +111,11 @@
     @include themify(day) {
       background: $white-three;
     }
+
+    @include themify(dusk) {
+      background: $white-three;
+    }
+
 
     @include themify(night) {
       background: $dark-two;
