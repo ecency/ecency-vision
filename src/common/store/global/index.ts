@@ -30,14 +30,14 @@ import { CommonActionTypes } from "../common";
 import * as ls from "../../util/local-storage";
 
 import filterTagExtract from "../../helper/filter-tag-extract";
-import config from "../../../config";
+import { setupConfig } from "../../../setup";
 
-console.log(config.selectedTheme);
+console.log(setupConfig.selectedTheme);
 
 export const initialState: Global = {
   filter: AllFilter[defaults.filter],
   tag: "",
-  theme: Theme[config.selectedTheme],
+  theme: Theme[setupConfig.selectedTheme],
   listStyle: ListStyle[defaults.listStyle],
   intro: true,
   currency: defaults && defaults.currency && defaults.currency.currency,
@@ -116,7 +116,7 @@ export const toggleTheme =
     const { global } = getState();
 
     const { theme, isMobile } = global;
-    const initialTheme = config.selectedTheme;
+    const initialTheme = setupConfig.selectedTheme;
     let newTheme: any =
       theme === Theme[initialTheme] ? Theme.night : Theme[initialTheme];
 

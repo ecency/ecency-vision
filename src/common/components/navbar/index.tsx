@@ -41,6 +41,7 @@ import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
 import isCommunity from "../../helper/is-community";
 import config from "../../../config";
+import { setupConfig } from "../../../setup";
 //const logo = require('../../img/logo-circle.svg');
 
 interface Props {
@@ -196,7 +197,7 @@ export class NavBar extends Component<Props, State> {
 
   handleAutoDetectTheme = (e: any = null) => {
     const _default_theme =
-      e && e.matches ? Theme.night : Theme[config.selectedTheme];
+      e && e.matches ? Theme.night : Theme[setupConfig.selectedTheme];
     this.props.toggleTheme(_default_theme);
   };
 
