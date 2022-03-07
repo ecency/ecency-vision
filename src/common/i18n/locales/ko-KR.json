@@ -835,7 +835,7 @@
     "page-title": "글쓰기",
     "page-description": "글을 게시하고, 보상을 받고, 무수정, 불변, 탈중앙화된 콘텐츠를 얻으세요!",
     "title-placeholder": "제목",
-    "body-placeholder": "게시물 내용",
+    "body-placeholder": "Tell your story...",
     "reward": "보상",
     "reward-hint": "유동 및 스테이킹된 토큰에 대한 작성자 보상 비율 설정하세요",
     "reward-default": "기본 50% / 50%",
