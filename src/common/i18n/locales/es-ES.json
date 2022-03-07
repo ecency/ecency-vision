@@ -835,7 +835,7 @@
     "page-title": "Crear un post",
     "page-description": "¡Publica un artículo, monetiza, sin censura, inmutable y descentralizado!",
     "title-placeholder": "Título",
-    "body-placeholder": "Tell your story...",
+    "body-placeholder": "Cuenta tu historia...",
     "reward": "Recompensa",
     "reward-hint": "Establecer la relación de recompensa del autor para los tokens líquidos y en estaca",
     "reward-default": "Por defecto 50% / 50%",
