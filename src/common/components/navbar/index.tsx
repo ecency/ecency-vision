@@ -111,21 +111,12 @@ export class NavBar extends Component<Props, State> {
     if (!location.pathname.startsWith("/signup") && qs.referral) {
       history.push(`/signup?referral=${qs.referral}`);
     }
-
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", this.handleAutoDetectTheme); // listen to dark theme
-    // this.handleSetTheme(); // detect default set theme on load page
   }
 
   componentWillUnmount() {
     document
       .getElementsByTagName("body")[0]
       .classList.remove("overflow-hidden");
-
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .removeEventListener("change", this.handleAutoDetectTheme);
   }
 
   shouldComponentUpdate(
