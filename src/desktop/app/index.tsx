@@ -29,6 +29,9 @@ import {DesktopWindow} from "./window";
 
 import "../../style/theme-day.scss";
 import "../../style/theme-night.scss";
+import "../../style/theme-dusk.scss";
+import "../../style/theme-burning.scss";
+import "../../style/theme-sky.scss";
 
 import "../../client/base-handlers";
 

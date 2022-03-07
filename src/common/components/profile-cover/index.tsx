@@ -16,54 +16,71 @@ setProxyBase(defaults.imageServer);
 import FollowControls from "../follow-controls";
 import FavoriteBtn from "../favorite-btn";
 import ProfileInfo from "../profile-info";
+import { setupConfig } from "../../../setup";
 
 interface Props {
-    global: Global;
-    dynamicProps: DynamicProps;
-    account: Account;
-    users: User[];
-    activeUser: ActiveUser | null;
-    ui: UI;
-    setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data?: Account) => void;
-    deleteUser: (username: string) => void;
-    toggleUIProp: (what: ToggleType) => void;
+  global: Global;
+  dynamicProps: DynamicProps;
+  account: Account;
+  users: User[];
+  activeUser: ActiveUser | null;
+  ui: UI;
+  setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data?: Account) => void;
+  deleteUser: (username: string) => void;
+  toggleUIProp: (what: ToggleType) => void;
 }
 
 export class ProfileCover extends Component<Props> {
-    render() {
-        const {global, account, activeUser} = this.props;
-        const coverFallbackDay = global.isElectron ? "./img/cover-fallback-day.png" : require("../../img/cover-fallback-day.png");
-        const coverFallbackNight = global.isElectron ? "./img/cover-fallback-night.png" : require("../../img/cover-fallback-night.png");
-        let bgImage = "";
+  render() {
+    const { global, account, activeUser } = this.props;
+    const coverFallbackDay = global.isElectron
+      ? "./img/cover-fallback-day.png"
+      : require("../../img/cover-fallback-day.png");
+    const coverFallbackNight = global.isElectron
+      ? "./img/cover-fallback-night.png"
+      : require("../../img/cover-fallback-night.png");
+    let bgImage = "";
 
-        if (account.__loaded) {
-            bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
-            if (account.profile?.cover_image) {
-                bgImage = proxifyImageSrc(account.profile.cover_image, 0, 0, global.canUseWebp ? 'webp' : 'match');
-            }
-        }
-
-        let style = {};
-        if (bgImage) {
-            style = {backgroundImage: `url('${bgImage}')`};
-        }
-
-        const hideControls = activeUser && activeUser.username === account.name;
-
-        return (
-            <div className="profile-cover">
-                <div className="cover-image" style={style}/>
-                <div className="follow-controls-holder">
-                    {ProfileInfo(this.props)}
-                    {!hideControls && <>
-                      <FollowControls {...this.props} targetUsername={account.name}/>
-                        {global.usePrivate && <FavoriteBtn {...this.props} targetUsername={account.name}/>}
-                    </>}
-                </div>
-            </div>
+    if (account.__loaded) {
+      bgImage =
+        global.theme === setupConfig.selectedTheme
+          ? coverFallbackDay
+          : coverFallbackNight;
+      if (account.profile?.cover_image) {
+        bgImage = proxifyImageSrc(
+          account.profile.cover_image,
+          0,
+          0,
+          global.canUseWebp ? "webp" : "match"
         );
+      }
     }
+
+    let style = {};
+    if (bgImage) {
+      style = { backgroundImage: `url('${bgImage}')` };
+    }
+
+    const hideControls = activeUser && activeUser.username === account.name;
+
+    return (
+      <div className="profile-cover">
+        <div className="cover-image" style={style} />
+        <div className="follow-controls-holder">
+          {ProfileInfo(this.props)}
+          {!hideControls && (
+            <>
+              <FollowControls {...this.props} targetUsername={account.name} />
+              {global.usePrivate && (
+                <FavoriteBtn {...this.props} targetUsername={account.name} />
+              )}
+            </>
+          )}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default (p: Props) => {

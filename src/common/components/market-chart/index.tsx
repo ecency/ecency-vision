@@ -24,6 +24,9 @@ const MarketChart = ({ bids, asks, theme }:any) => {
     body = body[0];
     body.classList.remove(`theme-night`);
     body.classList.remove(`theme-day`);
+    body.classList.remove(`theme-sky`);
+    body.classList.remove(`theme-dusk`);
+    body.classList.remove(`theme-burning`);
     body.classList.add(`theme-${theme}`);
   }
 

@@ -209,7 +209,7 @@ export class NavBar extends Component<Props, State> {
       ? "./img/logo-circle.svg"
       : require("../../img/logo-circle.svg");
     const themeText =
-      global.theme == Theme.day
+      global.theme == Theme[setupConfig.selectedTheme]
         ? _t("navbar.night-theme")
         : _t("navbar.day-theme");
     const communityPage =
@@ -251,17 +251,6 @@ export class NavBar extends Component<Props, State> {
       this.props?.location?.pathname?.startsWith("/hot") ||
       this.props?.location?.pathname?.startsWith("/created") ||
       this.props?.location?.pathname?.startsWith("/trending");
-
-    const textMenu = (
-      <div className="text-menu">
-        <Link className="menu-item mt-0" to="/discover">
-          {_t("navbar.discover")}
-        </Link>
-        <Link className="menu-item mt-0" to="/communities">
-          {_t("navbar.communities")}
-        </Link>
-      </div>
-    );
 
     return (
       <div className={"sticky-container"} id="sticky-container">

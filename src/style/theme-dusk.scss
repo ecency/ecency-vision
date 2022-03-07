@@ -10,45 +10,45 @@ $link-hover-decoration: none;
 $line-height-base: 1.2;
 
 $input-border-radius: 25px;
-$input-bg: lighten($powder-blue, 2);
-$input-border-color: $dusk-blue;
+$input-bg: $white-three;
+$input-border-color: $white-four;
 $input-box-shadow: none;
 $input-focus-box-shadow: none;
-$input-color: $dark-two;
-$input-placeholder-color: $steel-grey;
+$input-color: $charcoal-grey;
+$input-placeholder-color: $silver;
 
 $input-group-addon-color: darken($silver, 12);
 
 $btn-border-radius: 25px;
 $btn-border-radius-sm: 25px;
 
-$popover-border-color: $dark-two;
-$popover-bg: lighten($dark-six, 6);
-$popover-body-color: $silver;
-$popover-header-bg: lighten($dark-six, 2);
-$popover-arrow-color: lighten($dark-six, 2);
+$popover-border-color: $white-three;
+$popover-bg: $white;
+$popover-body-color: $gunmetal;
+$popover-header-bg: $white-three;
+$popover-arrow-color: $white-three;
 
-$modal-content-bg: lighten($dark-six, 2);
+$modal-content-bg: $white;
 $modal-header-border-color: null default;
-$modal-content-border-color: $dark-two;
+$modal-content-border-color: $white-three;
 
-$table-accent-bg: $dark-six;
+$table-accent-bg: $white-three;
 
-$close-color: $silver;
+$close-color: null default;
 
-$table-color: $silver;
-$table-border-color: lighten($dark-six, 10);
+$table-color: darken($steel-grey, 10);
+$table-border-color: $white-three;
 
-$pagination-bg: lighten($dark-six, 10);
-$pagination-border-color: $dark-six;
-$pagination-hover-bg: $dark-six;
-$pagination-hover-border-color: transparent;
+$pagination-bg: $white;
+$pagination-border-color: $white-four;
+$pagination-hover-bg: $white-three;
+$pagination-hover-border-color: $white-four;
 
 $alert-padding-y: 0.6rem;
 $alert-padding-x: 0.6rem;
 
-$card-border-color: $dark-two;
-$card-cap-bg: $dark-two;
+$card-border-color: $white-three;
+$card-cap-bg: $white-two;
 $card-bg: transparent;
 
 $form-check-input-margin-y: 0.15rem;
@@ -62,7 +62,7 @@ $tooltip-max-width: 380px;
 @import "bootstrap/scss/type";
 @import "bootstrap/scss/transitions";
 
-.theme-night {
+.theme-dusk {
   @import "bootstrap/scss/alert";
   @import "bootstrap/scss/buttons";
   @import "bootstrap/scss/forms";
@@ -81,8 +81,8 @@ $tooltip-max-width: 380px;
   @import "bootstrap/scss/card";
   @import "bootstrap/scss/tooltip";
 
-  background: $dark-six;
-  color: $silver;
+  background: $white;
+  color: lighten($charcoal-grey, 10);
 }
 
 @import "bootstrap";
