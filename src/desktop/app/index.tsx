@@ -33,7 +33,7 @@ import "../../style/theme-night.scss";
 import "../../client/base-handlers";
 
 import "./context-menu";
-import config from "../../config";
+import { setupConfig } from "../../setup";
 
 declare var window: DesktopWindow;
 
@@ -42,7 +42,7 @@ window.ipcRenderer = require("electron").ipcRenderer;
 window.remote = require("electron").remote;
 
 // Create store
-const theme = ls.get("theme") || config.selectedTheme;
+const theme = ls.get("theme") || setupConfig.selectedTheme;
 const intro = !ls.get("hide-intro");
 const listStyle = ls.get("list-style") || defaults.listStyle;
 

@@ -36,7 +36,7 @@ import {
   pageMapStateToProps,
   PageProps,
 } from "./common";
-import config from "../../config";
+import { setupConfig } from "../../setup";
 
 interface State {
   step: number;
@@ -46,7 +46,7 @@ interface State {
 class EntryIndexPage extends Component<PageProps, State> {
   state: State = {
     step: 1,
-    community: '',
+    community: "",
   };
 
   componentDidMount() {
@@ -54,10 +54,10 @@ class EntryIndexPage extends Component<PageProps, State> {
     fetchEntries(global.filter, global.tag, false);
     fetchTrendingTags();
 
-    const community = config.communityId;
+    const community = setupConfig.communityId;
 
     if (community) {
-        this.setState({ ...this.state, community });
+      this.setState({ ...this.state, community });
     }
 
     this.props.activeUser !== null
@@ -172,7 +172,9 @@ class EntryIndexPage extends Component<PageProps, State> {
 
     return (
       <>
-        {!!this.state.community && <Redirect to={`/created/${this.state.community}`} />}
+        {!!this.state.community && (
+          <Redirect to={`/created/${this.state.community}`} />
+        )}
         <Meta {...metaProps} />
         <ScrollToTop />
         <Theme global={this.props.global} />
