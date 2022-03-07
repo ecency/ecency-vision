@@ -835,7 +835,7 @@
     "page-title": "创建一个帖子",
     "page-description": "发布一篇文章，赚取奖励，未知的、不可变的、去中心化的内容！",
     "title-placeholder": "标题",
-    "body-placeholder": "文章内容",
+    "body-placeholder": "Tell your story...",
     "reward": "奖励",
     "reward-hint": "设置流动代币和质押代币的作者奖励比率",
     "reward-default": "默认 50% / 50%",
