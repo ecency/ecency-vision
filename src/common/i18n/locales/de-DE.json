@@ -835,7 +835,7 @@
     "page-title": "Beitrag erstellen",
     "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
     "title-placeholder": "Titel",
-    "body-placeholder": "Kommentar absenden",
+    "body-placeholder": "Tell your story...",
     "reward": "Belohnung",
     "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Standard 50% / 50%",
