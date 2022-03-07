@@ -835,7 +835,7 @@
     "page-title": "Crea un post",
     "page-description": "Pubblica un articolo, guadagna ricompense, contenuti non censurati, irrevocabili e decentralizzati!",
     "title-placeholder": "Titolo",
-    "body-placeholder": "Contenuto del post",
+    "body-placeholder": "Tell your story...",
     "reward": "Ricompensa",
     "reward-hint": "Imposta la percentuale di ricompensa per token liquidi e in staking",
     "reward-default": "Predefinito 50% / 50%",
