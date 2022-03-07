@@ -835,7 +835,7 @@
     "page-title": "Criar uma publicação",
     "page-description": "Publique um artigo, ganhe recompensa, sem censura, conteúdo imutável e descentralizado!",
     "title-placeholder": "Título",
-    "body-placeholder": "Conteúdo da Publicação",
+    "body-placeholder": "Tell your story...",
     "reward": "Recompensa",
     "reward-hint": "Configura a taxa de recompensa do autor para tokens líquidos e ilíqüidos.",
     "reward-default": "Padrão 50% / 50%",
