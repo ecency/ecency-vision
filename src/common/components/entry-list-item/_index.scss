@@ -18,7 +18,7 @@
     }
 
     @include themify(dusk) {
-      background: lighten($dark-sky-blue, 42);
+      background: lighten($silver, 42);
       color: $charcoal-grey;
     }
 

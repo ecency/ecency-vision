@@ -18,6 +18,10 @@
       color: $steel-grey;
     }
 
+    @include themify(dusk) {
+      color: $steel-grey;
+    }
+
     @include themify(night) {
       color: $metallic-blue;
     }

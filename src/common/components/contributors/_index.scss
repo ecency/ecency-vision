@@ -12,7 +12,7 @@
       }
 
       @include themify(dusk) {
-        border-bottom: 1px solid lighten($dark-sky-blue, 28);
+        border-bottom: 1px solid lighten($silver, 28);
       }
 
       @include themify(night) {
