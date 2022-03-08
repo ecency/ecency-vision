@@ -47,9 +47,16 @@
 }
 
 .deck-view {
+  .viewLayouts {
+    display: block;
+  }
   .view-feed {
     .view-layout {
       margin-left: 1.1rem;
+
+      @media (max-width: $sm-break) {
+        margin-left: 0.7rem;
+      }
     }
     .menu-down-icon {
       width: 15px !important;
