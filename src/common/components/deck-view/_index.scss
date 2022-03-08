@@ -52,8 +52,8 @@
       margin-left: 1.1rem;
     }
     .menu-down-icon {
-      width: 16px !important;
-      height: 16px;
+      width: 15px !important;
+      height: 15px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -61,7 +61,11 @@
       left: -10px;
       bottom: -10px;
       border-radius: 50%;
-      border: 1px solid $white;
+      border: 1px solid $dark-sky-blue;
+      background-color: $white;
+      path {
+        fill: $dark-sky-blue !important;
+      }
     }
   }
 }
