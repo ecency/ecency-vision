@@ -46,6 +46,26 @@
   fill: $white;
 }
 
+.deck-view {
+  .view-feed {
+    .view-layout {
+      margin-left: 1.1rem;
+    }
+    .menu-down-icon {
+      width: 16px !important;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      left: -10px;
+      bottom: -10px;
+      border-radius: 50%;
+      border: 1px solid $white;
+    }
+  }
+}
+
 .the-menu path {
   fill: $dark-sky-blue !important;
 }
@@ -71,13 +91,15 @@
   height: 20px;
 }
 
-@keyframes blinker {  
-  50% { opacity: 0; }
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 
 .active-deck {
   .deck {
     box-shadow: 0 0.5rem 1rem rgb(72 135 230 / 74%) !important;
     animation: blinker 2s linear forwards;
-  }  
+  }
 }

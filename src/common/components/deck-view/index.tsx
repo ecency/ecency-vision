@@ -470,7 +470,7 @@ const DeckViewContainer = ({
         onSelect={onSelectColumn}
         currentlyActivatedOptions={decks}
       />
-      <div className="d-flex flex-grow-1">
+      <div className="d-flex flex-grow-1 deck-view">
         <div className="navbar d-flex flex-column align-items-center pt-5 p-3">
           <div className="mt-5 my-icons-5 cursor-pointer">
             <ListStyleToggle
@@ -499,7 +499,7 @@ const DeckViewContainer = ({
                   onClick={() => {
                     let elementToFocus = document!.getElementById(deck.id);
                     let toScrollValue =
-                      elementToFocus!.getBoundingClientRect().left;
+                    elementToFocus!.getBoundingClientRect().left;
                     elementToFocus?.classList.add("active-deck");
                     setTimeout(() => {
                       elementToFocus?.classList.remove("active-deck");
