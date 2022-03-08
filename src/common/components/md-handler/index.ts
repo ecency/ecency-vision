@@ -1,5 +1,6 @@
 import {Component} from "react";
 import {History} from "history";
+import {get} from "lodash";
 
 import {Global} from "../../store/global/types";
 
@@ -11,10 +12,18 @@ interface Props {
 export default class MdHandler extends Component<Props> {
     componentDidMount() {
         document.addEventListener("click", this.clicked);
+        this.goToElementWhenActive()
     }
 
     componentWillUnmount() {
         document.removeEventListener("click", this.clicked);
+    }
+    
+    goToElementWhenActive = () => { // go to element when active page
+        setTimeout(() => {
+            const urlHash = get(this.props, 'history.location.hash');
+            !!urlHash && this.goToElement(urlHash);
+        }, 300);
     }
 
     clicked = (e: MouseEvent): void => {
@@ -62,6 +71,12 @@ export default class MdHandler extends Component<Props> {
                 return;
             }
         }
+
+        if (el.classList.contains("markdown-internal-link")) { // click go to element by data-id
+            let href = el.getAttribute("href");
+            !!href && this.goToElement(href);
+        }
+
         // TODO: check if moving markdown-img-link from <a> into <img> didn't break this
         if (global.isElectron && el.classList.contains("markdown-img-link")) {
             e.preventDefault();
@@ -73,6 +88,14 @@ export default class MdHandler extends Component<Props> {
             window.open(href);
         }
     };
+
+    goToElement = (hashKey: string = '') => {
+        if(!!hashKey) {
+            const _data_id = hashKey.replace('#', ''); // remove # from internal href. EX: #test => test
+            const get_element_by_data_id = document.querySelectorAll(`[data-id="${_data_id}"]`);
+            get_element_by_data_id.length > 0 && get_element_by_data_id[0].scrollIntoView({behavior: "smooth"});
+        }
+    }
 
     render() {
         return null;
