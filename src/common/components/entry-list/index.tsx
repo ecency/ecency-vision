@@ -3,7 +3,7 @@ import {History, Location} from "history";
 import _ from 'lodash'
 
 import {Global, ProfileFilter} from "../../store/global/types";
-import {Account} from "../../store/accounts/types";
+import {Account, FullAccount} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Entry} from "../../store/entries/types";
 import {Community, Communities} from "../../store/communities/types";
@@ -15,12 +15,11 @@ import {UI, ToggleType} from "../../store/ui/types";
 import EntryListItem from "../entry-list-item/index";
 import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 import MessageNoData from "../message-no-data";
-import SearchBox from '../search-box'
-import { Link } from "react-router-dom";
 import { _t } from "../../i18n";
-import * as ls from "../../util/local-storage";
 import LinearProgress from "../linear-progress";
 import { getFollowing } from "../../api/hive";
+import isCommunity from '../../helper/is-community';
+import { match } from "react-router-dom";
 
 
 interface Props {
@@ -39,6 +38,8 @@ interface Props {
     ui: UI;
     entryPinTracker: EntryPinTracker;
     signingKey: string;
+    account?: Account;
+    match?: match<any>;
     addAccount: (data: Account) => void;
     updateEntry: (entry: Entry) => void;
     setActiveUser: (username: string | null) => void;
@@ -90,7 +91,6 @@ export class EntryListContent extends Component<Props, State> {
         if(prevProps.activeUser !== this.props.activeUser && !this.props.activeUser){
             this.setState({mutedUsers:[]})
         }
-       
     }
 
     componentDidMount(){
@@ -99,7 +99,7 @@ export class EntryListContent extends Component<Props, State> {
 
     render() {
         const {entries, promotedEntries, global, activeUser, loading } = this.props;
-        const {filter} = global;
+        const {filter, tag} = global;
         const { mutedUsers, loadingMutedUsers } = this.state;
         let dataToRender = entries;
 
@@ -107,7 +107,7 @@ export class EntryListContent extends Component<Props, State> {
         if(mutedUsers && mutedUsers.length > 0 && activeUser && activeUser.username){
             mutedList = mutedList.concat(mutedUsers)
         }
-
+        const isMyProfile = activeUser && tag.includes('@') && activeUser.username === tag.replace("@",'');
         return (
             <>
                 {
@@ -141,16 +141,35 @@ export class EntryListContent extends Component<Props, State> {
                                 return [...l];
                             })}
                         </>
-                    ) : !loading &&  <MessageNoData>
-                            {(global.tag===`@${activeUser?.username}` && global.filter === "posts") ? 
-                            <div className='text-center'>
-                                <div className="info">{_t("profile-info.no-posts")}</div>
-                                <Link to='/submit' className="action"><b>{_t("profile-info.create-posts")}</b></Link>
-                            </div>:
-                            <div className="info">{`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}</div>}
-                        </MessageNoData>
+                    ) : !loading &&  (isMyProfile) ?
+                            <MessageNoData
+                                title={filter == 'feed' ? `${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}` : _t("profile-info.no-posts")}
+                                description={filter == 'feed' ? _t("g.fill-feed") : `${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}`}
+                                buttonText={filter == 'feed' ? _t("navbar.discover") : _t("profile-info.create-posts")}
+                                buttonTo={filter == 'feed' ? "/discover" : "/submit"}
+                                global={global}
+                            /> : (isCommunity(tag) ? <MessageNoData
+                                    title={_t("profile-info.no-posts-community")}
+                                    description={`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}
+                                    buttonText={_t("profile-info.create-posts")}
+                                    buttonTo="/submit"
+                                    global={global}
+                                /> : (tag == 'my' ? <MessageNoData
+                                    title={_t("g.no-matches")}
+                                    description={_t("g.fill-community-feed")}
+                                    buttonText={_t("navbar.discover")}
+                                    buttonTo="/communities"
+                                    global={global}
+                                /> : <MessageNoData
+                                    title={_t("profile-info.no-posts-user")}
+                                    description={`${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}.`}
+                                    buttonText={isMyProfile ? _t("profile-info.create-posts"):""}
+                                    buttonTo="/submit"
+                                    global={global}
+                                />
+                                )
+                            )
                 }
-            
             </>
         );
     }
@@ -185,7 +204,9 @@ export default (p: Props) => {
         trackEntryPin: p.trackEntryPin,
         setSigningKey: p.setSigningKey,
         setEntryPin: p.setEntryPin,
-        loading: p.loading
+        loading: p.loading,
+        account: p.account,
+        match: p.match
     }
 
     return <EntryListContent {...props} />;

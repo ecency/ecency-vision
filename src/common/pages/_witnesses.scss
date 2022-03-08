@@ -81,6 +81,11 @@
         margin-right: 10px;
       }
     }
+    .witness-ctn{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
 
     .witness-link {
       svg {

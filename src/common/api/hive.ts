@@ -12,10 +12,11 @@ import isCommunity from "../helper/is-community";
 
 import SERVERS from "../constants/servers.json";
 import { dataLimit } from './bridge';
+import moment from "moment";
 
 export const client = new Client(SERVERS, {
     timeout: 4000,
-    failoverThreshold: 10,
+    failoverThreshold: 2,
     consoleOnFailover: true,
 });
 
@@ -66,8 +67,68 @@ export interface Follow {
     what: string[];
 }
 
+export interface MarketStatistics {
+    hbd_volume: string;
+    highest_bid: string;
+    hive_volume: string;
+    latest: string;
+    lowest_ask: string;
+    percent_change: string;
+}
+
+export interface OpenOrdersData {
+    id: number,
+    created: string,
+    expiration: string,
+    seller: string,
+    orderid: number,
+    for_sale: number,
+    sell_price: {
+        base: string,
+        quote: string
+    },
+    real_price: string,
+    rewarded: boolean
+}
+
+export interface OrdersDataItem {
+    created: string;
+    hbd: number;
+    hive: number;
+    order_price: {
+        base: string;
+        quote: string;
+    }
+    real_price: string;
+}
+
+export interface TradeDataItem {
+    current_pays: string;
+    date: number;
+    open_pays: string;
+}
+
+export interface OrdersData {
+    bids: OrdersDataItem[];
+    asks: OrdersDataItem[];
+    trading: OrdersDataItem[];
+}
+
 export const getPost = (username: string, permlink: string): Promise<any> =>
     client.call("condenser_api", "get_content", [username, permlink]);
+
+export const getMarketStatistics = (): Promise<MarketStatistics> =>
+    client.call("condenser_api", "get_ticker", []);
+
+export const getOrderBook = (limit: number = 500): Promise<OrdersData> =>
+    client.call("condenser_api", "get_order_book", [limit]);
+
+export const getOpenOrder = (user: string): Promise<OpenOrdersData[]> =>
+    client.call("condenser_api", "get_open_orders", [user]);
+
+export const getTradeHistory = (limit: number = 1000): Promise<OrdersDataItem[]> => {
+    let today = moment(Date.now()).subtract(10, 'h').format().split('+')[0];
+    return client.call("condenser_api", "get_trade_history", [today, "1969-12-31T23:59:59",limit]);}
 
 export const getActiveVotes = (author: string, permlink: string): Promise<Vote[]> =>
     client.database.call("get_active_votes", [author, permlink]);
@@ -266,6 +327,8 @@ export interface Witness {
     available_witness_account_subsidies: number;
     running_version: string;
     owner: string;
+    signing_key:string,
+    last_hbd_exchange_update:string
 }
 
 export const getWitnessesByVote = (
@@ -353,27 +416,28 @@ export const votingValue = (account: FullAccount, dynamicProps: DynamicProps, vo
     return rShares / fundRecentClaims * fundRewardBalance * (base / quote);
 }
 
+const HIVE_VOTING_MANA_REGENERATION_SECONDS = 5*60*60*24; //5 days
+
 export const downVotingPower = (account: FullAccount): number => {
-    const curMana = Number(account.voting_manabar.current_mana);
-    const curDownMana = Number(account.downvote_manabar.current_mana);
-    const downManaLastUpdate = account.downvote_manabar.last_update_time;
+    const totalShares = parseFloat(account.vesting_shares) + parseFloat(account.received_vesting_shares) - parseFloat(account.delegated_vesting_shares) - parseFloat(account.vesting_withdraw_rate);
+    const elapsed = Math.floor(Date.now() / 1000) - account.downvote_manabar.last_update_time;
+    const maxMana = totalShares * 1000000 / 4;
 
-    const downVotePerc = curDownMana / (curMana / (account.voting_power / 100) / 4);
+    let currentMana = parseFloat(account.downvote_manabar.current_mana.toString()) + elapsed * maxMana / HIVE_VOTING_MANA_REGENERATION_SECONDS;
 
-    const secondsDiff = (Date.now() - (downManaLastUpdate * 1000)) / 1000;
+    if (currentMana > maxMana) {
+        currentMana = maxMana;
+    }
+    const currentManaPerc = currentMana * 100 / maxMana;
 
-    const pow = downVotePerc * 100 + (10000 * secondsDiff / 432000);
-
-    const rv = Math.max(pow / 100, 100);
-
-    if (isNaN(rv)) {
+    if (isNaN(currentManaPerc)) {
         return 0;
     }
 
-    if (rv > 100) {
+    if (currentManaPerc > 100) {
         return 100;
     }
-    return rv;
+    return currentManaPerc;
 };
 
 export const rcPower = (account: RCAccount): number => {
@@ -392,6 +456,19 @@ export interface ConversionRequest {
 
 export const getConversionRequests = (account: string): Promise<ConversionRequest[]> =>
     client.database.call("get_conversion_requests", [account]);
+
+export interface SavingsWithdrawRequest {
+    id: number;
+    from: string;
+    to: string;
+    memo: string;
+    request_id: number;
+    amount: string;
+    complete: string;
+}   
+
+export const getSavingsWithdrawFrom = (account: string): Promise<SavingsWithdrawRequest[]> =>
+    client.database.call("get_savings_withdraw_from", [account]);
 
 export interface BlogEntry {
     blog: string,

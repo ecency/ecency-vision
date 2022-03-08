@@ -206,6 +206,7 @@ exports[`(2) Should switch to transfer 1`] = `
                 value="esteem.app"
               />
             </div>
+            <div />
           </div>
         </div>
       </div>

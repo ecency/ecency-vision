@@ -49,7 +49,8 @@ it('(1) No data.', async () => {
         history: createBrowserHistory(),
         location: createLocation({}),
         global: globalInstance,
-        entry: entryInstance1
+        entry: entryInstance1,
+        display: ""
     };
 
     const component = await renderer.create(<SimilarEntries {...props}/>);
@@ -65,7 +66,8 @@ it('(2) Less than 3 entries. Should render null', async () => {
         history: createBrowserHistory(),
         location: createLocation({}),
         global: globalInstance,
-        entry: entryInstance1
+        entry: entryInstance1,
+        display: ""
     };
 
     const component = await renderer.create(<SimilarEntries {...props}/>);
@@ -81,7 +83,8 @@ it('(3) Should render entries', async () => {
         history: createBrowserHistory(),
         location: createLocation({}),
         global: globalInstance,
-        entry: entryInstance1
+        entry: entryInstance1,
+        display: ""
     };
 
     const component = await renderer.create(<SimilarEntries {...props}/>);

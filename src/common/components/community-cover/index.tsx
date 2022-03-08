@@ -79,6 +79,7 @@ class EditCoverImage extends BaseComponent<EditCoverImageProps, EditCoverImageSt
             profile_image: profile?.profile_image || '',
             website: profile?.website || '',
             location: profile?.location || '',
+            pinned: profile?.pinned || ''
         };
 
         updateProfile(account, newProfile).then(r => {

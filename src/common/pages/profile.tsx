@@ -9,7 +9,7 @@ import {ListStyle} from "../store/global/types";
 
 import {makeGroupKey} from "../store/entries";
 import {ProfileFilter} from "../store/global/types";
-
+import {Entry} from "../store/entries/types";
 import BaseComponent from "../components/base";
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -33,7 +33,7 @@ import ScrollToTop from "../components/scroll-to-top";
 import SearchListItem from "../components/search-list-item";
 import {SearchType} from "../helper/search-query";
 import SearchBox from '../components/search-box'
-
+import * as bridgeApi from "../api/bridge";
 import {search as searchApi, SearchResult} from "../api/search-api";
 import ViewKeys from "../components/view-keys";
 import { PasswordUpdate } from "../components/password-update";
@@ -46,6 +46,8 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import { FormControl } from 'react-bootstrap'
 import { connect } from "react-redux";
+import { FullAccount } from "../store/accounts/types";
+import tag from "../components/tag";
 
 interface MatchParams {
     username: string;
@@ -67,6 +69,7 @@ interface State {
     type: SearchType;
     searchData: SearchResult[];
     searchDataLoading: boolean;
+    pinnedEntry: Entry | null;
 }
 
 class ProfilePage extends BaseComponent<Props, State> {
@@ -86,13 +89,14 @@ class ProfilePage extends BaseComponent<Props, State> {
             search: searchParam,
             author: "",
             type: SearchType.ALL,
+            pinnedEntry: null,
             searchData: []
         };
 
     }
 
     async componentDidMount() {
-        const {match, global, fetchEntries, fetchTransactions, fetchPoints, location} = this.props;
+        const {accounts, match, global, fetchEntries, fetchTransactions, fetchPoints, location} = this.props;
 
         let searchParam = location.search.replace("?","")
         searchParam = searchParam.replace("q","")
@@ -114,14 +118,32 @@ class ProfilePage extends BaseComponent<Props, State> {
 
         // fetch points
         fetchPoints(username);
+        
+        const accountUsername = username.replace("@", "");
+        const account = accounts.find((x) => x.name === accountUsername) as FullAccount        
+
+        if (account && account.profile && account.profile?.pinned && ['blog', 'posts'].includes(global.filter)) {
+            bridgeApi.getPost(accountUsername, account.profile?.pinned).then(entry => {
+                this.setState({pinnedEntry: entry})
+            }).catch(e=>{
+                console.log(e);
+                })
+        }
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints, history } = this.props;
-        const {match: prevMatch, entries} = prevProps;
+        const {accounts, match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints, history, location : {search} } = this.props;
+        const {accounts: prevAccounts, match: prevMatch, entries, location: {search: prevSearch}, global: prevGlobal} = prevProps;
 
         const {username, section} = match.params;
         const { isDefaultPost } = this.state;
+        
+        if(prevSearch !== search){
+            let searchText = search.replace("?q=",'')
+            this.setState({search: searchText || "", searchDataLoading: searchText.length > 0});
+            searchText.length > 0 && this.handleInputChange(searchText)
+
+        }
 
         // username changed. re-fetch wallet transactions and points
         if (username !== prevMatch.params.username) {
@@ -165,6 +187,26 @@ class ProfilePage extends BaseComponent<Props, State> {
 
         if(prevProps.global.filter !== this.props.global.filter) {
           this.setState({search: ''});
+        }
+
+        if(['comments', 'replies'].includes(global.filter) && (global.filter !== prevGlobal.filter)) {
+            this.setState({pinnedEntry: null})
+        }
+
+        let accountUsername = username.replace("@", "");
+        const account = accounts.find((x) => x.name === accountUsername) as FullAccount
+        const prevAccount = prevAccounts.find((x) => x.name === accountUsername) as FullAccount
+
+        if (['blog', 'posts'].includes(global.filter)) {
+            if ((account && prevAccount && account.profile && prevAccount.profile && (account.profile.pinned !== prevAccount.profile.pinned)) || (account && account.profile && account.profile.pinned && global.filter !== prevGlobal.filter) || (account !== prevAccount && account.profile)) {
+                this.setState({pinnedEntry: null})
+                            
+                bridgeApi.getPost(accountUsername, account.profile.pinned).then(entry => {
+                    this.setState({pinnedEntry: entry})
+                }).catch(e=>{
+                    console.log(e);
+                    })
+            }
         }
     }
 
@@ -254,7 +296,7 @@ class ProfilePage extends BaseComponent<Props, State> {
             // this.setState({proposals: this.state.allProposals});
         } else {
           const { global } = this.props;
-          this.setState({  searchDataLoading: true, typing: false});
+          this.setState({  searchDataLoading: true});
     
           let query = `${value} author:${global.tag.substring(1)}`;
          
@@ -270,7 +312,8 @@ class ProfilePage extends BaseComponent<Props, State> {
             data = null;
           }
           if(data && data.results) {
-            let sortedResults = data.results.sort((a: any,b: any) => Date.parse(b.created_at) - Date.parse(a.created_at))
+            let sortedResults = data.results.sort((a: any,b: any) => Date.parse(b.created_at) - Date.parse(a.created_at));
+            
             this.setState({ searchData: sortedResults, loading: false, searchDataLoading: false })
           }
         }
@@ -362,7 +405,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                             account
                         })}
 
-                        {
+                        {data && data.entries.length > 0 && 
                           (filter === 'posts' || filter === 'comments') && (section === filter) && (
                               <div className='searchProfile'>
                                 <SearchBox
@@ -370,7 +413,10 @@ class ProfilePage extends BaseComponent<Props, State> {
                                   value={search}
                                   onChange={this.handleChangeSearch}
                                   autoComplete="off"
-                                /> 
+                                  showcopybutton={true}
+                                  username={`@${username}`}
+                                  filter={filter}
+                                />
                               </div>
                           )
                         }
@@ -399,7 +445,8 @@ class ProfilePage extends BaseComponent<Props, State> {
                                 if (section === "wallet") {
                                     return WalletHive({
                                         ...this.props,
-                                        account
+                                        account,
+                                        updateWalletValues: this.ensureAccount
                                     });
                                 }
 
@@ -413,7 +460,8 @@ class ProfilePage extends BaseComponent<Props, State> {
                                 if (section === "points") {
                                     return WalletEcency({
                                         ...this.props,
-                                        account
+                                        account,
+                                        updateWalletValues: this.ensureAccount
                                     });
                                 }
 
@@ -452,14 +500,19 @@ class ProfilePage extends BaseComponent<Props, State> {
                                 }
 
                                 if (data !== undefined) {
-                                    const entryList = data?.entries;
+                                    let entryList = data?.entries;
+                                    const {profile} = account as FullAccount
+                                    entryList = entryList.filter(item => item.permlink !== profile?.pinned)
+                                    if(this.state.pinnedEntry) {
+                                        entryList.unshift(this.state.pinnedEntry)
+                                    }
                                     const loading = data?.loading;
                                     return (
                                         <>
                                             <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                                                 <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                                                     {loading && entryList.length === 0 && <EntryListLoadingItem/>}
-                                                    {EntryListContent({...this.props, entries: entryList, promotedEntries: [], loading})}
+                                                    {EntryListContent({...this.props, entries: entryList, promotedEntries: [], loading, account})}
                                                 </div>
                                             </div>
                                             {loading && entryList.length > 0 ? <LinearProgress/> : ""}

@@ -30,6 +30,7 @@ interface Props {
     location: Location;
     global: Global;
     entry: Entry;
+    display: string;
 }
 
 interface State {
@@ -91,7 +92,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
             const query = this.buildQuery(entry);
             search(query, "newest", "0", undefined, undefined).then(r => {
 
-                const rawEntries: SearchResult[] = r.results.filter(r => r.permlink !== permlink);
+                const rawEntries: SearchResult[] = r.results.filter(r => r.permlink !== permlink && r.tags.indexOf('nsfw')===-1);
 
                 let entries: SearchResult[] = [];
 
@@ -117,7 +118,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global} = this.props
+        const {global, display} = this.props
         const {entries} = this.state;
         const fallbackImage = global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png");
         const noImage = global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg");
@@ -127,7 +128,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
 
         return (
             <>
-                <div className="similar-entries-list">
+                <div className={`similar-entries-list ${display}`}>
                     <div className="similar-entries-list-header">
                         <div className="list-header-text">
                             {_t('similar-entries.title')}
@@ -181,7 +182,8 @@ export default (p: Props) => {
         history: p.history,
         location: p.location,
         global: p.global,
-        entry: p.entry
+        entry: p.entry,
+        display: p.display
     }
     return <SimilarEntries {...props} />
 }

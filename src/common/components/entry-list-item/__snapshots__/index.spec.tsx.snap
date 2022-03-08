@@ -18,25 +18,9 @@ exports[`(1) Default render 1`] = `
         <div
           className="d-flex align-items-center"
           id="good-karma-awesome-hive"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
         >
-          <div
-            className="author-avatar d-sm-none"
-            id="good-karma-awesome-hive"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                }
-              }
-            />
-          </div>
           <a
-            className="author-avatar d-none d-sm-block"
+            className="author-avatar d-sm-block"
             href="/@good-karma"
             onClick={[Function]}
           >
@@ -50,38 +34,46 @@ exports[`(1) Default render 1`] = `
             />
           </a>
           <div
-            className="author notranslate d-flex d-sm-none align-items-center"
+            className="author btn notranslate d-flex d-sm-none align-items-center"
             id="good-karma-awesome-hive"
             onClick={[Function]}
           >
-            <span>
+            <span
+              className="author-name"
+            >
               good-karma
             </span>
           </div>
-          <a
-            className="author notranslate d-none d-sm-flex align-items-center"
-            href="/@good-karma"
+          <span
+            className="author-down-arrow mx-1"
+            id="good-karma-awesome-hive"
             onClick={[Function]}
+            role="button"
           >
-            <span>
-              good-karma
-            </span>
-          </a>
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <div
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              onMouseEnter={[Function]}
+            >
+              <span
+                className="author-name"
+              >
+                good-karma
+              </span>
+            </div>
+          </div>
         </div>
-        <span
-          className="author-down-arrow ml-1"
-          id="good-karma-awesome-hive"
-          onClick={[Function]}
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M7,10L12,15L17,10H7Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
       </div>
       <a
         className="category"
@@ -96,7 +88,7 @@ exports[`(1) Default render 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 10:53 AM"
+        title="Monday, June 1, 2020 5:53 AM"
       >
         5 days
       </span>
@@ -279,25 +271,9 @@ exports[`(2) Grid view 1`] = `
         <div
           className="d-flex align-items-center"
           id="good-karma-awesome-hive"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
         >
-          <div
-            className="author-avatar d-sm-none"
-            id="good-karma-awesome-hive"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                }
-              }
-            />
-          </div>
           <a
-            className="author-avatar d-none d-sm-block"
+            className="author-avatar d-sm-block"
             href="/@good-karma"
             onClick={[Function]}
           >
@@ -311,38 +287,46 @@ exports[`(2) Grid view 1`] = `
             />
           </a>
           <div
-            className="author notranslate d-flex d-sm-none align-items-center"
+            className="author btn notranslate d-flex d-sm-none align-items-center"
             id="good-karma-awesome-hive"
             onClick={[Function]}
           >
-            <span>
+            <span
+              className="author-name"
+            >
               good-karma
             </span>
           </div>
-          <a
-            className="author notranslate d-none d-sm-flex align-items-center"
-            href="/@good-karma"
+          <span
+            className="author-down-arrow mx-1"
+            id="good-karma-awesome-hive"
             onClick={[Function]}
+            role="button"
           >
-            <span>
-              good-karma
-            </span>
-          </a>
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <div
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              onMouseEnter={[Function]}
+            >
+              <span
+                className="author-name"
+              >
+                good-karma
+              </span>
+            </div>
+          </div>
         </div>
-        <span
-          className="author-down-arrow ml-1"
-          id="good-karma-awesome-hive"
-          onClick={[Function]}
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M7,10L12,15L17,10H7Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
       </div>
       <a
         className="category"
@@ -357,7 +341,7 @@ exports[`(2) Grid view 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 10:53 AM"
+        title="Monday, June 1, 2020 5:53 AM"
       >
         5 days
       </span>
@@ -564,25 +548,9 @@ exports[`(3) Nsfw 1`] = `
         <div
           className="d-flex align-items-center"
           id="good-karma-awesome-hive"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
         >
-          <div
-            className="author-avatar d-sm-none"
-            id="good-karma-awesome-hive"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                }
-              }
-            />
-          </div>
           <a
-            className="author-avatar d-none d-sm-block"
+            className="author-avatar d-sm-block"
             href="/@good-karma"
             onClick={[Function]}
           >
@@ -596,38 +564,46 @@ exports[`(3) Nsfw 1`] = `
             />
           </a>
           <div
-            className="author notranslate d-flex d-sm-none align-items-center"
+            className="author btn notranslate d-flex d-sm-none align-items-center"
             id="good-karma-awesome-hive"
             onClick={[Function]}
           >
-            <span>
+            <span
+              className="author-name"
+            >
               good-karma
             </span>
           </div>
-          <a
-            className="author notranslate d-none d-sm-flex align-items-center"
-            href="/@good-karma"
+          <span
+            className="author-down-arrow mx-1"
+            id="good-karma-awesome-hive"
             onClick={[Function]}
+            role="button"
           >
-            <span>
-              good-karma
-            </span>
-          </a>
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <div
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              onMouseEnter={[Function]}
+            >
+              <span
+                className="author-name"
+              >
+                good-karma
+              </span>
+            </div>
+          </div>
         </div>
-        <span
-          className="author-down-arrow ml-1"
-          id="good-karma-awesome-hive"
-          onClick={[Function]}
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M7,10L12,15L17,10H7Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
       </div>
       <a
         className="category"
@@ -642,7 +618,7 @@ exports[`(3) Nsfw 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 10:53 AM"
+        title="Monday, June 1, 2020 5:53 AM"
       >
         5 days
       </span>
@@ -856,25 +832,9 @@ exports[`(4) Nsfw with active user 1`] = `
         <div
           className="d-flex align-items-center"
           id="good-karma-awesome-hive"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
         >
-          <div
-            className="author-avatar d-sm-none"
-            id="good-karma-awesome-hive"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                }
-              }
-            />
-          </div>
           <a
-            className="author-avatar d-none d-sm-block"
+            className="author-avatar d-sm-block"
             href="/@good-karma"
             onClick={[Function]}
           >
@@ -888,38 +848,46 @@ exports[`(4) Nsfw with active user 1`] = `
             />
           </a>
           <div
-            className="author notranslate d-flex d-sm-none align-items-center"
+            className="author btn notranslate d-flex d-sm-none align-items-center"
             id="good-karma-awesome-hive"
             onClick={[Function]}
           >
-            <span>
+            <span
+              className="author-name"
+            >
               good-karma
             </span>
           </div>
-          <a
-            className="author notranslate d-none d-sm-flex align-items-center"
-            href="/@good-karma"
+          <span
+            className="author-down-arrow mx-1"
+            id="good-karma-awesome-hive"
             onClick={[Function]}
+            role="button"
           >
-            <span>
-              good-karma
-            </span>
-          </a>
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <div
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              onMouseEnter={[Function]}
+            >
+              <span
+                className="author-name"
+              >
+                good-karma
+              </span>
+            </div>
+          </div>
         </div>
-        <span
-          className="author-down-arrow ml-1"
-          id="good-karma-awesome-hive"
-          onClick={[Function]}
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M7,10L12,15L17,10H7Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
       </div>
       <a
         className="category"
@@ -934,7 +902,7 @@ exports[`(4) Nsfw with active user 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 10:53 AM"
+        title="Monday, June 1, 2020 5:53 AM"
       >
         5 days
       </span>
@@ -1147,25 +1115,9 @@ exports[`(5) Nsfw but allowed 1`] = `
         <div
           className="d-flex align-items-center"
           id="good-karma-awesome-hive"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
         >
-          <div
-            className="author-avatar d-sm-none"
-            id="good-karma-awesome-hive"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                }
-              }
-            />
-          </div>
           <a
-            className="author-avatar d-none d-sm-block"
+            className="author-avatar d-sm-block"
             href="/@good-karma"
             onClick={[Function]}
           >
@@ -1179,38 +1131,46 @@ exports[`(5) Nsfw but allowed 1`] = `
             />
           </a>
           <div
-            className="author notranslate d-flex d-sm-none align-items-center"
+            className="author btn notranslate d-flex d-sm-none align-items-center"
             id="good-karma-awesome-hive"
             onClick={[Function]}
           >
-            <span>
+            <span
+              className="author-name"
+            >
               good-karma
             </span>
           </div>
-          <a
-            className="author notranslate d-none d-sm-flex align-items-center"
-            href="/@good-karma"
+          <span
+            className="author-down-arrow mx-1"
+            id="good-karma-awesome-hive"
             onClick={[Function]}
+            role="button"
           >
-            <span>
-              good-karma
-            </span>
-          </a>
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <div
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              onMouseEnter={[Function]}
+            >
+              <span
+                className="author-name"
+              >
+                good-karma
+              </span>
+            </div>
+          </div>
         </div>
-        <span
-          className="author-down-arrow ml-1"
-          id="good-karma-awesome-hive"
-          onClick={[Function]}
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M7,10L12,15L17,10H7Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
       </div>
       <a
         className="category"
@@ -1225,7 +1185,7 @@ exports[`(5) Nsfw but allowed 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 10:53 AM"
+        title="Monday, June 1, 2020 5:53 AM"
       >
         5 days
       </span>
@@ -1465,25 +1425,9 @@ exports[`(6) Cross post. Bottom menu 1`] = `
         <div
           className="d-flex align-items-center"
           id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
         >
-          <div
-            className="author-avatar d-sm-none"
-            id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/regenerette/avatar/small)",
-                }
-              }
-            />
-          </div>
           <a
-            className="author-avatar d-none d-sm-block"
+            className="author-avatar d-sm-block"
             href="/@regenerette"
             onClick={[Function]}
           >
@@ -1497,38 +1441,46 @@ exports[`(6) Cross post. Bottom menu 1`] = `
             />
           </a>
           <div
-            className="author notranslate d-flex d-sm-none align-items-center"
-            id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
+            className="author btn notranslate d-flex d-sm-none align-items-center"
+            id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers-hive-125125"
             onClick={[Function]}
           >
-            <span>
+            <span
+              className="author-name"
+            >
               regenerette
             </span>
           </div>
-          <a
-            className="author notranslate d-none d-sm-flex align-items-center"
-            href="/@regenerette"
+          <span
+            className="author-down-arrow mx-1"
+            id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers-hive-125125"
             onClick={[Function]}
+            role="button"
           >
-            <span>
-              regenerette
-            </span>
-          </a>
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <div
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              onMouseEnter={[Function]}
+            >
+              <span
+                className="author-name"
+              >
+                regenerette
+              </span>
+            </div>
+          </div>
         </div>
-        <span
-          className="author-down-arrow ml-1"
-          id="regenerette-we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
-          onClick={[Function]}
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M7,10L12,15L17,10H7Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
       </div>
       <a
         className="category"
@@ -1543,7 +1495,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
       />
       <span
         className="date"
-        title="Wednesday, March 24, 2021 9:14 PM"
+        title="Wednesday, March 24, 2021 4:14 PM"
       >
         10 months
       </span>

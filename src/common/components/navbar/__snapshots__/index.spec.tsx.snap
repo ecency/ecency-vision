@@ -118,6 +118,7 @@ exports[`(1) Default render 1`] = `
               value=""
             />
           </div>
+          <div />
         </div>
       </div>
       <div
@@ -529,6 +530,7 @@ exports[`(2) Night Theme 1`] = `
               value=""
             />
           </div>
+          <div />
         </div>
       </div>
       <div
@@ -952,7 +954,7 @@ exports[`(3) With active user 1`] = `
       className="brand"
     >
       <a
-        href="/@foo/feed"
+        href="/hot"
         onClick={[Function]}
       >
         <img
@@ -991,7 +993,7 @@ exports[`(3) With active user 1`] = `
         className="brand"
       >
         <a
-          href="/@foo/feed"
+          href="/hot"
           onClick={[Function]}
         >
           <img
@@ -1053,6 +1055,7 @@ exports[`(3) With active user 1`] = `
               value=""
             />
           </div>
+          <div />
         </div>
       </div>
       <div
@@ -1561,7 +1564,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
       className="brand"
     >
       <a
-        href="/@foo/feed"
+        href="/hot"
         onClick={[Function]}
       >
         <img
@@ -1600,7 +1603,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
         className="brand"
       >
         <a
-          href="/@foo/feed"
+          href="/hot"
           onClick={[Function]}
         >
           <img
@@ -1662,6 +1665,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
               value=""
             />
           </div>
+          <div />
         </div>
       </div>
       <div

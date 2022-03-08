@@ -165,19 +165,12 @@ export const ProfileCard = (props: Props) => {
 
             {account.__loaded && (
                 <div className="stats">
-                    <div className="stat">
-                        <Tooltip content={_t("profile.post-count")}>
-                            <span>
-                                {formatListBulledttedSvg} {formattedNumber(account.post_count!, {fractionDigits: 0})}
-                            </span>
-                        </Tooltip>
-                    </div>
 
                     {account.follow_stats?.follower_count !== undefined && (
                         <div className="stat followers">
                             <Tooltip content={_t("profile.followers")}>
                                 <span onClick={toggleFollowers}>
-                                    {accountMultipleSvg} {formattedNumber(account.follow_stats.follower_count, {fractionDigits: 0})}
+                                    {formattedNumber(account.follow_stats.follower_count, {fractionDigits: 0})} {_t("profile.followers")}
                                 </span>
                             </Tooltip>
                         </div>
@@ -187,7 +180,7 @@ export const ProfileCard = (props: Props) => {
                         <div className="stat following">
                             <Tooltip content={_t("profile.following")}>
                                 <span onClick={toggleFollowing}>
-                                    {accountPlusSvg} {formattedNumber(account.follow_stats.following_count, {fractionDigits: 0})}
+                                    {formattedNumber(account.follow_stats.following_count, {fractionDigits: 0})} {_t("profile.following")}
                                 </span>
                             </Tooltip>
                         </div>

@@ -74,6 +74,7 @@ exports[`(1) Default render 1`] = `
               type="text"
               value=""
             />
+            <div />
           </div>
           
           <small
@@ -230,6 +231,7 @@ exports[`(2) Insufficient Funds 1`] = `
               type="text"
               value=""
             />
+            <div />
           </div>
           
           <small
@@ -382,6 +384,7 @@ exports[`(3) With entry 1`] = `
               type="text"
               value="good-karma/awesome-hive"
             />
+            <div />
           </div>
           
           <small

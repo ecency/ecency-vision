@@ -73,7 +73,7 @@ export class Search extends BaseComponent<Props, State> {
   queryChanged = (
     e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
   ) => {
-    const query = e.target.value;
+    const query = e.target.value.toLowerCase();
     this.stateSet({ query });
   };
 
@@ -106,6 +106,7 @@ export class Search extends BaseComponent<Props, State> {
           {...this.props}
           value={query}
           containerClassName={containerClassName}
+          changed={true}
         >
           <SearchBox
             placeholder={placeholder}

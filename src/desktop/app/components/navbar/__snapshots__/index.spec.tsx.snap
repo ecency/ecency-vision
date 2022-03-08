@@ -94,18 +94,14 @@ exports[`(1) Default render 1`] = `
         <div
           className="url"
         >
-          <div
-            className="suggestion"
-          >
-            <input
-              onChange={[Function]}
-              onKeyUp={[Function]}
-              placeholder="enter url or search query"
-              spellCheck={false}
-              type="text"
-              value="hot"
-            />
-          </div>
+          <input
+            onChange={[Function]}
+            onKeyUp={[Function]}
+            placeholder="enter url or search query"
+            spellCheck={false}
+            type="text"
+            value="hot"
+          />
         </div>
       </div>
     </div>
@@ -331,18 +327,14 @@ Array [
           <div
             className="url"
           >
-            <div
-              className="suggestion"
-            >
-              <input
-                onChange={[Function]}
-                onKeyUp={[Function]}
-                placeholder="enter url or search query"
-                spellCheck={false}
-                type="text"
-                value="hot"
-              />
-            </div>
+            <input
+              onChange={[Function]}
+              onKeyUp={[Function]}
+              placeholder="enter url or search query"
+              spellCheck={false}
+              type="text"
+              value="hot"
+            />
           </div>
         </div>
       </div>
@@ -599,18 +591,14 @@ exports[`(3) Night Theme 1`] = `
         <div
           className="url"
         >
-          <div
-            className="suggestion"
-          >
-            <input
-              onChange={[Function]}
-              onKeyUp={[Function]}
-              placeholder="enter url or search query"
-              spellCheck={false}
-              type="text"
-              value="hot"
-            />
-          </div>
+          <input
+            onChange={[Function]}
+            onKeyUp={[Function]}
+            placeholder="enter url or search query"
+            spellCheck={false}
+            type="text"
+            value="hot"
+          />
         </div>
       </div>
     </div>
@@ -752,7 +740,7 @@ exports[`(4) With active user 1`] = `
       className="brand"
     >
       <a
-        href="/@foo/feed"
+        href="/hot"
         onClick={[Function]}
       >
         <img
@@ -835,18 +823,14 @@ exports[`(4) With active user 1`] = `
         <div
           className="url"
         >
-          <div
-            className="suggestion"
-          >
-            <input
-              onChange={[Function]}
-              onKeyUp={[Function]}
-              placeholder="enter url or search query"
-              spellCheck={false}
-              type="text"
-              value="hot"
-            />
-          </div>
+          <input
+            onChange={[Function]}
+            onKeyUp={[Function]}
+            placeholder="enter url or search query"
+            spellCheck={false}
+            type="text"
+            value="hot"
+          />
         </div>
       </div>
     </div>
@@ -1040,7 +1024,7 @@ exports[`(5) With active user && usePrivate = false 1`] = `
       className="brand"
     >
       <a
-        href="/@foo/feed"
+        href="/hot"
         onClick={[Function]}
       >
         <img
@@ -1123,18 +1107,14 @@ exports[`(5) With active user && usePrivate = false 1`] = `
         <div
           className="url"
         >
-          <div
-            className="suggestion"
-          >
-            <input
-              onChange={[Function]}
-              onKeyUp={[Function]}
-              placeholder="enter url or search query"
-              spellCheck={false}
-              type="text"
-              value="hot"
-            />
-          </div>
+          <input
+            onChange={[Function]}
+            onKeyUp={[Function]}
+            placeholder="enter url or search query"
+            spellCheck={false}
+            type="text"
+            value="hot"
+          />
         </div>
       </div>
     </div>

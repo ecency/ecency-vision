@@ -267,3 +267,19 @@ a[target="_blank"] {
     background: $dusky-blue;
   }
 }
+
+.page-item {
+  &.disabled .page-link {
+    color: $pagination-disabled-color;
+    pointer-events: none;
+    // Opinionated: remove the "hand" cursor set previously for .page-link
+    cursor: auto;
+
+    @include themify(night) {
+      background-color: $dusky-blue;
+      border-color: $dusky-blue;
+
+    }
+    border-color: $pagination-disabled-border-color;
+  }
+}

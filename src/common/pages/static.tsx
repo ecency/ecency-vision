@@ -5,6 +5,8 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
 import Meta from "../components/meta";
+
+import i18n from "i18next";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 import NavBarElectron from "../../desktop/app/components/navbar";
@@ -13,39 +15,48 @@ import Contributors from "../components/contributors";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
-import {_t} from "../i18n";
+import {langOptions, _t} from "../i18n";
 import {Tsx} from "../i18n/helper";
 
-import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSvg} from "../img/svg";
+import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSvg, copyContent} from "../img/svg";
 import { apiBase } from '../api/helper';
-import {Button, ButtonGroup, Form} from 'react-bootstrap'
+import {Button, Form, InputGroup} from 'react-bootstrap'
+import { removeDiacritics }  from '../../common/store/diacritics'
+import Feedback, { success } from "../components/feedback";
+import clipboard from "../util/clipboard";
+import * as ls from '../util/local-storage'
 
 const faqKeysGeneral = [
     'what-is-ecency',
     'what-is-difference',
+    'what-is-hive',
     'why-choose-ecency',
     'how-ecency-works',
     'how-to-join',
+    'can-change-username',
+    'can-delete-account',
     'how-to-signin',
     'how-to-contribute',
     'how-referrals-work',
     'what-is-points',
     'where-tokens-come',
+    'what-are-rc',
     'how-promotion-work',
     'how-boosting-work',
+    'why-refund-points',
+    'boosting-vote-buying',
+    'different-reward-choices',
     'can-guest-post',
     'can-link-post',
     'source-label',
     'how-to-transfer',
     'how-see-rewards',
     'when-claim-rewards',
-    'how-dhf-work',
-    'what-are-rc',
+    'how-exchange-work',
     'how-boost-account',
+    'how-dhf-work',
     'what-spam-abuse',
 ]
-
-const faqKeysHive = [ 'what-is-hive']
 
 class AboutPage extends Component<PageProps> {
     render() {
@@ -123,7 +134,7 @@ class AboutPage extends Component<PageProps> {
                     <div className="faq">
                         <h2 className="faq-title">{_t('static.about.faq-title')}</h2>
                         <div className="faq-links">
-                            {[...faqKeysGeneral,...faqKeysHive].slice(0, 4).map(x => {
+                            {[...faqKeysGeneral].slice(0, 4).map(x => {
                                 return <p key={x}>
                                     <a className="faq-link" href={`/faq#${x}`}>{_t(`static.faq.${x}-header`)}</a>
                                 </p>
@@ -162,7 +173,7 @@ class AboutPage extends Component<PageProps> {
                             <a
                                 className="contacts-link"
                                 target="_blank"
-                                href="https://twitter.com/esteem_app"
+                                href="https://twitter.com/ecency_official"
                                 rel="noopener noreferrer"
                             >
                                 {twitterSvg} Twitter
@@ -802,14 +813,40 @@ class TosPage extends Component<PageProps> {
 
 interface FAQPageState {
     search: string;
+    currentLanguage: string;
 }
 
 class FaqPage extends Component<PageProps, FAQPageState> {
     constructor(props:PageProps){
         super(props);
-        this.state = {
-            search: ""
+        let searchFromUrl:any = props.location.search.split("&lang=")[0].replace("?q=","");
+        searchFromUrl = removeDiacritics(searchFromUrl)
+        const languageFromUrl = props.location.search.split("&lang=")[1];
+        const languageFromList = langOptions.find(item => item.code.split("-")[0] === languageFromUrl);
+
+        if(languageFromList){
+            props.setLang(languageFromList.code);
+            i18n.changeLanguage(languageFromList.code)
         }
+        this.state = {
+            search: searchFromUrl || "",
+            currentLanguage:props.global.lang
+        }
+
+        if(languageFromList && props.global.lang !== languageFromList.code){
+            ls.set("current-language", props.global.lang)
+        }
+    }
+
+    componentWillUnmount(){
+        const currentLang = ls.get("current-language");
+        this.props.setLang(currentLang);
+        i18n.changeLanguage(currentLang);
+    }
+
+    copyToClipboard = (text: string) => {
+        success(_t("static.faq.search-link-copied"));
+        clipboard(text)
     }
 
     render() {
@@ -822,7 +859,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
         const {global} = this.props;
         const imgs = apiBase(`/assets/ecency-faq.${this.props.global.canUseWebp ? 'webp' : 'jpg'}`);
         let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
-        let faqKeys = [...faqKeysGeneral, ...faqKeysHive];
+        let faqKeys = [...faqKeysGeneral];
         let searchResult: string[] = [];
         if(search && search.length > 0){
             faqKeys.map(x => {
@@ -839,6 +876,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
             <>
                 <Meta {...metaProps} />
                 <ScrollToTop/>
+                <Feedback />
                 <Theme global={this.props.global}/>
                 {global.isElectron ?
                     NavBarElectron({
@@ -851,16 +889,31 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                         <div className="position-relative rounded">
                             <img src={imgs} className="rounded"/>
                             <div className="position-absolute search-container d-flex justify-content-center align-items-center flex-column rounded p-3">
-                                <h1 className="text-white faq-title mb-3">{_t('static.faq.page-title')}</h1>
-                                <Form.Control
-                                    placeholder={`${_t("static.faq.search-placeholder")}`}
-                                    className="w-75"
-                                    onChange={e=>{
-                                        this.setState({search: e.target.value});
-                                }}
-                                    value={search}
-                                    autoFocus={true}
-                                />
+                                <h1 className="text-white faq-title text-center mb-3">{_t('static.faq.page-title')}</h1>
+                                <InputGroup 
+                                    className="mb-3 w-75"
+                                >
+                                    <Form.Control
+                                        placeholder={`${_t("static.faq.search-placeholder")}`}
+                                        className="w-75"
+                                        onChange={e=>{
+                                            this.setState({search: e.target.value});
+                                    }}
+                                        value={search}
+                                        autoFocus={true}
+                                    />
+                                    <InputGroup.Append>
+                                        <Button
+                                            variant="primary"
+                                            size="sm"
+                                            className="copy-to-clipboard"
+                                            disabled={search.length === 0}
+                                            onClick={() => {this.copyToClipboard(`https://ecency.com/faq?q=${search}&lang=${global.lang.split("-")[0]}`);}}
+                                        >
+                                            {copyContent}
+                                        </Button>
+                                    </InputGroup.Append>
+                                </InputGroup>
                                 {search.length > 0 && <Form.Text className="text-white mt-2 mt-sm-3 w-75 text-center helper-text">
                                     {searchResult.length > 0 ? _t("static.faq.search", {search: `"${search}"`}) :
                                         <div className="text-not-found">{_t("static.faq.search-not-found")}<Link to="https://discord.me/ecency" target="_blank">Discord</Link>.</div>}

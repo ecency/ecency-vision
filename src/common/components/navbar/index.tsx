@@ -39,7 +39,8 @@ import _c from "../../util/fix-class-names";
 import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg, chevronUpSvg, upArrowSvg, keySvg, sunSvg, gifCardSvg} from "../../img/svg";
 import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
-const logo = require('../../img/logo-circle.svg');
+import isCommunity from "../../helper/is-community";
+//const logo = require('../../img/logo-circle.svg');
 
 interface Props {
     history: History;
@@ -52,8 +53,9 @@ interface Props {
     ui: UI;
     notifications: Notifications;
     step?: number;
+    match?: any;
     fetchTrendingTags: () => void;
-    toggleTheme: () => void;
+    toggleTheme: (theme_key?: string) => void;
     addUser: (user: User) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
@@ -108,10 +110,15 @@ export class NavBar extends Component<Props, State> {
         if (!location.pathname.startsWith("/signup") && qs.referral) {
             history.push(`/signup?referral=${qs.referral}`)
         }
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', this.handleAutoDetectTheme); // listen to dark theme
+        // this.handleSetTheme(); // detect default set theme on load page
     }
 
     componentWillUnmount() {
-        document.getElementsByTagName('body')[0].classList.remove("overflow-hidden")
+        document.getElementsByTagName('body')[0].classList.remove("overflow-hidden");
+
+        window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', this.handleAutoDetectTheme)
     }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
@@ -173,12 +180,29 @@ export class NavBar extends Component<Props, State> {
         }
     }
 
+    // handleSetTheme = () => {
+    //     const _default_theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.night : Theme.day
+    //     this.props.toggleTheme(_default_theme);
+    // }
+
+    handleAutoDetectTheme = (e: any = null) => {        
+        const _default_theme = e && e.matches ? Theme.night : Theme.day
+        this.props.toggleTheme(_default_theme);
+    }
+
     render() {
-        const {global, activeUser, ui, step, toggleUIProp, setActiveUser } = this.props;
+        const {global, activeUser, ui, step, toggleUIProp, setActiveUser, match } = this.props;
+
         const logo = global.isElectron ? "./img/logo-circle.svg" : require('../../img/logo-circle.svg');
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
-        const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
-        const {smVisible, floating, showMobileSearch, showProfileMenu, drafts, bookmarks, fragments, gallery, schedules } = this.state;
+        const communityPage = match && match.params.name && isCommunity(match.params.name)
+        const tagValue = global.tag ? `/${global.tag}` : ''
+        const logoHref = activeUser ? 
+        (communityPage || ((global.tag.includes('@')) && (['engine','wallet','points','communities','settings','permissions','comments','replies','blog', 'posts'].includes(global.filter)))) ?
+        '/hot' : 
+        global.filter === 'feed' ? `${tagValue}/${global.filter}` : `/${global.filter}${tagValue}` 
+        : '/';
+        const {smVisible, floating, showMobileSearch, showProfileMenu, drafts, bookmarks, fragments, gallery, schedules } = this.state;        
 
         const transparentVerify = this.props?.location?.pathname?.startsWith("/hot")
         || this.props?.location?.pathname?.startsWith("/created")
@@ -264,6 +288,7 @@ export class NavBar extends Component<Props, State> {
                                                 <Button className="btn-login btn-primary" onClick={() => {
                                                     const {toggleUIProp} = this.props;
                                                     toggleUIProp('login');
+                                                    this.setState({ smVisible: false} )
                                                 }}>{_t("g.login")}</Button>
 
                                                 <Link className="btn btn-primary" to="/signup">{_t("g.signup")}</Link>
@@ -331,7 +356,7 @@ export class NavBar extends Component<Props, State> {
 
                             {!activeUser &&
                             <>
-                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={()=>toggleUIProp("login")}>
+                                <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark" onClick={()=>{toggleUIProp("login"); this.setState({ smVisible: false} )}}>
                                         <div className="navbar-icon">{userOutlineSvg}</div>
                                         <div className="ml-3 text-15">{_t("g.login")}</div>
                                 </div>
@@ -362,23 +387,23 @@ export class NavBar extends Component<Props, State> {
                                 <div className="pl-3 position-relative menu-container">
                                     <div className="menu-container-inner">
 
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({drafts: !drafts})}>
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({drafts: !drafts, smVisible: false})}>
                                             <div className="item-text">{_t("user-nav.drafts")}</div>
                                         </div>
 
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({gallery: !gallery})}>
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({gallery: !gallery, smVisible: false})}>
                                             <div className="item-text">{_t("user-nav.gallery")}</div>
                                         </div>
 
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({bookmarks: !bookmarks})}>
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({bookmarks: !bookmarks, smVisible: false})}>
                                             <div className="item-text">{_t("user-nav.bookmarks")}</div>
                                         </div>
 
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({schedules: !schedules})}>
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({schedules: !schedules, smVisible: false})}>
                                             <div className="item-text">{_t("user-nav.schedules")}</div>
                                         </div>
 
-                                        <div className="p-1 menu-item" onClick={()=>this.setState({fragments: !fragments})}>
+                                        <div className="p-1 menu-item" onClick={()=>this.setState({fragments: !fragments, smVisible: false})}>
                                             <div className="item-text">{_t("user-nav.fragments")}</div>
                                         </div>
 
@@ -388,7 +413,7 @@ export class NavBar extends Component<Props, State> {
                                             </Link>
                                         </div>
 
-                                        <div className="p-1 menu-item" onClick={() => toggleUIProp('login')}>
+                                        <div className="p-1 menu-item" onClick={() => {toggleUIProp('login'); this.setState({ smVisible: false} )}}>
                                             <div className="item-text">{_t("g.login-as")}</div>
                                         </div>
 
@@ -474,7 +499,8 @@ export default (p: Props) => {
         unMuteNotifications: p.unMuteNotifications,
         setLang: p.setLang,
         setStepOne: p.setStepOne,
-        setStepTwo: p.setStepTwo
+        setStepTwo: p.setStepTwo,
+        match: p.match,
     }
 
     return <NavBar {...props} />;

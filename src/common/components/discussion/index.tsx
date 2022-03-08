@@ -54,11 +54,10 @@ import {commentSvg, pencilOutlineSvg, deleteForeverSvg, menuDownSvg, dotsHorizon
 
 import {version} from "../../../../package.json";
 import { getFollowing } from "../../api/hive";
-import { ProfilePreview } from "../profile-preview";
 import { iteratorStream } from "@hiveio/dhive/lib/utils";
 import { Tsx } from "../../i18n/helper";
 import MyDropDown from "../dropdown";
-
+import { ProfilePopover } from "../profile-popover";
 
 interface ItemBodyProps {
     entry: Entry;
@@ -103,12 +102,9 @@ interface ItemProps {
 interface ItemState {
     reply: boolean;
     edit: boolean;
-    showProfileDetails: boolean;
-    showProfileDetailsAvatar: boolean;
     inProgress: boolean;
     mutedData: string[];
     isHiddenPermitted: boolean;
-    delayHandler: any
 }
 
 export const Item = (props: ItemProps) => {
@@ -116,21 +112,26 @@ export const Item = (props: ItemProps) => {
     const [reply, setReply] = useState(false);
     const [edit, setEdit] = useState(false);
     const [inProgress, setInProgress] = useState(false);
-    const [showProfileDetails, setShowProfileDetails] = useState(false);
-    const [showProfileDetailsAvatar, setShowProfileDetailsAvatar] = useState(false);
     const [mutedData, setMutedData] = useState([] as string[]);
-    const [delayHandler, setDelayHandler] = useState(null as any);
     const [isMounted, setIsMounted] = useState(false);
+    const [lsDraft, setLsDraft] = useState("");
 
     const {entry, updateReply, activeUser, addReply, deleteReply, global, community, location, history} = props;
 
     useEffect(() => {
         setIsMounted(true);
         isMounted && fetchMutedUsers();
+        checkLsDraft()
         return () => {
           setIsMounted(false);
         }
     }, []);
+
+    useEffect(() => {
+      if (edit || reply) {
+        checkLsDraft()
+      }
+    }, [edit, reply]);
 
     const afterVote = (votes: EntryVote[], estimated: number) => { 
         const {payout} = entry;
@@ -158,12 +159,13 @@ export const Item = (props: ItemProps) => {
         setEdit(!edit);
     }
 
-    const replyTextChanged = (text: string) => {
-        ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
+    const checkLsDraft = () => {
+        let replyDraft = ls.get(`reply_draft_${entry?.author}_${entry?.permlink}`)
+        replyDraft = replyDraft && replyDraft.trim() || ""
+        setLsDraft(replyDraft)
     }
 
     const submitReply = (text: string) => {
-
         if (!activeUser || !activeUser.data.__loaded) {
             return;
         }
@@ -247,6 +249,7 @@ export const Item = (props: ItemProps) => {
                 ...entry,
                 body: text
             }
+            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
 
             updateReply(nReply); // update store
             toggleEdit(); // close comment box
@@ -272,51 +275,6 @@ export const Item = (props: ItemProps) => {
         }
     }
 
-    const onShowProfile = (e:any) => {
-        e.persist();
-        // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
-        let timeout = setTimeout(()=>{
-            e.stopPropagation()
-            isMounted && setShowProfileDetails(true);
-            document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")}, global.isMobile ? 0 : 500)
-        isMounted && setDelayHandler(timeout);
-    }
-
-    const onShowProfileAvatar = (e:any) => {
-        e.persist();
-        // Add 0.5 sec delay while showing mini-profile to avoid many profiles at a time
-        let timeout = setTimeout(()=>{
-            e.stopPropagation()
-            isMounted && setShowProfileDetailsAvatar(true);
-            document.getElementsByTagName("body")[0].classList.add("overflow-sm-hidden")
-        }, global.isMobile ? 0 : 500)
-        isMounted && setDelayHandler(timeout);
-    }
-
-    const onHideProfile = (e:any, doNotSetState?: boolean) => {
-        clearTimeout(delayHandler)
-        e.stopPropagation()
-        if(delayHandler){
-            // Add 0.2 sec delay while hiding mini-profile on web
-            setTimeout(()=>{
-                !doNotSetState && isMounted && setShowProfileDetails(false);
-                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
-            }, global.isMobile ? 0 : 200)
-        }
-    }
-
-    const onHideProfileAvatar = (e:any, doNotSetState?: boolean) => {
-        clearTimeout(delayHandler)
-        e.stopPropagation()
-        if(delayHandler){
-            // Add 0.2 sec delay while hiding mini-profile on web
-            setTimeout(()=>{
-                !doNotSetState && isMounted && setShowProfileDetailsAvatar(false);
-                document.getElementsByTagName("body")[0].classList.remove("overflow-sm-hidden");
-            }, global.isMobile ? 0 : 200)
-        }
-    }
-
     const created = moment(parseDate(entry.created));
     const readMore = entry.children > 0 && entry.depth > 5;
     const showSubList = !readMore && entry.children > 0;
@@ -338,50 +296,20 @@ export const Item = (props: ItemProps) => {
             </div>
             <div className="item-inner">
                 <div className="item-figure">
-                    <div className="d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {onShowProfile(e)}}>{UserAvatar({...props, username: entry.author, size: "medium"})}</div>
-                    <div onMouseEnter={(e) => {onShowProfileAvatar(e)}} onMouseLeave={(e, ) => {onHideProfileAvatar(e)}}>
                         {ProfileLink({...props, username: entry.author, children: 
-                                <a className="d-none d-sm-inline-block">
+                                <a className="d-sm-inline-block">
                                     {UserAvatar({...props, username: entry.author, size: "medium"})}
                                 </a>
                             })
                         }
-
-                        {showProfileDetailsAvatar && entry.author && 
-                            <ProfilePreview
-                                username={entry.author}
-                                {...props}
-                                onClose={(e, doNotSetState) => {onHideProfileAvatar(e, doNotSetState)}}
-                            />
-                        }
-                    </div>
                 </div>
                 <div className="item-content">
                     <div className="item-header">
                         <div
-                            onMouseEnter={(e) => {onShowProfile(e)}}
-                            onMouseLeave={(e) => {onHideProfile(e)}}
                             className="d-flex align-items-center"
                             id={`${entry.author}-${entry.permlink}`} 
                         >
-                        <div className="author notranslate d-flex align-items-center d-sm-none" id={`${entry.author}-${entry.permlink}`} onClick={(e) => {onShowProfile(e)}}>
-                            <span className="author-name" id={`${entry.author}-${entry.permlink}`} >{entry.author}</span>
-                            <span className="author-down-arrow mx-2" id={`${entry.author}-${entry.permlink}`} >{menuDownSvg}</span>
-                        </div>
-                        {ProfileLink({
-                            ...props,
-                            username: entry.author,
-                            children: <div className="author notranslate d-none align-items-center d-sm-flex">
-                                        <span className="author-name">{entry.author}</span>
-                                    </div>
-                        })}
-                        {showProfileDetails && entry.author && 
-                                <ProfilePreview
-                                    username={entry.author}
-                                    {...props}
-                                    onClose={(e, doNotSetState) => {onHideProfile(e, doNotSetState)}}
-                                />
-                        }
+                            <ProfilePopover {...props} />
                         </div>
                         <span className="separator"/>
                         {EntryLink({
@@ -495,10 +423,9 @@ export const Item = (props: ItemProps) => {
 
             {reply && Comment({
                 ...props,
-                defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
+                defText: lsDraft,
                 submitText: _t('g.reply'),
                 cancellable: true,
-                onChange: replyTextChanged,
                 onSubmit: submitReply,
                 onCancel: toggleReply,
                 inProgress: inProgress,
@@ -567,6 +494,14 @@ export class List extends Component<ListProps> {
         this.setState({isMounted: true});
         document.getElementsByTagName("html")[0].style.position = 'relative';
         this.state.isMounted && this.fetchMutedUsers();
+    }
+
+    shouldComponentUpdate(nextProps: Readonly<Props>) {
+        if(this.props.discussion === nextProps.discussion && this.props.activeUser === nextProps.activeUser) {            
+            return false
+        } else {
+            return true
+        }
     }
 
     fetchMutedUsers = () => {

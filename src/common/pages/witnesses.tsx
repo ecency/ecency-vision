@@ -22,14 +22,17 @@ import WitnessesActiveProxy from "../components/witnesses-active-proxy";
 
 import routes from "../../common/routes";
 
-import {getAccount, getWitnessesByVote, Witness} from "../api/hive";
+import {getAccount, getAccounts, getWitnessesByVote, Witness} from "../api/hive";
 
 import {_t} from "../i18n";
 import {Tsx} from "../i18n/helper";
 
 import {linkSvg, openInNewSvg} from "../img/svg";
 
-import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
+import moment from "moment";
+import {FullAccount} from "../store/accounts/types";
+import { WitnessCard } from "../components/witness-card";
 
 interface WitnessTransformed {
     rank: number;
@@ -43,6 +46,9 @@ interface WitnessTransformed {
     version: string;
     url: string;
     parsedUrl?: PartialEntry;
+    signingKey?:string
+    priceAge?:string
+    witnessBy?:string
 }
 
 const transform = (list: Witness[]): WitnessTransformed[] => {
@@ -58,6 +64,8 @@ const transform = (list: Witness[]): WitnessTransformed[] => {
         const {available_witness_account_subsidies: acAvail} = x;
         const {account_subsidy_budget: acBudget} = props;
         const {running_version: version} = x;
+        const {signing_key:signingKey} = x
+        const {last_hbd_exchange_update:priceAge} = x;
 
         let parsedUrl;
         const oUrl = new URL(url, 'https://ecency.com');
@@ -82,7 +90,9 @@ const transform = (list: Witness[]): WitnessTransformed[] => {
             acBudget,
             version,
             url,
-            parsedUrl
+            parsedUrl,
+            signingKey,
+            priceAge,
         };
     });
 }
@@ -128,8 +138,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         }
 
         const witnesses = await getWitnessesByVote();
-
-        this.stateSet({witnesses: transform(witnesses), loading: false});
+        await this.getWitness(transform(witnesses));
     }
 
     addWitness = (name: string) => {
@@ -144,6 +153,30 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         this.stateSet({witnessVotes: newVotes});
     }
 
+    getWitness = async (witnessArray:WitnessTransformed[])=>{
+        const witnessUserNamesArray:string[] = witnessArray.map((item: WitnessTransformed)=> {
+            return item.name
+        })
+        try {
+            const accounts:FullAccount[] = await getAccounts(witnessUserNamesArray);
+            const byWitnessState:WitnessTransformed[] = witnessArray.map((item: WitnessTransformed, index: number) => {
+                try {
+                    const parsedArray = JSON.parse(accounts[index].posting_json_metadata?accounts[index].posting_json_metadata:'');
+                    return {
+                        ...item,
+                        witnessBy:parsedArray.profile.witness_owner ? parsedArray.profile.witness_owner: undefined
+                    }
+                }
+                catch (e) {
+                    return item
+                }
+            })
+            this.stateSet({witnesses:byWitnessState, loading: false});
+        } catch (error) {
+            console.log('Something went wrong: ',error)
+        }
+    }
+
     render() {
         //  Meta config
         const metaProps = {
@@ -155,7 +188,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         const {witnesses, loading, witnessVotes, proxy} = this.state;
         const extraWitnesses = witnessVotes.filter(w => !witnesses.find(y => y.name === w));
 
-        const table = <table className="table">
+        const table = <><table className="table d-none d-sm-block">
             <thead>
             <tr>
                 <th className="col-rank">
@@ -209,7 +242,14 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                                 ...this.props,
                                 username: row.name,
                                 size: "medium"
-                            })} {row.name}</span>
+                            })}
+                                <div className={'witness-ctn'}>
+                                    {row.signingKey === 'STM1111111111111111111111111111111114T1Anm' ? <s>{row.name}</s> :row.name}
+                                    {row.witnessBy && <div className={'notranslate'}>
+                                        <small>by {row.witnessBy}</small>
+                                    </div>}
+                                </div>
+                            </span>
                         })}
                     </td>
                     <td><span className="witness-miss">{row.miss}</span></td>
@@ -232,7 +272,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                     </td>
                     <td><span className="witness-fee">{row.fee}</span></td>
                     <td>
-                        <div className="witness-feed"><span className="inner">{row.feed}</span></div>
+                        <div className="witness-feed"><span className="inner">${row.feed.replace(' HBD','')} | {moment(row.priceAge).fromNow(true)}</span></div>
                     </td>
                     <td>
                         <div className="witness-version"><span className="inner">{row.version}</span></div>
@@ -240,7 +280,26 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                 </tr>
             })}
             </tbody>
-        </table>;
+        </table>
+        <div className="d-md-none">
+        {witnesses.map((row, i) => {
+            return <WitnessCard
+                    voted={witnessVotes.includes(row.name)}
+                    witness={row.name}
+                    row={row}
+                    key={i}
+                    onSuccess={(approve:any) => {
+                            if (approve) {
+                                this.addWitness(row.name);
+                            } else {
+                                this.deleteWitness(row.name);
+                            }
+                    }}
+                    global={global}
+                    />
+        })}
+        </div>
+        </>;
 
         const header = <div className="page-header mt-5">
             <div className="header-title">

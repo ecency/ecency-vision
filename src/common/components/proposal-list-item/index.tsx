@@ -8,6 +8,8 @@ import {History,Location} from "history";
 
 import moment from "moment";
 
+import _ from "lodash";
+
 import numeral from "numeral";
 
 import {Proposal, getProposalVotes} from "../../api/hive";
@@ -31,6 +33,8 @@ import _c from "../../util/fix-class-names";
 import {_t} from "../../i18n";
 
 import {linkSvg} from "../../img/svg";
+import isElectron from "../../util/is-electron";
+import { Skeleton } from "../skeleton";
 
 interface Props {
     history: History;
@@ -48,17 +52,21 @@ interface Props {
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     setSigningKey: (key: string) => void;
+    isReturnProposalId?: number;
+    thresholdProposalIds?: any[];
 }
 
 interface State {
     votes: boolean,
-    votedByVoter: boolean
+    votedByVoter: boolean,
+    loadingSearchResult:boolean
 }
 
 export class ProposalListItem extends Component<Props, State> {
     state: State = {
         votes: false,
         votedByVoter: false,
+        loadingSearchResult: false,
     }
 
     componentDidMount() {
@@ -68,18 +76,27 @@ export class ProposalListItem extends Component<Props, State> {
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
         return !isEqual(this.state, nextState) ||
             !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
+            !isEqual(this.props.location, nextProps.location) ||
             !isEqual(this.props.dynamicProps.hivePerMVests, nextProps.dynamicProps.hivePerMVests);
+    }
+
+    componentDidUpdate(prevProps: Readonly<Props>){
+        if(prevProps.location !== this.props.location){
+            this.loadProposalByVoter();
+            this.setState({loadingSearchResult: true})
+        }
     }
 
     loadProposalByVoter = () => {
         const {proposal, location} = this.props;
 
-        const params = new URLSearchParams(location.search);
-        const voterParams = params.get('voter');
+        const params = isElectron() ? location.search.replace("?voter=","") : new URLSearchParams(location.search);
+        const voterParams = isElectron() ? (params || "") : (params as URLSearchParams).get('voter');
+
         if(!!voterParams) {
-            getProposalVotes(proposal.id,voterParams, 1).then(r => {
-                const votedByVoter = r.length > 0 && r[0].voter ===voterParams;
-                this.setState({votedByVoter});
+            getProposalVotes(proposal.id, voterParams as string, 1).then(r => {
+                const votedByVoter = r.length > 0 && r[0].voter === voterParams;
+                this.setState({votedByVoter, loadingSearchResult:false});
             }).finally()
         }
 
@@ -91,9 +108,9 @@ export class ProposalListItem extends Component<Props, State> {
     }
 
     render() {
-        const {votes, votedByVoter} = this.state;
+        const {votes, votedByVoter, loadingSearchResult} = this.state;
 
-        const {dynamicProps, proposal} = this.props;
+        const {dynamicProps, proposal, isReturnProposalId, thresholdProposalIds} = this.props;
 
         const startDate = moment(new Date(proposal.start_date));
         const endDate = moment(new Date(proposal.end_date));
@@ -109,8 +126,8 @@ export class ProposalListItem extends Component<Props, State> {
         const strAllPayment = numeral(allPayment).format("0.0a");
         const diff = endDate.diff(moment(now()), 'days');
         const remaining = diff < 0 ? 0 : diff;
-
-        return (
+        
+        return loadingSearchResult ? <Skeleton className="w-100 loadingSearch mb-3 shadow"/>:(
             <div className={_c(`proposal-list-item ${!!votedByVoter ? 'voted-by-voter' : ''}`)}>
                 <div className="item-content">
                     <div className="left-side">
@@ -183,7 +200,10 @@ export class ProposalListItem extends Component<Props, State> {
                         </div>
                     </div>
                 </div>
-                {proposal.id === 0 && (
+                {proposal.id !== isReturnProposalId && thresholdProposalIds && _.includes(thresholdProposalIds, proposal.id)&& (
+                    <div className="return-proposal">{_t("proposals.threshold-description")}</div>
+                )}
+                {(proposal.id === isReturnProposalId)&& (
                     <div className="return-proposal">{_t("proposals.return-description")}</div>
                 )}
                 {votes && <ProposalVotes {...this.props} onHide={this.toggleVotes}/>}
@@ -208,7 +228,9 @@ export default (p: Props) => {
         deleteUser: p.deleteUser,
         toggleUIProp: p.toggleUIProp,
         setSigningKey: p.setSigningKey,
-        proposal: p.proposal
+        proposal: p.proposal,
+        isReturnProposalId: p.isReturnProposalId,
+        thresholdProposalIds: p.thresholdProposalIds
     }
 
     return <ProposalListItem {...props} />;

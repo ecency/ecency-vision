@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<table
+  className="table table-lg table-striped table-bordered table-hover"
+>
+  <thead>
+    <tr>
+      <th>
+        Last Price
+      </th>
+      <th>
+        24h volume
+      </th>
+      <th>
+        Bid
+      </th>
+      <th>
+        Ask
+      </th>
+      <th>
+        Spread
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        $
+        NaN
+         (
+        <span
+          className="text-success"
+        >
+          +0.00%
+        </span>
+        )
+      </td>
+      <td>
+        $
+        NaN
+      </td>
+      <td>
+        $
+        NaN
+      </td>
+      <td>
+        $
+        NaN
+      </td>
+      <td>
+        NaN
+        %
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`(2) Render with loading 1`] = `
+<table
+  className="table table-striped table-bordered table-hover"
+>
+  <thead>
+    <tr>
+      <th>
+        <div
+          className="skeleton skeleton-loading mr-5"
+        />
+      </th>
+      <th>
+        <div
+          className="skeleton skeleton-loading mr-5"
+        />
+      </th>
+      <th>
+        <div
+          className="skeleton skeleton-loading mr-5"
+        />
+      </th>
+      <th>
+        <div
+          className="skeleton skeleton-loading mr-5"
+        />
+      </th>
+      <th>
+        <div
+          className="skeleton skeleton-loading mr-5"
+        />
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div
+          className="skeleton skeleton-loading mr-5"
+        />
+      </td>
+      <td>
+        <div
+          className="skeleton skeleton-loading mr-5"
+        />
+      </td>
+      <td>
+        <div
+          className="skeleton skeleton-loading mr-5"
+        />
+      </td>
+      <td>
+        <div
+          className="skeleton skeleton-loading mr-5"
+        />
+      </td>
+      <td>
+        <div
+          className="skeleton skeleton-loading mr-5"
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

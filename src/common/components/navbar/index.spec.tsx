@@ -8,7 +8,7 @@ import NavBar from "./index";
 import {Theme} from "../../store/global/types";
 
 import {globalInstance, TrendingTagsInstance, UiInstance, notificationsInstance1, activeUserInstance, dynamicPropsIntance1} from "../../helper/test-helper";
-
+import './matchMedia';
 
 const defProps = {
     history: createBrowserHistory(),
@@ -54,6 +54,8 @@ const defProps = {
     setStepOne: () => {
     },
 };
+
+//const itif = (condition) => condition ? it : it.skip;
 
 it("(1) Default render", () => {
     const component = <NavBar {...defProps} />;

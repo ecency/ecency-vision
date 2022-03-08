@@ -40,11 +40,12 @@ import routes from "../../../../common/routes";
 import {version} from "../../../package.json";
 
 import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg, dotsHorizontal, translateSvg} from "../../../../common/img/svg";
+import isElectron from "../../../../common/util/is-electron";
 
 // why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
 
 const pathToRegexp = require("path-to-regexp");
-
+import isCommunity from "../../../../common/helper/is-community";
 const logo = "./img/logo-circle.svg";
 
 
@@ -99,13 +100,27 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
 
         const curPath = entries[index]?.pathname || '/';
         let address = curPath === '/' ? `${defaults.filter}` : curPath.replace('/', '');
-
+        
         // persist search string
         if (curPath.startsWith('/search')) {
             const qs = queryString.parse(location.search);
             if ((qs.q as string)) {
                 address = qs.q;
             }
+        }
+
+        if(location.search && location.search.length > 0){
+            address = location.pathname + location.search;
+            if(address[0]==="/"){
+                address = address.replace("/","")
+            }
+        }
+
+        const spt = address.split('/');
+        if(spt[0] == spt[1]){
+            address = spt;
+            address.shift();
+            address = address.join("/")
         }
 
         this.setState({address, realAddress: address});
@@ -119,6 +134,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
     };
 
     addressKeyup = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        
         if (e.keyCode === 13) {
             const {address, changed} = this.state;
             const {history} = this.props;
@@ -136,17 +152,29 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
             const pathMatch = Object.values(routes).find(p => {
                 return pathToRegexp(p).test(url.pathname)
             });
-
+            
             if (pathMatch) {
-                history.push(url.pathname);
+                let isAddressValidForElectron = isElectron() && address.includes("?")
+                if(isAddressValidForElectron){
+                    let validAddress = address[0]=='/'? address.replace("/",""): address;
+                    this.setState({address:validAddress})
+                    
+                    history.push(`/${validAddress}`);
+                    return;
+                }
+                let validAddress = url.pathname[0]=='/'?url.pathname.replace("/",""):url.pathname;
+                this.setState({address:validAddress})
+                
+                history.push(`/${validAddress}`);
                 return;
             }
-
+            
             history.push(`/search/?q=${encodeURIComponent(address)}`);
         }
 
         if (e.keyCode === 27) {
             const {realAddress} = this.state;
+            
 
             this.setState({address: realAddress});
         }
@@ -154,14 +182,13 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
 
 
     render() {
-        const {address} = this.state;
-
+        const {address, changed} = this.state;
         return (
             <div className="address">
                 <div className="pre-add-on">{magnifySvg}</div>
                 <span className="protocol">ecency://</span>
                 <div className="url">
-                    <SearchSuggester {...this.props} value={address}>
+                    {/* <SearchSuggester {...this.props} value={address} changed={changed}> */}
                         <input
                             type="text"
                             value={address}
@@ -170,7 +197,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
                             placeholder={_t('navbar.address-placeholder')}
                             spellCheck={false}
                         />
-                    </SearchSuggester>
+                    {/* </SearchSuggester> */}
                 </div>
             </div>
         )
@@ -288,7 +315,8 @@ interface Props {
     reloadFn?: () => any,
     setStepTwo?: () => any,
     reloading?: boolean,
-    step?: number
+    step?: number,
+    match?: any;
 }
 
 interface State {
@@ -353,9 +381,15 @@ export class NavBar extends Component<Props, State> {
     };
 
     render() {
-        const {global, activeUser, history, location, ui, step} = this.props;
+        const {global, activeUser, history, location, ui, step, match} = this.props;        
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
-        const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
+        const communityPage = match && match.params.name && isCommunity(match.params.name)
+        const tagValue = global.tag ? `/${global.tag}` : ''
+        const logoHref = activeUser ? 
+        (communityPage || ((global.tag.includes('@')) && (['engine','wallet','points','communities','settings','permissions','comments','replies','blog', 'posts'].includes(global.filter)))) ?
+        '/hot' : 
+        global.filter === 'feed' ? `${tagValue}/${global.filter}` : `/${global.filter}${tagValue}` 
+        : '/';
 
         const {floating} = this.state;
 
@@ -475,7 +509,8 @@ export default (p: Props) => {
         reloadFn: p.reloadFn,
         reloading: p.reloading,
         step: p.step,
-        setStepTwo: p.setStepTwo
+        setStepTwo: p.setStepTwo,
+        match: p.match,
     }
 
     return <NavBar {...props} />;

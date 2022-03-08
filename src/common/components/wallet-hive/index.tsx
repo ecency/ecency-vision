@@ -3,6 +3,7 @@ import React from "react";
 import {History} from "history";
 
 import moment from "moment";
+import { AssetSymbol } from '@hiveio/dhive';
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
@@ -16,6 +17,10 @@ import FormattedCurrency from "../formatted-currency";
 import TransactionList from "../transactions";
 import DelegatedVesting from "../delegated-vesting";
 import ReceivedVesting from "../received-vesting";
+import ConversionRequests from "../converts";
+import SavingsWithdraw from '../savings-withdraw';
+import OpenOrdersList from '../open-orders-list';
+
 import DropDown from "../dropdown";
 import Transfer, {TransferMode, TransferAsset} from "../transfer";
 import {error, success} from "../feedback";
@@ -26,7 +31,7 @@ import HiveWallet from "../../helper/hive-wallet";
 
 import {vestsToHp} from "../../helper/vesting";
 
-import {DynamicGlobalProperties, getAccount, getConversionRequests, getDynamicGlobalProperties} from "../../api/hive";
+import {getAccount, getConversionRequests, getSavingsWithdrawFrom, getOpenOrder} from "../../api/hive";
 
 import {claimRewardBalance, formatError} from "../../api/operations";
 
@@ -37,6 +42,7 @@ import parseAsset from "../../helper/parse-asset";
 import {_t} from "../../i18n";
 
 import {plusCircle} from "../../img/svg";
+
 
 interface Props {
     history: History;
@@ -50,11 +56,17 @@ interface Props {
     updateActiveUser: (data?: Account) => void;
     setSigningKey: (key: string) => void;
     fetchTransactions: (username: string, group?: OperationGroup | "") => void;
+    fetchPoints: (username: string, type?: number) => void;
+    updateWalletValues: () => void;
 }
 
 interface State {
     delegatedList: boolean;
+    convertList: boolean;
     receivedList: boolean;
+    savingsWithdrawList: boolean;
+    openOrdersList: boolean;
+    tokenType: AssetSymbol;
     claiming: boolean;
     claimed: boolean;
     transfer: boolean;
@@ -62,6 +74,8 @@ interface State {
     transferMode: null | TransferMode;
     transferAsset: null | TransferAsset;
     converting: number;
+    withdrawSavings: { hbd:string | number, hive: string | number };
+    openOrders: { hbd:string | number, hive: string | number };
     aprs: { hbd:string | number, hp: string | number }
 }
 
@@ -69,6 +83,10 @@ export class WalletHive extends BaseComponent<Props, State> {
     state: State = {
         delegatedList: false,
         receivedList: false,
+        convertList: false,
+        savingsWithdrawList: false,
+        openOrdersList: false,
+        tokenType: 'HBD',
         claiming: false,
         claimed: false,
         transfer: false,
@@ -76,11 +94,15 @@ export class WalletHive extends BaseComponent<Props, State> {
         transferMode: null,
         transferAsset: null,
         converting: 0,
+        withdrawSavings: {hbd: 0, hive: 0},
+        openOrders: {hbd: 0, hive: 0},
         aprs: { hbd:0, hp: 0 }
     };
 
     componentDidMount() {
         this.fetchConvertingAmount();
+        this.fetchWithdrawFromSavings();
+        this.getOrders();
     }
 
     getCurrentHpApr = (gprops:DynamicProps) => {
@@ -124,23 +146,78 @@ export class WalletHive extends BaseComponent<Props, State> {
         let hp = this.getCurrentHpApr(dynamicProps).toFixed(3);
         this.setState({aprs: {...aprs, hbd: hbdInterestRate/100, hp}})
 
-        getConversionRequests(account.name).then(r => {
-            if (r.length === 0) {
-                return;
-            }
+        const crd = await getConversionRequests(account.name);
+        if (crd.length === 0) {
+            return;
+        }
 
-            let converting = 0;
-            r.forEach(x => {
-                converting += parseAsset(x.amount).amount;
-            });
-
-            this.stateSet({converting});
+        let converting = 0;
+        crd.forEach(x => {
+            converting += parseAsset(x.amount).amount;
         });
+        this.stateSet({converting});
+    }
+
+    fetchWithdrawFromSavings = async() => {
+        const {account} = this.props;
+
+        const swf = await getSavingsWithdrawFrom(account.name);
+        if (swf.length === 0) {
+            return;
+        }
+
+        let withdrawSavings = {hbd: 0, hive: 0};
+        swf.forEach(x => {
+            const aa = x.amount;
+            if (aa.includes('HIVE')) {
+                withdrawSavings.hive += parseAsset(x.amount).amount;
+            } else {
+                withdrawSavings.hbd += parseAsset(x.amount).amount;
+            }
+        });
+
+        this.stateSet({withdrawSavings});
+    }
+
+    getOrders = async() => {
+        const {account} = this.props;
+
+        const oo = await getOpenOrder(account.name);
+        if (oo.length === 0) {
+            return;
+        }
+
+        let openOrders = {hive: 0, hbd: 0};
+        oo.forEach(x => {
+            const bb = x.sell_price.base;
+            if (bb.includes('HIVE')) {
+                openOrders.hive += parseAsset(bb).amount;
+            } else {
+                openOrders.hbd += parseAsset(bb).amount;
+            }
+        });
+
+        this.stateSet({openOrders});
     }
 
     toggleDelegatedList = () => {
         const {delegatedList} = this.state;
         this.stateSet({delegatedList: !delegatedList});
+    };
+
+    toggleConvertList = () => {
+        const {convertList} = this.state;
+        this.stateSet({convertList: !convertList});
+    };
+
+    toggleSavingsWithdrawList = (tType:AssetSymbol) => {
+        const {savingsWithdrawList} = this.state;
+        this.stateSet({savingsWithdrawList: !savingsWithdrawList, tokenType: tType});
+    };
+
+    toggleOpenOrdersList = (tType:AssetSymbol) => {
+        const {openOrdersList} = this.state;
+        this.stateSet({openOrdersList: !openOrdersList, tokenType: tType});
     };
 
     toggleReceivedList = () => {
@@ -192,8 +269,8 @@ export class WalletHive extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, dynamicProps, account, activeUser} = this.props;
-        const {claiming, claimed, transfer, transferAsset, transferMode, converting, aprs: {hbd, hp}} = this.state;
+        const {global, dynamicProps, account, activeUser, history} = this.props;
+        const {claiming, claimed, transfer, transferAsset, transferMode, converting, withdrawSavings, aprs: {hbd, hp}, openOrders, tokenType} = this.state;
 
         if (!account.__loaded) {
             return null;
@@ -258,9 +335,10 @@ export class WalletHive extends BaseComponent<Props, State> {
                             </div>
                             <div className="balance-values">
                                 <div className="amount">
-                                    {(() => {
+                                {(() => {
+                                        let dropDownConfig: any
                                         if (isMyPage) {
-                                            const dropDownConfig = {
+                                            dropDownConfig = {
                                                 history: this.props.history,
                                                 label: '',
                                                 items: [
@@ -282,17 +360,55 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                             this.openTransferDialog('power-up', 'HIVE');
                                                         }
                                                     },
+                                                    {
+                                                        label: _t('market-data.trade'),
+                                                        onClick: () => {
+                                                            this.props.history.push("/market");
+                                                        }
+                                                    },
                                                 ],
                                             };
-                                            return <div className="amount-actions">
-                                                <DropDown {...dropDownConfig} float="right"/>
-                                            </div>;
+                                            
+                                        } else if (activeUser) {
+                                            dropDownConfig = {
+                                                history: this.props.history,
+                                                label: '',
+                                                items: [
+                                                    {
+                                                        label: _t('wallet.transfer'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('transfer', 'HIVE');
+                                                        }
+                                                    },
+                                                ],
+                                            };
                                         }
-                                        return null;
+                                        return (<div className="amount-actions">
+                                                <DropDown {...dropDownConfig} float="right"/>
+                                            </div>)
+                                        
                                     })()}
 
                                     <span>{formattedNumber(w.balance, {suffix: "HIVE"})}</span>
                                 </div>
+                                {openOrders && openOrders.hive > 0 && (
+                                    <div className="amount amount-passive converting-hbd">
+                                        <Tooltip content={_t("wallet.reserved-amount")}>
+                                      <span className="amount-btn" onClick={()=>this.toggleOpenOrdersList('HIVE')}>
+                                          {"+"} {formattedNumber(openOrders.hive, {suffix: "HIVE"})}
+                                      </span>
+                                        </Tooltip>
+                                    </div>
+                                )}
+                                {withdrawSavings && withdrawSavings.hive > 0 && (
+                                    <div className="amount amount-passive converting-hbd">
+                                        <Tooltip content={_t("wallet.withdrawing-amount")}>
+                                      <span className="amount-btn" onClick={()=>this.toggleSavingsWithdrawList('HIVE')}>
+                                          {"+"} {formattedNumber(withdrawSavings.hive, {suffix: "HIVE"})}
+                                      </span>
+                                        </Tooltip>
+                                    </div>
+                                )}
                             </div>
                         </div>
 
@@ -305,10 +421,10 @@ export class WalletHive extends BaseComponent<Props, State> {
 
                             <div className="balance-values">
                                 <div className="amount">
-                                    {(() => {
+                                {(() => {
+                                        let dropDownConfig: any
                                         if (isMyPage) {
-
-                                            const dropDownConfig = {
+                                            dropDownConfig = {
                                                 history: this.props.history,
                                                 label: '',
                                                 items: [
@@ -332,11 +448,30 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                     },
                                                 ],
                                             };
-                                            return <div className="amount-actions">
-                                                <DropDown {...dropDownConfig} float="right"/>
-                                            </div>;
+                                        } else if (activeUser) {
+                                            dropDownConfig = {
+                                                history: this.props.history,
+                                                label: '',
+                                                items: [
+                                                    {
+                                                        label: _t('wallet.delegate'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('delegate', 'HP');
+                                                        },
+                                                    },
+                                                    {
+                                                        label: _t('wallet.power-up'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('power-up', 'HIVE');
+                                                        }
+                                                    },
+                                                ],
+                                            };
                                         }
-                                        return null;
+                                        return (<div className="amount-actions">
+                                                <DropDown {...dropDownConfig} float="right"/>
+                                            </div>)
+                                        
                                     })()}
                                     {totalHP}
                                 </div>
@@ -402,9 +537,10 @@ export class WalletHive extends BaseComponent<Props, State> {
                             </div>
                             <div className="balance-values">
                                 <div className="amount">
-                                    {(() => {
+                                {(() => {
+                                        let dropDownConfig: any
                                         if (isMyPage) {
-                                            const dropDownConfig = {
+                                            dropDownConfig = {
                                                 history: this.props.history,
                                                 label: '',
                                                 items: [
@@ -426,14 +562,32 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                             this.openTransferDialog('convert', 'HBD');
                                                         }
                                                     },
+                                                    {
+                                                        label: _t('market-data.trade'),
+                                                        onClick: () => {
+                                                            this.props.history.push("/market");
+                                                        }
+                                                    },
                                                 ],
                                             };
-
-                                            return <div className="amount-actions">
-                                                <DropDown {...dropDownConfig} float="right"/>
-                                            </div>;
+                                        } else if (activeUser) {
+                                            dropDownConfig = {
+                                                history: this.props.history,
+                                                label: '',
+                                                items: [
+                                                    {
+                                                        label: _t('wallet.transfer'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('transfer', 'HBD');
+                                                        }
+                                                    }
+                                                ],
+                                            };
                                         }
-                                        return null;
+                                        return (<div className="amount-actions">
+                                                <DropDown {...dropDownConfig} float="right"/>
+                                            </div>)
+                                        
                                     })()}
                                     <span>{formattedNumber(w.hbdBalance, {prefix: "$"})}</span>
                                 </div>
@@ -441,8 +595,28 @@ export class WalletHive extends BaseComponent<Props, State> {
                                 {converting > 0 && (
                                     <div className="amount amount-passive converting-hbd">
                                         <Tooltip content={_t("wallet.converting-hbd-amount")}>
-                                      <span>
+                                      <span className="amount-btn" onClick={this.toggleConvertList}>
                                           {"+"} {formattedNumber(converting, {prefix: "$"})}
+                                      </span>
+                                        </Tooltip>
+                                    </div>
+                                )}
+
+                                {withdrawSavings && withdrawSavings.hbd > 0 && (
+                                    <div className="amount amount-passive converting-hbd">
+                                        <Tooltip content={_t("wallet.withdrawing-amount")}>
+                                      <span className="amount-btn" onClick={()=>this.toggleSavingsWithdrawList('HBD')}>
+                                          {"+"} {formattedNumber(withdrawSavings.hbd, {prefix: "$"})}
+                                      </span>
+                                        </Tooltip>
+                                    </div>
+                                )}
+
+                                {openOrders && openOrders.hbd > 0 && (
+                                    <div className="amount amount-passive converting-hbd">
+                                        <Tooltip content={_t("wallet.reserved-amount")}>
+                                      <span className="amount-btn" onClick={()=>this.toggleOpenOrdersList('HBD')}>
+                                          {"+"} {formattedNumber(openOrders.hbd, {prefix: "$"})}
                                       </span>
                                         </Tooltip>
                                     </div>
@@ -458,9 +632,10 @@ export class WalletHive extends BaseComponent<Props, State> {
                             </div>
                             <div className="balance-values">
                                 <div className="amount">
-                                    {(() => {
+                                {(() => {
+                                        let dropDownConfig: any
                                         if (isMyPage) {
-                                            const dropDownConfig = {
+                                            dropDownConfig = {
                                                 history: this.props.history,
                                                 label: '',
                                                 items: [
@@ -469,22 +644,35 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                         onClick: () => {
                                                             this.openTransferDialog('withdraw-saving', 'HIVE');
                                                         }
+                                                    },
+                                                ],
+                                            };
+                                        } else if (activeUser) {
+                                            dropDownConfig = {
+                                                history: this.props.history,
+                                                label: '',
+                                                items: [
+                                                    {
+                                                        label: _t('wallet.transfer'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('transfer-saving', 'HIVE');
+                                                        }
                                                     }
                                                 ],
                                             };
-
-                                            return <div className="amount-actions">
-                                                <DropDown {...dropDownConfig} float="right"/>
-                                            </div>;
                                         }
-                                        return null;
+                                        return (<div className="amount-actions">
+                                                <DropDown {...dropDownConfig} float="right"/>
+                                            </div>)
+                                        
                                     })()}
                                     <span>{formattedNumber(w.savingBalance, {suffix: "HIVE"})}</span>
                                 </div>
                                 <div className="amount">
-                                    {(() => {
+                                {(() => {
+                                        let dropDownConfig: any
                                         if (isMyPage) {
-                                            const dropDownConfig = {
+                                            dropDownConfig = {
                                                 history: this.props.history,
                                                 label: '',
                                                 items: [
@@ -496,12 +684,24 @@ export class WalletHive extends BaseComponent<Props, State> {
                                                     },
                                                 ],
                                             };
-
-                                            return <div className="amount-actions">
-                                                <DropDown {...dropDownConfig} float="right"/>
-                                            </div>;
+                                        } else if (activeUser) {
+                                            dropDownConfig = {
+                                                history: this.props.history,
+                                                label: '',
+                                                items: [
+                                                    {
+                                                        label: _t('wallet.transfer'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('transfer-saving', 'HBD');
+                                                        }
+                                                    },
+                                                ],
+                                            };
                                         }
-                                        return null;
+                                        return (<div className="amount-actions">
+                                                <DropDown {...dropDownConfig} float="right"/>
+                                            </div>)
+                                        
                                     })()}
 
                                     <span>{formattedNumber(w.savingBalanceHbd, {suffix: "$"})}</span>
@@ -523,7 +723,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                     <WalletMenu global={global} username={account.name} active="hive"/>
                 </div>
 
-                {transfer && <Transfer {...this.props} activeUser={activeUser!} mode={transferMode!} asset={transferAsset!} onHide={this.closeTransferDialog}/>}
+                {transfer && <Transfer {...this.props} activeUser={activeUser!} to={isMyPage ? undefined : account.name} mode={transferMode!} asset={transferAsset!} onHide={this.closeTransferDialog}/>}
 
                 {this.state.delegatedList && (
                     <DelegatedVesting {...this.props} account={account} onHide={this.toggleDelegatedList} totalDelegated={totalDelegated.replace("- ","")}/>
@@ -531,6 +731,18 @@ export class WalletHive extends BaseComponent<Props, State> {
 
                 {this.state.receivedList && (
                     <ReceivedVesting {...this.props} account={account} onHide={this.toggleReceivedList}/>
+                )}
+
+                {this.state.convertList && (
+                    <ConversionRequests {...this.props} account={account} onHide={this.toggleConvertList}/>
+                )}
+
+                {this.state.savingsWithdrawList && (
+                    <SavingsWithdraw {...this.props} tokenType={tokenType} account={account} onHide={()=>this.toggleSavingsWithdrawList('HBD')}/>
+                )}
+
+                {this.state.openOrdersList && (
+                    <OpenOrdersList {...this.props} tokenType={tokenType} account={account} onHide={()=>this.toggleOpenOrdersList('HBD')}/>
                 )}
 
                 {this.state.withdrawRoutes && (
@@ -554,7 +766,9 @@ export default (p: Props) => {
         addAccount: p.addAccount,
         updateActiveUser: p.updateActiveUser,
         setSigningKey: p.setSigningKey,
-        fetchTransactions: p.fetchTransactions
+        fetchTransactions: p.fetchTransactions,
+        updateWalletValues: p.updateWalletValues,
+        fetchPoints: p.fetchPoints
     }
 
     return <WalletHive {...props} />;
