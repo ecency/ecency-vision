@@ -4,8 +4,12 @@
     @include themify(dusk) {
       color: $dusk-primary !important;
     }
-  }
 
+    @include themify(burning) {
+      color: $burning-primary !important;
+    }
+  }
+  
   @media (max-width: $sm-break) {
     position: unset;
   }

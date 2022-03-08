@@ -46,6 +46,11 @@
     box-shadow: 0 0 2px 1px $white-six;
   }
 
+  @include themify(burning) {
+    background: $burning-primary;
+  }
+
+
   @include themify(night) {
     background: $dark-two;
   }
@@ -115,6 +120,10 @@
 
   @include themify(dusk) {
     background: $white-two;
+  }
+
+  @include themify(burning) {
+    background: $burning-primary;
     box-shadow: 0 0 2px 1px $white-six;
   }
 
@@ -326,6 +335,11 @@
         box-shadow: 0 .5rem 1rem rgba($gray-500, .15)
       }
 
+      @include themify(burning) {
+        background: $white-two;
+        box-shadow: 0 .5rem 1rem rgba($gray-500, .15)
+      }
+
       @include themify(night) {
         background: $dark-two;
       }
@@ -387,6 +401,10 @@ body.medium-zoom--opened {
     color: $warm-grey;
   }
 
+  @include themify(burning) {
+    color: $burning-background;
+  }
+
   @include themify(night) {
     color: $duck-egg-blue;
   }
@@ -413,6 +431,11 @@ body.medium-zoom--opened {
   @include themify(dusk) {
     background-color: #E5EFFC !important;
   }
+
+  @include themify(burning) {
+    background-color: #E5EFFC !important;
+  }
+
 
   @include themify(night) {
     background-color: $dark-two !important;
@@ -465,6 +488,9 @@ body.medium-zoom--opened {
       font-size: 17px !important;
       font-weight: unset !important;
       @include themify(night) {
+        color: $light-grey !important;
+      }
+      @include themify(day) {
         color: $light-grey !important;
       }
       @include themify(day) {

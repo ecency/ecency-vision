@@ -31,6 +31,9 @@
     background-image: linear-gradient(to right, $dusk-primary, $dusk-background);
   }
 
+  @include themify(burning) {
+    background-image: linear-gradient(to left, $burning-primary, $burning-background);
+  }
 
   @include themify(night) {
     background-image: linear-gradient(to left, $dark-indigo, $dusky-blue);

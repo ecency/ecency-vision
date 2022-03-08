@@ -64,6 +64,11 @@
           border-bottom: 2px solid $dusk-primary;
         }
 
+        @include themify(burning) {
+          color: $burning-primary;
+          border-bottom: 2px solid $burning-primary;
+        }
+
         .dropdown-btn {
           .label {
             font-weight: 700;

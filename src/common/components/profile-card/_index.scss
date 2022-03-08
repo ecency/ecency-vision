@@ -83,6 +83,10 @@
       @include themify(dusk) {
         backgorund: $dusk-primary;
       }
+
+      @include themify(burning) {
+        backgorund: $burning-primary;
+      }
     }
   }
 
@@ -97,6 +101,10 @@
 
     @include themify(dusk) {
       color: $dusk-primary;
+    }
+
+    @include themify(burning) {
+      color: $burning-primary;
     }
 
     @media (min-width: $md-break) {
@@ -135,6 +143,10 @@
         color: $dusk-primary;
       }
 
+      @include themify(burning) {
+        color: $burning-primary;
+      }
+
       @media (min-width: $md-break) {
         font-size: 16px;
         text-align: left;
@@ -149,6 +161,10 @@
 
       @include themify(dusk) {
         color: $dusk-primary;
+      }
+
+      @include themify(burning) {
+        color: $burning-primary;
       }
 
       @media (min-width: $md-break) {
