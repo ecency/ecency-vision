@@ -1,5 +1,11 @@
 .entry-list-item {
 
+  a {
+    @include themify(dusk) {
+      color: $dusk-primary !important;
+    }
+  }
+
   @media (max-width: $sm-break) {
     position: unset;
   }

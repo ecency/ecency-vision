@@ -113,6 +113,10 @@
       color: $white;
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
+
+      @include themify(dusk) {
+        backgorund: $dusk-primary !important;
+      }
     }
   }
 
@@ -166,7 +170,7 @@
           }
 
           @include themify(dusk) {
-            background: $dark-sky-blue;
+            background: $dusk-primary;
           }
 
           @include themify(night) {
@@ -182,8 +186,8 @@
         }
 
         @include themify(dusk) {
-          background: lighten($dark-sky-blue, 40);
-          color: $dark-sky-blue;
+          background: lighten($silver, 40);
+          color: $dusk-primary;
         }
 
         @include themify(night) {

@@ -68,6 +68,10 @@
     width: 300px;
     margin: 0 auto 8px auto;
 
+    @include themify(dusk) {
+      backgorund: $dusk-background;
+    }
+
     @media (min-width: $md-break) {
       width: auto;
     }
@@ -75,6 +79,10 @@
     .vpower-line-inner {
       background: $dark-sky-blue;
       height: 2px;
+
+      @include themify(dusk) {
+        backgorund: $dusk-primary;
+      }
     }
   }
 
@@ -86,6 +94,10 @@
     font-weight: 500;
     margin-bottom: 10px;
     text-align: center;
+
+    @include themify(dusk) {
+      color: $dusk-primary;
+    }
 
     @media (min-width: $md-break) {
       text-align: left;
@@ -119,6 +131,10 @@
       margin-bottom: 12px;
       text-align: center;
 
+      @include themify(dusk) {
+        color: $dusk-primary;
+      }
+
       @media (min-width: $md-break) {
         font-size: 16px;
         text-align: left;
@@ -130,6 +146,10 @@
       opacity: 0.5;
       text-align: center;
       word-wrap: break-word;
+
+      @include themify(dusk) {
+        color: $dusk-primary;
+      }
 
       @media (min-width: $md-break) {
         text-align: left;

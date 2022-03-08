@@ -61,11 +61,19 @@
       font-weight: 600;
       margin-bottom: 18px;
       color: $dark-sky-blue;
+
+      @include themify(dusk) {
+        color: $dusk-primary;
+      }
     }
 
     .about {
       font-weight: 300;
       color: $dark-sky-blue;
+
+      @include themify(dusk) {
+        color: $dusk-primary;
+      }
     }
 
     .nsfw {
@@ -81,7 +89,7 @@
 
   .community-sections {
     overflow-x: hidden;
-    @media (max-width: $md-break - 1px) {
+    @media (max-width: ($md-break - 1px)) {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -90,7 +98,7 @@
     .community-section {
       margin-bottom: 16px;
 
-      @media (max-width: $md-break - 1px) {
+      @media (max-width: ($md-break - 1px)) {
         &:not(:last-child) {
           margin-right: 4px;
         }
@@ -124,7 +132,7 @@
           margin-right: 10px;
         }
 
-        @media (max-width: $md-break - 1px) {
+        @media (max-width: ($md-break - 1px)) {
           cursor: pointer;
           font-size: 96%;
           padding: 6px;
@@ -142,7 +150,7 @@
       }
 
       .section-content {
-        @media (max-width: $md-break - 1px) {
+        @media (max-width: ($md-break - 1px)) {
           display: none;
         }
 

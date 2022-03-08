@@ -22,7 +22,6 @@ import NotificationHandler from "../notification-handler";
 import SwitchLang from "../switch-lang";
 
 import ToolTip from "../tooltip";
-import Search from "../search";
 import Login from "../login";
 import UserNav from "../user-nav";
 import UserNotifications from "../notifications";
@@ -32,11 +31,34 @@ import Bookmarks from "../bookmarks";
 import Schedules from "../schedules";
 import Fragments from "../fragments";
 
-import {_t} from "../../i18n";
+import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg, chevronUpSvg, upArrowSvg, keySvg, sunSvg, gifCardSvg} from "../../img/svg";
+import {
+  brightnessSvg,
+  pencilOutlineSvg,
+  menuSvg,
+  closeSvg,
+  magnifySvg,
+  accountOutlineSvg,
+  powerDownSvg,
+  chevronDownSvgForSlider,
+  moonSvg,
+  globeSvg,
+  bellSvg,
+  walletTravelSvg,
+  walletSvg,
+  notificationSvg,
+  pencilOutlinedSvg,
+  userOutlineSvg,
+  downArrowSvg,
+  chevronUpSvg,
+  upArrowSvg,
+  keySvg,
+  sunSvg,
+  gifCardSvg,
+} from "../../img/svg";
 import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
 import isCommunity from "../../helper/is-community";

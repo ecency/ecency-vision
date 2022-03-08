@@ -28,7 +28,7 @@
   }
 
   @include themify(dusk) {
-    background-image: linear-gradient(to left, $dusk-blue, $dark-sky-blue);
+    background-image: linear-gradient(to right, $dusk-primary, $dusk-background);
   }
 
 
