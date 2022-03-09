@@ -156,6 +156,14 @@
     }
   }
 
+  @include themify(sky) {
+    svg {
+      color: $white-three;
+      height: 100%;
+    }
+  }
+
+
   @include themify(night) {
     svg {
       color: $warm-grey;
