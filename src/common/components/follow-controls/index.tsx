@@ -140,7 +140,6 @@ export default class FollowControls extends BaseComponent<Props, State> {
         const {where} = this.props;
         const followMsg = _t('follow-controls.follow');
         const unFollowMsg = _t('follow-controls.unFollow');
-        const followingMsg = _t('profile.following');
         const muteMsg = _t('follow-controls.mute');
         const unMuteMsg = _t('follow-controls.unMute');
 
@@ -161,10 +160,10 @@ export default class FollowControls extends BaseComponent<Props, State> {
             children: <Button
                 variant="primary"
                 style={{marginRight: '5px'}}
-                disabled={inProgress||(!!(where && where==="author-card"))}
+                disabled={inProgress}
                 onClick={this.unFollow}
             >
-                {!!(where && where==="author-card") ? followingMsg : unFollowMsg}
+                {unFollowMsg}
             </Button>
         });
 
@@ -196,7 +195,6 @@ export default class FollowControls extends BaseComponent<Props, State> {
         if (where && where === "author-card" && following) {
             return (
                 <>
-                    {btnUnfollow}
                 </>
             );
         }
