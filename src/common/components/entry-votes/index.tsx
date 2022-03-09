@@ -4,8 +4,6 @@ import {Form, FormControl} from "react-bootstrap";
 
 import {History} from "history";
 
-import moment from "moment";
-
 import {Modal, Spinner} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
@@ -22,7 +20,7 @@ import Pagination from "../pagination";
 import {Vote, getActiveVotes} from "../../api/hive";
 
 import parseAsset from "../../helper/parse-asset";
-import parseDate from "../../helper/parse-date";
+import parseDate, { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import accountReputation from "../../helper/account-reputation";
 
 import formattedNumber from "../../util/formatted-number";
@@ -159,8 +157,8 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
                                     <span className="separator"/>
                                     {formattedNumber(x.percent, {fractionDigits: 1, suffix: "%"})}
                                     <span className="separator"/>
-                                    <Tooltip content={moment(x.timestamp).format("LLLL")}>
-                                        <span>{moment(x.timestamp).fromNow()}</span>
+                                    <Tooltip content={dateToFormatted(x.time)}>
+                                        <span>{dateToFullRelative(x.time)}</span>
                                     </Tooltip>
                                 </div>
                             </div>;
