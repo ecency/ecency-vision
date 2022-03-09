@@ -1,5 +1,5 @@
 export const setupConfig = {
   communityId: "hive-112019",
-  selectedTheme: "burning",
+  selectedTheme: "dusk",
   tags: ["3speak", "spk"],
 };

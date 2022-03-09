@@ -69,6 +69,10 @@
       @include themify(burning) {
         color: $burning-primary;
       }
+
+      @include themify(sky) {
+        color: $sky-primary;
+      }
     }
 
     .about {
@@ -81,6 +85,10 @@
 
       @include themify(burning) {
         color: $burning-primary;
+      }
+
+      @include themify(sky) {
+        color: $sky-primary;
       }
     }
 
@@ -135,6 +143,11 @@
           color: $silver;
         }
 
+        @include themify(sky) {
+          background: $white-three;
+          color: $sky-primary;
+        }
+
         @include themify(night) {
           background: $dark-two;
           color: $silver;
@@ -172,6 +185,10 @@
         max-width: 95%;
         p {
           word-break: break-all;
+        }
+
+        @include themify(sky) {
+          color: $sky-primary;
         }
       }
     }

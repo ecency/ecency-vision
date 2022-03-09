@@ -87,6 +87,10 @@
       @include themify(burning) {
         backgorund: $burning-primary;
       }
+
+      @include themify(sky) {
+        backgorund: $sky-primary;
+      }
     }
   }
 
@@ -147,6 +151,10 @@
         color: $burning-primary;
       }
 
+      @include themify(sky) {
+        color: $sky-primary;
+      }
+
       @media (min-width: $md-break) {
         font-size: 16px;
         text-align: left;
@@ -167,6 +175,10 @@
         color: $burning-primary;
       }
 
+      @include themify(sky) {
+        color: $sky-primary;
+      }
+
       @media (min-width: $md-break) {
         text-align: left;
       }
@@ -179,6 +191,10 @@
 
     a {
       color: $steel-grey;
+
+      @include themify(sky) {
+        color: $sky-primary;
+      }
     }
 
     svg {
@@ -186,6 +202,10 @@
       height: 16px;
       margin-right: 6px;
       flex-shrink: 0;
+
+      @include themify(sky) {
+        color: $sky-primary !important;
+      }
     }
   }
 
@@ -206,6 +226,11 @@
         display: inline-flex;
         align-items: center;
         line-height: 100%;
+
+
+        @include themify(sky) {
+          color: $sky-primary !important;
+        }
       }
 
       &.followers,
@@ -232,10 +257,18 @@
       overflow: hidden;
       white-space: nowrap;
 
+      @include themify(sky) {
+        color: $sky-primary !important;
+      }
+
       .website-link {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        @include themify(sky) {
+          color: $sky-primary !important;
+        }
       }
     }
   }

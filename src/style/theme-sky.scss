@@ -2,7 +2,7 @@
 
 $font-family-base: -apple-system, BlinkMacSystemFont, sans-serif;
 
-$primary: $dark-sky-blue;
+$primary: $sky-primary;
 $success: $green1;
 $danger: $red2;
 
@@ -81,8 +81,8 @@ $tooltip-max-width: 380px;
   @import "bootstrap/scss/card";
   @import "bootstrap/scss/tooltip";
 
-  background: $dark-six;
-  color: $silver;
+  background: $sky-background;
+  color: lighten($charcoal-grey, 10);
 }
 
 @import "bootstrap";

@@ -25,6 +25,14 @@
     color: $steel-grey;
   }
 
+  @include themify(burning) {
+    color: $burning-primary;
+  }
+  
+  @include themify(dusk) {
+    color: $dusk-primary;
+  }
+
   @include themify(night) {
     color: lighten($steel-grey, 4);
   }
@@ -150,6 +158,16 @@
       @include themify(day) {
         background-color: $white-three;
         color: $charcoal-grey;
+      }
+
+      @include themify(burning) {
+        background-color: $white-three;
+        color: $burning-primary;
+      }
+  
+      @include themify(dusk) {
+        background-color: $white-three;
+        color: $dusk-primary;
       }
 
       @include themify(night) {
@@ -436,6 +454,10 @@
 
           @include themify(day) {
             color: $charcoal-grey;
+          }
+
+          @include themify(burning) {
+            color: $pinkish-grey;
           }
 
           @include themify(night) {

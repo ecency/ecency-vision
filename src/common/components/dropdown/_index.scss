@@ -104,6 +104,10 @@
       background: $burning-background;
     }
 
+    @include themify(sky) {
+      background: $sky-background;
+    }
+
     @include themify(night) {
       background: lighten($dark-six, 5);
     }
@@ -124,6 +128,10 @@
 
       @include themify(burning) {
         backgorund: $burning-primary !important;
+      }
+
+      @include themify(sky) {
+        backgorund: $sky-primary !important;
       }
     }
   }
@@ -147,6 +155,10 @@
 
       @include themify(burning) {
         color: $warm-grey;
+      }
+
+      @include themify(sky) {
+        color: $white-three;
       }
 
       @include themify(night) {
@@ -189,6 +201,10 @@
             background: $burning-background;
           }
 
+          @include themify(sky) {
+            background: $sky-primary;
+          }
+
           @include themify(night) {
             background: $metallic-blue;
           }
@@ -209,6 +225,11 @@
         @include themify(burning) {
           background: lighten($silver, 40);
           color: $burning-primary;
+        }
+
+        @include themify(sky) {
+          background: lighten($silver, 40);
+          color: $sky-primary;
         }
 
         @include themify(night) {

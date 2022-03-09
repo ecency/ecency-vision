@@ -8,6 +8,11 @@
     @include themify(burning) {
       color: $burning-primary !important;
     }
+
+    @include themify(sky) {
+      color: $sky-primary !important;
+    }
+
   }
   
   @media (max-width: $sm-break) {

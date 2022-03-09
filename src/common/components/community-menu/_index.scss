@@ -31,6 +31,10 @@
       padding: 0 8px;
       cursor: pointer;
 
+      @include themify(sky) {
+        color: $sky-primary;
+      }
+
       .dropdown-btn {
         .label {
           font-size: 14px !important;
@@ -39,6 +43,18 @@
 
       &:hover {
         color: $dark-sky-blue;
+
+        @include themify(dusk) {
+          color: $dusk-primary;
+        }
+        
+        @include themify(burning) {
+          color: $burning-primary;
+        }
+
+        @include themify(sky) {
+          color: $sky-primary;
+        }
       }
 
       @media (min-width: $sm-break) {
@@ -70,6 +86,11 @@
         @include themify(burning) {
           color: $burning-primary;
           border-bottom: 2px solid $burning-primary;
+        }
+
+        @include themify(sky) {
+          color: $sky-primary;
+          border-bottom: 2px solid $sky-primary;
         }
 
         .dropdown-btn {

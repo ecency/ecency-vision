@@ -50,6 +50,10 @@
     background: $burning-primary;
   }
 
+  @include themify(sky) {
+    background: $sky-primary;
+    box-shadow: 0 0 2px 1px $white-six;
+  }
 
   @include themify(night) {
     background: $dark-two;
@@ -124,6 +128,11 @@
 
   @include themify(burning) {
     background: $burning-primary;
+    box-shadow: 0 0 2px 1px $white-six;
+  }
+
+  @include themify(sky) {
+    background: $sky-primary;
     box-shadow: 0 0 2px 1px $white-six;
   }
 
@@ -268,6 +277,10 @@
         color: $warm-grey;
       }
 
+      @include themify(sky) {
+        color: $white-three;
+      }
+
       @include themify(night) {
         color: $duck-egg-blue;
       }
@@ -340,6 +353,11 @@
         box-shadow: 0 .5rem 1rem rgba($gray-500, .15)
       }
 
+      @include themify(sky) {
+        background: $white-two;
+        box-shadow: 0 .5rem 1rem rgba($gray-500, .15)
+      }
+
       @include themify(night) {
         background: $dark-two;
       }
@@ -362,6 +380,10 @@
 
       @include themify(dusk) {
         color: $warm-grey;
+      }
+
+       @include themify(sky) {
+        color: $white-three;
       }
 
       @include themify(night) {
@@ -405,6 +427,10 @@ body.medium-zoom--opened {
     color: $burning-background;
   }
 
+  @include themify(sky) {
+    color: $white-three;
+  }
+
   @include themify(night) {
     color: $duck-egg-blue;
   }
@@ -436,6 +462,9 @@ body.medium-zoom--opened {
     background-color: #E5EFFC !important;
   }
 
+  @include themify(sky) {
+    background-color: $sky-primary !important;
+  }
 
   @include themify(night) {
     background-color: $dark-two !important;

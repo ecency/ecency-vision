@@ -38,6 +38,10 @@
         }
       }
 
+      @include themify(sky) {
+        color: $sky-primary;
+      }
+
       @media (min-width: $sm-break) {
         padding: 0 16px;
         font-size: 16px;
@@ -67,6 +71,11 @@
         @include themify(burning) {
           color: $burning-primary;
           border-bottom: 2px solid $burning-primary;
+        }
+
+        @include themify(sky) {
+          color: $sky-primary;
+          border-bottom: 2px solid $sky-primary;
         }
 
         .dropdown-btn {
