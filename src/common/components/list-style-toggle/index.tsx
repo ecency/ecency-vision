@@ -64,8 +64,8 @@ export default class ListStyleToggle extends Component<Props> {
             history: null,
             label: (
                 <span className="view-feed">
-                    <span className={"view-layout " + iconClass}>{viewModuleSvg}</span>{" "}
-                    <span className={"menu-down-icon " + iconClass}>{menuDownSvg}</span>
+                    <span className={`view-layout ${iconClass?iconClass:""}`}>{viewModuleSvg}</span>{" "}
+                    <span className={`menu-down-icon ${iconClass?iconClass:""}`}>{menuDownSvg}</span>
                 </span>
             ),
             items: dropDownItems,

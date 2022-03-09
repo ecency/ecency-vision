@@ -27,7 +27,7 @@ import defaults from "../../constants/defaults.json";
 import {deleteForeverSvg, pencilOutlineSvg} from "../../img/svg";
 
 import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-helper";
-import { dateToRelative, dateToFormatted } from '../../helper/parse-date';
+import { dateToFormatted, dateToFullRelative } from '../../helper/parse-date';
 
 setProxyBase(defaults.imageServer);
 
@@ -60,7 +60,7 @@ export class ListItem extends Component<ItemProps> {
         const img = catchPostImage(draft.body, 600, 500, global.canUseWebp ? 'webp' : 'match') || noImage;
         const summary = postBodySummary(draft.body, 200);
 
-        const dateRelative = dateToRelative(draft.created);
+        const dateRelative = dateToFullRelative(draft.created);
         const dateFormatted = dateToFormatted(draft.created);
 
         return <div className="drafts-list-item">
