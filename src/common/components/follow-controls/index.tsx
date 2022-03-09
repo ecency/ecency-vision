@@ -22,6 +22,7 @@ interface Props {
     activeUser: ActiveUser | null;
     ui: UI;
     targetUsername: string;
+    where?: string;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
@@ -136,8 +137,10 @@ export default class FollowControls extends BaseComponent<Props, State> {
 
     render() {
         const {following, muted, fetching, inProgress} = this.state;
+        const {where} = this.props;
         const followMsg = _t('follow-controls.follow');
         const unFollowMsg = _t('follow-controls.unFollow');
+        const followingMsg = _t('profile.following');
         const muteMsg = _t('follow-controls.mute');
         const unMuteMsg = _t('follow-controls.unMute');
 
@@ -158,10 +161,10 @@ export default class FollowControls extends BaseComponent<Props, State> {
             children: <Button
                 variant="primary"
                 style={{marginRight: '5px'}}
-                disabled={inProgress}
+                disabled={inProgress||(!!(where && where==="author-card"))}
                 onClick={this.unFollow}
             >
-                {unFollowMsg}
+                {!!(where && where==="author-card") ? followingMsg : unFollowMsg}
             </Button>
         });
 
@@ -190,6 +193,13 @@ export default class FollowControls extends BaseComponent<Props, State> {
             );
         }
 
+        if (where && where === "author-card" && following) {
+            return (
+                <>
+                    {btnUnfollow}
+                </>
+            );
+        }
         if (following) {
             return (
                 <>
@@ -204,6 +214,14 @@ export default class FollowControls extends BaseComponent<Props, State> {
                 <>
                     {btnFollow}
                     {btnUnMute}
+                </>
+            );
+        }
+
+        if (where && where === "author-card") {
+            return (
+                <>
+                    {btnFollow}
                 </>
             );
         }
