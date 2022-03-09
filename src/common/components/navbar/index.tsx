@@ -232,7 +232,7 @@ export class NavBar extends Component<Props, State> {
     const themeText =
       global.theme == Theme[setupConfig.selectedTheme]
         ? _t("navbar.night-theme")
-        : _t("navbar.day-theme");
+        : _t(`navbar.${setupConfig.selectedTheme}-theme`);
     const communityPage =
       match && match.params.name && isCommunity(match.params.name);
     const tagValue = global.tag ? `/${global.tag}` : "";
