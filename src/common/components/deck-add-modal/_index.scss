@@ -25,8 +25,12 @@
     position: relative;
     button {
         position: absolute;
+        top: -25px;
         right: 13px;
-        top: -37px;
+    }
+    .title {
+        position: absolute;
+        top: -22px;
     }
 }
 

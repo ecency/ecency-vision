@@ -325,7 +325,7 @@ export const DeckAddModal = ({
         className="header mt-5 justify-content-center mb-3"
         closeButton={true}
       >
-        <div className="flex-grow-1 text-center">
+        <div className="flex-grow-1 text-center title">
           {selectedOption &&
           (selectedOption === _t("decks.users") ||
             selectedOption === _t("decks.notifications") ||

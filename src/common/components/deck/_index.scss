@@ -58,7 +58,7 @@
 .hot-item-link {
   font-size: 14px;
   font-weight: 500;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 .hot-item-post-count {
@@ -95,7 +95,7 @@
 
 .deck-item-body {
   max-width: 370px;
-  word-break: break-all;
+  word-break: break-word;
   line-height: 1.4;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
@@ -106,11 +106,9 @@
 }
 
 .deck-body {
-  width: 250px !important;
-}
-
-.deck-body .tooltiptext {
-  max-width: 295px !important;
+  .tooltiptext {
+    max-width: 295px !important;
+  }
 }
 
 .deck-body .item-controls {
@@ -129,7 +127,7 @@
   svg {
     width: 16px !important;
   }
-  
+
   .menu-down {
     height: auto !important;
     width: auto !important;

@@ -85,9 +85,8 @@ const DeckHeader = ({
                 <span className="sr-only">Loading...</span>
               </div>
             ) : (
-              <div className="deck-options-icon mr-2">{refreshSvg}</div>
+              <div className="deck-options-icon d-flex">{refreshSvg}</div>
             )}
-            <div>{_t("decks.reload")}</div>
           </Button>
           <Button
             size="sm"
@@ -95,8 +94,7 @@ const DeckHeader = ({
             variant="danger"
             onClick={() => onRemove(title)}
           >
-            <div className="deck-options-icon mr-2">{deleteForeverSvg}</div>
-            <div>{_t("decks.remove")}</div>
+            <div className="deck-options-icon d-flex">{deleteForeverSvg}</div>
           </Button>
         </Card.Body>
       </Accordion.Collapse>

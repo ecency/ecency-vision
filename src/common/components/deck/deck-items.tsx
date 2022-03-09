@@ -207,8 +207,12 @@ export const SearchListItem = ({
               )}
             </div>
             {title && (
-              <div className="hot-item-link font-weight-bold my-3">{title}</div>
+              <div className="hot-item-link font-weight-bold mt-3">{title}</div>
             )}
+
+            <div className="mb-3">
+              <small>{`${moment(created).fromNow(true)}`}</small>
+            </div>
             {json_metadata && json_metadata.image && (
               <div
                 className="search-post-image d-flex align-self-center"
@@ -253,10 +257,6 @@ export const SearchListItem = ({
               entry,
             } as any)}
           </div>
-        </div>
-
-        <div>
-          <small>{`${moment(created).fromNow(true)}`}</small>
         </div>
       </div>
     </div>
