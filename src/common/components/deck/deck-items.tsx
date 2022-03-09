@@ -1,10 +1,10 @@
 import { postBodySummary } from "@ecency/render-helper";
 import moment from "moment";
 import React, { Fragment } from "react";
-import {history} from "../../../common/store";
+import { history } from "../../../common/store";
 import { Link } from "react-router-dom";
 import parseDate from "../../helper/parse-date";
-import { commentSvg } from "../../img/svg";
+import { commentSvg, pinSvg } from "../../img/svg";
 import { ListStyle } from "../../store/global/types";
 import entryLink from "../entry-link";
 import entryMenu from "../entry-menu";
@@ -13,6 +13,8 @@ import entryReblogBtn from "../entry-reblog-btn";
 import entryVoteBtn from "../entry-vote-btn";
 import entryVotes from "../entry-votes";
 import profileLink from "../profile-link";
+import { _t } from "../../i18n";
+import Tooltip from "../tooltip";
 
 export interface HotListItemProps {
   index: number;
@@ -74,7 +76,7 @@ export const SearchListItem = ({
   entry,
   ...rest
 }: SearchItemProps) => {
-
+  let isPinned = community && entry && entry.stats?.is_pinned
   const formatMessage = (patterns: string[]): JSX.Element => {
     const { msg } = entry;
 
@@ -158,7 +160,10 @@ export const SearchListItem = ({
             />
           )}
           <div className="ml-3 deck-body">
-            <div onClick={() => history && history.push(url)} className="pointer text-dark">
+            <div
+              onClick={() => history && history.push(url)}
+              className="pointer text-dark"
+            >
               <div className="d-flex align-items-start flex-grow-1 hot-item-link">
                 {msg}
               </div>
@@ -172,6 +177,7 @@ export const SearchListItem = ({
       </div>
     );
   }
+
   return (
     <div
       className={`p${index === 1 ? "b" : "y"}-${
@@ -205,9 +211,16 @@ export const SearchListItem = ({
                   in <Link to={`/@${community}`}> {community_title} </Link>
                 </div>
               )}
+              {isPinned && <Tooltip content={_t("entry-list-item.pinned")}>
+                  <span className="pinned">{pinSvg}</span>
+              </Tooltip>}
             </div>
             {title && (
-              <div className="hot-item-link font-weight-bold mt-3">{title}</div>
+              <div className="d-flex">
+                <div className="hot-item-link font-weight-bold mt-3">
+                  {title}
+                </div>
+              </div>
             )}
 
             <div className="mb-3">
