@@ -97,6 +97,14 @@
 
   a {
     color: $dark-sky-blue !important;
+
+    @include themify(dusk) {
+      color: $dusk-primary;
+    }
+
+    @include themify(burning) {
+      color: $burning-primary;
+    }
   }
 
   hr {

@@ -7,6 +7,10 @@
     border-bottom: 1px solid $white-four;
   }
 
+  @include themify(dusk) {
+    border-bottom: 1px solid $white-four;
+  }
+
   @include themify(night) {
     border-bottom: 1px solid $dark-two;
   }
@@ -27,6 +31,10 @@
       padding: 0 8px;
       cursor: pointer;
 
+      @include themify(sky) {
+        color: $sky-primary;
+      }
+
       .dropdown-btn {
         .label {
           font-size: 14px !important;
@@ -35,6 +43,18 @@
 
       &:hover {
         color: $dark-sky-blue;
+
+        @include themify(dusk) {
+          color: $dusk-primary;
+        }
+        
+        @include themify(burning) {
+          color: $burning-primary;
+        }
+
+        @include themify(sky) {
+          color: $sky-primary;
+        }
       }
 
       @media (min-width: $sm-break) {
@@ -57,6 +77,21 @@
         border-bottom: 2px solid $dark-sky-blue;
         color: $dark-sky-blue;
         font-weight: 700;
+
+        @include themify(dusk) {
+          color: $dusk-primary;
+          border-bottom: 2px solid $dusk-primary;
+        }
+
+        @include themify(burning) {
+          color: $burning-primary;
+          border-bottom: 2px solid $burning-primary;
+        }
+
+        @include themify(sky) {
+          color: $sky-primary;
+          border-bottom: 2px solid $sky-primary;
+        }
 
         .dropdown-btn {
           .label {

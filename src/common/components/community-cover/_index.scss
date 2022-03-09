@@ -18,6 +18,10 @@
       background-color: $white-three;
     }
 
+    @include themify(dusk) {
+      background-color: $white-three;
+    }
+
     @include themify(night) {
       background-color: $dark;
     }

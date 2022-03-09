@@ -1,5 +1,20 @@
 .entry-list-item {
 
+  a {
+    @include themify(dusk) {
+      color: $dusk-primary !important;
+    }
+
+    @include themify(burning) {
+      color: $burning-primary !important;
+    }
+
+    @include themify(sky) {
+      color: $sky-primary !important;
+    }
+
+  }
+  
   @media (max-width: $sm-break) {
     position: unset;
   }
@@ -14,6 +29,11 @@
 
     @include themify(day) {
       background: lighten($dark-sky-blue, 42);
+      color: $charcoal-grey;
+    }
+
+    @include themify(dusk) {
+      background: lighten($silver, 42);
       color: $charcoal-grey;
     }
 

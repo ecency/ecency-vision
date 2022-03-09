@@ -15,6 +15,11 @@
     background: darken($white-three, 5);
   }
 
+  @include themify(dusk) {
+    background: darken($white-three, 5);
+  }
+
+
   @include themify(night) {
     background: $dark-two;
   }
@@ -30,6 +35,10 @@
         margin: 4px 0 6px 0;
 
         @include themify(day) {
+          color: $charcoal-grey;
+        }
+
+        @include themify(dusk) {
           color: $charcoal-grey;
         }
 
@@ -55,6 +64,10 @@
 
           &:hover {
             @include themify(day) {
+              border-bottom: 2px solid $white-three;
+            }
+
+            @include themify(dusk) {
               border-bottom: 2px solid $white-three;
             }
 

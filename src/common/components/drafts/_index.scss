@@ -55,6 +55,10 @@
                     color: $silver;
                   }
 
+                  @include themify(dusk) {
+                    color: $silver;
+                  }
+
                   @include themify(night) {
                     color: $gunmetal;
                   }

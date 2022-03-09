@@ -18,7 +18,7 @@
     white-space: nowrap;
     width: 60px;
 
-    @media (max-width: $sm-break - 1px) {
+    @media (max-width: ($sm-break - 1px)) {
       font-size: 13px;
     }
   }
@@ -91,6 +91,10 @@
       background: $white-four;
     }
 
+    @include themify(dusk) {
+      background: $white-four;
+    }
+
     @include themify(night) {
       background: $gunmetal;
     }
@@ -108,6 +112,10 @@
       border: 2px solid $white;
     }
 
+    @include themify(dusk) {
+      border: 2px solid $white;
+    }
+
     @include themify(night) {
       border: 2px solid $silver;
     }
@@ -115,6 +123,10 @@
 
   input[type="range"]:focus::-webkit-slider-runnable-track {
     @include themify(day) {
+      background: $white-four;
+    }
+
+    @include themify(dusk) {
       background: $white-four;
     }
 
@@ -134,6 +146,10 @@
       background: $white-four;
     }
 
+    @include themify(dusk) {
+      background: $white-four;
+    }
+
     @include themify(night) {
       background: $gunmetal;
     }
@@ -146,6 +162,10 @@
     cursor: pointer;
 
     @include themify(day) {
+      border: 2px solid $white;
+    }
+
+    @include themify(dusk) {
       border: 2px solid $white;
     }
 
@@ -172,6 +192,10 @@
       background: $white-four;
     }
 
+    @include themify(dusk) {
+      background: $white-four;
+    }
+
     @include themify(night) {
       background: $gunmetal;
     }
@@ -182,6 +206,10 @@
     border-radius: 40px;
 
     @include themify(day) {
+      background: $white-four;
+    }
+
+    @include themify(dusk) {
       background: $white-four;
     }
 
@@ -200,6 +228,11 @@
     @include themify(day) {
       border: 2px solid $white;
     }
+
+    @include themify(dusk) {
+      border: 2px solid $white;
+    }
+
 
     @include themify(night) {
       border: 2px solid $silver;
@@ -285,6 +318,12 @@
     color: $dark-two;
   }
 
+  @include themify(dusk) {
+    box-shadow: 0px 1px 4px 1px $white-four;
+    background-color: $white;
+    color: $dark-two;
+  }
+
   @include themify(night) {
     box-shadow: 0px 1px 4px 1px $dark;
     background-color: $dark-two;
@@ -308,6 +347,11 @@
     background-color: $white !important;
   }
 
+  @include themify(dusk) {
+    color: $dark-sky-blue !important;
+    background-color: $white !important;
+  }
+
   .btn-inner {
     @include themify(night) {
       color: $dark-sky-blue !important;
@@ -315,6 +359,11 @@
     }
 
     @include themify(day) {
+      color: $dark-sky-blue !important;
+      background-color: $white !important;
+    }
+
+    @include themify(dusk) {
       color: $dark-sky-blue !important;
       background-color: $white !important;
     }

@@ -34,6 +34,11 @@
       color: $dark-sky-blue;
     }
 
+     @include themify(dusk) {
+      color: $silver;
+    }
+
+
     @include themify(night) {
       color: $pastel-blue;
     }
@@ -42,6 +47,10 @@
     &:hover {
       .menu-down {
         @include themify(day) {
+          background: $duck-egg-blue;
+        }
+
+        @include themify(dusk) {
           background: $duck-egg-blue;
         }
 
@@ -87,6 +96,18 @@
       background: $white;
     }
 
+    @include themify(dusk) {
+      background: $white;
+    }
+
+    @include themify(burning) {
+      background: $burning-background;
+    }
+
+    @include themify(sky) {
+      background: $sky-background;
+    }
+
     @include themify(night) {
       background: lighten($dark-six, 5);
     }
@@ -100,6 +121,18 @@
       color: $white;
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
+
+      @include themify(dusk) {
+        backgorund: $dusk-primary !important;
+      }
+
+      @include themify(burning) {
+        backgorund: $burning-primary !important;
+      }
+
+      @include themify(sky) {
+        backgorund: $sky-primary !important;
+      }
     }
   }
 
@@ -114,6 +147,18 @@
 
       @include themify(day) {
         color: $warm-grey;
+      }
+
+      @include themify(dusk) {
+        color: $warm-grey;
+      }
+
+      @include themify(burning) {
+        color: $warm-grey;
+      }
+
+      @include themify(sky) {
+        color: $white-three;
       }
 
       @include themify(night) {
@@ -148,6 +193,18 @@
             background: $dark-sky-blue;
           }
 
+          @include themify(dusk) {
+            background: $dusk-primary;
+          }
+
+          @include themify(burning) {
+            background: $burning-background;
+          }
+
+          @include themify(sky) {
+            background: $sky-primary;
+          }
+
           @include themify(night) {
             background: $metallic-blue;
           }
@@ -158,6 +215,21 @@
         @include themify(day) {
           background: lighten($dark-sky-blue, 40);
           color: $dark-sky-blue;
+        }
+
+        @include themify(dusk) {
+          background: lighten($silver, 40);
+          color: $dusk-primary;
+        }
+
+        @include themify(burning) {
+          background: lighten($silver, 40);
+          color: $burning-primary;
+        }
+
+        @include themify(sky) {
+          background: lighten($silver, 40);
+          color: $sky-primary;
         }
 
         @include themify(night) {

@@ -34,6 +34,10 @@
             color: $dark-sky-blue;
           }
 
+          @include themify(dusk) {
+            color: $silver;
+          }
+
           @include themify(night) {
             color: $powder-blue;
           }
@@ -41,6 +45,10 @@
           &:hover {
             @include themify(day) {
               background: $duck-egg-blue;
+            }
+
+            @include themify(dusk) {
+              color: $duck-egg-blue;
             }
 
             @include themify(night) {

@@ -44,6 +44,7 @@ import capitalize from "../util/capitalize";
 
 import defaults from "../constants/defaults.json";
 import SearchBox from "../components/search-box";
+import { setupConfig } from "../../setup";
 
 interface MatchParams {
   filter: string;
@@ -262,7 +263,8 @@ class CommunityPage extends BaseComponent<Props, State> {
       );
     }
 
-    const { name, filter } = match.params;
+    const { filter } = match.params;
+    const name = setupConfig.communityId;
 
     const community = communities.find((x) => x.name === name);
     const account = accounts.find((x) => x.name === name);

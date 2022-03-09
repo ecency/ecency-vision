@@ -92,6 +92,9 @@
     "post": "Create Post",
     "day-theme": "Day Theme",
     "night-theme": "Night Theme",
+    "burning-theme": "Burning Theme",
+    "sky-theme": "Sky Theme",
+    "dusk-theme": "Dusk Theme",
     "address-placeholder": "enter url or search query"
   },
   "search": {

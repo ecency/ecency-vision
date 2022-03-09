@@ -15,6 +15,10 @@
       background: $white-two;
     }
 
+    @include themify(dusk) {
+      background: $white-two;
+    }
+
     @include themify(night) {
       background: lighten($dark-two, 6);
     }

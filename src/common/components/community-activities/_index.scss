@@ -15,6 +15,10 @@
             background: $white-three;
           }
 
+          @include themify(dusk) {
+            background: $white-six;
+          }
+
           @include themify(night) {
             background: $dark-two;
           }

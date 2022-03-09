@@ -68,6 +68,10 @@
     width: 300px;
     margin: 0 auto 8px auto;
 
+    @include themify(dusk) {
+      backgorund: $dusk-background;
+    }
+
     @media (min-width: $md-break) {
       width: auto;
     }
@@ -75,6 +79,18 @@
     .vpower-line-inner {
       background: $dark-sky-blue;
       height: 2px;
+
+      @include themify(dusk) {
+        backgorund: $dusk-primary;
+      }
+
+      @include themify(burning) {
+        backgorund: $burning-primary;
+      }
+
+      @include themify(sky) {
+        backgorund: $sky-primary;
+      }
     }
   }
 
@@ -86,6 +102,14 @@
     font-weight: 500;
     margin-bottom: 10px;
     text-align: center;
+
+    @include themify(dusk) {
+      color: $dusk-primary;
+    }
+
+    @include themify(burning) {
+      color: $burning-primary;
+    }
 
     @media (min-width: $md-break) {
       text-align: left;
@@ -119,6 +143,18 @@
       margin-bottom: 12px;
       text-align: center;
 
+      @include themify(dusk) {
+        color: $dusk-primary;
+      }
+
+      @include themify(burning) {
+        color: $burning-primary;
+      }
+
+      @include themify(sky) {
+        color: $sky-primary;
+      }
+
       @media (min-width: $md-break) {
         font-size: 16px;
         text-align: left;
@@ -130,6 +166,18 @@
       opacity: 0.5;
       text-align: center;
       word-wrap: break-word;
+
+      @include themify(dusk) {
+        color: $dusk-primary;
+      }
+
+      @include themify(burning) {
+        color: $burning-primary;
+      }
+
+      @include themify(sky) {
+        color: $sky-primary;
+      }
 
       @media (min-width: $md-break) {
         text-align: left;
@@ -143,6 +191,10 @@
 
     a {
       color: $steel-grey;
+
+      @include themify(sky) {
+        color: $sky-primary;
+      }
     }
 
     svg {
@@ -150,6 +202,10 @@
       height: 16px;
       margin-right: 6px;
       flex-shrink: 0;
+
+      @include themify(sky) {
+        color: $sky-primary !important;
+      }
     }
   }
 
@@ -170,6 +226,11 @@
         display: inline-flex;
         align-items: center;
         line-height: 100%;
+
+
+        @include themify(sky) {
+          color: $sky-primary !important;
+        }
       }
 
       &.followers,
@@ -196,10 +257,18 @@
       overflow: hidden;
       white-space: nowrap;
 
+      @include themify(sky) {
+        color: $sky-primary !important;
+      }
+
       .website-link {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        @include themify(sky) {
+          color: $sky-primary !important;
+        }
       }
     }
   }

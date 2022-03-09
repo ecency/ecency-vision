@@ -7,6 +7,10 @@
     border-top: 1px solid $white-three;
   }
 
+  @include themify(dusk) {
+    border-top: 1px solid $white-three;
+  }
+
   @include themify(night) {
     border-top: 1px solid $dark-two;
   }
@@ -164,6 +168,10 @@
                 color: $charcoal-grey;
               }
 
+              @include themify(dusk) {
+                color: $charcoal-grey;
+              }
+
               @include themify(night) {
                 color: $pinkish-grey;
               }
@@ -184,6 +192,11 @@
                 @include themify(day) {
                   background: $duck-egg-blue;
                 }
+
+                @include themify(dusk) {
+                  background: $duck-egg-blue;
+                }
+
                 @include themify(night) {
                   background: $metallic-blue;
                 }
@@ -211,6 +224,9 @@
             margin: 10px 0 14px 0;
 
             @include themify(day) {
+              color: $tundora;
+            }
+            @include themify(dusk) {
               color: $tundora;
             }
           }
@@ -294,6 +310,10 @@
             }
 
             @include themify(day) {
+              border-color: lighten($white-four, 0);
+            }
+
+            @include themify(dusk) {
               border-color: lighten($white-four, 0);
             }
             @include themify(night) {
