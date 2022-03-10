@@ -79,7 +79,7 @@ const DeckHeader = ({
           >
             {reloading ? (
               <div
-                className="spinner-border text-white spinner-border-sm mr-2"
+                className="spinner-border text-white spinner-border-sm"
                 role="status"
               >
                 <span className="sr-only">Loading...</span>

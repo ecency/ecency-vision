@@ -27,22 +27,23 @@ import SuggestionList from "../suggestion-list";
 import userAvatar from "../user-avatar";
 const ModalHeader = Modal.Header;
 
-const OptionWithIcon = ({ title, icon, onOptionClick, disabled }: any) => (
+const OptionWithIcon = ({ title, icon, onOptionClick, disabled, na }: any) => (
   <div
-    className={`d-flex flex-column align-items-center justify-content-center option mr-2 pointer mt-2${
-      disabled ? " bg-light text-muted" : ""
+    className={`d-flex flex-column align-items-center justify-content-center option mr-2 pointer mt-2 position-relative${
+      (disabled || na ) ? " bg-light text-muted" : ""
     }`}
     onClick={() => !disabled && onOptionClick(title)}
   >
     <div>{icon}</div>
     <div className="mt-2 text-center">{title}</div>
+    {na && <img src="https://cdn-icons-png.flaticon.com/512/5229/5229336.png" width="23px" height="23px" className="coming-soon"/>}
   </div>
 );
 
 const options = [
   {
     title: _t("decks.users"),
-    icon: person,
+    icon: person
   },
   {
     title: _t("decks.trending-topics"),
@@ -51,6 +52,7 @@ const options = [
   {
     title: _t("decks.search"),
     icon: magnify,
+    na:true
   },
   {
     title: _t("decks.community"),
@@ -59,6 +61,7 @@ const options = [
   {
     title: _t("decks.topic"),
     icon: tags,
+    na:true
   },
   {
     title: _t("decks.notifications"),
@@ -71,22 +74,24 @@ const options = [
   {
     title: _t("decks.favorite"),
     icon: starOutlineSvg,
+    na:true
   },
   {
     title: _t("decks.trending"),
     icon: globalTrending,
   },
-  // {
-  //   title: "New content",
-  //   icon: newSvg,
-  // },
+  {
+    title: "New content",
+    icon: newSvg,
+    na:true
+  },
 ];
 
 const contentTypes = [
-  { code: "", name: _t("decks.select")},
+  { code: "", name: _t("decks.select") },
   { code: "blogs", name: _t("decks.blogs") },
   { code: "posts", name: _t("decks.posts") },
-  { code: "comments", name:_t("decks.comments") },
+  { code: "comments", name: _t("decks.comments") },
   { code: "replies", name: _t("decks.replies") },
 ];
 
@@ -127,12 +132,29 @@ const AddColumn = ({
 
     _timer = setTimeout(() => {
       let fetchData =
-        selectedValue === _t("decks.community") ? getCommunities : lookupAccounts;
-      let searchTerm = selectedValue ===_t("decks.community") ? "" : toValue;
+        selectedValue === _t("decks.community")
+          ? getCommunities
+          : lookupAccounts;
+      let searchTerm = selectedValue === _t("decks.community") ? "" : toValue;
       return (fetchData as any)(searchTerm, 5, toValue)
         .then((resp: any) => {
           if (resp) {
             setToData(resp);
+            let existing = resp.find((item: any) =>
+              selectedValue === _t("decks.community")
+                ? item.title.toLowerCase() === to.toLowerCase()
+                : item.toLowerCase() === to.toLowerCase()
+            );
+            if (existing) {
+              let valueToSelect =
+                selectedValue === _t("decks.community")
+                  ? existing.name
+                  : existing;
+              setTo(selectedValue === _t("decks.community")
+              ? existing.title
+              : existing);
+              setToSelected(valueToSelect);
+            }
           }
         })
         .catch((err: any) => {
@@ -156,7 +178,7 @@ const AddColumn = ({
   }, [to]);
 
   const toChanged = (e: any) => {
-    setDeckExists(false)
+    setDeckExists(false);
     let toValue = e.target.value;
     setTo(toValue);
   };
@@ -177,18 +199,25 @@ const AddColumn = ({
     },
     onSelect: (selectedText: any) => {
       let valueToSelect =
-        selectedValue === _t("decks.community") ? selectedText.name : selectedText;
-      setTo(selectedValue === _t("decks.community") ? selectedText.title :valueToSelect);
+        selectedValue === _t("decks.community")
+          ? selectedText.name
+          : selectedText;
+      setTo(
+        selectedValue === _t("decks.community")
+          ? selectedText.title
+          : valueToSelect
+      );
       setToSelected(valueToSelect);
     },
   };
 
   const handleAddColumn = () => {
     let couldBeExistingDeck = `${
-      selectedValue === _t("decks.users") || selectedValue === _t("decks.community")
+      selectedValue === _t("decks.users") ||
+      selectedValue === _t("decks.community")
         ? contentType
         : selectedValue
-    } @${selectedValue ===_t("decks.community") ? toSelected : to}`;
+    } @${selectedValue === _t("decks.community") ? toSelected : to}`;
     if (
       decks.some((deck: any) => {
         let deckExists =
@@ -200,7 +229,8 @@ const AddColumn = ({
     } else {
       onSelect(
         toSelected,
-        selectedValue === _t("decks.users") || selectedValue === _t("decks.community")
+        selectedValue === _t("decks.users") ||
+          selectedValue === _t("decks.community")
           ? contentType
           : selectedValue
       );
@@ -210,7 +240,9 @@ const AddColumn = ({
   };
 
   let type =
-    selectedValue ===_t("decks.community") ? communityContentTypes : contentTypes;
+    selectedValue === _t("decks.community")
+      ? communityContentTypes
+      : contentTypes;
 
   return (
     <div className="d-flex flex-column align-items-center mt-5">
@@ -221,7 +253,9 @@ const AddColumn = ({
         <>
           <Form.Group>
             <Form.Label>
-              {selectedValue === _t("decks.community") ? _t("decks.community") : _t("decks.username")}
+              {selectedValue === _t("decks.community")
+                ? _t("decks.community")
+                : _t("decks.username")}
             </Form.Label>
 
             <SuggestionList items={toData} {...suggestionProps}>
@@ -250,10 +284,13 @@ const AddColumn = ({
                 />
               </InputGroup>
             </SuggestionList>
-            {deckExists && <small className="text-danger">{_t("decks.deck-exists")}</small>}
+            {deckExists && (
+              <small className="text-danger">{_t("decks.deck-exists")}</small>
+            )}
           </Form.Group>
 
-          {(selectedValue === _t("decks.users") || selectedValue === _t("decks.community")) && (
+          {(selectedValue === _t("decks.users") ||
+            selectedValue === _t("decks.community")) && (
             <Form.Group className="w-100">
               <Form.Label>{_t("decks.content-type")}</Form.Label>
               <Form.Control
@@ -276,7 +313,8 @@ const AddColumn = ({
           <Button
             className="align-self-start mb-5"
             disabled={
-              selectedValue === _t("decks.notifications") || selectedValue === _t("decks.wallet")
+              selectedValue === _t("decks.notifications") ||
+              selectedValue === _t("decks.wallet")
                 ? toSelected.length === 0
                 : contentType === "" || toSelected.length === 0
             }
@@ -312,7 +350,7 @@ export const DeckAddModal = ({
       selectedOption !== _t("decks.notifications") &&
       selectedOption !== _t("decks.wallet") &&
       selectedOption !== _t("decks.search") &&
-      selectedOption !==_t("decks.community")
+      selectedOption !== _t("decks.community")
     ) {
       onClose();
       onSelect(selectedOption);
@@ -331,7 +369,7 @@ export const DeckAddModal = ({
             selectedOption === _t("decks.notifications") ||
             selectedOption === _t("decks.wallet") ||
             selectedOption === _t("decks.search") ||
-            selectedOption ===_t("decks.community")) ? (
+            selectedOption === _t("decks.community")) ? (
             <div className="d-flex align-items-center justify-content-center">
               <div className="header-icon mr-2 d-flex">
                 {options.find((item) => item.title === selectedOption)?.icon}
@@ -368,6 +406,7 @@ export const DeckAddModal = ({
                 icon={option.icon}
                 onOptionClick={setSelectedOption}
                 key={option.title}
+                na={option.na}
                 disabled={currentlyActivatedOptions.some(
                   (item: any) => item.header.title === option.title
                 )}

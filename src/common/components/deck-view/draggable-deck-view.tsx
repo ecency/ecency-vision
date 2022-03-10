@@ -8,6 +8,7 @@ import {
 import { _t } from "../../i18n";
 import { Deck } from "../deck";
 import * as ls from '../../util/local-storage'
+import { success } from "../feedback";
 
 // fake data generator
 export const getItems = (decks: any[], user:string) => {
@@ -127,6 +128,7 @@ const DraggableDeckView = ({
                             (item: any) => item.header.title !== option
                           );
                           setDecks(filteredDecks);
+                          success(_t("decks.removed", {deck: option}))
                         }}
                         onReloadColumn={onReloadColumn}
                         {...item}

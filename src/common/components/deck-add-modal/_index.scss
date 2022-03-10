@@ -1,52 +1,58 @@
 .option {
-    border-radius: 8px;
-    width: 108px;
-    height: 86px;
-    &:hover {
-        background-color: #EBF2FC;
-    
-        @include themify(night) {
-            background-color: $steel-grey;
-        }
+  border-radius: 8px;
+  width: 108px;
+  height: 86px;
+  &:hover {
+    background-color: #ebf2fc;
+
+    @include themify(night) {
+      background-color: $steel-grey;
     }
+  }
 }
 
 .option path {
-    fill: #1B68DA;
+  fill: #1b68da;
 }
 
 .header-icon path {
-    fill: #1B68DA;
+  fill: #1b68da;
 }
 
 .header {
-    font-size: 21px;
-    font-weight: 500;
-    position: relative;
-    button {
-        position: absolute;
-        top: -25px;
-        right: 13px;
-    }
-    .title {
-        position: absolute;
-        top: -22px;
-    }
+  font-size: 21px;
+  font-weight: 500;
+  position: relative;
+  button {
+    position: absolute;
+    top: -25px;
+    right: 13px;
+  }
+  .title {
+    position: absolute;
+    top: -22px;
+  }
 }
 
 .w-80 {
-    width: 80% !important;
+  width: 80% !important;
 }
 
 .back-icon path {
-    fill :#1B68DA
+  fill: #1b68da;
 }
 
 .back-icon {
-    color :#1B68DA;
-    width: 25px;
+  color: #1b68da;
+  width: 25px;
 }
 
 .suggestion .suggestion-list {
-    position: absolute !important;
+  position: absolute !important;
+}
+
+.coming-soon {
+  position: absolute;
+  left: 10px;
+  top: 10px;
 }

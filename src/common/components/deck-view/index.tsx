@@ -55,33 +55,25 @@ const DeckViewContainer = ({
   const normalizeHeader = (data: any) => {
     return data.map((item: any) => {
       let icon = person; // Handle conditional icons and listItemComponent
-      let listItemComponent:any = SearchListItem; // Handle conditional icons and listItemComponent
+      let listItemComponent: any = SearchListItem; // Handle conditional icons and listItemComponent
       let lowercasedTitle = item.header.title.toLowerCase();
-      if (
-        lowercasedTitle.includes(_t("decks.trending-topics").toLowerCase())
-      ) {
+      if (lowercasedTitle.includes(_t("decks.trending-topics").toLowerCase())) {
         icon = hot;
-        listItemComponent = HotListItem
-      } else if (
-        lowercasedTitle.includes(_t("decks.trending").toLowerCase())
-      ) {
+        listItemComponent = HotListItem;
+      } else if (lowercasedTitle.includes(_t("decks.trending").toLowerCase())) {
         icon = globalTrending;
-        listItemComponent = SearchListItem
-      } else if (
-        lowercasedTitle.includes('hive-')
-      ) {
+        listItemComponent = SearchListItem;
+      } else if (lowercasedTitle.includes("hive-")) {
         icon = communities;
-        listItemComponent = SearchListItem
+        listItemComponent = SearchListItem;
       } else if (
         lowercasedTitle.includes(_t("decks.notifications").toLowerCase())
       ) {
         icon = notificationSvg;
-        listItemComponent = NotificationListItem
-      } else if (
-        lowercasedTitle.includes(_t("decks.wallet").toLowerCase())
-      ) {
+        listItemComponent = NotificationListItem;
+      } else if (lowercasedTitle.includes(_t("decks.wallet").toLowerCase())) {
         icon = wallet;
-        listItemComponent = TransactionRow
+        listItemComponent = TransactionRow;
       }
       return {
         ...item,
@@ -209,6 +201,13 @@ const DeckViewContainer = ({
       });
     }
   };
+
+  useEffect(() => {
+    if (loadingNewContent) {
+      let draggableContainer = document!.getElementById("draggable-container")!;
+      draggableContainer.scrollLeft = draggableContainer.getBoundingClientRect().width;
+    }
+  }, [loadingNewContent]);
 
   const onReloadColumn = (title: string) => {
     let itemToUpdate = decks.find((item: any) => item.header.title === title);
@@ -498,8 +497,8 @@ const DeckViewContainer = ({
                   key={deck.header.title + index}
                   onClick={() => {
                     let elementToFocus = document!.getElementById(deck.id);
-                    let toScrollValue =
-                    elementToFocus!.getBoundingClientRect().left;
+                    let toScrollValue = elementToFocus!.getBoundingClientRect()
+                      .left;
                     elementToFocus?.classList.add("active-deck");
                     setTimeout(() => {
                       elementToFocus?.classList.remove("active-deck");
