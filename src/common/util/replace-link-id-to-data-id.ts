@@ -1,1 +1,1 @@
-export default (str: string) => str.replaceAll('<a id="', '<a data-id="');
+export default (str: string) => str.replace(/<a id="/g, '<a data-id="');

@@ -328,7 +328,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 let arr = [];
                 for(let p in errorMessage)
                     arr.push(errorMessage[p]);
-                    errorMessage = arr.toString().replaceAll(',','')
+                    errorMessage = arr.toString().replace(/,/g,'')
                     if(errorMessage && errorMessage.length > 0 && errorMessage.includes("was deleted")){
                     this.setState({postIsDeleted: true, loading: true});
                     this.loadDeletedEntry(author, permlink)
