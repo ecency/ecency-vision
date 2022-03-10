@@ -2,8 +2,6 @@ import React, {Component} from "react";
 
 import {History, Location} from "history";
 
-import moment from "moment";
-
 import isEqual from "react-fast-compare";
 
 import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-helper";
@@ -29,7 +27,7 @@ import EntryPayout from "../entry-payout/index";
 import EntryVotes from "../entry-votes";
 import Tooltip from "../tooltip";
 import EntryMenu from "../entry-menu";
-import parseDate from "../../helper/parse-date";
+import {dateToRelative, dateToFormatted} from "../../helper/parse-date";
 import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
 
@@ -173,9 +171,8 @@ export default class EntryListItem extends Component<Props, State> {
         
         const summary: string = postBodySummary(entry, 200);
 
-        const date = moment(parseDate(entry.created));
-        const dateRelative = date.fromNow(true);
-        const dateFormatted = date.format("LLLL");
+        const dateRelative = dateToRelative(entry.created);
+        const dateFormatted = dateToFormatted(entry.created);
 
         const isChild = !!entry.parent_author;
 

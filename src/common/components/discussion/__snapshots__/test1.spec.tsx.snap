@@ -3,6 +3,7 @@
 exports[`(1) Full render with active user 1`] = `
 <div
   className="discussion"
+  id="discussion"
 >
   <div
     className="discussion-header"
@@ -1720,6 +1721,7 @@ exports[`(2) Full render with no active user 1`] = `
 exports[`(3) With selected item 1`] = `
 <div
   className="discussion"
+  id="discussion"
 >
   <div
     className="discussion-header"
@@ -3401,6 +3403,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
 exports[`(4) Show mute button, muted comment 1`] = `
 <div
   className="discussion"
+  id="discussion"
 >
   <div
     className="discussion-header"

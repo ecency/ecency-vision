@@ -2,8 +2,6 @@ import React, {Component} from "react";
 
 import {History} from "history";
 
-import moment from "moment";
-
 import htmlParse from 'html-react-parser';
 import {Element} from "domhandler";
 
@@ -28,6 +26,7 @@ import accountReputation from "../../helper/account-reputation";
 import {SearchResult} from "../../api/search-api";
 
 import {peopleSvg, commentSvg} from "../../img/svg";
+import { dateToFormatted, dateToRelative } from '../../helper/parse-date';
 
 interface Props {
     history: History;
@@ -81,9 +80,8 @@ class SearchListItem extends Component<Props> {
             />
         );
 
-        const date = moment(res.created_at);
-        const dateRelative = date.fromNow(true);
-        const dateFormatted = date.format("LLLL");
+        const dateRelative = dateToRelative(res.created_at);
+        const dateFormatted = dateToFormatted(res.created_at);
         const reputation = accountReputation(res.author_rep);
 
         return <div className="search-list-item">

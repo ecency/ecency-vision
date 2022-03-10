@@ -30,9 +30,9 @@ import {Tsx} from "../i18n/helper";
 import {linkSvg, openInNewSvg} from "../img/svg";
 
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
-import moment from "moment";
 import {FullAccount} from "../store/accounts/types";
 import { WitnessCard } from "../components/witness-card";
+import { dateToRelative } from '../helper/parse-date';
 
 interface WitnessTransformed {
     rank: number;
@@ -47,7 +47,7 @@ interface WitnessTransformed {
     url: string;
     parsedUrl?: PartialEntry;
     signingKey?:string
-    priceAge?:string
+    priceAge:string
     witnessBy?:string
 }
 
@@ -272,7 +272,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                     </td>
                     <td><span className="witness-fee">{row.fee}</span></td>
                     <td>
-                        <div className="witness-feed"><span className="inner">${row.feed.replace(' HBD','')} | {moment(row.priceAge).fromNow(true)}</span></div>
+                        <div className="witness-feed"><span className="inner">${row.feed.replace(' HBD','')} | {dateToRelative(row.priceAge)}</span></div>
                     </td>
                     <td>
                         <div className="witness-version"><span className="inner">{row.version}</span></div>

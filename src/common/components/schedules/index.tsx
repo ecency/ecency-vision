@@ -2,8 +2,6 @@ import React, {Component} from "react";
 
 import {History, Location} from "history";
 
-import moment from "moment";
-
 import {Form, FormControl, Modal} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
@@ -29,6 +27,7 @@ import defaults from "../../constants/defaults.json";
 import {deleteForeverSvg, timeSvg, checkAllSvg, alertCircleSvg, textBoxOutline} from "../../img/svg";
 
 import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-helper";
+import { dateToFormatted, dateToFullRelative, dateToRelative } from '../../helper/parse-date';
 
 setProxyBase(defaults.imageServer);
 
@@ -63,10 +62,9 @@ export class ListItem extends Component<ItemProps> {
         const img = catchPostImage(post.body, 600, 500, global.canUseWebp ? 'webp' : 'match') || noImage;
         const summary = postBodySummary(post.body, 200);
 
-        const date = moment(post.schedule);
-        const dateRelative = date.fromNow();
-        const dateRelativeShort = date.fromNow(true);
-        const dateFormatted = date.format("YYYY-MM-DD HH:mm");
+        const dateRelative = dateToFullRelative(post.schedule);
+        const dateRelativeShort = dateToRelative(post.schedule);
+        const dateFormatted = dateToFormatted(post.schedule, "YYYY-MM-DD HH:mm");
 
         return <div className="schedules-list-item">
             <div className="item-header">

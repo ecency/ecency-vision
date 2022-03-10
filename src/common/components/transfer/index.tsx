@@ -4,8 +4,6 @@ import {PrivateKey} from "@hiveio/dhive";
 
 import numeral from "numeral";
 
-import moment from "moment";
-
 import isEqual from "react-fast-compare";
 
 import {Modal, Form, Row, Col, InputGroup, FormControl, Button} from "react-bootstrap";
@@ -67,6 +65,7 @@ import {Tsx} from "../../i18n/helper";
 import {arrowRightSvg} from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
 import activeUser from "../../store/active-user";
+import { dateToFullRelative } from '../../helper/parse-date';
 
 export type TransferMode = "transfer" | "transfer-saving" | "withdraw-saving" | "convert" | "power-up" | "power-down" | "delegate";
 export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT";
@@ -691,7 +690,7 @@ export class Transfer extends BaseComponent<Props, State> {
                         <div className="transaction-form-body powering-down">
                             <p>{_t("transfer.powering-down")}</p>
                             <p> {_t("wallet.next-power-down", {
-                                time: moment(w.nextVestingWithdrawalDate).fromNow(),
+                                time: dateToFullRelative(w.nextVestingWithdrawalDate.toString()),
                                 amount: `${this.formatNumber(w.nextVestingSharesWithdrawalHive, 3)} HIVE`,
                             })}</p>
                             <p>

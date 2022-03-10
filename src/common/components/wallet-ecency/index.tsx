@@ -1,7 +1,5 @@
 import React, {Component, Fragment, useEffect, useState} from "react";
 
-import moment from "moment";
-
 import {History} from "history";
 
 import {FormControl} from "react-bootstrap";
@@ -47,6 +45,7 @@ import {
     ticketSvg
 } from "../../img/svg";
 import FormattedCurrency from "../formatted-currency";
+import { dateToFullRelative } from '../../helper/parse-date';
 
 
 export const formatMemo = (memo: string, history: History) => {
@@ -135,8 +134,7 @@ export class TransactionRow extends Component<TransactionRowProps> {
             default:
         }
 
-        const date = moment(tr.created);
-        const dateRelative = date.fromNow(true);
+        const dateRelative = dateToFullRelative(tr.created);
 
         return (
             <div className="transaction-list-item">

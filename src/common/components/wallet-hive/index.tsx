@@ -2,7 +2,6 @@ import React from "react";
 
 import {History} from "history";
 
-import moment from "moment";
 import { AssetSymbol } from '@hiveio/dhive';
 
 import {Global} from "../../store/global/types";
@@ -42,6 +41,7 @@ import parseAsset from "../../helper/parse-asset";
 import {_t} from "../../i18n";
 
 import {plusCircle} from "../../img/svg";
+import { dateToFullRelative } from '../../helper/parse-date';
 
 interface Props {
     history: History;
@@ -711,7 +711,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                         {w.isPoweringDown && (
                             <div className="next-power-down">
                                 {_t("wallet.next-power-down", {
-                                    time: moment(w.nextVestingWithdrawalDate).fromNow(),
+                                    time: dateToFullRelative(w.nextVestingWithdrawalDate.toString()),
                                     amount: formattedNumber(w.nextVestingSharesWithdrawalHive, {suffix: "HIVE"}),
                                 })}
                             </div>

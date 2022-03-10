@@ -1,7 +1,5 @@
 import React, {Component, Fragment} from "react";
 
-import moment from "moment";
-
 import {Popover, OverlayTrigger} from "react-bootstrap";
 
 import {Entry} from "../../store/entries/types";
@@ -11,7 +9,7 @@ import {DynamicProps} from "../../store/dynamic-props/types";
 import FormattedCurrency from "../formatted-currency/index";
 
 import parseAsset from "../../helper/parse-asset";
-import parseDate from "../../helper/parse-date";
+import { dateToFullRelative } from "../../helper/parse-date";
 
 import formattedNumber from "../../util/formatted-number";
 
@@ -32,7 +30,7 @@ export class EntryPayoutDetail extends Component<Props> {
 
         const {base, quote, hbdPrintRate} = dynamicProps;
 
-        const payoutDate = moment(parseDate(entry.payout_at));
+        const payoutDate = dateToFullRelative(entry.payout_at);
 
         const beneficiary = entry.beneficiaries;
         const pendingPayout = parseAsset(entry.pending_payout_value).amount;
@@ -114,7 +112,7 @@ export class EntryPayoutDetail extends Component<Props> {
                 )}
                 <p>
                     <span className="label">{_t("entry-payout.payout-date")}</span>
-                    <span className="value">{payoutDate.fromNow()}</span>
+                    <span className="value">{payoutDate}</span>
                 </p>
                 {payoutLimitHit && (
                     <p>

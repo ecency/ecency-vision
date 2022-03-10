@@ -3,7 +3,6 @@ import React, {Component} from "react";
 import {History} from "history";
 
 import {Table, Modal} from "react-bootstrap";
-import moment from "moment";
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
@@ -17,7 +16,7 @@ import {_t} from "../../i18n";
 import formattedNumber from "../../util/formatted-number";
 import MyPagination from "../pagination";
 import { getOpenOrder, OpenOrdersData } from '../../api/hive';
-import parseDate from '../../helper/parse-date';
+import { dateToFormatted, dateToFullRelative } from '../../helper/parse-date';
 import { AssetSymbol } from '@hiveio/dhive';
 
 
@@ -96,8 +95,6 @@ export class List extends BaseComponent<Props, State> {
                         <tbody>
                             {sliced.map(x => {
                                 const {orderid} = x;
-                                const published = moment(parseDate(x.created));
-                                const expires = moment(parseDate(x.expiration));
                                 if (x.sell_price.base.includes(tokenType)) {
                                     return <tr key={orderid} onClick={(e) => {
                                         e.preventDefault();
@@ -110,13 +107,13 @@ export class List extends BaseComponent<Props, State> {
                                             </Tooltip>
                                         </td>
                                         <td>
-                                            <div className="date" title={published.format("LLLL")}>
-                                                {published.fromNow()}
+                                            <div className="date" title={dateToFormatted(x.created)}>
+                                                {dateToFullRelative(x.created)}
                                             </div>
                                         </td>
                                         <td>
-                                            <div className="date" title={expires.format("LLLL")}>
-                                                {expires.fromNow()}
+                                            <div className="date" title={dateToFormatted(x.expiration)}>
+                                                {dateToFullRelative(x.expiration)}
                                             </div>
                                         </td>
                                     </tr>;

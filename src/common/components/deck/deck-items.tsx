@@ -1,9 +1,8 @@
 import { postBodySummary } from "@ecency/render-helper";
-import moment from "moment";
 import React, { Fragment } from "react";
 import { history } from "../../../common/store";
 import { Link } from "react-router-dom";
-import parseDate from "../../helper/parse-date";
+import { dateToRelative } from "../../helper/parse-date";
 import { commentSvg, pinSvg } from "../../img/svg";
 import { ListStyle } from "../../store/global/types";
 import entryLink from "../entry-link";
@@ -142,7 +141,6 @@ export const SearchListItem = ({
 
     const username = mentions[0].replace("@", "");
     const msg = formatMessage(formatPatterns);
-    const date = moment(parseDate(entry.date));
     return (
       <div
         className={`p${index === 1 ? "b" : "y"}-${
@@ -170,9 +168,7 @@ export const SearchListItem = ({
             </div>
           </div>
 
-          <div className="ml-auto">{`${
-            moment(date).fromNow(true).split(" ")[0]
-          }${moment(date).fromNow(true).split(" ")[1][0]}`}</div>
+          <div className="ml-auto">{dateToRelative(entry.date)}</div>
         </div>
       </div>
     );
@@ -195,10 +191,7 @@ export const SearchListItem = ({
           />
         )}
         <div className="ml-3 deck-body">
-          <div
-            onClick={() => history && history.push(url)}
-            className="pointer text-dark d-flex flex-column"
-          >
+          <div className="text-dark d-flex flex-column">
             <div className="d-flex align-items-start flex-grow-1 hot-item-link">
               {author && (
                 <div>
@@ -208,34 +201,38 @@ export const SearchListItem = ({
               {community && (
                 <div className="ml-2 flex-grow-1">
                   {" "}
-                  in <Link to={`/@${community}`}> {community_title} </Link>
+                  in <Link to={`/created/${community}`}> {community_title} </Link>
                 </div>
               )}
               {isPinned && <Tooltip content={_t("entry-list-item.pinned")}>
                   <span className="pinned">{pinSvg}</span>
               </Tooltip>}
-            </div>
-            {title && (
-              <div className="d-flex">
-                <div className="hot-item-link font-weight-bold mt-3">
-                  {title}
-                </div>
+              <div className="mb-3">
+                <small>{`${dateToRelative(created)}`}</small>
               </div>
-            )}
-
-            <div className="mb-3">
-              <small>{`${moment(created).fromNow(true)}`}</small>
             </div>
-            {json_metadata && json_metadata.image && (
-              <div
-                className="search-post-image d-flex align-self-center"
-                style={{ backgroundImage: `url(${json_metadata.image[0]})` }}
-              />
-            )}
             <div
-              className="mt-3 hot-item-post-count deck-item-body text-secondary"
-              dangerouslySetInnerHTML={{ __html: postBodySummary(body) }}
-            />
+              onClick={() => history && history.push(url)}
+              className="pointer">
+              {title && (
+                <div className="d-flex">
+                  <div className="hot-item-link font-weight-bold mt-3">
+                    {title}
+                  </div>
+                </div>
+              )}
+
+              {json_metadata && json_metadata.image && (
+                <div
+                  className="search-post-image d-flex align-self-center"
+                  style={{ backgroundImage: `url(${json_metadata.image[0]})` }}
+                />
+              )}
+              <div
+                className="mt-3 hot-item-post-count deck-item-body text-secondary"
+                dangerouslySetInnerHTML={{ __html: postBodySummary(body) }}
+              />
+            </div>
           </div>
           <div className="item-controls mt-3 d-flex justify-content-between align-items-center">
             {entryVoteBtn({
