@@ -9,6 +9,7 @@ coverage
 node_modules
 build
 public/static
+.env
 .env.local
 .env.development.local
 .env.test.local
