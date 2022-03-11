@@ -1,8 +1,6 @@
-console.log(process.env);
-
 export const setupConfig = {
-  communityId: "hive-112019",
-  selectedTheme: "sky",
-  tags: ["3speak", "spk"],
+  communityId: process.env.RAZZLE_HIVE_ID ?? "",
+  selectedTheme: process.env.RAZZLE_THEME ?? "",
+  tags: process.env.RAZZLE_TAGS?.split(",") ?? ["3speak", "spk"],
   navBarImg: "",
 };
