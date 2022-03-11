@@ -1,23 +1,25 @@
 import React, {Component} from "react";
 
-import {History, Location} from "history";
-
-import {Button} from "react-bootstrap";
-
-import {Link} from "react-router-dom";
+import { History, Location } from "history";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import defaults from "../../constants/defaults.json";
 
 import isEqual from "react-fast-compare";
 
 import queryString from "query-string";
 
-import {Global, Theme} from "../../store/global/types";
-import {TrendingTags} from "../../store/trending-tags/types";
-import {Account, FullAccount} from "../../store/accounts/types";
-import {User} from "../../store/users/types";
-import {ActiveUser} from "../../store/active-user/types";
-import {UI, ToggleType} from "../../store/ui/types";
-import {NotificationFilter, Notifications} from "../../store/notifications/types";
-import {DynamicProps} from "../../store/dynamic-props/types";
+import { Global, Theme } from "../../store/global/types";
+import { TrendingTags } from "../../store/trending-tags/types";
+import { Account, FullAccount } from "../../store/accounts/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { UI, ToggleType } from "../../store/ui/types";
+import {
+  NotificationFilter,
+  Notifications,
+} from "../../store/notifications/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
 import NotificationHandler from "../notification-handler";
 import SwitchLang from "../switch-lang";
 
@@ -63,7 +65,7 @@ import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
 import isCommunity from "../../helper/is-community";
 import { setupConfig } from "../../../setup";
-//const logo = require('../../img/logo-circle.svg');
+import { pageMapStateToProps } from "../../pages/common";
 
 interface Props {
   history: History;
@@ -77,6 +79,7 @@ interface Props {
   notifications: Notifications;
   step?: number;
   match?: any;
+  community?: any;
   fetchTrendingTags: () => void;
   toggleTheme: (theme_key?: string) => void;
   addUser: (user: User) => void;
@@ -223,12 +226,23 @@ export class NavBar extends Component<Props, State> {
   };
 
   render() {
-    const { global, activeUser, ui, step, toggleUIProp, setActiveUser, match } =
-      this.props;
+    const {
+      global,
+      activeUser,
+      ui,
+      step,
+      toggleUIProp,
+      setActiveUser,
+      match,
+      community,
+    } = this.props;
 
-    const logo = global.isElectron
-      ? "./img/logo-circle.svg"
-      : require("../../img/logo-circle.svg");
+    if (!setupConfig.navBarImg) {
+      setupConfig.navBarImg = community
+        ? `${defaults.imageServer}/u/${community.name}/avatar/lardge`
+        : "";
+    }
+
     const themeText =
       global.theme == Theme[setupConfig.selectedTheme]
         ? _t("navbar.night-theme")
@@ -291,11 +305,11 @@ export class NavBar extends Component<Props, State> {
           <div className="brand">
             {activeUser !== null ? (
               <Link to={logoHref}>
-                <img src={logo} className="logo" alt="Logo" />
+                <img src={setupConfig.navBarImg} className="logo" alt="Logo" />
               </Link>
             ) : (
               <img
-                src={logo}
+                src={setupConfig.navBarImg}
                 className="logo"
                 alt="Logo"
                 onClick={this.handleIconClick}
@@ -318,11 +332,15 @@ export class NavBar extends Component<Props, State> {
               <div className="brand">
                 {activeUser !== null ? (
                   <Link to={logoHref}>
-                    <img src={logo} className="logo" alt="Logo" />
+                    <img
+                      src={setupConfig.navBarImg}
+                      className="logo"
+                      alt="Logo"
+                    />
                   </Link>
                 ) : (
                   <img
-                    src={logo}
+                    src={setupConfig.navBarImg}
                     className="logo"
                     alt="Logo"
                     onClick={this.handleIconClick}
@@ -696,36 +714,37 @@ export class NavBar extends Component<Props, State> {
 }
 
 export default (p: Props) => {
-    const props: Props = {
-        history: p.history,
-        location: p.location,
-        global: p.global,
-        dynamicProps: p.dynamicProps,
-        trendingTags: p.trendingTags,
-        users: p.users,
-        activeUser: p.activeUser,
-        ui: p.ui,
-        notifications: p.notifications,
-        step: p.step,
-        fetchTrendingTags: p.fetchTrendingTags,
-        toggleTheme: p.toggleTheme,
-        addUser: p.addUser,
-        setActiveUser: p.setActiveUser,
-        updateActiveUser: p.updateActiveUser,
-        addAccount: p.addAccount,
-        deleteUser: p.deleteUser,
-        fetchNotifications: p.fetchNotifications,
-        fetchUnreadNotificationCount: p.fetchUnreadNotificationCount,
-        setNotificationsFilter: p.setNotificationsFilter,
-        markNotifications: p.markNotifications,
-        toggleUIProp: p.toggleUIProp,
-        muteNotifications: p.muteNotifications,
-        unMuteNotifications: p.unMuteNotifications,
-        setLang: p.setLang,
-        setStepOne: p.setStepOne,
-        setStepTwo: p.setStepTwo,
-        match: p.match,
-    }
+  const props: Props = {
+    history: p.history,
+    location: p.location,
+    global: p.global,
+    dynamicProps: p.dynamicProps,
+    trendingTags: p.trendingTags,
+    users: p.users,
+    activeUser: p.activeUser,
+    ui: p.ui,
+    notifications: p.notifications,
+    step: p.step,
+    fetchTrendingTags: p.fetchTrendingTags,
+    toggleTheme: p.toggleTheme,
+    addUser: p.addUser,
+    setActiveUser: p.setActiveUser,
+    updateActiveUser: p.updateActiveUser,
+    addAccount: p.addAccount,
+    deleteUser: p.deleteUser,
+    fetchNotifications: p.fetchNotifications,
+    fetchUnreadNotificationCount: p.fetchUnreadNotificationCount,
+    setNotificationsFilter: p.setNotificationsFilter,
+    markNotifications: p.markNotifications,
+    toggleUIProp: p.toggleUIProp,
+    muteNotifications: p.muteNotifications,
+    unMuteNotifications: p.unMuteNotifications,
+    setLang: p.setLang,
+    setStepOne: p.setStepOne,
+    setStepTwo: p.setStepTwo,
+    match: p.match,
+    community: p.community,
+  };
 
-    return <NavBar {...props} />;
-}
+  return <NavBar {...props} />;
+};

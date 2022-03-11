@@ -246,13 +246,19 @@ class CommunityPage extends BaseComponent<Props, State> {
     const { loading, search, searchData, searchDataLoading, typing } =
       this.state;
 
+    const { filter } = match.params;
+    const name = setupConfig.communityId;
+
+    const community = communities.find((x) => x.name === name);
+    const account = accounts.find((x) => x.name === name);
+
     const navBar = global.isElectron
       ? NavBarElectron({
           ...this.props,
           reloadFn: this.reload,
           reloading: loading,
         })
-      : NavBar({ ...this.props });
+      : NavBar({ ...this.props, community });
 
     if (loading) {
       return (
@@ -262,12 +268,6 @@ class CommunityPage extends BaseComponent<Props, State> {
         </>
       );
     }
-
-    const { filter } = match.params;
-    const name = setupConfig.communityId;
-
-    const community = communities.find((x) => x.name === name);
-    const account = accounts.find((x) => x.name === name);
 
     if (!community || !account) {
       return NotFound({ ...this.props });
