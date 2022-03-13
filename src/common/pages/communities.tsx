@@ -379,16 +379,31 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
 
         // create community account
         const keys = this.makePrivateKeys();
-        const operation = ["account_create", {
-            fee: fee,
+        const operation = [
+          "account_create",
+          {
+            fee,
             creator: activeUser.username,
             new_account_name: username,
-            owner: {weight_threshold: 1, account_auths: [], key_auths: [[keys.ownerKey.createPublic().toString(), 1]]},
-            active: {weight_threshold: 1, account_auths: [], key_auths: [[keys.activeKey.createPublic().toString(), 1]]},
-            posting: {weight_threshold: 1, account_auths: [['ecency.app', 1]], key_auths: [[keys.postingKey.createPublic().toString(), 1]]},
+            owner: {
+              weight_threshold: 1,
+              account_auths: [],
+              key_auths: [[keys.ownerKey.createPublic().toString(), 1]],
+            },
+            active: {
+              weight_threshold: 1,
+              account_auths: [],
+              key_auths: [[keys.activeKey.createPublic().toString(), 1]],
+            },
+            posting: {
+              weight_threshold: 1,
+              account_auths: [["ecency.app", 1]],
+              key_auths: [[keys.postingKey.createPublic().toString(), 1]],
+            },
             memo_key: keys.memoKey.createPublic().toString(),
-            json_metadata: ""
-        }];
+            json_metadata: "",
+          },
+        ];
 
         try {
             await keychain.broadcast(activeUser!.username, [operation], "Active");
