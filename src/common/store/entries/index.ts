@@ -24,6 +24,14 @@ import filterTagExtract from "../../helper/filter-tag-extract";
 
 import {getPostsRanked, getAccountPosts, dataLimit} from "../../api/bridge";
 
+import {search, SearchResult} from "../../api/search-api";
+
+import moment, {Moment} from "moment";
+
+import * as ls from "../../util/local-storage";
+
+
+
 export const makeGroupKey = (what: string, tag: string = ""): string => {
     if (tag) {
         return `${what}-${tag}`;
@@ -164,12 +172,41 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
 
     const observer = activeUser?.username || "";
 
-    let promise: Promise<Entry[] | null>;
+    // let promise: Promise<Entry[] | null>;
+    let promise: Promise<any>;
     if (tag.startsWith("@")) {
         // @username/posts|replies|comments|feed
         const username = tag.replace("@", "");
 
         promise = getAccountPosts(what, username, start_author, start_permlink, dataLimit, observer);
+    } else if (['controversial', 'rising'].includes(what)) {
+        let sinceDate: undefined | Moment;
+
+        switch (tag) {
+            case 'today':
+                sinceDate = moment().subtract("1", "day")
+                break;
+            case 'week':
+                sinceDate = moment().subtract("1", "week")
+                break;
+            case 'month':
+                sinceDate = moment().subtract("1", "month")
+                break;
+            case 'year':
+                sinceDate = moment().subtract("1", "year")
+                break;
+            default:
+                sinceDate = undefined;
+        }
+        let q = "* type:post"
+        let sort = what === 'rising' ? 'children' : what
+        const since = sinceDate ? sinceDate.format("YYYY-MM-DDTHH:mm:ss") : undefined;        
+        const hideLow_ = "0"
+        const scrollId = ls.get('scrollId');
+        const resultsLength = ls.get('resultLength');
+        const scrollId_ = (resultsLength && scrollId) ? scrollId : undefined;
+        promise = search(q, sort, hideLow_, since, scrollId_)
+        
     } else {
         // trending/tag
         promise = getPostsRanked(what, start_author, start_permlink, dataLimit, tag, observer);
@@ -177,10 +214,19 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
 
     promise
         .then((resp) => {
-            if (resp) {
+            if (resp.results) {
+                dispatch(fetchedAct(groupKey, resp.results, resp.results.length >= dataLimit));
+                ls.set('scrollId', resp.scroll_id);
+                ls.set('resultLength', resp.results.length > 0);
+                
+            } else if (resp) {
                 dispatch(fetchedAct(groupKey, resp, resp.length >= dataLimit));
+                ls.remove('scrollId');
+                ls.remove('resultLength');
             } else {
                 dispatch(fetchErrorAct(groupKey, "server error"));
+                ls.remove('scrollId');
+                ls.remove('resultLength');
             }
         })
         .catch((e) => {

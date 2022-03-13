@@ -547,9 +547,9 @@ class EntryPage extends BaseComponent<Props, State> {
         const modified = moment(parseDate(entry.updated));
 
         // Sometimes tag list comes with duplicate items
-        const tags = [...new Set(entry.json_metadata.tags)];
+        const tags = entry.json_metadata.tags && [...new Set(entry.json_metadata.tags)];
         // If category is not present in tags then add
-        if (entry.category && tags[0] !== entry.category) {
+        if (entry.category && tags && tags[0] !== entry.category) {
             tags.splice(0, 0, entry.category);
         }
         const app = appName(entry.json_metadata.app);
@@ -578,8 +578,8 @@ class EntryPage extends BaseComponent<Props, State> {
             image: catchPostImage(entry, 600, 500, global.canUseWebp ? 'webp' : 'match'),
             published: published.toISOString(),
             modified: modified.toISOString(),
-            tag: isCommunity(tags[0]) ? tags[1] : tags[0],
-            keywords: tags.join(", "),
+            tag: tags ? isCommunity(tags[0]) ? tags[1] : tags[0] : '',
+            keywords: tags && tags.join(", "),
         };
         let containerClasses = global.isElectron ? "app-content entry-page mt-0 pt-6" : "app-content entry-page";
 
@@ -890,7 +890,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                     <div className="entry-footer">
                                         <div className="entry-tags">
-                                            {tags.map((t,i) => {
+                                            {tags && tags.map((t,i) => {
                                                 if (typeof t === "string") {
                                                     if (entry.community && entry.community_title && t === entry.community) {
                                                         return <Fragment key={t+i}>

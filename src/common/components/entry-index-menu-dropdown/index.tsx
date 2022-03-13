@@ -11,7 +11,7 @@ import {
 interface Props {
   global: Global;
   history: History;
-  onChangeGlobal: (value: boolean) => void;
+  onChangeGlobal: (value: string) => void;
   isGlobal: boolean;
   toggleUIProp: (what: ToggleType) => void;
   isActive: boolean;
@@ -34,16 +34,46 @@ export const EntryIndexMenuDropdown = (props: Props) => {
     }
   ]
 
-  if (filter === 'created') {
+  // if (filter === 'created') {
+  //   dropDownItems = [
+  //     ...dropDownItems,
+  //     for adding new menu items - example shown below
+  //     {
+  //       label: <span>Now</span>,
+  //       active: tag === "right_now",
+  //       onClick: () => console.log('right_now clicked'),
+  //     },
+  //   ]
+  // }
+
+  if (filter === 'controversial' || filter === 'rising') {
     dropDownItems = [
-      ...dropDownItems,
-      // for adding new menu items - example shown below
-      // {
-      //   label: <span>Now</span>,
-      //   active: tag === "right_now",
-      //   onClick: () => console.log('right_now clicked'),
-      // },
-    ]
+          {
+            label: <span>Today</span>,
+            active: tag === "today",
+            onClick: () => onTagValueClick('today'),
+          },
+          {
+            label: <span>This Week</span>,
+            active: tag === "week",
+            onClick: () => onTagValueClick('week'),
+          },
+          {
+            label: <span>This Month</span>,
+            active: tag === "month",
+            onClick: () => onTagValueClick('month'),
+          },
+          {
+            label: <span>This Year</span>,
+            active: tag === "year",
+            onClick: () => onTagValueClick('year'),
+          },
+          {
+            label: <span>All Time</span>,
+            active: tag === "all",
+            onClick: () => onTagValueClick('all'),
+          },
+        ]
   }
 
   const dropDownConfig = {
@@ -51,7 +81,7 @@ export const EntryIndexMenuDropdown = (props: Props) => {
     label: (
       <div className='tagDropDown'>
         <span className='pl-2' />
-        {tag === "" ? _t('entry-filter.filter-global') : tag === 'my' ? _t('entry-filter.filter-community') : tag}
+        {tag === "" ? _t('entry-filter.filter-global') : tag === 'my' ? _t('entry-filter.filter-community') : tag === 'today' ? 'Today' : tag === 'week' ? 'This Week' : tag === 'month' ? 'This Month' : tag === 'year' ? 'This Year' : tag === 'all' ? 'All Time' : tag}
         {" "}
         {menuDownSvg}
       </div>
@@ -64,7 +94,8 @@ export const EntryIndexMenuDropdown = (props: Props) => {
     if (key === 'my' && !isActive) {
       toggleUIProp('login')
     } else {
-      onChangeGlobal(!(key.length > 0))
+      // onChangeGlobal(!(key.length > 0))
+      onChangeGlobal(key)
     }
   }
 

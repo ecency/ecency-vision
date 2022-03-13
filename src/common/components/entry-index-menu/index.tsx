@@ -94,13 +94,19 @@ export class EntryIndexMenu extends Component<Props, States> {
         this.setState({isMounted: true})         
     }
 
-    onChangeGlobal(value: boolean) {        
+    onChangeGlobal(value: string) {        
         const { history, global : { tag, filter } } = this.props;
-        this.setState({ isGlobal: value });
-        if (value) {
-            history.push(`/${filter}`)
-        } else {
+        this.setState({ isGlobal: value ? false : true });
+        // if (value) {
+        //     history.push(`/${filter}`)
+        // } else {
+        //     history.push(`/${filter}/my`)
+        // }        
+        const temp = value ? '/'+value : ''
+        if (value === 'my') {
             history.push(`/${filter}/my`)
+        } else {
+            history.push(`/${filter}${temp}`)
         }
     }
 
@@ -122,6 +128,17 @@ export class EntryIndexMenu extends Component<Props, States> {
         }
         else if(prevProps.activeUser && activeUser && prevProps.activeUser?.username !== activeUser?.username && filter === 'feed') {
             history.push(`/@${activeUser?.username}/${filter}`)
+        }
+        else if(['controversial', 'rising'].includes(prevProps.global.filter) && !['controversial', 'rising'].includes(filter)) {
+            history.push(`/${filter}`)
+        }
+        else if(['controversial', 'rising'].includes(filter)) {
+            const tagValue = (tag && tag !== 'my' && ['today', 'week', 'month', 'year', 'all'].includes(tag)) ? '/' + tag : '/today'
+            history.push(`/${filter}${tagValue}`)
+        }
+        else if(!['controversial', 'rising'].includes(filter)) {
+            const tagValue = ['today', 'week', 'month', 'year', 'all'].includes(tag) ? '' : '/' + tag
+            history.push(`/${filter}${tagValue}`)
         }
 
         let showInitialIntroductionJourney = activeUser && isActiveUser(activeUser) && ls.get(`${activeUser.username}HadTutorial`);
@@ -242,7 +259,7 @@ export class EntryIndexMenu extends Component<Props, States> {
     }
 
     render() {
-        const { activeUser, global } = this.props;
+        const { activeUser, global, history } = this.props;
         const { isGlobal, introduction, isMounted } = this.state;
         const { filter, tag } = global;
         const isMy = isMyPage(global, activeUser);
@@ -259,7 +276,7 @@ export class EntryIndexMenu extends Component<Props, States> {
             history: this.props.history,
             label: isMy && filter === "feed" ? _t("entry-filter.filter-feed-friends") : _t(`entry-filter.filter-${filter}`),
             items: [
-                ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
+                ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created, EntryFilter.controversial, EntryFilter.rising].map((x) => {
                     return {
                         label: _t(`entry-filter.filter-${x}`),
                         href: isActive ?
@@ -274,6 +291,14 @@ export class EntryIndexMenu extends Component<Props, States> {
                         flash: (x === 'trending' && introduction === IntroductionType.TRENDING) || (x === 'hot' && introduction === IntroductionType.HOT) || (x === 'created' && introduction === IntroductionType.NEW)
                     };
                 }),
+                // ...[EntryFilter.controversial, EntryFilter.rising].map((x) => {
+                //     return {
+                //         label: _t(`entry-filter.filter-${x}`),
+                //         href: `/${x}`,
+                //         id: x,
+                //         active: history.location.pathname.includes('trending')
+                //     };
+                // })
             ],
         };
 

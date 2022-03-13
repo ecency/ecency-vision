@@ -130,18 +130,35 @@ export class EntryPayoutDetail extends Component<Props> {
 export class EntryPayout extends Component<Props> {
     render() {
         const {entry} = this.props;
+        const check = entry.max_accepted_payout
+        // const isPayoutDeclined = parseAsset(entry.max_accepted_payout).amount === 0;
 
-        const isPayoutDeclined = parseAsset(entry.max_accepted_payout).amount === 0;
+        // const pendingPayout = parseAsset(entry.pending_payout_value).amount;
+        // const authorPayout = parseAsset(entry.author_payout_value).amount;
+        // const curatorPayout = parseAsset(entry.curator_payout_value).amount;
+        // const maxPayout = parseAsset(entry.max_accepted_payout).amount;
 
-        const pendingPayout = parseAsset(entry.pending_payout_value).amount;
-        const authorPayout = parseAsset(entry.author_payout_value).amount;
-        const curatorPayout = parseAsset(entry.curator_payout_value).amount;
-        const maxPayout = parseAsset(entry.max_accepted_payout).amount;
 
-        const totalPayout = pendingPayout + authorPayout + curatorPayout;
+        // const totalPayout = pendingPayout + authorPayout + curatorPayout;
 
-        const payoutLimitHit = totalPayout >= maxPayout;
-        const shownPayout = payoutLimitHit && maxPayout > 0 ? maxPayout : totalPayout;
+        // const payoutLimitHit = totalPayout >= maxPayout;
+        // const shownPayout = payoutLimitHit && maxPayout > 0 ? maxPayout : 
+
+
+        let isPayoutDeclined,pendingPayout,authorPayout,curatorPayout,maxPayout,totalPayout,payoutLimitHit,shownPayout
+
+
+        if(check) {
+            isPayoutDeclined = parseAsset(entry.max_accepted_payout).amount === 0;
+
+        pendingPayout = parseAsset(entry.pending_payout_value).amount;
+        authorPayout = parseAsset(entry.author_payout_value).amount;
+        curatorPayout = parseAsset(entry.curator_payout_value).amount;
+        maxPayout = parseAsset(entry.max_accepted_payout).amount;
+        totalPayout = pendingPayout + authorPayout + curatorPayout;
+        payoutLimitHit = totalPayout >= maxPayout;
+        shownPayout = payoutLimitHit && maxPayout > 0 ? maxPayout : totalPayout;
+        }
 
         const popover = (
             <Popover id={`payout-popover`} className="payout-popover">
