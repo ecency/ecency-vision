@@ -483,7 +483,7 @@ const DeckViewContainer = ({
               float="left"
             />
           </div>
-          <div className="d-flex flex-column align-items-center">
+          <div className="d-flex flex-column align-items-center sidebar-icons-wrapper">
           {decks &&
             decks.length > 0 &&
             decks.map((deck: any, index: number) => {

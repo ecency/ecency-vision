@@ -114,3 +114,12 @@
     animation: blinker 2s linear forwards;
   }
 }
+
+.sidebar-icons-wrapper {
+  height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 46px;
+  padding-right: 15px;
+  margin-left: 27px;
+}
