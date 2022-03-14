@@ -33,6 +33,7 @@ const OptionWithIcon = ({ title, icon, onOptionClick, disabled, na }: any) => (
       (disabled || na ) ? " bg-light text-muted" : ""
     }`}
     onClick={() => !disabled && onOptionClick(title)}
+    style={{cursor: (disabled || na ) ? 'auto' : ""}}
   >
     <div>{icon}</div>
     <div className="mt-2 text-center">{title}</div>
@@ -42,7 +43,6 @@ const OptionWithIcon = ({ title, icon, onOptionClick, disabled, na }: any) => (
 
 const options = (activeUser:any) => {
   let isLoggedIn = activeUser && activeUser.username;
-  debugger
   return[
   {
     title: _t("decks.trending"),
