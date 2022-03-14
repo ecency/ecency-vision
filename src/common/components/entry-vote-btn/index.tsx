@@ -80,6 +80,10 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     },
   };
 
+  componentDidMount(): void {
+    this.cleanUpLS();
+  }
+
   estimate = (percent: number): number => {
     const { entry, activeUser, dynamicProps } = this.props;
     if (!activeUser) {
@@ -210,7 +214,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     } else if(upVoted && initialVoteValues.up === upSliderVal){
       this.setState({ wrongValueUp: true, wrongValueDown: false });
     }
-    cleanUpLS();
   };
 
   downVoteClicked = () => {
@@ -227,7 +230,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     } else if(downVoted && initialVoteValues.down === downSliderVal){
       this.setState({ wrongValueDown: true, wrongValueUp: false });
     }
-    cleanUpLS();
   };
 
   render() {
