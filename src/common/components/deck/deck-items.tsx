@@ -52,6 +52,7 @@ export interface SearchItemProps {
   likes: string;
   children: string;
   community: string;
+  category: string;
   community_title: string;
   url: string;
   index: number;
@@ -72,9 +73,11 @@ export const SearchListItem = ({
   votesPayment,
   index,
   url,
+  category,
   entry,
   ...rest
 }: SearchItemProps) => {
+  debugger
   let isPinned = community && entry && entry.stats?.is_pinned
   const formatMessage = (patterns: string[]): JSX.Element => {
     const { msg } = entry;
@@ -190,7 +193,7 @@ export const SearchListItem = ({
             className="rounded-circle search-item-avatar"
           />
         )}
-        <div className="ml-3 deck-body">
+        <div className="ml-3 deck-body w-100">
           <div className="text-dark d-flex flex-column">
             <div className="d-flex align-items-start flex-grow-1 hot-item-link">
               {author && (
@@ -202,6 +205,12 @@ export const SearchListItem = ({
                 <div className="ml-2 flex-grow-1">
                   {" "}
                   in <Link to={`/created/${community}`}> {community_title} </Link>
+                </div>
+              )}
+              {!community && (
+                <div className="ml-2 flex-grow-1">
+                  {" "}
+                  in <Link to={`/created/${category}`}> #{category} </Link>
                 </div>
               )}
               {isPinned && <Tooltip content={_t("entry-list-item.pinned")}>

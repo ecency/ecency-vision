@@ -1,4 +1,4 @@
-import React, { cloneElement, createElement, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
   communities,
@@ -22,19 +22,48 @@ import ListStyleToggle from "../list-style-toggle";
 import { DraggableDeckView, getItems } from "./draggable-deck-view";
 import { decks as initialDeckItems } from "./decks.data";
 import { HotListItem, SearchListItem } from "../deck/deck-items";
-import {
-  getAccountNotifications,
-  getAccountPosts,
-  getPostsRanked,
-} from "../../api/bridge";
-import { getAccountHistory, getFullTrendingTags } from "../../api/hive";
+import { getAccountPosts, getPostsRanked } from "../../api/bridge";
+import { getFullTrendingTags } from "../../api/hive";
 import { TransactionRow } from "../transactions";
 import MyTooltip from "../tooltip";
-import { Transaction } from "../../store/transactions/types";
 import { getNotifications } from "../../api/private-api";
 import { NotificationListItem } from "../notifications";
 import { _t } from "../../i18n";
 import * as ls from "../../util/local-storage";
+
+export const normalizeHeader = (data: any) => {
+  return data.map((item: any) => {
+    let icon = person; // Handle conditional icons and listItemComponent
+    let listItemComponent: any = SearchListItem; // Handle conditional icons and listItemComponent
+    let lowercasedTitle = item.header.title.toLowerCase();
+    if (lowercasedTitle.includes(_t("decks.trending-topics").toLowerCase())) {
+      icon = hot;
+      listItemComponent = HotListItem;
+    } else if (lowercasedTitle.includes(_t("decks.trending").toLowerCase())) {
+      icon = globalTrending;
+      listItemComponent = SearchListItem;
+    } else if (lowercasedTitle.includes("hive-")) {
+      icon = communities;
+      listItemComponent = SearchListItem;
+    } else if (
+      lowercasedTitle.includes(_t("decks.notifications").toLowerCase())
+    ) {
+      icon = notificationSvg;
+      listItemComponent = NotificationListItem;
+    } else if (lowercasedTitle.includes(_t("decks.wallet").toLowerCase())) {
+      icon = wallet;
+      listItemComponent = TransactionRow;
+    }
+    return {
+      ...item,
+      listItemComponent,
+      header: {
+        ...item.header,
+        icon,
+      },
+    };
+  });
+};
 
 const DeckViewContainer = ({
   global,
@@ -52,53 +81,20 @@ const DeckViewContainer = ({
     )
   );
 
-  const normalizeHeader = (data: any) => {
-    return data.map((item: any) => {
-      let icon = person; // Handle conditional icons and listItemComponent
-      let listItemComponent: any = SearchListItem; // Handle conditional icons and listItemComponent
-      let lowercasedTitle = item.header.title.toLowerCase();
-      if (lowercasedTitle.includes(_t("decks.trending-topics").toLowerCase())) {
-        icon = hot;
-        listItemComponent = HotListItem;
-      } else if (lowercasedTitle.includes(_t("decks.trending").toLowerCase())) {
-        icon = globalTrending;
-        listItemComponent = SearchListItem;
-      } else if (lowercasedTitle.includes("hive-")) {
-        icon = communities;
-        listItemComponent = SearchListItem;
-      } else if (
-        lowercasedTitle.includes(_t("decks.notifications").toLowerCase())
-      ) {
-        icon = notificationSvg;
-        listItemComponent = NotificationListItem;
-      } else if (lowercasedTitle.includes(_t("decks.wallet").toLowerCase())) {
-        icon = wallet;
-        listItemComponent = TransactionRow;
-      }
-      return {
-        ...item,
-        listItemComponent,
-        header: {
-          ...item.header,
-          icon,
-        },
-      };
-    });
-  };
-
   const onSelectColumn = (account: string, contentType: string) => {
     setOpenModal(false);
     setLoadingNewContent(true);
     if (contentType) {
       if (contentType === _t("decks.notifications")) {
-        getNotifications(rest.activeUser.username, null, null, account).then(
+        getNotifications((rest.activeUser ? rest.activeUser.username : account), null, null, account).then(
           (res) => {
+            
             setDecks(
               getItems(
                 [
                   ...decks,
                   {
-                    data: res,
+                    data: res.map((item)=>{return {...item, deck:true}}),
                     listItemComponent: NotificationListItem,
                     header: {
                       title: `${contentType} @${account}`,
@@ -205,7 +201,8 @@ const DeckViewContainer = ({
   useEffect(() => {
     if (loadingNewContent) {
       let draggableContainer = document!.getElementById("draggable-container")!;
-      draggableContainer.scrollLeft = draggableContainer.getBoundingClientRect().width;
+      draggableContainer.scrollLeft =
+        draggableContainer.getBoundingClientRect().width;
     }
   }, [loadingNewContent]);
 
@@ -239,7 +236,7 @@ const DeckViewContainer = ({
           getNotifications(rest.activeUser.username, null, null, account).then(
             (res) => {
               (updatedDecks[indexOfItemToUpdate] = {
-                data: res,
+                data: res.map((item)=>{return {...item, deck:true}}),
                 listItemComponent: NotificationListItem,
                 header: {
                   title: title,
@@ -325,7 +322,7 @@ const DeckViewContainer = ({
       let translatedBlogs = _t("decks.blogs").toLocaleLowerCase();
       let handledSortWithBlogs =
         deckType === translatedBlogs ? "blog" : deckType.toLocaleLowerCase();
-      debugger;
+      ;
       getAccountPosts(handledSortWithBlogs, account).then((res) => {
         (updatedDecks[indexOfItemToUpdate] = {
           data: res,
@@ -390,7 +387,7 @@ const DeckViewContainer = ({
               accountName
             ).then((notificationsData) => {
               defaultDecks.push({
-                data: notificationsData,
+                data: notificationsData.map((item)=>{return {...item, deck:true}}),
                 listItemComponent: NotificationListItem,
                 header: {
                   title: `${_t("decks.notifications")} @${accountName}`,
@@ -408,27 +405,32 @@ const DeckViewContainer = ({
           });
         }
       } else {
-        getPostsRanked("trending").then((res) => {
-          defaultDecks.unshift({
-            data: res,
-            listItemComponent: SearchListItem,
-            header: { title: _t("decks.trending"), icon: globalTrending },
-          });
-          getFullTrendingTags().then((res) => {
+        let cachedItems = ls.get(`user-unauthed-decks`);
+        if (cachedItems.length > 0) {
+          setLoadingNewContent(false);
+        } else {
+          getPostsRanked("trending").then((res) => {
             defaultDecks.unshift({
               data: res,
-              listItemComponent: HotListItem,
-              header: { title: _t("decks.trending-topics"), icon: hot },
+              listItemComponent: SearchListItem,
+              header: { title: _t("decks.trending"), icon: globalTrending },
             });
-            setDecks(
-              getItems(
-                defaultDecks,
-                (rest.activeUser && rest.activeUser.username) || ""
-              )
-            );
-            setLoadingNewContent(false);
+            getFullTrendingTags().then((res) => {
+              defaultDecks.unshift({
+                data: res,
+                listItemComponent: HotListItem,
+                header: { title: _t("decks.trending-topics"), icon: hot },
+              });
+              setDecks(
+                getItems(
+                  defaultDecks,
+                  (rest.activeUser && rest.activeUser.username) || ""
+                )
+              );
+              setLoadingNewContent(false);
+            });
           });
-        });
+        }
       }
     }
   }, [rest.activeUser, fetched]);
@@ -497,8 +499,8 @@ const DeckViewContainer = ({
                   key={deck.header.title + index}
                   onClick={() => {
                     let elementToFocus = document!.getElementById(deck.id);
-                    let toScrollValue = elementToFocus!.getBoundingClientRect()
-                      .left;
+                    let toScrollValue =
+                      elementToFocus!.getBoundingClientRect().left;
                     elementToFocus?.classList.add("active-deck");
                     setTimeout(() => {
                       elementToFocus?.classList.remove("active-deck");

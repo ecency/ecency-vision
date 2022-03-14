@@ -9,11 +9,14 @@ import { _t } from "../../i18n";
 import { Deck } from "../deck";
 import * as ls from '../../util/local-storage'
 import { success } from "../feedback";
+import { normalizeHeader } from ".";
 
-// fake data generator
-export const getItems = (decks: any[], user:string) => {
+export const getItems = (decks: any[], user:string | undefined) => {
   if(user && decks.length > 0){
     ls.set(`user-${user}-decks`,decks)
+  }
+  else if(!user && decks.length > 0){
+    ls.set(`user-unauthed-decks`,decks)
   }
   return decks.map((k, index) => ({
     id: `item-${index}`,
@@ -78,6 +81,33 @@ const DraggableDeckView = ({
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(()=>{
+    if(rest.activeUser && rest.activeUser.username){
+      let newItems = ls.get(`user-${rest.activeUser.username}-decks`);
+      let defaultDecks = [...newItems];
+      defaultDecks = normalizeHeader(defaultDecks);
+      setDecks(
+        getItems(
+          [...defaultDecks],
+          (rest.activeUser && rest.activeUser.username) || ""
+        )
+      );
+    }
+    else{
+      let newItems = ls.get(`user-unauthed-decks`);
+      
+      let defaultDecks = [...newItems];
+      defaultDecks = normalizeHeader(defaultDecks);
+      setDecks(
+        getItems(
+          [...defaultDecks],
+          undefined
+        )
+      );
+
+    }
+  }, [rest.activeUser])
 
   return mounted ? (
     <DragDropContext onDragEnd={onDragEnd}>

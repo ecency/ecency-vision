@@ -9,7 +9,7 @@ import {History} from "history";
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {ToggleType} from "../../store/ui/types";
-import {NotificationFilter, Notifications} from "../../store/notifications/types";
+import {ApiMentionNotification, NotificationFilter, Notifications} from "../../store/notifications/types";
 
 import {ApiNotification} from "../../store/notifications/types";
 import ProfileLink from "../profile-link";
@@ -68,7 +68,7 @@ export class NotificationListItem extends Component<{
         const {notification:primaryNotification, entry, markNotifications} = this.props;
         const notification = primaryNotification || entry
 
-        if (notification!.read === 0) {
+        if (notification!.read === 0 && !(notification as ApiMentionNotification).deck) {
             markNotifications(notification!.id);
         }
     }
@@ -97,10 +97,10 @@ export class NotificationListItem extends Component<{
         });
 
         return <>
-            <div title={notification.timestamp} className={_c(`list-item ${notification.read === 0 ? 'not-read' : ' '}`)}>
-                <div className="item-inner">
-                    <div className="item-control">
-                        {notification.read === 0 && (
+            <div title={notification.timestamp} className={_c(`list-item ${(notification.read === 0 && !(notification as ApiMentionNotification).deck) ? 'not-read' : ' '}`)}>
+                <div className={`item-inner ${(notification as ApiMentionNotification).deck ? "p-2 m-0" : ""}`}>
+                    <div className={`item-control ${(notification as ApiMentionNotification).deck ? "item-control-deck" : ""}`}>
+                        {!(notification as ApiMentionNotification).deck && notification.read === 0 && (
                             <Tooltip content={_t('notifications.mark-read')}>
                                 <span onClick={this.markAsRead} className="mark-read"/>
                             </Tooltip>

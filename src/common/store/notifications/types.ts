@@ -120,6 +120,7 @@ export interface ApiMentionNotification extends BaseAPiNotification {
     post: boolean;
     title: string | null;
     img_url: string | null;
+    deck?: boolean;
 }
 
 export interface ApiFollowNotification extends BaseAPiNotification {
