@@ -55,6 +55,7 @@ import accountReputation from '../helper/account-reputation';
 
 import truncate from "../util/truncate";
 import replaceLinkIdToDataId from "../util/replace-link-id-to-data-id";
+import * as ss from "../util/session-storage";
 import * as ls from "../util/local-storage";
 import {crossPostMessage} from "../helper/cross-post";
 
@@ -141,7 +142,7 @@ class EntryPage extends BaseComponent<Props, State> {
         }
         window.addEventListener("scroll", this.detect);
         window.addEventListener("resize", this.detect);
-        let replyDraft = ls.get(`reply_draft_${entry?.author}_${entry?.permlink}`)
+        let replyDraft = ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`)
         replyDraft = replyDraft && replyDraft.trim() || ""
         this.setState({isMounted:true, selection: replyDraft})
     }
@@ -237,7 +238,7 @@ class EntryPage extends BaseComponent<Props, State> {
             }
             
             this.setState({comment: text, isCommented: true})
-            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
+            ss.remove(`reply_draft_${entry.author}_${entry.permlink}`);
             updateReply(nReply); // update store
             this.toggleEdit(); // close comment box
             this.reload()
@@ -426,7 +427,7 @@ class EntryPage extends BaseComponent<Props, State> {
             addReply(nReply);
 
             // remove reply draft
-            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
+            ss.remove(`reply_draft_${entry.author}_${entry.permlink}`);
             this.stateSet({isCommented: true})
             
             if (entry.children === 0) {

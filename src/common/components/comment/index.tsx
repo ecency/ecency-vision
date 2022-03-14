@@ -19,7 +19,7 @@ setProxyBase(defaults.imageServer);
 
 import {_t} from "../../i18n";
 import {Global} from '../../store/global/types';
-import * as ls from "../../util/local-storage";
+import * as ss from "../../util/session-storage";
 
 interface PreviewProps {
     text: string;
@@ -86,6 +86,7 @@ export class Comment extends Component<Props, State> {
     componentDidMount(): void {
         const {defText} = this.props;
         this.setState({text: defText || "", preview: defText || ""});
+        this.cleanUpLS();
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -101,10 +102,19 @@ export class Comment extends Component<Props, State> {
             this.setState({text: "", preview: ""})
         }
     }
+    //TODO: Delete this after 3.0.22 release
+    cleanUpLS = () => {
+        Object.entries(localStorage).map(
+            x => x[0]
+        ).filter(
+            x => x.includes("ecency_reply_draft_")
+        ).map(
+            x => localStorage.removeItem(x));
+    }
 
     updateLsCommentDraft = (text: string) => {
         const {entry} = this.props
-        ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
+        ss.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
     }
 
     textChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
