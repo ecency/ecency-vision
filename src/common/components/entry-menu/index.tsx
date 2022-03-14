@@ -161,10 +161,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         const community = this.getCommunity();
         const ownEntry = activeUser && activeUser.username === entry.author;
 
-        return activeUser && community ? !!community.team.find(m => {
-            return m[0] === activeUser.username &&
-                [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
-        }) : ownEntry;
+        return activeUser && ownEntry;
     }
 
     canPinBothOptions = () => {
@@ -425,27 +422,15 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 }];
             }
         } else if (this.canPin()) {
-            if (entryPinTracker[`${entry.author}-${entry.permlink}`]) {
+            if (entry.permlink === profile?.pinned) {
                 menuItems = [...menuItems, {
-                    label: _t("entry-menu.unpin"),
-                    onClick: () => this.toggleUnpin('community'),
-                    icon: pinSvg
-                }];
-            } else if (entry.permlink === profile?.pinned) {
-                menuItems = [...menuItems, {
-                    label: _t("entry-menu.unpin"),
+                    label: _t("entry-menu.unpin-from-blog"),
                     onClick: () => this.toggleUnpin('blog'),
-                    icon: pinSvg
-                }];
-            } else if (isCommunity(entry.category)) {
-                menuItems = [...menuItems, {
-                    label: _t("entry-menu.pin"),
-                    onClick: () => this.togglePin('community'),
                     icon: pinSvg
                 }];
             } else {
                 menuItems = [...menuItems, {
-                    label: _t("entry-menu.pin"),
+                    label: _t("entry-menu.pin-to-blog"),
                     onClick: () => this.togglePin('blog'),
                     icon: pinSvg
                 }];
