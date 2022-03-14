@@ -77,7 +77,7 @@ export const SearchListItem = ({
   entry,
   ...rest
 }: SearchItemProps) => {
-  debugger
+  
   let isPinned = community && entry && entry.stats?.is_pinned
   const formatMessage = (patterns: string[]): JSX.Element => {
     const { msg } = entry;
@@ -261,7 +261,7 @@ export const SearchListItem = ({
             } as any)}
             <Link to={`${url}#discussion`} className="text-secondary">
               <div className="d-flex align-items-center comments">
-                <div>{commentSvg}</div>
+                <div style={{paddingRight:4}}>{commentSvg}</div>
                 <div>{children}</div>
               </div>
             </Link>

@@ -289,7 +289,7 @@
     "remove": "Remove",
     "removed": "{{deck}} removed successfully.",
     "payout": "Payouts",
-    "created": "Created",
+    "created": "New",
     "go-back": "Go back",
     "deck-exists": "The column you're trying to add already exists!",
     "select-column-type": "Which column type do you want to add?",

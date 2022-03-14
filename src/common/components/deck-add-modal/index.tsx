@@ -40,14 +40,34 @@ const OptionWithIcon = ({ title, icon, onOptionClick, disabled, na }: any) => (
   </div>
 );
 
-const options = [
+const options = (activeUser:any) => {
+  let isLoggedIn = activeUser && activeUser.username;
+  debugger
+  return[
+  {
+    title: _t("decks.trending"),
+    icon: globalTrending,
+  },
+  {
+    title: _t("decks.trending-topics"),
+    icon: hot,
+  },
   {
     title: _t("decks.users"),
     icon: person
   },
   {
-    title: _t("decks.trending-topics"),
-    icon: hot,
+    title: _t("decks.community"),
+    icon: communities,
+  },
+  {
+    title: _t("decks.wallet"),
+    icon: wallet,
+  },
+  {
+    title: _t("decks.notifications"),
+    icon: notificationSvg,
+    disabled: !isLoggedIn
   },
   {
     title: _t("decks.search"),
@@ -55,37 +75,16 @@ const options = [
     na:true
   },
   {
-    title: _t("decks.community"),
-    icon: communities,
-  },
-  {
     title: _t("decks.topic"),
     icon: tags,
     na:true
-  },
-  {
-    title: _t("decks.notifications"),
-    icon: notificationSvg,
-  },
-  {
-    title: _t("decks.wallet"),
-    icon: wallet,
   },
   {
     title: _t("decks.favorite"),
     icon: starOutlineSvg,
     na:true
   },
-  {
-    title: _t("decks.trending"),
-    icon: globalTrending,
-  },
-  {
-    title: "New content",
-    icon: newSvg,
-    na:true
-  },
-];
+];}
 
 const contentTypes = [
   { code: "", name: _t("decks.select") },
@@ -341,6 +340,7 @@ export const DeckAddModal = ({
   onClose,
   onSelect,
   currentlyActivatedOptions,
+  activeUser
 }: any) => {
   const [selectedOption, setSelectedOption] = useState(null);
   useEffect(() => {
@@ -372,11 +372,11 @@ export const DeckAddModal = ({
             selectedOption === _t("decks.community")) ? (
             <div className="d-flex align-items-center justify-content-center">
               <div className="header-icon mr-2 d-flex">
-                {options.find((item) => item.title === selectedOption)?.icon}
+                {options(activeUser).find((item) => item.title === selectedOption)?.icon}
               </div>
               <div>
                 {_t("decks.add")}{" "}
-                {options.find((item) => item.title === selectedOption)?.title}{" "}
+                {options(activeUser).find((item) => item.title === selectedOption)?.title}{" "}
                 {_t("decks.column")}
               </div>
             </div>
@@ -400,7 +400,7 @@ export const DeckAddModal = ({
           />
         ) : (
           <div className="d-flex w-100 flex-wrap">
-            {options.map((option) => (
+            {options(activeUser).map((option) => (
               <OptionWithIcon
                 title={option.title}
                 icon={option.icon}
@@ -408,7 +408,7 @@ export const DeckAddModal = ({
                 key={option.title}
                 na={option.na}
                 disabled={currentlyActivatedOptions.some(
-                  (item: any) => item.header.title === option.title
+                  (item: any) => (item.header.title === option.title) || option.disabled
                 )}
               />
             ))}

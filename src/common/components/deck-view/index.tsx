@@ -119,6 +119,7 @@ const DeckViewContainer = ({
           undefined,
           account
         ).then((res) => {
+          let title = `${_t(`decks.${contentType}`)} @${account}`;
           setDecks(
             getItems(
               [
@@ -127,7 +128,7 @@ const DeckViewContainer = ({
                   data: res,
                   listItemComponent: SearchListItem,
                   header: {
-                    title: `${contentType} @${account}`,
+                    title,
                     icon: communities,
                   },
                 },
@@ -470,6 +471,7 @@ const DeckViewContainer = ({
         onClose={() => setOpenModal(false)}
         onSelect={onSelectColumn}
         currentlyActivatedOptions={decks}
+        activeUser={rest.activeUser}
       />
       <div className="d-flex flex-grow-1 deck-view">
         <div className="navbar d-flex flex-column align-items-center pt-5 p-3">
@@ -481,6 +483,7 @@ const DeckViewContainer = ({
               float="left"
             />
           </div>
+          <div className="d-flex flex-column align-items-center">
           {decks &&
             decks.length > 0 &&
             decks.map((deck: any, index: number) => {
@@ -529,12 +532,13 @@ const DeckViewContainer = ({
                   {deck.header.icon}
                 </div>
               );
-            })}
+          })}</div>
 
           {/* Need this comment to use icon names when working on advanced options
           <div className="cursor-pointer">{magnify}</div>
           <div className="cursor-pointer">{tags}</div> */}
-          <div
+
+        <div
             className="my-icons-5 cursor-pointer"
             onClick={() => setOpenModal(true)}
           >
