@@ -36,7 +36,7 @@ export const HotListItem = ({
         <Link to={`/trending/${entry.name}`}>#{entry.name}</Link>
       </div>
       <div className="hot-item-post-count">
-        Posts: {entry.top_posts || "Not available"}
+        {entry.top_posts+entry.comments || 0} {_t("communities.n-posts")} 
       </div>
     </div>
   );
