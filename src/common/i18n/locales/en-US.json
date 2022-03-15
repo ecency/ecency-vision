@@ -43,6 +43,8 @@
     "trending": "feed",
     "created": "feed",
     "muted": "muted",
+    "controversial": "controversial",
+    "rising": "rising",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
