@@ -42,6 +42,7 @@ export interface Entry {
     community?: string;
     community_title?: string;
     created: string;
+    total_votes?: number;
     curator_payout_value: string;
     depth: number;
     is_paidout: boolean;

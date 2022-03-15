@@ -205,6 +205,7 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
         const scrollId = ls.get('scrollId');
         const resultsLength = ls.get('resultLength');
         const scrollId_ = (resultsLength && scrollId) ? scrollId : undefined;
+        console.log(q,sort,hideLow_,since,scrollId_);
         promise = search(q, sort, hideLow_, since, scrollId_)
         
     } else {
@@ -214,6 +215,7 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
 
     promise
         .then((resp) => {
+            console.log(resp);
             if (resp.results) {
                 dispatch(fetchedAct(groupKey, resp.results, resp.results.length >= dataLimit));
                 ls.set('scrollId', resp.scroll_id);

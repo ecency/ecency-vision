@@ -11,15 +11,18 @@ export interface SearchResult {
     author: string;
     permlink: string;
     author_rep: number | string;
+    author_reputation: number | string;
     children: number;
     body: string;
     body_marked: string | null;
     img_url: string;
     created_at: string;
+    created: string;
     payout: number;
     total_votes: number;
     up_votes: number;
     tags: string[];
+    json_metadata: any;
     depth: number;
     app: string;
 }
