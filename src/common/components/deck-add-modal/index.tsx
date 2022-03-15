@@ -170,7 +170,7 @@ const AddColumn = ({
       const delayDebounceFn = setTimeout(() => {
         afterToChange(to);
         setToDataLoading(true);
-      }, 2000);
+      }, 1000);
       return () => clearTimeout(delayDebounceFn);
     }
     return () => {};
