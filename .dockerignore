@@ -7,3 +7,5 @@
 **/node_modules
 **/docker-compose.yml
 **/docker-compose.production.yml
+**/.env.local
+**/.env

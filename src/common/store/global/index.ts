@@ -32,8 +32,6 @@ import * as ls from "../../util/local-storage";
 import filterTagExtract from "../../helper/filter-tag-extract";
 import { setupConfig } from "../../../setup";
 
-console.log(setupConfig.selectedTheme);
-
 export const initialState: Global = {
   filter: AllFilter[defaults.filter],
   tag: "",
