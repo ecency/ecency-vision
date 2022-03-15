@@ -63,6 +63,7 @@ interface Props {
     trackEntryPin: (entry: Entry) => void;
     setEntryPin: (entry: Entry, pin: boolean) => void;
     toggleUIProp: (what: ToggleType) => void;
+    toggleEdit?: () => void;
 }
 
 interface State {
@@ -160,10 +161,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         const community = this.getCommunity();
         const ownEntry = activeUser && activeUser.username === entry.author;
 
-        return activeUser && community ? !!community.team.find(m => {
-            return m[0] === activeUser.username &&
-                [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
-        }) : ownEntry;
+        return activeUser && ownEntry;
     }
 
     canPinBothOptions = () => {
@@ -308,7 +306,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, activeUser, entry, entryPinTracker, alignBottom, separatedSharing, extraMenuItems} = this.props;
+        const {global, activeUser, entry, entryPinTracker, alignBottom, separatedSharing, extraMenuItems, toggleEdit} = this.props;
 
         const activeUserWithProfile = activeUser?.data as FullAccount
         const profile = activeUserWithProfile && activeUserWithProfile.profile
@@ -316,7 +314,8 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
         const ownEntry = activeUser && activeUser.username === entry.author;
 
-        const editable = ownEntry && !isComment;
+        // const editable = ownEntry && !isComment;
+        const editable = ownEntry;
         const deletable = ownEntry && !(entry.children > 0 || entry.net_rshares > 0 || entry.is_paidout);
 
         let menuItems: MenuItem[] = [];
@@ -359,7 +358,8 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 ...[
                     {
                         label: _t("g.edit"),
-                        onClick: this.edit,
+                        // onClick: this.edit,
+                        onClick: isComment && toggleEdit ? toggleEdit : this.edit,
                         icon: pencilOutlineSvg
                     }
                 ]
@@ -422,27 +422,15 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 }];
             }
         } else if (this.canPin()) {
-            if (entryPinTracker[`${entry.author}-${entry.permlink}`]) {
+            if (entry.permlink === profile?.pinned) {
                 menuItems = [...menuItems, {
-                    label: _t("entry-menu.unpin"),
-                    onClick: () => this.toggleUnpin('community'),
-                    icon: pinSvg
-                }];
-            } else if (entry.permlink === profile?.pinned) {
-                menuItems = [...menuItems, {
-                    label: _t("entry-menu.unpin"),
+                    label: _t("entry-menu.unpin-from-blog"),
                     onClick: () => this.toggleUnpin('blog'),
-                    icon: pinSvg
-                }];
-            } else if (isCommunity(entry.category)) {
-                menuItems = [...menuItems, {
-                    label: _t("entry-menu.pin"),
-                    onClick: () => this.togglePin('community'),
                     icon: pinSvg
                 }];
             } else {
                 menuItems = [...menuItems, {
-                    label: _t("entry-menu.pin"),
+                    label: _t("entry-menu.pin-to-blog"),
                     onClick: () => this.togglePin('blog'),
                     icon: pinSvg
                 }];
@@ -481,16 +469,14 @@ export class EntryMenu extends BaseComponent<Props, State> {
             ];
         }
 
-        if (global.isElectron) {
-            menuItems = [
-                ...menuItems,
-                {
-                    label: _t("entry.address-copy"),
-                    onClick: this.copyAddress,
-                    icon: linkVariantSvg
-                }
-            ]
-        }
+        menuItems = [
+            ...menuItems,
+            {
+                label: _t("entry.address-copy"),
+                onClick: this.copyAddress,
+                icon: linkVariantSvg
+            }
+        ];        
 
         if(extraMenuItems){
             menuItems = [
@@ -628,7 +614,8 @@ export default (p: Props) => {
         addCommunity: p.addCommunity,
         trackEntryPin: p.trackEntryPin,
         setEntryPin: p.setEntryPin,
-        toggleUIProp: p.toggleUIProp
+        toggleUIProp: p.toggleUIProp,
+        toggleEdit: p.toggleEdit,
     }
 
     return <EntryMenu {...props} />

@@ -41,7 +41,7 @@ import {_t} from "../../i18n";
 
 import {comment, formatError} from "../../api/operations";
 
-import * as ls from "../../util/local-storage";
+import * as ss from "../../util/session-storage";
 
 import {createReplyPermlink, makeJsonMetaDataReply} from "../../helper/posting";
 import tempEntry from "../../helper/temp-entry";
@@ -54,7 +54,7 @@ import {commentSvg, pencilOutlineSvg, deleteForeverSvg, menuDownSvg, dotsHorizon
 
 import {version} from "../../../../package.json";
 import { getFollowing } from "../../api/hive";
-import { iteratorStream } from "@hiveio/dhive/lib/utils";
+
 import { Tsx } from "../../i18n/helper";
 import MyDropDown from "../dropdown";
 import { ProfilePopover } from "../profile-popover";
@@ -160,7 +160,7 @@ export const Item = (props: ItemProps) => {
     }
 
     const checkLsDraft = () => {
-        let replyDraft = ls.get(`reply_draft_${entry?.author}_${entry?.permlink}`)
+        let replyDraft = ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`)
         replyDraft = replyDraft && replyDraft.trim() || ""
         setLsDraft(replyDraft)
     }
@@ -205,7 +205,7 @@ export const Item = (props: ItemProps) => {
             addReply(nReply);
 
             // remove reply draft
-            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
+            ss.remove(`reply_draft_${entry.author}_${entry.permlink}`);
 
             // close comment box
             toggleReply();
@@ -249,7 +249,7 @@ export const Item = (props: ItemProps) => {
                 ...entry,
                 body: text
             }
-            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
+            ss.remove(`reply_draft_${entry.author}_${entry.permlink}`);
 
             updateReply(nReply); // update store
             toggleEdit(); // close comment box

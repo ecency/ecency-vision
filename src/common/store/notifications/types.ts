@@ -67,6 +67,13 @@ export interface WsTransferNotification extends BaseWsNotification {
     }
 }
 
+export interface WsDelegationsNotification extends BaseWsNotification {
+    type: "delegations";
+    extra: {
+        amount: string;
+    }
+}
+
 export interface WsSpinNotification extends BaseWsNotification {
     type: "spin";
 }
@@ -88,7 +95,8 @@ export type WsNotification =
     | WsTransferNotification
     | WsSpinNotification
     | WsInactiveNotification
-    | WsReferralNotification;
+    | WsReferralNotification
+    | WsDelegationsNotification;
 
 // HTTP api notification types
 
@@ -171,6 +179,11 @@ export interface ApiReferralNotification extends BaseAPiNotification {
     type: "referral";
 }
 
+export interface ApiDelegationsNotification extends BaseAPiNotification {
+    type: "delegations";
+    to: string;
+    amount: string;
+}
 
 export type ApiNotification =
     ApiVoteNotification
@@ -181,7 +194,8 @@ export type ApiNotification =
     | ApiTransferNotification
     | ApiSpinNotification
     | ApiInactiveNotification
-    | ApiReferralNotification;
+    | ApiReferralNotification
+    | ApiDelegationsNotification;
 
 export enum NotificationFilter {
     VOTES = "rvotes",
@@ -189,7 +203,8 @@ export enum NotificationFilter {
     FOLLOWS = "follows",
     REPLIES = "replies",
     REBLOGS = "reblogs",
-    TRANSFERS = "transfers"
+    TRANSFERS = "transfers",
+    DELEGATIONS = "delegations"
 }
 
 export enum NFetchMode {

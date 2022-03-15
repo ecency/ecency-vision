@@ -20,7 +20,7 @@ import { vote, formatError } from "../../api/operations";
 
 import parseAsset from "../../helper/parse-asset";
 
-import * as ls from "../../util/local-storage";
+import * as ss from "../../util/session-storage";
 
 import _c from "../../util/fix-class-names";
 
@@ -29,7 +29,7 @@ import ClickAwayListener from "../clickaway-listener";
 import { _t } from "../../i18n";
 
 const setVoteValue = (type: "up" | "down" | "downPrevious" | "upPrevious", username: string, value: number) => {
-  ls.set(`vote-value-${type}-${username}`, value);
+  ss.set(`vote-value-${type}-${username}`, value);
 };
 
 const getVoteValue = (
@@ -37,7 +37,7 @@ const getVoteValue = (
   username: string,
   def: number
 ): number => {
-  return ls.get(`vote-value-${type}-${username}`, def);
+  return ss.get(`vote-value-${type}-${username}`, def);
 };
 
 type Mode = "up" | "down";
@@ -79,6 +79,10 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       down: getVoteValue("down", this.props.activeUser?.username!+ '-' + this.props.entry.post_id,  getVoteValue("downPrevious", this.props.activeUser?.username!, -1)),
     },
   };
+
+  componentDidMount(): void {
+    this.cleanUpLS();
+  }
 
   estimate = (percent: number): number => {
     const { entry, activeUser, dynamicProps } = this.props;
@@ -166,6 +170,15 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   changeMode = (m: Mode) => {
     this.setState({ mode: m });
   };
+  //TODO: Delete this after 3.0.22 release
+  cleanUpLS = () => {
+    Object.entries(localStorage).map(
+      x => x[0]
+    ).filter(
+        x => x.includes("ecency_vote-value-")
+    ).map(
+        x => localStorage.removeItem(x));
+  }
 
   isVoted = () => {
     const { activeUser } = this.props;

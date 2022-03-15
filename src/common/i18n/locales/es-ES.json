@@ -5,7 +5,7 @@
     "continue": "Continuar",
     "submit": "Escribe una publicación",
     "search": "Buscar",
-    "loading-chunk": "Cargando componente troceado",
+    "loading-chunk": "Cargando componente",
     "downloads": "Descargas",
     "login": "Iniciar Sesión",
     "login-as": "Ingresar como",
@@ -222,8 +222,12 @@
     "share": "Compartir",
     "edit-history": "Editar historial",
     "pin": "Anclar arriba",
+    "pin-to-blog": "Anclar al blog",
+    "pin-to-community": "Anclar a la comunidad",
     "pin-success": "Mensaje anclado",
     "unpin": "Desanclar",
+    "unpin-from-blog": "Desanclar del blog",
+    "unpin-from-community": "Desanclar de la comunidad",
     "unpin-success": "Publicación desanclada",
     "mute": "Silenciar",
     "mute-success": "Post silenciado",
@@ -298,7 +302,7 @@
     "confirm-cancel": "¿Estás seguro? ¡Estás cancelando el pedido #{{orderid}}!",
     "confirm-buy": "Estás intercambiando con {{amount}} HIVE por {{price}} HBD/HIVE y el total será de {{total}} HBD.",
     "confirm-sell": "Valores",
-    "transaction-succeeded": "Transaction submitted",
+    "transaction-succeeded": "Transacción enviada",
     "lowest-ask": "Pedido más bajo",
     "decimal-error": "¡Sólo se permiten {{decimals}} dígitos decimales!"
   },
@@ -327,8 +331,8 @@
     "lowrep-warning": "El autor de este contenido tiene poca reputación.",
     "deleted-content-warning": "Este contenido fue eliminado por el autor. Puedes verlo desde la Blockchain ",
     "comments-hidden": "Silenciaste al autor de esta publicación.",
-    "address-copy": "Copiar la dirección de la Publicación",
-    "address-copied": "Dirección de publicación copiada al portapapeles",
+    "address-copy": "Copiar enlace",
+    "address-copied": "Enlace copiado al portapapeles",
     "content-copied": "Contenido copiado al portapapeles",
     "browse-original": "Abrir publicación original",
     "cross-post-by": "Publicación cruzada por",
@@ -473,7 +477,6 @@
   },
   "profile": {
     "voting-power": "Poder de voto",
-    "post-count": "Número de publicaciones",
     "followers": "Seguidores",
     "following": "Siguiendo",
     "follows-you": "Te sigue",
@@ -499,6 +502,7 @@
     "rc-power": "Créditos de recursos: {{n}}%",
     "recharge-time": "(Cargado completamente en {{n}})",
     "down-vote-power": "Poder de Votos Negativos: {{n}}%",
+    "post-count": "Número de publicaciones: {{n}}",
     "no-posts": "No hay contenido publicado, aún",
     "no-posts-user": "Seguir, sé el primero en enterarte",
     "no-posts-community": "Únete y publica en esta comunidad",
@@ -564,7 +568,7 @@
     "withdraw-routes": "Rutas de Retiro",
     "calculating": "Calculando",
     "converting-hbd-amount": "Convirtiendo a HIVE",
-    "withdrawing-amount": "Withdrawing from Savings",
+    "withdrawing-amount": "Retiro de ahorros",
     "reserved-amount": "Reservado para Orden Abierta en Mercado"
   },
   "wallet-engine": {
@@ -695,7 +699,7 @@
     "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferido desde <span class=\"from-user\">{{from}}</span> hacia <span class=\"to-user\">{{to}}</span>",
     "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferido de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferido de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> being converted",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> siendo convertido",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> estacar de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegado de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Apagado completado como <span class=\"amount\">{{amount}}</span>",
@@ -768,20 +772,20 @@
     "title": "Hive power recibido"
   },
   "conversion-requests": {
-    "title": "Convert requests",
-    "request-id": "Request id",
-    "amount": "Amount",
-    "pending": "Pending"
+    "title": "Solicitudes de conversión",
+    "request-id": "Id de solicitud",
+    "amount": "Cantidad",
+    "pending": "Pendiente"
   },
   "savings-withdraw": {
-    "title": "Withdraw from Savings",
-    "to": "To"
+    "title": "Retirar de ahorros",
+    "to": "A"
   },
   "open-orders-list": {
-    "title": "Open orders",
-    "created": "Created",
-    "expires": "Expires",
-    "order-id": "Order id"
+    "title": "Pedidos abiertos",
+    "created": "Creado",
+    "expires": "Caduca el",
+    "order-id": "Id del pedido"
   },
   "friends": {
     "followers": "Seguidores ({{n}})",
@@ -831,7 +835,7 @@
     "page-title": "Crear un post",
     "page-description": "¡Publica un artículo, monetiza, sin censura, inmutable y descentralizado!",
     "title-placeholder": "Título",
-    "body-placeholder": "Publicar Contenido",
+    "body-placeholder": "Cuenta tu historia...",
     "reward": "Recompensa",
     "reward-hint": "Establecer la relación de recompensa del autor para los tokens líquidos y en estaca",
     "reward-default": "Por defecto 50% / 50%",
@@ -909,7 +913,8 @@
     "followed": "{{source}} te siguió",
     "replied": "{{source}} te respondió",
     "reblogged": "{{source}} ha reblogueado tu publicación",
-    "transfer": "{{source}} te envió {{amount}}"
+    "transfer": "{{source}} te envió {{amount}}",
+    "delegations": "{{source}} te delegó {{amount}}"
   },
   "notifications": {
     "type-all": "Todas las notificaciones",
@@ -920,6 +925,7 @@
     "type-follows": "Seguidores",
     "type-reblogs": "Reblogueos",
     "type-transfers": "Transacciones",
+    "type-delegations": "Delegaciones",
     "group-title-recent": "Recientes",
     "vote-str": "A {{p}}% le gusta tu publicación:",
     "reply-str": "contestó a tu publicación:",
@@ -929,6 +935,7 @@
     "ignored-str": "ignorar",
     "reblog-str": "reblogueó tu publicación:",
     "transfer-str": "te ha enviado",
+    "delegations-str": "delegado a ti",
     "spin-str": "Es hora de ganar más puntos, juega a Spin en la aplicación Ecency Mobile",
     "inactive-str": "¡Estate activo! Escribe un mensaje, sigue ganando",
     "referral-str": "se unieron con tu enlace de referido, dales la bienvenida!",
@@ -1178,7 +1185,7 @@
       "what-are-rc-header": "¿Qué son los Créditos de Recursos?",
       "what-are-rc-body": "<p>La transacción en la cadena de bloques de Hive tiene cero comisiones, se utiliza la limitación de tasa de transacción para proteger la cadena de bloques de ataques de spam. Cada acción que hagas en la cadena de bloques consumirá una pequeña cantidad de Créditos de Recursos. Esto incluye publicar, comentar, votar, transferir tokens, etc. Ver contenido no consume créditos de recursos.</p><p>Cada usuario tiene una cantidad limitada de Créditos de Recursos para usar cada semana. Cuantas más transacciones haga un usuario, menos créditos de recursos le quedarán (hasta que recarguen). Los usuarios con más HIVE POWER tendrán más créditos de recursos.</p><p>Si te quedas sin créditos de Recursos, no podrás hacer ninguna transacción con la cadena de bloques hasta que tus Créditos de Recurso recarguen (sucede automáticamente) o adquirirás HIVE POWER adicional para aumentar tu saldo de Crédito de Recursos, o puedes <a href=\"/faq#how-boost-account\">solicitar que la cuenta de Optimización de Ecency</a> te proporcione una delegación temporal.</p>",
       "how-boost-account-header": "¿Cómo solicitar la optimización de la cuenta?",
-      "how-boost-account-body": "<p>Si tu cuenta tiene un bajo monto de <a href=\"/faq#what-are-rc\">Créditos de Recursos</a>, puedes solicitar que la cuenta reciba impulso desde Ecency. Recibirás una delegación temporal que debería impulsar tu cuenta para realizar más actividades en la blockchain. Puedes encontrar la función de potenciar la cuenta en las opciones de puntos.</p>",
+      "how-boost-account-body": "<p>Si tu cuenta tiene un bajo monto de <a href=\"/faq#what-are-rc\">Créditos de Recursos</a>, puedes solicitar que la cuenta reciba impulso de parte de Ecency. Recibirás una delegación temporal que debería impulsar tu cuenta para realizar más actividades en la blockchain. Puedes encontrar la función de potenciar la cuenta en las Opciones de Puntos.</p>",
       "what-spam-abuse-header": "¿Qué se considera spam o abuso?",
       "what-spam-abuse-body": "<p><ul><li>Publicaciones plagiarizadas o contenido copiado.</li><li>Dejar comentarios casi idénticos o materialmente similares en múltiples publicaciones.</li><li>Uso de etiquetas que no están relacionadas con la publicación.</li><li>Amenazar a los usuarios con cualquier tipo de violencia física.</li><li>No citar fuentes cuando se utiliza el material de otra persona.</li><li>Publicando contenido ‘no seguro para el trabajo’ sin usar la etiqueta “nsfw”.</li><li>Ofertas fraudulentas o estafas.</li></ul></p>",
       "can-link-post-header": "¿Puedo solicitar al equipo de Ecency agregar un vínculo de retroceso a mi sitio web?",

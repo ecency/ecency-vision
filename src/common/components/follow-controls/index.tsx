@@ -22,6 +22,7 @@ interface Props {
     activeUser: ActiveUser | null;
     ui: UI;
     targetUsername: string;
+    where?: string;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
@@ -136,6 +137,7 @@ export default class FollowControls extends BaseComponent<Props, State> {
 
     render() {
         const {following, muted, fetching, inProgress} = this.state;
+        const {where} = this.props;
         const followMsg = _t('follow-controls.follow');
         const unFollowMsg = _t('follow-controls.unFollow');
         const muteMsg = _t('follow-controls.mute');
@@ -190,6 +192,12 @@ export default class FollowControls extends BaseComponent<Props, State> {
             );
         }
 
+        if (where && where === "author-card" && following) {
+            return (
+                <>
+                </>
+            );
+        }
         if (following) {
             return (
                 <>
@@ -204,6 +212,14 @@ export default class FollowControls extends BaseComponent<Props, State> {
                 <>
                     {btnFollow}
                     {btnUnMute}
+                </>
+            );
+        }
+
+        if (where && where === "author-card") {
+            return (
+                <>
+                    {btnFollow}
                 </>
             );
         }
