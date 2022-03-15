@@ -14,6 +14,7 @@ import entryVotes from "../entry-votes";
 import profileLink from "../profile-link";
 import { _t } from "../../i18n";
 import Tooltip from "../tooltip";
+import _ from 'lodash';
 
 export interface HotListItemProps {
   index: number;
@@ -36,7 +37,7 @@ export const HotListItem = ({
         <Link to={`/trending/${entry.name}`}>#{entry.name}</Link>
       </div>
       <div className="hot-item-post-count">
-        {entry.top_posts+entry.comments || 0} {_t("communities.n-posts")} 
+        {entry.top_posts+entry.comments || 0} {_t("communities.n-posts")}
       </div>
     </div>
   );
@@ -231,7 +232,7 @@ export const SearchListItem = ({
                 </div>
               )}
 
-              {json_metadata && json_metadata.image && (
+              {json_metadata && json_metadata.image && _.isArray(json_metadata.image) && json_metadata.image.length>0 && (
                 <div
                   className="search-post-image d-flex align-self-center"
                   style={{ backgroundImage: `url(${proxifyImageSrc(json_metadata.image[0], undefined, undefined, (rest as any).global.canUseWebp ? 'webp' : 'match')})` }}
