@@ -28,7 +28,7 @@ import {search, SearchResult} from "../../api/search-api";
 
 import moment, {Moment} from "moment";
 
-import * as ls from "../../util/local-storage";
+import * as ss from "../../util/session-storage";
 
 
 
@@ -202,8 +202,8 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
         let sort = what === 'rising' ? 'children' : what
         const since = sinceDate ? sinceDate.format("YYYY-MM-DDTHH:mm:ss") : undefined;        
         const hideLow_ = "0"
-        const scrollId = ls.get('scrollId');
-        const resultsLength = ls.get('resultLength');
+        const scrollId = ss.get('scrollId');
+        const resultsLength = ss.get('resultLength');
         const scrollId_ = (resultsLength && scrollId) ? scrollId : undefined;
         console.log(q,sort,hideLow_,since,scrollId_);
         promise = search(q, sort, hideLow_, since, scrollId_)
@@ -218,17 +218,17 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
             console.log(resp);
             if (resp.results) {
                 dispatch(fetchedAct(groupKey, resp.results, resp.results.length >= dataLimit));
-                ls.set('scrollId', resp.scroll_id);
-                ls.set('resultLength', resp.results.length > 0);
+                ss.set('scrollId', resp.scroll_id);
+                ss.set('resultLength', resp.results.length > 0);
                 
             } else if (resp) {
                 dispatch(fetchedAct(groupKey, resp, resp.length >= dataLimit));
-                ls.remove('scrollId');
-                ls.remove('resultLength');
+                ss.remove('scrollId');
+                ss.remove('resultLength');
             } else {
                 dispatch(fetchErrorAct(groupKey, "server error"));
-                ls.remove('scrollId');
-                ls.remove('resultLength');
+                ss.remove('scrollId');
+                ss.remove('resultLength');
             }
         })
         .catch((e) => {
