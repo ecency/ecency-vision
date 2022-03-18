@@ -10,6 +10,7 @@ export interface MenuItem {
     onClick?: () => void;
     active?: boolean;
     flash?: boolean;
+    disabled?: boolean;
     id?: string;
     icon?: JSX.Element
 }
@@ -132,6 +133,7 @@ const MyDropDown = (props: Props) => {
                             {items.map((i, k) => {
                                 return (
                                     <div
+                                        {...i}
                                         key={k}
                                         className={`menu-item ${i?.active === true ? "active" : ""}`}
                                         onClick={() => {

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import isEqual from "react-fast-compare";
 
-// import { Dropdown, DropdownButton } from "react-bootstrap";
 import DropDown, {MenuItem} from "../dropdown";
 
 import { Global } from "../../store/global/types";
@@ -23,7 +22,8 @@ interface Props {
     global: Global;
     toggleListStyle: (view: string | null) => void;
     iconClass?: string;
-    float?: "left" | "right"
+    float?: "left" | "right";
+    deck?: boolean;
 }
 
 export default class ListStyleToggle extends Component<Props> {
@@ -40,7 +40,7 @@ export default class ListStyleToggle extends Component<Props> {
     };
 
     render() {
-        const { global, iconClass, float } = this.props;
+        const { global, iconClass, float, deck } = this.props;
         const { listStyle } = global;
         const dropDownItems: MenuItem[] = [
             {
@@ -50,15 +50,19 @@ export default class ListStyleToggle extends Component<Props> {
             },
             {
                 label: <span className="gridMenu">{listView} {_t("layouts.classic")}</span>,
-                active: listStyle === "row",
+                active: (listStyle === "row" || (!deck && listStyle === "deck")),
                 onClick: () => {this.changeStyle("row")},
-            },
-            {
-                label: <span className="gridMenu">{viewStackedSvg} {_t("layouts.deck")}</span>,
-                active: listStyle === "deck",
-                onClick: () => {this.changeStyle("deck")},
-            },
+            }
         ];
+
+        if(deck){
+            dropDownItems.push(
+                {
+                    label: <span className="gridMenu">{viewStackedSvg} {_t("layouts.deck")}</span>,
+                    active: listStyle === "deck",
+                    onClick: () => {this.changeStyle("deck")},
+                })
+        }
 
         const dropDownConfig = {
             history: null,

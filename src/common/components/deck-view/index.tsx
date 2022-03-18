@@ -30,6 +30,7 @@ import { getNotifications } from "../../api/private-api";
 import { NotificationListItem } from "../notifications";
 import { _t } from "../../i18n";
 import * as ls from "../../util/local-storage";
+import { error } from "../feedback";
 
 export const normalizeHeader = (data: any) => {
   return data.map((item: any) => {
@@ -481,6 +482,7 @@ const DeckViewContainer = ({
               toggleListStyle={toggleListStyle}
               iconClass="menu-icon"
               float="left"
+              deck={true}
             />
           </div>
           <div className="d-flex flex-column align-items-center sidebar-icons-wrapper">
@@ -540,7 +542,7 @@ const DeckViewContainer = ({
 
         <div
             className="my-icons-5 cursor-pointer"
-            onClick={() => setOpenModal(true)}
+            onClick={() => decks.length ===10 ? error(_t("decks.limit-warning")) : setOpenModal(true)}
           >
             {plusEncircled}
           </div>

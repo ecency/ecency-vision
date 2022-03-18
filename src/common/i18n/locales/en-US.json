@@ -292,6 +292,7 @@
     "created": "New",
     "go-back": "Go back",
     "deck-exists": "The column you're trying to add already exists!",
+    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
     "select-column-type": "Which column type do you want to add?",
     "topic": "Topic"
   },
