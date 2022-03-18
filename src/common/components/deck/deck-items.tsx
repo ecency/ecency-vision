@@ -14,7 +14,7 @@ import entryVotes from "../entry-votes";
 import profileLink from "../profile-link";
 import { _t } from "../../i18n";
 import Tooltip from "../tooltip";
-import _ from 'lodash';
+import _ from "lodash";
 
 export interface HotListItemProps {
   index: number;
@@ -37,7 +37,7 @@ export const HotListItem = ({
         <Link to={`/trending/${entry.name}`}>#{entry.name}</Link>
       </div>
       <div className="hot-item-post-count">
-        {entry.top_posts+entry.comments || 0} {_t("communities.n-posts")}
+        {entry.top_posts + entry.comments || 0} {_t("communities.n-posts")}
       </div>
     </div>
   );
@@ -78,8 +78,7 @@ export const SearchListItem = ({
   entry,
   ...rest
 }: SearchItemProps) => {
-  
-  let isPinned = community && entry && entry.stats?.is_pinned
+  let isPinned = community && entry && entry.stats?.is_pinned;
   const formatMessage = (patterns: string[]): JSX.Element => {
     const { msg } = entry;
 
@@ -205,7 +204,8 @@ export const SearchListItem = ({
               {community && (
                 <div className="ml-2 flex-grow-1">
                   {" "}
-                  in <Link to={`/created/${community}`}> {community_title} </Link>
+                  in{" "}
+                  <Link to={`/created/${community}`}> {community_title} </Link>
                 </div>
               )}
               {!community && (
@@ -214,16 +214,19 @@ export const SearchListItem = ({
                   in <Link to={`/created/${category}`}> #{category} </Link>
                 </div>
               )}
-              {isPinned && <Tooltip content={_t("entry-list-item.pinned")}>
+              {isPinned && (
+                <Tooltip content={_t("entry-list-item.pinned")}>
                   <span className="pinned">{pinSvg}</span>
-              </Tooltip>}
+                </Tooltip>
+              )}
               <div className="mb-3">
                 <small>{`${dateToRelative(created)}`}</small>
               </div>
             </div>
             <div
               onClick={() => history && history.push(url)}
-              className="pointer">
+              className="pointer"
+            >
               {title && (
                 <div className="d-flex">
                   <div className="hot-item-link font-weight-bold mt-3">
@@ -232,12 +235,22 @@ export const SearchListItem = ({
                 </div>
               )}
 
-              {json_metadata && json_metadata.image && _.isArray(json_metadata.image) && json_metadata.image.length>0 && (
-                <div
-                  className="search-post-image d-flex align-self-center"
-                  style={{ backgroundImage: `url(${proxifyImageSrc(json_metadata.image[0], undefined, undefined, (rest as any).global.canUseWebp ? 'webp' : 'match')})` }}
-                />
-              )}
+              {json_metadata &&
+                json_metadata.image &&
+                _.isArray(json_metadata.image) &&
+                json_metadata.image.length > 0 && (
+                  <div
+                    className="search-post-image d-flex align-self-center mt-3"
+                    style={{
+                      backgroundImage: `url(${proxifyImageSrc(
+                        json_metadata.image[0],
+                        undefined,
+                        undefined,
+                        (rest as any).global.canUseWebp ? "webp" : "match"
+                      )})`,
+                    }}
+                  />
+                )}
               <div
                 className="mt-3 hot-item-post-count deck-item-body text-secondary"
                 dangerouslySetInnerHTML={{ __html: postBodySummary(body) }}
@@ -245,16 +258,19 @@ export const SearchListItem = ({
             </div>
           </div>
           <div className="item-controls mt-3 d-flex justify-content-between align-items-center">
-            {entryVoteBtn({
-              afterVote: () => {},
-              entry,
-              ...rest,
-            } as any)}
-
-            {entryPayout({
-              ...rest,
-              entry,
-            } as any)}
+            <div className="d-flex align-items-center">
+              {entryVoteBtn({
+                afterVote: () => {},
+                entry,
+                ...rest,
+              } as any)}
+              <div className="pl-2">
+                {entryPayout({
+                  ...rest,
+                  entry,
+                } as any)}
+              </div>
+            </div>
 
             {entryVotes({
               ...rest,
@@ -262,7 +278,7 @@ export const SearchListItem = ({
             } as any)}
             <Link to={`${url}#discussion`} className="text-secondary">
               <div className="d-flex align-items-center comments">
-                <div style={{paddingRight:4}}>{commentSvg}</div>
+                <div style={{ paddingRight: 4 }}>{commentSvg}</div>
                 <div>{children}</div>
               </div>
             </Link>
