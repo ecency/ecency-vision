@@ -11,6 +11,7 @@ import {
   refreshSvg,
 } from "../../img/svg";
 import { ListStyle } from "../../store/global/types";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 export interface DeckHeaderProps {
   title: string;
@@ -33,6 +34,11 @@ const DeckHeader = ({
   let splittedTitle = title.split("@");
   let onlyTitle = splittedTitle[0];
   let username = splittedTitle[1];
+  let tooltip = (
+    <Tooltip id="profile-tooltip" style={{ zIndex: 10 }}>
+      {_t("decks.header-info")}
+    </Tooltip>
+  );
 
   return (
     <Accordion className={expanded ? "border-bottom" : ""}>
@@ -52,21 +58,25 @@ const DeckHeader = ({
               )}
             </div>
           </div>
-          <Accordion.Toggle
-            as={Button}
-            variant="link"
-            eventKey="0"
-            className="p-0"
-          >
-            <div
-              className={`pointer`}
-              onClick={() => {
-                setExpanded(!expanded);
-              }}
+          <OverlayTrigger placement="bottom" overlay={tooltip}>
+            <Accordion.Toggle
+              as={Button}
+              variant="link"
+              eventKey="0"
+              className="p-0"
             >
-              {expanded ? chevronUpSvgForSlider : chevronDownSvgForSlider}
-            </div>
-          </Accordion.Toggle>
+              <div
+                className={`pointer`}
+                onClick={() => {
+                  setExpanded(!expanded);
+                }}
+              >
+                <span>
+                  {expanded ? chevronUpSvgForSlider : chevronDownSvgForSlider}
+                </span>
+              </div>
+            </Accordion.Toggle>
+          </OverlayTrigger>
         </div>
       </div>
       <Accordion.Collapse eventKey="0">

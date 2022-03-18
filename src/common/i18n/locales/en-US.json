@@ -266,6 +266,7 @@
   },
   "decks": {
     "users": "Users",
+    "header-info": "Click me to see extra options",
     "username": "Username",
     "content-type": "Content Type",
     "trending-topics": "Trending topics",
