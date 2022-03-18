@@ -1,4 +1,4 @@
-FROM node:12.16.2 as base
+FROM --platform=linux/x86-64 node:12.16.2 as base
 
 WORKDIR /var/app
 
@@ -13,12 +13,12 @@ COPY . .
 RUN yarn build
 
 ### REMOVE DEV DEPENDENCIES ##
-FROM base as dependencies
+FROM --platform=linux/x86-64 base as dependencies
 
 RUN yarn install --non-interactive --frozen-lockfile --ignore-optional --production
 
 ### BUILD MINIFIED PRODUCTION ##
-FROM node:12.16.2-alpine as production
+FROM --platform=linux/x86-64 node:12.16.2-alpine as production
 
 # Add Tini
 ENV TINI_VERSION v0.18.0
