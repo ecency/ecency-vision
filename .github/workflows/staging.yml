@@ -44,28 +44,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ecency/vision:development
+          tags: pspc/ecency-boilerplate:latest
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: SSH and deploy node app
-      uses: appleboy/ssh-action@master
-      env:
-        USE_PRIVATE: ${{secrets.USE_PRIVATE}}
-      with:
-        host: ${{ secrets.SSH_STAGING_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        port: ${{ secrets.SSH_PORT }}
-        envs: USE_PRIVATE
-        script: |
-          export USE_PRIVATE=$USE_PRIVATE
-          cd ~/vision-staging
-          git pull origin development
-          docker pull ecency/vision:development
-          docker stack deploy -c docker-compose.yml vision
