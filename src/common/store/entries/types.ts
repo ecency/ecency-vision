@@ -57,6 +57,7 @@ export interface Entry {
     percent_hbd: number,
     permlink: string;
     post_id: number;
+    id?: number;
     promoted: string;
     reblogged_by?: string[];
     replies: any[];

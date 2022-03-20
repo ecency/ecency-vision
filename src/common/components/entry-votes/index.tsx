@@ -39,7 +39,7 @@ export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
 
     let totalPayout = 0
 
-    const { pending_payout_value, author_payout_value, curator_payout_value } = entry;
+    const { pending_payout_value, author_payout_value, curator_payout_value, payout } = entry;
 
     if (pending_payout_value && author_payout_value && curator_payout_value) {
         totalPayout =
@@ -48,6 +48,9 @@ export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
         parseAsset(entry.curator_payout_value).amount;
     }
 
+    if (payout) {
+        totalPayout += payout;
+    }
     const voteRshares = votes && votes.reduce((a, b) => a + parseFloat(b.rshares), 0);
     const ratio = totalPayout / voteRshares;
 

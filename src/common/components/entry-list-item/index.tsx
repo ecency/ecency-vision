@@ -122,13 +122,20 @@ export default class EntryListItem extends Component<Props, State> {
 
         const {payout} = entry;
         const newPayout = payout + estimated;
-
-        updateEntry({
-            ...entry,
-            active_votes: votes,
-            payout: newPayout,
-            pending_payout_value: String(newPayout)
-        });
+        if (votes.length>0) {
+            updateEntry({
+                ...entry,
+                active_votes: votes,
+                payout: newPayout,
+                pending_payout_value: String(newPayout)
+            });
+        } else {
+            updateEntry({
+                ...entry,
+                payout: newPayout,
+                pending_payout_value: String(newPayout)
+            });
+        }
     };
 
     toggleNsfw = () => {

@@ -130,7 +130,8 @@ export class EntryPayoutDetail extends Component<Props> {
 export class EntryPayout extends Component<Props> {
     render() {
         const {entry} = this.props;
-        const check = entry.max_accepted_payout
+        const check = entry.max_accepted_payout;
+        const searchPayout = entry.payout || 0;
         // const isPayoutDeclined = parseAsset(entry.max_accepted_payout).amount === 0;
 
         // const pendingPayout = parseAsset(entry.pending_payout_value).amount;
@@ -151,13 +152,17 @@ export class EntryPayout extends Component<Props> {
         if(check) {
             isPayoutDeclined = parseAsset(entry.max_accepted_payout).amount === 0;
 
-        pendingPayout = parseAsset(entry.pending_payout_value).amount;
-        authorPayout = parseAsset(entry.author_payout_value).amount;
-        curatorPayout = parseAsset(entry.curator_payout_value).amount;
-        maxPayout = parseAsset(entry.max_accepted_payout).amount;
-        totalPayout = pendingPayout + authorPayout + curatorPayout;
-        payoutLimitHit = totalPayout >= maxPayout;
-        shownPayout = payoutLimitHit && maxPayout > 0 ? maxPayout : totalPayout;
+            pendingPayout = parseAsset(entry.pending_payout_value).amount;
+            authorPayout = parseAsset(entry.author_payout_value).amount;
+            curatorPayout = parseAsset(entry.curator_payout_value).amount;
+            maxPayout = parseAsset(entry.max_accepted_payout).amount;
+            totalPayout = pendingPayout + authorPayout + curatorPayout + searchPayout;
+            payoutLimitHit = totalPayout >= maxPayout;
+            shownPayout = payoutLimitHit && maxPayout > 0 ? maxPayout : totalPayout;
+        }
+
+        if(searchPayout) {
+            shownPayout = searchPayout;
         }
 
         const popover = (
@@ -168,7 +173,7 @@ export class EntryPayout extends Component<Props> {
             </Popover>
         );
 
-        return check ? (
+        return !searchPayout ? (
             <OverlayTrigger trigger={["hover", "focus"]} overlay={popover} delay={1000}>
                 <div className={_c(`entry-payout ${isPayoutDeclined ? "payout-declined" : ""} ${payoutLimitHit ? "payout-limit-hit": ""} notranslate`)}>
                     <FormattedCurrency {...this.props} value={shownPayout}/>

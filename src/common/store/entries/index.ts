@@ -202,10 +202,9 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
         let sort = what === 'rising' ? 'children' : what
         const since = sinceDate ? sinceDate.format("YYYY-MM-DDTHH:mm:ss") : undefined;        
         const hideLow_ = "0"
-        const scrollId = ss.get('scrollId');
-        const resultsLength = ss.get('resultLength');
+        const scrollId = ss.get(`cfilter-${what}${tag}`);
+        const resultsLength = ss.get(`cfilter-len-${what}${tag}`);
         const scrollId_ = (resultsLength && scrollId) ? scrollId : undefined;
-        console.log(q,sort,hideLow_,since,scrollId_);
         promise = search(q, sort, hideLow_, since, scrollId_)
         
     } else {
@@ -215,26 +214,32 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
 
     promise
         .then((resp) => {
-            console.log(resp);
             if (resp.results) {
                 dispatch(fetchedAct(groupKey, resp.results, resp.results.length >= dataLimit));
-                ss.set('scrollId', resp.scroll_id);
-                ss.set('resultLength', resp.results.length > 0);
+                ss.set(`cfilter-${what}${tag}`, resp.scroll_id);
+                ss.set(`cfilter-len-${what}${tag}`, resp.results.length > 0);
                 
             } else if (resp) {
                 dispatch(fetchedAct(groupKey, resp, resp.length >= dataLimit));
-                ss.remove('scrollId');
-                ss.remove('resultLength');
+                cleanUpSS();
             } else {
                 dispatch(fetchErrorAct(groupKey, "server error"));
-                ss.remove('scrollId');
-                ss.remove('resultLength');
+                cleanUpSS();
             }
         })
         .catch((e) => {
             dispatch(fetchErrorAct(groupKey, "network error"));
         });
 };
+
+const cleanUpSS = () => {
+    Object.entries(sessionStorage).map(
+        x => x[0]
+    ).filter(
+        x => x.includes("ecency_cfilter")
+    ).map(
+        x => sessionStorage.removeItem(x));
+}
 
 export const addEntry = (entry: Entry) => (dispatch: Dispatch) => {
     dispatch(fetchedAct("__manual__", [entry], false));
