@@ -133,7 +133,7 @@ export class EntryIndexMenu extends Component<Props, States> {
             history.push(`/${filter}`)
         }
         else if(['controversial', 'rising'].includes(filter)) {
-            const tagValue = (tag && tag !== 'my' && ['today', 'week', 'month', 'year', 'all'].includes(tag)) ? '/' + tag : '/today'
+            const tagValue = (tag && tag !== 'my' && ['today', 'week', 'month', 'year', 'all'].includes(tag)) ? '/' + tag : '/week'
             history.push(`/${filter}${tagValue}`)
         }
         else if(!['controversial', 'rising'].includes(filter)) {

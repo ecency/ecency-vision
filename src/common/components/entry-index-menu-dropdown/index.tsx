@@ -48,11 +48,11 @@ export const EntryIndexMenuDropdown = (props: Props) => {
 
   if (filter === 'controversial' || filter === 'rising') {
     dropDownItems = [
-          {
-            label: <span>Today</span>,
-            active: tag === "today",
-            onClick: () => onTagValueClick('today'),
-          },
+          // {
+          //   label: <span>Today</span>,
+          //   active: tag === "today",
+          //   onClick: () => onTagValueClick('today'),
+          // },
           {
             label: <span>This Week</span>,
             active: tag === "week",

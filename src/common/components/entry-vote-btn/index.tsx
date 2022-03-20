@@ -442,6 +442,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
 
   render() {
     const { activeUser } = this.props;
+    const { active_votes: votes } = this.props.entry;
     const { dialog, inProgress } = this.state;
     const { upVoted, downVoted } = this.isVoted();
 
@@ -477,7 +478,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
           children: (
             <div>
             <ClickAwayListener onClickAway={()=>{dialog && this.setState({dialog:false})}}>
-              <div className="entry-vote-btn" onClick={this.toggleDialog}>
+              <div className="entry-vote-btn" onClick={() => votes ? this.toggleDialog() : null}>
                 <div className={cls}>
                   <div className={tooltipClass}>
                     <span className={voteBtnClass}>{chevronUpSvgForVote}</span>

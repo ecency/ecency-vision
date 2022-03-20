@@ -168,12 +168,16 @@ export class EntryPayout extends Component<Props> {
             </Popover>
         );
 
-        return (
+        return check ? (
             <OverlayTrigger trigger={["hover", "focus"]} overlay={popover} delay={1000}>
                 <div className={_c(`entry-payout ${isPayoutDeclined ? "payout-declined" : ""} ${payoutLimitHit ? "payout-limit-hit": ""} notranslate`)}>
                     <FormattedCurrency {...this.props} value={shownPayout}/>
                 </div>
             </OverlayTrigger>
+        ) : (
+            <div className={_c(`entry-payout ${isPayoutDeclined ? "payout-declined" : ""} ${payoutLimitHit ? "payout-limit-hit": ""} notranslate`)}>
+                    <FormattedCurrency {...this.props} value={shownPayout}/>
+                </div>
         );
     }
 }
