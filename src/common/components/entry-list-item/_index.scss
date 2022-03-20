@@ -10,7 +10,7 @@
     }
 
     @include themify(sky) {
-      color: $sky-primary !important;
+      color: $white-three !important;
     }
 
   }
@@ -33,6 +33,11 @@
     }
 
     @include themify(dusk) {
+      background: lighten($silver, 42);
+      color: $charcoal-grey;
+    }
+
+    @include themify(sky) {
       background: lighten($silver, 42);
       color: $charcoal-grey;
     }

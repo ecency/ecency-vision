@@ -42,518 +42,656 @@ import {_t} from "../../i18n";
 import _c from "../../util/fix-class-names";
 
 import {deleteForeverSvg} from "../../img/svg";
+import { setupConfig } from "../../../setup";
 
 declare var window: AppWindow;
 
 interface LoginKcProps {
-    toggleUIProp: (what: ToggleType) => void;
-    doLogin: (hsCode: string, postingKey: null | undefined | string, account: Account) => Promise<void>;
-    global: Global;
+  toggleUIProp: (what: ToggleType) => void;
+  doLogin: (
+    hsCode: string,
+    postingKey: null | undefined | string,
+    account: Account
+  ) => Promise<void>;
+  global: Global;
 }
 
 interface LoginKcState {
-    username: string;
-    inProgress: boolean;
+  username: string;
+  inProgress: boolean;
 }
 
 export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
-    state: LoginKcState = {
-        username: "",
-        inProgress: false
+  state: LoginKcState = {
+    username: "",
+    inProgress: false,
+  };
+
+  usernameChanged = (
+    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
+  ): void => {
+    const { value: username } = e.target;
+    this.stateSet({ username: username.trim().toLowerCase() });
+  };
+
+  inputKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      this.login().then();
+    }
+  };
+
+  hide = () => {
+    const { toggleUIProp } = this.props;
+    toggleUIProp("login");
+  };
+
+  login = async () => {
+    const { username } = this.state;
+    if (!username) {
+      return;
     }
 
-    usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
-        const {value: username} = e.target;
-        this.stateSet({username: username.trim().toLowerCase()});
+    let account: Account;
+
+    this.stateSet({ inProgress: true });
+
+    try {
+      account = await getAccount(username);
+    } catch (err) {
+      error(_t("login.error-user-fetch"));
+      return;
+    } finally {
+      this.stateSet({ inProgress: false });
     }
 
-    inputKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
-            this.login().then();
-        }
+    if (!(account && account.name === username)) {
+      error(_t("login.error-user-not-found"));
+      return;
     }
 
-    hide = () => {
-        const {toggleUIProp} = this.props;
-        toggleUIProp('login');
+    const hasPostingPerm =
+      account?.posting!.account_auths.filter((x) => x[0] === "ecency.app")
+        .length > 0;
+
+    if (!hasPostingPerm) {
+      const weight = account.posting!.weight_threshold;
+
+      this.stateSet({ inProgress: true });
+      try {
+        await addAccountAuthority(username, "ecency.app", "Posting", weight);
+      } catch (err) {
+        error(_t("login.error-permission"));
+        return;
+      } finally {
+        this.stateSet({ inProgress: false });
+      }
     }
 
-    login = async () => {
-        const {username} = this.state;
-        if (!username) {
-            return;
-        }
+    this.stateSet({ inProgress: true });
 
-        let account: Account;
+    const signer = (message: string): Promise<string> =>
+      signBuffer(username, message, "Active").then((r) => r.result);
 
-        this.stateSet({inProgress: true});
-
-        try {
-            account = await getAccount(username);
-        } catch (err) {
-            error(_t('login.error-user-fetch'));
-            return;
-        } finally {
-            this.stateSet({inProgress: false});
-        }
-
-        if (!(account && account.name === username)) {
-            error(_t('login.error-user-not-found'));
-            return;
-        }
-
-        const hasPostingPerm = account?.posting!.account_auths.filter(x => x[0] === "ecency.app").length > 0;
-
-        if (!hasPostingPerm) {
-            const weight = account.posting!.weight_threshold;
-
-            this.stateSet({inProgress: true});
-            try {
-                await addAccountAuthority(username, "ecency.app", "Posting", weight)
-            } catch (err) {
-                error(_t('login.error-permission'));
-                return;
-            } finally {
-                this.stateSet({inProgress: false});
-            }
-        }
-
-        this.stateSet({inProgress: true});
-
-        const signer = (message: string): Promise<string> => signBuffer(username, message, "Active").then(r => r.result);
-
-        let code: string;
-        try {
-            code = await makeHsCode(username, signer);
-        } catch (err) {
-            error(formatError(err));
-            this.stateSet({inProgress: false});
-            return;
-        }
-
-        const {doLogin} = this.props;
-
-        doLogin(code, null, account)
-            .then(() => {
-                this.hide();
-            })
-            .catch(() => {
-                error(_t('g.server-error'));
-            })
-            .finally(() => {
-                this.stateSet({inProgress: false});
-            });
+    let code: string;
+    try {
+      code = await makeHsCode(username, signer);
+    } catch (err) {
+      error(formatError(err));
+      this.stateSet({ inProgress: false });
+      return;
     }
 
-    back = () => {
-        const {toggleUIProp} = this.props;
-        toggleUIProp("loginKc");
-    }
+    const { doLogin } = this.props;
 
-    render() {
-        const {username, inProgress} = this.state;
-        const {global} = this.props;
+    doLogin(code, null, account)
+      .then(() => {
+        this.hide();
+      })
+      .catch(() => {
+        error(_t("g.server-error"));
+      })
+      .finally(() => {
+        this.stateSet({ inProgress: false });
+      });
+  };
 
-        const keyChainLogo = global.isElectron ? "./img/keychain.png" : require("../../img/keychain.png");
+  back = () => {
+    const { toggleUIProp } = this.props;
+    toggleUIProp("loginKc");
+  };
 
-        const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
+  render() {
+    const { username, inProgress } = this.state;
+    const { global } = this.props;
 
-        return <>
-            <div className="dialog-header">
-                <img src={keyChainLogo} alt="Logo"/>
-                <h2>{_t('login.with-keychain')}</h2>
-            </div>
+    const keyChainLogo = global.isElectron
+      ? "./img/keychain.png"
+      : require("../../img/keychain.png");
 
-            <Form className="login-form" onSubmit={(e: React.FormEvent) => {
-                e.preventDefault();
-            }}>
-                <Form.Group>
-                    <Form.Control type="text" value={username} onChange={this.usernameChanged} placeholder={_t("login.username-placeholder")} autoFocus={true}
-                                  onKeyDown={this.inputKeyDown}/>
-                </Form.Group>
-                <Button disabled={inProgress} block={true} onClick={this.login}>{inProgress && spinner}{_t("g.login")}</Button>
-                <Button variant="outline-primary" disabled={inProgress} block={true} onClick={this.back}>{_t("g.back")}</Button>
-            </Form>
-        </>
-    }
+    const spinner = (
+      <Spinner
+        animation="grow"
+        variant="light"
+        size="sm"
+        style={{ marginRight: "6px" }}
+      />
+    );
+
+    return (
+      <>
+        <div className="dialog-header">
+          <img src={keyChainLogo} alt="Logo" />
+          <h2>{_t("login.with-keychain")}</h2>
+        </div>
+
+        <Form
+          className="login-form"
+          onSubmit={(e: React.FormEvent) => {
+            e.preventDefault();
+          }}
+        >
+          <Form.Group>
+            <Form.Control
+              type="text"
+              value={username}
+              onChange={this.usernameChanged}
+              placeholder={_t("login.username-placeholder")}
+              autoFocus={true}
+              onKeyDown={this.inputKeyDown}
+            />
+          </Form.Group>
+          <Button disabled={inProgress} block={true} onClick={this.login}>
+            {inProgress && spinner}
+            {_t("g.login")}
+          </Button>
+          <Button
+            variant="outline-primary"
+            disabled={inProgress}
+            block={true}
+            onClick={this.back}
+          >
+            {_t("g.back")}
+          </Button>
+        </Form>
+      </>
+    );
+  }
 }
 
 interface UserItemProps {
-    global: Global;
-    user: User;
-    activeUser: ActiveUser | null;
-    disabled: boolean;
-    onSelect: (user: User) => void;
-    onDelete: (user: User) => void;
-    containerRef?: React.RefObject<HTMLInputElement>;
+  global: Global;
+  user: User;
+  activeUser: ActiveUser | null;
+  disabled: boolean;
+  onSelect: (user: User) => void;
+  onDelete: (user: User) => void;
+  containerRef?: React.RefObject<HTMLInputElement>;
 }
 
 export class UserItem extends Component<UserItemProps> {
-    render() {
-        const {user, activeUser, disabled, containerRef} = this.props;
+  render() {
+    const { user, activeUser, disabled, containerRef } = this.props;
 
-        return (
-            <div
-                className={_c(`user-list-item ${disabled ? "disabled" : ""} ${activeUser && activeUser.username === user.username ? "active" : ""}`)}
-                onClick={() => {
-                    const {onSelect} = this.props;
-                    onSelect(user);
-                }}
-            >
-                {UserAvatar({...this.props, username: user.username, size: "medium"})}
-                <span className="username">@{user.username}</span>
-                {activeUser && activeUser.username === user.username && <div className="check-mark"/>}
-                <div className="flex-spacer"/>
-                <PopoverConfirm
-                    onConfirm={() => {
-                        const {onDelete} = this.props;
-                        onDelete(user);
-                    }}
-                    placement="left"
-                    trigger="click"
-                    containerRef={containerRef}
-                >
-                    <div
-                        className="btn-delete"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                        }}
-                    >
-                        <Tooltip content={_t("g.delete")}>
-                            <span>{deleteForeverSvg}</span>
-                        </Tooltip>
-                    </div>
-                </PopoverConfirm>
-            </div>
-        );
-    }
+    return (
+      <div
+        className={_c(
+          `user-list-item ${disabled ? "disabled" : ""} ${
+            activeUser && activeUser.username === user.username ? "active" : ""
+          }`
+        )}
+        onClick={() => {
+          const { onSelect } = this.props;
+          onSelect(user);
+        }}
+      >
+        {UserAvatar({ ...this.props, username: user.username, size: "medium" })}
+        <span className="username">@{user.username}</span>
+        {activeUser && activeUser.username === user.username && (
+          <div className="check-mark" />
+        )}
+        <div className="flex-spacer" />
+        <PopoverConfirm
+          onConfirm={() => {
+            const { onDelete } = this.props;
+            onDelete(user);
+          }}
+          placement="left"
+          trigger="click"
+          containerRef={containerRef}
+        >
+          <div
+            className="btn-delete"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <Tooltip content={_t("g.delete")}>
+              <span>{deleteForeverSvg}</span>
+            </Tooltip>
+          </div>
+        </PopoverConfirm>
+      </div>
+    );
+  }
 }
 
 interface LoginProps {
-    history: History;
-    global: Global;
-    users: User[];
-    activeUser: ActiveUser | null;
-    setActiveUser: (username: string | null) => void;
-    deleteUser: (username: string) => void;
-    toggleUIProp: (what: ToggleType) => void;
-    doLogin: (hsCode: string, postingKey: null | undefined | string, account: Account) => Promise<void>;
-    userListRef?: any;
+  history: History;
+  global: Global;
+  users: User[];
+  activeUser: ActiveUser | null;
+  setActiveUser: (username: string | null) => void;
+  deleteUser: (username: string) => void;
+  toggleUIProp: (what: ToggleType) => void;
+  doLogin: (
+    hsCode: string,
+    postingKey: null | undefined | string,
+    account: Account
+  ) => Promise<void>;
+  userListRef?: any;
 }
 
 interface State {
-    username: string;
-    key: string;
-    inProgress: boolean;
+  username: string;
+  key: string;
+  inProgress: boolean;
 }
 
 export class Login extends BaseComponent<LoginProps, State> {
-    state: State = {
-        username: '',
-        key: '',
-        inProgress: false
-    }
+  state: State = {
+    username: "",
+    key: "",
+    inProgress: false,
+  };
 
-    shouldComponentUpdate(nextProps: Readonly<LoginProps>, nextState: Readonly<State>): boolean {
-        return !isEqual(this.props.users, nextProps.users)
-            || !isEqual(this.props.activeUser, nextProps.activeUser)
-            || !isEqual(this.state, nextState);
-    }
+  shouldComponentUpdate(
+    nextProps: Readonly<LoginProps>,
+    nextState: Readonly<State>
+  ): boolean {
+    return (
+      !isEqual(this.props.users, nextProps.users) ||
+      !isEqual(this.props.activeUser, nextProps.activeUser) ||
+      !isEqual(this.state, nextState)
+    );
+  }
 
-    hide = () => {
-        const {toggleUIProp} = this.props;
-        toggleUIProp('login');
-    }
+  hide = () => {
+    const { toggleUIProp } = this.props;
+    toggleUIProp("login");
+  };
 
-    userSelect = (user: User) => {
-        const {doLogin} = this.props;
+  userSelect = (user: User) => {
+    const { doLogin } = this.props;
 
-        this.stateSet({inProgress: true});
+    this.stateSet({ inProgress: true });
 
-        getAccount(user.username)
-            .then((account) => {
-                let token = getRefreshToken(user.username);
-                if(!token){
-                    error(`${_t("login.error-user-not-found-cache")}`)
-                }
-                return token ? doLogin(token, user.postingKey, account) : this.userDelete(user)
-            })
-            .then(() => {
-                this.hide();
-                let shouldShowTutorialJourney = ls.get(`${user.username}HadTutorial`);
-                
-                if(!shouldShowTutorialJourney && (shouldShowTutorialJourney && shouldShowTutorialJourney!=='true')){
-                    ls.set(`${user.username}HadTutorial`, 'false');
-                }
-            })
-            .catch(() => {
-                error(_t('g.server-error'));
-            })
-            .finally(() => {
-                this.stateSet({inProgress: false});
-            });
-    }
-
-    userDelete = (user: User) => {
-        const {activeUser, deleteUser, setActiveUser} = this.props;
-        deleteUser(user.username);
-
-        // logout if active user
-        if (activeUser && user.username === activeUser.username) {
-            setActiveUser(null);
+    getAccount(user.username)
+      .then((account) => {
+        let token = getRefreshToken(user.username);
+        if (!token) {
+          error(`${_t("login.error-user-not-found-cache")}`);
         }
-    }
+        return token
+          ? doLogin(token, user.postingKey, account)
+          : this.userDelete(user);
+      })
+      .then(() => {
+        this.hide();
+        let shouldShowTutorialJourney = ls.get(`${user.username}HadTutorial`);
 
-    usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
-        const {value: username} = e.target;
-        this.stateSet({username: username.trim().toLowerCase()});
-    }
-
-    keyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
-        const {value: key} = e.target;
-        this.stateSet({key: key.trim()});
-    }
-
-    inputKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
-            this.login().then();
+        if (
+          !shouldShowTutorialJourney &&
+          shouldShowTutorialJourney &&
+          shouldShowTutorialJourney !== "true"
+        ) {
+          ls.set(`${user.username}HadTutorial`, "false");
         }
+      })
+      .catch(() => {
+        error(_t("g.server-error"));
+      })
+      .finally(() => {
+        this.stateSet({ inProgress: false });
+      });
+  };
+
+  userDelete = (user: User) => {
+    const { activeUser, deleteUser, setActiveUser } = this.props;
+    deleteUser(user.username);
+
+    // logout if active user
+    if (activeUser && user.username === activeUser.username) {
+      setActiveUser(null);
+    }
+  };
+
+  usernameChanged = (
+    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
+  ): void => {
+    const { value: username } = e.target;
+    this.stateSet({ username: username.trim().toLowerCase() });
+  };
+
+  keyChanged = (
+    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
+  ): void => {
+    const { value: key } = e.target;
+    this.stateSet({ key: key.trim() });
+  };
+
+  inputKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      this.login().then();
+    }
+  };
+
+  hsLogin = () => {
+    const { global, history } = this.props;
+    if (global.isElectron) {
+      hsLogin()
+        .then((r) => {
+          this.hide();
+          history.push(`/auth?code=${r.code}`);
+        })
+        .catch((e) => {
+          error(e);
+        });
+      return;
     }
 
-    hsLogin = () => {
-        const {global, history} = this.props;
-        if (global.isElectron) {
-            hsLogin().then(r => {
-                this.hide();
-                history.push(`/auth?code=${r.code}`);
-            }).catch((e) => {
-                error(e);
-            });
-            return;
-        }
+    window.location.href = getAuthUrl();
+  };
 
-        window.location.href = getAuthUrl();
+  kcLogin = () => {
+    const { toggleUIProp } = this.props;
+    toggleUIProp("loginKc");
+  };
+
+  login = async () => {
+    const { username, key } = this.state;
+
+    if (username === "" || key === "") {
+      error(_t("login.error-fields-required"));
+      return;
     }
 
-    kcLogin = () => {
-        const {toggleUIProp} = this.props;
-        toggleUIProp("loginKc");
+    // Warn if the code is a public key
+    try {
+      PublicKey.fromString(key);
+      error(_t("login.error-public-key"));
+      return;
+    } catch (e) {}
+
+    let account: Account;
+
+    this.stateSet({ inProgress: true });
+
+    try {
+      account = await getAccount(username);
+    } catch (err) {
+      error(_t("login.error-user-fetch"));
+      return;
+    } finally {
+      this.stateSet({ inProgress: false });
     }
 
-    login = async () => {
-        const {username, key} = this.state;
+    if (!(account && account.name === username)) {
+      error(_t("login.error-user-not-found"));
+      return;
+    }
 
-        if (username === '' || key === '') {
-            error(_t('login.error-fields-required'));
-            return;
-        }
+    // Posting public key of the account
+    const postingPublic = account?.posting!.key_auths.map((x) => x[0]);
 
-        // Warn if the code is a public key
+    const isPlainPassword = !cryptoUtils.isWif(key);
+
+    let thePrivateKey: PrivateKey;
+
+    // Whether using posting private key to login
+    let withPostingKey = false;
+
+    if (
+      !isPlainPassword &&
+      postingPublic.includes(
+        PrivateKey.fromString(key).createPublic().toString()
+      )
+    ) {
+      // Login with posting private key
+      withPostingKey = true;
+      thePrivateKey = PrivateKey.fromString(key);
+    } else {
+      // Login with master or active private key
+      // Get active private key from user entered code
+      if (isPlainPassword) {
+        thePrivateKey = PrivateKey.fromLogin(account.name, key, "active");
+      } else {
+        thePrivateKey = PrivateKey.fromString(key);
+      }
+
+      // Generate public key from the private key
+      const activePublicInput = thePrivateKey.createPublic().toString();
+
+      // Active public key of the account
+      const activePublic = account?.active!.key_auths.map((x) => x[0]);
+
+      // Compare keys
+      if (!activePublic.includes(activePublicInput)) {
+        error(_t("login.error-authenticate")); // enter master or active key
+        return;
+      }
+
+      const hasPostingPerm =
+        account?.posting!.account_auths.filter((x) => x[0] === "ecency.app")
+          .length > 0;
+
+      if (!hasPostingPerm) {
+        this.stateSet({ inProgress: true });
         try {
-            PublicKey.fromString(key);
-            error(_t('login.error-public-key'));
-            return;
-        } catch (e) {
-        }
-
-        let account: Account;
-
-        this.stateSet({inProgress: true});
-
-        try {
-            account = await getAccount(username);
+          await grantPostingPermission(thePrivateKey, account, "ecency.app");
         } catch (err) {
-            error(_t('login.error-user-fetch'));
-            return;
+          error(_t("login.error-permission"));
+          return;
         } finally {
-            this.stateSet({inProgress: false});
+          this.stateSet({ inProgress: false });
+        }
+      }
+    }
+
+    // Prepare hivesigner code
+    const signer = (message: string): Promise<string> => {
+      const hash = cryptoUtils.sha256(message);
+      return new Promise<string>((resolve) =>
+        resolve(thePrivateKey.sign(hash).toString())
+      );
+    };
+    const code = await makeHsCode(account.name, signer);
+
+    this.stateSet({ inProgress: true });
+
+    const { doLogin } = this.props;
+
+    doLogin(code, withPostingKey ? key : null, account)
+      .then(() => {
+        if (
+          !ls.get(`${username}HadTutorial`) ||
+          (ls.get(`${username}HadTutorial`) &&
+            ls.get(`${username}HadTutorial`) !== "true")
+        ) {
+          ls.set(`${username}HadTutorial`, "false");
         }
 
-        if (!(account && account.name === username)) {
-            error(_t('login.error-user-not-found'));
-            return;
+        let shouldShowTutorialJourney = ls.get(`${username}HadTutorial`);
+
+        if (
+          !shouldShowTutorialJourney &&
+          shouldShowTutorialJourney &&
+          shouldShowTutorialJourney === "false"
+        ) {
+          ls.set(`${username}HadTutorial`, "false");
         }
+        this.hide();
+      })
+      .catch(() => {
+        error(_t("g.server-error"));
+      })
+      .finally(() => {
+        this.stateSet({ inProgress: false });
+      });
+  };
 
-        // Posting public key of the account
-        const postingPublic = account?.posting!.key_auths.map(x => x[0]);
+  render() {
+    const { username, key, inProgress } = this.state;
+    const { users, activeUser, global, userListRef } = this.props;
+    const logo = setupConfig.navBarImg;
+    const hsLogo = global.isElectron
+      ? "./img/hive-signer.svg"
+      : require("../../img/hive-signer.svg");
+    const keyChainLogo = global.isElectron
+      ? "./img/keychain.png"
+      : require("../../img/keychain.png");
 
-        const isPlainPassword = !cryptoUtils.isWif(key);
+    const spinner = (
+      <Spinner
+        animation="grow"
+        variant="light"
+        size="sm"
+        style={{ marginRight: "6px" }}
+      />
+    );
 
-        let thePrivateKey: PrivateKey;
+    return (
+      <>
+        {users.length === 0 && (
+          <div className="dialog-header">
+            <img src={logo} alt="Logo" />
+            <h2>{_t("login.title")}</h2>
+          </div>
+        )}
 
-        // Whether using posting private key to login
-        let withPostingKey = false;
+        {users.length > 0 && (
+          <>
+            <div className="user-list" ref={userListRef}>
+              <div className="user-list-header">{_t("g.login-as")}</div>
+              <div className="user-list-body">
+                {users.map((u) => {
+                  return (
+                    <UserItem
+                      key={u.username}
+                      {...this.props}
+                      disabled={inProgress}
+                      user={u}
+                      onSelect={this.userSelect}
+                      onDelete={this.userDelete}
+                      containerRef={userListRef}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+            <OrDivider />
+          </>
+        )}
 
-        if (!isPlainPassword && postingPublic.includes(PrivateKey.fromString(key).createPublic().toString())) {
-            // Login with posting private key
-            withPostingKey = true;
-            thePrivateKey = PrivateKey.fromString(key);
-        } else {
-            // Login with master or active private key
-            // Get active private key from user entered code
-            if (isPlainPassword) {
-                thePrivateKey = PrivateKey.fromLogin(account.name, key, 'active');
-            } else {
-                thePrivateKey = PrivateKey.fromString(key);
-            }
-
-            // Generate public key from the private key
-            const activePublicInput = thePrivateKey.createPublic().toString();
-
-            // Active public key of the account
-            const activePublic = account?.active!.key_auths.map(x => x[0]);
-
-            // Compare keys
-            if (!activePublic.includes(activePublicInput)) {
-                error(_t('login.error-authenticate')); // enter master or active key
-                return;
-            }
-
-            const hasPostingPerm = account?.posting!.account_auths.filter(x => x[0] === "ecency.app").length > 0;
-
-            if (!hasPostingPerm) {
-                this.stateSet({inProgress: true});
-                try {
-                    await grantPostingPermission(thePrivateKey, account, "ecency.app")
-                } catch (err) {
-                    error(_t('login.error-permission'));
-                    return;
-                } finally {
-                    this.stateSet({inProgress: false});
-                }
-            }
-        }
-
-        // Prepare hivesigner code
-        const signer = (message: string): Promise<string> => {
-            const hash = cryptoUtils.sha256(message);
-            return new Promise<string>((resolve) => resolve(thePrivateKey.sign(hash).toString()));
-        }
-        const code = await makeHsCode(account.name, signer);
-
-        this.stateSet({inProgress: true});
-
-        const {doLogin} = this.props;
-
-        doLogin(code, (withPostingKey ? key : null), account)
-            .then(() => {
-                if(!ls.get(`${username}HadTutorial`) || ls.get(`${username}HadTutorial`) && ls.get(`${username}HadTutorial`)!=='true'){
-                    ls.set(`${username}HadTutorial`, 'false');
-                }
-
-                let shouldShowTutorialJourney = ls.get(`${username}HadTutorial`);
-                
-                if(!shouldShowTutorialJourney && (shouldShowTutorialJourney && shouldShowTutorialJourney==='false')){
-                    ls.set(`${username}HadTutorial`, 'false');
-                }
+        <Form
+          className="login-form"
+          onSubmit={(e: React.FormEvent) => {
+            e.preventDefault();
+          }}
+        >
+          <p className="login-form-text">{_t("login.with-user-pass")}</p>
+          <Form.Group>
+            <Form.Control
+              type="text"
+              value={username}
+              onChange={this.usernameChanged}
+              placeholder={_t("login.username-placeholder")}
+              autoFocus={true}
+              onKeyDown={this.inputKeyDown}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Control
+              type="password"
+              value={key}
+              autoComplete="off"
+              onChange={this.keyChanged}
+              placeholder={_t("login.key-placeholder")}
+              onKeyDown={this.inputKeyDown}
+            />
+          </Form.Group>
+          <p className="login-form-text">
+            {_t("login.login-info-1")}{" "}
+            <a
+              onClick={(e) => {
+                e.preventDefault();
                 this.hide();
-            })
-            .catch(() => {
-                error(_t('g.server-error'));
-            })
-            .finally(() => {
-                this.stateSet({inProgress: false});
-            });
-    }
+                const { history } = this.props;
+                history.push("/faq#how-to-signin");
+                setTimeout(() => {
+                  const el = document.getElementById("how-to-signin");
+                  if (el) el.scrollIntoView();
+                }, 300);
+              }}
+              href="#"
+            >
+              {_t("login.login-info-2")}
+            </a>
+          </p>
+          <Button disabled={inProgress} block={true} onClick={this.login}>
+            {inProgress && username && key && spinner}
+            {_t("g.login")}
+          </Button>
+        </Form>
+        <OrDivider />
+        <div className="hs-login">
+          <a
+            className={_c(
+              `btn btn-outline-primary ${inProgress ? "disabled" : ""}`
+            )}
+            onClick={this.hsLogin}
+          >
+            <img
+              src={global.isElectron ? "./img/hive-signer.svg" : hsLogo}
+              className="hs-logo"
+              alt="hivesigner"
+            />{" "}
+            {_t("login.with-hive-signer")}
+          </a>
+        </div>
+        {global.hasKeyChain && (
+          <div className="kc-login">
+            <a
+              className={_c(
+                `btn btn-outline-primary ${inProgress ? "disabled" : ""}`
+              )}
+              onClick={this.kcLogin}
+            >
+              <img src={keyChainLogo} className="kc-logo" alt="keychain" />{" "}
+              {_t("login.with-keychain")}
+            </a>
+          </div>
+        )}
+        {activeUser === null && (
+          <p>
+            {_t("login.sign-up-text-1")}
+            &nbsp;
+            <a
+              href="#"
+              onClick={(e: React.MouseEvent) => {
+                e.preventDefault();
+                this.hide();
 
-    render() {
-        const {username, key, inProgress} = this.state;
-        const {users, activeUser, global, userListRef} = this.props;
-        const logo = global.isElectron ? "./img/logo-circle.svg" : require('../../img/logo-circle.svg');
-        const hsLogo = global.isElectron ? "./img/hive-signer.svg" : require("../../img/hive-signer.svg");
-        const keyChainLogo = global.isElectron ?  "./img/keychain.png" : require("../../img/keychain.png");
-
-        const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
-
-        return (
-            <>
-                {users.length === 0 && (
-                    <div className="dialog-header">
-                        <img src={logo} alt="Logo"/>
-                        <h2>{_t('login.title')}</h2>
-                    </div>
-                )}
-
-                {users.length > 0 && (
-                    <>
-                        <div className="user-list" ref={userListRef}>
-                            <div className="user-list-header">{_t("g.login-as")}</div>
-                            <div className="user-list-body">
-                                {users.map((u) => {
-                                    return (
-                                        <UserItem
-                                            key={u.username}
-                                            {...this.props}
-                                            disabled={inProgress}
-                                            user={u}
-                                            onSelect={this.userSelect}
-                                            onDelete={this.userDelete}
-                                            containerRef={userListRef}
-                                        />
-                                    );
-                                })}
-                            </div>
-                        </div>
-                        <OrDivider/>
-                    </>
-                )}
-
-                <Form className="login-form" onSubmit={(e: React.FormEvent) => {
-                    e.preventDefault();
-                }}>
-                    <p className="login-form-text">{_t('login.with-user-pass')}</p>
-                    <Form.Group>
-                        <Form.Control type="text" value={username} onChange={this.usernameChanged} placeholder={_t('login.username-placeholder')} autoFocus={true}
-                                      onKeyDown={this.inputKeyDown}/>
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Control type="password" value={key} autoComplete="off" onChange={this.keyChanged} placeholder={_t('login.key-placeholder')}
-                                      onKeyDown={this.inputKeyDown}/>
-                    </Form.Group>
-                    <p className="login-form-text">{_t('login.login-info-1')} <a onClick={((e) => {
-                        e.preventDefault();
-                        this.hide();
-                        const {history} = this.props;
-                        history.push("/faq#how-to-signin");
-                        setTimeout(() => {
-                            const el = document.getElementById("how-to-signin");
-                            if (el) el.scrollIntoView();
-                        }, 300)
-                    })} href="#">{_t('login.login-info-2')}</a></p>
-                    <Button disabled={inProgress} block={true} onClick={this.login}>
-                        {(inProgress && username && key) && spinner}{_t('g.login')}
-                    </Button>
-                </Form>
-                <OrDivider/>
-                <div className="hs-login">
-                    <a className={_c(`btn btn-outline-primary ${inProgress ? "disabled" : ""}`)} onClick={this.hsLogin}>
-                        <img src={global.isElectron ? "./img/hive-signer.svg" : hsLogo} className="hs-logo" alt="hivesigner"/> {_t("login.with-hive-signer")}
-                    </a>
-                </div>
-                {global.hasKeyChain && (
-                    <div className="kc-login">
-                        <a className={_c(`btn btn-outline-primary ${inProgress ? "disabled" : ""}`)} onClick={this.kcLogin}>
-                            <img src={keyChainLogo} className="kc-logo" alt="keychain"/> {_t("login.with-keychain")}
-                        </a>
-                    </div>
-                )}
-                {activeUser === null && (
-                    <p>
-                        {_t("login.sign-up-text-1")}
-                        &nbsp;
-                        <a href="#" onClick={(e: React.MouseEvent) => {
-                            e.preventDefault();
-                            this.hide();
-
-                            const {history} = this.props;
-                            history.push("/signup");
-
-                        }}>{_t("login.sign-up-text-2")}</a>
-                    </p>
-                )}
-            </>
-        );
-    }
+                const { history } = this.props;
+                history.push("/signup");
+              }}
+            >
+              {_t("login.sign-up-text-2")}
+            </a>
+          </p>
+        )}
+      </>
+    );
+  }
 }
 
 interface Props {

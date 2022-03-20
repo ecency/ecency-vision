@@ -39,7 +39,7 @@
       }
 
       @include themify(sky) {
-        color: $sky-primary;
+        color: $white-three;
       }
 
       @media (min-width: $sm-break) {

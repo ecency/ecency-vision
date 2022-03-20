@@ -1,4 +1,17 @@
 .login-modal {
+  
+  .modal-content {
+    @include themify(sky) {
+      background-color: $sky-background;
+    }
+    @include themify(dusk) {
+      background-color: $dusk-background;
+    }
+    @include themify(burning) {
+      background-color: $burning-background;
+    }
+  }
+
   .modal-body {
     width: 100%;
     max-width: 390px;
@@ -17,12 +30,32 @@
         margin: 0;
         font-size: 24px;
         font-weight: 500;
+
+        @include themify(sky) {
+          color: $white-three;
+        }
+        @include themify(dusk) {
+          color: $white-three;
+        }
+        @include themify(burning) {
+          color: $white-three;
+        }
       }
     }
 
     p {
       color: $steel-grey;
       text-align: center;
+
+      @include themify(sky) {
+          color: $white-three;
+      }
+      @include themify(dusk) {
+          color: $white-three;
+      }
+      @include themify(burning) {
+          color: $white-three;
+      }
     }
 
     .user-list {
@@ -62,6 +95,11 @@
           }
 
           @include themify(day) {
+            background: $duck-egg-blue;
+            color: $dark-sky-blue;
+          }
+
+          @include themify(sky) {
             background: $duck-egg-blue;
             color: $dark-sky-blue;
           }
@@ -131,6 +169,14 @@
               }
             }
 
+            @include themify(sky) {
+              background: darken($duck-egg-blue, 20);
+
+              &:hover {
+                background: $duck-egg-blue;
+              }
+            }
+
             @include themify(night) {
               background: darken($metallic-blue, 3);
 
@@ -156,9 +202,12 @@
 
     .login-form {
       margin: auto;
-
       .login-form-text {
         font-size: 14px;
+
+        @include themify(sky) {
+          color: $white-three;
+        }
       }
     }
 

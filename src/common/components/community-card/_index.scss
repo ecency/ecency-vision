@@ -63,15 +63,15 @@
       color: $dark-sky-blue;
 
       @include themify(dusk) {
-        color: $dusk-primary;
+        color: $white-three;
       }
 
       @include themify(burning) {
-        color: $burning-primary;
+        color: $white-three;
       }
 
       @include themify(sky) {
-        color: $sky-primary;
+        color: $white-three;
       }
     }
 
@@ -80,15 +80,15 @@
       color: $dark-sky-blue;
 
       @include themify(dusk) {
-        color: $dusk-primary;
+        color: $white-three;
       }
 
       @include themify(burning) {
-        color: $burning-primary;
+        color: $white-three;
       }
 
       @include themify(sky) {
-        color: $sky-primary;
+        color: $white-three;
       }
     }
 
@@ -188,7 +188,7 @@
         }
 
         @include themify(sky) {
-          color: $sky-primary;
+          color: $white-three;
         }
       }
     }

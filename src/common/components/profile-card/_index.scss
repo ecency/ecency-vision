@@ -144,15 +144,15 @@
       text-align: center;
 
       @include themify(dusk) {
-        color: $dusk-primary;
+        color: $white-three;
       }
 
       @include themify(burning) {
-        color: $burning-primary;
+        color: $white-three;
       }
 
       @include themify(sky) {
-        color: $sky-primary;
+        color: $white-three;
       }
 
       @media (min-width: $md-break) {
@@ -168,15 +168,15 @@
       word-wrap: break-word;
 
       @include themify(dusk) {
-        color: $dusk-primary;
+        color: $white-three;
       }
 
       @include themify(burning) {
-        color: $burning-primary;
+        color: $white-three;
       }
 
       @include themify(sky) {
-        color: $sky-primary;
+        color: $white-three;
       }
 
       @media (min-width: $md-break) {
@@ -204,7 +204,7 @@
       flex-shrink: 0;
 
       @include themify(sky) {
-        color: $sky-primary !important;
+        color: $white-three !important;
       }
     }
   }
@@ -229,7 +229,7 @@
 
 
         @include themify(sky) {
-          color: $sky-primary !important;
+          color: $white-three !important;
         }
       }
 

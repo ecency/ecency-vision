@@ -32,7 +32,7 @@
       cursor: pointer;
 
       @include themify(sky) {
-        color: $sky-primary;
+        color: $white-three;
       }
 
       .dropdown-btn {
