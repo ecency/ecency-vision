@@ -200,7 +200,7 @@ export default class EntryListItem extends Component<Props, State> {
                 />
             );
         }
-        if (global.listStyle === 'row') {
+        if (global.listStyle === 'row' || global.listStyle === 'deck') {
             thumb = (
                 <picture>
                     <source srcSet={imgRow} media="(min-width: 576px)"/>
