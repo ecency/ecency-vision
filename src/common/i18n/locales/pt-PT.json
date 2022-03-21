@@ -276,12 +276,12 @@
   "market": {
     "title": "Token exchange",
     "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
-    "last-price": "Last Price",
+    "last-price": "Último Preço",
     "volume": "24h volume",
     "bid": "Bid",
     "spread": "Margem",
     "ask": "Ask",
-    "buy": "Buy",
+    "buy": "Comprar",
     "sell": "Vender",
     "available": "Available",
     "highest-bid": "Maior oferta",
@@ -775,15 +775,15 @@
     "title": "Convert requests",
     "request-id": "Request id",
     "amount": "Amount",
-    "pending": "Pending"
+    "pending": "Pendente"
   },
   "savings-withdraw": {
     "title": "Withdraw from Savings",
-    "to": "To"
+    "to": "Para"
   },
   "open-orders-list": {
     "title": "Open orders",
-    "created": "Created",
+    "created": "Criado",
     "expires": "Expires",
     "order-id": "Order id"
   },
@@ -835,7 +835,7 @@
     "page-title": "Criar uma publicação",
     "page-description": "Publique um artigo, ganhe recompensa, sem censura, conteúdo imutável e descentralizado!",
     "title-placeholder": "Título",
-    "body-placeholder": "Tell your story...",
+    "body-placeholder": "Conte a sua história...",
     "reward": "Recompensa",
     "reward-hint": "Configura a taxa de recompensa do autor para tokens líquidos e ilíqüidos.",
     "reward-default": "Padrão 50% / 50%",
