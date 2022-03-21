@@ -264,7 +264,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   max={100}
                   value={upSliderVal}
                   onChange={this.upSliderChanged}
-                  id={(post_id|id).toString()}
+                  id={`${post_id||id}`}
                 />
               </div>
               <div className="percentage">{`${
@@ -324,7 +324,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   max={-1}
                   value={downSliderVal}
                   onChange={this.downSliderChanged}
-                  id={(post_id|id).toString()}
+                  id={`${post_id||id}`}
                   className="reverse-range"
                 />
               </div>
