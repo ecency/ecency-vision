@@ -71,6 +71,7 @@ export interface Entry {
 export interface EntryGroup {
     entries: Entry[];
     error: string | null;
+    sid: string; //scroll_id for controversial/rising results
     loading: boolean;
     hasMore: boolean;
 }
@@ -94,12 +95,14 @@ export interface FetchAction {
 export interface FetchErrorAction {
     type: ActionTypes.FETCH_ERROR;
     groupKey: string;
+    sid: string;
     error: string;
 }
 
 export interface FetchedAction {
     type: ActionTypes.FETCHED;
     groupKey: string;
+    sid: string;
     entries: Entry[];
     hasMore: boolean;
 }
@@ -112,6 +115,7 @@ export interface InvalidateAction {
 export interface UpdateAction {
     type: ActionTypes.UPDATE;
     entry: Entry;
+    sid: string;
 }
 
 export type Actions =

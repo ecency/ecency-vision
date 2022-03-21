@@ -43,12 +43,14 @@ export const initialState: Entries = {
     "__manual__": {
         entries: [],
         error: null,
+        sid: "",
         loading: false,
         hasMore: false
     },
     "__promoted__": {
         entries: [],
         error: null,
+        sid: "",
         loading: false,
         hasMore: false
     }
@@ -72,7 +74,7 @@ export default (state: Entries = initialState, action: Actions): Entries => {
             if (state[`${groupKey}`] === undefined || action.payload.action === 'PUSH') {
                 return update(state, {
                     [`${groupKey}`]: {
-                        $set: {entries: [], error: null, loading: true, hasMore: false},
+                        $set: {entries: [], error: null, sid: "", loading: true, hasMore: false},
                     },
                 });
             }
@@ -92,10 +94,9 @@ export default (state: Entries = initialState, action: Actions): Entries => {
             });
         }
         case ActionTypes.FETCHED: {
-            const {groupKey, entries, hasMore} = action;
-
+            const {groupKey, entries, sid, hasMore} = action;
             const merged = update(state, {
-                [`${groupKey}`]: {$merge: {loading: false, error: null, hasMore}},
+                [`${groupKey}`]: {$merge: {loading: false, sid, error: null, hasMore}},
             });
 
             // Filter entries
@@ -148,12 +149,11 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
     getState: () => AppState
 ) => {
     const {entries, activeUser} = getState();
-    const pageSize = dataLimit;
 
     const groupKey = makeGroupKey(what, tag);
 
     const theEntries = entries[groupKey].entries;
-
+    const sid = entries[groupKey].sid;
     if (!more && theEntries.length > 0) {
         return;
     }
@@ -202,9 +202,8 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
         let sort = what === 'rising' ? 'children' : what
         const since = sinceDate ? sinceDate.format("YYYY-MM-DDTHH:mm:ss") : undefined;        
         const hideLow_ = "0"
-        const scrollId = ss.get(`cfilter-${what}${tag}`);
-        const resultsLength = ss.get(`cfilter-len-${what}${tag}`);
-        const scrollId_ = (resultsLength && scrollId) ? scrollId : undefined;
+        const scrollId = sid;
+        const scrollId_ = scrollId ? scrollId : undefined;
         promise = search(q, sort, hideLow_, since, scrollId_)
         
     } else {
@@ -215,34 +214,20 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
     promise
         .then((resp) => {
             if (resp.results) {
-                dispatch(fetchedAct(groupKey, resp.results, resp.results.length >= dataLimit));
-                ss.set(`cfilter-${what}${tag}`, resp.scroll_id);
-                ss.set(`cfilter-len-${what}${tag}`, resp.results.length > 0);
-                
+                dispatch(fetchedAct(groupKey, resp.results, resp.scroll_id, resp.results.length >= dataLimit));
             } else if (resp) {
-                dispatch(fetchedAct(groupKey, resp, resp.length >= dataLimit));
-                cleanUpSS();
+                dispatch(fetchedAct(groupKey, resp, "", resp.length >= dataLimit));
             } else {
-                dispatch(fetchErrorAct(groupKey, "server error"));
-                cleanUpSS();
+                dispatch(fetchErrorAct(groupKey, "", "server error"));
             }
         })
         .catch((e) => {
-            dispatch(fetchErrorAct(groupKey, "network error"));
+            dispatch(fetchErrorAct(groupKey, "", "network error"));
         });
 };
 
-const cleanUpSS = () => {
-    Object.entries(sessionStorage).map(
-        x => x[0]
-    ).filter(
-        x => x.includes("ecency_cfilter")
-    ).map(
-        x => sessionStorage.removeItem(x));
-}
-
 export const addEntry = (entry: Entry) => (dispatch: Dispatch) => {
-    dispatch(fetchedAct("__manual__", [entry], false));
+    dispatch(fetchedAct("__manual__", [entry], "", false));
 };
 
 export const updateEntry = (entry: Entry) => (dispatch: Dispatch) => {
@@ -262,19 +247,21 @@ export const fetchAct = (groupKey: string): FetchAction => {
     };
 };
 
-export const fetchErrorAct = (groupKey: string, error: string): FetchErrorAction => {
+export const fetchErrorAct = (groupKey: string, sid: string="", error: string): FetchErrorAction => {
     return {
         type: ActionTypes.FETCH_ERROR,
         groupKey,
+        sid,
         error,
     };
 };
 
-export const fetchedAct = (groupKey: string, entries: Entry[], hasMore: boolean): FetchedAction => {
+export const fetchedAct = (groupKey: string, entries: Entry[], sid: string, hasMore: boolean): FetchedAction => {
     return {
         type: ActionTypes.FETCHED,
         groupKey,
         entries,
+        sid,
         hasMore,
     };
 };
@@ -286,9 +273,10 @@ export const invalidateAct = (groupKey: string): InvalidateAction => {
     };
 };
 
-export const updateAct = (entry: Entry): UpdateAction => {
+export const updateAct = (entry: Entry, sid: string = ""): UpdateAction => {
     return {
         type: ActionTypes.UPDATE,
+        sid,
         entry,
     };
 };

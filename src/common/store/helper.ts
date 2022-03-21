@@ -131,7 +131,7 @@ export const clientStoreTasks = (store: Store<AppState>) => {
     // Inject / update promoted entries to store
     const promotedEntries = () => {
         getPromotedEntries().then(r => {
-            store.dispatch(entriesFetchedAct("__promoted__", r, false));
+            store.dispatch(entriesFetchedAct("__promoted__", r, "", false));
         })
     }
     promotedEntries();
