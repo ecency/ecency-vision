@@ -304,7 +304,7 @@
     "confirm-sell": "Valores",
     "transaction-succeeded": "Transação submetida",
     "lowest-ask": "Oferta mais baixa",
-    "decimal-error": "Only {{decimals}} decimal digits allowed!"
+    "decimal-error": "Somente {{decimals}} dígitos decimais permitidos!"
   },
   "list-style": {
     "title": "Alternar estilo da lista"
@@ -569,7 +569,7 @@
     "calculating": "Calculando",
     "converting-hbd-amount": "Convertendo em HIVE",
     "withdrawing-amount": "Sacando da Poupança",
-    "reserved-amount": "Reserved for Open order in Market"
+    "reserved-amount": "Reservado em ordem aberta no Câmbio"
   },
   "wallet-engine": {
     "title": "Tokens da Hive Engine",
