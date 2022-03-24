@@ -2,8 +2,6 @@ import React, {Component, useState, useEffect} from "react";
 
 import {History, Location} from "history";
 
-import moment from "moment";
-
 import {Button, Form, FormControl} from "react-bootstrap";
 
 import defaults from "../../constants/defaults.json";
@@ -35,7 +33,7 @@ import EntryDeleteBtn from "../entry-delete-btn";
 import MuteBtn from "../mute-btn";
 import LoginRequired from "../login-required";
 
-import parseDate from "../../helper/parse-date";
+import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 
 import {_t} from "../../i18n";
 
@@ -275,7 +273,6 @@ export const Item = (props: ItemProps) => {
         }
     }
 
-    const created = moment(parseDate(entry.created));
     const readMore = entry.children > 0 && entry.depth > 5;
     const showSubList = !readMore && entry.children > 0;
     const canEdit = activeUser && activeUser.username === entry.author;
@@ -315,8 +312,8 @@ export const Item = (props: ItemProps) => {
                         {EntryLink({
                             ...props,
                             entry,
-                            children: <span className="date" title={created.format("LLLL")}>
-                                {created.fromNow()}
+                            children: <span className="date" title={dateToFormatted(entry.created)}>
+                                {dateToFullRelative(entry.created)}
                             </span>
                         })}
                     </div>
@@ -681,7 +678,7 @@ export class Discussion extends Component<Props, State> {
         }
 
         return (
-            <div className="discussion">
+            <div className="discussion" id="discussion">
                 {!activeUser && <>{join}</>}
                 <div className="discussion-header">
                     <div className="count"> {commentSvg} {strCount}</div>

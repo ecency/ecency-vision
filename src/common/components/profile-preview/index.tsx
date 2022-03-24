@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -6,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { getRelationshipBetweenAccounts } from '../../api/bridge';
 import { getAccount, getFollowCount } from '../../api/hive';
 import accountReputation from '../../helper/account-reputation';
+import { dateToFullRelative } from '../../helper/parse-date';
 import { _t } from '../../i18n';
 import { closeSvg } from '../../img/svg';
 import { Account } from '../../store/accounts/types';
@@ -124,7 +124,7 @@ export const ProfilePreview = ({username, global, onClose, activeUser, ...props}
                         <div className="flex-grow-1 d-flex border-bottom">
                             <div className="p-3 flex-grow-1">
                                 <b>{_t("profile-info.joined")}</b>
-                                <div className="text-break-wrap">{loading ? <Skeleton className="loading-md" /> : profile && moment(profile.created, "YYYY-MM-DD").fromNow()}</div>
+                                <div className="text-break-wrap">{loading ? <Skeleton className="loading-md" /> : profile && dateToFullRelative(profile.created)}</div>
                             </div>
 
                             <div className={`p-3 flex-grow-1 ${loading ? "": profile && profile.profile.location ? "" : "d-none"}`}>

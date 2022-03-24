@@ -4,8 +4,6 @@ import {History} from "history";
 
 import {Link} from "react-router-dom";
 
-import moment from "moment";
-
 import {Global} from "../../store/global/types";
 import {Account, FullAccount} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -37,6 +35,7 @@ import {
 import { EditPic } from '../community-card';
 import { getRelationshipBetweenAccounts } from "../../api/bridge";
 import { Skeleton } from "../skeleton";
+import { dateToFormatted } from '../../helper/parse-date';
 
 interface Props {
     global: Global;
@@ -206,7 +205,7 @@ export const ProfileCard = (props: Props) => {
 
                 {account.created && (
                     <div className="prop">
-                        {calendarRangeSvg} {moment(new Date(account.created)).format("LL")}
+                        {calendarRangeSvg} {dateToFormatted(account.created, "LL")}
                     </div>
                 )}
 

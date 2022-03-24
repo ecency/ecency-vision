@@ -144,6 +144,16 @@ export const getTrendingTags = (afterTag: string = "", limit: number = 250): Pro
             }
         );
 
+export const getAllTrendingTags = (afterTag: string = "", limit: number = 250): Promise<TrendingTag[]> =>
+    client.database
+        .call("get_trending_tags", [afterTag, limit])
+        .then((tags: TrendingTag[]) => {
+                return tags
+                    .filter((x) => x.name !== "")
+                    .filter((x) => !isCommunity(x.name))
+            }
+        );
+
 export const lookupAccounts = (q: string, limit = 50): Promise<string[]> =>
     client.database.call("lookup_accounts", [q, limit]);
 
@@ -262,9 +272,10 @@ export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =
         virtual_supply: r.virtual_supply
     })});
 
-export const getAccountHistory = (username: string, filters: any[], start: number = -1, limit: number = 20): Promise<any> => {
-
-    return client.call("condenser_api", "get_account_history", [username, start, limit, ...filters]);
+export const getAccountHistory = (username: string, filters: any[] | any, start: number = -1, limit: number = 20): Promise<any> => {
+    
+    return filters ? client.call("condenser_api", "get_account_history", [username, start, limit, ...filters]) : 
+     client.call("condenser_api", "get_account_history", [username, start, limit])
 }
 
 export const getFeedHistory = (): Promise<FeedHistory> => client.database.call("get_feed_history");

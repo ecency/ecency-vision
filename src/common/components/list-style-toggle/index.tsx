@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import isEqual from "react-fast-compare";
 
-// import { Dropdown, DropdownButton } from "react-bootstrap";
 import DropDown, {MenuItem} from "../dropdown";
 
 import { Global } from "../../store/global/types";
@@ -16,11 +15,15 @@ import {
     gridView,
     listView,
     menuDownSvg,
+    viewStackedSvg,
 } from "../../img/svg";
 
 interface Props {
     global: Global;
     toggleListStyle: (view: string | null) => void;
+    iconClass?: string;
+    float?: "left" | "right";
+    deck?: boolean;
 }
 
 export default class ListStyleToggle extends Component<Props> {
@@ -33,42 +36,48 @@ export default class ListStyleToggle extends Component<Props> {
 
     changeStyle = (view: string) => {
         const { toggleListStyle } = this.props;
-
         toggleListStyle(view);
     };
 
     render() {
-        const { global } = this.props;
+        const { global, iconClass, float, deck } = this.props;
         const { listStyle } = global;
-
         const dropDownItems: MenuItem[] = [
             {
                 label: <span className="gridMenu">{gridView} {_t("layouts.grid")}</span>,
-                active: global.listStyle === "grid",
+                selected: listStyle === "grid",
                 onClick: () => {this.changeStyle("grid")},
             },
             {
                 label: <span className="gridMenu">{listView} {_t("layouts.classic")}</span>,
-                active: global.listStyle === "row",
+                selected: (listStyle === "row" || (!deck && listStyle === "deck")),
                 onClick: () => {this.changeStyle("row")},
-            },
+            }
         ];
+
+        if(deck){
+            dropDownItems.push(
+                {
+                    label: <span className="gridMenu">{viewStackedSvg} {_t("layouts.deck")}</span>,
+                    selected: listStyle === "deck",
+                    onClick: () => {this.changeStyle("deck")},
+                })
+        }
 
         const dropDownConfig = {
             history: null,
             label: (
                 <span className="view-feed">
-                    <span className="view-layout">{viewModuleSvg}</span>{" "}
-                    <span className="menu-down-icon">{menuDownSvg}</span>
+                    <span className={`view-layout ${iconClass?iconClass:""}`}>{viewModuleSvg}</span>{" "}
+                    <span className={`menu-down-icon ${iconClass?iconClass:""}`}>{menuDownSvg}</span>
                 </span>
             ),
             items: dropDownItems,
             preElem: undefined,
         };
-
         return (
             <div className="viewLayouts">
-                <DropDown {...dropDownConfig} float="right" header="" />
+                <DropDown {...dropDownConfig} float={float || "right"} header="" />
             </div>
         );
     }

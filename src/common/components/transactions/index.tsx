@@ -1,7 +1,5 @@
 import React, {Component} from "react";
 
-import moment from "moment";
-
 import {History} from "history";
 
 import {FormControl, Button} from "react-bootstrap";
@@ -14,12 +12,12 @@ import LinearProgress from "../linear-progress";
 import EntryLink from "../entry-link";
 
 import parseAsset from "../../helper/parse-asset";
-import parseDate from "../../helper/parse-date";
+import { dateToFullRelative } from "../../helper/parse-date";
 import {vestsToHp} from "../../helper/vesting";
 
 import formattedNumber from "../../util/formatted-number";
 
-import {ticketSvg, commentSvg, compareHorizontalSvg, cashMultiple, reOrderHorizontalSvg, pickAxeSvg, closeSvg, exchangeSvg, cashCoinSvg, powerDownSvg, powerUpSvg, starsSvg, chevronUpSvgForVote, chevronDownSvgForSlider, starSvg} from "../../img/svg";
+import {ticketSvg, compareHorizontalSvg, cashMultiple, reOrderHorizontalSvg, pickAxeSvg, closeSvg, exchangeSvg, cashCoinSvg, powerDownSvg, powerUpSvg, starsSvg, chevronUpSvgForVote, chevronDownSvgForSlider, starSvg} from "../../img/svg";
 
 import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
@@ -28,12 +26,14 @@ interface RowProps {
     history: History;
     dynamicProps: DynamicProps;
     transaction: Transaction;
+    entry?: Transaction
 }
 
 export class TransactionRow extends Component<RowProps> {
     render() {
-        const {dynamicProps, transaction: tr} = this.props;
+        const {dynamicProps, transaction: item, entry} = this.props;
         const {hivePerMVests} = dynamicProps;
+        const tr = item || entry;
 
         let flag = false;
         let icon = ticketSvg;
@@ -398,14 +398,12 @@ export class TransactionRow extends Component<RowProps> {
         }
 
         if (flag) {
-            const transDate = parseDate(tr.timestamp);
-
             return (
                 <div className="transaction-list-item">
                     <div className="transaction-icon">{icon}</div>
                     <div className="transaction-title">
                         <div className="transaction-name">{_t(`transactions.type-${tr.type}`)}</div>
-                        <div className="transaction-date">{moment(transDate).fromNow()}</div>
+                        <div className="transaction-date">{dateToFullRelative(tr.timestamp)}</div>
                     </div>
                     <div className="transaction-numbers">{numbers}</div>
                     <div className="transaction-details">{details}</div>

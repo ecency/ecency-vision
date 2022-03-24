@@ -3,7 +3,6 @@ import React, {Component} from "react";
 import {History} from "history";
 
 import {Table, Modal} from "react-bootstrap";
-import moment from "moment";
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
@@ -17,7 +16,7 @@ import {_t} from "../../i18n";
 import formattedNumber from "../../util/formatted-number";
 import MyPagination from "../pagination";
 import { ConversionRequest, getConversionRequests } from '../../api/hive';
-import parseDate from '../../helper/parse-date';
+import { dateToFormatted, dateToFullRelative } from '../../helper/parse-date';
 
 
 interface Props {
@@ -93,7 +92,6 @@ export class List extends BaseComponent<Props, State> {
                         <tbody>
                             {sliced.map(x => {
                                 const {requestid} = x;
-                                const published = moment(parseDate(x.conversion_date));
                                 return <tr key={requestid}>
                                     <td>{requestid}</td>
                                     <td>
@@ -102,8 +100,8 @@ export class List extends BaseComponent<Props, State> {
                                         </Tooltip>
                                     </td>
                                     <td>
-                                        <div className="date" title={published.format("LLLL")}>
-                                            {published.fromNow()}
+                                        <div className="date" title={dateToFormatted(x.conversion_date)}>
+                                            {dateToFullRelative(x.conversion_date)}
                                         </div>
                                     </td>
                                 </tr>;

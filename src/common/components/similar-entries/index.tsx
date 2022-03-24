@@ -2,8 +2,6 @@ import React from "react";
 
 import {History, Location} from "history";
 
-import moment from "moment";
-
 import isEqual from "react-fast-compare";
 
 import defaults from "../../constants/defaults.json";
@@ -22,7 +20,7 @@ import {search, SearchResult} from "../../api/search-api";
 
 import {_t} from "../../i18n";
 
-import parseDate from "../../helper/parse-date";
+import { dateToFullRelative } from "../../helper/parse-date";
 import isCommunity from "../../helper/is-community";
 
 interface Props {
@@ -138,8 +136,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
                         {entries.map((en, i) => {
                             const img = catchPostImage(en.img_url, 600, 500, global.canUseWebp ? 'webp' : 'match') || noImage;
                             const imgSize = img == noImage ? "75px" : "auto";
-                            const date = moment(parseDate(`${en.created_at.replace('+00:00', '')}`));
-                            const dateRelative = date.fromNow();
+                            const dateRelative = dateToFullRelative(en.created_at);
 
                             return <div className="similar-entries-list-item" key={i}>
                                 {EntryLink({

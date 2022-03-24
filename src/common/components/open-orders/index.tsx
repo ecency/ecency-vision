@@ -1,4 +1,3 @@
-import moment from "moment";
 import React from "react";
 import { useState } from "react";
 import { Table } from "react-bootstrap";
@@ -9,6 +8,7 @@ import BuySellHiveDialog, {
 import { _t } from "../../i18n";
 import { Skeleton } from "../skeleton";
 import { ActiveUser } from "../../store/active-user/types";
+import { dateToFormatted, dateToFullRelative } from '../../helper/parse-date';
 
 const columns = [
   `${_t("market.date")}`,
@@ -57,15 +57,9 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: 
         </thead>
         <tbody>
           {data.map((item) => {
-            let date = moment
-              .utc(item.created)
-              .local()
-              .format()
-              .replace("T", " ");
-            date = date.substring(0, date.indexOf("+"));
             return (
               <tr key={item.id}>
-                <td>{date}</td>
+                <td title={dateToFormatted(item.created)}>{dateToFullRelative(item.created)}</td>
                 <td>
                   {item.sell_price.base.indexOf("HIVE") > 0 ? "Sell" : "Buy"}
                 </td>

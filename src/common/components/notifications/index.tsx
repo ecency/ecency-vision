@@ -10,7 +10,7 @@ import {postBodySummary} from "@ecency/render-helper";
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {ToggleType} from "../../store/ui/types";
-import {NotificationFilter, Notifications} from "../../store/notifications/types";
+import {ApiMentionNotification, NotificationFilter, Notifications} from "../../store/notifications/types";
 import { DynamicProps } from '../../store/dynamic-props/types';
 import {ApiNotification} from "../../store/notifications/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -31,6 +31,8 @@ import formattedNumber from '../../util/formatted-number';
 import {syncSvg, checkSvg, bellOffSvg, bellCheckSvg} from "../../img/svg";
 
 import {hiveNotifySetLastRead} from "../../api/operations";
+import {ActiveUser} from "../../store/active-user/types";
+import { history } from "../../store";
 
 export const date2key = (s: string): string => {
     if (s === 'Yesterday') {
@@ -59,6 +61,7 @@ export class NotificationListItem extends Component<{
     global: Global;
     history: History;
     notification: ApiNotification;
+    entry?: ApiNotification;
     dynamicProps: DynamicProps;
     markNotifications: (id: string | null) => void;
     addAccount: (data: Account) => void;
@@ -66,21 +69,23 @@ export class NotificationListItem extends Component<{
 }> {
 
     markAsRead = () => {
-        const {notification, markNotifications} = this.props;
+        const {notification:primaryNotification, entry, markNotifications} = this.props;
+        const notification = primaryNotification || entry
 
-        if (notification.read === 0) {
-            markNotifications(notification.id);
+        if (notification!.read === 0 && !(notification as ApiMentionNotification).deck) {
+            markNotifications(notification!.id);
         }
     }
 
     afterClick = () => {
-        const {toggleUIProp} = this.props;
-        toggleUIProp("notifications");
+        const {toggleUIProp, entry} = this.props;
+        !(entry as any).toggleNotNeeded && toggleUIProp("notifications");
         this.markAsRead();
     }
 
     render() {
-        const {notification, dynamicProps} = this.props;
+        const {notification:primaryNotification, entry, dynamicProps} = this.props;
+        const notification = primaryNotification || entry
         const {hivePerMVests} = dynamicProps;
 
         const sourceLinkMain = ProfileLink({
@@ -98,10 +103,10 @@ export class NotificationListItem extends Component<{
         });
 
         return <>
-            <div title={notification.timestamp} className={_c(`list-item ${notification.read === 0 ? 'not-read' : ' '}`)}>
-                <div className="item-inner">
-                    <div className="item-control">
-                        {notification.read === 0 && (
+            <div title={notification.timestamp} className={_c(`list-item ${(notification.read === 0 && !(notification as ApiMentionNotification).deck) ? 'not-read' : ' '}`)}>
+                <div className={`item-inner ${(notification as ApiMentionNotification).deck ? "p-2 m-0" : ""}`}>
+                    <div className={`item-control ${(notification as ApiMentionNotification).deck ? "item-control-deck" : ""}`}>
+                        {!(notification as ApiMentionNotification).deck && notification.read === 0 && (
                             <Tooltip content={_t('notifications.mark-read')}>
                                 <span onClick={this.markAsRead} className="mark-read"/>
                             </Tooltip>
@@ -371,7 +376,7 @@ export class DialogContent extends Component<NotificationProps> {
         ]
 
         const dropDownConfig = {
-            history: this.props.history,
+            history: this.props.history || history,
             label: '',
             items: menuItems
         };

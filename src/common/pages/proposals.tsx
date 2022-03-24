@@ -11,8 +11,6 @@ import numeral from "numeral";
 // import { debounce } from 'lodash';
 import _ from 'lodash'
 
-import moment from "moment";
-
 import defaults from "../constants/defaults.json";
 
 import {renderPostBody, setProxyBase, catchPostImage} from "@ecency/render-helper";
@@ -373,8 +371,8 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
             description: `${proposal.subject} by @${proposal.creator}`,
             url: `/proposals/${proposal.id}`,
             canonical: `/proposals/${proposal.id}`,
-            published: moment(parseDate(entry.created)).toISOString(),
-            modified: moment(parseDate(entry.updated)).toISOString(),
+            published: parseDate(entry.created).toISOString(),
+            modified: parseDate(entry.updated).toISOString(),
             image: catchPostImage(entry.body, 600, 500, global.canUseWebp ? 'webp' : 'match'),
         };
         let containerClasses = global.isElectron ? "app-content proposals-page proposals-detail-page mt-0 pt-6" : "app-content proposals-page proposals-detail-page";

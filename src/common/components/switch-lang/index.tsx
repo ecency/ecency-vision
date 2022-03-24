@@ -36,7 +36,7 @@ export class SwitchLang extends Component<Props> {
             items: langOptions.map((f => {
                 return {
                     label: f.name,
-                    active: global.lang === f.code,
+                    selected: global.lang === f.code,
                     onClick: () => {
                         i18n.changeLanguage(f.code).then(() => {
                             setLang(f.code);

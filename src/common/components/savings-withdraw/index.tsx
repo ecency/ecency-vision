@@ -3,7 +3,6 @@ import React, {Component} from "react";
 import {History} from "history";
 
 import {Table, Modal} from "react-bootstrap";
-import moment from "moment";
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
@@ -17,7 +16,7 @@ import {_t} from "../../i18n";
 import formattedNumber from "../../util/formatted-number";
 import MyPagination from "../pagination";
 import { getSavingsWithdrawFrom, SavingsWithdrawRequest } from '../../api/hive';
-import parseDate from '../../helper/parse-date';
+import { dateToFormatted, dateToFullRelative } from '../../helper/parse-date';
 import { AssetSymbol } from '@hiveio/dhive';
 
 
@@ -97,7 +96,8 @@ export class List extends BaseComponent<Props, State> {
                         <tbody>
                             {sliced.map(x => {
                                 const {request_id} = x;
-                                const published = moment(parseDate(x.complete));
+                                const publishedT = dateToFormatted(x.complete);
+                                const published = dateToFullRelative(x.complete);
                                 if (x.amount.includes(tokenType)) {
                                     return <tr key={request_id}>
                                         <td>{request_id}</td>
@@ -112,8 +112,8 @@ export class List extends BaseComponent<Props, State> {
                                             </Tooltip>
                                         </td>
                                         <td>
-                                            <div className="date" title={published.format("LLLL")}>
-                                                {published.fromNow()}
+                                            <div className="date" title={publishedT}>
+                                                {published}
                                             </div>
                                         </td>
                                     </tr>;
