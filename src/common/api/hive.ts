@@ -144,7 +144,7 @@ export const getTrendingTags = (afterTag: string = "", limit: number = 250): Pro
             }
         );
 
-export const getFullTrendingTags = (afterTag: string = "", limit: number = 250): Promise<TrendingTag[]> =>
+export const getAllTrendingTags = (afterTag: string = "", limit: number = 250): Promise<TrendingTag[]> =>
     client.database
         .call("get_trending_tags", [afterTag, limit])
         .then((tags: TrendingTag[]) => {
