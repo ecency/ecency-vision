@@ -118,7 +118,7 @@ const AuthorInfoCard = (props: Props) => {
       </div>
       <div className="social-wrapper">
         {props?.entry?.author && (
-          <FollowControls {...props} targetUsername={props?.entry.author} />
+          <FollowControls {...props} targetUsername={props?.entry.author} where={"author-card"} />
         )}
 
         {props?.global?.usePrivate && props?.entry?.author && (

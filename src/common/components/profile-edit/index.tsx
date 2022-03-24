@@ -28,6 +28,7 @@ interface State {
     location: string,
     coverImage: string,
     profileImage: string,
+    pinned: string,
     inProgress: boolean,
     uploading: boolean,
     changed: boolean
@@ -46,6 +47,7 @@ const pureState = (props: Props): State => {
         location: profile.location || "",
         coverImage: profile.cover_image || "",
         profileImage: profile.profile_image || "",
+        pinned: profile.pinned || "",
     }
 }
 
@@ -79,7 +81,8 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
             location,
             website,
             coverImage,
-            profileImage
+            profileImage,
+            pinned
         } = this.state;
 
         const newProfile = {
@@ -88,7 +91,8 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
             cover_image: coverImage,
             profile_image: profileImage,
             website,
-            location
+            location,
+            pinned
         };
 
         this.stateSet({inProgress: true});

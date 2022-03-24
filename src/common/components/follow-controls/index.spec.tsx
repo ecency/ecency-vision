@@ -45,6 +45,7 @@ const defProps = {
     activeUser: null,
     targetUsername: 'bar',
     ui: UiInstance,
+    where: '',
     setActiveUser: () => {
     },
     updateActiveUser: () => {
@@ -80,7 +81,7 @@ describe('FollowControls', () => {
     });
 
 
-    it('(2) Following.', async () => {
+    it('(3) Following.', async () => {
         MOCK_MODE = 2;
 
         const activeUser = activeUserMaker("fooo1");
@@ -95,7 +96,7 @@ describe('FollowControls', () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
 
-    it('(2) Muted.', async () => {
+    it('(4) Muted.', async () => {
         MOCK_MODE = 3;
 
         const activeUser = activeUserMaker("fooo1");
