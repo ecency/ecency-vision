@@ -7,6 +7,9 @@ import moment from "moment";
 import {History} from "history";
 import {postBodySummary} from "@ecency/render-helper";
 
+import {hiveNotifySetLastRead} from "../../api/operations";
+
+import { history } from "../../store";
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {ToggleType} from "../../store/ui/types";
@@ -30,9 +33,6 @@ import formattedNumber from '../../util/formatted-number';
 
 import {syncSvg, checkSvg, bellOffSvg, bellCheckSvg} from "../../img/svg";
 
-import {hiveNotifySetLastRead} from "../../api/operations";
-import {ActiveUser} from "../../store/active-user/types";
-import { history } from "../../store";
 
 export const date2key = (s: string): string => {
     if (s === 'Yesterday') {
