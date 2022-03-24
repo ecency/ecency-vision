@@ -268,7 +268,7 @@ const AddColumn = ({
                         className="spinner-border text-primary spinner-border-sm"
                         role="status"
                       >
-                        <span className="sr-only">Loading...</span>
+                        <span className="sr-only">{_t("g.loading")}</span>
                       </div>
                     ) : (
                       "@"

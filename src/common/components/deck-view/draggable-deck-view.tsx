@@ -177,7 +177,7 @@ const DraggableDeckView = ({
                   className="spinner-border text-primary spinner-border"
                   role="status"
                 >
-                  <span className="sr-only">Loading...</span>
+                  <span className="sr-only">{_t("g.loading")}</span>
                 </div>
               </div>
             )}
