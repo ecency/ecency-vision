@@ -7,6 +7,7 @@ export interface AccountProfile {
     name?: string;
     profile_image?: string;
     website?: string;
+    pinned? : string;
 }
 
 export interface AccountFollowStats {

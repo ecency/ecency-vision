@@ -52,7 +52,7 @@ Array [
 ]
 `;
 
-exports[`FollowControls (2) Following. 1`] = `
+exports[`FollowControls (3) Following. 1`] = `
 Array [
   <button
     className="btn btn-primary"
@@ -78,7 +78,7 @@ Array [
 ]
 `;
 
-exports[`FollowControls (2) Muted. 1`] = `
+exports[`FollowControls (4) Muted. 1`] = `
 Array [
   <button
     className="btn btn-primary"

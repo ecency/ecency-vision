@@ -31,6 +31,8 @@ const defProps = {
     },
     toggleUIProp: () => {  
     },
+    addAccount: () => {  
+    },
 };
 
 

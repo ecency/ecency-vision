@@ -31,6 +31,8 @@ export const notificationBody = (data: WsNotification): string => {
             return _t('notification.reblogged', {source});
         case 'transfer':
             return _t('notification.transfer', {source, amount: data.extra.amount});
+        case 'delegations':
+            return _t('notification.delegations', {source, amount: data.extra.amount});
         default:
             return '';
     }
