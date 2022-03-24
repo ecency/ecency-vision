@@ -285,21 +285,21 @@
     "replies": "Respuestas",
     "posts": "Publicaciones",
     "comments": "Comentarios",
-    "column": "Column",
-    "hot": "Hot",
-    "muted": "Muted",
-    "new": "New",
-    "reload": "Reload",
-    "add": "Add",
-    "remove": "Remove",
-    "removed": "{{deck}} removed successfully.",
-    "payout": "Payouts",
-    "created": "New",
-    "go-back": "Go back",
-    "deck-exists": "The deck you're trying to add already exists!",
-    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
-    "select-column-type": "Which deck type do you want to add?",
-    "topic": "Custom"
+    "column": "Columna",
+    "hot": "Popular",
+    "muted": "Silenciado",
+    "new": "Nuevo",
+    "reload": "Recargar",
+    "add": "Agregar",
+    "remove": "Eliminar",
+    "removed": "{{deck}} eliminado con éxito.",
+    "payout": "Pagos",
+    "created": "Nuevo",
+    "go-back": "Regresar",
+    "deck-exists": "¡La cubierta que estás intentando añadir ya existe!",
+    "limit-warning": "Puedes añadir 10 cubiertas al máximo. Elimina cualquier cubierta para añadir otra.",
+    "select-column-type": "¿Qué tipo de cubierta quieres añadir?",
+    "topic": "Personalizado"
   },
   "market-data": {
     "title": "Precio de mercado",
@@ -1332,6 +1332,6 @@
   "layouts": {
     "grid": "Cuadrícula",
     "classic": "Clásico",
-    "deck": "Deck"
+    "deck": "Cubierta"
   }
 }
