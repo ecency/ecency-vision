@@ -27,6 +27,8 @@ import SuggestionList from "../suggestion-list";
 import userAvatar from "../user-avatar";
 const ModalHeader = Modal.Header;
 
+const comingSoon = require("../../img/coming-soon.png");
+
 const OptionWithIcon = ({ title, icon, onOptionClick, disabled, na }: any) => (
   <div
     className={`d-flex flex-column align-items-center justify-content-center option mr-2 pointer mt-2 position-relative${
@@ -37,7 +39,7 @@ const OptionWithIcon = ({ title, icon, onOptionClick, disabled, na }: any) => (
   >
     <div>{icon}</div>
     <div className="mt-2 text-center">{title}</div>
-    {na && <img src="https://cdn-icons-png.flaticon.com/512/5229/5229336.png" width="23px" height="23px" className="coming-soon"/>}
+    {na && <img src={comingSoon} width="23px" height="23px" className="coming-soon"/>}
   </div>
 );
 
