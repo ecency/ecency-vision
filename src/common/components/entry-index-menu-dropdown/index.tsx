@@ -23,12 +23,12 @@ export const EntryIndexMenuDropdown = (props: Props) => {
   let dropDownItems: MenuItem[] = [
     {
       label: <span>{_t('entry-filter.filter-global')}</span>,
-      active: tag === "",
+      selected: tag === "",
       onClick: () => onTagValueClick('')
     },
     {
       label: <span>{_t('entry-filter.filter-community')}</span>,
-      active: tag === "my",
+      selected: tag === "my",
       onClick: () => onTagValueClick('my')
 
     }
