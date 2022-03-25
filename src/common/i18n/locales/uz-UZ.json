@@ -296,10 +296,10 @@
     "payout": "To'lovlar",
     "created": "Yangi",
     "go-back": "Qaytish",
-    "deck-exists": "The deck you're trying to add already exists!",
-    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
-    "select-column-type": "Which deck type do you want to add?",
-    "topic": "Custom"
+    "deck-exists": "Siz qo'shmoqchi bo'lgan ustun mavjud!",
+    "limit-warning": "10 ta ustun qo'sha olasiz. Yana qo'shish uchun bittasini o'chiring.",
+    "select-column-type": "Qaysi turdagi ustunni qo'shmoqchisiz?",
+    "topic": "Foydalanuvchi"
   },
   "market-data": {
     "title": "Bozor narxi",
