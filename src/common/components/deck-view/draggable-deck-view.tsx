@@ -7,16 +7,15 @@ import {
 } from "react-beautiful-dnd";
 import { _t } from "../../i18n";
 import { Deck } from "../deck";
-import * as ls from '../../util/local-storage'
+import * as ls from "../../util/local-storage";
 import { success } from "../feedback";
 import { normalizeHeader } from ".";
 
-export const getItems = (decks: any[], user:string | undefined) => {
-  if(user && decks.length > 0){
-    ls.set(`user-${user}-decks`,decks)
-  }
-  else if(!user && decks.length > 0){
-    ls.set(`user-unauthed-decks`,decks)
+export const getItems = (decks: any[], user: string | undefined) => {
+  if (user && decks.length > 0) {
+    ls.set(`user-${user}-decks`, decks);
+  } else if (!user && decks.length > 0) {
+    ls.set(`user-unauthed-decks`, decks);
   }
   return decks.map((k, index) => ({
     id: `item-${index}`,
@@ -56,7 +55,9 @@ const DraggableDeckView = ({
   onReloadColumn,
   ...rest
 }: any) => {
-  const [items, setItems] = useState<any>(getItems(decks, (rest.activeUser && rest.activeUser.username || "")));
+  const [items, setItems] = useState<any>(
+    getItems(decks, (rest.activeUser && rest.activeUser.username) || "")
+  );
   const [mounted, setMounted] = useState(false);
 
   const onDragEnd = (result: any) => {
@@ -82,32 +83,27 @@ const DraggableDeckView = ({
     setMounted(true);
   }, []);
 
-  useEffect(()=>{
-    if(rest.activeUser && rest.activeUser.username){
+  useEffect(() => {
+    if (rest.activeUser && rest.activeUser.username) {
       let newItems = ls.get(`user-${rest.activeUser.username}-decks`);
-      let defaultDecks = [...newItems];
-      defaultDecks = normalizeHeader(defaultDecks);
-      setDecks(
-        getItems(
-          [...defaultDecks],
-          (rest.activeUser && rest.activeUser.username) || ""
-        )
-      );
-    }
-    else{
+      if (newItems) {
+        let defaultDecks = [...newItems];
+        defaultDecks = normalizeHeader(defaultDecks);
+        setDecks(
+          getItems(
+            [...defaultDecks],
+            (rest.activeUser && rest.activeUser.username) || ""
+          )
+        );
+      }
+    } else {
       let newItems = ls.get(`user-unauthed-decks`);
-      
+
       let defaultDecks = [...newItems];
       defaultDecks = normalizeHeader(defaultDecks);
-      setDecks(
-        getItems(
-          [...defaultDecks],
-          undefined
-        )
-      );
-
+      setDecks(getItems([...defaultDecks], undefined));
     }
-  }, [rest.activeUser])
+  }, [rest.activeUser]);
 
   return mounted ? (
     <DragDropContext onDragEnd={onDragEnd}>
@@ -158,7 +154,7 @@ const DraggableDeckView = ({
                             (item: any) => item.header.title !== option
                           );
                           setDecks(filteredDecks);
-                          success(_t("decks.removed", {deck: option}))
+                          success(_t("decks.removed", { deck: option }));
                         }}
                         onReloadColumn={onReloadColumn}
                         {...item}
