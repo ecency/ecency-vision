@@ -558,11 +558,11 @@
     "uploaded": "Rasm yuklandi"
   },
   "preferences": {
-    "title": "Preferences",
-    "notifications": "Notification alerts",
-    "currency": "Currency",
-    "language": "Language",
-    "nsfw": "Show NSFW content",
+    "title": "Afzalliklar",
+    "notifications": "Bildirishnomalar",
+    "currency": "Valyuta",
+    "language": "Til",
+    "nsfw": "NSFW kontentni ko'rsatish",
     "referral-link": "Referral link",
     "updated": "Preference updated!"
   },
