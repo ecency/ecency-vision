@@ -408,7 +408,7 @@ const DeckViewContainer = ({
         }
       } else {
         let cachedItems = ls.get(`user-unauthed-decks`);
-        if (cachedItems.length > 0) {
+        if (cachedItems && cachedItems.length > 0) {
           setLoadingNewContent(false);
         } else {
           getPostsRanked("trending").then((res) => {

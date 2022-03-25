@@ -99,9 +99,11 @@ const DraggableDeckView = ({
     } else {
       let newItems = ls.get(`user-unauthed-decks`);
 
-      let defaultDecks = [...newItems];
-      defaultDecks = normalizeHeader(defaultDecks);
-      setDecks(getItems([...defaultDecks], undefined));
+      if (newItems) {
+        let defaultDecks = [...newItems];
+        defaultDecks = normalizeHeader(defaultDecks);
+        setDecks(getItems([...defaultDecks], undefined));
+      }
     }
   }, [rest.activeUser]);
 
