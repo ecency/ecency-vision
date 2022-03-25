@@ -535,27 +535,27 @@
     "rc-power": "Resurs Kreditlari: {{n}}%",
     "recharge-time": "(fully charged {{n}})",
     "down-vote-power": "Downvote Power: {{n}}%",
-    "post-count": "Post Count: {{n}}",
-    "no-posts": "No content published, yet",
-    "no-posts-user": "Follow, be first to know",
-    "no-posts-community": "Join and post in this community",
-    "create-posts": "Let's create a new post",
-    "link-copied": "Search link copied to clipboard",
-    "no-posts-found": "Found nothing!"
+    "post-count": "Post soni: {{n}}",
+    "no-posts": "Birorta kontent yozilmagan",
+    "no-posts-user": "Kuzat, birinchilardan bo'l",
+    "no-posts-community": "Guruhga qo'shiling va post yarating",
+    "create-posts": "Yangi post yarating",
+    "link-copied": "Link nusxalandi",
+    "no-posts-found": "Hech nima topilmadi!"
   },
   "profile-edit": {
-    "title": "Profile",
-    "name": "Display Name",
-    "about": "About",
-    "cover-image": "Cover Image",
-    "profile-image": "Profile Image",
-    "website": "Website",
-    "location": "Location",
-    "copied": "Referral link copied to clipboard",
-    "updated": "Profile updated successfully!"
+    "title": "Profil",
+    "name": "Taxallus",
+    "about": "Haqida",
+    "cover-image": "Bosh sahifadagi rasm",
+    "profile-image": "Profil rasmi",
+    "website": "Vebsayt",
+    "location": "Manzil",
+    "copied": "Referral link nusxalandi",
+    "updated": "Profil muvaffaqiyatli yangilandi!"
   },
   "image-upload-button": {
-    "uploaded": "Image uploaded"
+    "uploaded": "Rasm yuklandi"
   },
   "preferences": {
     "title": "Preferences",
