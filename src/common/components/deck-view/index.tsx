@@ -23,7 +23,7 @@ import { DraggableDeckView, getItems } from "./draggable-deck-view";
 import { decks as initialDeckItems } from "./decks.data";
 import { HotListItem, SearchListItem } from "../deck/deck-items";
 import { getAccountPosts, getPostsRanked } from "../../api/bridge";
-import { getFullTrendingTags } from "../../api/hive";
+import { getAllTrendingTags } from "../../api/hive";
 import { TransactionRow } from "../transactions";
 import MyTooltip from "../tooltip";
 import { getNotifications } from "../../api/private-api";
@@ -164,7 +164,7 @@ const DeckViewContainer = ({
         });
       }
     } else if (account === _t("decks.trending-topics")) {
-      getFullTrendingTags().then((res) => {
+      getAllTrendingTags().then((res) => {
         setDecks(
           getItems(
             [
@@ -256,7 +256,7 @@ const DeckViewContainer = ({
           );
           break;
         case _t("decks.trending-topics").toLocaleLowerCase():
-          getFullTrendingTags().then((res) => {
+          getAllTrendingTags().then((res) => {
             (updatedDecks[indexOfItemToUpdate] = {
               data: res,
               listItemComponent: HotListItem,
@@ -417,7 +417,7 @@ const DeckViewContainer = ({
               listItemComponent: SearchListItem,
               header: { title: _t("decks.trending"), icon: globalTrending },
             });
-            getFullTrendingTags().then((res) => {
+            getAllTrendingTags().then((res) => {
               defaultDecks.unshift({
                 data: res,
                 listItemComponent: HotListItem,

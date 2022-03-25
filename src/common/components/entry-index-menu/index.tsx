@@ -269,7 +269,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                         `/${x}`
                         : `/${x}${menuTagValue}`
                         : tag[0] === '@' ? `/${x}` : `/${x}${menuTagValue}`,
-                        active: filter === x || filter === x + '/my',
+                        selected: filter === x || filter === x + '/my',
                         id: x,
                         flash: (x === 'trending' && introduction === IntroductionType.TRENDING) || (x === 'hot' && introduction === IntroductionType.HOT) || (x === 'created' && introduction === IntroductionType.NEW)
                     };
@@ -280,7 +280,7 @@ export class EntryIndexMenu extends Component<Props, States> {
         const mobileMenuConfig = !isActive ? menuConfig : {...menuConfig, items:[{
             label: _t(`entry-filter.filter-feed-friends`),
             href: `/@${activeUser?.username}/feed`,
-            active: filter === 'feed',
+            selected: filter === 'feed',
             id: 'feed'
         }, ...menuConfig.items]}        
 
@@ -338,7 +338,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     <ul className={`nav nav-pills nav-fill`}>
                                         {menuConfig.items.map((i, k) => {
                                             return <li key={k} className={`nav-item ${i.flash ? "flash" : ""}`}>
-                                                <Link to={i.href!} className={_c(`nav-link link-${i.id} ${(introduction!==IntroductionType.NONE && !i.flash && i.active)?"":(i.active || i.flash) ? "active" : ""}`)} id={i.id}>{i.label}</Link>
+                                                <Link to={i.href!} className={_c(`nav-link link-${i.id} ${(introduction!==IntroductionType.NONE && !i.flash && i.selected)?"":(i.selected || i.flash) ? "active" : ""}`)} id={i.id}>{i.label}</Link>
                                             </li>
                                         })}
                                         {isMounted && introduction !== IntroductionType.NONE && introduction !== IntroductionType.FRIENDS && (introduction === IntroductionType.HOT || introduction === IntroductionType.TRENDING || introduction === IntroductionType.NEW) ?
@@ -376,7 +376,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     <ul className="nav nav-pills nav-fill">
                                         {mobileMenuConfig.items.map((i, k) => {
                                             return <li key={k} className="nav-item">
-                                                <Link to={i.href!} className={_c(`nav-link link-${i.id} ${i.active ? "active" : ""}`)}>{i.label}</Link>
+                                                <Link to={i.href!} className={_c(`nav-link link-${i.id} ${i.selected ? "active" : ""}`)}>{i.label}</Link>
                                             </li>
                                         })}
                                     </ul>

@@ -5,13 +5,19 @@ import {Button, Modal} from "react-bootstrap";
 import moment from "moment";
 
 import {History} from "history";
+import {postBodySummary} from "@ecency/render-helper";
 
+import {hiveNotifySetLastRead} from "../../api/operations";
+
+import { history } from "../../store";
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {ToggleType} from "../../store/ui/types";
 import {ApiMentionNotification, NotificationFilter, Notifications} from "../../store/notifications/types";
-
+import { DynamicProps } from '../../store/dynamic-props/types';
 import {ApiNotification} from "../../store/notifications/types";
+import {ActiveUser} from "../../store/active-user/types";
+
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import EntryLink from "../entry-link";
@@ -19,17 +25,14 @@ import LinearProgress from "../linear-progress";
 import DropDown from "../dropdown";
 import Tooltip from "../tooltip";
 
-import {postBodySummary} from "@ecency/render-helper";
-
 import {_t} from "../../i18n";
 
 import _c from '../../util/fix-class-names'
+import { vestsToHp } from '../../helper/vesting';
+import formattedNumber from '../../util/formatted-number';
 
 import {syncSvg, checkSvg, bellOffSvg, bellCheckSvg} from "../../img/svg";
 
-import {hiveNotifySetLastRead} from "../../api/operations";
-import {ActiveUser} from "../../store/active-user/types";
-import { history } from "../../store";
 
 export const date2key = (s: string): string => {
     if (s === 'Yesterday') {
@@ -59,6 +62,7 @@ export class NotificationListItem extends Component<{
     history: History;
     notification: ApiNotification;
     entry?: ApiNotification;
+    dynamicProps: DynamicProps;
     markNotifications: (id: string | null) => void;
     addAccount: (data: Account) => void;
     toggleUIProp: (what: ToggleType) => void;
@@ -80,8 +84,10 @@ export class NotificationListItem extends Component<{
     }
 
     render() {
-        const {notification:primaryNotification, entry} = this.props;
+        const {notification:primaryNotification, entry, dynamicProps} = this.props;
         const notification = primaryNotification || entry
+        const {hivePerMVests} = dynamicProps;
+
         const sourceLinkMain = ProfileLink({
             ...this.props,
             username: notification.source,
@@ -221,10 +227,23 @@ export class NotificationListItem extends Component<{
                             {notification.memo && (
                                 <div className="second-line">
                                     <div className="transfer-memo">
-                                        {notification.memo.substring(0, 120)}
+                                        {notification.memo.substring(0, 120).replace('https://peakd.com/','https://ecency.com/')}
                                     </div>
                                 </div>
                             )}
+                        </div>
+                    )}
+
+                    {/* Delegations */}
+                    {notification.type === 'delegations' && (
+                        <div className="item-content">
+                            <div className="first-line">
+                                {sourceLink}
+                                <span className="item-action">
+                                    {_t('notifications.delegations-str')} {' '}
+                                    <span className="transfer-amount">{formattedNumber(vestsToHp(parseFloat(notification.amount), hivePerMVests), {suffix: "HP"})}</span>
+                                </span>
+                            </div>
                         </div>
                     )}
 
@@ -269,6 +288,7 @@ interface NotificationProps {
     global: Global;
     history: History;
     activeUser: ActiveUser;
+    dynamicProps: DynamicProps;
     notifications: Notifications;
     fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;
@@ -427,6 +447,7 @@ interface Props {
     global: Global;
     history: History;
     activeUser: ActiveUser;
+    dynamicProps: DynamicProps;
     notifications: Notifications;
     fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;

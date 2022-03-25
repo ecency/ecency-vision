@@ -204,14 +204,14 @@ export const SearchListItem = ({
               {community && (
                 <div className="ml-2 flex-grow-1">
                   {" "}
-                  in{" "}
+                  {_t('entry.community-in')}{" "}
                   <Link to={`/created/${community}`}> {community_title} </Link>
                 </div>
               )}
               {!community && (
                 <div className="ml-2 flex-grow-1">
                   {" "}
-                  in <Link to={`/created/${category}`}> #{category} </Link>
+                  {_t('entry.community-in')} <Link to={`/created/${category}`}> #{category} </Link>
                 </div>
               )}
               {isPinned && (

@@ -92,7 +92,7 @@ const DeckHeader = ({
                 className="spinner-border text-white spinner-border-sm"
                 role="status"
               >
-                <span className="sr-only">Loading...</span>
+                <span className="sr-only">{_t("g.loading")}</span>
               </div>
             ) : (
               <div className="deck-options-icon d-flex">{refreshSvg}</div>
