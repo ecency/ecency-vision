@@ -761,7 +761,7 @@
     "type-claim_reward_balance": "Mukofotlarni olish",
     "type-transfer": "O'tkazmalar",
     "type-transfer_to_vesting": "Kuchni oshirish",
-    "type-withdraw_vesting": "Power down",
+    "type-withdraw_vesting": "Kuchni pasaytirish",
     "type-set_withdraw_vesting_route": "Withdraw route changed",
     "type-fill_vesting_withdraw": "Partial Power down occurred",
     "type-fill_order": "Open trade filled",
