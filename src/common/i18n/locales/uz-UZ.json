@@ -675,13 +675,13 @@
   "promote": {
     "title": "Targ'ib qilish",
     "sub-title": "Postingizni targ'ib qiling",
-    "duration": "Duration"
+    "duration": "Davomiyligi"
   },
   "boost": {
-    "title": "Boost",
-    "sub-title": "Boost your post",
-    "amount": "Amount",
-    "slider-hint": "Drag the slider to adjust the amount."
+    "title": "Kuchaytirish",
+    "sub-title": "Postingizni mustahkamlang",
+    "amount": "Miqdor",
+    "slider-hint": "Miqdorni belgilash uchun slayderni torting."
   },
   "redeem-common": {
     "balance": "Balance",
@@ -736,16 +736,16 @@
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
-    "reset": "Reset",
-    "powering-down": "You are currently powering down.",
-    "stop-power-down": "Stop"
+    "reset": "Qayta o'rnatish",
+    "powering-down": "Siz hozir kuchingizni kamaytiryapsiz.",
+    "stop-power-down": "To'xtash"
   },
   "trx-common": {
-    "insufficient-funds": "Insufficient funds",
-    "sign-title": "Sign transaction",
-    "sign-sub-title": "Sign your transaction",
-    "success-title": "Success",
-    "success-sub-title": "Transaction successful"
+    "insufficient-funds": "Mablag' yetarli emas",
+    "sign-title": "Tranzaktsiyani imzolang",
+    "sign-sub-title": "Tranzaktsiyangizni imzolang",
+    "success-title": "Muvaffaqiyatli",
+    "success-sub-title": "Tranzaktsiya muvaffaqiyatli bo'ldi"
   },
   "transactions": {
     "title": "History",
