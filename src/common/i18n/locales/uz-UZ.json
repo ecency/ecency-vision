@@ -533,7 +533,7 @@
     "vote-value-max": "({{n}} maksimaldan tashqari)",
     "vote-power": "{{n}} % Ovoz Kuchi",
     "rc-power": "Resurs Kreditlari: {{n}}%",
-    "recharge-time": "(fully charged {{n}})",
+    "recharge-time": "(to'liq yuklangan {{n}})",
     "down-vote-power": "Downvote Power: {{n}}%",
     "post-count": "Post soni: {{n}}",
     "no-posts": "Birorta kontent yozilmagan",
@@ -564,14 +564,14 @@
     "language": "Til",
     "nsfw": "NSFW kontentni ko'rsatish",
     "referral-link": "Taklif ssilkasi",
-    "updated": "Preference updated!"
+    "updated": "Sozlamalar yangilandi!"
   },
   "wallet": {
     "unclaimed-rewards": "Olinmagan mukofotlar",
     "claim-reward-balance": "Olingan mukofotlar miqdori",
     "claim-reward-balance-ok": "Mukofot balansi olingan",
     "estimated": "Hamyonning Taxminiy Qiymati",
-    "estimated-points": "Estimated Points Value",
+    "estimated-points": "Ballarning taxminiy qiymati",
     "estimated-description": "The estimated value is based on a 7 day average value of HIVE.",
     "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
