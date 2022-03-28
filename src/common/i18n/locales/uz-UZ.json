@@ -805,63 +805,63 @@
     "title": "Received Hive Power"
   },
   "conversion-requests": {
-    "title": "Convert requests",
-    "request-id": "Request id",
-    "amount": "Amount",
+    "title": "Dönüştürme istekleri",
+    "request-id": "So'rov identifikatori",
+    "amount": "Miqdor",
     "pending": "Pending"
   },
   "savings-withdraw": {
-    "title": "Withdraw from Savings",
-    "to": "To"
+    "title": "J'amg'armadan yechib olish",
+    "to": "Ga"
   },
   "open-orders-list": {
-    "title": "Open orders",
-    "created": "Created",
-    "expires": "Expires",
-    "order-id": "Order id"
+    "title": "Ochiq buyurtmalar",
+    "created": "Yaratilgan",
+    "expires": "Muddati tugaydi",
+    "order-id": "Buyurtma identifikatori"
   },
   "friends": {
-    "followers": "Followers ({{n}})",
-    "following": "Following ({{n}})",
-    "search-placeholder": "Search"
+    "followers": "Kuzatuvchilar ({{n}})",
+    "following": "Obuna bo'lgan ({{n}})",
+    "search-placeholder": "Izlash"
   },
   "follow-controls": {
-    "follow": "Follow",
-    "unFollow": "Unfollow",
-    "mute": "Mute",
-    "unMute": "Unmute"
+    "follow": "Kuzatish",
+    "unFollow": "Kuzatishni to'xtatish",
+    "mute": "Bloklash",
+    "unMute": "Blokdan ochish"
   },
   "favorite-btn": {
-    "add": "Add to favorites",
-    "added": "Added to favorites",
-    "delete": "Remove from favorites",
-    "deleted": "Removed from favorites"
+    "add": "Sevimlilarga qo'shish",
+    "added": "Sevimlilarga qo'shildi",
+    "delete": "Sevimlilardan olib tashlash",
+    "deleted": "Sevimlilardan olib tashlandi"
   },
   "editor-toolbar": {
-    "bold": "Bold",
-    "italic": "Italic",
-    "header": "Heading",
-    "code": "Code",
+    "bold": "Qalin",
+    "italic": "Kursiv",
+    "header": "Sarlavha",
+    "code": "Kod",
     "quote": "Quote",
-    "ul": "Unordered List",
-    "ol": "Ordered List",
-    "link": "Link",
-    "image": "Image",
-    "table": "Table",
-    "table-3-col": "3 columns",
-    "table-2-col": "2 columns",
-    "table-1-col": "1 column",
-    "upload": "Upload",
-    "gallery": "Gallery",
+    "ul": "Raqamlanmagan ro'yxat",
+    "ol": "Raqamlangan ro'yxat",
+    "link": "Havola",
+    "image": "Rasm",
+    "table": "Jadval",
+    "table-3-col": "3 ta ustun",
+    "table-2-col": "2 ta ustun",
+    "table-1-col": "1 ta ustun",
+    "upload": "Yuklash",
+    "gallery": "Galereya",
     "emoji": "Emoji",
-    "image-error": "Couldn't upload image.",
-    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
-    "image-error-size": "Image size is too large, try smaller size image again.",
-    "fragments": "Snippets"
+    "image-error": "Suratni yuklab bo‘lmadi.",
+    "image-error-cache": "Rasmni yuklab bo‘lmadi. Siz tizimdan chiqqanga o'xshaysiz. Qaytadan kiring.",
+    "image-error-size": "Rasm oʻlchami juda katta, kichikroq oʻlchamdagi rasmni sinab koʻring.",
+    "fragments": "Fragmentlar"
   },
   "emoji-picker": {
-    "filter-placeholder": "Filter",
-    "filter-no-match": "No match",
+    "filter-placeholder": "Filtr",
+    "filter-no-match": "Topilmadi",
     "recently-used": "Yaqinda foydalanilganlar"
   },
   "submit": {
@@ -870,13 +870,13 @@
     "title-placeholder": "Sarlavha",
     "body-placeholder": "O'z hikoyangizni yozing...",
     "reward": "Mukofot",
-    "reward-hint": "Set author reward ratio for liquid and staked tokens",
-    "reward-default": "Default 50% / 50%",
-    "reward-sp": "Power Up 100%",
-    "reward-dp": "Decline Payout",
-    "preview": "Preview",
-    "publish": "Publish",
-    "update": "Update",
+    "reward-hint": "Suyuq va stavkali tokenlar uchun muallif mukofoti nisbatini belgilang",
+    "reward-default": "Birlamchi 50% / 50%",
+    "reward-sp": "100% qo'llab quvvatlash",
+    "reward-dp": "To'lovni bekor qilish",
+    "preview": "Ko'rish",
+    "publish": "Nashr qilish",
+    "update": "Yangilash",
     "save-draft": "Save Draft",
     "draft-saved": "Draft saved",
     "update-draft": "Update Draft",
