@@ -578,7 +578,7 @@
     "hbd": "HBD",
     "hive-description": "HIVE - bu istalgan vaqtda o'tkazilishi mumkin bo'lgan sotiladigan tokenlar. HIVE kuchaytirish deb ataladigan operatsiya orqali Hive Power-ga aylantirilishi mumkin.",
     "hive-power": "HIVE POWER",
-    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
+    "hive-power-description": "Hive Power - kontentga ovoz berish uchun ko'proq kuch beradigan ta'sir qiluvchi token. Biror kishi qanchalik ko'p Hive Powerga ega bo'lsa, u boshqalarning mukofotlariga shunchalik ta'sir qilishi va ovoz berish uchun mukofot olishi mumkin. Hive Power asosan ma'lum bir hamyonda saqlanadigan Hive tokenidir, bu so'ralgan pulni to'liq yechib olish uchun 13 haftani talab qiladi.",
     "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-power-delegated": "Delegated Hive Power",
