@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { createRef, LegacyRef, useEffect, useRef, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 import { _t } from "../../i18n";
@@ -12,7 +12,8 @@ import {
 } from "../../img/svg";
 import { ListStyle } from "../../store/global/types";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import moment, { now } from "moment";
+import moment from "moment";
+import { success } from "../feedback";
 
 export interface DeckHeaderProps {
   title: string;
@@ -145,9 +146,12 @@ export const Deck = ({
   ...rest
 }: DeckProps) => {
   const notificationTranslated = _t("decks.notifications");
+  const deckItemRef:any = createRef()
+  const [scrollTop, setScrollTop] = useState(0)
   const containerClass = header.title.includes(notificationTranslated)
     ? "list-body pb-0"
     : "";
+
   return (
     <div className={`deck mr-3 rounded-top ${containerClass}`}>
       <DeckHeader
@@ -159,7 +163,14 @@ export const Deck = ({
       <div
         className={`py-4 pr-4 pl-3 item-container ${
           header.title.includes("Wallet") ? "transaction-list" : ""
-        }`}
+        }`} ref={deckItemRef} onScroll={(e)=>{
+          let scrollTopValue = deckItemRef!.current!.scrollTop;
+          let scrollHeight = deckItemRef!.current!.scrollHeight;
+          if(scrollHeight - scrollTopValue < 550){
+            success("It's near end")
+          }
+          setScrollTop(scrollTopValue);
+          }}
       >
         {data &&
           data.map((item, index) => (
