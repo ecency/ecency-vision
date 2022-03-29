@@ -271,35 +271,35 @@
   "decks": {
     "users": "Users",
     "header-info": "Click me to see extra options",
-    "username": "Username",
-    "content-type": "Content Type",
-    "trending-topics": "Topics",
-    "search": "Search",
-    "community": "Community",
-    "notifications": "Notifications",
-    "wallet": "Wallet",
-    "favorite": "Favorite",
-    "trending": "Trending",
-    "select": "Select content type",
+    "username": "Nome Da Conta",
+    "content-type": "Tipo de Conteúdo",
+    "trending-topics": "Tópicos",
+    "search": "Procurar",
+    "community": "Comunidade",
+    "notifications": "Notificações",
+    "wallet": "Carteira",
+    "favorite": "Favorito",
+    "trending": "Destaques",
+    "select": "Selecione o tipo de conteúdo",
     "blogs": "Blogs",
-    "replies": "Replies",
-    "posts": "Posts",
-    "comments": "Comments",
-    "column": "Column",
-    "hot": "Hot",
-    "muted": "Muted",
-    "new": "New",
-    "reload": "Reload",
+    "replies": "Respostas",
+    "posts": "Publicações",
+    "comments": "Comentários",
+    "column": "Coluna",
+    "hot": "Em Alta",
+    "muted": "Silenciado",
+    "new": "Novo",
+    "reload": "Recarregar",
     "add": "Adicionar",
-    "remove": "Remove",
-    "removed": "{{deck}} removed successfully.",
-    "payout": "Payouts",
-    "created": "New",
-    "go-back": "Go back",
+    "remove": "Remover",
+    "removed": "{{deck}} removido com sucesso.",
+    "payout": "Pagamentos",
+    "created": "Novo",
+    "go-back": "Voltar",
     "deck-exists": "The deck you're trying to add already exists!",
     "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
     "select-column-type": "Which deck type do you want to add?",
-    "topic": "Custom"
+    "topic": "Personalizado"
   },
   "market-data": {
     "title": "Preço mercado",
@@ -947,7 +947,7 @@
     "replied": "{{source}} respondeu-te",
     "reblogged": "{{source}} re-publicou a sua publicação",
     "transfer": "{{source}} enviou-te {{amount}}",
-    "delegations": "{{source}} delegated you {{amount}}"
+    "delegations": "{{source}} delegou a você {{amount}}"
   },
   "notifications": {
     "type-all": "Todas as notificações",
@@ -1332,6 +1332,6 @@
   "layouts": {
     "grid": "Grade",
     "classic": "Clássico",
-    "deck": "Deck"
+    "deck": "Prancha"
   }
 }
