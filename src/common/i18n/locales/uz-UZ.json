@@ -724,18 +724,18 @@
     "memo-help": "Ushbu eslatma hammaga ko'rinarli",
     "available-hp-hint": "* mavjud hive kuch",
     "override-warning-1": "Yangi miqdor avvalgisini bekor qiladi.",
-    "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
-    "confirm-title": "Confirm your transaction",
-    "confirm-sub-title": "Please, check if everything is correct",
-    "confirm": "Confirm",
-    "recent-transfers": "Recent transfers",
-    "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> being converted",
-    "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
+    "override-warning-2": "Hisob ({{account}}) allaqachon {{previousAmount}} bilan delegatsiyalangan.",
+    "confirm-title": "Tranzaktsiyangizni tasdiqlang",
+    "confirm-sub-title": "Iltimos, hamma narsa to'g'riligini tekshiring",
+    "confirm": "Tasdiqlash",
+    "recent-transfers": "Oxirgi transferlar",
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> <span class=\"from-user\">{{from}}</span> dan <span class=\"to-user\">{ hisobiga o'tkazildi {to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> <span class=\"from-user\">{{from}}</span> dan <span class=\"to-user\">{ hisobiga o'tkazildi {to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> <span class=\"from-user\">{{from}}</span> dan <span class=\"to-user\">{ hisobiga o'tkazildi {to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> konvertatsiya qilinmoqda",
+    "power-up-summary": "<span class=\"from-user\">{{from}}</span> da<span class=\"to-user\">{{to}}</span> ga ulush qo'shilgan <span class=\"amount\">{{amount}}</span>",
+    "delegate-summary": "<span class=\"from-user\">{{from}}</span> yuboruvchidan <span class=\"to-user\">{{to}}</span> <span class=\"amount\">{{amount}}}</span> vakolat berilgan",
+    "power-down-summary": "<span class=\"amount\">{{amount}}</span> miqdorda Kuch kamaytirildi",
     "reset": "Qayta o'rnatish",
     "powering-down": "Siz hozir kuchingizni kamaytiryapsiz.",
     "stop-power-down": "To'xtash"
@@ -792,17 +792,17 @@
   },
   "key-or-hot": {
     "sign": "Obuna bo'ling",
-    "key-placeholder": "Enter active/owner/master key",
-    "with-hivesigner": "Sign with hivesigner",
-    "with-keychain": "Sign with keychain"
+    "key-placeholder": "Aktiv/shaxsiy/asosiy kalitni kiriting",
+    "with-hivesigner": "Hivesigner orqali ro'yxatdan o'ting",
+    "with-keychain": "Keychain orqali ro'yxatdan o'ting"
   },
   "delegated-vesting": {
-    "title": "Delegated Hive Power",
-    "undelegate": "undelegate",
-    "subtitle": " HP Pending delegation returns"
+    "title": "Delegasiyalangan Hive Kuch",
+    "undelegate": "delegatsiyani qaytarib olish",
+    "subtitle": " HP delegatsiyasining qaytishi kutilmoqda"
   },
   "received-vesting": {
-    "title": "Received Hive Power"
+    "title": "Olingan Hive Kuch"
   },
   "conversion-requests": {
     "title": "Dönüştürme istekleri",
@@ -932,7 +932,7 @@
     "user-error": "{{n}} is not a valid user.",
     "validation-percentage": "Percentage is required.",
     "validation-username": "Username is required.",
-    "user-exists-error": "{{n}} is already in the list"
+    "user-exists-error": "{{n}} allaqachon ro'yxatda"
   },
   "post-scheduler": {
     "title": "Schedule",
