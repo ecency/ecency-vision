@@ -12,16 +12,21 @@ import { success } from "../feedback";
 import { normalizeHeader } from ".";
 
 export const getItems = (decks: any[], user: string | undefined) => {
-  if (user && decks.length > 0) {
-    ls.set(`user-${user}-decks`, decks);
-  } else if (!user && decks.length > 0) {
-    ls.set(`user-unauthed-decks`, decks);
+  let updatedDecks = [...decks].map((k, index) => {
+    let deck = {
+      ...k,
+      id: `item-${index}`,
+      content: `item ${index}`,
+    };
+    return deck;
+  });
+
+  if (user && updatedDecks.length > 0) {
+    ls.set(`user-${user}-decks`, updatedDecks);
+  } else if (!user && updatedDecks.length > 0) {
+    ls.set(`user-unauthed-decks`, updatedDecks);
   }
-  return decks.map((k, index) => ({
-    id: `item-${index}`,
-    content: `item ${index}`,
-    ...decks[index],
-  }));
+  return updatedDecks;
 };
 
 // a little function to help us with reordering the result

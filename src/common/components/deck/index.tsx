@@ -12,6 +12,7 @@ import {
 } from "../../img/svg";
 import { ListStyle } from "../../store/global/types";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import moment, { now } from "moment";
 
 export interface DeckHeaderProps {
   title: string;
@@ -20,6 +21,7 @@ export interface DeckHeaderProps {
   index: number;
   onRemove: (option: string) => void;
   onReloadColumn: (option: string) => void;
+  timeCreated?: number;
 }
 
 const DeckHeader = ({
@@ -29,6 +31,7 @@ const DeckHeader = ({
   onRemove,
   onReloadColumn,
   reloading,
+  timeCreated
 }: DeckHeaderProps) => {
   const [expanded, setExpanded] = useState(false);
   let splittedTitle = title.split("@");
@@ -39,6 +42,13 @@ const DeckHeader = ({
       {_t("decks.header-info")}
     </Tooltip>
   );
+
+  useEffect(()=>{
+    let diff = moment.duration(moment(Date.now()).diff(timeCreated)).hours();
+    if(diff>=24){
+      onReloadColumn(title);
+    }
+  },[])
 
   return (
     <Accordion className={expanded ? "border-bottom" : ""}>

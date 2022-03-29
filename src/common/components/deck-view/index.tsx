@@ -87,28 +87,33 @@ const DeckViewContainer = ({
     setLoadingNewContent(true);
     if (contentType) {
       if (contentType === _t("decks.notifications")) {
-        getNotifications((rest.activeUser ? rest.activeUser.username : account), null, null, account).then(
-          (res) => {
-            
-            setDecks(
-              getItems(
-                [
-                  ...decks,
-                  {
-                    data: res.map((item)=>{return {...item, deck:true}}),
-                    listItemComponent: NotificationListItem,
-                    header: {
-                      title: `${contentType} @${account}`,
-                      icon: notifications,
-                    },
+        getNotifications(
+          rest.activeUser ? rest.activeUser.username : account,
+          null,
+          null,
+          account
+        ).then((res) => {
+          setDecks(
+            getItems(
+              [
+                ...decks,
+                {
+                  data: res.map((item) => {
+                    return { ...item, deck: true };
+                  }),
+                  listItemComponent: NotificationListItem,
+                  header: {
+                    title: `${contentType} @${account}`,
+                    icon: notifications,
+                    timeCreated: Date.now(),
                   },
-                ],
-                (rest.activeUser && rest.activeUser.username) || ""
-              )
-            );
-            setLoadingNewContent(false);
-          }
-        );
+                },
+              ],
+              (rest.activeUser && rest.activeUser.username) || ""
+            )
+          );
+          setLoadingNewContent(false);
+        });
       } else if (contentType === _t("decks.wallet")) {
         setLoadingNewContent(true);
         fetchTransactions(account);
@@ -131,6 +136,7 @@ const DeckViewContainer = ({
                   header: {
                     title,
                     icon: communities,
+                    timeCreated: Date.now(),
                   },
                 },
               ],
@@ -154,6 +160,7 @@ const DeckViewContainer = ({
                   header: {
                     title: `${contentType} @${account}`,
                     icon: person,
+                    timeCreated: Date.now(),
                   },
                 },
               ],
@@ -172,7 +179,11 @@ const DeckViewContainer = ({
               {
                 data: res,
                 listItemComponent: HotListItem,
-                header: { title: `${account}`, icon: hot },
+                header: {
+                  title: `${account}`,
+                  icon: hot,
+                  timeCreated: Date.now(),
+                },
               },
             ],
             (rest.activeUser && rest.activeUser.username) || ""
@@ -189,7 +200,11 @@ const DeckViewContainer = ({
               {
                 data: res,
                 listItemComponent: SearchListItem,
-                header: { title: `${account}`, icon: globalTrending },
+                header: {
+                  title: `${account}`,
+                  icon: globalTrending,
+                  timeCreated: Date.now(),
+                },
               },
             ],
             (rest.activeUser && rest.activeUser.username) || ""
@@ -238,11 +253,14 @@ const DeckViewContainer = ({
           getNotifications(rest.activeUser.username, null, null, account).then(
             (res) => {
               (updatedDecks[indexOfItemToUpdate] = {
-                data: res.map((item)=>{return {...item, deck:true}}),
+                data: res.map((item) => {
+                  return { ...item, deck: true };
+                }),
                 listItemComponent: NotificationListItem,
                 header: {
                   title: title,
                   icon: notifications,
+                  timeCreated: Date.now(),
                 },
               }),
                 setDecks(
@@ -263,6 +281,7 @@ const DeckViewContainer = ({
               header: {
                 title: title,
                 icon: hot,
+                timeCreated: Date.now(),
               },
             }),
               setDecks(
@@ -282,6 +301,7 @@ const DeckViewContainer = ({
               header: {
                 title: title,
                 icon: globalTrending,
+                timeCreated: Date.now(),
               },
             }),
               setDecks(
@@ -311,6 +331,7 @@ const DeckViewContainer = ({
           header: {
             title: title,
             icon: communities,
+            timeCreated: Date.now(),
           },
         }),
           setDecks(
@@ -324,7 +345,6 @@ const DeckViewContainer = ({
       let translatedBlogs = _t("decks.blogs").toLocaleLowerCase();
       let handledSortWithBlogs =
         deckType === translatedBlogs ? "blog" : deckType.toLocaleLowerCase();
-      ;
       getAccountPosts(handledSortWithBlogs, account).then((res) => {
         (updatedDecks[indexOfItemToUpdate] = {
           data: res,
@@ -332,6 +352,7 @@ const DeckViewContainer = ({
           header: {
             title: title,
             icon: person,
+            timeCreated: Date.now(),
           },
         }),
           setDecks(
@@ -379,6 +400,7 @@ const DeckViewContainer = ({
               header: {
                 title: `${_t("decks.posts")} @${accountName}`,
                 icon: person,
+                timeCreated: Date.now(),
               },
             });
 
@@ -389,11 +411,14 @@ const DeckViewContainer = ({
               accountName
             ).then((notificationsData) => {
               defaultDecks.push({
-                data: notificationsData.map((item)=>{return {...item, deck:true}}),
+                data: notificationsData.map((item) => {
+                  return { ...item, deck: true };
+                }),
                 listItemComponent: NotificationListItem,
                 header: {
                   title: `${_t("decks.notifications")} @${accountName}`,
                   icon: notifications,
+                  timeCreated: Date.now(),
                 },
               });
               setDecks(
@@ -415,13 +440,21 @@ const DeckViewContainer = ({
             defaultDecks.unshift({
               data: res,
               listItemComponent: SearchListItem,
-              header: { title: _t("decks.trending"), icon: globalTrending },
+              header: {
+                title: _t("decks.trending"),
+                icon: globalTrending,
+                timeCreated: Date.now(),
+              },
             });
             getAllTrendingTags().then((res) => {
               defaultDecks.unshift({
                 data: res,
                 listItemComponent: HotListItem,
-                header: { title: _t("decks.trending-topics"), icon: hot },
+                header: {
+                  title: _t("decks.trending-topics"),
+                  icon: hot,
+                  timeCreated: Date.now(),
+                },
               });
               setDecks(
                 getItems(
@@ -456,6 +489,7 @@ const DeckViewContainer = ({
                   firstTransaction.receiver
                 }`,
                 icon: wallet,
+                timeCreated: Date.now(),
               },
             },
           ],
@@ -486,63 +520,68 @@ const DeckViewContainer = ({
             />
           </div>
           <div className="d-flex flex-column align-items-center sidebar-icons-wrapper">
-          {decks &&
-            decks.length > 0 &&
-            decks.map((deck: any, index: number) => {
-              let avatar = deck.header.title.split("@")[1];
-              if (avatar) {
-                avatar = `https://images.ecency.com/${
-                  global.canUseWebp ? "webp/" : ""
-                }u/${avatar}/avatar/medium`;
-              }
+            {decks &&
+              decks.length > 0 &&
+              decks.map((deck: any, index: number) => {
+                let avatar = deck.header.title.split("@")[1];
+                if (avatar) {
+                  avatar = `https://images.ecency.com/${
+                    global.canUseWebp ? "webp/" : ""
+                  }u/${avatar}/avatar/medium`;
+                }
 
-              return (
-                <div
-                  className={`${
-                    index % 2 === 1 ? "my-icons-5 " : ""
-                  }cursor-pointer position-relative`}
-                  key={deck.header.title + index}
-                  onClick={() => {
-                    let elementToFocus = document!.getElementById(deck.id);
-                    let toScrollValue =
-                      elementToFocus!.getBoundingClientRect().left;
-                    elementToFocus?.classList.add("active-deck");
-                    setTimeout(() => {
-                      elementToFocus?.classList.remove("active-deck");
-                    }, 5000);
+                return (
+                  <div
+                    className={`${
+                      index % 2 === 1 ? "my-icons-5 " : ""
+                    }cursor-pointer position-relative`}
+                    key={deck.header.title + index}
+                    onClick={() => {
+                      let elementToFocus = document!.getElementById(deck.id);
+                      let toScrollValue =
+                        elementToFocus!.getBoundingClientRect().left;
+                      elementToFocus?.classList.add("active-deck");
+                      setTimeout(() => {
+                        elementToFocus?.classList.remove("active-deck");
+                      }, 5000);
 
-                    document!.getElementById(
-                      "draggable-container"
-                    )!.scrollLeft = toScrollValue;
-                  }}
-                >
-                  {avatar && (
-                    <div className="position-absolute avatar-xs rounded-circle">
-                      <MyTooltip
-                        content={deck.header.title.replace(
-                          /^./,
-                          deck.header.title[0].toUpperCase()
-                        )}
-                      >
-                        <img
-                          src={avatar}
-                          className="w-100 h-100 rounded-circle"
-                        />
-                      </MyTooltip>
-                    </div>
-                  )}
-                  {deck.header.icon}
-                </div>
-              );
-          })}</div>
+                      document!.getElementById(
+                        "draggable-container"
+                      )!.scrollLeft = toScrollValue;
+                    }}
+                  >
+                    {avatar && (
+                      <div className="position-absolute avatar-xs rounded-circle">
+                        <MyTooltip
+                          content={deck.header.title.replace(
+                            /^./,
+                            deck.header.title[0].toUpperCase()
+                          )}
+                        >
+                          <img
+                            src={avatar}
+                            className="w-100 h-100 rounded-circle"
+                          />
+                        </MyTooltip>
+                      </div>
+                    )}
+                    {deck.header.icon}
+                  </div>
+                );
+              })}
+          </div>
 
           {/* Need this comment to use icon names when working on advanced options
           <div className="cursor-pointer">{magnify}</div>
           <div className="cursor-pointer">{tags}</div> */}
 
-        <div
+          <div
             className="my-icons-5 cursor-pointer"
-            onClick={() => decks.length ===10 ? error(_t("decks.limit-warning")) : setOpenModal(true)}
+            onClick={() =>
+              decks.length === 10
+                ? error(_t("decks.limit-warning"))
+                : setOpenModal(true)
+            }
           >
             {plusEncircled}
           </div>
