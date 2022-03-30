@@ -935,8 +935,8 @@
     "user-exists-error": "{{n}} allaqachon ro'yxatda"
   },
   "post-scheduler": {
-    "title": "Schedule",
-    "btn-label": "Schedule"
+    "title": "Jadval",
+    "btn-label": "Jadval"
   },
   "notification": {
     "popup-title": "You have a new notification",
