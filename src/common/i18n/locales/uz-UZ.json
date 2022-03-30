@@ -909,17 +909,17 @@
     "limited_dash": "Har bir tegda bitta chiziqdan foydalaning",
     "limited_space": "Teglarni ajratish uchun probel qo'ying",
     "limited_lowercase": "Tegda faqat kichik harflardan foydalaning",
-    "limited_characters": "Use only lowercase letters, digits and one dash",
-    "limited_firstchar": "Tag must start with a letter",
-    "limited_lastchar": "Tag must end with letter or number"
+    "limited_characters": "Faqat kichik harflar, raqamlar va bitta chiziqdan foydalaning",
+    "limited_firstchar": "Teg harf bilan boshlanishi kerak",
+    "limited_lastchar": "Teg harf yoki raqam bilan tugashi kerak"
   },
   "community-selector": {
-    "choose": "Choose a community",
-    "my-blog": "My Blog",
-    "search-placeholder": "Search Communities"
+    "choose": "Guruhni tanlang",
+    "my-blog": "Mening blogim",
+    "search-placeholder": "Guruhlarni Izlash"
   },
   "word-count": {
-    "label": "{{n}} words",
+    "label": "{{n}} so'zlar",
     "read-time-less-1-min": "< 1 min read",
     "read-time-n-min": "~ {{n}} min read"
   },
