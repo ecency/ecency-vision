@@ -113,7 +113,7 @@ const DeckViewContainer = ({
             )
           );
           setLoadingNewContent(false);
-        });
+        }).catch(err=>error(err));
       } else if (contentType === _t("decks.wallet")) {
         setLoadingNewContent(true);
         fetchTransactions(account);
@@ -144,7 +144,7 @@ const DeckViewContainer = ({
             )
           );
           setLoadingNewContent(false);
-        });
+        }).catch(err=>error(err));
       } else {
         getAccountPosts(
           contentType === "blogs" ? "blog" : contentType,
@@ -168,7 +168,7 @@ const DeckViewContainer = ({
             )
           );
           setLoadingNewContent(false);
-        });
+        }).catch(err=>error(err));
       }
     } else if (account === _t("decks.trending-topics")) {
       getAllTrendingTags().then((res) => {
@@ -190,7 +190,7 @@ const DeckViewContainer = ({
           )
         );
         setLoadingNewContent(false);
-      });
+      }).catch(err=>{error(err)});
     } else if (account === _t("decks.trending")) {
       getPostsRanked("trending").then((res) => {
         setDecks(
@@ -211,7 +211,7 @@ const DeckViewContainer = ({
           )
         );
         setLoadingNewContent(false);
-      });
+      }).catch(err=>error(err));
     }
   };
 
@@ -271,7 +271,7 @@ const DeckViewContainer = ({
                 );
               setLoadingNewContent(false);
             }
-          );
+          ).catch(err=>error(err));
           break;
         case _t("decks.trending-topics").toLocaleLowerCase():
           getAllTrendingTags().then((res) => {
@@ -291,7 +291,7 @@ const DeckViewContainer = ({
                 )
               );
             setLoadingNewContent(false);
-          });
+          }).catch(err=>error(err));
           break;
         case _t("decks.trending").toLocaleLowerCase():
           getPostsRanked("trending").then((res) => {
@@ -311,7 +311,7 @@ const DeckViewContainer = ({
                 )
               );
             setLoadingNewContent(false);
-          });
+          }).catch(err=>error(err));
           break;
         case _t("decks.wallet").toLocaleLowerCase():
           fetchTransactions(account);
@@ -340,7 +340,7 @@ const DeckViewContainer = ({
               (rest.activeUser && rest.activeUser.username) || ""
             )
           );
-      });
+      }).catch(err=>error(err));
     } else if (isPost) {
       let translatedBlogs = _t("decks.blogs").toLocaleLowerCase();
       let handledSortWithBlogs =
@@ -362,7 +362,7 @@ const DeckViewContainer = ({
             )
           );
         setLoadingNewContent(false);
-      });
+      }).catch(err=>error(err));
     }
   };
 
@@ -429,7 +429,7 @@ const DeckViewContainer = ({
               );
               setLoadingNewContent(false);
             });
-          });
+          }).catch(err=>error(err));
         }
       } else {
         let cachedItems = ls.get(`user-unauthed-decks`);
@@ -464,7 +464,7 @@ const DeckViewContainer = ({
               );
               setLoadingNewContent(false);
             });
-          });
+          }).catch(err=>error(err));
         }
       }
     }

@@ -1,4 +1,10 @@
-import React, { createRef, LegacyRef, useEffect, useRef, useState } from "react";
+import React, {
+  createRef,
+  LegacyRef,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Button, Card } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 import { _t } from "../../i18n";
@@ -32,7 +38,7 @@ const DeckHeader = ({
   onRemove,
   onReloadColumn,
   reloading,
-  timeCreated
+  timeCreated,
 }: DeckHeaderProps) => {
   const [expanded, setExpanded] = useState(false);
   let splittedTitle = title.split("@");
@@ -44,12 +50,12 @@ const DeckHeader = ({
     </Tooltip>
   );
 
-  useEffect(()=>{
+  useEffect(() => {
     let diff = moment.duration(moment(Date.now()).diff(timeCreated)).hours();
-    if(diff>=24){
+    if (diff >= 24) {
       onReloadColumn(title);
     }
-  },[])
+  }, []);
 
   return (
     <Accordion className={expanded ? "border-bottom" : ""}>
@@ -146,8 +152,9 @@ export const Deck = ({
   ...rest
 }: DeckProps) => {
   const notificationTranslated = _t("decks.notifications");
-  const deckItemRef:any = createRef()
-  const [scrollTop, setScrollTop] = useState(0)
+  const deckItemRef: any = createRef();
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
   const containerClass = header.title.includes(notificationTranslated)
     ? "list-body pb-0"
     : "";
@@ -163,14 +170,15 @@ export const Deck = ({
       <div
         className={`py-4 pr-4 pl-3 item-container ${
           header.title.includes("Wallet") ? "transaction-list" : ""
-        }`} ref={deckItemRef} onScroll={(e)=>{
-          let scrollTopValue = deckItemRef!.current!.scrollTop;
-          let scrollHeight = deckItemRef!.current!.scrollHeight;
-          if(scrollHeight - scrollTopValue < 550){
-            success("It's near end")
-          }
-          setScrollTop(scrollTopValue);
-          }}
+        }`}
+        // ref={deckItemRef}
+        // onScroll={(e) => {
+        //   let scrollTopValue = deckItemRef!.current!.scrollTop;
+        //   let scrollHeight = deckItemRef!.current!.scrollHeight;
+        //   if (scrollHeight - scrollTopValue < 750) {
+        //     success("It's near end");
+        //   }
+        // }}
       >
         {data &&
           data.map((item, index) => (
@@ -183,6 +191,7 @@ export const Deck = ({
               {...rest}
             />
           ))}
+
       </div>
     </div>
   );
