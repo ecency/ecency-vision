@@ -885,7 +885,7 @@
     "clear": "Tozalash",
     "published": "Post nashr qilindi",
     "updated": "Post yangilandi",
-    "thumbnail": "Thumbnail",
+    "thumbnail": "Muqova rasmi",
     "advanced": "Qo‘shimcha",
     "beneficiaries": "Haq egasi",
     "beneficiaries-hint": "Avtor mukofotini boshqa akkauntlar bilan bo'lishish uchun haq egasini belgilang",
@@ -920,15 +920,15 @@
   },
   "word-count": {
     "label": "{{n}} so'zlar",
-    "read-time-less-1-min": "< 1 min read",
-    "read-time-n-min": "~ {{n}} min read"
+    "read-time-less-1-min": "< 1 daqiqa o'qish",
+    "read-time-n-min": "{{n}} daqiqa o'qish"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
-    "btn-label": "Set Beneficiaries",
-    "btn-label-n": "Set Beneficiaries ({{n}})",
-    "username": "Username",
-    "reward": "Reward",
+    "title": "Haq egalari",
+    "btn-label": "Haq egalarini ko'rsatish",
+    "btn-label-n": "Haq egalarini ko'rsatish ({{n}})",
+    "username": "Foydalanuvchi nomi",
+    "reward": "Mukofot",
     "user-error": "{{n}} is not a valid user.",
     "validation-percentage": "Percentage is required.",
     "validation-username": "Username is required.",
