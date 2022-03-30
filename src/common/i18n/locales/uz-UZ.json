@@ -1066,37 +1066,37 @@
   "proposals": {
     "page-title": "Takliflar",
     "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
-    "by": "by",
-    "for": "for",
-    "duration-days": "{{n}} days",
-    "daily-pay": "Daily {{n}}",
-    "votes": "Votes: {{n}}",
-    "status-active": "active",
-    "status-expired": "expired",
+    "by": "dan",
+    "for": "uchun",
+    "duration-days": "{{n}} kunlar",
+    "daily-pay": "Kunlik {{n}}",
+    "votes": "Ovozlar: {{n}}",
+    "status-active": "faol",
+    "status-expired": "muddati tugagan",
     "status-inactive": "yaqinlashib kelayotgan",
     "remaining-days": "Qolgan: {{n}} kun",
     "filter-all": "Barchasi",
     "filter-active": "Faol",
     "filter-inactive": "Yaqinlashayotgan",
     "filter-team": "Ecency Loyihalari",
-    "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
-    "threshold-description": "This is a threshold proposal.",
-    "votes-dialog-title": "Votes on Proposal #{{n}}",
-    "see-all": "see all proposals",
-    "daily-funded": "daily funded",
-    "daily-budget": "daily budget",
-    "total-budget": "total budget"
+    "return-description": "Bu taklifni amalga oshirish uchun minimal qiymatdir. Kamroq ovoz olgan har qanday taklif moliyalashtirilmaydi.",
+    "threshold-description": "Bu oxirgi taklif.",
+    "votes-dialog-title": "Taklifga ovoz berish #{{n}}",
+    "see-all": "takliflarni qidirish",
+    "daily-funded": "kundalik moliyalashtirish",
+    "daily-budget": "kunlik byudjet",
+    "total-budget": "umumiy byudjet"
   },
   "gallery": {
-    "title": "Gallery",
-    "copied": "Copied to clipboard"
+    "title": "Galereya",
+    "copied": "Nuxsalandi"
   },
   "drafts": {
-    "title": "Drafts",
-    "filter": "Search by title"
+    "title": "Qoralamalar",
+    "filter": "Sarlavha orqali izlash"
   },
   "schedules": {
-    "title": "Scheduled Posts",
+    "title": "Postlar taqvimi",
     "move": "Move to drafts"
   },
   "bookmarks": {
@@ -1159,37 +1159,37 @@
     "text-label": "Text",
     "link-label": "https://",
     "validation-text": "Text is required.",
-    "validation-link": "Link is required."
+    "validation-link": "Link kerak."
   },
   "scroll-to-top": {
-    "title": "Scroll to Top"
+    "title": "Yuqoriga aylantiring"
   },
   "static": {
     "about": {
-      "page-title": "About",
-      "intro-title": "What is <span>Ecency</span>",
-      "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
-      "faq-title": "FAQ",
-      "faqs": "All FAQs",
-      "contact-title": "Contacts",
-      "contact-blog": "Founder's blog",
-      "contact-news": "News on Hive",
-      "contact-email": "Email us"
+      "page-title": "Haqida",
+      "intro-title": "</span>Ecency<span> nima",
+      "intro-content": "Ecency - bu Hive blokcheyni atrofidagi go‘zal va qulay interfeys bo‘lib, u sizga o‘z postlaringizni yaratish, tasma bo‘ylab harakatlanish, sevimlilaringizga ovoz berish, sharhlar yozish, javoblarni o‘qish, kundalik ijtimoiy sörfingda barcha asosiy Hive funksiyalarini bajarish imkonini beradi. shuningdek, hamyon harakatlari va boshqa qo'shimcha funktsiyalar, masalan, qidiruv va boshqalar.",
+      "faq-title": "KSS",
+      "faqs": "Hamma KSSlar",
+      "contact-title": "Kontaktlar",
+      "contact-blog": "Ta'sischining blogi",
+      "contact-news": "Hive yangiliklari",
+      "contact-email": "Bizga yozing"
     },
     "faq": {
-      "page-title": "How can we help you?",
-      "search-link-copied": "Search link copied to clipboard",
+      "page-title": "Biz qanday yordam bera olamiz?",
+      "search-link-copied": "Izlangan link nusxalandi",
       "page-sub-title": "Table of Contents",
-      "what-is-ecency-header": "What is Ecency?",
-      "search": "Related results for {{search}} filtered below",
-      "search-not-found": "Nothing was found. To ask our community, join our ",
-      "search-placeholder": "Search our articles",
-      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based decentralized social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators with true/full ownership.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. There are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> who work together to bring the vision to masses.</p><p>Ecency is hub of communities powered by cutting edge technology where users are getting paid for their time, resources and learn while having complete control over their account, communities and content. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
-      "what-is-hive-header": "What is Hive blockchain?",
-      "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
-      "what-is-difference-header": "What's the difference from other Social Networks?",
-      "what-is-difference-body": "<p>The primary difference, Ecency is based on a blockchain which means content is immutable and uncensorable. You own your community and account, nobody but you have full control of your data. Empowering true free speech. Ecency is also opensource, rewarding and innovative, built and owned by users. Aspire for greatness!</p>",
-      "why-choose-ecency-header": "Why would I choose Ecency?",
+      "what-is-ecency-header": "Ecency nima?",
+      "search": "{{search}} uchun tegishli natijalar quyida filtrlangan",
+      "search-not-found": "Hech narsa topilmadi. Guruhdan so'rash uchun bizning guruhimizga qo'shiling ",
+      "search-placeholder": "Bizning maqolalarimizni izlang",
+      "what-is-ecency-body": "<p>Ecency - bu <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blokcheyn</a>ga asoslangan markazlashtirilmagan ijtimoiy tarmoq bo'lib, < tomonidan quvvatlanadi. a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency - bu so'z erkinligi va kontent yaratuvchilari uchun mukofot beruvchi hamjamiyatlarning uyidir. haqiqiy/to‘liq egalik.</p><p>Loyiha muqobil ijtimoiy tarmoq sifatida <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> tomonidan 2016-yil avgust oyida asos solingan. tsenzurasiz, foydalanuvchi tomonidan boshqariladigan, o'zgarmas va ochiq manbali tarmoq. <a class=\"push-link\" href=\"/contributors\">ko'plab mustaqil va ixtiyoriy hissa qo'shuvchilar</a> bor, ular o'z nuqtai nazarini ommaga etkazish uchun birgalikda ishlaydi.</p><p>Ecency - bu hamjamiyatlarning markazidir. ilg'or texnologiyalar orqali foydalanuvchilar o'z vaqtlari, resurslari va o'rganishlari uchun to'lov oladilar, shu bilan birga o'z hisoblari, hamjamiyatlari va kontentini to'liq nazorat qiladilar. Foydalanish qulayligi tufayli foydalanuvchilar nafaqat o‘rganadilar, balki yangi internetning investorlari, innovatorlari bo‘lishadi.</p>",
+      "what-is-hive-header": "Hive blokcheyn nima?",
+      "what-is-hive-body": "<p>Hive - bu Web 3.0 ilovalari uchun tezkor, bepul, markazlashtirilmagan va tsenzurasiz ishlab chiqilgan blokcheyn boʻlib, unda “ulush” egalari staking, kurating, nashr qilish, oʻyin oʻynash, savdo orqali mukofot oladilar va barchasi hech qanday vositachisiz (markazlashtirilmagan). Hive blokcheynidagi tokenlar HIVE, HIVE DOLLARS, HIVE POWER nomlariga ega.</p>",
+      "what-is-difference-header": "Boshqa ijtimoiy tarmoqlardan farqi nimada?",
+      "what-is-difference-body": "<p>Asosiy farq, Ecency blokcheynga asoslangan bo‘lib, kontent o‘zgarmas va tsenzuradan o‘tib bo‘lmaydi. Siz o'z guruhingiz va hisobingizga egasiz, sizdan boshqa hech kim maʼlumotlaringizni toʻliq nazorat qila olmaydi. Haqiqiy so'z erkinligini kuchaytirish. Shuningdek Ecency ochiq manba, foydali va innovatsion, foydalanuvchilar tomonidan qurilgan va egalik qiladi. Buyuklikka intil!</p>",
+      "why-choose-ecency-header": "Nega Ecencyni tanladim?",
       "why-choose-ecency-body": "<p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
       "how-ecency-works-header": "How does Ecency work?",
       "how-ecency-works-body": "<p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
