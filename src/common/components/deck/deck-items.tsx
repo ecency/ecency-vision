@@ -79,6 +79,7 @@ export const SearchListItem = ({
   ...rest
 }: SearchItemProps) => {
   let isPinned = community && entry && entry.stats?.is_pinned;
+
   const formatMessage = (patterns: string[]): JSX.Element => {
     const { msg } = entry;
 
@@ -216,7 +217,7 @@ export const SearchListItem = ({
               )}
               {isPinned && (
                 <Tooltip content={_t("entry-list-item.pinned")}>
-                  <span className="pinned">{pinSvg}</span>
+                  <span className="deck-pinned">{pinSvg}</span>
                 </Tooltip>
               )}
               <div className="mb-3">
