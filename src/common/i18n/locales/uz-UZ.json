@@ -1144,21 +1144,21 @@
   "add-image": {
     "title": "Suratlarni qo‘shish",
     "text-label": "Rasm matni",
-    "link-label": "Image Link",
-    "validation-text": "Text is required.",
-    "validation-image": "Image is required."
+    "link-label": "Rasm linki",
+    "validation-text": "Matnni kiriting.",
+    "validation-image": "Rasmni qo'ying."
   },
   "add-image-mobile": {
-    "title": "Add Image",
-    "recent-title": "Recently uploaded",
-    "gallery": "Gallery",
-    "upload": "Upload image"
+    "title": "Rasm qo'shish",
+    "recent-title": "Eng so‘nggi",
+    "gallery": "Galereya",
+    "upload": "Rasmni yuklang"
   },
   "add-link": {
-    "title": "Add Link",
-    "text-label": "Text",
+    "title": "Link qo'shish",
+    "text-label": "Matn",
     "link-label": "https://",
-    "validation-text": "Text is required.",
+    "validation-text": "Matnni kiriting.",
     "validation-link": "Link kerak."
   },
   "scroll-to-top": {
@@ -1194,13 +1194,13 @@
       "how-ecency-works-header": "Ecency qanday ishlaydi?",
       "how-ecency-works-body": "<p>Ecency blokcheyn ma'lumotlarini saqlaydi va o'qiydi, shuning uchun ma'lumotlarga kirish mumkin va tsenzurasiz. Ecency kontent yaratuvchilarini o‘rnatilgan blokcheyn rag‘batlantirish mexanizmi, tokenlar (HIVE, HIVE DOLLAR, HIVE POWER) va ball bilan mukofotlaydi. Tokenlarni yirik kripto bozorlarida (masalan, Binance, Bittrex) sotib olish va sotish mumkin. Ballar platforma ichida ishlatilishi va tovarlar yoki xizmatlar uchun sotilishi mumkin.</p>",
       "how-to-join-header": "Ecencyga qanday ulanish mumkin?",
-      "how-to-join-body": "<p>Go to <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master password to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
-      "how-to-signin-header": "How to sign in to Ecency?",
-      "how-to-signin-body": "<p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
-      "how-referrals-work-header": "How referral system work on Ecency?",
-      "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/signup?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
-      "what-is-points-header": "What are Ecency Points and how to use them?",
-      "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, boosting your content, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
+      "how-to-join-body": "<p><a class=\"push-link\" href=\"/signup?referral=ecency\"> https://ecency.com/signup?referral=ecency</a>ga kiring va akkaunt yarating. Ro'yxatdan o'tganingizdan so'ng sizga qo'shimcha ko'rsatmalar bilan elektron pochta xabari keladi. Sizning parolingiz akkauntingizning asosiy parolidir. Iltimos, uni xavfsiz saqlang, agar parolingizni yo'qotib qo'ysangiz, oxir-oqibat akkauntingiz va mablag'ingizga kirish huquqidan mahrum bo'lasiz. Akkauntni o'chirib bo'lmaydi yoki o'chirilmaydi, akkaunt nomlarini ham o'zgartirib bo'lmaydi. Akkaunt barcha faoliyati bilan birga blokcheynda doimiy saqlanadi. Parolsiz akkauntlarni tiklab bo'lmaydi, kalitlaringizni xavfsiz saqlang",
+      "how-to-signin-header": "Qanday qilib Ecencydan ro'yxatdan o'tish mumkin?",
+      "how-to-signin-body": "<p>Siz Ecency-ga foydalanuvchi nomi va asosiy parolingiz yoki faol shaxsiy kalitlar yordamida kirishingiz mumkin. Biz xavfsizlikka juda jiddiy yondashamiz, shuning uchun shaxsiy kalitlaringizni hech qachon saqlamaymiz, mobil ilovada ular siz tanlagan qo'shimcha PIN-kod bilan shifrlangan, veb-saytda esa hech qachon saqlanmaydi. Shuningdek, tizimga osongina kirish, boshqarish va amallarni bajarish uchun <a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a> autentifikatsiya xizmatidan foydalanishingiz mumkin.</a> p>",
+      "how-referrals-work-header": "Ecencyda referal tizimi qanday ishlaydi?",
+      "how-referrals-work-body": "<p>Taklif tizimi oddiy, siz https://ecency.com/signup?referral=username ushbu havolada foydalanuvchi nomingizni qo'shib do'stlaringizni taklif qilishingiz va uni do'stlaringiz bilan baham ko'rishingiz mumkin. Do‘stlaringiz Ecency’ga qo‘shilib, birinchi 250 ballni qo‘lga kiritgandan so‘ng, siz 100 ball olasiz. Taklif va uning mukofotida hech qanday cheklovlar yo'q.</p>",
+      "what-is-points-header": "Ecency Ballari nima va ulardan qanday foydalanish kerak?",
+      "what-is-points-body": "<p>Ecency ballari doimiy ravishda barcha foydalanuvchilar uchun veb-sayt, mobil yoki ish stoli ilovasida amalga oshiradigan turli ijtimoiy faoliyatlari uchun zarb qilinadi va mukofotlanadi. Ballar kontentingizni targ'ib qilish, oshirish uchun ishlatilishi mumkin, hatto boshqa foydalanuvchiga o'tkazilishi yoki sovg'a qilinishi mumkin. Shuningdek, siz bizning mobil ilovalarimiz orqali Ballarni xarid qilishingiz mumkin.</p>",
       "where-tokens-come-header": "Where do the tokens come from?",
       "where-tokens-come-body": "<p>The Hive network continually creates new digital tokens to reward content creators and curators. Some of the newly-created tokens are transferred to users who add value to platform by posting, commenting, and voting on other people's posts. The remainder is distributed to holders of HIVE POWER and the witnesses that secures the blockchain.</p>",
       "how-promotion-work-header": "How content promotion works?",
