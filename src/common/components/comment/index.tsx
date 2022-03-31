@@ -158,23 +158,13 @@ export class Comment extends Component<Props, State> {
     render() {
         const {inProgress, cancellable, autoFocus, submitText, inputRef, activeUser} = this.props;
         const {text, preview, showEmoji} = this.state;
-
+        const rows = text.split(/\r\n|\r|\n|<br>/).length
+        debugger
         return (
             <>
                 <div className="comment-box" onMouseEnter={() => !showEmoji && this.setState({showEmoji: true})}>
                     {EditorToolbar({...this.props, sm: true, showEmoji})}
                     <div className="comment-body">
-                        {/* <Form.Control
-                            className={`the-editor accepts-emoji ${text.length > 20 ? 'expanded' : ''}`}
-                            as="textarea"
-                            placeholder={_t("comment.body-placeholder")}
-                            value={text}
-                            onChange={this.textChanged}
-                            disabled={inProgress}
-                            autoFocus={autoFocus}
-                            rows={text.split(/\r\n|\r|\n|<br>/).length}
-                            ref={inputRef}
-                        /> */}
                         <div className="body-input">
                             <TextareaAutocomplete
                                 className={`the-editor accepts-emoji ${text.length > 20 ? 'expanded' : ''}`}
@@ -184,13 +174,16 @@ export class Comment extends Component<Props, State> {
                                 onChange={this.textChanged}
                                 disabled={inProgress}
                                 autoFocus={autoFocus}
-                                rows={text.split(/\r\n|\r|\n|<br>/).length}
+                                minRows={rows}
+                                rows={rows}
+                                maxrows={100}
                                 ref={inputRef}
                                 acceptCharset="UTF-8"
                                 global={this.props.global}
                                 id="the-editor"
                                 spellCheck={true}
                                 activeUser={activeUser && activeUser.username || ""}
+                                usePropsRows={true}
                             />
                         </div>
                     </div>
