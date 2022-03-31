@@ -42,20 +42,13 @@ import {
   pencilOutlineSvg,
   menuSvg,
   closeSvg,
-  magnifySvg,
-  accountOutlineSvg,
-  powerDownSvg,
-  chevronDownSvgForSlider,
   moonSvg,
   globeSvg,
-  bellSvg,
-  walletTravelSvg,
   walletSvg,
   notificationSvg,
   pencilOutlinedSvg,
   userOutlineSvg,
   downArrowSvg,
-  chevronUpSvg,
   upArrowSvg,
   keySvg,
   sunSvg,
@@ -65,7 +58,6 @@ import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
 import isCommunity from "../../helper/is-community";
 import { setupConfig } from "../../../setup";
-import { pageMapStateToProps } from "../../pages/common";
 
 interface Props {
   history: History;

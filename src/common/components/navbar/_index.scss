@@ -18,6 +18,14 @@
       color: $steel-grey;
     }
 
+    @include themify(sky) {
+      color: $white-three;
+    }
+
+    @include themify(burning) {
+      color: $burning-primary;
+    }
+
     @include themify(night) {
       color: $duck-egg-blue;
       opacity: 0.8;
@@ -52,6 +60,7 @@
 
   @include themify(sky) {
     background: $sky-primary;
+    box-shadow: 0 0 2px 1px $white-six;
   }
 
   @include themify(night) {
@@ -169,7 +178,22 @@
       background: $white-two;
       box-shadow: 0 0 2px 1px $white-six;
     }
+
+    @include themify(sky) {
+      background: $sky-primary;
+      box-shadow: 0 0 2px 1px $white-six;
+    }
   
+    @include themify(dusk) {
+      background: $dusk-primary;
+      box-shadow: 0 0 2px 1px $white-six;
+    }
+
+    @include themify(burning) {
+      background: $burning-primary;
+      box-shadow: 0 0 2px 1px $white-six;
+    }
+
     @include themify(night) {
       background: $dark-two;
     }
@@ -473,6 +497,15 @@ body.medium-zoom--opened {
   @include themify(night) {
     color: $light-grey !important;
   }
+  @include themify(sky) {
+     color: $white-three !important;
+  }
+  @include themify(burning) {
+     color: $white-three !important;
+  }
+  @include themify(dusk) {
+    color: $white-three !important;
+  }
 }
 
 .navbar-icon {
@@ -481,6 +514,15 @@ body.medium-zoom--opened {
   svg, path, rect {
     @include themify(night) {
       fill: $light-grey !important;
+    }
+    @include themify(sky) {
+      fill: $white-three !important;
+    }
+    @include themify(burning) {
+      fill: $white-three !important;
+    }
+    @include themify(dusk) {
+      fill: $white-three !important;
     }
   }
 }
@@ -491,6 +533,15 @@ body.medium-zoom--opened {
   svg, path, rect {
     @include themify(night) {
       stroke: $light-grey !important;
+    }
+    @include themify(sky) {
+      fill: $white-three !important;
+    }
+    @include themify(burning) {
+      fill: $white-three !important;
+    }
+    @include themify(dusk) {
+      fill: $white-three !important;
     }
   }
 }
@@ -585,6 +636,10 @@ body.medium-zoom--opened {
     margin-left: 64px;
     @include themify(night) {
       color: $light-grey !important;
+    }
+
+    @include themify(sky) {
+      color: $white-three !important;
     }
   }
 }
