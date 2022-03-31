@@ -15,15 +15,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, lint and/or test
-      run: |
-        yarn
-        cd src/desktop
-        yarn
-        cd ../../
-        yarn test --runInBand --updateSnapshot
-      env:
-        CI: true
   build:
     needs: tests
     runs-on: ubuntu-latest
