@@ -34,7 +34,7 @@
   text-transform: capitalize;
 }
 
-.index {
+.deck-index {
   font-size: 13px;
   font-weight: 400;
   background-image: url(../../img/index-bg.png);
@@ -135,8 +135,11 @@
   }
 }
 
-.pinned {
-  path {
-    fill: $red !important;
+.deck-pinned {
+  color: $red4 !important;
+  transform: rotate(45deg);
+
+  svg {
+    width: 14px !important;
   }
 }
