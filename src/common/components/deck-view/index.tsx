@@ -190,7 +190,7 @@ const DeckViewContainer = ({
           )
         );
         setLoadingNewContent(false);
-      }).catch(err=>{error(err)});
+      }).catch(err=>{debugger;error(err)});
     } else if (account === _t("decks.trending")) {
       getPostsRanked("trending").then((res) => {
         setDecks(
@@ -274,6 +274,7 @@ const DeckViewContainer = ({
           ).catch(err=>error(err));
           break;
         case _t("decks.trending-topics").toLocaleLowerCase():
+          debugger
           getAllTrendingTags().then((res) => {
             (updatedDecks[indexOfItemToUpdate] = {
               data: res,
@@ -291,7 +292,7 @@ const DeckViewContainer = ({
                 )
               );
             setLoadingNewContent(false);
-          }).catch(err=>error(err));
+          }).catch(err=>{debugger;error(err)});
           break;
         case _t("decks.trending").toLocaleLowerCase():
           getPostsRanked("trending").then((res) => {
