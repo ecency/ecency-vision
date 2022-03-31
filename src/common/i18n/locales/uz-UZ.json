@@ -1065,7 +1065,7 @@
   },
   "proposals": {
     "page-title": "Takliflar",
-    "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
+    "page-description": "Hive markazlashtirilmagan fondi (HMF) zanjiriy moliyalashtirish mexanizmi boʻlib, hammaga taklif yuborish va guruh ovozlari maʼlum chegaradan oʻtgandan keyin mablagʻ olish imkonini beradi. Batafsil maʼlumot olish uchun <a href=\"/faq#how-dhf-work\"> KSS</a>.",
     "by": "dan",
     "for": "uchun",
     "duration-days": "{{n}} kunlar",
@@ -1097,20 +1097,20 @@
   },
   "schedules": {
     "title": "Postlar taqvimi",
-    "move": "Move to drafts"
+    "move": "Qoralamalarga qo'shish"
   },
   "bookmarks": {
-    "title": "Bookmarks"
+    "title": "Saqlanganlar"
   },
   "favorites": {
-    "title": "Favorites"
+    "title": "Sevimlilar"
   },
   "fragments": {
-    "title": "Snippets",
-    "create-first": "Create your first snippet",
-    "filter": "Search by title",
-    "form-title": "Title",
-    "validation-title": "Title is required.",
+    "title": "Snippetlar",
+    "create-first": "Birinchi snippetingizni yarating",
+    "filter": "Sarlavha orqali izlash",
+    "form-title": "Sarlavha",
+    "validation-title": "Sarlavha qo'ying.",
     "validation-value": "Value is required.",
     "validation-body": "Body is required.",
     "form-body": "Body"
