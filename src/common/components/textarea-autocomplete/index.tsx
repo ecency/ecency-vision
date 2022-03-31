@@ -70,7 +70,7 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 
 	render() {
 		const {activeUser, rows, usePropsRows, ...other} = this.props;
-		debugger
+		
 		return (
 			<ReactTextareaAutocomplete
 				{...other}

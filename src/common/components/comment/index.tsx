@@ -159,7 +159,7 @@ export class Comment extends Component<Props, State> {
         const {inProgress, cancellable, autoFocus, submitText, inputRef, activeUser} = this.props;
         const {text, preview, showEmoji} = this.state;
         const rows = text.split(/\r\n|\r|\n|<br>/).length
-        debugger
+        
         return (
             <>
                 <div className="comment-box" onMouseEnter={() => !showEmoji && this.setState({showEmoji: true})}>
