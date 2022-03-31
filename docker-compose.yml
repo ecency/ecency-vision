@@ -2,11 +2,11 @@ version: '3.7'
 
 services:
   app:
-    image: ecency/vision:development
-    environment:
-      - USE_PRIVATE
+    image: pspc/ecency-boilerplate
+    env_file:
+      - .env.local
     ports:
-      - "3000:3000"
+      - "80:3000"
     deploy:
       replicas: 4
       resources:
