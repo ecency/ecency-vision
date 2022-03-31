@@ -2,13 +2,13 @@ version: '3.7'
 
 services:
   app:
-    image: pspc/ecency-boilerplate
+    image: pspc/ecency-boilerplate:latest
     env_file:
       - .env.local
     ports:
-      - "80:3000"
+      - "3000:3000"
     deploy:
-      replicas: 4
+      replicas: 1
       resources:
         limits:
           cpus: "0.9"
@@ -21,8 +21,3 @@ services:
       rollback_config:
         parallelism: 0
         order: stop-first
-      restart_policy:
-        condition: any
-        delay: 5s
-        max_attempts: 5
-        window: 30s

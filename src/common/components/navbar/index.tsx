@@ -305,10 +305,16 @@ export class NavBar extends Component<Props, State> {
           <div className="brand">
             {activeUser !== null ? (
               <Link to={logoHref}>
-                <img src={setupConfig.navBarImg} className="logo" alt="Logo" />
+                <img
+                  style={{ borderRadius: "50%" }}
+                  src={setupConfig.navBarImg}
+                  className="logo"
+                  alt="Logo"
+                />
               </Link>
             ) : (
               <img
+                style={{ borderRadius: "50%" }}
                 src={setupConfig.navBarImg}
                 className="logo"
                 alt="Logo"
@@ -334,12 +340,14 @@ export class NavBar extends Component<Props, State> {
                   <Link to={logoHref}>
                     <img
                       src={setupConfig.navBarImg}
+                      style={{ borderRadius: "50%" }}
                       className="logo"
                       alt="Logo"
                     />
                   </Link>
                 ) : (
                   <img
+                    style={{ borderRadius: "50%" }}
                     src={setupConfig.navBarImg}
                     className="logo"
                     alt="Logo"
