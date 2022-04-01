@@ -1,3 +1,5 @@
+console.log(process.env.RAZZLE_HIVE_ID);
+
 export const setupConfig = {
   communityId: process.env.RAZZLE_HIVE_ID ?? "",
   selectedTheme: process.env.RAZZLE_THEME ?? "",
