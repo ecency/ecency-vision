@@ -1226,9 +1226,9 @@
       "can-guest-post-header": "Veb-saytingizda mehmon postlarini yozish mumkinmi?",
       "can-guest-post-body": "<p>Ecencyda nashr etish oddiy va oson, <a href=\"/signup?referral=ecency\" class=\"push-link\">Ro‘yxatdan o‘tib</a>, o‘z blogingizni va guruhingizni ochib, kontentingizni joylashtirishni boshlang.< /p>",
       "source-label-header": "Kontent manba teglari nima?",
-      "source-label-body": "<p>Content source helps you understand how content was published. In some cases you may see a third-party client name, which indicates the Content came from a non-Ecency application. Authors sometimes use third-party client applications to manage their blogs, communities. Third-party clients are software tools used by authors and therefore are not affiliated with, nor do they reflect the views of, the content. Content can be directly created by humans or, in some circumstances, automated by an application.</p>",
-      "how-to-contribute-header": "How to contribute to the Ecency?",
-      "how-to-contribute-body": "<p>Our <a href=\"/contributors\" class=\"push-link\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Website</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>",
+      "source-label-body": "<p>Kontent manbasi kontent qanday chop etilganini tushunishga yordam beradi. Ba'zi hollarda siz uchinchi tomon mijoz nomini ko'rishingiz mumkin, bu Kontent Ecency bo'lmagan ilovadan kelganligini bildiradi. Mualliflar ba'zan o'z bloglarini, guruhlarini boshqarish uchun uchinchi tomon mijoz ilovalaridan foydalanadilar. Uchinchi tomon mijozlari mualliflar tomonidan qo'llaniladigan dasturiy vositalar bo'lib, shuning uchun ular kontentga aloqador emas va ularning nuqtai nazarini aks ettirmaydi. Kontent to'g'ridan-to'g'ri odamlar tomonidan yaratilishi yoki ba'zi hollarda dastur tomonidan avtomatlashtirilishi mumkin.</p>",
+      "how-to-contribute-header": "Ecencyga qanday hissa qo'shish kerak?",
+      "how-to-contribute-body": "<p>Bizning <a href=\"/contributors\" class=\"push-link\">ajoyib hissa qo'shuvchilarimiz</a> bizga Ecencyni shakllantirishda yordam berishmoqda. Siz bizning Tarjimonlar guruhimizga qo'shilib, ushbu ajoyib harakatning bir qismi bo'lishingiz mumkin: <a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Veb-sayt</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Mobil</a> yoki g'oyalar ishlab chiqish, loyihalash, ijtimoiy media bilan ishlash ko'nikmalariga hissa qo'shish orqali. Biz oʻz ishtirokchilarimizni qoʻllab-quvvatlashga harakat qilamiz!</p>",
       "why-refund-points-header": "Why refund happens on boosting?",
       "why-refund-points-body": "<p>Boosting content reviewed and evaluated by our curators in their first 24 hours. Refund might happen due to multiple reasons, after 24 hours if no curator reviewed/curated content, if content is template or low effort based, if author has history of plagiarism, abuse, phishing or spamming, if content is too old to curate as new content gets more priority during review process.</p>",
       "can-change-username-header": "Can I change my username?",
@@ -1261,10 +1261,10 @@
     "dismiss": "Dismiss",
     "downloading": "Downloading new version...",
     "download-completed": "Download is completed",
-    "restart": "Restart"
+    "restart": "Qayta ishga tushirish"
   },
   "chain-error": {
-    "min-root-comment": "You may only post once every five minutes.",
+    "min-root-comment": "Siz har besh daqiqada bir marta xabar yozishingiz mumkin.",
     "identical-vote": "Your current vote on this content is identical to this vote.",
     "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
     "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
@@ -1273,8 +1273,8 @@
     "paid-out-post-forbidden": "Voting for paid out content is not available."
   },
   "landing-page": {
-    "welcome-text": "Welcome to Ecency!",
-    "what-is-ecency": "Decentralized, rewarding, true ownership social network",
+    "welcome-text": "Ecencyga xush kelibsiz!",
+    "what-is-ecency": "Markazlashtirilmagan, mukofot beradigan, haqiqiy egalik ijtimoiy tarmog'i",
     "powered-by-hive": "powered by Hive",
     "get-started": "Get started",
     "earn-money": "Earn money",
