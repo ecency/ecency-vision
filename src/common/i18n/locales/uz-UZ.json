@@ -534,7 +534,7 @@
     "vote-power": "{{n}} % Ovoz Kuchi",
     "rc-power": "Resurs Kreditlari: {{n}}%",
     "recharge-time": "(to'liq yuklangan {{n}})",
-    "down-vote-power": "Downvote Power: {{n}}%",
+    "down-vote-power": "Salbiy ovoz:{{n}}%",
     "post-count": "Post soni: {{n}}",
     "no-posts": "Birorta kontent yozilmagan",
     "no-posts-user": "Kuzat, birinchilardan bo'l",
@@ -808,7 +808,7 @@
     "title": "Dönüştürme istekleri",
     "request-id": "So'rov identifikatori",
     "amount": "Miqdor",
-    "pending": "Pending"
+    "pending": "Kutish jarayonida"
   },
   "savings-withdraw": {
     "title": "J'amg'armadan yechib olish",
