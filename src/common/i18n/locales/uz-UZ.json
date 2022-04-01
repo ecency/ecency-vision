@@ -1229,7 +1229,7 @@
       "source-label-body": "<p>Kontent manbasi kontent qanday chop etilganini tushunishga yordam beradi. Ba'zi hollarda siz uchinchi tomon mijoz nomini ko'rishingiz mumkin, bu Kontent Ecency bo'lmagan ilovadan kelganligini bildiradi. Mualliflar ba'zan o'z bloglarini, guruhlarini boshqarish uchun uchinchi tomon mijoz ilovalaridan foydalanadilar. Uchinchi tomon mijozlari mualliflar tomonidan qo'llaniladigan dasturiy vositalar bo'lib, shuning uchun ular kontentga aloqador emas va ularning nuqtai nazarini aks ettirmaydi. Kontent to'g'ridan-to'g'ri odamlar tomonidan yaratilishi yoki ba'zi hollarda dastur tomonidan avtomatlashtirilishi mumkin.</p>",
       "how-to-contribute-header": "Ecencyga qanday hissa qo'shish kerak?",
       "how-to-contribute-body": "<p>Bizning <a href=\"/contributors\" class=\"push-link\">ajoyib hissa qo'shuvchilarimiz</a> bizga Ecencyni shakllantirishda yordam berishmoqda. Siz bizning Tarjimonlar guruhimizga qo'shilib, ushbu ajoyib harakatning bir qismi bo'lishingiz mumkin: <a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Veb-sayt</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Mobil</a> yoki g'oyalar ishlab chiqish, loyihalash, ijtimoiy media bilan ishlash ko'nikmalariga hissa qo'shish orqali. Biz oʻz ishtirokchilarimizni qoʻllab-quvvatlashga harakat qilamiz!</p>",
-      "why-refund-points-header": "Why refund happens on boosting?",
+      "why-refund-points-header": "Nega kuchaytirganda to'lov qaytariladi?",
       "why-refund-points-body": "<p>Boosting content reviewed and evaluated by our curators in their first 24 hours. Refund might happen due to multiple reasons, after 24 hours if no curator reviewed/curated content, if content is template or low effort based, if author has history of plagiarism, abuse, phishing or spamming, if content is too old to curate as new content gets more priority during review process.</p>",
       "can-change-username-header": "Can I change my username?",
       "can-change-username-body": "<p>Account names on Ecency and Hive blockchain can not be changed. If you would like a new account name, you can create new account.</p>",
@@ -1265,12 +1265,12 @@
   },
   "chain-error": {
     "min-root-comment": "Siz har besh daqiqada bir marta xabar yozishingiz mumkin.",
-    "identical-vote": "Your current vote on this content is identical to this vote.",
-    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
-    "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
-    "comment-cashout": "Content after their payout cannot be deleted.",
-    "comment-children": "Cannot delete a content with replies.",
-    "paid-out-post-forbidden": "Voting for paid out content is not available."
+    "identical-vote": "Bu kontentdagi hozirgi ovozingiz shu ovoz bilan bir xil.",
+    "insufficient-resource": "Resurs kreditlari yetarli emas. Iltimos, tranzaksiyani kuting yoki HIVEni kuchaytiring.",
+    "delete-comment-with-vote": "Mukofot kutilayotgan ijobiy kontentni oʻchirib boʻlmaydi.",
+    "comment-cashout": "Toʻlovdan keyin kontentni oʻchirib boʻlmaydi.",
+    "comment-children": "Javoblari bor kontentni oʻchirib boʻlmaydi.",
+    "paid-out-post-forbidden": "To'lovi qilingan kontentga ovoz berish mumkin emas."
   },
   "landing-page": {
     "welcome-text": "Ecencyga xush kelibsiz!",
