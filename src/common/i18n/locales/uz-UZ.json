@@ -1235,32 +1235,32 @@
       "can-change-username-body": "<p>Ecency va Hive blokcheynidagi foydalanuvchi nomlarini o‘zgartirib bo‘lmaydi. Agar siz yangi hisob nomini xohlasangiz, yangi akkaunt yaratishingiz mumkin.</p>",
       "can-delete-account-header": "Hisobimni o'chirib tashlasam yoki o'chirib qo'ysam bo'ladimi?",
       "can-delete-account-body": "<p>Ecencydagi hisoblarni o‘chirib bo‘lmaydi tashlab bo‘lmaydi. Hisob butun faoliyati bilan birga Hive blokcheynida doimiy saqlanadi.</p>",
-      "different-reward-choices-header": "What are the differences in Reward types?",
-      "different-reward-choices-body": "<p>In publishing settings section, you can see 3 different Reward types/choices.<ul><li>50%/50% - This rewards in half Hive Power, and half liquid HIVE / Hive Dollars. The ratio of liquid HIVE to Hive Dollars rewarded is based on network conditions at the time of payout. This is the default payout option.</li><li>Power Up 100% - This option rewards the post in 100% Hive Power.</li><li>Decline Payout - Use this option to receive no post rewards. Votes will affect the post's position on the trending ranking but no rewards are paid from Hive's reward pool. Replies made to the post are still eligible for rewards.</li></ul></p>",
-      "boosting-vote-buying-header": "Is boosting considered a vote buying?",
-      "boosting-vote-buying-body": "<p>No! Because, there is no guarantee of receiving vote, there is no guarantee of exact amount of vote, boosting maximum amount is limited, each content reviewed by our curators, there is no profit in it. All curation rewards are sent back to delegators 100%. Only measurable success we seek is to see engagement and growth on entire ecosystem. Boosting is simply creating additional use case for Ecency Points to improve engagement on platform, so it is essentially same as any other curation guilds on Hive. Goal of those guilds ultimately to improve engagement on platform and grow activity, the way each measures that success is the different.</p>",
-      "how-exchange-work-header": "How token exchange works?",
-      "how-exchange-work-body": "<p>Exchanging and trading tokens on Ecency is very simple. We utilize internal peer to peer, decentralized exchange built into Hive blockchain. Offer easy to use interface so you can exchange one token to another, completely decentralized manner. Create buy or sell order and wait for other people to fill your order. If you want to quickly swap tokens then you can fill someone else's open order for quick trade.</p>"
+      "different-reward-choices-header": "Mukofot turlarida qanday farqlar bor?",
+      "different-reward-choices-body": "<p>Post sozlamalari bo'limida siz 3 turdagi mukofot/mukofot variantlarini ko'rishingiz mumkin.<ul><li>50%/50% - Yarim Hive Power va yarmi Hive / Hive Liquid Dollar mukofotlari. Hive Liquid va Hive Dollars o'rtasidagi munosabatlar to'lov vaqtidagi tarmoq shartlariga asoslanadi. Bu birlamchi toʻlov opsiyasi.</li><li>100% quvvatlang - Bu opsiya 100% Hive quvvatiga ega boʻlgan postni mukofotlaydi.</li><li>Toʻlovlarni rad etish – ushbu opsiyadan toʻlov uchun mukofot olmaslik uchun foydalaning. Ovozlar postning trend reytingidagi pozitsiyasiga ta'sir qiladi, lekin Hive mukofot pulidan hech qanday mukofot to'lanmaydi. Ammo yozilgan javoblar mukofot olishlari mumkin.</li></ul></p>",
+      "boosting-vote-buying-header": "Postni kuchaytirish ovozlarni sotib olish hisoblanadimi?",
+      "boosting-vote-buying-body": "<p>Yo'q! Chunki, ovoz olish kafolati yo‘q, ovozlarning aniq soniga kafolat yo‘q, postni kuchaytirishning maksimal miqdori cheklangan, kuratorlarimiz tomonidan ko'rib chiqilgan kontentlardan hech qanday foyda yo'q. Barcha kuratorlik mukofotlari delegatorlarga 100% qaytariladi. Biz erishishimiz mumkin bo'lgan yagona muvaffaqiyat - bu butun ekotizimda ishtirok etish va o'sishni ko'rishdir. Boosting shunchaki platformadagi ishtirokni yaxshilab, Ecency Ballaridan qo'shimcha foydalanish holatlarini yaratadi, shuning uchun u Hivedagi boshqa har qanday kuratorlik gildiyasi bilan bir xil. Bu gildiyalarning maqsadi platformadagi ishtirokni yaxshilash va faollikni oshirish.</p>",
+      "how-exchange-work-header": "Token almashinuvi qanday ishlaydi?",
+      "how-exchange-work-body": "<p>Ecency-da tokenlarni almashish va sotish juda oddiy. Biz Hive blokcheyniga asoslangan P2P, peer-to-peer, markazlashmagan almashishdan foydalanamiz. U foydalanish uchun qulay interfeysni taklif etadi, shuning uchun siz bir tokenni boshqasiga almashtirishingiz mumkin, butunlay markazlashtirilmagan. Sotib olish yoki sotish buyrug'ini yarating va boshqa odamlar buyurtmangizni to'ldirishini kuting. Agar tokenlarni tezda sotmoqchi boʻlsangiz, tez savdo qilish uchun boshqa birovning ochiq buyurtmasini toʻldirishingiz mumkin.</p>"
     }
   },
   "contributors": {
-    "title": "Contributors",
-    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
+    "title": "Ishtirokchilar",
+    "description": "Bu buyuk insonlar Ecencyga u yoki bu tarzda hissa qo'shgan, biz ularning barchasiga minnatdorchilik bildiramiz. Tarjima, g‘oyalar, ishlab chiqish, loyihalash, ijtimoiy xabardorlik bilan o‘z hissangizni qo‘shish orqali bizning jamoamizga qo‘shilishni istasangiz, qo‘shiling. Batafsil ma’lumot olish uchun bizning <a href=\"/faq#qanday qilib hissa qo'shish\">FAQ</a>ni o‘qing."
   },
   "context-menu": {
-    "cut": "Cut",
-    "copy": "Copy",
-    "paste": "Paste",
-    "open-image-browser": "Open image in browser",
-    "copy-image-url": "Copy image url"
+    "cut": "Kesish",
+    "copy": "Nusxalash",
+    "paste": "Kiritish",
+    "open-image-browser": "Brauzerda rasmni ochish",
+    "copy-image-url": "Rasm urlini nusxalash"
   },
   "updater": {
-    "new-version-available": "New version is available",
-    "download": "Download",
-    "update": "Update",
-    "dismiss": "Dismiss",
-    "downloading": "Downloading new version...",
-    "download-completed": "Download is completed",
+    "new-version-available": "Yangi versiyasi mavjud",
+    "download": "Yuklash",
+    "update": "Yangilash",
+    "dismiss": "Rad etish",
+    "downloading": "Yangi versiya yuklanmoqda...",
+    "download-completed": "Yuklash yakunandi",
     "restart": "Qayta ishga tushirish"
   },
   "chain-error": {
