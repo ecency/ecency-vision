@@ -1325,13 +1325,13 @@
     "send": "Jo'natish",
     "subscribe-paragraph": "Markazlashtirilmagan vebda nima sodir bo'layotganini birinchilardan bo'lib biling.",
     "copy-rights": "©2021 Ecency. Barcha huquqlar himoyalangan.",
-    "success-message-subscribe": "A verification link has been sent to your email account!",
-    "validation-email": "A valid email is required",
-    "error-occured": "A server error has been occured."
+    "success-message-subscribe": "Tasdiqlash linki elektron pochtangizga yuborildi!",
+    "validation-email": "Mavjud bölgan pochta yozing",
+    "error-occured": "Server xatoligi yuz berdi."
   },
   "layouts": {
-    "grid": "Grid",
-    "classic": "Classic",
-    "deck": "Deck"
+    "grid": "Panjara",
+    "classic": "Klassik",
+    "deck": "Ustun"
   }
 }
