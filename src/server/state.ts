@@ -49,7 +49,7 @@ export const makePreloadedState = async (
         getOperatingSystem(req.headers["user-agent"])
       )
     ),
-    usePrivate: Boolean(parseInt(config.usePrivate, 10)),
+    usePrivate: false,
   };
 
   const dynamicProps = await getDynamicProps();

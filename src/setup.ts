@@ -1,8 +1,8 @@
-console.log(process.env.RAZZLE_HIVE_ID);
+console.log(process.env.RAZZLE_RUNTIME_HIVE_ID);
 
 export const setupConfig = {
-  communityId: process.env.RAZZLE_HIVE_ID ?? "",
-  selectedTheme: process.env.RAZZLE_THEME ?? "",
-  tags: process.env.RAZZLE_TAGS?.split(",") ?? [""],
+  communityId: process.env.RAZZLE_RUNTIME_HIVE_ID ?? "",
+  selectedTheme: process.env.RAZZLE_RUNTIME_THEME ?? "",
+  tags: process.env.RAZZLE_RUNTIME_TAGS?.split(",") ?? [""],
   navBarImg: "",
 };
