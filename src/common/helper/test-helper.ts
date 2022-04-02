@@ -122,6 +122,9 @@ export const globalInstance: Global = {
     nsfw: false,
     newVersion: null,
     usePrivate: true,
+    tags: "",
+    hive_id: "",
+    ctheme: "",
 };
 
 export const TrendingTagsInstance: TrendingTags = {

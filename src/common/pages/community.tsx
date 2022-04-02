@@ -247,7 +247,7 @@ class CommunityPage extends BaseComponent<Props, State> {
       this.state;
 
     const { filter } = match.params;
-    const name = setupConfig.communityId;
+    const name = global.hive_id;
 
     const community = communities.find((x) => x.name === name);
     const account = accounts.find((x) => x.name === name);

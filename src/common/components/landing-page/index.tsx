@@ -426,7 +426,7 @@ const LandingPage = (props: any) => {
               >
                 <img
                   src={
-                    props?.global?.theme === setupConfig.selectedTheme
+                    props?.global?.theme === props?.global?.ctheme
                       ? DownloadWindows
                       : DownloadWindowsWhite
                   }
@@ -448,7 +448,7 @@ const LandingPage = (props: any) => {
               >
                 <img
                   src={
-                    props?.global?.theme === setupConfig.selectedTheme
+                    props?.global?.theme === props?.global?.ctheme
                       ? DownloadIPhone
                       : DownloadIPhoneWhite
                   }
@@ -470,7 +470,7 @@ const LandingPage = (props: any) => {
               >
                 <img
                   src={
-                    props?.global?.theme === setupConfig.selectedTheme
+                    props?.global?.theme === props?.global?.ctheme
                       ? DownloadAndroid
                       : DownloadAndroidWhite
                   }

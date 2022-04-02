@@ -64,6 +64,9 @@ export interface Global {
     nsfw: boolean;
     isMobile: boolean;
     usePrivate: boolean;
+    ctheme: string;
+    hive_id: string;
+    tags: string;
 }
 
 export enum ActionTypes {

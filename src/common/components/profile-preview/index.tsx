@@ -119,7 +119,7 @@ export const ProfilePreview = ({
                     ? `https://images.ecency.com/${
                         global.canUseWebp ? "webp/" : ""
                       }u/${username}/cover`
-                    : global.theme === setupConfig.selectedTheme
+                    : global.theme === global.ctheme
                     ? coverFallbackDay
                     : coverFallbackNight
                 }
