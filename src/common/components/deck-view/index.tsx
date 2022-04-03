@@ -105,7 +105,6 @@ const DeckViewContainer = ({
                   header: {
                     title: `${contentType} @${account}`,
                     icon: notifications,
-                    timeCreated: Date.now(),
                   },
                 },
               ],
@@ -113,7 +112,7 @@ const DeckViewContainer = ({
             )
           );
           setLoadingNewContent(false);
-        }).catch(err=>error(err));
+        });
       } else if (contentType === _t("decks.wallet")) {
         setLoadingNewContent(true);
         fetchTransactions(account);
@@ -136,7 +135,6 @@ const DeckViewContainer = ({
                   header: {
                     title,
                     icon: communities,
-                    timeCreated: Date.now(),
                   },
                 },
               ],
@@ -144,7 +142,7 @@ const DeckViewContainer = ({
             )
           );
           setLoadingNewContent(false);
-        }).catch(err=>error(err));
+        });
       } else {
         getAccountPosts(
           contentType === "blogs" ? "blog" : contentType,
@@ -160,7 +158,6 @@ const DeckViewContainer = ({
                   header: {
                     title: `${contentType} @${account}`,
                     icon: person,
-                    timeCreated: Date.now(),
                   },
                 },
               ],
@@ -168,7 +165,7 @@ const DeckViewContainer = ({
             )
           );
           setLoadingNewContent(false);
-        }).catch(err=>error(err));
+        });
       }
     } else if (account === _t("decks.trending-topics")) {
       getAllTrendingTags().then((res) => {
@@ -179,18 +176,14 @@ const DeckViewContainer = ({
               {
                 data: res,
                 listItemComponent: HotListItem,
-                header: {
-                  title: `${account}`,
-                  icon: hot,
-                  timeCreated: Date.now(),
-                },
+                header: { title: `${account}`, icon: hot },
               },
             ],
             (rest.activeUser && rest.activeUser.username) || ""
           )
         );
         setLoadingNewContent(false);
-      }).catch(err=>{debugger;error(err)});
+      });
     } else if (account === _t("decks.trending")) {
       getPostsRanked("trending").then((res) => {
         setDecks(
@@ -200,24 +193,20 @@ const DeckViewContainer = ({
               {
                 data: res,
                 listItemComponent: SearchListItem,
-                header: {
-                  title: `${account}`,
-                  icon: globalTrending,
-                  timeCreated: Date.now(),
-                },
+                header: { title: `${account}`, icon: globalTrending },
               },
             ],
             (rest.activeUser && rest.activeUser.username) || ""
           )
         );
         setLoadingNewContent(false);
-      }).catch(err=>error(err));
+      });
     }
   };
 
   useEffect(() => {
-    if (loadingNewContent) {
-      let draggableContainer = document!.getElementById("draggable-container")!;
+    let draggableContainer = document!.getElementById("draggable-container")!;
+    if (loadingNewContent && draggableContainer) {
       draggableContainer.scrollLeft =
         draggableContainer.getBoundingClientRect().width;
     }
@@ -260,7 +249,6 @@ const DeckViewContainer = ({
                 header: {
                   title: title,
                   icon: notifications,
-                  timeCreated: Date.now(),
                 },
               }),
                 setDecks(
@@ -271,10 +259,9 @@ const DeckViewContainer = ({
                 );
               setLoadingNewContent(false);
             }
-          ).catch(err=>error(err));
+          );
           break;
         case _t("decks.trending-topics").toLocaleLowerCase():
-          debugger
           getAllTrendingTags().then((res) => {
             (updatedDecks[indexOfItemToUpdate] = {
               data: res,
@@ -282,7 +269,6 @@ const DeckViewContainer = ({
               header: {
                 title: title,
                 icon: hot,
-                timeCreated: Date.now(),
               },
             }),
               setDecks(
@@ -292,7 +278,7 @@ const DeckViewContainer = ({
                 )
               );
             setLoadingNewContent(false);
-          }).catch(err=>{debugger;error(err)});
+          });
           break;
         case _t("decks.trending").toLocaleLowerCase():
           getPostsRanked("trending").then((res) => {
@@ -302,7 +288,6 @@ const DeckViewContainer = ({
               header: {
                 title: title,
                 icon: globalTrending,
-                timeCreated: Date.now(),
               },
             }),
               setDecks(
@@ -312,7 +297,7 @@ const DeckViewContainer = ({
                 )
               );
             setLoadingNewContent(false);
-          }).catch(err=>error(err));
+          });
           break;
         case _t("decks.wallet").toLocaleLowerCase():
           fetchTransactions(account);
@@ -332,7 +317,6 @@ const DeckViewContainer = ({
           header: {
             title: title,
             icon: communities,
-            timeCreated: Date.now(),
           },
         }),
           setDecks(
@@ -341,7 +325,7 @@ const DeckViewContainer = ({
               (rest.activeUser && rest.activeUser.username) || ""
             )
           );
-      }).catch(err=>error(err));
+      });
     } else if (isPost) {
       let translatedBlogs = _t("decks.blogs").toLocaleLowerCase();
       let handledSortWithBlogs =
@@ -353,7 +337,6 @@ const DeckViewContainer = ({
           header: {
             title: title,
             icon: person,
-            timeCreated: Date.now(),
           },
         }),
           setDecks(
@@ -363,7 +346,7 @@ const DeckViewContainer = ({
             )
           );
         setLoadingNewContent(false);
-      }).catch(err=>error(err));
+      });
     }
   };
 
@@ -401,7 +384,6 @@ const DeckViewContainer = ({
               header: {
                 title: `${_t("decks.posts")} @${accountName}`,
                 icon: person,
-                timeCreated: Date.now(),
               },
             });
 
@@ -419,7 +401,6 @@ const DeckViewContainer = ({
                 header: {
                   title: `${_t("decks.notifications")} @${accountName}`,
                   icon: notifications,
-                  timeCreated: Date.now(),
                 },
               });
               setDecks(
@@ -430,7 +411,7 @@ const DeckViewContainer = ({
               );
               setLoadingNewContent(false);
             });
-          }).catch(err=>error(err));
+          });
         }
       } else {
         let cachedItems = ls.get(`user-unauthed-decks`);
@@ -441,21 +422,13 @@ const DeckViewContainer = ({
             defaultDecks.unshift({
               data: res,
               listItemComponent: SearchListItem,
-              header: {
-                title: _t("decks.trending"),
-                icon: globalTrending,
-                timeCreated: Date.now(),
-              },
+              header: { title: _t("decks.trending"), icon: globalTrending },
             });
             getAllTrendingTags().then((res) => {
               defaultDecks.unshift({
                 data: res,
                 listItemComponent: HotListItem,
-                header: {
-                  title: _t("decks.trending-topics"),
-                  icon: hot,
-                  timeCreated: Date.now(),
-                },
+                header: { title: _t("decks.trending-topics"), icon: hot },
               });
               setDecks(
                 getItems(
@@ -465,7 +438,7 @@ const DeckViewContainer = ({
               );
               setLoadingNewContent(false);
             });
-          }).catch(err=>error(err));
+          });
         }
       }
     }
@@ -490,7 +463,6 @@ const DeckViewContainer = ({
                   firstTransaction.receiver
                 }`,
                 icon: wallet,
-                timeCreated: Date.now(),
               },
             },
           ],
@@ -588,15 +560,26 @@ const DeckViewContainer = ({
           </div>
         </div>
         <div className="decks-container d-flex p-5 mt-5 overflow-auto flex-grow-1">
-          <DraggableDeckView
-            decks={decks}
-            setDecks={setDecks}
-            {...rest}
-            global={global}
-            toggleListStyle={toggleListStyle}
-            loading={loadingNewContent}
-            onReloadColumn={onReloadColumn}
-          />
+          {decks.length === 0 ? (
+            <div className="d-flex justify-content-center align-items-center flex-grow-1 w-100 flex-column">
+              <div>
+                <img src="https://iconape.com/wp-content/files/eo/110906/svg/trello.svg" width={150} />
+              </div>
+              <div className="mt-3">
+                <h4>No decks. Please add deck by clicking the left plus button.</h4>
+              </div>
+            </div>
+          ) : (
+            <DraggableDeckView
+              decks={decks}
+              setDecks={setDecks}
+              {...rest}
+              global={global}
+              toggleListStyle={toggleListStyle}
+              loading={loadingNewContent}
+              onReloadColumn={onReloadColumn}
+            />
+          )}
         </div>
       </div>
     </>
