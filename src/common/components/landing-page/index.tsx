@@ -10,7 +10,6 @@ import Link from "../alink";
 import { apiBase } from "../../api/helper";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import isElectron from "../../util/is-electron";
-import { setupConfig } from "../../../setup";
 
 const LandingPage = (props: any) => {
   const { global } = props;

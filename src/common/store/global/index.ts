@@ -116,10 +116,9 @@ export const toggleTheme =
   (theme_key?: Theme) => (dispatch: Dispatch, getState: () => AppState) => {
     const { global } = getState();
 
-    const { theme, isMobile } = global;
-    const initialTheme = setupConfig.selectedTheme;
-    let newTheme: any =
-      theme === Theme[initialTheme] ? Theme.night : Theme[initialTheme];
+    const { theme } = global;
+    const initialTheme = global.ctheme;
+    let newTheme: any = theme === initialTheme ? Theme.night : initialTheme;
 
     if (!!theme_key) {
       newTheme = theme_key;
