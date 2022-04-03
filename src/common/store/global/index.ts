@@ -51,6 +51,9 @@ export const initialState: Global = {
   nsfw: false,
   isMobile: false,
   usePrivate: true,
+  ctheme: "sky",
+  tags: "spk,3speak",
+  hive_id: "hive-112019"
 };
 
 export default (state: Global = initialState, action: Actions): Global => {

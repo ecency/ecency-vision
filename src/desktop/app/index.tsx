@@ -45,7 +45,7 @@ window.ipcRenderer = require("electron").ipcRenderer;
 window.remote = require("electron").remote;
 
 // Create store
-const theme = ls.get("theme") || setupConfig.selectedTheme;
+const theme = ls.get("theme") || initialState.global.ctheme;
 const intro = !ls.get("hide-intro");
 const listStyle = ls.get("list-style") || defaults.listStyle;
 

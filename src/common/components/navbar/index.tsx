@@ -213,7 +213,7 @@ export class NavBar extends Component<Props, State> {
 
   handleAutoDetectTheme = (e: any = null) => {
     const _default_theme =
-      e && e.matches ? Theme.night : Theme[setupConfig.selectedTheme];
+      e && e.matches ? Theme.night : Theme[this.props.global.ctheme];
     this.props.toggleTheme(_default_theme);
   };
 
@@ -236,9 +236,9 @@ export class NavBar extends Component<Props, State> {
     }
 
     const themeText =
-      global.theme == Theme[setupConfig.selectedTheme]
+      global.theme == Theme[global.ctheme]
         ? _t("navbar.night-theme")
-        : _t(`navbar.${setupConfig.selectedTheme}-theme`);
+        : _t(`navbar.${global.ctheme}-theme`);
     const communityPage =
       match && match.params.name && isCommunity(match.params.name);
     const tagValue = global.tag ? `/${global.tag}` : "";

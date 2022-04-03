@@ -168,7 +168,7 @@ export class CommunityCover extends Component<Props> {
 
     if (account.__loaded) {
       bgImage =
-        global.theme === setupConfig.selectedTheme
+        global.theme === global.ctheme
           ? coverFallbackDay
           : coverFallbackNight;
       if (account.profile?.cover_image) {
