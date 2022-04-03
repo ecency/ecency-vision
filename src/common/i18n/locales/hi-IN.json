@@ -270,7 +270,7 @@
   },
   "decks": {
     "users": "उपयोगकर्ता",
-    "header-info": "Click me to see extra options",
+    "header-info": "अतिरिक्त विकल्प देखने के लिए मुझे क्लिक करें",
     "username": "यूजरनेम",
     "content-type": "कांटेंट प्रकार",
     "trending-topics": "विषय",
@@ -292,14 +292,14 @@
     "reload": "पुनः लोड करें",
     "add": "जोड़ें",
     "remove": "हटाएं",
-    "removed": "{{deck}} removed successfully.",
-    "payout": "Payouts",
-    "created": "New",
-    "go-back": "Go back",
-    "deck-exists": "The deck you're trying to add already exists!",
-    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
-    "select-column-type": "Which deck type do you want to add?",
-    "topic": "Custom"
+    "removed": "{{deck}} सफलतापूर्वक हटा दिया गया।",
+    "payout": "भुगतान",
+    "created": "नया",
+    "go-back": "पीछे जाएँ",
+    "deck-exists": "आप जिस डेक को जोड़ने का प्रयास कर रहे हैं वह पहले से मौजूद है!",
+    "limit-warning": "आप अधिकतम 10 डेक जोड़ सकते हैं। दूसरा जोड़ने के लिए कोई भी डेक हटाएं।",
+    "select-column-type": "आप कौन सा डेक प्रकार जोड़ना चाहते हैं?",
+    "topic": "अनुकूल"
   },
   "market-data": {
     "title": "बाजार मूल्य",
@@ -1332,6 +1332,6 @@
   "layouts": {
     "grid": "ग्रिड",
     "classic": "क्लॅसिक",
-    "deck": "Deck"
+    "deck": "डेक"
   }
 }
