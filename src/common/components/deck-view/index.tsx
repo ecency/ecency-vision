@@ -12,6 +12,7 @@ import {
   plusEncircled,
   tags,
   wallet,
+  trelloSvg,
 } from "../../img/svg";
 import {
   pageMapDispatchToProps,
@@ -562,11 +563,11 @@ const DeckViewContainer = ({
         <div className="decks-container d-flex p-5 mt-5 overflow-auto flex-grow-1">
           {decks.length === 0 ? (
             <div className="d-flex justify-content-center align-items-center flex-grow-1 w-100 flex-column">
-              <div>
-                <img src="https://iconape.com/wp-content/files/eo/110906/svg/trello.svg" width={150} />
-              </div>
+              <span style={{width: 50}}>
+                {trelloSvg}
+              </span>
               <div className="mt-3">
-                <h4>No decks. Please add deck by clicking the left plus button.</h4>
+                <h4>{_t("decks.empty-decks")}</h4>
               </div>
             </div>
           ) : (

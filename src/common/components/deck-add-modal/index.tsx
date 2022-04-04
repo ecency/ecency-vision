@@ -81,11 +81,11 @@ const options = (activeUser:any) => {
     icon: tags,
     na:true
   },
-  {
+  /*{
     title: _t("decks.favorite"),
     icon: starOutlineSvg,
     na:true
-  },
+  },*/
 ];}
 
 const contentTypes = [
