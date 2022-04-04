@@ -12,6 +12,7 @@ import {
   chevronDownSvgForSlider,
   chevronUpSvg,
   chevronUpSvgForSlider,
+  cogSvg,
   deleteForeverSvg,
   hot,
   refreshSvg,
@@ -20,6 +21,7 @@ import { ListStyle } from "../../store/global/types";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import moment from "moment";
 import { success } from "../feedback";
+import { DeckSettings } from "./settings-modal";
 
 export interface DeckHeaderProps {
   title: string;
@@ -41,6 +43,7 @@ const DeckHeader = ({
   timeCreated,
 }: DeckHeaderProps) => {
   const [expanded, setExpanded] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
   let splittedTitle = title.split("@");
   let onlyTitle = splittedTitle[0];
   let username = splittedTitle[1];
@@ -75,6 +78,7 @@ const DeckHeader = ({
               )}
             </div>
           </div>
+          <DeckSettings show={showSettings} title={title} onHide={()=>setShowSettings(false)}/>
           <OverlayTrigger placement="bottom" overlay={tooltip}>
             <Accordion.Toggle
               as={Button}
@@ -98,6 +102,14 @@ const DeckHeader = ({
       </div>
       <Accordion.Collapse eventKey="0">
         <Card.Body className="p-0 d-flex justify-content-end p-3">
+          <Button
+            size="sm"
+            className="d-flex align-items-center mr-3"
+            variant="secondary"
+            onClick={() => setShowSettings(true)}
+          >
+            <div className="deck-options-icon d-flex cog-icon">{cogSvg}</div>
+          </Button>
           <Button
             size="sm"
             className="d-flex align-items-center"
