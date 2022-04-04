@@ -52,7 +52,7 @@ const DeckHeader = ({
 
   useEffect(() => {
     let diff = moment.duration(moment(Date.now()).diff(timeCreated)).hours();
-    if (diff >= 24) {
+    if (diff >= 2) {
       onReloadColumn(title);
     }
   }, []);
