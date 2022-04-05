@@ -52,13 +52,22 @@ const DeckHeader = ({
       {_t("decks.header-info")}
     </Tooltip>
   );
+  let aCall:any = null;
 
   useEffect(() => {
     let diff = moment.duration(moment(Date.now()).diff(timeCreated)).hours();
-    let timeToCompare = ls.get(`reload-deck-${title}`) || 24
-    if (diff >= timeToCompare) {
-      onReloadColumn(title);
-    }
+    let timeToCompare = parseFloat(ls.get(`reload-deck-${title}`)) || 24
+    console.log(timeToCompare, timeCreated, diff, title);
+    let tint = 60000 * timeToCompare; //seconds
+    aCall = setInterval(() => {
+      //if (diff >= timeToCompare) {
+        onReloadColumn(title);
+      //}
+    }, tint);
+
+    return () => {
+      clearInterval(aCall);
+    };
   }, []);
 
   return (

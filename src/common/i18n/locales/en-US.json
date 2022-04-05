@@ -301,7 +301,7 @@
     "empty-decks": "Click + icon to add Decks",
     "select-column-type": "Which deck type do you want to add?",
     "topic": "Custom",
-    "refresh": "Auto refresh for {title}} saved.",
+    "refresh": "Auto refresh for {{title}} saved.",
     "settings": "Settings",
     "refresh-time": "Refresh time",
     "hours": "hours",

@@ -12,7 +12,7 @@ import * as ls from "../../util/local-storage";
 import { success } from "../feedback";
 
 export const DeckSettings = ({ title, ...props }: any) => {
-    let cachedDeckReloadTime = ls.get(`reload-deck-${title}`)
+  let cachedDeckReloadTime = ls.get(`reload-deck-${title}`)
   const [reloadHours, setReloadHours] = useState(cachedDeckReloadTime || "");
   const onSave = () => {
     ls.set(`reload-deck-${title}`, reloadHours);
