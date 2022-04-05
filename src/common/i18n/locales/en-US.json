@@ -269,7 +269,7 @@
     "pp": "Privacy Policy"
   },
   "decks": {
-    "users": "Users",
+    "users": "User",
     "header-info": "Click me to see extra options",
     "username": "Username",
     "content-type": "Content Type",
@@ -285,7 +285,7 @@
     "replies": "Replies",
     "posts": "Posts",
     "comments": "Comments",
-    "column": "Column",
+    "column": "column",
     "hot": "Hot",
     "muted": "Muted",
     "new": "New",
@@ -300,7 +300,12 @@
     "limit-warning": "Maximum 10 decks are allowed. Delete any deck to add another.",
     "empty-decks": "Click + icon to add Decks",
     "select-column-type": "Which deck type do you want to add?",
-    "topic": "Custom"
+    "topic": "Custom",
+    "refresh": "Auto refresh for {title}} saved.",
+    "settings": "Settings",
+    "refresh-time": "Refresh time",
+    "hours": "hours",
+    "save": "Save"
   },
   "market-data": {
     "title": "Market price",

@@ -47,14 +47,6 @@ const options = (activeUser:any) => {
   let isLoggedIn = activeUser && activeUser.username;
   return[
   {
-    title: _t("decks.trending"),
-    icon: globalTrending,
-  },
-  {
-    title: _t("decks.trending-topics"),
-    icon: hot,
-  },
-  {
     title: _t("decks.users"),
     icon: person
   },
@@ -70,6 +62,14 @@ const options = (activeUser:any) => {
     title: _t("decks.notifications"),
     icon: notificationSvg,
     disabled: !isLoggedIn
+  },
+  {
+    title: _t("decks.trending"),
+    icon: globalTrending,
+  },
+  {
+    title: _t("decks.trending-topics"),
+    icon: hot,
   },
   {
     title: _t("decks.search"),
@@ -248,8 +248,8 @@ const AddColumn = ({
   return (
     <div className="d-flex flex-column align-items-center mt-5">
       {/* {selectedValue === "Search" ? <><SearchComment /></> : <> */}
-      {selectedValue === "Search" ? (
-        <>Search Coming soon!</>
+      {selectedValue === _t("decks.search") || selectedValue === _t("decks.topic") ? (
+        <>Coming soon!</>
       ) : (
         <>
           <Form.Group>
@@ -352,6 +352,7 @@ export const DeckAddModal = ({
       selectedOption !== _t("decks.notifications") &&
       selectedOption !== _t("decks.wallet") &&
       selectedOption !== _t("decks.search") &&
+      selectedOption !== _t("decks.topic") &&
       selectedOption !== _t("decks.community")
     ) {
       onClose();
@@ -371,6 +372,7 @@ export const DeckAddModal = ({
             selectedOption === _t("decks.notifications") ||
             selectedOption === _t("decks.wallet") ||
             selectedOption === _t("decks.search") ||
+            selectedOption === _t("decks.topic") ||
             selectedOption === _t("decks.community")) ? (
             <div className="d-flex align-items-center justify-content-center">
               <div className="header-icon mr-2 d-flex">
@@ -393,6 +395,7 @@ export const DeckAddModal = ({
           selectedOption === _t("decks.notifications") ||
           selectedOption === _t("decks.wallet") ||
           selectedOption === _t("decks.search") ||
+          selectedOption === _t("decks.topic") ||
           selectedOption === _t("decks.community")) ? (
           <AddColumn
             selectedValue={selectedOption}
