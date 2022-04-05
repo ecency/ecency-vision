@@ -20,7 +20,7 @@ import {
 import { ListStyle } from "../../store/global/types";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import moment from "moment";
-import { success } from "../feedback";
+import * as ls from "../../util/local-storage";
 import { DeckSettings } from "./settings-modal";
 
 export interface DeckHeaderProps {
@@ -55,7 +55,8 @@ const DeckHeader = ({
 
   useEffect(() => {
     let diff = moment.duration(moment(Date.now()).diff(timeCreated)).hours();
-    if (diff >= 2) {
+    let timeToCompare = ls.get(`reload-deck-${title}`) || 24
+    if (diff >= timeToCompare) {
       onReloadColumn(title);
     }
   }, []);
@@ -102,14 +103,14 @@ const DeckHeader = ({
       </div>
       <Accordion.Collapse eventKey="0">
         <Card.Body className="p-0 d-flex justify-content-end p-3">
-          <Button
+          {title !== _t("decks.trending-topics") && <Button
             size="sm"
             className="d-flex align-items-center mr-3"
             variant="secondary"
             onClick={() => setShowSettings(true)}
           >
             <div className="deck-options-icon d-flex cog-icon">{cogSvg}</div>
-          </Button>
+          </Button>}
           <Button
             size="sm"
             className="d-flex align-items-center"
