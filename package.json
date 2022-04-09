@@ -39,7 +39,7 @@
     "immutability-helper": "^3.0.2",
     "js-cookie": "^2.2.1",
     "medium-zoom": "^1.0.6",
-    "moment": "^2.26.0",
+    "moment": "^2.29.2",
     "node-cache": "^5.1.0",
     "node-sass": "^6.0.1",
     "numeral": "^2.0.6",
