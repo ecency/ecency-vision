@@ -208,31 +208,31 @@
     "success": "Geteilt!",
     "delete-reblog": "Undo Reblog",
     "delete-confirm-title": "Undo reblog?",
-    "delete-confirm-ok": "Undo",
+    "delete-confirm-ok": "Rückgängig",
     "delete-success": "Reblog removed"
   },
   "entry-tip": {
-    "title": "Tip"
+    "title": "Hinweis"
   },
   "entry-share": {
-    "title": "Share"
+    "title": "Teilen"
   },
   "entry-menu": {
-    "cross-post": "Cross post",
-    "share": "Share",
-    "edit-history": "Edit History",
-    "pin": "Pin",
-    "pin-to-blog": "Pin to blog",
-    "pin-to-community": "Pin to community",
-    "pin-success": "Post pinned",
-    "unpin": "Unpin",
-    "unpin-from-blog": "Unpin from blog",
-    "unpin-from-community": "Unpin from community",
-    "unpin-success": "Post Unpinned",
-    "mute": "Mute",
-    "mute-success": "Post muted",
-    "unmute": "Unmute",
-    "unmute-success": "Post unmuted",
+    "cross-post": "Cross Post",
+    "share": "Teilen",
+    "edit-history": "Verlauf bearbeiten",
+    "pin": "Anheften",
+    "pin-to-blog": "Zum Blog anheften",
+    "pin-to-community": "Zur Community anheften",
+    "pin-success": "Beitrag angeheftet",
+    "unpin": "Lösen",
+    "unpin-from-blog": "Vom Blog lösen",
+    "unpin-from-community": "Von Community lösen",
+    "unpin-success": "Beitrag loslösen",
+    "mute": "Stumm",
+    "mute-success": "Beitrag stummgeschaltet",
+    "unmute": "Ton ein",
+    "unmute-success": "Beitrag stummgeschaltet",
     "promote": "Promote",
     "boost": "Boost"
   },
