@@ -75,6 +75,7 @@ import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
 import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
+import { getPost } from '../api/bridge';
 
 setProxyBase(defaults.imageServer);
 
@@ -368,18 +369,30 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     afterVote = (votes: EntryVote[], estimated: number) => {
-        const entry = this.getEntry()!;
+        const _entry = this.getEntry()!;
         const {updateEntry} = this.props;
 
-        const {payout} = entry;
+        const {payout} = _entry;
         const newPayout = payout + estimated;
-
-        updateEntry({
-            ...entry,
-            active_votes: votes,
-            payout: newPayout,
-            pending_payout_value: String(newPayout)
-        });
+        if (_entry.active_votes) {
+            updateEntry({
+                ..._entry,
+                active_votes: votes,
+                payout: newPayout,
+                pending_payout_value: String(newPayout)
+            });
+        } else {
+            getPost(_entry.author, _entry.permlink).then(entry => {
+                return updateEntry({
+                    ...entry,
+                    active_votes: [...entry?.active_votes, ...votes],
+                    payout: newPayout,
+                    pending_payout_value: String(newPayout)
+                });
+            }).catch(e=>{
+                console.log(e);
+            })
+        }
     };
 
     replySubmitted = (text: string) => {
@@ -554,9 +567,9 @@ class EntryPage extends BaseComponent<Props, State> {
         const modified = moment(parseDate(entry.updated));
 
         // Sometimes tag list comes with duplicate items
-        const tags = [...new Set(entry.json_metadata.tags)];
+        const tags = entry.json_metadata.tags && [...new Set(entry.json_metadata.tags)];
         // If category is not present in tags then add
-        if (entry.category && tags[0] !== entry.category) {
+        if (entry.category && tags && tags[0] !== entry.category) {
             tags.splice(0, 0, entry.category);
         }
         const app = appName(entry.json_metadata.app);
@@ -585,8 +598,8 @@ class EntryPage extends BaseComponent<Props, State> {
             image: catchPostImage(entry, 600, 500, global.canUseWebp ? 'webp' : 'match'),
             published: published.toISOString(),
             modified: modified.toISOString(),
-            tag: isCommunity(tags[0]) ? tags[1] : tags[0],
-            keywords: tags.join(", "),
+            tag: tags ? isCommunity(tags[0]) ? tags[1] : tags[0] : '',
+            keywords: tags && tags.join(", "),
         };
         let containerClasses = global.isElectron ? "app-content entry-page mt-0 pt-6" : "app-content entry-page";
 
@@ -897,7 +910,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                     <div className="entry-footer">
                                         <div className="entry-tags">
-                                            {tags.map((t,i) => {
+                                            {tags && tags.map((t,i) => {
                                                 if (typeof t === "string") {
                                                     if (entry.community && entry.community_title && t === entry.community) {
                                                         return <Fragment key={t+i}>

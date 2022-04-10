@@ -42,6 +42,7 @@ export interface Entry {
     community?: string;
     community_title?: string;
     created: string;
+    total_votes?: number;
     curator_payout_value: string;
     depth: number;
     is_paidout: boolean;
@@ -56,6 +57,7 @@ export interface Entry {
     percent_hbd: number,
     permlink: string;
     post_id: number;
+    id?: number;
     promoted: string;
     reblogged_by?: string[];
     replies: any[];
@@ -69,6 +71,7 @@ export interface Entry {
 export interface EntryGroup {
     entries: Entry[];
     error: string | null;
+    sid: string; //scroll_id for controversial/rising results
     loading: boolean;
     hasMore: boolean;
 }
@@ -92,12 +95,14 @@ export interface FetchAction {
 export interface FetchErrorAction {
     type: ActionTypes.FETCH_ERROR;
     groupKey: string;
+    sid: string;
     error: string;
 }
 
 export interface FetchedAction {
     type: ActionTypes.FETCHED;
     groupKey: string;
+    sid: string;
     entries: Entry[];
     hasMore: boolean;
 }
@@ -110,6 +115,7 @@ export interface InvalidateAction {
 export interface UpdateAction {
     type: ActionTypes.UPDATE;
     entry: Entry;
+    sid: string;
 }
 
 export type Actions =
