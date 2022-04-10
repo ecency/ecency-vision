@@ -399,9 +399,9 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
           ...(entry.active_votes ? entry.active_votes.filter((x) => x.voter !== username):[]),
           { rshares: weight, voter: username },
         ];
-        if (entry.active_votes) {
+        //if (entry.active_votes) {
           afterVote(votes, estimated);
-        }
+        //}
         updateActiveUser(); // refresh voting power
       })
       .catch((e) => {
