@@ -54,22 +54,22 @@ export const EntryIndexMenuDropdown = (props: Props) => {
           //   onClick: () => onTagValueClick('today'),
           // },
           {
-            label: <span>This Week</span>,
+            label: <span>{_t('entry-filter.filter-week')}</span>,
             active: tag === "week",
             onClick: () => onTagValueClick('week'),
           },
           {
-            label: <span>This Month</span>,
+            label: <span>{_t('entry-filter.filter-month')}</span>,
             active: tag === "month",
             onClick: () => onTagValueClick('month'),
           },
           {
-            label: <span>This Year</span>,
+            label: <span>{_t('entry-filter.filter-year')}</span>,
             active: tag === "year",
             onClick: () => onTagValueClick('year'),
           },
           {
-            label: <span>All Time</span>,
+            label: <span>{_t('entry-filter.filter-alltime')}</span>,
             active: tag === "all",
             onClick: () => onTagValueClick('all'),
           },
@@ -81,7 +81,7 @@ export const EntryIndexMenuDropdown = (props: Props) => {
     label: (
       <div className='tagDropDown'>
         <span className='pl-2' />
-        {tag === "" ? _t('entry-filter.filter-global') : tag === 'my' ? _t('entry-filter.filter-community') : tag === 'today' ? 'Today' : tag === 'week' ? 'This Week' : tag === 'month' ? 'This Month' : tag === 'year' ? 'This Year' : tag === 'all' ? 'All Time' : tag}
+        {tag === "" ? _t('entry-filter.filter-global') : tag === 'my' ? _t('entry-filter.filter-community') : tag === 'today' ? _t('entry-filter.filter-today') : tag === 'week' ? _t('entry-filter.filter-week') : tag === 'month' ? _t('entry-filter.filter-month'): tag === 'year' ? _t('entry-filter.filter-year') : tag === 'all' ? _t('entry-filter.filter-alltime') : tag}
         {" "}
         {menuDownSvg}
       </div>
