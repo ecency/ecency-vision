@@ -75,6 +75,7 @@ import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
 import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
+import { getPost } from '../api/bridge';
 
 setProxyBase(defaults.imageServer);
 
@@ -368,24 +369,29 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     afterVote = (votes: EntryVote[], estimated: number) => {
-        const entry = this.getEntry()!;
+        const _entry = this.getEntry()!;
         const {updateEntry} = this.props;
 
-        const {payout} = entry;
+        const {payout} = _entry;
         const newPayout = payout + estimated;
-        if (votes.length>0) {
+        if (_entry.active_votes) {
             updateEntry({
-                ...entry,
+                ..._entry,
                 active_votes: votes,
                 payout: newPayout,
                 pending_payout_value: String(newPayout)
             });
         } else {
-            updateEntry({
-                ...entry,
-                payout: newPayout,
-                pending_payout_value: String(newPayout)
-            });
+            getPost(_entry.author, _entry.permlink).then(entry => {
+                return updateEntry({
+                    ...entry,
+                    active_votes: [...entry?.active_votes, ...votes],
+                    payout: newPayout,
+                    pending_payout_value: String(newPayout)
+                });
+            }).catch(e=>{
+                console.log(e);
+            })
         }
     };
 

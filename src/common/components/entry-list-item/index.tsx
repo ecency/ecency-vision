@@ -41,6 +41,7 @@ import {repeatSvg, pinSvg, commentSvg, muteSvg, volumeOffSvg, closeSvg, downArro
 import defaults from "../../constants/defaults.json";
 import { ProfilePopover } from "../profile-popover";
 import { match } from "react-router-dom";
+import { getPost } from '../../api/bridge';
 
 setProxyBase(defaults.imageServer);
 
@@ -118,23 +119,27 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     afterVote = (votes: EntryVote[], estimated: number) => {
-        const {entry, updateEntry} = this.props;
-
-        const {payout} = entry;
+        const {entry: _entry, updateEntry} = this.props;
+        const {payout} = _entry;
         const newPayout = payout + estimated;
-        if (votes.length>0) {
+        if (_entry.active_votes) {
             updateEntry({
-                ...entry,
+                ..._entry,
                 active_votes: votes,
                 payout: newPayout,
                 pending_payout_value: String(newPayout)
             });
         } else {
-            updateEntry({
-                ...entry,
-                payout: newPayout,
-                pending_payout_value: String(newPayout)
-            });
+            getPost(_entry.author, _entry.permlink).then(entry => {
+                return updateEntry({
+                    ...entry,
+                    active_votes: [...entry?.active_votes, ...votes],
+                    payout: newPayout,
+                    pending_payout_value: String(newPayout)
+                });
+            }).catch(e=>{
+                console.log(e);
+            })
         }
     };
 
