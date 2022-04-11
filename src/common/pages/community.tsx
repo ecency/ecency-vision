@@ -44,6 +44,7 @@ import capitalize from "../util/capitalize";
 
 import defaults from "../constants/defaults.json";
 import SearchBox from "../components/search-box";
+import { withPersistentScroll } from "../components/with-persistent-scroll";
 
 interface MatchParams {
   filter: string;
@@ -447,4 +448,4 @@ class CommunityPage extends BaseComponent<Props, State> {
 export default connect(
   pageMapStateToProps,
   pageMapDispatchToProps
-)(CommunityPage);
+)(withPersistentScroll(CommunityPage));
