@@ -72,7 +72,7 @@ export interface PageProps {
     fetchDiscussion: (parent_author: string, parent_permlink: string) => void;
     sortDiscussion: (order: SortOrder) => void;
     resetDiscussion: () => void;
-    updateReply: (reply: Entry | SearchResult) => void;
+    updateReply: (reply: Entry) => void;
     addReply: (reply: Entry) => void;
     deleteReply: (reply: Entry) => void;
 

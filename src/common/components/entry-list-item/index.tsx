@@ -68,7 +68,7 @@ interface Props {
     account?: Account;
     match?: match<MatchParams>;
     addAccount: (data: Account) => void;
-    updateEntry: (entry: Entry | SearchResult) => void;
+    updateEntry: (entry: any) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;

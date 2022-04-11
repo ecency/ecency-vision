@@ -230,7 +230,7 @@ export const addEntry = (entry: Entry) => (dispatch: Dispatch) => {
     dispatch(fetchedAct("__manual__", [entry], "", false));
 };
 
-export const updateEntry = (entry: Entry | SearchResult) => (dispatch: Dispatch) => {
+export const updateEntry = (entry: any) => (dispatch: Dispatch) => {
     dispatch(updateAct(entry));
 };
 

@@ -59,7 +59,7 @@ interface Props {
     setSigningKey: (key: string) => void;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
-    updateEntry: (entry: Entry | SearchResult) => void;
+    updateEntry: (entry: any) => void;
     addCommunity: (data: Community) => void;
     trackEntryPin: (entry: Entry) => void;
     setEntryPin: (entry: Entry, pin: boolean) => void;
