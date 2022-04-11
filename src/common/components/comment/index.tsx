@@ -174,7 +174,7 @@ export class Comment extends Component<Props, State> {
                                 onChange={this.textChanged}
                                 disabled={inProgress}
                                 autoFocus={autoFocus}
-                                minRows={rows}
+                                minrows={rows}
                                 rows={rows}
                                 maxrows={100}
                                 ref={inputRef}

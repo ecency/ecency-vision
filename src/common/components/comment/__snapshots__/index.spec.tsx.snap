@@ -281,7 +281,7 @@ exports[`(1) Default render 1`] = `
           }
           id="the-editor"
           maxrows={100}
-          minRows={1}
+          minrows={1}
           onBlur={[Function]}
           onChange={[Function]}
           onClick={[Function]}
@@ -592,7 +592,7 @@ exports[`(2) Cancellable, in progress 1`] = `
           }
           id="the-editor"
           maxrows={100}
-          minRows={1}
+          minrows={1}
           onBlur={[Function]}
           onChange={[Function]}
           onClick={[Function]}
