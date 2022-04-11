@@ -126,7 +126,7 @@ export default (state: Entries = initialState, action: Actions): Entries => {
             // Iterate over all groups and update the entry
             for (const k of groupKeys) {
                 st[k].entries = st[k].entries.map(
-                    (e: Entry): Entry => {
+                    (e: Entry): Entry | SearchResult => {
                         if (e.author === entry.author && e.permlink === entry.permlink) {
                             return entry;
                         }
