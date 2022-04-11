@@ -3,8 +3,8 @@ import React from 'react';
 interface State {
     value: string;
     rows: number;
-    minRows: number;
-    maxRows: number;
+    minrows: number;
+    maxrows: number;
 }
 
 export default class ResizableTextarea extends React.Component<any, State> {
@@ -12,18 +12,18 @@ export default class ResizableTextarea extends React.Component<any, State> {
 		super(props);
 		this.state = {
 			value: this.props.value,
-			rows: this.props.minRows || 5,
-			minRows: this.props.minrows || 5,
-			maxRows: this.props.maxrows || 20,
+			rows: this.props.minrows || 5,
+			minrows: this.props.minrows || 5,
+			maxrows: this.props.maxrows || 20,
 		};
 	}
 	
 	handleChange = (event: any) => {
 		const textareaLineHeight = 24;
-		const { minRows, maxRows } = this.state;
+		const { minrows, maxrows } = this.state;
 		
 		const previousRows = event.target.rows;
-  	    event.target.rows = minRows; // reset number of rows in textarea 
+  	    event.target.rows = minrows; // reset number of rows in textarea 
 		
 		const currentRows = ~~(event.target.scrollHeight / textareaLineHeight);
     
@@ -31,14 +31,14 @@ export default class ResizableTextarea extends React.Component<any, State> {
             event.target.rows = currentRows;
         }
 		
-		if (currentRows >= maxRows) {
-			event.target.rows = maxRows;
+		if (currentRows >= maxrows) {
+			event.target.rows = maxrows;
 			event.target.scrollTop = event.target.scrollHeight;
 		}
     
         this.setState({
             value: event.target.value,
-            rows: currentRows < maxRows ? currentRows : maxRows,
+            rows: currentRows < maxrows ? currentRows : maxrows,
         });
         this.props.onChange(event)
 	};
