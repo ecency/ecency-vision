@@ -17,7 +17,7 @@ import {initialState as entriesInitialState} from "./entries";
 import {initialState as pointsInitialState} from "./points";
 import {initialState as signingKeyInitialState} from "./signing-key";
 import {initialState as entryPinTrackerInitialState} from "./entry-pin-tracker";
-import {initialState as persistentPageScrollState} from "./persistent-page-scroll";
+import {initialState as persistentPageScrollInitialState} from "./persistent-page-scroll";
 
 const initialState: AppState = {
     global: globalInitialState,
@@ -37,7 +37,7 @@ const initialState: AppState = {
     points: pointsInitialState,
     signingKey: signingKeyInitialState,
     entryPinTracker: entryPinTrackerInitialState,
-    persistentPageScroll: persistentPageScrollState
+    persistentPageScroll: persistentPageScrollInitialState
 }
 
 
