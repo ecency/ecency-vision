@@ -66,6 +66,7 @@ export default async (req: express.Request, res: express.Response) => {
             [`${makeGroupKey(filter, tag)}`]: {
                 entries: optimizeEntries(entries),
                 error: null,
+                sid: '',
                 loading: false,
                 hasMore: true,
             }
