@@ -40,6 +40,7 @@ import defaults from "../../constants/defaults.json";
 import { ProfilePopover } from "../profile-popover";
 import { match } from "react-router-dom";
 import { getPost } from '../../api/bridge';
+import { SearchResult } from '../../api/search-api';
 
 setProxyBase(defaults.imageServer);
 
@@ -67,7 +68,7 @@ interface Props {
     account?: Account;
     match?: match<MatchParams>;
     addAccount: (data: Account) => void;
-    updateEntry: (entry: Entry) => void;
+    updateEntry: (entry: Entry | SearchResult) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
@@ -129,12 +130,14 @@ export default class EntryListItem extends Component<Props, State> {
             });
         } else {
             getPost(_entry.author, _entry.permlink).then(entry => {
-                return updateEntry({
-                    ...entry,
-                    active_votes: [...entry?.active_votes, ...votes],
-                    payout: newPayout,
-                    pending_payout_value: String(newPayout)
-                });
+                if (entry) {
+                    return updateEntry({
+                        ..._entry,
+                        active_votes: [...entry.active_votes, ...votes],
+                        payout: newPayout,
+                        pending_payout_value: String(newPayout)
+                    });
+                }
             }).catch(e=>{
                 console.log(e);
             })

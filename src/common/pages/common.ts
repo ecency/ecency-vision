@@ -36,6 +36,7 @@ import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter
 import {fetchPoints, resetPoints} from "../store/points";
 import {setSigningKey} from "../store/signing-key";
 import {trackEntryPin, setEntryPin} from "../store/entry-pin-tracker";
+import { SearchResult } from '../api/search-api';
 
 
 export interface PageProps {
@@ -71,7 +72,7 @@ export interface PageProps {
     fetchDiscussion: (parent_author: string, parent_permlink: string) => void;
     sortDiscussion: (order: SortOrder) => void;
     resetDiscussion: () => void;
-    updateReply: (reply: Entry) => void;
+    updateReply: (reply: Entry | SearchResult) => void;
     addReply: (reply: Entry) => void;
     deleteReply: (reply: Entry) => void;
 

@@ -55,22 +55,22 @@ export const EntryIndexMenuDropdown = (props: Props) => {
           // },
           {
             label: <span>{_t('entry-filter.filter-week')}</span>,
-            active: tag === "week",
+            selected: tag === "week",
             onClick: () => onTagValueClick('week'),
           },
           {
             label: <span>{_t('entry-filter.filter-month')}</span>,
-            active: tag === "month",
+            selected: tag === "month",
             onClick: () => onTagValueClick('month'),
           },
           {
             label: <span>{_t('entry-filter.filter-year')}</span>,
-            active: tag === "year",
+            selected: tag === "year",
             onClick: () => onTagValueClick('year'),
           },
           {
             label: <span>{_t('entry-filter.filter-alltime')}</span>,
-            active: tag === "all",
+            selected: tag === "all",
             onClick: () => onTagValueClick('all'),
           },
         ]

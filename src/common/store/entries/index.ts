@@ -230,7 +230,7 @@ export const addEntry = (entry: Entry) => (dispatch: Dispatch) => {
     dispatch(fetchedAct("__manual__", [entry], "", false));
 };
 
-export const updateEntry = (entry: Entry) => (dispatch: Dispatch) => {
+export const updateEntry = (entry: Entry | SearchResult) => (dispatch: Dispatch) => {
     dispatch(updateAct(entry));
 };
 
@@ -273,7 +273,7 @@ export const invalidateAct = (groupKey: string): InvalidateAction => {
     };
 };
 
-export const updateAct = (entry: Entry, sid: string = ""): UpdateAction => {
+export const updateAct = (entry: Entry | SearchResult, sid: string = ""): UpdateAction => {
     return {
         type: ActionTypes.UPDATE,
         sid,

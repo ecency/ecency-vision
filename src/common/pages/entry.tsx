@@ -383,12 +383,14 @@ class EntryPage extends BaseComponent<Props, State> {
             });
         } else {
             getPost(_entry.author, _entry.permlink).then(entry => {
-                return updateEntry({
-                    ...entry,
-                    active_votes: [...entry?.active_votes, ...votes],
-                    payout: newPayout,
-                    pending_payout_value: String(newPayout)
-                });
+                if (entry) {
+                    return updateEntry({
+                        ..._entry,
+                        active_votes: [...entry.active_votes, ...votes],
+                        payout: newPayout,
+                        pending_payout_value: String(newPayout)
+                    });
+                }
             }).catch(e=>{
                 console.log(e);
             })

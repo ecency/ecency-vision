@@ -1,4 +1,5 @@
 import axios from "axios";
+import { EntryVote } from '../store/entries/types';
 import { dataLimit } from "./bridge";
 
 import {apiBase} from "./helper";
@@ -25,6 +26,8 @@ export interface SearchResult {
     json_metadata?: any;
     depth: number;
     app: string;
+    active_votes?: EntryVote[];
+    pending_payout_value?: string;
 }
 
 export interface SearchResponse {

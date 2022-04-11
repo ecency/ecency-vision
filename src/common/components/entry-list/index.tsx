@@ -20,6 +20,7 @@ import LinearProgress from "../linear-progress";
 import { getFollowing } from "../../api/hive";
 import isCommunity from '../../helper/is-community';
 import { match } from "react-router-dom";
+import { SearchResult } from '../../api/search-api';
 
 
 interface Props {
@@ -41,7 +42,7 @@ interface Props {
     account?: Account;
     match?: match<any>;
     addAccount: (data: Account) => void;
-    updateEntry: (entry: Entry) => void;
+    updateEntry: (entry: Entry | SearchResult) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;

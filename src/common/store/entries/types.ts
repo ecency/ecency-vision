@@ -1,3 +1,4 @@
+import { SearchResult } from '../../api/search-api';
 import {LocationChangeAction} from "../common";
 
 export interface EntryBeneficiaryRoute {
@@ -114,7 +115,7 @@ export interface InvalidateAction {
 
 export interface UpdateAction {
     type: ActionTypes.UPDATE;
-    entry: Entry;
+    entry: Entry | SearchResult;
     sid: string;
 }
 
