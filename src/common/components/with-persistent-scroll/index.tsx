@@ -42,7 +42,7 @@ export function withPersistentScroll<P>(Component: ComponentType<P>) {
 
       return () => {
         dispatch(savePageScroll({ pageName: location.pathname, scrollValue: window.scrollY }));
-      }
+      };
     }, [props]);
 
     return <Component {...props} />
