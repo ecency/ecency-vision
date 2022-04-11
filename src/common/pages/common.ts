@@ -36,6 +36,7 @@ import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter
 import {fetchPoints, resetPoints} from "../store/points";
 import {setSigningKey} from "../store/signing-key";
 import {trackEntryPin, setEntryPin} from "../store/entry-pin-tracker";
+import { SearchResult } from '../api/search-api';
 import {savePageScroll} from "../store/persistent-page-scroll";
 
 
