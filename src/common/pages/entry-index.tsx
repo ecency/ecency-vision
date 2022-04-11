@@ -36,6 +36,7 @@ import {appleSvg, desktopSvg, googleSvg} from "../img/svg";
 
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
 import { DeckView } from "../components/deck-view";
+import { withPersistentScroll } from '../components/with-persistent-scroll';
 
 interface State {
     step: number;
@@ -217,4 +218,4 @@ class EntryIndexPage extends Component<PageProps, State> {
 }
 
 
-export default connect(pageMapStateToProps, pageMapDispatchToProps)(EntryIndexPage);
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(withPersistentScroll(EntryIndexPage));
