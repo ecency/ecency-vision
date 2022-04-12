@@ -68,24 +68,24 @@ exports[`(1) No active user. Default filter 1`] = `
                 className="nav-item "
               >
                 <a
-                  className="nav-link link-controversial"
-                  href="/controversial"
-                  id="controversial"
-                  onClick={[Function]}
-                >
-                  Controversial
-                </a>
-              </li>
-              <li
-                className="nav-item "
-              >
-                <a
                   className="nav-link link-rising"
                   href="/rising"
                   id="rising"
                   onClick={[Function]}
                 >
                   Rising
+                </a>
+              </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
                 </a>
               </li>
             </ul>
@@ -140,22 +140,22 @@ exports[`(1) No active user. Default filter 1`] = `
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-controversial"
-                  href="/controversial"
+                  className="nav-link link-rising"
+                  href="/rising"
                   onClick={[Function]}
                 >
-                  Controversial
+                  Rising
                 </a>
               </li>
               <li
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising"
+                  className="nav-link link-controversial"
+                  href="/controversial"
                   onClick={[Function]}
                 >
-                  Rising
+                  Controversial
                 </a>
               </li>
             </ul>
@@ -262,24 +262,24 @@ exports[`(2) No active user. Trending filter 1`] = `
                 className="nav-item "
               >
                 <a
-                  className="nav-link link-controversial"
-                  href="/controversial"
-                  id="controversial"
-                  onClick={[Function]}
-                >
-                  Controversial
-                </a>
-              </li>
-              <li
-                className="nav-item "
-              >
-                <a
                   className="nav-link link-rising"
                   href="/rising"
                   id="rising"
                   onClick={[Function]}
                 >
                   Rising
+                </a>
+              </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
                 </a>
               </li>
             </ul>
@@ -334,22 +334,22 @@ exports[`(2) No active user. Trending filter 1`] = `
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-controversial"
-                  href="/controversial"
+                  className="nav-link link-rising"
+                  href="/rising"
                   onClick={[Function]}
                 >
-                  Controversial
+                  Rising
                 </a>
               </li>
               <li
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising"
+                  className="nav-link link-controversial"
+                  href="/controversial"
                   onClick={[Function]}
                 >
-                  Rising
+                  Controversial
                 </a>
               </li>
             </ul>
@@ -564,24 +564,24 @@ exports[`(3) Active user. Trending filter 1`] = `
                 className="nav-item "
               >
                 <a
-                  className="nav-link link-controversial"
-                  href="/controversial"
-                  id="controversial"
-                  onClick={[Function]}
-                >
-                  Controversial
-                </a>
-              </li>
-              <li
-                className="nav-item "
-              >
-                <a
                   className="nav-link link-rising"
                   href="/rising"
                   id="rising"
                   onClick={[Function]}
                 >
                   Rising
+                </a>
+              </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
                 </a>
               </li>
             </ul>
@@ -736,22 +736,22 @@ exports[`(3) Active user. Trending filter 1`] = `
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-controversial"
-                  href="/controversial"
+                  className="nav-link link-rising"
+                  href="/rising"
                   onClick={[Function]}
                 >
-                  Controversial
+                  Rising
                 </a>
               </li>
               <li
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising"
+                  className="nav-link link-controversial"
+                  href="/controversial"
                   onClick={[Function]}
                 >
-                  Rising
+                  Controversial
                 </a>
               </li>
             </ul>
@@ -878,24 +878,24 @@ exports[`(4) Active user. Friends 1`] = `
                 className="nav-item "
               >
                 <a
-                  className="nav-link link-controversial"
-                  href="/controversial"
-                  id="controversial"
-                  onClick={[Function]}
-                >
-                  Controversial
-                </a>
-              </li>
-              <li
-                className="nav-item "
-              >
-                <a
                   className="nav-link link-rising"
                   href="/rising"
                   id="rising"
                   onClick={[Function]}
                 >
                   Rising
+                </a>
+              </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
                 </a>
               </li>
             </ul>
@@ -961,22 +961,22 @@ exports[`(4) Active user. Friends 1`] = `
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-controversial"
-                  href="/controversial"
+                  className="nav-link link-rising"
+                  href="/rising"
                   onClick={[Function]}
                 >
-                  Controversial
+                  Rising
                 </a>
               </li>
               <li
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising"
+                  className="nav-link link-controversial"
+                  href="/controversial"
                   onClick={[Function]}
                 >
-                  Rising
+                  Controversial
                 </a>
               </li>
             </ul>
@@ -1096,24 +1096,24 @@ exports[`(5) Active user. Communities 1`] = `
                 className="nav-item "
               >
                 <a
-                  className="nav-link link-controversial"
-                  href="/controversial/my"
-                  id="controversial"
-                  onClick={[Function]}
-                >
-                  Controversial
-                </a>
-              </li>
-              <li
-                className="nav-item "
-              >
-                <a
                   className="nav-link link-rising"
                   href="/rising/my"
                   id="rising"
                   onClick={[Function]}
                 >
                   Rising
+                </a>
+              </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial/my"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
                 </a>
               </li>
             </ul>
@@ -1179,22 +1179,22 @@ exports[`(5) Active user. Communities 1`] = `
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-controversial"
-                  href="/controversial/my"
+                  className="nav-link link-rising"
+                  href="/rising/my"
                   onClick={[Function]}
                 >
-                  Controversial
+                  Rising
                 </a>
               </li>
               <li
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising/my"
+                  className="nav-link link-controversial"
+                  href="/controversial/my"
                   onClick={[Function]}
                 >
-                  Rising
+                  Controversial
                 </a>
               </li>
             </ul>
@@ -1301,24 +1301,24 @@ exports[`(6) No active user. Communities 1`] = `
                 className="nav-item "
               >
                 <a
-                  className="nav-link link-controversial"
-                  href="/controversial/my"
-                  id="controversial"
-                  onClick={[Function]}
-                >
-                  Controversial
-                </a>
-              </li>
-              <li
-                className="nav-item "
-              >
-                <a
                   className="nav-link link-rising"
                   href="/rising/my"
                   id="rising"
                   onClick={[Function]}
                 >
                   Rising
+                </a>
+              </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial/my"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
                 </a>
               </li>
             </ul>
@@ -1373,22 +1373,22 @@ exports[`(6) No active user. Communities 1`] = `
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-controversial"
-                  href="/controversial/my"
+                  className="nav-link link-rising"
+                  href="/rising/my"
                   onClick={[Function]}
                 >
-                  Controversial
+                  Rising
                 </a>
               </li>
               <li
                 className="nav-item"
               >
                 <a
-                  className="nav-link link-rising"
-                  href="/rising/my"
+                  className="nav-link link-controversial"
+                  href="/controversial/my"
                   onClick={[Function]}
                 >
-                  Rising
+                  Controversial
                 </a>
               </li>
             </ul>

@@ -276,7 +276,7 @@ export class EntryIndexMenu extends Component<Props, States> {
             history: this.props.history,
             label: isMy && filter === "feed" ? _t("entry-filter.filter-feed-friends") : _t(`entry-filter.filter-${filter}`),
             items: [
-                ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created, EntryFilter.controversial, EntryFilter.rising].map((x) => {
+                ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created, EntryFilter.rising, EntryFilter.controversial].map((x) => {
                     return {
                         label: _t(`entry-filter.filter-${x}`),
                         href: isActive ?
