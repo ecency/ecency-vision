@@ -48,6 +48,10 @@ export const langOptions = [
         name: "Русский"
     },
     {
+        code: "uz-UZ",
+        name: "O'zbekcha"
+    },
+    {
         code: "zh-CN",
         name: "简体字"
     }
@@ -64,6 +68,7 @@ const srCS = require("./locales/sr-CS.json");
 const ukUA = require("./locales/uk-UA.json");
 const bgBG = require("./locales/bg-BG.json");
 const ruRU = require("./locales/ru-RU.json");
+const uzUZ = require("./locales/uz-UZ.json");
 const zhCN = require("./locales/zh-CN.json");
 
 const resources = {
@@ -99,6 +104,9 @@ const resources = {
     },
     ["ru-RU"]: {
         translation: ruRU
+    },
+    ["uz-UZ"]: {
+        translation: uzUZ
     },
     ["zh-CN"]: {
         translation: zhCN
