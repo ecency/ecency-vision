@@ -46,13 +46,37 @@ export const EntryIndexMenuDropdown = (props: Props) => {
   //   ]
   // }
 
-  if (filter === 'controversial' || filter === 'rising') {
+  if (filter === 'rising') {
     dropDownItems = [
-          // {
-          //   label: <span>Today</span>,
-          //   active: tag === "today",
-          //   onClick: () => onTagValueClick('today'),
-          // },
+          {
+            label: <span>{_t('entry-filter.filter-today')}</span>,
+            selected: tag === "today",
+            onClick: () => onTagValueClick('today'),
+          },
+          {
+            label: <span>{_t('entry-filter.filter-week')}</span>,
+            selected: tag === "week",
+            onClick: () => onTagValueClick('week'),
+          },
+          {
+            label: <span>{_t('entry-filter.filter-month')}</span>,
+            selected: tag === "month",
+            onClick: () => onTagValueClick('month'),
+          },
+          {
+            label: <span>{_t('entry-filter.filter-year')}</span>,
+            selected: tag === "year",
+            onClick: () => onTagValueClick('year'),
+          },
+          {
+            label: <span>{_t('entry-filter.filter-alltime')}</span>,
+            selected: tag === "all",
+            onClick: () => onTagValueClick('all'),
+          },
+        ]
+  }
+  if (filter === 'controversial') {
+    dropDownItems = [
           {
             label: <span>{_t('entry-filter.filter-week')}</span>,
             selected: tag === "week",
