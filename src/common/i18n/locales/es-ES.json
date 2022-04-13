@@ -43,6 +43,8 @@
     "trending": "inicio",
     "created": "inicio",
     "muted": "silenciado",
+    "controversial": "polémico",
+    "rising": "en ascenso",
     "found": "encontrado",
     "feed": "inicio",
     "blog": "blogs",
@@ -79,12 +81,19 @@
     "filter-feed-subscriptions": "Comunidades",
     "filter-global": "Global",
     "filter-community": "Mi Comunidad",
+    "filter-controversial": "Polémico",
+    "filter-rising": "En ascenso",
     "filter-global-part1": "Esta entrada contiene ",
     "filter-global-part2": " discusiones en toda la plataforma.",
     "filter-global-part3": " discusiones de tus comunidades suscritas. Puedes unirte a más comunidades para llenar esta fuente.",
     "filter-global-part4": " discusiones de personas que sigues. Puedes seguir a más personas para llenar esta fuente.",
     "filter-global-discover": "Descubre a más personas",
-    "filter-global-join-communities": "Únete a la Comunidad"
+    "filter-global-join-communities": "Únete a la Comunidad",
+    "filter-today": "Hoy",
+    "filter-week": "Esta semana",
+    "filter-month": "Este mes",
+    "filter-year": "Este año",
+    "filter-alltime": "Todos los tiempos"
   },
   "navbar": {
     "discover": "Descubrir",
@@ -267,6 +276,39 @@
     "faq": "Preguntas Frecuentes (FAQ)",
     "tos": "Términos de servicio",
     "pp": "Política de privacidad"
+  },
+  "decks": {
+    "users": "Usuarios",
+    "header-info": "Haz clic en mí para ver opciones adicionales",
+    "username": "Nombre de Usuario",
+    "content-type": "Tipo de contenido",
+    "trending-topics": "Temas",
+    "search": "Buscar",
+    "community": "Comunidad",
+    "notifications": "Notificaciones",
+    "wallet": "Cartera",
+    "favorite": "Favorito",
+    "trending": "Tendencias",
+    "select": "Selecciona el tipo de contenido",
+    "blogs": "Blogs",
+    "replies": "Respuestas",
+    "posts": "Publicaciones",
+    "comments": "Comentarios",
+    "column": "Columna",
+    "hot": "Popular",
+    "muted": "Silenciado",
+    "new": "Nuevo",
+    "reload": "Recargar",
+    "add": "Agregar",
+    "remove": "Eliminar",
+    "removed": "{{deck}} eliminado con éxito.",
+    "payout": "Pagos",
+    "created": "Nuevo",
+    "go-back": "Regresar",
+    "deck-exists": "¡La cubierta que estás intentando añadir ya existe!",
+    "limit-warning": "Puedes añadir 10 cubiertas al máximo. Elimina cualquier cubierta para añadir otra.",
+    "select-column-type": "¿Qué tipo de cubierta quieres añadir?",
+    "topic": "Personalizado"
   },
   "market-data": {
     "title": "Precio de mercado",
@@ -1298,6 +1340,7 @@
   },
   "layouts": {
     "grid": "Cuadrícula",
-    "classic": "Clásico"
+    "classic": "Clásico",
+    "deck": "Cubierta"
   }
 }

@@ -43,6 +43,8 @@
     "trending": "फ़ीड",
     "created": "फ़ीड",
     "muted": "म्यूट किए गए",
+    "controversial": "controversial",
+    "rising": "rising",
     "found": "मिला",
     "feed": "फ़ीड",
     "blog": "ब्लॉगस",
@@ -79,12 +81,19 @@
     "filter-feed-subscriptions": "समुदाय",
     "filter-global": "ग्लोबल",
     "filter-community": "मेरा समुदाय",
+    "filter-controversial": "Controversial",
+    "filter-rising": "Rising",
     "filter-global-part1": "इस फ़ीड में शामिल हैं ",
     "filter-global-part2": " पूरे मंच पर चर्चा",
     "filter-global-part3": " आपके सब्सक्राइब किए गए समुदायों से चर्चा। इस फ़ीड को भरने के लिए आप और समुदायों में शामिल हो सकते हैं।",
     "filter-global-part4": " आपके द्वारा अनुसरण किए जाने वाले लोगों से चर्चा। इस फ़ीड को भरने के लिए आप और लोगों को फ़ॉलो कर सकते हैं।",
     "filter-global-discover": "लोगों को खोजें",
-    "filter-global-join-communities": "समुदायों में शामिल हों"
+    "filter-global-join-communities": "समुदायों में शामिल हों",
+    "filter-today": "Today",
+    "filter-week": "This week",
+    "filter-month": "This month",
+    "filter-year": "This year",
+    "filter-alltime": "All time"
   },
   "navbar": {
     "discover": "खोजिए",
@@ -267,6 +276,39 @@
     "faq": "अकसर किये गए सवाल",
     "tos": "Terms of service",
     "pp": "गोपनीयता नीति"
+  },
+  "decks": {
+    "users": "उपयोगकर्ता",
+    "header-info": "अतिरिक्त विकल्प देखने के लिए मुझे क्लिक करें",
+    "username": "यूजरनेम",
+    "content-type": "कांटेंट प्रकार",
+    "trending-topics": "विषय",
+    "search": "खोज",
+    "community": "समुदाय",
+    "notifications": "सूचनाएँ",
+    "wallet": "बटुआ",
+    "favorite": "पसंदीदा",
+    "trending": "प्रचलित",
+    "select": "सामग्री प्रकार चुनें",
+    "blogs": "ब्लॉगस",
+    "replies": "जवाब",
+    "posts": "पोस्टस",
+    "comments": "विवेचनाऐं",
+    "column": "स्तंभ",
+    "hot": "लोकप्रीय",
+    "muted": "म्यूट है",
+    "new": "नया",
+    "reload": "पुनः लोड करें",
+    "add": "जोड़ें",
+    "remove": "हटाएं",
+    "removed": "{{deck}} सफलतापूर्वक हटा दिया गया।",
+    "payout": "भुगतान",
+    "created": "नया",
+    "go-back": "पीछे जाएँ",
+    "deck-exists": "आप जिस डेक को जोड़ने का प्रयास कर रहे हैं वह पहले से मौजूद है!",
+    "limit-warning": "आप अधिकतम 10 डेक जोड़ सकते हैं। दूसरा जोड़ने के लिए कोई भी डेक हटाएं।",
+    "select-column-type": "आप कौन सा डेक प्रकार जोड़ना चाहते हैं?",
+    "topic": "अनुकूल"
   },
   "market-data": {
     "title": "बाजार मूल्य",
@@ -835,7 +877,7 @@
     "page-title": "पोस्ट तैयार करें",
     "page-description": "एक लेख प्रकाशित करें, इनाम अर्जित करें, बिना सेंसर किए, अपरिवर्तनीय, विकेंद्रीकृत सामग्री!",
     "title-placeholder": "शीर्षक",
-    "body-placeholder": "Tell your story...",
+    "body-placeholder": "अपनी कहानी सुनाएं...",
     "reward": "इनाम",
     "reward-hint": "तरल और पके हुए टोकन के लिए लेखक इनाम अनुपात सेट करें",
     "reward-default": "वितथ रूप से ५०%/५०%",
@@ -1298,6 +1340,7 @@
   },
   "layouts": {
     "grid": "ग्रिड",
-    "classic": "क्लॅसिक"
+    "classic": "क्लॅसिक",
+    "deck": "डेक"
   }
 }

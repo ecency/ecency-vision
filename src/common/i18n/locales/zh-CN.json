@@ -43,6 +43,8 @@
     "trending": "订阅源",
     "created": "订阅源",
     "muted": "muted",
+    "controversial": "controversial",
+    "rising": "rising",
     "found": "发现",
     "feed": "订阅源",
     "blog": "博客",
@@ -79,12 +81,19 @@
     "filter-feed-subscriptions": "社区",
     "filter-global": "通用",
     "filter-community": "My Community",
+    "filter-controversial": "Controversial",
+    "filter-rising": "Rising",
     "filter-global-part1": "这种订阅包含 ",
     "filter-global-part2": " 关于整个平台的讨论。",
     "filter-global-part3": " 您订阅的社区的讨论。您可以加入更多的社区来填写。",
     "filter-global-part4": " 你关注的人的讨论。你可以关注更多的人来填写。",
     "filter-global-discover": "发现用户",
-    "filter-global-join-communities": "加入社区"
+    "filter-global-join-communities": "加入社区",
+    "filter-today": "Today",
+    "filter-week": "This week",
+    "filter-month": "This month",
+    "filter-year": "This year",
+    "filter-alltime": "All time"
   },
   "navbar": {
     "discover": "发现",
@@ -267,6 +276,39 @@
     "faq": "常见问题",
     "tos": "服务条款",
     "pp": "隐私政策"
+  },
+  "decks": {
+    "users": "Users",
+    "header-info": "Click me to see extra options",
+    "username": "Username",
+    "content-type": "Content Type",
+    "trending-topics": "Topics",
+    "search": "Search",
+    "community": "Community",
+    "notifications": "Notifications",
+    "wallet": "Wallet",
+    "favorite": "Favorite",
+    "trending": "Trending",
+    "select": "Select content type",
+    "blogs": "Blogs",
+    "replies": "Replies",
+    "posts": "Posts",
+    "comments": "Comments",
+    "column": "Column",
+    "hot": "Hot",
+    "muted": "Muted",
+    "new": "New",
+    "reload": "Reload",
+    "add": "Add",
+    "remove": "Remove",
+    "removed": "{{deck}} removed successfully.",
+    "payout": "Payouts",
+    "created": "New",
+    "go-back": "Go back",
+    "deck-exists": "The deck you're trying to add already exists!",
+    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
+    "select-column-type": "Which deck type do you want to add?",
+    "topic": "Custom"
   },
   "market-data": {
     "title": "市场价格",
@@ -1298,6 +1340,7 @@
   },
   "layouts": {
     "grid": "Grid",
-    "classic": "Classic"
+    "classic": "Classic",
+    "deck": "Deck"
   }
 }

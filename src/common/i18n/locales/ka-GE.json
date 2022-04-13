@@ -43,6 +43,8 @@
     "trending": "feed",
     "created": "feed",
     "muted": "muted",
+    "controversial": "controversial",
+    "rising": "rising",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
@@ -79,12 +81,19 @@
     "filter-feed-subscriptions": "Communities",
     "filter-global": "Global",
     "filter-community": "My Community",
+    "filter-controversial": "Controversial",
+    "filter-rising": "Rising",
     "filter-global-part1": "This feed contains ",
     "filter-global-part2": " discussions on entire platform.",
     "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
     "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
     "filter-global-discover": "Discover People",
-    "filter-global-join-communities": "Join Communities"
+    "filter-global-join-communities": "Join Communities",
+    "filter-today": "Today",
+    "filter-week": "This week",
+    "filter-month": "This month",
+    "filter-year": "This year",
+    "filter-alltime": "All time"
   },
   "navbar": {
     "discover": "Discover",
@@ -267,6 +276,39 @@
     "faq": "FAQ",
     "tos": "Terms of service",
     "pp": "Privacy Policy"
+  },
+  "decks": {
+    "users": "Users",
+    "header-info": "Click me to see extra options",
+    "username": "Username",
+    "content-type": "Content Type",
+    "trending-topics": "Topics",
+    "search": "Search",
+    "community": "Community",
+    "notifications": "Notifications",
+    "wallet": "Wallet",
+    "favorite": "Favorite",
+    "trending": "Trending",
+    "select": "Select content type",
+    "blogs": "Blogs",
+    "replies": "Replies",
+    "posts": "Posts",
+    "comments": "Comments",
+    "column": "Column",
+    "hot": "Hot",
+    "muted": "Muted",
+    "new": "New",
+    "reload": "Reload",
+    "add": "Add",
+    "remove": "Remove",
+    "removed": "{{deck}} removed successfully.",
+    "payout": "Payouts",
+    "created": "New",
+    "go-back": "Go back",
+    "deck-exists": "The deck you're trying to add already exists!",
+    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
+    "select-column-type": "Which deck type do you want to add?",
+    "topic": "Custom"
   },
   "market-data": {
     "title": "Market price",
@@ -1298,6 +1340,7 @@
   },
   "layouts": {
     "grid": "Grid",
-    "classic": "Classic"
+    "classic": "Classic",
+    "deck": "Deck"
   }
 }

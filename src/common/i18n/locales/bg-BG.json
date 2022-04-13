@@ -43,6 +43,8 @@
     "trending": "feed",
     "created": "feed",
     "muted": "заглушен",
+    "controversial": "controversial",
+    "rising": "rising",
     "found": "намерено",
     "feed": "feed",
     "blog": "блогове",
@@ -79,12 +81,19 @@
     "filter-feed-subscriptions": "Общности",
     "filter-global": "Global",
     "filter-community": "My Community",
+    "filter-controversial": "Controversial",
+    "filter-rising": "Rising",
     "filter-global-part1": "Потока съдържа ",
     "filter-global-part2": " дискусии в цялата платформа.",
     "filter-global-part3": " дискусии от общностоте, които следвате. Можете да се включите в повече общности за да се попълни потока.",
     "filter-global-part4": " дискусии от хората които следваш. Може да следваш повече хора за да се попълни потока от статии.",
     "filter-global-discover": "Опознай Хора",
-    "filter-global-join-communities": "Присъедини се в Общества"
+    "filter-global-join-communities": "Присъедини се в Общества",
+    "filter-today": "Today",
+    "filter-week": "This week",
+    "filter-month": "This month",
+    "filter-year": "This year",
+    "filter-alltime": "All time"
   },
   "navbar": {
     "discover": "Открийте",
@@ -267,6 +276,39 @@
     "faq": "FAQ",
     "tos": "Общи условия",
     "pp": "Политика за Поверителност"
+  },
+  "decks": {
+    "users": "Users",
+    "header-info": "Click me to see extra options",
+    "username": "Username",
+    "content-type": "Content Type",
+    "trending-topics": "Topics",
+    "search": "Search",
+    "community": "Community",
+    "notifications": "Notifications",
+    "wallet": "Wallet",
+    "favorite": "Favorite",
+    "trending": "Trending",
+    "select": "Select content type",
+    "blogs": "Blogs",
+    "replies": "Replies",
+    "posts": "Posts",
+    "comments": "Comments",
+    "column": "Column",
+    "hot": "Hot",
+    "muted": "Muted",
+    "new": "New",
+    "reload": "Reload",
+    "add": "Add",
+    "remove": "Remove",
+    "removed": "{{deck}} removed successfully.",
+    "payout": "Payouts",
+    "created": "New",
+    "go-back": "Go back",
+    "deck-exists": "The deck you're trying to add already exists!",
+    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
+    "select-column-type": "Which deck type do you want to add?",
+    "topic": "Custom"
   },
   "market-data": {
     "title": "Пазарна цена",
@@ -1298,6 +1340,7 @@
   },
   "layouts": {
     "grid": "Grid",
-    "classic": "Classic"
+    "classic": "Classic",
+    "deck": "Deck"
   }
 }
