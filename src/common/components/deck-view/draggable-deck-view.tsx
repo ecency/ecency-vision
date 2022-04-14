@@ -1,26 +1,27 @@
-import React, { useEffect, useState } from "react";
-import {
-  DragDropContext,
-  Droppable,
-  Draggable,
-  resetServerContext,
-} from "react-beautiful-dnd";
-import { _t } from "../../i18n";
-import { Deck } from "../deck";
-import * as ls from "../../util/local-storage";
-import { success } from "../feedback";
-import { normalizeHeader } from ".";
+import React, { Component, useEffect, useState } from 'react';
+import { DragDropContext, Draggable, Droppable, resetServerContext, } from 'react-beautiful-dnd';
+import { _t } from '../../i18n';
+import { Deck } from '../deck';
+import * as ls from '../../util/local-storage';
+import { success } from '../feedback';
+import { normalizeHeader } from '.';
+
+export const createDeck = (data: any, listItemComponent: any, title: string, icon: JSX.Element | null) => ({
+  data,
+  listItemComponent,
+  header: { title, icon },
+});
+
+export const getDeckItemWithId = (deck: any, index: number) => ({
+  ...deck,
+  id: `item-${index}`,
+  content: `item ${index}`,
+});
 
 export const getItems = (decks: any[], user: string | undefined) => {
-  let updatedDecks = [...decks].map((k, index) => {
-    let deck = {
-      ...k,
-      id: `item-${index}`,
-      content: `item ${index}`,
-    };
-    return deck;
-  });
+  const updatedDecks = [...decks].map((deck, index) => getDeckItemWithId(deck, index));
 
+  // TODO: Save only deck preferences
   if (user && updatedDecks.length > 0) {
     ls.set(`user-${user}-decks`, updatedDecks);
   } else if (!user && updatedDecks.length > 0) {

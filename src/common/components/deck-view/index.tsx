@@ -20,7 +20,7 @@ import {
 } from "../../pages/common";
 import { DeckAddModal } from "../deck-add-modal";
 import ListStyleToggle from "../list-style-toggle";
-import { DraggableDeckView, getItems } from "./draggable-deck-view";
+import { createDeck, DraggableDeckView, getItems } from './draggable-deck-view';
 import { decks as initialDeckItems } from "./decks.data";
 import { HotListItem, SearchListItem } from "../deck/deck-items";
 import { getAccountPosts, getPostsRanked } from "../../api/bridge";
@@ -76,132 +76,53 @@ const DeckViewContainer = ({
 }: any) => {
   const [openModal, setOpenModal] = useState(false);
   const [loadingNewContent, setLoadingNewContent] = useState(false);
-  const [decks, setDecks] = useState<any>(
-    getItems(
-      initialDeckItems,
-      (rest.activeUser && rest.activeUser.username) || ""
-    )
-  );
+  const [user, setUser] = useState((rest.activeUser && rest.activeUser.username) || "");
+  const [decks, setDecks] = useState<any>(getItems(initialDeckItems, user));
 
-  const onSelectColumn = (account: string, contentType: string) => {
+  const onSelectColumn = async (account: string, contentType: string) => {
     setOpenModal(false);
     setLoadingNewContent(true);
+
     if (contentType) {
       if (contentType === _t("decks.notifications")) {
-        getNotifications(
-          rest.activeUser ? rest.activeUser.username : account,
-          null,
-          null,
-          account
-        ).then((res) => {
-          setDecks(
-            getItems(
-              [
-                ...decks,
-                {
-                  data: res.map((item) => {
-                    return { ...item, deck: true };
-                  }),
-                  listItemComponent: NotificationListItem,
-                  header: {
-                    title: `${contentType} @${account}`,
-                    icon: notifications,
-                  },
-                },
-              ],
-              (rest.activeUser && rest.activeUser.username) || ""
-            )
-          );
-          setLoadingNewContent(false);
-        });
+        const res = await getNotifications(user || account, null, null, account);
+        const data = res.map((item) => ({ ...item, deck: true }));
+
+        const deck = createDeck(data, NotificationListItem, `${contentType} @${account}`, notifications);
+        setDecks(getItems([...decks, deck], user));
+
+        setLoadingNewContent(false);
       } else if (contentType === _t("decks.wallet")) {
         setLoadingNewContent(true);
         fetchTransactions(account);
       } else if (account.includes("hive-")) {
-        getPostsRanked(
-          contentType,
-          undefined,
-          undefined,
-          undefined,
-          account
-        ).then((res) => {
-          let title = `${_t(`decks.${contentType}`)} @${account}`;
-          setDecks(
-            getItems(
-              [
-                ...decks,
-                {
-                  data: res,
-                  listItemComponent: SearchListItem,
-                  header: {
-                    title,
-                    icon: communities,
-                  },
-                },
-              ],
-              (rest.activeUser && rest.activeUser.username) || ""
-            )
-          );
-          setLoadingNewContent(false);
-        });
+        const res = await getPostsRanked(contentType, undefined, undefined, undefined, account);
+        let title = `${_t(`decks.${contentType}`)} @${account}`;
+
+        setDecks(getItems([...decks, createDeck(res, SearchListItem, title, communities),], user));
+
+        setLoadingNewContent(false);
       } else {
-        getAccountPosts(
+        const res = await getAccountPosts(
           contentType === "blogs" ? "blog" : contentType,
           account
-        ).then((res) => {
-          setDecks(
-            getItems(
-              [
-                ...decks,
-                {
-                  data: res,
-                  listItemComponent: SearchListItem,
-                  header: {
-                    title: `${contentType} @${account}`,
-                    icon: person,
-                  },
-                },
-              ],
-              (rest.activeUser && rest.activeUser.username) || ""
-            )
-          );
-          setLoadingNewContent(false);
-        });
+        );
+
+        const deck = createDeck(res, SearchListItem, `${contentType} @${account}`, person);
+        setDecks(getItems([...decks, deck], user));
+
+        setLoadingNewContent(false);
       }
     } else if (account === _t("decks.trending-topics")) {
-      getAllTrendingTags().then((res) => {
-        setDecks(
-          getItems(
-            [
-              ...decks,
-              {
-                data: res,
-                listItemComponent: HotListItem,
-                header: { title: `${account}`, icon: hot },
-              },
-            ],
-            (rest.activeUser && rest.activeUser.username) || ""
-          )
-        );
-        setLoadingNewContent(false);
-      });
+      const res = await getAllTrendingTags();
+      setDecks(getItems([...decks, createDeck(res,  HotListItem, `${account}`, hot)], user));
+      setLoadingNewContent(false);
     } else if (account === _t("decks.trending")) {
-      getPostsRanked("trending").then((res) => {
-        setDecks(
-          getItems(
-            [
-              ...decks,
-              {
-                data: res,
-                listItemComponent: SearchListItem,
-                header: { title: `${account}`, icon: globalTrending },
-              },
-            ],
-            (rest.activeUser && rest.activeUser.username) || ""
-          )
-        );
-        setLoadingNewContent(false);
-      });
+      const res = await getPostsRanked("trending");
+
+      setDecks(getItems([...decks, createDeck(res, SearchListItem, `${account}`, globalTrending)], user));
+
+      setLoadingNewContent(false);
     }
   };
 
