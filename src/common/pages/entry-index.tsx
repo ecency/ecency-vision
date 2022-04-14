@@ -155,7 +155,9 @@ class EntryIndexPage extends Component<PageProps, State> {
         || location?.pathname?.startsWith("/created")
         || location?.pathname?.startsWith("/trending")
         || location?.pathname?.startsWith("/payout")
-        || location?.pathname?.startsWith("/payout_comments");
+        || location?.pathname?.startsWith("/payout_comments")
+        || location?.pathname?.startsWith("/rising")
+        || location?.pathname?.startsWith("/controversial");
         let containerClasses = global.isElectron ? "app-content entry-index-page mt-0 pt-6" : `app-content overflow-hidden entry-index-page ${global.listStyle===ListStyle.deck ? "p-0 m-0" : ""}`;
         return (
             <>
