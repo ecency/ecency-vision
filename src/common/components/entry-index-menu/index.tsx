@@ -112,7 +112,7 @@ export class EntryIndexMenu extends Component<Props, States> {
 
     componentDidUpdate(prevProps: Props){
         const { history, activeUser, global: { tag, filter } } = this.props;
-        
+        console.log(filter, tag);
         if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){            
             history.push(history.location.pathname.replace('/my', ''))
         } 
@@ -136,10 +136,10 @@ export class EntryIndexMenu extends Component<Props, States> {
             const tagValue = (tag && tag !== 'my' && ['today', 'week', 'month', 'year', 'all'].includes(tag)) ? '/' + tag : '/week'
             history.push(`/${filter}${tagValue}`)
         }
-        else if(!['controversial', 'rising'].includes(filter)) {
+        /*else if(!['controversial', 'rising'].includes(filter)) {
             const tagValue = ['today', 'week', 'month', 'year', 'all'].includes(tag) ? '' : '/' + tag
             history.push(`/${filter}${tagValue}`)
-        }
+        }*/
 
         let showInitialIntroductionJourney = activeUser && isActiveUser(activeUser) && ls.get(`${activeUser.username}HadTutorial`);
         if(prevProps.activeUser !==activeUser && activeUser && isActiveUser(activeUser) && (showInitialIntroductionJourney==='false' || showInitialIntroductionJourney===null)){
