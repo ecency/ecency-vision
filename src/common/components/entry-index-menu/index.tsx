@@ -112,7 +112,7 @@ export class EntryIndexMenu extends Component<Props, States> {
 
     componentDidUpdate(prevProps: Props){
         const { history, activeUser, global: { tag, filter } } = this.props;
-        console.log(filter, tag);
+
         if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){            
             history.push(history.location.pathname.replace('/my', ''))
         } 
