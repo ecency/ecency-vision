@@ -161,27 +161,25 @@ export class Comment extends Component<Props, State> {
                 <div className="comment-box" onMouseEnter={() => !showEmoji && this.setState({showEmoji: true})}>
                     {EditorToolbar({...this.props, sm: true, showEmoji})}
                     <div className="comment-body">
-                        <div className="body-input">
-                            <TextareaAutocomplete
-                                className={`the-editor accepts-emoji ${text.length > 20 ? 'expanded' : ''}`}
-                                as="textarea"
-                                placeholder={_t("comment.body-placeholder")}
-                                value={text}
-                                onChange={this.textChanged}
-                                disabled={inProgress}
-                                autoFocus={autoFocus}
-                                minrows={10}
-                                rows={rows}
-                                maxrows={100}
-                                ref={inputRef}
-                                acceptCharset="UTF-8"
-                                global={this.props.global}
-                                id="the-editor"
-                                spellCheck={true}
-                                activeUser={activeUser && activeUser.username || ""}
-                                usePropsRows={true}
-                            />
-                        </div>
+                        <TextareaAutocomplete
+                            className={`the-editor accepts-emoji ${text.length > 20 ? 'expanded' : ''}`}
+                            as="textarea"
+                            placeholder={_t("comment.body-placeholder")}
+                            value={text}
+                            onChange={this.textChanged}
+                            disabled={inProgress}
+                            autoFocus={autoFocus}
+                            minrows={10}
+                            rows={rows}
+                            maxrows={100}
+                            ref={inputRef}
+                            acceptCharset="UTF-8"
+                            global={this.props.global}
+                            id="the-editor"
+                            spellCheck={true}
+                            activeUser={activeUser && activeUser.username || ""}
+                            isComment={true}
+                        />
                     </div>
                     <div className="comment-buttons">
                         {cancellable && (

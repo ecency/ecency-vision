@@ -69,17 +69,16 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 	};
 
 	render() {
-		const {activeUser, rows, usePropsRows, ...other} = this.props;
-		
+		const {activeUser, rows, isComment, ...other} = this.props;
 		return (
 			<ReactTextareaAutocomplete
 				{...other}
 				loadingComponent={Loading}
-				rows={usePropsRows ? rows : this.state.rows}
+				rows={isComment ? rows : this.state.rows}
 				value={this.state.value}
 				placeholder={this.props.placeholder}
 				onChange={this.handleChange}
-				boundariesElement={".body-input"}
+				{...(isComment ? {} : {boundariesElement: ".body-input"})}
 				minChar={2}
 				trigger={{
 					["@"]: {
