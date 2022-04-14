@@ -20,11 +20,7 @@ setProxyBase(defaults.imageServer);
 import {_t} from "../../i18n";
 import {Global} from '../../store/global/types';
 import * as ss from "../../util/session-storage";
-import ReactTextareaAutocomplete from "@webscopeio/react-textarea-autocomplete";
-import { searchPath } from "../../api/search-api";
-import { lookupAccounts } from "../../api/hive";
-import { isMobile } from "../../util/is-mobile";
-import userAvatar, { UserAvatar } from "../user-avatar";
+
 import TextareaAutocomplete from "../textarea-autocomplete";
 
 interface PreviewProps {
@@ -174,7 +170,7 @@ export class Comment extends Component<Props, State> {
                                 onChange={this.textChanged}
                                 disabled={inProgress}
                                 autoFocus={autoFocus}
-                                minrows={rows}
+                                minrows={10}
                                 rows={rows}
                                 maxrows={100}
                                 ref={inputRef}
