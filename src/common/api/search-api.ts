@@ -37,11 +37,12 @@ export interface SearchResponse {
     took: number;
 }
 
-export const search = (q: string, sort: string, hideLow: string, since?: string, scroll_id?: string): Promise<SearchResponse> => {
-    const data: { q: string, sort: string, hide_low: string, since?: string, scroll_id?: string } = {q, sort, hide_low: hideLow};
+export const search = (q: string, sort: string, hideLow: string, since?: string, scroll_id?: string, votes?: number): Promise<SearchResponse> => {
+    const data: { q: string, sort: string, hide_low: string, since?: string, scroll_id?: string, votes?: number } = {q, sort, hide_low: hideLow};
 
     if (since) data.since = since;
     if (scroll_id) data.scroll_id = scroll_id;
+    if (votes) data.votes = votes;
 
     return axios.post(apiBase(`/search-api/search`), data).then(resp => resp.data);
 }

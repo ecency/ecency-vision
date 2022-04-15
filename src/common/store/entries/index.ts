@@ -204,7 +204,8 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
         const hideLow_ = "0"
         const scrollId = sid;
         const scrollId_ = scrollId ? scrollId : undefined;
-        promise = search(q, sort, hideLow_, since, scrollId_)
+        const votes = tag === "today" ? 50 : 200;
+        promise = search(q, sort, hideLow_, since, scrollId_, votes)
         
     } else {
         // trending/tag
