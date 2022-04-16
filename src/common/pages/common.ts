@@ -36,7 +36,8 @@ import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter
 import {fetchPoints, resetPoints} from "../store/points";
 import {setSigningKey} from "../store/signing-key";
 import {trackEntryPin, setEntryPin} from "../store/entry-pin-tracker";
-import { createDeck } from '../store/deck';
+import { createDeck, fetchDeckData } from '../store/deck';
+import { CreateAction } from '../store/deck/types';
 
 
 export interface PageProps {
@@ -118,6 +119,7 @@ export interface PageProps {
     entryPinTracker: EntryPinTracker;
     trackEntryPin: (entry: Entry) => void;
     setEntryPin: (entry: Entry, pin: boolean) => void;
+    createDeck: (args: CreateAction['data']) => void;
 }
 
 export const pageMapStateToProps = (state: AppState) => ({
@@ -170,6 +172,7 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             trackEntryPin,
             setEntryPin,
             createDeck,
+            fetchDeckData,
         },
         dispatch
     );

@@ -4,9 +4,11 @@ export interface DeckModel {
   header: {
     title: string;
     icon: JSX.Element | null;
+    reloading: boolean;
   };
   listItemComponent: any;
   createdAt: Date;
+  // TODO: Add owner
 }
 
 export interface IdentifiableDeckModel extends DeckModel {
@@ -15,7 +17,10 @@ export interface IdentifiableDeckModel extends DeckModel {
 }
 
 export enum ActionTypes {
-  CREATE = "@deck/CREATE"
+  CREATE = "@deck/CREATE",
+  SET_DATA =  "@deck/FETCH_DATA",
+  SET_RELOADING = "@deck/SET_RELOADING",
+  REORDER = "@deck/REORDER"
 }
 
 export interface CreateAction {
@@ -28,5 +33,32 @@ export interface CreateAction {
   ];
 }
 
-export type DeckState = IdentifiableDeckModel[];
-export type Actions = CreateAction;
+export interface SetDataAction {
+  type: ActionTypes.SET_DATA;
+  data: {
+    title: string;
+    data: any;
+  };
+}
+
+export interface SetReloadingAction {
+  type: ActionTypes.SET_RELOADING;
+  data: {
+    title: string;
+    isReloading: boolean;
+  };
+}
+
+export interface ReOrderAction {
+  type: ActionTypes.REORDER;
+  data: {
+    startIndex: number;
+    endIndex: number;
+  }
+}
+
+export type DeckState = {
+  items: IdentifiableDeckModel[];
+  isContentLoading: boolean;
+};
+export type Actions = CreateAction | SetDataAction | SetReloadingAction;

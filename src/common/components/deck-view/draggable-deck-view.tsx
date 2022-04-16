@@ -5,21 +5,9 @@ import { Deck } from '../deck';
 import * as ls from '../../util/local-storage';
 import { success } from '../feedback';
 import { normalizeHeader } from '.';
-import { DeckModel, IdentifiableDeckModel } from './types';
-
-export const initDeck = (
-  data: DeckModel['data'],
-  listItemComponent: DeckModel['listItemComponent'],
-  title: DeckModel['header']['title'],
-  icon: DeckModel['header']['icon'],
-  dataParams: DeckModel['dataParams'],
-): DeckModel => ({
-  data,
-  listItemComponent,
-  header: { title, icon },
-  createdAt: new Date(),
-  dataParams,
-});
+import { IdentifiableDeckModel } from './types';
+import { useDispatch } from 'react-redux';
+import { reorderAct } from '../../store/deck';
 
 export const getIdentifiableDeck = (deck: any, index: number): IdentifiableDeckModel => ({
   ...deck,
@@ -67,64 +55,49 @@ const getListStyle = (isDraggingOver: boolean, theme: string) => ({
 resetServerContext();
 
 const DraggableDeckView = ({
-  decks,
+  deck,
   toggleListStyle,
   loading,
   setDecks,
   onReloadColumn,
   ...rest
 }: any) => {
-  const [items, setItems] = useState<any>(
-    getDecks(decks, (rest.activeUser && rest.activeUser.username) || "")
-  );
   const [mounted, setMounted] = useState(false);
+  const dispatch = useDispatch();
 
   const onDragEnd = (result: any) => {
     if (!result.destination) {
       return;
     }
 
-    const reorderedItems = reorder(
-      items,
-      result.source.index,
-      result.destination.index
-    );
-
-    setItems(reorderedItems);
-    setDecks(reorderedItems);
+    dispatch(reorderAct({ startIndex: result.source.index, endIndex: result.destination.index }));
   };
 
-  useEffect(() => {
-    setItems(decks);
-  }, [decks]);
+  useEffect(() => setMounted(true), []);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (rest.activeUser && rest.activeUser.username) {
-      let newItems = ls.get(`user-${rest.activeUser.username}-decks`);
-      if (newItems) {
-        let defaultDecks = [...newItems];
-        defaultDecks = normalizeHeader(defaultDecks);
-        setDecks(
-          getDecks(
-            [...defaultDecks],
-            (rest.activeUser && rest.activeUser.username) || ""
-          )
-        );
-      }
-    } else {
-      let newItems = ls.get(`user-unauthed-decks`);
-
-      if (newItems) {
-        let defaultDecks = [...newItems];
-        defaultDecks = normalizeHeader(defaultDecks);
-        setDecks(getDecks([...defaultDecks], undefined));
-      }
-    }
-  }, [rest.activeUser]);
+  // useEffect(() => {
+  //   if (rest.activeUser && rest.activeUser.username) {
+  //     let newItems = ls.get(`user-${rest.activeUser.username}-decks`);
+  //     if (newItems) {
+  //       let defaultDecks = [...newItems];
+  //       defaultDecks = normalizeHeader(defaultDecks);
+  //       setDecks(
+  //         getDecks(
+  //           [...defaultDecks],
+  //           (rest.activeUser && rest.activeUser.username) || ""
+  //         )
+  //       );
+  //     }
+  //   } else {
+  //     let newItems = ls.get(`user-unauthed-decks`);
+  //
+  //     if (newItems) {
+  //       let defaultDecks = [...newItems];
+  //       defaultDecks = normalizeHeader(defaultDecks);
+  //       setDecks(getDecks([...defaultDecks], undefined));
+  //     }
+  //   }
+  // }, [rest.activeUser]);
 
   return mounted ? (
     <DragDropContext onDragEnd={onDragEnd}>
@@ -138,7 +111,7 @@ const DraggableDeckView = ({
             {...provided.droppableProps}
             id="draggable-container"
           >
-            {items.map((item: any, index: any) => (
+            {deck.items.map((item: any, index: any) => (
               <Draggable
                 key={item.id + index}
                 draggableId={item.id}
@@ -171,7 +144,7 @@ const DraggableDeckView = ({
                       <Deck
                         toggleListStyle={toggleListStyle}
                         onRemove={(option: string) => {
-                          let filteredDecks = items.filter(
+                          let filteredDecks = deck.items.filter(
                             (item: any) => item.header.title !== option
                           );
                           setDecks(filteredDecks);
