@@ -46,7 +46,7 @@ export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
         parseAsset(entry.curator_payout_value).amount;
     }
 
-    if (payout) {
+    if (payout && Number(totalPayout.toFixed(3)) !== payout) {
         totalPayout += payout;
     }
     const voteRshares = votes && votes.reduce((a, b) => a + parseFloat(b.rshares), 0);
