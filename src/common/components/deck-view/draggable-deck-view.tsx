@@ -1,25 +1,38 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DragDropContext, Draggable, Droppable, resetServerContext, } from 'react-beautiful-dnd';
 import { _t } from '../../i18n';
 import { Deck } from '../deck';
 import * as ls from '../../util/local-storage';
 import { success } from '../feedback';
 import { normalizeHeader } from '.';
+import { DeckModel, IdentifiableDeckModel } from './types';
 
-export const createDeck = (data: any, listItemComponent: any, title: string, icon: JSX.Element | null) => ({
+export const initDeck = (
+  data: DeckModel['data'],
+  listItemComponent: DeckModel['listItemComponent'],
+  title: DeckModel['header']['title'],
+  icon: DeckModel['header']['icon'],
+  dataParams: DeckModel['dataParams'],
+): DeckModel => ({
   data,
   listItemComponent,
   header: { title, icon },
+  createdAt: new Date(),
+  dataParams,
 });
 
-export const getDeckItemWithId = (deck: any, index: number) => ({
+export const getIdentifiableDeck = (deck: any, index: number): IdentifiableDeckModel => ({
   ...deck,
   id: `item-${index}`,
   content: `item ${index}`,
 });
 
-export const getItems = (decks: any[], user: string | undefined) => {
-  const updatedDecks = [...decks].map((deck, index) => getDeckItemWithId(deck, index));
+export const getDecks = (decks: any[], user: string | undefined) => {
+  const updatedDecks = [...decks].map((deck, index) => {
+    const identifiableDeck = getIdentifiableDeck(deck, index);
+    identifiableDeck.createdAt = identifiableDeck.createdAt || new Date();
+    return identifiableDeck;
+  });
 
   // TODO: Save only deck preferences
   if (user && updatedDecks.length > 0) {
@@ -62,7 +75,7 @@ const DraggableDeckView = ({
   ...rest
 }: any) => {
   const [items, setItems] = useState<any>(
-    getItems(decks, (rest.activeUser && rest.activeUser.username) || "")
+    getDecks(decks, (rest.activeUser && rest.activeUser.username) || "")
   );
   const [mounted, setMounted] = useState(false);
 
@@ -96,7 +109,7 @@ const DraggableDeckView = ({
         let defaultDecks = [...newItems];
         defaultDecks = normalizeHeader(defaultDecks);
         setDecks(
-          getItems(
+          getDecks(
             [...defaultDecks],
             (rest.activeUser && rest.activeUser.username) || ""
           )
@@ -108,7 +121,7 @@ const DraggableDeckView = ({
       if (newItems) {
         let defaultDecks = [...newItems];
         defaultDecks = normalizeHeader(defaultDecks);
-        setDecks(getItems([...defaultDecks], undefined));
+        setDecks(getDecks([...defaultDecks], undefined));
       }
     }
   }, [rest.activeUser]);

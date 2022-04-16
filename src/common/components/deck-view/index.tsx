@@ -20,7 +20,7 @@ import {
 } from "../../pages/common";
 import { DeckAddModal } from "../deck-add-modal";
 import ListStyleToggle from "../list-style-toggle";
-import { createDeck, DraggableDeckView, getItems } from './draggable-deck-view';
+import { initDeck, DraggableDeckView, getDecks } from './draggable-deck-view';
 import { decks as initialDeckItems } from "./decks.data";
 import { HotListItem, SearchListItem } from "../deck/deck-items";
 import { getAccountPosts, getPostsRanked } from "../../api/bridge";
@@ -71,13 +71,14 @@ const DeckViewContainer = ({
   global,
   toggleListStyle,
   fetchTransactions,
+  createDeck,
   transactions: { list: transactionsList },
   ...rest
 }: any) => {
   const [openModal, setOpenModal] = useState(false);
   const [loadingNewContent, setLoadingNewContent] = useState(false);
   const [user, setUser] = useState((rest.activeUser && rest.activeUser.username) || "");
-  const [decks, setDecks] = useState<any>(getItems(initialDeckItems, user));
+  const [decks, setDecks] = useState<any>(getDecks(initialDeckItems, user));
 
   const onSelectColumn = async (account: string, contentType: string) => {
     setOpenModal(false);
@@ -87,9 +88,12 @@ const DeckViewContainer = ({
       if (contentType === _t("decks.notifications")) {
         const res = await getNotifications(user || account, null, null, account);
         const data = res.map((item) => ({ ...item, deck: true }));
+        const dataParams = [user || account, null, null, account];
 
-        const deck = createDeck(data, NotificationListItem, `${contentType} @${account}`, notifications);
-        setDecks(getItems([...decks, deck], user));
+        const deck = initDeck(data, NotificationListItem, `${contentType} @${account}`, notifications, dataParams);
+        createDeck([NotificationListItem, `${contentType} @${account}`, notifications, dataParams]);
+
+        setDecks(getDecks([...decks, deck], user));
 
         setLoadingNewContent(false);
       } else if (contentType === _t("decks.wallet")) {
@@ -98,8 +102,10 @@ const DeckViewContainer = ({
       } else if (account.includes("hive-")) {
         const res = await getPostsRanked(contentType, undefined, undefined, undefined, account);
         let title = `${_t(`decks.${contentType}`)} @${account}`;
+        const dataParams = [contentType, undefined, undefined, undefined, account];
 
-        setDecks(getItems([...decks, createDeck(res, SearchListItem, title, communities),], user));
+        setDecks(getDecks([...decks, initDeck(res, SearchListItem, title, communities, dataParams)], user));
+        createDeck([SearchListItem, title, communities, dataParams]);
 
         setLoadingNewContent(false);
       } else {
@@ -107,20 +113,27 @@ const DeckViewContainer = ({
           contentType === "blogs" ? "blog" : contentType,
           account
         );
+        const dataParams = [contentType === "blogs" ? "blog" : contentType, account];
 
-        const deck = createDeck(res, SearchListItem, `${contentType} @${account}`, person);
-        setDecks(getItems([...decks, deck], user));
+        const deck = initDeck(res, SearchListItem, `${contentType} @${account}`, person, dataParams);
+        createDeck([SearchListItem, `${contentType} @${account}`, person, dataParams]);
+        setDecks(getDecks([...decks, deck], user));
 
         setLoadingNewContent(false);
       }
     } else if (account === _t("decks.trending-topics")) {
       const res = await getAllTrendingTags();
-      setDecks(getItems([...decks, createDeck(res,  HotListItem, `${account}`, hot)], user));
+      const dataParams: any[] = [];
+
+      setDecks(getDecks([...decks, initDeck(res,  HotListItem, `${account}`, hot, dataParams)], user));
+      createDeck([HotListItem, `${account}`, hot, dataParams]);
       setLoadingNewContent(false);
     } else if (account === _t("decks.trending")) {
       const res = await getPostsRanked("trending");
+      const dataParams = ["trending"];
 
-      setDecks(getItems([...decks, createDeck(res, SearchListItem, `${account}`, globalTrending)], user));
+      setDecks(getDecks([...decks, initDeck(res, SearchListItem, `${account}`, globalTrending, dataParams)], user));
+      createDeck([res, SearchListItem, `${account}`, globalTrending, dataParams]);
 
       setLoadingNewContent(false);
     }
@@ -146,7 +159,7 @@ const DeckViewContainer = ({
       header: { ...itemToUpdate.header, reloading: true },
     };
     setDecks(
-      getItems(
+      getDecks(
         [...updatedDecks],
         (rest.activeUser && rest.activeUser.username) || ""
       )
@@ -174,7 +187,7 @@ const DeckViewContainer = ({
                 },
               }),
                 setDecks(
-                  getItems(
+                  getDecks(
                     [...updatedDecks],
                     (rest.activeUser && rest.activeUser.username) || ""
                   )
@@ -194,7 +207,7 @@ const DeckViewContainer = ({
               },
             }),
               setDecks(
-                getItems(
+                getDecks(
                   [...updatedDecks],
                   (rest.activeUser && rest.activeUser.username) || ""
                 )
@@ -213,7 +226,7 @@ const DeckViewContainer = ({
               },
             }),
               setDecks(
-                getItems(
+                getDecks(
                   [...updatedDecks],
                   (rest.activeUser && rest.activeUser.username) || ""
                 )
@@ -242,7 +255,7 @@ const DeckViewContainer = ({
           },
         }),
           setDecks(
-            getItems(
+            getDecks(
               [...updatedDecks],
               (rest.activeUser && rest.activeUser.username) || ""
             )
@@ -262,7 +275,7 @@ const DeckViewContainer = ({
           },
         }),
           setDecks(
-            getItems(
+            getDecks(
               [...updatedDecks],
               (rest.activeUser && rest.activeUser.username) || ""
             )
@@ -293,7 +306,7 @@ const DeckViewContainer = ({
           defaultDecks = [...cachedDecks];
           defaultDecks = normalizeHeader(defaultDecks);
           setDecks(
-            getItems(
+            getDecks(
               [...defaultDecks],
               (rest.activeUser && rest.activeUser.username) || ""
             )
@@ -326,7 +339,7 @@ const DeckViewContainer = ({
                 },
               });
               setDecks(
-                getItems(
+                getDecks(
                   [...defaultDecks],
                   (rest.activeUser && rest.activeUser.username) || ""
                 )
@@ -353,7 +366,7 @@ const DeckViewContainer = ({
                 header: { title: _t("decks.trending-topics"), icon: hot },
               });
               setDecks(
-                getItems(
+                getDecks(
                   defaultDecks,
                   (rest.activeUser && rest.activeUser.username) || ""
                 )
@@ -371,7 +384,7 @@ const DeckViewContainer = ({
       setLoadingNewContent(false);
       let firstTransaction = transactionsList[0];
       setDecks(
-        getItems(
+        getDecks(
           [
             ...decks,
             {

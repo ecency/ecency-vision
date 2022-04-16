@@ -24,6 +24,7 @@ import signingKey from "./signing-key";
 import entryPinTracker from "./entry-pin-tracker";
 
 import filterTagExtract from "../helper/filter-tag-extract";
+import deck from './deck';
 
 let reducers = {
     global,
@@ -42,7 +43,8 @@ let reducers = {
     notifications,
     points,
     signingKey,
-    entryPinTracker
+    entryPinTracker,
+    deck,
 };
 
 export let history: History | undefined;
