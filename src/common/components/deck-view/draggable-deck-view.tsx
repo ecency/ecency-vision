@@ -2,43 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { DragDropContext, Draggable, Droppable, resetServerContext, } from 'react-beautiful-dnd';
 import { _t } from '../../i18n';
 import { Deck } from '../deck';
-import * as ls from '../../util/local-storage';
 import { success } from '../feedback';
-import { normalizeHeader } from '.';
-import { IdentifiableDeckModel } from './types';
 import { useDispatch } from 'react-redux';
 import { reorderAct } from '../../store/deck';
-
-export const getIdentifiableDeck = (deck: any, index: number): IdentifiableDeckModel => ({
-  ...deck,
-  id: `item-${index}`,
-  content: `item ${index}`,
-});
-
-export const getDecks = (decks: any[], user: string | undefined) => {
-  const updatedDecks = [...decks].map((deck, index) => {
-    const identifiableDeck = getIdentifiableDeck(deck, index);
-    identifiableDeck.createdAt = identifiableDeck.createdAt || new Date();
-    return identifiableDeck;
-  });
-
-  // TODO: Save only deck preferences
-  if (user && updatedDecks.length > 0) {
-    ls.set(`user-${user}-decks`, updatedDecks);
-  } else if (!user && updatedDecks.length > 0) {
-    ls.set(`user-unauthed-decks`, updatedDecks);
-  }
-  return updatedDecks;
-};
-
-// a little function to help us with reordering the result
-const reorder = (list: any, startIndex: any, endIndex: any) => {
-  const result = Array.from(list);
-  const [removed] = result.splice(startIndex, 1);
-  result.splice(endIndex, 0, removed);
-
-  return result;
-};
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
   ...draggableStyle,
@@ -74,30 +40,6 @@ const DraggableDeckView = ({
   };
 
   useEffect(() => setMounted(true), []);
-
-  // useEffect(() => {
-  //   if (rest.activeUser && rest.activeUser.username) {
-  //     let newItems = ls.get(`user-${rest.activeUser.username}-decks`);
-  //     if (newItems) {
-  //       let defaultDecks = [...newItems];
-  //       defaultDecks = normalizeHeader(defaultDecks);
-  //       setDecks(
-  //         getDecks(
-  //           [...defaultDecks],
-  //           (rest.activeUser && rest.activeUser.username) || ""
-  //         )
-  //       );
-  //     }
-  //   } else {
-  //     let newItems = ls.get(`user-unauthed-decks`);
-  //
-  //     if (newItems) {
-  //       let defaultDecks = [...newItems];
-  //       defaultDecks = normalizeHeader(defaultDecks);
-  //       setDecks(getDecks([...defaultDecks], undefined));
-  //     }
-  //   }
-  // }, [rest.activeUser]);
 
   return mounted ? (
     <DragDropContext onDragEnd={onDragEnd}>

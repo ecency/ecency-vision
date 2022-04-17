@@ -1,14 +1,19 @@
-export interface DeckModel {
-  data?: any;
+export interface SerializedDeckModel {
   dataParams: any[];
+  header: {
+    title: string;
+  };
+  createdAt: Date;
+}
+
+export interface DeckModel extends SerializedDeckModel {
+  data?: any;
   header: {
     title: string;
     icon: JSX.Element | null;
     reloading: boolean;
   };
   listItemComponent: any;
-  createdAt: Date;
-  // TODO: Add owner
 }
 
 export interface IdentifiableDeckModel extends DeckModel {
@@ -29,7 +34,8 @@ export interface CreateAction {
     DeckModel['listItemComponent'],
     DeckModel['header']['title'],
     DeckModel['header']['icon'],
-    DeckModel['dataParams']
+    DeckModel['dataParams'],
+    DeckModel['createdAt']?
   ];
 }
 

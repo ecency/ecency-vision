@@ -10,6 +10,9 @@ import {
 import { Dispatch } from 'redux';
 import { createDeckReducer, setDataReducer, setReloadingReducer } from './reducers';
 import { reorderReducer } from './reducers/reorderReducer';
+import { set } from '../../util/local-storage';
+import { serializeDecks } from './helpers';
+import { AppState } from '../index';
 
 export const initialState: DeckState = { items: [], isContentLoading: false };
 
@@ -26,7 +29,12 @@ export default (state: DeckState = initialState, action: Actions): DeckState => 
   return state;
 };
 
-export const createDeck = (data: CreateAction['data']) => (dispatch: Dispatch) => dispatch(createAct(data));
+export const createDeck = (data: CreateAction['data'], username: string) => (dispatch: Dispatch, getState: () => AppState) => {
+  dispatch(createAct(data));
+
+  const { items } = getState().deck;
+  set(`user-${username}-decks`, serializeDecks(items));
+}
 
 export const createAct = (data: CreateAction['data']): CreateAction => ({
   type: ActionTypes.CREATE,
