@@ -36,7 +36,7 @@ import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter
 import {fetchPoints, resetPoints} from "../store/points";
 import {setSigningKey} from "../store/signing-key";
 import {trackEntryPin, setEntryPin} from "../store/entry-pin-tracker";
-import { createDeck, fetchDeckData, loadDeckFromStorage } from '../store/deck';
+import { createDeck, deleteDeck, fetchDeckData, loadDeckFromStorage, reorderDecks } from '../store/deck';
 import { CreateAction } from '../store/deck/types';
 
 
@@ -174,6 +174,8 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             createDeck,
             fetchDeckData,
             loadDeckFromStorage,
+            deleteDeck,
+            reorderDecks,
         },
         dispatch
     );

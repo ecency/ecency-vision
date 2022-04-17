@@ -25,7 +25,8 @@ export enum ActionTypes {
   CREATE = "@deck/CREATE",
   SET_DATA =  "@deck/FETCH_DATA",
   SET_RELOADING = "@deck/SET_RELOADING",
-  REORDER = "@deck/REORDER"
+  REORDER = "@deck/REORDER",
+  DELETE = "@deck/DELETE"
 }
 
 export interface CreateAction {
@@ -63,8 +64,16 @@ export interface ReOrderAction {
   }
 }
 
+export interface DeleteAction {
+  type: ActionTypes.DELETE;
+  data: {
+    title: string;
+  };
+}
+
 export type DeckState = {
   items: IdentifiableDeckModel[];
   isContentLoading: boolean;
 };
-export type Actions = CreateAction | SetDataAction | SetReloadingAction;
+
+export type Actions = CreateAction | SetDataAction | SetReloadingAction | ReOrderAction | DeleteAction;

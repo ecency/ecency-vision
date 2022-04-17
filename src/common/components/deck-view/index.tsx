@@ -5,7 +5,6 @@ import {
   globalTrending,
   hot,
   notifications,
-  notificationSvg,
   person,
   plusEncircled,
   wallet,
@@ -33,20 +32,23 @@ const DeckViewContainer = ({
   fetchTransactions,
   createDeck,
   fetchDeckData,
+  deleteDeck,
   loadDeckFromStorage,
+  reorderDecks,
   deck,
   transactions: { list: transactionsList },
   ...rest
 }: any) => {
   const [openModal, setOpenModal] = useState(false);
   const [loadingNewContent, setLoadingNewContent] = useState(false);
-  const [user, setUser] = useState((rest.activeUser && rest.activeUser.username) || "");
+  const [user, setUser] = useState("");
   const [fetched, setFetched] = useState(false);
   const dispatch = useDispatch();
 
   const onSelectColumn = async (account: string, contentType: string) => {
     setOpenModal(false);
     setLoadingNewContent(true);
+    setUser(rest.activeUser && rest.activeUser.username);
 
     if (contentType) {
       let title = `${contentType} @${account}`;
@@ -96,13 +98,17 @@ const DeckViewContainer = ({
     }
   }, [loadingNewContent]);
 
+  useEffect(() => setUser(rest.activeUser && rest.activeUser.username), [rest]);
+
   const onReloadColumn = async (title: string) => {
+    setUser(rest.activeUser && rest.activeUser.username);
     fetchDeckData(title, user);
     setLoadingNewContent(false);
   };
 
   // Prepare wallet deck
   useEffect(() => {
+    setUser(rest.activeUser && rest.activeUser.username);
     if (transactionsList && transactionsList.length > 0 && loadingNewContent) {
       setLoadingNewContent(false);
       const firstTransaction = transactionsList[0];
@@ -119,16 +125,22 @@ const DeckViewContainer = ({
 
   useEffect(() => {
     if (!deck.items.length) {
+      setUser(rest.activeUser && rest.activeUser.username);
       loadDeckFromStorage(user);
     }
-  }, []);
+  }, [rest]);
 
   useEffect(() => {
+    setUser(rest.activeUser && rest.activeUser.username);
     const items = (deck.items as IdentifiableDeckModel[]);
     if (!fetched && items.length) {
       items.forEach(({header: {title}}) => fetchDeckData(title));
       setFetched(true);
     }
+  }, [deck]);
+
+  useEffect(() => {
+
   }, [deck]);
 
   return (
@@ -216,7 +228,7 @@ const DeckViewContainer = ({
             {plusEncircled}
           </div>
         </div>
-        <div className="decks-container d-flex p-5 mt-5 overflow-auto flex-grow-1">
+        <div className="decks-container d-flex py-5 mt-5 overflow-auto flex-grow-1">
           {deck.items.length === 0 ? (
             <div className="d-flex justify-content-center align-items-center flex-grow-1 w-100 flex-column">
               <span style={{width: 50}}>
@@ -230,6 +242,9 @@ const DeckViewContainer = ({
             <DraggableDeckView
               {...rest}
               deck={deck}
+              reorderDecks={reorderDecks}
+              deleteDeck={deleteDeck}
+              user={user}
               global={global}
               toggleListStyle={toggleListStyle}
               loading={loadingNewContent}

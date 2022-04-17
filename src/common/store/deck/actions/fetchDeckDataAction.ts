@@ -43,8 +43,7 @@ export const fetchDeckData = (title: string) => async (dispatch: Dispatch, getSt
         dispatch(setDataAct({ title, data: res }));
         break;
       case _t("decks.wallet").toLocaleLowerCase():
-        // todo not working
-        fetchTransactions(account);
+        await fetchTransactions(account);
         break;
     }
   } else if (isCommunity) {

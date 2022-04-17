@@ -3,12 +3,13 @@ import {
   ActionTypes,
   CreateAction,
   DeckState,
+  DeleteAction,
   ReOrderAction,
   SetDataAction,
   SetReloadingAction
 } from './types';
 import { Dispatch } from 'redux';
-import { createDeckReducer, setDataReducer, setReloadingReducer } from './reducers';
+import { createDeckReducer, deleteDeckReducer, setDataReducer, setReloadingReducer } from './reducers';
 import { reorderReducer } from './reducers/reorderReducer';
 import { set } from '../../util/local-storage';
 import { serializeDecks } from './helpers';
@@ -25,6 +26,8 @@ export default (state: DeckState = initialState, action: Actions): DeckState => 
     return setReloadingReducer(state, action.data);
   } else if (action.type === ActionTypes.REORDER) {
     return reorderReducer(state, action.data);
+  }  else if (action.type === ActionTypes.DELETE) {
+    return deleteDeckReducer(state, action.data);
   }
   return state;
 };
@@ -53,6 +56,11 @@ export const setReloadingAct = (data: SetReloadingAction['data']): SetReloadingA
 
 export const reorderAct = (data: ReOrderAction['data']): ReOrderAction => ({
   type: ActionTypes.REORDER,
+  data,
+});
+
+export const deleteAct = (data: DeleteAction['data']): DeleteAction => ({
+  type: ActionTypes.DELETE,
   data,
 });
 

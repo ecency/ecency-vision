@@ -3,8 +3,6 @@ import { DragDropContext, Draggable, Droppable, resetServerContext, } from 'reac
 import { _t } from '../../i18n';
 import { Deck } from '../deck';
 import { success } from '../feedback';
-import { useDispatch } from 'react-redux';
-import { reorderAct } from '../../store/deck';
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
   ...draggableStyle,
@@ -22,21 +20,22 @@ resetServerContext();
 
 const DraggableDeckView = ({
   deck,
+  user,
   toggleListStyle,
   loading,
   setDecks,
   onReloadColumn,
+  reorderDecks,
+  deleteDeck,
   ...rest
 }: any) => {
   const [mounted, setMounted] = useState(false);
-  const dispatch = useDispatch();
 
   const onDragEnd = (result: any) => {
     if (!result.destination) {
       return;
     }
-
-    dispatch(reorderAct({ startIndex: result.source.index, endIndex: result.destination.index }));
+    reorderDecks({ startIndex: result.source.index, endIndex: result.destination.index }, user);
   };
 
   useEffect(() => setMounted(true), []);
@@ -86,10 +85,7 @@ const DraggableDeckView = ({
                       <Deck
                         toggleListStyle={toggleListStyle}
                         onRemove={(option: string) => {
-                          let filteredDecks = deck.items.filter(
-                            (item: any) => item.header.title !== option
-                          );
-                          setDecks(filteredDecks);
+                          deleteDeck(option, user);
                           success(_t("decks.removed", { deck: option }));
                         }}
                         onReloadColumn={onReloadColumn}

@@ -5,7 +5,7 @@ import { initDecks } from '../helpers';
 import { createAct } from '../index';
 
 export const loadDeckFromStorage = (username: string) => (dispatch: Dispatch) => {
-  const rawDecks = get(`user-${username}-decks`) as SerializedDeckModel[];
+  const rawDecks = get(`user-${username}-decks`, []) as SerializedDeckModel[];
   const decks = initDecks(rawDecks);
 
   decks.forEach(({ listItemComponent, dataParams, header: { title, icon }, createdAt }) => {
