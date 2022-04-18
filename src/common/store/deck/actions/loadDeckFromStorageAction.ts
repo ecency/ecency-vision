@@ -8,7 +8,7 @@ export const loadDeckFromStorage = (username: string) => (dispatch: Dispatch) =>
   const rawDecks = get(`user-${username}-decks`, []) as SerializedDeckModel[];
   const decks = initDecks(rawDecks);
 
-  decks.forEach(({ listItemComponent, dataParams, header: { title, icon }, createdAt }) => {
-    dispatch(createAct([listItemComponent, title, icon, dataParams, createdAt]));
+  decks.forEach(({ listItemComponent, dataParams, header: { title, icon,  updateIntervalMs}, createdAt }) => {
+    dispatch(createAct([listItemComponent, title, icon, dataParams, createdAt, updateIntervalMs]));
   });
 }

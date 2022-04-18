@@ -33,6 +33,7 @@ export const initDecks = (data: SerializedDeckModel[]) => data.map((item): DeckM
     createdAt: item.createdAt ? new Date(item.createdAt) : new Date(),
     header: {
       ...item.header,
+      updateIntervalMs: item.header.updateIntervalMs || 60000,
       icon,
       reloading: false,
     },

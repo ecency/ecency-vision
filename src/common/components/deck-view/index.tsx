@@ -75,7 +75,7 @@ const DeckViewContainer = ({
       const title = `${account}`;
 
       createDeck([HotListItem, title, hot, dataParams], user);
-      fetchDeckData(title, user);
+      fetchDeckData(title);
       setLoadingNewContent(false);
     } else if (account === _t("decks.trending")) {
       const dataParams = ["trending"];
@@ -100,7 +100,7 @@ const DeckViewContainer = ({
 
   const onReloadColumn = async (title: string) => {
     setUser(rest.activeUser && rest.activeUser.username);
-    fetchDeckData(title, fetchTransactions);
+    await fetchDeckData(title);
     setLoadingNewContent(false);
   };
 
@@ -116,7 +116,7 @@ const DeckViewContainer = ({
     setUser(rest.activeUser && rest.activeUser.username);
     const items = (deck.items as IdentifiableDeckModel[]);
     if (!fetched && items.length) {
-      items.forEach(({header: {title}}) => fetchDeckData(title, fetchTransactions));
+      items.forEach(({header: {title}}) => fetchDeckData(title));
       setFetched(true);
     }
   }, [deck]);

@@ -2,6 +2,7 @@ export interface SerializedDeckModel {
   dataParams: any[];
   header: {
     title: string;
+    updateIntervalMs: number;
   };
   createdAt: Date;
 }
@@ -12,6 +13,7 @@ export interface DeckModel extends SerializedDeckModel {
     title: string;
     icon: JSX.Element | null;
     reloading: boolean;
+    updateIntervalMs: number;
   };
   listItemComponent: any;
 }
@@ -36,7 +38,8 @@ export interface CreateAction {
     DeckModel['header']['title'],
     DeckModel['header']['icon'],
     DeckModel['dataParams'],
-    DeckModel['createdAt']?
+    DeckModel['createdAt']?,
+    DeckModel['header']['updateIntervalMs']?
   ];
 }
 

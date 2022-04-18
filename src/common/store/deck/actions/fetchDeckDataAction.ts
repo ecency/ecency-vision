@@ -56,4 +56,6 @@ export const fetchDeckData = (title: string) => async (dispatch: Dispatch, getSt
     const res = await getAccountPosts(...deckToUpdate.dataParams);
     dispatch(setDataAct({ title, data: res }));
   }
+
+  dispatch(setReloadingAct({ title: deckToUpdate.header.title, isReloading: false }));
 }
