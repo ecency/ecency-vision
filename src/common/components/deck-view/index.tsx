@@ -23,7 +23,6 @@ import MyTooltip from "../tooltip";
 import { NotificationListItem } from "../notifications";
 import { _t } from "../../i18n";
 import { error } from "../feedback";
-import { setDataAct } from '../../store/deck';
 import { IdentifiableDeckModel } from './types';
 
 const DeckViewContainer = ({
@@ -36,14 +35,12 @@ const DeckViewContainer = ({
   loadDeckFromStorage,
   reorderDecks,
   deck,
-  transactions: { list: transactionsList },
   ...rest
 }: any) => {
   const [openModal, setOpenModal] = useState(false);
   const [loadingNewContent, setLoadingNewContent] = useState(false);
   const [user, setUser] = useState("");
   const [fetched, setFetched] = useState(false);
-  const dispatch = useDispatch();
 
   const onSelectColumn = async (account: string, contentType: string) => {
     setOpenModal(false);
@@ -55,21 +52,22 @@ const DeckViewContainer = ({
       if (contentType === _t("decks.notifications")) {
         const dataParams = [user || account, null, null, account];
         createDeck([NotificationListItem, title, notifications, dataParams], user);
-        fetchDeckData(title, user);
+        fetchDeckData(title);
         setLoadingNewContent(false);
       } else if (contentType === _t("decks.wallet")) {
+        createDeck([TransactionRow, title, wallet, []], user);
         setLoadingNewContent(true);
-        fetchTransactions(account);
+        fetchDeckData(title);
       } else if (account.includes("hive-")) {
         title = `${_t(`decks.${contentType}`)} @${account}`;
         const dataParams = [contentType, undefined, undefined, undefined, account];
         createDeck([SearchListItem, title, communities, dataParams], user);
-        fetchDeckData(title, user);
+        fetchDeckData(title);
         setLoadingNewContent(false);
       } else {
         const dataParams = [contentType === "blogs" ? "blog" : contentType, account];
         createDeck([SearchListItem, title, person, dataParams], user);
-        fetchDeckData(title, user);
+        fetchDeckData(title);
         setLoadingNewContent(false);
       }
     } else if (account === _t("decks.trending-topics")) {
@@ -84,7 +82,7 @@ const DeckViewContainer = ({
 
       const title = `${account}`;
       createDeck([SearchListItem, title, globalTrending, dataParams], user);
-      fetchDeckData(title, user);
+      fetchDeckData(title);
 
       setLoadingNewContent(false);
     }
@@ -102,27 +100,11 @@ const DeckViewContainer = ({
 
   const onReloadColumn = async (title: string) => {
     setUser(rest.activeUser && rest.activeUser.username);
-    fetchDeckData(title, user);
+    fetchDeckData(title, fetchTransactions);
     setLoadingNewContent(false);
   };
 
-  // Prepare wallet deck
-  useEffect(() => {
-    setUser(rest.activeUser && rest.activeUser.username);
-    if (transactionsList && transactionsList.length > 0 && loadingNewContent) {
-      setLoadingNewContent(false);
-      const firstTransaction = transactionsList[0];
-      const title = `${_t("decks.wallet")} @${
-        firstTransaction.curator ||
-        firstTransaction.to ||
-        firstTransaction.delegator ||
-        firstTransaction.receiver
-      }`;
-      createDeck([TransactionRow, title, wallet, []], user);
-      dispatch(setDataAct({title, data: transactionsList}));
-    }
-  }, [transactionsList]);
-
+  // Load decks from storage
   useEffect(() => {
     if (!deck.items.length) {
       setUser(rest.activeUser && rest.activeUser.username);
@@ -134,13 +116,9 @@ const DeckViewContainer = ({
     setUser(rest.activeUser && rest.activeUser.username);
     const items = (deck.items as IdentifiableDeckModel[]);
     if (!fetched && items.length) {
-      items.forEach(({header: {title}}) => fetchDeckData(title));
+      items.forEach(({header: {title}}) => fetchDeckData(title, fetchTransactions));
       setFetched(true);
     }
-  }, [deck]);
-
-  useEffect(() => {
-
   }, [deck]);
 
   return (

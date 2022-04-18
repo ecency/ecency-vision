@@ -6,7 +6,7 @@ import { getNotifications } from '../../../api/private-api';
 import { getAllTrendingTags } from '../../../api/hive';
 import { getAccountPosts, getPostsRanked } from '../../../api/bridge';
 import { setDataAct, setReloadingAct } from '../index';
-import { fetchTransactions } from '../../transactions';
+import { fetchTransactions } from '../../transactions/fetchTransactions';
 
 export const fetchDeckData = (title: string) => async (dispatch: Dispatch, getState: () => AppState) => {
   const [deckType, account] = title.split(" @");
@@ -43,7 +43,8 @@ export const fetchDeckData = (title: string) => async (dispatch: Dispatch, getSt
         dispatch(setDataAct({ title, data: res }));
         break;
       case _t("decks.wallet").toLocaleLowerCase():
-        await fetchTransactions(account);
+        const transactionsList = await fetchTransactions(account);
+        dispatch(setDataAct({ title, data: transactionsList }));
         break;
     }
   } else if (isCommunity) {
