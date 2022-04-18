@@ -1,30 +1,24 @@
-import _ from "lodash";
-import React, { useEffect, useState } from "react";
-import { Button, Form, InputGroup, Modal, ModalBody } from "react-bootstrap";
-import { getCommunities } from "../../api/bridge";
-import { lookupAccounts } from "../../api/hive";
-import { formatError } from "../../api/operations";
-import { searchAccount } from "../../api/search-api";
-import { _t } from "../../i18n";
+import React, { useEffect, useState } from 'react';
+import { Button, Form, InputGroup, Modal, ModalBody } from 'react-bootstrap';
+import { getCommunities } from '../../api/bridge';
+import { lookupAccounts } from '../../api/hive';
+import { formatError } from '../../api/operations';
+import { _t } from '../../i18n';
 import {
   arrowLeftSvg,
-  arrowRightSvg,
   communities,
   globalTrending,
   hot,
   magnify,
-  newSvg,
   notificationSvg,
-  peopleSvg,
   person,
-  starOutlineSvg,
   tags,
   wallet,
-} from "../../img/svg";
-import { error } from "../feedback";
-import { SearchComment } from "../search-comment";
-import SuggestionList from "../suggestion-list";
-import userAvatar from "../user-avatar";
+} from '../../img/svg';
+import { error } from '../feedback';
+import SuggestionList from '../suggestion-list';
+import userAvatar from '../user-avatar';
+
 const ModalHeader = Modal.Header;
 
 const comingSoon = require("../../img/coming-soon.png");
@@ -221,9 +215,7 @@ const AddColumn = ({
     } @${selectedValue === _t("decks.community") ? toSelected : to}`;
     if (
       decks.some((deck: any) => {
-        let deckExists =
-          deck.header.title.toLowerCase() === couldBeExistingDeck.toLowerCase();
-        return deckExists;
+        return deck.header.title.toLowerCase() === couldBeExistingDeck.toLowerCase();
       })
     ) {
       setDeckExists(true);

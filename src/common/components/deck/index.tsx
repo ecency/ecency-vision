@@ -22,25 +22,26 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import moment from "moment";
 import * as ls from "../../util/local-storage";
 import { DeckSettings } from "./settings-modal";
+import { DeckModel } from '../../store/deck/types';
 
 export interface DeckHeaderProps {
-  title: string;
-  icon: any;
-  reloading?: boolean;
+  title: DeckModel['header']['title'];
+  icon: DeckModel['header']['icon'];
+  updateIntervalMs: DeckModel['header']['updateIntervalMs'];
+  reloading?: DeckModel['header']['reloading'];
   index: number;
   onRemove: (option: string) => void;
   onReloadColumn: (option: string) => void;
-  timeCreated?: number;
 }
 
 const DeckHeader = ({
   title,
   icon,
+  updateIntervalMs,
   index,
   onRemove,
   onReloadColumn,
   reloading,
-  timeCreated,
 }: DeckHeaderProps) => {
   const [expanded, setExpanded] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -52,22 +53,13 @@ const DeckHeader = ({
       {_t("decks.header-info")}
     </Tooltip>
   );
-  let aCall:any = null;
+  let updateDataInterval;
 
   useEffect(() => {
-    let diff = moment.duration(moment(Date.now()).diff(timeCreated)).hours();
-    let timeToCompare = parseFloat(ls.get(`reload-deck-${title}`)) || 24
-    console.log(timeToCompare, timeCreated, diff, title);
-    let tint = 60000 * timeToCompare; //seconds
-    aCall = setInterval(() => {
-      //if (diff >= timeToCompare) {
-        onReloadColumn(title);
-      //}
-    }, tint);
-
+    updateDataInterval = setInterval(() => onReloadColumn(title), updateIntervalMs);
     return () => {
-      clearInterval(aCall);
-    };
+      clearInterval(updateIntervalMs);
+    }
   }, []);
 
   return (
@@ -174,9 +166,6 @@ export const Deck = ({
   ...rest
 }: DeckProps) => {
   const notificationTranslated = _t("decks.notifications");
-  const deckItemRef: any = createRef();
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
   const containerClass = header.title.includes(notificationTranslated)
     ? "list-body pb-0"
     : "";
