@@ -42,6 +42,7 @@ import {
     volumeOffSvg, redditSvg, twitterSvg, facebookSvg, bullHornSvg, rocketLaunchSvg,
     shuffleVariantSvg
 } from "../../img/svg";
+import { SearchResult } from '../../api/search-api';
 
 interface Props {
     history: History;
@@ -58,7 +59,7 @@ interface Props {
     setSigningKey: (key: string) => void;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
-    updateEntry: (entry: Entry) => void;
+    updateEntry: (entry: any) => void;
     addCommunity: (data: Community) => void;
     trackEntryPin: (entry: Entry) => void;
     setEntryPin: (entry: Entry, pin: boolean) => void;

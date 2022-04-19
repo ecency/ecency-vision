@@ -298,7 +298,7 @@ a[target="_blank"] {
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-
+  background-color: $dark-sky-blue;
   @include themify(day) {
     background-color: $dark-sky-blue;
   }

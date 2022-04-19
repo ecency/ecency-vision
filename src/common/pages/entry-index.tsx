@@ -36,6 +36,7 @@ import {appleSvg, desktopSvg, googleSvg} from "../img/svg";
 
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
 import { DeckView } from "../components/deck-view";
+import { withPersistentScroll } from '../components/with-persistent-scroll';
 
 interface State {
     step: number;
@@ -154,7 +155,9 @@ class EntryIndexPage extends Component<PageProps, State> {
         || location?.pathname?.startsWith("/created")
         || location?.pathname?.startsWith("/trending")
         || location?.pathname?.startsWith("/payout")
-        || location?.pathname?.startsWith("/payout_comments");
+        || location?.pathname?.startsWith("/payout_comments")
+        || location?.pathname?.startsWith("/rising")
+        || location?.pathname?.startsWith("/controversial");
         let containerClasses = global.isElectron ? "app-content entry-index-page mt-0 pt-6" : `app-content overflow-hidden entry-index-page ${global.listStyle===ListStyle.deck ? "p-0 m-0" : ""}`;
         return (
             <>
@@ -217,4 +220,4 @@ class EntryIndexPage extends Component<PageProps, State> {
 }
 
 
-export default connect(pageMapStateToProps, pageMapDispatchToProps)(EntryIndexPage);
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(withPersistentScroll(EntryIndexPage));

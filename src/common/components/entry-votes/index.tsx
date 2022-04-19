@@ -30,12 +30,26 @@ import {_t} from "../../i18n";
 import {heartSvg} from "../../img/svg";
 
 export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
-    const totalPayout =
+    // const totalPayout =
+    //     parseAsset(entry.pending_payout_value).amount +
+    //     parseAsset(entry.author_payout_value).amount +
+    //     parseAsset(entry.curator_payout_value).amount;
+
+    let totalPayout = 0
+
+    const { pending_payout_value, author_payout_value, curator_payout_value, payout } = entry;
+
+    if (pending_payout_value && author_payout_value && curator_payout_value) {
+        totalPayout =
         parseAsset(entry.pending_payout_value).amount +
         parseAsset(entry.author_payout_value).amount +
         parseAsset(entry.curator_payout_value).amount;
+    }
 
-    const voteRshares = votes.reduce((a, b) => a + parseFloat(b.rshares), 0);
+    if (payout && Number(totalPayout.toFixed(3)) !== payout) {
+        totalPayout += payout;
+    }
+    const voteRshares = votes && votes.reduce((a, b) => a + parseFloat(b.rshares), 0);
     const ratio = totalPayout / voteRshares;
 
     return votes.map((a) => {
@@ -215,7 +229,7 @@ export class EntryVotes extends Component<Props, State> {
     render() {
         const { entry } = this.props;
         const { visible, searchText, searchTextDisabled } = this.state;
-        const totalVotes = entry.active_votes.length;
+        const totalVotes = entry.active_votes && entry.active_votes.length || entry.total_votes;
 
         const title =
             totalVotes === 0

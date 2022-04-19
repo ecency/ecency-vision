@@ -38,6 +38,9 @@ import {setSigningKey} from "../store/signing-key";
 import {trackEntryPin, setEntryPin} from "../store/entry-pin-tracker";
 import { createDeck, deleteDeck, fetchDeckData, loadDeckFromStorage, reorderDecks } from '../store/deck';
 import { CreateAction } from '../store/deck/types';
+import { SearchResult } from '../api/search-api';
+import {savePageScroll} from "../store/persistent-page-scroll";
+
 
 
 export interface PageProps {
@@ -176,6 +179,7 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             loadDeckFromStorage,
             deleteDeck,
             reorderDecks,
+            savePageScroll,
         },
         dispatch
     );

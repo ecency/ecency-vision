@@ -43,6 +43,8 @@
     "trending": "syöte",
     "created": "syöte",
     "muted": "muted",
+    "controversial": "controversial",
+    "rising": "rising",
     "found": "löydetty",
     "feed": "syöte",
     "blog": "blogi",
@@ -79,12 +81,19 @@
     "filter-feed-subscriptions": "Yhteisöt",
     "filter-global": "Globaali",
     "filter-community": "My Community",
+    "filter-controversial": "Controversial",
+    "filter-rising": "Rising",
     "filter-global-part1": "Tämä syöte sisältää ",
     "filter-global-part2": " keskustelua koko alustalla.",
     "filter-global-part3": " keskustelut tilatuista yhteisöistäsi. Voit liittyä useampiin yhteisöihin täyttääksesi tätä syötettä.",
     "filter-global-part4": " keskustelut seuratuista ihmisistä. Voit seurata useampia käyttäjiä täyttääksesi tätä syötettä.",
     "filter-global-discover": "Löydä uusia ihmisiä",
-    "filter-global-join-communities": "Liity yhteisöihin"
+    "filter-global-join-communities": "Liity yhteisöihin",
+    "filter-today": "Today",
+    "filter-week": "This week",
+    "filter-month": "This month",
+    "filter-year": "This year",
+    "filter-alltime": "All time"
   },
   "navbar": {
     "discover": "Löydä uutta",
@@ -267,6 +276,39 @@
     "faq": "UKK",
     "tos": "Käyttöehdot",
     "pp": "Tietosuojakäytäntö"
+  },
+  "decks": {
+    "users": "Users",
+    "header-info": "Click me to see extra options",
+    "username": "Username",
+    "content-type": "Content Type",
+    "trending-topics": "Topics",
+    "search": "Search",
+    "community": "Community",
+    "notifications": "Notifications",
+    "wallet": "Wallet",
+    "favorite": "Favorite",
+    "trending": "Trending",
+    "select": "Select content type",
+    "blogs": "Blogs",
+    "replies": "Replies",
+    "posts": "Posts",
+    "comments": "Comments",
+    "column": "Column",
+    "hot": "Hot",
+    "muted": "Muted",
+    "new": "New",
+    "reload": "Reload",
+    "add": "Add",
+    "remove": "Remove",
+    "removed": "{{deck}} removed successfully.",
+    "payout": "Payouts",
+    "created": "New",
+    "go-back": "Go back",
+    "deck-exists": "The deck you're trying to add already exists!",
+    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
+    "select-column-type": "Which deck type do you want to add?",
+    "topic": "Custom"
   },
   "market-data": {
     "title": "Markkinahinta",
@@ -1298,6 +1340,7 @@
   },
   "layouts": {
     "grid": "Grid",
-    "classic": "Classic"
+    "classic": "Classic",
+    "deck": "Deck"
   }
 }

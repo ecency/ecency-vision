@@ -13,8 +13,8 @@ import { isMobile } from '../../util/is-mobile';
 interface State {
 	value: string;
 	rows: number;
-	minRows: number;
-	maxRows: number;
+	minrows: number;
+	maxrows: number;
 }
 
 const Loading = () => <div>{_t("g.loading")}</div>;
@@ -26,9 +26,9 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 		super(props);
 		this.state = {
 			value: this.props.value,
-			rows: this.props.minRows || 10,
-			minRows: this.props.minrows || 10,
-			maxRows: this.props.maxrows || 20,
+			rows: this.props.minrows || 10,
+			minrows: this.props.minrows || 10,
+			maxrows: this.props.maxrows || 20,
 		};
 	}
 
@@ -42,10 +42,10 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 		const isMobile = typeof window !== 'undefined' && window.innerWidth < 570;
 		if (isMobile) {
 			const textareaLineHeight = 24;
-			const { minRows, maxRows } = this.state;
+			const { minrows, maxrows } = this.state;
 
 			const previousRows = event.target.rows;
-			event.target.rows = minRows; // reset number of rows in textarea 
+			event.target.rows = minrows; // reset number of rows in textarea 
 
 			const currentRows = ~~(event.target.scrollHeight / textareaLineHeight);
 
@@ -53,12 +53,12 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 				event.target.rows = currentRows;
 			}
 
-			if (currentRows >= maxRows) {
-				event.target.rows = maxRows;
+			if (currentRows >= maxrows) {
+				event.target.rows = maxrows;
 				event.target.scrollTop = event.target.scrollHeight;
 			}
 			this.setState({
-				rows: currentRows < maxRows ? currentRows : maxRows
+				rows: currentRows < maxrows ? currentRows : maxrows
 			});
 		}
 
@@ -69,16 +69,16 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 	};
 
 	render() {
-		const {activeUser, ...other} = this.props;
+		const {activeUser, rows, isComment, ...other} = this.props;
 		return (
 			<ReactTextareaAutocomplete
 				{...other}
 				loadingComponent={Loading}
-				rows={this.state.rows}
+				rows={isComment ? rows : this.state.rows}
 				value={this.state.value}
 				placeholder={this.props.placeholder}
 				onChange={this.handleChange}
-				boundariesElement={".body-input"}
+				{...(isComment ? {} : {boundariesElement: ".body-input"})}
 				minChar={2}
 				trigger={{
 					["@"]: {

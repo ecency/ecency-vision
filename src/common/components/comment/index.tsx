@@ -21,6 +21,8 @@ import {_t} from "../../i18n";
 import {Global} from '../../store/global/types';
 import * as ss from "../../util/session-storage";
 
+import TextareaAutocomplete from "../textarea-autocomplete";
+
 interface PreviewProps {
     text: string;
     global: Global;
@@ -78,9 +80,10 @@ export class Comment extends Component<Props, State> {
     state: State = {
         text: '',
         preview: '',
-        showEmoji: false
+        showEmoji: false,
     }
 
+    timer: any = null;
     _updateTimer: any = null;
 
     componentDidMount(): void {
@@ -149,14 +152,16 @@ export class Comment extends Component<Props, State> {
     }
 
     render() {
-        const {inProgress, cancellable, autoFocus, submitText, inputRef} = this.props;
+        const {inProgress, cancellable, autoFocus, submitText, inputRef, activeUser} = this.props;
         const {text, preview, showEmoji} = this.state;
+        const rows = text.split(/\r\n|\r|\n|<br>/).length
+        
         return (
             <>
                 <div className="comment-box" onMouseEnter={() => !showEmoji && this.setState({showEmoji: true})}>
                     {EditorToolbar({...this.props, sm: true, showEmoji})}
                     <div className="comment-body">
-                        <Form.Control
+                        <TextareaAutocomplete
                             className={`the-editor accepts-emoji ${text.length > 20 ? 'expanded' : ''}`}
                             as="textarea"
                             placeholder={_t("comment.body-placeholder")}
@@ -164,8 +169,16 @@ export class Comment extends Component<Props, State> {
                             onChange={this.textChanged}
                             disabled={inProgress}
                             autoFocus={autoFocus}
-                            rows={text.split(/\r\n|\r|\n|<br>/).length}
+                            minrows={10}
+                            rows={rows}
+                            maxrows={100}
                             ref={inputRef}
+                            acceptCharset="UTF-8"
+                            global={this.props.global}
+                            id="the-editor"
+                            spellCheck={true}
+                            activeUser={activeUser && activeUser.username || ""}
+                            isComment={true}
                         />
                     </div>
                     <div className="comment-buttons">

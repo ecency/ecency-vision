@@ -43,6 +43,8 @@
     "trending": "피드",
     "created": "피드",
     "muted": "뮤트",
+    "controversial": "controversial",
+    "rising": "rising",
     "found": "찾았습니다.",
     "feed": "피드",
     "blog": "블로그",
@@ -79,12 +81,19 @@
     "filter-feed-subscriptions": "커뮤니티",
     "filter-global": "글로벌",
     "filter-community": "My Community",
+    "filter-controversial": "Controversial",
+    "filter-rising": "Rising",
     "filter-global-part1": "이 피드에는 다음이 포함되어 있습니다 ",
     "filter-global-part2": " 전체 플랫폼에 대한 토론.",
     "filter-global-part3": " 구독한 커뮤니티의 토론입니다. 이 피드를 채우기 위해 더 많은 커뮤니티에 가입할 수 있습니다.",
     "filter-global-part4": " 팔로우하는 사람들의 토론입니다. 이 피드를 채우기 위해 더 많은 사람들을 팔로우할 수 있습니다.",
     "filter-global-discover": "사람 찾기",
-    "filter-global-join-communities": "커뮤니티 가입"
+    "filter-global-join-communities": "커뮤니티 가입",
+    "filter-today": "Today",
+    "filter-week": "This week",
+    "filter-month": "This month",
+    "filter-year": "This year",
+    "filter-alltime": "All time"
   },
   "navbar": {
     "discover": "찾기",
@@ -267,6 +276,39 @@
     "faq": "자주 묻는 질문(FAQ)",
     "tos": "서비스 이용약관",
     "pp": "개인정보 취급방침"
+  },
+  "decks": {
+    "users": "Users",
+    "header-info": "Click me to see extra options",
+    "username": "Username",
+    "content-type": "Content Type",
+    "trending-topics": "Topics",
+    "search": "Search",
+    "community": "Community",
+    "notifications": "Notifications",
+    "wallet": "Wallet",
+    "favorite": "Favorite",
+    "trending": "Trending",
+    "select": "Select content type",
+    "blogs": "Blogs",
+    "replies": "Replies",
+    "posts": "Posts",
+    "comments": "Comments",
+    "column": "Column",
+    "hot": "Hot",
+    "muted": "Muted",
+    "new": "New",
+    "reload": "Reload",
+    "add": "Add",
+    "remove": "Remove",
+    "removed": "{{deck}} removed successfully.",
+    "payout": "Payouts",
+    "created": "New",
+    "go-back": "Go back",
+    "deck-exists": "The deck you're trying to add already exists!",
+    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
+    "select-column-type": "Which deck type do you want to add?",
+    "topic": "Custom"
   },
   "market-data": {
     "title": "시가",
@@ -1298,6 +1340,7 @@
   },
   "layouts": {
     "grid": "그리드뷰",
-    "classic": "기본"
+    "classic": "기본",
+    "deck": "Deck"
   }
 }

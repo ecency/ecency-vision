@@ -43,6 +43,8 @@
     "trending": "feed",
     "created": "feed",
     "muted": "silenziati",
+    "controversial": "controversial",
+    "rising": "rising",
     "found": "trovato",
     "feed": "feed",
     "blog": "blog",
@@ -79,12 +81,19 @@
     "filter-feed-subscriptions": "Community",
     "filter-global": "Complessivo",
     "filter-community": "My Community",
+    "filter-controversial": "Controversial",
+    "filter-rising": "Rising",
     "filter-global-part1": "Questo feed contiene ",
     "filter-global-part2": " discussioni sull'intera piattaforma.",
     "filter-global-part3": " discussioni dalle community a cui sei iscritto. Puoi iscriverti a più community per riempire questo feed.",
     "filter-global-part4": " discussioni dalle persone che segui. Puoi seguire più persone per riempire questo feed.",
     "filter-global-discover": "Scopri Persone",
-    "filter-global-join-communities": "Iscriviti alle community"
+    "filter-global-join-communities": "Iscriviti alle community",
+    "filter-today": "Today",
+    "filter-week": "This week",
+    "filter-month": "This month",
+    "filter-year": "This year",
+    "filter-alltime": "All time"
   },
   "navbar": {
     "discover": "Scopri",
@@ -267,6 +276,39 @@
     "faq": "Domande frequenti",
     "tos": "Termini di servizio",
     "pp": "Politica sulla riservatezza"
+  },
+  "decks": {
+    "users": "Users",
+    "header-info": "Click me to see extra options",
+    "username": "Username",
+    "content-type": "Content Type",
+    "trending-topics": "Topics",
+    "search": "Search",
+    "community": "Community",
+    "notifications": "Notifications",
+    "wallet": "Wallet",
+    "favorite": "Favorite",
+    "trending": "Trending",
+    "select": "Select content type",
+    "blogs": "Blogs",
+    "replies": "Replies",
+    "posts": "Posts",
+    "comments": "Comments",
+    "column": "Column",
+    "hot": "Hot",
+    "muted": "Muted",
+    "new": "New",
+    "reload": "Reload",
+    "add": "Add",
+    "remove": "Remove",
+    "removed": "{{deck}} removed successfully.",
+    "payout": "Payouts",
+    "created": "New",
+    "go-back": "Go back",
+    "deck-exists": "The deck you're trying to add already exists!",
+    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
+    "select-column-type": "Which deck type do you want to add?",
+    "topic": "Custom"
   },
   "market-data": {
     "title": "Prezzo di Mercato",
@@ -1298,6 +1340,7 @@
   },
   "layouts": {
     "grid": "Griglia",
-    "classic": "Classica"
+    "classic": "Classica",
+    "deck": "Deck"
   }
 }
