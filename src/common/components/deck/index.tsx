@@ -1,4 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  createRef,
+  LegacyRef,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Button, Card } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 import { _t } from "../../i18n";
@@ -6,17 +12,23 @@ import {
   chevronDownSvgForSlider,
   chevronUpSvg,
   chevronUpSvgForSlider,
+  cogSvg,
   deleteForeverSvg,
   hot,
   refreshSvg,
 } from "../../img/svg";
 import { ListStyle } from "../../store/global/types";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import moment from "moment";
+import * as ls from "../../util/local-storage";
+import { DeckSettings } from "./settings-modal";
+import { DeckModel } from '../../store/deck/types';
 
 export interface DeckHeaderProps {
-  title: string;
-  icon: any;
-  reloading?: boolean;
+  title: DeckModel['header']['title'];
+  icon: DeckModel['header']['icon'];
+  updateIntervalMs: DeckModel['header']['updateIntervalMs'];
+  reloading?: DeckModel['header']['reloading'];
   index: number;
   onRemove: (option: string) => void;
   onReloadColumn: (option: string) => void;
@@ -25,12 +37,14 @@ export interface DeckHeaderProps {
 const DeckHeader = ({
   title,
   icon,
+  updateIntervalMs,
   index,
   onRemove,
   onReloadColumn,
   reloading,
 }: DeckHeaderProps) => {
   const [expanded, setExpanded] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
   let splittedTitle = title.split("@");
   let onlyTitle = splittedTitle[0];
   let username = splittedTitle[1];
@@ -39,6 +53,14 @@ const DeckHeader = ({
       {_t("decks.header-info")}
     </Tooltip>
   );
+  let updateDataInterval;
+
+  useEffect(() => {
+    updateDataInterval = setInterval(() => onReloadColumn(title), updateIntervalMs);
+    return () => {
+      clearInterval(updateIntervalMs);
+    }
+  }, []);
 
   return (
     <Accordion className={expanded ? "border-bottom" : ""}>
@@ -58,6 +80,7 @@ const DeckHeader = ({
               )}
             </div>
           </div>
+          <DeckSettings show={showSettings} title={title} onHide={()=>setShowSettings(false)}/>
           <OverlayTrigger placement="bottom" overlay={tooltip}>
             <Accordion.Toggle
               as={Button}
@@ -81,6 +104,14 @@ const DeckHeader = ({
       </div>
       <Accordion.Collapse eventKey="0">
         <Card.Body className="p-0 d-flex justify-content-end p-3">
+          {title !== _t("decks.trending-topics") && <Button
+            size="sm"
+            className="d-flex align-items-center mr-3"
+            variant="secondary"
+            onClick={() => setShowSettings(true)}
+          >
+            <div className="deck-options-icon d-flex cog-icon">{cogSvg}</div>
+          </Button>}
           <Button
             size="sm"
             className="d-flex align-items-center"
@@ -138,6 +169,7 @@ export const Deck = ({
   const containerClass = header.title.includes(notificationTranslated)
     ? "list-body pb-0"
     : "";
+
   return (
     <div className={`deck mr-3 rounded-top ${containerClass}`}>
       <DeckHeader
@@ -150,6 +182,14 @@ export const Deck = ({
         className={`py-4 pr-4 pl-3 item-container ${
           header.title.includes("Wallet") ? "transaction-list" : ""
         }`}
+        // ref={deckItemRef}
+        // onScroll={(e) => {
+        //   let scrollTopValue = deckItemRef!.current!.scrollTop;
+        //   let scrollHeight = deckItemRef!.current!.scrollHeight;
+        //   if (scrollHeight - scrollTopValue < 750) {
+        //     success("It's near end");
+        //   }
+        // }}
       >
         {data &&
           data.map((item, index) => (
@@ -162,6 +202,7 @@ export const Deck = ({
               {...rest}
             />
           ))}
+
       </div>
     </div>
   );

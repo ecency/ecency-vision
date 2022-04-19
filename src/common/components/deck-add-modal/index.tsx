@@ -1,30 +1,24 @@
-import _ from "lodash";
-import React, { useEffect, useState } from "react";
-import { Button, Form, InputGroup, Modal, ModalBody } from "react-bootstrap";
-import { getCommunities } from "../../api/bridge";
-import { lookupAccounts } from "../../api/hive";
-import { formatError } from "../../api/operations";
-import { searchAccount } from "../../api/search-api";
-import { _t } from "../../i18n";
+import React, { useEffect, useState } from 'react';
+import { Button, Form, InputGroup, Modal, ModalBody } from 'react-bootstrap';
+import { getCommunities } from '../../api/bridge';
+import { lookupAccounts } from '../../api/hive';
+import { formatError } from '../../api/operations';
+import { _t } from '../../i18n';
 import {
   arrowLeftSvg,
-  arrowRightSvg,
   communities,
   globalTrending,
   hot,
   magnify,
-  newSvg,
   notificationSvg,
-  peopleSvg,
   person,
-  starOutlineSvg,
   tags,
   wallet,
-} from "../../img/svg";
-import { error } from "../feedback";
-import { SearchComment } from "../search-comment";
-import SuggestionList from "../suggestion-list";
-import userAvatar from "../user-avatar";
+} from '../../img/svg';
+import { error } from '../feedback';
+import SuggestionList from '../suggestion-list';
+import userAvatar from '../user-avatar';
+
 const ModalHeader = Modal.Header;
 
 const comingSoon = require("../../img/coming-soon.png");
@@ -47,14 +41,6 @@ const options = (activeUser:any) => {
   let isLoggedIn = activeUser && activeUser.username;
   return[
   {
-    title: _t("decks.trending"),
-    icon: globalTrending,
-  },
-  {
-    title: _t("decks.trending-topics"),
-    icon: hot,
-  },
-  {
     title: _t("decks.users"),
     icon: person
   },
@@ -72,6 +58,14 @@ const options = (activeUser:any) => {
     disabled: !isLoggedIn
   },
   {
+    title: _t("decks.trending"),
+    icon: globalTrending,
+  },
+  {
+    title: _t("decks.trending-topics"),
+    icon: hot,
+  },
+  {
     title: _t("decks.search"),
     icon: magnify,
     na:true
@@ -81,11 +75,11 @@ const options = (activeUser:any) => {
     icon: tags,
     na:true
   },
-  {
+  /*{
     title: _t("decks.favorite"),
     icon: starOutlineSvg,
     na:true
-  },
+  },*/
 ];}
 
 const contentTypes = [
@@ -221,9 +215,7 @@ const AddColumn = ({
     } @${selectedValue === _t("decks.community") ? toSelected : to}`;
     if (
       decks.some((deck: any) => {
-        let deckExists =
-          deck.header.title.toLowerCase() === couldBeExistingDeck.toLowerCase();
-        return deckExists;
+        return deck.header.title.toLowerCase() === couldBeExistingDeck.toLowerCase();
       })
     ) {
       setDeckExists(true);
@@ -248,8 +240,8 @@ const AddColumn = ({
   return (
     <div className="d-flex flex-column align-items-center mt-5">
       {/* {selectedValue === "Search" ? <><SearchComment /></> : <> */}
-      {selectedValue === "Search" ? (
-        <>Search Coming soon!</>
+      {selectedValue === _t("decks.search") || selectedValue === _t("decks.topic") ? (
+        <>Coming soon!</>
       ) : (
         <>
           <Form.Group>
@@ -352,6 +344,7 @@ export const DeckAddModal = ({
       selectedOption !== _t("decks.notifications") &&
       selectedOption !== _t("decks.wallet") &&
       selectedOption !== _t("decks.search") &&
+      selectedOption !== _t("decks.topic") &&
       selectedOption !== _t("decks.community")
     ) {
       onClose();
@@ -371,6 +364,7 @@ export const DeckAddModal = ({
             selectedOption === _t("decks.notifications") ||
             selectedOption === _t("decks.wallet") ||
             selectedOption === _t("decks.search") ||
+            selectedOption === _t("decks.topic") ||
             selectedOption === _t("decks.community")) ? (
             <div className="d-flex align-items-center justify-content-center">
               <div className="header-icon mr-2 d-flex">
@@ -393,6 +387,7 @@ export const DeckAddModal = ({
           selectedOption === _t("decks.notifications") ||
           selectedOption === _t("decks.wallet") ||
           selectedOption === _t("decks.search") ||
+          selectedOption === _t("decks.topic") ||
           selectedOption === _t("decks.community")) ? (
           <AddColumn
             selectedValue={selectedOption}

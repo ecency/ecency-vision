@@ -25,6 +25,7 @@ import entryPinTracker from "./entry-pin-tracker";
 import persistentPageScroll from './persistent-page-scroll';
 
 import filterTagExtract from "../helper/filter-tag-extract";
+import deck from './deck';
 
 let reducers = {
     global,
@@ -44,6 +45,7 @@ let reducers = {
     points,
     signingKey,
     entryPinTracker,
+    deck,
     persistentPageScroll,
 };
 
