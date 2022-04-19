@@ -278,7 +278,7 @@
     "pp": "개인정보 취급방침"
   },
   "decks": {
-    "users": "Users",
+    "users": "User",
     "header-info": "Click me to see extra options",
     "username": "Username",
     "content-type": "Content Type",
@@ -294,7 +294,7 @@
     "replies": "Replies",
     "posts": "Posts",
     "comments": "Comments",
-    "column": "Column",
+    "column": "column",
     "hot": "Hot",
     "muted": "Muted",
     "new": "New",
@@ -306,9 +306,15 @@
     "created": "New",
     "go-back": "Go back",
     "deck-exists": "The deck you're trying to add already exists!",
-    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
+    "limit-warning": "Maximum 10 decks are allowed. Delete any deck to add another.",
+    "empty-decks": "Click + icon to add Decks",
     "select-column-type": "Which deck type do you want to add?",
-    "topic": "Custom"
+    "topic": "Custom",
+    "refresh": "Auto refresh for {{title}} saved.",
+    "settings": "Settings",
+    "refresh-time": "Refresh time",
+    "hours": "hours",
+    "save": "Save"
   },
   "market-data": {
     "title": "시가",
