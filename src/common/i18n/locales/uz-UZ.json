@@ -278,7 +278,7 @@
     "pp": "Maxfiylik Siyosati"
   },
   "decks": {
-    "users": "Foydalanuvchilar",
+    "users": "User",
     "header-info": "Boshqa variantlarni ko'rish bu yerda",
     "username": "Foydalanuvchi nomi",
     "content-type": "Kontent turi",
@@ -294,7 +294,7 @@
     "replies": "Javoblar",
     "posts": "Postlar",
     "comments": "Izohlar",
-    "column": "Ustun",
+    "column": "column",
     "hot": "Qaynoq",
     "muted": "Ovozsiz",
     "new": "Yangi",
@@ -306,9 +306,15 @@
     "created": "Yangi",
     "go-back": "Qaytish",
     "deck-exists": "Siz qo'shmoqchi bo'lgan ustun mavjud!",
-    "limit-warning": "10 ta ustun qo'sha olasiz. Yana qo'shish uchun bittasini o'chiring.",
+    "limit-warning": "Maximum 10 decks are allowed. Delete any deck to add another.",
+    "empty-decks": "Click + icon to add Decks",
     "select-column-type": "Qaysi turdagi ustunni qo'shmoqchisiz?",
-    "topic": "Foydalanuvchi"
+    "topic": "Foydalanuvchi",
+    "refresh": "Auto refresh for {{title}} saved.",
+    "settings": "Settings",
+    "refresh-time": "Refresh time",
+    "hours": "hours",
+    "save": "Save"
   },
   "market-data": {
     "title": "Bozor narxi",
