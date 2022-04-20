@@ -37,9 +37,10 @@ import {fetchPoints, resetPoints} from "../store/points";
 import {setSigningKey} from "../store/signing-key";
 import {trackEntryPin, setEntryPin} from "../store/entry-pin-tracker";
 import { createDeck, deleteDeck, fetchDeckData, loadDeckFromStorage, reorderDecks } from '../store/deck';
-import { CreateAction } from '../store/deck/types';
+import { CreateAction, DeckState } from '../store/deck/types';
 import { SearchResult } from '../api/search-api';
 import {savePageScroll} from "../store/persistent-page-scroll";
+import { PersistentPageScrollState, SavePageScrollData } from '../store/persistent-page-scroll/types';
 
 
 
@@ -119,10 +120,17 @@ export interface PageProps {
     signingKey: string;
     setSigningKey: (key: string) => void;
 
+    deck: DeckState;
+    persistentPageScroll: PersistentPageScrollState;
     entryPinTracker: EntryPinTracker;
     trackEntryPin: (entry: Entry) => void;
     setEntryPin: (entry: Entry, pin: boolean) => void;
-    createDeck: (args: CreateAction['data']) => void;
+    createDeck: typeof createDeck;
+    fetchDeckData: typeof fetchDeckData;
+    loadDeckFromStorage: typeof loadDeckFromStorage;
+    deleteDeck: typeof deleteDeck;
+    reorderDecks: typeof reorderDecks;
+    savePageScroll: typeof savePageScroll;
 }
 
 export const pageMapStateToProps = (state: AppState) => ({
