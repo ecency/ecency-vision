@@ -278,7 +278,7 @@
     "pp": "Política de privacidad"
   },
   "decks": {
-    "users": "User",
+    "users": "Usuario",
     "header-info": "Haz clic en mí para ver opciones adicionales",
     "username": "Nombre de Usuario",
     "content-type": "Tipo de contenido",
@@ -294,7 +294,7 @@
     "replies": "Respuestas",
     "posts": "Publicaciones",
     "comments": "Comentarios",
-    "column": "column",
+    "column": "columna",
     "hot": "Popular",
     "muted": "Silenciado",
     "new": "Nuevo",
@@ -306,15 +306,15 @@
     "created": "Nuevo",
     "go-back": "Regresar",
     "deck-exists": "¡La cubierta que estás intentando añadir ya existe!",
-    "limit-warning": "Maximum 10 decks are allowed. Delete any deck to add another.",
-    "empty-decks": "Click + icon to add Decks",
+    "limit-warning": "Máximo de 10 cubiertas permitidas. Elimina cualquier cubierta para añadir otra.",
+    "empty-decks": "Clic + icono para añadir Cubiertas",
     "select-column-type": "¿Qué tipo de cubierta quieres añadir?",
     "topic": "Personalizado",
-    "refresh": "Auto refresh for {{title}} saved.",
-    "settings": "Settings",
-    "refresh-time": "Refresh time",
-    "hours": "hours",
-    "save": "Save"
+    "refresh": "Actualización automática para {{title}} guardado.",
+    "settings": "Configuraciones",
+    "refresh-time": "Tiempo de actualización",
+    "hours": "horas",
+    "save": "Guardar"
   },
   "market-data": {
     "title": "Precio de mercado",
