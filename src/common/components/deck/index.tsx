@@ -144,7 +144,7 @@ const DeckHeader = ({
 };
 
 export interface DeckProps {
-  header: { title: string; icon: any };
+  header: DeckModel['header'];
   listItemComponent: any;
   index: number;
   data: any[];
