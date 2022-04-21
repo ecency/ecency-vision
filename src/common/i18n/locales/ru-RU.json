@@ -278,7 +278,7 @@
     "pp": "Политика конфиденциальности"
   },
   "decks": {
-    "users": "User",
+    "users": "Пользователь",
     "header-info": "Нажмите, чтобы увидеть дополнительные параметры",
     "username": "Имя пользователя",
     "content-type": "Тип Контента",
@@ -294,7 +294,7 @@
     "replies": "Ответы",
     "posts": "Посты",
     "comments": "Комментарии",
-    "column": "column",
+    "column": "колонка",
     "hot": "Актуальное",
     "muted": "Заглушён",
     "new": "Новое",
@@ -306,15 +306,15 @@
     "created": "Новое",
     "go-back": "Вернуться",
     "deck-exists": "Содержимое, которое вы пытаетесь добавить, уже существует!",
-    "limit-warning": "Maximum 10 decks are allowed. Delete any deck to add another.",
-    "empty-decks": "Click + icon to add Decks",
+    "limit-warning": "Разрешено не более 10 колод. Удалите любую колоду, чтобы добавить другую.",
+    "empty-decks": "Нажмите + значок для добавления колод",
     "select-column-type": "Какой тип колоды вы хотите добавить?",
     "topic": "Пользовательское",
-    "refresh": "Auto refresh for {{title}} saved.",
-    "settings": "Settings",
-    "refresh-time": "Refresh time",
-    "hours": "hours",
-    "save": "Save"
+    "refresh": "Авто обновление для {{title}} сохранено.",
+    "settings": "Настройки",
+    "refresh-time": "Время обновления",
+    "hours": "часов",
+    "save": "Сохранить"
   },
   "market-data": {
     "title": "Рыночная цена",
