@@ -22,7 +22,7 @@ export const DeckSettings = ({ title, ...props }: any) => {
 
   return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
-      <Modal.Header closeButton>
+      <Modal.Header closeButton={true}>
         <Modal.Title id="contained-modal-title-vcenter">
           {_t("decks.settings")}
         </Modal.Title>
