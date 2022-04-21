@@ -28,6 +28,7 @@
   background-color: $duck-egg-blue;
   overflow-x: auto;
   max-width: 100vw;
+  height: calc(100vh - 3rem);
 
   @include themify(night) {
     background-color: #232e3b;
@@ -117,7 +118,7 @@
 }
 
 .sidebar-icons-wrapper {
-  height: 60vh;
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   width: 46px;
