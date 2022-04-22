@@ -24,15 +24,19 @@ export const DeckHeaderUpdateIntervalSettings = ({ updateInterval, title, userna
   ]);
   const [inputValue, setInputValue] = useState(0);
   const [showInput, setShowInput] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const onSelectChange = (event: ChangeEvent<any>) => {
     saveInterval(event.target.value);
   }
   const saveInterval = (value: string) => {
+    setErrorMessage('');
     if (isNaN(+value)) {
       setShowInput(true);
-    } else {
+    } else if (+value >= 30000 && +value <= 1400000) {
       setDeckUpdateInterval({ title, updateIntervalMs: +value }, username);
+    } else {
+      setErrorMessage(_t('decks.update-interval-value-error'));
     }
   };
 
@@ -76,9 +80,12 @@ export const DeckHeaderUpdateIntervalSettings = ({ updateInterval, title, userna
   }
 
   return <DeckHeaderSettingsItem title={_t('deck.settings')}>
-    <div className="d-flex align-items-center w-100 pb-2">
+    <div className="d-flex w-100 pb-2">
       <Form.Text className="pr-3">{_t('decks.update-interval')}</Form.Text>
-      {getControl()}
+      <div className="w-100">
+        {getControl()}
+        {errorMessage ? <div className="text-danger mt-2">{errorMessage}</div> : <></>}
+      </div>
     </div>
   </DeckHeaderSettingsItem>
 }

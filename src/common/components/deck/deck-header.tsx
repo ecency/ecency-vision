@@ -103,7 +103,7 @@ export const DeckHeader = ({
             username={account}
             setDeckUpdateInterval={setDeckUpdateInterval}
           />
-          <div className="d-flex justify-content-end p-2 border-bottom">
+          <div className="d-flex justify-content-end p-2">
             <Button
               variant="link"
               size="sm"
