@@ -11,7 +11,7 @@ const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
 const getListStyle = (isDraggingOver: boolean, theme: string) => ({
   background: theme === "night" ? "#232e3b" : "#e9f2fc",
   display: "flex",
-  padding: "0 80px 28px 28px",
+  padding: "0 80px 16px 28px",
   overflow: "auto",
   scrollBehavior: "smooth",
 });
@@ -27,6 +27,7 @@ const DraggableDeckView = ({
   onReloadColumn,
   reorderDecks,
   deleteDeck,
+  setDeckUpdateInterval,
   ...rest
 }: any) => {
   const [mounted, setMounted] = useState(false);
@@ -89,6 +90,7 @@ const DraggableDeckView = ({
                           success(_t("decks.removed", { deck: option }));
                         }}
                         onReloadColumn={onReloadColumn}
+                        setDeckUpdateInterval={setDeckUpdateInterval}
                         {...item}
                         {...rest}
                       />

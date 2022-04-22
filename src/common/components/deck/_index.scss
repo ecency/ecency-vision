@@ -2,7 +2,7 @@
   background-color: $white;
   min-width: 379px;
   max-width: 379px;
-  height: fit-content !important;
+  height: 100% !important;
   overflow: hidden !important;
 
   @include themify(night) {
@@ -11,9 +11,7 @@
 }
 
 .cog-icon {
-  path {
-    fill: $white;
-  }
+  width: 16px;
 }
 
 .deck-header {
@@ -147,5 +145,14 @@
 
   svg {
     width: 14px !important;
+  }
+}
+
+.deck-header-settings-item {
+  font-size: 14px;
+
+  .toggle {
+    padding: .68rem;
+    font-size: 14px;
   }
 }

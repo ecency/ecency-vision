@@ -28,7 +28,8 @@ export enum ActionTypes {
   SET_DATA =  "@deck/FETCH_DATA",
   SET_RELOADING = "@deck/SET_RELOADING",
   REORDER = "@deck/REORDER",
-  DELETE = "@deck/DELETE"
+  DELETE = "@deck/DELETE",
+  UPDATE_INTERVAL = "@deck/UPDATE_INTERVAL"
 }
 
 export interface CreateAction {
@@ -74,9 +75,17 @@ export interface DeleteAction {
   };
 }
 
+export interface UpdateIntervalAction {
+  type: ActionTypes.UPDATE_INTERVAL;
+  data: {
+    title: string;
+    updateIntervalMs: DeckModel['header']['updateIntervalMs'];
+  }
+}
+
 export type DeckState = {
   items: IdentifiableDeckModel[];
   isContentLoading: boolean;
 };
 
-export type Actions = CreateAction | SetDataAction | SetReloadingAction | ReOrderAction | DeleteAction;
+export type Actions = CreateAction | SetDataAction | SetReloadingAction | ReOrderAction | DeleteAction  | UpdateIntervalAction;

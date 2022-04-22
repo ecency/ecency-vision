@@ -6,10 +6,17 @@ import {
   DeleteAction,
   ReOrderAction,
   SetDataAction,
-  SetReloadingAction
+  SetReloadingAction,
+  UpdateIntervalAction
 } from './types';
 import { Dispatch } from 'redux';
-import { createDeckReducer, deleteDeckReducer, setDataReducer, setReloadingReducer } from './reducers';
+import {
+  createDeckReducer,
+  deleteDeckReducer,
+  setDataReducer,
+  setReloadingReducer,
+  setUpdateIntervalReducer
+} from './reducers';
 import { reorderReducer } from './reducers/reorderReducer';
 import { set } from '../../util/local-storage';
 import { serializeDecks } from './helpers';
@@ -28,6 +35,8 @@ export default (state: DeckState = initialState, action: Actions): DeckState => 
     return reorderReducer(state, action.data);
   }  else if (action.type === ActionTypes.DELETE) {
     return deleteDeckReducer(state, action.data);
+  } else if (action.type === ActionTypes.UPDATE_INTERVAL) {
+    return setUpdateIntervalReducer(state, action.data);
   }
   return state;
 };
@@ -61,6 +70,11 @@ export const reorderAct = (data: ReOrderAction['data']): ReOrderAction => ({
 
 export const deleteAct = (data: DeleteAction['data']): DeleteAction => ({
   type: ActionTypes.DELETE,
+  data,
+});
+
+export const updateIntervalAct = (data: UpdateIntervalAction['data']): UpdateIntervalAction => ({
+  type: ActionTypes.UPDATE_INTERVAL,
   data,
 });
 

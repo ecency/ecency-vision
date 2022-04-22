@@ -35,6 +35,7 @@ const DeckViewContainer = ({
   loadDeckFromStorage,
   reorderDecks,
   deck,
+  setDeckUpdateInterval,
   ...rest
 }: any) => {
   const [openModal, setOpenModal] = useState(false);
@@ -227,6 +228,7 @@ const DeckViewContainer = ({
               toggleListStyle={toggleListStyle}
               loading={loadingNewContent}
               onReloadColumn={onReloadColumn}
+              setDeckUpdateInterval={setDeckUpdateInterval}
             />
           )}
         </div>
