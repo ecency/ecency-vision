@@ -15,6 +15,14 @@
       background: $white-two;
     }
 
+    @include themify(sky) {
+      background: $white-two;
+    }
+
+    @include themify(burning) {
+      background: $white-two;
+    }
+
     @include themify(dusk) {
       background: $white-two;
     }

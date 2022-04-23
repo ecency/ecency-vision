@@ -18,6 +18,14 @@
       background-color: $white-three;
     }
 
+    @include themify(sky) {
+      background-color: $white-three;
+    }
+
+    @include themify(burning) {
+      background-color: $white-three;
+    }
+
     @include themify(dusk) {
       background-color: $white-three;
     }

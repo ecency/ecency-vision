@@ -7,6 +7,14 @@
     border-bottom: 1px solid $white-four;
   }
 
+  @include themify(sky) {
+    border-bottom: 1px solid $white-four;
+  }
+
+  @include themify(burning) {
+    border-bottom: 1px solid $burning-primary;
+  }
+
   @include themify(dusk) {
     border-bottom: 1px solid $white-four;
   }
