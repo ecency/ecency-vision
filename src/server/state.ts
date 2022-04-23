@@ -14,8 +14,7 @@ import config from "../config";
 
 import {getSearchIndexCount, getDynamicProps} from "./helper";
 
-import {getOperatingSystem} from "../common/util/platform";
-import { setupConfig } from "../setup";
+import { getOperatingSystem } from "../common/util/platform";
 
 export const makePreloadedState = async (
   req: express.Request
@@ -27,7 +26,7 @@ export const makePreloadedState = async (
   const theme =
     _c("theme") && Object.values(Theme).includes(_c("theme"))
       ? _c("theme")
-      : setupConfig.selectedTheme;
+      : 'sky';
   const listStyle =
     _c("list-style") && Object.values(ListStyle).includes(_c("list-style"))
       ? _c("list-style")

@@ -62,7 +62,7 @@ export const render = (req: express.Request, state: AppState) => {
                 ${headHelmet}
                 ${cssLinksFromAssets(assets, 'client')}
             </head>
-            <body class="${`theme-${state.global.theme}`}" style="display: none;">
+            <body class="${`theme-${state.global.ctheme}`}" style="display: none;">
                 <div id="root">${markup}</div>
                 <script>
                   window.__PRELOADED_STATE__ = ${serialize(finalState)}
