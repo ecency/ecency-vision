@@ -29,10 +29,7 @@
         width: 20px;
       }
     }
-
-    @include themify(day) {
-      color: $dark-sky-blue;
-    }
+    color: $dark-sky-blue;
 
      @include themify(dusk) {
       color: $silver;
@@ -46,9 +43,7 @@
     &.hover,
     &:hover {
       .menu-down {
-        @include themify(day) {
-          background: $duck-egg-blue;
-        }
+        background: $duck-egg-blue;
 
         @include themify(dusk) {
           background: $duck-egg-blue;
@@ -91,14 +86,7 @@
     display: table;
     box-shadow: $box-shadow;
     border-radius: $border-radius;
-
-    @include themify(day) {
-      background: $white;
-    }
-
-    @include themify(dusk) {
-      background: $white;
-    }
+    background: $white;
 
     @include themify(burning) {
       background: $burning-background;
@@ -144,10 +132,7 @@
       font-weight: 500;
       border-top-right-radius: 25px;
       border-bottom-right-radius: 25px;
-
-      @include themify(day) {
-        color: $warm-grey;
-      }
+      color: $warm-grey;
 
       @include themify(dusk) {
         color: $warm-grey;
@@ -188,10 +173,7 @@
       &.active {
         .item-inner {
           color: $white;
-
-          @include themify(day) {
-            background: $dark-sky-blue;
-          }
+          background: $dark-sky-blue;
 
           @include themify(dusk) {
             background: $dusk-primary;
@@ -212,10 +194,8 @@
       }
 
       &:hover:not(.active) {
-        @include themify(day) {
-          background: lighten($dark-sky-blue, 40);
-          color: $dark-sky-blue;
-        }
+        background: lighten($dark-sky-blue, 40);
+        color: $dark-sky-blue;
 
         @include themify(dusk) {
           background: lighten($silver, 40);

@@ -2,10 +2,7 @@
   margin: 10px 0 30px 0;
   position: relative;
   min-height: 200px;
-
-  @include themify(day) {
-    border-top: 1px solid $white-three;
-  }
+  border-top: 1px solid $white-three;
 
   @include themify(dusk) {
     border-top: 1px solid $white-three;
@@ -163,10 +160,7 @@
                 font-weight: 700;
                 word-break: keep-all;
               }
-
-              @include themify(day) {
-                color: $charcoal-grey;
-              }
+              color: $charcoal-grey;
 
               @include themify(dusk) {
                 color: $charcoal-grey;
@@ -189,9 +183,7 @@
                 }
               }
               &:hover {
-                @include themify(day) {
-                  background: $duck-egg-blue;
-                }
+                background: $duck-egg-blue;
 
                 @include themify(dusk) {
                   background: $duck-egg-blue;
@@ -222,13 +214,7 @@
 
           .item-body {
             margin: 10px 0 14px 0;
-
-            @include themify(day) {
-              color: $tundora;
-            }
-            @include themify(dusk) {
-              color: $tundora;
-            }
+            color: $tundora;
           }
 
           .item-controls {
@@ -308,10 +294,7 @@
             .item-inner {
               padding-left: 13px;
             }
-
-            @include themify(day) {
-              border-color: lighten($white-four, 0);
-            }
+            border-color: lighten($white-four, 0);
 
             @include themify(dusk) {
               border-color: lighten($white-four, 0);

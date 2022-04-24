@@ -11,9 +11,7 @@
         border-radius: 8px;
 
         &:nth-child(odd) {
-          @include themify(day) {
-            background: $white-three;
-          }
+          background: $white-three;
 
           @include themify(sky) {
             background: $white-three;

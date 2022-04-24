@@ -29,10 +29,7 @@
           display: flex;
           margin-bottom: 10px;
           padding: 3px;
-
-          @include themify(day) {
-            color: $dark-sky-blue;
-          }
+          color: $dark-sky-blue;
 
           @include themify(dusk) {
             color: $silver;
@@ -43,9 +40,7 @@
           }
 
           &:hover {
-            @include themify(day) {
-              background: $duck-egg-blue;
-            }
+            background: $duck-egg-blue;
 
             @include themify(dusk) {
               color: $duck-egg-blue;

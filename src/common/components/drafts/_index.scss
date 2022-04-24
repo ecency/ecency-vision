@@ -50,10 +50,7 @@
                   svg {
                     height: 18px !important;
                   }
-
-                  @include themify(day) {
-                    color: $silver;
-                  }
+                  color: $silver;
 
                   @include themify(dusk) {
                     color: $silver;

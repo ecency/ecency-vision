@@ -127,11 +127,9 @@
         display: flex;
         align-items: center;
         margin-bottom: 10px;
-
-        @include themify(day) {
-          background: $white-three;
-          color: $steel-grey;
-        }
+        background: $white-three;
+        color: $steel-grey;
+        
 
         @include themify(dusk) {
           background: $white-three;
@@ -201,9 +199,7 @@
     @media (min-width: $md-break) {
       justify-content: flex-start;
       padding-top: 16px;
-      @include themify(day) {
-        border-top: 1px solid $white-three;
-      }
+      border-top: 1px solid $white-three;
 
       @include themify(dusk) {
         border-top: 1px solid $white-three;
