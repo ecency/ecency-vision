@@ -50,10 +50,10 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
     }
 
     fetchSubscriptions = () => {
-        const {activeUser} = this.props;
+        const { activeUser, global } = this.props;
         return getSubscriptions(activeUser.username).then(subscriptions => {
             if (subscriptions) {
-                this.stateSet({subscriptions})
+                this.stateSet({ subscriptions: subscriptions?.filter(subscription => subscription[0] === global.hive_id) })
             }
         })
     }
@@ -194,6 +194,8 @@ export class CommunitySelector extends BaseComponent<Props, State> {
     extractCommunityName = (): string | null => {
         const {tags} = this.props;
         const [tag,] = tags;
+
+        console.log(tag)
 
         if (!tag) {
             return null;

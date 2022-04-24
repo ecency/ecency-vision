@@ -26,26 +26,6 @@ declare var window: AppWindow;
 
 const store = configureStore(window["__PRELOADED_STATE__"]);
 
-if (process.env.NODE_ENV === 'production') {
-    console.log(`@@@@@@@(((((@@@@@@@@@@@@@
-@@@(((((((((((((@@@@@@@@@
-@((((@@@@@@@@@((((@@@@@@@
-@(((@@@(((((@@@((((%@@@@@
-((((@@@(((@@@@#((((((((%@
-((((@@@((((((((((@@@@((((
-((((@@@@@@&&&@@@@@@@@@(((
-((((@@@@@@@@@@@@@@@@@((((
-(((((%@@@@@@@@@%%(((((((@
-@@(((((((((((((((((((@@@@`
-);
-    console.log('%c%s', 'font-size: 16px;', 'We are hiring!');
-    console.log(
-        '%c%s',
-        'font-size: 12px;',
-        'Are you developer, looking ways to contribute? \nhttps://github.com/ecency/ecency-vision \n\n'
-    );
-}
-
 hydrate(
     <Provider store={store}>
         <ConnectedRouter history={history!}>
