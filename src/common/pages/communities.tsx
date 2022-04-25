@@ -560,8 +560,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                                         <li>{_t("communities-create.reason-one")}</li>
                                                         <li>{_t("communities-create.reason-two")}</li>
                                                         <li>{_t("communities-create.reason-three")}</li>
-                                                    </ul>
-                                                    <div className="learn-more">{_t("g.learn-more")} <Link to="/faq">{_t("g.faq")}</Link></div>
+                                    </ul>
                                                 </>
                                 }
 

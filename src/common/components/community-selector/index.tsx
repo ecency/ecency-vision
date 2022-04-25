@@ -72,12 +72,13 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
     }
 
     search = () => {
-        const {query} = this.state;
+        const { query, subscriptions } = this.state;
 
         getCommunities("", 14, query, "rank")
             .then((results) => {
+                console.log()
                 if (results) {
-                    this.stateSet({results});
+                    this.stateSet({ results: results ? results.filter(x => subscriptions.map((subscription) => subscription[0]).includes(x.name)) : [] });
                 }
             })
     }

@@ -297,7 +297,6 @@ class ContributePage extends Component<PageProps> {
                             form. It is acceptable to publish existing content that you have the right to republish. Please review the
                             format instructions above before submitting.
                         </p>
-                        <h2 id="faq">FAQ</h2>
                         <ol>
                             <li>
                                 <em>Can I re-publish my contribution to Esteem on another site?</em> Yes. All that we request is that

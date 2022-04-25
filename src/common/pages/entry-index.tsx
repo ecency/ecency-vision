@@ -36,29 +36,37 @@ import {
   pageMapStateToProps,
   PageProps,
 } from "./common";
-import { setupConfig } from "../../setup";
+import { getCommunities } from "../api/bridge";
+import { Community } from "../store/communities/types";
 
 interface State {
   step: number;
   community: string;
+  communities: Community[]
 }
 
 class EntryIndexPage extends Component<PageProps, State> {
   state: State = {
     step: 1,
     community: "",
+    communities: [],
   };
 
   componentDidMount() {
     const { global, fetchEntries, fetchTrendingTags } = this.props;
     fetchEntries(global.filter, global.tag, false);
     fetchTrendingTags();
-    console.log(setupConfig)
     const community = global.hive_id;
 
     if (community) {
       this.setState({ ...this.state, community });
     }
+
+    getCommunities().then(r => {
+      if (r) {
+        this.setState({ ...this.state, communities: r })
+      }
+    })
 
     this.props.activeUser !== null
       ? this.changeStepTwo()
@@ -115,6 +123,7 @@ class EntryIndexPage extends Component<PageProps, State> {
 
   render() {
     const { global, activeUser, entries, location } = this.props;
+    const { communities } = this.state;
     const { filter, tag } = global;
 
     const groupKey = makeGroupKey(filter, tag);
@@ -129,32 +138,17 @@ class EntryIndexPage extends Component<PageProps, State> {
 
     //  Meta config
     const fC = capitalize(filter);
-    let title = _t("entry-index.title", { f: fC });
-    let description = _t("entry-index.description", { f: fC });
-    let url = `/${filter}`;
-    let canonical = `${defaults.base}/${filter}`;
-    let rss = "";
+    const community = communities.find(community => community.name === global.hive_id) ? communities.find(community => community.name === global.hive_id) : { title: '', name: '' }
+    const title = `${community!.title.trim()} community`;
+    const description = _t("community.page-description", {
+      f: `${fC} ${community!.title.trim()}`,
+    });
+    const url = `/${filter}/${global.hive_id}`;
+    const rss = `${defaults.base}/${filter}/${global.hive_id}/rss.xml`;
+    const image = `${defaults.imageServer}/u/${global.hive_id}/avatar/medium`;
+    const canonical = `${defaults.base}/created/${global.hive_id}`;
 
-    if (tag) {
-      if (activeUser && tag === "my") {
-        title = `@${activeUser.username}'s community feed on decentralized web`;
-        description = _t("entry-index.description-user-feed", { u: tag });
-        canonical = `${defaults.base}/@${tag}/${filter}`;
-      } else if (tag.startsWith("@")) {
-        title = `${tag}'s ${filter} on decentralized web`;
-        description = _t("entry-index.description-user-feed", { u: tag });
-        canonical = `${defaults.base}/@${tag}/${filter}`;
-      } else {
-        title = `latest #${tag} ${filter} topics on internet`;
-        description = _t("entry-index.description-tag", { f: fC, t: tag });
-
-        url = `/${filter}/${tag}`;
-        canonical = `${defaults.base}/${filter}/${tag}`;
-        rss = `${defaults.base}/${filter}/${tag}/rss.xml`;
-      }
-    }
-
-    const metaProps = { title, description, url, canonical, rss };
+    const metaProps = { title, description, url, rss, image, canonical };
 
     const promoted = entries["__promoted__"].entries;
 
@@ -173,7 +167,7 @@ class EntryIndexPage extends Component<PageProps, State> {
     return (
       <>
         {!!this.state.community && (
-          <Redirect to={`/created/${this.state.community}`} />
+          <Redirect to={`/trending/${this.state.community}`} />
         )}
         <Meta {...metaProps} />
         <ScrollToTop />

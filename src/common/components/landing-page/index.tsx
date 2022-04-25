@@ -591,9 +591,6 @@ const LandingPage = (props: any) => {
                     <Link to="#about">{_t("landing-page.about")}</Link>
                   </li>
                   <li>
-                    <Link to="/faq">{_t("landing-page.faq")}</Link>
-                  </li>
-                  <li>
                     <Link to="/terms-of-service">
                       {_t("landing-page.terms-of-service")}
                     </Link>
@@ -617,9 +614,6 @@ const LandingPage = (props: any) => {
                     <Link to="/communities">
                       {_t("landing-page.communities")}
                     </Link>
-                  </li>
-                  <li>
-                    <Link to="/faq">{_t("landing-page.help")}</Link>
                   </li>
                 </ul>
               </div>

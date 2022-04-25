@@ -1,27 +1,29 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 import queryString from "query-string";
 
-import {Button, Form, FormControl, Spinner, Row, Col} from "react-bootstrap";
+import { Button, Form, FormControl, Spinner, Row, Col } from "react-bootstrap";
 
-import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 import NavBarElectron from "../../desktop/app/components/navbar";
-import Feedback, {error} from "../components/feedback";
+import Feedback, { error } from "../components/feedback";
 import ScrollToTop from "../components/scroll-to-top";
+import defaults from "../constants/defaults.json";
 
-import {signUp} from "../api/private-api";
+import { signUp } from "../api/private-api";
 
-import {_t} from "../i18n";
-import {Tsx} from "../i18n/helper";
+import { _t } from "../i18n";
 
-import {hiveSvg, checkSvg} from "../img/svg";
+import { hiveSvg, checkSvg } from "../img/svg";
 import { handleInvalid, handleOnInput } from "../util/input-util";
+import { getCommunities } from "../api/bridge";
+import { Community } from "../store/communities/types";
 
 interface State {
     username: string;
@@ -30,6 +32,7 @@ interface State {
     lockReferral: boolean;
     inProgress: boolean;
     done: boolean;
+    communities: Community[]
 }
 
 class SignUpPage extends Component<PageProps, State> {
@@ -41,46 +44,50 @@ class SignUpPage extends Component<PageProps, State> {
         referral: '',
         lockReferral: false,
         inProgress: false,
-        done: false
+        done: false,
+        communities: []
     }
 
     componentDidMount() {
-        const {location} = this.props;
+
+        getCommunities().then(r => this.setState({ ...this.state, communities: r ? r : [] }))
+
+        const { location } = this.props;
         const qs = queryString.parse(location.search);
         if (qs.referral) {
             const referral = qs.referral as string;
-            this.setState({referral, lockReferral: true});
+            this.setState({ referral, lockReferral: true });
         }
     }
 
     usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-        const {value: username} = e.target;
-        this.setState({username: username.toLowerCase()});
+        const { value: username } = e.target;
+        this.setState({ username: username.toLowerCase() });
     }
 
     emailChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-        const {value: email} = e.target;
-        this.setState({email});
+        const { value: email } = e.target;
+        this.setState({ email });
     }
 
     refCodeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-        const {value: referral} = e.target;
-        this.setState({referral: referral.toLowerCase()});
+        const { value: referral } = e.target;
+        this.setState({ referral: referral.toLowerCase() });
     }
 
     submit = () => {
-        const {username, email, referral} = this.state;
+        const { username, email, referral } = this.state;
 
-        this.setState({inProgress: true});
+        this.setState({ inProgress: true });
         signUp(username, email, referral).then(resp => {
-            this.setState({inProgress: false});
+            this.setState({ inProgress: false });
             if (resp && resp.data && resp.data.code) {
                 error(resp.data.message);
             } else {
-                this.setState({done: true});
+                this.setState({ done: true });
             }
         }).catch(err => {
-            this.setState({inProgress: false});
+            this.setState({ inProgress: false });
             if (err.response && err.response.data && err.response.data.message) {
                 error(err.response.data.message);
             }
@@ -88,53 +95,44 @@ class SignUpPage extends Component<PageProps, State> {
     }
 
     render() {
-        const {global} = this.props;
-
-        const signupSvg = global.isElectron ? "./img/signup.png" : require("../img/signup.png");
+        const { global, communities } = this.props;
         const logoCircle = global.isElectron ? "./img/logo-circle.svg" : require("../img/logo-circle.svg");
+        const currCommunity = communities.find(community => community.name === global.hive_id)
 
         //  Meta config
         const metaProps = {
-            title: _t('sign-up.header')
+            title: `Welcome to ${currCommunity?.title}`
         };
 
-        const {username, email, referral, lockReferral, inProgress, done} = this.state;
-        const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
+        const { username, email, referral, lockReferral, inProgress, done } = this.state;
+        const spinner = <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />;
         let containerClasses = global.isElectron ? "app-content sign-up-page mb-lg-0 mt-0 pt-6" : "app-content sign-up-page mb-lg-0";
 
         return (
             <>
                 <Meta {...metaProps} />
-                <ScrollToTop/>
-                <Theme global={this.props.global}/>
-                <Feedback/>
+                <ScrollToTop />
+                <Theme global={this.props.global} />
+                <Feedback />
                 {global.isElectron ?
                     NavBarElectron({
                         ...this.props,
                     }) :
-                    NavBar({...this.props})}
+                    NavBar({ ...this.props })}
                 <div className={containerClasses}>
 
                     <div className="sign-up">
-                        <div className="left-image">
-                            <img src={signupSvg} alt="Signup"/>
-                        </div>
                         <div className="the-form">
                             <div className="form-title">
-                                {_t('sign-up.header')}
+                                Welcome to {currCommunity?.title}
                             </div>
                             <div className="form-sub-title">
                                 {_t('sign-up.description')}
                             </div>
                             <div className="form-icons">
-                                <img src={logoCircle} alt="Ecency" title="Ecency"/>
+                                <img src={`${defaults.imageServer}/u/${currCommunity?.name}/avatar/lardge`} alt="Ecency" title="Ecency" />
                                 <span title="Hive">{hiveSvg}</span>
                             </div>
-
-                            <div className="form-image">
-                                <img src={signupSvg} alt="Signup"/>
-                            </div>
-
                             {(() => {
                                 // A test helper to simulate a successful form response.
                                 // const done = true;
@@ -144,17 +142,13 @@ class SignUpPage extends Component<PageProps, State> {
                                     return <div className="form-done">
                                         <div className="done-icon">{checkSvg}</div>
                                         <div className="done-text">
-                                            <p>{_t('sign-up.success', {email})}</p>
+                                            <p>{_t('sign-up.success', { email })}</p>
                                             <p>{_t('sign-up.success-2')}</p>
                                         </div>
                                     </div>
                                 }
 
                                 return <div className="form-content">
-                                    <Tsx k="sign-up.learn-more">
-                                        <div className="form-faq"/>
-                                    </Tsx>
-
                                     <Form ref={this.form} onSubmit={(e: React.FormEvent) => {
                                         e.preventDefault();
                                         e.stopPropagation();
@@ -166,11 +160,11 @@ class SignUpPage extends Component<PageProps, State> {
                                         this.submit();
                                     }}>
                                         <Form.Group>
-                                            <Form.Control 
-                                                type="text" 
-                                                placeholder={_t('sign-up.username')} 
-                                                value={username} 
-                                                onChange={this.usernameChanged} 
+                                            <Form.Control
+                                                type="text"
+                                                placeholder={_t('sign-up.username')}
+                                                value={username}
+                                                onChange={this.usernameChanged}
                                                 autoFocus={true}
                                                 required={true}
                                                 onInvalid={(e: any) => handleInvalid(e, 'sign-up.', 'validation-username')}
@@ -178,18 +172,18 @@ class SignUpPage extends Component<PageProps, State> {
                                             />
                                         </Form.Group>
                                         <Form.Group>
-                                            <Form.Control 
-                                                type="email" 
-                                                placeholder={_t('sign-up.email')} 
-                                                value={email} 
-                                                onChange={this.emailChanged} 
+                                            <Form.Control
+                                                type="email"
+                                                placeholder={_t('sign-up.email')}
+                                                value={email}
+                                                onChange={this.emailChanged}
                                                 required={true}
                                                 onInvalid={(e: any) => handleInvalid(e, 'sign-up.', 'validation-email')}
                                                 onInput={handleOnInput}
                                             />
                                         </Form.Group>
                                         <Form.Group>
-                                            <Form.Control type="text" placeholder={_t('sign-up.ref')} value={referral} onChange={this.refCodeChanged} disabled={lockReferral}/>
+                                            <Form.Control type="text" placeholder={_t('sign-up.ref')} value={referral} onChange={this.refCodeChanged} disabled={lockReferral} />
                                         </Form.Group>
                                         <div className="d-flex justify-content-center">
                                             <Button variant="primary" block={true} type="submit" disabled={inProgress}>
@@ -202,7 +196,7 @@ class SignUpPage extends Component<PageProps, State> {
                                         {_t("sign-up.login-text-1")}
                                         <a href="#" onClick={(e) => {
                                             e.preventDefault();
-                                            const {toggleUIProp} = this.props;
+                                            const { toggleUIProp } = this.props;
                                             toggleUIProp("login");
                                         }}>{" "}{_t("sign-up.login-text-2")}</a>
                                     </div>
