@@ -13,13 +13,13 @@ interface Props {
 
 export const DeckHeaderUpdateIntervalSettings = ({ updateInterval, title, username, setDeckUpdateInterval }: Props) => {
   const [deckUpdateOptions, setDeckUpdateOptions] = useState([
-    { label: _t('decks.update-30-seconds'), value: 30000 },
-    { label: _t('decks.update-1-minute'), value: 60000 },
-    { label: _t('decks.update-5-minutes'), value: 300000 },
-    { label: _t('decks.update-10-minutes'), value: 600000 },
-    { label: _t('decks.update-15-minutes'), value: 900000 },
-    { label: _t('decks.update-30-minutes'), value: 1800000 },
-    { label: _t('decks.update-1-hour'), value: 3600000 },
+    { label: _t('decks.update-n-seconds', { sec: 30 }), value: 30000 },
+    { label: _t('decks.update-n-minutes', { min: 1 }), value: 60000 },
+    { label: _t('decks.update-n-minutes', { min: 5 }), value: 300000 },
+    { label: _t('decks.update-n-minutes', { min: 10 }), value: 600000 },
+    { label: _t('decks.update-n-minutes', { min: 15 }), value: 900000 },
+    { label: _t('decks.update-n-minutes', { min: 30 }), value: 1800000 },
+    { label: _t('decks.update-n-hours', { hour: 1 }), value: 3600000 },
     { label: _t('decks.update-custom'), value: 'custom' },
   ]);
   const [inputValue, setInputValue] = useState(0);
@@ -79,9 +79,9 @@ export const DeckHeaderUpdateIntervalSettings = ({ updateInterval, title, userna
     }
   }
 
-  return <DeckHeaderSettingsItem title={_t('deck.settings')}>
+  return <DeckHeaderSettingsItem title={_t('decks.settings')}>
     <div className="d-flex w-100 pb-2">
-      <Form.Text className="pr-3">{_t('decks.update-interval')}</Form.Text>
+      <Form.Text className="pr-3">{showInput ? _t('decks.update-interval-min') : _t('decks.update-interval')}</Form.Text>
       <div className="w-100">
         {getControl()}
         {errorMessage ? <div className="text-danger mt-2">{errorMessage}</div> : <></>}
