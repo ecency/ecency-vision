@@ -5,12 +5,13 @@ import { chevronDownSvgForSlider, chevronUpSvgForSlider } from '../../img/svg';
 interface Props {
   title: string;
   children: any;
+  hasBorderBottom: boolean;
 }
 
-export const DeckHeaderSettingsItem = ({ title, children }: Props) => {
+export const DeckHeaderSettingsItem = ({ title, children, hasBorderBottom }: Props) => {
   const [expanded, setExpanded] = useState(false);
   return (
-    <Accordion className={'border-bottom deck-header-settings-item'}>
+    <Accordion className={'deck-header-settings-item ' + (hasBorderBottom ? 'border-bottom' : '')}>
       <Accordion.Toggle
         as={Button}
         variant="link"

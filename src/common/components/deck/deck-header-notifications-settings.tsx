@@ -19,7 +19,7 @@ export const DeckHeaderNotificationsSettings = ({ title, username, setDeckDataFi
     fetchDeckData(title);
   };
 
-  return <DeckHeaderSettingsItem title={_t('decks.filters')}>
+  return <DeckHeaderSettingsItem title={_t('decks.filters')} hasBorderBottom={true}>
     <div className="d-flex align-items-center w-100 pb-2">
       <Form.Text className="label mr-3">{_t('decks.type')}</Form.Text>
       <Form.Control as="select" value={deck.dataFilters.type} onChange={typeChanged} size="sm">

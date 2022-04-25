@@ -100,7 +100,7 @@ export const DeckHeader = ({
             title={title}
             username={account}
           />
-          <div className="d-flex justify-content-end p-2">
+          <div className="d-flex deck-actions justify-content-end p-2">
             <Button
               variant="link"
               size="sm"
@@ -110,22 +110,24 @@ export const DeckHeader = ({
             >
               {reloading ? (
                 <div
-                  className="spinner-border spinner-border-sm text-secondary"
+                  className="spinner-border spinner-border-sm text-secondary mr-1"
                   role="status"
                 >
                   <span className="sr-only">{_t("g.loading")}</span>
                 </div>
               ) : (
-                <div className="deck-options-icon d-flex">{refreshSvg}</div>
+                <div className="deck-options-icon d-flex mr-1">{refreshSvg}</div>
               )}
+              <span>{_t('decks.reload')}</span>
             </Button>
             <Button
               size="sm"
-              className="d-flex align-items-center text-danger pr-0"
+              className="d-flex align-items-center pr-0"
               variant="link"
               onClick={() => onRemove(title)}
             >
-              <div className="deck-options-icon d-flex">{deleteForeverSvg}</div>
+              <div className="deck-options-icon d-flex mr-1">{deleteForeverSvg}</div>
+              <span>{_t('decks.remove')}</span>
             </Button>
           </div>
         </Card.Body>

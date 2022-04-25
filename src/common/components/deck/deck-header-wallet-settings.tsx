@@ -18,7 +18,7 @@ export const DeckHeaderWalletSettings = ({ title, username, setDeckDataFilters, 
     fetchDeckData(title);
   };
 
-  return <DeckHeaderSettingsItem title={_t('decks.filters')}>
+  return <DeckHeaderSettingsItem title={_t('decks.filters')} hasBorderBottom={true}>
     <div className="d-flex align-items-center w-100 pb-2">
       <Form.Text className="label mr-3">{_t('decks.history')}</Form.Text>
       <Form.Control as="select" value={deck.dataFilters.group} onChange={typeChanged} size="sm">

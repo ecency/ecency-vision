@@ -60,14 +60,14 @@ const DeckHeaderSettingsComponent = ({
 
   return (
     <>
+      {getWalletSettings()}
+      {getNotificationsSettings()}
       <DeckHeaderUpdateIntervalSettings
         updateInterval={updateInterval}
         username={username}
         title={title}
         setDeckUpdateInterval={setDeckUpdateInterval}
       />
-      {getWalletSettings()}
-      {getNotificationsSettings()}
     </>
   );
 }

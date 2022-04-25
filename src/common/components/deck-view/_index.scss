@@ -99,9 +99,16 @@
   animation: containerAnimation 1s backwards;
 }
 
-.deck-options-icon {
-  width: 20px;
-  height: 20px;
+.deck-actions {
+
+  .deck-options-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  button.btn.btn-link {
+    font-size: 13px;
+  }
 }
 
 @keyframes blinker {
