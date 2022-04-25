@@ -30,8 +30,11 @@ export const fetchDeckData = (title: string) => async (dispatch: Dispatch, getSt
     let res;
     switch (deckType.toLocaleLowerCase()) {
       case _t("decks.notifications").toLocaleLowerCase():
+        const type = deckToUpdate.dataFilters.type;
+        deckToUpdate.dataParams[1] = type;
         // @ts-ignore
         res = await getNotifications(...deckToUpdate.dataParams);
+        debugger;
         dispatch(setDataAct({ title, data: res.map((item) => ({ ...item, deck: true })) }));
         break;
       case _t("decks.trending-topics").toLocaleLowerCase():

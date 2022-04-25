@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { pageMapDispatchToProps, pageMapStateToProps } from '../../pages/common';
 import { DeckState } from '../../store/deck/types';
 import { _t } from '../../i18n';
+import { DeckHeaderNotificationsSettings } from './deck-header-notifications-settings';
 
 interface Props {
   updateInterval: number;
@@ -41,6 +42,22 @@ const DeckHeaderSettingsComponent = ({
     }
   };
 
+  const getNotificationsSettings = () =>  {
+    const isNotificationsType = title.toLocaleLowerCase().includes(_t("decks.notifications").toLocaleLowerCase());
+    if (isNotificationsType) {
+      const deckInstance = deck.items.find((d) => d.header.title === title);
+      return <DeckHeaderNotificationsSettings
+        deck={deckInstance!!}
+        title={title}
+        username={username}
+        setDeckDataFilters={setDeckDataFilters}
+        fetchDeckData={fetchDeckData}
+      />
+    } else {
+      return <></>;
+    }
+  }
+
   return (
     <>
       <DeckHeaderUpdateIntervalSettings
@@ -50,6 +67,7 @@ const DeckHeaderSettingsComponent = ({
         setDeckUpdateInterval={setDeckUpdateInterval}
       />
       {getWalletSettings()}
+      {getNotificationsSettings()}
     </>
   );
 }

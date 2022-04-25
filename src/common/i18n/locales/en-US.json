@@ -325,7 +325,8 @@
     "update-interval-placeholder": "Select an interval",
     "update-custom-interval-in-minutes-placeholder": "Enter custom interval in minutes",
     "filters": "Filters",
-    "history": "History"
+    "history": "History",
+    "type": "Type"
   },
   "market-data": {
     "title": "Market price",
