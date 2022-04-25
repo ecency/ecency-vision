@@ -56,7 +56,7 @@ const DeckViewContainer = ({
         setLoadingNewContent(false);
       } else if (contentType === _t("decks.wallet")) {
         createDeck([TransactionRow, title, wallet, []], user);
-        setLoadingNewContent(true);
+        setLoadingNewContent(false);
         fetchDeckData(title);
       } else if (account.includes("hive-")) {
         title = `${_t(`decks.${contentType}`)} @${account}`;

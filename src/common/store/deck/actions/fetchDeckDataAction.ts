@@ -34,7 +34,6 @@ export const fetchDeckData = (title: string) => async (dispatch: Dispatch, getSt
         deckToUpdate.dataParams[1] = type;
         // @ts-ignore
         res = await getNotifications(...deckToUpdate.dataParams);
-        debugger;
         dispatch(setDataAct({ title, data: res.map((item) => ({ ...item, deck: true })) }));
         break;
       case _t("decks.trending-topics").toLocaleLowerCase():
@@ -47,7 +46,6 @@ export const fetchDeckData = (title: string) => async (dispatch: Dispatch, getSt
         break;
       case _t("decks.wallet").toLocaleLowerCase():
         const group = deckToUpdate.dataFilters.group;
-        debugger;
         const transactionsList = await fetchTransactions(account, group);
         dispatch(setDataAct({ title, data: transactionsList }));
         break;
