@@ -4,6 +4,7 @@ export interface SerializedDeckModel {
     title: string;
     updateIntervalMs: number;
   };
+  dataFilters: any;
   createdAt: Date;
 }
 
@@ -23,13 +24,20 @@ export interface IdentifiableDeckModel extends DeckModel {
   content: string;
 }
 
+export interface WalletDeckModel extends IdentifiableDeckModel {
+  dataFilters: {
+    group: string;
+  };
+}
+
 export enum ActionTypes {
   CREATE = "@deck/CREATE",
   SET_DATA =  "@deck/FETCH_DATA",
   SET_RELOADING = "@deck/SET_RELOADING",
   REORDER = "@deck/REORDER",
   DELETE = "@deck/DELETE",
-  UPDATE_INTERVAL = "@deck/UPDATE_INTERVAL"
+  UPDATE_INTERVAL = "@deck/UPDATE_INTERVAL",
+  SET_DATA_FILTERS = "@deck/SET_DATA_FILTERS"
 }
 
 export interface CreateAction {
@@ -40,7 +48,8 @@ export interface CreateAction {
     DeckModel['header']['icon'],
     DeckModel['dataParams'],
     DeckModel['createdAt']?,
-    DeckModel['header']['updateIntervalMs']?
+    DeckModel['header']['updateIntervalMs']?,
+    DeckModel['dataFilters']?
   ];
 }
 
@@ -83,9 +92,19 @@ export interface UpdateIntervalAction {
   }
 }
 
+export interface SetDataFiltersAction {
+  type: ActionTypes.SET_DATA_FILTERS;
+  data: {
+    title: string;
+    username: string;
+    dataFilters: any;
+  }
+}
+
 export type DeckState = {
   items: IdentifiableDeckModel[];
   isContentLoading: boolean;
 };
 
-export type Actions = CreateAction | SetDataAction | SetReloadingAction | ReOrderAction | DeleteAction  | UpdateIntervalAction;
+export type Actions = CreateAction | SetDataAction | SetReloadingAction | ReOrderAction | DeleteAction
+  | UpdateIntervalAction | SetDataFiltersAction;

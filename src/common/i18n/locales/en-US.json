@@ -323,7 +323,9 @@
     "update-custom": "Custom interval...",
     "update-interval-value-error": "Update interval should be between 30 seconds and 24 hours",
     "update-interval-placeholder": "Select an interval",
-    "update-custom-interval-in-minutes-placeholder": "Enter custom interval in minutes"
+    "update-custom-interval-in-minutes-placeholder": "Enter custom interval in minutes",
+    "filters": "Filters",
+    "history": "History"
   },
   "market-data": {
     "title": "Market price",

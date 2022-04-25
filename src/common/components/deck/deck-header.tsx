@@ -20,7 +20,6 @@ export interface DeckHeaderProps {
   index: number;
   onRemove: (option: string) => void;
   onReloadColumn: (option: string) => void;
-  setDeckUpdateInterval: Function;
   account: string;
 }
 
@@ -32,7 +31,6 @@ export const DeckHeader = ({
   onRemove,
   onReloadColumn,
   reloading,
-  setDeckUpdateInterval,
   account,
 }: DeckHeaderProps) => {
   const [expanded, setExpanded] = useState(false);
@@ -101,7 +99,6 @@ export const DeckHeader = ({
             updateInterval={updateIntervalMs}
             title={title}
             username={account}
-            setDeckUpdateInterval={setDeckUpdateInterval}
           />
           <div className="d-flex justify-content-end p-2">
             <Button

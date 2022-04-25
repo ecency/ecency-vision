@@ -6,13 +6,14 @@ import {
   DeleteAction,
   ReOrderAction,
   SetDataAction,
+  SetDataFiltersAction,
   SetReloadingAction,
   UpdateIntervalAction
 } from './types';
 import { Dispatch } from 'redux';
 import {
   createDeckReducer,
-  deleteDeckReducer,
+  deleteDeckReducer, setDataFilterReducer,
   setDataReducer,
   setReloadingReducer,
   setUpdateIntervalReducer
@@ -37,6 +38,8 @@ export default (state: DeckState = initialState, action: Actions): DeckState => 
     return deleteDeckReducer(state, action.data);
   } else if (action.type === ActionTypes.UPDATE_INTERVAL) {
     return setUpdateIntervalReducer(state, action.data);
+  } else if (action.type === ActionTypes.SET_DATA_FILTERS) {
+    return setDataFilterReducer(state, action.data);
   }
   return state;
 };
@@ -75,6 +78,11 @@ export const deleteAct = (data: DeleteAction['data']): DeleteAction => ({
 
 export const updateIntervalAct = (data: UpdateIntervalAction['data']): UpdateIntervalAction => ({
   type: ActionTypes.UPDATE_INTERVAL,
+  data,
+});
+
+export const setDataFiltersAct = (data: SetDataFiltersAction['data']): SetDataFiltersAction => ({
+  type: ActionTypes.SET_DATA_FILTERS,
   data,
 });
 

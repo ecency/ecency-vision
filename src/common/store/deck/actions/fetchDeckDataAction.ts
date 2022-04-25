@@ -43,7 +43,9 @@ export const fetchDeckData = (title: string) => async (dispatch: Dispatch, getSt
         dispatch(setDataAct({ title, data: res }));
         break;
       case _t("decks.wallet").toLocaleLowerCase():
-        const transactionsList = await fetchTransactions(account);
+        const group = deckToUpdate.dataFilters.group;
+        debugger;
+        const transactionsList = await fetchTransactions(account, group);
         dispatch(setDataAct({ title, data: transactionsList }));
         break;
     }

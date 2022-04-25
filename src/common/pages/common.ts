@@ -41,13 +41,12 @@ import {
   deleteDeck,
   fetchDeckData,
   loadDeckFromStorage,
-  reorderDecks,
+  reorderDecks, setDeckDataFilters,
   setDeckUpdateInterval
 } from '../store/deck';
-import { CreateAction, DeckState } from '../store/deck/types';
-import { SearchResult } from '../api/search-api';
+import { DeckState } from '../store/deck/types';
 import {savePageScroll} from "../store/persistent-page-scroll";
-import { PersistentPageScrollState, SavePageScrollData } from '../store/persistent-page-scroll/types';
+import { PersistentPageScrollState } from '../store/persistent-page-scroll/types';
 
 
 
@@ -196,6 +195,7 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             reorderDecks,
             savePageScroll,
             setDeckUpdateInterval,
+            setDeckDataFilters,
         },
         dispatch
     );

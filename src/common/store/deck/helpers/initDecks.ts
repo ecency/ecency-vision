@@ -9,6 +9,7 @@ export const initDecks = (data: SerializedDeckModel[]) => data.map((item): DeckM
   let icon = person; // Handle conditional icons and listItemComponent
   let listItemComponent: any = SearchListItem; // Handle conditional icons and listItemComponent
   let title = item.header.title.toLowerCase();
+  let dataFilters = item.dataFilters || null;
   if (title.includes(_t('decks.trending-topics').toLowerCase())) {
     icon = hot;
     listItemComponent = HotListItem;
@@ -26,11 +27,17 @@ export const initDecks = (data: SerializedDeckModel[]) => data.map((item): DeckM
   } else if (title.includes(_t('decks.wallet').toLowerCase())) {
     icon = wallet;
     listItemComponent = TransactionRow;
+    if (!dataFilters) {
+      dataFilters = {
+        group: '',
+      };
+    }
   }
   return {
     ...item,
     listItemComponent,
     createdAt: item.createdAt ? new Date(item.createdAt) : new Date(),
+    dataFilters,
     header: {
       ...item.header,
       updateIntervalMs: item.header.updateIntervalMs || 60000,

@@ -80,8 +80,8 @@ export const DeckHeaderUpdateIntervalSettings = ({ updateInterval, title, userna
   }
 
   return <DeckHeaderSettingsItem title={_t('decks.settings')}>
-    <div className="d-flex w-100 pb-2">
-      <Form.Text className="pr-3">{showInput ? _t('decks.update-interval-min') : _t('decks.update-interval')}</Form.Text>
+    <div className="d-flex align-items-center w-100 pb-2">
+      <Form.Text className="label mr-3">{showInput ? _t('decks.update-interval-min') : _t('decks.update-interval')}</Form.Text>
       <div className="w-100">
         {getControl()}
         {errorMessage ? <div className="text-danger mt-2">{errorMessage}</div> : <></>}

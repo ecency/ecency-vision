@@ -13,7 +13,6 @@ export interface DeckProps {
   onReloadColumn: (option: string) => void;
   extras: any;
   toggleListStyle: (listStyle: ListStyle) => void;
-  setDeckUpdateInterval: Function;
 }
 
 export const Deck = ({
@@ -25,7 +24,6 @@ export const Deck = ({
   extras,
   onRemove,
   onReloadColumn,
-  setDeckUpdateInterval,
   ...rest
 }: DeckProps) => {
   const notificationTranslated = _t("decks.notifications");
@@ -41,7 +39,6 @@ export const Deck = ({
         index={index}
         onRemove={onRemove}
         onReloadColumn={onReloadColumn}
-        setDeckUpdateInterval={setDeckUpdateInterval}
       />
       <div
         className={`p-3 item-container ${

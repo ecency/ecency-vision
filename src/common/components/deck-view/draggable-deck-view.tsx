@@ -27,7 +27,6 @@ const DraggableDeckView = ({
   onReloadColumn,
   reorderDecks,
   deleteDeck,
-  setDeckUpdateInterval,
   ...rest
 }: any) => {
   const [mounted, setMounted] = useState(false);
@@ -90,7 +89,6 @@ const DraggableDeckView = ({
                           success(_t("decks.removed", { deck: option }));
                         }}
                         onReloadColumn={onReloadColumn}
-                        setDeckUpdateInterval={setDeckUpdateInterval}
                         {...item}
                         {...rest}
                       />

@@ -1,10 +1,11 @@
 import { CreateAction, DeckState, IdentifiableDeckModel } from '../types';
 
 export function createDeckReducer(state: DeckState, data: CreateAction['data']): DeckState {
-  const [listItemComponent, title, icon, dataParams, createdAt, updateIntervalMs] = data;
+  const [listItemComponent, title, icon, dataParams, createdAt, updateIntervalMs, dataFilters] = data;
   const id = `item-${state.items.length}`;
   const deck: IdentifiableDeckModel = {
     listItemComponent,
+    dataFilters: dataFilters || null,
     header: {
       title,
       icon,
