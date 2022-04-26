@@ -278,7 +278,7 @@
     "pp": "Datenschutzrichtlinien"
   },
   "decks": {
-    "users": "Benutzer",
+    "users": "User",
     "header-info": "Klicken Sie mich, um zusätzliche Optionen zu sehen",
     "username": "Benutzername",
     "content-type": "Inhaltstyp",
@@ -294,7 +294,7 @@
     "replies": "Antworten",
     "posts": "Beiträge",
     "comments": "Kommentare",
-    "column": "Spalte",
+    "column": "column",
     "hot": "Beliebt",
     "muted": "Stummgeschaltet",
     "new": "Neu",
@@ -306,9 +306,15 @@
     "created": "Neu",
     "go-back": "Zurück",
     "deck-exists": "The deck you're trying to add already exists!",
-    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
+    "limit-warning": "Maximum 10 decks are allowed. Delete any deck to add another.",
+    "empty-decks": "Click + icon to add Decks",
     "select-column-type": "Which deck type do you want to add?",
-    "topic": "Eigene"
+    "topic": "Eigene",
+    "refresh": "Auto refresh for {{title}} saved.",
+    "settings": "Settings",
+    "refresh-time": "Refresh time",
+    "hours": "hours",
+    "save": "Save"
   },
   "market-data": {
     "title": "Marktpreis",
