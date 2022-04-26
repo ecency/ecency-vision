@@ -1,10 +1,10 @@
 import { Dispatch } from 'redux';
-import { deleteAct } from '../index';
+import { deleteAct } from '../acts';
 import { set } from '../../../util/local-storage';
 import { serializeDecks } from '../helpers';
-import { AppState } from '../../index';
+import { DeckState } from '../types';
 
-export const deleteDeck = (title: string, username: string) => (dispatch: Dispatch, getState: () => AppState) => {
+export const deleteDeck = (title: string, username: string) => (dispatch: Dispatch, getState: () => { deck: DeckState }) => {
   dispatch(deleteAct({title}));
 
   const { items } = getState().deck;

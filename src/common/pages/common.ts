@@ -41,14 +41,11 @@ import {
   deleteDeck,
   fetchDeckData,
   loadDeckFromStorage,
-  reorderDecks, setDeckDataFilters,
+  reorderDecks,
+  setDeckDataFilters,
   setDeckUpdateInterval
 } from '../store/deck';
-import { DeckState } from '../store/deck/types';
 import {savePageScroll} from "../store/persistent-page-scroll";
-import { PersistentPageScrollState } from '../store/persistent-page-scroll/types';
-
-
 
 export interface PageProps {
     history: History;
@@ -126,8 +123,8 @@ export interface PageProps {
     signingKey: string;
     setSigningKey: (key: string) => void;
 
-    deck: DeckState;
-    persistentPageScroll: PersistentPageScrollState;
+    deck: any;
+    persistentPageScroll: any;
     entryPinTracker: EntryPinTracker;
     trackEntryPin: (entry: Entry) => void;
     setEntryPin: (entry: Entry, pin: boolean) => void;

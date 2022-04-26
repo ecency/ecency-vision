@@ -1,11 +1,10 @@
-import { UpdateIntervalAction } from '../types';
+import { DeckState, UpdateIntervalAction } from '../types';
 import { Dispatch } from 'redux';
-import { updateIntervalAct } from '../index';
+import { updateIntervalAct } from '../acts';
 import { set } from '../../../util/local-storage';
 import { serializeDecks } from '../helpers';
-import { AppState } from '../../index';
 
-export const setDeckUpdateInterval = (data: UpdateIntervalAction['data'], username: string) => (dispatch: Dispatch, getState: () => AppState) => {
+export const setDeckUpdateInterval = (data: UpdateIntervalAction['data'], username: string) => (dispatch: Dispatch, getState: () => { deck: DeckState }) => {
   dispatch(updateIntervalAct(data));
 
   const { items } = getState().deck;

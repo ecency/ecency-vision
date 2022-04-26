@@ -1,14 +1,13 @@
 import { Dispatch } from 'redux';
-import { AppState } from '../../index';
-import { IdentifiableDeckModel } from '../types';
+import { DeckState, IdentifiableDeckModel } from '../types';
 import { _t } from '../../../i18n';
 import { getNotifications } from '../../../api/private-api';
 import { getAllTrendingTags } from '../../../api/hive';
 import { getAccountPosts, getPostsRanked } from '../../../api/bridge';
-import { setDataAct, setReloadingAct } from '../index';
+import { setDataAct, setReloadingAct } from '../acts';
 import { fetchTransactions } from '../../transactions/fetchTransactions';
 
-export const fetchDeckData = (title: string) => async (dispatch: Dispatch, getState: () => AppState) => {
+export const fetchDeckData = (title: string) => async (dispatch: Dispatch, getState: () => { deck: DeckState }) => {
   const [deckType, account] = title.split(" @");
   const decks = getState().deck.items;
   const deckToUpdate = decks.find((d: IdentifiableDeckModel) => d.header.title === title);

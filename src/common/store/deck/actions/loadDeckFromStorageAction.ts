@@ -1,13 +1,12 @@
 import { Dispatch } from 'redux';
 import { get } from '../../../util/local-storage';
-import { SerializedDeckModel } from '../types';
+import { DeckState, SerializedDeckModel } from '../types';
 import { initDecks } from '../helpers';
-import { createAct } from '../index';
-import { AppState } from '../../index';
+import { createAct } from '../acts';
 
-export const loadDeckFromStorage = (username: string) => (dispatch: Dispatch, getState:() => AppState) => {
+export const loadDeckFromStorage = (username: string, listItems: Record<string, any>) => (dispatch: Dispatch, getState:() => { deck: DeckState }) => {
   const rawDecks = get(`user-${username}-decks`, []) as SerializedDeckModel[];
-  const decks = initDecks(rawDecks);
+  const decks = initDecks(rawDecks, listItems);
   const existingDecks = getState().deck.items;
 
   decks

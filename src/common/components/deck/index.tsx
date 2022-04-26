@@ -1,11 +1,10 @@
 import React from "react";
 import { _t } from "../../i18n";
 import { ListStyle } from "../../store/global/types";
-import { DeckModel } from '../../store/deck/types';
 import { DeckHeader } from './deck-header';
 
 export interface DeckProps {
-  header: DeckModel['header'];
+  header: { title: string; icon: any };
   listItemComponent: any;
   index: number;
   data: any[];
