@@ -99,8 +99,8 @@
     "discover": "Kashf qilish\n",
     "communities": "Guruhlar",
     "post": "Post Yaratish",
-    "day-theme": "Kun Mavzusi",
-    "night-theme": "Oqshom Mavzusi",
+    "day-theme": "Kunduzgi Tema",
+    "night-theme": "Kechki Tema",
     "address-placeholder": "URL yoki savolni kiriting"
   },
   "search": {
@@ -122,7 +122,7 @@
     "wallet": "Hamyon",
     "unclaimed-reward-notice": "Sizda qolib ketgan mukofotlar bor",
     "points": "Ballar",
-    "unclaimed-points-notice": "Sizda qolib ketgan ballar bor",
+    "unclaimed-points-notice": "Sizda olinmagan ballar bor",
     "notifications": "Xabarnomalar",
     "profile": "Profil",
     "profile-menu": "Profil menyusi",
@@ -278,7 +278,7 @@
     "pp": "Maxfiylik Siyosati"
   },
   "decks": {
-    "users": "User",
+    "users": "Foydalanuvchi",
     "header-info": "Boshqa variantlarni ko'rish bu yerda",
     "username": "Foydalanuvchi nomi",
     "content-type": "Kontent turi",
@@ -294,7 +294,7 @@
     "replies": "Javoblar",
     "posts": "Postlar",
     "comments": "Izohlar",
-    "column": "column",
+    "column": "ustun",
     "hot": "Qaynoq",
     "muted": "Ovozsiz",
     "new": "Yangi",
@@ -306,15 +306,15 @@
     "created": "Yangi",
     "go-back": "Qaytish",
     "deck-exists": "Siz qo'shmoqchi bo'lgan ustun mavjud!",
-    "limit-warning": "Maximum 10 decks are allowed. Delete any deck to add another.",
-    "empty-decks": "Click + icon to add Decks",
+    "limit-warning": "10 ta ustun qo'sha olasiz. Yana qo'shish uchun boshqasini o'chiring.",
+    "empty-decks": "Ustun qo'shish uchun + belgisini bosing",
     "select-column-type": "Qaysi turdagi ustunni qo'shmoqchisiz?",
     "topic": "Foydalanuvchi",
-    "refresh": "Auto refresh for {{title}} saved.",
-    "settings": "Settings",
-    "refresh-time": "Refresh time",
-    "hours": "hours",
-    "save": "Save"
+    "refresh": "{{title}} uchun avto yangilanish saqlandi.",
+    "settings": "Sozalamalar",
+    "refresh-time": "Yangilanish vaqti",
+    "hours": "soatlar",
+    "save": "Saqlash"
   },
   "market-data": {
     "title": "Bozor narxi",
@@ -525,7 +525,7 @@
   },
   "profile": {
     "voting-power": "Ovoz kuchi",
-    "followers": "Kuztuvchilar",
+    "followers": "Kuzatuvchilar",
     "following": "Kuzatish",
     "follows-you": "Sizni kuzatayabdi",
     "section-blog": "Blog",
@@ -637,7 +637,7 @@
   },
   "points": {
     "get": "BALLARNI SOTIB OLISH",
-    "unclaimed-points": "Olinmagan tangalar",
+    "unclaimed-points": "Olinmagan ballar",
     "claim-reward-points": "Olingan mukofotlar miqdori",
     "main-description": "Ballar Targ'ib qilish, Kuchaytirish, Hadya qilish kabi ilova ichidagi xizmatlar uchun ishlatish mumkin. Ecency ilovalaridan foydalanib, ballarni oling va tajribangizni yaxshilang.",
     "earn-points": "Qanday qilib ko'proq Ball ishlash mumkin",
