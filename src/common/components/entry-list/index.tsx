@@ -98,7 +98,7 @@ export class EntryListContent extends Component<Props, State> {
         const {entries, promotedEntries, global, activeUser, loading } = this.props;
         const {filter, tag} = global;
         const { mutedUsers, loadingMutedUsers } = this.state;
-        let dataToRender = entries;
+        let dataToRender = entries.filter((entry) => !entry.community ? true : entry.community === global.hive_id);
 
         let mutedList: string[] = [];
         if(mutedUsers && mutedUsers.length > 0 && activeUser && activeUser.username){

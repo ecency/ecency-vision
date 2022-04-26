@@ -117,11 +117,6 @@ export default class Meta extends Component<Props> {
             <link rel="alternate" type="application/rss+xml" href={rss} />
           </Helmet>
         )}
-
-        <Helmet>
-          <meta property="og:image" content={image} />
-          <meta name="twitter:image" content={image} />
-        </Helmet>
       </>
     );
   }

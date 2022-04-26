@@ -75,10 +75,6 @@ export class ProfileMenu extends Component<Props> {
                             </Link>)}
                         </div>
                     </>
- 
-                    <Link className={_c(`profile-menu-item ${section === "communities" ? "selected-item" : ""}`)} to={`/@${username}/communities`}>
-                        {_t(`profile.section-communities`)}
-                    </Link>
                     <Link className={_c(`profile-menu-item ${["wallet", "points", "engine"].includes(section) ? "selected-item" : ""}`)} to={`/@${username}/wallet`}>
                         {_t(`profile.section-wallet`)}
                     </Link>

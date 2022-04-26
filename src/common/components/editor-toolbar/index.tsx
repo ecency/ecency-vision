@@ -446,7 +446,7 @@ export class EditorToolbar extends Component<Props> {
                                                 const el = this.fileInput.current;
                                                 if (el) el.click();
                                             }}>
-                                            {_t("editor-toolbar.upload")}
+                                            Upload from PC
                                         </div>
                                         {global.usePrivate && <div
                                           className="sub-tool-menu-item"

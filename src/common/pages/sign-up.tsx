@@ -76,27 +76,15 @@ class SignUpPage extends Component<PageProps, State> {
     }
 
     submit = () => {
-        const { username, email, referral } = this.state;
+        const { username, referral } = this.state;
 
         this.setState({ inProgress: true });
-        signUp(username, email, referral).then(resp => {
-            this.setState({ inProgress: false });
-            if (resp && resp.data && resp.data.code) {
-                error(resp.data.message);
-            } else {
-                this.setState({ done: true });
-            }
-        }).catch(err => {
-            this.setState({ inProgress: false });
-            if (err.response && err.response.data && err.response.data.message) {
-                error(err.response.data.message);
-            }
-        });
+        error("Sign up through community fork isn't ready yet")
+        this.setState({ inProgress: false });
     }
 
     render() {
         const { global, communities } = this.props;
-        const logoCircle = global.isElectron ? "./img/logo-circle.svg" : require("../img/logo-circle.svg");
         const currCommunity = communities.find(community => community.name === global.hive_id)
 
         //  Meta config
@@ -168,17 +156,6 @@ class SignUpPage extends Component<PageProps, State> {
                                                 autoFocus={true}
                                                 required={true}
                                                 onInvalid={(e: any) => handleInvalid(e, 'sign-up.', 'validation-username')}
-                                                onInput={handleOnInput}
-                                            />
-                                        </Form.Group>
-                                        <Form.Group>
-                                            <Form.Control
-                                                type="email"
-                                                placeholder={_t('sign-up.email')}
-                                                value={email}
-                                                onChange={this.emailChanged}
-                                                required={true}
-                                                onInvalid={(e: any) => handleInvalid(e, 'sign-up.', 'validation-email')}
                                                 onInput={handleOnInput}
                                             />
                                         </Form.Group>

@@ -13,6 +13,7 @@ import App from "../common/app";
 
 import { AppState } from "../common/store/index";
 
+import defaults from "../common/constants/defaults.json";
 import configureStore from "../common/store/configure";
 
 let assets: any = require(process.env.RAZZLE_ASSETS_MANIFEST || "");
@@ -56,7 +57,7 @@ export const render = (req: express.Request, state: AppState) => {
                 <meta charset="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="theme-color" content="#000000"/>
-                <link rel="icon" href="/favicon.png" />
+                <link rel="icon" href="${defaults.imageServer}/u/${state.global.hive_id}/avatar/lardge" />
                 <link rel="apple-touch-icon" href="/logo192.png" />
                 <link rel="manifest" href="/manifest.json" />
                 ${headHelmet}

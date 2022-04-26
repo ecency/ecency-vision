@@ -66,6 +66,7 @@ export const signUp = (username: string, email: string, referral: string): Promi
             referral: referral
         })
         .then(resp => {
+            console.log(resp);
             return resp;
         });
 

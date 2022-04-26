@@ -251,7 +251,7 @@ export class CommunitySelector extends BaseComponent<Props, State> {
                     <span className="label">{_t("community-selector.my-blog")}</span> {menuDownSvg}
                 </>
             } else {
-                content = <><span className="label">{_t("community-selector.choose")}</span> {menuDownSvg}</>
+                content = <><span className="label">Select where to post your content</span> {menuDownSvg}</>
             }
         }
 
