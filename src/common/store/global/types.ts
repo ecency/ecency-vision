@@ -46,27 +46,28 @@ export enum AllFilter {
 }
 
 export interface Global {
-    filter: EntryFilter | ProfileFilter | AllFilter;
-    tag: string;
-    theme: Theme;
-    listStyle: ListStyle;
-    intro: boolean;
-    currency: string;
-    currencyRate: number;
-    currencySymbol: string;
-    lang: string;
-    searchIndexCount: number;
-    canUseWebp: boolean;
-    hasKeyChain: boolean;
-    isElectron: boolean;
-    newVersion: string | null;
-    notifications: boolean;
-    nsfw: boolean;
-    isMobile: boolean;
-    usePrivate: boolean;
-    ctheme: string;
-    hive_id: string;
-    tags: string;
+  filter: EntryFilter | ProfileFilter | AllFilter;
+  tag: string;
+  theme: Theme;
+  listStyle: ListStyle;
+  intro: boolean;
+  currency: string;
+  currencyRate: number;
+  currencySymbol: string;
+  lang: string;
+  searchIndexCount: number;
+  canUseWebp: boolean;
+  hasKeyChain: boolean;
+  isElectron: boolean;
+  newVersion: string | null;
+  notifications: boolean;
+  nsfw: boolean;
+  isMobile: boolean;
+  usePrivate: boolean;
+  ctheme: string;
+  hive_id: string;
+  tags: string;
+  availibleAccounts: number;
 }
 
 export enum ActionTypes {

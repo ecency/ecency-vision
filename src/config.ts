@@ -6,4 +6,5 @@ export default {
   hive_id: process.env.HIVE_ID || "",
   theme: process.env.THEME || "",
   tags: process.env.TAGS || "",
+  availibleAccounts: process.env.ACCOUNTS ? +process.env.ACCOUNTS : 0,
 };

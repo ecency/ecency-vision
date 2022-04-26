@@ -380,9 +380,18 @@ export class NavBar extends Component<Props, State> {
                         {_t("g.login")}
                       </Button>
 
-                      <Link className="btn btn-primary" to="/signup">
-                        {_t("g.signup")}
-                      </Link>
+                      {!!global.availibleAccounts ? (
+                        <Link className="btn btn-primary" to="/signup">
+                          {_t("g.signup")}
+                        </Link>
+                      ) : (
+                        <a
+                          className="btn btn-primary"
+                          href="https://signup.hive.io/"
+                        >
+                          {_t("g.signup")}
+                        </a>
+                      )}
                     </div>
                     <div className="submit-post">
                       <ToolTip content={_t("navbar.post")}>

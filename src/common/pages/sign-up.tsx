@@ -179,7 +179,7 @@ class SignUpPage extends Component<PageProps, State> {
                                     </div>
 
                                     <div className="form-bottom-description text-center">
-                                        {_t("sign-up.bottom-description")}
+                                        There are <b>{global.availibleAccounts}</b> free accounts left!
                                     </div>
                                 </div>
                             })()}

@@ -53,7 +53,8 @@ export const initialState: Global = {
   usePrivate: true,
   ctheme: "sky",
   tags: "spk,3speak",
-  hive_id: "hive-112019"
+  hive_id: "hive-112019",
+  availibleAccounts: 200,
 };
 
 export default (state: Global = initialState, action: Actions): Global => {
