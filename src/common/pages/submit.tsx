@@ -566,7 +566,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         if(meta.image){
             meta.image = [...new Set(meta.image)]
         }
-        const summary =description.trim() === '' ? postBodySummary(this.state.body, 200) : description;
+        const summary = description === null ? postBodySummary(this.state.body, 200) : description;
         const jsonMeta = makeJsonMetaData(meta, tags, summary, version);
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
         this.stateSet({posting: true});
