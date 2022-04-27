@@ -316,7 +316,7 @@
     "hours": "hours",
     "save": "Save",
     "update-interval": "Update interval",
-    "update-interval-min": "Interval (in minutes)",
+    "update-interval-min": "In minutes",
     "update-n-seconds": "Every {{sec}} sec",
     "update-n-minutes": "Every {{min}} min",
     "update-n-hours": "Every {{hour}} h",
