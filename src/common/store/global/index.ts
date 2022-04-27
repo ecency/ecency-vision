@@ -54,7 +54,6 @@ export const initialState: Global = {
   ctheme: "sky",
   tags: "spk,3speak",
   hive_id: "hive-112019",
-  availibleAccounts: 200,
 };
 
 export default (state: Global = initialState, action: Actions): Global => {

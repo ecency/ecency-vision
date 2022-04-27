@@ -67,7 +67,6 @@ export interface Global {
   ctheme: string;
   hive_id: string;
   tags: string;
-  availibleAccounts: number;
 }
 
 export enum ActionTypes {

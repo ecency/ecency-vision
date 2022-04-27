@@ -15,6 +15,10 @@
     background: $white-three;
   }
 
+  @include themify(sky) {
+    background: $sky-primary;
+  }
+
   @include themify(night) {
     background: $dark-two;
   }
@@ -43,6 +47,14 @@
 
     @include themify(dusk) {
       color: $steel-grey;
+
+      &:hover {
+        background: darken($white-three, 5);
+      }
+    }
+
+    @include themify(sky) {
+      color: $white-three;
 
       &:hover {
         background: darken($white-three, 5);

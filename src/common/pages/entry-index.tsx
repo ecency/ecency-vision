@@ -126,8 +126,6 @@ class EntryIndexPage extends Component<PageProps, State> {
     const { communities } = this.state;
     const { filter, tag } = global;
 
-    console.log(global.availibleAccounts)
-
     const groupKey = makeGroupKey(filter, tag);
 
     const data = entries[groupKey];

@@ -16,7 +16,7 @@ import Feedback, { error } from "../components/feedback";
 import ScrollToTop from "../components/scroll-to-top";
 import defaults from "../constants/defaults.json";
 
-import { signUp } from "../api/private-api";
+import { getAvailibleAccounts, signUp } from "../api/private-api";
 
 import { _t } from "../i18n";
 
@@ -27,11 +27,11 @@ import { Community } from "../store/communities/types";
 
 interface State {
     username: string;
-    email: string;
-    referral: string;
     lockReferral: boolean;
     inProgress: boolean;
     done: boolean;
+    availibleAccounts: number;
+    signUpResponse: any;
     communities: Community[]
 }
 
@@ -40,24 +40,23 @@ class SignUpPage extends Component<PageProps, State> {
 
     state: State = {
         username: '',
-        email: '',
-        referral: '',
         lockReferral: false,
         inProgress: false,
         done: false,
-        communities: []
+        communities: [],
+        availibleAccounts: 0,
+        signUpResponse: null
     }
 
     componentDidMount() {
-
-        getCommunities().then(r => this.setState({ ...this.state, communities: r ? r : [] }))
-
-        const { location } = this.props;
-        const qs = queryString.parse(location.search);
-        if (qs.referral) {
-            const referral = qs.referral as string;
-            this.setState({ referral, lockReferral: true });
-        }
+        getAvailibleAccounts().then((response) => {
+            this.setState({ ...this.state, availibleAccounts: response.count })
+            if (!response.count) {
+                if (typeof window !== undefined) {
+                    window.location.href = "https://signup.hive.io/"
+                }
+            }
+        })
     }
 
     usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
@@ -65,22 +64,21 @@ class SignUpPage extends Component<PageProps, State> {
         this.setState({ username: username.toLowerCase() });
     }
 
-    emailChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-        const { value: email } = e.target;
-        this.setState({ email });
-    }
-
-    refCodeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-        const { value: referral } = e.target;
-        this.setState({ referral: referral.toLowerCase() });
-    }
-
     submit = () => {
-        const { username, referral } = this.state;
+        const { username } = this.state;
+        this.setState({ ...this.state, inProgress: true })
+        signUp(username).then(({ data }) => {
+            if (!data.success) {
+                error(data.message)
+                return
+            }
 
-        this.setState({ inProgress: true });
-        error("Sign up through community fork isn't ready yet")
-        this.setState({ inProgress: false });
+            this.setState({ inProgress: false, signUpResponse: data });
+        }).catch((e) => {
+            console.error(e)
+            this.setState({ inProgress: false });
+            error("Couldn't create account")
+        })
     }
 
     render() {
@@ -92,7 +90,7 @@ class SignUpPage extends Component<PageProps, State> {
             title: `Welcome to ${currCommunity?.title}`
         };
 
-        const { username, email, referral, lockReferral, inProgress, done } = this.state;
+        const { username, inProgress, done, availibleAccounts, signUpResponse } = this.state;
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />;
         let containerClasses = global.isElectron ? "app-content sign-up-page mb-lg-0 mt-0 pt-6" : "app-content sign-up-page mb-lg-0";
 
@@ -108,7 +106,21 @@ class SignUpPage extends Component<PageProps, State> {
                     }) :
                     NavBar({ ...this.props })}
                 <div className={containerClasses}>
-
+                    {signUpResponse &&
+                        <div className="success-info">
+                            <h3><b>Username</b>: {signUpResponse.result.username}</h3>
+                            <ul>
+                                <li><b>Owner</b>: {signUpResponse.result.keys.owner}</li>
+                                <li><b>Owner (public)</b>: {signUpResponse.result.keys.ownerPubkey}</li>
+                                <li><b>Active</b>: {signUpResponse.result.keys.active}</li>
+                                <li><b>Active (public)</b>: {signUpResponse.result.keys.activePubkey}</li>
+                                <li><b>Posting</b>: {signUpResponse.result.keys.posting}</li>
+                                <li><b>Posting (public)</b>: {signUpResponse.result.keys.postingPubkey}</li>
+                                <li><b>Memo</b>: {signUpResponse.result.keys.memo}</li>
+                                <li><b>Memo (public)</b>: {signUpResponse.result.keys.memoPubkey}</li>
+                            </ul>
+                            <h5><b>This info is important to setting up your "HIVE Keychain" client, copy this info somewhere safe</b></h5>
+                        </div>}
                     <div className="sign-up">
                         <div className="the-form">
                             <div className="form-title">
@@ -125,16 +137,6 @@ class SignUpPage extends Component<PageProps, State> {
                                 // A test helper to simulate a successful form response.
                                 // const done = true;
                                 // const email = "loremipsum@gmail.com";
-
-                                if (done) {
-                                    return <div className="form-done">
-                                        <div className="done-icon">{checkSvg}</div>
-                                        <div className="done-text">
-                                            <p>{_t('sign-up.success', { email })}</p>
-                                            <p>{_t('sign-up.success-2')}</p>
-                                        </div>
-                                    </div>
-                                }
 
                                 return <div className="form-content">
                                     <Form ref={this.form} onSubmit={(e: React.FormEvent) => {
@@ -159,9 +161,6 @@ class SignUpPage extends Component<PageProps, State> {
                                                 onInput={handleOnInput}
                                             />
                                         </Form.Group>
-                                        <Form.Group>
-                                            <Form.Control type="text" placeholder={_t('sign-up.ref')} value={referral} onChange={this.refCodeChanged} disabled={lockReferral} />
-                                        </Form.Group>
                                         <div className="d-flex justify-content-center">
                                             <Button variant="primary" block={true} type="submit" disabled={inProgress}>
                                                 {inProgress && spinner} {_t('sign-up.submit')}
@@ -179,7 +178,7 @@ class SignUpPage extends Component<PageProps, State> {
                                     </div>
 
                                     <div className="form-bottom-description text-center">
-                                        There are <b>{global.availibleAccounts}</b> free accounts left!
+                                        There are <b>{availibleAccounts}</b> free accounts left!
                                     </div>
                                 </div>
                             })()}
