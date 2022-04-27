@@ -314,7 +314,19 @@
     "settings": "Settings",
     "refresh-time": "Refresh time",
     "hours": "hours",
-    "save": "Save"
+    "save": "Save",
+    "update-interval": "Update interval",
+    "update-interval-min": "In minutes",
+    "update-n-seconds": "Every {{sec}} sec",
+    "update-n-minutes": "Every {{min}} min",
+    "update-n-hours": "Every {{hour}} h",
+    "update-custom": "Custom interval...",
+    "update-interval-value-error": "Interval should be between 30 seconds and 24 hours",
+    "update-interval-placeholder": "Select an interval",
+    "update-custom-interval-in-minutes-placeholder": "Enter interval in minutes",
+    "filters": "Filters",
+    "history": "History",
+    "type": "Type"
   },
   "market-data": {
     "title": "Пазарна цена",
