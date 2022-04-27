@@ -1,5 +1,19 @@
 .entry-list-item {
 
+  span {
+    @include themify(dusk) {
+      color: $dusk-primary !important;
+    }
+
+    @include themify(burning) {
+      color: $burning-primary !important;
+    }
+
+    @include themify(sky) {
+      color: $white-three !important;
+    }
+  }
+
   a {
     @include themify(dusk) {
       color: $dusk-primary !important;
@@ -12,7 +26,6 @@
     @include themify(sky) {
       color: $white-three !important;
     }
-
   }
   
   @media (max-width: $sm-break) {
@@ -39,7 +52,7 @@
 
     @include themify(sky) {
       background: lighten($silver, 42);
-      color: $charcoal-grey;
+      color: $white-three;
     }
 
     @include themify(night) {

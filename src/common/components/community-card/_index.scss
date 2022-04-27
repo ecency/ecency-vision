@@ -60,36 +60,12 @@
       font-size: 22px;
       font-weight: 600;
       margin-bottom: 18px;
-      color: $dark-sky-blue;
-
-      @include themify(dusk) {
-        color: $white-three;
-      }
-
-      @include themify(burning) {
-        color: $white-three;
-      }
-
-      @include themify(sky) {
-        color: $white-three;
-      }
+      color: $white-three;
     }
 
     .about {
       font-weight: 300;
-      color: $dark-sky-blue;
-
-      @include themify(dusk) {
-        color: $white-three;
-      }
-
-      @include themify(burning) {
-        color: $white-three;
-      }
-
-      @include themify(sky) {
-        color: $white-three;
-      }
+      color: $white-three;
     }
 
     .nsfw {

@@ -302,34 +302,55 @@ export default class EntryListItem extends Component<Props, State> {
                 <div className="item-body">
                     {(() => {
                         if (nsfw && !this.state.showNsfw && !global.nsfw) {
-                            return <>
+                            return (
+                              <>
                                 <div className="item-image item-image-nsfw">
-                                    <img src={nsfwImage} alt={title}/>
+                                  <img src={nsfwImage} alt={title} />
                                 </div>
                                 <div className="item-summary">
-                                    <div className="item-nsfw"><span className="nsfw-badge">NSFW</span></div>
-                                    <div className="item-nsfw-options">
-                                        <a href="#" onClick={(e) => {
+                                  <div className="item-nsfw">
+                                    <span className="nsfw-badge">NSFW</span>
+                                  </div>
+                                  <div className="item-nsfw-options">
+                                    <a
+                                      href="#"
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        this.toggleNsfw();
+                                      }}
+                                    >
+                                      {_t("nsfw.reveal")}
+                                    </a>{" "}
+                                    {_t("g.or").toLowerCase()}{" "}
+                                    {activeUser && (
+                                      <>
+                                        {_t("nsfw.settings-1")}{" "}
+                                        <a
+                                          href="#"
+                                          onClick={(e) => {
                                             e.preventDefault();
-                                            this.toggleNsfw();
-                                        }}>{_t("nsfw.reveal")}</a>
-                                        {" "} {_t("g.or").toLowerCase()} {" "}
-
-                                        {activeUser && <>
-                                            {_t("nsfw.settings-1")}
-                                            {" "}
-                                          <a href="#" onClick={(e) => {
-                                              e.preventDefault();
-                                              history.push(`/@${activeUser.username}/settings`);
-                                          }}>{_t("nsfw.settings-2")}</a>{"."}
-                                        </>}
-
-                                        {!activeUser && <>
-                                          <Tsx k="nsfw.signup"><span/></Tsx>{"."}
-                                        </>}
-                                    </div>
+                                            history.push(
+                                              `/@${activeUser.username}/settings`
+                                            );
+                                          }}
+                                        >
+                                          {_t("nsfw.settings-2")}
+                                        </a>
+                                        {"."}
+                                      </>
+                                    )}
+                                    {!activeUser && (
+                                      <>
+                                        <Tsx k="nsfw.signup">
+                                          <span />
+                                        </Tsx>
+                                        {"."}
+                                      </>
+                                    )}
+                                  </div>
                                 </div>
-                            </>
+                              </>
+                            );
                         }
                         if (this.state.showMuted) {
                             return <>

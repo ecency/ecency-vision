@@ -3,6 +3,10 @@
   margin-right: 15px;
   cursor: default;
 
+  @include themify(sky) {
+    color: $white-three;
+  }
+
   @media (min-width: $sm-break) {
     margin-right: 25px;
   }
@@ -15,13 +19,15 @@
   }
 
   &.payout-declined {
-    color: lighten($steel-grey, 15);
     text-decoration: line-through;
   }
 
   &.payout-limit-hit {
-    color: lighten($steel-grey, 15);
     opacity: .8;
+  }
+
+  @include themify(sky) {
+    color: $white-three;
   }
 }
 
@@ -44,9 +50,6 @@
           display: inline-block;
           font-weight: 500;
           width: 130px;
-        }
-
-        .value {
         }
       }
     }

@@ -160,12 +160,7 @@
                 font-weight: 700;
                 word-break: keep-all;
               }
-              color: $charcoal-grey;
-
-              @include themify(dusk) {
-                color: $charcoal-grey;
-              }
-
+              color: $white-three;
               @include themify(night) {
                 color: $pinkish-grey;
               }

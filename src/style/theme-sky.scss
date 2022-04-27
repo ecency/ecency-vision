@@ -82,7 +82,7 @@ $tooltip-max-width: 380px;
   @import "bootstrap/scss/tooltip";
 
   background: $sky-background;
-  color: lighten($charcoal-grey, 10);
+  color: $white-three;
 }
 
 @import "bootstrap";

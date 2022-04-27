@@ -1,5 +1,5 @@
 .profile-container {
-    z-index: 4;
+  z-index: 4;
 
   @media (max-width: $sm-break) {
     position: absolute;
@@ -22,6 +22,11 @@
     min-width: 90px;
     border: 5px solid #81acef;
     background-color: $white;
+
+    @include themify(sky) {
+      background-color: $sky-primary;
+    }
+
     @include themify(night) {
         background-color: $gunmetal;
     }
@@ -67,9 +72,13 @@
 }
 
 .bg-white {
-    @include themify(night) {
-        background-color: $dark-two !important;
-      }
+  @include themify(sky) {
+    background-color: $sky-primary;
+  }
+
+  @include themify(night) {
+    background-color: $dark-two !important;
+  }
 }
 
 .cover-img-placeholder {
@@ -146,6 +155,10 @@
 }
 
 .upper-container {
+  @include themify(sky) {
+    background-color: $sky-primary !important;
+  }
+
   @media (max-width: 320px) {
     a {
       font-size: 0.75rem;

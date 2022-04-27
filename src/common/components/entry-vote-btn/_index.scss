@@ -1,5 +1,6 @@
 .entry-vote-btn {
   margin-right: 10px;
+  color: $white-three;
 
   @media (max-width: $xxsm-break) {
     margin-right: 5px;
@@ -143,10 +144,6 @@
       background: $white-four;
     }
 
-    @include themify(dusk) {
-      background: $white-four;
-    }
-
     @include themify(night) {
       background: $gunmetal;
     }
@@ -164,6 +161,10 @@
 
     @include themify(dusk) {
       border: 2px solid $white;
+    }
+
+    @include themify(sky) {
+      border: 2px solid $white-three;
     }
 
     @include themify(night) {
@@ -309,16 +310,14 @@
     }
   }
 
-  @include themify(day) {
-    box-shadow: 0px 1px 4px 1px $white-four;
-    background-color: $white;
-    color: $dark-two;
-  }
+  box-shadow: 0px 1px 4px 1px $white-four;
+  background-color: $white;
+  color: $dark-two;
 
-  @include themify(dusk) {
+  @include themify(sky) {
     box-shadow: 0px 1px 4px 1px $white-four;
-    background-color: $white;
-    color: $dark-two;
+    background-color: $sky-primary;
+    color: $white-three;
   }
 
   @include themify(night) {
