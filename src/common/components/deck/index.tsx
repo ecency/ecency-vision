@@ -4,7 +4,7 @@ import { ListStyle } from "../../store/global/types";
 import { DeckHeader } from './deck-header';
 
 export interface DeckProps {
-  header: { title: string; icon: any };
+  header: { title: string; icon: any; updateIntervalMs: number };
   listItemComponent: any;
   index: number;
   data: any[];
