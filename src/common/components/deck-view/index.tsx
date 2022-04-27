@@ -56,7 +56,7 @@ const DeckViewContainer = ({
         setLoadingNewContent(false);
       } else if (contentType === _t("decks.wallet")) {
         createDeck([TransactionRow, title, wallet, []], user);
-        setLoadingNewContent(true);
+        setLoadingNewContent(false);
         fetchDeckData(title);
       } else if (account.includes("hive-")) {
         title = `${_t(`decks.${contentType}`)} @${account}`;
@@ -108,7 +108,12 @@ const DeckViewContainer = ({
   useEffect(() => {
     if (!deck.items.length) {
       setUser(rest.activeUser && rest.activeUser.username);
-      loadDeckFromStorage(user);
+      loadDeckFromStorage(user, {
+        SearchListItem,
+        HotListItem,
+        NotificationListItem,
+        TransactionRow,
+      });
     }
   }, [rest]);
 
@@ -131,7 +136,7 @@ const DeckViewContainer = ({
         activeUser={rest.activeUser}
       />
       <div className="d-flex flex-grow-1 deck-view">
-        <div className="navbar d-flex flex-column align-items-center pt-5 p-3">
+        <div className="navbar d-flex flex-column align-items-center pt-5 p-1">
           <div className="mt-5 my-icons-5 cursor-pointer">
             <ListStyleToggle
               global={global}
@@ -206,7 +211,7 @@ const DeckViewContainer = ({
             {plusEncircled}
           </div>
         </div>
-        <div className="decks-container d-flex py-5 mt-5 overflow-auto flex-grow-1">
+        <div className="decks-container d-flex pt-5 pb-3 mt-5 overflow-auto flex-grow-1">
           {deck.items.length === 0 ? (
             <div className="d-flex justify-content-center align-items-center flex-grow-1 w-100 flex-column">
               <span style={{width: 50}}>

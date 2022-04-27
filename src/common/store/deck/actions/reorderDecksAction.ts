@@ -1,11 +1,10 @@
 import { Dispatch } from 'redux';
-import { ReOrderAction } from '../types';
-import { reorderAct } from '../index';
-import { AppState } from '../../index';
+import { DeckState, ReOrderAction } from '../types';
+import { reorderAct } from '../acts';
 import { set } from '../../../util/local-storage';
 import { serializeDecks } from '../helpers';
 
-export const reorderDecks = (data: ReOrderAction['data'], username: string) => (dispatch: Dispatch, getState: () => AppState) => {
+export const reorderDecks = (data: ReOrderAction['data'], username: string) => (dispatch: Dispatch, getState: () => { deck: DeckState }) => {
   dispatch(reorderAct(data));
 
   const { items } = getState().deck;

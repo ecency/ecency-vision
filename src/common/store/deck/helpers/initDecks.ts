@@ -1,36 +1,40 @@
 import { communities, globalTrending, hot, notificationSvg, person, wallet } from '../../../img/svg';
-import { HotListItem, SearchListItem } from '../../../components/deck/deck-items';
 import { _t } from '../../../i18n';
-import { NotificationListItem } from '../../../components/notifications';
-import { TransactionRow } from '../../../components/transactions';
 import { DeckModel, SerializedDeckModel } from '../types';
 
-export const initDecks = (data: SerializedDeckModel[]) => data.map((item): DeckModel => {
+export const initDecks = (data: SerializedDeckModel[], listItems: Record<string, any>) => data.map((item): DeckModel => {
   let icon = person; // Handle conditional icons and listItemComponent
-  let listItemComponent: any = SearchListItem; // Handle conditional icons and listItemComponent
+  let listItemComponent: any = listItems.SearchListItem; // Handle conditional icons and listItemComponent
   let title = item.header.title.toLowerCase();
+  let dataFilters = item.dataFilters || null;
   if (title.includes(_t('decks.trending-topics').toLowerCase())) {
     icon = hot;
-    listItemComponent = HotListItem;
+    listItemComponent = listItems.HotListItem;
   } else if (title.includes(_t('decks.trending').toLowerCase())) {
     icon = globalTrending;
-    listItemComponent = SearchListItem;
+    listItemComponent = listItems.SearchListItem;
   } else if (title.includes('hive-')) {
     icon = communities;
-    listItemComponent = SearchListItem;
+    listItemComponent = listItems.SearchListItem;
   } else if (
     title.includes(_t('decks.notifications').toLowerCase())
   ) {
     icon = notificationSvg;
-    listItemComponent = NotificationListItem;
+    listItemComponent = listItems.NotificationListItem;
   } else if (title.includes(_t('decks.wallet').toLowerCase())) {
     icon = wallet;
-    listItemComponent = TransactionRow;
+    listItemComponent = listItems.TransactionRow;
+    if (!dataFilters) {
+      dataFilters = {
+        group: '',
+      };
+    }
   }
   return {
     ...item,
     listItemComponent,
     createdAt: item.createdAt ? new Date(item.createdAt) : new Date(),
+    dataFilters,
     header: {
       ...item.header,
       updateIntervalMs: item.header.updateIntervalMs || 60000,

@@ -36,13 +36,16 @@ import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter
 import {fetchPoints, resetPoints} from "../store/points";
 import {setSigningKey} from "../store/signing-key";
 import {trackEntryPin, setEntryPin} from "../store/entry-pin-tracker";
-import { createDeck, deleteDeck, fetchDeckData, loadDeckFromStorage, reorderDecks } from '../store/deck';
-import { CreateAction, DeckState } from '../store/deck/types';
-import { SearchResult } from '../api/search-api';
+import {
+  createDeck,
+  deleteDeck,
+  fetchDeckData,
+  loadDeckFromStorage,
+  reorderDecks,
+  setDeckDataFilters,
+  setDeckUpdateInterval
+} from '../store/deck';
 import {savePageScroll} from "../store/persistent-page-scroll";
-import { PersistentPageScrollState, SavePageScrollData } from '../store/persistent-page-scroll/types';
-
-
 
 export interface PageProps {
     history: History;
@@ -120,8 +123,8 @@ export interface PageProps {
     signingKey: string;
     setSigningKey: (key: string) => void;
 
-    deck: DeckState;
-    persistentPageScroll: PersistentPageScrollState;
+    deck: any;
+    persistentPageScroll: any;
     entryPinTracker: EntryPinTracker;
     trackEntryPin: (entry: Entry) => void;
     setEntryPin: (entry: Entry, pin: boolean) => void;
@@ -188,6 +191,8 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             deleteDeck,
             reorderDecks,
             savePageScroll,
+            setDeckUpdateInterval,
+            setDeckDataFilters,
         },
         dispatch
     );

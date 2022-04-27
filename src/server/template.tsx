@@ -11,7 +11,7 @@ import serialize from "serialize-javascript";
 
 import App from "../common/app";
 
-import { AppState } from "../common/store/index";
+import { AppState } from '../common/store';
 
 import configureStore from "../common/store/configure";
 

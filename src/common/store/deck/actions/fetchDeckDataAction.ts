@@ -1,14 +1,13 @@
 import { Dispatch } from 'redux';
-import { AppState } from '../../index';
-import { IdentifiableDeckModel } from '../types';
+import { DeckState, IdentifiableDeckModel } from '../types';
 import { _t } from '../../../i18n';
 import { getNotifications } from '../../../api/private-api';
 import { getAllTrendingTags } from '../../../api/hive';
 import { getAccountPosts, getPostsRanked } from '../../../api/bridge';
-import { setDataAct, setReloadingAct } from '../index';
+import { setDataAct, setReloadingAct } from '../acts';
 import { fetchTransactions } from '../../transactions/fetchTransactions';
 
-export const fetchDeckData = (title: string) => async (dispatch: Dispatch, getState: () => AppState) => {
+export const fetchDeckData = (title: string) => async (dispatch: Dispatch, getState: () => { deck: DeckState }) => {
   const [deckType, account] = title.split(" @");
   const decks = getState().deck.items;
   const deckToUpdate = decks.find((d: IdentifiableDeckModel) => d.header.title === title);
@@ -30,6 +29,8 @@ export const fetchDeckData = (title: string) => async (dispatch: Dispatch, getSt
     let res;
     switch (deckType.toLocaleLowerCase()) {
       case _t("decks.notifications").toLocaleLowerCase():
+        const type = deckToUpdate.dataFilters.type;
+        deckToUpdate.dataParams[1] = type;
         // @ts-ignore
         res = await getNotifications(...deckToUpdate.dataParams);
         dispatch(setDataAct({ title, data: res.map((item) => ({ ...item, deck: true })) }));
@@ -43,7 +44,8 @@ export const fetchDeckData = (title: string) => async (dispatch: Dispatch, getSt
         dispatch(setDataAct({ title, data: res }));
         break;
       case _t("decks.wallet").toLocaleLowerCase():
-        const transactionsList = await fetchTransactions(account);
+        const group = deckToUpdate.dataFilters.group;
+        const transactionsList = await fetchTransactions(account, group);
         dispatch(setDataAct({ title, data: transactionsList }));
         break;
     }
