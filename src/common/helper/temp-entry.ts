@@ -16,7 +16,7 @@ export interface TempEntryProps {
     parentPermlink: string,
     title: string,
     body: string,
-    description: string,
+    description: string | null,
     tags: string[]
 }
 

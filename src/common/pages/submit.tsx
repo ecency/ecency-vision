@@ -74,7 +74,7 @@ interface PostBase {
     title: string;
     tags: string[];
     body: string;
-    description: string;
+    description: string | null;
 }
 
 interface Advanced {
@@ -82,7 +82,7 @@ interface Advanced {
     beneficiaries: BeneficiaryRoute[];
     schedule: string | null,
     reblogSwitch: boolean;
-    description: string;
+    description: string | null;
 }
 
 interface PreviewProps extends PostBase {
@@ -142,7 +142,7 @@ interface Props extends PageProps {
 interface State extends PostBase, Advanced {
     preview: PostBase;
     posting: boolean;
-    description: string;
+    description: string | null;
     editingEntry: Entry | null;
     saving: boolean;
     editingDraft: Draft | null;
@@ -159,7 +159,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         title: "",
         tags: [],
         body: "",
-        description: '',
+        description: null,
         reward: "default",
         posting: false,
         editingEntry: null,
@@ -972,7 +972,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                             <Col sm='9'>
                                                 <Form.Control
                                                     as='textarea'
-                                                    value={this.state.description}
+                                                    value={this.state.description || postBodySummary(body, 200)}
                                                     onChange={this.descriptionChanged}
                                                     rows={3}
                                                     maxLength={200}
