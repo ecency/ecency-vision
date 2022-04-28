@@ -16,6 +16,7 @@ export interface TempEntryProps {
     parentPermlink: string,
     title: string,
     body: string,
+    description: string | null,
     tags: string[]
 }
 
@@ -41,7 +42,7 @@ export default (p: TempEntryProps): Entry => {
         curator_payout_value: "0.000 HBD",
         depth: 0,
         is_paidout: false,
-        json_metadata: {app: `ecency/${version}-${isElectron() ? "surfer" : "vision"}`, format: "markdown+html", tags: p.tags},
+        json_metadata: {app: `ecency/${version}-${isElectron() ? "surfer" : "vision"}`, format: "markdown+html", tags: p.tags, description: p.description},
         max_accepted_payout: "1000000.000 HBD",
         net_rshares: 0,
         payout: 0,

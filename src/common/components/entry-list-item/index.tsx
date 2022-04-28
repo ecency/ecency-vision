@@ -194,7 +194,7 @@ export default class EntryListItem extends Component<Props, State> {
         let svgSizeRow = imgRow === noImage ? "noImage" : "";
         let svgSizeGrid = imgGrid === noImage ? "172px" : "auto";
         
-        const summary: string = postBodySummary(entry, 200);
+        const summary: string = entry.json_metadata.description || postBodySummary(entry, 200);
 
         const dateRelative = dateToRelative(entry.created);
         const dateFormatted = dateToFormatted(entry.created);
