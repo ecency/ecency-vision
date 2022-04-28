@@ -923,7 +923,8 @@
     "scheduled": "Post zaplanowany",
     "empty-title-alert": "Dodaj tytuł swojego wpisu",
     "empty-tags-alert": "Dodaj tagi do wpisu",
-    "empty-body-alert": "Wprowadź treść wpisu"
+    "empty-body-alert": "Wprowadź treść wpisu",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Tagi. Pierwszy tag jest kategorią główną. Tagi można sortować.",
