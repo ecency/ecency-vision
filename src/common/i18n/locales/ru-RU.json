@@ -923,7 +923,8 @@
     "scheduled": "Пост запланирован",
     "empty-title-alert": "Введите название поста",
     "empty-tags-alert": "Введите теги поста",
-    "empty-body-alert": "Введите содержимое поста"
+    "empty-body-alert": "Введите содержимое поста",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Тэги. Первый тэг является основной категорией. Для сортировки.",
