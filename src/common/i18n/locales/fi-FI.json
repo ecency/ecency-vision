@@ -923,7 +923,8 @@
     "scheduled": "Julkaisu ajastettu",
     "empty-title-alert": "Syötä julkaisun otsikko",
     "empty-tags-alert": "Syötä julkaisun tagit",
-    "empty-body-alert": "Syötä julkaisun runko"
+    "empty-body-alert": "Syötä julkaisun runko",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Tunnisteet. Ensimmäisenä pääkategoria. Lajiteltava.",
