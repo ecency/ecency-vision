@@ -923,7 +923,8 @@
     "scheduled": "Post agendado",
     "empty-title-alert": "Insira o título da publicação",
     "empty-tags-alert": "Insira as etiquetas da postagem",
-    "empty-body-alert": "Insira o corpo da postagem"
+    "empty-body-alert": "Insira o corpo da postagem",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Etiquetas. A primeira etiqueta é a categoria principal. Ordenável.",
