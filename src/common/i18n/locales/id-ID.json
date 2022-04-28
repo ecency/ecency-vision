@@ -923,7 +923,8 @@
     "scheduled": "Postingan yang dijadwalkan",
     "empty-title-alert": "Tambahkan judul postingan",
     "empty-tags-alert": "Tambahkan tagar postingan",
-    "empty-body-alert": "Tambahkan isi postingan"
+    "empty-body-alert": "Tambahkan isi postingan",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Tagar. Tagar pertama adalah kategori utama. Mudah disortir.",
