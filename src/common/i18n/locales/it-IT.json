@@ -923,7 +923,8 @@
     "scheduled": "Post programmato",
     "empty-title-alert": "Inserisci titolo del post",
     "empty-tags-alert": "Inserisci etichette del post",
-    "empty-body-alert": "Inserisci corpo del testo"
+    "empty-body-alert": "Inserisci corpo del testo",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Etichette. La prima etichetta è la categoria principale che classificherà il post.",
