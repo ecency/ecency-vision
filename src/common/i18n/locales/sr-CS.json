@@ -923,7 +923,8 @@
     "scheduled": "Post scheduled",
     "empty-title-alert": "Enter post title",
     "empty-tags-alert": "Enter post tags",
-    "empty-body-alert": "Enter post body"
+    "empty-body-alert": "Enter post body",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Oznake. Prva oznaka je glavna kategorija. Podložno razvrstavanju.",
