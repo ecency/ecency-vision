@@ -923,7 +923,8 @@
     "scheduled": "Rejalashtirilgan Post",
     "empty-title-alert": "Post sarlavhasini kiriting",
     "empty-tags-alert": "Post teglarini kiriting",
-    "empty-body-alert": "Post matnini kiriting"
+    "empty-body-alert": "Post matnini kiriting",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Teglar. Birinchi teg asosiy toifadir. Uni saralash mumkin.",
