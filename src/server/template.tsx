@@ -57,33 +57,24 @@ export const render = (req: express.Request, state: AppState) => {
                 <meta charset="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="theme-color" content="#000000"/>
-                <link rel="icon" href="${defaults.imageServer}/u/${state.global.hive_id}/avatar/lardge" />
+                <link rel="icon" href="${defaults.imageServer}/u/${
+    state.global.hive_id
+  }/avatar/lardge" />
                 <link rel="apple-touch-icon" href="/logo192.png" />
                 <link rel="manifest" href="/manifest.json" />
                 ${headHelmet}
-                ${cssLinksFromAssets(assets, 'client')}
+                ${cssLinksFromAssets(assets, "client")}
             </head>
             <body class="theme-night" style="display: none;">
                 <div id="root">${markup}</div>
                 <script>
                   window.__PRELOADED_STATE__ = ${serialize(finalState)}
                 </script>
-                ${jsScriptTagsFromAssets(assets, 'client', ' defer crossorigin')}
-                <script type="application/ld+json">
-                  {
-                    "@context": "https://schema.org",
-                    "@type": "WebSite",
-                    "url": "https://ecency.com/",
-                    "potentialAction": [{
-                      "@type": "SearchAction",
-                      "target": {
-                        "@type": "EntryPoint",
-                        "urlTemplate": "https://ecency.com/search/?q={search_term_string}"
-                      },
-                      "query-input": "required name=search_term_string"
-                    }]
-                  }
-                </script>
+                ${jsScriptTagsFromAssets(
+                  assets,
+                  "client",
+                  " defer crossorigin"
+                )}
                 <style>
                   body {
                     display: block !important;

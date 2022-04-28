@@ -160,17 +160,27 @@ export default class EntryListItem extends Component<Props, State> {
         const { mounted } = this.state;
 
         const fallbackImage = global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png");
-        const noImage = global.isElectron ?  "./img/noimage.svg" : require("../../img/noimage.svg");
-        const nsfwImage = global.isElectron ? "./img/nsfw.png" : require("../../img/nsfw.png");
-        const crossPost = !!(theEntry.original_entry);
+        const noImage = global.isElectron
+          ? `${defaults.imageServer}/u/${global.hive_id}/avatar/medium`
+          : `${defaults.imageServer}/u/${global.hive_id}/avatar/medium`;
+        const nsfwImage = global.isElectron
+          ? "./img/nsfw.png"
+          : require("../../img/nsfw.png");
+        const crossPost = !!theEntry.original_entry;
 
         const entry = theEntry.original_entry || theEntry;
 
-        const imgGrid: string = (global.canUseWebp ? catchPostImage(entry, 600, 500, 'webp') : catchPostImage(entry, 600, 500)) || noImage;
-        const imgRow: string = (global.canUseWebp ? catchPostImage(entry, 260, 200, 'webp') : catchPostImage(entry, 260, 200)) || noImage;
+        const imgGrid: string =
+          (global.canUseWebp
+            ? catchPostImage(entry, 600, 500, "webp")
+            : catchPostImage(entry, 600, 500)) || noImage;
+        const imgRow: string =
+          (global.canUseWebp
+            ? catchPostImage(entry, 260, 200, "webp")
+            : catchPostImage(entry, 260, 200)) || noImage;
         let svgSizeRow = imgRow === noImage ? "noImage" : "";
         let svgSizeGrid = imgGrid === noImage ? "172px" : "auto";
-        
+
         const summary: string = postBodySummary(entry, 200);
 
         const date = moment(parseDate(entry.created));
@@ -186,273 +196,357 @@ export default class EntryListItem extends Component<Props, State> {
 
         let reBlogged: string | undefined;
         if (asAuthor && asAuthor !== entry.author && !isChild) {
-            reBlogged = asAuthor;
+          reBlogged = asAuthor;
         }
 
         if (entry.reblogged_by && entry.reblogged_by.length > 0) {
-            [reBlogged] = entry.reblogged_by;
+          [reBlogged] = entry.reblogged_by;
         }
 
         let thumb: JSX.Element | null = null;
-        if (global.listStyle === 'grid') {
-            thumb = (
-                <img src={imgGrid} alt={title} style={{ width: svgSizeGrid }} onError={(e: React.SyntheticEvent) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = fallbackImage;
+        if (global.listStyle === "grid") {
+          thumb = (
+            <img
+              src={imgGrid}
+              alt={title}
+              style={{ width: svgSizeGrid }}
+              onError={(e: React.SyntheticEvent) => {
+                const target = e.target as HTMLImageElement;
+                target.src = fallbackImage;
+              }}
+            />
+          );
+        }
+        if (global.listStyle === "row") {
+          thumb = (
+            <picture>
+              <source srcSet={imgRow} media="(min-width: 576px)" />
+              <img
+                srcSet={imgGrid}
+                alt={title}
+                onError={(e: React.SyntheticEvent) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = fallbackImage;
                 }}
-                />
-            );
+              />
+            </picture>
+          );
         }
-        if (global.listStyle === 'row') {
-            thumb = (
-                <picture>
-                    <source srcSet={imgRow} media="(min-width: 576px)"/>
-                    <img srcSet={imgGrid} alt={title} onError={(e: React.SyntheticEvent) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = fallbackImage;
-                    }}/>
-                </picture>
-            );
-        }
-        const nsfw = entry.json_metadata && entry.json_metadata.tags && Array.isArray(entry.json_metadata.tags) && entry.json_metadata.tags.includes("nsfw");
+        const nsfw =
+          entry.json_metadata &&
+          entry.json_metadata.tags &&
+          Array.isArray(entry.json_metadata.tags) &&
+          entry.json_metadata.tags.includes("nsfw");
 
-        const cls = `entry-list-item ${promoted ? "promoted-item" : ""} ${global.filter}`;
+        const cls = `entry-list-item ${promoted ? "promoted-item" : ""} ${
+          global.filter
+        }`;
 
         return mounted ? (
-            <div className={_c(cls)} id={(entry.author + entry.permlink).replace(/[0-9]/g, '')}>
+          <div
+            className={_c(cls)}
+            id={(entry.author + entry.permlink).replace(/[0-9]/g, "")}
+          >
+            {(() => {
+              if (crossPost) {
+                return (
+                  <div className="cross-item">
+                    {ProfileLink({
+                      ...this.props,
+                      username: theEntry.author,
+                      children: (
+                        <a className="cross-item-author notranslate">{`@${theEntry.author}`}</a>
+                      ),
+                    })}{" "}
+                    {_t("entry-list-item.cross-posted")}{" "}
+                    {EntryLink({
+                      ...this.props,
+                      entry: theEntry.original_entry!,
+                      children: (
+                        <a className="cross-item-link">
+                          {truncate(
+                            `@${theEntry.original_entry!.author}/${
+                              theEntry.original_entry!.permlink
+                            }`,
+                            40
+                          )}
+                        </a>
+                      ),
+                    })}{" "}
+                    {_t("entry-list-item.cross-posted-to")}{" "}
+                    {Tag({
+                      ...this.props,
+                      tag:
+                        theEntry.community && theEntry.community_title
+                          ? {
+                              name: theEntry.community,
+                              title: theEntry.community_title,
+                            }
+                          : theEntry.category,
+                      type: "link",
+                      children: (
+                        <a className="community-name">
+                          {theEntry.community_title || theEntry.category}
+                        </a>
+                      ),
+                    })}
+                  </div>
+                );
+              }
 
-                {(() => {
-                    if (crossPost) {
+              return null;
+            })()}
 
-                        return <div className="cross-item">
-                            {ProfileLink({
-                                ...this.props,
-                                username: theEntry.author,
-                                children: <a className="cross-item-author notranslate">{`@${theEntry.author}`}</a>
-                            })}
-                            {" "}
-                            {_t("entry-list-item.cross-posted")}
-                            {" "}
-                            {EntryLink({
-                                ...this.props,
-                                entry: theEntry.original_entry!,
-                                children: <a className="cross-item-link">
-                                    {truncate(`@${theEntry.original_entry!.author}/${theEntry.original_entry!.permlink}`, 40)}
-                                </a>
-                            })}
-                            {" "}
-                            {_t("entry-list-item.cross-posted-to")}
-                            {" "}
-                            {Tag({
-                                ...this.props,
-                                tag: theEntry.community && theEntry.community_title ? {name: theEntry.community, title: theEntry.community_title} : theEntry.category,
-                                type: "link",
-                                children: <a className="community-name">{theEntry.community_title || theEntry.category}</a>
-                            })}
-                        </div>
-                    }
-
-                    return null;
-                })()}
-
-                <div className="item-header">
-                    <div className="item-header-main">
-                        <div className="author-part" id={`${entry.author}-${entry.permlink}`}>
-                            <div
-                                className="d-flex align-items-center"
-                                id={`${entry.author}-${entry.permlink}`}
-                            >
-                                {ProfileLink({
-                                    ...this.props,
-                                    username: entry.author,
-                                    children: <a className="author-avatar d-sm-block">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
-                                })}
-
-                                <ProfilePopover {...this.props} />
-                            </div>
-                             
-                            
-                        </div>
-                        {Tag({
+            <div className="item-header">
+              <div className="item-header-main">
+                <div
+                  className="author-part"
+                  id={`${entry.author}-${entry.permlink}`}
+                >
+                  <div
+                    className="d-flex align-items-center"
+                    id={`${entry.author}-${entry.permlink}`}
+                  >
+                    {ProfileLink({
+                      ...this.props,
+                      username: entry.author,
+                      children: (
+                        <a className="author-avatar d-sm-block">
+                          {UserAvatar({
                             ...this.props,
-                            tag: entry.community && entry.community_title ? {name: entry.community, title: entry.community_title} : entry.category,
-                            type: "link",
-                            children: <a className="category">{entry.community_title || entry.category}</a>
-                        })}
-                        {!isVisited && <span className="read-mark"/>}
-                        <span className="date" title={dateFormatted}>{dateRelative}</span>
-                    </div>
-                    <div className="item-header-features">
-                        {isPinned && (
-                            <Tooltip content={_t("entry-list-item.pinned")}>
-                                <span className="pinned">{pinSvg}</span>
-                            </Tooltip>
-                        )}
-                        {reBlogged && (
-                            <span className="reblogged">{repeatSvg} {_t("entry-list-item.reblogged", {n: reBlogged})}</span>
-                        )}
-                        {promoted && (
-                            <>
-                                <span className="flex-spacer"/>
-                                <div className="promoted"><a href="/faq#how-promotion-work">{_t("entry-list-item.promoted")}</a></div>
-                            </>
-                        )}
-                    </div>
+                            username: entry.author,
+                            size: "small",
+                          })}
+                        </a>
+                      ),
+                    })}
+
+                    <ProfilePopover {...this.props} />
+                  </div>
                 </div>
-                <div className="item-body">
-                    {(() => {
-                        if (nsfw && !this.state.showNsfw && !global.nsfw) {
-                            return (
-                              <>
-                                <div className="item-image item-image-nsfw">
-                                  <img src={nsfwImage} alt={title} />
-                                </div>
-                                <div className="item-summary">
-                                  <div className="item-nsfw">
-                                    <span className="nsfw-badge">NSFW</span>
-                                  </div>
-                                  <div className="item-nsfw-options">
-                                    <a
-                                      href="#"
-                                      onClick={(e) => {
-                                        e.preventDefault();
-                                        this.toggleNsfw();
-                                      }}
-                                    >
-                                      {_t("nsfw.reveal")}
-                                    </a>{" "}
-                                    {_t("g.or").toLowerCase()}{" "}
-                                    {activeUser && (
-                                      <>
-                                        {_t("nsfw.settings-1")}{" "}
-                                        <a
-                                          href="#"
-                                          onClick={(e) => {
-                                            e.preventDefault();
-                                            history.push(
-                                              `/@${activeUser.username}/settings`
-                                            );
-                                          }}
-                                        >
-                                          {_t("nsfw.settings-2")}
-                                        </a>
-                                        {"."}
-                                      </>
-                                    )}
-                                    {!activeUser && (
-                                      <>
-                                        <Tsx k="nsfw.signup">
-                                          <span />
-                                        </Tsx>
-                                        {"."}
-                                      </>
-                                    )}
-                                  </div>
-                                </div>
-                              </>
-                            );
-                        }
-                        if (this.state.showMuted) {
-                            return <>
-                                <div className="item-image item-image-nsfw">
-                                    <img src={nsfwImage} alt={title}/>
-                                </div>
-                                <div className="item-summary">
-                                    <div className="item-nsfw"><span className="nsfw-badge text-capitalize d-inline-flex align-items-center"><div className="mute-icon">{volumeOffSvg}</div> <div>{_t("g.muted")}</div></span></div>
-                                    <div className="item-nsfw-options">
-                                        <a href="#" onClick={(e) => {
-                                            e.preventDefault();
-                                            this.setState({ showMuted: false })
-                                        }}>{_t("g.muted-message")}</a>
-
-                                    </div>
-                                </div>
-                            </>
-                        }
-                        if (this.state.showModMuted) {
-                            return <>
-                                <div className="item-image item-image-nsfw">
-                                    <img src={nsfwImage} alt={title}/>
-                                </div>
-                                <div className="item-summary">
-                                    <div className="item-nsfw"><span className="nsfw-badge text-capitalize d-inline-flex align-items-center"><div className="mute-icon">{volumeOffSvg}</div> <div>{_t("g.muted")}</div></span></div>
-                                    <div className="item-nsfw-options">
-                                        <a href="#" onClick={(e) => {
-                                            e.preventDefault();
-                                            this.setState({ showModMuted: false })
-                                        }}>{_t("g.modmuted-message")}</a>
-
-                                    </div>
-                                </div>
-                            </>
-                        }
-
-                        return <>
-                            <div className={"item-image " + svgSizeRow}>
-                                {EntryLink({
-                                    ...this.props,
-                                    entry: (crossPost ? theEntry : entry),
-                                    children: <div>
-                                        {thumb}
-                                    </div>
-                                })}
-                            </div>
-                            <div className="item-summary">
-                                {EntryLink({
-                                    ...this.props,
-                                    entry: (crossPost ? theEntry : entry),
-                                    children: <div className="item-title">{title}</div>
-                                })}
-                                {EntryLink({
-                                    ...this.props,
-                                    entry: (crossPost ? theEntry : entry),
-                                    children: <div className="item-body">{summary}</div>
-                                })}
-                            </div>
-                        </>
-                    })()}
-                    <div className="item-controls">
-                        {EntryVoteBtn({
-                            ...this.props,
-                            afterVote: this.afterVote
-                        })}
-                        {EntryPayout({
-                            ...this.props,
-                            entry
-                        })}
-                        {EntryVotes({
-                            ...this.props,
-                            entry
-                        })}
-                        {EntryLink({
-                            ...this.props,
-                            entry: (crossPost ? theEntry : entry),
-                            children: <a className="replies notranslate">
-                                <Tooltip
-                                    content={
-                                        entry.children > 0
-                                            ? entry.children === 1
-                                            ? _t("entry-list-item.replies")
-                                            : _t("entry-list-item.replies-n", {n: entry.children})
-                                            : _t("entry-list-item.no-replies")
-                                    }>
-                                <span className="inner">
-                                  {commentSvg} {entry.children}
-                                </span>
-                                </Tooltip>
-                            </a>
-                        })}
-                        {EntryReblogBtn({
-                            ...this.props
-                        })}
-                        {EntryMenu({
-                            ...this.props,
-                            alignBottom: order >= 1,
-                            entry,
-                        })}
+                {Tag({
+                  ...this.props,
+                  tag:
+                    entry.community && entry.community_title
+                      ? { name: entry.community, title: entry.community_title }
+                      : entry.category,
+                  type: "link",
+                  children: (
+                    <a className="category">
+                      {entry.community_title || entry.category}
+                    </a>
+                  ),
+                })}
+                {!isVisited && <span className="read-mark" />}
+                <span className="date" title={dateFormatted}>
+                  {dateRelative}
+                </span>
+              </div>
+              <div className="item-header-features">
+                {isPinned && (
+                  <Tooltip content={_t("entry-list-item.pinned")}>
+                    <span className="pinned">{pinSvg}</span>
+                  </Tooltip>
+                )}
+                {reBlogged && (
+                  <span className="reblogged">
+                    {repeatSvg}{" "}
+                    {_t("entry-list-item.reblogged", { n: reBlogged })}
+                  </span>
+                )}
+                {promoted && (
+                  <>
+                    <span className="flex-spacer" />
+                    <div className="promoted">
+                      <a href="/faq#how-promotion-work">
+                        {_t("entry-list-item.promoted")}
+                      </a>
                     </div>
-                </div>
+                  </>
+                )}
+              </div>
             </div>
+            <div className="item-body">
+              {(() => {
+                if (nsfw && !this.state.showNsfw && !global.nsfw) {
+                  return (
+                    <>
+                      <div className="item-image item-image-nsfw">
+                        <img src={nsfwImage} alt={title} />
+                      </div>
+                      <div className="item-summary">
+                        <div className="item-nsfw">
+                          <span className="nsfw-badge">NSFW</span>
+                        </div>
+                        <div className="item-nsfw-options">
+                          <a
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              this.toggleNsfw();
+                            }}
+                          >
+                            {_t("nsfw.reveal")}
+                          </a>{" "}
+                          {_t("g.or").toLowerCase()}{" "}
+                          {activeUser && (
+                            <>
+                              {_t("nsfw.settings-1")}{" "}
+                              <a
+                                href="#"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  history.push(
+                                    `/@${activeUser.username}/settings`
+                                  );
+                                }}
+                              >
+                                {_t("nsfw.settings-2")}
+                              </a>
+                              {"."}
+                            </>
+                          )}
+                          {!activeUser && (
+                            <>
+                              <Tsx k="nsfw.signup">
+                                <span />
+                              </Tsx>
+                              {"."}
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </>
+                  );
+                }
+                if (this.state.showMuted) {
+                  return (
+                    <>
+                      <div className="item-image item-image-nsfw">
+                        <img src={nsfwImage} alt={title} />
+                      </div>
+                      <div className="item-summary">
+                        <div className="item-nsfw">
+                          <span className="nsfw-badge text-capitalize d-inline-flex align-items-center">
+                            <div className="mute-icon">{volumeOffSvg}</div>{" "}
+                            <div>{_t("g.muted")}</div>
+                          </span>
+                        </div>
+                        <div className="item-nsfw-options">
+                          <a
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              this.setState({ showMuted: false });
+                            }}
+                          >
+                            {_t("g.muted-message")}
+                          </a>
+                        </div>
+                      </div>
+                    </>
+                  );
+                }
+                if (this.state.showModMuted) {
+                  return (
+                    <>
+                      <div className="item-image item-image-nsfw">
+                        <img src={nsfwImage} alt={title} />
+                      </div>
+                      <div className="item-summary">
+                        <div className="item-nsfw">
+                          <span className="nsfw-badge text-capitalize d-inline-flex align-items-center">
+                            <div className="mute-icon">{volumeOffSvg}</div>{" "}
+                            <div>{_t("g.muted")}</div>
+                          </span>
+                        </div>
+                        <div className="item-nsfw-options">
+                          <a
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              this.setState({ showModMuted: false });
+                            }}
+                          >
+                            {_t("g.modmuted-message")}
+                          </a>
+                        </div>
+                      </div>
+                    </>
+                  );
+                }
+
+                return (
+                  <>
+                    <div className={"item-image " + svgSizeRow}>
+                      {EntryLink({
+                        ...this.props,
+                        entry: crossPost ? theEntry : entry,
+                        children: <div>{thumb}</div>,
+                      })}
+                    </div>
+                    <div className="item-summary">
+                      {EntryLink({
+                        ...this.props,
+                        entry: crossPost ? theEntry : entry,
+                        children: <div className="item-title">{title}</div>,
+                      })}
+                      {EntryLink({
+                        ...this.props,
+                        entry: crossPost ? theEntry : entry,
+                        children: <div className="item-body">{summary}</div>,
+                      })}
+                    </div>
+                  </>
+                );
+              })()}
+              <div className="item-controls">
+                {EntryVoteBtn({
+                  ...this.props,
+                  afterVote: this.afterVote,
+                })}
+                {EntryPayout({
+                  ...this.props,
+                  entry,
+                })}
+                {EntryVotes({
+                  ...this.props,
+                  entry,
+                })}
+                {EntryLink({
+                  ...this.props,
+                  entry: crossPost ? theEntry : entry,
+                  children: (
+                    <a className="replies notranslate">
+                      <Tooltip
+                        content={
+                          entry.children > 0
+                            ? entry.children === 1
+                              ? _t("entry-list-item.replies")
+                              : _t("entry-list-item.replies-n", {
+                                  n: entry.children,
+                                })
+                            : _t("entry-list-item.no-replies")
+                        }
+                      >
+                        <span className="inner">
+                          {commentSvg} {entry.children}
+                        </span>
+                      </Tooltip>
+                    </a>
+                  ),
+                })}
+                {EntryReblogBtn({
+                  ...this.props,
+                })}
+                {EntryMenu({
+                  ...this.props,
+                  alignBottom: order >= 1,
+                  entry,
+                })}
+              </div>
+            </div>
+          </div>
         ) : null;
     }
 }
