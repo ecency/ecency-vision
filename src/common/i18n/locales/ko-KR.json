@@ -923,7 +923,8 @@
     "scheduled": "게시물 일정 설정 완료",
     "empty-title-alert": "글 제목 입력하세요",
     "empty-tags-alert": "글 태그 입력하세요",
-    "empty-body-alert": "글 내용 입력하세요"
+    "empty-body-alert": "글 내용 입력하세요",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "태그. 첫 번째 태그는 메인 카테고리입니다. 정렬 가능.",
