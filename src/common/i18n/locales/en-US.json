@@ -906,7 +906,7 @@
     "empty-title-alert": "Enter post title",
     "empty-tags-alert": "Enter post tags",
     "empty-body-alert": "Enter post body",
-    "description": "Description"
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
