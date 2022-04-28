@@ -923,7 +923,8 @@
     "scheduled": "पोस्ट अनुसूचित करें",
     "empty-title-alert": "पोस्ट का शीर्षक दर्ज करें",
     "empty-tags-alert": "पोस्ट टैग दर्ज करें",
-    "empty-body-alert": "पोस्ट बॉडी दर्ज करें"
+    "empty-body-alert": "पोस्ट बॉडी दर्ज करें",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "टैग। पहला टैग मुख्य श्रेणी है। क्रमित करने योग्य।",
