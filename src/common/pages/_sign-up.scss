@@ -1,12 +1,18 @@
 .sign-up-page {
   display: flex;
 
+  @media (min-width: $md-break) {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .success-info {
       width: 50%;
       background-color: $white-three;
       padding: 2rem;
       border-radius: 1rem;
       color: $steel-grey;
+      word-break: break-all;
 
       ul {
         padding-left: 0.125rem;
