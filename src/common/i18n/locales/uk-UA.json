@@ -923,7 +923,8 @@
     "scheduled": "Допис заплановано",
     "empty-title-alert": "Enter post title",
     "empty-tags-alert": "Enter post tags",
-    "empty-body-alert": "Enter post body"
+    "empty-body-alert": "Enter post body",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Теги. Першим тегом є основна категорія, а наступні є для сортування.",
