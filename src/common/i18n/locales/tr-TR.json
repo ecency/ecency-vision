@@ -923,7 +923,8 @@
     "scheduled": "Gönderi zamanlandı",
     "empty-title-alert": "Gönderi başlığı gir",
     "empty-tags-alert": "Gönderi etiketlerini gir",
-    "empty-body-alert": "Gönderi metnini gir"
+    "empty-body-alert": "Gönderi metnini gir",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Etiketler. İlk etiket ana kategoridir. Sıralanabilir.",
