@@ -21,6 +21,7 @@ export interface EntryStat {
 
 export interface JsonMetadata {
     tags?: string[];
+    description?: string | null;
     app?: any;
     canonical_url?: string;
     format?: string;

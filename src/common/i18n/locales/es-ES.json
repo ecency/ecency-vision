@@ -314,7 +314,19 @@
     "settings": "Configuraciones",
     "refresh-time": "Tiempo de actualización",
     "hours": "horas",
-    "save": "Guardar"
+    "save": "Guardar",
+    "update-interval": "Actualizar intervalo",
+    "update-interval-min": "En minutos",
+    "update-n-seconds": "Cada {{sec}} seg",
+    "update-n-minutes": "Cada {{min}} minutos",
+    "update-n-hours": "Cada {{hour}} h",
+    "update-custom": "Intervalo personalizado...",
+    "update-interval-value-error": "El intervalo debe estar entre 30 segundos y 24 horas",
+    "update-interval-placeholder": "Selecciona un intervalo",
+    "update-custom-interval-in-minutes-placeholder": "Introducir intervalo en minutos",
+    "filters": "Filtros",
+    "history": "Historial",
+    "type": "Tipo"
   },
   "market-data": {
     "title": "Precio de mercado",

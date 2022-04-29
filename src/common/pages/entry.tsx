@@ -435,7 +435,8 @@ class EntryPage extends BaseComponent<Props, State> {
                 parentPermlink,
                 title: '',
                 body: text,
-                tags
+                tags,
+                description: null
             });
 
             // add new reply to store

@@ -95,7 +95,7 @@ class EntryIndexPage extends Component<Props, State> {
     render() {
         const { entryList, promoted } = this.state;
         const { global } = this.props;
-        let containerClasses = global.isElectron ? "app-content entry-index-page mt-0 pt-6" : `app-content overflow-hidden entry-index-page ${global.listStyle === ListStyle.deck ? "p-0 m-0" : ""}`;
+        let containerClasses = global.isElectron ? "app-content entry-index-page mt-0 pt-6" : `app-content overflow-hidden entry-index-page ${global.listStyle === ListStyle.deck ? "p-0 m-0 mw-100" : ""}`;
         return (
             <>
                 {

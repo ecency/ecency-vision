@@ -30,6 +30,7 @@ export interface MetaData {
     app?: string;
     format?: string;
     community?: string;
+    description?: string;
 }
 
 export interface BeneficiaryRoute {

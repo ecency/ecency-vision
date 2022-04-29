@@ -196,7 +196,8 @@ export const Item = (props: ItemProps) => {
                 parentPermlink,
                 title: '',
                 body: text,
-                tags: []
+                tags: [],
+                description: null
             });
 
             // add new reply to store
