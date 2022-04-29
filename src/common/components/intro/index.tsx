@@ -23,7 +23,7 @@ const Intro = (props: Props) => {
         return null;
     }
 
-    return <div className="intro">
+    return <div className="intro-text">
         <div className="hide-intro" onClick={hideIntro}>{closeSvg}</div>
         <div className="text-content">
             <h1 className="intro-header">{_t("intro.title")}</h1>

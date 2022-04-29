@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { Manager, Reference, Popper } from 'react-popper';
-import { ProfilePreview }from '../profile-preview';
+import { ProfilePreview } from '../profile-preview';
 import { menuDownSvg } from "../../img/svg";
 
 export const ProfilePopover = (props: any) => {
   const { global, entry } = props;
   const [showProfile, setShowProfile] = useState(false)
   const [delayHandler, setDelayHandler] = useState<any>(null)
+  const author = entry.original_entry ? entry.original_entry.author : entry.author
 
   const handleShowProfile = (e: any) => {
     e.persist();
@@ -35,37 +36,39 @@ export const ProfilePopover = (props: any) => {
 
   return (
     <>
-      <div className="author btn notranslate d-flex d-sm-none align-items-center" onClick={handleShowProfile} id={`${entry.author}-${entry.permlink}`}>
-        <span className='author-name'>{entry.author}</span>
+      <div className="author btn notranslate d-flex d-sm-none align-items-center" onClick={handleShowProfile} id={`${author}-${entry.permlink}`}>
+        <span className='author-name'>{author}</span>
       </div>
 
       <span
         className="author-down-arrow mx-1"
         role="button"
         onClick={handleShowProfile}
-        id={`${entry.author}-${entry.permlink}`}
+        id={`${author}-${entry.permlink}`}
       >
         {menuDownSvg}
       </span>
 
       <Manager>
-        <Reference>
-          {({ ref }) => (<div ref={ref} className="author btn notranslate d-none d-sm-flex align-items-center position-relative" onMouseEnter={handleShowProfile}>
-            <span className="author-name">{entry.author}</span>
-          </div>)}
-        </Reference>
-        {showProfile && entry.author &&
-          <Popper placement="bottom-start" modifiers={[{ name: 'offset', options: { offset: () => [0, window.matchMedia('(max-width: 576px)').matches ? 0 : -30] } }]}>
-            {({ ref, style, placement, arrowProps }) => (<div ref={ref} style={{ ...style }} className="popper-container" data-placement={placement}
-              onMouseLeave={handleHideProfile}>
-              <ProfilePreview
-                username={entry.author}
-                {...props}
-                onClose={(e, doNotSetState) => handleHideProfile(e, doNotSetState)}
-              />
+        <div onMouseLeave={handleHideProfile}>
+          <Reference>
+            {({ ref }) => (<div ref={ref} className="author btn notranslate d-none d-sm-flex align-items-center position-relative" onMouseEnter={handleShowProfile}>
+              <span className="author-name">{author}</span>
             </div>)}
-          </Popper>
-        }
+          </Reference>
+          {showProfile && author &&
+            <Popper placement="bottom-start" modifiers={[{ name: 'offset', options: { offset: () => [0, window.matchMedia('(max-width: 576px)').matches ? 0 : -30] } }]}>
+              {({ ref, style, placement, arrowProps }) => (<div ref={ref} style={{ ...style }} className="popper-container" data-placement={placement}
+                onMouseLeave={handleHideProfile}>
+                <ProfilePreview
+                  username={author}
+                  {...props}
+                  onClose={(e, doNotSetState) => handleHideProfile(e, doNotSetState)}
+                />
+              </div>)}
+            </Popper>
+          }
+        </div>
       </Manager>
     </>
   )

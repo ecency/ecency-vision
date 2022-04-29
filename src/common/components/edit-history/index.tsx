@@ -1,7 +1,5 @@
 import React, {Component} from "react";
 
-import moment from "moment";
-
 import {diff_match_patch} from "diff-match-patch";
 
 import {Modal, Form, FormControl} from "react-bootstrap";
@@ -26,6 +24,7 @@ import _c from "../../util/fix-class-names";
 import {commentHistory, CommentHistoryListItem} from "../../api/private-api";
 
 import {historySvg, tagSvg} from "../../img/svg";
+import { dateToFormatted } from '../../helper/parse-date';
 
 const dmp = new diff_match_patch();
 
@@ -168,7 +167,6 @@ export class EditHistory extends BaseComponent<Props, State> {
                     </label>
                 </div>
                 {history.map(i => {
-                    const date = moment(i.timestamp);
                     return <div
                         key={i.v}
                         className={_c(`version-list-item ${selected === i.v ? 'selected' : ''}`)}
@@ -177,7 +175,7 @@ export class EditHistory extends BaseComponent<Props, State> {
                         }}>
                         <div className="item-icon">{historySvg}</div>
                         <div className="item-title">{_t("edit-history.version", {n: i.v})}</div>
-                        <div className="item-date">{date.format("LLL")}</div>
+                        <div className="item-date">{dateToFormatted(i.timestamp, 'LLL')}</div>
                     </div>
                 })}
             </div>

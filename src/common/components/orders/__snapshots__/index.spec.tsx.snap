@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Orders render default 1`] = `
+<div
+  className="rounded"
+>
+  <h5>
+    Buy Orders
+  </h5>
+  <table
+    className="table table-sm table-striped table-bordered table-hover"
+  >
+    <thead>
+      <tr>
+        <th>
+          Price
+        </th>
+        <th>
+          HIVE
+        </th>
+        <th>
+          Total HBD ($)
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        className="pointer"
+        onClick={[Function]}
+      >
+        <td>
+          NaN
+        </td>
+        <td
+          className=""
+        >
+          string
+        </td>
+        <td>
+          0.123
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

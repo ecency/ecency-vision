@@ -9,7 +9,7 @@ import {ListStyle} from "../store/global/types";
 
 import {makeGroupKey} from "../store/entries";
 import {ProfileFilter} from "../store/global/types";
-
+import {Entry} from "../store/entries/types";
 import BaseComponent from "../components/base";
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -33,7 +33,7 @@ import ScrollToTop from "../components/scroll-to-top";
 import SearchListItem from "../components/search-list-item";
 import {SearchType} from "../helper/search-query";
 import SearchBox from '../components/search-box'
-
+import * as bridgeApi from "../api/bridge";
 import {search as searchApi, SearchResult} from "../api/search-api";
 import ViewKeys from "../components/view-keys";
 import { PasswordUpdate } from "../components/password-update";
@@ -46,6 +46,9 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import { FormControl } from 'react-bootstrap'
 import { connect } from "react-redux";
+import { FullAccount } from "../store/accounts/types";
+import tag from "../components/tag";
+import { withPersistentScroll } from "../components/with-persistent-scroll";
 
 interface MatchParams {
     username: string;
@@ -67,6 +70,7 @@ interface State {
     type: SearchType;
     searchData: SearchResult[];
     searchDataLoading: boolean;
+    pinnedEntry: Entry | null;
 }
 
 class ProfilePage extends BaseComponent<Props, State> {
@@ -86,13 +90,14 @@ class ProfilePage extends BaseComponent<Props, State> {
             search: searchParam,
             author: "",
             type: SearchType.ALL,
+            pinnedEntry: null,
             searchData: []
         };
 
     }
 
     async componentDidMount() {
-        const {match, global, fetchEntries, fetchTransactions, fetchPoints, location} = this.props;
+        const {accounts, match, global, fetchEntries, fetchTransactions, fetchPoints, location} = this.props;
 
         let searchParam = location.search.replace("?","")
         searchParam = searchParam.replace("q","")
@@ -114,11 +119,22 @@ class ProfilePage extends BaseComponent<Props, State> {
 
         // fetch points
         fetchPoints(username);
+        
+        const accountUsername = username.replace("@", "");
+        const account = accounts.find((x) => x.name === accountUsername) as FullAccount        
+
+        if (account && account.profile && account.profile?.pinned && ['blog', 'posts'].includes(global.filter)) {
+            bridgeApi.getPost(accountUsername, account.profile?.pinned).then(entry => {
+                this.setState({pinnedEntry: entry})
+            }).catch(e=>{
+                console.log(e);
+                })
+        }
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints, history, location : {search} } = this.props;
-        const {match: prevMatch, entries, location: {search: prevSearch}} = prevProps;
+        const {accounts, match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints, history, location : {search} } = this.props;
+        const {accounts: prevAccounts, match: prevMatch, entries, location: {search: prevSearch}, global: prevGlobal} = prevProps;
 
         const {username, section} = match.params;
         const { isDefaultPost } = this.state;
@@ -172,6 +188,26 @@ class ProfilePage extends BaseComponent<Props, State> {
 
         if(prevProps.global.filter !== this.props.global.filter) {
           this.setState({search: ''});
+        }
+
+        if(['comments', 'replies'].includes(global.filter) && (global.filter !== prevGlobal.filter)) {
+            this.setState({pinnedEntry: null})
+        }
+
+        let accountUsername = username.replace("@", "");
+        const account = accounts.find((x) => x.name === accountUsername) as FullAccount
+        const prevAccount = prevAccounts.find((x) => x.name === accountUsername) as FullAccount
+
+        if (['blog', 'posts'].includes(global.filter)) {
+            if ((account && prevAccount && account.profile && prevAccount.profile && (account.profile.pinned !== prevAccount.profile.pinned)) || (account && account.profile && account.profile.pinned && global.filter !== prevGlobal.filter) || (account !== prevAccount && account.profile && account.profile.pinned)) {
+                this.setState({pinnedEntry: null})
+                            
+                bridgeApi.getPost(accountUsername, account.profile.pinned).then(entry => {
+                    this.setState({pinnedEntry: entry})
+                }).catch(e=>{
+                    console.log(e);
+                    })
+            }
         }
     }
 
@@ -465,14 +501,19 @@ class ProfilePage extends BaseComponent<Props, State> {
                                 }
 
                                 if (data !== undefined) {
-                                    const entryList = data?.entries;
+                                    let entryList = data?.entries;
+                                    const {profile} = account as FullAccount
+                                    entryList = entryList.filter(item => item.permlink !== profile?.pinned)
+                                    if(this.state.pinnedEntry) {
+                                        entryList.unshift(this.state.pinnedEntry)
+                                    }
                                     const loading = data?.loading;
                                     return (
                                         <>
                                             <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                                                 <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                                                     {loading && entryList.length === 0 && <EntryListLoadingItem/>}
-                                                    {EntryListContent({...this.props, entries: entryList, promotedEntries: [], loading})}
+                                                    {EntryListContent({...this.props, entries: entryList, promotedEntries: [], loading, account})}
                                                 </div>
                                             </div>
                                             {loading && entryList.length > 0 ? <LinearProgress/> : ""}
@@ -495,4 +536,4 @@ class ProfilePage extends BaseComponent<Props, State> {
 }
 
 
-export default connect(pageMapStateToProps, pageMapDispatchToProps)(ProfilePage);
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(withPersistentScroll(ProfilePage));

@@ -3,6 +3,7 @@ import {LocationChangeAction} from "../common";
 export enum ListStyle {
     row = "row",
     grid = "grid",
+    deck = "deck"
 }
 
 export enum Theme {
@@ -16,7 +17,9 @@ export enum EntryFilter {
     created = "created",
     payout = "payout",
     payout_comments = "payout_comments",
-    muted = "muted"
+    muted = "muted",
+    controversial = "controversial",
+    rising = 'rising'
 }
 
 export enum ProfileFilter {
@@ -39,7 +42,9 @@ export enum AllFilter {
     comments = "comments",
     replies = "replies",
     communities = "communities",
-    feed = "feed"
+    feed = "feed",
+    controversial = "controversial",
+    rising = 'rising'
 }
 
 export interface Global {

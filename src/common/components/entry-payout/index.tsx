@@ -1,7 +1,5 @@
 import React, {Component, Fragment} from "react";
 
-import moment from "moment";
-
 import {Popover, OverlayTrigger} from "react-bootstrap";
 
 import {Entry} from "../../store/entries/types";
@@ -11,7 +9,7 @@ import {DynamicProps} from "../../store/dynamic-props/types";
 import FormattedCurrency from "../formatted-currency/index";
 
 import parseAsset from "../../helper/parse-asset";
-import parseDate from "../../helper/parse-date";
+import { dateToFullRelative } from "../../helper/parse-date";
 
 import formattedNumber from "../../util/formatted-number";
 
@@ -32,7 +30,7 @@ export class EntryPayoutDetail extends Component<Props> {
 
         const {base, quote, hbdPrintRate} = dynamicProps;
 
-        const payoutDate = moment(parseDate(entry.payout_at));
+        const payoutDate = dateToFullRelative(entry.payout_at);
 
         const beneficiary = entry.beneficiaries;
         const pendingPayout = parseAsset(entry.pending_payout_value).amount;
@@ -114,7 +112,7 @@ export class EntryPayoutDetail extends Component<Props> {
                 )}
                 <p>
                     <span className="label">{_t("entry-payout.payout-date")}</span>
-                    <span className="value">{payoutDate.fromNow()}</span>
+                    <span className="value">{payoutDate}</span>
                 </p>
                 {payoutLimitHit && (
                     <p>
@@ -130,18 +128,41 @@ export class EntryPayoutDetail extends Component<Props> {
 export class EntryPayout extends Component<Props> {
     render() {
         const {entry} = this.props;
+        const check = entry.max_accepted_payout;
+        const searchPayout = entry.id || 0; //id exist in search results, post_id in rpc results
 
-        const isPayoutDeclined = parseAsset(entry.max_accepted_payout).amount === 0;
+        // const isPayoutDeclined = parseAsset(entry.max_accepted_payout).amount === 0;
 
-        const pendingPayout = parseAsset(entry.pending_payout_value).amount;
-        const authorPayout = parseAsset(entry.author_payout_value).amount;
-        const curatorPayout = parseAsset(entry.curator_payout_value).amount;
-        const maxPayout = parseAsset(entry.max_accepted_payout).amount;
+        // const pendingPayout = parseAsset(entry.pending_payout_value).amount;
+        // const authorPayout = parseAsset(entry.author_payout_value).amount;
+        // const curatorPayout = parseAsset(entry.curator_payout_value).amount;
+        // const maxPayout = parseAsset(entry.max_accepted_payout).amount;
 
-        const totalPayout = pendingPayout + authorPayout + curatorPayout;
 
-        const payoutLimitHit = totalPayout >= maxPayout;
-        const shownPayout = payoutLimitHit && maxPayout > 0 ? maxPayout : totalPayout;
+        // const totalPayout = pendingPayout + authorPayout + curatorPayout;
+
+        // const payoutLimitHit = totalPayout >= maxPayout;
+        // const shownPayout = payoutLimitHit && maxPayout > 0 ? maxPayout : 
+
+
+        let isPayoutDeclined,pendingPayout,authorPayout,curatorPayout,maxPayout,totalPayout,payoutLimitHit,shownPayout
+
+
+        if(check) {
+            isPayoutDeclined = parseAsset(entry.max_accepted_payout).amount === 0;
+
+            pendingPayout = parseAsset(entry.pending_payout_value).amount;
+            authorPayout = parseAsset(entry.author_payout_value).amount;
+            curatorPayout = parseAsset(entry.curator_payout_value).amount;
+            maxPayout = parseAsset(entry.max_accepted_payout).amount;
+            totalPayout = pendingPayout + authorPayout + curatorPayout;
+            payoutLimitHit = totalPayout >= maxPayout;
+            shownPayout = payoutLimitHit && maxPayout > 0 ? maxPayout : totalPayout;
+        }
+
+        if(searchPayout > 0) {
+            shownPayout = entry.payout;
+        }
 
         const popover = (
             <Popover id={`payout-popover`} className="payout-popover">
@@ -151,12 +172,16 @@ export class EntryPayout extends Component<Props> {
             </Popover>
         );
 
-        return (
+        return (searchPayout <= 0) ? (
             <OverlayTrigger trigger={["hover", "focus"]} overlay={popover} delay={1000}>
                 <div className={_c(`entry-payout ${isPayoutDeclined ? "payout-declined" : ""} ${payoutLimitHit ? "payout-limit-hit": ""} notranslate`)}>
                     <FormattedCurrency {...this.props} value={shownPayout}/>
                 </div>
             </OverlayTrigger>
+        ) : (
+            <div className={_c(`entry-payout ${isPayoutDeclined ? "payout-declined" : ""} ${payoutLimitHit ? "payout-limit-hit": ""} notranslate`)}>
+                <FormattedCurrency {...this.props} value={shownPayout}/>
+            </div>
         );
     }
 }

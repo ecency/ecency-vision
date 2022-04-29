@@ -3,7 +3,7 @@ import {History, Location} from "history";
 import _ from 'lodash'
 
 import {Global, ProfileFilter} from "../../store/global/types";
-import {Account} from "../../store/accounts/types";
+import {Account, FullAccount} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Entry} from "../../store/entries/types";
 import {Community, Communities} from "../../store/communities/types";
@@ -19,6 +19,8 @@ import { _t } from "../../i18n";
 import LinearProgress from "../linear-progress";
 import { getFollowing } from "../../api/hive";
 import isCommunity from '../../helper/is-community';
+import { match } from "react-router-dom";
+import { SearchResult } from '../../api/search-api';
 
 
 interface Props {
@@ -37,8 +39,10 @@ interface Props {
     ui: UI;
     entryPinTracker: EntryPinTracker;
     signingKey: string;
+    account?: Account;
+    match?: match<any>;
     addAccount: (data: Account) => void;
-    updateEntry: (entry: Entry) => void;
+    updateEntry: (entry: any) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
@@ -201,7 +205,9 @@ export default (p: Props) => {
         trackEntryPin: p.trackEntryPin,
         setSigningKey: p.setSigningKey,
         setEntryPin: p.setEntryPin,
-        loading: p.loading
+        loading: p.loading,
+        account: p.account,
+        match: p.match
     }
 
     return <EntryListContent {...props} />;

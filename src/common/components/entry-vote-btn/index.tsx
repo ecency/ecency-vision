@@ -20,7 +20,7 @@ import { vote, formatError } from "../../api/operations";
 
 import parseAsset from "../../helper/parse-asset";
 
-import * as ls from "../../util/local-storage";
+import * as ss from "../../util/session-storage";
 
 import _c from "../../util/fix-class-names";
 
@@ -29,7 +29,7 @@ import ClickAwayListener from "../clickaway-listener";
 import { _t } from "../../i18n";
 
 const setVoteValue = (type: "up" | "down" | "downPrevious" | "upPrevious", username: string, value: number) => {
-  ls.set(`vote-value-${type}-${username}`, value);
+  ss.set(`vote-value-${type}-${username}`, value);
 };
 
 const getVoteValue = (
@@ -37,7 +37,7 @@ const getVoteValue = (
   username: string,
   def: number
 ): number => {
-  return ls.get(`vote-value-${type}-${username}`, def);
+  return ss.get(`vote-value-${type}-${username}`, def);
 };
 
 type Mode = "up" | "down";
@@ -79,6 +79,10 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       down: getVoteValue("down", this.props.activeUser?.username!+ '-' + this.props.entry.post_id,  getVoteValue("downPrevious", this.props.activeUser?.username!, -1)),
     },
   };
+
+  componentDidMount(): void {
+    this.cleanUpLS();
+  }
 
   estimate = (percent: number): number => {
     const { entry, activeUser, dynamicProps } = this.props;
@@ -166,6 +170,15 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   changeMode = (m: Mode) => {
     this.setState({ mode: m });
   };
+  //TODO: Delete this after 3.0.22 release
+  cleanUpLS = () => {
+    Object.entries(localStorage).map(
+      x => x[0]
+    ).filter(
+        x => x.includes("ecency_vote-value-")
+    ).map(
+        x => localStorage.removeItem(x));
+  }
 
   isVoted = () => {
     const { activeUser } = this.props;
@@ -176,11 +189,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
     const { active_votes: votes } = this.props.entry;
 
-    const upVoted = votes.some(
+    const upVoted = votes && votes.some(
       (v) => v.voter === activeUser.username && v.rshares > 0
     );
 
-    const downVoted = votes.some(
+    const downVoted = votes && votes.some(
       (v) => v.voter === activeUser.username && v.rshares < 0
     );
 
@@ -221,7 +234,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
   render() {
     const { upSliderVal, downSliderVal, mode, wrongValueUp, wrongValueDown, showWarning, showRemove } = this.state;
-    const { entry: { post_id } } = this.props;
+    const { entry: { post_id, id } } = this.props;
 
     return (
       <>
@@ -251,7 +264,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   max={100}
                   value={upSliderVal}
                   onChange={this.upSliderChanged}
-                  id={post_id.toString()}
+                  id={`${post_id||id}`}
                 />
               </div>
               <div className="percentage">{`${
@@ -311,7 +324,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   max={-1}
                   value={downSliderVal}
                   onChange={this.downSliderChanged}
-                  id={post_id.toString()}
+                  id={`${post_id||id}`}
                   className="reverse-range"
                 />
               </div>
@@ -383,11 +396,12 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     vote(username, entry.author, entry.permlink, weight)
       .then(() => {
         const votes: EntryVote[] = [
-          ...entry.active_votes.filter((x) => x.voter !== username),
+          ...(entry.active_votes ? entry.active_votes.filter((x) => x.voter !== username):[]),
           { rshares: weight, voter: username },
         ];
-
-        afterVote(votes, estimated);
+        //if (entry.active_votes) {
+          afterVote(votes, estimated);
+        //}
         updateActiveUser(); // refresh voting power
       })
       .catch((e) => {
@@ -407,11 +421,11 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
 
     const { active_votes: votes } = this.props.entry;
 
-    const upVoted = votes.some(
+    const upVoted = votes && votes.some(
       (v) => v.voter === activeUser.username && v.rshares > 0
     );
 
-    const downVoted = votes.some(
+    const downVoted = votes && votes.some(
       (v) => v.voter === activeUser.username && v.rshares < 0
     );
     
@@ -429,6 +443,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
 
   render() {
     const { activeUser } = this.props;
+    const { active_votes: votes } = this.props.entry;
     const { dialog, inProgress } = this.state;
     const { upVoted, downVoted } = this.isVoted();
 
@@ -464,7 +479,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
           children: (
             <div>
             <ClickAwayListener onClickAway={()=>{dialog && this.setState({dialog:false})}}>
-              <div className="entry-vote-btn" onClick={this.toggleDialog}>
+              <div className="entry-vote-btn" onClick={() => this.toggleDialog()}>
                 <div className={cls}>
                   <div className={tooltipClass}>
                     <span className={voteBtnClass}>{chevronUpSvgForVote}</span>

@@ -2,15 +2,13 @@ import React, {Component} from "react";
 
 import {History, Location} from "history";
 
-import moment from "moment";
-
 import isEqual from "react-fast-compare";
 
 import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-helper";
 
 import {Entry, EntryVote} from "../../store/entries/types";
 import {Global} from "../../store/global/types";
-import {Account} from "../../store/accounts/types";
+import {Account, FullAccount} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Community, Communities} from "../../store/communities/types";
 import {User} from "../../store/users/types";
@@ -29,7 +27,7 @@ import EntryPayout from "../entry-payout/index";
 import EntryVotes from "../entry-votes";
 import Tooltip from "../tooltip";
 import EntryMenu from "../entry-menu";
-import parseDate from "../../helper/parse-date";
+import {dateToRelative, dateToFormatted} from "../../helper/parse-date";
 import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
 
@@ -40,9 +38,15 @@ import {repeatSvg, pinSvg, commentSvg, muteSvg, volumeOffSvg, closeSvg, downArro
 
 import defaults from "../../constants/defaults.json";
 import { ProfilePopover } from "../profile-popover";
+import { match } from "react-router-dom";
+import { getPost } from '../../api/bridge';
+import { SearchResult } from '../../api/search-api';
 
 setProxyBase(defaults.imageServer);
 
+interface MatchParams {
+    username: string;
+}
 
 interface Props {
     history: History;
@@ -61,8 +65,10 @@ interface Props {
     asAuthor: string;
     promoted: boolean;
     order: number;
+    account?: Account;
+    match?: match<MatchParams>;
     addAccount: (data: Account) => void;
-    updateEntry: (entry: Entry) => void;
+    updateEntry: (entry: any) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
@@ -112,17 +118,30 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     afterVote = (votes: EntryVote[], estimated: number) => {
-        const {entry, updateEntry} = this.props;
-
-        const {payout} = entry;
+        const {entry: _entry, updateEntry} = this.props;
+        const {payout} = _entry;
         const newPayout = payout + estimated;
-
-        updateEntry({
-            ...entry,
-            active_votes: votes,
-            payout: newPayout,
-            pending_payout_value: String(newPayout)
-        });
+        if (_entry.active_votes) {
+            updateEntry({
+                ..._entry,
+                active_votes: votes,
+                payout: newPayout,
+                pending_payout_value: String(newPayout)
+            });
+        } else {
+            getPost(_entry.author, _entry.permlink).then(entry => {
+                if (entry) {
+                    return updateEntry({
+                        ..._entry,
+                        active_votes: [...entry.active_votes, ...votes],
+                        payout: newPayout,
+                        pending_payout_value: String(newPayout)
+                    });
+                }
+            }).catch(e=>{
+                console.log(e);
+            })
+        }
     };
 
     toggleNsfw = () => {
@@ -156,8 +175,12 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     render() {
-        const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order} = this.props;
+        const {entry: theEntry, account, match, community, asAuthor, promoted, global, activeUser, history, order} = this.props;
         const { mounted } = this.state;
+        // const accountUsername = match?.params.username.replace("@", "");
+        // const account = accounts?.find((x) => x.name === accountUsername) as FullAccount
+        const pageAccount = account as FullAccount
+        const pinned = account && pageAccount.profile?.pinned
 
         const fallbackImage = global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png");
         const noImage = global.isElectron ?  "./img/noimage.svg" : require("../../img/noimage.svg");
@@ -171,18 +194,17 @@ export default class EntryListItem extends Component<Props, State> {
         let svgSizeRow = imgRow === noImage ? "noImage" : "";
         let svgSizeGrid = imgGrid === noImage ? "172px" : "auto";
         
-        const summary: string = postBodySummary(entry, 200);
+        const summary: string = entry.json_metadata.description || postBodySummary(entry, 200);
 
-        const date = moment(parseDate(entry.created));
-        const dateRelative = date.fromNow(true);
-        const dateFormatted = date.format("LLLL");
+        const dateRelative = dateToRelative(entry.created);
+        const dateFormatted = dateToFormatted(entry.created);
 
         const isChild = !!entry.parent_author;
 
         const title = entry.title;
 
         const isVisited = false;
-        const isPinned = community && !!entry.stats?.is_pinned;
+        const isPinned = (community && !!entry.stats?.is_pinned) || (entry.permlink === pinned);
 
         let reBlogged: string | undefined;
         if (asAuthor && asAuthor !== entry.author && !isChild) {
@@ -203,7 +225,7 @@ export default class EntryListItem extends Component<Props, State> {
                 />
             );
         }
-        if (global.listStyle === 'row') {
+        if (global.listStyle === 'row' || global.listStyle === 'deck') {
             thumb = (
                 <picture>
                     <source srcSet={imgRow} media="(min-width: 576px)"/>

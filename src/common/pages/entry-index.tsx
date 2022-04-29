@@ -35,6 +35,8 @@ import defaults from "../constants/defaults.json";
 import {appleSvg, desktopSvg, googleSvg} from "../img/svg";
 
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
+import { DeckView } from "../components/deck-view";
+import { withPersistentScroll } from '../components/with-persistent-scroll';
 
 interface State {
     step: number;
@@ -148,14 +150,15 @@ class EntryIndexPage extends Component<PageProps, State> {
         const promoted = entries['__promoted__'].entries;
 
         const showEntryPage = this.state.step === 2 
-        || activeUser !== null
+        // || activeUser !== null || activeUser === null
         || location?.pathname?.startsWith("/hot")
         || location?.pathname?.startsWith("/created")
         || location?.pathname?.startsWith("/trending")
         || location?.pathname?.startsWith("/payout")
-        || location?.pathname?.startsWith("/payout_comments");
-        let containerClasses = global.isElectron ? "app-content entry-index-page mt-0 pt-6" : "app-content entry-index-page";
-    
+        || location?.pathname?.startsWith("/payout_comments")
+        || location?.pathname?.startsWith("/rising")
+        || location?.pathname?.startsWith("/controversial");
+        let containerClasses = global.isElectron ? "app-content entry-index-page mt-0 pt-6" : `app-content overflow-hidden entry-index-page ${global.listStyle===ListStyle.deck ? "p-0 m-0 mw-100" : ""}`;
         return (
             <>
                 <Meta {...metaProps} />
@@ -179,6 +182,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                 }
                 {
                     showEntryPage && <div className={containerClasses}>
+                        {global.listStyle === ListStyle.deck ? <DeckView /> : <>
                         <div className="tags-side">
                             {!global.isMobile && (
                                 <>
@@ -202,35 +206,11 @@ class EntryIndexPage extends Component<PageProps, State> {
                         <div className="side-menu">
                             {!global.isMobile && (
                                 <>
-                                    {1 !== this.state.step && <MarketData />}
+                                    {1 !== this.state.step && <MarketData global={global}/>}
 
-                                    <div className="menu-nav">
-                                        <DownloadTrigger>
-                                            <div className="downloads">
-                                                <span className="label">{_t("g.downloads")}</span>
-                                                <span className="icons">
-                                                    <span className="img-apple">{appleSvg}</span>
-                                                    <span className="img-google">{googleSvg}</span>
-                                                    <span className="img-desktop">{desktopSvg}</span>
-                                                </span>
-                                            </div>
-                                        </DownloadTrigger>
-
-                                        <div className="text-menu">
-                                            <Link className="menu-item" to="/faq">
-                                                {_t("entry-index.faq")}
-                                            </Link>
-                                            <Link className="menu-item" to="/terms-of-service">
-                                                {_t("entry-index.tos")}
-                                            </Link>
-                                            <Link className="menu-item" to="/privacy-policy">
-                                                {_t("entry-index.pp")}
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </>
+                                     </>
                             )}
-                        </div>
+                        </div></>}
                     </div>
                 }
                 <DetectBottom onBottom={this.bottomReached}/>
@@ -240,4 +220,4 @@ class EntryIndexPage extends Component<PageProps, State> {
 }
 
 
-export default connect(pageMapStateToProps, pageMapDispatchToProps)(EntryIndexPage);
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(withPersistentScroll(EntryIndexPage));

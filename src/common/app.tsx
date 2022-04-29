@@ -12,6 +12,7 @@ import WitnessesContainer from "./pages/witnesses";
 import {ProposalsIndexContainer, ProposalDetailContainer} from "./pages/proposals";
 import AuthContainer from "./pages/auth";
 import SubmitContainer from "./pages/submit";
+import MarketPage from "./pages/market";
 import SignUpContainer from "./pages/sign-up";
 import NotFound from "./components/404";
 
@@ -67,6 +68,7 @@ const App = ({ setLang }: any) => {
                 <Route exact={true} path={routes.SEARCH_MORE} component={SearchMorePageContainer}/>
                 <Route exact={true} strict={true} path={routes.AUTH} component={AuthContainer}/>
                 <Route exact={true} strict={true} path={routes.SUBMIT} component={SubmitContainer}/>
+                <Route exact={true} strict={true} path={routes.MARKET} component={MarketPage}/>
                 <Route exact={true} strict={true} path={routes.EDIT} component={SubmitContainer}/>
                 <Route exact={true} strict={true} path={routes.SIGN_UP} component={SignUpContainer}/>
                 <Route exact={true} strict={true} path={routes.EDIT_DRAFT} component={SubmitContainer}/>

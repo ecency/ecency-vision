@@ -2,8 +2,6 @@ import React from "react";
 
 import {History, Location} from "history";
 
-import moment from "moment";
-
 import isEqual from "react-fast-compare";
 
 import defaults from "../../constants/defaults.json";
@@ -22,7 +20,7 @@ import {search, SearchResult} from "../../api/search-api";
 
 import {_t} from "../../i18n";
 
-import parseDate from "../../helper/parse-date";
+import { dateToFullRelative } from "../../helper/parse-date";
 import isCommunity from "../../helper/is-community";
 
 interface Props {
@@ -30,6 +28,7 @@ interface Props {
     location: Location;
     global: Global;
     entry: Entry;
+    display: string;
 }
 
 interface State {
@@ -91,7 +90,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
             const query = this.buildQuery(entry);
             search(query, "newest", "0", undefined, undefined).then(r => {
 
-                const rawEntries: SearchResult[] = r.results.filter(r => r.permlink !== permlink);
+                const rawEntries: SearchResult[] = r.results.filter(r => r.permlink !== permlink && r.tags.indexOf('nsfw')===-1);
 
                 let entries: SearchResult[] = [];
 
@@ -117,7 +116,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global} = this.props
+        const {global, display} = this.props
         const {entries} = this.state;
         const fallbackImage = global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png");
         const noImage = global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg");
@@ -127,7 +126,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
 
         return (
             <>
-                <div className="similar-entries-list">
+                <div className={`similar-entries-list ${display}`}>
                     <div className="similar-entries-list-header">
                         <div className="list-header-text">
                             {_t('similar-entries.title')}
@@ -137,8 +136,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
                         {entries.map((en, i) => {
                             const img = catchPostImage(en.img_url, 600, 500, global.canUseWebp ? 'webp' : 'match') || noImage;
                             const imgSize = img == noImage ? "75px" : "auto";
-                            const date = moment(parseDate(`${en.created_at.replace('+00:00', '')}`));
-                            const dateRelative = date.fromNow();
+                            const dateRelative = dateToFullRelative(en.created_at);
 
                             return <div className="similar-entries-list-item" key={i}>
                                 {EntryLink({
@@ -181,7 +179,8 @@ export default (p: Props) => {
         history: p.history,
         location: p.location,
         global: p.global,
-        entry: p.entry
+        entry: p.entry,
+        display: p.display
     }
     return <SimilarEntries {...props} />
 }

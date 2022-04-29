@@ -504,6 +504,19 @@ exports[`(2) Render with converting HBD 1`] = `
               0.000 HIVE
             </span>
           </div>
+          <div
+            className="amount amount-passive converting-hbd"
+          >
+            <span
+              className="amount-btn"
+              onClick={[Function]}
+              title="Reserved for Open order in Market"
+            >
+              +
+               
+              1.000 HIVE
+            </span>
+          </div>
         </div>
       </div>
       <div
@@ -618,11 +631,26 @@ exports[`(2) Render with converting HBD 1`] = `
             className="amount amount-passive converting-hbd"
           >
             <span
+              className="amount-btn"
+              onClick={[Function]}
               title="Converting to HIVE"
             >
               +
                
               $ 1,200.000
+            </span>
+          </div>
+          <div
+            className="amount amount-passive converting-hbd"
+          >
+            <span
+              className="amount-btn"
+              onClick={[Function]}
+              title="Withdrawing from Savings"
+            >
+              +
+               
+              $ 10,100.297
             </span>
           </div>
         </div>
@@ -927,6 +955,19 @@ exports[`(3) usePrivate = false 1`] = `
               0.000 HIVE
             </span>
           </div>
+          <div
+            className="amount amount-passive converting-hbd"
+          >
+            <span
+              className="amount-btn"
+              onClick={[Function]}
+              title="Reserved for Open order in Market"
+            >
+              +
+               
+              1.000 HIVE
+            </span>
+          </div>
         </div>
       </div>
       <div
@@ -1040,11 +1081,26 @@ exports[`(3) usePrivate = false 1`] = `
             className="amount amount-passive converting-hbd"
           >
             <span
+              className="amount-btn"
+              onClick={[Function]}
               title="Converting to HIVE"
             >
               +
                
               $ 1,200.000
+            </span>
+          </div>
+          <div
+            className="amount amount-passive converting-hbd"
+          >
+            <span
+              className="amount-btn"
+              onClick={[Function]}
+              title="Withdrawing from Savings"
+            >
+              +
+               
+              $ 10,100.297
             </span>
           </div>
         </div>

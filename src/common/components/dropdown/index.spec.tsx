@@ -11,7 +11,7 @@ const props = {
     {
       label: "Trending",
       href: "/trending",
-      active: true,
+      selected: true,
     },
     {
       label: "Hot",

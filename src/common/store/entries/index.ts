@@ -24,6 +24,14 @@ import filterTagExtract from "../../helper/filter-tag-extract";
 
 import {getPostsRanked, getAccountPosts, dataLimit} from "../../api/bridge";
 
+import {search, SearchResult} from "../../api/search-api";
+
+import moment, {Moment} from "moment";
+
+import * as ss from "../../util/session-storage";
+
+
+
 export const makeGroupKey = (what: string, tag: string = ""): string => {
     if (tag) {
         return `${what}-${tag}`;
@@ -35,12 +43,14 @@ export const initialState: Entries = {
     "__manual__": {
         entries: [],
         error: null,
+        sid: "",
         loading: false,
         hasMore: false
     },
     "__promoted__": {
         entries: [],
         error: null,
+        sid: "",
         loading: false,
         hasMore: false
     }
@@ -64,7 +74,7 @@ export default (state: Entries = initialState, action: Actions): Entries => {
             if (state[`${groupKey}`] === undefined || action.payload.action === 'PUSH') {
                 return update(state, {
                     [`${groupKey}`]: {
-                        $set: {entries: [], error: null, loading: true, hasMore: false},
+                        $set: {entries: [], error: null, sid: "", loading: true, hasMore: false},
                     },
                 });
             }
@@ -84,10 +94,9 @@ export default (state: Entries = initialState, action: Actions): Entries => {
             });
         }
         case ActionTypes.FETCHED: {
-            const {groupKey, entries, hasMore} = action;
-
+            const {groupKey, entries, sid, hasMore} = action;
             const merged = update(state, {
-                [`${groupKey}`]: {$merge: {loading: false, error: null, hasMore}},
+                [`${groupKey}`]: {$merge: {loading: false, sid, error: null, hasMore}},
             });
 
             // Filter entries
@@ -117,7 +126,7 @@ export default (state: Entries = initialState, action: Actions): Entries => {
             // Iterate over all groups and update the entry
             for (const k of groupKeys) {
                 st[k].entries = st[k].entries.map(
-                    (e: Entry): Entry => {
+                    (e: Entry): Entry | SearchResult => {
                         if (e.author === entry.author && e.permlink === entry.permlink) {
                             return entry;
                         }
@@ -140,12 +149,11 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
     getState: () => AppState
 ) => {
     const {entries, activeUser} = getState();
-    const pageSize = dataLimit;
 
     const groupKey = makeGroupKey(what, tag);
 
     const theEntries = entries[groupKey].entries;
-
+    const sid = entries[groupKey].sid;
     if (!more && theEntries.length > 0) {
         return;
     }
@@ -164,12 +172,41 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
 
     const observer = activeUser?.username || "";
 
-    let promise: Promise<Entry[] | null>;
+    // let promise: Promise<Entry[] | null>;
+    let promise: Promise<any>;
     if (tag.startsWith("@")) {
         // @username/posts|replies|comments|feed
         const username = tag.replace("@", "");
 
         promise = getAccountPosts(what, username, start_author, start_permlink, dataLimit, observer);
+    } else if (['controversial', 'rising'].includes(what)) {
+        let sinceDate: undefined | Moment;
+
+        switch (tag) {
+            case 'today':
+                sinceDate = moment().subtract("1", "day")
+                break;
+            case 'week':
+                sinceDate = moment().subtract("1", "week")
+                break;
+            case 'month':
+                sinceDate = moment().subtract("1", "month")
+                break;
+            case 'year':
+                sinceDate = moment().subtract("1", "year")
+                break;
+            default:
+                sinceDate = undefined;
+        }
+        let q = "* type:post"
+        let sort = what === 'rising' ? 'children' : what
+        const since = sinceDate ? sinceDate.format("YYYY-MM-DDTHH:mm:ss") : undefined;        
+        const hideLow_ = "0"
+        const scrollId = sid;
+        const scrollId_ = scrollId ? scrollId : undefined;
+        const votes = tag === "today" ? 50 : 200;
+        promise = search(q, sort, hideLow_, since, scrollId_, votes)
+        
     } else {
         // trending/tag
         promise = getPostsRanked(what, start_author, start_permlink, dataLimit, tag, observer);
@@ -177,22 +214,24 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
 
     promise
         .then((resp) => {
-            if (resp) {
-                dispatch(fetchedAct(groupKey, resp, resp.length >= dataLimit));
+            if (resp.results) {
+                dispatch(fetchedAct(groupKey, resp.results, resp.scroll_id, resp.results.length >= dataLimit));
+            } else if (resp) {
+                dispatch(fetchedAct(groupKey, resp, "", resp.length >= dataLimit));
             } else {
-                dispatch(fetchErrorAct(groupKey, "server error"));
+                dispatch(fetchErrorAct(groupKey, "", "server error"));
             }
         })
         .catch((e) => {
-            dispatch(fetchErrorAct(groupKey, "network error"));
+            dispatch(fetchErrorAct(groupKey, "", "network error"));
         });
 };
 
 export const addEntry = (entry: Entry) => (dispatch: Dispatch) => {
-    dispatch(fetchedAct("__manual__", [entry], false));
+    dispatch(fetchedAct("__manual__", [entry], "", false));
 };
 
-export const updateEntry = (entry: Entry) => (dispatch: Dispatch) => {
+export const updateEntry = (entry: any) => (dispatch: Dispatch) => {
     dispatch(updateAct(entry));
 };
 
@@ -209,19 +248,21 @@ export const fetchAct = (groupKey: string): FetchAction => {
     };
 };
 
-export const fetchErrorAct = (groupKey: string, error: string): FetchErrorAction => {
+export const fetchErrorAct = (groupKey: string, sid: string="", error: string): FetchErrorAction => {
     return {
         type: ActionTypes.FETCH_ERROR,
         groupKey,
+        sid,
         error,
     };
 };
 
-export const fetchedAct = (groupKey: string, entries: Entry[], hasMore: boolean): FetchedAction => {
+export const fetchedAct = (groupKey: string, entries: Entry[], sid: string, hasMore: boolean): FetchedAction => {
     return {
         type: ActionTypes.FETCHED,
         groupKey,
         entries,
+        sid,
         hasMore,
     };
 };
@@ -233,9 +274,10 @@ export const invalidateAct = (groupKey: string): InvalidateAction => {
     };
 };
 
-export const updateAct = (entry: Entry): UpdateAction => {
+export const updateAct = (entry: Entry | SearchResult, sid: string = ""): UpdateAction => {
     return {
         type: ActionTypes.UPDATE,
+        sid,
         entry,
     };
 };

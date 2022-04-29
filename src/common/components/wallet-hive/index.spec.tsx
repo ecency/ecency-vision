@@ -36,6 +36,49 @@ jest.mock("../../api/hive", () => ({
                 }]);
             }
         }),
+    getSavingsWithdrawFrom: () =>
+        new Promise((resolve) => {
+
+            if (MOCK_MODE === 1) {
+                resolve([]);
+            }
+
+            if (MOCK_MODE === 2) {
+                resolve([{
+                    "id":137852,
+                    "from":"ecency",
+                    "to":"ecency",
+                    "memo":"",
+                    "request_id":3123100728,
+                    "amount":"10100.297 HBD",
+                    "complete":"2022-02-05T11:16:54"
+                }]);
+            }
+        }),
+    getOpenOrder: () =>
+        new Promise((resolve) => {
+
+            if (MOCK_MODE === 1) {
+                resolve([]);
+            }
+
+            if (MOCK_MODE === 2) {
+                resolve([{
+                    "id":137852,
+                    "created":"2022-02-01T11:16:54",
+                    "expiration":"2022-02-28T11:16:54",
+                    "seller":"ecency",
+                    "orderid":3123100728,
+                    "for_sale":1000,
+                    "sell_price": {
+                        "base": "1 HIVE",
+                        "quote": "0.800 HBD"
+                    },
+                    "real_price": "0.900 HBD",
+                    "rewarded":false
+                }]);
+            }
+        }),
 }));
 
 const account: FullAccount = {

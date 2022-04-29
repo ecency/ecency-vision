@@ -2,8 +2,10 @@
   "g": {
     "add": "Add",
     "edit": "Edit",
+    "continue": "Continue",
     "submit": "Write a post",
     "search": "Search",
+    "loading-chunk": "Loading component",
     "downloads": "Downloads",
     "login": "Login",
     "login-as": "Login As",
@@ -41,6 +43,8 @@
     "trending": "feed",
     "created": "feed",
     "muted": "muted",
+    "controversial": "controversial",
+    "rising": "rising",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
@@ -54,6 +58,8 @@
     "payout": "Payout",
     "learn-more": "Learn more in our",
     "faq": "FAQ",
+    "when": "When",
+    "price": "Price",
     "more-results": "More results",
     "close": "Close",
     "loading": "Loading"
@@ -75,12 +81,19 @@
     "filter-feed-subscriptions": "Communities",
     "filter-global": "Global",
     "filter-community": "My Community",
+    "filter-controversial": "Controversial",
+    "filter-rising": "Rising",
     "filter-global-part1": "This feed contains ",
     "filter-global-part2": " discussions on entire platform.",
     "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
     "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
     "filter-global-discover": "Discover People",
-    "filter-global-join-communities": "Join Communities"
+    "filter-global-join-communities": "Join Communities",
+    "filter-today": "Today",
+    "filter-week": "This week",
+    "filter-month": "This month",
+    "filter-year": "This year",
+    "filter-alltime": "All time"
   },
   "navbar": {
     "discover": "Discover",
@@ -218,8 +231,12 @@
     "share": "Share",
     "edit-history": "Edit History",
     "pin": "Pin",
+    "pin-to-blog": "Pin to blog",
+    "pin-to-community": "Pin to community",
     "pin-success": "Post pinned",
     "unpin": "Unpin",
+    "unpin-from-blog": "Unpin from blog",
+    "unpin-from-community": "Unpin from community",
     "unpin-success": "Post Unpinned",
     "mute": "Mute",
     "mute-success": "Post muted",
@@ -260,9 +277,94 @@
     "tos": "Terms of service",
     "pp": "Privacy Policy"
   },
+  "decks": {
+    "users": "User",
+    "header-info": "Click me to see extra options",
+    "username": "Username",
+    "content-type": "Content Type",
+    "trending-topics": "Topics",
+    "search": "Search",
+    "community": "Community",
+    "notifications": "Notifications",
+    "wallet": "Wallet",
+    "favorite": "Favorite",
+    "trending": "Trending",
+    "select": "Select content type",
+    "blogs": "Blogs",
+    "replies": "Replies",
+    "posts": "Posts",
+    "comments": "Comments",
+    "column": "column",
+    "hot": "Hot",
+    "muted": "Muted",
+    "new": "New",
+    "reload": "Reload",
+    "add": "Add",
+    "remove": "Remove",
+    "removed": "{{deck}} removed successfully.",
+    "payout": "Payouts",
+    "created": "New",
+    "go-back": "Go back",
+    "deck-exists": "The deck you're trying to add already exists!",
+    "limit-warning": "Maximum 10 decks are allowed. Delete any deck to add another.",
+    "empty-decks": "Click + icon to add Decks",
+    "select-column-type": "Which deck type do you want to add?",
+    "topic": "Custom",
+    "refresh": "Auto refresh for {{title}} saved.",
+    "settings": "Settings",
+    "refresh-time": "Refresh time",
+    "hours": "hours",
+    "save": "Save",
+    "update-interval": "Update interval",
+    "update-interval-min": "In minutes",
+    "update-n-seconds": "Every {{sec}} sec",
+    "update-n-minutes": "Every {{min}} min",
+    "update-n-hours": "Every {{hour}} h",
+    "update-custom": "Custom interval...",
+    "update-interval-value-error": "Interval should be between 30 seconds and 24 hours",
+    "update-interval-placeholder": "Select an interval",
+    "update-custom-interval-in-minutes-placeholder": "Enter interval in minutes",
+    "filters": "Filters",
+    "history": "History",
+    "type": "Type"
+  },
   "market-data": {
     "title": "Market price",
+    "trade": "Trade token",
     "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+  },
+  "market": {
+    "title": "Token exchange",
+    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "last-price": "Last Price",
+    "volume": "24h volume",
+    "bid": "Bid",
+    "spread": "Spread",
+    "ask": "Ask",
+    "buy": "Buy",
+    "sell": "Sell",
+    "available": "Available",
+    "highest-bid": "Highest bid",
+    "price": "Price",
+    "amount": "Amount",
+    "total": "Total",
+    "orders": "Orders",
+    "date": "Date",
+    "open-orders": "Open Orders",
+    "type": "Type",
+    "action": "Action",
+    "trade-history": "Trade History",
+    "stock-params": "Params",
+    "stock-info": "Stock information",
+    "barter": "Exchange tokens",
+    "stock-values": "Values",
+    "transaction-low": "Total amount exceeds your available balance. Please add more funds or try with smaller amount.",
+    "confirm-cancel": "Are you sure? You are cancelling order #{{orderid}}!",
+    "confirm-buy": "You're trading {{amount}} HIVE for {{price}} HBD/HIVE and total will be {{total}} HBD.",
+    "confirm-sell": "Values",
+    "transaction-succeeded": "Transaction submitted",
+    "lowest-ask": "Lowest ask",
+    "decimal-error":"Only {{decimals}} decimal digits allowed!"
   },
   "list-style": {
     "title": "Toggle list style"
@@ -289,8 +391,8 @@
     "lowrep-warning": "Author of this content has low reputation.",
     "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
     "comments-hidden": "Author of this post is muted by you.",
-    "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard",
+    "address-copy": "Copy link",
+    "address-copied": "Link copied to clipboard",
     "content-copied": "Content copied to clipboard",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
@@ -435,7 +537,6 @@
   },
   "profile": {
     "voting-power": "Voting Power",
-    "post-count": "Post Count",
     "followers": "Followers",
     "following": "Following",
     "follows-you": "Follows you",
@@ -461,6 +562,7 @@
     "rc-power": "Resource Credits: {{n}}%",
     "recharge-time": "(fully charged {{n}})",
     "down-vote-power": "Downvote Power: {{n}}%",
+    "post-count": "Post Count: {{n}}",
     "no-posts": "No content published, yet",
     "no-posts-user": "Follow, be first to know",
     "no-posts-community": "Join and post in this community",
@@ -500,6 +602,7 @@
     "estimated-description": "The estimated value is based on a 7 day average value of HIVE.",
     "estimated-description-points": "The estimated value is based on purchase value of Points.",
     "hive": "HIVE",
+    "hbd": "HBD",
     "hive-description": "HIVE are tradeable tokens that may be transferred at anytime.HIVE can be converted to Hive Power in a process called powering up.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
@@ -524,7 +627,9 @@
     "power-down": "Power down",
     "withdraw-routes": "Withdraw Routes",
     "calculating": "Calculating",
-    "converting-hbd-amount": "Converting to HIVE"
+    "converting-hbd-amount": "Converting to HIVE",
+    "withdrawing-amount": "Withdrawing from Savings",
+    "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",
@@ -654,7 +759,7 @@
     "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> being converted",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
@@ -726,6 +831,22 @@
   "received-vesting": {
     "title": "Received Hive Power"
   },
+  "conversion-requests": {
+    "title": "Convert requests",
+    "request-id": "Request id",
+    "amount": "Amount",
+    "pending": "Pending"
+  },
+  "savings-withdraw": {
+    "title": "Withdraw from Savings",
+    "to": "To"
+  },
+  "open-orders-list": {
+    "title": "Open orders",
+    "created": "Created",
+    "expires": "Expires",
+    "order-id": "Order id"
+  },
   "friends": {
     "followers": "Followers ({{n}})",
     "following": "Following ({{n}})",
@@ -774,7 +895,7 @@
     "page-title": "Create a post",
     "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
     "title-placeholder": "Title",
-    "body-placeholder": "Post Content",
+    "body-placeholder": "Tell your story...",
     "reward": "Reward",
     "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Default 50% / 50%",
@@ -802,7 +923,8 @@
     "scheduled": "Post scheduled",
     "empty-title-alert": "Enter post title",
     "empty-tags-alert": "Enter post tags",
-    "empty-body-alert": "Enter post body"
+    "empty-body-alert": "Enter post body",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
@@ -852,7 +974,8 @@
     "followed": "{{source}} followed you",
     "replied": "{{source}} replied you",
     "reblogged": "{{source}} reblogged your post",
-    "transfer": "{{source}} sent you {{amount}}"
+    "transfer": "{{source}} sent you {{amount}}",
+    "delegations": "{{source}} delegated you {{amount}}"
   },
   "notifications": {
     "type-all": "All Notifications",
@@ -863,6 +986,7 @@
     "type-follows": "Follows",
     "type-reblogs": "Reblogs",
     "type-transfers": "Transfers",
+    "type-delegations": "Delegations",
     "group-title-recent": "Recent",
     "vote-str": "{{p}}% likes your post:",
     "reply-str": "replied to your post:",
@@ -872,6 +996,7 @@
     "ignored-str": "ignored",
     "reblog-str": "reblogged your post:",
     "transfer-str": "sent you",
+    "delegations-str": "delegated you",
     "spin-str": "Time to earn more Points, Play Spin on Ecency Mobile app",
     "inactive-str": "Be active! Write a post, continue earning",
     "referral-str": "joined with your referral, welcome them",
@@ -1121,7 +1246,7 @@
       "what-are-rc-header": "What are Resource Credits?",
       "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
       "how-boost-account-header": "How to request account boosting?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain. You can find account boosting feature in Points options.</p>",
+      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can find account boosting feature in Points options.</p>",
       "what-spam-abuse-header": "What is considered spam or abuse?",
       "what-spam-abuse-body": "<p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Can I request adding backlink to my website from Ecency team?",
@@ -1141,7 +1266,9 @@
       "different-reward-choices-header": "What are the differences in Reward types?",
       "different-reward-choices-body": "<p>In publishing settings section, you can see 3 different Reward types/choices.<ul><li>50%/50% - This rewards in half Hive Power, and half liquid HIVE / Hive Dollars. The ratio of liquid HIVE to Hive Dollars rewarded is based on network conditions at the time of payout. This is the default payout option.</li><li>Power Up 100% - This option rewards the post in 100% Hive Power.</li><li>Decline Payout - Use this option to receive no post rewards. Votes will affect the post's position on the trending ranking but no rewards are paid from Hive's reward pool. Replies made to the post are still eligible for rewards.</li></ul></p>",
       "boosting-vote-buying-header": "Is boosting considered a vote buying?",
-      "boosting-vote-buying-body": "<p>No! Because, there is no guarantee of receiving vote, there is no guarantee of exact amount of vote, boosting maximum amount is limited, each content reviewed by our curators, there is no profit in it. All curation rewards are sent back to delegators 100%. Only measurable success we seek is to see engagement and growth on entire ecosystem. Boosting is simply creating additional use case for Ecency Points to improve engagement on platform, so it is essentially same as any other curation guilds on Hive. Goal of those guilds ultimately to improve engagement on platform and grow activity, the way each measures that success is the different.</p>"
+      "boosting-vote-buying-body": "<p>No! Because, there is no guarantee of receiving vote, there is no guarantee of exact amount of vote, boosting maximum amount is limited, each content reviewed by our curators, there is no profit in it. All curation rewards are sent back to delegators 100%. Only measurable success we seek is to see engagement and growth on entire ecosystem. Boosting is simply creating additional use case for Ecency Points to improve engagement on platform, so it is essentially same as any other curation guilds on Hive. Goal of those guilds ultimately to improve engagement on platform and grow activity, the way each measures that success is the different.</p>",
+      "how-exchange-work-header": "How token exchange works?",
+      "how-exchange-work-body": "<p>Exchanging and trading tokens on Ecency is very simple. We utilize internal peer to peer, decentralized exchange built into Hive blockchain. Offer easy to use interface so you can exchange one token to another, completely decentralized manner. Create buy or sell order and wait for other people to fill your order. If you want to quickly swap tokens then you can fill someone else's open order for quick trade.</p>"
     }
   },
   "contributors": {
@@ -1232,6 +1359,7 @@
   },
   "layouts": {
     "grid": "Grid",
-    "classic": "Classic"
+    "classic": "Classic",
+    "deck": "Deck"
   }
 }

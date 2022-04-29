@@ -4,8 +4,6 @@ import {Form, FormControl} from "react-bootstrap";
 
 import {History} from "history";
 
-import moment from "moment";
-
 import {Modal, Spinner} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
@@ -22,7 +20,7 @@ import Pagination from "../pagination";
 import {Vote, getActiveVotes} from "../../api/hive";
 
 import parseAsset from "../../helper/parse-asset";
-import parseDate from "../../helper/parse-date";
+import parseDate, { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import accountReputation from "../../helper/account-reputation";
 
 import formattedNumber from "../../util/formatted-number";
@@ -32,12 +30,26 @@ import {_t} from "../../i18n";
 import {heartSvg} from "../../img/svg";
 
 export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
-    const totalPayout =
+    // const totalPayout =
+    //     parseAsset(entry.pending_payout_value).amount +
+    //     parseAsset(entry.author_payout_value).amount +
+    //     parseAsset(entry.curator_payout_value).amount;
+
+    let totalPayout = 0
+
+    const { pending_payout_value, author_payout_value, curator_payout_value, payout } = entry;
+
+    if (pending_payout_value && author_payout_value && curator_payout_value) {
+        totalPayout =
         parseAsset(entry.pending_payout_value).amount +
         parseAsset(entry.author_payout_value).amount +
         parseAsset(entry.curator_payout_value).amount;
+    }
 
-    const voteRshares = votes.reduce((a, b) => a + parseFloat(b.rshares), 0);
+    if (payout && Number(totalPayout.toFixed(3)) !== payout) {
+        totalPayout += payout;
+    }
+    const voteRshares = votes && votes.reduce((a, b) => a + parseFloat(b.rshares), 0);
     const ratio = totalPayout / voteRshares;
 
     return votes.map((a) => {
@@ -159,8 +171,8 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
                                     <span className="separator"/>
                                     {formattedNumber(x.percent, {fractionDigits: 1, suffix: "%"})}
                                     <span className="separator"/>
-                                    <Tooltip content={moment(x.timestamp).format("LLLL")}>
-                                        <span>{moment(x.timestamp).fromNow()}</span>
+                                    <Tooltip content={dateToFormatted(x.time)}>
+                                        <span>{dateToFullRelative(x.time)}</span>
                                     </Tooltip>
                                 </div>
                             </div>;
@@ -217,7 +229,7 @@ export class EntryVotes extends Component<Props, State> {
     render() {
         const { entry } = this.props;
         const { visible, searchText, searchTextDisabled } = this.state;
-        const totalVotes = entry.active_votes.length;
+        const totalVotes = entry.active_votes && entry.active_votes.length || entry.total_votes;
 
         const title =
             totalVotes === 0

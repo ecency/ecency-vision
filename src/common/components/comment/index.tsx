@@ -6,6 +6,7 @@ import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
 import {UI, ToggleType} from "../../store/ui/types";
+import {Entry} from "../../store/entries/types";
 
 import EditorToolbar from "../editor-toolbar";
 import LoginRequired from "../login-required";
@@ -18,6 +19,9 @@ setProxyBase(defaults.imageServer);
 
 import {_t} from "../../i18n";
 import {Global} from '../../store/global/types';
+import * as ss from "../../util/session-storage";
+
+import TextareaAutocomplete from "../textarea-autocomplete";
 
 interface PreviewProps {
     text: string;
@@ -51,7 +55,9 @@ interface Props {
     activeUser: ActiveUser | null;
     ui: UI;
     global: Global;
+    entry: Entry;
     inProgress?: boolean;
+    isCommented?: boolean;
     cancellable?: boolean;
     autoFocus?: boolean;
     setActiveUser: (username: string | null) => void;
@@ -59,9 +65,9 @@ interface Props {
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     onSubmit: (text: string) => void;
-    onChange?: (text: string) => void;
+    resetSelection?: () => void;
     onCancel?: () => void;
-    inputRef?: Ref<any>
+    inputRef?: Ref<any>;
 }
 
 interface State {
@@ -74,29 +80,50 @@ export class Comment extends Component<Props, State> {
     state: State = {
         text: '',
         preview: '',
-        showEmoji: false
+        showEmoji: false,
     }
 
+    timer: any = null;
     _updateTimer: any = null;
 
     componentDidMount(): void {
         const {defText} = this.props;
         this.setState({text: defText || "", preview: defText || ""});
+        this.cleanUpLS();
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {defText} = this.props;
-        if (defText !== prevProps.defText) {
-            this.setState({text: defText || "", preview: defText || ""});
+        const {defText, resetSelection, isCommented} = this.props;
+        const {text} = this.state;
+        if ((defText !== prevProps.defText) && !prevProps.defText) {
+            let commentText = text ? text + '\n' + defText : defText
+            this.setState({text: commentText || "", preview: commentText || ""});
+            if (resetSelection) resetSelection()
+            this.updateLsCommentDraft(commentText)
         }
+        if(prevProps.isCommented && !isCommented) {
+            this.setState({text: "", preview: ""})
+        }
+    }
+    //TODO: Delete this after 3.0.22 release
+    cleanUpLS = () => {
+        Object.entries(localStorage).map(
+            x => x[0]
+        ).filter(
+            x => x.includes("ecency_reply_draft_")
+        ).map(
+            x => localStorage.removeItem(x));
+    }
+
+    updateLsCommentDraft = (text: string) => {
+        const {entry} = this.props
+        ss.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
     }
 
     textChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: text} = e.target;
         this.setState({text}, () => {
-            const {onChange} = this.props;
-            if (onChange) onChange(text);
-
+            this.updateLsCommentDraft(text)
             this.updatePreview();
         });
     };
@@ -125,14 +152,16 @@ export class Comment extends Component<Props, State> {
     }
 
     render() {
-        const {inProgress, cancellable, autoFocus, submitText, inputRef} = this.props;
+        const {inProgress, cancellable, autoFocus, submitText, inputRef, activeUser} = this.props;
         const {text, preview, showEmoji} = this.state;
+        const rows = text.split(/\r\n|\r|\n|<br>/).length
+        
         return (
             <>
                 <div className="comment-box" onMouseEnter={() => !showEmoji && this.setState({showEmoji: true})}>
                     {EditorToolbar({...this.props, sm: true, showEmoji})}
                     <div className="comment-body">
-                        <Form.Control
+                        <TextareaAutocomplete
                             className={`the-editor accepts-emoji ${text.length > 20 ? 'expanded' : ''}`}
                             as="textarea"
                             placeholder={_t("comment.body-placeholder")}
@@ -140,8 +169,16 @@ export class Comment extends Component<Props, State> {
                             onChange={this.textChanged}
                             disabled={inProgress}
                             autoFocus={autoFocus}
-                            rows={text.split(/\r\n|\r|\n/).length}
+                            minrows={10}
+                            rows={rows}
+                            maxrows={100}
                             ref={inputRef}
+                            acceptCharset="UTF-8"
+                            global={this.props.global}
+                            id="the-editor"
+                            spellCheck={true}
+                            activeUser={activeUser && activeUser.username || ""}
+                            isComment={true}
                         />
                     </div>
                     <div className="comment-buttons">
@@ -170,7 +207,9 @@ export default (p: Props) => {
         activeUser: p.activeUser,
         ui: p.ui,
         global: p.global,
+        entry: p.entry,
         inProgress: p.inProgress,
+        isCommented: p.isCommented,
         cancellable: p.cancellable,
         autoFocus: p.autoFocus,
         setActiveUser: p.setActiveUser,
@@ -178,9 +217,9 @@ export default (p: Props) => {
         deleteUser: p.deleteUser,
         toggleUIProp: p.toggleUIProp,
         onSubmit: p.onSubmit,
-        onChange: p.onChange,
+        resetSelection: p.resetSelection,
         onCancel: p.onCancel,
-        inputRef: p.inputRef
+        inputRef: p.inputRef,
     }
 
     return <Comment {...props} />

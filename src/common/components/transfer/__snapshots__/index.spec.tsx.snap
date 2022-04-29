@@ -2530,7 +2530,7 @@ exports[`(6) Convert (4) Step 4 1`] = `
         className="success"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<span class=\\"amount\\">0.001 HBD</span> converted",
+            "__html": "<span class=\\"amount\\">0.001 HBD</span> being converted",
           }
         }
       />

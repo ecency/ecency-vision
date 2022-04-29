@@ -8,8 +8,9 @@ export interface MenuItem {
     label: string | JSX.Element;
     href?: string;
     onClick?: () => void;
-    active?: boolean;
+    selected?: boolean;
     flash?: boolean;
+    disabled?: boolean;
     id?: string;
     icon?: JSX.Element
 }
@@ -17,7 +18,7 @@ export interface MenuItem {
 interface Props {
     history: History | null;
     float: "left" | "right";
-    alignBottom?: boolean,
+    alignBottom?: boolean;
     header?: string;
     preElem?: JSX.Element;
     postElem?: JSX.Element;
@@ -132,8 +133,9 @@ const MyDropDown = (props: Props) => {
                             {items.map((i, k) => {
                                 return (
                                     <div
+                                        {...i}
                                         key={k}
-                                        className={`menu-item ${i?.active === true ? "active" : ""}`}
+                                        className={`menu-item ${i?.selected ? "active" : ""}`}
                                         onClick={() => {
                                             itemClicked(i);
                                         }}

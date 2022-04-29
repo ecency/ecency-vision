@@ -12,10 +12,11 @@ import isCommunity from "../helper/is-community";
 
 import SERVERS from "../constants/servers.json";
 import { dataLimit } from './bridge';
+import moment from "moment";
 
 export const client = new Client(SERVERS, {
     timeout: 4000,
-    failoverThreshold: 10,
+    failoverThreshold: 5,
     consoleOnFailover: true,
 });
 
@@ -66,8 +67,78 @@ export interface Follow {
     what: string[];
 }
 
+export interface MarketStatistics {
+    hbd_volume: string;
+    highest_bid: string;
+    hive_volume: string;
+    latest: string;
+    lowest_ask: string;
+    percent_change: string;
+}
+
+export interface OpenOrdersData {
+    id: number,
+    created: string,
+    expiration: string,
+    seller: string,
+    orderid: number,
+    for_sale: number,
+    sell_price: {
+        base: string,
+        quote: string
+    },
+    real_price: string,
+    rewarded: boolean
+}
+
+export interface OrdersDataItem {
+    created: string;
+    hbd: number;
+    hive: number;
+    order_price: {
+        base: string;
+        quote: string;
+    }
+    real_price: string;
+}
+
+export interface TradeDataItem {
+    current_pays: string;
+    date: number;
+    open_pays: string;
+}
+
+export interface OrdersData {
+    bids: OrdersDataItem[];
+    asks: OrdersDataItem[];
+    trading: OrdersDataItem[];
+}
+
+interface ApiError {
+    error: string;
+    data: any;
+}
+
+const handleError = (error: any) => {
+    debugger
+    return {error:"api error", data:error}
+}
+
 export const getPost = (username: string, permlink: string): Promise<any> =>
     client.call("condenser_api", "get_content", [username, permlink]);
+
+export const getMarketStatistics = (): Promise<MarketStatistics> =>
+    client.call("condenser_api", "get_ticker", []);
+
+export const getOrderBook = (limit: number = 500): Promise<OrdersData> =>
+    client.call("condenser_api", "get_order_book", [limit]);
+
+export const getOpenOrder = (user: string): Promise<OpenOrdersData[]> =>
+    client.call("condenser_api", "get_open_orders", [user]);
+
+export const getTradeHistory = (limit: number = 1000): Promise<OrdersDataItem[]> => {
+    let today = moment(Date.now()).subtract(10, 'h').format().split('+')[0];
+    return client.call("condenser_api", "get_trade_history", [today, "1969-12-31T23:59:59",limit]);}
 
 export const getActiveVotes = (author: string, permlink: string): Promise<Vote[]> =>
     client.database.call("get_active_votes", [author, permlink]);
@@ -82,6 +153,16 @@ export const getTrendingTags = (afterTag: string = "", limit: number = 250): Pro
                     .map((x) => x.name)
             }
         );
+
+export const getAllTrendingTags = (afterTag: string = "", limit: number = 250): Promise<TrendingTag[]|any> =>
+    client.database
+        .call("get_trending_tags", [afterTag, limit])
+        .then((tags: TrendingTag[]) => {
+                return tags
+                    .filter((x) => x.name !== "")
+                    .filter((x) => !isCommunity(x.name))
+            }
+        ).catch(reason=>{debugger});
 
 export const lookupAccounts = (q: string, limit = 50): Promise<string[]> =>
     client.database.call("lookup_accounts", [q, limit]);
@@ -201,9 +282,10 @@ export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =
         virtual_supply: r.virtual_supply
     })});
 
-export const getAccountHistory = (username: string, filters: any[], start: number = -1, limit: number = 20): Promise<any> => {
-
-    return client.call("condenser_api", "get_account_history", [username, start, limit, ...filters]);
+export const getAccountHistory = (username: string, filters: any[] | any, start: number = -1, limit: number = 20): Promise<any> => {
+    
+    return filters ? client.call("condenser_api", "get_account_history", [username, start, limit, ...filters]) : 
+     client.call("condenser_api", "get_account_history", [username, start, limit])
 }
 
 export const getFeedHistory = (): Promise<FeedHistory> => client.database.call("get_feed_history");
@@ -395,6 +477,19 @@ export interface ConversionRequest {
 
 export const getConversionRequests = (account: string): Promise<ConversionRequest[]> =>
     client.database.call("get_conversion_requests", [account]);
+
+export interface SavingsWithdrawRequest {
+    id: number;
+    from: string;
+    to: string;
+    memo: string;
+    request_id: number;
+    amount: string;
+    complete: string;
+}   
+
+export const getSavingsWithdrawFrom = (account: string): Promise<SavingsWithdrawRequest[]> =>
+    client.database.call("get_savings_withdraw_from", [account]);
 
 export interface BlogEntry {
     blog: string,

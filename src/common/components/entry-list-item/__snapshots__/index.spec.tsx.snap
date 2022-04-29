@@ -60,14 +60,18 @@ exports[`(1) Default render 1`] = `
             </svg>
           </span>
           <div
-            className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
-            <span
-              className="author-name"
+            <div
+              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              onMouseEnter={[Function]}
             >
-              good-karma
-            </span>
+              <span
+                className="author-name"
+              >
+                good-karma
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -86,7 +90,7 @@ exports[`(1) Default render 1`] = `
         className="date"
         title="Monday, June 1, 2020 5:53 AM"
       >
-        5 days
+        5d
       </span>
     </div>
     <div
@@ -309,14 +313,18 @@ exports[`(2) Grid view 1`] = `
             </svg>
           </span>
           <div
-            className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
-            <span
-              className="author-name"
+            <div
+              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              onMouseEnter={[Function]}
             >
-              good-karma
-            </span>
+              <span
+                className="author-name"
+              >
+                good-karma
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -335,7 +343,7 @@ exports[`(2) Grid view 1`] = `
         className="date"
         title="Monday, June 1, 2020 5:53 AM"
       >
-        5 days
+        5d
       </span>
     </div>
     <div
@@ -582,14 +590,18 @@ exports[`(3) Nsfw 1`] = `
             </svg>
           </span>
           <div
-            className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
-            <span
-              className="author-name"
+            <div
+              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              onMouseEnter={[Function]}
             >
-              good-karma
-            </span>
+              <span
+                className="author-name"
+              >
+                good-karma
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -608,7 +620,7 @@ exports[`(3) Nsfw 1`] = `
         className="date"
         title="Monday, June 1, 2020 5:53 AM"
       >
-        5 days
+        5d
       </span>
     </div>
     <div
@@ -862,14 +874,18 @@ exports[`(4) Nsfw with active user 1`] = `
             </svg>
           </span>
           <div
-            className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
-            <span
-              className="author-name"
+            <div
+              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              onMouseEnter={[Function]}
             >
-              good-karma
-            </span>
+              <span
+                className="author-name"
+              >
+                good-karma
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -888,7 +904,7 @@ exports[`(4) Nsfw with active user 1`] = `
         className="date"
         title="Monday, June 1, 2020 5:53 AM"
       >
-        5 days
+        5d
       </span>
     </div>
     <div
@@ -1141,14 +1157,18 @@ exports[`(5) Nsfw but allowed 1`] = `
             </svg>
           </span>
           <div
-            className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
-            <span
-              className="author-name"
+            <div
+              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              onMouseEnter={[Function]}
             >
-              good-karma
-            </span>
+              <span
+                className="author-name"
+              >
+                good-karma
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -1167,7 +1187,7 @@ exports[`(5) Nsfw but allowed 1`] = `
         className="date"
         title="Monday, June 1, 2020 5:53 AM"
       >
-        5 days
+        5d
       </span>
     </div>
     <div
@@ -1447,14 +1467,18 @@ exports[`(6) Cross post. Bottom menu 1`] = `
             </svg>
           </span>
           <div
-            className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
-            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
-            <span
-              className="author-name"
+            <div
+              className="author btn notranslate d-none d-sm-flex align-items-center position-relative"
+              onMouseEnter={[Function]}
             >
-              regenerette
-            </span>
+              <span
+                className="author-name"
+              >
+                regenerette
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -1473,7 +1497,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
         className="date"
         title="Wednesday, March 24, 2021 4:14 PM"
       >
-        10 months
+        10M
       </span>
     </div>
     <div

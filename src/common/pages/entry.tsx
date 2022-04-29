@@ -54,6 +54,8 @@ import isCommunity from "../helper/is-community";
 import accountReputation from '../helper/account-reputation';
 
 import truncate from "../util/truncate";
+import replaceLinkIdToDataId from "../util/replace-link-id-to-data-id";
+import * as ss from "../util/session-storage";
 import * as ls from "../util/local-storage";
 import {crossPostMessage} from "../helper/cross-post";
 
@@ -73,6 +75,7 @@ import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
 import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
+import { getPost } from '../api/bridge';
 
 setProxyBase(defaults.imageServer);
 
@@ -98,7 +101,7 @@ interface State {
     showProfileBox: boolean;
     entryIsMuted: boolean;
     selection: string;
-    commentText: string;
+    isCommented: boolean;
     isMounted: boolean;
     postIsDeleted: boolean;
     deletedEntry: {title: string, body: string, tags: any} | null;
@@ -112,7 +115,7 @@ class EntryPage extends BaseComponent<Props, State> {
         showIfNsfw: false,
         editHistory: false,
         comment: "",
-        commentText: "",
+        isCommented: false,
         showProfileBox: false,
         entryIsMuted: false,
         isMounted: false,
@@ -131,7 +134,8 @@ class EntryPage extends BaseComponent<Props, State> {
 
     componentDidMount() {
         this.ensureEntry();
-        this.fetchMutedUsers()
+        this.fetchMutedUsers();
+        const entry = this.getEntry();
 
         const {location, global} = this.props;
         if (global.usePrivate && location.search === "?history") {
@@ -139,28 +143,22 @@ class EntryPage extends BaseComponent<Props, State> {
         }
         window.addEventListener("scroll", this.detect);
         window.addEventListener("resize", this.detect);
-        this.setState({isMounted:true})
+        let replyDraft = ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`)
+        replyDraft = replyDraft && replyDraft.trim() || ""
+        this.setState({isMounted:true, selection: replyDraft})
     }
 
     componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
-        const {location, activeUser} = this.props;
-        const {selection} = this.state;
-        const entry = this.getEntry();
+        const {location, 
+        } = this.props;
         if (location.pathname !== prevProps.location.pathname) {
             this.setState({isMounted:false})
             this.ensureEntry()
         }
-        if (prevStates.selection !== selection && !prevStates.selection && entry) {
-            
-        let text = selection ? (entry.body ? entry.body + `\n` : "") + selection : entry.body ? entry.body : "";
-        if(activeUser && activeUser.username){
-            let storageText = ls.get(`reply_draft_${entry.author}_${entry.permlink}`);
-            storageText = storageText && storageText.trim()
-            text = selection ? storageText ?
-            storageText + `\n` + selection : "" + selection : storageText ? storageText : "";
-            this.replyTextChanged(text);
-            this.setState({commentText: text, selection:""})
-        }
+        if (prevProps.activeUser !== this.props.activeUser) {
+            if(this.state.edit) {
+                this.setState({edit: false})
+            }
         }
     }
 
@@ -223,7 +221,7 @@ class EntryPage extends BaseComponent<Props, State> {
             version
         );
 
-        this.stateSet({loading: true});
+        this.stateSet({replying: true});
 
         comment(
             activeUser?.username!,
@@ -239,7 +237,9 @@ class EntryPage extends BaseComponent<Props, State> {
                 ...entry,
                 body: text
             }
-            this.setState({comment: text})
+            
+            this.setState({comment: text, isCommented: true})
+            ss.remove(`reply_draft_${entry.author}_${entry.permlink}`);
             updateReply(nReply); // update store
             this.toggleEdit(); // close comment box
             this.reload()
@@ -247,10 +247,11 @@ class EntryPage extends BaseComponent<Props, State> {
         }).catch((e) => {
             error(formatError(e));
         }).finally(() => {
-            this.stateSet({loading: false});
+            this.stateSet({replying: false, isCommented: false});
         });
     }
 }
+
 
     toggleEdit = () => {
         const {edit} = this.state;
@@ -283,13 +284,11 @@ class EntryPage extends BaseComponent<Props, State> {
             // let urlPartOne = match.url.split('/')[1];
             // let urlPartTwo = match.url.split('/')[2];
             // let isInvalidUrl = urlPartOne == urlPartTwo;
-            // debugger
             // if(isInvalidUrl){
             //     let address: any = match.url.split('/');
             //     address.shift();
             //     address.shift();
             //     address = address.join("/");
-            //     debugger
             //     history.push('/' + address);
             // } else {
             // The entry isn't in reducer. Fetch it and add to reducer.
@@ -331,7 +330,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 let arr = [];
                 for(let p in errorMessage)
                     arr.push(errorMessage[p]);
-                    errorMessage = arr.toString().replaceAll(',','')
+                    errorMessage = arr.toString().replace(/,/g,'')
                     if(errorMessage && errorMessage.length > 0 && errorMessage.includes("was deleted")){
                     this.setState({postIsDeleted: true, loading: true});
                     this.loadDeletedEntry(author, permlink)
@@ -370,18 +369,32 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     afterVote = (votes: EntryVote[], estimated: number) => {
-        const entry = this.getEntry()!;
+        const _entry = this.getEntry()!;
         const {updateEntry} = this.props;
 
-        const {payout} = entry;
+        const {payout} = _entry;
         const newPayout = payout + estimated;
-
-        updateEntry({
-            ...entry,
-            active_votes: votes,
-            payout: newPayout,
-            pending_payout_value: String(newPayout)
-        });
+        if (_entry.active_votes) {
+            updateEntry({
+                ..._entry,
+                active_votes: votes,
+                payout: newPayout,
+                pending_payout_value: String(newPayout)
+            });
+        } else {
+            getPost(_entry.author, _entry.permlink).then(entry => {
+                if (entry) {
+                    return updateEntry({
+                        ..._entry,
+                        active_votes: [...entry.active_votes, ...votes],
+                        payout: newPayout,
+                        pending_payout_value: String(newPayout)
+                    });
+                }
+            }).catch(e=>{
+                console.log(e);
+            })
+        }
     };
 
     replySubmitted = (text: string) => {
@@ -422,15 +435,16 @@ class EntryPage extends BaseComponent<Props, State> {
                 parentPermlink,
                 title: '',
                 body: text,
-                tags
+                tags,
+                description: null
             });
 
             // add new reply to store
             addReply(nReply);
 
             // remove reply draft
-            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
-            this.stateSet({commentText:""})
+            ss.remove(`reply_draft_${entry.author}_${entry.permlink}`);
+            this.stateSet({isCommented: true})
             
             if (entry.children === 0) {
                 // Activate discussion section with first comment.
@@ -444,14 +458,12 @@ class EntryPage extends BaseComponent<Props, State> {
         }).catch((e) => {
             error(formatError(e));
         }).finally(() => {
-            this.stateSet({replying: false});
+            this.stateSet({replying: false, isCommented: false});
         })
     }
 
-    replyTextChanged = (text: string) => {
-        const entry = this.getEntry()!;
-        ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
-        this.setState({commentText:text})
+    resetSelection = () => {
+        this.setState({selection:""})
     }
 
     reload = () => {
@@ -475,7 +487,7 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, commentText, isMounted, postIsDeleted, deletedEntry, showProfileBox} = this.state;
+        const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, /*commentText,*/ isMounted, postIsDeleted, deletedEntry, showProfileBox} = this.state;
         const {global, history, match} = this.props;
 
         let navBar = global.isElectron ? NavBarElectron({
@@ -529,7 +541,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                 <div className="mt-3">
                                     {SimilarEntries({
                                         ...this.props,
-                                        entry: {permlink, author, json_metadata: { tags: deletedEntry.tags}} as any
+                                        entry: {permlink, author, json_metadata: { tags: deletedEntry.tags}} as any,
+                                        display: ""
                                     })}
                                 </div>
                             </div>
@@ -557,9 +570,9 @@ class EntryPage extends BaseComponent<Props, State> {
         const modified = moment(parseDate(entry.updated));
 
         // Sometimes tag list comes with duplicate items
-        const tags = [...new Set(entry.json_metadata.tags)];
+        const tags = entry.json_metadata.tags && [...new Set(entry.json_metadata.tags)];
         // If category is not present in tags then add
-        if (entry.category && tags[0] !== entry.category) {
+        if (entry.category && tags && tags[0] !== entry.category) {
             tags.splice(0, 0, entry.category);
         }
         const app = appName(entry.json_metadata.app);
@@ -588,8 +601,8 @@ class EntryPage extends BaseComponent<Props, State> {
             image: catchPostImage(entry, 600, 500, global.canUseWebp ? 'webp' : 'match'),
             published: published.toISOString(),
             modified: modified.toISOString(),
-            tag: isCommunity(tags[0]) ? tags[1] : tags[0],
-            keywords: tags.join(", "),
+            tag: tags ? isCommunity(tags[0]) ? tags[1] : tags[0] : '',
+            keywords: tags && tags.join(", "),
         };
         let containerClasses = global.isElectron ? "app-content entry-page mt-0 pt-6" : "app-content entry-page";
 
@@ -732,8 +745,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                             </>;
                                         }
 
-                                        let renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 ? comment : entry.body :entry.body, false, global.canUseWebp)};
-                                        
+                                        const _entry_body = replaceLinkIdToDataId(entry.body);
+                                        let renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 ? comment : _entry_body :_entry_body, false, global.canUseWebp)};
                                         const ctitle = entry.community ? entry.community_title : "";
                                         let extraItems = ownEntry && isComment ? [{
                                                 label: _t("g.edit"),
@@ -854,6 +867,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 </div>
                                             </div>
                                             <meta itemProp="headline name" content={entry.title}/>
+
                                             {!edit ? 
                                                <>
                                                     <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
@@ -866,15 +880,26 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 </> :
                                                 Comment({
                                                     ...this.props,
-                                                    defText: commentText,
+                                                    defText: entry.body,
                                                     submitText: _t('g.update'),
                                                     cancellable: true,
                                                     onSubmit: this.updateReply,
                                                     onCancel: this.toggleEdit,
-                                                    inProgress: loading,
+                                                    inProgress: replying,
                                                     autoFocus: true,
-                                                    inputRef: this.commentInput
+                                                    inputRef: this.commentInput,
+                                                    entry: entry
                                                 })}
+
+                                                {/* <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
+                                                    <div
+                                                        itemProp="articleBody"
+                                                        className="entry-body markdown-view user-selectable"
+                                                        dangerouslySetInnerHTML={renderedBody}
+                                                    />
+                                                </SelectionPopover> */}
+
+
                                             <meta itemProp="image" content={metaProps.image}/>
                                         </>
                                     })()}
@@ -888,7 +913,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                     <div className="entry-footer">
                                         <div className="entry-tags">
-                                            {tags.map((t,i) => {
+                                            {tags && tags.map((t,i) => {
                                                 if (typeof t === "string") {
                                                     if (entry.community && entry.community_title && t === entry.community) {
                                                         return <Fragment key={t+i}>
@@ -979,7 +1004,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 ...this.props,
                                                 entry,
                                                 alignBottom: true,
-                                                separatedSharing: true
+                                                separatedSharing: true,
+                                                toggleEdit: this.toggleEdit
                                             })}
                                         </div>
                                     </div>
@@ -996,29 +1022,28 @@ class EntryPage extends BaseComponent<Props, State> {
                                         </div>
                                     )}
 
-                                    {activeUser && Comment({
+                                    {(!originalEntry && !isComment) && SimilarEntries({
                                         ...this.props,
-                                        defText: commentText,
+                                        entry,
+                                        display: !activeUser ? "" : "d-none"
+                                    })}
+
+                                    {Comment({
+                                        ...this.props,
+                                        defText: this.state.selection,
                                         submitText: _t('g.reply'),
-                                        onChange: this.replyTextChanged,
+                                        resetSelection: this.resetSelection,
                                         onSubmit: this.replySubmitted,
                                         inProgress: replying,
-                                        inputRef: this.commentInput
+                                        isCommented: this.state.isCommented,
+                                        inputRef: this.commentInput,
+                                        entry: entry
                                     })}
 
                                     {(!originalEntry && !isComment) && SimilarEntries({
                                         ...this.props,
-                                        entry
-                                    })}
-
-                                    {!activeUser && Comment({
-                                        ...this.props,
-                                        defText: commentText,
-                                        submitText: _t('g.reply'),
-                                        onChange: this.replyTextChanged,
-                                        onSubmit: this.replySubmitted,
-                                        inProgress: replying,
-                                        inputRef: this.commentInput
+                                        entry,
+                                        display: !activeUser ? "d-none" : ""
                                     })}
 
                                     {Discussion({

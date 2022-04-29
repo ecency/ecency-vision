@@ -1,6 +1,6 @@
-import moment from "moment";
 import React from "react";
 import { Link } from "react-router-dom";
+import { dateToRelative } from '../../helper/parse-date';
 import { _t } from "../../i18n";
 import { openInNewSvg } from "../../img/svg";
 import WitnessVoteBtn from "../witness-vote-btn";
@@ -66,7 +66,7 @@ export const WitnessCard = ({
         <div className="witness-feed">
           <span className="inner">
             ${row.feed.replace(" HBD", "")} |{" "}
-            {moment(row.priceAge).fromNow(true)}
+            {dateToRelative(row.priceAge)}
           </span>
         </div>
       <div className="d-flex align-items-center">

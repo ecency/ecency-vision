@@ -87,9 +87,10 @@ export const extractMetaData = (body: string): MetaData => {
 
 export const makeApp = (appVer: string) => `ecency/${appVer}-${isElectron() ? "surfer" : "vision"}`;
 
-export const makeJsonMetaData = (meta: MetaData, tags: string[], appVer: string): MetaData =>
+export const makeJsonMetaData = (meta: MetaData, tags: string[], description: string | null, appVer: string): MetaData =>
     Object.assign({}, meta, {
         tags,
+        description,
         app: makeApp(appVer),
         format: "markdown+html",
     });

@@ -6,6 +6,8 @@ import {Entry} from "../../store/entries/types";
 
 import {getPost} from "../../api/bridge";
 
+import {history as historyFromStore} from '../../store'
+
 export const makePath = (category: string, author: string, permlink: string, toReplies: boolean = false) =>
     `/${category}/@${author}/${permlink}${toReplies ? "#replies" : ""}`;
 
@@ -26,7 +28,7 @@ export class EntryLink extends Component<Props> {
     clicked = async (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
 
-        const {history, afterClick} = this.props;
+        const {history = historyFromStore, afterClick} = this.props;
 
         if (afterClick) afterClick();
 
@@ -46,7 +48,7 @@ export class EntryLink extends Component<Props> {
 
         const {category, author, permlink} = _entry;
 
-        history.push(makePath(category, author, permlink));
+        history!.push(makePath(category, author, permlink));
     };
 
     render() {

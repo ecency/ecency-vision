@@ -2,8 +2,6 @@ import React, {Component} from "react";
 
 import {History, Location} from "history";
 
-import moment from "moment";
-
 import {Form, FormControl, Modal} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
@@ -29,6 +27,7 @@ import defaults from "../../constants/defaults.json";
 import {deleteForeverSvg, pencilOutlineSvg} from "../../img/svg";
 
 import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-helper";
+import { dateToFormatted, dateToFullRelative } from '../../helper/parse-date';
 
 setProxyBase(defaults.imageServer);
 
@@ -61,9 +60,8 @@ export class ListItem extends Component<ItemProps> {
         const img = catchPostImage(draft.body, 600, 500, global.canUseWebp ? 'webp' : 'match') || noImage;
         const summary = postBodySummary(draft.body, 200);
 
-        const date = moment(new Date(draft.created));
-        const dateRelative = date.fromNow(true);
-        const dateFormatted = date.format("LLLL");
+        const dateRelative = dateToFullRelative(draft.created);
+        const dateFormatted = dateToFormatted(draft.created);
 
         return <div className="drafts-list-item">
             <div className="item-header">

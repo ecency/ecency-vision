@@ -100,7 +100,7 @@ export class EntryReblogBtn extends BaseComponent<Props> {
         const {activeUser, entry, reblogs} = this.props;
         const {inProgress} = this.state;
 
-        const reblogged =
+        const reblogged = entry && 
             activeUser &&
             reblogs.list.find((x) => x.author === entry.author && x.permlink === entry.permlink) !== undefined;
 

@@ -94,32 +94,56 @@ export class EntryIndexMenu extends Component<Props, States> {
         this.setState({isMounted: true})         
     }
 
-    onChangeGlobal(value: boolean) {        
+    onChangeGlobal(value: string) {        
         const { history, global : { tag, filter } } = this.props;
-        this.setState({ isGlobal: value });
-        if (value) {
-            history.push(`/${filter}`)
-        } else {
+        this.setState({ isGlobal: value ? false : true });
+        // if (value) {
+        //     history.push(`/${filter}`)
+        // } else {
+        //     history.push(`/${filter}/my`)
+        // }        
+        const temp = value ? '/'+value : ''
+        if (value === 'my') {
             history.push(`/${filter}/my`)
+        } else {
+            history.push(`/${filter}${temp}`)
         }
     }
 
     componentDidUpdate(prevProps: Props){
         const { history, activeUser, global: { tag, filter } } = this.props;
-        
+
         if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){            
             history.push(history.location.pathname.replace('/my', ''))
         } 
-        else if (!isActiveUser(activeUser) && (filter === 'feed')) {
-            history.push('/trending')
-        }
+        // else if (!isActiveUser(activeUser) && (filter === 'feed')) {
+        //     history.push('/trending')
+        // }
+        // else if (!isActiveUser(activeUser) && (prevProps.global.filter === 'feed') && (filter === 'trending' || filter === 'hot' || filter === 'created') && (tag.includes('@'))) {
+        //     history.push(`/${filter}`)
+        // }
         else if(!isActiveUser(prevProps.activeUser) !== !isActiveUser(activeUser) && filter !== 'feed'){
             let isGlobalValue = ((tag.length > 0) && (tag === 'my')) ? false : true
             this.setState({isGlobal: isGlobalValue});
         }
-        else if(prevProps.activeUser?.username !== activeUser?.username && filter === 'feed') {
+        else if(prevProps.activeUser && activeUser && prevProps.activeUser?.username !== activeUser?.username && filter === 'feed') {
             history.push(`/@${activeUser?.username}/${filter}`)
         }
+        else if(['controversial', 'rising'].includes(prevProps.global.filter) && !['controversial', 'rising'].includes(filter)) {
+            if (tag && tag.includes('@')) {
+                history.push(`/${tag}/${filter}`)
+            } else {
+                history.push(`/${filter}`)
+            }
+        }
+        else if(['controversial', 'rising'].includes(filter)) {
+            const tagValue = (tag && tag !== 'my' && ['today', 'week', 'month', 'year', 'all'].includes(tag)) ? '/' + tag : '/week'
+            history.push(`/${filter}${tagValue}`)
+        }
+        /*else if(!['controversial', 'rising'].includes(filter)) {
+            const tagValue = ['today', 'week', 'month', 'year', 'all'].includes(tag) ? '' : '/' + tag
+            history.push(`/${filter}${tagValue}`)
+        }*/
 
         let showInitialIntroductionJourney = activeUser && isActiveUser(activeUser) && ls.get(`${activeUser.username}HadTutorial`);
         if(prevProps.activeUser !==activeUser && activeUser && isActiveUser(activeUser) && (showInitialIntroductionJourney==='false' || showInitialIntroductionJourney===null)){
@@ -239,7 +263,7 @@ export class EntryIndexMenu extends Component<Props, States> {
     }
 
     render() {
-        const { activeUser, global } = this.props;
+        const { activeUser, global, history } = this.props;
         const { isGlobal, introduction, isMounted } = this.state;
         const { filter, tag } = global;
         const isMy = isMyPage(global, activeUser);
@@ -256,7 +280,7 @@ export class EntryIndexMenu extends Component<Props, States> {
             history: this.props.history,
             label: isMy && filter === "feed" ? _t("entry-filter.filter-feed-friends") : _t(`entry-filter.filter-${filter}`),
             items: [
-                ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
+                ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created, EntryFilter.rising, EntryFilter.controversial].map((x) => {
                     return {
                         label: _t(`entry-filter.filter-${x}`),
                         href: isActive ?
@@ -265,19 +289,27 @@ export class EntryIndexMenu extends Component<Props, States> {
                         : ((filter === 'feed') && isGlobal) ?
                         `/${x}`
                         : `/${x}${menuTagValue}`
-                        : `/${x}${menuTagValue}`,
-                        active: filter === x || filter === x + '/my',
+                        : tag[0] === '@' ? `/${x}` : `/${x}${menuTagValue}`,
+                        selected: filter === x || filter === x + '/my',
                         id: x,
                         flash: (x === 'trending' && introduction === IntroductionType.TRENDING) || (x === 'hot' && introduction === IntroductionType.HOT) || (x === 'created' && introduction === IntroductionType.NEW)
                     };
                 }),
+                // ...[EntryFilter.controversial, EntryFilter.rising].map((x) => {
+                //     return {
+                //         label: _t(`entry-filter.filter-${x}`),
+                //         href: `/${x}`,
+                //         id: x,
+                //         active: history.location.pathname.includes('trending')
+                //     };
+                // })
             ],
         };
 
         const mobileMenuConfig = !isActive ? menuConfig : {...menuConfig, items:[{
             label: _t(`entry-filter.filter-feed-friends`),
             href: `/@${activeUser?.username}/feed`,
-            active: filter === 'feed',
+            selected: filter === 'feed',
             id: 'feed'
         }, ...menuConfig.items]}        
 
@@ -335,7 +367,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     <ul className={`nav nav-pills nav-fill`}>
                                         {menuConfig.items.map((i, k) => {
                                             return <li key={k} className={`nav-item ${i.flash ? "flash" : ""}`}>
-                                                <Link to={i.href!} className={_c(`nav-link link-${i.id} ${(introduction!==IntroductionType.NONE && !i.flash && i.active)?"":(i.active || i.flash) ? "active" : ""}`)} id={i.id}>{i.label}</Link>
+                                                <Link to={i.href!} className={_c(`nav-link link-${i.id} ${(introduction!==IntroductionType.NONE && !i.flash && i.selected)?"":(i.selected || i.flash) ? "active" : ""}`)} id={i.id}>{i.label}</Link>
                                             </li>
                                         })}
                                         {isMounted && introduction !== IntroductionType.NONE && introduction !== IntroductionType.FRIENDS && (introduction === IntroductionType.HOT || introduction === IntroductionType.TRENDING || introduction === IntroductionType.NEW) ?
@@ -373,7 +405,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     <ul className="nav nav-pills nav-fill">
                                         {mobileMenuConfig.items.map((i, k) => {
                                             return <li key={k} className="nav-item">
-                                                <Link to={i.href!} className={_c(`nav-link link-${i.id} ${i.active ? "active" : ""}`)}>{i.label}</Link>
+                                                <Link to={i.href!} className={_c(`nav-link link-${i.id} ${i.selected ? "active" : ""}`)}>{i.label}</Link>
                                             </li>
                                         })}
                                     </ul>
@@ -403,7 +435,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                             >
                                 {informationVariantSvg}
                             </span>
-                            <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
+                            <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle} deck={true}/>
                         </div>
                     </div>
             </div> : null}

@@ -4,8 +4,6 @@ import {Button} from "react-bootstrap";
 
 import {History} from "history";
 
-import moment from "moment";
-
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {Community} from "../../store/communities/types";
@@ -21,7 +19,7 @@ import {getAccountNotifications, AccountNotification} from "../../api/bridge";
 
 import {_t} from "../../i18n";
 
-import parseDate from "../../helper/parse-date";
+import { dateToFullRelative } from "../../helper/parse-date";
 
 interface ListItemProps {
     history: History;
@@ -94,7 +92,7 @@ class ListItem extends Component<ListItemProps> {
 
         const username = mentions[0].replace('@', '');
         const msg = this.formatMessage(formatPatterns);
-        const date = moment(parseDate(notification.date));
+        const date = dateToFullRelative(notification.date);
 
         return <div className="activity-list-item">
             <div className="activity-user">
@@ -106,7 +104,7 @@ class ListItem extends Component<ListItemProps> {
             </div>
             <div className="activity-content">
                 <div className="activity-msg">{msg}</div>
-                <div className="activity-date">{date.fromNow()}</div>
+                <div className="activity-date">{date}</div>
             </div>
         </div>;
     }

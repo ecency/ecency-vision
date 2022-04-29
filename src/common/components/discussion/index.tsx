@@ -2,8 +2,6 @@ import React, {Component, useState, useEffect} from "react";
 
 import {History, Location} from "history";
 
-import moment from "moment";
-
 import {Button, Form, FormControl} from "react-bootstrap";
 
 import defaults from "../../constants/defaults.json";
@@ -35,13 +33,13 @@ import EntryDeleteBtn from "../entry-delete-btn";
 import MuteBtn from "../mute-btn";
 import LoginRequired from "../login-required";
 
-import parseDate from "../../helper/parse-date";
+import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 
 import {_t} from "../../i18n";
 
 import {comment, formatError} from "../../api/operations";
 
-import * as ls from "../../util/local-storage";
+import * as ss from "../../util/session-storage";
 
 import {createReplyPermlink, makeJsonMetaDataReply} from "../../helper/posting";
 import tempEntry from "../../helper/temp-entry";
@@ -54,7 +52,7 @@ import {commentSvg, pencilOutlineSvg, deleteForeverSvg, menuDownSvg, dotsHorizon
 
 import {version} from "../../../../package.json";
 import { getFollowing } from "../../api/hive";
-import { iteratorStream } from "@hiveio/dhive/lib/utils";
+
 import { Tsx } from "../../i18n/helper";
 import MyDropDown from "../dropdown";
 import { ProfilePopover } from "../profile-popover";
@@ -114,16 +112,24 @@ export const Item = (props: ItemProps) => {
     const [inProgress, setInProgress] = useState(false);
     const [mutedData, setMutedData] = useState([] as string[]);
     const [isMounted, setIsMounted] = useState(false);
+    const [lsDraft, setLsDraft] = useState("");
 
     const {entry, updateReply, activeUser, addReply, deleteReply, global, community, location, history} = props;
 
     useEffect(() => {
         setIsMounted(true);
         isMounted && fetchMutedUsers();
+        checkLsDraft()
         return () => {
           setIsMounted(false);
         }
     }, []);
+
+    useEffect(() => {
+      if (edit || reply) {
+        checkLsDraft()
+      }
+    }, [edit, reply]);
 
     const afterVote = (votes: EntryVote[], estimated: number) => { 
         const {payout} = entry;
@@ -151,12 +157,13 @@ export const Item = (props: ItemProps) => {
         setEdit(!edit);
     }
 
-    const replyTextChanged = (text: string) => {
-        ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
+    const checkLsDraft = () => {
+        let replyDraft = ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`)
+        replyDraft = replyDraft && replyDraft.trim() || ""
+        setLsDraft(replyDraft)
     }
 
     const submitReply = (text: string) => {
-
         if (!activeUser || !activeUser.data.__loaded) {
             return;
         }
@@ -189,14 +196,15 @@ export const Item = (props: ItemProps) => {
                 parentPermlink,
                 title: '',
                 body: text,
-                tags: []
+                tags: [],
+                description: null
             });
 
             // add new reply to store
             addReply(nReply);
 
             // remove reply draft
-            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
+            ss.remove(`reply_draft_${entry.author}_${entry.permlink}`);
 
             // close comment box
             toggleReply();
@@ -240,6 +248,7 @@ export const Item = (props: ItemProps) => {
                 ...entry,
                 body: text
             }
+            ss.remove(`reply_draft_${entry.author}_${entry.permlink}`);
 
             updateReply(nReply); // update store
             toggleEdit(); // close comment box
@@ -265,7 +274,6 @@ export const Item = (props: ItemProps) => {
         }
     }
 
-    const created = moment(parseDate(entry.created));
     const readMore = entry.children > 0 && entry.depth > 5;
     const showSubList = !readMore && entry.children > 0;
     const canEdit = activeUser && activeUser.username === entry.author;
@@ -305,8 +313,8 @@ export const Item = (props: ItemProps) => {
                         {EntryLink({
                             ...props,
                             entry,
-                            children: <span className="date" title={created.format("LLLL")}>
-                                {created.fromNow()}
+                            children: <span className="date" title={dateToFormatted(entry.created)}>
+                                {dateToFullRelative(entry.created)}
                             </span>
                         })}
                     </div>
@@ -413,10 +421,9 @@ export const Item = (props: ItemProps) => {
 
             {reply && Comment({
                 ...props,
-                defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
+                defText: lsDraft,
                 submitText: _t('g.reply'),
                 cancellable: true,
-                onChange: replyTextChanged,
                 onSubmit: submitReply,
                 onCancel: toggleReply,
                 inProgress: inProgress,
@@ -485,6 +492,14 @@ export class List extends Component<ListProps> {
         this.setState({isMounted: true});
         document.getElementsByTagName("html")[0].style.position = 'relative';
         this.state.isMounted && this.fetchMutedUsers();
+    }
+
+    shouldComponentUpdate(nextProps: Readonly<Props>) {
+        if(this.props.discussion === nextProps.discussion && this.props.activeUser === nextProps.activeUser) {            
+            return false
+        } else {
+            return true
+        }
     }
 
     fetchMutedUsers = () => {
@@ -664,7 +679,7 @@ export class Discussion extends Component<Props, State> {
         }
 
         return (
-            <div className="discussion">
+            <div className="discussion" id="discussion">
                 {!activeUser && <>{join}</>}
                 <div className="discussion-header">
                     <div className="count"> {commentSvg} {strCount}</div>

@@ -52,6 +52,7 @@ const faqKeysGeneral = [
     'how-to-transfer',
     'how-see-rewards',
     'when-claim-rewards',
+    'how-exchange-work',
     'how-boost-account',
     'how-dhf-work',
     'what-spam-abuse',
@@ -172,7 +173,7 @@ class AboutPage extends Component<PageProps> {
                             <a
                                 className="contacts-link"
                                 target="_blank"
-                                href="https://twitter.com/esteem_app"
+                                href="https://twitter.com/ecency_official"
                                 rel="noopener noreferrer"
                             >
                                 {twitterSvg} Twitter

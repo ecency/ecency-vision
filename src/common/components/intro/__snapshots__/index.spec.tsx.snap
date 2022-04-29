@@ -2,7 +2,7 @@
 
 exports[`(1) Render 1`] = `
 <div
-  className="intro"
+  className="intro-text"
 >
   <div
     className="hide-intro"
