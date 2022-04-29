@@ -315,9 +315,9 @@
     "refresh-time": "Время обновления",
     "hours": "часов",
     "save": "Сохранить",
-    "update-interval": "Update interval",
-    "update-interval-min": "In minutes",
-    "update-n-seconds": "Every {{sec}} sec",
+    "update-interval": "Интервал обновления",
+    "update-interval-min": "В минутах",
+    "update-n-seconds": "Каждые {{sec}} сек",
     "update-n-minutes": "Every {{min}} min",
     "update-n-hours": "Every {{hour}} h",
     "update-custom": "Custom interval...",
@@ -924,7 +924,7 @@
     "empty-title-alert": "Введите название поста",
     "empty-tags-alert": "Введите теги поста",
     "empty-body-alert": "Введите содержимое поста",
-    "description": "Short description"
+    "description": "Короткое описание"
   },
   "tag-selector": {
     "placeholder-empty": "Тэги. Первый тэг является основной категорией. Для сортировки.",
