@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {PrivateKey} from "@hiveio/dhive";
+import {PrivateKey, cryptoUtils} from "@hiveio/dhive";
 
 import numeral from "numeral";
 
@@ -136,6 +136,7 @@ interface State {
     to: string,
     toData: Account | null,
     toError: string,
+    memoError: string,
     toWarning: string,
     amount: string,
     amountError: string;
@@ -158,6 +159,7 @@ const pureState = (props: Props): State => {
         to: props.to || _to,
         toData: props.to ? {name: props.to} : _toData,
         toError: "",
+        memoError: "",
         toWarning: "",
         amount: props.amount || "0.001",
         amountError: "",
@@ -215,6 +217,8 @@ export class Transfer extends BaseComponent<Props, State> {
 
     memoChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: memo} = e.target;
+        const mError = cryptoUtils.isWif(memo);
+        if (mError) this.setState({ memoError: "Never put your private keys into a memo field, as this could result in your funds being stolen" });
         this.stateSet({memo});
     };
 
@@ -351,8 +355,8 @@ export class Transfer extends BaseComponent<Props, State> {
     }
 
     canSubmit = () => {
-        const {toData, toError, amountError, inProgress, amount} = this.state;
-        return toData && !toError && !amountError && !inProgress && parseFloat(amount) > 0;
+        const {toData, toError, amountError, memoError, inProgress, amount} = this.state;
+        return toData && !toError && !amountError && !memoError && !inProgress && parseFloat(amount) > 0;
     };
 
     next = () => {
@@ -567,7 +571,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
     render() {
         const {global, mode, activeUser, transactions, dynamicProps} = this.props;
-        const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress, toData, delegationList} = this.state;
+        const {step, asset, to, toError, toWarning, amount, amountError, memoError, memo, inProgress, toData, delegationList} = this.state;
         const {hivePerMVests} = dynamicProps;
 
         const recent = [...new Set(
@@ -832,12 +836,16 @@ export class Transfer extends BaseComponent<Props, State> {
                                     </Col>
                                 </Form.Group>
                                 <FormText msg={_t("transfer.memo-help")} type="muted"/>
+                                {memoError && (
+                                    <FormText msg={memoError} type="danger"/>
+                                )}
                             </>
                         )}
 
                         <Form.Group as={Row}>
                             <Col sm={{span: 10, offset: 2}}>
-                                <Button onClick={this.next} disabled={!this.canSubmit() && amount > balance}>{_t('g.next')}</Button>
+                                {/* Changed && to || since it just allows the form to submit anyway initially */}
+                                <Button onClick={this.next} disabled={!this.canSubmit() || amount > balance}>{_t('g.next')}</Button>
                             </Col>
                         </Form.Group>
                     </Form>
