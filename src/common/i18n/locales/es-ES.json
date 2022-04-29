@@ -924,7 +924,7 @@
     "empty-title-alert": "Introduce título de la publicación",
     "empty-tags-alert": "Introducir etiquetas de la publicación",
     "empty-body-alert": "Introducir cuerpo de la publicación",
-    "description": "Short description"
+    "description": "Descripción breve"
   },
   "tag-selector": {
     "placeholder-empty": "Etiquetas. Primera etiqueta es la categoría principal. Seleccionable.",
