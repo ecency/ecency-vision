@@ -1,7 +1,7 @@
 .sign-up-page {
   display: flex;
 
-  @media (min-width: $md-break) {
+  @media (max-width: $md-break) {
     flex-direction: column;
     align-items: center;
   }
@@ -21,6 +21,10 @@
           padding: 0 0.25rem;
           font-size: 1rem;
         }
+      }
+
+      @media (max-width: $md-break) {
+        margin-bottom: 2rem;
       }
     }
 
