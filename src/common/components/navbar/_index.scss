@@ -15,7 +15,7 @@
     }
 
     @include themify(dusk) {
-      color: $steel-grey;
+      color: $white-three;
     }
 
     @include themify(sky) {
@@ -50,7 +50,7 @@
   }
 
   @include themify(dusk) {
-    background: $white-two;
+    background: $dusk-primary;
     box-shadow: 0 0 2px 1px $white-six;
   }
 
@@ -125,13 +125,9 @@
     height: 64px;
   }
 
-  @include themify(day) {
-    background: $white-two;
-    box-shadow: 0 0 2px 1px $white-six;
-  }
-
   @include themify(dusk) {
-    background: $white-two;
+    background: $dusk-primary;
+    box-shadow: 0 0 2px 1px $white-six;
   }
 
   @include themify(burning) {
@@ -175,7 +171,7 @@
     }
 
     @include themify(day) {
-      background: $white-two;
+      background: $dusk-primary;
       box-shadow: 0 0 2px 1px $white-six;
     }
 

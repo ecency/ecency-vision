@@ -280,7 +280,7 @@ export class NavBar extends Component<Props, State> {
       this.props?.location?.pathname?.startsWith("/trending");
 
     return (
-      <div className={"sticky-container"} id="sticky-container">
+      <div className="sticky-container" id="sticky-container">
         {floating && smVisible && <div className="nav-bar-rep" />}
         <div
           className={`nav-bar-toggle ${"position-fixed"}`}
@@ -380,7 +380,7 @@ export class NavBar extends Component<Props, State> {
                         {_t("g.login")}
                       </Button>
                       <Link className="btn btn-primary" to="/signup">
-                          {_t("g.signup")}
+                        {_t("g.signup")}
                       </Link>
                     </div>
                     <div className="submit-post">

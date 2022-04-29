@@ -61,11 +61,19 @@
       font-weight: 600;
       margin-bottom: 18px;
       color: $white-three;
+
+      @include themify(dusk) {
+        color: lighten($charcoal-grey, 10);
+      }
     }
 
     .about {
       font-weight: 300;
       color: $white-three;
+      
+      @include themify(dusk) {
+        color: lighten($charcoal-grey, 10);
+      }
     }
 
     .nsfw {
@@ -159,6 +167,10 @@
         max-width: 95%;
         p {
           word-break: break-all;
+        }
+
+        @include themify(dusk) {
+          color: lighten($charcoal-grey, 10);
         }
 
         @include themify(sky) {
