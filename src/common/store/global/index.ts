@@ -52,7 +52,7 @@ export const initialState: Global = {
   isMobile: false,
   usePrivate: true,
   ctheme: "sky",
-  tags: "spk,3speak",
+  tags: ["spk", "3speak"],
   hive_id: "hive-112019",
 };
 

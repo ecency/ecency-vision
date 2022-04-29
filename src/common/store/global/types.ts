@@ -66,7 +66,7 @@ export interface Global {
   usePrivate: boolean;
   ctheme: string;
   hive_id: string;
-  tags: string;
+  tags: string[];
 }
 
 export enum ActionTypes {

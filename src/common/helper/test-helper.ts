@@ -122,7 +122,7 @@ export const globalInstance: Global = {
   nsfw: false,
   newVersion: null,
   usePrivate: true,
-  tags: "",
+  tags: [],
   hive_id: "",
   ctheme: "",
 };

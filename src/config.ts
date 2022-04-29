@@ -5,6 +5,6 @@ export default {
   hsClientSecret: process.env.HIVESIGNER_SECRET || "", // when USE_PRIVATE=0 and HIVESIGNER client section must be provided,
   hive_id: process.env.HIVE_ID || "",
   theme: process.env.THEME || "",
-  tags: process.env.TAGS || "",
+  tags: process.env.TAGS?.split(",") || "",
   availibleAccounts: process.env.ACCOUNTS ? +process.env.ACCOUNTS : 0,
 };
