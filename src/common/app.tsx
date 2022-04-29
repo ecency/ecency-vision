@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import {Route, Switch} from "react-router-dom";
 
-import EntryIndexContainer from "./pages/entry-index";
+import EntryIndexContainer from "./pages/index";
 import ProfileContainer from "./pages/profile";
 import EntryContainer from "./pages/entry";
 import CommunitiesContainer, {CommunityCreateContainer, CommunityCreateHSContainer} from "./pages/communities";

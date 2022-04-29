@@ -88,7 +88,7 @@ const LandingPage = (props: any) => {
           </div>
           <button
             className="get-started mx-auto"
-            onClick={() => props.changeState({ step: 2 })}
+            onClick={() => props.setStep(2)}
           >
             {_t("landing-page.get-started")}
           </button>
