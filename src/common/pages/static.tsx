@@ -69,139 +69,163 @@ class AboutPage extends Component<PageProps> {
         let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
         return (
-            <>
-                <Meta {...metaProps} />
-                <ScrollToTop/>
-                <Theme global={this.props.global}/>
-                {global.isElectron ?
-                    NavBarElectron({
-                        ...this.props,
-                    }) :
-                    NavBar({...this.props})}
+          <>
+            <Meta {...metaProps} />
+            <ScrollToTop />
+            <Theme global={this.props.global} />
+            {global.isElectron
+              ? NavBarElectron({
+                  ...this.props,
+                })
+              : NavBar({ ...this.props })}
 
-                <div className={"app-content static-page about-page" + containerClasses}>
-                    <div className="about-cloud">
-                        <div className="up-cloud"/>
-                        <div className="about-inner">
-                            <div className="about-content">
-                                <div className="arrow-1"/>
-                                <div className="arrow-2"/>
-                                <Tsx k="static.about.intro-title"><h1 className="about-title" /></Tsx>
-                                <p>{_t('static.about.intro-content')}</p>
-                            </div>
-                            <div className="sub-cloud">
-                                <div className="cloud-1"/>
-                                <div className="cloud-2"/>
-                                <div className="arrow-1"/>
-                            </div>
-                        </div>
-                        <div className="down-cloud"/>
-                    </div>
-
-                    <div className="downloads" id="downloads">
-                        <h2 className="downloads-title">Downloads</h2>
-                        <div className="downloads-text">
-                            Enjoy Ecency for iPhone, iPad and Android, as well as PC, Mac or Linux devices:
-                        </div>
-                        <div className="download-buttons">
-                            <a
-                                className="download-button btn-desktop"
-                                target="_blank"
-                                href="https://github.com/ecency/ecency-vision/releases"
-                                rel="noopener noreferrer"
-                            >
-                                DESKTOP
-                            </a>
-                            <a
-                                className="download-button btn-ios"
-                                target="_blank"
-                                href="https://ios.ecency.com"
-                                rel="noopener noreferrer"
-                            >
-                                IOS
-                            </a>
-                            <a
-                                className="download-button btn-android"
-                                target="_blank"
-                                href="https://android.ecency.com"
-                                rel="noopener noreferrer"
-                            >
-                                ANDROID
-                            </a>
-                        </div>
-                    </div>
-
-                    <div className="faq">
-                        <h2 className="faq-title">{_t('static.about.faq-title')}</h2>
-                        <div className="faq-links">
-                            {[...faqKeysGeneral].slice(0, 4).map(x => {
-                                return <p key={x}>
-                                    <a className="faq-link" href={`/faq#${x}`}>{_t(`static.faq.${x}-header`)}</a>
-                                </p>
-                            })}
-                            <p><Link to="/faq">{_t('static.about.faqs')}</Link></p>
-                        </div>
-                    </div>
-
-                    <div className="contacts">
-                        <h2 className="contacts-title">{_t('static.about.contact-title')}</h2>
-                        <div className="contacts-links">
-                            <a
-                                className="contacts-link"
-                                target="_blank"
-                                href="https://ecency.com/@good-karma"
-                                rel="noopener noreferrer"
-                            >
-                                {blogSvg} {_t('static.about.contact-blog')}
-                            </a>
-                            <a
-                                className="contacts-link"
-                                target="_blank"
-                                href="https://ecency.com/@ecency"
-                                rel="noopener noreferrer"
-                            >
-                                {newsSvg} {_t('static.about.contact-news')}
-                            </a>
-                            <a
-                                className="contacts-link"
-                                target="_blank"
-                                href="mailto:info@esteem.app?subject=Feedback"
-                                rel="noopener noreferrer"
-                            >
-                                {mailSvg} {_t('static.about.contact-email')}
-                            </a>
-                            <a
-                                className="contacts-link"
-                                target="_blank"
-                                href="https://twitter.com/ecency_official"
-                                rel="noopener noreferrer"
-                            >
-                                {twitterSvg} Twitter
-                            </a>
-                            <a
-                                className="contacts-link"
-                                target="_blank"
-                                href="https://github.com/ecency"
-                                rel="noopener noreferrer"
-                            >
-                                {githubSvg} Github
-                            </a>
-                            <a className="contacts-link" target="_blank" href="https://t.me/ecency" rel="noopener noreferrer">
-                                {telegramSvg} Telegram
-                            </a>
-                            <a
-                                className="contacts-link"
-                                target="_blank"
-                                href="https://discord.me/ecency"
-                                rel="noopener noreferrer"
-                            >
-                                {discordSvg} Discord
-                            </a>
-                        </div>
-                    </div>
-
+            <div
+              className={
+                "app-content static-page about-page" + containerClasses
+              }
+            >
+              <div className="about-cloud">
+                <div className="up-cloud" />
+                <div className="about-inner">
+                  <div className="about-content">
+                    <div className="arrow-1" />
+                    <div className="arrow-2" />
+                    <Tsx k="static.about.intro-title">
+                      <h1 className="about-title" />
+                    </Tsx>
+                    <p>{_t("static.about.intro-content")}</p>
+                  </div>
+                  <div className="sub-cloud">
+                    <div className="cloud-1" />
+                    <div className="cloud-2" />
+                    <div className="arrow-1" />
+                  </div>
                 </div>
-            </>
+                <div className="down-cloud" />
+              </div>
+
+              <div className="downloads" id="downloads">
+                <h2 className="downloads-title">Downloads</h2>
+                <div className="downloads-text">
+                  Enjoy Ecency for iPhone, iPad and Android, as well as PC, Mac
+                  or Linux devices:
+                </div>
+                <div className="download-buttons">
+                  <a
+                    className="download-button btn-desktop"
+                    target="_blank"
+                    href="https://github.com/ecency/ecency-vision/releases"
+                    rel="noopener noreferrer"
+                  >
+                    DESKTOP
+                  </a>
+                  <a
+                    className="download-button btn-ios"
+                    target="_blank"
+                    href="https://ios.ecency.com"
+                    rel="noopener noreferrer"
+                  >
+                    IOS
+                  </a>
+                  <a
+                    className="download-button btn-android"
+                    target="_blank"
+                    href="https://android.ecency.com"
+                    rel="noopener noreferrer"
+                  >
+                    ANDROID
+                  </a>
+                </div>
+              </div>
+
+              <div className="faq">
+                <h2 className="faq-title">{_t("static.about.faq-title")}</h2>
+                <div className="faq-links">
+                  {[...faqKeysGeneral].slice(0, 4).map((x) => {
+                    return (
+                      <p key={x}>
+                        <a
+                          className="faq-link"
+                          href={`https://starterkit.tech/faqs#${x}`}
+                        >
+                          {_t(`static.faq.${x}-header`)}
+                        </a>
+                      </p>
+                    );
+                  })}
+                  <p>
+                    <Link to="https://starterkit.tech/faqs">
+                      {_t("static.about.faqs")}
+                    </Link>
+                  </p>
+                </div>
+              </div>
+
+              <div className="contacts">
+                <h2 className="contacts-title">
+                  {_t("static.about.contact-title")}
+                </h2>
+                <div className="contacts-links">
+                  <a
+                    className="contacts-link"
+                    target="_blank"
+                    href="https://ecency.com/@good-karma"
+                    rel="noopener noreferrer"
+                  >
+                    {blogSvg} {_t("static.about.contact-blog")}
+                  </a>
+                  <a
+                    className="contacts-link"
+                    target="_blank"
+                    href="https://ecency.com/@ecency"
+                    rel="noopener noreferrer"
+                  >
+                    {newsSvg} {_t("static.about.contact-news")}
+                  </a>
+                  <a
+                    className="contacts-link"
+                    target="_blank"
+                    href="mailto:info@esteem.app?subject=Feedback"
+                    rel="noopener noreferrer"
+                  >
+                    {mailSvg} {_t("static.about.contact-email")}
+                  </a>
+                  <a
+                    className="contacts-link"
+                    target="_blank"
+                    href="https://twitter.com/ecency_official"
+                    rel="noopener noreferrer"
+                  >
+                    {twitterSvg} Twitter
+                  </a>
+                  <a
+                    className="contacts-link"
+                    target="_blank"
+                    href="https://github.com/ecency"
+                    rel="noopener noreferrer"
+                  >
+                    {githubSvg} Github
+                  </a>
+                  <a
+                    className="contacts-link"
+                    target="_blank"
+                    href="https://t.me/ecency"
+                    rel="noopener noreferrer"
+                  >
+                    {telegramSvg} Telegram
+                  </a>
+                  <a
+                    className="contacts-link"
+                    target="_blank"
+                    href="https://discord.me/ecency"
+                    rel="noopener noreferrer"
+                  >
+                    {discordSvg} Discord
+                  </a>
+                </div>
+              </div>
+            </div>
+          </>
         );
     }
 }
@@ -872,73 +896,118 @@ class FaqPage extends Component<PageProps, FAQPageState> {
         let dataToShow = (search.length > 0 && searchResult.length > 0) ? searchResult : faqKeys;
 
         return (
-            <>
-                <Meta {...metaProps} />
-                <ScrollToTop/>
-                <Feedback />
-                <Theme global={this.props.global}/>
-                {global.isElectron ?
-                    NavBarElectron({
-                        ...this.props,
-                    }) :
-                    NavBar({...this.props})}
+          <>
+            <Meta {...metaProps} />
+            <ScrollToTop />
+            <Feedback />
+            <Theme global={this.props.global} />
+            {global.isElectron
+              ? NavBarElectron({
+                  ...this.props,
+                })
+              : NavBar({ ...this.props })}
 
-                <div className={"app-content static-page faq-page" + containerClasses} itemScope={true} itemType="https://schema.org/FAQPage">
-                    <div className="static-content">
-                        <div className="position-relative rounded">
-                            <img src={imgs} className="rounded"/>
-                            <div className="position-absolute search-container d-flex justify-content-center align-items-center flex-column rounded p-3">
-                                <h1 className="text-white faq-title text-center mb-3">{_t('static.faq.page-title')}</h1>
-                                <InputGroup 
-                                    className="mb-3 w-75"
-                                >
-                                    <Form.Control
-                                        placeholder={`${_t("static.faq.search-placeholder")}`}
-                                        className="w-75"
-                                        onChange={e=>{
-                                            this.setState({search: e.target.value});
-                                    }}
-                                        value={search}
-                                        autoFocus={true}
-                                    />
-                                    <InputGroup.Append>
-                                        <Button
-                                            variant="primary"
-                                            size="sm"
-                                            className="copy-to-clipboard"
-                                            disabled={search.length === 0}
-                                            onClick={() => {this.copyToClipboard(`https://ecency.com/faq?q=${search}&lang=${global.lang.split("-")[0]}`);}}
-                                        >
-                                            {copyContent}
-                                        </Button>
-                                    </InputGroup.Append>
-                                </InputGroup>
-                                {search.length > 0 && <Form.Text className="text-white mt-2 mt-sm-3 w-75 text-center helper-text">
-                                    {searchResult.length > 0 ? _t("static.faq.search", {search: `"${search}"`}) :
-                                        <div className="text-not-found">{_t("static.faq.search-not-found")}<Link to="https://discord.me/ecency" target="_blank">Discord</Link>.</div>}
-                                </Form.Text>}
-                            </div>
-                        </div>
-                        <h3>{_t('static.faq.page-sub-title')}</h3>
-                        <ul className="table-contents">
-                            {dataToShow.map(x => {
-                                    return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>;
-                            })}
-                        </ul>
-                        <div className="faq-list">
-                            {dataToShow.map((x) => {
-                                return <div key={x} className="faq-item" itemScope={true} itemProp="mainEntity" itemType="https://schema.org/Question">
-                                            <span className="anchor" id={x}/>
-                                            <h4 className="faq-item-header" itemProp="name">{_t(`static.faq.${x}-header`)}</h4>
-                                            <div itemScope={true} itemProp="acceptedAnswer" itemType="https://schema.org/Answer" id="content">
-                                                <Tsx k={`static.faq.${x}-body`}><div className="faq-item-body" itemProp="text" /></Tsx>
-                                            </div>
-                                        </div>
-                            })}
-                        </div>
-                    </div>
+            <div
+              className={"app-content static-page faq-page" + containerClasses}
+              itemScope={true}
+              itemType="https://schema.orghttps://starterkit.tech/faqsPage"
+            >
+              <div className="static-content">
+                <div className="position-relative rounded">
+                  <img src={imgs} className="rounded" />
+                  <div className="position-absolute search-container d-flex justify-content-center align-items-center flex-column rounded p-3">
+                    <h1 className="text-white faq-title text-center mb-3">
+                      {_t("static.faq.page-title")}
+                    </h1>
+                    <InputGroup className="mb-3 w-75">
+                      <Form.Control
+                        placeholder={`${_t("static.faq.search-placeholder")}`}
+                        className="w-75"
+                        onChange={(e) => {
+                          this.setState({ search: e.target.value });
+                        }}
+                        value={search}
+                        autoFocus={true}
+                      />
+                      <InputGroup.Append>
+                        <Button
+                          variant="primary"
+                          size="sm"
+                          className="copy-to-clipboard"
+                          disabled={search.length === 0}
+                          onClick={() => {
+                            this.copyToClipboard(
+                              `https://ecency.comhttps://starterkit.tech/faqs?q=${search}&lang=${
+                                global.lang.split("-")[0]
+                              }`
+                            );
+                          }}
+                        >
+                          {copyContent}
+                        </Button>
+                      </InputGroup.Append>
+                    </InputGroup>
+                    {search.length > 0 && (
+                      <Form.Text className="text-white mt-2 mt-sm-3 w-75 text-center helper-text">
+                        {searchResult.length > 0 ? (
+                          _t("static.faq.search", { search: `"${search}"` })
+                        ) : (
+                          <div className="text-not-found">
+                            {_t("static.faq.search-not-found")}
+                            <Link
+                              to="https://discord.me/ecency"
+                              target="_blank"
+                            >
+                              Discord
+                            </Link>
+                            .
+                          </div>
+                        )}
+                      </Form.Text>
+                    )}
+                  </div>
                 </div>
-            </>
+                <h3>{_t("static.faq.page-sub-title")}</h3>
+                <ul className="table-contents">
+                  {dataToShow.map((x) => {
+                    return (
+                      <li key={x}>
+                        <a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div className="faq-list">
+                  {dataToShow.map((x) => {
+                    return (
+                      <div
+                        key={x}
+                        className="faq-item"
+                        itemScope={true}
+                        itemProp="mainEntity"
+                        itemType="https://schema.org/Question"
+                      >
+                        <span className="anchor" id={x} />
+                        <h4 className="faq-item-header" itemProp="name">
+                          {_t(`static.faq.${x}-header`)}
+                        </h4>
+                        <div
+                          itemScope={true}
+                          itemProp="acceptedAnswer"
+                          itemType="https://schema.org/Answer"
+                          id="content"
+                        >
+                          <Tsx k={`static.faq.${x}-body`}>
+                            <div className="faq-item-body" itemProp="text" />
+                          </Tsx>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </>
         );
     }
 }

@@ -158,7 +158,7 @@
     "header": "Welcome to Ecency",
     "description": "Home of Free speech and Rewarding communities!",
     "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
-    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "learn-more": "Learn more about benefits in our <a href=\"https://starterkit.tech/faqs#how-to-join\">FAQ</a>",
     "username": "Izaberite korisničko ime",
     "email": "Unesite svoju e-mail adresu",
     "ref": "Preporučeni korisnik (opcionalno)",
@@ -271,7 +271,7 @@
   },
   "market": {
     "title": "Token exchange",
-    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"https://starterkit.tech/faqs#how-exchange-work\">FAQ</a>.",
     "last-price": "Last Price",
     "volume": "24h volume",
     "bid": "Bid",
@@ -1025,7 +1025,7 @@
   },
   "proposals": {
     "page-title": "Predlozi",
-    "page-description": "Decentralizovani Hive fond (DHF) je lančani mehanizam finansiranja koji omogućava bilo kome da podnese predlog i dobije sredstva kada glasovi pređu određeni prag. Da biste saznali više, pročitajte <a href=\"/faq#how-dhf-work\">Najčešća pitanja</a>.",
+    "page-description": "Decentralizovani Hive fond (DHF) je lančani mehanizam finansiranja koji omogućava bilo kome da podnese predlog i dobije sredstva kada glasovi pređu određeni prag. Da biste saznali više, pročitajte <a href=\"https://starterkit.tech/faqs#how-dhf-work\">Najčešća pitanja</a>.",
     "by": "od",
     "for": "za",
     "duration-days": "{{n}} dana",
@@ -1176,9 +1176,9 @@
       "when-claim-rewards-header": "Kada mogu zahtevati svoje nagrade?",
       "when-claim-rewards-body": "<p>Objave i komentari ostaju aktivni 7 dana, a nagrade variraju u zavisnosi od glasova i tržišne vrednosti tokena, zato su nagrade približne kao nagrade na čekanju. Kada period istekne, očekivana nagrada se menja u stvarnu nagradu i moći ćete da zahtevate zarađenu nagradu. U novčaniku pritisnite na dugme Potraživanje nagrade da biste dodali tokene na sloj nalog.</p>",
       "what-are-rc-header": "Šta su resurs krediti?",
-      "what-are-rc-body": "<p>Transakcija na Hive blockhain-u imaju nula naknada, stopa transakcija se ograničava kako bi se blockchain zaštitio od neželjenih napada. Svaka akcija koju preduzmete na blockchain-u potrošiće malu količinu resurs kredita. To uključuje objavljivanje, komentarisanje, glasanje, prenos tokena, itd. Pregled sadržaja ne troši resurs kredite.</p><p>Svaki korisnik ima ograničenu količinu resursa za korišćenje svake nedelje. Što više transakcija korisnik izvrši, manje resursa će mu ostati (dok se ne dopuni). Korisnici sa više Hive snage imaće više resurs kredita. </p><p>Ukoliko vam ponestane resurs kredita, nećete moći izvršavati prenose sa blockchain-a sve dok se vaši resurs krediti ne napune (automatski) ili dok ne steknete dodatnu Hive snagu da biste povećali stanje svog resurs kredita ili možete <a href=\"/faq#how-boost-account\">zatražiti pojačanje naloga od Ecency radi dobijanja privremena delegacije.</p>",
+      "what-are-rc-body": "<p>Transakcija na Hive blockhain-u imaju nula naknada, stopa transakcija se ograničava kako bi se blockchain zaštitio od neželjenih napada. Svaka akcija koju preduzmete na blockchain-u potrošiće malu količinu resurs kredita. To uključuje objavljivanje, komentarisanje, glasanje, prenos tokena, itd. Pregled sadržaja ne troši resurs kredite.</p><p>Svaki korisnik ima ograničenu količinu resursa za korišćenje svake nedelje. Što više transakcija korisnik izvrši, manje resursa će mu ostati (dok se ne dopuni). Korisnici sa više Hive snage imaće više resurs kredita. </p><p>Ukoliko vam ponestane resurs kredita, nećete moći izvršavati prenose sa blockchain-a sve dok se vaši resurs krediti ne napune (automatski) ili dok ne steknete dodatnu Hive snagu da biste povećali stanje svog resurs kredita ili možete <a href=\"https://starterkit.tech/faqs#how-boost-account\">zatražiti pojačanje naloga od Ecency radi dobijanja privremena delegacije.</p>",
       "how-boost-account-header": "Kako da zatražite pojačanje?",
-      "how-boost-account-body": "<p>Ukoliko na vašem nalogu ima malo <a href=\"/faq#what-are-rc\">Resurs kredita</a>, možete zatražiti pojačanje od Ecency. Dobićete privremeno delegiranje koji trebalo da pojača vaš nalog da bi mogli obavljati više aktivnosti na blockchain-u. Funkciju pojačavanja naloga možete pronaču u opcijama za poene.</p>",
+      "how-boost-account-body": "<p>Ukoliko na vašem nalogu ima malo <a href=\"https://starterkit.tech/faqs#what-are-rc\">Resurs kredita</a>, možete zatražiti pojačanje od Ecency. Dobićete privremeno delegiranje koji trebalo da pojača vaš nalog da bi mogli obavljati više aktivnosti na blockchain-u. Funkciju pojačavanja naloga možete pronaču u opcijama za poene.</p>",
       "what-spam-abuse-header": "Šta se smatra neželjenom poštom ili zloupotrebom?",
       "what-spam-abuse-body": "<p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Mogu li zatražiti dodavanje povratne veze na svoju veb stranicu od Ecency tima?",
@@ -1205,7 +1205,7 @@
   },
   "contributors": {
     "title": "Contributors",
-    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
+    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"https://starterkit.tech/faqs#how-to-contribute\">FAQ</a>."
   },
   "context-menu": {
     "cut": "Iseci",

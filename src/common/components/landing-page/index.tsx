@@ -177,7 +177,10 @@ const LandingPage = (props: any) => {
                 </span>
                 {_t("landing-page.various-digital-tokens")}
               </p>
-              <Link className="link-read-more" to="/faq">
+              <Link
+                className="link-read-more"
+                to="https://starterkit.techhttps://starterkit.tech/faqss"
+              >
                 {_t("landing-page.read-more")}
               </Link>
             </div>

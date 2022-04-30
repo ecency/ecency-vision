@@ -158,7 +158,7 @@
     "header": "Welcome to Ecency",
     "description": "Home of Free speech and Rewarding communities!",
     "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
-    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "learn-more": "Learn more about benefits in our <a href=\"https://starterkit.tech/faqs#how-to-join\">FAQ</a>",
     "username": "Pumili ng bansag",
     "email": "Ilagay ang iyong email address",
     "ref": "Itinukoy na mga gumagamit (hindi kinakailangan)",
@@ -271,7 +271,7 @@
   },
   "market": {
     "title": "Token exchange",
-    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"https://starterkit.tech/faqs#how-exchange-work\">FAQ</a>.",
     "last-price": "Last Price",
     "volume": "24h volume",
     "bid": "Bid",
@@ -1025,7 +1025,7 @@
   },
   "proposals": {
     "page-title": "Mga panukala",
-    "page-description": "Ang Desentralisadong Hive na Pondo (Deccentralized Hive Fund or DHF) ay isang \nmekanismong pagpopondo sa loob ng blockchain na pinapayagan ang sinuman na magpasa ng panukala at makakuha ng pondo sa oras na ang pamayanan ay bumoto sa loob ng nakatakdang panahon. Para matuto pa ng ibayo basahin ang aming <a href=\"/faq#how-dhf-work\">FAQ</a>.",
+    "page-description": "Ang Desentralisadong Hive na Pondo (Deccentralized Hive Fund or DHF) ay isang \nmekanismong pagpopondo sa loob ng blockchain na pinapayagan ang sinuman na magpasa ng panukala at makakuha ng pondo sa oras na ang pamayanan ay bumoto sa loob ng nakatakdang panahon. Para matuto pa ng ibayo basahin ang aming <a href=\"https://starterkit.tech/faqs#how-dhf-work\">FAQ</a>.",
     "by": "by",
     "for": "for",
     "duration-days": "{{n}} days",
@@ -1176,9 +1176,9 @@
       "when-claim-rewards-header": "When can I claim my rewards?",
       "when-claim-rewards-body": "<p>Ang mga komento sa mga post ay nanatiling aktibo sa loob ng 7 na araw at ang mga gantimpala ay nagbabagu-bago sapagkat ito ay nakasalalay sa mga boto at presyo ng token sa merkado, na sya namang dahilan kung bakit ang mga gantimpala ay tantiya lamang at tinatawag na nakabinbin na gantimpala. Kapag ang 7 na araw ay natapos na, ang nakabinbin na gantimpala ay magiging tunay na gantimpala at maari mo na itong kuhanin. Sa iyong pitaka, pindutin ang Kuhanin ang Gantimpala at madadagdag ito sa mga token na nasa iyong account.</p>",
       "what-are-rc-header": "What are Resource Credits?",
-      "what-are-rc-body": "<p>Ang mga transaksyon sa Hive Blockchain ay walang kabayaran, ang paglalagay ng limitasyos sa transaksyon ay ginawa para protektahan ang blockchain sa mga spam na pag-atake. Bawat galaw na gagawin mo sa blockchain ay gagamit ng mailiit na halaga ng Resource Credit. Kasama dito ang pagpost, pagkomento, pagboto, paglilipat ng mga token, at iba pa. Ang pagtingin sa nilalaman ay hindi gagamit ng Resource Credits.</p><p>Bawat gumagamit ay may mga limitadong Resouce Credit na puwede nilang gamitin bawat linggo. Kung maraming transaksyon ang ginagawa ng gumagamit, mas kokonti ang Resource Credit na maiiwan sa kanila (hanggang sa ito at bumalik muli). Ang mga gumagamit na mas maraming HIVE POWER ay magkakaroon ng mas maraming Resource Credits.</p><p>Kung ikaw ay naubusan ng Resource Credits, ikaw ay hindi makakagawa ng mga transaksyon sa blockchain hanggang ang iyong Resource Credits ay hindi bumabalik (bumabalik ng kusa ang Resource Credits) o kung makakuha ka ng karagdagang HIVE POWER para madagdagan ang balanse ng iyong Resource Credits o kaya naman ay puwede kang <a href=\"/faq#how-boost-account\">humiling ng Pagpapalakas ng account sa Ecency</a> para makatanggap ka ng pansamantalang delegasyon.</p>",
+      "what-are-rc-body": "<p>Ang mga transaksyon sa Hive Blockchain ay walang kabayaran, ang paglalagay ng limitasyos sa transaksyon ay ginawa para protektahan ang blockchain sa mga spam na pag-atake. Bawat galaw na gagawin mo sa blockchain ay gagamit ng mailiit na halaga ng Resource Credit. Kasama dito ang pagpost, pagkomento, pagboto, paglilipat ng mga token, at iba pa. Ang pagtingin sa nilalaman ay hindi gagamit ng Resource Credits.</p><p>Bawat gumagamit ay may mga limitadong Resouce Credit na puwede nilang gamitin bawat linggo. Kung maraming transaksyon ang ginagawa ng gumagamit, mas kokonti ang Resource Credit na maiiwan sa kanila (hanggang sa ito at bumalik muli). Ang mga gumagamit na mas maraming HIVE POWER ay magkakaroon ng mas maraming Resource Credits.</p><p>Kung ikaw ay naubusan ng Resource Credits, ikaw ay hindi makakagawa ng mga transaksyon sa blockchain hanggang ang iyong Resource Credits ay hindi bumabalik (bumabalik ng kusa ang Resource Credits) o kung makakuha ka ng karagdagang HIVE POWER para madagdagan ang balanse ng iyong Resource Credits o kaya naman ay puwede kang <a href=\"https://starterkit.tech/faqs#how-boost-account\">humiling ng Pagpapalakas ng account sa Ecency</a> para makatanggap ka ng pansamantalang delegasyon.</p>",
       "how-boost-account-header": "Paano hilingin na isulong ang iyong account?",
-      "how-boost-account-body": "<p>Ang iyong account ay mababa sa <a href=\"/faq#what-are-rc\">Resource Credits</a>, puwede kang humiling ng pagsulong sa Ecency. Ikaw ay makakatanggap ng pansamantalang delegasyon na magsusulong sa iyong account para makagawa ka ng mga gawain sa blockchain. Masusumpungan mo ang katangian na ito sa Puntos</p>",
+      "how-boost-account-body": "<p>Ang iyong account ay mababa sa <a href=\"https://starterkit.tech/faqs#what-are-rc\">Resource Credits</a>, puwede kang humiling ng pagsulong sa Ecency. Ikaw ay makakatanggap ng pansamantalang delegasyon na magsusulong sa iyong account para makagawa ka ng mga gawain sa blockchain. Masusumpungan mo ang katangian na ito sa Puntos</p>",
       "what-spam-abuse-header": "What is considered spam or abuse?",
       "what-spam-abuse-body": "<p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Puwede ba akong humiling na magdagdag ng backlink sa aking website na galing sa Ecency team?",
@@ -1205,7 +1205,7 @@
   },
   "contributors": {
     "title": "Contributors",
-    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
+    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"https://starterkit.tech/faqs#how-to-contribute\">FAQ</a>."
   },
   "context-menu": {
     "cut": "Cut",

@@ -158,7 +158,7 @@
     "header": "Ecency에 환영합니다",
     "description": "언론의 자유와 보상 커뮤니티의 고향!",
     "bottom-description": "모든 계정은 블록체인에서 생성되며 귀하만 해당 계정을 제어할 수 있습니다. 블록체인 및 Ecency의 모든 것을 관리하는 하나의 계정입니다.",
-    "learn-more": "<a href=\"/faq#how-to-join\">FAQ</a>에서 혜택에 대해 자세히 알아보세요",
+    "learn-more": "<a href=\"https://starterkit.tech/faqs#how-to-join\">FAQ</a>에서 혜택에 대해 자세히 알아보세요",
     "username": "사용자 ID 선택하세요",
     "email": "이메일 주소를 입력하세요",
     "ref": "추천인 (선택사항)",
@@ -271,7 +271,7 @@
   },
   "market": {
     "title": "Token exchange",
-    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"https://starterkit.tech/faqs#how-exchange-work\">FAQ</a>.",
     "last-price": "Last Price",
     "volume": "24h volume",
     "bid": "Bid",
@@ -1025,7 +1025,7 @@
   },
   "proposals": {
     "page-title": "제안서",
-    "page-description": "DHF(Decentralized Hive Fund) 는 커뮤니티 투표가 특정 임계값을 통과하면 누구나 제안서를 제출하고 자금을 받을 수 있는 온체인 펀딩 메커니즘입니다. 자세히 알아보려면 <a href=\"/faq#how-dhf-work\">FAQ</a>를 읽어보세요.",
+    "page-description": "DHF(Decentralized Hive Fund) 는 커뮤니티 투표가 특정 임계값을 통과하면 누구나 제안서를 제출하고 자금을 받을 수 있는 온체인 펀딩 메커니즘입니다. 자세히 알아보려면 <a href=\"https://starterkit.tech/faqs#how-dhf-work\">FAQ</a>를 읽어보세요.",
     "by": "발신자",
     "for": "동안",
     "duration-days": "{{n}} 일",
@@ -1176,9 +1176,9 @@
       "when-claim-rewards-header": "보상은 언제 받을 수 있나요?",
       "when-claim-rewards-body": "<p>게시물과 댓글은 7일 동안 활성 상태를 유지하며, 득표율과 토큰의 시세에 따라 보상이 변동되기 때문에 보상은 보류 중인 보상으로 추정됩니다. 기간이 종료되면 보류 중인 보상이 실제 보상으로 변경되며 획득한 보상을 청구할 수 있습니다. 지갑에서 보상 청구 버튼을 클릭하여 계정에 토큰을 추가하세요.</p>",
       "what-are-rc-header": "리소스 크레딧이란?",
-      "what-are-rc-body": "<p>하이브 블록체인에서의 거래에는 수수료가 없으며 스팸 공격으로부터 블록체인을 보호하기 위해 거래 속도 제한이 사용됩니다. 블록체인에서 수행하는 모든 작업은 소량의 리소스 크레딧을 소모합니다. 여기에는 글 게시, 댓글 달기, 투표, 토큰 전송 등이 포함됩니다. 콘텐츠 보기에는 리소스 크레딧이 소모되지 않습니다.</p><p>모든 사용자는 매주 사용할 수 있는 리소스 크레딧이 제한되어 있습니다. 사용자가 더 많은 거래를 할수록 (재충전할 때까지) 남은 리소스 크레딧이 줄어듭니다. 더 많은 하이브 파워를 가진 사용자는 더 많은 리소스 크레딧을 갖게 됩니다.</p><p>리소스 크레딧이 소진되면 리소스 크레딧이 재충전되거나 (자동으로 발생) 추가 하이브 파워를 획득할 때까지 블록체인과 거래할 수 없습니다. 리소스 크레딧 잔액을 늘리거나 <a href=\"/faq#how-boost-account\">Ecency에서 부스탕 계정을 요청하여</a> 임시 위임을 받을 수 있습니다.</p>",
+      "what-are-rc-body": "<p>하이브 블록체인에서의 거래에는 수수료가 없으며 스팸 공격으로부터 블록체인을 보호하기 위해 거래 속도 제한이 사용됩니다. 블록체인에서 수행하는 모든 작업은 소량의 리소스 크레딧을 소모합니다. 여기에는 글 게시, 댓글 달기, 투표, 토큰 전송 등이 포함됩니다. 콘텐츠 보기에는 리소스 크레딧이 소모되지 않습니다.</p><p>모든 사용자는 매주 사용할 수 있는 리소스 크레딧이 제한되어 있습니다. 사용자가 더 많은 거래를 할수록 (재충전할 때까지) 남은 리소스 크레딧이 줄어듭니다. 더 많은 하이브 파워를 가진 사용자는 더 많은 리소스 크레딧을 갖게 됩니다.</p><p>리소스 크레딧이 소진되면 리소스 크레딧이 재충전되거나 (자동으로 발생) 추가 하이브 파워를 획득할 때까지 블록체인과 거래할 수 없습니다. 리소스 크레딧 잔액을 늘리거나 <a href=\"https://starterkit.tech/faqs#how-boost-account\">Ecency에서 부스탕 계정을 요청하여</a> 임시 위임을 받을 수 있습니다.</p>",
       "how-boost-account-header": "계정 부스팅을 어떻게 요청하나요?",
-      "how-boost-account-body": "<p>계정에 <a href=\"/faq#what-are-rc\">리소스 크레딧이</a> 부족한 경우 Ecency에서 계정 부스팅을 요청할 수 있습니다. 블록체인에서 더 많은 활동을 수행할 수 있도록 계정을 강화해야 하는 임시 위임을 받게 됩니다. 포인트 옵션에서 계정 부스팅 기능을 찾을 수 있습니다.</p>",
+      "how-boost-account-body": "<p>계정에 <a href=\"https://starterkit.tech/faqs#what-are-rc\">리소스 크레딧이</a> 부족한 경우 Ecency에서 계정 부스팅을 요청할 수 있습니다. 블록체인에서 더 많은 활동을 수행할 수 있도록 계정을 강화해야 하는 임시 위임을 받게 됩니다. 포인트 옵션에서 계정 부스팅 기능을 찾을 수 있습니다.</p>",
       "what-spam-abuse-header": "스팸 또는 악용으로 간주되는 것이란?",
       "what-spam-abuse-body": "<p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Ecency팀에 내 웹사이트에 대한 백링크 추가를 요청할 수 있나요?",
@@ -1205,7 +1205,7 @@
   },
   "contributors": {
     "title": "기여자",
-    "description": "이 위대한 사람들은 어떤 식으로든 Ecency에 기여했습니다. 우리는 그들 모두에게 감사하고 싶습니다. 번역, 아이디어, 개발, 디자인, 사회 인식에 기여하여 우리 팀에 합류하고 싶다면 언제든지 가입하세요. 자세히 알아보려면 <a href=\"/faq#how-to-contribute\">FAQ</a>를 읽어보세요."
+    "description": "이 위대한 사람들은 어떤 식으로든 Ecency에 기여했습니다. 우리는 그들 모두에게 감사하고 싶습니다. 번역, 아이디어, 개발, 디자인, 사회 인식에 기여하여 우리 팀에 합류하고 싶다면 언제든지 가입하세요. 자세히 알아보려면 <a href=\"https://starterkit.tech/faqs#how-to-contribute\">FAQ</a>를 읽어보세요."
   },
   "context-menu": {
     "cut": "잘라내기",

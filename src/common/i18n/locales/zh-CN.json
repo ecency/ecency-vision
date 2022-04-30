@@ -158,7 +158,7 @@
     "header": "欢迎使用 Ecency",
     "description": "言论自由之家和获得社区奖励！",
     "bottom-description": "每个帐户都是在区块链上创建的，只有你才能控制该帐户。该帐户能够管理Ecency以及区块链上的一切。",
-    "learn-more": "在我们的 <a href=\"/faq#how-to-join\">常见问题</a>中了解更多好处",
+    "learn-more": "在我们的 <a href=\"https://starterkit.tech/faqs#how-to-join\">常见问题</a>中了解更多好处",
     "username": "选择用户名",
     "email": "输入您的电子邮件地址",
     "ref": "推荐用户 (可选)",
@@ -271,7 +271,7 @@
   },
   "market": {
     "title": "Token exchange",
-    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"https://starterkit.tech/faqs#how-exchange-work\">FAQ</a>.",
     "last-price": "Last Price",
     "volume": "24h volume",
     "bid": "Bid",
@@ -1025,7 +1025,7 @@
   },
   "proposals": {
     "page-title": "建议",
-    "page-description": "去中心化的Hive 基金（DHF）是一种链上供资机制，一旦社区投票通过了一定门槛，任何人都可以提出建议并获得资助。 要了解更多信息，请阅读我们的 <a href=\"/faq#how-dhf-work\">常见问题</a>。",
+    "page-description": "去中心化的Hive 基金（DHF）是一种链上供资机制，一旦社区投票通过了一定门槛，任何人都可以提出建议并获得资助。 要了解更多信息，请阅读我们的 <a href=\"https://starterkit.tech/faqs#how-dhf-work\">常见问题</a>。",
     "by": "由",
     "for": "为",
     "duration-days": "{{n}} 天",
@@ -1176,9 +1176,9 @@
       "when-claim-rewards-header": "什么时候可以领取我的奖励？",
       "when-claim-rewards-body": "<p>帖子和评论仍然活跃7天，奖励会根据票价和代币的市场价格而波动。 这就是为什么奖励大致为待定奖励。 当这段时间结束时，等待实际奖励的更改并且你能够领取已赚取的奖励。 在您的钱包中，点击领取奖励按钮将代币添加到您的帐户。</p>",
       "what-are-rc-header": "什么是资源信贷？",
-      "what-are-rc-body": "<p>Hive 区块链上的交易费用为零，使用交易率限制来保护区块链免受垃圾邮件攻击。 你在区块链上采取的每个行动都会消耗少量资源点数。 这包括发布、评论、投票、传输令牌等。查看内容不会消耗资源积分。</p><p>每个用户每周使用的资源积分。 用户进行的交易越多，他们离开的资源积分就越少(直到他们重新充电)。 拥有更多HIVE能量的用户将获得更多的资源积分。</p><p>如果您的资源积分已用完， 您将无法与区块链进行交易，除非您的资源信用充值 (自动发生)，或您获取额外的HIVE能量来增加您的资源信用余额，或您可以 <a href=\"/faq#how-boost-account\">从Ecency请求提升帐户</a> 接收临时授权。</p>",
+      "what-are-rc-body": "<p>Hive 区块链上的交易费用为零，使用交易率限制来保护区块链免受垃圾邮件攻击。 你在区块链上采取的每个行动都会消耗少量资源点数。 这包括发布、评论、投票、传输令牌等。查看内容不会消耗资源积分。</p><p>每个用户每周使用的资源积分。 用户进行的交易越多，他们离开的资源积分就越少(直到他们重新充电)。 拥有更多HIVE能量的用户将获得更多的资源积分。</p><p>如果您的资源积分已用完， 您将无法与区块链进行交易，除非您的资源信用充值 (自动发生)，或您获取额外的HIVE能量来增加您的资源信用余额，或您可以 <a href=\"https://starterkit.tech/faqs#how-boost-account\">从Ecency请求提升帐户</a> 接收临时授权。</p>",
       "how-boost-account-header": "如何请求账户推荐？",
-      "how-boost-account-body": "<p>如果您的帐户低于 <a href=\"/faq#what-are-rc\">资源信用点</a>, 你可以请求从生态中提升帐户。 您将收到临时授权，这将会提升您的帐户以在区块链上执行更多的活动。 您可以在积分选项中找到帐户提升功能。</p>",
+      "how-boost-account-body": "<p>如果您的帐户低于 <a href=\"https://starterkit.tech/faqs#what-are-rc\">资源信用点</a>, 你可以请求从生态中提升帐户。 您将收到临时授权，这将会提升您的帐户以在区块链上执行更多的活动。 您可以在积分选项中找到帐户提升功能。</p>",
       "what-spam-abuse-header": "什么被认为是垃圾邮件或滥用？",
       "what-spam-abuse-body": "<p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "我可以从Ecency 团队请求添加背链接到我的网站吗？",
@@ -1205,7 +1205,7 @@
   },
   "contributors": {
     "title": "贡献者",
-    "description": "这些伟大的人以这样或那样的方式为生态作出了贡献，我们要感谢他们所有人。 如果你想加入我们的团队，通过翻译、思想、发展、设计和社会意识作出贡献，请随意加入。 要了解更多信息，请阅读我们的 <a href=\"/faq#how-to-contribute\">常见问题</a>。"
+    "description": "这些伟大的人以这样或那样的方式为生态作出了贡献，我们要感谢他们所有人。 如果你想加入我们的团队，通过翻译、思想、发展、设计和社会意识作出贡献，请随意加入。 要了解更多信息，请阅读我们的 <a href=\"https://starterkit.tech/faqs#how-to-contribute\">常见问题</a>。"
   },
   "context-menu": {
     "cut": "剪切",

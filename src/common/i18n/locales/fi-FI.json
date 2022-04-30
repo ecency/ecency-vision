@@ -158,7 +158,7 @@
     "header": "Tervetuloa Ecencyyn",
     "description": "Vapaan sanan koti ja palkitsevat yhteisöt!",
     "bottom-description": "Jokainen tili on luotu lohkoketjulle ja vain sinulla on määräysvalta tällä tilillä. Yhdellä tilillä voit hallita kaikkea lohkoketjussa ja Ecencyssä.",
-    "learn-more": "Lue lisää hyödyistä <a href=\"/faq#how-to-join\">UKK:sta</a>",
+    "learn-more": "Lue lisää hyödyistä <a href=\"https://starterkit.tech/faqs#how-to-join\">UKK:sta</a>",
     "username": "Valitse käyttäjänimi",
     "email": "Syötä sähköpostiosoitteesi",
     "ref": "Suosittelija (valinnainen)",
@@ -271,7 +271,7 @@
   },
   "market": {
     "title": "Token exchange",
-    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"https://starterkit.tech/faqs#how-exchange-work\">FAQ</a>.",
     "last-price": "Last Price",
     "volume": "24h volume",
     "bid": "Bid",
@@ -1025,7 +1025,7 @@
   },
   "proposals": {
     "page-title": "Ehdotukset",
-    "page-description": "Hajautettu Hive-rahasto (DHF) on lohkoketjun rahoitusmekanismi, jonka avulla kuka tahansa voi tehdä ehdotuksen ja saada rahoitusta yhteisön äänten ylittäessä tietyn kynnysarvon. Lue lisää <a href=\"/faq#how-dhf-work\">FAQ</a>.",
+    "page-description": "Hajautettu Hive-rahasto (DHF) on lohkoketjun rahoitusmekanismi, jonka avulla kuka tahansa voi tehdä ehdotuksen ja saada rahoitusta yhteisön äänten ylittäessä tietyn kynnysarvon. Lue lisää <a href=\"https://starterkit.tech/faqs#how-dhf-work\">FAQ</a>.",
     "by": "tehnyt",
     "for": "kohteelle",
     "duration-days": "{{n}} päivää",
@@ -1176,9 +1176,9 @@
       "when-claim-rewards-header": "Milloin voin lunastaa palkkioni?",
       "when-claim-rewards-body": "<p>Viestit ja kommentit pysyvät aktiivisina 7 päivää ja palkkiot vaihtelevat riippuen äänistä ja merkkien markkinahinnasta, tästä syystä palkkioita arvioidaan odottavina palkkioina. Kun aika on ohi, odottava palkkio muuttuu varsinaisiksi merkeiksi ja voit lunastaa ansaitut palkkiot. Klikkaa Walletissa Lunasta Palkkiot-painiketta lisätäksesi merkit tilillesi.</p>",
       "what-are-rc-header": "Mitä Resurssipisteet ovat?",
-      "what-are-rc-body": "<p>Siirrot Hive-lohkoketjussa eivät ole maksullisia, tapahtumakoron rajoittamista käytetään suojaamaan lohkoketjua roskapostihyökkäyksiltä. Jokainesta toiminnostasi lohkoketju kuluttaa pienen määrän Resurssihyvityksiä. Tämä sisältää julkaisun, kommentoinnin, äänestämisen, merkkien siirot, jne. Sisällön katselu ei kuluta Resurssihyvitystä.</p><p>Jokaisella käyttäjällä on rajallinen määrä resurssihyvityksiä joka viikko. Mitä enemmän tapahtumia käyttäjä tekee, sitä vähemmän Resurssihyvityksiä jää jäljelle (kunnes he latautuvat). Käyttäjillä, joilla on enemmän HIVE POWERia, on enemmän resurssihyvitystä.</p><p>Jos resurssihyvitykset ovat loppuneet, et voi tehdä siirtoja lohkoketjussa, ennen kuin Resurssihyvitykset palautuvat (tapahtuu automaattisesti) tai saat lisää HIVE POWERia lisätäksesi Resurssihyvityssaldoasi tai voit <a href=\"/faq#how-boost-account\">pyytää Ecency</a> -tilin vahvistamista saadaksesi väliaikaisen valtuutuksen.</p>",
+      "what-are-rc-body": "<p>Siirrot Hive-lohkoketjussa eivät ole maksullisia, tapahtumakoron rajoittamista käytetään suojaamaan lohkoketjua roskapostihyökkäyksiltä. Jokainesta toiminnostasi lohkoketju kuluttaa pienen määrän Resurssihyvityksiä. Tämä sisältää julkaisun, kommentoinnin, äänestämisen, merkkien siirot, jne. Sisällön katselu ei kuluta Resurssihyvitystä.</p><p>Jokaisella käyttäjällä on rajallinen määrä resurssihyvityksiä joka viikko. Mitä enemmän tapahtumia käyttäjä tekee, sitä vähemmän Resurssihyvityksiä jää jäljelle (kunnes he latautuvat). Käyttäjillä, joilla on enemmän HIVE POWERia, on enemmän resurssihyvitystä.</p><p>Jos resurssihyvitykset ovat loppuneet, et voi tehdä siirtoja lohkoketjussa, ennen kuin Resurssihyvitykset palautuvat (tapahtuu automaattisesti) tai saat lisää HIVE POWERia lisätäksesi Resurssihyvityssaldoasi tai voit <a href=\"https://starterkit.tech/faqs#how-boost-account\">pyytää Ecency</a> -tilin vahvistamista saadaksesi väliaikaisen valtuutuksen.</p>",
       "how-boost-account-header": "Kuinka pyytää tilin tehostamista?",
-      "how-boost-account-body": "<p>Jos tillläsi on niukasti <a href=\"/faq#what-are-rc\">Resurssihyvityksiä</a>, voit pyytää tilin tehostamista Ecencyltä. Saat tilapäisen valtuutuksen, jonka pitäisi tehostaa tiliäsi suorittaaksesi enemmän toimintoja lohkoketjussa. Tilin tehostamis-ominaisuus löytyy Pisteet-asetuksista.</p>",
+      "how-boost-account-body": "<p>Jos tillläsi on niukasti <a href=\"https://starterkit.tech/faqs#what-are-rc\">Resurssihyvityksiä</a>, voit pyytää tilin tehostamista Ecencyltä. Saat tilapäisen valtuutuksen, jonka pitäisi tehostaa tiliäsi suorittaaksesi enemmän toimintoja lohkoketjussa. Tilin tehostamis-ominaisuus löytyy Pisteet-asetuksista.</p>",
       "what-spam-abuse-header": "Mitä lasketaan roskapostiksi tai väärinkäytöksi?",
       "what-spam-abuse-body": "<p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Voinko pyytää käänteislinkin lisäämistä sivuilleni Ecencyltä?",
@@ -1205,7 +1205,7 @@
   },
   "contributors": {
     "title": "Osallistujat",
-    "description": "Nämä mahtavat ihmiset osallistuivat tavalla tai toisella Ecencyn kehittämiseen ja haluamme kiittää heitä kaikkia. Jos haluat liittyä tiimiimme osallistumalla käännöksiin, ideointiin, kehitykseen, suunnitteluun, tai tietoisuuden kasvuun, voit liittyä vapaasti mukaan. Lue lisää <a href=\"/faq#how-to-contribute\">UKK</a>."
+    "description": "Nämä mahtavat ihmiset osallistuivat tavalla tai toisella Ecencyn kehittämiseen ja haluamme kiittää heitä kaikkia. Jos haluat liittyä tiimiimme osallistumalla käännöksiin, ideointiin, kehitykseen, suunnitteluun, tai tietoisuuden kasvuun, voit liittyä vapaasti mukaan. Lue lisää <a href=\"https://starterkit.tech/faqs#how-to-contribute\">UKK</a>."
   },
   "context-menu": {
     "cut": "Leikkaa",

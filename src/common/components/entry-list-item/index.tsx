@@ -358,7 +358,7 @@ export default class EntryListItem extends Component<Props, State> {
                   <>
                     <span className="flex-spacer" />
                     <div className="promoted">
-                      <a href="/faq#how-promotion-work">
+                      <a href="https://starterkit.techhttps://starterkit.tech/faqss">
                         {_t("entry-list-item.promoted")}
                       </a>
                     </div>

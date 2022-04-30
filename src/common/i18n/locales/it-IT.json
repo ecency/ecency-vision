@@ -158,7 +158,7 @@
     "header": "Benvenuto in Ecency",
     "description": "Casa della libertà di parola e delle community ricompensate!",
     "bottom-description": "Ogni account viene creato sulla blockchain e solo tu ne hai il controllo. Un account per gestire ogni cosa sulla blockchain e su Ecency.",
-    "learn-more": "Leggi di più sui benefici nelle nostre <a href=\"/faq#how-to-join\">FAQ</a>",
+    "learn-more": "Leggi di più sui benefici nelle nostre <a href=\"https://starterkit.tech/faqs#how-to-join\">FAQ</a>",
     "username": "Scegli un nome utente",
     "email": "Inserisci il tuo indirizzo email",
     "ref": "Utente raccomandante (opzionale)",
@@ -271,7 +271,7 @@
   },
   "market": {
     "title": "Token exchange",
-    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"https://starterkit.tech/faqs#how-exchange-work\">FAQ</a>.",
     "last-price": "Last Price",
     "volume": "24h volume",
     "bid": "Bid",
@@ -1025,7 +1025,7 @@
   },
   "proposals": {
     "page-title": "Propositi",
-    "page-description": "Il Decentralized Hive Fund (DHF, \"Fondo Hive Decentralizzato\") è un meccanismo di finanziamento on-chain che permette a chiunque di sottoporre una proposta e ottenere finanziamenti una volta che i voti della comunità su di essa superano una certa soglia. Per saperne di più, leggi le nostre <a href=\"/faq#how-dhf-work\">FAQ</a>.",
+    "page-description": "Il Decentralized Hive Fund (DHF, \"Fondo Hive Decentralizzato\") è un meccanismo di finanziamento on-chain che permette a chiunque di sottoporre una proposta e ottenere finanziamenti una volta che i voti della comunità su di essa superano una certa soglia. Per saperne di più, leggi le nostre <a href=\"https://starterkit.tech/faqs#how-dhf-work\">FAQ</a>.",
     "by": "da",
     "for": "per",
     "duration-days": "{{n}} giorni",
@@ -1176,9 +1176,9 @@
       "when-claim-rewards-header": "Quando posso richiedere le mie ricompense?",
       "when-claim-rewards-body": "<p>Post e commenti rimangono aperti per 7 giorni e le ricompense fluttuano in dipendenza dei voti e del prezzo di mercato del token: questo è il motivo per cui le ricompense vengono indicate soltanto approssimativamente nel pagamento in attesa. Quando termina il periodo, la ricompensa in attesa matura in valore attuale e tu potrai riscuotere l'intero ammontare guadagnato. Una volta raggiunto il tuo portafoglio, clicca il pulsante Riscuoti Ricompense per aggiungere i token al tuo conto.</p>",
       "what-are-rc-header": "Che cosa sono i crediti di risorsa?",
-      "what-are-rc-body": "<p>Creare transazioni sulla blockchain Hive non prevede commissioni, ma viene attuata una limitazione del tasso di transazioni per proteggere la blockchain da attacchi spam. Ogni azione che operi sulla blockchain consumerà una piccola quantità di crediti di risorse. Questo include il postare, commentare, votare, trasferire token, eccetera. Visionare contenuti non consuma risorse.</p><p>Ogni utente ha un quantitativo limitato di crediti di risorsa da utilizzare ogni settimana. Più transazioni un utente effettua, meno crediti gli rimarranno (fino a che non si saranno ricaricati). Utenti con più HIVE POWER avranno più crediti di risorsa.</p><p>Se termini i tuoi crediti, non sarai in grado di effettuare transazioni sulla blockchain fino a che i crediti non si saranno ricaricati (il che avviene automaticamente con il trascorrere del tempo) o che avrai acquistato più HIVE POWER per aumentare i tuoi crediti, o che <a href=\"/faq#how-boost-account\">avrai richiesto un Boost dell'account da parte di Ecency</a> per ricevere una delega temporanea.</p>",
+      "what-are-rc-body": "<p>Creare transazioni sulla blockchain Hive non prevede commissioni, ma viene attuata una limitazione del tasso di transazioni per proteggere la blockchain da attacchi spam. Ogni azione che operi sulla blockchain consumerà una piccola quantità di crediti di risorse. Questo include il postare, commentare, votare, trasferire token, eccetera. Visionare contenuti non consuma risorse.</p><p>Ogni utente ha un quantitativo limitato di crediti di risorsa da utilizzare ogni settimana. Più transazioni un utente effettua, meno crediti gli rimarranno (fino a che non si saranno ricaricati). Utenti con più HIVE POWER avranno più crediti di risorsa.</p><p>Se termini i tuoi crediti, non sarai in grado di effettuare transazioni sulla blockchain fino a che i crediti non si saranno ricaricati (il che avviene automaticamente con il trascorrere del tempo) o che avrai acquistato più HIVE POWER per aumentare i tuoi crediti, o che <a href=\"https://starterkit.tech/faqs#how-boost-account\">avrai richiesto un Boost dell'account da parte di Ecency</a> per ricevere una delega temporanea.</p>",
       "how-boost-account-header": "Come richiedere il boost dell'account?",
-      "how-boost-account-body": "<p>Se il tuo account scarseggia di <a href=\"/faq#what-are-rc\">crediti di risorse</a>, puoi richiedere un boost dell'account ad Ecency. Riceverai una delega temporanea che ti permetterà di portare a termine più attività sulla blockchain. Puoi trovare le funzioni di boost dell'account nella sezione Punti.</p>",
+      "how-boost-account-body": "<p>Se il tuo account scarseggia di <a href=\"https://starterkit.tech/faqs#what-are-rc\">crediti di risorse</a>, puoi richiedere un boost dell'account ad Ecency. Riceverai una delega temporanea che ti permetterà di portare a termine più attività sulla blockchain. Puoi trovare le funzioni di boost dell'account nella sezione Punti.</p>",
       "what-spam-abuse-header": "Che cosa è considerato spam o uso illecito?",
       "what-spam-abuse-body": "<p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Posso richiedere di aggiungere un backlink al mio sito web al team Ecency?",
@@ -1205,7 +1205,7 @@
   },
   "contributors": {
     "title": "Collaboratori",
-    "description": "Queste fantastiche persone hanno contribuito in un modo o nell'altro a Ecency e ci piacerebbe ringraziarle. Se vuoi unirti al nostro team contribuendo con Traduzioni, Idee, Sviluppo, Design, Divulgazione di conoscenze social, sei libero di partecipare. Per maggiori informazioni leggi le nostre <a href=\"/faq#how-to-contribute\">FAQ</a>."
+    "description": "Queste fantastiche persone hanno contribuito in un modo o nell'altro a Ecency e ci piacerebbe ringraziarle. Se vuoi unirti al nostro team contribuendo con Traduzioni, Idee, Sviluppo, Design, Divulgazione di conoscenze social, sei libero di partecipare. Per maggiori informazioni leggi le nostre <a href=\"https://starterkit.tech/faqs#how-to-contribute\">FAQ</a>."
   },
   "context-menu": {
     "cut": "Taglia",

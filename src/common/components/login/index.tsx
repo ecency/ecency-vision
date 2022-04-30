@@ -621,19 +621,7 @@ export class Login extends BaseComponent<LoginProps, State> {
           </Form.Group>
           <p className="login-form-text">
             {_t("login.login-info-1")}{" "}
-            <a
-              onClick={(e) => {
-                e.preventDefault();
-                this.hide();
-                const { history } = this.props;
-                history.push("/faq#how-to-signin");
-                setTimeout(() => {
-                  const el = document.getElementById("how-to-signin");
-                  if (el) el.scrollIntoView();
-                }, 300);
-              }}
-              href="#"
-            >
+            <a href="https://starterkit.tech/faqs">
               {_t("login.login-info-2")}
             </a>
           </p>

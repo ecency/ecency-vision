@@ -158,7 +158,7 @@
     "header": "Ecency'ye Hoş Geldiniz",
     "description": "İfade özgürlüğünün ve Ödüllendirilen toplulukların mekanı!",
     "bottom-description": "Her bir hesap blok zinciri üzerinde oluşturulur ve bu hesabın kontrolü yalnızca sizin elinizdedir. Blok zinciri ve Ecency'deki her şeyi tek bir hesaptan yönetebilirsiniz.",
-    "learn-more": "<a href=\"/faq#how-to-join\">SSS</a> sayfamızdan avantajlar hakkında detaylı bilgi edinebilirsiniz",
+    "learn-more": "<a href=\"https://starterkit.tech/faqs#how-to-join\">SSS</a> sayfamızdan avantajlar hakkında detaylı bilgi edinebilirsiniz",
     "username": "Kullanıcı adı seçin",
     "email": "E-posta adresinizi girin",
     "ref": "Yönlendiren kullanıcı (isteğe bağlı)",
@@ -271,7 +271,7 @@
   },
   "market": {
     "title": "Token exchange",
-    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"https://starterkit.tech/faqs#how-exchange-work\">FAQ</a>.",
     "last-price": "Last Price",
     "volume": "24h volume",
     "bid": "Bid",
@@ -1025,7 +1025,7 @@
   },
   "proposals": {
     "page-title": "Teklifler",
-    "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
+    "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"https://starterkit.tech/faqs#how-dhf-work\">FAQ</a>.",
     "by": "by",
     "for": "for",
     "duration-days": "{{n}} gün",
@@ -1176,9 +1176,9 @@
       "when-claim-rewards-header": "Ödüllerimi ne zaman alabilirim?",
       "when-claim-rewards-body": "<p>Yazılar ve yorumlar 7 gün boyunca aktif kalır ve ödüller oylara ve tokenın piyasa fiyatına göre dalgalanır, bu nedenle ödüller bekleyen ödül olarak tahmin edilir. Süre sonunda bekleyen ödül gerçek ödüle dönüşür ve kazanılan ödüller talep edebilir hale gelir. Tokenları hesabınıza eklemek için cüzdanınızdaki Ödülleri Talep Et düğmesini tıklayın.</p>",
       "what-are-rc-header": "Kaynak Kredileri nedir?",
-      "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
+      "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"https://starterkit.tech/faqs#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
       "how-boost-account-header": "Hesap yükseltme nasıl talep edilir?",
-      "how-boost-account-body": "<p>Hesabınızın <a href=\"/faq#what-are-rc\">Kaynak Kredisi</a> düşükse, Ecency'den hesap yükseltme talebinde bulunabilirsiniz. Hesabınızın blok zincirinde daha fazla etkinlik gerçekleştirmesine yardımcı olacak geçici delegasyon alacaksınız. Hesap yükseltme özelliğini Puan seçeneklerinde bulabilirsiniz.</p>",
+      "how-boost-account-body": "<p>Hesabınızın <a href=\"https://starterkit.tech/faqs#what-are-rc\">Kaynak Kredisi</a> düşükse, Ecency'den hesap yükseltme talebinde bulunabilirsiniz. Hesabınızın blok zincirinde daha fazla etkinlik gerçekleştirmesine yardımcı olacak geçici delegasyon alacaksınız. Hesap yükseltme özelliğini Puan seçeneklerinde bulabilirsiniz.</p>",
       "what-spam-abuse-header": "Neler spam veya kötüye kullanım olarak kabul edilir?",
       "what-spam-abuse-body": "<p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Ecency ekibinden web siteme bağlantı ekleme talebinde bulunabilir miyim?",
@@ -1205,7 +1205,7 @@
   },
   "contributors": {
     "title": "Katkıda Bulunanlar",
-    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
+    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"https://starterkit.tech/faqs#how-to-contribute\">FAQ</a>."
   },
   "context-menu": {
     "cut": "Kes",

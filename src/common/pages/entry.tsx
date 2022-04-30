@@ -647,204 +647,378 @@ class EntryPage extends BaseComponent<Props, State> {
                                     </div>
                                 }
 
-                                return <>
+                                return (
+                                  <>
                                     {(() => {
-                                        // Cross post body
-                                        if (originalEntry) {
-                                            const published = moment(parseDate(originalEntry.created));
-                                            const reputation = accountReputation(originalEntry.author_reputation);
-                                            const renderedBody = {__html: renderPostBody(originalEntry.body, false, global.canUseWebp)};
-                                            
-                                            return <>
-                                                <div className="entry-header">
-                                                    <h1 className="entry-title">
-                                                        {originalEntry.title}
-                                                    </h1>
-                                                    <div className="entry-info">
-                                                        {ProfileLink({
-                                                            ...this.props,
-                                                            username: originalEntry.author,
-                                                            children: <div className="author-avatar">{UserAvatar({
-                                                                ...this.props,
-                                                                username: originalEntry.author,
-                                                                size: "medium"
-                                                            })}</div>
-                                                        })}
+                                      // Cross post body
+                                      if (originalEntry) {
+                                        const published = moment(
+                                          parseDate(originalEntry.created)
+                                        );
+                                        const reputation = accountReputation(
+                                          originalEntry.author_reputation
+                                        );
+                                        const renderedBody = {
+                                          __html: renderPostBody(
+                                            originalEntry.body,
+                                            false,
+                                            global.canUseWebp
+                                          ),
+                                        };
 
-                                                        <div className="entry-info-inner">
-                                                            <div className="info-line-1">
-                                                                {ProfileLink({
-                                                                    ...this.props,
-                                                                    username: originalEntry.author,
-                                                                    children: <div className="author notranslate">
-                                                                                <span className="author-name">
-                                                                                    <span itemProp="author" itemScope={true} itemType="http://schema.org/Person">
-                                                                                        <span itemProp="name">
-                                                                                            {originalEntry.author}
-                                                                                        </span>
-                                                                                    </span>
-                                                                                </span>
-                                                                        <span className="author-reputation" title={_t("entry.author-reputation")}>{reputation}</span>
-                                                                    </div>
-                                                                })}
-                                                            </div>
-
-                                                            <div className="info-line-2">
-                                                                <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
-                                                                <span className="separator"/>
-                                                                <div className="entry-tag">
-                                                                    <span className="in-tag">{_t("entry.community-in")}</span>
-                                                                    {Tag({
-                                                                        ...this.props,
-                                                                        tag: originalEntry.category,
-                                                                        type: "link",
-                                                                        children: <div className="tag-name">
-                                                                            {originalEntry.community ? originalEntry.community_title : `#${originalEntry.category}`}
-                                                                        </div>
-                                                                    })}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <span className="flex-spacer"/>
-                                                        {global.usePrivate && BookmarkBtn({
-                                                            ...this.props,
-                                                            entry: originalEntry
-                                                        })}
-                                                        {EntryMenu({
-                                                            ...this.props,
-                                                            entry,
-                                                            separatedSharing: true
-                                                        })}
+                                        return (
+                                          <>
+                                            <div className="entry-header">
+                                              <h1 className="entry-title">
+                                                {originalEntry.title}
+                                              </h1>
+                                              <div className="entry-info">
+                                                {ProfileLink({
+                                                  ...this.props,
+                                                  username:
+                                                    originalEntry.author,
+                                                  children: (
+                                                    <div className="author-avatar">
+                                                      {UserAvatar({
+                                                        ...this.props,
+                                                        username:
+                                                          originalEntry.author,
+                                                        size: "medium",
+                                                      })}
                                                     </div>
-                                                </div>
-                                                <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody} onMouseUp={(e)=>{}}/>
-                                            </>;
-                                        }
+                                                  ),
+                                                })}
 
-                                        let renderedBody = {__html: renderPostBody(isComment ? comment.length > 0 ? comment : entry.body :entry.body, false, global.canUseWebp)};
-                                        
-                                        const ctitle = entry.community ? entry.community_title : "";
-                                        let extraItems = ownEntry && isComment ? [{
+                                                <div className="entry-info-inner">
+                                                  <div className="info-line-1">
+                                                    {ProfileLink({
+                                                      ...this.props,
+                                                      username:
+                                                        originalEntry.author,
+                                                      children: (
+                                                        <div className="author notranslate">
+                                                          <span className="author-name">
+                                                            <span
+                                                              itemProp="author"
+                                                              itemScope={true}
+                                                              itemType="http://schema.org/Person"
+                                                            >
+                                                              <span itemProp="name">
+                                                                {
+                                                                  originalEntry.author
+                                                                }
+                                                              </span>
+                                                            </span>
+                                                          </span>
+                                                          <span
+                                                            className="author-reputation"
+                                                            title={_t(
+                                                              "entry.author-reputation"
+                                                            )}
+                                                          >
+                                                            {reputation}
+                                                          </span>
+                                                        </div>
+                                                      ),
+                                                    })}
+                                                  </div>
+
+                                                  <div className="info-line-2">
+                                                    <span
+                                                      className="date"
+                                                      title={published.format(
+                                                        "LLLL"
+                                                      )}
+                                                    >
+                                                      {published.fromNow()}
+                                                    </span>
+                                                    <span className="separator" />
+                                                    <div className="entry-tag">
+                                                      <span className="in-tag">
+                                                        {_t(
+                                                          "entry.community-in"
+                                                        )}
+                                                      </span>
+                                                      {Tag({
+                                                        ...this.props,
+                                                        tag: originalEntry.category,
+                                                        type: "link",
+                                                        children: (
+                                                          <div className="tag-name">
+                                                            {originalEntry.community
+                                                              ? originalEntry.community_title
+                                                              : `#${originalEntry.category}`}
+                                                          </div>
+                                                        ),
+                                                      })}
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <span className="flex-spacer" />
+                                                {global.usePrivate &&
+                                                  BookmarkBtn({
+                                                    ...this.props,
+                                                    entry: originalEntry,
+                                                  })}
+                                                {EntryMenu({
+                                                  ...this.props,
+                                                  entry,
+                                                  separatedSharing: true,
+                                                })}
+                                              </div>
+                                            </div>
+                                            <div
+                                              itemProp="articleBody"
+                                              className="entry-body markdown-view user-selectable"
+                                              dangerouslySetInnerHTML={
+                                                renderedBody
+                                              }
+                                              onMouseUp={(e) => {}}
+                                            />
+                                          </>
+                                        );
+                                      }
+
+                                      let renderedBody = {
+                                        __html: renderPostBody(
+                                          isComment
+                                            ? comment.length > 0
+                                              ? comment
+                                              : entry.body
+                                            : entry.body,
+                                          false,
+                                          global.canUseWebp
+                                        ),
+                                      };
+
+                                      const ctitle = entry.community
+                                        ? entry.community_title
+                                        : "";
+                                      let extraItems =
+                                        ownEntry && isComment
+                                          ? [
+                                              {
                                                 label: _t("g.edit"),
                                                 onClick: this.toggleEdit,
-                                                icon: pencilOutlineSvg
-                                            }
-                                        ] : [];
-                                        if(!(entry.children > 0 || entry.net_rshares > 0 || entry.is_paidout) && ownEntry && isComment){
-                                            extraItems = [...extraItems, {
-                                                label: "",
-                                                onClick: ()=>{},
-                                                icon: entryDeleteBtn({
-                                                    ...this.props,
-                                                    entry,
-                                                    setDeleteInProgress: value=> this.setState({loading: value}),
-                                                    onSuccess: this.deleted,
-                                                    children: <a title={_t('g.delete')} className="edit-btn">{deleteForeverSvg} {_t("g.delete")}</a>
-                                                })
-                                            }]
-                                            }
+                                                icon: pencilOutlineSvg,
+                                              },
+                                            ]
+                                          : [];
+                                      if (
+                                        !(
+                                          entry.children > 0 ||
+                                          entry.net_rshares > 0 ||
+                                          entry.is_paidout
+                                        ) &&
+                                        ownEntry &&
+                                        isComment
+                                      ) {
+                                        extraItems = [
+                                          ...extraItems,
+                                          {
+                                            label: "",
+                                            onClick: () => {},
+                                            icon: entryDeleteBtn({
+                                              ...this.props,
+                                              entry,
+                                              setDeleteInProgress: (value) =>
+                                                this.setState({
+                                                  loading: value,
+                                                }),
+                                              onSuccess: this.deleted,
+                                              children: (
+                                                <a
+                                                  title={_t("g.delete")}
+                                                  className="edit-btn"
+                                                >
+                                                  {deleteForeverSvg}{" "}
+                                                  {_t("g.delete")}
+                                                </a>
+                                              ),
+                                            }),
+                                          },
+                                        ];
+                                      }
 
-                                        return <>
-                                            <div className="entry-header">
-                                                {isMuted && (<div className="hidden-warning">
-                                                    <span><Tsx k="entry.muted-warning" args={{community: ctitle}}><span/></Tsx></span>
-                                                </div>)}
+                                      return (
+                                        <>
+                                          <div className="entry-header">
+                                            {isMuted && (
+                                              <div className="hidden-warning">
+                                                <span>
+                                                  <Tsx
+                                                    k="entry.muted-warning"
+                                                    args={{ community: ctitle }}
+                                                  >
+                                                    <span />
+                                                  </Tsx>
+                                                </span>
+                                              </div>
+                                            )}
 
-                                                {isHidden && (<div className="hidden-warning">
-                                                    <span>{_t('entry.hidden-warning')}</span>
-                                                </div>)}
+                                            {isHidden && (
+                                              <div className="hidden-warning">
+                                                <span>
+                                                  {_t("entry.hidden-warning")}
+                                                </span>
+                                              </div>
+                                            )}
 
-                                                {isLowReputation && (<div className="hidden-warning">
-                                                    <span>{_t('entry.lowrep-warning')}</span>
-                                                </div>)}
+                                            {isLowReputation && (
+                                              <div className="hidden-warning">
+                                                <span>
+                                                  {_t("entry.lowrep-warning")}
+                                                </span>
+                                              </div>
+                                            )}
 
-                                                {mightContainMutedComments && (<div className="hidden-warning">
-                                                    <span>{_t('entry.comments-hidden')}</span>
-                                                </div>)}
+                                            {mightContainMutedComments && (
+                                              <div className="hidden-warning">
+                                                <span>
+                                                  {_t("entry.comments-hidden")}
+                                                </span>
+                                              </div>
+                                            )}
 
-                                                {isComment && (
-                                                    <div className="comment-entry-header">
-                                                        <div className="comment-entry-header-title">RE: {entry.title}</div>
-                                                        <div className="comment-entry-header-info">{_t("entry.comment-entry-title")}</div>
-                                                        <p className="comment-entry-root-title">{entry.title}</p>
-                                                        <ul className="comment-entry-opts">
-                                                            <li>
-                                                                <Link to={entry.url}>{_t("entry.comment-entry-go-root")}</Link>
-                                                            </li>
-                                                            {entry.depth > 1 && (
-                                                                <li>
-                                                                    <Link to={makeEntryPath(entry.category, entry.parent_author!, entry.parent_permlink!)}>
-                                                                        {_t("entry.comment-entry-go-parent")}
-                                                                    </Link>
-                                                                </li>
-                                                            )}
-                                                        </ul>
-                                                    </div>
-                                                )}
-                                                <h1 className="entry-title">
-                                                    {entry.title}
-                                                </h1>
-                                                <div className="entry-info">
-                                                    {ProfileLink({
-                                                        ...this.props,
-                                                        username: entry.author,
-                                                        children: <div className="author-avatar">{UserAvatar({
-                                                            ...this.props,
-                                                            username: entry.author,
-                                                            size: "medium"
-                                                        })}</div>
-                                                    })}
-
-                                                    <div className="entry-info-inner">
-                                                        <div className="info-line-1">
-                                                            {ProfileLink({
-                                                                ...this.props,
-                                                                username: entry.author,
-                                                                children: <div className="author notranslate">
-                                                                                <span className="author-name">
-                                                                                    <span itemProp="author" itemScope={true} itemType="http://schema.org/Person">
-                                                                                        <span itemProp="name">
-                                                                                            {entry.author}
-                                                                                        </span>
-                                                                                    </span>
-                                                                                </span>
-                                                                    <span className="author-reputation" title={_t("entry.author-reputation")}>{reputation}</span>
-                                                                </div>
-                                                            })}
-                                                        </div>
-
-                                                        <div className="info-line-2">
-                                                            <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
-                                                            <span className="separator"/>
-                                                            <div className="entry-tag">
-                                                                <span className="in-tag">{_t("entry.community-in")}</span>
-                                                                {Tag({
-                                                                    ...this.props,
-                                                                    tag: entry.category,
-                                                                    type: "link",
-                                                                    children: <div className="tag-name">
-                                                                        {entry.community ? entry.community_title : `#${entry.category}`}
-                                                                    </div>
-                                                                })}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <span className="flex-spacer"/>
-                                                    {!isComment && global.usePrivate && BookmarkBtn({
-                                                        ...this.props,
-                                                        entry
-                                                    })}
-                                                    {!isComment && EntryMenu({
-                                                        ...this.props,
-                                                        entry,
-                                                        separatedSharing: true,
-                                                        extraMenuItems: extraItems
-                                                    })}
+                                            {isComment && (
+                                              <div className="comment-entry-header">
+                                                <div className="comment-entry-header-title">
+                                                  RE: {entry.title}
                                                 </div>
-                                            </div>
-                                            <meta itemProp="headline name" content={entry.title}/>
+                                                <div className="comment-entry-header-info">
+                                                  {_t(
+                                                    "entry.comment-entry-title"
+                                                  )}
+                                                </div>
+                                                <p className="comment-entry-root-title">
+                                                  {entry.title}
+                                                </p>
+                                                <ul className="comment-entry-opts">
+                                                  <li>
+                                                    <Link to={entry.url}>
+                                                      {_t(
+                                                        "entry.comment-entry-go-root"
+                                                      )}
+                                                    </Link>
+                                                  </li>
+                                                  {entry.depth > 1 && (
+                                                    <li>
+                                                      <Link
+                                                        to={makeEntryPath(
+                                                          entry.category,
+                                                          entry.parent_author!,
+                                                          entry.parent_permlink!
+                                                        )}
+                                                      >
+                                                        {_t(
+                                                          "entry.comment-entry-go-parent"
+                                                        )}
+                                                      </Link>
+                                                    </li>
+                                                  )}
+                                                </ul>
+                                              </div>
+                                            )}
+                                            <h1 className="entry-title">
+                                              {entry.title}
+                                            </h1>
+                                            <div className="entry-info">
+                                              {ProfileLink({
+                                                ...this.props,
+                                                username: entry.author,
+                                                children: (
+                                                  <div className="author-avatar">
+                                                    {UserAvatar({
+                                                      ...this.props,
+                                                      username: entry.author,
+                                                      size: "medium",
+                                                    })}
+                                                  </div>
+                                                ),
+                                              })}
 
-                                            {/* {!edit ? 
+                                              <div className="entry-info-inner">
+                                                <div className="info-line-1">
+                                                  {ProfileLink({
+                                                    ...this.props,
+                                                    username: entry.author,
+                                                    children: (
+                                                      <div className="author notranslate">
+                                                        <span className="author-name">
+                                                          <span
+                                                            itemProp="author"
+                                                            itemScope={true}
+                                                            itemType="http://schema.org/Person"
+                                                          >
+                                                            <span itemProp="name">
+                                                              {entry.author}
+                                                            </span>
+                                                          </span>
+                                                        </span>
+                                                        <span
+                                                          className="author-reputation"
+                                                          title={_t(
+                                                            "entry.author-reputation"
+                                                          )}
+                                                        >
+                                                          {reputation}
+                                                        </span>
+                                                      </div>
+                                                    ),
+                                                  })}
+                                                </div>
+
+                                                <div className="info-line-2">
+                                                  <span
+                                                    className="date"
+                                                    title={published.format(
+                                                      "LLLL"
+                                                    )}
+                                                  >
+                                                    {published.fromNow()}
+                                                  </span>
+                                                  <span className="separator" />
+                                                  <div className="entry-tag">
+                                                    <span className="in-tag">
+                                                      {_t("entry.community-in")}
+                                                    </span>
+                                                    {Tag({
+                                                      ...this.props,
+                                                      tag: entry.category,
+                                                      type: "link",
+                                                      children: (
+                                                        <div className="tag-name">
+                                                          {entry.community
+                                                            ? entry.community_title
+                                                            : `#${entry.category}`}
+                                                        </div>
+                                                      ),
+                                                    })}
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <span className="flex-spacer" />
+                                              {!isComment &&
+                                                global.usePrivate &&
+                                                BookmarkBtn({
+                                                  ...this.props,
+                                                  entry,
+                                                })}
+                                              {!isComment &&
+                                                EntryMenu({
+                                                  ...this.props,
+                                                  entry,
+                                                  separatedSharing: true,
+                                                  extraMenuItems: extraItems,
+                                                })}
+                                            </div>
+                                          </div>
+                                          <meta
+                                            itemProp="headline name"
+                                            content={entry.title}
+                                          />
+
+                                          {/* {!edit ? 
                                                <>
                                                     <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
                                                         <div
@@ -867,164 +1041,239 @@ class EntryPage extends BaseComponent<Props, State> {
                                                     entry: entry
                                                 })} */}
 
-                                                <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
-                                                    <div
-                                                        itemProp="articleBody"
-                                                        className="entry-body markdown-view user-selectable"
-                                                        dangerouslySetInnerHTML={renderedBody}
-                                                    />
-                                                </SelectionPopover>
+                                          <SelectionPopover
+                                            postUrl={entry.url}
+                                            onQuotesClick={(text: string) => {
+                                              this.setState({
+                                                selection: `>${text}\n\n`,
+                                              });
+                                              (
+                                                this.commentInput! as any
+                                              ).current!.focus();
+                                            }}
+                                          >
+                                            <div
+                                              itemProp="articleBody"
+                                              className="entry-body markdown-view user-selectable"
+                                              dangerouslySetInnerHTML={
+                                                renderedBody
+                                              }
+                                            />
+                                          </SelectionPopover>
 
-
-                                            <meta itemProp="image" content={metaProps.image}/>
+                                          <meta
+                                            itemProp="image"
+                                            content={metaProps.image}
+                                          />
                                         </>
+                                      );
                                     })()}
 
-
-                                    {!global.isMobile && 
-                                        <div id="avatar-fixed-container" className="invisible">
-                                            {showProfileBox && <AuthorInfoCard {...this.props} entry={entry} />}
-                                        </div>
-                                    }
+                                    {!global.isMobile && (
+                                      <div
+                                        id="avatar-fixed-container"
+                                        className="invisible"
+                                      >
+                                        {showProfileBox && (
+                                          <AuthorInfoCard
+                                            {...this.props}
+                                            entry={entry}
+                                          />
+                                        )}
+                                      </div>
+                                    )}
 
                                     <div className="entry-footer">
-                                        <div className="entry-tags">
-                                            {tags.map((t,i) => {
-                                                if (typeof t === "string") {
-                                                    if (entry.community && entry.community_title && t === entry.community) {
-                                                        return <Fragment key={t+i}>
-                                                            {Tag({
-                                                                ...this.props,
-                                                                tag: {
-                                                                    name: entry.community,
-                                                                    title: entry.community_title
-                                                                },
-                                                                type: "link",
-                                                                children: <div className="entry-tag">{t}</div>
-                                                            })}
-                                                        </Fragment>
-                                                    }
-    
-                                                    return (
-                                                        <Fragment key={t+i}>
-                                                            {Tag({
-                                                                ...this.props,
-                                                                tag: t.trim(),
-                                                                type: "link",
-                                                                children: <div className="entry-tag">{t}</div>
-                                                            })}
-                                                        </Fragment>
-                                                    )    
-                                                } else {
-                                                    return
-                                                }
-                                            })}
-                                        </div>
-                                        <div className="entry-info">
-                                            <div className="date" title={published.format("LLLL")}>
-                                                {published.fromNow()}
-                                            </div>
-                                            <span className="separator"/>
-                                            {ProfileLink({
-                                                ...this.props,
-                                                username: entry.author,
-                                                children: <div className="author notranslate">
-                                                    <span className="author-name">{entry.author}</span>
-                                                    <span className="author-reputation" title={_t("entry.author-reputation")}>{reputation}</span>
-                                                </div>
-                                            })}
-                                            {app && (
-                                                <>
-                                                    <span className="separator"/>
-                                                    <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">
-                                                            <meta itemProp="name" content={entry.author}/>
-                                                        </span>
-                                                    <div className="app" title={app}>
-                                                        <Tsx k="entry.via-app" args={{app: appShort}}><a href="/faq#source-label"/></Tsx>
+                                      <div className="entry-tags">
+                                        {tags.map((t, i) => {
+                                          if (typeof t === "string") {
+                                            if (
+                                              entry.community &&
+                                              entry.community_title &&
+                                              t === entry.community
+                                            ) {
+                                              return (
+                                                <Fragment key={t + i}>
+                                                  {Tag({
+                                                    ...this.props,
+                                                    tag: {
+                                                      name: entry.community,
+                                                      title:
+                                                        entry.community_title,
+                                                    },
+                                                    type: "link",
+                                                    children: (
+                                                      <div className="entry-tag">
+                                                        {t}
+                                                      </div>
+                                                    ),
+                                                  })}
+                                                </Fragment>
+                                              );
+                                            }
+
+                                            return (
+                                              <Fragment key={t + i}>
+                                                {Tag({
+                                                  ...this.props,
+                                                  tag: t.trim(),
+                                                  type: "link",
+                                                  children: (
+                                                    <div className="entry-tag">
+                                                      {t}
                                                     </div>
-                                                </>
-                                            )}
+                                                  ),
+                                                })}
+                                              </Fragment>
+                                            );
+                                          } else {
+                                            return;
+                                          }
+                                        })}
+                                      </div>
+                                      <div className="entry-info">
+                                        <div
+                                          className="date"
+                                          title={published.format("LLLL")}
+                                        >
+                                          {published.fromNow()}
                                         </div>
-                                        <div className="entry-controls" ref={setRef}>
-                                            {EntryVoteBtn({
-                                                ...this.props,
-                                                entry,
-                                                afterVote: this.afterVote
+                                        <span className="separator" />
+                                        {ProfileLink({
+                                          ...this.props,
+                                          username: entry.author,
+                                          children: (
+                                            <div className="author notranslate">
+                                              <span className="author-name">
+                                                {entry.author}
+                                              </span>
+                                              <span
+                                                className="author-reputation"
+                                                title={_t(
+                                                  "entry.author-reputation"
+                                                )}
+                                              >
+                                                {reputation}
+                                              </span>
+                                            </div>
+                                          ),
+                                        })}
+                                        {app && (
+                                          <>
+                                            <span className="separator" />
+                                            <span
+                                              itemProp="publisher"
+                                              itemScope={true}
+                                              itemType="http://schema.org/Person"
+                                            >
+                                              <meta
+                                                itemProp="name"
+                                                content={entry.author}
+                                              />
+                                            </span>
+                                            <div className="app" title={app}>
+                                              <Tsx
+                                                k="entry.via-app"
+                                                args={{ app: appShort }}
+                                              >
+                                                <a href="https://starterkit.tech/faqs#source-label" />
+                                              </Tsx>
+                                            </div>
+                                          </>
+                                        )}
+                                      </div>
+                                      <div
+                                        className="entry-controls"
+                                        ref={setRef}
+                                      >
+                                        {EntryVoteBtn({
+                                          ...this.props,
+                                          entry,
+                                          afterVote: this.afterVote,
+                                        })}
+                                        {EntryPayout({
+                                          ...this.props,
+                                          entry,
+                                        })}
+                                        {EntryVotes({
+                                          ...this.props,
+                                          entry,
+                                        })}
+                                        {EntryTipBtn({
+                                          ...this.props,
+                                          entry,
+                                        })}
+                                        {!ownEntry && (
+                                          <>
+                                            {EntryReblogBtn({
+                                              ...this.props,
+                                              entry,
                                             })}
-                                            {EntryPayout({
-                                                ...this.props,
-                                                entry
-                                            })}
-                                            {EntryVotes({
-                                                ...this.props,
-                                                entry
-                                            })}
-                                            {EntryTipBtn({
-                                                ...this.props,
-                                                entry
-                                            })}
-                                            {!ownEntry && (
-                                                <>
-                                                    {EntryReblogBtn({
-                                                        ...this.props,
-                                                        entry
-                                                    })}
-                                                </>
-                                            )}
-                                            <span className="flex-spacer"/>
-                                            {BookmarkBtn({
-                                                        ...this.props,
-                                                        entry
-                                            })}
-                                            {EntryMenu({
-                                                ...this.props,
-                                                entry,
-                                                alignBottom: true,
-                                                separatedSharing: true
-                                            })}
-                                        </div>
+                                          </>
+                                        )}
+                                        <span className="flex-spacer" />
+                                        {BookmarkBtn({
+                                          ...this.props,
+                                          entry,
+                                        })}
+                                        {EntryMenu({
+                                          ...this.props,
+                                          entry,
+                                          alignBottom: true,
+                                          separatedSharing: true,
+                                        })}
+                                      </div>
                                     </div>
 
                                     {originalEntry && (
-                                        <div className="browse-original">
-                                            {EntryLink({
-                                                ...this.props,
-                                                entry: originalEntry,
-                                                children: <a className="btn btn-primary">
-                                                    {_t('entry.browse-original')}
-                                                </a>
-                                            })}
-                                        </div>
+                                      <div className="browse-original">
+                                        {EntryLink({
+                                          ...this.props,
+                                          entry: originalEntry,
+                                          children: (
+                                            <a className="btn btn-primary">
+                                              {_t("entry.browse-original")}
+                                            </a>
+                                          ),
+                                        })}
+                                      </div>
                                     )}
 
-                                    {(!originalEntry && !isComment) && !activeUser && SimilarEntries({
+                                    {!originalEntry &&
+                                      !isComment &&
+                                      !activeUser &&
+                                      SimilarEntries({
                                         ...this.props,
-                                        entry
-                                    })}
+                                        entry,
+                                      })}
 
                                     {Comment({
-                                        ...this.props,
-                                        defText: this.state.selection,
-                                        submitText: _t('g.reply'),
-                                        resetSelection: this.resetSelection,
-                                        onSubmit: this.replySubmitted,
-                                        inProgress: replying,
-                                        isCommented: this.state.isCommented,
-                                        inputRef: this.commentInput,
-                                        entry: entry
+                                      ...this.props,
+                                      defText: this.state.selection,
+                                      submitText: _t("g.reply"),
+                                      resetSelection: this.resetSelection,
+                                      onSubmit: this.replySubmitted,
+                                      inProgress: replying,
+                                      isCommented: this.state.isCommented,
+                                      inputRef: this.commentInput,
+                                      entry: entry,
                                     })}
 
-                                    {(!originalEntry && !isComment) && activeUser && SimilarEntries({
+                                    {!originalEntry &&
+                                      !isComment &&
+                                      activeUser &&
+                                      SimilarEntries({
                                         ...this.props,
-                                        entry
-                                    })}
+                                        entry,
+                                      })}
 
                                     {Discussion({
-                                        ...this.props,
-                                        parent: entry,
-                                        community
+                                      ...this.props,
+                                      parent: entry,
+                                      community,
                                     })}
-                                </>
+                                  </>
+                                );
                             })()}
                         </span>
                     </div>

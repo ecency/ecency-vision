@@ -158,7 +158,7 @@
     "header": "Selamat datang ke Ecency",
     "description": "Tempat yang Bebas bicara dan Komunitas yang mendapatkan reward!",
     "bottom-description": "Setiap akun yang dibuat di blockchain dan hanya anda yang memiliki kendali atas akun tersebut. Satu akun untuk mengelola semuanya di Blockchain dan Ecency.",
-    "learn-more": "Pelajari selengkapnya tentang keuntungan di <a href=\"/faq#how-to-join\">FAQ</a>",
+    "learn-more": "Pelajari selengkapnya tentang keuntungan di <a href=\"https://starterkit.tech/faqs#how-to-join\">FAQ</a>",
     "username": "Pilih nama pengguna",
     "email": "Masukkan alamat email Anda",
     "ref": "Pengguna rujukan (opsional)",
@@ -271,7 +271,7 @@
   },
   "market": {
     "title": "Token exchange",
-    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"https://starterkit.tech/faqs#how-exchange-work\">FAQ</a>.",
     "last-price": "Last Price",
     "volume": "24h volume",
     "bid": "Bid",
@@ -1025,7 +1025,7 @@
   },
   "proposals": {
     "page-title": "Proposal",
-    "page-description": "The Decentralized Hive Fund (DHF) adalah mekanisme pendanaan on-chain yang memungkinkan siapa saja untuk mengajukan proposal dan mendapatkan pendanaan setelah suara masyarakat melewati ambang tertentu. Untuk mempelajari lebih lanjut, baca <a href=\"/faq#how-dhf-work\">FAQ</a> kami.",
+    "page-description": "The Decentralized Hive Fund (DHF) adalah mekanisme pendanaan on-chain yang memungkinkan siapa saja untuk mengajukan proposal dan mendapatkan pendanaan setelah suara masyarakat melewati ambang tertentu. Untuk mempelajari lebih lanjut, baca <a href=\"https://starterkit.tech/faqs#how-dhf-work\">FAQ</a> kami.",
     "by": "oleh",
     "for": "untuk",
     "duration-days": "{{n}} hari",
@@ -1176,9 +1176,9 @@
       "when-claim-rewards-header": "Kapan saya bisa klaim rewards?",
       "when-claim-rewards-body": "<p>Posting dan komentar tetap aktif selama 7 hari dan hadiah berfluktuasi tergantung pada suara dan harga pasar token, itulah sebabnya hadiah diperkirakan sebagai hadiah yang tertunda. Ketika periode berakhir, hadiah yang tertunda berubah menjadi hadiah sebenarnya dan Anda dapat mengklaim hadiah yang diperoleh. Di Wallet Anda, klik tombol Klaim Hadiah untuk menambahkan token ke akun Anda.</p>",
       "what-are-rc-header": "Apa itu Resource Credit (Kredit Sumber Daya)?",
-      "what-are-rc-body": "<p><p> Bertransaksi di blockchain Hive tidak memiliki biaya, pembatasan nilai transaksi digunakan untuk melindungi blockchain dari serangan spam. Setiap tindakan yang Anda lakukan di blockchain akan menghabiskan sejumlah kecil Kredit Sumber Daya (Resource Credit). Ini termasuk memposting, berkomentar, memberi suara, mentransfer token, dll. Melihat konten tidak menghabiskan Kredit Sumber Daya. </p> <p> Setiap pengguna memiliki Kredit Sumber Daya dalam jumlah terbatas untuk digunakan setiap minggu. Semakin banyak transaksi yang dilakukan pengguna, semakin sedikit Kredit Sumber Daya yang tersisa (sampai ia mengisi ulang). Pengguna dengan lebih banyak HIVE POWER akan memiliki lebih banyak Kredit Sumber Daya. </p> <p> Jika Anda kehabisan Kredit Sumber Daya, Anda tidak akan dapat bertransaksi dengan blockchain sampai Kredit Sumber Daya Anda terisi ulang (terjadi secara otomatis) atau Anda memperoleh HIVE POWER tambahan untuk meningkatkan saldo Resource Credit Anda atau Anda dapat <a href=\"/faq#how-boost-account\"> meminta akun Boosting dari Ecency </a> untuk menerima delegasi sementara. </p></p>",
+      "what-are-rc-body": "<p><p> Bertransaksi di blockchain Hive tidak memiliki biaya, pembatasan nilai transaksi digunakan untuk melindungi blockchain dari serangan spam. Setiap tindakan yang Anda lakukan di blockchain akan menghabiskan sejumlah kecil Kredit Sumber Daya (Resource Credit). Ini termasuk memposting, berkomentar, memberi suara, mentransfer token, dll. Melihat konten tidak menghabiskan Kredit Sumber Daya. </p> <p> Setiap pengguna memiliki Kredit Sumber Daya dalam jumlah terbatas untuk digunakan setiap minggu. Semakin banyak transaksi yang dilakukan pengguna, semakin sedikit Kredit Sumber Daya yang tersisa (sampai ia mengisi ulang). Pengguna dengan lebih banyak HIVE POWER akan memiliki lebih banyak Kredit Sumber Daya. </p> <p> Jika Anda kehabisan Kredit Sumber Daya, Anda tidak akan dapat bertransaksi dengan blockchain sampai Kredit Sumber Daya Anda terisi ulang (terjadi secara otomatis) atau Anda memperoleh HIVE POWER tambahan untuk meningkatkan saldo Resource Credit Anda atau Anda dapat <a href=\"https://starterkit.tech/faqs#how-boost-account\"> meminta akun Boosting dari Ecency </a> untuk menerima delegasi sementara. </p></p>",
       "how-boost-account-header": "Bagaimana meminta peningkatan akun?",
-      "how-boost-account-body": "<p>Jika akun Anda kekurangan <a href=\"/faq#what-are-rc\"> Kredit Sumber Daya </a>, Anda dapat meminta peningkatan akun dari Ecency. Anda akan menerima delegasi sementara yang akan meningkatkan akun Anda untuk melakukan lebih banyak aktivitas di blockchain. Anda dapat menemukan fitur peningkatan akun di opsi Poin.</p>",
+      "how-boost-account-body": "<p>Jika akun Anda kekurangan <a href=\"https://starterkit.tech/faqs#what-are-rc\"> Kredit Sumber Daya </a>, Anda dapat meminta peningkatan akun dari Ecency. Anda akan menerima delegasi sementara yang akan meningkatkan akun Anda untuk melakukan lebih banyak aktivitas di blockchain. Anda dapat menemukan fitur peningkatan akun di opsi Poin.</p>",
       "what-spam-abuse-header": "Apa yang dianggap spam atau penyalahgunaan?",
       "what-spam-abuse-body": "<p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Dapatkah saya meminta penambahan tautan balik ke situs web saya dari tim Ecency?",
@@ -1205,7 +1205,7 @@
   },
   "contributors": {
     "title": "Kontributor",
-    "description": "Orang-orang hebat ini berkontribusi dalam satu atau lain cara untuk Ecency, kami ingin berterima kasih kepada mereka semua. Jika Anda ingin bergabung dengan tim kami dengan berkontribusi dalam Penerjemahan, Ide, Pengembangan, Desain, Kesadaran sosial, silakan bergabung. Untuk mempelajari lebih lanjut, baca<a href=\"/faq#how-to-contribute\">FAQ kami</a>."
+    "description": "Orang-orang hebat ini berkontribusi dalam satu atau lain cara untuk Ecency, kami ingin berterima kasih kepada mereka semua. Jika Anda ingin bergabung dengan tim kami dengan berkontribusi dalam Penerjemahan, Ide, Pengembangan, Desain, Kesadaran sosial, silakan bergabung. Untuk mempelajari lebih lanjut, baca<a href=\"https://starterkit.tech/faqs#how-to-contribute\">FAQ kami</a>."
   },
   "context-menu": {
     "cut": "Potong",
