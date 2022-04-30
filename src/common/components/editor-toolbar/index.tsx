@@ -488,7 +488,7 @@ export class EditorToolbar extends Component<Props> {
                             }}/>}
                         </div>
                     </Tooltip>
-              <Tooltip content={_t("editor-toolbar.emoji")}>
+              <Tooltip content="Markdown tutorial">
                 <a href="https://commonmark.org/help/">
                   <div className="editor-tool" role="none">
                     {infoOutlineSvg}
