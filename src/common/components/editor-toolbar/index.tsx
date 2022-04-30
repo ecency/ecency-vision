@@ -40,7 +40,8 @@ import {
     imageSvg,
     gridSvg,
     emoticonHappyOutlineSvg,
-    textShortSvg
+  textShortSvg,
+  infoOutlineSvg
 } from "../../img/svg";
 
 
@@ -487,6 +488,13 @@ export class EditorToolbar extends Component<Props> {
                             }}/>}
                         </div>
                     </Tooltip>
+              <Tooltip content={_t("editor-toolbar.emoji")}>
+                <a href="https://commonmark.org/help/">
+                  <div className="editor-tool" role="none">
+                    {infoOutlineSvg}
+                  </div>
+                </a>
+              </Tooltip>
                     {global.usePrivate && <Tooltip content={_t("editor-toolbar.fragments")}>
                       <div className="editor-tool" onClick={this.toggleFragments}>
                           {textShortSvg}
