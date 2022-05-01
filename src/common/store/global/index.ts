@@ -50,7 +50,7 @@ export const initialState: Global = {
   notifications: true,
   nsfw: false,
   isMobile: false,
-  usePrivate: true,
+  usePrivate: false,
   ctheme: "sky",
   tags: ["spk", "3speak"],
   hive_id: "hive-112019",

@@ -76,7 +76,6 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
 
         getCommunities("", 14, query, "rank")
             .then((results) => {
-                console.log()
                 if (results) {
                     this.stateSet({ results: results ? results.filter(x => subscriptions.map((subscription) => subscription[0]).includes(x.name)) : [] });
                 }
@@ -196,7 +195,6 @@ export class CommunitySelector extends BaseComponent<Props, State> {
         const {tags} = this.props;
         const [tag,] = tags;
 
-        console.log(tag)
 
         if (!tag) {
             return null;

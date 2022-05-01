@@ -219,11 +219,11 @@ export default class UserNav extends Component<Props, State> {
         return (
             <>
                 <div className="user-nav">
-                    {global.usePrivate && <PointsBadge activeUser={activeUser}/>}
+                    {/* <PointsBadge activeUser={activeUser} /> */}
 
                     <WalletBadge activeUser={activeUser} dynamicProps={dynamicProps}/>
 
-                    {global.usePrivate && (<ToolTip content={_t("user-nav.notifications")}>
+                    <ToolTip content={_t("user-nav.notifications")}>
                         <span className="notifications" onClick={this.toggleNotifications}>
                              {unread > 0 && (
                                  <span className="notifications-badge notranslate">
@@ -232,7 +232,7 @@ export default class UserNav extends Component<Props, State> {
                              )}
                             {global.notifications ? bellSvg : bellOffSvg}
                         </span>
-                    </ToolTip>)}
+                    </ToolTip>
 
                     <DropDown
                         {...dropDownConfig}

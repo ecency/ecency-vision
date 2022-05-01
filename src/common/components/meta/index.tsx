@@ -32,8 +32,6 @@ export default class Meta extends Component<Props> {
     } = this.props;
     let { image } = this.props;
 
-    console.log(title);
-
     if (!image) {
       image = `${defaults.base}/og.jpg`;
     }

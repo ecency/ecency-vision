@@ -88,7 +88,6 @@ export class EntryListContent extends Component<Props, State> {
 
   fetchBlacklist = () => {
     getBlacklist().then((response) => {
-      console.log(response);
       this.setState({ ...this.state, blacklist: response });
     });
   };
