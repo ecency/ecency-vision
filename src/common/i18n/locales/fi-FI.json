@@ -315,18 +315,18 @@
     "refresh-time": "Päivitysaika",
     "hours": "tuntia",
     "save": "Tallenna",
-    "update-interval": "Update interval",
-    "update-interval-min": "In minutes",
-    "update-n-seconds": "Every {{sec}} sec",
-    "update-n-minutes": "Every {{min}} min",
-    "update-n-hours": "Every {{hour}} h",
-    "update-custom": "Custom interval...",
-    "update-interval-value-error": "Interval should be between 30 seconds and 24 hours",
-    "update-interval-placeholder": "Select an interval",
-    "update-custom-interval-in-minutes-placeholder": "Enter interval in minutes",
-    "filters": "Filters",
-    "history": "History",
-    "type": "Type"
+    "update-interval": "Päivityksen aikaväli",
+    "update-interval-min": "Minuutteina",
+    "update-n-seconds": "Joka {{sec}} s",
+    "update-n-minutes": "Joka {{min}} min",
+    "update-n-hours": "Joka {{hour}} t",
+    "update-custom": "Muokattu aikaväli...",
+    "update-interval-value-error": "Aikavälin tulisi olla 30 sekunnin ja 24 tunnin välillä",
+    "update-interval-placeholder": "Valitse aikaväli",
+    "update-custom-interval-in-minutes-placeholder": "Syötä aikaväli minuuteissa",
+    "filters": "Suodattimet",
+    "history": "Historia",
+    "type": "Tyyppi"
   },
   "market-data": {
     "title": "Markkinahinta",
@@ -924,7 +924,7 @@
     "empty-title-alert": "Syötä julkaisun otsikko",
     "empty-tags-alert": "Syötä julkaisun tagit",
     "empty-body-alert": "Syötä julkaisun runko",
-    "description": "Short description"
+    "description": "Lyhyt kuvaus"
   },
   "tag-selector": {
     "placeholder-empty": "Tunnisteet. Ensimmäisenä pääkategoria. Lajiteltava.",
