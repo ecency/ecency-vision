@@ -218,7 +218,7 @@ export class Transfer extends BaseComponent<Props, State> {
     memoChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: memo} = e.target;
         const mError = cryptoUtils.isWif(memo);
-        if (mError) this.setState({ memoError: "Never put your private keys into a memo field, as this could result in your funds being stolen" });
+        if (mError) this.setState({ memoError: _t("transfer.memo-error")});
         this.stateSet({memo});
     };
 

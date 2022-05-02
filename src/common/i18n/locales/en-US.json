@@ -731,6 +731,7 @@
     "memo": "Memo",
     "memo-placeholder": "enter your notes here",
     "memo-help": "This memo is public",
+    "memo-error": "Never put your private keys into a memo field, as this could result in your funds being stolen",
     "available-hp-hint": "* available hive power",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
