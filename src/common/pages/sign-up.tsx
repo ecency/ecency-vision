@@ -51,7 +51,8 @@ class SignUpPage extends Component<PageProps, State> {
   };
 
   componentDidMount() {
-    getAvailibleAccounts()
+    const { global } = this.props;
+    getAvailibleAccounts(global.baseApiUrl)
       .then((response) => {
         this.setState({ ...this.state, availibleAccounts: response.count });
         if (!response.count) {
@@ -76,8 +77,9 @@ class SignUpPage extends Component<PageProps, State> {
 
   submit = () => {
     const { username } = this.state;
+    const { global } = this.props;
     this.setState({ ...this.state, inProgress: true });
-    signUp(username)
+    signUp(username, global.baseApiUrl)
       .then(({ data }) => {
         if (!data.success) {
           error(data.message);

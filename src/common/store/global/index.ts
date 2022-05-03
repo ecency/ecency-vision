@@ -54,6 +54,7 @@ export const initialState: Global = {
   ctheme: "sky",
   tags: ["spk", "3speak"],
   hive_id: "hive-112019",
+  baseApiUrl: "https://account-creator.3speak.tv/api",
 };
 
 export default (state: Global = initialState, action: Actions): Global => {

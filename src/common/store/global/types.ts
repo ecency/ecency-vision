@@ -55,6 +55,7 @@ export interface Global {
   currencyRate: number;
   currencySymbol: string;
   lang: string;
+  baseApiUrl: string;
   searchIndexCount: number;
   canUseWebp: boolean;
   hasKeyChain: boolean;

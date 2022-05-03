@@ -7,4 +7,5 @@ export default {
   theme: process.env.THEME || "",
   tags: process.env.TAGS?.split(",") || "",
   availibleAccounts: process.env.ACCOUNTS ? +process.env.ACCOUNTS : 0,
+  baseApiUrl: process.env.API_URL || "https://account-creator.3speak.tv/api"
 };

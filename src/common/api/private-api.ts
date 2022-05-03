@@ -58,15 +58,16 @@ export const getCuration = (duration: CurationDuration): Promise<CurationItem[]>
     return axios.get(apiBase(`/private-api/curation/${duration}`)).then(resp => resp.data);
 };
 
-export const getAvailibleAccounts = () =>
-  axios
-    .get("https://account-creator.3speak.tv/api/available-accounts")
-    .then(({ data }) => data);
-
-export const signUp = (username: string): Promise<any> =>
+export const getAvailibleAccounts = (url: string) =>
   axios
     .create({ withCredentials: true })
-    .post("https://account-creator.3speak.tv/api/create-account", {
+    .get(`${url}/available-accounts`)
+    .then(({ data }) => data);
+
+export const signUp = (username: string, url: string): Promise<any> =>
+  axios
+    .create({ withCredentials: true })
+    .post(`${url}/create-account`, {
       username: username,
     })
     .then((resp) => {

@@ -52,6 +52,7 @@ export const makePreloadedState = async (
     hive_id: config.hive_id,
     ctheme: config.theme,
     tags: [...config.tags],
+    baseApiUrl: config.baseApiUrl,
   };
 
   const dynamicProps = await getDynamicProps();
