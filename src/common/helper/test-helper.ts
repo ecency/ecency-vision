@@ -125,6 +125,7 @@ export const globalInstance: Global = {
   tags: [],
   hive_id: "",
   ctheme: "",
+  baseApiUrl: "",
 };
 
 export const TrendingTagsInstance: TrendingTags = {
