@@ -37,3 +37,5 @@ export const getBlacklist = () =>
   axios
     .get("https://spaminator.me/api/bl/all.txt")
     .then(({ data }) => data.split(/\r?\n/));
+
+export const windowExists = typeof window !== undefined
