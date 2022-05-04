@@ -749,6 +749,7 @@
     "memo": "Примечание",
     "memo-placeholder": "введите сюда свои заметки",
     "memo-help": "Эта заметка видна всем",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* доступная Hive Сила",
     "override-warning-1": "Новая сумма отменяет предыдущую.",
     "override-warning-2": "Аккаунту ({{account}}) уже было делегировано {{previousAmount}}.",
