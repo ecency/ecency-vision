@@ -749,6 +749,7 @@
     "memo": "Muistio",
     "memo-placeholder": "kirjoita muistio tähän",
     "memo-help": "Tämä muistio on julkinen",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* hive power saatavilla",
     "override-warning-1": "Uusi määrä ohittaa edellisen määrän.",
     "override-warning-2": "Tili ({{account}}) on jo valtuutettu {{previousAmount}}.",
