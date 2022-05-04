@@ -749,6 +749,7 @@
     "memo": "Eslatma",
     "memo-placeholder": "qaydlaringizni shu yerga kiriting",
     "memo-help": "Ushbu eslatma hammaga ko'rinarli",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* mavjud hive kuch",
     "override-warning-1": "Yangi miqdor avvalgisini bekor qiladi.",
     "override-warning-2": "Hisob ({{account}}) allaqachon {{previousAmount}} bilan delegatsiyalangan.",
