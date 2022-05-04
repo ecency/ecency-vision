@@ -53,7 +53,7 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
     setSigningKey: (key: string) => void;
     isReturnProposalId?: number;
-    thresholdProposalIds?: any[];
+    thresholdProposalId?: number | null;
 }
 
 interface State {
@@ -110,7 +110,7 @@ export class ProposalListItem extends Component<Props, State> {
     render() {
         const {votes, votedByVoter, loadingSearchResult} = this.state;
 
-        const {dynamicProps, proposal, isReturnProposalId, thresholdProposalIds} = this.props;
+        const {dynamicProps, proposal, isReturnProposalId, thresholdProposalId} = this.props;
 
         const startDate = moment(new Date(proposal.start_date));
         const endDate = moment(new Date(proposal.end_date));
@@ -200,10 +200,10 @@ export class ProposalListItem extends Component<Props, State> {
                         </div>
                     </div>
                 </div>
-                {proposal.id !== isReturnProposalId && thresholdProposalIds && _.includes(thresholdProposalIds, proposal.id)&& (
+                {proposal.id !== isReturnProposalId && thresholdProposalId === proposal.id && (
                     <div className="return-proposal">{_t("proposals.threshold-description")}</div>
                 )}
-                {(proposal.id === isReturnProposalId)&& (
+                {(proposal.id === isReturnProposalId) && (
                     <div className="return-proposal">{_t("proposals.return-description")}</div>
                 )}
                 {votes && <ProposalVotes {...this.props} onHide={this.toggleVotes}/>}
@@ -230,7 +230,7 @@ export default (p: Props) => {
         setSigningKey: p.setSigningKey,
         proposal: p.proposal,
         isReturnProposalId: p.isReturnProposalId,
-        thresholdProposalIds: p.thresholdProposalIds
+        thresholdProposalId: p.thresholdProposalId
     }
 
     return <ProposalListItem {...props} />;
