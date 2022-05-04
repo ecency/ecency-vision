@@ -749,7 +749,7 @@
     "memo": "Memo",
     "memo-placeholder": "escribe tus notas aquí",
     "memo-help": "Este memo es público",
-    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-error": "Nunca ponga las claves privadas en un campo memo, eso es visible públicamente para todos.",
     "available-hp-hint": "* potencia de Hive disponible",
     "override-warning-1": "La nueva cantidad anula la anterior.",
     "override-warning-2": "La cuenta ({{account}}) ya ha sido delegada con {{previousAmount}}.",
