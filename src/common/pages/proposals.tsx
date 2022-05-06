@@ -130,7 +130,6 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                 return _sum_amount <= dailyBudget ? _sum_amount : a;
             }, 0);
 
-            debugger;
             this.stateSet({totalBudget, dailyBudget, dailyFunded, thresholdProposalId: _thresholdProposalId})
         }  catch (e) {
             throw e;
