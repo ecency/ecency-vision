@@ -8,5 +8,8 @@ export const deleteDeck = (title: string, username: string) => (dispatch: Dispat
   dispatch(deleteAct({title}));
 
   const { items } = getState().deck;
+  if (!username) {
+    username = 'anonymous';
+  }
   set(`user-${username}-decks`, serializeDecks(items));
 };

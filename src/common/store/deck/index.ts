@@ -1,10 +1,6 @@
+import { Actions, ActionTypes, DeckState, } from './types';
 import {
-  Actions,
-  ActionTypes,
-  DeckState,
-} from './types';
-import {
-  createDeckReducer,
+  createDeckReducer, deleteAllDecksReducer,
   deleteDeckReducer,
   reorderReducer,
   setDataFilterReducer,
@@ -33,6 +29,8 @@ export default (state: DeckState = initialState, action: Actions): DeckState => 
     return setUpdateIntervalReducer(state, action.data);
   } else if (action.type === ActionTypes.SET_DATA_FILTERS) {
     return setDataFilterReducer(state, action.data);
+  } else if (action.type === ActionTypes.DELETE_ALL) {
+    return deleteAllDecksReducer(state);
   }
   return state;
 };

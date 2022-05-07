@@ -2,6 +2,7 @@ import {
   ActionTypes,
   CreateAction,
   DeleteAction,
+  DeleteAllAction,
   ReOrderAction,
   SetDataAction,
   SetDataFiltersAction,
@@ -42,4 +43,8 @@ export const updateIntervalAct = (data: UpdateIntervalAction['data']): UpdateInt
 export const setDataFiltersAct = (data: SetDataFiltersAction['data']): SetDataFiltersAction => ({
   type: ActionTypes.SET_DATA_FILTERS,
   data,
+});
+
+export const deleteAllAct = (): DeleteAllAction => ({
+  type: ActionTypes.DELETE_ALL
 });
