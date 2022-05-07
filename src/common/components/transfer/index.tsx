@@ -844,8 +844,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
                         <Form.Group as={Row}>
                             <Col sm={{span: 10, offset: 2}}>
-                                {/* Changed && to || since it just allows the form to submit anyway initially */}
-                                <Button onClick={this.next} disabled={!this.canSubmit() || amount > balance}>{_t('g.next')}</Button>
+                                <Button onClick={this.next} disabled={!this.canSubmit()}>{_t('g.next')}</Button>
                             </Col>
                         </Form.Group>
                     </Form>
