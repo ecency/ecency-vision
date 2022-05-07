@@ -36,6 +36,7 @@ export enum ActionTypes {
   SET_RELOADING = "@deck/SET_RELOADING",
   REORDER = "@deck/REORDER",
   DELETE = "@deck/DELETE",
+  DELETE_ALL = "@deck/DELETE_ALL",
   UPDATE_INTERVAL = "@deck/UPDATE_INTERVAL",
   SET_DATA_FILTERS = "@deck/SET_DATA_FILTERS"
 }
@@ -84,6 +85,10 @@ export interface DeleteAction {
   };
 }
 
+export interface DeleteAllAction {
+  type: ActionTypes.DELETE_ALL;
+}
+
 export interface UpdateIntervalAction {
   type: ActionTypes.UPDATE_INTERVAL;
   data: {
@@ -107,4 +112,4 @@ export type DeckState = {
 };
 
 export type Actions = CreateAction | SetDataAction | SetReloadingAction | ReOrderAction | DeleteAction
-  | UpdateIntervalAction | SetDataFiltersAction;
+  | UpdateIntervalAction | SetDataFiltersAction | DeleteAllAction;

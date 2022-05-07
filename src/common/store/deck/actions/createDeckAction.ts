@@ -8,5 +8,9 @@ export const createDeck = (data: CreateAction['data'], username: string) => (dis
   dispatch(createAct(data));
 
   const { items } = getState().deck;
+
+  if (!username) {
+    username = 'anonymous';
+  }
   set(`user-${username}-decks`, serializeDecks(items));
 }

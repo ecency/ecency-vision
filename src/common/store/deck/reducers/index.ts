@@ -5,3 +5,4 @@ export * from './deleteDeckReducer';
 export * from './setUpdateIntervalReducer';
 export * from './setDataFilterReducer';
 export * from './reorderReducer';
+export * from './deleteAllDecksReducer';
