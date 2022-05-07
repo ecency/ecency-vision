@@ -8,5 +8,8 @@ export const setDeckUpdateInterval = (data: UpdateIntervalAction['data'], userna
   dispatch(updateIntervalAct(data));
 
   const { items } = getState().deck;
+  if (!username) {
+    username = 'anonymous';
+  }
   set(`user-${username}-decks`, serializeDecks(items));
 }

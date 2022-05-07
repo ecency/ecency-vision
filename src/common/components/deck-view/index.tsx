@@ -106,16 +106,14 @@ const DeckViewContainer = ({
 
   // Load decks from storage
   useEffect(() => {
-    if (!deck.items.length) {
-      setUser(rest.activeUser && rest.activeUser.username);
-      loadDeckFromStorage(user, {
-        SearchListItem,
-        HotListItem,
-        NotificationListItem,
-        TransactionRow,
-      });
-    }
-  }, [rest]);
+    setUser(rest.activeUser && rest.activeUser.username);
+    loadDeckFromStorage(rest.activeUser?.username, {
+      SearchListItem,
+      HotListItem,
+      NotificationListItem,
+      TransactionRow,
+    });
+  }, [rest.activeUser]);
 
   useEffect(() => {
     setUser(rest.activeUser && rest.activeUser.username);
