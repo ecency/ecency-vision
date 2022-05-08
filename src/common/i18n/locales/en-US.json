@@ -1280,12 +1280,13 @@
       "what-hive-witnesses-header": "What are Hive witnesses?",
       "what-hive-witnesses-body": "<p>Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. Community elects them to represent their voice and each user can elect up to 30 witnesses.  This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses. Witnesses are compensated with Hive Power for each block they create</p>",
       "how-vote-witnesses-header": "How can I vote for witnesses?",
-      "how-vote-witnesses-body" "<p> Visit <a href=\https://ecency.com/witnesses\">https://ecency.com/witnesses</a></p>",
-      
-      
-      
-      
-      
+      "how-vote-witnesses-body": "<p> Visit <a href=\https://ecency.com/witnesses\">https://ecency.com/witnesses</a></p>",
+      "what-is-hive-header": "What are HIVE?",
+      "what-is-hive-body": "<p>HIVE are tradeable tokens that may be transferred at anytime. HIVE can be converted to Hive Power in a process called powering up. It is a cryptocurrency token, similar to bitcoin</p>",
+      "what-is-hive-power-header": "What are HIVE POWER?",
+      "what-is-hive-power-body": "<p>Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.</p>",
+      "what-is-hd-header": "What are HIVE DOLLARS?",
+      "what-is-hd-body": "<p>Hive Dollars (commonly abbreviated HBD) are tokens worth about $1.00 of HIVE.  Hive Dollars can be traded with HIVE, and transferred to other accounts for commerce or exchange. Hive Dollars may also be converted into HIVE via a process that takes 3.5 days. </p>",
       
       
       
