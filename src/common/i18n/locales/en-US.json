@@ -1276,9 +1276,11 @@
       "improve-reputation-score-header": "How to improve my Reputaion score?",
       "improve-reputation-score-body":"<p>The more upvotes from the users with high reputation you have the higher reputation score you will have. The best way of improving your reputation score is earn upvotes by adding value to the Hive community.</p>",
       "why-score-going-down-header": "Why my Reputation score is going down?",
-      "why-score-going-down-body": "<p>Your earned upvotes and downvotes influence on your reputation score. Downvote given by another user with higher reputation causes your reputation score to go down. If you are having downvote but your upvotes more than downvotes (weighted by HP), then the net effect on your reputation score will still be positive.</p>"
-      
-
+      "why-score-going-down-body": "<p>Your earned upvotes and downvotes influence on your reputation score. Downvote given by another user with higher reputation causes your reputation score to go down. If you are having downvote but your upvotes more than downvotes (weighted by HP), then the net effect on your reputation score will still be positive.</p>",
+      "what-hive-witnesses-header": "What are Hive witnesses?",
+      "what-hive-witnesses-body": "<p>Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. Community elects them to represent their voice and each user can elect up to 30 witnesses.  This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses. Witnesses are compensated with Hive Power for each block they create</p>",
+      "how-vote-witnesses-header": "How can I vote for witnesses?",
+      "how-vote-witnesses-body" "<p> Visit <a href=\https://ecency.com/witnesses\">https://ecency.com/witnesses</a></p>",
       
       
       
