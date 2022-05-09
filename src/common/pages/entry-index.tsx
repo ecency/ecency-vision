@@ -1,16 +1,16 @@
-import React, {Component} from "react";
-import {ListStyle} from "../store/global/types";
-import {makeGroupKey} from "../store/entries";
-import EntryIndexMenu from "../components/entry-index-menu";
-import LinearProgress from "../components/linear-progress";
-import EntryListLoadingItem from "../components/entry-list-loading-item";
-import DetectBottom from "../components/detect-bottom";
-import EntryListContent from "../components/entry-list";
-import TrendingTagsCard from "../components/trending-tags-card";
-import MarketData from "../components/market-data";
-import _c from "../util/fix-class-names";
-import { PageProps } from "./common";
-import { DeckView } from "../components/deck-view";
+import React, { Component } from 'react';
+import { ListStyle } from '../store/global/types';
+import { makeGroupKey } from '../store/entries';
+import EntryIndexMenu from '../components/entry-index-menu';
+import LinearProgress from '../components/linear-progress';
+import EntryListLoadingItem from '../components/entry-list-loading-item';
+import DetectBottom from '../components/detect-bottom';
+import EntryListContent from '../components/entry-list';
+import TrendingTagsCard from '../components/trending-tags-card';
+import MarketData from '../components/market-data';
+import _c from '../util/fix-class-names';
+import { PageProps } from './common';
+import { DeckView } from '../components/deck-view';
 import { Entry } from '../store/entries/types';
 
 
@@ -95,7 +95,18 @@ class EntryIndexPage extends Component<Props, State> {
     render() {
         const { entryList, promoted } = this.state;
         const { global } = this.props;
-        let containerClasses = global.isElectron ? "app-content entry-index-page mt-0 pt-6" : `app-content overflow-hidden entry-index-page ${global.listStyle === ListStyle.deck ? "p-0 m-0 mw-100" : ""}`;
+
+        let containerClasses;
+        if (global.isElectron) {
+            containerClasses = 'app-content entry-index-page mt-0 pt-6';
+        }  else {
+            containerClasses = 'app-content overflow-hidden entry-index-page';
+        }
+
+        if (global.listStyle === ListStyle.deck) {
+            containerClasses += ' p-0 m-0 mw-100';
+        }
+
         return (
             <>
                 {
