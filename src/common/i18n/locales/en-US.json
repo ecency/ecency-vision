@@ -1295,8 +1295,8 @@
       "what-powering-up-body": "<p>HIVE Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated. HIVE Power can be powered down in the same wallets where it can be powered up.</p>",
       "why-different-keys-header": "Why are there different keys?",
       "why-different-keys-body": "<p>There are different  keys with the appropriate permissions for what you are doing. <ul><li>Posting keys-this key should be used for social networking actions, like posting, commenting and voting. This key has a limited set of permissions and it is not able to be used for monetary actions. So you can't lose money if someone else gets access to this key.</li><li>Active key-this key has additional permissions for more sensitive monetary-related actions, like transferring and exchanging tokens. When performing a wallet related action, you may be prompted to authenticate with your Active key. You should only enter your Active Key into apps which you trust because anyone with access to this key can take your tokens. Do yourself a favor and store this key safely to avoid losing tokens in the future.</li><li> Owner key- is the most powerful key because it can change any key of an account, including the owner key. Ideally it is meant to be stored offline, and only used to recover a compromised account.</li></ul></p>",
-      
-     
+      "stolen-hive-hbd-header": "What can I do if my HIVE or Hive dollar tokens stolen or sent to wrong account?",
+      "stolen-hive-hbd-body": "<p>There is nothing to do if your liquid tokens are stolen or sent to wrong acoount but if your tokens are in Hive Power it is impossible to be hacked more than 1/13 per week and if your tkens are in savings they need to  a three-day wait period for them to become transferable.</>",
       
       
       
