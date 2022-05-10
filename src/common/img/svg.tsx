@@ -1435,7 +1435,7 @@ export const person = (
 
 export const plusEncircled = (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 31 31" fill="none">
-    <circle cx="15.5" cy="15.5" r="14.05" stroke="white" strokeWidth="1.1"/>
+    <circle cx="15" cy="15" r="14.05" stroke="white" strokeWidth="1.1"/>
     <path d="M16.4392 14.0792H20.6844V16.5592H16.4392V21.3965H13.8027V16.5592H9.53516V14.0792H13.8027V9.55469H16.4392V14.0792Z" fill="white"/>
   </svg>
 );
