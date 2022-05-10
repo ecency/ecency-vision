@@ -16,11 +16,14 @@ export const initDecks = (data: SerializedDeckModel[], listItems: Record<string,
   } else if (title.includes('hive-')) {
     icon = communities;
     listItemComponent = listItems.SearchListItem;
-  } else if (
-    title.includes(_t('decks.notifications').toLowerCase())
-  ) {
+  } else if (title.includes(_t('decks.notifications').toLowerCase())) {
     icon = notificationSvg;
     listItemComponent = listItems.NotificationListItem;
+    if (!dataFilters) {
+      dataFilters = {
+        type: ''
+      };
+    }
   } else if (title.includes(_t('decks.wallet').toLowerCase())) {
     icon = wallet;
     listItemComponent = listItems.TransactionRow;
