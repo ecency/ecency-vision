@@ -1293,8 +1293,9 @@
       "what-powering up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
       "what-powering-down-header": "What is powering down?",
       "what-powering-up-body": "<p>HIVE Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated. HIVE Power can be powered down in the same wallets where it can be powered up.</p>",
-      
-      
+      "why-different-keys-header": "Why are there different keys?",
+      "why-different-keys-body": "<p>There are different  keys with the appropriate permissions for what you are doing. <ul><li>Posting keys-this key should be used for social networking actions, like posting, commenting and voting. This key has a limited set of permissions and it is not able to be used for monetary actions. So you can't lose money if someone else gets access to this key.</li><li>Active key-this key has additional permissions for more sensitive monetary-related actions, like transferring and exchanging tokens.
+When performing a wallet related action, you may be prompted to authenticate with your Active key. You should only enter your Active Key into apps which you trust because anyone with access to this key can take your tokens. Do yourself a favor and store this key safely to avoid losing tokens in the future.</p>",
       
      
       
