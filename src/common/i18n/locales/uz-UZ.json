@@ -311,7 +311,7 @@
     "select-column-type": "Qaysi turdagi ustunni qo'shmoqchisiz?",
     "topic": "Foydalanuvchi",
     "refresh": "{{title}} uchun avto yangilanish saqlandi.",
-    "settings": "Sozalamalar",
+    "settings": "Sozlamalar",
     "refresh-time": "Yangilanish vaqti",
     "hours": "soatlar",
     "save": "Saqlash",
@@ -546,7 +546,7 @@
     "section-replies": "Javoblar",
     "section-communities": "Guruhlar",
     "section-wallet": "Hamyon",
-    "section-settings": "Sozalamalar",
+    "section-settings": "Sozlamalar",
     "section-permission": "Ruxsat",
     "communities-title": "A'zolik",
     "create-community": "Guruh yaratish",
@@ -749,6 +749,7 @@
     "memo": "Eslatma",
     "memo-placeholder": "qaydlaringizni shu yerga kiriting",
     "memo-help": "Ushbu eslatma hammaga ko'rinarli",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* mavjud hive kuch",
     "override-warning-1": "Yangi miqdor avvalgisini bekor qiladi.",
     "override-warning-2": "Hisob ({{account}}) allaqachon {{previousAmount}} bilan delegatsiyalangan.",
@@ -923,7 +924,8 @@
     "scheduled": "Rejalashtirilgan Post",
     "empty-title-alert": "Post sarlavhasini kiriting",
     "empty-tags-alert": "Post teglarini kiriting",
-    "empty-body-alert": "Post matnini kiriting"
+    "empty-body-alert": "Post matnini kiriting",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Teglar. Birinchi teg asosiy toifadir. Uni saralash mumkin.",

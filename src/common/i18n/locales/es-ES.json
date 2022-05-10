@@ -749,6 +749,7 @@
     "memo": "Memo",
     "memo-placeholder": "escribe tus notas aquí",
     "memo-help": "Este memo es público",
+    "memo-error": "Nunca ponga las claves privadas en un campo memo, eso es visible públicamente para todos.",
     "available-hp-hint": "* potencia de Hive disponible",
     "override-warning-1": "La nueva cantidad anula la anterior.",
     "override-warning-2": "La cuenta ({{account}}) ya ha sido delegada con {{previousAmount}}.",
@@ -923,7 +924,8 @@
     "scheduled": "Publicación Programada",
     "empty-title-alert": "Introduce título de la publicación",
     "empty-tags-alert": "Introducir etiquetas de la publicación",
-    "empty-body-alert": "Introducir cuerpo de la publicación"
+    "empty-body-alert": "Introducir cuerpo de la publicación",
+    "description": "Descripción breve"
   },
   "tag-selector": {
     "placeholder-empty": "Etiquetas. Primera etiqueta es la categoría principal. Seleccionable.",

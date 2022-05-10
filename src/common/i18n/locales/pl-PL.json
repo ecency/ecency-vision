@@ -749,6 +749,7 @@
     "memo": "Memo",
     "memo-placeholder": "tu wpisuj swoje notatki",
     "memo-help": "To memo jest publiczne",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "Dostępny 'Hive Power'",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
@@ -923,7 +924,8 @@
     "scheduled": "Post zaplanowany",
     "empty-title-alert": "Dodaj tytuł swojego wpisu",
     "empty-tags-alert": "Dodaj tagi do wpisu",
-    "empty-body-alert": "Wprowadź treść wpisu"
+    "empty-body-alert": "Wprowadź treść wpisu",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Tagi. Pierwszy tag jest kategorią główną. Tagi można sortować.",

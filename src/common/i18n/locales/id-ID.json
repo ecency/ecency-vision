@@ -749,6 +749,7 @@
     "memo": "Memo",
     "memo-placeholder": "tuliskan catatan Anda disini",
     "memo-help": "Memo ini adalah Publik",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* hive power yang tersedia",
     "override-warning-1": "Jumlah baru menggantikan yang sebelumnya.",
     "override-warning-2": "Akun {{account}} sudah didelegasikan dengan {{previousAmount}}.",
@@ -923,7 +924,8 @@
     "scheduled": "Postingan yang dijadwalkan",
     "empty-title-alert": "Tambahkan judul postingan",
     "empty-tags-alert": "Tambahkan tagar postingan",
-    "empty-body-alert": "Tambahkan isi postingan"
+    "empty-body-alert": "Tambahkan isi postingan",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Tagar. Tagar pertama adalah kategori utama. Mudah disortir.",

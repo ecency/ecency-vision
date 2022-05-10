@@ -315,18 +315,18 @@
     "refresh-time": "Время обновления",
     "hours": "часов",
     "save": "Сохранить",
-    "update-interval": "Update interval",
-    "update-interval-min": "In minutes",
-    "update-n-seconds": "Every {{sec}} sec",
-    "update-n-minutes": "Every {{min}} min",
-    "update-n-hours": "Every {{hour}} h",
-    "update-custom": "Custom interval...",
-    "update-interval-value-error": "Interval should be between 30 seconds and 24 hours",
-    "update-interval-placeholder": "Select an interval",
-    "update-custom-interval-in-minutes-placeholder": "Enter interval in minutes",
-    "filters": "Filters",
-    "history": "History",
-    "type": "Type"
+    "update-interval": "Интервал обновления",
+    "update-interval-min": "В минутах",
+    "update-n-seconds": "Каждые {{sec}} сек",
+    "update-n-minutes": "Каждые {{min}} мин",
+    "update-n-hours": "Каждые {{hour}} ч",
+    "update-custom": "Произвольный интервал...",
+    "update-interval-value-error": "Интервал должен быть от 30 секунд до 24 часов",
+    "update-interval-placeholder": "Выберите интервал",
+    "update-custom-interval-in-minutes-placeholder": "Введите интервал в минутах",
+    "filters": "Фильтры",
+    "history": "История",
+    "type": "Тип"
   },
   "market-data": {
     "title": "Рыночная цена",
@@ -749,6 +749,7 @@
     "memo": "Примечание",
     "memo-placeholder": "введите сюда свои заметки",
     "memo-help": "Эта заметка видна всем",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* доступная Hive Сила",
     "override-warning-1": "Новая сумма отменяет предыдущую.",
     "override-warning-2": "Аккаунту ({{account}}) уже было делегировано {{previousAmount}}.",
@@ -923,7 +924,8 @@
     "scheduled": "Пост запланирован",
     "empty-title-alert": "Введите название поста",
     "empty-tags-alert": "Введите теги поста",
-    "empty-body-alert": "Введите содержимое поста"
+    "empty-body-alert": "Введите содержимое поста",
+    "description": "Короткое описание"
   },
   "tag-selector": {
     "placeholder-empty": "Тэги. Первый тэг является основной категорией. Для сортировки.",

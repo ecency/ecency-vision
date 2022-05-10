@@ -749,6 +749,7 @@
     "memo": "Примітка",
     "memo-placeholder": "введіть сюди свої примітки",
     "memo-help": "Ця примітка є публічною",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* вільна Hive сила",
     "override-warning-1": "Нова сума замінює попередню.",
     "override-warning-2": "Обліковий запис ({{account}}) вже делегований з {{previousAmount}}.",
@@ -923,7 +924,8 @@
     "scheduled": "Допис заплановано",
     "empty-title-alert": "Enter post title",
     "empty-tags-alert": "Enter post tags",
-    "empty-body-alert": "Enter post body"
+    "empty-body-alert": "Enter post body",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Теги. Першим тегом є основна категорія, а наступні є для сортування.",

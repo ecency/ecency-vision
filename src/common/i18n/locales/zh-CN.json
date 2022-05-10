@@ -749,6 +749,7 @@
     "memo": "备注",
     "memo-placeholder": "在此输入您的备注",
     "memo-help": "此备忘录是公开的",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* 可用的HIVE Power",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
@@ -923,7 +924,8 @@
     "scheduled": "帖子已计划",
     "empty-title-alert": "输入帖子标题",
     "empty-tags-alert": "输入帖子标签",
-    "empty-body-alert": "输入帖子内容"
+    "empty-body-alert": "输入帖子内容",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "标签：第一个标签是主要分类，可排序。",

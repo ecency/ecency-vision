@@ -749,6 +749,7 @@
     "memo": "Memo",
     "memo-placeholder": "Hier dein Memo eingeben",
     "memo-help": "Diese Memo ist öffentlich",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* verfügbare Hive Power",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
@@ -923,7 +924,8 @@
     "scheduled": "Beitrag erfolgreich geplant",
     "empty-title-alert": "Enter post title",
     "empty-tags-alert": "Enter post tags",
-    "empty-body-alert": "Enter post body"
+    "empty-body-alert": "Enter post body",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. Erster Tag ist die Hauptkategorie. Sortierbar.",

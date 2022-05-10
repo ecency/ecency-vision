@@ -749,6 +749,7 @@
     "memo": "ज्ञापन",
     "memo-placeholder": "यहां अपने नोट्स दर्ज करें",
     "memo-help": "यह ज्ञापन सार्वजनिक है",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* उपलब्ध हाइव शक्ति",
     "override-warning-1": "नई राशि पिछले एक को ओवरराइड करती है।",
     "override-warning-2": "खाता ({{account}}) पहले ही {{previousAmount}} के साथ प्रत्यायोजित किया जा चुका है।",
@@ -923,7 +924,8 @@
     "scheduled": "पोस्ट अनुसूचित करें",
     "empty-title-alert": "पोस्ट का शीर्षक दर्ज करें",
     "empty-tags-alert": "पोस्ट टैग दर्ज करें",
-    "empty-body-alert": "पोस्ट बॉडी दर्ज करें"
+    "empty-body-alert": "पोस्ट बॉडी दर्ज करें",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "टैग। पहला टैग मुख्य श्रेणी है। क्रमित करने योग्य।",
