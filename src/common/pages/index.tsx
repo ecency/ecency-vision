@@ -21,6 +21,10 @@ const Index = (props: PageProps) => {
   const [showEntryPage, setShowEntryPage] = useState(false);
 
   useEffect(() => {
+    console.log('im mounted index')
+  }, []);
+
+  useEffect(() => {
     const nextShowLandingPage = step === 1  &&
       props.activeUser === null &&
       props.location &&
@@ -73,7 +77,7 @@ const Index = (props: PageProps) => {
         setLoading={setLoading}
         reload={reload}
     />}
-    </>;
+  </>;
 };
 
 export default connect(pageMapStateToProps, pageMapDispatchToProps)(withPersistentScroll(Index));
