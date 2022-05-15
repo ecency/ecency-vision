@@ -10,14 +10,14 @@ import NotFound from './components/404';
 import Tracker from './tracker';
 
 import {
-  AboutPageContainer,
-  GuestPostPageContainer,
-  ContributePageContainer,
-  PrivacyPageContainer,
-  WhitePaperPageContainer,
-  TosPageContainer,
-  FaqPageContainer,
-  ContributorsPageContainer
+  AboutPage,
+  GuestPostPage,
+  ContributePage,
+  PrivacyPage,
+  WhitePaperPage,
+  TosPage,
+  FaqPage,
+  ContributorsPage
 } from './pages/static';
 
 import routes from './routes';
@@ -92,14 +92,14 @@ const App = ({ setLang }: any) => {
         <Route exact={true} strict={true} path={routes.WITNESSES} component={WitnessesPage}/>
         <Route exact={true} strict={true} path={routes.PROPOSALS} component={ProposalsIndexContainer}/>
         <Route exact={true} strict={true} path={routes.PROPOSAL_DETAIL} component={ProposalDetailContainer}/>
-        <Route exact={true} strict={true} path={routes.ABOUT} component={AboutPageContainer}/>
-        <Route exact={true} strict={true} path={routes.GUESTS} component={GuestPostPageContainer}/>
-        <Route exact={true} strict={true} path={routes.CONTRIBUTE} component={ContributePageContainer}/>
-        <Route exact={true} strict={true} path={routes.PRIVACY} component={PrivacyPageContainer}/>
-        <Route exact={true} strict={true} path={routes.WHITE_PAPER} component={WhitePaperPageContainer}/>
-        <Route exact={true} strict={true} path={routes.TOS} component={TosPageContainer}/>
-        <Route exact={true} strict={true} path={routes.FAQ} component={FaqPageContainer}/>
-        <Route exact={true} strict={true} path={routes.CONTRIBUTORS} component={ContributorsPageContainer}/>
+        <Route exact={true} strict={true} path={routes.ABOUT} component={AboutPage}/>
+        <Route exact={true} strict={true} path={routes.GUESTS} component={GuestPostPage}/>
+        <Route exact={true} strict={true} path={routes.CONTRIBUTE} component={ContributePage}/>
+        <Route exact={true} strict={true} path={routes.PRIVACY} component={PrivacyPage}/>
+        <Route exact={true} strict={true} path={routes.WHITE_PAPER} component={WhitePaperPage}/>
+        <Route exact={true} strict={true} path={routes.TOS} component={TosPage}/>
+        <Route exact={true} strict={true} path={routes.FAQ} component={FaqPage}/>
+        <Route exact={true} strict={true} path={routes.CONTRIBUTORS} component={ContributorsPage}/>
         <Route component={NotFound}/>
       </Switch>
     </>
