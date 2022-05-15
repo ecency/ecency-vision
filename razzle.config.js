@@ -37,7 +37,7 @@ module.exports = {
     }
 
     // Enable SSR lazy-loading
-    const tsLoader = webpackConfig.module.rules.find(rule => !(rule.test instanceof Array) && rule.test?.test('.tsx'));
+    const tsLoader = webpackConfig.module.rules.find(rule => !(rule.test instanceof Array) && rule.test.test('.tsx'));
     tsLoader.use[0].options.getCustomTransformers = () => ({ before: [loadableTransformer] });
 
     webpackConfig.devtool = dev ? 'source-map' : false;
