@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import EntryIndexContainer from './pages/index';
 import EntryContainer from './pages/entry';
-import CommunitiesContainer, { CommunityCreateContainer, CommunityCreateHSContainer } from './pages/communities';
 import { SearchPageContainer, SearchMorePageContainer } from './pages/search';
 import { ProposalsIndexContainer, ProposalDetailContainer } from './pages/proposals';
 import NotFound from './components/404';
@@ -53,6 +52,15 @@ const MarketPage = (props: any) => <MarketContainer {...props} />;
 const SignUpContainer = loadable(() => import('./pages/sign-up'));
 const SignUpPage = (props: any) => <SignUpContainer {...props} />;
 
+const CommunitiesContainer = loadable(() => import('./pages/communities'));
+const CommunitiesPage = (props: any) => <CommunitiesContainer {...props} />;
+
+const CommunityCreateContainer = loadable(() => import('./pages/community-create'));
+const CommunityCreatePage = (props: any) => <CommunityCreateContainer {...props} />;
+
+const CommunityCreateHSContainer = loadable(() => import('./pages/community-create-hs'));
+const CommunityCreateHSPage = (props: any) => <CommunityCreateHSContainer {...props} />;
+
 const App = ({ setLang }: any) => {
   useEffect(() => {
     let pathname = window.location.pathname;
@@ -75,9 +83,9 @@ const App = ({ setLang }: any) => {
         <Route exact={true} strict={true} path={routes.USER} component={ProfilePage}/>
         <Route exact={true} strict={true} path={routes.USER_SECTION} component={ProfilePage}/>
         <Route exact={true} strict={true} path={routes.ENTRY} component={EntryContainer}/>
-        <Route exact={true} strict={true} path={routes.COMMUNITIES} component={CommunitiesContainer}/>
-        <Route exact={true} strict={true} path={routes.COMMUNITIES_CREATE} component={CommunityCreateContainer}/>
-        <Route exact={true} strict={true} path={routes.COMMUNITIES_CREATE_HS} component={CommunityCreateHSContainer}/>
+        <Route exact={true} strict={true} path={routes.COMMUNITIES} component={CommunitiesPage}/>
+        <Route exact={true} strict={true} path={routes.COMMUNITIES_CREATE} component={CommunityCreatePage}/>
+        <Route exact={true} strict={true} path={routes.COMMUNITIES_CREATE_HS} component={CommunityCreateHSPage}/>
         <Route exact={true} strict={true} path={routes.COMMUNITY} component={CommunityPage}/>
         <Route exact={true} strict={true} path={routes.FILTER_TAG} component={EntryIndexContainer}/>
         <Route exact={true} strict={true} path={routes.DISCOVER} component={DiscoverPage}/>
