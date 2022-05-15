@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from 'react';
 import htmlParse from 'html-react-parser';
 import { subscribeEmail } from "../../api/private-api";
 import { _t } from "../../i18n";
@@ -11,8 +11,7 @@ import { apiBase } from "../../api/helper";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import isElectron from "../../util/is-electron";
 
-const LandingPage = (props: any) => {
-
+export default (props: any) => {
   const {global} = props;
 
   const [email, setEmail] = useState("");
@@ -450,6 +449,4 @@ const LandingPage = (props: any) => {
     </div>
   );
 };
-
-export default LandingPage;
 

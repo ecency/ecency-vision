@@ -1,21 +1,19 @@
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import loadable from '@loadable/component';
-
-// import EntryIndexContainer from './pages/index';
-// import ProfileContainer from './pages/profile';
-// import EntryContainer from './pages/entry';
+import EntryIndexContainer from './pages/index';
+import ProfileContainer from './pages/profile';
+import EntryContainer from './pages/entry';
 import CommunitiesContainer, { CommunityCreateContainer, CommunityCreateHSContainer } from './pages/communities';
-// import CommunityContainer from './pages/community';
-// import DiscoverContainer from './pages/discover';
+import CommunityContainer from './pages/community';
+import DiscoverContainer from './pages/discover';
 import { SearchPageContainer, SearchMorePageContainer } from './pages/search';
-// import WitnessesContainer from './pages/witnesses';
+import WitnessesContainer from './pages/witnesses';
 import { ProposalsIndexContainer, ProposalDetailContainer } from './pages/proposals';
-// import AuthContainer from './pages/auth';
-// import SubmitContainer from './pages/submit';
-// import MarketPage from './pages/market';
-// import SignUpContainer from './pages/sign-up';
-// import NotFound from './components/404';
+import AuthContainer from './pages/auth';
+import SubmitContainer from './pages/submit';
+import MarketPage from './pages/market';
+import SignUpContainer from './pages/sign-up';
+import NotFound from './components/404';
 
 import Tracker from './tracker';
 
@@ -38,18 +36,6 @@ import { pageMapDispatchToProps, pageMapStateToProps } from './pages/common';
 import { connect } from 'react-redux';
 
 const App = ({ setLang }: any) => {
-  const EntryIndexContainer = loadable(() => import('./pages/index'));
-  const ProfileContainer = loadable(() => import('./pages/profile')); // prob
-  const EntryContainer = loadable(() => import('./pages/entry'));
-  const CommunityContainer = loadable(() => import('./pages/community')); // prob
-  const DiscoverContainer = loadable(() => import('./pages/discover'));
-  const WitnessesContainer = loadable(() => import('./pages/witnesses'));
-  const AuthContainer = loadable(() => import('./pages/auth'));
-  const SubmitContainer = loadable(() => import('./pages/submit'));
-  const MarketPage = loadable(() => import('./pages/market'));
-  const SignUpContainer = loadable(() => import('./pages/sign-up'));
-  const NotFound = loadable(() => import('./components/404'));
-
   useEffect(() => {
     let pathname = window.location.pathname;
     if (pathname !== '/faq') {

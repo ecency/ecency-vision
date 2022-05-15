@@ -143,4 +143,4 @@ class EntryIndexPage extends Component<Props, State> {
     }
 }
 
-export default EntryIndexPage;
+export default (props: Props) => <EntryIndexPage {...props}/>;

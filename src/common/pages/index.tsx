@@ -1,7 +1,5 @@
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from './common';
 import React, { useEffect, useState } from 'react';
-import LandingPage from '../components/landing-page';
-import EntryIndexContainer from './entry-index';
 import Meta from '../components/meta';
 import ScrollToTop from '../components/scroll-to-top';
 import Theme from '../components/theme';
@@ -12,6 +10,10 @@ import NavBar from '../components/navbar';
 import { makeGroupKey } from '../store/entries';
 import { connect } from 'react-redux';
 import { withPersistentScroll } from '../components/with-persistent-scroll';
+import loadable from '@loadable/component';
+
+const LandingPage = loadable(() => import('../components/landing-page'));
+const EntryIndexContainer = loadable(() => import('./entry-index'));
 
 const Index = (props: PageProps) => {
   const [step, setStep] = useState(1);
@@ -19,10 +21,6 @@ const Index = (props: PageProps) => {
   const [loading, setLoading] = useState(false);
   const [showLandingPage, setShowLandingPage]  = useState(true);
   const [showEntryPage, setShowEntryPage] = useState(false);
-
-  useEffect(() => {
-    console.log('im mounted index')
-  }, []);
 
   useEffect(() => {
     const nextShowLandingPage = step === 1  &&
