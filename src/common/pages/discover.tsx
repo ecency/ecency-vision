@@ -20,7 +20,11 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 
 class DiscoverPage extends Component<PageProps> {
-    render() {
+    // componentDidMount() {
+    //   console.log('IMOUNTED')
+    // }
+
+  render() {
         //  Meta config
         const metaProps = {
             title: _t("discover.title"),
