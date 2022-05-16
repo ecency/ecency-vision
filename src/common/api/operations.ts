@@ -1091,3 +1091,71 @@ export const hiveNotifySetLastRead = (username: string): Promise<TransactionConf
 }
 
 export const updatePassword = (update: AccountUpdateOperation[1], ownerKey: PrivateKey): Promise<TransactionConfirmation> => hiveClient.broadcast.updateAccount(update, ownerKey)
+
+// HE Operations
+export const transferHiveEngineKc = (from: string, to: string, symbol: string, amount: string, memo: string) => {
+    const json = JSON.stringify({
+    contractName: 'tokens',
+    contractAction: 'transfer',
+    contractPayload: {
+      symbol,
+      to,
+      quantity: amount.toString(),
+      memo,
+    }
+  });
+
+    return keychain.customJson(from, "ssc-mainnet-hive", "Active", json, "Transfer")
+}
+export const delegateHiveEngineKc = (from: string, to: string, symbol: string, amount: string) => {
+    const json = JSON.stringify({
+    contractName: 'tokens',
+    contractAction: 'delegate',
+    contractPayload: {
+      symbol,
+      to,
+      quantity: amount.toString(),
+    }
+  });
+
+    return keychain.customJson(from, "ssc-mainnet-hive", "Active", json, "Transfer")
+}
+export const undelegateHiveEngineKc = (from: string, to: string, symbol: string, amount: string) => {
+    const json = JSON.stringify({
+    contractName: 'tokens',
+    contractAction: 'undelegate',
+    contractPayload: {
+      symbol,
+      to,
+      quantity: amount.toString(),
+    }
+  });
+
+    return keychain.customJson(from, "ssc-mainnet-hive", "Active", json, "Transfer")
+}
+export const stakeHiveEngineKc = (from: string, to: string, symbol: string, amount: string) => {
+    const json = JSON.stringify({
+    contractName: 'tokens',
+    contractAction: 'stake',
+    contractPayload: {
+      symbol,
+      to,
+      quantity: amount.toString(),
+    }
+  });
+
+    return keychain.customJson(from, "ssc-mainnet-hive", "Active", json, "Transfer")
+}
+export const unstakeHiveEngineKc = (from: string, to: string, symbol: string, amount: string) => {
+    const json = JSON.stringify({
+    contractName: 'tokens',
+    contractAction: 'unstake',
+    contractPayload: {
+      symbol,
+      to,
+      quantity: amount.toString(),
+    }
+  });
+
+    return keychain.customJson(from, "ssc-mainnet-hive", "Active", json, "Transfer")
+}

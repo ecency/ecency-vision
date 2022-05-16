@@ -1,0 +1,3700 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Transfer HIVE (1) Step 1 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form "
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        1
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Transfer to Account
+        </div>
+        <div
+          className="sub-title"
+        >
+          Move funds to another Hive account
+        </div>
+      </div>
+    </div>
+    <form
+      className="transaction-form-body"
+    >
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          From
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                @
+              </span>
+            </div>
+            <input
+              className="form-control"
+              readOnly={true}
+              value="foo"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          To
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="suggestion"
+          >
+            <div
+              className="input-group"
+            >
+              <div
+                className="input-group-prepend"
+              >
+                <span
+                  className="input-group-text"
+                >
+                  @
+                </span>
+              </div>
+              <input
+                autoFocus={true}
+                className="form-control"
+                onChange={[Function]}
+                placeholder="username"
+                type="text"
+                value=""
+              />
+            </div>
+            <div />
+          </div>
+        </div>
+      </div>
+      
+      
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Amount
+        </label>
+        <div
+          className="d-flex align-items-center col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                #
+              </span>
+            </div>
+            <input
+              autoFocus={false}
+              className="form-control"
+              onChange={[Function]}
+              placeholder="amount"
+              type="text"
+              value="0.001"
+            />
+          </div>
+          <div
+            className="asset-switch"
+          >
+            <a
+              className="asset selected"
+              onClick={[Function]}
+            >
+              HIVE
+            </a>
+            <a
+              className="asset "
+              onClick={[Function]}
+            >
+              HBD
+            </a>
+            <a
+              className="asset "
+              onClick={[Function]}
+            >
+              POINT
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div
+        className="row"
+      >
+        <div
+          className="col-lg-10 offset-lg-2"
+        >
+          <div
+            className="balance"
+          >
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
+            <span
+              className="balance-num"
+              onClick={[Function]}
+            >
+              1.751
+               
+              HIVE
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Memo
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="enter your notes here"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-10 offset-md-2"
+        >
+          <small
+            className="text-muted tr-form-text form-text"
+          >
+            This memo is public
+          </small>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <div
+          className="col-sm-10 offset-sm-2"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`(1) Transfer HIVE (2) Step 2 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        2
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Confirm your transaction
+        </div>
+        <div
+          className="sub-title"
+        >
+          Please, check if everything is correct
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="confirmation"
+      >
+        <div
+          className="confirm-title"
+        >
+          Transfer to Account
+        </div>
+        <div
+          className="users"
+        >
+          <div
+            className="from-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+          </div>
+          <div
+            className="arrow"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div
+            className="to-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
+                }
+              }
+            />
+          </div>
+        </div>
+        <div
+          className="amount"
+        >
+          0.001
+           
+          HIVE
+        </div>
+        
+      </div>
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Back
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(1) Transfer HIVE (3) Step 3 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        3
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Sign transaction
+        </div>
+        <div
+          className="sub-title"
+        >
+          Sign your transaction
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form"
+    >
+      <div
+        className="key-or-hot"
+      >
+        <form
+          className=""
+          onSubmit={[Function]}
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7,14A2,2 0 0,1 5,12A2,2 0 0,1 7,10A2,2 0 0,1 9,12A2,2 0 0,1 7,14M12.65,10C11.83,7.67 9.61,6 7,6A6,6 0 0,0 1,12A6,6 0 0,0 7,18C9.61,18 11.83,16.33 12.65,14H17V18H21V14H23V10H12.65Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+            </div>
+            <input
+              autoComplete="off"
+              autoFocus={true}
+              className="form-control"
+              onChange={[Function]}
+              placeholder="Enter active/owner/master key"
+              type="password"
+              value=""
+            />
+            <div
+              className="input-group-append"
+            >
+              <button
+                className="btn btn-primary"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Sign
+              </button>
+            </div>
+          </div>
+        </form>
+        <div
+          className="or-divider"
+        >
+          OR
+        </div>
+        <div
+          className="hs-sign"
+        >
+          <button
+            className="btn btn-outline-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <img
+              alt="hivesigner"
+              className="hs-logo"
+              src="hive-signer.svg"
+            />
+             
+            Sign with hivesigner
+          </button>
+        </div>
+      </div>
+      <p
+        className="text-center"
+      >
+        <a
+          href="#"
+          onClick={[Function]}
+        >
+          Back
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(1) Transfer HIVE (4) Step 4 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        4
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Success
+        </div>
+        <div
+          className="sub-title"
+        >
+          Transaction successful
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="success"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<span class=\\"amount\\">0.001 HIVE</span> transferred from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+          }
+        }
+      />
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Reset
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Finish
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(2) Transfer HBD (1) Step 1 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form "
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        1
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Transfer to Account
+        </div>
+        <div
+          className="sub-title"
+        >
+          Move funds to another Hive account
+        </div>
+      </div>
+    </div>
+    <form
+      className="transaction-form-body"
+    >
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          From
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                @
+              </span>
+            </div>
+            <input
+              className="form-control"
+              readOnly={true}
+              value="foo"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          To
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="suggestion"
+          >
+            <div
+              className="input-group"
+            >
+              <div
+                className="input-group-prepend"
+              >
+                <span
+                  className="input-group-text"
+                >
+                  @
+                </span>
+              </div>
+              <input
+                autoFocus={true}
+                className="form-control"
+                onChange={[Function]}
+                placeholder="username"
+                type="text"
+                value=""
+              />
+            </div>
+            <div />
+          </div>
+        </div>
+      </div>
+      
+      
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Amount
+        </label>
+        <div
+          className="d-flex align-items-center col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                #
+              </span>
+            </div>
+            <input
+              autoFocus={false}
+              className="form-control"
+              onChange={[Function]}
+              placeholder="amount"
+              type="text"
+              value="0.001"
+            />
+          </div>
+          <div
+            className="asset-switch"
+          >
+            <a
+              className="asset "
+              onClick={[Function]}
+            >
+              HIVE
+            </a>
+            <a
+              className="asset selected"
+              onClick={[Function]}
+            >
+              HBD
+            </a>
+            <a
+              className="asset "
+              onClick={[Function]}
+            >
+              POINT
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div
+        className="row"
+      >
+        <div
+          className="col-lg-10 offset-lg-2"
+        >
+          <div
+            className="balance"
+          >
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
+            <span
+              className="balance-num"
+              onClick={[Function]}
+            >
+              0.311
+               
+              HBD
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Memo
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="enter your notes here"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-10 offset-md-2"
+        >
+          <small
+            className="text-muted tr-form-text form-text"
+          >
+            This memo is public
+          </small>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <div
+          className="col-sm-10 offset-sm-2"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`(2) Transfer HBD (2) Step 2 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        2
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Confirm your transaction
+        </div>
+        <div
+          className="sub-title"
+        >
+          Please, check if everything is correct
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="confirmation"
+      >
+        <div
+          className="confirm-title"
+        >
+          Transfer to Account
+        </div>
+        <div
+          className="users"
+        >
+          <div
+            className="from-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+          </div>
+          <div
+            className="arrow"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div
+            className="to-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
+                }
+              }
+            />
+          </div>
+        </div>
+        <div
+          className="amount"
+        >
+          0.001
+           
+          HBD
+        </div>
+        <div
+          className="memo"
+        >
+          hdb transfer
+        </div>
+      </div>
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Back
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(2) Transfer HBD (4) Step 4 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        4
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Success
+        </div>
+        <div
+          className="sub-title"
+        >
+          Transaction successful
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="success"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<span class=\\"amount\\">0.001 HBD</span> transferred from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+          }
+        }
+      />
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Reset
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Finish
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(3) Transfer POINT (1) Step 1 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form "
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        1
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Gift to Account
+        </div>
+        <div
+          className="sub-title"
+        >
+          Move funds to another Hive account
+        </div>
+      </div>
+    </div>
+    <form
+      className="transaction-form-body"
+    >
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          From
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                @
+              </span>
+            </div>
+            <input
+              className="form-control"
+              readOnly={true}
+              value="foo"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          To
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="suggestion"
+          >
+            <div
+              className="input-group"
+            >
+              <div
+                className="input-group-prepend"
+              >
+                <span
+                  className="input-group-text"
+                >
+                  @
+                </span>
+              </div>
+              <input
+                autoFocus={true}
+                className="form-control"
+                onChange={[Function]}
+                placeholder="username"
+                type="text"
+                value=""
+              />
+            </div>
+            <div />
+          </div>
+        </div>
+      </div>
+      
+      
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Amount
+        </label>
+        <div
+          className="d-flex align-items-center col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                #
+              </span>
+            </div>
+            <input
+              autoFocus={false}
+              className="form-control"
+              onChange={[Function]}
+              placeholder="amount"
+              type="text"
+              value="0.001"
+            />
+          </div>
+          <div
+            className="asset-switch"
+          >
+            <a
+              className="asset "
+              onClick={[Function]}
+            >
+              HIVE
+            </a>
+            <a
+              className="asset "
+              onClick={[Function]}
+            >
+              HBD
+            </a>
+            <a
+              className="asset selected"
+              onClick={[Function]}
+            >
+              POINT
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div
+        className="row"
+      >
+        <div
+          className="col-lg-10 offset-lg-2"
+        >
+          <div
+            className="balance"
+          >
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
+            <span
+              className="balance-num"
+              onClick={[Function]}
+            >
+              10.000
+               
+              POINT
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Memo
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="enter your notes here"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-10 offset-md-2"
+        >
+          <small
+            className="text-muted tr-form-text form-text"
+          >
+            This memo is public
+          </small>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <div
+          className="col-sm-10 offset-sm-2"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`(3) Transfer POINT (2) Step 2 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        2
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Confirm your transaction
+        </div>
+        <div
+          className="sub-title"
+        >
+          Please, check if everything is correct
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="confirmation"
+      >
+        <div
+          className="confirm-title"
+        >
+          Gift to Account
+        </div>
+        <div
+          className="users"
+        >
+          <div
+            className="from-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+          </div>
+          <div
+            className="arrow"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div
+            className="to-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
+                }
+              }
+            />
+          </div>
+        </div>
+        <div
+          className="amount"
+        >
+          0.001
+           
+          POINT
+        </div>
+        
+      </div>
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Back
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(3) Transfer POINT (4) Step 4 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        4
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Success
+        </div>
+        <div
+          className="sub-title"
+        >
+          Transaction successful
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="success"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<span class=\\"amount\\">0.001 POINT</span> transferred from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+          }
+        }
+      />
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Reset
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Finish
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form "
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        1
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Transfer to Savings
+        </div>
+        <div
+          className="sub-title"
+        >
+          Protect funds by requiring a 3 day withdraw waiting period
+        </div>
+      </div>
+    </div>
+    <form
+      className="transaction-form-body"
+    >
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          From
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                @
+              </span>
+            </div>
+            <input
+              className="form-control"
+              readOnly={true}
+              value="foo"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          To
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="suggestion"
+          >
+            <div
+              className="input-group"
+            >
+              <div
+                className="input-group-prepend"
+              >
+                <span
+                  className="input-group-text"
+                >
+                  @
+                </span>
+              </div>
+              <input
+                autoFocus={false}
+                className="form-control"
+                onChange={[Function]}
+                placeholder="username"
+                type="text"
+                value="foo"
+              />
+            </div>
+            <div />
+          </div>
+        </div>
+      </div>
+      
+      
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Amount
+        </label>
+        <div
+          className="d-flex align-items-center col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                #
+              </span>
+            </div>
+            <input
+              autoFocus={true}
+              className="form-control"
+              onChange={[Function]}
+              placeholder="amount"
+              type="text"
+              value="0.001"
+            />
+          </div>
+          <div
+            className="asset-switch"
+          >
+            <a
+              className="asset "
+              onClick={[Function]}
+            >
+              HIVE
+            </a>
+            <a
+              className="asset selected"
+              onClick={[Function]}
+            >
+              HBD
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div
+        className="row"
+      >
+        <div
+          className="col-lg-10 offset-lg-2"
+        >
+          <div
+            className="balance"
+          >
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
+            <span
+              className="balance-num"
+              onClick={[Function]}
+            >
+              0.311
+               
+              HBD
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Memo
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="enter your notes here"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-10 offset-md-2"
+        >
+          <small
+            className="text-muted tr-form-text form-text"
+          >
+            This memo is public
+          </small>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <div
+          className="col-sm-10 offset-sm-2"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`(4) Transfer to Savings - HBD (2) Step 2 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        2
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Confirm your transaction
+        </div>
+        <div
+          className="sub-title"
+        >
+          Please, check if everything is correct
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="confirmation"
+      >
+        <div
+          className="confirm-title"
+        >
+          Transfer to Savings
+        </div>
+        <div
+          className="users"
+        >
+          <div
+            className="from-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+          </div>
+          <div
+            className="arrow"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div
+            className="to-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
+                }
+              }
+            />
+          </div>
+        </div>
+        <div
+          className="amount"
+        >
+          0.001
+           
+          HBD
+        </div>
+        
+      </div>
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Back
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(4) Transfer to Savings - HBD (4) Step 4 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        4
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Success
+        </div>
+        <div
+          className="sub-title"
+        >
+          Transaction successful
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="success"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<span class=\\"amount\\">0.001 HBD</span> transferred from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+          }
+        }
+      />
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Reset
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Finish
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form "
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        1
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Savings Withdraw
+        </div>
+        <div
+          className="sub-title"
+        >
+          Withdraw funds after the required 3 day waiting period
+        </div>
+      </div>
+    </div>
+    <form
+      className="transaction-form-body"
+    >
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          From
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                @
+              </span>
+            </div>
+            <input
+              className="form-control"
+              readOnly={true}
+              value="foo"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          To
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="suggestion"
+          >
+            <div
+              className="input-group"
+            >
+              <div
+                className="input-group-prepend"
+              >
+                <span
+                  className="input-group-text"
+                >
+                  @
+                </span>
+              </div>
+              <input
+                autoFocus={false}
+                className="form-control"
+                onChange={[Function]}
+                placeholder="username"
+                type="text"
+                value="foo"
+              />
+            </div>
+            <div />
+          </div>
+        </div>
+      </div>
+      
+      
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Amount
+        </label>
+        <div
+          className="d-flex align-items-center col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                #
+              </span>
+            </div>
+            <input
+              autoFocus={true}
+              className="form-control"
+              onChange={[Function]}
+              placeholder="amount"
+              type="text"
+              value="0.001"
+            />
+          </div>
+          <div
+            className="asset-switch"
+          >
+            <a
+              className="asset selected"
+              onClick={[Function]}
+            >
+              HIVE
+            </a>
+            <a
+              className="asset "
+              onClick={[Function]}
+            >
+              HBD
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div
+        className="row"
+      >
+        <div
+          className="col-lg-10 offset-lg-2"
+        >
+          <div
+            className="balance"
+          >
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
+            <span
+              className="balance-num"
+              onClick={[Function]}
+            >
+              1.000
+               
+              HIVE
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Memo
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="enter your notes here"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-10 offset-md-2"
+        >
+          <small
+            className="text-muted tr-form-text form-text"
+          >
+            This memo is public
+          </small>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <div
+          className="col-sm-10 offset-sm-2"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`(5) Withdraw Savings - HIVE (2) Step 2 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        2
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Confirm your transaction
+        </div>
+        <div
+          className="sub-title"
+        >
+          Please, check if everything is correct
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="confirmation"
+      >
+        <div
+          className="confirm-title"
+        >
+          Savings Withdraw
+        </div>
+        <div
+          className="users"
+        >
+          <div
+            className="from-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+          </div>
+          <div
+            className="arrow"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div
+            className="to-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
+                }
+              }
+            />
+          </div>
+        </div>
+        <div
+          className="amount"
+        >
+          0.001
+           
+          HIVE
+        </div>
+        
+      </div>
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Back
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(5) Withdraw Savings - HIVE (4) Step 4 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        4
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Success
+        </div>
+        <div
+          className="sub-title"
+        >
+          Transaction successful
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="success"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<span class=\\"amount\\">0.001 HIVE</span> transferred from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+          }
+        }
+      />
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Reset
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Finish
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(6) Convert (1) Step 1 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form "
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        1
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Convert
+        </div>
+        <div
+          className="sub-title"
+        >
+          Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.
+        </div>
+      </div>
+    </div>
+    <form
+      className="transaction-form-body"
+    >
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          From
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                @
+              </span>
+            </div>
+            <input
+              className="form-control"
+              readOnly={true}
+              value="foo"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Amount
+        </label>
+        <div
+          className="d-flex align-items-center col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                #
+              </span>
+            </div>
+            <input
+              autoFocus={true}
+              className="form-control"
+              onChange={[Function]}
+              placeholder="amount"
+              type="text"
+              value="0.001"
+            />
+          </div>
+        </div>
+      </div>
+      
+      <div
+        className="row"
+      >
+        <div
+          className="col-lg-10 offset-lg-2"
+        >
+          <div
+            className="balance"
+          >
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
+            <span
+              className="balance-num"
+              onClick={[Function]}
+            >
+              0.311
+               
+              HBD
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <div
+          className="col-sm-10 offset-sm-2"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`(6) Convert (2) Step 2 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        2
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Confirm your transaction
+        </div>
+        <div
+          className="sub-title"
+        >
+          Please, check if everything is correct
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="confirmation"
+      >
+        <div
+          className="confirm-title"
+        >
+          Convert
+        </div>
+        <div
+          className="users"
+        >
+          <div
+            className="from-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+          </div>
+        </div>
+        <div
+          className="amount"
+        >
+          0.001
+           
+          HBD
+        </div>
+        
+      </div>
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Back
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(6) Convert (4) Step 4 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        4
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Success
+        </div>
+        <div
+          className="sub-title"
+        >
+          Transaction successful
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="success"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<span class=\\"amount\\">0.001 HBD</span> being converted",
+          }
+        }
+      />
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Reset
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Finish
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(7) Power up (1) Step 1 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form "
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        1
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Stake Hive as Power
+        </div>
+        <div
+          className="sub-title"
+        >
+          Influence tokens which give you more control over post payouts and allow you to earn on curation rewards.
+        </div>
+      </div>
+    </div>
+    <form
+      className="transaction-form-body"
+    >
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          From
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                @
+              </span>
+            </div>
+            <input
+              className="form-control"
+              readOnly={true}
+              value="foo"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          To
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="suggestion"
+          >
+            <div
+              className="input-group"
+            >
+              <div
+                className="input-group-prepend"
+              >
+                <span
+                  className="input-group-text"
+                >
+                  @
+                </span>
+              </div>
+              <input
+                autoFocus={false}
+                className="form-control"
+                onChange={[Function]}
+                placeholder="username"
+                type="text"
+                value="foo"
+              />
+            </div>
+            <div />
+          </div>
+        </div>
+      </div>
+      
+      
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Amount
+        </label>
+        <div
+          className="d-flex align-items-center col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                #
+              </span>
+            </div>
+            <input
+              autoFocus={true}
+              className="form-control"
+              onChange={[Function]}
+              placeholder="amount"
+              type="text"
+              value="0.001"
+            />
+          </div>
+        </div>
+      </div>
+      
+      <div
+        className="row"
+      >
+        <div
+          className="col-lg-10 offset-lg-2"
+        >
+          <div
+            className="balance"
+          >
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
+            <span
+              className="balance-num"
+              onClick={[Function]}
+            >
+              1.751
+               
+              HIVE
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <div
+          className="col-sm-10 offset-sm-2"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`(7) Power up (2) Step 2 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        2
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Confirm your transaction
+        </div>
+        <div
+          className="sub-title"
+        >
+          Please, check if everything is correct
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="confirmation"
+      >
+        <div
+          className="confirm-title"
+        >
+          Stake Hive as Power
+        </div>
+        <div
+          className="users"
+        >
+          <div
+            className="from-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+          </div>
+          <div
+            className="arrow"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div
+            className="to-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
+                }
+              }
+            />
+          </div>
+        </div>
+        <div
+          className="amount"
+        >
+          0.001
+           
+          HIVE
+        </div>
+        
+      </div>
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Back
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(7) Power up (4) Step 4 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        4
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Success
+        </div>
+        <div
+          className="sub-title"
+        >
+          Transaction successful
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="success"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<span class=\\"amount\\">0.001 HIVE</span> staked from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+          }
+        }
+      />
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Reset
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Finish
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(8) Delegate (1) Step 1 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form "
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        1
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Delegate
+        </div>
+        <div
+          className="sub-title"
+        >
+          Delegate Hive Power
+        </div>
+      </div>
+    </div>
+    <form
+      className="transaction-form-body"
+    >
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          From
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                @
+              </span>
+            </div>
+            <input
+              className="form-control"
+              readOnly={true}
+              value="foo"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          To
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="suggestion"
+          >
+            <div
+              className="input-group"
+            >
+              <div
+                className="input-group-prepend"
+              >
+                <span
+                  className="input-group-text"
+                >
+                  @
+                </span>
+              </div>
+              <input
+                autoFocus={true}
+                className="form-control"
+                onChange={[Function]}
+                placeholder="username"
+                type="text"
+                value=""
+              />
+            </div>
+            <div />
+          </div>
+        </div>
+      </div>
+      
+      
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Amount
+        </label>
+        <div
+          className="d-flex align-items-center col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                #
+              </span>
+            </div>
+            <input
+              autoFocus={true}
+              className="form-control"
+              onChange={[Function]}
+              placeholder="amount"
+              type="text"
+              value="0.001"
+            />
+          </div>
+        </div>
+      </div>
+      
+      <div
+        className="row"
+      >
+        <div
+          className="col-lg-10 offset-lg-2"
+        >
+          <div
+            className="balance"
+          >
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
+            <span
+              className="balance-num"
+              onClick={[Function]}
+            >
+              3.182
+               
+              HP
+            </span>
+            <div
+              className="balance-hp-hint"
+            >
+              * available hive power
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <div
+          className="col-sm-10 offset-sm-2"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`(8) Delegate (2) Step 2 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        2
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Confirm your transaction
+        </div>
+        <div
+          className="sub-title"
+        >
+          Please, check if everything is correct
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="confirmation"
+      >
+        <div
+          className="confirm-title"
+        >
+          Delegate
+        </div>
+        <div
+          className="users"
+        >
+          <div
+            className="from-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+          </div>
+          <div
+            className="arrow"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div
+            className="to-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
+                }
+              }
+            />
+          </div>
+        </div>
+        <div
+          className="amount"
+        >
+          0.001
+           
+          HP
+        </div>
+        <div
+          className="amount-vests"
+        >
+          1.946443 VESTS
+        </div>
+        
+      </div>
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Back
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(8) Delegate (4) Step 4 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        4
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Success
+        </div>
+        <div
+          className="sub-title"
+        >
+          Transaction successful
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="success"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<span class=\\"amount\\">0.001 HP</span> delegated from <span class=\\"from-user\\">foo</span> to <span class=\\"to-user\\">bar</span>",
+          }
+        }
+      />
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Reset
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Finish
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(9) Power down (1) Step 1 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form "
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        1
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Power Down
+        </div>
+        <div
+          className="sub-title"
+        >
+          Power Down Hive Power
+        </div>
+      </div>
+    </div>
+    <form
+      className="transaction-form-body"
+    >
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          From
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                @
+              </span>
+            </div>
+            <input
+              className="form-control"
+              readOnly={true}
+              value="foo"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Amount
+        </label>
+        <div
+          className="d-flex align-items-center col-sm-10"
+        >
+          <div
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                #
+              </span>
+            </div>
+            <input
+              autoFocus={true}
+              className="form-control"
+              onChange={[Function]}
+              placeholder="amount"
+              type="text"
+              value="2.000"
+            />
+          </div>
+        </div>
+      </div>
+      
+      <div
+        className="row"
+      >
+        <div
+          className="col-lg-10 offset-lg-2"
+        >
+          <div
+            className="balance"
+          >
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
+            <span
+              className="balance-num"
+              onClick={[Function]}
+            >
+              3.182
+               
+              HP
+            </span>
+            <div
+              className="balance-hp-hint"
+            >
+              * available hive power
+            </div>
+          </div>
+          <div
+            className="power-down-estimation"
+          >
+            + 0.154 HIVE Estimated Weekly
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <div
+          className="col-sm-10 offset-sm-2"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`(9) Power down (2) Step 2 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        2
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Confirm your transaction
+        </div>
+        <div
+          className="sub-title"
+        >
+          Please, check if everything is correct
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="confirmation"
+      >
+        <div
+          className="confirm-title"
+        >
+          Power Down
+        </div>
+        <div
+          className="users"
+        >
+          <div
+            className="from-user"
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+          </div>
+        </div>
+        <div
+          className="amount"
+        >
+          2.000
+           
+          HP
+        </div>
+        <div
+          className="amount-vests"
+        >
+          3892.887237 VESTS
+        </div>
+        
+      </div>
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Back
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(9) Power down (4) Step 4 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        4
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Success
+        </div>
+        <div
+          className="sub-title"
+        >
+          Transaction successful
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="success"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Power down completed as <span class=\\"amount\\">2.000 HP</span>",
+          }
+        }
+      />
+      <div
+        className="d-flex justify-content-center"
+      >
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Reset
+        </button>
+        <span
+          className="hr-6px-btn-spacer"
+        />
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Finish
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(10) Powering down (1) Step 1 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transaction-form"
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        1
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Power Down
+        </div>
+        <div
+          className="sub-title"
+        >
+          Power Down Hive Power
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body powering-down"
+    >
+      <p>
+        You are currently powering down.
+      </p>
+      <p>
+         
+        The next power down is in 5 days, 269.941 HIVE
+      </p>
+      <p>
+        <button
+          className="btn btn-danger"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Stop
+        </button>
+      </p>
+    </div>
+  </div>
+</div>
+`;

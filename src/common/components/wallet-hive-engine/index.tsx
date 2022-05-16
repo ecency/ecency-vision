@@ -12,7 +12,7 @@ import LinearProgress from "../linear-progress";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import WalletMenu from "../wallet-menu";
 
-import Transfer, {TransferMode, TransferAsset} from "../transfer";
+import Transfer, {TransferMode} from "../transfer-he";
 
 import {
   claimRewards,
@@ -21,7 +21,7 @@ import {
   TokenStatus,
 } from "../../api/hive-engine";
 import { proxifyImageSrc } from "@ecency/render-helper";
-import { informationVariantSvg, plusCircle, transferOutlineSvg, lockOutlineSvg } from "../../img/svg";
+import { informationVariantSvg, plusCircle, transferOutlineSvg, lockOutlineSvg, unlockOutlineSvg, delegateOutlineSvg, undelegateOutlineSvg } from "../../img/svg";
 import { error, success } from "../feedback";
 import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
@@ -50,7 +50,8 @@ interface State {
   claimed: boolean;
   transfer: boolean;
   transferMode: null | TransferMode;
-  transferAsset: null | TransferAsset;
+  transferAsset: null | string;
+  assetBalance: number;
 }
 
 export class WalletHiveEngine extends BaseComponent<Props, State> {
@@ -63,6 +64,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     transfer: false,
     transferMode: null,
     transferAsset: null,
+    assetBalance: 0,
   };
   _isMounted = false;
 
@@ -76,9 +78,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     this._isMounted = false;
   }
 
-openTransferDialog = (mode: TransferMode, asset: TransferAsset) => {
-  console.log(mode, asset);
-    this.stateSet({transfer: true, transferMode: mode, transferAsset: asset});
+openTransferDialog = (mode: TransferMode, asset: string, balance: number) => {
+    this.stateSet({transfer: true, transferMode: mode, transferAsset: asset, assetBalance: balance});
 }
 
 closeTransferDialog = () => {
@@ -288,7 +289,7 @@ closeTransferDialog = () => {
 
                         <div className="ml-auto mr-1">
                           <OverlayTrigger
-                            delay={{ show: 0, hide: 500 }}
+                            delay={{ show: 0, hide: 300 }}
                             key={"bottom"}
                             placement={"bottom"}
                             overlay={
@@ -305,8 +306,13 @@ closeTransferDialog = () => {
                                     <p>
                                       {_t("wallet-engine.staked")}: {b.staked()}
                                     </p>
-                                    {b.hasDelegations() &&
-                                      `<p>${b.delegations()}</p>`}
+                                    {b.delegationEnabled &&
+                                      <>
+                                        <p>In: {b.delegationsIn}</p>
+                                        <p>Out: {b.delegationsOut}</p>
+                                      </>
+                                      
+                                      }
                                   </div>
                                 </div>
                               </Tooltip>
@@ -319,6 +325,7 @@ closeTransferDialog = () => {
                             </div>
                           </OverlayTrigger>
                         </div>
+
                         <div className="mr-1">
                           <OverlayTrigger
                             delay={{ show: 0, hide: 500 }}
@@ -337,13 +344,69 @@ closeTransferDialog = () => {
                             }
                           >
                             <div className="d-flex align-items-center flex-justify-center">
-                              <span onClick={() => this.openTransferDialog('transfer', 'HIVE')} className="info-icon mr-0 mr-md-2">
+                              <span 
+                              onClick={() => this.openTransferDialog('transfer', b.symbol, b.balance)} 
+                              className="info-icon mr-0 mr-md-2">
                                 {transferOutlineSvg}
                               </span>
                             </div>
                           </OverlayTrigger>
                         </div>
-                        <div className="mr-1">
+
+                        {b.delegationEnabled && b.delegationsOut !== b.balance && <div className="mr-1">
+                          <OverlayTrigger
+                            delay={{ show: 0, hide: 500 }}
+                            key={"bottom"}
+                            placement={"bottom"}
+                            overlay={
+                              <Tooltip id={`tooltip-${b.symbol}`}>
+                                <div className="tooltip-inner">
+                                  <div className="profile-info-tooltip-content">
+                                    <p>
+                                      Delegate
+                                    </p>
+                                  </div>
+                                </div>
+                              </Tooltip>
+                            }
+                          >
+                            <div className="d-flex align-items-center flex-justify-center">
+                              <span 
+                              onClick={() => this.openTransferDialog('delegate', b.symbol, b.balance)} 
+                              className="info-icon mr-0 mr-md-2">
+                                {delegateOutlineSvg}
+                              </span>
+                            </div>
+                          </OverlayTrigger>
+                        </div>}
+                        {b.delegationEnabled && b.delegationsOut > 0 && <div className="mr-1">
+                          <OverlayTrigger
+                            delay={{ show: 0, hide: 500 }}
+                            key={"bottom"}
+                            placement={"bottom"}
+                            overlay={
+                              <Tooltip id={`tooltip-${b.symbol}`}>
+                                <div className="tooltip-inner">
+                                  <div className="profile-info-tooltip-content">
+                                    <p>
+                                      Undelegate
+                                    </p>
+                                  </div>
+                                </div>
+                              </Tooltip>
+                            }
+                          >
+                            <div className="d-flex align-items-center flex-justify-center">
+                              <span 
+                              onClick={() => this.openTransferDialog('undelegate', b.symbol, b.balance)} 
+                              className="info-icon mr-0 mr-md-2">
+                                {undelegateOutlineSvg}
+                              </span>
+                            </div>
+                          </OverlayTrigger>
+                        </div>}
+
+                        {b.stakingEnabled && <div className="mr-1">
                           <OverlayTrigger
                             delay={{ show: 0, hide: 500 }}
                             key={"bottom"}
@@ -361,12 +424,40 @@ closeTransferDialog = () => {
                             }
                           >
                             <div className="d-flex align-items-center flex-justify-center align-center">
-                              <span className="info-icon mr-0 mr-md-2">
+                              <span 
+                              onClick={() => this.openTransferDialog('stake', b.symbol, b.balance)} 
+                              className="info-icon mr-0 mr-md-2">
                                 {lockOutlineSvg}
                               </span>
                             </div>
                           </OverlayTrigger>
-                        </div>
+                        </div>}
+                        {b.stake > 0 && <div className="mr-1">
+                          <OverlayTrigger
+                            delay={{ show: 0, hide: 500 }}
+                            key={"bottom"}
+                            placement={"bottom"}
+                            overlay={
+                              <Tooltip id={`tooltip-${b.symbol}`}>
+                                <div className="tooltip-inner">
+                                  <div className="profile-info-tooltip-content">
+                                    <p>
+                                      Unstake
+                                    </p>
+                                  </div>
+                                </div>
+                              </Tooltip>
+                            }
+                          >
+                            <div className="d-flex align-items-center flex-justify-center align-center">
+                              <span 
+                              onClick={() => this.openTransferDialog('unstake', b.symbol, b.balance)}
+                              className="info-icon mr-0 mr-md-2">
+                                {unlockOutlineSvg}
+                              </span>
+                            </div>
+                          </OverlayTrigger>
+                        </div>}
 
                         <div className="entry-body mr-md-2">
                           <span className="item-balance">{b.balanced()}</span>
@@ -384,7 +475,14 @@ closeTransferDialog = () => {
             active="engine"
           />
         </div>
-        {this.state.transfer && <Transfer {...this.props} activeUser={activeUser!} to={isMyPage ? undefined : account.name} mode={this.state.transferMode!} asset={this.state.transferAsset!} onHide={this.closeTransferDialog}/>}
+        {this.state.transfer && <Transfer {...this.props} 
+          activeUser={activeUser!} 
+          to={isMyPage ? undefined : account.name}
+          mode={this.state.transferMode!} 
+          asset={this.state.transferAsset!} 
+          onHide={this.closeTransferDialog}
+          assetBalance={this.state.assetBalance} 
+        />}
       </div>
     );
   }
