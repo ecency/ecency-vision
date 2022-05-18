@@ -1303,10 +1303,12 @@
       "how-use-tags-body": "<p>Users can create the tags of their choice but by choosing a useful tag users may reveal your post very easy. For example, your first indrotuction post can be popular just by using introduction tag. Be sure that you are using tags that are related to your post otherwise your post may get downvotes for mistagging.</p>",
       "why-publish-gray-header": "<p>Why is the Publish button grayed out?</p>",
       "why-publish-gray-body": "<p>After writing your post you can see that Publish button is still gray, be sure that you chose a good title and at least one valid tag. If you miss them Publish button will be disabled</p>",
-      "what-links-show-header": "<p> What do the  Trending, Hot, New, Rising and Controversial links show?</p>",
-      "what-links-show-body": "<p>This is the way oof sorting Ecency contents. <ul><li>Trending-Widely mentioned or discussed posts.</li><li>Hot-Popular posts at the moment.</li><li>New-The newest posts sorted by the time</li><li>Rising-A post is having upvotes quickly even though it's new.</li><li>Controversial-has a relatively equal number of upvotes and downvotes.</li></ul></p>",
-      
-      
+      "what-links-show-header": "<p>What do the  Trending, Hot, New, Rising and Controversial links show?</p>",
+      "what-links-show-body": "<p>This is the way of sorting Ecency posts. <ul><li>Trending-Widely mentioned or discussed posts.</li><li>Hot-Popular posts at the moment.</li><li>New-The newest posts sorted by the time</li><li>Rising-A post is having upvotes quickly even though it's new.</li><li>Controversial-has a relatively equal number of upvotes and downvotes.</li></ul></p>",
+      "what-my-rewards-header": "<p>What kind of rewards I have in my wallet?</p>",
+      "what-my-rewards-body": "<p>There are two kind of rewards are shown in your wallet: <ul><li>Curation rewards- The rewards earned for upvoting posts and comments.</li><li>Author rewards-The rewards earned by your own posts and comments.</li></ul><p/>",
+      "what-information-profile-header": "<p>What kind of information is shown on my profile?</p>",
+      "what-information-profile-body": "<p>The first information shown near your image is your reputation score and display name. Below information about followers and following, registration date on Ecency. You have the option to add extra information on Ecency settings such as about information, profile image, cover image, your location.</p>",
       
       
       
