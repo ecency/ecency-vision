@@ -1281,12 +1281,12 @@
       "what-hive-witnesses-body": "<p>Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. Community elects them to represent their voice and each user can elect up to 30 witnesses.  This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses. Witnesses are compensated with Hive Power for each block they create</p>",
       "how-vote-witnesses-header": "How can I vote for witnesses?",
       "how-vote-witnesses-body": "<p> Visit <a href=\https://ecency.com/witnesses\">https://ecency.com/witnesses</a></p>",
-      "what-is-hive-header": "What are HIVE?",
-      "what-is-hive-body": "<p>HIVE are tradeable tokens that may be transferred at anytime. HIVE can be converted to Hive Power in a process called powering up. It is a cryptocurrency token, similar to bitcoin</p>",
-      "what-is-hive-power-header": "What are HIVE POWER?",
-      "what-is-hive-power-body": "<p>Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.</p>",
-      "what-is-hd-header": "What are HIVE DOLLARS?",
-      "what-is-hd-body": "<p>Hive Dollars (commonly abbreviated HBD) are tokens worth about $1.00 of HIVE.  Hive Dollars can be traded with HIVE, and transferred to other accounts for commerce or exchange. Hive Dollars may also be converted into HIVE via a process that takes 3.5 days. </p>",
+      "what-are-hive-header": "What are HIVE?",
+      "what-are-hive-body": "<p>HIVE are tradeable tokens that may be transferred at anytime. HIVE can be converted to Hive Power in a process called powering up. It is a cryptocurrency token, similar to bitcoin</p>",
+      "what-are-hive-power-header": "What are HIVE POWER?",
+      "what-are-hive-power-body": "<p>Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.</p>",
+      "what-are-hd-header": "What are HIVE DOLLARS?",
+      "what-are-hd-body": "<p>Hive Dollars (commonly abbreviated HBD) are tokens worth about $1.00 of HIVE.  Hive Dollars can be traded with HIVE, and transferred to other accounts for commerce or exchange. Hive Dollars may also be converted into HIVE via a process that takes 3.5 days. </p>",
       "what-delegated-hp-header": "What is delegated Hive Power?",
       "what-delegated-hp-body": "<p>Hive Power can be delegated to users by another user.  When a user is delegated Hive Power - their Resource Credits, content votes, and curation rewards are calculated as if it were their own Hive Power. Users are not able to power down or cash out delegated Hive Power however, as it still belongs to the original owner.</p>",
       "what-powering-up-header": "What is powering up?",
@@ -1315,10 +1315,12 @@
       "add-images-videos-body": "<p>You have several options like browsing your hard drive to add an image by clicking on  the selecting them link from within the editor or if you have copied image just click ctrl+v  and your image will be uploaded into your post or comment. Another way that you  can use for videos and images is paste the image or video's web address (URL) into the editor and it will automatically be added.</p>",
       "what-thumbnail-image-header": "<p>What is thumbnail image?</p>",
       "what-thumbnail-image-body": "<p>Thumbnail is reduced-size version of picture taken from your post that can be viewer’s first impression about your post. You can choose a thumbnail before publishing your post</p>",
-      
-      
-      
-      
+      "what-dollar-amount-header": "<p>What are the dollar amounts next to posts and comments?</p>",
+      "what-dollar-amount-body": "<p>The dollar amounts next to posts and comments are estimates of the potential payout that will occur when the payout period ends, based on the current voting activity and price of HIVE. It is the potential payout that may go up or down untill the period ends. Payouts occur as a combination of Hive Power and Hive Dollars. Sometimes the blockchain may substitute HIVE in place of the Hive Dollars based on market conditions.</p>",
+      "hive-dollar-worth-header": "<p>Will 1 Hive Dollar always be worth $1.00 USD?<\p>",
+      "hive-dollar-worth-body": "<p>The price of Hive Dollar changes around 1 USD depending on market conditions of the demand and supply.</p>",
+      "convert-hive-dollar-header": "<p>How long does it take to convert Hive Dollars to HIVE?</p>",
+      "convert-hive-dollar-body": "<p>The blockchain will process the transaction over a period of 3.5 days for conversions Hive Dollars to HIVE. </p>",
       
       
       
