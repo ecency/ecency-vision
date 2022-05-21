@@ -62,6 +62,10 @@
       margin-bottom: 18px;
       color: $white-three;
 
+      @include themify(day) {
+        color: lighten($charcoal-grey, 10);
+      }
+
       @include themify(dusk) {
         color: lighten($charcoal-grey, 10);
       }
@@ -71,6 +75,10 @@
       font-weight: 300;
       color: $white-three;
       
+      @include themify(day) {
+        color: lighten($charcoal-grey, 10);
+      }
+
       @include themify(dusk) {
         color: lighten($charcoal-grey, 10);
       }

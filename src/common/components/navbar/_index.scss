@@ -125,6 +125,9 @@
     height: 64px;
   }
 
+  background: $white-two;
+  box-shadow: 0 0 2px 1px $white-six;
+
   @include themify(dusk) {
     background: $dusk-primary;
     box-shadow: 0 0 2px 1px $white-six;
@@ -142,6 +145,7 @@
 
   @include themify(night) {
     background: $dark-two;
+    box-shadow: none;
   }
 
   .nav-bar-inner {
@@ -171,7 +175,7 @@
     }
 
     @include themify(day) {
-      background: $dusk-primary;
+      background: $white-two;
       box-shadow: 0 0 2px 1px $white-six;
     }
 
