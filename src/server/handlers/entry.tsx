@@ -10,6 +10,8 @@ import {makePreloadedState} from "../state";
 import {render} from "../template";
 import dmca from '../../common/constants/dmca.json';
 import { getAsAMP } from '../services';
+import { getPost } from '../../common/api/hive';
+import { last } from 'lodash';
 
 export default async (req: Request, res: Response) => {
     const {category, author, permlink} = req.params;
@@ -58,8 +60,15 @@ export default async (req: Request, res: Response) => {
     const { amp } = req.query;
 
     if (amp) {
-        const identifier = `${category}_${author}_${permlink}`;
-        const ampResult = await getAsAMP(identifier, req, preLoadedState);
+        let ignoreCache = false;
+        let identifier = `${category}_${author}_${permlink}`;
+        try {
+            const entry = await getPost(author, permlink);
+            identifier += `_${entry.last_update}`;
+        } catch (e) {
+            ignoreCache = true;
+        }
+        const ampResult = await getAsAMP(identifier, req, preLoadedState, ignoreCache);
         res.send(ampResult);
         return;
     }
