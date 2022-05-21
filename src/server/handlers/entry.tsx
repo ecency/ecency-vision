@@ -9,6 +9,7 @@ import {makePreloadedState} from "../state";
 
 import {render} from "../template";
 import dmca from '../../common/constants/dmca.json';
+import { getAsAMP } from '../services';
 
 export default async (req: Request, res: Response) => {
     const {category, author, permlink} = req.params;
@@ -53,6 +54,14 @@ export default async (req: Request, res: Response) => {
             ...state.entries,
             ...entries
         },
+    };
+    const { amp } = req.query;
+
+    if (amp) {
+        const identifier = `${category}_${author}_${permlink}`;
+        const ampResult = await getAsAMP(identifier, req, preLoadedState);
+        res.send(ampResult);
+        return;
     }
 
     res.send(render(req, preLoadedState));

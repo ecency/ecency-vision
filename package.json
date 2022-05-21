@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ecency/render-helper": "^2.2.17",
+    "@ecency/render-helper-amp": "^1.0.12",
     "@hiveio/dhive": "^1.1.0",
     "@hiveio/hivescript": "^1.2.7",
     "@loadable/component": "^5.15.2",
@@ -62,6 +63,7 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.0.1",
     "react-sortablejs": "^2.0.11",
+    "redis": "^4.1.0",
     "redux": "4.0.5",
     "redux-thunk": "^2.3.0",
     "rss": "^1.2.2",
