@@ -161,7 +161,8 @@
                 word-break: keep-all;
               }
               color: $white-three;
-              @include themify(night) {
+
+              @include themify(day) {
                 color: $pinkish-grey;
               }
 
@@ -210,6 +211,10 @@
           .item-body {
             margin: 10px 0 14px 0;
             color: $tundora;
+
+            @include themify(night) {
+              color: $steel-grey;
+            }
           }
 
           .item-controls {
