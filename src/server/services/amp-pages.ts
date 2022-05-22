@@ -19,8 +19,8 @@ export async function getAsAMP(
   }
 
   const renderResult = render(request, preloadedState);
-  const ampResult = await renderAmpBody(renderResult, false, false, false);
+  // const ampResult = await renderAmpBody(renderResult, false, false, false);
 
-  await client.set(identifier, ampResult);
-  return ampResult;
+  await client.set(identifier, renderResult);
+  return renderResult;
 }
