@@ -5,9 +5,7 @@ import EntryContainer from './pages/entry';
 import { SearchPageContainer, SearchMorePageContainer } from './pages/search';
 import { ProposalsIndexContainer, ProposalDetailContainer } from './pages/proposals';
 import NotFound from './components/404';
-
 import Tracker from './tracker';
-
 import {
   AboutPage,
   GuestPostPage,
@@ -18,10 +16,8 @@ import {
   FaqPage,
   ContributorsPage
 } from './pages/static';
-
 import routes from './routes';
 import * as ls from './util/local-storage';
-
 import i18n from 'i18next';
 import { pageMapDispatchToProps, pageMapStateToProps } from './pages/common';
 import { connect } from 'react-redux';
@@ -63,10 +59,7 @@ const CommunityCreateHSPage = (props: any) => <CommunityCreateHSContainer {...pr
 
 const EntryAMPContainer = loadable(() => import('./pages/amp/entry-amp-page'));
 const EntryPage = (props: any) => {
-  const [isAmp, setIsAmp] = useState(false);
-  useEffect(() => {
-    setIsAmp(props.location.search.includes('amp=1'));
-  }, [props.match.params]);
+  const [isAmp, setIsAmp] = useState(props.location.search.includes('amp=1'));
   return isAmp ? <EntryAMPContainer {...props} /> : <EntryContainer {...props} />;
 }
 

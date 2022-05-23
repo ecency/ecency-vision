@@ -1048,7 +1048,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                     {Discussion({
                                         ...this.props,
                                         parent: entry,
-                                        community
+                                        community,
+                                        hideControls: false
                                     })}
                                 </>
                             })()}
