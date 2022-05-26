@@ -2,10 +2,6 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 
-import { Redirect } from "react-router-dom";
-
-import { ListStyle } from "../store/global/types";
-
 import { makeGroupKey } from "../store/entries";
 
 import Meta from "../components/meta";
@@ -13,14 +9,8 @@ import Theme from "../components/theme";
 import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
 import NavBarElectron from "../../desktop/app/components/navbar";
-import EntryIndexMenu from "../components/entry-index-menu";
-import LinearProgress from "../components/linear-progress";
-import EntryListLoadingItem from "../components/entry-list-loading-item";
 import DetectBottom from "../components/detect-bottom";
-import EntryListContent from "../components/entry-list";
-import TrendingTagsCard from "../components/trending-tags-card";
 import ScrollToTop from "../components/scroll-to-top";
-import MarketData from "../components/market-data";
 import LandingPage from "../components/landing-page";
 
 import { _t } from "../i18n";
@@ -122,7 +112,7 @@ class EntryIndexPage extends Component<PageProps, State> {
   };
 
   render() {
-    const { global, activeUser, entries, location } = this.props;
+    const { global, entries, location } = this.props;
     const { communities } = this.state;
     const { filter, tag } = global;
 
@@ -133,17 +123,14 @@ class EntryIndexPage extends Component<PageProps, State> {
       return null;
     }
 
-    const entryList = data.entries;
     const loading = data.loading;
 
     //  Meta config
     const fC = capitalize(filter);
     const community = communities.find(
       (community) => community.name === global.hive_id
-    )
-      ? communities.find((community) => community.name === global.hive_id)
-      : { title: "", name: "" };
-    const title = `${community!.title.trim()} community`;
+    );
+    const title = community!.title.trim();
     const description = _t("community.page-description", {
       f: `${fC} ${community!.title.trim()}`,
     });
@@ -153,20 +140,6 @@ class EntryIndexPage extends Component<PageProps, State> {
     const canonical = `${defaults.base}/created/${global.hive_id}`;
 
     const metaProps = { title, description, url, rss, image, canonical };
-
-    const promoted = entries["__promoted__"].entries;
-
-    const showEntryPage =
-      this.state.step === 2 ||
-      // || activeUser !== null || activeUser === null
-      location?.pathname?.startsWith("/hot") ||
-      location?.pathname?.startsWith("/created") ||
-      location?.pathname?.startsWith("/trending") ||
-      location?.pathname?.startsWith("/payout") ||
-      location?.pathname?.startsWith("/payout_comments");
-    let containerClasses = global.isElectron
-      ? "app-content entry-index-page mt-0 pt-6"
-      : "app-content entry-index-page";
 
     return (
       <>
