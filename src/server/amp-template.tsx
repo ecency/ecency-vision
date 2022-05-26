@@ -10,15 +10,6 @@ import App from '../common/app';
 import { AppState } from '../common/store';
 import configureStore from '../common/store/configure';
 
-let assets: any = require(process.env.RAZZLE_ASSETS_MANIFEST || '');
-
-const cssLinksFromAssets = (assets: any, entrypoint: string) => {
-  return assets[entrypoint] ? assets[entrypoint].css ?
-    assets[entrypoint].css.map((asset: any) =>
-      `<link rel="stylesheet" href="${asset}">`
-    ).join('') : '' : '';
-};
-
 export const renderAmp = async (req: express.Request, state: AppState) => {
   const store = configureStore(state);
 
@@ -41,7 +32,6 @@ export const renderAmp = async (req: express.Request, state: AppState) => {
   const helmet = Helmet.renderStatic();
   const headHelmet =
     helmet.meta.toString() + helmet.title.toString() + helmet.link.toString();
-  const styleTags = extractor.getStyleTags();
 
   return `<!DOCTYPE html>
             <html lang="en">
@@ -52,7 +42,6 @@ export const renderAmp = async (req: express.Request, state: AppState) => {
                 <link rel="icon" href="/favicon.png" />
                 <link rel="apple-touch-icon" href="/logo192.png" />
                 <link rel="manifest" href="/manifest.json" />
-                ${cssLinksFromAssets(assets, 'client')}
             </head>
             <body class="${`theme-${state.global.theme}`}">
                 <div id="root">${markup}</div>

@@ -17,28 +17,17 @@ import BaseComponent from '../../components/base';
 import ProfileLink from '../../components/profile-link';
 import UserAvatar from '../../components/user-avatar';
 import Tag from '../../components/tag';
-import EntryVoteBtn from '../../components/entry-vote-btn/index';
-import EntryPayout from '../../components/entry-payout/index';
-import EntryVotes from '../../components/entry-votes';
 import Discussion from '../../components/discussion';
 import MdHandler from '../../components/md-handler';
-import LinearProgress from '../../components/linear-progress';
-import EntryReblogBtn from '../../components/entry-reblog-btn/index';
 import Comment from '../../components/comment'
 import SimilarEntries from '../../components/similar-entries';
-import BookmarkBtn from '../../components/bookmark-btn';
 import EditHistory from '../../components/edit-history';
 import { error } from '../../components/feedback';
 import Meta from '../../components/meta';
 import Theme from '../../components/theme/index';
 import Feedback from '../../components/feedback';
-import NavBar from '../../components/navbar/index';
-import NavBarElectron from '../../../desktop/app/components/navbar';
 import NotFound from '../../components/404';
 import ScrollToTop from '../../components/scroll-to-top';
-import EntryBodyExtra from '../../components/entry-body-extra';
-import EntryTipBtn from '../../components/entry-tip-btn';
-import EntryMenu from '../../components/entry-menu';
 import AuthorInfoCard from '../../components/author-info-card';
 
 import * as bridgeApi from '../../api/bridge';
@@ -76,6 +65,7 @@ import { SelectionPopover } from '../../components/selection-popover';
 import { commentHistory } from '../../api/private-api';
 import { getPost } from '../../api/bridge';
 import { StaticNavbar } from '../../components/static';
+import './entry-amp-page.css';
 
 setProxyBase(defaults.imageServer);
 
