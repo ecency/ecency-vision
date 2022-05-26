@@ -42,7 +42,6 @@ import { Community } from "../store/communities/types";
 interface State {
   step: number;
   community: string;
-  goToSite: boolean;
   communities: Community[];
 }
 
