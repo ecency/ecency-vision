@@ -166,9 +166,7 @@ class EntryIndexPage extends Component<PageProps, State> {
 
     return (
       <>
-        {!!this.state.community && (
-          <Redirect to={`/trending/${this.state.community}`} />
-        )}
+        {activeUser && <Redirect to={`/trending/${global.hive_id}`} />}
         <Meta {...metaProps} />
         <ScrollToTop />
         <Theme global={this.props.global} />

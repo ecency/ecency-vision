@@ -38,7 +38,7 @@ import {search as searchApi, SearchResult} from "../api/search-api";
 import ViewKeys from "../components/view-keys";
 import { PasswordUpdate } from "../components/password-update";
 
-import {getAccountFull} from "../api/hive";
+import { getAccountFull, getBlogEntries } from "../api/hive";
 
 import defaults from "../constants/defaults.json";
 import _c from "../util/fix-class-names";

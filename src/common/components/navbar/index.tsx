@@ -218,50 +218,14 @@ export class NavBar extends Component<Props, State> {
   };
 
   render() {
-    const {
-      global,
-      activeUser,
-      ui,
-      step,
-      toggleUIProp,
-      setActiveUser,
-      match,
-      community,
-    } = this.props;
-
-    if (!setupConfig.navBarImg) {
-      setupConfig.navBarImg = community
-        ? `${defaults.imageServer}/u/${community.name}/avatar/lardge`
-        : "";
-    }
+    const { global, activeUser, ui, step, toggleUIProp, setActiveUser, match } =
+      this.props;
 
     const themeText =
       global.theme == Theme[global.ctheme]
         ? _t("navbar.night-theme")
         : _t(`navbar.${global.ctheme}-theme`);
-    const communityPage =
-      match && match.params.name && isCommunity(match.params.name);
-    const tagValue = global.tag ? `/${global.tag}` : "";
-    const logoHref = activeUser
-      ? communityPage ||
-        (global.tag.includes("@") &&
-          [
-            "engine",
-            "wallet",
-            "points",
-            "communities",
-            "settings",
-            "permissions",
-            "comments",
-            "replies",
-            "blog",
-            "posts",
-          ].includes(global.filter))
-        ? "/hot"
-        : global.filter === "feed"
-        ? `${tagValue}/${global.filter}`
-        : `/${global.filter}${tagValue}`
-      : "/";
+    const logoHref = activeUser ? `/trending/${global.hive_id}` : "/";
     const {
       smVisible,
       floating,
@@ -299,7 +263,7 @@ export class NavBar extends Component<Props, State> {
               <Link to={logoHref}>
                 <img
                   style={{ borderRadius: "50%" }}
-                  src={setupConfig.navBarImg}
+                  src={`${defaults.imageServer}/u/${global.hive_id}/avatar/lardge`}
                   className="logo"
                   alt="Logo"
                 />
@@ -307,7 +271,7 @@ export class NavBar extends Component<Props, State> {
             ) : (
               <img
                 style={{ borderRadius: "50%" }}
-                src={setupConfig.navBarImg}
+                src={`${defaults.imageServer}/u/${global.hive_id}/avatar/lardge`}
                 className="logo"
                 alt="Logo"
                 onClick={this.handleIconClick}
@@ -331,7 +295,7 @@ export class NavBar extends Component<Props, State> {
                 {activeUser !== null ? (
                   <Link to={logoHref}>
                     <img
-                      src={setupConfig.navBarImg}
+                      src={`${defaults.imageServer}/u/${global.hive_id}/avatar/lardge`}
                       style={{ borderRadius: "50%" }}
                       className="logo"
                       alt="Logo"
@@ -340,7 +304,7 @@ export class NavBar extends Component<Props, State> {
                 ) : (
                   <img
                     style={{ borderRadius: "50%" }}
-                    src={setupConfig.navBarImg}
+                    src={`${defaults.imageServer}/u/${global.hive_id}/avatar/lardge`}
                     className="logo"
                     alt="Logo"
                     onClick={this.handleIconClick}
