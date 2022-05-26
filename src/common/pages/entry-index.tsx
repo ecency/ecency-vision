@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 import { Redirect } from "react-router-dom";
 
@@ -42,7 +42,8 @@ import { Community } from "../store/communities/types";
 interface State {
   step: number;
   community: string;
-  communities: Community[]
+  goToSite: boolean;
+  communities: Community[];
 }
 
 class EntryIndexPage extends Component<PageProps, State> {
@@ -62,11 +63,11 @@ class EntryIndexPage extends Component<PageProps, State> {
       this.setState({ ...this.state, community });
     }
 
-    getCommunities().then(r => {
+    getCommunities().then((r) => {
       if (r) {
-        this.setState({ ...this.state, communities: r })
+        this.setState({ ...this.state, communities: r });
       }
-    })
+    });
 
     this.props.activeUser !== null
       ? this.changeStepTwo()
@@ -138,7 +139,11 @@ class EntryIndexPage extends Component<PageProps, State> {
 
     //  Meta config
     const fC = capitalize(filter);
-    const community = communities.find(community => community.name === global.hive_id) ? communities.find(community => community.name === global.hive_id) : { title: '', name: '' }
+    const community = communities.find(
+      (community) => community.name === global.hive_id
+    )
+      ? communities.find((community) => community.name === global.hive_id)
+      : { title: "", name: "" };
     const title = `${community!.title.trim()} community`;
     const description = _t("community.page-description", {
       f: `${fC} ${community!.title.trim()}`,
@@ -166,7 +171,6 @@ class EntryIndexPage extends Component<PageProps, State> {
 
     return (
       <>
-        {activeUser && <Redirect to={`/trending/${global.hive_id}`} />}
         <Meta {...metaProps} />
         <ScrollToTop />
         <Theme global={this.props.global} />
@@ -185,51 +189,8 @@ class EntryIndexPage extends Component<PageProps, State> {
               setStepOne: this.changeStepOne,
               setStepTwo: this.changeStepTwo,
             })}
-        {this.state.step === 1 &&
-          activeUser === null &&
-          location &&
-          "/" === location?.pathname && (
-            <LandingPage {...this.props} changeState={this.changeStepTwo} />
-          )}
-        {showEntryPage && (
-          <div className={containerClasses}>
-            <div className="tags-side">
-              {!global.isMobile && <>{TrendingTagsCard({ ...this.props })}</>}
-            </div>
-            <div
-              className={_c(`entry-page-content ${loading ? "loading" : ""}`)}
-            >
-              <div className="page-tools">
-                {EntryIndexMenu({ ...this.props })}
-              </div>
-              {loading && entryList.length === 0 ? <LinearProgress /> : ""}
-              <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
-                <div
-                  className={_c(
-                    `entry-list-body limited-area ${
-                      global.listStyle === ListStyle.grid ? "grid-view" : ""
-                    }`
-                  )}
-                >
-                  {loading && entryList.length === 0 && (
-                    <EntryListLoadingItem />
-                  )}
-                  {EntryListContent({
-                    ...this.props,
-                    entries: entryList,
-                    promotedEntries: promoted,
-                    loading,
-                  })}
-                </div>
-              </div>
-              {loading && entryList.length > 0 ? <LinearProgress /> : ""}
-            </div>
-            <div className="side-menu">
-              {!global.isMobile && (
-                <>{1 !== this.state.step && <MarketData global={global} />}</>
-              )}
-            </div>
-          </div>
+        {location && "/" === location?.pathname && (
+          <LandingPage {...this.props} changeState={this.changeStepTwo} />
         )}
         <DetectBottom onBottom={this.bottomReached} />
       </>
@@ -237,5 +198,7 @@ class EntryIndexPage extends Component<PageProps, State> {
   }
 }
 
-
-export default connect(pageMapStateToProps, pageMapDispatchToProps)(EntryIndexPage);
+export default connect(
+  pageMapStateToProps,
+  pageMapDispatchToProps
+)(EntryIndexPage);
