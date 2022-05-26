@@ -47,7 +47,7 @@ const LandingPage = (props: any) => {
             <button className="get-started mx-auto">
               Go to site{" "}
               <div className="loader">
-                <Spinner animation="border"></Spinner>
+                <Spinner animation="border" />
                 <div className="center-text">{time}</div>
               </div>
             </button>
