@@ -11,7 +11,6 @@ import {render} from "../template";
 import dmca from '../../common/constants/dmca.json';
 import { getAsAMP } from '../services';
 import { getPost } from '../../common/api/hive';
-import { last } from 'lodash';
 
 export default async (req: Request, res: Response) => {
     const {category, author, permlink} = req.params;

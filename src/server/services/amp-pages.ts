@@ -1,11 +1,16 @@
 import { Request } from 'express';
-import { createClient } from 'redis';
+import { createClient, RedisClient } from 'redis';
 import { AppState } from '../../common/store';
 import { renderAmp } from '../amp-template';
+// @ts-ignore
+import amp from '@ampproject/toolbox-optimizer';
 import { renderAmpBody } from '@ecency/render-helper-amp';
 import * as fs from 'fs';
+import { promisify } from 'util';
 
 let assets: any = require(process.env.RAZZLE_ASSETS_MANIFEST || '');
+const redisGetAsync = (client: RedisClient) => promisify(client.get).bind(client);
+const redisSetAsync = (client: RedisClient) => promisify(client.set).bind(client);
 
 export async function getAsAMP(
   identifier: string,
@@ -15,30 +20,24 @@ export async function getAsAMP(
 ): Promise<string> {
   const client = createClient();
 
-  const cache = client.get(identifier);
-  // if (cache && !forceRender) {
-  //   return cache;
-  // }
+  const cache = await redisGetAsync(client)(identifier);
+  if (cache && !forceRender) {
+    return cache;
+  }
 
   const renderResult = await renderAmp(request, preloadedState);
 
   let ampResult = await renderAmpBody(renderResult, false, false, false);
   ampResult = ampResult.replace(/\n/gm, '');
 
-  const ampStyleMatch = ampResult.match(/<style.*<\/style>/gm);
-  let ampStyle = ampStyleMatch ? ampStyleMatch[0] : '';
+  const styleBlockIndex = ampResult.search('</style>') + 8;
+  const pageStyles = fs.readFileSync(`build/public${assets['pages-amp-entry-amp-page'].css[0]}`).toString();
 
-  if (ampStyle) {
-    const pageStyles = fs.readFileSync(`build/public${assets['pages-amp-entry-amp-page'].css[0]}`).toString();
-    ampStyle = ampStyle
-      .replace(/\n/gm, '')
-      .replace(/<style.*>/, '')
-      .replace(/<\/style>/, '')
+  ampResult = [ampResult.slice(0, styleBlockIndex), `<style amp-custom>${pageStyles}</style>`, ampResult.slice(styleBlockIndex)].join('');
 
-    ampStyle += pageStyles;
-    ampResult = ampResult.replace(/<style.*<\/style>/gm, `<style>${ampStyle}</style>`);
-  }
+  const modifiedClasses = 'theme-day';
+  ampResult = ampResult.replace('<body>', `<body class="${modifiedClasses}">`);
 
-  client.set(identifier, renderResult);
+  await redisSetAsync(client)(identifier, renderResult);
   return ampResult;
 }
