@@ -1126,7 +1126,7 @@ export const undelegateHiveEngineKc = (from: string, to: string, symbol: string,
     contractAction: 'undelegate',
     contractPayload: {
       symbol,
-      to,
+      from: to,
       quantity: amount.toString(),
     }
   });

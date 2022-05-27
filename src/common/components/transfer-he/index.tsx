@@ -665,8 +665,8 @@ export class Transfer extends BaseComponent<Props, State> {
                                         className={amount > balance && amountError ? "is-invalid" : ""}
                                         autoFocus={(mode !== 'transfer')}
                                     />
+                                    <span className="balance-num align-self-center ml-1">{asset}</span>
                                 </InputGroup>
-                                {'Asset'}
                             </Col>
                         </Form.Group>
 
@@ -691,11 +691,11 @@ export class Transfer extends BaseComponent<Props, State> {
                                     </div>
                                 }
                                 {(() => {
-                                    if (mode === "delegate") {
+                                    if (mode === "undelegate") {
                                         const hive = Math.round((Number(amount) / 13) * 1000) / 1000;
                                         if (!isNaN(hive) && hive > 0) {
                                             return <div className="power-down-estimation">
-                                                {_t("transfer.power-down-estimated", {n: `${this.formatNumber(hive, 3)} HIVE`})}
+                                                {_t("transfer.power-down-estimated", {n: `${this.formatNumber(hive, 3)} ${asset}`})}
                                             </div>;
                                         }
                                     }

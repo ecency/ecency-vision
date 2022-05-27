@@ -264,6 +264,7 @@ closeTransferDialog = () => {
               ) : (
                 <div className="entry-list-body">
                   {tokens.map((b, i) => {
+                    console.log(b);
                     const imageSrc = proxifyImageSrc(
                       b.icon,
                       0,
@@ -287,181 +288,189 @@ closeTransferDialog = () => {
                           {b.symbol}
                         </div>
 
-                        <div className="ml-auto mr-1">
-                          <OverlayTrigger
-                            delay={{ show: 0, hide: 300 }}
-                            key={"bottom"}
-                            placement={"bottom"}
-                            overlay={
-                              <Tooltip id={`tooltip-${b.symbol}`}>
-                                <div className="tooltip-inner">
-                                  <div className="profile-info-tooltip-content">
-                                    <p>
-                                      {_t("wallet-engine.token")}: {b.name}
-                                    </p>
-                                    <p>
-                                      {_t("wallet-engine.balance")}:{" "}
-                                      {b.balanced()}
-                                    </p>
-                                    <p>
-                                      {_t("wallet-engine.staked")}: {b.staked()}
-                                    </p>
-                                    {b.delegationEnabled &&
-                                      <>
-                                        <p>In: {b.delegationsIn}</p>
-                                        <p>Out: {b.delegationsOut}</p>
-                                      </>
-                                      
-                                      }
-                                  </div>
-                                </div>
-                              </Tooltip>
-                            }
-                          >
-                            <div className="d-flex align-items-center">
-                              <span className="info-icon mr-0 mr-md-2">
-                                {informationVariantSvg}
-                              </span>
+                        <div className="ml-auto d-flex flex-column justify-between">
+                          <div className="d-flex mb-1 align-self-end">
+
+                            <div className="entry-body mr-md-2">
+                              <span className="item-balance">{b.balanced()}</span>
                             </div>
-                          </OverlayTrigger>
+
+                            <div className="ml-1">
+                              <OverlayTrigger
+                                delay={{ show: 0, hide: 300 }}
+                                key={"bottom"}
+                                placement={"bottom"}
+                                overlay={
+                                  <Tooltip id={`tooltip-${b.symbol}`}>
+                                    <div className="tooltip-inner">
+                                      <div className="profile-info-tooltip-content">
+                                        <p>
+                                          {_t("wallet-engine.token")}: {b.name}
+                                        </p>
+                                        <p>
+                                          {_t("wallet-engine.balance")}:{" "}
+                                          {b.balanced()}
+                                        </p>
+                                        <p>
+                                          {_t("wallet-engine.staked")}: {b.staked()}
+                                        </p>
+                                        {b.delegationEnabled &&
+                                          <>
+                                            <p>In: {b.delegationsIn}</p>
+                                            <p>Out: {b.delegationsOut}</p>
+                                          </>
+                                          
+                                          }
+                                      </div>
+                                    </div>
+                                  </Tooltip>
+                                }
+                              >
+                                <div className="d-flex align-items-center">
+                                  <span className="info-icon mr-0 mr-md-2">
+                                    {informationVariantSvg}
+                                  </span>
+                                </div>
+                              </OverlayTrigger>
+                            </div>
+                          </div>
+                          <div className="d-flex justify-between ml-auto">
+                              <div className="mr-1">
+                              <OverlayTrigger
+                                delay={{ show: 0, hide: 500 }}
+                                key={"bottom"}
+                                placement={"bottom"}
+                                overlay={
+                                  <Tooltip id={`tooltip-${b.symbol}`}>
+                                    <div className="tooltip-inner">
+                                      <div className="profile-info-tooltip-content">
+                                        <p>
+                                          Transfer
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </Tooltip>
+                                }
+                              >
+                                <div className="d-flex align-items-center flex-justify-center">
+                                  <span 
+                                  onClick={() => this.openTransferDialog('transfer', b.symbol, b.balance)} 
+                                  className="he-icon mr-0 mr-md-2">
+                                    {transferOutlineSvg}
+                                  </span>
+                                </div>
+                              </OverlayTrigger>
+                              </div>
+
+                              {b.delegationEnabled && b.delegationsOut !== b.balance && <div className="mr-1">
+                                <OverlayTrigger
+                                  delay={{ show: 0, hide: 500 }}
+                                  key={"bottom"}
+                                  placement={"bottom"}
+                                  overlay={
+                                    <Tooltip id={`tooltip-${b.symbol}`}>
+                                      <div className="tooltip-inner">
+                                        <div className="profile-info-tooltip-content">
+                                          <p>
+                                            Delegate
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </Tooltip>
+                                  }
+                                >
+                                  <div className="d-flex align-items-center flex-justify-center">
+                                    <span 
+                                    onClick={() => this.openTransferDialog('delegate', b.symbol, (b.balance - b.delegationsOut))} 
+                                    className="he-icon mr-0 mr-md-2">
+                                      {delegateOutlineSvg}
+                                    </span>
+                                  </div>
+                                </OverlayTrigger>
+                              </div>}
+                              {b.delegationEnabled && b.delegationsOut > 0 && <div className="mr-1">
+                                <OverlayTrigger
+                                  delay={{ show: 0, hide: 500 }}
+                                  key={"bottom"}
+                                  placement={"bottom"}
+                                  overlay={
+                                    <Tooltip id={`tooltip-${b.symbol}`}>
+                                      <div className="tooltip-inner">
+                                        <div className="profile-info-tooltip-content">
+                                          <p>
+                                            Undelegate
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </Tooltip>
+                                  }
+                                >
+                                  <div className="d-flex align-items-center flex-justify-center">
+                                    <span 
+                                    onClick={() => this.openTransferDialog('undelegate', b.symbol, b.delegationsOut)} 
+                                    className="he-icon mr-0 mr-md-2">
+                                      {undelegateOutlineSvg}
+                                    </span>
+                                  </div>
+                                </OverlayTrigger>
+                              </div>}
+
+                              {b.stakingEnabled && <div className="mr-1">
+                                <OverlayTrigger
+                                  delay={{ show: 0, hide: 500 }}
+                                  key={"bottom"}
+                                  placement={"bottom"}
+                                  overlay={
+                                    <Tooltip id={`tooltip-${b.symbol}`}>
+                                      <div className="tooltip-inner">
+                                        <div className="profile-info-tooltip-content">
+                                          <p>
+                                            Stake
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </Tooltip>
+                                  }
+                                >
+                                  <div className="d-flex align-items-center flex-justify-center align-center">
+                                    <span 
+                                    onClick={() => this.openTransferDialog('stake', b.symbol, b.balance)} 
+                                    className="he-icon mr-0 mr-md-2">
+                                      {lockOutlineSvg}
+                                    </span>
+                                  </div>
+                                </OverlayTrigger>
+                              </div>}
+                              {b.stake > 0 && <div className="mr-1">
+                                <OverlayTrigger
+                                  delay={{ show: 0, hide: 500 }}
+                                  key={"bottom"}
+                                  placement={"bottom"}
+                                  overlay={
+                                    <Tooltip id={`tooltip-${b.symbol}`}>
+                                      <div className="tooltip-inner">
+                                        <div className="profile-info-tooltip-content">
+                                          <p>
+                                            Unstake
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </Tooltip>
+                                  }
+                                >
+                                  <div className="d-flex align-items-center flex-justify-center align-center">
+                                    <span 
+                                    onClick={() => this.openTransferDialog('unstake', b.symbol, b.stakedBalance)}
+                                    className="he-icon mr-0 mr-md-2">
+                                      {unlockOutlineSvg}
+                                    </span>
+                                  </div>
+                                </OverlayTrigger>
+                              </div>}
+                          </div>
+
                         </div>
 
-                        <div className="mr-1">
-                          <OverlayTrigger
-                            delay={{ show: 0, hide: 500 }}
-                            key={"bottom"}
-                            placement={"bottom"}
-                            overlay={
-                              <Tooltip id={`tooltip-${b.symbol}`}>
-                                <div className="tooltip-inner">
-                                  <div className="profile-info-tooltip-content">
-                                    <p>
-                                      Transfer
-                                    </p>
-                                  </div>
-                                </div>
-                              </Tooltip>
-                            }
-                          >
-                            <div className="d-flex align-items-center flex-justify-center">
-                              <span 
-                              onClick={() => this.openTransferDialog('transfer', b.symbol, b.balance)} 
-                              className="info-icon mr-0 mr-md-2">
-                                {transferOutlineSvg}
-                              </span>
-                            </div>
-                          </OverlayTrigger>
-                        </div>
-
-                        {b.delegationEnabled && b.delegationsOut !== b.balance && <div className="mr-1">
-                          <OverlayTrigger
-                            delay={{ show: 0, hide: 500 }}
-                            key={"bottom"}
-                            placement={"bottom"}
-                            overlay={
-                              <Tooltip id={`tooltip-${b.symbol}`}>
-                                <div className="tooltip-inner">
-                                  <div className="profile-info-tooltip-content">
-                                    <p>
-                                      Delegate
-                                    </p>
-                                  </div>
-                                </div>
-                              </Tooltip>
-                            }
-                          >
-                            <div className="d-flex align-items-center flex-justify-center">
-                              <span 
-                              onClick={() => this.openTransferDialog('delegate', b.symbol, b.balance)} 
-                              className="info-icon mr-0 mr-md-2">
-                                {delegateOutlineSvg}
-                              </span>
-                            </div>
-                          </OverlayTrigger>
-                        </div>}
-                        {b.delegationEnabled && b.delegationsOut > 0 && <div className="mr-1">
-                          <OverlayTrigger
-                            delay={{ show: 0, hide: 500 }}
-                            key={"bottom"}
-                            placement={"bottom"}
-                            overlay={
-                              <Tooltip id={`tooltip-${b.symbol}`}>
-                                <div className="tooltip-inner">
-                                  <div className="profile-info-tooltip-content">
-                                    <p>
-                                      Undelegate
-                                    </p>
-                                  </div>
-                                </div>
-                              </Tooltip>
-                            }
-                          >
-                            <div className="d-flex align-items-center flex-justify-center">
-                              <span 
-                              onClick={() => this.openTransferDialog('undelegate', b.symbol, b.balance)} 
-                              className="info-icon mr-0 mr-md-2">
-                                {undelegateOutlineSvg}
-                              </span>
-                            </div>
-                          </OverlayTrigger>
-                        </div>}
-
-                        {b.stakingEnabled && <div className="mr-1">
-                          <OverlayTrigger
-                            delay={{ show: 0, hide: 500 }}
-                            key={"bottom"}
-                            placement={"bottom"}
-                            overlay={
-                              <Tooltip id={`tooltip-${b.symbol}`}>
-                                <div className="tooltip-inner">
-                                  <div className="profile-info-tooltip-content">
-                                    <p>
-                                      Stake
-                                    </p>
-                                  </div>
-                                </div>
-                              </Tooltip>
-                            }
-                          >
-                            <div className="d-flex align-items-center flex-justify-center align-center">
-                              <span 
-                              onClick={() => this.openTransferDialog('stake', b.symbol, b.balance)} 
-                              className="info-icon mr-0 mr-md-2">
-                                {lockOutlineSvg}
-                              </span>
-                            </div>
-                          </OverlayTrigger>
-                        </div>}
-                        {b.stake > 0 && <div className="mr-1">
-                          <OverlayTrigger
-                            delay={{ show: 0, hide: 500 }}
-                            key={"bottom"}
-                            placement={"bottom"}
-                            overlay={
-                              <Tooltip id={`tooltip-${b.symbol}`}>
-                                <div className="tooltip-inner">
-                                  <div className="profile-info-tooltip-content">
-                                    <p>
-                                      Unstake
-                                    </p>
-                                  </div>
-                                </div>
-                              </Tooltip>
-                            }
-                          >
-                            <div className="d-flex align-items-center flex-justify-center align-center">
-                              <span 
-                              onClick={() => this.openTransferDialog('unstake', b.symbol, b.balance)}
-                              className="info-icon mr-0 mr-md-2">
-                                {unlockOutlineSvg}
-                              </span>
-                            </div>
-                          </OverlayTrigger>
-                        </div>}
-
-                        <div className="entry-body mr-md-2">
-                          <span className="item-balance">{b.balanced()}</span>
-                        </div>
                       </div>
                     );
                   })}
