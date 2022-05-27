@@ -1159,3 +1159,37 @@ export const unstakeHiveEngineKc = (from: string, to: string, symbol: string, am
 
     return keychain.customJson(from, "ssc-mainnet-hive", "Active", json, "Transfer")
 }
+
+// HE Hive Signer Operations
+// client.customJson(requiredAuths, requiredPostingAuths, id, json, function (err, res) {
+//     console.log(err, res)
+//   });
+export const transferHiveEngineHs = (from: string, to: string, symbol: string, amount: string, memo: string) => {
+    const json = JSON.stringify({
+    contractName: 'tokens',
+    contractAction: 'transfer',
+    contractPayload: {
+      symbol,
+      to,
+      quantity: amount.toString(),
+      memo,
+    }
+  });
+
+  const payload = {
+    required_auths: [from],
+    required_posting_auths: [],
+    id: "ssc-mainnet-hive",
+    json,
+};
+
+
+    const op: Operation = ['custom_json', payload];
+
+    // return
+
+    const params: Parameters = {callback: `https://ecency.com/@${from}/engine`};
+    return hs.sendOperation(op, params, (resp) => {
+        console.log(resp)
+    });
+}

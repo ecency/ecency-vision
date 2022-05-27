@@ -264,7 +264,6 @@ closeTransferDialog = () => {
               ) : (
                 <div className="entry-list-body">
                   {tokens.map((b, i) => {
-                    console.log(b);
                     const imageSrc = proxifyImageSrc(
                       b.icon,
                       0,

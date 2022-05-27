@@ -40,7 +40,7 @@ import {
     unstakeHiveEngineKc,
     transferPoint,
     transferPointHot,
-    transferPointKc,
+    transferHiveEngineHs,
     transferToSavingsHot,
     transferFromSavingsHot,
     transferToVestingHot,
@@ -367,29 +367,25 @@ export class Transfer extends BaseComponent<Props, State> {
 
         switch (mode) {
             case "transfer": {
-                if (asset === "POINT") {
-                    transferPointHot(username, to, fullAmount, memo);
-                } else {
-                    transferHot(username, to, fullAmount, memo);
-                }
+                transferHiveEngineHs(username, to, asset, fullAmount, memo);
                 break;
             }
-            case "delegate": {
-                transferToSavingsHot(username, to, fullAmount, memo);
-                break;
-            }
-            case "undelegate": {
-                convertHot(username, fullAmount)
-                break;
-            }
-            case "stake": {
-                transferFromSavingsHot(username, to, fullAmount, memo);
-                break;
-            }
-            case "unstake": {
-                transferToVestingHot(username, to, fullAmount);
-                break;
-            }
+            // case "delegate": {
+            //     promise = delegateHiveEngineHs(username, to, asset, fullAmount);
+            //     break;
+            // }
+            // case "undelegate": {
+            //     promise = undelegateHiveEngineHs(username, to, asset, fullAmount)
+            //     break;
+            // }
+            // case "stake": {
+            //     promise = stakeHiveEngineHs(username, to, asset, fullAmount);
+            //     break;
+            // }
+            // case "unstake": {
+            //     promise = unstakeHiveEngineHs(username, to, asset, fullAmount);
+            //     break;
+            // }
             default:
                 return;
         }
