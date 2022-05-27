@@ -721,6 +721,8 @@
     "delegate-sub-title": "Delegate Hive Power",
     "delegate-hive-engine-title": "Delegate",
     "delegate-hive-engine-sub-title": "Delegate Tokens",
+    "undelegate-hive-engine-title": "Undelegate",
+    "undelegate-hive-engine-sub-title": "Undelegate Tokens to add them back to your Hive Engine balance",
     "power-down-title": "Power Down",
     "power-down-sub-title": "Power Down Hive Power",
     "from": "From",

@@ -512,7 +512,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
         }
 
-        const showTo = ["transfer", "delegate", "undelegate", "stake", "unstake"].includes(mode);
+        const showTo = ["transfer", "delegate", "undelegate", "stake"].includes(mode);
         const showMemo = ["transfer"].includes(mode);
         
         const delegateAccount = delegationList && delegationList.length > 0 && 
@@ -601,7 +601,7 @@ export class Transfer extends BaseComponent<Props, State> {
                     {formHeader1}
                     {inProgress && <LinearProgress/>}
                     <Form className="transaction-form-body">
-                        <Form.Group as={Row}>
+                        { mode !== 'undelegate' && <Form.Group as={Row}>
                             <Form.Label column={true} sm="2">
                                 {_t("transfer.from")}
                             </Form.Label>
@@ -613,13 +613,13 @@ export class Transfer extends BaseComponent<Props, State> {
                                     <Form.Control value={activeUser.username} readOnly={true}/>
                                 </InputGroup>
                             </Col>
-                        </Form.Group>
+                        </Form.Group>}
 
                         {showTo && (
                             <>
                                 <Form.Group as={Row}>
                                     <Form.Label column={true} sm="2">
-                                        {_t("transfer.to")}
+                                        {mode === 'undelegate' ? _t("transfer.from") : _t("transfer.to")}
                                     </Form.Label>
                                     <Col sm="10">
                                         <SuggestionList items={recent} {...suggestionProps}>
@@ -691,7 +691,7 @@ export class Transfer extends BaseComponent<Props, State> {
                                     </div>
                                 }
                                 {(() => {
-                                    if (mode === "undelegate") {
+                                    if (mode === "unstake") {
                                         const hive = Math.round((Number(amount) / 13) * 1000) / 1000;
                                         if (!isNaN(hive) && hive > 0) {
                                             return <div className="power-down-estimation">
