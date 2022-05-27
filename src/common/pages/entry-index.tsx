@@ -130,9 +130,9 @@ class EntryIndexPage extends Component<PageProps, State> {
     const community = communities.find(
       (community) => community.name === global.hive_id
     );
-    const title = community!.title.trim();
+    const title = community ? community.title.trim() : defaults.name;
     const description = _t("community.page-description", {
-      f: `${fC} ${community!.title.trim()}`,
+      f: `${fC} ${community ? community.title.trim() : defaults.name}`,
     });
     const url = `/${filter}/${global.hive_id}`;
     const rss = `${defaults.base}/${filter}/${global.hive_id}/rss.xml`;
