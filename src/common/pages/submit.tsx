@@ -67,7 +67,6 @@ import {checkSvg, contentSaveSvg} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import ModalConfirm from "../components/modal-confirm";
-import ResizableTextarea from "../components/resizable-text-area";
 import TextareaAutocomplete from "../components/textarea-autocomplete";
 
 interface PostBase {
@@ -260,10 +259,11 @@ class SubmitPage extends BaseComponent<Props, State> {
             }
 
             const {title, body} = entry;
+            let description = entry.json_metadata?.description || '';
             let tags = entry.json_metadata?.tags || [];
             tags = [...new Set(tags)];
 
-            this.stateSet({title, tags, body, editingEntry: entry}, this.updatePreview);
+            this.stateSet({title, tags, body, description, editingEntry: entry}, this.updatePreview);
         } else {
             if (this.state.editingEntry) {
                 this.stateSet({editingEntry: null});
@@ -276,6 +276,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         const {params} = match;
 
         if (this.isDraft()) {
+
             let drafts: Draft[];
 
             try {
@@ -965,6 +966,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                     <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
                                                 </Col>
                                             </Form.Group>
+                                        </>}
                                              <Form.Group as={Row}>
                                             <Form.Label column={true} sm='3'>
                                                 {_t('submit.description')}
@@ -981,7 +983,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                     {this.state.description !== '' ? this.state.description : postBodySummary(body, 200)}
                                                 </Form.Text>
                                             </Col>
-                                        </Form.Group>
+                                            </Form.Group>
                                             {global.usePrivate && <Form.Group as={Row}>
                                             <Form.Label column={true} sm="3">
                                                 {_t("submit.schedule")}
@@ -1006,7 +1008,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                     </Col>
                                                 </Form.Group>
                                             )}
-                                        </>}
+
                                         {thumbnails.length > 0 && 
                                             <Form.Group as={Row}>
                                                 <Form.Label column={true} sm="3">
