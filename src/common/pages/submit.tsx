@@ -259,7 +259,8 @@ class SubmitPage extends BaseComponent<Props, State> {
             }
 
             const {title, body} = entry;
-            let description = entry.json_metadata?.description || '';
+
+            let description = entry.json_metadata?.description || postBodySummary(body, 200);
             let tags = entry.json_metadata?.tags || [];
             tags = [...new Set(tags)];
 
@@ -967,7 +968,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 </Col>
                                             </Form.Group>
                                         </>}
-                                             <Form.Group as={Row}>
+                                            <Form.Group as={Row}>
                                             <Form.Label column={true} sm='3'>
                                                 {_t('submit.description')}
                                             </Form.Label>
