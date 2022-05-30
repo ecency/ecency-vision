@@ -648,7 +648,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
         // TODO: Add summary to update
         // const summary = this.state.description.trim() === '' ? postBodySummary(this.state.body, 200) : this.state.description;
-        const jsonMeta = Object.assign({}, json_metadata, meta, {tags}, description);
+        const jsonMeta = Object.assign({}, json_metadata, meta, {tags}, {description});
 
         this.stateSet({posting: true});
         
