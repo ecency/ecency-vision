@@ -1320,9 +1320,11 @@
       "hive-dollar-worth-header": "<p>Will 1 Hive Dollar always be worth $1.00 USD?<\p>",
       "hive-dollar-worth-body": "<p>The price of Hive Dollar changes around 1 USD depending on market conditions of the demand and supply.</p>",
       "convert-hive-dollar-header": "<p>How long does it take to convert Hive Dollars to HIVE?</p>",
-      "convert-hive-dollar-body": "<p>The blockchain will process the transaction over a period of 3.5 days for conversions Hive Dollars to HIVE. </p>",
-      
-      
+      "convert-hive-dollar-body":"<p>The blockchain will process the transaction over a period of 3.5 days for conversions Hive Dollars to HIVE. </p>",
+      "what-voting power-header":"<p>What is voting power?</p>",
+      "what-voting power-body": "<p>Your voting power goes down a little bit every time you vote.  It begins with 100% voting power and by voting you use small amount of voting power. The more you vote the fewer influence you have.</p>",
+      "how-many-vote-header": "<p>How many times can I vote with my voting power?</p>",
+      "how-many-vote-body": "<p>Every 100% vote you cast will use 2% of your remaining voting mana. Your voting mana will recharge by 20% each day. You can vote more than 10 times per day, but each vote will be worth less, and it will take longer to reach full voting power again</p>",
       
       
       
@@ -1338,7 +1340,7 @@
   "contributors": {
     "title": "Contributors",
     "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
-  },
+  }p,
   "context-menu": {
     "cut": "Cut",
     "copy": "Copy",
