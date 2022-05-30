@@ -618,8 +618,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const {activeUser, updateEntry, history} = this.props;
-        const {title, tags, body, editingEntry, selectionTouched, selectedThumbnail} = this.state;
-
+        const {title, tags, body, description, editingEntry, selectionTouched, selectedThumbnail} = this.state;
         if (!editingEntry) {
             return;
         }
@@ -649,7 +648,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
         // TODO: Add summary to update
         // const summary = this.state.description.trim() === '' ? postBodySummary(this.state.body, 200) : this.state.description;
-        const jsonMeta = Object.assign({}, json_metadata, meta, {tags});
+        const jsonMeta = Object.assign({}, json_metadata, meta, {tags}, description);
 
         this.stateSet({posting: true});
         
@@ -985,6 +984,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 </Form.Text>
                                             </Col>
                                             </Form.Group>
+                                        {editingEntry === null && <>
                                             {global.usePrivate && <Form.Group as={Row}>
                                             <Form.Label column={true} sm="3">
                                                 {_t("submit.schedule")}
@@ -994,6 +994,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
                                             </Col>
                                             </Form.Group>}
+                                        </>}
                                             {tags.length > 0 && isCommunity(tags[0]) && (
                                                 <Form.Group as={Row}>
                                                     <Col sm="3"/>
