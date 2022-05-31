@@ -708,7 +708,8 @@
     "title": "बूस्ट",
     "sub-title": "अपनी पोस्ट का प्रचार करें",
     "amount": "रकम",
-    "slider-hint": "राशि समायोजित करने के लिए स्लाइडर को खींचें।"
+    "slider-hint": "राशि समायोजित करने के लिए स्लाइडर को खींचें।",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "शेष रकम",
