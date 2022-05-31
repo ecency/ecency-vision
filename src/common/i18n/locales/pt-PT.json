@@ -708,7 +708,8 @@
     "title": "Impulsionar",
     "sub-title": "Impulsione a sua publicação",
     "amount": "Quantidade",
-    "slider-hint": "Deslize o cursor para ajustar a quantidade."
+    "slider-hint": "Deslize o cursor para ajustar a quantidade.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Balanço",
