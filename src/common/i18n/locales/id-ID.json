@@ -708,7 +708,8 @@
     "title": "Naikkan",
     "sub-title": "Naikkan postingan Anda",
     "amount": "Jumlah",
-    "slider-hint": "Seret penggeser tersebut untuk menyesuaikan jumlahnya."
+    "slider-hint": "Seret penggeser tersebut untuk menyesuaikan jumlahnya.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Saldo",

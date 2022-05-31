@@ -708,7 +708,8 @@
     "title": "Tehosta",
     "sub-title": "Tehosta julkaisuasi",
     "amount": "Määrä",
-    "slider-hint": "Siirrä liukusäädintä muuttaaksesi määrää."
+    "slider-hint": "Siirrä liukusäädintä muuttaaksesi määrää.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Saldo",
@@ -749,7 +750,7 @@
     "memo": "Muistio",
     "memo-placeholder": "kirjoita muistio tähän",
     "memo-help": "Tämä muistio on julkinen",
-    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
+    "memo-error": "Älä koskaan kopioi yksityisiä avaimia muistikenttään, se on julkisesti kaikkien nähtävissä.",
     "available-hp-hint": "* hive power saatavilla",
     "override-warning-1": "Uusi määrä ohittaa edellisen määrän.",
     "override-warning-2": "Tili ({{account}}) on jo valtuutettu {{previousAmount}}.",

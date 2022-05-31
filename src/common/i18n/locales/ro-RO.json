@@ -708,7 +708,8 @@
     "title": "Boost",
     "sub-title": "La mesajul dvs",
     "amount": "Sumă",
-    "slider-hint": "Trage glisorul pentru a ajusta cantitatea."
+    "slider-hint": "Trage glisorul pentru a ajusta cantitatea.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Sold",

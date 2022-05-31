@@ -708,7 +708,8 @@
     "title": "تعزيز",
     "sub-title": "تعزيز منشورك",
     "amount": "الكمية",
-    "slider-hint": "اسحب شريط التمرير لضبط الكمية."
+    "slider-hint": "اسحب شريط التمرير لضبط الكمية.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "الرصيد",

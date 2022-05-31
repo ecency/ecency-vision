@@ -708,7 +708,8 @@
     "title": "부스트",
     "sub-title": "글 부스트하세요",
     "amount": "수량",
-    "slider-hint": "슬라이드를 드래그해서 수량을 설정할 수 있습니다."
+    "slider-hint": "슬라이드를 드래그해서 수량을 설정할 수 있습니다.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "잔액",

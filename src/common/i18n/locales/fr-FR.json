@@ -708,7 +708,8 @@
     "title": "Booster",
     "sub-title": "Boostez votre post",
     "amount": "Montant",
-    "slider-hint": "Faites glisser le curseur pour ajuster le montant."
+    "slider-hint": "Faites glisser le curseur pour ajuster le montant.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Solde",

@@ -708,7 +708,8 @@
     "title": "Wzmocnienie",
     "sub-title": "Promuj swój post",
     "amount": "Ilość",
-    "slider-hint": "Przeciągnij suwak, aby dostosować kwotę."
+    "slider-hint": "Przeciągnij suwak, aby dostosować kwotę.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Saldo",
