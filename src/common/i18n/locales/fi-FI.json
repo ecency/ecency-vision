@@ -708,7 +708,8 @@
     "title": "Tehosta",
     "sub-title": "Tehosta julkaisuasi",
     "amount": "Määrä",
-    "slider-hint": "Siirrä liukusäädintä muuttaaksesi määrää."
+    "slider-hint": "Siirrä liukusäädintä muuttaaksesi määrää.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Saldo",
