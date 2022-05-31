@@ -708,7 +708,8 @@
     "title": "Підсилити",
     "sub-title": "Підсилити ваш допис",
     "amount": "Сума",
-    "slider-hint": "Перетягніть повзунок, щоб відрегулювати суму."
+    "slider-hint": "Перетягніть повзунок, щоб відрегулювати суму.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Баланс",
