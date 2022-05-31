@@ -14,10 +14,14 @@ export default async (req: Request, res: Response) => {
     const {category, author, permlink} = req.params;
     let entry: Entry | null = null;
 
-    try {
-        entry = await bridgeApi.getPost(author, permlink);
-    } catch (e) {
-        console.error(`${new Date().toISOString()} ERROR fetching @${author}/${permlink}`);
+    if (permlink.indexOf('.')>-1) {
+        console.error(`${new Date().toISOString()} ERROR permlink @${author}/${permlink}`);
+    } else {
+        try {
+            entry = await bridgeApi.getPost(author, permlink);
+        } catch (e) {
+            console.error(`${new Date().toISOString()} ERROR fetching @${author}/${permlink}`);
+        }    
     }
 
     let entries = {};
