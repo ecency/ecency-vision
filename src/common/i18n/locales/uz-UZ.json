@@ -708,7 +708,8 @@
     "title": "Kuchaytirish",
     "sub-title": "Postingizni mustahkamlang",
     "amount": "Miqdor",
-    "slider-hint": "Miqdorni belgilash uchun slayderni torting."
+    "slider-hint": "Miqdorni belgilash uchun slayderni torting.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Balans",
