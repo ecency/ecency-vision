@@ -708,7 +708,8 @@
     "title": "Ενίσχυση",
     "sub-title": "Ενίσχυσε την δημοσίευση",
     "amount": "Ποσό",
-    "slider-hint": "Σύρετε τον ολισθητή για να ρυθμίσετε το ποσό."
+    "slider-hint": "Σύρετε τον ολισθητή για να ρυθμίσετε το ποσό.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Υπόλοιπο",
