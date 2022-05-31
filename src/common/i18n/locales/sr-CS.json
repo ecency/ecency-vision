@@ -708,7 +708,8 @@
     "title": "Pojačaj",
     "sub-title": "Pojačajte vašu objavu",
     "amount": "Iznos",
-    "slider-hint": "Prevucite klizač da biste prilagodili količinu."
+    "slider-hint": "Prevucite klizač da biste prilagodili količinu.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Stanje",
