@@ -708,7 +708,8 @@
     "title": "Promocionar",
     "sub-title": "Promociona tu publicación",
     "amount": "Cantidad",
-    "slider-hint": "Arrastra el deslizador para ajustar la cantidad."
+    "slider-hint": "Arrastra el deslizador para ajustar la cantidad.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Balance",
