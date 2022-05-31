@@ -708,7 +708,8 @@
     "title": "Paspartinti",
     "sub-title": "Paspartinti savo įrašą",
     "amount": "Kiekis",
-    "slider-hint": "Vilkite slankiklį, kad sureguliuotumėte kiekį."
+    "slider-hint": "Vilkite slankiklį, kad sureguliuotumėte kiekį.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Likutis",
