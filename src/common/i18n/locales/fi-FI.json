@@ -709,7 +709,7 @@
     "sub-title": "Tehosta julkaisuasi",
     "amount": "Määrä",
     "slider-hint": "Siirrä liukusäädintä muuttaaksesi määrää.",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "Antamasi äänen todellinen arvo voi vaihdella"
   },
   "redeem-common": {
     "balance": "Saldo",
