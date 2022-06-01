@@ -8,6 +8,8 @@ export const dataLimit = typeof window !== "undefined" && window.screen.width < 
 
 const bridgeApiCall = <T>(endpoint: string, params: {}): Promise<T> => hiveClient.call("bridge", endpoint, params);
 
+export const bridgeServer = hiveClient.currentAddress;
+
 const resolvePost = (post: Entry, observer: string): Promise<Entry> => {
     const {json_metadata: json} = post;
 

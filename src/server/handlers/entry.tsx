@@ -20,7 +20,7 @@ export default async (req: Request, res: Response) => {
         try {
             entry = await bridgeApi.getPost(author, permlink);
         } catch (e) {
-            console.error(`${new Date().toISOString()} ERROR fetching @${author}/${permlink}`);
+            console.error(`${new Date().toISOString()} ${bridgeApi.bridgeServer} ERROR fetching @${author}/${permlink}`);
         }    
     }
 
