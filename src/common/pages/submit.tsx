@@ -520,6 +520,9 @@ class SubmitPage extends BaseComponent<Props, State> {
         const {activeUser, history, addEntry} = this.props;
         const {title, tags, body, description, reward, reblogSwitch, beneficiaries, selectedThumbnail, selectionTouched} = this.state;
 
+        // clean body
+        const cbody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, '')
+
         // make sure active user fully loaded
         if (!activeUser || !activeUser.data.__loaded) {
             return;
@@ -572,7 +575,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         const jsonMeta = makeJsonMetaData(meta, tags, summary, version);
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
         this.stateSet({posting: true});
-        comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options, true)
+        comment(author, "", parentPermlink, permlink, title, cbody, jsonMeta, options, true)
             .then(() => {
 
                 this.clearAdvanced();
@@ -624,8 +627,8 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const {body: oldBody, author, permlink, category, json_metadata} = editingEntry;
-
-        let newBody = body;
+        // clean and copy body
+        let newBody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, '');
         const patch = createPatch(oldBody, newBody.trim());
         if (patch && patch.length < Buffer.from(editingEntry.body, "utf-8").length) {
             newBody = patch;
