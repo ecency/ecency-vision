@@ -38,6 +38,6 @@ export async function getAsAMP(
   const modifiedClasses = 'theme-day';
   ampResult = ampResult.replace('<body>', `<body class="${modifiedClasses}">`);
 
-  await redisSetAsync(client)(identifier, renderResult);
+  await redisSetAsync(client)(identifier, ampResult);
   return ampResult;
 }
