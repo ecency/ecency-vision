@@ -676,7 +676,7 @@ export class Discussion extends Component<Props, State> {
                 <div className="discussion-card">
                     <div className="icon">{commentSvg}</div>
                     <div className="label">{strCount}</div>
-                    <Button onClick={this.show}>{_t("g.show")}</Button>
+                    {this.props.hideControls ? <></> : <Button onClick={this.show}>{_t("g.show")}</Button>}
                 </div>
             </div>
         }

@@ -4,7 +4,7 @@ import { AppState } from '../../common/store';
 import { renderAmp } from '../amp-template';
 // @ts-ignore
 import amp from '@ampproject/toolbox-optimizer';
-import { renderAmpBody } from '@ecency/render-helper-amp';
+import { htmlToAMP } from '@ecency/render-helper-amp';
 import * as fs from 'fs';
 import { promisify } from 'util';
 
@@ -27,7 +27,7 @@ export async function getAsAMP(
 
   const renderResult = await renderAmp(request, preloadedState);
 
-  let ampResult = await renderAmpBody(renderResult, false, false, false);
+  let ampResult = await htmlToAMP(renderResult, false, true);
   ampResult = ampResult.replace(/\n/gm, '');
 
   const styleBlockIndex = ampResult.search('</style>') + 8;

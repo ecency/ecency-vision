@@ -634,7 +634,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 <div className="cross-post-message">{'"'}{crossPostMessage(entry.body)}{'"'}</div>
               </div>
             )}
-            <span itemScope={true} itemType="http://schema.org/Article">
+            <div itemScope={true} itemType="http://schema.org/Article">
                             {(() => {
                               if (nsfw && !showIfNsfw && !global.nsfw) {
                                 return <div className="nsfw-warning">
@@ -994,7 +994,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                 })}
                               </>
                             })()}
-                        </span>
+                        </div>
           </div>
         </div>
       </>

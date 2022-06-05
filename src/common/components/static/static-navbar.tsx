@@ -1,4 +1,5 @@
 import React from 'react';
+const logo = require('../../img/logo-circle.svg');
 
 interface Props {
   fullVersionUrl: string;
@@ -10,7 +11,7 @@ export const StaticNavbar = ({ fullVersionUrl }: Props) => {
       <div className="nav-bar-sm sticky">
         <div className="brand">
           <a href="/">
-            <img src="http://localhost:3001/static/media/logo-circle.2df6f251.svg" className="logo" alt="Logo"/>
+            <img src={logo} className="logo" alt="Logo"/>
           </a>
         </div>
         <div className="text-menu">
@@ -22,7 +23,7 @@ export const StaticNavbar = ({ fullVersionUrl }: Props) => {
         <div className="nav-bar-inner">
           <div className="brand">
             <a href="/">
-              <img src="http://localhost:3001/static/media/logo-circle.2df6f251.svg" className="logo" alt="Logo"/>
+              <img src={logo} className="logo" alt="Logo"/>
             </a>
           </div>
           <div className="text-menu">
@@ -35,7 +36,7 @@ export const StaticNavbar = ({ fullVersionUrl }: Props) => {
       </div>
     </div>
 
-    <div className="p-3 w-100 fixed-bottom hidden d-block d-md-none">
+    <div className="p-3 w-100 fixed-bottom hidden d-block d-md-none view-full-version">
       <a className="btn btn-primary py-2 w-100" href={fullVersionUrl}>View full version</a>
     </div>
   </>

@@ -1783,3 +1783,7 @@ a[target=_blank]:hover:after {
 .entry-page .the-entry .entry-footer .entry-info .app .app-name {
     font-weight: 400;
 }
+
+.view-full-version {
+    bottom: 24px;
+}
