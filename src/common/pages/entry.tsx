@@ -603,14 +603,12 @@ class EntryPage extends BaseComponent<Props, State> {
             modified: modified.toISOString(),
             tag: tags ? isCommunity(tags[0]) ? tags[1] : tags[0] : '',
             keywords: tags && tags.join(", "),
+            amp: `${defaults.base}${entry.url}?amp=1`,
         };
         let containerClasses = global.isElectron ? "app-content entry-page mt-0 pt-6" : "app-content entry-page";
 
         return (
             <>
-                <Helmet>
-                    <link rel="amphtml" href={'https://ecency.com' + location.pathname + '?amp=1'} />
-                </Helmet>
                 <Meta {...metaProps} />
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>

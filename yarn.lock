@@ -18,7 +18,7 @@
     cross-fetch "3.1.2"
     lru-cache "6.0.0"
 
-"@ampproject/toolbox-optimizer@^2.8.1", "@ampproject/toolbox-optimizer@^2.8.10":
+"@ampproject/toolbox-optimizer@^2.8.10":
   version "2.8.10"
   resolved "https://registry.yarnpkg.com/@ampproject/toolbox-optimizer/-/toolbox-optimizer-2.8.10.tgz#ef276c422be617991cd8cfbc70b56b51c5ffcc33"
   integrity sha512-GuXkLHmGJ3pko6aozHa3msxxahiUJM163eG8LEji/MTfNGf0QJCWSQ46a+yHG3tBzYtLexVHWU7A8QMfRbxWGw==
@@ -1289,14 +1289,14 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@ecency/render-helper-amp@^1.0.12":
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/@ecency/render-helper-amp/-/render-helper-amp-1.0.12.tgz#2dc5b46ea540fabb54301a79c7e280f7d3149e1e"
-  integrity sha512-1KuOZTvvrvNeBQGF/lZjrPmqo9wdO4yeMKYG4KCxsmCkb8SafykW75qVr5RVLOSUGuS5h5LEJeuwkEtI+NZc+w==
+"@ecency/render-helper-amp@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@ecency/render-helper-amp/-/render-helper-amp-1.1.0.tgz#8ccb12163786227510a2cc5ce7b09797ac680577"
+  integrity sha512-WHECQT7Z3Nf6LUWQ9wqrsx9HQJC/yvCs+rGSeWw8+0YosuVEr0l3vktZ4Cbvc+ScGNk0CuXdb4HYLvCIrQ77IA==
   dependencies:
-    "@ampproject/toolbox-optimizer" "^2.8.1"
+    "@ampproject/toolbox-optimizer" "^2.8.10"
     amphtml-validator "^1.0.35"
-    cheerio "^1.0.0-rc.10"
+    cheerio "^1.0.0-rc.11"
     he "^1.2.0"
     lru-cache "^5.1.1"
     multihashes "0.4.13"
@@ -3489,7 +3489,7 @@ cheerio-select@^2.1.0:
     domhandler "^5.0.3"
     domutils "^3.0.1"
 
-cheerio@^1.0.0-rc.10:
+cheerio@^1.0.0-rc.11:
   version "1.0.0-rc.11"
   resolved "https://registry.yarnpkg.com/cheerio/-/cheerio-1.0.0-rc.11.tgz#1be84be1a126958366bcc57a11648cd9b30a60c2"
   integrity sha512-bQwNaDIBKID5ts/DsdhxrjqFXYfLw4ste+wMKqWA8DyKcS4qwsPP4Bk8ZNaTJjvpiX/qW3BT4sU7d6Bh5i+dag==
@@ -11933,11 +11933,6 @@ use-memo-one@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/use-memo-one/-/use-memo-one-1.1.2.tgz#0c8203a329f76e040047a35a1197defe342fab20"
   integrity sha512-u2qFKtxLsia/r8qG0ZKkbytbztzRb317XCkT7yP8wxL0tZ/CzK2G+WWie5vWvpyeP7+YoPIwbJoIHJ4Ba4k0oQ==
-
-use-sse@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/use-sse/-/use-sse-2.0.1.tgz#8c4c389d310aa878f8b61c4ecd47a2c5d6f4cfd5"
-  integrity sha512-fsq+7VklgNiHEU2FqpI/DijlX5DoveOFtyazrA/8vXuvzf5lPyXRWcSWDZef6NsKdh9cqtIfKD7rMkgcmFHxUA==
 
 use@^3.1.0:
   version "3.1.1"

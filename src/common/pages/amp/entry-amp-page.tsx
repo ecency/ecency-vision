@@ -581,7 +581,7 @@ class EntryPage extends BaseComponent<Props, State> {
     const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry;
 
     //  Meta config
-    const url = entryCanonical(entry) || '';
+    const url = entryCanonical(entry, true) || '';
 
     const nsfw = entry.json_metadata.tags && entry.json_metadata.tags.includes('nsfw');
 
@@ -600,9 +600,6 @@ class EntryPage extends BaseComponent<Props, State> {
 
     return (
       <>
-        <Helmet>
-          <link rel="canonical" href={location.pathname} />
-        </Helmet>
         <Meta {...metaProps} />
         <ScrollToTop/>
         <Theme global={this.props.global}/>
