@@ -67,7 +67,6 @@ import {checkSvg, contentSaveSvg} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import ModalConfirm from "../components/modal-confirm";
-import ResizableTextarea from "../components/resizable-text-area";
 import TextareaAutocomplete from "../components/textarea-autocomplete";
 
 interface PostBase {
@@ -260,10 +259,12 @@ class SubmitPage extends BaseComponent<Props, State> {
             }
 
             const {title, body} = entry;
+
+            let description = entry.json_metadata?.description || postBodySummary(body, 200);
             let tags = entry.json_metadata?.tags || [];
             tags = [...new Set(tags)];
 
-            this.stateSet({title, tags, body, editingEntry: entry}, this.updatePreview);
+            this.stateSet({title, tags, body, description, editingEntry: entry}, this.updatePreview);
         } else {
             if (this.state.editingEntry) {
                 this.stateSet({editingEntry: null});
@@ -276,6 +277,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         const {params} = match;
 
         if (this.isDraft()) {
+
             let drafts: Draft[];
 
             try {
@@ -518,6 +520,9 @@ class SubmitPage extends BaseComponent<Props, State> {
         const {activeUser, history, addEntry} = this.props;
         const {title, tags, body, description, reward, reblogSwitch, beneficiaries, selectedThumbnail, selectionTouched} = this.state;
 
+        // clean body
+        const cbody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, '')
+
         // make sure active user fully loaded
         if (!activeUser || !activeUser.data.__loaded) {
             return;
@@ -570,7 +575,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         const jsonMeta = makeJsonMetaData(meta, tags, summary, version);
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
         this.stateSet({posting: true});
-        comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options, true)
+        comment(author, "", parentPermlink, permlink, title, cbody, jsonMeta, options, true)
             .then(() => {
 
                 this.clearAdvanced();
@@ -616,15 +621,14 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const {activeUser, updateEntry, history} = this.props;
-        const {title, tags, body, editingEntry, selectionTouched, selectedThumbnail} = this.state;
-
+        const {title, tags, body, description, editingEntry, selectionTouched, selectedThumbnail} = this.state;
         if (!editingEntry) {
             return;
         }
 
         const {body: oldBody, author, permlink, category, json_metadata} = editingEntry;
-
-        let newBody = body;
+        // clean and copy body
+        let newBody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, '');
         const patch = createPatch(oldBody, newBody.trim());
         if (patch && patch.length < Buffer.from(editingEntry.body, "utf-8").length) {
             newBody = patch;
@@ -647,7 +651,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
         // TODO: Add summary to update
         // const summary = this.state.description.trim() === '' ? postBodySummary(this.state.body, 200) : this.state.description;
-        const jsonMeta = Object.assign({}, json_metadata, meta, {tags});
+        const jsonMeta = Object.assign({}, json_metadata, meta, {tags}, {description});
 
         this.stateSet({posting: true});
         
@@ -965,7 +969,8 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                     <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
                                                 </Col>
                                             </Form.Group>
-                                             <Form.Group as={Row}>
+                                        </>}
+                                            <Form.Group as={Row}>
                                             <Form.Label column={true} sm='3'>
                                                 {_t('submit.description')}
                                             </Form.Label>
@@ -981,7 +986,8 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                     {this.state.description !== '' ? this.state.description : postBodySummary(body, 200)}
                                                 </Form.Text>
                                             </Col>
-                                        </Form.Group>
+                                            </Form.Group>
+                                        {editingEntry === null && <>
                                             {global.usePrivate && <Form.Group as={Row}>
                                             <Form.Label column={true} sm="3">
                                                 {_t("submit.schedule")}
@@ -991,6 +997,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
                                             </Col>
                                             </Form.Group>}
+                                        </>}
                                             {tags.length > 0 && isCommunity(tags[0]) && (
                                                 <Form.Group as={Row}>
                                                     <Col sm="3"/>
@@ -1006,7 +1013,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                     </Col>
                                                 </Form.Group>
                                             )}
-                                        </>}
+
                                         {thumbnails.length > 0 && 
                                             <Form.Group as={Row}>
                                                 <Form.Label column={true} sm="3">

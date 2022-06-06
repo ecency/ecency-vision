@@ -708,7 +708,8 @@
     "title": "Подсилване",
     "sub-title": "Подсили поста си",
     "amount": "Сума",
-    "slider-hint": "Плъзнете слайдъра за да регулирате стойноста."
+    "slider-hint": "Плъзнете слайдъра за да регулирате стойноста.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Баланс",

@@ -708,7 +708,8 @@
     "title": "推荐",
     "sub-title": "推荐您的帖子",
     "amount": "数量",
-    "slider-hint": "拖动滑块来调整金额。"
+    "slider-hint": "拖动滑块来调整金额。",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "余额",

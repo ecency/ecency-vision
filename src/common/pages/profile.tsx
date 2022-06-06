@@ -114,9 +114,6 @@ class ProfilePage extends BaseComponent<Props, State> {
             fetchEntries(global.filter, global.tag, false);
         }
 
-        // fetch wallet transactions
-        fetchTransactions(username);
-
         // fetch points
         fetchPoints(username);
         

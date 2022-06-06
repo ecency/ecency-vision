@@ -708,7 +708,8 @@
     "title": "Gücləndir",
     "sub-title": "Boost your post",
     "amount": "Miqdar",
-    "slider-hint": "Miqdarı nizamlamaq üçün diyircəyi sürüşdürün."
+    "slider-hint": "Miqdarı nizamlamaq üçün diyircəyi sürüşdürün.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Balans",

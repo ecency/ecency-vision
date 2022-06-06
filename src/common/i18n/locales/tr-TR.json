@@ -708,7 +708,8 @@
     "title": "Yükselt",
     "sub-title": "Gönderini yükselt",
     "amount": "Miktar",
-    "slider-hint": "Miktarı ayarlamak için kaydırıcıyı sürükleyin."
+    "slider-hint": "Miktarı ayarlamak için kaydırıcıyı sürükleyin.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Bakiye",

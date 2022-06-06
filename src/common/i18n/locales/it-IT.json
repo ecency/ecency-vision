@@ -708,7 +708,8 @@
     "title": "Boost",
     "sub-title": "Boost sul tuo post",
     "amount": "Importo",
-    "slider-hint": "Trascina il cursore per regolare l'importo."
+    "slider-hint": "Trascina il cursore per regolare l'importo.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Saldo",

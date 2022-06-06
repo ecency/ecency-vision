@@ -141,6 +141,11 @@ exports[`(1) Default render 1`] = `
           >
             Next
           </button>
+          <small
+            className="text-warning font-italic form-text"
+          >
+            Actual value of vote you receive may vary
+          </small>
         </div>
       </div>
     </div>
@@ -293,6 +298,11 @@ exports[`(2) Insufficient Funds 1`] = `
           >
             Next
           </button>
+          <small
+            className="text-warning font-italic form-text"
+          >
+            Actual value of vote you receive may vary
+          </small>
         </div>
       </div>
     </div>
@@ -441,6 +451,11 @@ exports[`(2) With entry 1`] = `
           >
             Next
           </button>
+          <small
+            className="text-warning font-italic form-text"
+          >
+            Actual value of vote you receive may vary
+          </small>
         </div>
       </div>
     </div>

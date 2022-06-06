@@ -708,7 +708,8 @@
     "title": "Boost",
     "sub-title": "Booste Deinen Beitrag",
     "amount": "Menge",
-    "slider-hint": "Ziehe den Slider, um den Wert anzupassen."
+    "slider-hint": "Ziehe den Slider, um den Wert anzupassen.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Kontostand",

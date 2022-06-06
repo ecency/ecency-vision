@@ -306,6 +306,7 @@ export class Boost extends BaseComponent<Props, State> {
                             <Form.Label column={true} sm="2"/>
                             <Col sm="10">
                                 <Button type="button" onClick={this.next} disabled={!canSubmit || inProgress} variant="primary">{_t('g.next')}</Button>
+                                <Form.Text className="text-warning font-italic">{_t('boost.hint')}</Form.Text>
                             </Col>
                         </Form.Group>
                     </div>

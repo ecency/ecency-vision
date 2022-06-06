@@ -708,7 +708,8 @@
     "title": "Felpörgetés",
     "sub-title": "Boost your post",
     "amount": "Összeg",
-    "slider-hint": "A csúszka húzásával állítsd be a mennyiséget."
+    "slider-hint": "A csúszka húzásával állítsd be a mennyiséget.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Egyenleg",
