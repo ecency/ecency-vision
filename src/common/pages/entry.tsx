@@ -75,6 +75,7 @@ import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
 import { getPost } from '../api/bridge';
+import { Helmet } from 'react-helmet';
 
 setProxyBase(defaults.imageServer);
 
@@ -487,7 +488,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
     render() {
         const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, /*commentText,*/ isMounted, postIsDeleted, deletedEntry, showProfileBox} = this.state;
-        const {global, history, match} = this.props;
+        const {global, history, match, location} = this.props;
 
         let navBar = global.isElectron ? NavBarElectron({
             ...this.props,
@@ -607,6 +608,9 @@ class EntryPage extends BaseComponent<Props, State> {
 
         return (
             <>
+                <Helmet>
+                    <link rel="amphtml" href={'https://ecency.com' + location.pathname + '?amp=1'} />
+                </Helmet>
                 <Meta {...metaProps} />
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>

@@ -66,6 +66,7 @@ import { commentHistory } from '../../api/private-api';
 import { getPost } from '../../api/bridge';
 import { StaticNavbar } from '../../components/static';
 import './entry-amp-page.css';
+import { Helmet } from 'react-helmet';
 
 setProxyBase(defaults.imageServer);
 
@@ -495,7 +496,7 @@ class EntryPage extends BaseComponent<Props, State> {
       deletedEntry,
       showProfileBox
     } = this.state;
-    const { global, history, match } = this.props;
+    const { global, history, match, location } = this.props;
 
     const entry = this.getEntry();
     if (postIsDeleted) {
@@ -599,6 +600,9 @@ class EntryPage extends BaseComponent<Props, State> {
 
     return (
       <>
+        <Helmet>
+          <link rel="canonical" href={location.pathname} />
+        </Helmet>
         <Meta {...metaProps} />
         <ScrollToTop/>
         <Theme global={this.props.global}/>
