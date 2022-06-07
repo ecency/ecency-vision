@@ -854,7 +854,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 placeholder={_t("submit.body-placeholder")}
                                 value={body.length > 0 ? body : preview.body}
                                 onChange={this.bodyChanged}
-                                minrows={10}
+                                disableRows={true}
                                 maxrows={100}
                                 spellCheck={true}
                                 activeUser={activeUser && activeUser.username || ""}
