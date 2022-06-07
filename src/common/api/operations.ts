@@ -1158,13 +1158,113 @@ export const unstakeHiveEngineKc = (from: string, to: string, symbol: string, am
   });
 
     return keychain.customJson(from, "ssc-mainnet-hive", "Active", json, "Transfer")
-}
+};
 
 // HE Hive Signer Operations
-// client.customJson(requiredAuths, requiredPostingAuths, id, json, function (err, res) {
-//     console.log(err, res)
-//   });
-export const transferHiveEngineHs = (from: string, to: string, symbol: string, amount: string, memo: string) => {
+export const transferHiveEngineHs = (from: string, to: string, symbol: string, amount: string, memo: string):any => {
+    const params = {
+        authority: "active",
+        required_auths: `["${from}"]`,
+        required_posting_auths: "[]",
+        id: "ssc-mainnet-hive",
+        json: JSON.stringify({
+            contractName: 'tokens',
+            contractAction: 'transfer',
+            contractPayload: {
+                symbol,
+                to,
+                quantity: amount.toString(),
+                memo,
+            }
+        }),
+    };
+
+    return hotSign("custom-json", params, `@${from}/engine`);
+}
+
+export const delegateHiveEngineHs = (from: string, to: string, symbol: string, amount: string):any => {
+    const params = {
+        authority: "active",
+        required_auths: `["${from}"]`,
+        required_posting_auths: "[]",
+        id: "ssc-mainnet-hive",
+        json: JSON.stringify({
+            contractName: 'tokens',
+            contractAction: 'delegate',
+            contractPayload: {
+                symbol,
+                to,
+                quantity: amount.toString()
+            }
+        }),
+    };
+
+    return hotSign("custom-json", params, `@${from}/engine`);
+}
+
+export const undelegateHiveEngineHs = (from: string, to: string, symbol: string, amount: string):any => {
+    const params = {
+        authority: "active",
+        required_auths: `["${from}"]`,
+        required_posting_auths: "[]",
+        id: "ssc-mainnet-hive",
+        json: JSON.stringify({
+            contractName: 'tokens',
+            contractAction: 'undelegate',
+            contractPayload: {
+                symbol,
+                from: to,
+                quantity: amount.toString()
+            }
+        }),
+    };
+
+    return hotSign("custom-json", params, `@${from}/engine`);
+}
+
+export const stakeHiveEngineHs = (from: string, to: string, symbol: string, amount: string):any => {
+    const params = {
+        authority: "active",
+        required_auths: `["${from}"]`,
+        required_posting_auths: "[]",
+        id: "ssc-mainnet-hive",
+        json: JSON.stringify({
+            contractName: 'tokens',
+            contractAction: 'stake',
+            contractPayload: {
+                symbol,
+                to,
+                quantity: amount.toString()
+            }
+        }),
+    };
+
+    return hotSign("custom-json", params, `@${from}/engine`);
+}
+
+export const unstakeHiveEngineHs = (from: string, to: string, symbol: string, amount: string):any => {
+    const params = {
+        authority: "active",
+        required_auths: `["${from}"]`,
+        required_posting_auths: "[]",
+        id: "ssc-mainnet-hive",
+        json: JSON.stringify({
+            contractName: 'tokens',
+            contractAction: 'unstake',
+            contractPayload: {
+                symbol,
+                to,
+                quantity: amount.toString()
+            }
+        }),
+    };
+
+    return hotSign("custom-json", params, `@${from}/engine`);
+}
+
+
+//HE Key Operations
+export const transferHiveEngineKey = async (from: string, key: PrivateKey, symbol: string, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
     const json = JSON.stringify({
     contractName: 'tokens',
     contractAction: 'transfer',
@@ -1176,20 +1276,102 @@ export const transferHiveEngineHs = (from: string, to: string, symbol: string, a
     }
   });
 
-  const payload = {
-    required_auths: [from],
-    required_posting_auths: [],
-    id: "ssc-mainnet-hive",
-    json,
-};
+    const op = {
+        id: 'ssc-mainnet-hive',
+        json,
+        required_auths: [from],
+        required_posting_auths: []
+    };
 
+    const result =  await hiveClient.broadcast.json(op, key);
+    
+    return result;
+}
 
-    const op: Operation = ['custom_json', payload];
+export const delegateHiveEngineKey = async (from: string, key: PrivateKey, symbol: string, to: string, amount: string): Promise<TransactionConfirmation> => {
+    const json = JSON.stringify({
+    contractName: 'tokens',
+    contractAction: 'delegate',
+    contractPayload: {
+      symbol,
+      to,
+      quantity: amount.toString(),
+    }
+  });
 
-    // return
+    const op = {
+        id: 'ssc-mainnet-hive',
+        json,
+        required_auths: [from],
+        required_posting_auths: []
+    };
 
-    const params: Parameters = {callback: `https://ecency.com/@${from}/engine`};
-    return hs.sendOperation(op, params, (resp) => {
-        console.log(resp)
-    });
+    const result =  await hiveClient.broadcast.json(op, key);
+    return result;
+}
+
+export const undelegateHiveEngineKey = async (from: string, key: PrivateKey, symbol: string, to: string, amount: string): Promise<TransactionConfirmation> => {
+    const json = JSON.stringify({
+    contractName: 'tokens',
+    contractAction: 'undelegate',
+    contractPayload: {
+      symbol,
+      from: to,
+      quantity: amount.toString(),
+    }
+  });
+
+    const op = {
+        id: 'ssc-mainnet-hive',
+        json,
+        required_auths: [from],
+        required_posting_auths: []
+    };
+
+    const result =  await hiveClient.broadcast.json(op, key);
+    return result;
+}
+
+export const stakeHiveEngineKey = async (from: string, key: PrivateKey, symbol: string, to: string, amount: string): Promise<TransactionConfirmation> => {
+    const json = JSON.stringify({
+    contractName: 'tokens',
+    contractAction: 'stake',
+    contractPayload: {
+      symbol,
+      to,
+      quantity: amount.toString(),
+    }
+  });
+
+    const op = {
+        id: 'ssc-mainnet-hive',
+        json,
+        required_auths: [from],
+        required_posting_auths: []
+    };
+
+    const result =  await hiveClient.broadcast.json(op, key);
+    return result;
+}
+
+export const unstakeHiveEngineKey = async (from: string, key: PrivateKey, symbol: string, to: string, amount: string): Promise<TransactionConfirmation> => {
+    const json = JSON.stringify({
+    contractName: 'tokens',
+    contractAction: 'stake',
+    contractPayload: {
+      symbol,
+      to,
+      quantity: amount.toString(),
+    }
+  });
+
+    const op = {
+        id: 'ssc-mainnet-hive',
+        json,
+        required_auths: [from],
+        required_posting_auths: []
+    };
+
+    const result =  await hiveClient.broadcast.json(op, key);
+    return result;
 }

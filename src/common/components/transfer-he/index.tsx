@@ -32,21 +32,23 @@ import {vestsToHp, hpToVests} from "../../helper/vesting";
 import { getAccount, getAccountFull, getVestingDelegations} from "../../api/hive";
 
 import {
-    transferHot,
     transferHiveEngineKc,
     delegateHiveEngineKc,
     undelegateHiveEngineKc,
     stakeHiveEngineKc,
     unstakeHiveEngineKc,
     transferPoint,
-    transferPointHot,
     transferHiveEngineHs,
-    transferToSavingsHot,
-    transferFromSavingsHot,
-    transferToVestingHot,
-    transferToVestingKc,
-    convertHot,
-    formatError
+    formatError,
+    delegateHiveEngineHs,
+    undelegateHiveEngineHs,
+    stakeHiveEngineHs,
+    unstakeHiveEngineHs,
+    transferHiveEngineKey,
+    delegateHiveEngineKey,
+    undelegateHiveEngineKey,
+    stakeHiveEngineKey,
+    unstakeHiveEngineKey,
 } from "../../api/operations";
 
 import {_t} from "../../i18n";
@@ -308,34 +310,34 @@ export class Transfer extends BaseComponent<Props, State> {
     sign = (key: PrivateKey) => {
         const {activeUser, mode} = this.props;
         const {to, amount, asset, memo} = this.state;
-        const fullAmount = `${amount} ${asset}`;
+        const fullAmount = `${amount}`;
         const username = activeUser?.username!
 
         let promise: Promise<any>;
         switch (mode) {
             case "transfer": {
                // Perform HE operation
-                promise = transferPoint(username, key, to, fullAmount, memo);
+                promise = transferHiveEngineKey(username, key, asset, to, fullAmount, memo);
                 break;
             }
             case "delegate": {
                 // Perform HE operation
-                promise = transferPoint(username, key, to, fullAmount, memo);
+                promise = delegateHiveEngineKey(username, key, asset, to, fullAmount);
                 break;
             }
             case "undelegate": {
                 // Perform HE operation
-                promise = transferPoint(username, key, to, fullAmount, memo);
+                promise = undelegateHiveEngineKey(username, key, asset, to, fullAmount);
                 break;
             }
             case "stake": {
                 // Perform HE operation
-                promise = transferPoint(username, key, to, fullAmount, memo);
+                promise = stakeHiveEngineKey(username, key, asset, to, fullAmount);
                 break;
             }
             case "unstake": {
                 // Perform HE operation
-                promise = transferPoint(username, key, to, fullAmount, memo);
+                promise = unstakeHiveEngineKey(username, key, asset, to, fullAmount);
                 break;
             }
             default:
@@ -362,30 +364,32 @@ export class Transfer extends BaseComponent<Props, State> {
     signHs = () => {
         const {activeUser, mode, onHide} = this.props;
         const {to, amount, asset, memo} = this.state;
-        const fullAmount = `${amount} ${asset}`;
-        const username = activeUser?.username!
+        const fullAmount = `${amount}`;
+        const username = activeUser?.username!;
+
+        let promise: Promise<any>;
 
         switch (mode) {
             case "transfer": {
-                transferHiveEngineHs(username, to, asset, fullAmount, memo);
+                promise = transferHiveEngineHs(username, to, asset, fullAmount, memo);
                 break;
             }
-            // case "delegate": {
-            //     promise = delegateHiveEngineHs(username, to, asset, fullAmount);
-            //     break;
-            // }
-            // case "undelegate": {
-            //     promise = undelegateHiveEngineHs(username, to, asset, fullAmount)
-            //     break;
-            // }
-            // case "stake": {
-            //     promise = stakeHiveEngineHs(username, to, asset, fullAmount);
-            //     break;
-            // }
-            // case "unstake": {
-            //     promise = unstakeHiveEngineHs(username, to, asset, fullAmount);
-            //     break;
-            // }
+            case "delegate": {
+                promise = delegateHiveEngineHs(username, to, asset, fullAmount);
+                break;
+            }
+            case "undelegate": {
+                promise = undelegateHiveEngineHs(username, to, asset, fullAmount)
+                break;
+            }
+            case "stake": {
+                promise = stakeHiveEngineHs(username, to, asset, fullAmount);
+                break;
+            }
+            case "unstake": {
+                promise = unstakeHiveEngineHs(username, to, asset, fullAmount);
+                break;
+            }
             default:
                 return;
         }
@@ -444,11 +448,7 @@ export class Transfer extends BaseComponent<Props, State> {
     finish = () => {
         const {onHide, mode, asset, account, activeUser, fetchPoints, updateWalletValues} = this.props;
         if (account && activeUser && (account.name !== activeUser.username)) {
-            if (mode === 'transfer' && asset === 'POINT') {
-                fetchPoints(account.name)
-            } else {
-                updateWalletValues()
-            }
+            updateWalletValues();   
         }
         // const {onHide} = this.props;
         onHide();
@@ -485,28 +485,6 @@ export class Transfer extends BaseComponent<Props, State> {
             },
             onSelect: this.toSelected,
         };
-
-        let assets: string[] = [];
-        switch (mode) {
-            case "transfer":
-                if (global.usePrivate) {
-                    assets = ["HIVE", "HBD", "POINT"];
-                } else {
-                    assets = ["HIVE", "HBD"];
-                }
-                break;
-            case "delegate":
-            case "undelegate":
-                assets = ["HIVE", "HBD"];
-                break;
-            case "stake":
-                assets = ["HBD"];
-                break;
-            case "unstake":
-                assets = ["HIVE"];
-                break;
-
-        }
 
         const showTo = ["transfer", "delegate", "undelegate", "stake"].includes(mode);
         const showMemo = ["transfer"].includes(mode);
