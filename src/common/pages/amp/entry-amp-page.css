@@ -585,7 +585,9 @@ a[target=_blank]:hover:after {
 }
 
 .discussion .discussion-card .icon {
-    padding: 14px;
+    padding: 0 10px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     margin-bottom: 20px;
     color: #357ce6;
@@ -593,7 +595,7 @@ a[target=_blank]:hover:after {
 }
 
 .discussion .discussion-card .icon svg {
-    height: 40px;
+    height: 38px;
     margin-bottom: -2px;
 }
 
@@ -1421,42 +1423,9 @@ a[target=_blank]:hover:after {
     padding-top: 20px;
 }
 
-.discussion .discussion-card .icon {
-    padding: 14px;
-    border-radius: 50%;
-    margin-bottom: 20px;
-    color: #357ce6;
-    border: 2px solid #357ce6;
-}
-
-.discussion .discussion-card .icon svg {
-    height: 40px;
-    margin-bottom: -2px;
-}
-
 .discussion .discussion-card .label {
     font-size: 1.4rem;
     margin-bottom: 20px;
-}
-
-.scroll-to-top {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 40px;
-    height: 40px;
-    background: #357ce6;
-    color: #fff;
-    border-radius: 50%;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
-    z-index: 10;
-    display: none;
-    cursor: pointer;
-}
-
-.scroll-to-top svg {
-    width: 20px;
-    height: 20px;
 }
 
 .entry-page .the-entry .entry-footer .entry-info .separator, .entry-page .the-entry .entry-header .entry-info .entry-info-inner .info-line-2 .separator {

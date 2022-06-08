@@ -27,7 +27,6 @@ import Meta from '../../components/meta';
 import Theme from '../../components/theme/index';
 import Feedback from '../../components/feedback';
 import NotFound from '../../components/404';
-import ScrollToTop from '../../components/scroll-to-top';
 import AuthorInfoCard from '../../components/author-info-card';
 
 import * as bridgeApi from '../../api/bridge';
@@ -508,7 +507,6 @@ class EntryPage extends BaseComponent<Props, State> {
         <StaticNavbar fullVersionUrl={entry?.url || ''} />
         {deletedEntry &&
           <div className="container overflow-x-hidden">
-            <ScrollToTop/>
             <Theme global={this.props.global}/>
             <div className="row">
               <div className="col-0 col-lg-2 mt-5">
@@ -601,7 +599,6 @@ class EntryPage extends BaseComponent<Props, State> {
     return (
       <>
         <Meta {...metaProps} />
-        <ScrollToTop/>
         <Theme global={this.props.global}/>
         <Feedback/>
         <MdHandler global={this.props.global} history={this.props.history}/>
