@@ -7,6 +7,7 @@ import amp from '@ampproject/toolbox-optimizer';
 import { htmlToAMP } from '@ecency/render-helper-amp';
 import * as fs from 'fs';
 import { promisify } from 'util';
+import config from "../../config";
 
 let assets: any = require(process.env.RAZZLE_ASSETS_MANIFEST || '');
 const redisGetAsync = (client: RedisClient) => promisify(client.get).bind(client);
@@ -18,7 +19,9 @@ export async function getAsAMP(
   preloadedState: AppState,
   forceRender = false,
 ): Promise<string> {
-  const client = createClient();
+  const client = createClient({
+    url: config.redisUrl
+  });
 
   const cache = await redisGetAsync(client)(identifier);
   if (cache && !forceRender) {

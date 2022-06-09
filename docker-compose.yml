@@ -5,6 +5,7 @@ services:
     image: ecency/vision:development
     environment:
       - USE_PRIVATE
+      - REDIS_URL
     ports:
       - "3000:3000"
     deploy:
@@ -26,15 +27,3 @@ services:
         delay: 5s
         max_attempts: 5
         window: 30s
-
-  redis:
-    image: redis
-    container_name: ecency_redis
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-    ports:
-      - "6379:6379"
-    volumes:
-      - $PWD/redis/redis-data:/var/lib/redis
-      - $PWD/redis/redis.conf:/usr/local/etc/redis/redis.conf
-    command: redis-server
