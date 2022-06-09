@@ -59,7 +59,7 @@ const CommunityCreateHSPage = (props: any) => <CommunityCreateHSContainer {...pr
 
 const EntryAMPContainer = loadable(() => import('./pages/amp/entry-amp-page'));
 const EntryPage = (props: any) => {
-  const [isAmp, setIsAmp] = useState(props.location.search.includes('?amp'));
+  const [isAmp, setIsAmp] = useState(props.location.search.includes('?amps'));
   return isAmp ? <EntryAMPContainer {...props} /> : <EntryContainer {...props} />;
 }
 
