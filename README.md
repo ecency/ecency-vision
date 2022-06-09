@@ -46,6 +46,7 @@ Feel free to test it out and submit improvements and pull requests.
 ##### Environment variables
 
 * `USE_PRIVATE` -  if instance has private api address and auth (0 or 1 value)
+* `REDIS_URL` - support for caching amp pages
 
 ##### Start website in dev
 `$ yarn start`

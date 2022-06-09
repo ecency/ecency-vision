@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import EntryIndexContainer from './pages/index';
 import EntryContainer from './pages/entry';
 import { SearchPageContainer, SearchMorePageContainer } from './pages/search';
 import { ProposalsIndexContainer, ProposalDetailContainer } from './pages/proposals';
 import NotFound from './components/404';
-
 import Tracker from './tracker';
-
 import {
   AboutPage,
   GuestPostPage,
@@ -18,10 +16,8 @@ import {
   FaqPage,
   ContributorsPage
 } from './pages/static';
-
 import routes from './routes';
 import * as ls from './util/local-storage';
-
 import i18n from 'i18next';
 import { pageMapDispatchToProps, pageMapStateToProps } from './pages/common';
 import { connect } from 'react-redux';
@@ -61,6 +57,12 @@ const CommunityCreatePage = (props: any) => <CommunityCreateContainer {...props}
 const CommunityCreateHSContainer = loadable(() => import('./pages/community-create-hs'));
 const CommunityCreateHSPage = (props: any) => <CommunityCreateHSContainer {...props} />;
 
+const EntryAMPContainer = loadable(() => import('./pages/amp/entry-amp-page'));
+const EntryPage = (props: any) => {
+  const [isAmp, setIsAmp] = useState(props.location.search.includes('?amp'));
+  return isAmp ? <EntryAMPContainer {...props} /> : <EntryContainer {...props} />;
+}
+
 const App = ({ setLang }: any) => {
   useEffect(() => {
     let pathname = window.location.pathname;
@@ -82,7 +84,7 @@ const App = ({ setLang }: any) => {
         <Route exact={true} strict={true} path={routes.USER_FEED} component={EntryIndexContainer}/>
         <Route exact={true} strict={true} path={routes.USER} component={ProfilePage}/>
         <Route exact={true} strict={true} path={routes.USER_SECTION} component={ProfilePage}/>
-        <Route exact={true} strict={true} path={routes.ENTRY} component={EntryContainer}/>
+        <Route exact={true} strict={true} path={routes.ENTRY} component={EntryPage}/>
         <Route exact={true} strict={true} path={routes.COMMUNITIES} component={CommunitiesPage}/>
         <Route exact={true} strict={true} path={routes.COMMUNITIES_CREATE} component={CommunityCreatePage}/>
         <Route exact={true} strict={true} path={routes.COMMUNITIES_CREATE_HS} component={CommunityCreateHSPage}/>

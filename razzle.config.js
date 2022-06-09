@@ -30,7 +30,7 @@ module.exports = {
       // build/public folder
       webpackConfig.plugins.push(
         new LoadableWebpackPlugin({
-          outputAsset: false,
+          outputAsset: true,
           writeToDisk: { filename },
         })
       );
