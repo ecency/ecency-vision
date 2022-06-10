@@ -17,7 +17,6 @@ import BaseComponent from '../../components/base';
 import ProfileLink from '../../components/profile-link';
 import UserAvatar from '../../components/user-avatar';
 import Tag from '../../components/tag';
-import Discussion from '../../components/discussion';
 import MdHandler from '../../components/md-handler';
 import Comment from '../../components/comment'
 import SimilarEntries from '../../components/similar-entries';
@@ -982,13 +981,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                   ...this.props,
                                   entry,
                                   display: !activeUser ? 'd-none' : ''
-                                })}
-
-                                {Discussion({
-                                  ...this.props,
-                                  parent: entry,
-                                  community,
-                                  hideControls: true
                                 })}
                               </>
                             })()}
