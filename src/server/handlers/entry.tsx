@@ -11,6 +11,8 @@ import {render} from "../template";
 import dmca from '../../common/constants/dmca.json';
 import { getAsAMP } from '../services';
 import { getPost } from '../../common/api/hive';
+import { parse } from 'node-html-parser';
+import moment from 'moment';
 
 export default async (req: Request, res: Response) => {
     const {category, author, permlink} = req.params;
@@ -64,14 +66,22 @@ export default async (req: Request, res: Response) => {
     if ('amps' in req.query) {
         let ignoreCache = false;
         let identifier = `${category}_${author}_${permlink}`;
+        let entry;
         try {
-            const entry = await getPost(author, permlink);
+            entry = await getPost(author, permlink);
             identifier += `_${entry.last_update}`;
         } catch (e) {
             ignoreCache = true;
         }
         const ampResult = await getAsAMP(identifier, req, preLoadedState, ignoreCache);
-        res.send(ampResult);
+        const tree = parse(ampResult);
+        const date = tree.querySelector('.date');
+        if (date) {
+            const newDate = moment(entry.created).fromNow();
+            date.innerHTML = newDate;
+        }
+
+        res.send(tree.toString());
         return;
     }
 
