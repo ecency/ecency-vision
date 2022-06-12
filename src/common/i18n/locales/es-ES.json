@@ -1363,5 +1363,8 @@
     "grid": "Cuadrícula",
     "classic": "Clásico",
     "deck": "Cubierta"
+  },
+  "top-communities": {
+    "title": "Top communities"
   }
 }
