@@ -1363,5 +1363,8 @@
     "grid": "Ruudukko",
     "classic": "Klassinen",
     "deck": "Pakka"
+  },
+  "top-communities": {
+    "title": "Top communities"
   }
 }
