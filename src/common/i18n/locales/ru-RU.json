@@ -1363,5 +1363,8 @@
     "grid": "Сетка",
     "classic": "Классический",
     "deck": "Колода"
+  },
+  "top-communities": {
+    "title": "Top communities"
   }
 }
