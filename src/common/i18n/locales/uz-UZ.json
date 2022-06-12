@@ -1363,5 +1363,8 @@
     "grid": "Panjara",
     "classic": "Klassik",
     "deck": "Ustun"
+  },
+  "top-communities": {
+    "title": "Top communities"
   }
 }
