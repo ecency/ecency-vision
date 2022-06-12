@@ -40,7 +40,7 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
     addAccount: (data: Account) => void;
     updateSubscriptions: (list: Subscription[]) => void;
-    small: boolean;
+    small?: boolean;
 }
 
 export class CommunityListItem extends Component<Props> {
