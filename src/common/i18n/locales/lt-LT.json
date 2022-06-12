@@ -1363,5 +1363,8 @@
     "grid": "Tinklelis",
     "classic": "Klasikinis",
     "deck": "Kortų kaladė"
+  },
+  "top-communities": {
+    "title": "Top communities"
   }
 }
