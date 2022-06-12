@@ -1363,5 +1363,8 @@
     "grid": "Kisi",
     "classic": "Klasik",
     "deck": "Deck"
+  },
+  "top-communities": {
+    "title": "Top communities"
   }
 }
