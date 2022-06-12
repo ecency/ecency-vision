@@ -1363,5 +1363,8 @@
     "grid": "그리드뷰",
     "classic": "기본",
     "deck": "Deck"
+  },
+  "top-communities": {
+    "title": "Top communities"
   }
 }
