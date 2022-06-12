@@ -1363,5 +1363,8 @@
     "grid": "Grade",
     "classic": "Clássico",
     "deck": "Prancha"
+  },
+  "top-communities": {
+    "title": "Top communities"
   }
 }
