@@ -1363,5 +1363,8 @@
     "grid": "ग्रिड",
     "classic": "क्लॅसिक",
     "deck": "डेक"
+  },
+  "top-communities": {
+    "title": "Top communities"
   }
 }
