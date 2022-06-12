@@ -41,13 +41,24 @@ export const TopCommunitiesWidget = (props: Props) => {
     setLoading(true);
 
     try {
-      const response = await getCommunities('', 5, null, 'rank');
+      const response = await getCommunities('', 10, null, 'rank');
       if (response) {
-        setList(response);
+        setList(setRandomItems(response));
       }
     } finally {
       setLoading(false);
     }
+  };
+
+  const setRandomItems = (items: Community[]): Community[] => {
+    const result: Community[] = [];
+    while (result.length < 5) {
+      const index = Math.floor(Math.random() * (items.length - 1));
+      if (result.every(item => items[index].id !== item.id)) {
+        result.push(items[index]);
+      }
+    }
+    return result;
   };
 
   const fetchUserSubscriptions = async () => {
