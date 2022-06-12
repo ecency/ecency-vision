@@ -12,6 +12,7 @@ import _c from '../util/fix-class-names';
 import { PageProps } from './common';
 import { DeckView } from '../components/deck-view';
 import { Entry } from '../store/entries/types';
+import { TopCommunitiesWidget } from '../components/top-communities-widget';
 
 
 interface Props extends PageProps {
@@ -134,6 +135,7 @@ class EntryIndexPage extends Component<Props, State> {
                         </div>
                         <div className="side-menu">
                             {!global.isMobile && <MarketData global={global}/>}
+                            {!global.isMobile && <TopCommunitiesWidget {...this.props} />}
                         </div></>}
                     </div>
                 }
