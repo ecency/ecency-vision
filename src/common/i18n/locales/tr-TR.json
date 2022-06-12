@@ -1363,5 +1363,8 @@
     "grid": "Izgara",
     "classic": "Klasik",
     "deck": "Deck"
+  },
+  "top-communities": {
+    "title": "Top communities"
   }
 }
