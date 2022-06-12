@@ -481,7 +481,7 @@
     "title": "Comunidades",
     "description": "Las mejores comunidades en línea, descentralizadas, inmutables",
     "n-subscribers": "{{n}} miembros",
-    "n-authors": "{{n}} Posteadores",
+    "n-authors": "{{n}} Autores",
     "n-posts": "{{n}} publicaciones",
     "admins": "administrador:",
     "sort-hot": "Popular",
