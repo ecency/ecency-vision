@@ -217,8 +217,8 @@ export class Transfer extends BaseComponent<Props, State> {
 
     memoChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: memo} = e.target;
-        const mError = cryptoUtils.isWif(memo);
-        if (mError) this.setState({ memoError: _t("transfer.memo-error")});
+        const mError = cryptoUtils.isWif(memo.trim());
+        if (mError) this.setState({ memoError: _t("transfer.memo-error").toUpperCase() });
         this.stateSet({memo});
     };
 
@@ -844,8 +844,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
                         <Form.Group as={Row}>
                             <Col sm={{span: 10, offset: 2}}>
-                                {/* Changed && to || since it just allows the form to submit anyway initially */}
-                                <Button onClick={this.next} disabled={!this.canSubmit() || amount > balance}>{_t('g.next')}</Button>
+                                <Button onClick={this.next} disabled={!this.canSubmit()}>{_t('g.next')}</Button>
                             </Col>
                         </Form.Group>
                     </Form>

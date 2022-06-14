@@ -330,7 +330,8 @@ export class EditorToolbar extends Component<Props> {
             }
 
             const imageName = imageUrl.length > 0 && imageUrl.split('/').pop();
-            const imgTag = imageUrl.length > 0 && `![${imageName}](${imageUrl})\n\n`;
+            const iname = imageName && imageName.replace(/\.[^/.]+$/, "");
+            const imgTag = imageUrl.length > 0 && `![${iname}](${imageUrl})\n\n`;
 
             imgTag && this.replaceText(tempImgTag, imgTag);
             }

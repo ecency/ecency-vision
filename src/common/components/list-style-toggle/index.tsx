@@ -55,15 +55,14 @@ export default class ListStyleToggle extends Component<Props> {
             }
         ];
 
-        // TODO: uncomment before 3.0.23 release
-        /*if(deck){
+        if(deck){
             dropDownItems.push(
                 {
                     label: <span className="gridMenu">{viewStackedSvg} {_t("layouts.deck")}</span>,
                     selected: listStyle === "deck",
                     onClick: () => {this.changeStyle("deck")},
                 })
-        }*/
+        }
 
         const dropDownConfig = {
             history: null,

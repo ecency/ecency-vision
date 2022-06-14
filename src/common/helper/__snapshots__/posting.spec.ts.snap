@@ -130,6 +130,7 @@ Object {
 exports[`makeJsonMetaData (1)  1`] = `
 Object {
   "app": "ecency/2.0.0-vision",
+  "description": "",
   "format": "markdown+html",
   "image": Array [
     "http://www.xx.com/a.png",

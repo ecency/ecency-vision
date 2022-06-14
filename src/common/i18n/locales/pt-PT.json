@@ -43,8 +43,8 @@
     "trending": "novidades",
     "created": "novidades",
     "muted": "silenciado",
-    "controversial": "controversial",
-    "rising": "rising",
+    "controversial": "controverso",
+    "rising": "subindo",
     "found": "encontrado",
     "feed": "novidades",
     "blog": "blogs",
@@ -81,19 +81,19 @@
     "filter-feed-subscriptions": "Comunidades",
     "filter-global": "Global",
     "filter-community": "Minha Comunidade",
-    "filter-controversial": "Controversial",
-    "filter-rising": "Rising",
+    "filter-controversial": "Controverso",
+    "filter-rising": "Subindo",
     "filter-global-part1": "Este feed contém ",
     "filter-global-part2": " discussões em toda a plataforma.",
     "filter-global-part3": " interações das comunidades que você segue. Você pode participar de mais comunidades para preencher sua página inicial.",
     "filter-global-part4": " interações de quem você conhece. Você pode seguir mais pessoas para preencher sua página inicial.",
     "filter-global-discover": "Descobrir Pessoas",
     "filter-global-join-communities": "Junte-se à Comunidades",
-    "filter-today": "Today",
-    "filter-week": "This week",
-    "filter-month": "This month",
-    "filter-year": "This year",
-    "filter-alltime": "All time"
+    "filter-today": "Hoje",
+    "filter-week": "Esta semana",
+    "filter-month": "Este mês",
+    "filter-year": "Este ano",
+    "filter-alltime": "Desde o início"
   },
   "navbar": {
     "discover": "Descubra",
@@ -278,8 +278,8 @@
     "pp": "Política de privacidade"
   },
   "decks": {
-    "users": "Users",
-    "header-info": "Click me to see extra options",
+    "users": "Usuário",
+    "header-info": "Clique em mim para ver opções extras",
     "username": "Nome Da Conta",
     "content-type": "Tipo de Conteúdo",
     "trending-topics": "Tópicos",
@@ -294,7 +294,7 @@
     "replies": "Respostas",
     "posts": "Publicações",
     "comments": "Comentários",
-    "column": "Coluna",
+    "column": "coluna",
     "hot": "Em Alta",
     "muted": "Silenciado",
     "new": "Novo",
@@ -305,10 +305,28 @@
     "payout": "Pagamentos",
     "created": "Novo",
     "go-back": "Voltar",
-    "deck-exists": "The deck you're trying to add already exists!",
-    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
-    "select-column-type": "Which deck type do you want to add?",
-    "topic": "Personalizado"
+    "deck-exists": "O deck que você está tentando adicionar já existe!",
+    "limit-warning": "São permitidos no máximo 10 decks. Exclua qualquer deck para adicionar outro.",
+    "empty-decks": "Clique + ícone para adicionar Decks",
+    "select-column-type": "Qual tipo de deck você quer adicionar?",
+    "topic": "Personalizado",
+    "refresh": "Atualização automática para {{title}} salva.",
+    "settings": "Configurações",
+    "refresh-time": "Tempo de atualização",
+    "hours": "horas",
+    "save": "Salvar",
+    "update-interval": "Intervalo de atualização",
+    "update-interval-min": "Em minutos",
+    "update-n-seconds": "A cada {{sec}} seg",
+    "update-n-minutes": "A cada {{min}} min",
+    "update-n-hours": "A cada {{hour}} h",
+    "update-custom": "Intervalo personalizado...",
+    "update-interval-value-error": "O intervalo deve estar entre 30 segundos e 24 horas",
+    "update-interval-placeholder": "Selecione um intervalo",
+    "update-custom-interval-in-minutes-placeholder": "Digite o intervalo em minutos",
+    "filters": "Filtros",
+    "history": "Histórico",
+    "type": "Tipo"
   },
   "market-data": {
     "title": "Preço mercado",
@@ -690,7 +708,8 @@
     "title": "Impulsionar",
     "sub-title": "Impulsione a sua publicação",
     "amount": "Quantidade",
-    "slider-hint": "Deslize o cursor para ajustar a quantidade."
+    "slider-hint": "Deslize o cursor para ajustar a quantidade.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Balanço",
@@ -731,6 +750,7 @@
     "memo": "Memo",
     "memo-placeholder": "insira aqui as suas notas",
     "memo-help": "Este memo é público",
+    "memo-error": "Nunca coloque chaves privadas em um campo de nota. Ele é publicamente visível para todos.",
     "available-hp-hint": "* poder de hive disponível",
     "override-warning-1": "O novo valor sobrepõe o anterior.",
     "override-warning-2": "A conta ({{account}}) contém {{previousAmount}} em delegações.",
@@ -741,7 +761,7 @@
     "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferida de <span class=\"from-user\">{{from}}</span> para <span class=\"to-user\">{{to}}</span>",
     "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferida de <span class=\"from-user\">{{from}}</span> para <span class=\"to-user\">{{to}}</span>",
     "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferida de <span class=\"from-user\">{{from}}</span> para <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> being converted",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> sendo convertido",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> delegado de <span class=\"from-user\">{{from}}</span> para <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegado de <span class=\"from-user\">{{from}}</span> para <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Diminuição de poder hive concluído como <span class=\"amount\">{{amount}}</span>",
@@ -905,7 +925,8 @@
     "scheduled": "Post agendado",
     "empty-title-alert": "Insira o título da publicação",
     "empty-tags-alert": "Insira as etiquetas da postagem",
-    "empty-body-alert": "Insira o corpo da postagem"
+    "empty-body-alert": "Insira o corpo da postagem",
+    "description": "Breve descrição"
   },
   "tag-selector": {
     "placeholder-empty": "Etiquetas. A primeira etiqueta é a categoria principal. Ordenável.",
@@ -1227,7 +1248,7 @@
       "what-are-rc-header": "O que são Créditos de Recurso?",
       "what-are-rc-body": "<p>Transcações na blockchain do Hive tem taxas zero, a taxa de transação é usada para proteger a blockchain contra ataques de spam. Cada ação que você tomar na blockchain consumirá uma pequena quantidade de Créditos de Recurso. Isso inclui postagens, comentários, votos, transferência de tokens, etc. Conteúdo visualizado não consome créditos de recursos.</p><p>Todo o utilizador tem uma quantidade limitada de Créditos de Recurso para usar cada semana. Quanto mais transações um utilizador fizer, menos Créditos de Recurso eles terão deixado (até que eles recarregem). Usuários com mais HIVE POWER terão mais Créditos de Recurso.</p><p>Se você ficar sem Créditos de Recurso, você não será capaz de transacionar com a blockchain até a recarga de seus Créditos de Recursos (acontece automaticamente) ou adquira mais fundos para o VIHE POWER para aumentar o seu saldo de Crédito de Recurso ou você pode <a href=\"/faq#how-boost-account\">solicitar uma conta de Otimização de Ecency</a> para receber delegação temporária.</p>",
       "how-boost-account-header": "Como solicitar o aumento de conta?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can find account boosting feature in Points options.</p>",
+      "how-boost-account-body": "<p>Se sua conta está com pouco valor de <a href=\"/faq#what-are-rc\">Créditos de Recursos</a>, você pode solicitar uma otimização de conta pela Ecency. Você receberá uma delegação de Hive por 30 dias, que devem impulsionar sua conta para executar mais atividades na blockchain. A delegação poderá ser retirada a qualquer momento se nossa equipe detectar uso inapropriado desse poder. Você pode encontrar o recurso de otimização de conta nas opções de Pontos.</p>",
       "what-spam-abuse-header": "O que é considerado spam ou abuso?",
       "what-spam-abuse-body": "<p><ul><li>Publicações plagiarizadas ou copiadas.</li><li>Deixando comentários similares ou idênticos em múltiplas publicações.</li><li>Usando etiquetas sem relação ao conteúdo da publicação.</li><li>Ameaçando usuários com qualquer tipo de violência.</li><li>Não citar as fontes quando utilizar material de terceiros.</li><li>Postando conteúdo adulto sem utilizar a etiqueta “nsfw”.</li><li>Golpes ou ofertas fraudulentas.</li></ul></p>",
       "can-link-post-header": "Posso solicitar a adição de backlink para o meu site a partir da equipe da Ecency?",
@@ -1249,7 +1270,7 @@
       "boosting-vote-buying-header": "Impulsionamento é considerado compra de voto?",
       "boosting-vote-buying-body": "<p>Não! Você não tem garantia que a publicação será votada, nem da exata quantidade de votos, bem como há limite de impulsionamento. Cada conteúdo é avaliado por nossos curadores, de forma gratuita. Todos ganhos de curadoria são enviados de volta para nossos delegadores. O único sucesso quantificado que buscamos está no engajamento e crescimento de todo o ecossistema. Impulsionar é simplesmente criar um uso adicional para os Points da Ecency, aumentando o engajamento na plataforma. Portanto, é essencialmente o mesmo que qualquer grupo de curadoria dentro da Hive. O objetivo desses grupos é aumentar o envolvimento em última instância, e aumentar as atividades dos usuários. A forma que cada um mede o sucesso é diferente</p>",
       "how-exchange-work-header": "Como o câmbio de tokens funciona?",
-      "how-exchange-work-body": "<p>Exchanging and trading tokens on Ecency is very simple. We utilize internal peer to peer, decentralized exchange built into Hive blockchain. Offer easy to use interface so you can exchange one token to another, completely decentralized manner. Create buy or sell order and wait for other people to fill your order. If you want to quickly swap tokens then you can fill someone else's open order for quick trade.</p>"
+      "how-exchange-work-body": "<p>Trocar e comprar tokens através da Ecency é muito simples. Usamos trading p2p (ponto a ponto), oferecendo uma troca descentralizada e integrada na blockchain da Hive. Oferecendo uma interface fácil de utilizar, para que você possa trocar um token por outro, de forma completamente descentralizada. Criar uma ordem de compra ou venda e aguardar que outras pessoas preencham o seu pedido. Se você deseja rapidamente trocar os tokens, sempre pode decidir por preencher uma ordem aberta de outra pessoa, para troca rápida de valores.</p>"
     }
   },
   "contributors": {

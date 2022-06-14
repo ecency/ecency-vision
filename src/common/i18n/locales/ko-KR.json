@@ -278,7 +278,7 @@
     "pp": "개인정보 취급방침"
   },
   "decks": {
-    "users": "Users",
+    "users": "User",
     "header-info": "Click me to see extra options",
     "username": "Username",
     "content-type": "Content Type",
@@ -294,7 +294,7 @@
     "replies": "Replies",
     "posts": "Posts",
     "comments": "Comments",
-    "column": "Column",
+    "column": "column",
     "hot": "Hot",
     "muted": "Muted",
     "new": "New",
@@ -306,9 +306,27 @@
     "created": "New",
     "go-back": "Go back",
     "deck-exists": "The deck you're trying to add already exists!",
-    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
+    "limit-warning": "Maximum 10 decks are allowed. Delete any deck to add another.",
+    "empty-decks": "Click + icon to add Decks",
     "select-column-type": "Which deck type do you want to add?",
-    "topic": "Custom"
+    "topic": "Custom",
+    "refresh": "Auto refresh for {{title}} saved.",
+    "settings": "Settings",
+    "refresh-time": "Refresh time",
+    "hours": "hours",
+    "save": "Save",
+    "update-interval": "Update interval",
+    "update-interval-min": "In minutes",
+    "update-n-seconds": "Every {{sec}} sec",
+    "update-n-minutes": "Every {{min}} min",
+    "update-n-hours": "Every {{hour}} h",
+    "update-custom": "Custom interval...",
+    "update-interval-value-error": "Interval should be between 30 seconds and 24 hours",
+    "update-interval-placeholder": "Select an interval",
+    "update-custom-interval-in-minutes-placeholder": "Enter interval in minutes",
+    "filters": "Filters",
+    "history": "History",
+    "type": "Type"
   },
   "market-data": {
     "title": "시가",
@@ -690,7 +708,8 @@
     "title": "부스트",
     "sub-title": "글 부스트하세요",
     "amount": "수량",
-    "slider-hint": "슬라이드를 드래그해서 수량을 설정할 수 있습니다."
+    "slider-hint": "슬라이드를 드래그해서 수량을 설정할 수 있습니다.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "잔액",
@@ -731,6 +750,7 @@
     "memo": "메모",
     "memo-placeholder": "메모 내용을 입력하세요",
     "memo-help": "이 메모는 누구나 볼 수 있습니다",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* 사용 가능한 하이브 파워",
     "override-warning-1": "새 금액이 이전 금액보다 우선 적용됩니다.",
     "override-warning-2": "({{account}}) 계정에게 이미 {{previousAmount}}을 임대되었습니다.",
@@ -905,7 +925,8 @@
     "scheduled": "게시물 일정 설정 완료",
     "empty-title-alert": "글 제목 입력하세요",
     "empty-tags-alert": "글 태그 입력하세요",
-    "empty-body-alert": "글 내용 입력하세요"
+    "empty-body-alert": "글 내용 입력하세요",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "태그. 첫 번째 태그는 메인 카테고리입니다. 정렬 가능.",

@@ -6,7 +6,11 @@ import defaults from "../../common/constants/defaults.json";
 
 import appName from "./app-name";
 
-export default (entry: Entry): string | null => {
+export default (entry: Entry, isAmp: boolean = false): string | null => {
+    if (isAmp) {
+        return `${defaults.base}${entry.url}`
+    }
+
     if (entry.json_metadata?.canonical_url) {
         return entry.json_metadata?.canonical_url.replace("https://www.", "https://");
     }

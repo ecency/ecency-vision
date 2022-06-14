@@ -278,7 +278,7 @@
     "pp": "Datenschutzrichtlinien"
   },
   "decks": {
-    "users": "Benutzer",
+    "users": "User",
     "header-info": "Klicken Sie mich, um zusätzliche Optionen zu sehen",
     "username": "Benutzername",
     "content-type": "Inhaltstyp",
@@ -294,7 +294,7 @@
     "replies": "Antworten",
     "posts": "Beiträge",
     "comments": "Kommentare",
-    "column": "Spalte",
+    "column": "column",
     "hot": "Beliebt",
     "muted": "Stummgeschaltet",
     "new": "Neu",
@@ -306,9 +306,27 @@
     "created": "Neu",
     "go-back": "Zurück",
     "deck-exists": "The deck you're trying to add already exists!",
-    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
+    "limit-warning": "Maximum 10 decks are allowed. Delete any deck to add another.",
+    "empty-decks": "Click + icon to add Decks",
     "select-column-type": "Which deck type do you want to add?",
-    "topic": "Eigene"
+    "topic": "Eigene",
+    "refresh": "Auto refresh for {{title}} saved.",
+    "settings": "Settings",
+    "refresh-time": "Refresh time",
+    "hours": "hours",
+    "save": "Save",
+    "update-interval": "Update interval",
+    "update-interval-min": "In minutes",
+    "update-n-seconds": "Every {{sec}} sec",
+    "update-n-minutes": "Every {{min}} min",
+    "update-n-hours": "Every {{hour}} h",
+    "update-custom": "Custom interval...",
+    "update-interval-value-error": "Interval should be between 30 seconds and 24 hours",
+    "update-interval-placeholder": "Select an interval",
+    "update-custom-interval-in-minutes-placeholder": "Enter interval in minutes",
+    "filters": "Filters",
+    "history": "History",
+    "type": "Type"
   },
   "market-data": {
     "title": "Marktpreis",
@@ -690,7 +708,8 @@
     "title": "Boost",
     "sub-title": "Booste Deinen Beitrag",
     "amount": "Menge",
-    "slider-hint": "Ziehe den Slider, um den Wert anzupassen."
+    "slider-hint": "Ziehe den Slider, um den Wert anzupassen.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Kontostand",
@@ -731,6 +750,7 @@
     "memo": "Memo",
     "memo-placeholder": "Hier dein Memo eingeben",
     "memo-help": "Diese Memo ist öffentlich",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* verfügbare Hive Power",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
@@ -905,7 +925,8 @@
     "scheduled": "Beitrag erfolgreich geplant",
     "empty-title-alert": "Enter post title",
     "empty-tags-alert": "Enter post tags",
-    "empty-body-alert": "Enter post body"
+    "empty-body-alert": "Enter post body",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. Erster Tag ist die Hauptkategorie. Sortierbar.",

@@ -9,15 +9,23 @@ import {makePreloadedState} from "../state";
 
 import {render} from "../template";
 import dmca from '../../common/constants/dmca.json';
+import { getAsAMP } from '../services';
+import { getPost } from '../../common/api/hive';
+import { parse } from 'node-html-parser';
+import moment from 'moment';
 
 export default async (req: Request, res: Response) => {
     const {category, author, permlink} = req.params;
     let entry: Entry | null = null;
 
-    try {
-        entry = await bridgeApi.getPost(author, permlink);
-    } catch (e) {
-        console.error(`${new Date().toISOString()} ERROR fetching @${author}/${permlink}`);
+    if (permlink.indexOf('.')>-1) {
+        console.error(`${new Date().toISOString()} ERROR permlink @${author}/${permlink}`);
+    } else {
+        try {
+            entry = await bridgeApi.getPost(author, permlink);
+        } catch (e) {
+            console.error(`${new Date().toISOString()} ${bridgeApi.bridgeServer?.currentAddress} ERROR fetching @${author}/${permlink}`);
+        }    
     }
 
     let entries = {};
@@ -53,6 +61,28 @@ export default async (req: Request, res: Response) => {
             ...state.entries,
             ...entries
         },
+    };
+
+    if ('amps' in req.query) {
+        let ignoreCache = 'ignorecache' in req.query;
+        let identifier = `${category}_${author}_${permlink}`;
+        let entry;
+        try {
+            entry = await getPost(author, permlink);
+            identifier += `_${entry.last_update}`;
+        } catch (e) {
+            ignoreCache = true;
+        }
+        const ampResult = await getAsAMP(identifier, req, preLoadedState, ignoreCache);
+        const tree = parse(ampResult);
+        const date = tree.querySelector('.date');
+        if (date) {
+            const newDate = moment(entry.created).fromNow();
+            date.innerHTML = newDate;
+        }
+
+        res.send(tree.toString());
+        return;
     }
 
     res.send(render(req, preLoadedState));

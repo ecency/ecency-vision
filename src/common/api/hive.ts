@@ -15,8 +15,8 @@ import { dataLimit } from './bridge';
 import moment from "moment";
 
 export const client = new Client(SERVERS, {
-    timeout: 4000,
-    failoverThreshold: 5,
+    timeout: 3000,
+    failoverThreshold: 3,
     consoleOnFailover: true,
 });
 
@@ -114,6 +114,16 @@ export interface OrdersData {
     trading: OrdersDataItem[];
 }
 
+interface ApiError {
+    error: string;
+    data: any;
+}
+
+const handleError = (error: any) => {
+    debugger
+    return {error:"api error", data:error}
+}
+
 export const getPost = (username: string, permlink: string): Promise<any> =>
     client.call("condenser_api", "get_content", [username, permlink]);
 
@@ -144,7 +154,7 @@ export const getTrendingTags = (afterTag: string = "", limit: number = 250): Pro
             }
         );
 
-export const getAllTrendingTags = (afterTag: string = "", limit: number = 250): Promise<TrendingTag[]> =>
+export const getAllTrendingTags = (afterTag: string = "", limit: number = 250): Promise<TrendingTag[]|any> =>
     client.database
         .call("get_trending_tags", [afterTag, limit])
         .then((tags: TrendingTag[]) => {
@@ -152,7 +162,7 @@ export const getAllTrendingTags = (afterTag: string = "", limit: number = 250): 
                     .filter((x) => x.name !== "")
                     .filter((x) => !isCommunity(x.name))
             }
-        );
+        ).catch(reason=>{debugger});
 
 export const lookupAccounts = (q: string, limit = 50): Promise<string[]> =>
     client.database.call("lookup_accounts", [q, limit]);

@@ -26,7 +26,8 @@
   .tagDropDown {
       border-radius: 25px;
       cursor: pointer;
-      display: table;
+      display: flex;
+      align-items: center;
       // margin-bottom: 8px;
       padding: 4px 8px;
       text-decoration: none;
@@ -71,6 +72,17 @@
           font-weight: 500;
           padding: 0.2rem 0.75rem !important;
           text-decoration: if($link-decoration == none, null, none);
+          white-space: nowrap;
+        }
+
+        @media (max-width: $xl-break + 100) {
+          .nav-pills {
+            flex-wrap: nowrap;
+            max-width: 350px;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+            margin-top: 0.25rem;
+          }
         }
       }
 

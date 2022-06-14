@@ -278,7 +278,7 @@
     "pp": "Gizlilik Sözleşmesi"
   },
   "decks": {
-    "users": "Users",
+    "users": "User",
     "header-info": "Click me to see extra options",
     "username": "Username",
     "content-type": "Content Type",
@@ -294,7 +294,7 @@
     "replies": "Replies",
     "posts": "Posts",
     "comments": "Comments",
-    "column": "Column",
+    "column": "column",
     "hot": "Hot",
     "muted": "Muted",
     "new": "New",
@@ -306,9 +306,27 @@
     "created": "New",
     "go-back": "Go back",
     "deck-exists": "The deck you're trying to add already exists!",
-    "limit-warning": "You can add 10 decks at maximum. Delete any deck to add another.",
+    "limit-warning": "Maximum 10 decks are allowed. Delete any deck to add another.",
+    "empty-decks": "Click + icon to add Decks",
     "select-column-type": "Which deck type do you want to add?",
-    "topic": "Custom"
+    "topic": "Custom",
+    "refresh": "Auto refresh for {{title}} saved.",
+    "settings": "Settings",
+    "refresh-time": "Refresh time",
+    "hours": "hours",
+    "save": "Save",
+    "update-interval": "Update interval",
+    "update-interval-min": "In minutes",
+    "update-n-seconds": "Every {{sec}} sec",
+    "update-n-minutes": "Every {{min}} min",
+    "update-n-hours": "Every {{hour}} h",
+    "update-custom": "Custom interval...",
+    "update-interval-value-error": "Interval should be between 30 seconds and 24 hours",
+    "update-interval-placeholder": "Select an interval",
+    "update-custom-interval-in-minutes-placeholder": "Enter interval in minutes",
+    "filters": "Filters",
+    "history": "History",
+    "type": "Type"
   },
   "market-data": {
     "title": "Piyasa fiyatı",
@@ -690,7 +708,8 @@
     "title": "Yükselt",
     "sub-title": "Gönderini yükselt",
     "amount": "Miktar",
-    "slider-hint": "Miktarı ayarlamak için kaydırıcıyı sürükleyin."
+    "slider-hint": "Miktarı ayarlamak için kaydırıcıyı sürükleyin.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Bakiye",
@@ -731,6 +750,7 @@
     "memo": "Notlar",
     "memo-placeholder": "notlarınızı buraya girin",
     "memo-help": "Bu notlar herkese açıktır",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* mevcut hive power",
     "override-warning-1": "Yeni miktar öncekini geçersiz kılar.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
@@ -905,7 +925,8 @@
     "scheduled": "Gönderi zamanlandı",
     "empty-title-alert": "Gönderi başlığı gir",
     "empty-tags-alert": "Gönderi etiketlerini gir",
-    "empty-body-alert": "Gönderi metnini gir"
+    "empty-body-alert": "Gönderi metnini gir",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "Etiketler. İlk etiket ana kategoridir. Sıralanabilir.",

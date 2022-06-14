@@ -114,9 +114,6 @@ class ProfilePage extends BaseComponent<Props, State> {
             fetchEntries(global.filter, global.tag, false);
         }
 
-        // fetch wallet transactions
-        fetchTransactions(username);
-
         // fetch points
         fetchPoints(username);
         
@@ -199,7 +196,7 @@ class ProfilePage extends BaseComponent<Props, State> {
         const prevAccount = prevAccounts.find((x) => x.name === accountUsername) as FullAccount
 
         if (['blog', 'posts'].includes(global.filter)) {
-            if ((account && prevAccount && account.profile && prevAccount.profile && (account.profile.pinned !== prevAccount.profile.pinned)) || (account && account.profile && account.profile.pinned && global.filter !== prevGlobal.filter) || (account !== prevAccount && account.profile)) {
+            if ((account && prevAccount && account.profile && prevAccount.profile && (account.profile.pinned !== prevAccount.profile.pinned)) || (account && account.profile && account.profile.pinned && global.filter !== prevGlobal.filter) || (account !== prevAccount && account.profile && account.profile.pinned)) {
                 this.setState({pinnedEntry: null})
                             
                 bridgeApi.getPost(accountUsername, account.profile.pinned).then(entry => {

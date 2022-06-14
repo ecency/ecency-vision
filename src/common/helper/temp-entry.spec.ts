@@ -20,6 +20,7 @@ describe('tempEntry', () => {
             parentAuthor: "",
             parentPermlink: "ecency",
             title: "a test post",
+            description: "a test post",
             body: "lorem ipsum dolor sit amet",
             tags: ["ecency", "photography"]
         }

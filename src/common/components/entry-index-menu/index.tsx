@@ -130,7 +130,11 @@ export class EntryIndexMenu extends Component<Props, States> {
             history.push(`/@${activeUser?.username}/${filter}`)
         }
         else if(['controversial', 'rising'].includes(prevProps.global.filter) && !['controversial', 'rising'].includes(filter)) {
-            history.push(`/${filter}`)
+            if (tag && tag.includes('@')) {
+                history.push(`/${tag}/${filter}`)
+            } else {
+                history.push(`/${filter}`)
+            }
         }
         else if(['controversial', 'rising'].includes(filter)) {
             const tagValue = (tag && tag !== 'my' && ['today', 'week', 'month', 'year', 'all'].includes(tag)) ? '/' + tag : '/week'
@@ -423,7 +427,7 @@ export class EntryIndexMenu extends Component<Props, States> {
 
                             </div>
                         </div>
-                        <div className="d-flex align-items-center ml-auto ml-md-0">
+                        <div className="d-flex align-items-center ml-auto ml-md-0 pl-3">
                             <span className="info-icon mr-0 mr-md-2"
                                 onClick={() => 
                                     this.setState({ introduction: filter === 'feed' ? IntroductionType.FRIENDS : filter === 'trending' ? IntroductionType.TRENDING : filter === 'hot' ? IntroductionType.HOT : filter === 'created' ? IntroductionType.NEW : IntroductionType.NONE })

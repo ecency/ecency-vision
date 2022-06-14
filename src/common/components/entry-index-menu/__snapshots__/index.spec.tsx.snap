@@ -171,7 +171,7 @@ exports[`(1) No active user. Default filter 1`] = `
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0"
+      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"
@@ -365,7 +365,7 @@ exports[`(2) No active user. Trending filter 1`] = `
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0"
+      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"
@@ -767,7 +767,7 @@ exports[`(3) Active user. Trending filter 1`] = `
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0"
+      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"
@@ -985,7 +985,7 @@ exports[`(4) Active user. Friends 1`] = `
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0"
+      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"
@@ -1210,7 +1210,7 @@ exports[`(5) Active user. Communities 1`] = `
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0"
+      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"
@@ -1404,7 +1404,7 @@ exports[`(6) No active user. Communities 1`] = `
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0"
+      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"

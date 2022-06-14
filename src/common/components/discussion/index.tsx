@@ -95,6 +95,7 @@ interface ItemProps {
     addReply: (reply: Entry) => void;
     deleteReply: (reply: Entry) => void;
     toggleUIProp: (what: ToggleType) => void;
+    hideControls: boolean;
 }
 
 interface ItemState {
@@ -196,7 +197,8 @@ export const Item = (props: ItemProps) => {
                 parentPermlink,
                 title: '',
                 body: text,
-                tags: []
+                tags: [],
+                description: null
             });
 
             // add new reply to store
@@ -372,7 +374,7 @@ export const Item = (props: ItemProps) => {
                             </div>)}
                             
                             <ItemBody global={global} entry={entry}/>
-                            <div className="item-controls">
+                            { props.hideControls ? <></> : <div className="item-controls">
                                 {EntryVoteBtn({
                                     ...props,
                                     entry,
@@ -402,7 +404,7 @@ export const Item = (props: ItemProps) => {
                                         <MyDropDown {...menuConfig} float="right" alignBottom={true}/>
                                     </div>
                                 )}
-                            </div>
+                            </div>}
                         </>
                     })()}
 
@@ -467,6 +469,7 @@ interface ListProps {
     addReply: (reply: Entry) => void;
     deleteReply: (reply: Entry) => void;
     toggleUIProp: (what: ToggleType) => void;
+    hideControls: boolean;
 }
 
 interface ListState {
@@ -536,7 +539,7 @@ export class List extends Component<ListProps> {
         return (
             <div className="discussion-list">
                 {data.map((d) => (
-                    <Item key={`${d.author}-${d.permlink}`} {...this.props} entry={d}/>
+                    <Item key={`${d.author}-${d.permlink}`} {...this.props} entry={d} hideControls={this.props.hideControls}/>
                 ))}
                 {!isHiddenPermitted && mutedContent.length > 0 && activeUser && activeUser.username && 
                     <div className="hidden-warning d-flex justify-content-between flex-1 align-items-center mt-3">
@@ -574,6 +577,7 @@ interface Props {
     addReply: (reply: Entry) => void;
     deleteReply: (reply: Entry) => void;
     toggleUIProp: (what: ToggleType) => void;
+    hideControls: boolean;
 }
 
 interface State {
@@ -672,7 +676,7 @@ export class Discussion extends Component<Props, State> {
                 <div className="discussion-card">
                     <div className="icon">{commentSvg}</div>
                     <div className="label">{strCount}</div>
-                    <Button onClick={this.show}>{_t("g.show")}</Button>
+                    {this.props.hideControls ? <></> : <Button onClick={this.show}>{_t("g.show")}</Button>}
                 </div>
             </div>
         }
@@ -683,7 +687,7 @@ export class Discussion extends Component<Props, State> {
                 <div className="discussion-header">
                     <div className="count"> {commentSvg} {strCount}</div>
                     <span className="flex-spacer"/>
-                    <div className="order">
+                    {this.props.hideControls ? <></> : <div className="order">
                         <span className="order-label">{_t("discussion.order")}</span>
                         <Form.Control as="select" size="sm" value={order} onChange={this.orderChanged} disabled={loading}>
                             <option value="trending">{_t("discussion.order-trending")}</option>
@@ -691,7 +695,7 @@ export class Discussion extends Component<Props, State> {
                             <option value="votes">{_t("discussion.order-votes")}</option>
                             <option value="created">{_t("discussion.order-created")}</option>
                         </Form.Control>
-                    </div>
+                    </div>}
                 </div>
                 <List {...this.props} parent={parent}/>
             </div>
@@ -722,6 +726,7 @@ export default (p: Props) => {
         addReply: p.addReply,
         deleteReply: p.deleteReply,
         toggleUIProp: p.toggleUIProp,
+        hideControls: p.hideControls,
     }
 
     return <Discussion {...props} />;
