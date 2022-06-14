@@ -451,7 +451,8 @@ class ProfilePage extends BaseComponent<Props, State> {
                                 if (section === "engine") {
                                     return WalletHiveEngine({
                                         ...this.props,
-                                        account
+                                        account,
+                                        updateWalletValues: this.ensureAccount
                                     });
                                 }
 
