@@ -37,7 +37,6 @@ import {
     undelegateHiveEngineKc,
     stakeHiveEngineKc,
     unstakeHiveEngineKc,
-    transferPoint,
     transferHiveEngineHs,
     formatError,
     delegateHiveEngineHs,
@@ -56,7 +55,6 @@ import {Tsx} from "../../i18n/helper";
 
 import {arrowRightSvg} from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
-import activeUser from "../../store/active-user";
 import { dateToFullRelative } from '../../helper/parse-date';
 
 export type TransferMode = "transfer" | "delegate" | "undelegate" | "stake" | "unstake";
@@ -99,6 +97,7 @@ interface State {
     step: 1 | 2 | 3 | 4;
     asset: string;
     assetBalance: number;
+    precision: number;
     delegationList: DelegateVestingShares[],
     to: string,
     toData: Account | null,
@@ -124,6 +123,7 @@ const pureState = (props: Props): State => {
         step: 1,
         asset: props.asset,
         assetBalance: props.assetBalance,
+        precision: (props.assetBalance + "").split(".")[1].length || 3,
         to: props.to || _to,
         toData: props.to ? {name: props.to} : _toData,
         toError: "",
@@ -144,7 +144,6 @@ export class Transfer extends BaseComponent<Props, State> {
 
     componentDidMount() {
         this.checkAmount();
-
         const {updateActiveUser} = this.props;
         updateActiveUser();
     }
@@ -240,7 +239,7 @@ export class Transfer extends BaseComponent<Props, State> {
     }
 
     checkAmount = () => {
-        const {amount} = this.state;
+        const {amount, precision} = this.state;
 
         if (amount === '') {
             this.stateSet({amountError: ''});
@@ -254,8 +253,8 @@ export class Transfer extends BaseComponent<Props, State> {
 
         const dotParts = amount.split('.');
         if (dotParts.length > 1) {
-            const precision = dotParts[1];
-            if (precision.length > 3) {
+            const _precision = dotParts[1];
+            if (_precision.length > precision) {
                 this.stateSet({amountError: _t("transfer.amount-precision-error")});
                 return;
             }
@@ -278,7 +277,8 @@ export class Transfer extends BaseComponent<Props, State> {
     };
 
     formatBalance = (balance: number): string => {
-        return this.formatNumber(balance, 3);
+        const {precision} = this.state;
+        return this.formatNumber(balance, precision);
     };
 
 
@@ -289,8 +289,8 @@ export class Transfer extends BaseComponent<Props, State> {
 
     next = () => {
         // make sure 3 decimals in amount
-        const {amount} = this.state;
-        const fixedAmount = this.formatNumber(amount, 3);
+        const {amount, precision} = this.state;
+        const fixedAmount = this.formatNumber(amount, precision);
 
         this.stateSet({step: 2, amount: fixedAmount});
     };
@@ -460,7 +460,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
     render() {
         const {global, mode, activeUser, transactions, dynamicProps} = this.props;
-        const {step, asset, to, toError, toWarning, amount, amountError, memoError, memo, inProgress, toData, delegationList} = this.state;
+        const {step, asset, to, toError, toWarning, amount, precision, amountError, memoError, memo, inProgress, toData, delegationList} = this.state;
         const {hivePerMVests} = dynamicProps;
 
         const recent = [...new Set(
@@ -496,7 +496,7 @@ export class Transfer extends BaseComponent<Props, State> {
         let balance: string | number = this.props.assetBalance;
         if(previousAmount){
             balance = Number(balance) + previousAmount;
-            balance = Number(balance).toFixed(3)
+            balance = Number(balance).toFixed(precision)
         }
 
         const titleLngKey = mode === 'transfer' ? `${mode}-title` : `${mode}-hive-engine-title`;
@@ -558,7 +558,7 @@ export class Transfer extends BaseComponent<Props, State> {
                             <p>{_t("transfer.powering-down")}</p>
                             <p> {_t("wallet.next-power-down", {
                                 time: dateToFullRelative(w.nextVestingWithdrawalDate.toString()),
-                                amount: `${this.formatNumber(w.nextVestingSharesWithdrawalHive, 3)} HIVE`,
+                                amount: `${this.formatNumber(w.nextVestingSharesWithdrawalHive, precision)} ${asset}`,
                             })}</p>
                             <p>
                                 <Button onClick={this.nextPowerDown} variant="danger">{_t("transfer.stop-power-down")}</Button>
@@ -669,7 +669,7 @@ export class Transfer extends BaseComponent<Props, State> {
                                         const hive = Math.round((Number(amount) / 13) * 1000) / 1000;
                                         if (!isNaN(hive) && hive > 0) {
                                             return <div className="power-down-estimation">
-                                                {_t("transfer.power-down-estimated", {n: `${this.formatNumber(hive, 3)} ${asset}`})}
+                                                {_t("transfer.power-down-estimated", {n: `${this.formatNumber(hive, precision)} ${asset}`})}
                                             </div>;
                                         }
                                     }
