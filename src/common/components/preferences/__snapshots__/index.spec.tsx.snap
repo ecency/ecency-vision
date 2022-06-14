@@ -262,6 +262,11 @@ exports[`(1) Default render 1`] = `
             Русский
           </option>
           <option
+            value="uz-UZ"
+          >
+            O'zbekcha
+          </option>
+          <option
             value="zh-CN"
           >
             简体字

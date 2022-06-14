@@ -246,53 +246,49 @@ exports[`(1) Default render 1`] = `
     className="comment-body"
   >
     <div
-      className="body-input"
+      className="rta  "
     >
-      <div
-        className="rta  "
-      >
-        <textarea
-          acceptCharset="UTF-8"
-          as="textarea"
-          autoFocus={true}
-          className="rta__textarea the-editor accepts-emoji "
-          disabled={false}
-          global={
-            Object {
-              "canUseWebp": false,
-              "currency": "usd",
-              "currencyRate": 1,
-              "currencySymbol": "$",
-              "filter": "hot",
-              "hasKeyChain": false,
-              "intro": true,
-              "isElectron": false,
-              "isMobile": false,
-              "lang": "en-US",
-              "listStyle": "row",
-              "newVersion": null,
-              "notifications": true,
-              "nsfw": false,
-              "searchIndexCount": 10000000,
-              "tag": "",
-              "theme": "day",
-              "usePrivate": true,
-            }
+      <textarea
+        acceptCharset="UTF-8"
+        as="textarea"
+        autoFocus={true}
+        className="rta__textarea the-editor accepts-emoji "
+        disabled={false}
+        global={
+          Object {
+            "canUseWebp": false,
+            "currency": "usd",
+            "currencyRate": 1,
+            "currencySymbol": "$",
+            "filter": "hot",
+            "hasKeyChain": false,
+            "intro": true,
+            "isElectron": false,
+            "isMobile": false,
+            "lang": "en-US",
+            "listStyle": "row",
+            "newVersion": null,
+            "notifications": true,
+            "nsfw": false,
+            "searchIndexCount": 10000000,
+            "tag": "",
+            "theme": "day",
+            "usePrivate": true,
           }
-          id="the-editor"
-          maxrows={100}
-          minrows={1}
-          onBlur={[Function]}
-          onChange={[Function]}
-          onClick={[Function]}
-          onScroll={[Function]}
-          onSelect={[Function]}
-          placeholder="Write your reply here"
-          rows={1}
-          spellCheck={true}
-          value=""
-        />
-      </div>
+        }
+        id="the-editor"
+        maxrows={100}
+        minrows={10}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onClick={[Function]}
+        onScroll={[Function]}
+        onSelect={[Function]}
+        placeholder="Write your reply here"
+        rows={1}
+        spellCheck={true}
+        value=""
+      />
     </div>
   </div>
   <div
@@ -557,53 +553,49 @@ exports[`(2) Cancellable, in progress 1`] = `
     className="comment-body"
   >
     <div
-      className="body-input"
+      className="rta  "
     >
-      <div
-        className="rta  "
-      >
-        <textarea
-          acceptCharset="UTF-8"
-          as="textarea"
-          autoFocus={true}
-          className="rta__textarea the-editor accepts-emoji "
-          disabled={false}
-          global={
-            Object {
-              "canUseWebp": false,
-              "currency": "usd",
-              "currencyRate": 1,
-              "currencySymbol": "$",
-              "filter": "hot",
-              "hasKeyChain": false,
-              "intro": true,
-              "isElectron": false,
-              "isMobile": false,
-              "lang": "en-US",
-              "listStyle": "row",
-              "newVersion": null,
-              "notifications": true,
-              "nsfw": false,
-              "searchIndexCount": 10000000,
-              "tag": "",
-              "theme": "day",
-              "usePrivate": true,
-            }
+      <textarea
+        acceptCharset="UTF-8"
+        as="textarea"
+        autoFocus={true}
+        className="rta__textarea the-editor accepts-emoji "
+        disabled={false}
+        global={
+          Object {
+            "canUseWebp": false,
+            "currency": "usd",
+            "currencyRate": 1,
+            "currencySymbol": "$",
+            "filter": "hot",
+            "hasKeyChain": false,
+            "intro": true,
+            "isElectron": false,
+            "isMobile": false,
+            "lang": "en-US",
+            "listStyle": "row",
+            "newVersion": null,
+            "notifications": true,
+            "nsfw": false,
+            "searchIndexCount": 10000000,
+            "tag": "",
+            "theme": "day",
+            "usePrivate": true,
           }
-          id="the-editor"
-          maxrows={100}
-          minrows={1}
-          onBlur={[Function]}
-          onChange={[Function]}
-          onClick={[Function]}
-          onScroll={[Function]}
-          onSelect={[Function]}
-          placeholder="Write your reply here"
-          rows={1}
-          spellCheck={true}
-          value=""
-        />
-      </div>
+        }
+        id="the-editor"
+        maxrows={100}
+        minrows={10}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onClick={[Function]}
+        onScroll={[Function]}
+        onSelect={[Function]}
+        placeholder="Write your reply here"
+        rows={1}
+        spellCheck={true}
+        value=""
+      />
     </div>
   </div>
   <div
