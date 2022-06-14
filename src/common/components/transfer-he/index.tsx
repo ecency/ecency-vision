@@ -29,7 +29,7 @@ import parseAsset from "../../helper/parse-asset";
 import {vestsToHp, hpToVests} from "../../helper/vesting";
 
 
-import { getAccount, getAccountFull, getVestingDelegations} from "../../api/hive";
+import { getAccount, getAccountFull} from "../../api/hive";
 
 import {
     transferHiveEngineKc,
@@ -215,12 +215,6 @@ export class Transfer extends BaseComponent<Props, State> {
                 .then(resp => {
                     if (resp) {
                         this.stateSet({toError: '', toData: resp});
-                        activeUser && activeUser.username && mode === "delegate" && getVestingDelegations(activeUser.username, to, 1000).then(res=>{
-                            const delegateAccount = res && res.length > 0 && 
-                            (res!.find(item => (item as any).delegatee===to && (item as any).delegator===activeUser.username));
-                            const previousAmount = delegateAccount ? Number(formattedNumber(vestsToHp(Number(parseAsset((delegateAccount!.vesting_shares)).amount), hivePerMVests))) : "";
-                            this.setState({delegationList:res as any[], amount: previousAmount ? (previousAmount).toString() : "0.001" })
-                        })
                     } else {
                         this.stateSet({
                             toError: _t("transfer.to-not-found")
