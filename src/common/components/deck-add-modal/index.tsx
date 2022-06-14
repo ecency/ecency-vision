@@ -14,14 +14,14 @@ import {
   person,
   tags,
   wallet,
-} from '../../img/svg';
-import { error } from '../feedback';
-import SuggestionList from '../suggestion-list';
-import userAvatar from '../user-avatar';
-
+} from "../../img/svg";
+import isElectron from '../../util/is-electron';
+import { error } from "../feedback";
+import SuggestionList from "../suggestion-list";
+import userAvatar from "../user-avatar";
 const ModalHeader = Modal.Header;
 
-const comingSoon = require("../../img/coming-soon.png");
+const comingSoon = isElectron() ? "./img/coming-soon.png" : require("../../img/coming-soon.png");
 
 const OptionWithIcon = ({ title, icon, onOptionClick, disabled, na }: any) => (
   <div

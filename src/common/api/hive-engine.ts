@@ -44,7 +44,7 @@ export interface TokenStatus {
 
 const HIVE_ENGINE_RPC_URL = "https://api.hive-engine.com/rpc/contracts";
 
-const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
+export const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
   const data = {
     jsonrpc: "2.0",
     method: "find",

@@ -155,6 +155,25 @@
       height: 100%;
     }
   }
+}
+.he-icon {
+  height: 15px;
+  width: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  border-radius: 50%;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+  @include themify(day) {
+    svg {
+      color: $charcoal-grey;
+      height: 100%;
+    }
+  }
 
   @include themify(night) {
     svg {
@@ -188,4 +207,28 @@
   top: 0px;
   bottom: 0px;
   z-index: 4;
+}
+$breakpoint-tablet: 768px;
+@media (max-width: $breakpoint-tablet) {
+  .he-icon {
+    height: 42px;
+    width: 42px;
+    padding: 10px;
+    &:hover {
+      opacity: 1;
+    }
+    @include themify(day) {
+      svg {
+        color: $charcoal-grey;
+        height: 100%;
+      }
+    }
+  
+    @include themify(night) {
+      svg {
+        color: $warm-grey;
+        height: 100%;
+      }
+    }
+  }
 }
