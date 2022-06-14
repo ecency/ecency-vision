@@ -62,7 +62,7 @@ export default async (req: Request, res: Response) => {
             ...entries
         },
     };
-    console.log(req.query)
+
     if ('amps' in req.query) {
         let ignoreCache = 'ignorecache' in req.query;
         let identifier = `${category}_${author}_${permlink}`;
