@@ -123,7 +123,7 @@ const pureState = (props: Props): State => {
         step: 1,
         asset: props.asset,
         assetBalance: props.assetBalance,
-        precision: (props.assetBalance + "").split(".")[1].length || 3,
+        precision: (props.assetBalance + "").split(".")[1]?.length || 3,
         to: props.to || _to,
         toData: props.to ? {name: props.to} : _toData,
         toError: "",
