@@ -724,10 +724,10 @@
     "transfer-title": "Siirrä tilille",
     "transfer-title-point": "Lahjoita tilille",
     "transfer-sub-title": "Siirrä varoja toiselle Hivetilille",
-    "stake-hive-engine-title": "Stake token",
-    "stake-hive-engine-sub-title": "Stake token to earn passive rewards",
-    "unstake-hive-engine-title": "Unstake token",
-    "unstake-hive-engine-sub-title": "Unstake token you will stop earning passive rewards",
+    "stake-hive-engine-title": "Panosta merkkejä",
+    "stake-hive-engine-sub-title": "Panosta merkkejä saadaksesi niitä passiivisesti",
+    "unstake-hive-engine-title": "Poista merkkien panostus",
+    "unstake-hive-engine-sub-title": "Panostuksen lopettaminen johtaa passiivisten palkkioiden pysähtymiseen",
     "transfer-saving-title": "Siirrä säästöihin",
     "transfer-saving-sub-title": "Suojaa varoja vaatimalla 3 päivän odotusaikaa",
     "withdraw-saving-title": "Säästöjen kotiutus",
@@ -738,10 +738,10 @@
     "convert-sub-title": "Suositeltu vain jos HBD on alle $1. Saat $1 edestä HIVEä 3.5 päivän kuluessa.",
     "delegate-title": "Valtuuta",
     "delegate-sub-title": "Valtuuta Hive Power",
-    "delegate-hive-engine-title": "Delegate",
-    "delegate-hive-engine-sub-title": "Delegate Tokens",
-    "undelegate-hive-engine-title": "Undelegate",
-    "undelegate-hive-engine-sub-title": "Undelegate Tokens to add them back to your Hive Engine balance",
+    "delegate-hive-engine-title": "Valtuuta",
+    "delegate-hive-engine-sub-title": "Valtuuta merkkejä",
+    "undelegate-hive-engine-title": "Poista valtuutus",
+    "undelegate-hive-engine-sub-title": "Poista merkkien valtuutus ja palauta ne Hive Engine taseeseen",
     "power-down-title": "Power Down",
     "power-down-sub-title": "Power Down Hive Power",
     "from": "Lähettäjä",
@@ -771,10 +771,10 @@
     "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> siirretty <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
     "convert-summary": "<span class=\"amount\">{{amount}}</span> muunnetaan",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> panoksena <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
-    "stake-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "unstake-summary": "<span class=\"amount\">{{amount}}</span> unstaked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "stake-summary": "<span class=\"amount\">{{amount}}</span> valtuutettu <span class=\"from-user\">{{from}}</span> käyttäjälle <span class=\"to-user\">{{to}}</span>",
+    "unstake-summary": "<span class=\"amount\">{{amount}}</span> valtuutus poistettu <span class=\"from-user\">{{from}}</span> käyttäjältä <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> valtuutettu <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
-    "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "undelegate-summary": "<span class=\"amount\">{{amount}}</span> valtuutus poistettu <span class=\"from-user\">{{from}}</span> käyttäjältä <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down valmis <span class=\"amount\">{{amount}}</span>",
     "reset": "Nollaa",
     "powering-down": "Olet power downaamassa.",
@@ -1376,6 +1376,6 @@
     "deck": "Pakka"
   },
   "top-communities": {
-    "title": "Top communities"
+    "title": "Suosituimmat Yhteisöt"
   }
 }
