@@ -1,13 +1,13 @@
-import {Request, Response} from "express";
+import { Request, Response } from 'express';
 
-import {AppState} from "../../common/store";
-import {Entry} from "../../common/store/entries/types";
+import { AppState } from '../../common/store';
+import { Entry } from '../../common/store/entries/types';
 
-import * as bridgeApi from "../../common/api/bridge";
+import * as bridgeApi from '../../common/api/bridge';
 
-import {makePreloadedState} from "../state";
+import { makePreloadedState } from '../state';
 
-import {render} from "../template";
+import { render } from '../template';
 import dmca from '../../common/constants/dmca.json';
 import { getAsAMP } from '../services';
 import { getPost } from '../../common/api/hive';
@@ -66,7 +66,7 @@ export default async (req: Request, res: Response) => {
     if ('amps' in req.query) {
         let ignoreCache = 'ignorecache' in req.query;
         let identifier = `${category}_${author}_${permlink}`;
-        let entry;
+        let entry: any;
         try {
             entry = await getPost(author, permlink);
             identifier += `_${entry.last_update}`;
@@ -75,11 +75,8 @@ export default async (req: Request, res: Response) => {
         }
         const ampResult = await getAsAMP(identifier, req, preLoadedState, ignoreCache);
         const tree = parse(ampResult);
-        const date = tree.querySelector('.date');
-        if (date) {
-            const newDate = moment(entry.created).fromNow();
-            date.innerHTML = newDate;
-        }
+        const date = tree.querySelectorAll('.date');
+        date.forEach(d => d.innerHTML = moment(entry.created).fromNow());
 
         res.send(tree.toString());
         return;
