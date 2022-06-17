@@ -88,7 +88,7 @@
     "filter-global-part3": " συζητήσεις από τις κοινότητες που έχετε εγγραφεί. Μπορείτε να συμμετάσχετε σε περισσότερες κοινότητες για να συμπληρώσετε αυτή τη ροή.",
     "filter-global-part4": " συζητήσεις από ανθρώπους που ακολουθείτε. Μπορείτε να ακολουθήσετε περισσότερα άτομα για να γεμίσετε αυτή τη ροή.",
     "filter-global-discover": "Ανακαλύψτε άτομα",
-    "filter-global-join-communities": "Join Communities",
+    "filter-global-join-communities": "Γίνετε μέλος σε κοινότητες",
     "filter-today": "Σήμερα",
     "filter-week": "Αυτή την εβδομάδα",
     "filter-month": "Αυτό τον μήνα",
@@ -221,7 +221,7 @@
     "delete-success": "Η αναδημοσίευση αφαιρέθηκε"
   },
   "entry-tip": {
-    "title": "Tip"
+    "title": "Φιλοδώρημα"
   },
   "entry-share": {
     "title": "Κοινοποίηση"
