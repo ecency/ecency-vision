@@ -1,0 +1,496 @@
+import React, { Fragment, useEffect, useState } from 'react';
+import { match } from 'react-router';
+
+import { Redirect } from 'react-router-dom'
+import { History } from 'history';
+import _ from 'lodash'
+import { _t } from '../i18n';
+import { ListStyle } from '../store/global/types';
+
+import { makeGroupKey } from '../store/entries';
+import { ProfileFilter } from '../store/global/types';
+import { Entry, EntryGroup } from '../store/entries/types';
+import BaseComponent from '../components/base';
+import Meta from '../components/meta';
+import Theme from '../components/theme';
+import Feedback from '../components/feedback';
+import NavBar from '../components/navbar';
+import NavBarElectron from '../../desktop/app/components/navbar';
+import NotFound from '../components/404';
+import LinearProgress from '../components/linear-progress/index';
+import EntryListLoadingItem from '../components/entry-list-loading-item';
+import DetectBottom from '../components/detect-bottom';
+import EntryListContent from '../components/entry-list';
+import ProfileCard from '../components/profile-card';
+import ProfileMenu from '../components/profile-menu';
+import ProfileCover from '../components/profile-cover';
+import ProfileCommunities from '../components/profile-communities';
+import ProfileSettings from '../components/profile-settings';
+import WalletHive from '../components/wallet-hive';
+import WalletHiveEngine from '../components/wallet-hive-engine';
+import WalletEcency from '../components/wallet-ecency';
+import ScrollToTop from '../components/scroll-to-top';
+import SearchListItem from '../components/search-list-item';
+import { SearchType } from '../helper/search-query';
+import SearchBox from '../components/search-box'
+import * as bridgeApi from '../api/bridge';
+import { search as searchApi, SearchResult } from '../api/search-api';
+import ViewKeys from '../components/view-keys';
+import { PasswordUpdate } from '../components/password-update';
+
+import { getAccountFull } from '../api/hive';
+
+import defaults from '../constants/defaults.json';
+import _c from '../util/fix-class-names';
+import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from './common';
+
+import { FormControl } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { Account, FullAccount } from '../store/accounts/types';
+import { withPersistentScroll } from '../components/with-persistent-scroll';
+import useAsyncEffect from 'use-async-effect';
+import { usePrevious } from '../util/use-previous';
+
+interface MatchParams {
+  username: string;
+  section?: string;
+  search?: string;
+}
+
+interface Props extends PageProps {
+  match: match<MatchParams>;
+  history: History;
+}
+
+export const Profile = (props: Props) => {
+  const { location } = props;
+  let searchParam = location.search.replace('?', '');
+  searchParam = searchParam.replace('q', '');
+  searchParam = searchParam.replace('=', '');
+
+  const prevAccounts = usePrevious(props.accounts);
+  const prevMatch = usePrevious(props.match);
+  const prevEntries = usePrevious(props.entries);
+  const prevSearch = usePrevious(props.location.search);
+  const prevGlobal = usePrevious(props.global);
+
+  const [loading, setLoading] = useState(false);
+  const [typing, setTyping] = useState(false);
+  const [isDefaultPost, setIsDefaultPost] = useState(false);
+  const [searchDataLoading, setSearchDataLoading] = useState(searchParam.length > 0);
+  const [search, setSearch] = useState(searchParam);
+  const [pinnedEntry, setPinnedEntry] = useState<Entry | null>(null);
+  const [searchData, setSearchData] = useState<any[]>([]);
+  const [account, setAccount] = useState<Account | undefined>();
+  const [username, setUsername] = useState('');
+  const [section, setSection] = useState('');
+  const [data, setData] = useState<EntryGroup>({ entries: [], sid: '', loading: false, error: null, hasMore: false });
+
+  useAsyncEffect(async _ => {
+    const { accounts, match, global, fetchEntries, fetchPoints } = props;
+
+    if (search.length) {
+      await handleInputChange(searchParam);
+    }
+
+    await ensureAccount();
+
+    const { username, section } = match.params;
+    if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
+      // fetch posts
+      fetchEntries(global.filter, global.tag, false);
+    }
+
+    // fetch points
+    fetchPoints(username);
+
+    const accountUsername = username.replace('@', '');
+    const account = accounts.find((x) => x.name === accountUsername) as FullAccount;
+
+    if (account?.profile?.pinned && ['blog', 'posts'].includes(global.filter)) {
+      try {
+        const entry = await bridgeApi.getPost(accountUsername, account.profile?.pinned);
+        setPinnedEntry(entry);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    return () => {
+      const { resetTransactions, resetPoints } = props;
+      resetTransactions();
+      resetPoints();
+    }
+  }, []);
+
+  useEffect(() => {
+    setUsername(props.match.params.username.replace('@', ''));
+    setSection(props.match.params.section || ProfileFilter.blog);
+  }, [props.accounts, props.match]);
+  useEffect(() => {
+    setData(props.entries[makeGroupKey(props.global.filter, props.global.tag)]);
+  }, [props.global, props.entries]);
+  useEffect(() => {
+    setAccount(props.accounts.find((x) => x.name === username));
+  }, [props.accounts]);
+  useEffect(() => {
+    const {
+      accounts,
+      match,
+      global,
+      fetchEntries,
+      fetchTransactions,
+      resetTransactions,
+      fetchPoints,
+      resetPoints,
+      history,
+      location: { search }
+    } = props;
+    const entries = prevEntries;
+
+    const { username, section } = match.params;
+
+    if (prevSearch !== search) {
+      let searchText = search.replace('?q=', '');
+      setSearch(searchText || '');
+      setSearchDataLoading(searchText.length > 0);
+      searchText.length > 0 && handleInputChange(searchText);
+    }
+
+    // username changed. re-fetch wallet transactions and points
+    if (username !== prevMatch?.params.username) {
+      ensureAccount().then(() => {
+        resetTransactions();
+        fetchTransactions(username);
+
+        resetPoints();
+        fetchPoints(username);
+      });
+    }
+
+    // Wallet and points are not a correct filter to fetch posts
+    if (section && !Object.keys(ProfileFilter).includes(section)) {
+      if (section !== prevMatch?.params.section) {
+        setSearch('');
+      }
+      return;
+    }
+
+    // filter or username changed. fetch posts.
+    if (section !== prevMatch?.params.section || username !== prevMatch?.params.username) {
+      fetchEntries(global.filter, global.tag, false);
+    }
+
+    if (entries) {
+      const { filter, tag } = global;
+      const groupKey = makeGroupKey(filter, tag);
+      const prevData = entries[groupKey];
+      if (prevData) {
+        const data = props.entries[groupKey];
+        const { loading } = data;
+        const { loading: prevLoading } = prevData;
+
+        if (loading !== prevLoading && !loading && data.entries.length === 0 && groupKey === `blog-${username}` && !isDefaultPost) {
+          setIsDefaultPost(true);
+          history.push(`/${username}/posts`);
+        }
+      }
+    }
+
+    if (prevGlobal?.filter !== props.global.filter) {
+      setSearch('');
+    }
+
+    if (['comments', 'replies'].includes(global.filter) && (global.filter !== prevGlobal?.filter)) {
+      setPinnedEntry(null);
+    }
+
+    let accountUsername = username.replace('@', '');
+    const account = accounts.find((x) => x.name === accountUsername) as FullAccount;
+    const prevAccount = prevAccounts?.find((x) => x.name === accountUsername) as FullAccount;
+
+    if (['blog', 'posts'].includes(global.filter)) {
+      if ((account && prevAccount && account.profile && prevAccount.profile && (account.profile.pinned !== prevAccount.profile.pinned)) || (account && account.profile && account.profile.pinned && global.filter !== prevGlobal?.filter) || (account !== prevAccount && account.profile && account.profile.pinned)) {
+        setPinnedEntry(null);
+
+        bridgeApi.getPost(accountUsername, account.profile.pinned).then(entry => {
+          setPinnedEntry(entry);
+        }).catch(e => {
+          console.log(e);
+        })
+      }
+    }
+  }, [props.accounts, props.match, props.global, props.history, props.location]);
+
+  const ensureAccount = async () => {
+    const { match, accounts, addAccount } = props;
+
+    const username = match.params.username.replace('@', '');
+    const account = accounts.find((x) => x.name === username);
+
+    if (!account) {
+      // The account isn't in reducer. Fetch it and add to reducer.
+      setLoading(true);
+
+      try {
+        const data = await getAccountFull(username);
+        if (data.name === username) {
+          addAccount(data);
+        }
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      try {
+        const data = await getAccountFull(username);
+        if (data.name === username) {
+          addAccount(data);
+        }
+      } finally {
+      }
+    }
+  };
+
+  const bottomReached = () => {
+    const { global, entries, fetchEntries } = props;
+    const { filter, tag } = global;
+    const groupKey = makeGroupKey(filter, tag);
+
+    const data = entries[groupKey];
+    const { loading, hasMore } = data;
+
+    if (!loading && hasMore) {
+      fetchEntries(filter, tag, true);
+    }
+  };
+
+  const reload = async () => {
+    const {
+      match,
+      global,
+      invalidateEntries,
+      fetchEntries,
+      resetTransactions,
+      fetchTransactions,
+      resetPoints,
+      fetchPoints
+    } = props;
+    const { username, section } = match.params;
+
+    setLoading(true);
+    try {
+      await ensureAccount();
+      // reload transactions
+      resetTransactions();
+      fetchTransactions(username);
+
+      // reload points
+      resetPoints();
+      fetchPoints(username);
+
+      if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
+        // reload posts
+        invalidateEntries(makeGroupKey(global.filter, global.tag));
+        fetchEntries(global.filter, global.tag, false);
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const handleChangeSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setSearch(value);
+    setTyping(value.length !== 0);
+    delayedSearch(value);
+  }
+
+  const handleInputChange = async (value: string) => {
+    setTyping(false);
+    if (value.trim() === '') {
+      // this.setState({proposals: this.state.allProposals});
+    } else {
+      const { global } = props;
+      setSearchDataLoading(true);
+
+      let query = `${value} author:${global.tag.substring(1)}`;
+
+      if (global.filter === 'posts') {
+        query += ` type:post`;
+      } else if (global.filter === 'comments') {
+        query += ` type:comment`;
+      }
+      let data: any;
+      try {
+        data = await searchApi(query, 'newest', '0')
+      } catch (error) {
+        data = null;
+      }
+      if (data && data.results) {
+        const sortedResults = data.results.sort((a: any, b: any) => Date.parse(b.created_at) - Date.parse(a.created_at));
+        setSearchData(sortedResults);
+        setLoading(false);
+        setSearchDataLoading(false);
+      }
+    }
+  }
+
+  const delayedSearch = _.debounce(handleInputChange, 2000);
+
+  const getNavBar = () => {
+    return props.global.isElectron ? NavBarElectron({
+      ...props,
+      reloadFn: reload,
+      reloading: loading,
+    }) : NavBar({ ...props });
+  }
+
+  const getMetaProps = () => {
+    const username = props.match.params.username.replace('@', '');
+    const account = props.accounts.find((x) => x.name === username);
+    const { section = ProfileFilter.blog } = props.match.params;
+    const url = `${defaults.base}/@${username}${section ? `/${section}` : ''}`;
+
+    if (!account) {
+      return {};
+    }
+
+    return account.__loaded ? {
+      title: `${account.profile?.name || account.name}'s ${section ? section === 'engine' ? 'tokens' : `${section}` : ''} on decentralized web`,
+      description: `${account.profile?.about ? `${account.profile?.about} ${section ? `${section}` : ''}` : `${(account.profile?.name || account.name)} ${section ? `${section}` : ''}`}` || '',
+      url: `/@${username}${section ? `/${section}` : ''}`,
+      canonical: url,
+      image: `${defaults.imageServer}/u/${username}/avatar/medium`,
+      rss: `${defaults.base}/@${username}/rss`,
+      keywords: `${username}, ${username}'s blog`,
+    } : {};
+  }
+
+  return !account ? NotFound({ ...props }) : <>
+    <Meta {...getMetaProps()} />
+    <ScrollToTop/>
+    <Theme global={props.global}/>
+    <Feedback/>
+    {getNavBar()}
+
+    <div className={props.global.isElectron ? 'app-content profile-page mt-0 pt-6' : 'app-content profile-page'}>
+      <div className="profile-side">
+        {ProfileCard({ ...props, account, section })}
+      </div>
+      <span itemScope={true} itemType="http://schema.org/Person">
+        {account.__loaded && <meta itemProp="name" content={account.profile?.name || account.name}/>}
+      </span>
+      <div className="content-side">
+        {ProfileMenu({ ...props, username, section })}
+
+        {[...Object.keys(ProfileFilter), 'communities'].includes(section) && ProfileCover({ ...props, account })}
+
+        {data && data.entries.length > 0 &&
+          (props.global.filter === 'posts' || props.global.filter === 'comments') && (section === props.global.filter) && (
+            <div className="searchProfile">
+              <SearchBox
+                placeholder={_t('search-comment.search-placeholder')}
+                value={search}
+                onChange={handleChangeSearch}
+                autoComplete="off"
+                showcopybutton={true}
+                username={`@${username}`}
+                filter={props.global.filter}
+              />
+            </div>
+          )
+        }
+
+        {typing ? <div className="mt-3">
+            <LinearProgress/>
+          </div> :
+          search.length > 0 ? (
+            <>
+              {searchDataLoading ?
+                <div className="mt-3">
+                  <LinearProgress/>
+                </div> : searchData.length > 0 ? (
+                  <div className="search-list">
+                    {searchData.map(res => <Fragment key={`${res.author}-${res.permlink}-${res.id}`}>
+                      {SearchListItem({ ...props, res: res })}
+                    </Fragment>)}
+                  </div>
+                ) : (_t('g.no-matches'))}
+            </>
+          ) : (
+            <>
+              {(() => {
+                if (section === 'wallet') {
+                  return WalletHive({ ...props, account, updateWalletValues: ensureAccount });
+                }
+                if (section === 'engine') {
+                  return WalletHiveEngine({ ...props, account, updateWalletValues: ensureAccount });
+                }
+                if (section === 'points') {
+                  return WalletEcency({ ...props, account, updateWalletValues: ensureAccount });
+                }
+                if (section === 'communities') {
+                  return ProfileCommunities({ ...props, account });
+                }
+                if (section === 'settings') {
+                  return ProfileSettings({ ...props, account });
+                }
+
+                if (section === 'permissions' && props.activeUser) {
+                  if (account.name === props.activeUser.username) {
+                    return <div className="container-fluid">
+                      <div className="row">
+                        <div className="col-12 col-md-6">
+                          <h6 className="border-bottom pb-3">{_t('view-keys.header')}</h6>
+                          <ViewKeys activeUser={props.activeUser}/>
+                        </div>
+                        <div className="col-12 col-md-6">
+                          <h6 className="border-bottom pb-3">{_t('password-update.title')}</h6>
+                          <PasswordUpdate activeUser={props.activeUser}/>
+                        </div>
+                      </div>
+                    </div>
+                  } else {
+                    return <Redirect to={`/@${account.name}`}/>
+                  }
+                }
+
+                if (data !== undefined) {
+                  let entryList = data?.entries;
+                  const { profile } = account as FullAccount
+                  entryList = entryList.filter(item => item.permlink !== profile?.pinned)
+                  if (pinnedEntry) {
+                    entryList.unshift(pinnedEntry)
+                  }
+                  const loading = data?.loading;
+                  return (
+                    <>
+                      <div className={_c(`entry-list ${loading ? 'loading' : ''}`)}>
+                        <div
+                          className={_c(`entry-list-body ${props.global.listStyle === ListStyle.grid ? 'grid-view' : ''}`)}>
+                          {loading && entryList.length === 0 && <EntryListLoadingItem/>}
+                          {EntryListContent({
+                            ...props,
+                            entries: entryList,
+                            promotedEntries: [],
+                            loading,
+                            account
+                          })}
+                        </div>
+                      </div>
+                      {loading && entryList.length > 0 ? <LinearProgress/> : ''}
+                      <DetectBottom onBottom={bottomReached}/>
+                    </>
+                  );
+                }
+                return null;
+              })()}
+            </>
+          )
+        }
+      </div>
+    </div>
+  </>
+}
+
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(withPersistentScroll(Profile));

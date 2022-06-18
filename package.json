@@ -71,6 +71,7 @@
     "serialize-javascript": "^3.1.0",
     "sortablejs": "^1.13.0",
     "speakingurl": "^14.0.1",
+    "use-async-effect": "^2.2.6",
     "xss": "^1.0.8"
   },
   "devDependencies": {
