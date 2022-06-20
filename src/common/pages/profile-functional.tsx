@@ -106,14 +106,11 @@ export const Profile = (props: Props) => {
     const accountUsername = username.replace('@', '');
     const account = accounts.find((x) => x.name === accountUsername) as FullAccount;
 
-    if (account?.profile?.pinned && ['blog', 'posts'].includes(global.filter)) {
-      try {
-        const entry = await bridgeApi.getPost(accountUsername, account.profile?.pinned);
-        setPinnedEntry(entry);
-      } catch (e) {
-        console.log(e);
-      }
-    }
+    setAccount(account);
+    setSection(section || ProfileFilter.blog);
+    setUsername(username.replace('@', ''));
+
+    await initPinnedEntry(username.replace('@', ''), account);
 
     return () => {
       const { resetTransactions, resetPoints } = props;
@@ -342,11 +339,10 @@ export const Profile = (props: Props) => {
       setPinnedEntry(null);
     }
 
-    if (!['blog', 'posts'].includes(props.global.filter)) {
+    if (!['blog', 'posts'].includes(props.global.filter) || !(account as FullAccount)?.profile?.pinned) {
       return;
     }
 
-    console.log(username, account)
     setPinnedEntry(null);
     try {
       const entry = await bridgeApi.getPost(username, (account as FullAccount).profile?.pinned);
