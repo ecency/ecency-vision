@@ -1334,8 +1334,8 @@
       "hive-dollar-worth-body": "<p>The price of Hive Dollar changes around 1 USD depending on market conditions of the demand and supply. If price is below 1 USD, you are encouraged to convert HBD to HIVE to get 1 USD worth of HIVE tokens. When above 1 USD, you can trade them to buy more HIVE on market.</p>",
       "convert-hive-dollar-header": "How long does it take to convert Hive Dollars to HIVE?",
       "convert-hive-dollar-body": "<p>The blockchain will process the transaction over a period of 3.5 days for conversions Hive Dollars to HIVE.</p>",
-      "what-voting power-header": "What is voting power?",
-      "what-voting power-body": "<p>Your voting power goes down a little bit every time you vote. It begins with 100% voting power and by voting you use small amount of voting power. The more you vote the fewer influence you have, meaning efficiency of your vote will decay. Daily 10 votes are recommended to utilize efficiency and curation rewards better.</p>",
+      "what-voting-power-header": "What is voting power?",
+      "what-voting-power-body": "<p>Your voting power goes down a little bit every time you vote. It begins with 100% voting power and by voting you use small amount of voting power. The more you vote the fewer influence you have, meaning efficiency of your vote will decay. Daily 10 votes are recommended to utilize efficiency and curation rewards better.</p>",
       "how-many-vote-header": "How many times can I vote with my voting power?",
       "how-many-vote-body": "<p>Every 100% vote you cast will use 2% of your remaining voting mana. Your voting mana will recharge by 20% each day. You can vote more than 10 times per day, but each vote will be worth less, and it will take longer to reach full voting power again.</p>"
     }
