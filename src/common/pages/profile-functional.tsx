@@ -10,7 +10,6 @@ import { ListStyle } from '../store/global/types';
 import { makeGroupKey } from '../store/entries';
 import { ProfileFilter } from '../store/global/types';
 import { Entry, EntryGroup } from '../store/entries/types';
-import BaseComponent from '../components/base';
 import Meta from '../components/meta';
 import Theme from '../components/theme';
 import Feedback from '../components/feedback';
@@ -31,10 +30,9 @@ import WalletHiveEngine from '../components/wallet-hive-engine';
 import WalletEcency from '../components/wallet-ecency';
 import ScrollToTop from '../components/scroll-to-top';
 import SearchListItem from '../components/search-list-item';
-import { SearchType } from '../helper/search-query';
 import SearchBox from '../components/search-box'
 import * as bridgeApi from '../api/bridge';
-import { search as searchApi, SearchResult } from '../api/search-api';
+import { search as searchApi } from '../api/search-api';
 import ViewKeys from '../components/view-keys';
 import { PasswordUpdate } from '../components/password-update';
 
@@ -44,12 +42,12 @@ import defaults from '../constants/defaults.json';
 import _c from '../util/fix-class-names';
 import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from './common';
 
-import { FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Account, FullAccount } from '../store/accounts/types';
 import { withPersistentScroll } from '../components/with-persistent-scroll';
 import useAsyncEffect from 'use-async-effect';
 import { usePrevious } from '../util/use-previous';
+import { useMounted } from '../util/use-mounted';
 
 interface MatchParams {
   username: string;
@@ -68,11 +66,12 @@ export const Profile = (props: Props) => {
   searchParam = searchParam.replace('q', '');
   searchParam = searchParam.replace('=', '');
 
-  const prevAccounts = usePrevious(props.accounts);
-  const prevMatch = usePrevious(props.match);
+  const prevMatchUsername = usePrevious(props.match.params.username);
+  const prevMatchSection = usePrevious(props.match.params.section);
   const prevEntries = usePrevious(props.entries);
   const prevSearch = usePrevious(props.location.search);
   const prevGlobal = usePrevious(props.global);
+  const isMounted = useMounted();
 
   const [loading, setLoading] = useState(false);
   const [typing, setTyping] = useState(false);
@@ -122,62 +121,50 @@ export const Profile = (props: Props) => {
       resetPoints();
     }
   }, []);
-
-  useEffect(() => {
-    setUsername(props.match.params.username.replace('@', ''));
-    setSection(props.match.params.section || ProfileFilter.blog);
-  }, [props.accounts, props.match]);
   useEffect(() => {
     setData(props.entries[makeGroupKey(props.global.filter, props.global.tag)]);
   }, [props.global, props.entries]);
-  useEffect(() => {
-    setAccount(props.accounts.find((x) => x.name === username));
-  }, [props.accounts]);
-  useEffect(() => {
-    const {
-      accounts,
-      match,
-      global,
-      fetchEntries,
-      fetchTransactions,
-      resetTransactions,
-      fetchPoints,
-      resetPoints,
-      history,
-      location: { search }
-    } = props;
-    const entries = prevEntries;
-
-    const { username, section } = match.params;
-
+  useAsyncEffect(async _ => {
     if (prevSearch !== search) {
       let searchText = search.replace('?q=', '');
       setSearch(searchText || '');
       setSearchDataLoading(searchText.length > 0);
-      searchText.length > 0 && handleInputChange(searchText);
+      searchText.length > 0 && await handleInputChange(searchText);
     }
+  }, [props.location]);
+  useAsyncEffect(async _ => {
+    const { global, fetchEntries, history } = props;
+    const nextUsername = props.match.params.username.replace('@', '');
+    const nextSection = props.match.params.section;
+    const nextAccount = props.accounts.find((x) => x.name === nextUsername);
+
+    setUsername(nextUsername);
+    setSection(nextSection || ProfileFilter.blog);
+    setAccount(nextAccount);
+
+    const entries = prevEntries;
 
     // username changed. re-fetch wallet transactions and points
-    if (username !== prevMatch?.params.username) {
-      ensureAccount().then(() => {
-        resetTransactions();
-        fetchTransactions(username);
+    if (`@${nextUsername}` !== prevMatchUsername) {
+      setPinnedEntry(null);
+      await ensureAccount();
+      props.resetTransactions();
+      props.fetchTransactions(`@${nextUsername}`);
 
-        resetPoints();
-        fetchPoints(username);
-      });
+      props.resetPoints();
+      props.fetchPoints(`@${nextUsername}`);
     }
 
     // Wallet and points are not a correct filter to fetch posts
-    if (section && !Object.keys(ProfileFilter).includes(section)) {
-      if (section !== prevMatch?.params.section) {
+    if (nextSection && !Object.keys(ProfileFilter).includes(nextSection)) {
+      if (nextSection !== prevMatchSection) {
         setSearch('');
       }
       return;
     }
 
     // filter or username changed. fetch posts.
-    if (section !== prevMatch?.params.section || username !== prevMatch?.params.username) {
+    if (nextSection !== prevMatchSection|| `@${nextUsername}` !== prevMatchUsername) {
       fetchEntries(global.filter, global.tag, false);
     }
 
@@ -190,9 +177,9 @@ export const Profile = (props: Props) => {
         const { loading } = data;
         const { loading: prevLoading } = prevData;
 
-        if (loading !== prevLoading && !loading && data.entries.length === 0 && groupKey === `blog-${username}` && !isDefaultPost) {
+        if (loading !== prevLoading && !loading && data.entries.length === 0 && groupKey === `blog-@${nextUsername}` && !isDefaultPost) {
           setIsDefaultPost(true);
-          history.push(`/${username}/posts`);
+          history.push(`/@${nextUsername}/posts`);
         }
       }
     }
@@ -201,26 +188,10 @@ export const Profile = (props: Props) => {
       setSearch('');
     }
 
-    if (['comments', 'replies'].includes(global.filter) && (global.filter !== prevGlobal?.filter)) {
-      setPinnedEntry(null);
+    if (`@${nextUsername}` !== prevMatchUsername) {
+      await initPinnedEntry(nextUsername, nextAccount);
     }
-
-    let accountUsername = username.replace('@', '');
-    const account = accounts.find((x) => x.name === accountUsername) as FullAccount;
-    const prevAccount = prevAccounts?.find((x) => x.name === accountUsername) as FullAccount;
-
-    if (['blog', 'posts'].includes(global.filter)) {
-      if ((account && prevAccount && account.profile && prevAccount.profile && (account.profile.pinned !== prevAccount.profile.pinned)) || (account && account.profile && account.profile.pinned && global.filter !== prevGlobal?.filter) || (account !== prevAccount && account.profile && account.profile.pinned)) {
-        setPinnedEntry(null);
-
-        bridgeApi.getPost(accountUsername, account.profile.pinned).then(entry => {
-          setPinnedEntry(entry);
-        }).catch(e => {
-          console.log(e);
-        })
-      }
-    }
-  }, [props.accounts, props.match, props.global, props.history, props.location]);
+  }, [props.accounts, props.match, props.global, props.history, props.location, props.activeUser]);
 
   const ensureAccount = async () => {
     const { match, accounts, addAccount } = props;
@@ -366,7 +337,26 @@ export const Profile = (props: Props) => {
     } : {};
   }
 
-  return !account ? NotFound({ ...props }) : <>
+  const initPinnedEntry = async (username: string, account: Account | undefined) => {
+    if (['comments', 'replies'].includes(props.global.filter) && (props.global.filter !== prevGlobal?.filter)) {
+      setPinnedEntry(null);
+    }
+
+    if (!['blog', 'posts'].includes(props.global.filter)) {
+      return;
+    }
+
+    console.log(username, account)
+    setPinnedEntry(null);
+    try {
+      const entry = await bridgeApi.getPost(username, (account as FullAccount).profile?.pinned);
+      setPinnedEntry(entry);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  return !isMounted ? <></> : !account ? NotFound({ ...props }) : <>
     <Meta {...getMetaProps()} />
     <ScrollToTop/>
     <Theme global={props.global}/>
