@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import {PointTransaction} from "../store/points/types";
-import {ApiNotification, NotificationFilter} from "../store/notifications/types";
+import {ApiNotification, ApiNotificationSetting, NotificationFilter} from "../store/notifications/types";
 import {Entry} from "../store/entries/types";
 
 import {getAccessToken} from "../helper/user-token";
@@ -113,6 +113,16 @@ export const getNotifications = (username: string, filter: NotificationFilter | 
     }
 
     return axios.post(apiBase(`/private-api/notifications`), data).then(resp => resp.data);
+};
+
+export const saveNotificationSetting = (username: string, system: string, allows_notify: number, notify_types: number[], token: string): Promise<ApiNotificationSetting> => {
+    const data = {code: getAccessToken(username), username, token, system, allows_notify, notify_types};
+    return axios.post(apiBase(`/private-api/register-device`), data).then(resp => resp.data);
+};
+
+export const getNotificationSetting = (username: string, token: string): Promise<ApiNotificationSetting> => {
+    const data = {code: getAccessToken(username), username, token};
+    return axios.post(apiBase(`/private-api/detail-device`), data).then(resp => resp.data);
 };
 
 export const getCurrencyTokenRate = (currency:string, token:string): Promise<number> => 
