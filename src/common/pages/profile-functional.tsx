@@ -71,7 +71,6 @@ export const Profile = (props: Props) => {
   const prevEntries = usePrevious(props.entries);
   const prevSearch = usePrevious(props.location.search);
   const prevGlobal = usePrevious(props.global);
-  const isMounted = useMounted();
 
   const [loading, setLoading] = useState(false);
   const [typing, setTyping] = useState(false);
@@ -80,7 +79,7 @@ export const Profile = (props: Props) => {
   const [search, setSearch] = useState(searchParam);
   const [pinnedEntry, setPinnedEntry] = useState<Entry | null>(null);
   const [searchData, setSearchData] = useState<any[]>([]);
-  const [account, setAccount] = useState<Account | undefined>();
+  const [account, setAccount] = useState<Account>({ __loaded: false } as Account);
   const [username, setUsername] = useState('');
   const [section, setSection] = useState('');
   const [data, setData] = useState<EntryGroup>({ entries: [], sid: '', loading: false, error: null, hasMore: false });
@@ -124,7 +123,6 @@ export const Profile = (props: Props) => {
   useAsyncEffect(async _ => {
     if (prevSearch !== search) {
       let searchText = search.replace('?q=', '');
-      setSearch(searchText || '');
       setSearchDataLoading(searchText.length > 0);
       searchText.length > 0 && await handleInputChange(searchText);
     }
@@ -137,7 +135,7 @@ export const Profile = (props: Props) => {
 
     setUsername(nextUsername);
     setSection(nextSection || ProfileFilter.blog);
-    setAccount(nextAccount);
+    setAccount(nextAccount as FullAccount || { __loaded: false, name: nextUsername } as Account);
 
     const entries = prevEntries;
 
@@ -181,7 +179,7 @@ export const Profile = (props: Props) => {
       }
     }
 
-    if (prevGlobal?.filter !== props.global.filter) {
+    if (prevGlobal?.filter && prevGlobal?.filter !== props.global.filter) {
       setSearch('');
     }
 
@@ -204,6 +202,8 @@ export const Profile = (props: Props) => {
         const data = await getAccountFull(username);
         if (data.name === username) {
           addAccount(data);
+        } else {
+          props.history.push('/404');
         }
       } finally {
         setLoading(false);
@@ -213,6 +213,8 @@ export const Profile = (props: Props) => {
         const data = await getAccountFull(username);
         if (data.name === username) {
           addAccount(data);
+        } else {
+          props.history.push('/404');
         }
       } finally {
       }
@@ -274,6 +276,7 @@ export const Profile = (props: Props) => {
   }
 
   const handleInputChange = async (value: string) => {
+    setSearch(value || '');
     setTyping(false);
     if (value.trim() === '') {
       // this.setState({proposals: this.state.allProposals});
@@ -352,7 +355,7 @@ export const Profile = (props: Props) => {
     }
   }
 
-  return !isMounted ? <></> : !account ? NotFound({ ...props }) : <>
+  return <>
     <Meta {...getMetaProps()} />
     <ScrollToTop/>
     <Theme global={props.global}/>
