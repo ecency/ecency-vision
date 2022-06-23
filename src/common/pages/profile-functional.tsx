@@ -47,7 +47,6 @@ import { Account, FullAccount } from '../store/accounts/types';
 import { withPersistentScroll } from '../components/with-persistent-scroll';
 import useAsyncEffect from 'use-async-effect';
 import { usePrevious } from '../util/use-previous';
-import { useMounted } from '../util/use-mounted';
 
 interface MatchParams {
   username: string;
@@ -83,6 +82,7 @@ export const Profile = (props: Props) => {
   const [username, setUsername] = useState('');
   const [section, setSection] = useState('');
   const [data, setData] = useState<EntryGroup>({ entries: [], sid: '', loading: false, error: null, hasMore: false });
+  const [pinnedEntryTimer, setPinnedEntryTimer] = useState<any>(null);
 
   useAsyncEffect(async _ => {
     const { accounts, match, global, fetchEntries, fetchPoints } = props;
@@ -159,7 +159,7 @@ export const Profile = (props: Props) => {
     }
 
     // filter or username changed. fetch posts.
-    if (nextSection !== prevMatchSection|| `@${nextUsername}` !== prevMatchUsername) {
+    if (nextSection !== prevMatchSection || `@${nextUsername}` !== prevMatchUsername) {
       fetchEntries(global.filter, global.tag, false);
     }
 
@@ -347,12 +347,34 @@ export const Profile = (props: Props) => {
     }
 
     setPinnedEntry(null);
+
     try {
-      const entry = await bridgeApi.getPost(username, (account as FullAccount).profile?.pinned);
-      setPinnedEntry(entry);
+      if (!pinnedEntryTimer) {
+        const entry = await bridgeApi.getPost(username, (account as FullAccount).profile?.pinned);
+        if (entry) {
+          setPinnedEntry(entry);
+          setPinnedEntryTimer(setTimeout(() => setPinnedEntryTimer(null), 30000));
+        }
+      }
     } catch (e) {
       console.log(e);
     }
+  }
+
+  // Pin entry directly from menu
+  const pinEntry = (entry: Entry) => {
+    const updatedAccount = {
+      ...account,
+      profile: {
+        ...(account as FullAccount).profile,
+        pinned: entry.permlink,
+      },
+    };
+    setAccount(updatedAccount);
+    props.addAccount(updatedAccount);
+
+    setPinnedEntry(null);
+    setPinnedEntry(entry);
   }
 
   return <>
@@ -460,6 +482,7 @@ export const Profile = (props: Props) => {
                           {loading && entryList.length === 0 && <EntryListLoadingItem/>}
                           {EntryListContent({
                             ...props,
+                            pinEntry,
                             entries: entryList,
                             promotedEntries: [],
                             loading,
