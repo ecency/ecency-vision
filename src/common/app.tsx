@@ -24,7 +24,7 @@ import { connect } from 'react-redux';
 import loadable from '@loadable/component';
 
 // Define lazy pages
-const ProfileContainer = loadable(() => import('./pages/profile'));
+const ProfileContainer = loadable(() => import('./pages/profile-functional'));
 const ProfilePage = (props: any) => <ProfileContainer {...props} />;
 
 const CommunityContainer = loadable(() => import('./pages/community'));
