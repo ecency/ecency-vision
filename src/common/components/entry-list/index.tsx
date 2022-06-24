@@ -54,7 +54,7 @@ interface Props {
     trackEntryPin: (entry: Entry) => void;
     setSigningKey: (key: string) => void;
     setEntryPin: (entry: Entry, pin: boolean) => void;
-    pinEntry?: (entry: Entry) => void;
+    pinEntry?: (entry: Entry | null) => void;
 }
 
 interface State {

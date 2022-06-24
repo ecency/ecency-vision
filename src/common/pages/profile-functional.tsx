@@ -358,12 +358,12 @@ export const Profile = (props: Props) => {
   }
 
   // Pin entry directly from menu
-  const pinEntry = (entry: Entry) => {
+  const pinEntry = (entry: Entry | null) => {
     const updatedAccount = {
       ...account,
       profile: {
         ...(account as FullAccount).profile,
-        pinned: entry.permlink,
+        pinned: entry?.permlink || '',
       },
     };
     setAccount(updatedAccount);
