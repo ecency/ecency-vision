@@ -82,7 +82,6 @@ export const Profile = (props: Props) => {
   const [username, setUsername] = useState('');
   const [section, setSection] = useState('');
   const [data, setData] = useState<EntryGroup>({ entries: [], sid: '', loading: false, error: null, hasMore: false });
-  const [pinnedEntryTimer, setPinnedEntryTimer] = useState<any>(null);
 
   useAsyncEffect(async _ => {
     const { accounts, match, global, fetchEntries, fetchPoints } = props;
@@ -183,7 +182,11 @@ export const Profile = (props: Props) => {
       setSearch('');
     }
 
-    if (`@${nextUsername}` !== prevMatchUsername) {
+    if (['comments', 'replies'].includes(props.global.filter) && (props.global.filter !== prevGlobal?.filter)) {
+      setPinnedEntry(null);
+    }
+
+    if (`@${nextUsername}` !== prevMatchUsername || (['blog', 'posts'].includes(props.global.filter) && !pinnedEntry)) {
       await initPinnedEntry(nextUsername, nextAccount);
     }
   }, [props.accounts, props.match, props.global, props.history, props.location, props.activeUser]);
@@ -338,10 +341,6 @@ export const Profile = (props: Props) => {
   }
 
   const initPinnedEntry = async (username: string, account: Account | undefined) => {
-    if (['comments', 'replies'].includes(props.global.filter) && (props.global.filter !== prevGlobal?.filter)) {
-      setPinnedEntry(null);
-    }
-
     if (!['blog', 'posts'].includes(props.global.filter) || !(account as FullAccount)?.profile?.pinned) {
       return;
     }
@@ -349,12 +348,9 @@ export const Profile = (props: Props) => {
     setPinnedEntry(null);
 
     try {
-      if (!pinnedEntryTimer) {
-        const entry = await bridgeApi.getPost(username, (account as FullAccount).profile?.pinned);
-        if (entry) {
-          setPinnedEntry(entry);
-          setPinnedEntryTimer(setTimeout(() => setPinnedEntryTimer(null), 30000));
-        }
+      const entry = await bridgeApi.getPost(username, (account as FullAccount).profile?.pinned);
+      if (entry) {
+        setPinnedEntry(entry);
       }
     } catch (e) {
       console.log(e);
@@ -372,6 +368,7 @@ export const Profile = (props: Props) => {
     };
     setAccount(updatedAccount);
     props.addAccount(updatedAccount);
+    props.updateActiveUser(updatedAccount);
 
     setPinnedEntry(null);
     setPinnedEntry(entry);
