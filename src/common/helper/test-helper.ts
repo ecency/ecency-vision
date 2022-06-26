@@ -122,6 +122,7 @@ export const globalInstance: Global = {
     nsfw: false,
     newVersion: null,
     usePrivate: true,
+    lastIndexPath: null,
 };
 
 export const TrendingTagsInstance: TrendingTags = {
