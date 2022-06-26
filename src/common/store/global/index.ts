@@ -1,35 +1,36 @@
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
-import { Dispatch } from "redux";
+import { Dispatch } from 'redux';
 
-import defaults from "../../constants/defaults.json";
+import defaults from '../../constants/defaults.json';
 
-import { AppState } from "../index";
+import { AppState } from '../index';
 
 import {
   Actions,
   ActionTypes,
   AllFilter,
+  CurrencySetAction,
   Global,
   HasKeyChainAction,
   IntroHideAction,
+  LangSetAction,
   ListStyle,
   ListStyleChangeAction,
   NewVersionChangeAction,
   NotificationsMuteAction,
   NotificationsUnMuteAction,
-  CurrencySetAction,
-  LangSetAction,
   NsfwSetAction,
+  SetLastIndexPathAction,
   Theme,
   ThemeChangeAction,
-} from "./types";
+} from './types';
 
-import { CommonActionTypes } from "../common";
+import { CommonActionTypes } from '../common';
 
-import * as ls from "../../util/local-storage";
+import * as ls from '../../util/local-storage';
 
-import filterTagExtract from "../../helper/filter-tag-extract";
+import filterTagExtract from '../../helper/filter-tag-extract';
 
 export const initialState: Global = {
   filter: AllFilter[defaults.filter],
@@ -50,6 +51,7 @@ export const initialState: Global = {
   nsfw: false,
   isMobile: false,
   usePrivate: true,
+  lastIndexPath: null,
 };
 
 export default (state: Global = initialState, action: Actions): Global => {
@@ -101,6 +103,9 @@ export default (state: Global = initialState, action: Actions): Global => {
     }
     case ActionTypes.HAS_KEYCHAIN: {
       return { ...state, hasKeyChain: true };
+    }
+    case ActionTypes.SET_LAST_INDEX_PATH: {
+      return { ...state, lastIndexPath: action.path };
     }
     default:
       return state;
@@ -198,6 +203,10 @@ export const setNsfw = (value: boolean) => (dispatch: Dispatch) => {
   dispatch(setNsfwAct(value));
 };
 
+export const setLastIndexPath = (path: string | null) => (dispatch: Dispatch) => {
+  dispatch(setLastIndexPathAct(path));
+}
+
 /* Action Creators */
 export const themeChangeAct = (theme: Theme): ThemeChangeAction => {
   return {
@@ -274,3 +283,8 @@ export const hasKeyChainAct = (): HasKeyChainAction => {
     type: ActionTypes.HAS_KEYCHAIN,
   };
 };
+
+export const setLastIndexPathAct = (path: string | null): SetLastIndexPathAction => ({
+  type: ActionTypes.SET_LAST_INDEX_PATH,
+  path,
+});
