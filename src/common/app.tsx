@@ -9,6 +9,7 @@ import CommunityContainer from "./pages/community";
 import DiscoverContainer from "./pages/discover";
 import {SearchPageContainer, SearchMorePageContainer} from "./pages/search";
 import WitnessesContainer from "./pages/witnesses";
+import ReferralContainer from "./pages/referral";
 import {ProposalsIndexContainer, ProposalDetailContainer} from "./pages/proposals";
 import AuthContainer from "./pages/auth";
 import SubmitContainer from "./pages/submit";
@@ -83,6 +84,7 @@ const App = ({ setLang }: any) => {
                 <Route exact={true} strict={true} path={routes.TOS} component={TosPageContainer}/>
                 <Route exact={true} strict={true} path={routes.FAQ} component={FaqPageContainer}/>
                 <Route exact={true} strict={true} path={routes.CONTRIBUTORS} component={ContributorsPageContainer}/>
+                <Route exact={true} strict={true} path={routes.REFERRAL} component={ReferralContainer} />
                 <Route component={NotFound}/>
             </Switch>
         </>
