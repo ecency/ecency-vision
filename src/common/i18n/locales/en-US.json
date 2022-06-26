@@ -1072,6 +1072,27 @@
     "proxy-active-btn-label": "Clear Proxy",
     "proxy-votes-for": "@{{username}} votes for"
   },
+  "referral": {
+    "page-title": "Referral",
+    "page-description": "A list of all the users you have referred",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
+    "list-rank": "Rank",
+    "list-referral": "Referall",
+    "list-miss": "Miss",
+    "list-url": "URL",
+    "list-fee": "Fee",
+    "list-feed": "Feed",
+    "list-version": "Version",
+    "username-placeholder": "username",
+    "extra-description": "Enter account name below to vote for a witness outside of Top 50",
+    "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
+    "proxy-btn-label": "Set Proxy",
+    "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
+    "proxy-active-current": "Your current proxy is",
+    "proxy-active-btn-label": "Clear Proxy",
+    "proxy-votes-for": "@{{username}} votes for"
+  },
   "proposals": {
     "page-title": "Proposals",
     "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
