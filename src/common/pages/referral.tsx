@@ -175,7 +175,7 @@ class ReferralPage extends BaseComponent<PageProps, State> {
                         })()}
                     </td>
                     <td className="align-middle">
-                      <span className="bg-warning reward-wrapper py-1 px-3 circle">{row.rewarded}</span>
+                      <span className="bg-secondary reward-wrapper py-1 px-3 circle">{row.rewarded}</span>
                     </td>
                     <td className="delegate-button">
                       <button className="btn btn-sm btn-primary" onClick={() => this.openTransferDialog('delegate', 'HP', row.username)}>Delegate HP</button>
