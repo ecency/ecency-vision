@@ -19,6 +19,11 @@ export const dateToFormatted = (d: string, format: string = "LLLL"): string => {
   return dm.format(format);
 }
 
+export const dateDiff = (d: string, unit: any): number => {
+  const isTimeZoned = (d.indexOf('.')!==-1||d.indexOf('+')!==-1) ? d :`${d}.000Z`;
+  return moment().diff(isTimeZoned, unit);
+}
+
 const parseDate = (d: string): Date => new Date(`${d}.000Z`);
 
 export default parseDate;

@@ -41,7 +41,7 @@ import parseAsset from "../../helper/parse-asset";
 import {_t} from "../../i18n";
 
 import {plusCircle} from "../../img/svg";
-import { dateToFullRelative } from '../../helper/parse-date';
+import { dateDiff, dateToFullRelative } from '../../helper/parse-date';
 
 interface Props {
     history: History;
@@ -229,6 +229,11 @@ export class WalletHive extends BaseComponent<Props, State> {
         this.stateSet({withdrawRoutes: !withdrawRoutes});
     }
 
+    toggleClaimInterest = () => {
+        const {withdrawRoutes} = this.state;
+        this.stateSet({withdrawRoutes: !withdrawRoutes});
+    }
+
     claimRewardBalance = () => {
         const {activeUser, updateActiveUser} = this.props;
         const {claiming} = this.state;
@@ -278,6 +283,8 @@ export class WalletHive extends BaseComponent<Props, State> {
         const {hivePerMVests} = dynamicProps;
         const isMyPage = activeUser && activeUser.username === account.name;
         const w = new HiveWallet(account, dynamicProps, converting);
+        const lastInterestPayment = account.savings_hbd_last_interest_payment;
+        const estimatedInterest = formattedNumber((hbd/100) * (w.savingBalanceHbd/(12*30)) * dateDiff(lastInterestPayment, "days"), {suffix: "$"});
         const totalHP = formattedNumber(vestsToHp(w.vestingShares, hivePerMVests), {suffix: "HP"})
         const totalDelegated = formattedNumber(vestsToHp(w.vestingSharesDelegated, hivePerMVests), {prefix: "-", suffix: "HP"})
 
@@ -314,18 +321,6 @@ export class WalletHive extends BaseComponent<Props, State> {
                                 </div>
                             </div>
                         )}
-
-                        <div className="balance-row estimated alternative">
-                            <div className="balance-info">
-                                <div className="title">{_t("wallet.estimated")}</div>
-                                <div className="description">{_t("wallet.estimated-description")}</div>
-                            </div>
-                            <div className="balance-values">
-                                <div className="amount amount-bold">
-                                    <FormattedCurrency {...this.props} value={w.estimatedValue} fixAt={3}/>
-                                </div>
-                            </div>
-                        </div>
 
                         <div className="balance-row hive">
                             <div className="balance-info">
@@ -628,6 +623,12 @@ export class WalletHive extends BaseComponent<Props, State> {
                                 <div className="title">{_t("wallet.savings")}</div>
                                 <div className="description">{_t("wallet.savings-description")}</div>
                                 <div className="description font-weight-bold mt-2">{_t("wallet.hive-dollars-apr-rate", {value: hbd})}</div>
+                                {w.savingBalanceHbd > 0 && <div className="description font-weight-bold mt-2">{_t("wallet.hive-dollars-apr-claim", {value:  dateToFullRelative(lastInterestPayment)})} {estimatedInterest}</div>}
+                                {isMyPage && w.savingBalanceHbd > 0 && (
+                                    <div className="buy-points">
+                                        <a href="#" onClick={this.toggleClaimInterest}> {_t("wallet.hive-dollars-apr-when", {value:  30-dateDiff(lastInterestPayment, "days")})}</a>
+                                    </div>
+                                )}
                             </div>
                             <div className="balance-values">
                                 <div className="amount">
@@ -704,6 +705,18 @@ export class WalletHive extends BaseComponent<Props, State> {
                                     })()}
 
                                     <span>{formattedNumber(w.savingBalanceHbd, {suffix: "$"})}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="balance-row estimated alternative">
+                            <div className="balance-info">
+                                <div className="title">{_t("wallet.estimated")}</div>
+                                <div className="description">{_t("wallet.estimated-description")}</div>
+                            </div>
+                            <div className="balance-values">
+                                <div className="amount amount-bold">
+                                    <FormattedCurrency {...this.props} value={w.estimatedValue} fixAt={3}/>
                                 </div>
                             </div>
                         </div>

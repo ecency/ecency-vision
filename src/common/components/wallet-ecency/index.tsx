@@ -328,18 +328,6 @@ export const WalletEcency = (props: Props) => {
                             </>
                         )}
 
-                            <div className="balance-row estimated alternative">
-                            <div className="balance-info">
-                                <div className="title">{_t("wallet.estimated-points")}</div>
-                                <div className="description">{_t("wallet.estimated-description-points")}</div>
-                            </div>
-                            <div className="balance-values">
-                                <div className="amount amount-bold">
-                                    {estimatedPointsValueLoading ? `${_t("wallet.calculating")}...` : <FormattedCurrency {...props} value={estimatedPointsValue*parseFloat(points.points)} fixAt={3} />}
-                                </div>
-                            </div>
-                        </div>
-
                         <div className="balance-row alternative">
                             <div className="balance-info">
                                 <div className="title">{"Ecency Points"}</div>
@@ -392,6 +380,18 @@ export const WalletEcency = (props: Props) => {
                                     )} */}
 
                                     <>{points.points} {"POINTS"}</>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="balance-row estimated alternative">
+                            <div className="balance-info">
+                                <div className="title">{_t("wallet.estimated-points")}</div>
+                                <div className="description">{_t("wallet.estimated-description-points")}</div>
+                            </div>
+                            <div className="balance-values">
+                                <div className="amount amount-bold">
+                                    {estimatedPointsValueLoading ? `${_t("wallet.calculating")}...` : <FormattedCurrency {...props} value={estimatedPointsValue*parseFloat(points.points)} fixAt={3} />}
                                 </div>
                             </div>
                         </div>
