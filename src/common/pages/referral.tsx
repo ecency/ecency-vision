@@ -220,18 +220,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                     <td>
                         <div className="witness-rank">
                             <span className="rank-number">{row.rank}</span>
-                            {WitnessVoteBtn({
-                                ...this.props,
-                                voted: witnessVotes.includes(row.name),
-                                witness: row.name,
-                                onSuccess: (approve) => {
-                                    if (approve) {
-                                        this.addWitness(row.name);
-                                    } else {
-                                        this.deleteWitness(row.name);
-                                    }
-                                }
-                            })}
+                            $$
                         </div>
                     </td>
                     <td>
@@ -244,15 +233,12 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                                 size: "medium"
                             })}
                                 <div className={'witness-ctn'}>
-                                    {row.signingKey === 'STM1111111111111111111111111111111114T1Anm' ? <s>{row.name}</s> :row.name}
-                                    {row.witnessBy && <div className={'notranslate'}>
-                                        <small>by {row.witnessBy}</small>
-                                    </div>}
+                                  Referral   {i + 1}
                                 </div>
                             </span>
                         })}
                     </td>
-                    <td><span className="witness-miss">{row.miss}</span></td>
+                    {/* To user profile */}
                     <td>
                         {(() => {
                             const {parsedUrl} = row;
@@ -270,34 +256,20 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                             );
                         })()}
                     </td>
-                    <td><span className="witness-fee">{row.fee}</span></td>
-                    <td>
-                        <div className="witness-feed"><span className="inner">${row.feed.replace(' HBD','')} | {dateToRelative(row.priceAge)}</span></div>
-                    </td>
-                    <td>
-                        <div className="witness-version"><span className="inner">{row.version}</span></div>
-                    </td>
                 </tr>
             })}
             </tbody>
         </table>
         <div className="d-md-none">
-        {witnesses.map((row, i) => {
-            return <WitnessCard
-                    voted={witnessVotes.includes(row.name)}
-                    witness={row.name}
+        {/* Mobile Screen */}
+        {/* {referrals.map((row, i) => {
+            return <ReferralCard
+                    referral={row.name}
                     row={row}
                     key={i}
-                    onSuccess={(approve:any) => {
-                            if (approve) {
-                                this.addWitness(row.name);
-                            } else {
-                                this.deleteWitness(row.name);
-                            }
-                    }}
                     global={global}
                     />
-        })}
+        })} */}
         </div>
         </>;
 
@@ -336,41 +308,9 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                             </>
                         }
 
-                        if (proxy) {
-                            return <>
-                                {header}
-                                <WitnessesActiveProxy
-                                    {...this.props}
-                                    username={proxy}
-                                    onDone={() => {
-                                        this.stateSet({proxy: null});
-                                    }}
-                                />
-                            </>
-                        }
-
                         return <>
                             {header}
                             <div className="table-responsive witnesses-table">{table}</div>
-                            <div className="witnesses-controls">
-                                {WitnessesExtra({
-                                    ...this.props,
-                                    list: extraWitnesses,
-                                    onAdd: (name) => {
-                                        this.addWitness(name);
-                                    },
-                                    onDelete: (name) => {
-                                        this.deleteWitness(name);
-                                    }
-                                })}
-                                <div className="flex-spacer"/>
-                                {WitnessesProxy({
-                                    ...this.props,
-                                    onDone: (username) => {
-                                        this.stateSet({proxy: username, witnesses: []});
-                                    }
-                                })}
-                            </div>
                         </>
                     })()}
                 </div>
