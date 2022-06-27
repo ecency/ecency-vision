@@ -27,10 +27,27 @@ const Index = (props: PageProps) => {
   }, [showEntryPage, showLandingPage]);
 
   useEffect(() => {
-    let currentStep = step;
-    if (props.global.lastIndexPath === 'landing') {
+    initStep(props.activeUser ? 2 : 1);
+    setMetaProps(getMetaProps(props));
+  }, [props.activeUser, props.location.pathname]);
+
+  const reload = () => {
+    const { global, fetchEntries, invalidateEntries } = props;
+    invalidateEntries(makeGroupKey(global.filter, global.tag));
+    fetchEntries(global.filter, global.tag, false);
+  }
+
+  const setNewStep = (step: number) => {
+    props.setLastIndexPath(null);
+    setStep(step);
+    initStep(step);
+  }
+
+  const initStep = (nextStep?: number) => {
+    let currentStep = nextStep || step;
+    if (props.global.lastIndexPath === 'landing' && props.activeUser === null) {
       currentStep = 1;
-    } else if (props.global.lastIndexPath === 'feed') {
+    } else if (props.global.lastIndexPath === 'feed' && props.activeUser === null) {
       currentStep = 2;
     }
 
@@ -54,19 +71,6 @@ const Index = (props: PageProps) => {
     if ((showEntryPage !== nextShowEntryPage)) {
       setShowEntryPage(nextShowEntryPage);
     }
-
-    setMetaProps(getMetaProps(props));
-  }, [props.activeUser, props.location, step]);
-
-  const reload = () => {
-    const { global, fetchEntries, invalidateEntries } = props;
-    invalidateEntries(makeGroupKey(global.filter, global.tag));
-    fetchEntries(global.filter, global.tag, false);
-  }
-
-  const setNewStep = (step: number) => {
-    props.setLastIndexPath(null);
-    setStep(step);
   }
 
   return <>
