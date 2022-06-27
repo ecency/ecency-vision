@@ -533,7 +533,8 @@
     "communities-title": "Membership",
     "create-community": "Create a community",
     "witnesses": "Witnesses",
-    "proposals": "Proposals"
+    "proposals": "Proposals",
+    "referrals": "Referrals"
   },
   "profile-info": {
     "joined": "Joined: {{n}}",
