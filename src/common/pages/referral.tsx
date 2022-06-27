@@ -2,6 +2,8 @@ import React from "react";
 
 import {connect} from "react-redux";
 
+import moment, {Moment} from "moment";
+
 import BaseComponent from "../components/base";
 import Meta from "../components/meta";
 import Feedback from "../components/feedback";
@@ -12,11 +14,12 @@ import NavBarElectron from "../../desktop/app/components/navbar";
 import LinearProgress from "../components/linear-progress";
 import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
-import EntryLink from "../components/entry-link";
+import Transfer, {TransferMode, TransferAsset} from "../components/transfer";
 
 
 import {_t} from "../i18n";
 import {Tsx} from "../i18n/helper";
+import parseDate from "../helper/parse-date";
 
 import {linkSvg, openInNewSvg} from "../img/svg";
 
@@ -24,11 +27,17 @@ import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
 import activeUser from "../store/active-user";
 import {getReferrals, ReferralItem} from '../api/private-api';
 
-
+interface Props {
+  updateWalletValues: () => void;
+}
 
 interface State {
     referrals: ReferralItem[];
     proxy: string | null;
+    transfer: boolean;
+    referred: string;
+    transferMode: null | TransferMode;
+    transferAsset: null | TransferAsset;
     loading: boolean;
 }
 
@@ -36,6 +45,10 @@ class ReferralPage extends BaseComponent<PageProps, State> {
     state: State = {
         referrals: [],
         proxy: null,
+        transfer: false,
+        referred: '',
+        transferAsset: 'HP',
+        transferMode: 'delegate',
         loading: true
     }
 
@@ -67,13 +80,18 @@ class ReferralPage extends BaseComponent<PageProps, State> {
           const {activeUser} = this.props;
            // Fetch referrals
            const data = await getReferrals(activeUser?.username)
-           console.log(data)
-           console.log(this.props.activeUser?.username)
-           console.log('Getting Referrals')
            this.stateSet({referrals: data.data, loading: false});
         } catch (error) {
             console.log('Something went wrong: ',error)
         }
+    }
+
+    openTransferDialog = (mode: TransferMode, asset: TransferAsset, user:string) => {
+      this.stateSet({transfer: true, transferMode: mode, transferAsset: asset, referred: user});
+    }
+
+    closeTransferDialog = () => {
+        this.stateSet({transfer: false, transferMode: null, transferAsset: null});
     }
 
     render() {
@@ -85,12 +103,17 @@ class ReferralPage extends BaseComponent<PageProps, State> {
 
         const {global, activeUser} = this.props;
         const {referrals, loading, proxy} = this.state;
+        const isMyPage = activeUser && activeUser.username;
+        
 
         const table = <><table className="table d-none d-sm-block">
             <thead>
             <tr>
                 <th className="col-rank">
                     {_t("referral.list-id")}
+                </th>
+                <th className="col-rank">
+                    {_t("referral.created")}
                 </th>
                 <th>
                     {_t("referral.list-referral")}
@@ -101,15 +124,29 @@ class ReferralPage extends BaseComponent<PageProps, State> {
                <th className="col-version">
                 {_t("referral.rewarded")}
                </th>
+               <th className="col-version">
+                
+               </th>
                 
             </tr>
             </thead>
             <tbody>
             {referrals.map((row, i) => {
+              var dateObj = new Date(row.created);
+              var momentObj = moment(dateObj);
+              var createdAt = momentObj.format('YYYY/MM/DD');
                 return <tr key={i}>
                     <td>
                         <div className="witness-rank">
                             <span className="rank-number">{row.id}</span>
+                            
+                        </div>
+                    </td>
+                    <td>
+                        <div className="witness-rank">
+                            <span className="rank-number">
+                              {createdAt}
+                            </span>
                             
                         </div>
                     </td>
@@ -138,8 +175,11 @@ class ReferralPage extends BaseComponent<PageProps, State> {
                             );
                         })()}
                     </td>
-                    <td>
-                    <span className="inner">{row.rewarded}</span>
+                    <td className="witness-version">
+                      <span className="inner">{row.rewarded}</span>
+                    </td>
+                    <td className="delegate-button">
+                      <button className="btn btn primary" onClick={() => this.openTransferDialog('delegate', 'HP', row.username)}>Delegate HP</button>
                     </td>
                 </tr>
             })}
@@ -194,6 +234,8 @@ class ReferralPage extends BaseComponent<PageProps, State> {
                         </>
                     })()}
                 </div>
+                {this.state.transfer && <Transfer {...this.props} activeUser={this.props.activeUser!} to={this.state.referred} mode={this.state.transferMode!} asset={this.state.transferAsset!} onHide={this.closeTransferDialog}/>}
+
             </>
         );
     }
