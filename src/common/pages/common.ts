@@ -20,7 +20,18 @@ import {Points} from "../store/points/types";
 import {EntryPinTracker} from "../store/entry-pin-tracker/types";
 
 
-import {toggleTheme, hideIntro, toggleListStyle, dismissNewVersion, muteNotifications, unMuteNotifications, setCurrency, setLang, setNsfw} from "../store/global";
+import {
+  toggleTheme,
+  hideIntro,
+  toggleListStyle,
+  dismissNewVersion,
+  muteNotifications,
+  unMuteNotifications,
+  setCurrency,
+  setLang,
+  setNsfw,
+  setLastIndexPath
+} from '../store/global';
 import {fetchTrendingTags} from "../store/trending-tags";
 import {updateSubscriptions} from "../store/subscriptions";
 import {fetchEntries, addEntry, updateEntry, invalidateEntries} from "../store/entries";
@@ -61,6 +72,7 @@ export interface PageProps {
     setCurrency: (currency: string, rate: number, symbol: string) => void;
     setLang: (lang: string) => void;
     setNsfw: (value: boolean) => void;
+    setLastIndexPath: (path: string | null) => void;
 
     dynamicProps: DynamicProps;
 
@@ -151,6 +163,7 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             setCurrency,
             setLang,
             setNsfw,
+            setLastIndexPath,
             dismissNewVersion,
             fetchTrendingTags,
             updateSubscriptions,

@@ -19,38 +19,54 @@ const Index = (props: PageProps) => {
   const [step, setStep] = useState(1);
   const [metaProps, setMetaProps] = useState({});
   const [loading, setLoading] = useState(false);
-  const [showLandingPage, setShowLandingPage]  = useState(true);
+  const [showLandingPage, setShowLandingPage] = useState(true);
   const [showEntryPage, setShowEntryPage] = useState(false);
 
+  useEffect(() => () => {
+    props.setLastIndexPath(showLandingPage ? 'landing' : 'feed');
+  }, [showEntryPage, showLandingPage]);
+
   useEffect(() => {
-    const nextShowLandingPage = step === 1  &&
+    let currentStep = step;
+    if (props.global.lastIndexPath === 'landing') {
+      currentStep = 1;
+    } else if (props.global.lastIndexPath === 'feed') {
+      currentStep = 2;
+    }
+
+    const nextShowLandingPage = currentStep === 1 &&
       props.activeUser === null &&
       props.location &&
-      "/" === props.location?.pathname;
-    const nextShowEntryPage = step === 2
-      || props.location?.pathname?.startsWith("/hot")
-      || props.location?.pathname?.startsWith("/created")
-      || props.location?.pathname?.startsWith("/trending")
-      || props.location?.pathname?.startsWith("/payout")
-      || props.location?.pathname?.startsWith("/payout_comments")
-      || props.location?.pathname?.startsWith("/rising")
-      || props.location?.pathname?.startsWith("/controversial");
+      '/' === props.location?.pathname;
+    const nextShowEntryPage = currentStep === 2 ||
+      props.location?.pathname?.startsWith('/hot') ||
+      props.location?.pathname?.startsWith('/created') ||
+      props.location?.pathname?.startsWith('/trending') ||
+      props.location?.pathname?.startsWith('/payout') ||
+      props.location?.pathname?.startsWith('/payout_comments') ||
+      props.location?.pathname?.startsWith('/rising') ||
+      props.location?.pathname?.startsWith('/controversial');
 
-    if (showLandingPage !== nextShowLandingPage) {
+    if ((showLandingPage !== nextShowLandingPage)) {
       setShowLandingPage(nextShowLandingPage);
     }
 
-    if (showEntryPage !== nextShowEntryPage) {
+    if ((showEntryPage !== nextShowEntryPage)) {
       setShowEntryPage(nextShowEntryPage);
     }
 
     setMetaProps(getMetaProps(props));
-  }, [props.activeUser, props.location, props.global, step]);
+  }, [props.activeUser, props.location, step]);
 
   const reload = () => {
-    const {global, fetchEntries, invalidateEntries} = props;
+    const { global, fetchEntries, invalidateEntries } = props;
     invalidateEntries(makeGroupKey(global.filter, global.tag));
     fetchEntries(global.filter, global.tag, false);
+  }
+
+  const setNewStep = (step: number) => {
+    props.setLastIndexPath(null);
+    setStep(step);
   }
 
   return <>
@@ -64,16 +80,16 @@ const Index = (props: PageProps) => {
         reloadFn: reload,
         reloading: loading,
         step,
-        setStepTwo: () => setStep(2)
+        setStepTwo: () => setNewStep(2)
       }) :
-      NavBar({...props, step, setStepOne: () => setStep(1), setStepTwo: () => setStep(2)})
+      NavBar({ ...props, step, setStepOne: () => setNewStep(1), setStepTwo: () => setNewStep(2) })
     }
-    {showLandingPage && <LandingPage {...props} loading={loading} setLoading={setLoading} setStep={setStep}/>}
+    {showLandingPage && <LandingPage {...props} loading={loading} setLoading={setLoading} setStep={setNewStep}/>}
     {showEntryPage && <EntryIndexContainer
-        {...props}
-        loading={loading}
-        setLoading={setLoading}
-        reload={reload}
+      {...props}
+      loading={loading}
+      setLoading={setLoading}
+      reload={reload}
     />}
   </>;
 };

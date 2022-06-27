@@ -137,7 +137,7 @@ export class EntryIndexMenu extends Component<Props, States> {
             }
         }
         else if(['controversial', 'rising'].includes(filter)) {
-            const tagValue = (tag && tag !== 'my' && ['today', 'week', 'month', 'year', 'all'].includes(tag)) ? '/' + tag : '/week'
+            const tagValue = (tag && tag !== 'my' && ['today', 'week', 'month', 'year', 'all'].includes(tag)) ? '/' + tag : '/today'
             history.push(`/${filter}${tagValue}`)
         }
         /*else if(!['controversial', 'rising'].includes(filter)) {
