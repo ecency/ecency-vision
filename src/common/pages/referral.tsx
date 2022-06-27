@@ -21,11 +21,13 @@ import {Tsx} from "../i18n/helper";
 import {linkSvg, openInNewSvg} from "../img/svg";
 
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
+import activeUser from "../store/active-user";
+import {getReferrals, ReferralItem} from '../api/private-api';
 
 
 
 interface State {
-    referrals: [];
+    referrals: ReferralItem[];
     proxy: string | null;
     loading: boolean;
 }
@@ -57,14 +59,18 @@ class ReferralPage extends BaseComponent<PageProps, State> {
         
 
         const referrals:[] = []
-        await this.getReferrals(referrals);
+        await this.getReferrals();
     }
 
-    getReferrals = async (referralArray:[])=>{
+    getReferrals = async ()=>{
         try {
+          const {activeUser} = this.props;
            // Fetch referrals
+           const data = await getReferrals(activeUser?.username)
+           console.log(data)
+           console.log(this.props.activeUser?.username)
            console.log('Getting Referrals')
-            
+           this.stateSet({referrals: data.data, loading: false});
         } catch (error) {
             console.log('Something went wrong: ',error)
         }
@@ -84,26 +90,18 @@ class ReferralPage extends BaseComponent<PageProps, State> {
             <thead>
             <tr>
                 <th className="col-rank">
-                    {_t("referral.list-rank")}
+                    {_t("referral.list-id")}
                 </th>
                 <th>
                     {_t("referral.list-referral")}
                 </th>
                 <th className="col-miss">
-                    {_t("referral.list-miss")}
+                    {_t("referral.link")}
                 </th>
-                <th className="col-url">
-                    {_t("referral.list-url")}
-                </th>
-                <th className="col-fee">
-                    {_t("referral.list-fee")}
-                </th>
-                <th className="col-feed">
-                    {_t("referral.list-feed")}
-                </th>
-                <th className="col-version">
-                    {_t("referral.list-version")}
-                </th>
+               <th className="col-version">
+                {_t("referral.rewarded")}
+               </th>
+                
             </tr>
             </thead>
             <tbody>
@@ -111,21 +109,21 @@ class ReferralPage extends BaseComponent<PageProps, State> {
                 return <tr key={i}>
                     <td>
                         <div className="witness-rank">
-                            <span className="rank-number">{'row.rank'}</span>
-                            $$
+                            <span className="rank-number">{row.id}</span>
+                            
                         </div>
                     </td>
                     <td>
                         {ProfileLink({
                             ...this.props,
-                            username: 'adesojisouljay',
+                            username: row.username,
                             children: <span className="witness-card notranslate"> {UserAvatar({
                                 ...this.props,
-                                username: 'adesojisouljay',
+                                username: row.username,
                                 size: "medium"
                             })}
                                 <div className={'witness-ctn'}>
-                                  Referral   {i + 1}
+                                  {row.username}
                                 </div>
                             </span>
                         })}
@@ -133,20 +131,15 @@ class ReferralPage extends BaseComponent<PageProps, State> {
                     {/* To user profile */}
                     <td>
                         {(() => {
-                            const {parsedUrl} = row;
-
-                            if (parsedUrl) {
-                                return (
-                                    <EntryLink {...this.props} entry={parsedUrl}>
-                                        <span className="witness-link">{linkSvg}</span>
-                                    </EntryLink>
-                                );
-                            }
+                            
 
                             return (
                                 <a target="_external" href={'http/localhost:3000/referrals'} className="witness-link">{openInNewSvg}</a>
                             );
                         })()}
+                    </td>
+                    <td>
+                    <span className="inner">{row.rewarded}</span>
                     </td>
                 </tr>
             })}
