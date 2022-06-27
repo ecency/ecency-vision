@@ -103,7 +103,6 @@ class ReferralPage extends BaseComponent<PageProps, State> {
 
         const {global, activeUser} = this.props;
         const {referrals, loading, proxy} = this.state;
-        const isMyPage = activeUser && activeUser.username;
         
 
         const table = <><table className="table d-none d-sm-block">
@@ -175,11 +174,11 @@ class ReferralPage extends BaseComponent<PageProps, State> {
                             );
                         })()}
                     </td>
-                    <td className="witness-version">
-                      <span className="inner">{row.rewarded}</span>
+                    <td className="align-middle">
+                      <span className="bg-warning reward-wrapper py-1 px-3 circle">{row.rewarded}</span>
                     </td>
                     <td className="delegate-button">
-                      <button className="btn btn primary" onClick={() => this.openTransferDialog('delegate', 'HP', row.username)}>Delegate HP</button>
+                      <button className="btn btn-sm btn-primary" onClick={() => this.openTransferDialog('delegate', 'HP', row.username)}>Delegate HP</button>
                     </td>
                 </tr>
             })}

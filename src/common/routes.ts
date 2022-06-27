@@ -35,5 +35,5 @@ export default {
     WITNESSES: `/witnesses`,
     PROPOSALS: `/proposals`,
     PROPOSAL_DETAIL: `/proposals/:id(\\d+)`,
-    REFERRAL: `/referral`
+    REFERRAL: `/referrals`
 };
