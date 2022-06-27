@@ -391,5 +391,24 @@ export const getPromotedEntries = (): Promise<Entry[]> => {
 }
 
 
+export interface ReferralItem {
+    id: number;
+    username: string;
+    referrer: string;
+    created: string;
+    rewarded: number;
+    v: number;
+}
+
+export interface ReferralItems {
+    data: ReferralItem[]
+}
+export const getReferrals = (username:any): Promise<ReferralItems> => {
+
+    return axios.get(apiBase(`/private-api/referrals/${username}`));
+
+}
+
+
 
 
