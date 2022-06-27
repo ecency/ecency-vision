@@ -1079,6 +1079,7 @@
     "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
     "list-id": "ID",
     "link": "Link",
+    "created": "Created",
     "list-referral": "Referall",
     "username-placeholder": "username",
     "rewarded": "Rewarded"
