@@ -54,8 +54,7 @@ export class KeyOrHotDialog extends Component<Props, State> {
 
             {keyDialog && (
                 <Modal animation={false} show={true} centered={true} onHide={this.toggleKeyDialog} keyboard={false} className="key-or-hot-modal modal-thin-header">
-                    <Modal.Header closeButton>
-                    </Modal.Header>
+                    <Modal.Header closeButton={true}/>
                     <Modal.Body>
                         {KeyOrHot({
                             ...this.props,
