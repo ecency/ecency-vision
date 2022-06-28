@@ -44,6 +44,9 @@ import {
     transferFromSavings,
     transferFromSavingsHot,
     transferFromSavingsKc,
+    claimInterest,
+    claimInterestHot,
+    claimInterestKc,
     transferToVesting,
     transferToVestingHot,
     transferToVestingKc,
@@ -67,7 +70,7 @@ import formattedNumber from "../../util/formatted-number";
 import activeUser from "../../store/active-user";
 import { dateToFullRelative } from '../../helper/parse-date';
 
-export type TransferMode = "transfer" | "transfer-saving" | "withdraw-saving" | "convert" | "power-up" | "power-down" | "delegate";
+export type TransferMode = "transfer" | "transfer-saving" | "withdraw-saving" | "convert" | "power-up" | "power-down" | "delegate" | "claim-interest";
 export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT";
 
 interface AssetSwitchProps {
@@ -148,7 +151,7 @@ const pureState = (props: Props): State => {
     let _to: string = "";
     let _toData: Account | null = null;
 
-    if (["transfer-saving", "withdraw-saving", "convert", "power-up", "power-down"].includes(props.mode)) {
+    if (["transfer-saving", "withdraw-saving", "convert", "power-up", "power-down", "claim-interest"].includes(props.mode)) {
         _to = props.activeUser.username;
         _toData = props.activeUser.data
     }
@@ -321,7 +324,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
         const w = new HiveWallet(account, dynamicProps);
 
-        if (mode === "withdraw-saving") {
+        if (mode === "withdraw-saving" || mode === "claim-interest") {
             return asset === "HIVE" ? w.savingBalance : w.savingBalanceHbd;
         }
 
@@ -407,6 +410,10 @@ export class Transfer extends BaseComponent<Props, State> {
                 promise = transferFromSavings(username, key, to, fullAmount, memo);
                 break;
             }
+            case "claim-interest": {
+                promise = claimInterest(username, key, to, fullAmount, memo);
+                break;
+            }
             case "power-up": {
                 promise = transferToVesting(username, key, to, fullAmount);
                 break;
@@ -469,6 +476,10 @@ export class Transfer extends BaseComponent<Props, State> {
                 transferFromSavingsHot(username, to, fullAmount, memo);
                 break;
             }
+            case "claim-interest": {
+                claimInterestHot(username, to, fullAmount, memo);
+                break;
+            }
             case "power-up": {
                 transferToVestingHot(username, to, fullAmount);
                 break;
@@ -516,6 +527,10 @@ export class Transfer extends BaseComponent<Props, State> {
             }
             case "withdraw-saving": {
                 promise = transferFromSavingsKc(username, to, fullAmount, memo);
+                break;
+            }
+            case "claim-interest": {
+                promise = claimInterestKc(username, to, fullAmount, memo);
                 break;
             }
             case "power-up": {
@@ -609,6 +624,9 @@ export class Transfer extends BaseComponent<Props, State> {
             case "transfer-saving":
             case "withdraw-saving":
                 assets = ["HIVE", "HBD"];
+                break;
+            case "claim-interest":
+                assets = ["HBD"];
                 break;
             case "convert":
                 assets = ["HBD"];
