@@ -22,13 +22,16 @@ const Index = (props: PageProps) => {
   const [showLandingPage, setShowLandingPage] = useState(true);
   const [showEntryPage, setShowEntryPage] = useState(false);
 
-  useEffect(() => () => {
-    props.setLastIndexPath(showLandingPage ? 'landing' : 'feed');
+  useEffect(() => {
+    setTimeout(() => moveToSection(props.location.hash), 1000);
+
+    return () => {
+      props.setLastIndexPath(showLandingPage ? 'landing' : 'feed');
+    };
   }, [showEntryPage, showLandingPage]);
 
   useEffect(() => {
     initStep(props.activeUser ? 2 : 1);
-    setMetaProps(getMetaProps(props));
   }, [props.activeUser, props.location.pathname]);
 
   const reload = () => {
@@ -41,6 +44,13 @@ const Index = (props: PageProps) => {
     props.setLastIndexPath(null);
     setStep(step);
     initStep(step);
+  }
+
+  const moveToSection = (hash?: string) => {
+    if (!hash) {
+      return;
+    }
+    document.querySelector(hash)?.scrollIntoView();
   }
 
   const initStep = (nextStep?: number) => {
@@ -71,6 +81,8 @@ const Index = (props: PageProps) => {
     if ((showEntryPage !== nextShowEntryPage)) {
       setShowEntryPage(nextShowEntryPage);
     }
+
+    setMetaProps(getMetaProps(props));
   }
 
   return <>
