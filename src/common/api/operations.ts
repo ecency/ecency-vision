@@ -571,6 +571,74 @@ export const transferFromSavingsKc = (from: string, to: string, amount: string, 
     return keychain.broadcast(from, [op], "Active");
 }
 
+export const claimInterest = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
+    const rid = new Date().getTime() >>> 0;
+    const op: Operation = [
+        'transfer_from_savings',
+        {
+            from,
+            to,
+            amount,
+            memo,
+            request_id: rid
+        }
+    ]
+    const cop: Operation = [
+        'cancel_transfer_from_savings',
+        {
+            from,
+            request_id: rid
+        }
+    ]
+
+    return hiveClient.broadcast.sendOperations([op, cop], key);
+}
+
+export const claimInterestHot = (from: string, to: string, amount: string, memo: string) => {
+    const rid = new Date().getTime() >>> 0;
+    const op: Operation = ['transfer_from_savings', {
+        from,
+        to,
+        amount,
+        memo,
+        request_id: rid
+    }];
+    const cop: Operation = [
+        'cancel_transfer_from_savings',
+        {
+            from,
+            request_id: rid
+        }
+    ]
+
+    const params: Parameters = {callback: `https://ecency.com/@${from}/wallet`};
+    return hs.sendOperations([op,cop], params, () => {
+    });
+}
+
+export const claimInterestKc = (from: string, to: string, amount: string, memo: string) => {
+    const rid = new Date().getTime() >>> 0;
+    const op: Operation = [
+        'transfer_from_savings',
+        {
+            from,
+            to,
+            amount,
+            memo,
+            request_id: rid
+        }
+    ];
+    const cop: Operation = [
+        'cancel_transfer_from_savings',
+        {
+            from,
+            request_id: rid
+        }
+    ]
+
+    return keychain.broadcast(from, [op, cop], "Active");
+}
+
 export const transferToVesting = (from: string, key: PrivateKey, to: string, amount: string): Promise<TransactionConfirmation> => {
     const op: Operation = [
         'transfer_to_vesting',

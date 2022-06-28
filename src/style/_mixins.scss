@@ -640,6 +640,10 @@
               animation: anim-fadein-out 2s infinite;
               pointer-events: none;
             }
+
+            &.disabled {
+              pointer-events: none;
+            }
           }
         }
       }
@@ -705,7 +709,7 @@
             .amount-actions {
               margin-right: 6px;
 
-              @media (max-width: $lg-break - 1px) {
+              @media (max-width: ($lg-break - 1px)) {
                 position: absolute;
                 right: -80px;
                 top: -3px;

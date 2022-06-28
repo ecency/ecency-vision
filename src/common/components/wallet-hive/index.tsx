@@ -230,8 +230,7 @@ export class WalletHive extends BaseComponent<Props, State> {
     }
 
     toggleClaimInterest = () => {
-        const {withdrawRoutes} = this.state;
-        this.stateSet({withdrawRoutes: !withdrawRoutes});
+        this.openTransferDialog('claim-interest', 'HBD');
     }
 
     claimRewardBalance = () => {
@@ -284,7 +283,9 @@ export class WalletHive extends BaseComponent<Props, State> {
         const isMyPage = activeUser && activeUser.username === account.name;
         const w = new HiveWallet(account, dynamicProps, converting);
         const lastInterestPayment = account.savings_hbd_last_interest_payment;
-        const estimatedInterest = formattedNumber((hbd/100) * (w.savingBalanceHbd/(12*30)) * dateDiff(lastInterestPayment, "days"), {suffix: "$"});
+        const interestAmount = (hbd/100) * (w.savingBalanceHbd/(12*30)) * dateDiff(lastInterestPayment, "days");
+        const estimatedInterest = formattedNumber(interestAmount, {suffix: "$"});
+        const remainingDays = 30-dateDiff(lastInterestPayment, "days");
         const totalHP = formattedNumber(vestsToHp(w.vestingShares, hivePerMVests), {suffix: "HP"})
         const totalDelegated = formattedNumber(vestsToHp(w.vestingSharesDelegated, hivePerMVests), {prefix: "-", suffix: "HP"})
 
@@ -625,8 +626,15 @@ export class WalletHive extends BaseComponent<Props, State> {
                                 <div className="description font-weight-bold mt-2">{_t("wallet.hive-dollars-apr-rate", {value: hbd})}</div>
                                 {w.savingBalanceHbd > 0 && <div className="description font-weight-bold mt-2">{_t("wallet.hive-dollars-apr-claim", {value:  dateToFullRelative(lastInterestPayment)})} {estimatedInterest}</div>}
                                 {isMyPage && w.savingBalanceHbd > 0 && (
-                                    <div className="buy-points">
-                                        <a href="#" onClick={this.toggleClaimInterest}> {_t("wallet.hive-dollars-apr-when", {value:  30-dateDiff(lastInterestPayment, "days")})}</a>
+                                    <div className="unclaimed-rewards" style={{marginBottom: "0"}}>
+                                        <div className="rewards" style={{height: "40px"}}>
+                                            <a
+                                                className={`claim-btn ${remainingDays>=0 ? '': 'disabled'}`}
+                                                onClick={this.toggleClaimInterest}
+                                            >
+                                               {remainingDays>=0 ? _t("wallet.hive-dollars-apr-when", {value:  remainingDays}) : _t("wallet.hive-dollars-apr-now")} {plusCircle}
+                                            </a>
+                                        </div>
                                     </div>
                                 )}
                             </div>
