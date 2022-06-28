@@ -22,15 +22,42 @@ const Index = (props: PageProps) => {
   const [showLandingPage, setShowLandingPage] = useState(true);
   const [showEntryPage, setShowEntryPage] = useState(false);
 
-  useEffect(() => () => {
-    props.setLastIndexPath(showLandingPage ? 'landing' : 'feed');
+  useEffect(() => {
+    setTimeout(() => moveToSection(props.location.hash), 1000);
+
+    return () => {
+      props.setLastIndexPath(showLandingPage ? 'landing' : 'feed');
+    };
   }, [showEntryPage, showLandingPage]);
 
   useEffect(() => {
-    let currentStep = step;
-    if (props.global.lastIndexPath === 'landing') {
+    initStep(props.activeUser ? 2 : 1);
+  }, [props.activeUser, props.location.pathname]);
+
+  const reload = () => {
+    const { global, fetchEntries, invalidateEntries } = props;
+    invalidateEntries(makeGroupKey(global.filter, global.tag));
+    fetchEntries(global.filter, global.tag, false);
+  }
+
+  const setNewStep = (step: number) => {
+    props.setLastIndexPath(null);
+    setStep(step);
+    initStep(step);
+  }
+
+  const moveToSection = (hash?: string) => {
+    if (!hash) {
+      return;
+    }
+    document.querySelector(hash)?.scrollIntoView();
+  }
+
+  const initStep = (nextStep?: number) => {
+    let currentStep = nextStep || step;
+    if (props.global.lastIndexPath === 'landing' && props.activeUser === null) {
       currentStep = 1;
-    } else if (props.global.lastIndexPath === 'feed') {
+    } else if (props.global.lastIndexPath === 'feed' && props.activeUser === null) {
       currentStep = 2;
     }
 
@@ -56,17 +83,6 @@ const Index = (props: PageProps) => {
     }
 
     setMetaProps(getMetaProps(props));
-  }, [props.activeUser, props.location, step]);
-
-  const reload = () => {
-    const { global, fetchEntries, invalidateEntries } = props;
-    invalidateEntries(makeGroupKey(global.filter, global.tag));
-    fetchEntries(global.filter, global.tag, false);
-  }
-
-  const setNewStep = (step: number) => {
-    props.setLastIndexPath(null);
-    setStep(step);
   }
 
   return <>
