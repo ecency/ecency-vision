@@ -66,6 +66,7 @@ export const fullAccountInstance: FullAccount = {
     "next_vesting_withdrawal": "1969-12-31T23:59:59",
     "vesting_shares": "151590.952150 VESTS",
     "delegated_vesting_shares": "145395.758709 VESTS",
+    "savings_hbd_last_interest_payment": "2021-03-18T15:42:03",
     "received_vesting_shares": "0.000000 VESTS",
     "vesting_withdraw_rate": "0.000000 VESTS",
     "to_withdraw": "87017000000",
