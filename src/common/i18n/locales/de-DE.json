@@ -212,7 +212,7 @@
   },
   "entry-reblog": {
     "reblog": "Reblog",
-    "confirm-title": "Teilen in @{{n}}'s blog?",
+    "confirm-title": "Teilen in @{{n}}'s Blog?",
     "confirm-ok": "Reblog",
     "success": "Geteilt!",
     "delete-reblog": "Reblog rückgängig",
