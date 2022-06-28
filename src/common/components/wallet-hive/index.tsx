@@ -629,7 +629,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                                     <div className="unclaimed-rewards" style={{marginBottom: "0"}}>
                                         <div className="rewards" style={{height: "40px"}}>
                                             <a
-                                                className={`claim-btn ${remainingDays>=0 ? '': 'disabled'}`}
+                                                className={`claim-btn ${remainingDays>=0 ? 'disabled': ''}`}
                                                 onClick={this.toggleClaimInterest}
                                             >
                                                {remainingDays>=0 ? _t("wallet.hive-dollars-apr-when", {value:  remainingDays}) : _t("wallet.hive-dollars-apr-now")} {plusCircle}
