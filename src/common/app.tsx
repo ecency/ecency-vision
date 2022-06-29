@@ -4,7 +4,6 @@ import EntryIndexContainer from './pages/index';
 import EntryContainer from './pages/entry';
 import { SearchPageContainer, SearchMorePageContainer } from './pages/search';
 import { ProposalsIndexContainer, ProposalDetailContainer } from './pages/proposals';
-import ReferralContainer from "./pages/referral";
 import NotFound from './components/404';
 import Tracker from './tracker';
 import {
