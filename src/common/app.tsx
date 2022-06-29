@@ -4,6 +4,7 @@ import EntryIndexContainer from './pages/index';
 import EntryContainer from './pages/entry';
 import { SearchPageContainer, SearchMorePageContainer } from './pages/search';
 import { ProposalsIndexContainer, ProposalDetailContainer } from './pages/proposals';
+import ReferralContainer from "./pages/referral";
 import NotFound from './components/404';
 import Tracker from './tracker';
 import {
@@ -110,7 +111,6 @@ const App = ({ setLang }: any) => {
         <Route exact={true} strict={true} path={routes.TOS} component={TosPage}/>
         <Route exact={true} strict={true} path={routes.FAQ} component={FaqPage}/>
         <Route exact={true} strict={true} path={routes.CONTRIBUTORS} component={ContributorsPage}/>
-        <Route exact={true} strict={true} path={routes.REFERRAL} component={ReferralContainer} />
         <Route component={NotFound}/>
       </Switch>
     </>
