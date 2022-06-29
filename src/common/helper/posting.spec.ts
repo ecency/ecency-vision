@@ -51,7 +51,7 @@ describe("makeJsonMetaData", () => {
         };
         const tags = ["esteem", "art"];
 
-        expect(makeJsonMetaData(meta, tags, "2.0.0")).toMatchSnapshot();
+        expect(makeJsonMetaData(meta, tags, "", "2.0.0")).toMatchSnapshot();
     });
 });
 

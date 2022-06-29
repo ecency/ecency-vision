@@ -2,7 +2,7 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="community-list-item"
+  className="community-list-item "
 >
   <div
     className="item-content"
@@ -10,23 +10,27 @@ exports[`(1) Default render 1`] = `
     <h2
       className="item-title"
     >
-      <span
-        className="user-avatar medium"
-        style={
-          Object {
-            "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
-          }
-        }
-      />
-      <a
-        href="/created/hive-148441"
-        onClick={[Function]}
+      <div
+        className="item-details"
       >
-        GEMS
-      </a>
+        <span
+          className="user-avatar medium"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
+            }
+          }
+        />
+        <a
+          href="/created/hive-148441"
+          onClick={[Function]}
+        >
+          GEMS
+        </a>
+      </div>
     </h2>
     <div
-      className="item-about"
+      className="item-about "
     >
       To highlight true Gems of Hive community with User Retention as primary objective.
     </div>

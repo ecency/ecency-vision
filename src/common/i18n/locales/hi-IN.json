@@ -278,7 +278,7 @@
     "pp": "गोपनीयता नीति"
   },
   "decks": {
-    "users": "उपयोगकर्ता",
+    "users": "User",
     "header-info": "अतिरिक्त विकल्प देखने के लिए मुझे क्लिक करें",
     "username": "यूजरनेम",
     "content-type": "कांटेंट प्रकार",
@@ -294,7 +294,7 @@
     "replies": "जवाब",
     "posts": "पोस्टस",
     "comments": "विवेचनाऐं",
-    "column": "स्तंभ",
+    "column": "column",
     "hot": "लोकप्रीय",
     "muted": "म्यूट है",
     "new": "नया",
@@ -306,9 +306,27 @@
     "created": "नया",
     "go-back": "पीछे जाएँ",
     "deck-exists": "आप जिस डेक को जोड़ने का प्रयास कर रहे हैं वह पहले से मौजूद है!",
-    "limit-warning": "आप अधिकतम 10 डेक जोड़ सकते हैं। दूसरा जोड़ने के लिए कोई भी डेक हटाएं।",
+    "limit-warning": "Maximum 10 decks are allowed. Delete any deck to add another.",
+    "empty-decks": "Click + icon to add Decks",
     "select-column-type": "आप कौन सा डेक प्रकार जोड़ना चाहते हैं?",
-    "topic": "अनुकूल"
+    "topic": "अनुकूल",
+    "refresh": "Auto refresh for {{title}} saved.",
+    "settings": "Settings",
+    "refresh-time": "Refresh time",
+    "hours": "hours",
+    "save": "Save",
+    "update-interval": "Update interval",
+    "update-interval-min": "In minutes",
+    "update-n-seconds": "Every {{sec}} sec",
+    "update-n-minutes": "Every {{min}} min",
+    "update-n-hours": "Every {{hour}} h",
+    "update-custom": "Custom interval...",
+    "update-interval-value-error": "Interval should be between 30 seconds and 24 hours",
+    "update-interval-placeholder": "Select an interval",
+    "update-custom-interval-in-minutes-placeholder": "Enter interval in minutes",
+    "filters": "Filters",
+    "history": "History",
+    "type": "Type"
   },
   "market-data": {
     "title": "बाजार मूल्य",
@@ -690,7 +708,8 @@
     "title": "बूस्ट",
     "sub-title": "अपनी पोस्ट का प्रचार करें",
     "amount": "रकम",
-    "slider-hint": "राशि समायोजित करने के लिए स्लाइडर को खींचें।"
+    "slider-hint": "राशि समायोजित करने के लिए स्लाइडर को खींचें।",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "शेष रकम",
@@ -731,6 +750,7 @@
     "memo": "ज्ञापन",
     "memo-placeholder": "यहां अपने नोट्स दर्ज करें",
     "memo-help": "यह ज्ञापन सार्वजनिक है",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* उपलब्ध हाइव शक्ति",
     "override-warning-1": "नई राशि पिछले एक को ओवरराइड करती है।",
     "override-warning-2": "खाता ({{account}}) पहले ही {{previousAmount}} के साथ प्रत्यायोजित किया जा चुका है।",
@@ -905,7 +925,8 @@
     "scheduled": "पोस्ट अनुसूचित करें",
     "empty-title-alert": "पोस्ट का शीर्षक दर्ज करें",
     "empty-tags-alert": "पोस्ट टैग दर्ज करें",
-    "empty-body-alert": "पोस्ट बॉडी दर्ज करें"
+    "empty-body-alert": "पोस्ट बॉडी दर्ज करें",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "टैग। पहला टैग मुख्य श्रेणी है। क्रमित करने योग्य।",

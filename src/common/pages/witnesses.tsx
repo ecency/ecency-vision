@@ -295,7 +295,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                                 this.deleteWitness(row.name);
                             }
                     }}
-                    global={global}
+                    {...this.props}
                     />
         })}
         </div>

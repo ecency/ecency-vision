@@ -37,7 +37,7 @@
       .item-body {
         .item-image {
           float: none;
-          height: 450px;
+          height: 240px;
           border-radius: 4px;
           margin: 0 0 10px 0;
           width: 100%;
@@ -54,10 +54,6 @@
             img {
               width: 100%;
             }
-          }
-
-          @media (min-width: $xxxl-break) {
-            height: 240px;
           }
         }
 

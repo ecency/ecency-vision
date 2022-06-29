@@ -54,6 +54,7 @@ interface Props {
     trackEntryPin: (entry: Entry) => void;
     setSigningKey: (key: string) => void;
     setEntryPin: (entry: Entry, pin: boolean) => void;
+    pinEntry?: (entry: Entry | null) => void;
 }
 
 interface State {
@@ -207,7 +208,8 @@ export default (p: Props) => {
         setEntryPin: p.setEntryPin,
         loading: p.loading,
         account: p.account,
-        match: p.match
+        match: p.match,
+        pinEntry: p.pinEntry,
     }
 
     return <EntryListContent {...props} />;

@@ -64,6 +64,7 @@ exports[`(1) Dialog (1) Up vote 1`] = `
         />
         <path
           d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+          fill="currentColor"
         />
       </svg>
     </span>
@@ -134,6 +135,7 @@ exports[`(1) Dialog (2) Down vote 1`] = `
         />
         <path
           d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+          fill="currentColor"
         />
       </svg>
     </span>

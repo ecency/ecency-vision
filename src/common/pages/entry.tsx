@@ -1,5 +1,4 @@
 import React, {Fragment, Ref} from "react";
-import ReactDOM from 'react-dom'
 
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
@@ -76,6 +75,7 @@ import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
 import { getPost } from '../api/bridge';
+import { Helmet } from 'react-helmet';
 
 setProxyBase(defaults.imageServer);
 
@@ -435,7 +435,8 @@ class EntryPage extends BaseComponent<Props, State> {
                 parentPermlink,
                 title: '',
                 body: text,
-                tags
+                tags,
+                description: null
             });
 
             // add new reply to store
@@ -487,7 +488,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
     render() {
         const {loading, replying, showIfNsfw, editHistory, entryIsMuted, edit, comment, /*commentText,*/ isMounted, postIsDeleted, deletedEntry, showProfileBox} = this.state;
-        const {global, history, match} = this.props;
+        const {global, history, match, location} = this.props;
 
         let navBar = global.isElectron ? NavBarElectron({
             ...this.props,
@@ -602,6 +603,7 @@ class EntryPage extends BaseComponent<Props, State> {
             modified: modified.toISOString(),
             tag: tags ? isCommunity(tags[0]) ? tags[1] : tags[0] : '',
             keywords: tags && tags.join(", "),
+            amp: `${defaults.base}${entry.url}?amps`,
         };
         let containerClasses = global.isElectron ? "app-content entry-page mt-0 pt-6" : "app-content entry-page";
 
@@ -1048,7 +1050,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                     {Discussion({
                                         ...this.props,
                                         parent: entry,
-                                        community
+                                        community,
+                                        hideControls: false
                                     })}
                                 </>
                             })()}

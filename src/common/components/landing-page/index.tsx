@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useRef, useState } from 'react';
 import htmlParse from 'html-react-parser';
 import { subscribeEmail } from "../../api/private-api";
 import { _t } from "../../i18n";
@@ -11,8 +11,7 @@ import { apiBase } from "../../api/helper";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
 import isElectron from "../../util/is-electron";
 
-const LandingPage = (props: any) => {
-
+export default (props: any) => {
   const {global} = props;
 
   const [email, setEmail] = useState("");
@@ -58,6 +57,7 @@ const LandingPage = (props: any) => {
   const DesignGuru = apiBase(`/assets/dunsky.${global.canUseWebp?"webp":"jpeg"}`);;
 
   const LogoCircle = global.isElectron ? "./img/logo-circle.svg" : require("../../img/logo-circle.svg");
+  const earnMoneyRef = useRef<HTMLDivElement>(null);
 
   const handleSubsccribe = async (e: FormEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -88,16 +88,19 @@ const LandingPage = (props: any) => {
           </div>
           <button
             className="get-started mx-auto"
-            onClick={() => props.changeState({ step: 2 })}
+            onClick={() => props.setStep(2)}
           >
             {_t("landing-page.get-started")}
           </button>
-          <Link className="scroll-down" to="#earn-money">
+          <span
+            className="scroll-down cursor-pointer"
+            onClick={() => earnMoneyRef.current?.scrollIntoView({ behavior: 'smooth' })}
+          >
             {scrollDown}
-          </Link>
+          </span>
         </div>
       </div>
-      <div className="sections second-section" id="earn-money">
+      <div className="sections second-section" id="earn-money" ref={earnMoneyRef}>
         <div className="part-top">
           <div className="inner">
             <img src={EarnMoney} alt="earn-money" loading="lazy" className="mx-auto m-sm-0" />
@@ -450,6 +453,4 @@ const LandingPage = (props: any) => {
     </div>
   );
 };
-
-export default LandingPage;
 

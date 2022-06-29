@@ -29,33 +29,6 @@ exports[`(1) Default Render 1`] = `
         </div>
       </div>
       <div
-        className="balance-row estimated alternative"
-      >
-        <div
-          className="balance-info"
-        >
-          <div
-            className="title"
-          >
-            Estimated Wallet Value
-          </div>
-          <div
-            className="description"
-          >
-            The estimated value is based on a 7 day average value of HIVE.
-          </div>
-        </div>
-        <div
-          className="balance-values"
-        >
-          <div
-            className="amount amount-bold"
-          >
-            $ 11,264.462
-          </div>
-        </div>
-      </div>
-      <div
         className="balance-row hive"
       >
         <div
@@ -266,6 +239,33 @@ exports[`(1) Default Render 1`] = `
         </div>
       </div>
       <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Wallet Value
+          </div>
+          <div
+            className="description"
+          >
+            The estimated value is based on a 7 day average value of HIVE.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            $ 11,264.462
+          </div>
+        </div>
+      </div>
+      <div
         className="next-power-down"
       >
         The next power down is in 5 days, 3,626.559 HIVE
@@ -438,33 +438,6 @@ exports[`(2) Render with converting HBD 1`] = `
           >
             10.207 HP
           </span>
-        </div>
-      </div>
-      <div
-        className="balance-row estimated alternative"
-      >
-        <div
-          className="balance-info"
-        >
-          <div
-            className="title"
-          >
-            Estimated Wallet Value
-          </div>
-          <div
-            className="description"
-          >
-            The estimated value is based on a 7 day average value of HIVE.
-          </div>
-        </div>
-        <div
-          className="balance-values"
-        >
-          <div
-            className="amount amount-bold"
-          >
-            $ 12,464.462
-          </div>
         </div>
       </div>
       <div
@@ -717,6 +690,33 @@ exports[`(2) Render with converting HBD 1`] = `
         </div>
       </div>
       <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Wallet Value
+          </div>
+          <div
+            className="description"
+          >
+            The estimated value is based on a 7 day average value of HIVE.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            $ 12,464.462
+          </div>
+        </div>
+      </div>
+      <div
         className="next-power-down"
       >
         The next power down is in 5 days, 3,626.559 HIVE
@@ -889,33 +889,6 @@ exports[`(3) usePrivate = false 1`] = `
           >
             10.207 HP
           </span>
-        </div>
-      </div>
-      <div
-        className="balance-row estimated alternative"
-      >
-        <div
-          className="balance-info"
-        >
-          <div
-            className="title"
-          >
-            Estimated Wallet Value
-          </div>
-          <div
-            className="description"
-          >
-            The estimated value is based on a 7 day average value of HIVE.
-          </div>
-        </div>
-        <div
-          className="balance-values"
-        >
-          <div
-            className="amount amount-bold"
-          >
-            $ 12,464.462
-          </div>
         </div>
       </div>
       <div
@@ -1163,6 +1136,33 @@ exports[`(3) usePrivate = false 1`] = `
             <span>
               0.000 $
             </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Wallet Value
+          </div>
+          <div
+            className="description"
+          >
+            The estimated value is based on a 7 day average value of HIVE.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            $ 12,464.462
           </div>
         </div>
       </div>

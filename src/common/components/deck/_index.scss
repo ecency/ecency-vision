@@ -2,12 +2,16 @@
   background-color: $white;
   min-width: 379px;
   max-width: 379px;
-  height: fit-content !important;
+  height: 100% !important;
   overflow: hidden !important;
 
   @include themify(night) {
     background-color: $dark-two;
   }
+}
+
+.cog-icon {
+  width: 16px;
 }
 
 .deck-header {
@@ -67,7 +71,7 @@
 }
 
 .item-container {
-  max-height: 70vh;
+  max-height: calc(100vh - 176px);
   overflow: auto;
 }
 
@@ -141,5 +145,22 @@
 
   svg {
     width: 14px !important;
+  }
+}
+
+.deck-header-settings-item {
+  font-size: 14px;
+
+  .toggle {
+    padding: .68rem;
+    font-size: 14px;
+  }
+
+  .label {
+    max-width: 100px;
+    min-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

@@ -16,7 +16,7 @@ import moment, {Moment} from "moment";
 
 import defaults from "../constants/defaults.json";
 
-import {proxifyImageSrc, renderPostBody, setProxyBase} from "@ecency/render-helper";
+import {proxifyImageSrc, renderPostBody, setProxyBase, postBodySummary} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
@@ -67,13 +67,13 @@ import {checkSvg, contentSaveSvg} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import ModalConfirm from "../components/modal-confirm";
-import ResizableTextarea from "../components/resizable-text-area";
 import TextareaAutocomplete from "../components/textarea-autocomplete";
 
 interface PostBase {
     title: string;
     tags: string[];
     body: string;
+    description: string | null;
 }
 
 interface Advanced {
@@ -81,6 +81,7 @@ interface Advanced {
     beneficiaries: BeneficiaryRoute[];
     schedule: string | null,
     reblogSwitch: boolean;
+    description: string | null;
 }
 
 interface PreviewProps extends PostBase {
@@ -140,6 +141,7 @@ interface Props extends PageProps {
 interface State extends PostBase, Advanced {
     preview: PostBase;
     posting: boolean;
+    description: string | null;
     editingEntry: Entry | null;
     saving: boolean;
     editingDraft: Draft | null;
@@ -156,6 +158,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         title: "",
         tags: [],
         body: "",
+        description: null,
         reward: "default",
         posting: false,
         editingEntry: null,
@@ -173,6 +176,7 @@ class SubmitPage extends BaseComponent<Props, State> {
             title: "",
             tags: [],
             body: "",
+            description: '',
         },
         disabled: true
     };
@@ -255,10 +259,12 @@ class SubmitPage extends BaseComponent<Props, State> {
             }
 
             const {title, body} = entry;
+
+            let description = entry.json_metadata?.description || postBodySummary(body, 200);
             let tags = entry.json_metadata?.tags || [];
             tags = [...new Set(tags)];
 
-            this.stateSet({title, tags, body, editingEntry: entry}, this.updatePreview);
+            this.stateSet({title, tags, body, description, editingEntry: entry}, this.updatePreview);
         } else {
             if (this.state.editingEntry) {
                 this.stateSet({editingEntry: null});
@@ -271,6 +277,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         const {params} = match;
 
         if (this.isDraft()) {
+
             let drafts: Draft[];
 
             try {
@@ -330,8 +337,8 @@ class SubmitPage extends BaseComponent<Props, State> {
     };
 
     saveLocalDraft = (): void => {
-        const {title, tags, body} = this.state;
-        const localDraft: PostBase = {title, tags, body};
+        const {title, tags, body, description} = this.state;
+        const localDraft: PostBase = {title, tags, body, description};
         ls.set("local_draft", localDraft);
     };
 
@@ -345,22 +352,23 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     saveAdvanced = (): void => {
-        const {reward, beneficiaries, schedule, reblogSwitch} = this.state;
+        const {reward, beneficiaries, schedule, reblogSwitch, description} = this.state;
 
         const advanced: Advanced = {
             reward,
             beneficiaries,
             schedule,
-            reblogSwitch
+            reblogSwitch,
+            description
         }
 
         ls.set("local_advanced", advanced);
     }
 
     hasAdvanced = (): boolean => {
-        const {reward, beneficiaries, schedule, reblogSwitch} = this.state;
+        const {reward, beneficiaries, schedule, reblogSwitch, description} = this.state;
 
-        return reward !== "default" || beneficiaries.length > 0 || schedule !== null || reblogSwitch;
+        return reward !== "default" || beneficiaries.length > 0 || schedule !== null || reblogSwitch || description !== '';
     }
 
     titleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
@@ -398,6 +406,13 @@ class SubmitPage extends BaseComponent<Props, State> {
         this.stateSet({body}, () => {
             this.updatePreview();
         });
+    };
+
+    descriptionChanged = (
+    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>,
+    ): void => {
+        const { value: description } = e.target;
+        this.stateSet({ description }, this.saveAdvanced);
     };
 
     rewardChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
@@ -440,7 +455,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     };
 
     clearAdvanced = (): void => {
-        this.stateSet({advanced: false, reward: "default", beneficiaries: [], schedule: null, reblogSwitch: false}, () => {
+        this.stateSet({advanced: false, reward: "default", beneficiaries: [], schedule: null, reblogSwitch: false, description: ''}, () => {
             this.saveAdvanced();
         });
     }
@@ -457,9 +472,9 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         this._updateTimer = setTimeout(() => {
-            const {title, tags, body, editingEntry} = this.state;
+            const {title, tags, body, editingEntry, description} = this.state;
             const {thumbnails} = extractMetaData(body);
-            this.stateSet({preview: {title, tags, body}, thumbnails: thumbnails || []});
+            this.stateSet({preview: {title, tags, body, description}, thumbnails: thumbnails || []});
             if (editingEntry === null) {
                 this.saveLocalDraft();
             }
@@ -503,7 +518,10 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const {activeUser, history, addEntry} = this.props;
-        const {title, tags, body, reward, reblogSwitch, beneficiaries, selectedThumbnail, selectionTouched} = this.state;
+        const {title, tags, body, description, reward, reblogSwitch, beneficiaries, selectedThumbnail, selectionTouched} = this.state;
+
+        // clean body
+        const cbody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, '')
 
         // make sure active user fully loaded
         if (!activeUser || !activeUser.data.__loaded) {
@@ -553,11 +571,11 @@ class SubmitPage extends BaseComponent<Props, State> {
         if(meta.image){
             meta.image = [...new Set(meta.image)]
         }
-        
-        const jsonMeta = makeJsonMetaData(meta, tags, version);
+        const summary = description === null ? postBodySummary(this.state.body, 200) : description;
+        const jsonMeta = makeJsonMetaData(meta, tags, summary, version);
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
         this.stateSet({posting: true});
-        comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options, true)
+        comment(author, "", parentPermlink, permlink, title, cbody, jsonMeta, options, true)
             .then(() => {
 
                 this.clearAdvanced();
@@ -571,7 +589,8 @@ class SubmitPage extends BaseComponent<Props, State> {
                         parentPermlink,
                         title,
                         body,
-                        tags
+                        tags,
+                        description,
                     }),
                     max_accepted_payout: options.max_accepted_payout,
                     percent_hbd: options.percent_hbd
@@ -602,15 +621,14 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const {activeUser, updateEntry, history} = this.props;
-        const {title, tags, body, editingEntry, selectionTouched, selectedThumbnail} = this.state;
-
+        const {title, tags, body, description, editingEntry, selectionTouched, selectedThumbnail} = this.state;
         if (!editingEntry) {
             return;
         }
 
         const {body: oldBody, author, permlink, category, json_metadata} = editingEntry;
-
-        let newBody = body;
+        // clean and copy body
+        let newBody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, '');
         const patch = createPatch(oldBody, newBody.trim());
         if (patch && patch.length < Buffer.from(editingEntry.body, "utf-8").length) {
             newBody = patch;
@@ -631,8 +649,9 @@ class SubmitPage extends BaseComponent<Props, State> {
         if(meta.image){
             meta.image = [...new Set(meta.image)]
         }
-        
-        const jsonMeta = Object.assign({}, json_metadata, meta, {tags});
+        // TODO: Add summary to update
+        // const summary = this.state.description.trim() === '' ? postBodySummary(this.state.body, 200) : this.state.description;
+        const jsonMeta = Object.assign({}, json_metadata, meta, {tags}, {description});
 
         this.stateSet({posting: true});
         
@@ -709,7 +728,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const {activeUser} = this.props;
-        const {title, tags, body, reward, reblogSwitch, beneficiaries, schedule} = this.state;
+        const {title, tags, body, reward, reblogSwitch, beneficiaries, schedule, description,} = this.state;
 
         // make sure active user and schedule date has set
         if (!activeUser || !schedule) {
@@ -735,7 +754,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const meta = extractMetaData(body);
-        const jsonMeta = makeJsonMetaData(meta, tags, version);
+        const jsonMeta = makeJsonMetaData(meta, tags, description, version);
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
 
         const reblog = isCommunity(tags[0]) && reblogSwitch;
@@ -835,7 +854,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 placeholder={_t("submit.body-placeholder")}
                                 value={body.length > 0 ? body : preview.body}
                                 onChange={this.bodyChanged}
-                                minrows={10}
+                                disableRows={true}
                                 maxrows={100}
                                 spellCheck={true}
                                 activeUser={activeUser && activeUser.username || ""}
@@ -950,6 +969,25 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                     <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
                                                 </Col>
                                             </Form.Group>
+                                        </>}
+                                            <Form.Group as={Row}>
+                                            <Form.Label column={true} sm='3'>
+                                                {_t('submit.description')}
+                                            </Form.Label>
+                                            <Col sm='9'>
+                                                <Form.Control
+                                                    as='textarea'
+                                                    value={this.state.description || postBodySummary(body, 200)}
+                                                    onChange={this.descriptionChanged}
+                                                    rows={3}
+                                                    maxLength={200}
+                                                />
+                                                <Form.Text muted={true}>
+                                                    {this.state.description !== '' ? this.state.description : postBodySummary(body, 200)}
+                                                </Form.Text>
+                                            </Col>
+                                            </Form.Group>
+                                        {editingEntry === null && <>
                                             {global.usePrivate && <Form.Group as={Row}>
                                             <Form.Label column={true} sm="3">
                                                 {_t("submit.schedule")}
@@ -959,6 +997,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
                                             </Col>
                                             </Form.Group>}
+                                        </>}
                                             {tags.length > 0 && isCommunity(tags[0]) && (
                                                 <Form.Group as={Row}>
                                                     <Col sm="3"/>
@@ -974,7 +1013,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                     </Col>
                                                 </Form.Group>
                                             )}
-                                        </>}
+
                                         {thumbnails.length > 0 && 
                                             <Form.Group as={Row}>
                                                 <Form.Label column={true} sm="3">

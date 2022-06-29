@@ -52,7 +52,8 @@ const defProps = {
     deleteReply: () => {
     },
     toggleUIProp: () => {
-    }
+    },
+    hideControls: false
 };
 
 

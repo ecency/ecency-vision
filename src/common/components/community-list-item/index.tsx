@@ -40,6 +40,7 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
     addAccount: (data: Account) => void;
     updateSubscriptions: (list: Subscription[]) => void;
+    small?: boolean;
 }
 
 export class CommunityListItem extends Component<Props> {
@@ -47,6 +48,12 @@ export class CommunityListItem extends Component<Props> {
         return !isEqual(this.props.community, nextProps.community) ||
             !isEqual(this.props.subscriptions, nextProps.subscriptions) ||
             !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username)
+    }
+
+    getItemsControls() {
+        return <div className="item-controls">
+            <SubscriptionBtn {...this.props} buttonProps={{block: true, size: this.props.small ? 'sm' : undefined}}/>
+        </div>
     }
 
     render() {
@@ -58,13 +65,16 @@ export class CommunityListItem extends Component<Props> {
         const posts = formattedNumber(community.num_pending, nOpts);
 
         return (
-            <div className="community-list-item">
+            <div className={"community-list-item " + (this.props.small ? 'small' : '')}>
                 <div className="item-content">
                     <h2 className="item-title">
-                        {UserAvatar({...this.props, username: community.name, size: "medium"})}
-                        <Link to={makePath(defaults.filter, community.name)}>{community.title}</Link>
+                        <div className="item-details">
+                            {UserAvatar({...this.props, username: community.name, size: this.props.small ? 'small' : "medium"})}
+                            <Link to={makePath(defaults.filter, community.name)}>{community.title}</Link>
+                        </div>
+                        {this.props.small && this.getItemsControls()}
                     </h2>
-                    <div className="item-about">{community.about}</div>
+                    <div className={"item-about " + (this.props.small ? 'text-truncate' : '')}>{community.about}</div>
                     <div className="item-stats">
                         <div className="stat">{_t("communities.n-subscribers", {n: subscribers})}</div>
                         <div className="stat">{_t("communities.n-authors", {n: authors})}</div>
@@ -81,9 +91,7 @@ export class CommunityListItem extends Component<Props> {
                         </div>
                     )}
                 </div>
-                <div className="item-controls">
-                    <SubscriptionBtn {...this.props} buttonProps={{block: true}}/>
-                </div>
+                {!this.props.small && this.getItemsControls()}
             </div>
         );
     }
@@ -103,7 +111,8 @@ export default (p: Props) => {
         deleteUser: p.deleteUser,
         toggleUIProp: p.toggleUIProp,
         addAccount: p.addAccount,
-        updateSubscriptions: p.updateSubscriptions
+        updateSubscriptions: p.updateSubscriptions,
+        small: p.small,
     }
 
     return <CommunityListItem {...props} />;

@@ -329,8 +329,7 @@ export class EditorToolbar extends Component<Props> {
                 addImage(username, imageUrl).then();
             }
 
-            const imageName = imageUrl.length > 0 && imageUrl.split('/').pop();
-            const imgTag = imageUrl.length > 0 && `![${imageName}](${imageUrl})\n\n`;
+            const imgTag = imageUrl.length > 0 && `![](${imageUrl})\n\n`;
 
             imgTag && this.replaceText(tempImgTag, imgTag);
             }
@@ -503,7 +502,7 @@ export class EditorToolbar extends Component<Props> {
                     style={{display: 'none'}}
                 />
                 {(gallery && activeUser) && <Gallery global={global} activeUser={activeUser} onHide={this.toggleGallery} onPick={(url: string) => {
-                    const fileName = url.split("/").pop() || "";
+                    const fileName = "";
                     this.image(fileName, url);
                     this.toggleGallery();
                 }}/>}
@@ -524,7 +523,7 @@ export class EditorToolbar extends Component<Props> {
                                     activeUser={activeUser}
                                     onHide={this.toggleMobileImage}
                                     onPick={(url) => {
-                                        const fileName = url.split("/").pop() || "";
+                                        const fileName = "";
                                         this.image(fileName, url);
                                         this.toggleMobileImage();
                                     }}

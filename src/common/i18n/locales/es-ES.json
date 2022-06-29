@@ -278,7 +278,7 @@
     "pp": "Política de privacidad"
   },
   "decks": {
-    "users": "Usuarios",
+    "users": "Usuario",
     "header-info": "Haz clic en mí para ver opciones adicionales",
     "username": "Nombre de Usuario",
     "content-type": "Tipo de contenido",
@@ -294,7 +294,7 @@
     "replies": "Respuestas",
     "posts": "Publicaciones",
     "comments": "Comentarios",
-    "column": "Columna",
+    "column": "columna",
     "hot": "Popular",
     "muted": "Silenciado",
     "new": "Nuevo",
@@ -306,9 +306,27 @@
     "created": "Nuevo",
     "go-back": "Regresar",
     "deck-exists": "¡La cubierta que estás intentando añadir ya existe!",
-    "limit-warning": "Puedes añadir 10 cubiertas al máximo. Elimina cualquier cubierta para añadir otra.",
+    "limit-warning": "Máximo de 10 cubiertas permitidas. Elimina cualquier cubierta para añadir otra.",
+    "empty-decks": "Clic + icono para añadir Cubiertas",
     "select-column-type": "¿Qué tipo de cubierta quieres añadir?",
-    "topic": "Personalizado"
+    "topic": "Personalizado",
+    "refresh": "Actualización automática para {{title}} guardado.",
+    "settings": "Configuraciones",
+    "refresh-time": "Tiempo de actualización",
+    "hours": "horas",
+    "save": "Guardar",
+    "update-interval": "Actualizar intervalo",
+    "update-interval-min": "En minutos",
+    "update-n-seconds": "Cada {{sec}} seg",
+    "update-n-minutes": "Cada {{min}} minutos",
+    "update-n-hours": "Cada {{hour}} h",
+    "update-custom": "Intervalo personalizado...",
+    "update-interval-value-error": "El intervalo debe estar entre 30 segundos y 24 horas",
+    "update-interval-placeholder": "Selecciona un intervalo",
+    "update-custom-interval-in-minutes-placeholder": "Introducir intervalo en minutos",
+    "filters": "Filtros",
+    "history": "Historial",
+    "type": "Tipo"
   },
   "market-data": {
     "title": "Precio de mercado",
@@ -690,7 +708,8 @@
     "title": "Promocionar",
     "sub-title": "Promociona tu publicación",
     "amount": "Cantidad",
-    "slider-hint": "Arrastra el deslizador para ajustar la cantidad."
+    "slider-hint": "Arrastra el deslizador para ajustar la cantidad.",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "Balance",
@@ -731,6 +750,7 @@
     "memo": "Memo",
     "memo-placeholder": "escribe tus notas aquí",
     "memo-help": "Este memo es público",
+    "memo-error": "Nunca ponga las claves privadas en un campo memo, eso es visible públicamente para todos.",
     "available-hp-hint": "* potencia de Hive disponible",
     "override-warning-1": "La nueva cantidad anula la anterior.",
     "override-warning-2": "La cuenta ({{account}}) ya ha sido delegada con {{previousAmount}}.",
@@ -905,7 +925,8 @@
     "scheduled": "Publicación Programada",
     "empty-title-alert": "Introduce título de la publicación",
     "empty-tags-alert": "Introducir etiquetas de la publicación",
-    "empty-body-alert": "Introducir cuerpo de la publicación"
+    "empty-body-alert": "Introducir cuerpo de la publicación",
+    "description": "Descripción breve"
   },
   "tag-selector": {
     "placeholder-empty": "Etiquetas. Primera etiqueta es la categoría principal. Seleccionable.",

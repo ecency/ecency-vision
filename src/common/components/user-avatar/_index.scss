@@ -1,3 +1,10 @@
+@mixin generate_size($width, $height) {
+  min-width: $width;
+  min-height: $height;
+  max-width: $width;
+  max-height: $height;
+}
+
 .user-avatar {
   border-radius: 50%;
   background: #ccc;
@@ -7,27 +14,22 @@
   display: block;
 
   &.small {
-    height: 24px;
-    width: 24px;
+    @include generate_size(24px, 24px);
   }
 
   &.normal {
-    height: 30px;
-    width: 30px;
+    @include generate_size(30px, 30px);
   }
 
   &.medium {
-    height: 40px;
-    width: 40px;
+    @include generate_size(40px, 40px);
   }
 
   &.large {
-    height: 80px;
-    width: 80px;
+    @include generate_size(80px, 80px);
   }
 
   &.xLarge {
-    height: 120px;
-    width: 120px;
+    @include generate_size(120px, 120px);
   }
 }

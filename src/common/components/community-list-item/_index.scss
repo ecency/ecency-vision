@@ -18,6 +18,11 @@
       margin-bottom: 0;
     }
 
+    .item-details {
+      display: flex;
+      align-items: center;
+    }
+
     .item-title {
       color: $dark-sky-blue;
       font-size: 20px;
@@ -84,6 +89,29 @@
       width: 120px;
       justify-content: center;
       align-items: center;
+    }
+  }
+
+  &.small {
+    .item-controls {
+      @media (min-width: $md-break) {
+        width: 80px;
+      }
+    }
+
+    .item-title {
+      font-size: 16px;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+
+      .user-avatar {
+        margin-right: 4px;
+      }
+    }
+
+    .item-about {
+      max-width: 260px;
     }
   }
 }
