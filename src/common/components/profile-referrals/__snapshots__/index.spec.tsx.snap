@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render - With data. 1`] = `
+<div
+  className="profile-communities"
+>
+  <h2>
+    Membership
+  </h2>
+  <ul
+    className="community-list"
+  >
+    <li>
+      <a
+        href="/created/hive-125125"
+        onClick={[Function]}
+        title="Unmoderated topics"
+      >
+        Ecency
+      </a>
+       
+      <span
+        className="user-role"
+      >
+        admin
+      </span>
+    </li>
+    <li>
+      <a
+        href="/created/hive-139531"
+        onClick={[Function]}
+        title="Unmoderated topics"
+      >
+        HiveDevs
+      </a>
+       
+      <span
+        className="user-role"
+      >
+        mod
+      </span>
+    </li>
+    <li>
+      <a
+        href="/created/hive-102930"
+        onClick={[Function]}
+        title="Unmoderated topics"
+      >
+        Hive Improvement
+      </a>
+       
+      <span
+        className="user-role"
+      >
+        guest
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`(2) Should show create community link 1`] = `
+<div
+  className="profile-communities"
+>
+  <h2>
+    Membership
+  </h2>
+  <ul
+    className="community-list"
+  >
+    <li>
+      <a
+        href="/created/hive-125125"
+        onClick={[Function]}
+        title="Unmoderated topics"
+      >
+        Ecency
+      </a>
+       
+      <span
+        className="user-role"
+      >
+        admin
+      </span>
+    </li>
+    <li>
+      <a
+        href="/created/hive-139531"
+        onClick={[Function]}
+        title="Unmoderated topics"
+      >
+        HiveDevs
+      </a>
+       
+      <span
+        className="user-role"
+      >
+        mod
+      </span>
+    </li>
+    <li>
+      <a
+        href="/created/hive-102930"
+        onClick={[Function]}
+        title="Unmoderated topics"
+      >
+        Hive Improvement
+      </a>
+       
+      <span
+        className="user-role"
+      >
+        guest
+      </span>
+    </li>
+  </ul>
+  <p>
+    <a
+      className="create-link"
+      href="/communities/create"
+      onClick={[Function]}
+    >
+      Create a community
+    </a>
+  </p>
+</div>
+`;
