@@ -608,7 +608,7 @@
     "hive-power-description": "„Hive Power“ yra įtakos žetonai, kurie uždirba daugiau galios už ilgalaikį laikymą ir balsavimą už turinį. Kuo daugiau „Hive Power“ turi, tuo daugiau jis gali daryti įtaką kitų apdovanojimams ir gauti atlygį už tikslų balsavimą. Hive Power yra ŽIVE žetonas, kurį galima atsiimti per 13 savaičių.",
     "hive-power-apr-rate": "„Hive Power“ palūkanų norma yra {{value}} %",
     "hive-dollars-apr-rate": "APR palūkanų norma HBD ($) yra {{value}} %",
-    "hive-dollars-apr-claim": "Estimated interest since last payment ({{value}}):",
+    "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
     "hive-dollars-apr-when": "Claim in {{value}} days",
     "hive-dollars-apr-now": "Claim now",
     "hive-power-delegated": "Deleguota Hive Power",

@@ -608,7 +608,7 @@
     "hive-power-description": "Hive Power - kontentga ovoz berish uchun ko'proq kuch beradigan ta'sir qiluvchi token. Biror kishi qanchalik ko'p Hive Powerga ega bo'lsa, u boshqalarning mukofotlariga shunchalik ta'sir qilishi va ovoz berish uchun mukofot olishi mumkin. Hive Power asosan ma'lum bir hamyonda saqlanadigan Hive tokenidir, bu so'ralgan pulni to'liq yechib olish uchun 13 haftani talab qiladi.",
     "hive-power-apr-rate": "Hive Power uchun APR foiz stavkasi{{value}}%",
     "hive-dollars-apr-rate": "HBD ($) uchun APR foiz stavkasi{{value}}%",
-    "hive-dollars-apr-claim": "Estimated interest since last payment ({{value}}):",
+    "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
     "hive-dollars-apr-when": "Claim in {{value}} days",
     "hive-dollars-apr-now": "Claim now",
     "hive-power-delegated": "Delegasiyalangan Hive Power",

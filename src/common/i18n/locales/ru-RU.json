@@ -608,7 +608,7 @@
     "hive-power-description": "Hive Power - это токен влияния, который даёт больше энергии за длительное хранение и голосование за контент. Чем больше у человека Hive Power, тем больше он может влиять на награды других и получать награды за точное голосование. Hive Power - это заблокированный токен HIVE, который может быть разблокирован через 13 недель.",
     "hive-power-apr-rate": "Процентная ставка APR для Hive Power составляет {{value}}%",
     "hive-dollars-apr-rate": "Процентная ставка APR для HBD($) составляет {{value}}%",
-    "hive-dollars-apr-claim": "Estimated interest since last payment ({{value}}):",
+    "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
     "hive-dollars-apr-when": "Claim in {{value}} days",
     "hive-dollars-apr-now": "Claim now",
     "hive-power-delegated": "Делегированная HIVE СИЛА",
