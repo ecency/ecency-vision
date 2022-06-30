@@ -608,7 +608,7 @@
     "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
     "hive-power-apr-rate": "Hive Power의 APR은 {{value}}%입니다.",
     "hive-dollars-apr-rate": "HBD($) 의 APR은 {{value}}%입니다.",
-    "hive-dollars-apr-claim": "Estimated interest since last payment ({{value}}):",
+    "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
     "hive-dollars-apr-when": "Claim in {{value}} days",
     "hive-dollars-apr-now": "Claim now",
     "hive-power-delegated": "임대한 하이브 파워",
