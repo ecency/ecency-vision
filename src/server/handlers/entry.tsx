@@ -70,16 +70,15 @@ export default async (req: Request, res: Response) => {
         try {
             entry = await getPost(author, permlink);
             identifier += `_${entry.last_update}`;
-        } catch (e) {
-            ignoreCache = true;
-        }
-        const ampResult = await getAsAMP(identifier, req, preLoadedState, ignoreCache);
-        const tree = parse(ampResult);
-        const date = tree.querySelectorAll('.date');
-        date.forEach(d => d.innerHTML = moment(entry.created).fromNow());
+            const ampResult = await getAsAMP(identifier, req, preLoadedState, ignoreCache);
+            const tree = parse(ampResult);
+            const date = tree.querySelectorAll('.date');
+            date.forEach(d => d.innerHTML = moment(entry.created).fromNow());
 
-        res.send(tree.toString());
-        return;
+            res.send(tree.toString());
+            return;
+        } catch (e) {
+        }
     }
 
     res.send(render(req, preLoadedState));
