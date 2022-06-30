@@ -608,7 +608,7 @@
     "hive-power-description": "Hive Power são tokens de influência que ganham mais força pelo tempo guardado e trabalho de curadoria. Quanto mais Hive Power uma pessoa detém, mais influência ela terá nas recompensas obtidas através de seus votos. Hive Power é basicamente Hive token guardado em uma carteira específica, a qual requer 13 semanas para realizar o saque completo solicitado.",
     "hive-power-apr-rate": "A porcentagem de rendimento anual para Hive Power é {{value}}%",
     "hive-dollars-apr-rate": "A porcentagem de rendimento para HBD($) é {{value}}%",
-    "hive-dollars-apr-claim": "Rendimentos estimados desde o último pagamento ({{value}}):",
+    "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
     "hive-dollars-apr-when": "Reivindicação em {{value}} dias",
     "hive-dollars-apr-now": "Reivindicar agora",
     "hive-power-delegated": "Hive Power Delegado",
