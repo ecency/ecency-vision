@@ -608,7 +608,7 @@
     "hive-power-description": "हाइव पावर प्रभावशाली टोकन हैं जो लंबे समय तक रखने और सामग्री पर मतदान करने के लिए अधिक शक्ति अर्जित करते हैं। एक व्यक्ति जितना अधिक हाइव पावर रखता है, उतना ही वह दूसरे के पुरस्कारों को प्रभावित कर सकता है और सटीक मतदान के लिए पुरस्कार अर्जित कर सकता है। हाइव पावर एचआईवीई टोकन है जिसे 13 सप्ताह में बिना दांव पर लगाया जा सकता है।",
     "hive-power-apr-rate": "हाइव पावर के लिए एपीआर ब्याज दर {{value}}% है",
     "hive-dollars-apr-rate": "एच बी डी($) के लिए APR ब्याज दर {{value}}% है",
-    "hive-dollars-apr-claim": "Estimated interest since last payment ({{value}}):",
+    "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
     "hive-dollars-apr-when": "Claim in {{value}} days",
     "hive-dollars-apr-now": "Claim now",
     "hive-power-delegated": "प्रत्यायोजित हाइव पावर",
