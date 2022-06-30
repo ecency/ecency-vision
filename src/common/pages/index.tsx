@@ -19,7 +19,7 @@ const Index = (props: PageProps) => {
   const [step, setStep] = useState(1);
   const [metaProps, setMetaProps] = useState({});
   const [loading, setLoading] = useState(false);
-  const [showLandingPage, setShowLandingPage] = useState(true);
+  const [showLandingPage, setShowLandingPage] = useState(false);
   const [showEntryPage, setShowEntryPage] = useState(false);
 
   useEffect(() => {
