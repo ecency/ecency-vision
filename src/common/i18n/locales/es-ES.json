@@ -608,7 +608,7 @@
     "hive-power-description": "Hive Power son fichas de influencia que ganan más poder por mantenerlas a largo plazo y votar sobre el contenido. Cuanto más Hive Power se tenga, más influye uno en las recompensas de los demás y se gana más recompensas por votar. Hive Power es HIVE en Estaca (Staked) que puede retirado (Unstaked) en 13 semanas.",
     "hive-power-apr-rate": "La tasa de interés APR para Hive Power es de {{value}}%",
     "hive-dollars-apr-rate": "La tasa de interés APR para HBD($) es {{value}}%",
-    "hive-dollars-apr-claim": "Interés estimado desde el último pago ({{value}}):",
+    "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
     "hive-dollars-apr-when": "Reclamar en {{value}} días",
     "hive-dollars-apr-now": "Reclamar ahora",
     "hive-power-delegated": "Hive Power delegado",
