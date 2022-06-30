@@ -283,8 +283,8 @@ export class WalletHive extends BaseComponent<Props, State> {
         const isMyPage = activeUser && activeUser.username === account.name;
         const w = new HiveWallet(account, dynamicProps, converting);
 
-        const lastIPaymentRelative = dateToFullRelative(account.savings_hbd_last_interest_payment);
-        const lastIPaymentDiff = dayDiff(account.savings_hbd_last_interest_payment);
+        const lastIPaymentRelative = account.savings_hbd_last_interest_payment=="1970-01-01T00:00:00"?null:dateToFullRelative(account.savings_hbd_last_interest_payment);
+        const lastIPaymentDiff = dayDiff(account.savings_hbd_last_interest_payment=="1970-01-01T00:00:00"?account.savings_hbd_seconds_last_update:account.savings_hbd_last_interest_payment);
         const interestAmount = (Number(hbd)/100) * (w.savingBalanceHbd/(12*30)) * lastIPaymentDiff;
         const estimatedInterest = formattedNumber(interestAmount, {suffix: "$"});
         const remainingDays = 30-lastIPaymentDiff;
