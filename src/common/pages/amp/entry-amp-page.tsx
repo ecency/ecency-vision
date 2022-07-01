@@ -633,6 +633,7 @@ class EntryPage extends BaseComponent<Props, State> {
             )}
             <div itemScope={true} itemType="http://schema.org/Article">
               <meta itemProp="datePublished" content={`${published.format('YYYY-MM-DD')}`}/>
+              <meta itemProp="dateModified" content={`${modified.format('YYYY-MM-DD')}`}/>
               {!entry.community && 
                 <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">
                   <meta itemProp="name" content={entry.author}/>
@@ -714,6 +715,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                                               <span itemProp="name">
                                                                                   {originalEntry.author}
                                                                               </span>
+                                                                              <meta itemProp="url" content={`https://ecency.com/@${originalEntry.author}`}/>
                                                                           </span>
                                                                       </span>
                                         <span className="author-reputation"
@@ -840,6 +842,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                                               <span itemProp="name">
                                                                                   {entry.author}
                                                                               </span>
+                                                                              <meta itemProp="url" content={`https://ecency.com/@${entry.author}`}/>
                                                                           </span>
                                                                       </span>
                                       <span className="author-reputation"
