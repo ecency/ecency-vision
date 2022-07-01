@@ -445,7 +445,7 @@ export const Profile = (props: Props) => {
                   return ProfileSettings({ ...props, account });
                 }
                 if (section === 'referrals') {
-                  return ProfileReferrals({ ...props, account });
+                  return ProfileReferrals({ ...props, account, updateWalletValues: ensureAccount });
                 }
 
                 if (section === 'permissions' && props.activeUser) {

@@ -221,7 +221,7 @@ export const ProfileCard = (props: Props) => {
                 <div className="btn-controls">
                     <Link className="btn btn-sm btn-primary" to="/witnesses">{_t("profile.witnesses")}</Link>
                     <Link className="btn btn-sm btn-primary" to="/proposals">{_t("profile.proposals")}</Link>
-                    <Link className="btn btn-sm btn-primary" to="/referrals">{_t("profile.referrals")}</Link>
+                    <Link className="btn btn-sm btn-primary" to={`/@${account.name}/referrals`}>{_t("profile.referrals")}</Link>
                 </div>
             )}
 
