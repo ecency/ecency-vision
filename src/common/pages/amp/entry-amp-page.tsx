@@ -651,7 +651,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 </span>
               }
               <meta itemProp="image" content={metaProps.image}/>
-              <meta itemProp="headline name" content={entry.title}/>
+              <meta itemProp="headline name" content={entry.title.substring(0, 110)}/>
                   {(() => {
                     if (nsfw && !showIfNsfw && !global.nsfw) {
                       return <div className="nsfw-warning">
