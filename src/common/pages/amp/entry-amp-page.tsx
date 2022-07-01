@@ -636,10 +636,13 @@ class EntryPage extends BaseComponent<Props, State> {
               <meta itemProp="dateModified" content={`${modified.format('YYYY-MM-DD')}`}/>
               <meta itemProp="mainEntityOfPage" content={`https://ecency.com/@${entry.author}/posts`}/>
               {!entry.community && 
-                <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">
-                  <meta itemProp="name" content={entry.author}/>
-                  <meta itemProp="url" content={`https://ecency.com/@${entry.author}`}/>
+                <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Organization">
+                <span itemProp="logo" itemScope={true} itemType="https://schema.org/ImageObject">
+                  <meta itemProp="url" content={`https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/hive-125125/avatar/medium`}/>
                 </span>
+                <meta itemProp="url" content={`https://ecency.com/created/hive-125125`}/>
+                <meta itemProp="name" content={`Ecency news`}/>
+              </span>
               }
               {entry.community && 
                 <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Organization">
