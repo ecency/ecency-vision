@@ -935,6 +935,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                     <div className="date" title={published.format('LLLL')}>
                                       {published.fromNow()}
                                     </div>
+                                    <meta itemProp="datePublished" content={`${published.format('YYYY-MM-DD')}`}/>
                                     <span className="separator"/>
                                     {ProfileLink({
                                       ...this.props,
@@ -945,12 +946,15 @@ class EntryPage extends BaseComponent<Props, State> {
                                               title={_t('entry.author-reputation')}>{reputation}</span>
                                       </div>
                                     })}
+                                    <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Organization">
+                                      <span itemProp="logo" itemScope={true} itemType="https://schema.org/ImageObject">
+                                        <meta itemProp="url" content={`https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${entry.community ? entry.community:entry.author}/avatar/medium`}/>
+                                      </span>
+                                      <meta itemProp="name" content={`${entry.community ? entry.community_title : entry.author}`}/>
+                                    </span>
                                     {app && (
                                       <>
                                         <span className="separator"/>
-                                        <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">
-                                                            <meta itemProp="name" content={entry.author}/>
-                                                        </span>
                                         <div className="app" title={app}>
                                           <Tsx k="entry.via-app" args={{ app: appShort }}><a href="/faq#source-label"/></Tsx>
                                         </div>
