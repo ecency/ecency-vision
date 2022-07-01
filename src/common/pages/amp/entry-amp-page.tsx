@@ -481,6 +481,14 @@ class EntryPage extends BaseComponent<Props, State> {
     }
   }
 
+  getCommentAmpUrl = (url: string) => {
+    const index = url.indexOf('#');
+    if (index > -1) {
+      return url.slice(0, index) + '?amps';
+    }
+    return url;
+  }
+
   render() {
     const {
       replying,
@@ -635,7 +643,7 @@ class EntryPage extends BaseComponent<Props, State> {
               <meta itemProp="datePublished" content={`${published.format('YYYY-MM-DD')}`}/>
               <meta itemProp="dateModified" content={`${modified.format('YYYY-MM-DD')}`}/>
               <meta itemProp="mainEntityOfPage" content={`https://ecency.com/@${entry.author}/posts`}/>
-              {!entry.community && 
+              {!entry.community &&
                 <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Organization">
                 <span itemProp="logo" itemScope={true} itemType="https://schema.org/ImageObject">
                   <meta itemProp="url" content={`https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/hive-125125/avatar/medium`}/>
@@ -644,7 +652,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 <meta itemProp="name" content={`Ecency news`}/>
               </span>
               }
-              {entry.community && 
+              {entry.community &&
                 <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Organization">
                   <span itemProp="logo" itemScope={true} itemType="https://schema.org/ImageObject">
                     <meta itemProp="url" content={`https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${entry.community}/avatar/medium`}/>
@@ -806,12 +814,12 @@ class EntryPage extends BaseComponent<Props, State> {
                                 <p className="comment-entry-root-title">{entry.title}</p>
                                 <ul className="comment-entry-opts">
                                   <li>
-                                    <Link to={entry.url}>{_t('entry.comment-entry-go-root')}</Link>
+                                    <Link to={this.getCommentAmpUrl(entry.url)}>{_t('entry.comment-entry-go-root')}</Link>
                                   </li>
                                   {entry.depth > 1 && (
                                     <li>
                                       <Link
-                                        to={makeEntryPath(entry.category, entry.parent_author!, entry.parent_permlink!)}>
+                                        to={makeEntryPath(entry.category, entry.parent_author!, entry.parent_permlink!) + '?amps'}>
                                         {_t('entry.comment-entry-go-parent')}
                                       </Link>
                                     </li>
