@@ -633,13 +633,21 @@ class EntryPage extends BaseComponent<Props, State> {
             )}
             <div itemScope={true} itemType="http://schema.org/Article">
               <meta itemProp="datePublished" content={`${published.format('YYYY-MM-DD')}`}/>
-              <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Organization">
-                <span itemProp="logo" itemScope={true} itemType="https://schema.org/ImageObject">
-                  <meta itemProp="url" content={`https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${entry.community ? entry.community:entry.author}/avatar/medium`}/>
+              {!entry.community && 
+                <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">
+                  <meta itemProp="name" content={entry.author}/>
+                  <meta itemProp="url" content={`https://ecency.com/@${entry.author}`}/>
                 </span>
-                <meta itemProp="url" content={`https://ecency.com/${entry.community ? `created/${entry.community}` : `@${entry.author}`}`}/>
-              </span>
-              <meta itemProp="name" content={`${entry.community ? entry.community_title : entry.author}`}/>
+              }
+              {entry.community && 
+                <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Organization">
+                  <span itemProp="logo" itemScope={true} itemType="https://schema.org/ImageObject">
+                    <meta itemProp="url" content={`https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${entry.community}/avatar/medium`}/>
+                  </span>
+                  <meta itemProp="url" content={`https://ecency.com/created/${entry.community}`}/>
+                  <meta itemProp="name" content={`${entry.community_title}`}/>
+                </span>
+              }
               <meta itemProp="image" content={metaProps.image}/>
               <meta itemProp="headline name" content={entry.title}/>
                   {(() => {
