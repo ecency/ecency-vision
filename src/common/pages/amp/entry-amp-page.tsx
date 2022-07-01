@@ -634,6 +634,7 @@ class EntryPage extends BaseComponent<Props, State> {
             <div itemScope={true} itemType="http://schema.org/Article">
               <meta itemProp="datePublished" content={`${published.format('YYYY-MM-DD')}`}/>
               <meta itemProp="dateModified" content={`${modified.format('YYYY-MM-DD')}`}/>
+              <meta itemProp="mainEntityOfPage" content={`https://ecency.com/@${entry.author}/posts`}/>
               {!entry.community && 
                 <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">
                   <meta itemProp="name" content={entry.author}/>
