@@ -65,7 +65,9 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
     componentDidUpdate(prevProps:Props){
         let currentAccount = this.props.account as FullAccount;
         let prevAccount = prevProps.account as FullAccount;
-        if(prevAccount!.profile!.profile_image !== currentAccount!.profile!.profile_image){
+        const isSameAccount = prevAccount.name === currentAccount.name;
+        const isImageChanged = prevAccount!.profile?.profile_image !== currentAccount!.profile?.profile_image;
+        if (isSameAccount && isImageChanged && currentAccount.__loaded) {
             let newImage = currentAccount!.profile!.profile_image;
             this.setState({profileImage:newImage||this.state.profileImage});
             this.props.updateActiveUser(this.props.account);
