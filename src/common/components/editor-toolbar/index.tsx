@@ -115,12 +115,14 @@ export class EditorToolbar extends Component<Props> {
     }
 
     componentDidMount() {
-        const el = this.getTargetEl();
-        if (el) {
-            el.addEventListener('dragover', this.onDragOver);
-            el.addEventListener('drop', this.drop);
-            el.addEventListener('paste', this.onPaste);
-        }
+        setTimeout(() => {
+            const el = this.getTargetEl();
+            if (el) {
+                el.addEventListener('dragover', this.onDragOver);
+                el.addEventListener('drop', this.drop);
+                el.addEventListener('paste', this.onPaste);
+            }
+        }, 0);
     }
 
     componentWillUnmount() {
