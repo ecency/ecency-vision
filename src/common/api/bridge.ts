@@ -4,7 +4,7 @@ import {Subscription} from "../store/subscriptions/types";
 
 import {Client} from "@hiveio/dhive";
 
-export const bridgeServer = new Client(["https://api.hive.blog","https://rpc.ecency.com","https://hived.emre.sh"], {
+export const bridgeServer = new Client(["https://api.hive.blog","https://rpc.ecency.com","https://api.deathwing.me"], {
     timeout: 3000,
     failoverThreshold: 3,
     consoleOnFailover: true,
