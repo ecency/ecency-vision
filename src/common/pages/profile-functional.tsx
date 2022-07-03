@@ -71,7 +71,7 @@ export const Profile = (props: Props) => {
   const prevSearch = usePrevious(props.location.search);
   const prevGlobal = usePrevious(props.global);
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [typing, setTyping] = useState(false);
   const [isDefaultPost, setIsDefaultPost] = useState(false);
   const [searchDataLoading, setSearchDataLoading] = useState(searchParam.length > 0);
@@ -118,7 +118,8 @@ export const Profile = (props: Props) => {
   }, []);
   useEffect(() => {
     setData(props.entries[makeGroupKey(props.global.filter, props.global.tag)]);
-  }, [props.global, props.entries]);
+    setLoading(false);
+  }, [props.global.filter, props.global.tag, props.entries]);
   useAsyncEffect(async _ => {
     if (prevSearch !== search) {
       let searchText = search.replace('?q=', '');
@@ -199,7 +200,6 @@ export const Profile = (props: Props) => {
 
     if (!account) {
       // The account isn't in reducer. Fetch it and add to reducer.
-      setLoading(true);
 
       try {
         const data = await getAccountFull(username);
@@ -209,7 +209,6 @@ export const Profile = (props: Props) => {
           props.history.push('/404');
         }
       } finally {
-        setLoading(false);
       }
     } else {
       try {
@@ -267,7 +266,6 @@ export const Profile = (props: Props) => {
         fetchEntries(global.filter, global.tag, false);
       }
     } finally {
-      setLoading(false);
     }
   }
 
@@ -470,7 +468,7 @@ export const Profile = (props: Props) => {
                   if (pinnedEntry) {
                     entryList.unshift(pinnedEntry)
                   }
-                  const loading = data?.loading;
+                  const isLoading = loading || data?.loading;
                   return (
                     <>
                       <div className={_c(`entry-list ${loading ? 'loading' : ''}`)}>
@@ -482,7 +480,7 @@ export const Profile = (props: Props) => {
                             pinEntry,
                             entries: entryList,
                             promotedEntries: [],
-                            loading,
+                            loading: isLoading,
                             account
                           })}
                         </div>

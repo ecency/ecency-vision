@@ -143,7 +143,7 @@ export class EntryListContent extends Component<Props, State> {
                                 return [...l];
                             })}
                         </>
-                    ) : !loading &&  (isMyProfile) ?
+                    ) : !loading && (isMyProfile ?
                             <MessageNoData
                                 title={filter == 'feed' ? `${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}` : _t("profile-info.no-posts")}
                                 description={filter == 'feed' ? _t("g.fill-feed") : `${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}`}
@@ -169,7 +169,7 @@ export class EntryListContent extends Component<Props, State> {
                                     buttonTo="/submit"
                                     global={global}
                                 />
-                                )
+                                ))
                             )
                 }
             </>
