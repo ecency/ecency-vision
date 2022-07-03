@@ -595,7 +595,7 @@ class EntryPage extends BaseComponent<Props, State> {
       description: `${truncate(postBodySummary(entry.body, 210), 140)} by @${entry.author}`,
       url: entry.url,
       canonical: url,
-      image: catchPostImage(entry, 1200, 1000, global.canUseWebp ? 'webp' : 'match'),
+      image: catchPostImage(entry, 1200, 1000, global.canUseWebp ? 'webp' : 'match') || `https://ecency.com/og.jpg`,
       published: published.toISOString(),
       modified: modified.toISOString(),
       tag: tags ? isCommunity(tags[0]) ? tags[1] : tags[0] : '',
@@ -643,24 +643,13 @@ class EntryPage extends BaseComponent<Props, State> {
               <meta itemProp="datePublished" content={`${published.format('YYYY-MM-DD')}`}/>
               <meta itemProp="dateModified" content={`${modified.format('YYYY-MM-DD')}`}/>
               <meta itemProp="mainEntityOfPage" content={`https://ecency.com/@${entry.author}/posts`}/>
-              {!entry.community &&
-                <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Organization">
+              <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Organization">
                 <span itemProp="logo" itemScope={true} itemType="https://schema.org/ImageObject">
-                  <meta itemProp="url" content={`https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/hive-125125/avatar/medium`}/>
+                  <meta itemProp="url" content={`https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${entry.community?entry.community:'hive-125125'}/avatar/medium`}/>
                 </span>
-                <meta itemProp="url" content={`https://ecency.com/created/hive-125125`}/>
-                <meta itemProp="name" content={`Ecency news`}/>
+                <meta itemProp="url" content={`https://ecency.com/created/${entry.community?entry.community:'hive-125125'}`}/>
+                <meta itemProp="name" content={`${entry.community?entry.community_title:'Ecency news'}`}/>
               </span>
-              }
-              {entry.community &&
-                <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Organization">
-                  <span itemProp="logo" itemScope={true} itemType="https://schema.org/ImageObject">
-                    <meta itemProp="url" content={`https://images.ecency.com/${global.canUseWebp ? "webp/" : ""}u/${entry.community}/avatar/medium`}/>
-                  </span>
-                  <meta itemProp="url" content={`https://ecency.com/created/${entry.community}`}/>
-                  <meta itemProp="name" content={`${entry.community_title}`}/>
-                </span>
-              }
               <meta itemProp="image" content={metaProps.image}/>
               <meta itemProp="headline name" content={entry.title.substring(0, 110)}/>
                   {(() => {
