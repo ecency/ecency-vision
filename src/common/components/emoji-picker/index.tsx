@@ -59,21 +59,21 @@ export default class EmojiPicker extends BaseComponent<Props> {
         getEmojiData().then((data) => this.setData(data));
 
         this.watchTarget(); // initial
-        document.querySelectorAll(".accepts-emoji").forEach((i) => {
-            i.addEventListener("focus", this.watchTarget);
-        });
+
+        if (typeof window !== 'undefined') {
+            window.addEventListener('focus', this.watchTarget, true);
+        }
     }
 
     componentWillUnmount() {
         super.componentWillUnmount();
-
-        document.querySelectorAll(".accepts-emoji").forEach((i) => {
-            i.removeEventListener("focus", this.watchTarget);
-        });
+        if (typeof window !== 'undefined') {
+            window.removeEventListener('focus', this.watchTarget, true);
+        }
     }
 
     watchTarget = () => {
-        if (document.activeElement && document.activeElement.classList.contains("accepts-emoji")) {
+        if (document.activeElement?.classList.contains("accepts-emoji")) {
             this._target = document.activeElement as HTMLInputElement;
         }
     };
