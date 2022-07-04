@@ -9,7 +9,8 @@ import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Subscription} from "../../store/subscriptions/types";
 import { openInNewSvg } from "../../img/svg";
-
+import { DynamicProps } from '../../store/dynamic-props/types';
+import { OperationGroup, Transactions } from '../../store/transactions/types';
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
@@ -27,11 +28,19 @@ import { Tsx } from '../../i18n/helper';
 import moment from 'moment';
 
 interface Props {
-    global: Global;
-    history: History;
-    activeUser: ActiveUser | null;
-    account: Account;
-    updateWalletValues: () => void;
+  history: History;
+  global: Global;
+  dynamicProps: DynamicProps;
+  activeUser: ActiveUser | null;
+  transactions: Transactions;
+  account: Account;
+  signingKey: string;
+  addAccount: (data: Account) => void;
+  updateActiveUser: (data?: Account) => void;
+  setSigningKey: (key: string) => void;
+  fetchTransactions: (username: string, group?: OperationGroup | '') => void;
+  fetchPoints: (username: string, type?: number) => void;
+  updateWalletValues: () => void;
 }
 
 interface State {
@@ -64,6 +73,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
 
   componentDidMount() {
     this.load();
+    console.log('Profile',this.props)
   }
 
   shouldComponentUpdate(
@@ -202,7 +212,26 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
                     />
         })} */}
         </div>
-        {this.state.transfer && <Transfer {...this.props} activeUser={this.props.activeUser!} to={this.state.referred} mode={this.state.transferMode!} asset={this.state.transferAsset!} onHide={this.closeTransferDialog}/>}
+        {this.state.transfer && (
+          <Transfer
+            {...this.props}
+            activeUser={this.props.activeUser!}
+            to={this.state.referred}
+            mode={this.state.transferMode!}
+            asset={this.state.transferAsset!}
+            onHide={this.closeTransferDialog}
+          />
+        )}
+        {/* {this.state.transfer && (
+          <Transfer
+            {...this.props}
+            activeUser={this.props.activeUser!}
+            to={this.state.referred}
+            mode={this.state.transferMode!}
+            asset={this.state.transferAsset!}
+            onHide={this.closeTransferDialog}
+          />
+        )} */}
       </>
     );
 
@@ -244,12 +273,20 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
 
 export default (p: Props) => {
     const props: Props = {
-        updateWalletValues: p.updateWalletValues,
-        global: p.global,
-        history: p.history,
-        activeUser: p.activeUser,
-        account: p.account,
-    }
+      updateWalletValues: p.updateWalletValues,
+      global: p.global,
+      history: p.history,
+      activeUser: p.activeUser,
+      account: p.account,
+      dynamicProps: p.dynamicProps,
+      transactions: p.transactions,
+      signingKey: p.signingKey,
+      addAccount: p.addAccount,
+      updateActiveUser: p.updateActiveUser,
+      setSigningKey: p.setSigningKey,
+      fetchTransactions: p.fetchTransactions,
+      fetchPoints: p.fetchPoints,
+    };
 
     return <ProfileReferrals {...props} />;
 }
