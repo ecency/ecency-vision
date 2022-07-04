@@ -157,12 +157,13 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
                       addAccount: () => {},
                       username: row.username,
                       children: (
-                        <a>
+                        <a className='d-flex align-center gap-2'>
                           {UserAvatar({
                             global: global,
                             size: 'medium',
                             username: row.username,
                           })}
+                          <span className="d-block align-self-center ml-2">{row.username}</span>
                         </a>
                       ),
                     })}
@@ -176,7 +177,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
                           href={`/@${row.username}/referrals`}
                           className='witness-link'
                         >
-                          {openInNewSvg}
+                          Profile{openInNewSvg}
                         </a>
                       );
                     })()}
@@ -222,16 +223,6 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
             onHide={this.closeTransferDialog}
           />
         )}
-        {/* {this.state.transfer && (
-          <Transfer
-            {...this.props}
-            activeUser={this.props.activeUser!}
-            to={this.state.referred}
-            mode={this.state.transferMode!}
-            asset={this.state.transferAsset!}
-            onHide={this.closeTransferDialog}
-          />
-        )} */}
       </>
     );
 
