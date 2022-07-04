@@ -1,6 +1,4 @@
 import React from 'react';
-const logo = require('../../img/logo-circle.svg');
-
 interface Props {
   fullVersionUrl: string;
 }
@@ -11,7 +9,7 @@ export const StaticNavbar = ({ fullVersionUrl }: Props) => {
       <div className="nav-bar-sm sticky">
         <div className="brand">
           <a href="/">
-            <img src={logo} className="logo" alt="Logo"/>
+            <img src="https://ecency.com/logo192.png" className="logo" style={{width: "40px", height: "40px"}} alt="Logo"/>
           </a>
         </div>
         <div className="text-menu">
@@ -23,7 +21,7 @@ export const StaticNavbar = ({ fullVersionUrl }: Props) => {
         <div className="nav-bar-inner">
           <div className="brand">
             <a href="/">
-              <img src={logo} className="logo" alt="Logo"/>
+              <img src="https://ecency.com/logo192.png" className="logo" style={{width: "40px", height: "40px"}} alt="Logo"/>
             </a>
           </div>
           <div className="text-menu">
