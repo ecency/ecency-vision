@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 
 import { Helmet } from "react-helmet";
+import { connect } from "react-redux";
 
 import defaults from "../../constants/defaults.json";
+import {
+  pageMapStateToProps,
+  pageMapDispatchToProps,
+} from "../../pages/common";
+import { Global } from "../../store/global/types";
 
 interface Props {
   title?: string;
@@ -15,9 +21,10 @@ interface Props {
   published?: string;
   modified?: string;
   rss?: string;
+  global?: Global;
 }
 
-export default class Meta extends Component<Props> {
+class Meta extends Component<Props> {
   render() {
     const {
       title,
@@ -29,11 +36,14 @@ export default class Meta extends Component<Props> {
       published,
       modified,
       rss,
+      global,
     } = this.props;
     let { image } = this.props;
 
     if (!image) {
-      image = `${defaults.base}/og.jpg`;
+      image = `${defaults.imageServer}/u/${
+        global?.hive_id ? global.hive_id : "hive-112019"
+      }/avatar/medium`;
     }
 
     return (
@@ -137,3 +147,8 @@ export default class Meta extends Component<Props> {
     );
   }
 }
+
+export default connect(
+  pageMapStateToProps,
+  pageMapDispatchToProps
+)(Meta as any);

@@ -160,9 +160,7 @@ export default class EntryListItem extends Component<Props, State> {
         const { mounted } = this.state;
 
         const fallbackImage = global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png");
-        const noImage = global.isElectron
-          ? `${defaults.imageServer}/u/${global.hive_id}/avatar/medium`
-          : `${defaults.imageServer}/u/${global.hive_id}/avatar/medium`;
+        const noImage = `${defaults.imageServer}/u/${global.hive_id}/avatar/medium`;
         const nsfwImage = global.isElectron
           ? "./img/nsfw.png"
           : require("../../img/nsfw.png");

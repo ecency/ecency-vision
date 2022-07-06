@@ -133,167 +133,281 @@ interface Props {
 }
 
 interface DialogInfo {
-    title: string;
-    content: JSX.Element | null;
+  title: string;
+  content: string | JSX.Element;
 }
 
 interface State {
-    info: DialogInfo | null;
-    settings: boolean;
-    rewards: boolean;
-    useNewImage: boolean;
+  info: DialogInfo | null;
+  settings: boolean;
+  rewards: boolean;
+  useNewImage: boolean;
 }
 
 export class CommunityCard extends Component<Props, State> {
-    state: State = {
-        info: null,
-        settings: false,
-        rewards: false,
-        useNewImage: false
-    }
+  state: State = {
+    info: null,
+    settings: false,
+    rewards: false,
+    useNewImage: false,
+  };
 
-    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
-        return !isEqual(this.props.community, nextProps.community)
-            || !isEqual(this.props.users, nextProps.users)
-            || !isEqual(this.props.account, nextProps.account)
-            || !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username)
-            || !isEqual(this.state, nextState)
-    }
+  shouldComponentUpdate(
+    nextProps: Readonly<Props>,
+    nextState: Readonly<State>
+  ): boolean {
+    return (
+      !isEqual(this.props.community, nextProps.community) ||
+      !isEqual(this.props.users, nextProps.users) ||
+      !isEqual(this.props.account, nextProps.account) ||
+      !isEqual(
+        this.props.activeUser?.username,
+        nextProps.activeUser?.username
+      ) ||
+      !isEqual(this.state, nextState)
+    );
+  }
 
-    toggleInfo = (info: DialogInfo | null) => {
-        this.setState({info});
-    }
+  toggleInfo = (info: DialogInfo | null) => {
+    this.setState({ info });
+  };
 
-    toggleSettings = () => {
-        const {settings} = this.state;
-        this.setState({settings: !settings});
-    }
+  toggleSettings = () => {
+    const { settings } = this.state;
+    this.setState({ settings: !settings });
+  };
 
-    toggleRewards = () => {
-        const {rewards} = this.state;
-        this.setState({rewards: !rewards});
-    }
+  toggleRewards = () => {
+    const { rewards } = this.state;
+    this.setState({ rewards: !rewards });
+  };
 
-    render() {
-        const {info, settings, rewards, useNewImage} = this.state;
-        const {global, community, activeUser, users, account} = this.props;
+  render() {
+    const { info, settings, rewards, useNewImage } = this.state;
+    const { global, community, activeUser, users, account } = this.props;
 
-        const role = community.team.find(x => x[0] === activeUser?.username);
-        const roleInTeam = role ? role[1] : null;
-        const canEditTeam = !!(roleInTeam && roleMap[roleInTeam]);
-        const canEditCommunity = !!(roleInTeam && [ROLES.OWNER.toString(), ROLES.ADMIN.toString()].includes(roleInTeam));
+    const role = community.team.find((x) => x[0] === activeUser?.username);
+    const roleInTeam = role ? role[1] : null;
+    const canEditTeam = !!(roleInTeam && roleMap[roleInTeam]);
+    const canEditCommunity = !!(
+      roleInTeam &&
+      [ROLES.OWNER.toString(), ROLES.ADMIN.toString()].includes(roleInTeam)
+    );
 
-        const description: JSX.Element | null = community.description.trim() !== "" ?
-            <>{ln2list(community.description).map((x, i) => (
-                <p key={i}>{x}</p>
-            ))}</> : null;
+    const description =
+      community.description.trim() !== ""
+        ? `${ln2list(community.description).map(
+            (x, i) =>
+              `${x}${
+                i !== ln2list(community.description).length - 1
+                  ? "<br /><br />"
+                  : ""
+              }`
+          )}`
+        : "";
 
-        const rules: JSX.Element | null = community.flag_text.trim() !== "" ?
-            <>{ln2list(community.flag_text).map((x, i) => (
-                <p key={i}>{'- '}{x}</p>
-            ))}</> : null;
+    const rules =
+      community.flag_text.trim() !== ""
+        ? `${ln2list(community.flag_text).map(
+            (x, i) =>
+              `${x}${
+                i !== ln2list(community.flag_text).length - 1
+                  ? "<br /><br />"
+                  : ""
+              }`
+          )}`
+        : "";
 
-        const team: JSX.Element = <>{
-            community.team.map((m, i) => {
-                if (m[0].startsWith("hive-")) {
-                    return null;
-                }
+    const team: JSX.Element = (
+      <>
+        {community.team.map((m, i) => {
+          if (m[0].startsWith("hive-")) {
+            return null;
+          }
 
-                return (
-                    <div className="team-member" key={i}>
-                        {ProfileLink({...this.props, username: m[0], children: <a className="username">{`@${m[0]}`}</a>})}
-                        <span className="role">{m[1]}</span>
-                        {m[2] !== "" && <span className="extra">{m[2]}</span>}
-                    </div>
-                );
-            })}</>;
-
-        const canUpdatePic = activeUser && !!users.find(x => x.username === community.name);
-
-        return (
-            <div className="community-card">
-                <div className="community-avatar">
-                    {canUpdatePic && (<EditPic {...this.props} account={account as FullAccount} activeUser={activeUser!} onUpdate={() => {
-                        this.setState({useNewImage: true});
-                    }}/>)}
-                    {UserAvatar({
-                        ...this.props,
-                        username: community.name,
-                        size: "xLarge",
-                        src: account.__loaded && useNewImage ? account.profile?.profile_image : undefined
-                    })}
-                </div>
-                <div className="community-info">
-                    <h1>
-                        <div className="title">{community.title}</div>
-                    </h1>
-                    <div className="about">{community.about}</div>
-                    {community.is_nsfw && <span className="nsfw">nsfw</span>}
-                </div>
-                <div className="community-sections">
-                    {description && (
-                        <div className="community-section">
-                            <div className="section-header" onClick={() => {
-                                this.toggleInfo({title: _t('community-card.description'), content: description});
-                            }}>
-                                {informationOutlineSvg} {_t('community-card.description')}
-                            </div>
-                            <div className="section-content">{description}</div>
-                        </div>
-                    )}
-                    {rules && (
-                        <div className="community-section">
-                            <div className="section-header" onClick={() => {
-                                this.toggleInfo({title: _t('community-card.rules'), content: rules});
-                            }}>
-                                {scriptTextOutlineSvg} {_t('community-card.rules')}
-                            </div>
-                            <div className="section-content">{rules}</div>
-                        </div>
-                    )}
-                    <div className="community-section section-team">
-                        <div className="section-header" onClick={() => {
-                            this.toggleInfo({title: _t('community-card.team'), content: team});
-                        }}>
-                            {accountGroupSvg} {_t('community-card.team')}
-                        </div>
-                        <div className="section-content">{team}</div>
-                    </div>
-                </div>
-
-                {(canEditCommunity || canEditTeam) && (
-                    <div className="community-controls">
-                        {canEditCommunity && (<p className="community-control" onClick={this.toggleSettings}>
-                            <Button size="sm">{_t('community-card.edit')}</Button>
-                        </p>)}
-                        {canEditTeam && (<p className="community-control">
-                            <Link className="btn btn-sm btn-primary" to={`/roles/${community.name}`}>{_t('community-card.edit-team')}</Link>
-                        </p>)}
-                    </div>
-                )}
-                {(global.usePrivate && roleInTeam === ROLES.OWNER.toString()) && (
-                    <p className="community-rewards"><a href="#" onClick={(e) => {
-                        e.preventDefault();
-                        this.toggleRewards();
-                    }}>{_t('community-card.community-rewards')}</a></p>
-                )}
-                {info && (
-                    <Modal show={true} centered={true} onHide={() => {
-                        this.toggleInfo(null);
-                    }} animation={false} className="community-info-dialog">
-                        <Modal.Header closeButton={true}>
-                            <Modal.Title>{info.title}</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body><div className="description-wrapper">{info.content}</div></Modal.Body>
-                    </Modal>
-                )}
-
-                {settings && <CommunitySettings {...this.props} activeUser={activeUser!} community={community} onHide={this.toggleSettings}/>}
-
-                {rewards && <CommunityRewardsRegistrationDialog  {...this.props} activeUser={activeUser!} community={community} onHide={this.toggleRewards}/>}
+          return (
+            <div className="team-member" key={i}>
+              {ProfileLink({
+                ...this.props,
+                username: m[0],
+                children: <a className="username">{`@${m[0]}`}</a>,
+              })}
+              <span className="role">{m[1]}</span>
+              {m[2] !== "" && <span className="extra">{m[2]}</span>}
             </div>
-        );
-    }
+          );
+        })}
+      </>
+    );
+
+    const canUpdatePic =
+      activeUser && !!users.find((x) => x.username === community.name);
+
+    return (
+      <div className="community-card">
+        <div className="community-avatar">
+          {canUpdatePic && (
+            <EditPic
+              {...this.props}
+              account={account as FullAccount}
+              activeUser={activeUser!}
+              onUpdate={() => {
+                this.setState({ useNewImage: true });
+              }}
+            />
+          )}
+          {UserAvatar({
+            ...this.props,
+            username: community.name,
+            size: "xLarge",
+            src:
+              account.__loaded && useNewImage
+                ? account.profile?.profile_image
+                : undefined,
+          })}
+        </div>
+        <div className="community-info">
+          <h1>
+            <div className="title">{community.title}</div>
+          </h1>
+          <div
+            className="about"
+            dangerouslySetInnerHTML={{ __html: community.about }}
+          />
+          {community.is_nsfw && <span className="nsfw">nsfw</span>}
+        </div>
+        <div className="community-sections">
+          {description && (
+            <div className="community-section">
+              <div
+                className="section-header"
+                onClick={() => {
+                  this.toggleInfo({
+                    title: _t("community-card.description"),
+                    content: description,
+                  });
+                }}
+              >
+                {informationOutlineSvg} {_t("community-card.description")}
+              </div>
+              <div
+                className="section-content"
+                dangerouslySetInnerHTML={{
+                  __html: description,
+                }}
+              />
+            </div>
+          )}
+          {rules && (
+            <div className="community-section">
+              <div
+                className="section-header"
+                onClick={() => {
+                  this.toggleInfo({
+                    title: _t("community-card.rules"),
+                    content: rules,
+                  });
+                }}
+              >
+                {scriptTextOutlineSvg} {_t("community-card.rules")}
+              </div>
+              <div className="section-content">{rules}</div>
+            </div>
+          )}
+          <div className="community-section section-team">
+            <div
+              className="section-header"
+              onClick={() => {
+                this.toggleInfo({
+                  title: _t("community-card.team"),
+                  content: team,
+                });
+              }}
+            >
+              {accountGroupSvg} {_t("community-card.team")}
+            </div>
+            <div className="section-content">{team}</div>
+          </div>
+        </div>
+
+        {(canEditCommunity || canEditTeam) && (
+          <div className="community-controls">
+            {canEditCommunity && (
+              <p className="community-control" onClick={this.toggleSettings}>
+                <Button size="sm">{_t("community-card.edit")}</Button>
+              </p>
+            )}
+            {canEditTeam && (
+              <p className="community-control">
+                <Link
+                  className="btn btn-sm btn-primary"
+                  to={`/roles/${community.name}`}
+                >
+                  {_t("community-card.edit-team")}
+                </Link>
+              </p>
+            )}
+          </div>
+        )}
+        {global.usePrivate && roleInTeam === ROLES.OWNER.toString() && (
+          <p className="community-rewards">
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                this.toggleRewards();
+              }}
+            >
+              {_t("community-card.community-rewards")}
+            </a>
+          </p>
+        )}
+        {info && (
+          <Modal
+            show={true}
+            centered={true}
+            onHide={() => {
+              this.toggleInfo(null);
+            }}
+            animation={false}
+            className="community-info-dialog"
+          >
+            <Modal.Header closeButton={true}>
+              <Modal.Title>{info.title}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {typeof info.content !== "string" ? (
+                <div className="description-wrapper">{info.content}</div>
+              ) : (
+                <div
+                  className="description-wrapper"
+                  dangerouslySetInnerHTML={{ __html: info.content }}
+                />
+              )}
+            </Modal.Body>
+          </Modal>
+        )}
+
+        {settings && (
+          <CommunitySettings
+            {...this.props}
+            activeUser={activeUser!}
+            community={community}
+            onHide={this.toggleSettings}
+          />
+        )}
+
+        {rewards && (
+          <CommunityRewardsRegistrationDialog
+            {...this.props}
+            activeUser={activeUser!}
+            community={community}
+            onHide={this.toggleRewards}
+          />
+        )}
+      </div>
+    );
+  }
 }
 
 export default (p: Props) => {
