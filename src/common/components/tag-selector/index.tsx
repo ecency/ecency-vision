@@ -115,7 +115,7 @@ export class TagSelector extends Component<Props, State> {
     }
 
     onKeyDown = (e: React.KeyboardEvent) => {
-        if ([13, 32, 188].includes(e.keyCode) && this.state.warning === '') {
+        if (([13, 32, 188].includes(e.keyCode) || [13, 32, 188].includes(e.charCode) || ['Enter', ',', ' '].includes(e.key)) && this.state.warning === '') {
             e.preventDefault();
             const {value} = this.state;
             this.add(value);
