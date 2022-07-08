@@ -1117,11 +1117,15 @@
     "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
     "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
     "list-id": "ID",
+    "list-no": "S/N",
     "link": "Link",
+    "pending": "Pending Points",
+    "earned": "Earned Points",
     "created": "Created",
     "list-referral": "Referall",
     "username-placeholder": "username",
-    "rewarded": "Rewarded"
+    "rewarded": "Rewarded",
+    "filter-not-found": "No referral found with the {{filter}}"
   },
   "proposals": {
     "page-title": "Proposals",
