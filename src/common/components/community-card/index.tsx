@@ -311,7 +311,10 @@ export class CommunityCard extends Component<Props, State> {
               >
                 {scriptTextOutlineSvg} {_t("community-card.rules")}
               </div>
-              <div className="section-content">{rules}</div>
+              <div
+                className="section-content"
+                dangerouslySetInnerHTML={{ __html: rules }}
+              />
             </div>
           )}
           <div className="community-section section-team">
