@@ -210,6 +210,7 @@ export class TagSelector extends Component<Props, State> {
                             onFocus={this.onFocus}
                             onBlur={this.onBlur}
                             onKeyDown={this.onKeyDown}
+                            tabIndex={0}
                             onChange={this.onChange}
                             value={value}
                             maxLength={24}
