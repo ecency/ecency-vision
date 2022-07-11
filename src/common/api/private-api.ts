@@ -418,7 +418,31 @@ export const getReferrals = (username:any): Promise<ReferralItems> => {
     return axios.get(apiBase(`/private-api/referrals/${username}`));
 
 }
-
+export interface ReferralStat {
+  total: number;
+  rewarded: number;
+}
+export const getReferralsStats = async (
+  username: string,
+): Promise<ReferralStat> => {
+  try {
+    const res = await axios.get(apiBase(`/private-api/referrals/${username}/stats`));
+    console.log('Referrals Stats', username, res.data);
+    if (!res.data) {
+      throw new Error('No Referrals for this user!');
+    }
+    const convertReferralStat = (rawData: any) => {
+      return {
+        total: rawData.total || 0,
+        rewarded: rawData.rewarded || 0,
+      } as ReferralStat;
+    };
+    return convertReferralStat(res.data);
+  } catch (error) {
+    console.warn(error);
+    throw error;
+  }
+};
 
 
 

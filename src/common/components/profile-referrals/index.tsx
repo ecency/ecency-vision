@@ -13,10 +13,16 @@ import { OperationGroup, Transactions } from '../../store/transactions/types';
 import BaseComponent from '../base';
 import UserAvatar from '../user-avatar';
 import ProfileLink from '../profile-link';
+import MyPagination from '../pagination';
 import Transfer, { TransferMode, TransferAsset } from '../transfer';
 import LinearProgress from '../linear-progress';
 import { shareVariantSvg } from '../../img/svg';
-import { getReferrals, ReferralItem } from '../../api/private-api';
+import {
+  getReferrals,
+  ReferralItem,
+  getReferralsStats,
+  ReferralStat,
+} from '../../api/private-api';
 import SearchBox from '../search-box';
 // import clipboard from '../../util/clipboard';
 
@@ -43,6 +49,8 @@ interface Props {
 
 interface State {
   referrals: ReferralItem[];
+  claimed_points: number;
+  pending_points: number;
   filteredReferrals: ReferralItem[];
   filter: string;
   proxy: string | null;
@@ -51,6 +59,7 @@ interface State {
   transferMode: null | TransferMode;
   transferAsset: null | TransferAsset;
   loading: boolean;
+  page: number;
 }
 
 export class ProfileReferrals extends BaseComponent<Props, State> {
@@ -60,10 +69,13 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
     filteredReferrals: [],
     filter: '',
     referrals: [],
+    claimed_points: 0,
+    pending_points: 0,
     proxy: '',
     transfer: false,
     transferAsset: 'HP',
     transferMode: 'delegate',
+    page: 1,
   };
   componentDidUpdate(
     prevProps: Readonly<Props>,
@@ -94,6 +106,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
   load = async () => {
     this.stateSet({ loading: true });
     await this.getReferrals();
+    await this._getReferralsStats();
   };
 
   getReferrals = async () => {
@@ -105,6 +118,17 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
     } catch (error) {
       console.log('Something went wrong: ', error);
     }
+  };
+  _getReferralsStats = async () => {
+    const { activeUser } = this.props;
+    const referralStats = await getReferralsStats(activeUser?.username);
+    const earnedPoints = referralStats.rewarded * 100;
+    const unearnedPoints = (referralStats.total - referralStats.rewarded) * 100;
+    this.stateSet({
+      claimed_points: earnedPoints,
+      pending_points: unearnedPoints,
+      loading: false,
+    });
   };
   filterChanged = (
     e: React.ChangeEvent<typeof FormControl & HTMLInputElement>,
@@ -148,19 +172,24 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
 
   render() {
     const { global, activeUser } = this.props;
-    const { referrals, filteredReferrals, filter, loading, proxy } = this.state;
+    const { referrals, filteredReferrals, filter, loading, page } = this.state;
+    const pageSize = 8;
+    const start = (page - 1) * pageSize;
+    const end = start + pageSize;
+
+    const sliced = referrals.slice(start, end);
 
     const table = (
       <>
         {filteredReferrals.length < 1 && filter.length > 0 ? (
-          <h4 className='text-warning'>
-            {_t('referral.filter-not-found', {filter})}
-          </h4>
+          <h2 className='d-flex'>
+            {_t('referral.filter-not-found', { filter })}
+            {/* {_t('sign-up.success', { email })} */}
+          </h2>
         ) : (
-          <table className='table d-none d-sm-block'>
+          <table className='table d-none d-sm-block d-flex flex-column'>
             <thead>
               <tr>
-                <th className='col-rank'>{_t('referral.list-no')}</th>
                 <th className='col-rank'>{_t('referral.created')}</th>
                 <th>{_t('referral.list-referral')}</th>
                 <th className='col-version'>{_t('referral.rewarded')}</th>
@@ -175,12 +204,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
                     var createdAt = momentObj.format('YYYY/MM/DD');
                     return (
                       <tr key={i}>
-                        <td>
-                          <div className='witness-rank'>
-                            <span className='rank-number'>{i + 1}</span>
-                          </div>
-                        </td>
-                        <td>
+                        <td className='col-rank'>
                           <div className='witness-rank'>
                             <span className='rank-number'>{createdAt}</span>
                           </div>
@@ -227,17 +251,12 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
                       </tr>
                     );
                   })
-                : referrals.map((row, i) => {
+                : sliced.map((row, i) => {
                     var dateObj = new Date(row.created);
                     var momentObj = moment(dateObj);
                     var createdAt = momentObj.format('YYYY/MM/DD');
                     return (
                       <tr key={i}>
-                        <td>
-                          <div className='witness-rank'>
-                            <span className='rank-number'>{i + 1}</span>
-                          </div>
-                        </td>
                         <td>
                           <div className='witness-rank'>
                             <span className='rank-number'>{createdAt}</span>
@@ -264,7 +283,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
                         </td>
 
                         <td className='align-middle'>
-                          <span className='reward-wrapper py-1 px-3 circle'>
+                          <span className='bg-secondary reward-wrapper py-1 px-3 circle'>
                             {row.rewarded === 0 ? 'No' : 'Yes'}
                           </span>
                         </td>
@@ -321,17 +340,17 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
         <div className='d-flex mt-2'>
           <div>
             <h5 className='header-title text-left'>
-              {activeUser?.points.points}
+              {this.state.claimed_points}
             </h5>
             <h6 className=' text-left'>Earned Points</h6>
           </div>
           <div>
             <h5 className='header-title text-left ml-3'>
-              {activeUser?.points.uPoints}
+              {this.state.pending_points}
             </h5>
             <h6 className=' text-left ml-3'>Pending Points</h6>
           </div>
-          <div>
+          <div className='ml-5'>
             <button
               onClick={() =>
                 this.copyToClipboard(
@@ -340,14 +359,14 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
               }
               className='btn btn-primary'
             >
-              {shareVariantSvg}
+              Copy Link {shareVariantSvg}
             </button>
           </div>
         </div>
         <Tsx k='referral.page-description-long'>
           <div className='header-description text-left' />
         </Tsx>
-        <div className='w-25 mt-3'>
+        {/* <div className='w-25 mt-3'>
           <SearchBox
             autoComplete='off'
             autoCorrect='off'
@@ -357,7 +376,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
             value={this.state.filter}
             onChange={this.filterChanged}
           />
-        </div>
+        </div> */}
       </div>
     );
     let containerClasses = global.isElectron ? ' mt-0 pt-6' : '';
@@ -379,8 +398,18 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
             return (
               <>
                 {header}
-                <div className='table-responsive witnesses-table'>
-                  {table}
+                <div className='table-responsive witnesses-table'>{table}
+                
+                <MyPagination
+                  className='mt-4'
+                  dataLength={referrals.length}
+                  pageSize={20}
+                  maxItems={4}
+                  page={page}
+                  onPageChange={(page: number) => {
+                    this.stateSet({ page });
+                  }}
+                />
                 </div>
               </>
             );

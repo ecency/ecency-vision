@@ -1112,7 +1112,7 @@
     "proxy-votes-for": "@{{username}} votes for"
   },
   "referral": {
-    "page-title": "Referral",
+    "page-title": "Referrals",
     "page-description": "A list of all the users you have referred",
     "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
     "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
@@ -1122,7 +1122,7 @@
     "pending": "Pending Points",
     "earned": "Earned Points",
     "created": "Created",
-    "list-referral": "Referall",
+    "list-referral": "Account",
     "username-placeholder": "username",
     "rewarded": "Rewarded",
     "filter-not-found": "No referral found with the {{filter}}"
