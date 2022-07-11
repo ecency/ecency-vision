@@ -423,7 +423,7 @@ export interface ReferralStat {
   rewarded: number;
 }
 export const getReferralsStats = async (
-  username: string,
+  username: any,
 ): Promise<ReferralStat> => {
   try {
     const res = await axios.get(apiBase(`/private-api/referrals/${username}/stats`));
