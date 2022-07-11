@@ -998,22 +998,21 @@ class SubmitPage extends BaseComponent<Props, State> {
                                             </Col>
                                             </Form.Group>}
                                         </>}
-                                            {tags.length > 0 && isCommunity(tags[0]) && (
-                                                <Form.Group as={Row}>
-                                                    <Col sm="3"/>
-                                                    <Col sm="9">
-                                                        <Form.Check
-                                                            type="switch"
-                                                            id="reblog-switch"
-                                                            label={_t("submit.reblog")}
-                                                            checked={reblogSwitch}
-                                                            onChange={this.reblogSwitchChanged}
-                                                        />
-                                                        <Form.Text muted={true}>{_t("submit.reblog-hint")}</Form.Text>
-                                                    </Col>
-                                                </Form.Group>
-                                            )}
-
+                                        {editingEntry === null && tags.length > 0 && isCommunity(tags[0]) && (
+                                            <Form.Group as={Row}>
+                                                <Col sm="3"/>
+                                                <Col sm="9">
+                                                    <Form.Check
+                                                        type="switch"
+                                                        id="reblog-switch"
+                                                        label={_t("submit.reblog")}
+                                                        checked={reblogSwitch}
+                                                        onChange={this.reblogSwitchChanged}
+                                                    />
+                                                    <Form.Text muted={true}>{_t("submit.reblog-hint")}</Form.Text>
+                                                </Col>
+                                            </Form.Group>
+                                        )}
                                         {thumbnails.length > 0 && 
                                             <Form.Group as={Row}>
                                                 <Form.Label column={true} sm="3">
