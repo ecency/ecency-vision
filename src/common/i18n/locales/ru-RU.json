@@ -188,7 +188,7 @@
   "entry-list-item": {
     "cross-posted": "Опубликовано через кросс-пост",
     "cross-posted-to": "в",
-    "reblogged": "Репостнуто {{n}}",
+    "reblogged": "{{n}} reblogged",
     "promoted": "Продвигаемое",
     "pinned": "Прикреплено",
     "replies": "1 ответ. Нажмите чтобы ответить.",
