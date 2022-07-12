@@ -188,7 +188,7 @@
   "entry-list-item": {
     "cross-posted": "ristiinlähetetty",
     "cross-posted-to": "saaja",
-    "reblogged": "{{n}} Uudelleenjaettu",
+    "reblogged": "{{n}} reblogged",
     "promoted": "Korostettu",
     "pinned": "Kiinnitetty julkaisu",
     "replies": "1 vastaus. Klikkaa vastataksesi.",
