@@ -283,7 +283,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
                         </td>
 
                         <td className='align-middle'>
-                          <span className='bg-secondary reward-wrapper py-1 px-3 circle'>
+                          <span className='bg-primary text-white reward-wrapper py-1 px-3 circle'>
                             {row.rewarded === 0 ? 'No' : 'Yes'}
                           </span>
                         </td>
@@ -403,7 +403,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
                 <MyPagination
                   className='mt-4'
                   dataLength={referrals.length}
-                  pageSize={20}
+                  pageSize={pageSize}
                   maxItems={4}
                   page={page}
                   onPageChange={(page: number) => {
