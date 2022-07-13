@@ -323,7 +323,10 @@ export class NavBar extends Component<Props, State> {
                 )}
                 {(step !== 1 || transparentVerify) && (
                   <ToolTip content={_t("navbar.post")}>
-                    <Link className="switch-theme pencil" to="/submit">
+                    <Link
+                      className="switch-theme pencil"
+                      to={`/submit?com=${global.hive_id}`}
+                    >
                       {pencilOutlineSvg}
                     </Link>
                   </ToolTip>
