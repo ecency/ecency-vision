@@ -33,7 +33,7 @@ export const cleanURL = (req: any, res: any, next: any) => {
     if (req.url.includes('@@')) {
         res.redirect(req.url.replace(new RegExp('@{2,}', 'g'),'@'));
     }
-    if(req.url.includes('-hs?code') || req.url.includes('auth?code')){
+    if(req.url.includes('-hs?code')) {
         next();
     }
     else if (req.url !== req.url.toLowerCase() && !req.url.includes('auth?code')) {
