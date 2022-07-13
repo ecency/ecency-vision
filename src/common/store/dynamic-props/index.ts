@@ -1,8 +1,14 @@
-import { Dispatch } from "redux";
+import {Dispatch} from 'redux';
 
-import { DynamicProps, State, Actions, ActionTypes, FetchedAction } from "./types";
+import {
+  DynamicProps,
+  State,
+  Actions,
+  ActionTypes,
+  FetchedAction,
+} from './types';
 
-import { getDynamicProps } from "../../api/hive";
+import {getDynamicProps} from '../../api/hive';
 
 export const initialState: State = {
   hivePerMVests: 1,
@@ -22,7 +28,7 @@ export const initialState: State = {
 export default (state: State = initialState, action: Actions): State => {
   switch (action.type) {
     case ActionTypes.FETCHED: {
-      return { ...action.props };
+      return {...action.props};
     }
     default:
       return state;
@@ -31,7 +37,7 @@ export default (state: State = initialState, action: Actions): State => {
 
 /* Actions */
 export const fetchDynamicProps = () => (dispatch: Dispatch) => {
-  getDynamicProps().then((r) => {
+  getDynamicProps().then(r => {
     dispatch(fetchedAct(r));
   });
 };

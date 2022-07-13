@@ -1,10 +1,17 @@
-import { Dispatch } from "redux";
+import {Dispatch} from 'redux';
 
-import { getTrendingTags } from "../../api/hive";
+import {getTrendingTags} from '../../api/hive';
 
-import { AppState } from "../index";
+import {AppState} from '../index';
 
-import { TrendingTags, Actions, ActionTypes, FetchAction, FetchedAction, FetchErrorAction } from "./types";
+import {
+  TrendingTags,
+  Actions,
+  ActionTypes,
+  FetchAction,
+  FetchedAction,
+  FetchErrorAction,
+} from './types';
 
 export const initialState: TrendingTags = {
   list: [],
@@ -12,7 +19,10 @@ export const initialState: TrendingTags = {
   error: false,
 };
 
-export default (state: TrendingTags = initialState, action: Actions): TrendingTags => {
+export default (
+  state: TrendingTags = initialState,
+  action: Actions,
+): TrendingTags => {
   switch (action.type) {
     case ActionTypes.FETCH: {
       return {
@@ -41,24 +51,25 @@ export default (state: TrendingTags = initialState, action: Actions): TrendingTa
 };
 
 /* Actions */
-export const fetchTrendingTags = () => (dispatch: Dispatch, getState: () => AppState) => {
-  const { trendingTags } = getState();
+export const fetchTrendingTags =
+  () => (dispatch: Dispatch, getState: () => AppState) => {
+    const {trendingTags} = getState();
 
-  if (trendingTags.list.length >= 1 || trendingTags.loading) {
-    return;
-  }
+    if (trendingTags.list.length >= 1 || trendingTags.loading) {
+      return;
+    }
 
-  dispatch(fetchAct());
+    dispatch(fetchAct());
 
-  return getTrendingTags()
-    .then((tags) => {
-      dispatch(fetchedAct(tags));
-      return tags;
-    })
-    .catch(() => {
-      dispatch(fetchErrorAct());
-    });
-};
+    return getTrendingTags()
+      .then(tags => {
+        dispatch(fetchedAct(tags));
+        return tags;
+      })
+      .catch(() => {
+        dispatch(fetchErrorAct());
+      });
+  };
 
 /* Action Creators */
 export const fetchAct = (): FetchAction => {
