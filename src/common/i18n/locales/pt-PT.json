@@ -188,7 +188,7 @@
   "entry-list-item": {
     "cross-posted": "republicado",
     "cross-posted-to": "para",
-    "reblogged": "{{n}} reblogged",
+    "reblogged": "{{n}} reblogou",
     "promoted": "Promovido",
     "pinned": "Postagem Fixada",
     "replies": "1 resposta. Clica para responder.",
@@ -1306,7 +1306,7 @@
       "what-are-hd-header": "O que são HIVE DOLLARS ou HBD?",
       "what-are-hd-body": "<p>Hive Dollars, ou HBD, na sua abreviação, são tokens que valem $1,00 dólar em HIVE, proporcionalmente. Hive Dollars podem ser trocados por HIVE e transferidos para outras contas, seja por comércio ou troca. Hive Dollars também podem ser convertidos em HIVE, através de um procedimento que leva 3 dias e meio.</p>",
       "what-delegated-hp-header": "O que é Hive Power delegado?",
-      "what-delegated-hp-body": "<p>Hive Power can be delegated to users by another user. When user is delegated Hive Power - their Resource Credits, content votes, and curation rewards are calculated as if it were their own Hive Power. Users are not able to power down or cash out delegated Hive Power however, as it still belongs to the original owner.</p>",
+      "what-delegated-hp-body": "<p>Poder Hive pode ser delegado por um usuário a outro. Quando um usuário recebe uma delegação de Poder Hive, seus Créditos de Recurso, votos de conteúdo e recompensas de curadoria são calculadas como se a delegação constituisse seu próprio Poder Hive. Usuários recebedores de delegações não podem diminuir ou sacar o Poder Hive delegado por outra conta, já que ele pertence ao dono original.</p>",
       "what-powering-up-header": "O que é fazer Power Up?",
       "what-powering up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
       "what-powering-down-header": "O que significa fazer Power Down?",
