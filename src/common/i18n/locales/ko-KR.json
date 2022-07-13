@@ -188,7 +188,7 @@
   "entry-list-item": {
     "cross-posted": "교차 게시되었습니다",
     "cross-posted-to": "에게",
-    "reblogged": "{{n}} 리블로그 완료",
+    "reblogged": "{{n}} reblogged",
     "promoted": "홍보",
     "pinned": "고정된 글",
     "replies": "댓글 1 개. 응답하려면 클릭하세요.",

@@ -188,7 +188,7 @@
   "entry-list-item": {
     "cross-posted": "متقاطعة التحرير",
     "cross-posted-to": "إلى",
-    "reblogged": "{{n}} معاد تدوينها",
+    "reblogged": "{{n}} reblogged",
     "promoted": "مروج له",
     "pinned": "منشور مثبت",
     "replies": "رد واحد. انقر للرد.",

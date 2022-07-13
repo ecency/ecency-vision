@@ -188,7 +188,7 @@
   "entry-list-item": {
     "cross-posted": "转发帖子",
     "cross-posted-to": "至",
-    "reblogged": "{{n}} 已重新发布",
+    "reblogged": "{{n}} reblogged",
     "promoted": "推广",
     "pinned": "置顶帖",
     "replies": "1个回复。请点击回复。",
