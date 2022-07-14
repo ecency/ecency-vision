@@ -413,9 +413,13 @@ export interface ReferralItem {
 export interface ReferralItems {
     data: ReferralItem[]
 }
-export const getReferrals = (username:any): Promise<ReferralItems> => {
+export const getReferrals = (username:any, maxId: any): Promise<ReferralItems> => {
 
-    return axios.get(apiBase(`/private-api/referrals/${username}`));
+    return axios.get(apiBase(`/private-api/referrals/${username}`), {
+      params: {
+        max_id: maxId,
+      },
+    });;
 
 }
 export interface ReferralStat {
@@ -427,7 +431,6 @@ export const getReferralsStats = async (
 ): Promise<ReferralStat> => {
   try {
     const res = await axios.get(apiBase(`/private-api/referrals/${username}/stats`));
-    console.log('Referrals Stats', username, res.data);
     if (!res.data) {
       throw new Error('No Referrals for this user!');
     }

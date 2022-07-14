@@ -60,6 +60,8 @@ interface State {
   transferAsset: null | TransferAsset;
   loading: boolean;
   page: number;
+  totalPages: number;
+  lastReferralId: number | null;
 }
 
 export class ProfileReferrals extends BaseComponent<Props, State> {
@@ -76,6 +78,8 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
     transferAsset: 'HP',
     transferMode: 'delegate',
     page: 1,
+    totalPages: 0,
+    lastReferralId: null,
   };
   componentDidUpdate(
     prevProps: Readonly<Props>,
@@ -105,16 +109,20 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
 
   load = async () => {
     this.stateSet({ loading: true });
-    await this.getReferrals();
+    await this.getReferrals(this.state.lastReferralId);
     await this._getReferralsStats();
   };
 
-  getReferrals = async () => {
+  getReferrals = async (id: any) => {
     try {
       const { activeUser } = this.props;
+
       // Fetch referrals
-      const data = await getReferrals(activeUser?.username);
-      this.stateSet({ referrals: data.data, loading: false });
+      const data = await getReferrals(activeUser?.username, id);
+      this.stateSet({
+        referrals: [...this.state.referrals, ...data.data],
+        loading: false,
+      });
     } catch (error) {
       console.log('Something went wrong: ', error);
     }
@@ -127,6 +135,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
     this.stateSet({
       claimed_points: earnedPoints,
       pending_points: unearnedPoints,
+      totalPages: referralStats.total,
       loading: false,
     });
   };
@@ -173,7 +182,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
   render() {
     const { global, activeUser } = this.props;
     const { referrals, filteredReferrals, filter, loading, page } = this.state;
-    const pageSize = 8;
+    const pageSize = 20;
     const start = (page - 1) * pageSize;
     const end = start + pageSize;
 
@@ -398,18 +407,24 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
             return (
               <>
                 {header}
-                <div className='table-responsive witnesses-table'>{table}
-                
-                <MyPagination
-                  className='mt-4'
-                  dataLength={referrals.length}
-                  pageSize={pageSize}
-                  maxItems={4}
-                  page={page}
-                  onPageChange={(page: number) => {
-                    this.stateSet({ page });
-                  }}
-                />
+                <div className='table-responsive witnesses-table'>
+                  {table}
+
+                  <MyPagination
+                    className='mt-4'
+                    dataLength={this.state.totalPages}
+                    pageSize={pageSize}
+                    maxItems={4}
+                    page={page}
+                    onPageChange={(page: number) => {
+                      this.stateSet({
+                        page,
+                        lastReferralId: referrals[referrals.length - 1].id,
+                      });
+                      this.getReferrals(referrals[referrals.length - 1].id);
+                    }}
+                    showLastNo={false}
+                  />
                 </div>
               </>
             );
