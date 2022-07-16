@@ -31,7 +31,7 @@ import _c from '../../util/fix-class-names'
 import { vestsToHp } from '../../helper/vesting';
 import formattedNumber from '../../util/formatted-number';
 
-import {syncSvg, checkSvg, bellOffSvg, bellCheckSvg} from "../../img/svg";
+import { syncSvg, checkSvg, bellOffSvg, bellCheckSvg, settingsSvg } from '../../img/svg';
 
 
 export const date2key = (s: string): string => {
@@ -373,8 +373,15 @@ export class DialogContent extends Component<NotificationProps> {
                     }
                 }
             }))
-        ]
+        ];
 
+        const notificationSettingsItems = [
+            { label: 'Activities', onClick: () => {}, icon: bellOffSvg },
+            { label: 'Replies', onClick: () => {}, icon: bellCheckSvg },
+            { label: 'Mentions', onClick: () => {}, icon: bellCheckSvg },
+            { label: 'Mute all', onClick: () => {} },
+            // { key: 'reblogs', value: 'REBLOGS' },
+        ];
         const dropDownConfig = {
             history: this.props.history || history,
             label: '',
@@ -392,6 +399,14 @@ export class DialogContent extends Component<NotificationProps> {
                         <DropDown {...dropDownConfig} float="left"/>
                     </div>
                     <div className="list-actions">
+                        <DropDown
+                          header="Notification filters"
+                          items={notificationSettingsItems}
+                          history={this.props.history || history}
+                          label={<span className={_c(`list-action ${loading ? 'disabled' : ''}`)}>{settingsSvg}</span>}
+                          float="right"
+                          largeIcons={true}
+                        />
                         {global.notifications && (
                             <Tooltip content={_t("notifications.mute")}>
                                 <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.mute}>{bellOffSvg}</span>
