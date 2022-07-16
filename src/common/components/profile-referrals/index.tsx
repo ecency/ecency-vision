@@ -81,16 +81,6 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
     totalPages: 0,
     lastReferralId: null,
   };
-  componentDidUpdate(
-    prevProps: Readonly<Props>,
-    prevState: Readonly<{}>,
-    snapshot?: any,
-  ) {
-    const { activeUser, account, history } = this.props;
-    if (!activeUser || activeUser.username !== account.name) {
-      history.push(`/@${account.name}`);
-    }
-  }
 
   componentDidMount() {
     this.load();
@@ -115,10 +105,10 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
 
   getReferrals = async (id: any) => {
     try {
-      const { activeUser } = this.props;
+      const { account } = this.props;
 
       // Fetch referrals
-      const data = await getReferrals(activeUser?.username, id);
+      const data = await getReferrals(account.name, id);
       this.stateSet({
         referrals: [...this.state.referrals, ...data.data],
         loading: false,
@@ -128,8 +118,8 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
     }
   };
   _getReferralsStats = async () => {
-    const { activeUser } = this.props;
-    const referralStats = await getReferralsStats(activeUser?.username);
+    const { account } = this.props;
+    const referralStats = await getReferralsStats(account.name);
     const earnedPoints = referralStats.rewarded * 100;
     const unearnedPoints = (referralStats.total - referralStats.rewarded) * 100;
     this.stateSet({
@@ -180,7 +170,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
   };
 
   render() {
-    const { global, activeUser } = this.props;
+    const { global, account } = this.props;
     const { referrals, filteredReferrals, filter, loading, page } = this.state;
     const pageSize = 20;
     const start = (page - 1) * pageSize;
@@ -240,7 +230,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
 
                         <td className='align-middle'>
                           <span className='bg-secondary reward-wrapper py-1 px-3 circle'>
-                            {row.rewarded === 0 ? 'No' : 'Yes'}
+                            {row.rewarded === 0 ? _t("g.no") : _t("g.yes")}
                           </span>
                         </td>
                         <td className='delegate-button'>
@@ -254,7 +244,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
                               )
                             }
                           >
-                            Delegate HP
+                            {_t("referral.delegate-hp")}
                           </button>
                         </td>
                       </tr>
@@ -293,7 +283,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
 
                         <td className='align-middle'>
                           <span className='bg-primary text-white reward-wrapper py-1 px-3 circle'>
-                            {row.rewarded === 0 ? 'No' : 'Yes'}
+                            {row.rewarded === 0 ? _t("g.no") : _t("g.yes")}
                           </span>
                         </td>
                         <td className='delegate-button'>
@@ -307,7 +297,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
                               )
                             }
                           >
-                            Delegate HP
+                            {_t("referral.delegate-hp")}
                           </button>
                         </td>
                       </tr>
@@ -316,17 +306,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
             </tbody>
           </table>
         )}
-        <div className='d-md-none'>
-          {/* Mobile Screen */}
-          {/* {referrals.map((row, i) => {
-            return <ReferralCard
-                    referral={row.name}
-                    row={row}
-                    key={i}
-                    global={global}
-                    />
-        })} */}
-        </div>
+
         {this.state.transfer && (
           <Transfer
             {...this.props}
@@ -351,88 +331,74 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
             <h5 className='header-title text-left'>
               {this.state.claimed_points}
             </h5>
-            <h6 className=' text-left'>Earned Points</h6>
+            <h6 className=' text-left'>{_t("referral.earned-reward")}</h6>
           </div>
           <div>
             <h5 className='header-title text-left ml-3'>
               {this.state.pending_points}
             </h5>
-            <h6 className=' text-left ml-3'>Pending Points</h6>
+            <h6 className=' text-left ml-3'>{_t("referral.pending-reward")}</h6>
           </div>
           <div className='ml-5'>
             <button
               onClick={() =>
                 this.copyToClipboard(
-                  `https://ecency.com/signup?referral=${activeUser!.username}`,
+                  `https://ecency.com/signup?referral=${account.name}`,
                 )
               }
               className='btn btn-primary'
             >
-              Copy Link {shareVariantSvg}
+              {_t("entry.address-copy")} {shareVariantSvg}
             </button>
           </div>
         </div>
         <Tsx k='referral.page-description-long'>
           <div className='header-description text-left' />
         </Tsx>
-        {/* <div className='w-25 mt-3'>
-          <SearchBox
-            autoComplete='off'
-            autoCorrect='off'
-            autoCapitalize='off'
-            spellCheck='false'
-            placeholder={_t('emoji-picker.filter-placeholder')}
-            value={this.state.filter}
-            onChange={this.filterChanged}
-          />
-        </div> */}
       </div>
     );
     let containerClasses = global.isElectron ? ' mt-0 pt-6' : '';
-    if (activeUser) {
-      return (
-        <div
-          className={'app-content witnesses-page mt-0 mx-0' + containerClasses}
-        >
-          {(() => {
-            if (loading) {
-              return (
-                <>
-                  {header}
-                  <LinearProgress />
-                </>
-              );
-            }
-
+    return (
+      <div
+        className={'app-content witnesses-page mt-0 mx-0' + containerClasses}
+      >
+        {(() => {
+          if (loading) {
             return (
               <>
                 {header}
-                <div className='table-responsive witnesses-table'>
-                  {table}
-
-                  <MyPagination
-                    className='mt-4'
-                    dataLength={this.state.totalPages}
-                    pageSize={pageSize}
-                    maxItems={4}
-                    page={page}
-                    onPageChange={(page: number) => {
-                      this.stateSet({
-                        page,
-                        lastReferralId: referrals[referrals.length - 1].id,
-                      });
-                      this.getReferrals(referrals[referrals.length - 1].id);
-                    }}
-                    showLastNo={false}
-                  />
-                </div>
+                <LinearProgress />
               </>
             );
-          })()}
-        </div>
-      );
-    }
-    return null;
+          }
+
+          return (
+            <>
+              {header}
+              <div className='table-responsive'>
+                {table}
+
+                <MyPagination
+                  className='mt-4'
+                  dataLength={this.state.totalPages}
+                  pageSize={pageSize}
+                  maxItems={4}
+                  page={page}
+                  onPageChange={(page: number) => {
+                    this.stateSet({
+                      page,
+                      lastReferralId: referrals[referrals.length - 1].id,
+                    });
+                    this.getReferrals(referrals[referrals.length - 1].id);
+                  }}
+                  showLastNo={false}
+                />
+              </div>
+            </>
+          );
+        })()}
+      </div>
+    );
   }
 }
 
