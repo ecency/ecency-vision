@@ -109,6 +109,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
 
       // Fetch referrals
       const data = await getReferrals(account.name, id);
+      console.log(data);
       this.stateSet({
         referrals: [...this.state.referrals, ...data.data],
         loading: false,
@@ -119,7 +120,8 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
   };
   _getReferralsStats = async () => {
     const { account } = this.props;
-    const referralStats = await getReferralsStats(account.name);
+    const referralStats: ReferralStat = await getReferralsStats(account.name);
+    console.log(referralStats);
     const earnedPoints = referralStats.rewarded * 100;
     const unearnedPoints = (referralStats.total - referralStats.rewarded) * 100;
     this.stateSet({
