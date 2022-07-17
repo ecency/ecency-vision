@@ -403,5 +403,5 @@ export const getPromotedEntries = (): Promise<Entry[]> => {
 }
 
 export const saveNotificationsSettings = (username: string, notifyTypes: NotifyTypes[], isEnabled: boolean, token: string) => {
-    return saveNotificationSetting(username, isElectron() ? 'Desktop' : 'Web', Number(isEnabled), notifyTypes, token);
+    return saveNotificationSetting(username, 'web', Number(isEnabled), notifyTypes, token);
 }

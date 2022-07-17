@@ -29,6 +29,7 @@ import {
 } from '../../api/private-api';
 import { NotifyTypes } from '../../enums';
 import isElectron from '../../util/is-electron';
+import * as ls from '../../util/local-storage';
 
 export const initialState: Notifications = {
   filter: null,
@@ -187,12 +188,29 @@ export const markNotifications = (id: string | null) => (dispatch: Dispatch, get
 }
 
 export const updateNotificationsSettings = (username: string, notifyTypes: NotifyTypes[]) => async (dispatch: Dispatch, getState: () => AppState) => {
-  await saveNotificationsSettings(username, notifyTypes, true, username + isElectron() ? '-Desktop' : '-Web');
+  const settings = await saveNotificationsSettings(username, notifyTypes, notifyTypes.length > 0, username + (isElectron() ? '-Desktop' : '-Web'));
+  dispatch(setSettingsAct(settings));
 }
 
 export const fetchNotificationsSettings = (username: string) => async (dispatch: Dispatch, getState: () => AppState) => {
-  const settings = await getNotificationSetting(username, username + (isElectron() ? '-Desktop' : '-Web'));
-  dispatch(setSettingsAct(settings));
+  try {
+    const settings = await getNotificationSetting(username, username + (isElectron() ? '-Desktop' : '-Web'));
+    dispatch(setSettingsAct(settings));
+  } catch(e) {
+    const allTypes = [
+      NotifyTypes.COMMENT,
+      NotifyTypes.FOLLOW,
+      NotifyTypes.MENTION,
+      NotifyTypes.VOTE,
+      NotifyTypes.RE_BLOG,
+      NotifyTypes.TRANSFERS,
+    ];
+    const wasMutedPreviously = ls.get("notifications") === false;
+    ls.remove('notifications');
+
+    // @ts-ignore
+    dispatch(updateNotificationsSettings(username, wasMutedPreviously ? [] : allTypes))
+  }
 }
 
 /* Action Creators */
