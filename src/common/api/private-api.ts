@@ -9,6 +9,8 @@ import {getAccessToken} from "../helper/user-token";
 import {apiBase} from "./helper";
 
 import {AppWindow} from "../../client/window";
+import isElectron from '../util/is-electron';
+import { NotifyTypes } from '../enums';
 
 declare var window: AppWindow;
 
@@ -400,6 +402,6 @@ export const getPromotedEntries = (): Promise<Entry[]> => {
     return new Promise(resolve => resolve([]));
 }
 
-
-
-
+export const saveNotificationsSettings = (username: string, notifyTypes: NotifyTypes[], isEnabled: boolean, token: string) => {
+    return saveNotificationSetting(username, isElectron() ? 'Desktop' : 'Web', Number(isEnabled), notifyTypes, token);
+}

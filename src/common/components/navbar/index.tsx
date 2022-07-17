@@ -71,6 +71,7 @@ interface Props {
     setLang: (lang: string) => void;
     setStepOne?:() => void;
     setStepTwo?:() => void;
+    fetchNotificationsSettings: (username: string) => void;
 }
 
 interface State {
@@ -501,6 +502,7 @@ export default (p: Props) => {
         setStepOne: p.setStepOne,
         setStepTwo: p.setStepTwo,
         match: p.match,
+        fetchNotificationsSettings: p.fetchNotificationsSettings,
     }
 
     return <NavBar {...props} />;
