@@ -317,6 +317,7 @@ interface Props {
     reloading?: boolean,
     step?: number,
     match?: any;
+    fetchNotificationsSettings: (username: string) => void;
 }
 
 interface State {
@@ -511,6 +512,7 @@ export default (p: Props) => {
         step: p.step,
         setStepTwo: p.setStepTwo,
         match: p.match,
+        fetchNotificationsSettings: p.fetchNotificationsSettings,
     }
 
     return <NavBar {...props} />;

@@ -15,9 +15,10 @@ import DropDown from '../dropdown';
 import Tooltip from '../tooltip';
 import { _t } from '../../i18n';
 import _c from '../../util/fix-class-names'
-import { syncSvg, checkSvg, bellOffSvg, bellCheckSvg, settingsSvg } from '../../img/svg';
+import { bellCheckSvg, bellOffSvg, checkSvg, settingsSvg, syncSvg } from '../../img/svg';
 import { NotifyTypes } from '../../enums';
 import NotificationListItem from './notification-list-item';
+import { updateNotificationsSettings } from '../../store/notifications';
 
 
 export const date2key = (s: string): string => {
@@ -57,6 +58,7 @@ interface NotificationProps {
   addAccount: (data: Account) => void;
   muteNotifications: () => void;
   unMuteNotifications: () => void;
+  updateNotificationsSettings: typeof updateNotificationsSettings;
 }
 
 export class DialogContent extends Component<NotificationProps> {
@@ -111,12 +113,36 @@ export class DialogContent extends Component<NotificationProps> {
     unMuteNotifications();
   }
 
-  saveSettings = () => {
-    const { fetchNotifications } = this.props;
+  saveSettings = (type: NotifyTypes) => {
+    const { updateNotificationsSettings, activeUser, notifications } = this.props;
+    const { settings } = notifications;
+    const types = [...(settings?.notify_types || [])];
+    updateNotificationsSettings(
+      activeUser.username,
+      types.includes(type) ? types.filter(t => t !== type) : [...types, type]
+    );
+  }
 
+  muteAll = () => {
+    const { updateNotificationsSettings, activeUser } = this.props;
+    updateNotificationsSettings(activeUser.username, []);
+  }
+
+  enableAll = () => {
+    const { updateNotificationsSettings, activeUser } = this.props;
+    updateNotificationsSettings(activeUser.username, [
+      NotifyTypes.COMMENT,
+      NotifyTypes.FOLLOW,
+      NotifyTypes.MENTION,
+      NotifyTypes.VOTE,
+      NotifyTypes.RE_BLOG,
+      NotifyTypes.TRANSFERS,
+    ]);
   }
 
   render() {
+    const { settings } = this.props.notifications;
+
     const filters = Object.values(NotificationFilter);
     const menuItems = [
       {
@@ -139,24 +165,21 @@ export class DialogContent extends Component<NotificationProps> {
       }))
     ];
 
+    const getNotificationSettingsItem = (title: string, type: NotifyTypes) => ({
+      label: title,
+      onClick: () => this.saveSettings(type),
+      icon: <>{(settings?.notify_types || []).includes(type) ? bellOffSvg : bellCheckSvg}</>
+    });
     const notificationSettingsItems = [
-      {
-        label: 'Activities', onClick: () => {
-        }, icon: bellOffSvg
-      },
-      {
-        label: 'Replies', onClick: () => {
-        }, icon: bellCheckSvg
-      },
-      {
-        label: 'Mentions', onClick: () => {
-        }, icon: bellCheckSvg
-      },
-      {
-        label: 'Mute all', onClick: () => {
-        }
-      },
-      // { key: 'reblogs', value: 'REBLOGS' },
+      getNotificationSettingsItem('Votes', NotifyTypes.VOTE),
+      getNotificationSettingsItem('Comments', NotifyTypes.COMMENT),
+      getNotificationSettingsItem('Mentions', NotifyTypes.MENTION),
+      getNotificationSettingsItem('Re-blogs', NotifyTypes.RE_BLOG),
+      getNotificationSettingsItem('Follows', NotifyTypes.FOLLOW),
+      getNotificationSettingsItem('Transfers', NotifyTypes.TRANSFERS),
+      ...((settings?.notify_types || []).length > 0 ?
+        [{ label: 'Mute all', onClick: () => this.muteAll() }] :
+        [{ label: 'Enable all', onClick: () => this.enableAll() }]),
     ];
     const dropDownConfig = {
       history: this.props.history || history,
