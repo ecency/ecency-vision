@@ -51,8 +51,6 @@ interface State {
   referrals: ReferralItem[];
   claimed_points: number;
   pending_points: number;
-  filteredReferrals: ReferralItem[];
-  filter: string;
   proxy: string | null;
   transfer: boolean;
   referred: string;
@@ -68,8 +66,6 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
   state: State = {
     loading: true,
     referred: '',
-    filteredReferrals: [],
-    filter: '',
     referrals: [],
     claimed_points: 0,
     pending_points: 0,
@@ -130,12 +126,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
       loading: false,
     });
   };
-  filterChanged = (
-    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>,
-  ) => {
-    this.setState({ filter: e.target.value });
-    this.handleFilteredReferral(e.target.value);
-  };
+
   copyToClipboard = (text: string) => {
     const textField = document.createElement('textarea');
     textField.innerText = text;
@@ -144,13 +135,6 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
     document.execCommand('copy');
     textField.remove();
     success(_t('profile-edit.copied'));
-  };
-
-  handleFilteredReferral = (username: string) => {
-    const filteredRef = this.state.referrals.filter((item) => {
-      return item.username.includes(username);
-    });
-    this.setState({ filteredReferrals: filteredRef });
   };
 
   openTransferDialog = (
@@ -172,7 +156,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
 
   render() {
     const { global, account } = this.props;
-    const { referrals, filteredReferrals, filter, loading, page } = this.state;
+    const { referrals, loading, page } = this.state;
     const pageSize = 20;
     const start = (page - 1) * pageSize;
     const end = start + pageSize;
@@ -181,12 +165,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
 
     const table = (
       <>
-        {filteredReferrals.length < 1 && filter.length > 0 ? (
-          <h2 className='d-flex'>
-            {_t('referral.filter-not-found', { filter })}
-            {/* {_t('sign-up.success', { email })} */}
-          </h2>
-        ) : (
+        {
           <table className='table d-none d-sm-block d-flex flex-column'>
             <thead>
               <tr>
@@ -197,116 +176,62 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
               </tr>
             </thead>
             <tbody>
-              {filteredReferrals.length > 0 && filter.length > 0
-                ? filteredReferrals.map((row, i) => {
-                    var dateObj = new Date(row.created);
-                    var momentObj = moment(dateObj);
-                    var createdAt = momentObj.format('YYYY/MM/DD');
-                    return (
-                      <tr key={i}>
-                        <td className='col-rank'>
-                          <div className='witness-rank'>
-                            <span className='rank-number'>{createdAt}</span>
-                          </div>
-                        </td>
-                        <td>
-                          {ProfileLink({
-                            history: this.props.history,
-                            addAccount: () => {},
-                            username: row.username,
-                            children: (
-                              <a className='d-flex align-center gap-2'>
-                                {UserAvatar({
-                                  global: global,
-                                  size: 'medium',
-                                  username: row.username,
-                                })}
-                                <span className='d-block align-self-center ml-2'>
-                                  {row.username}
-                                </span>
-                              </a>
-                            ),
-                          })}
-                        </td>
+              {sliced.map((row, i) => {
+                var dateObj = new Date(row.created);
+                var momentObj = moment(dateObj);
+                var createdAt = momentObj.format('YYYY/MM/DD');
+                return (
+                  <tr key={i}>
+                    <td>
+                      <div className='witness-rank'>
+                        <span className='rank-number'>{createdAt}</span>
+                      </div>
+                    </td>
+                    <td>
+                      {ProfileLink({
+                        history: this.props.history,
+                        addAccount: () => {},
+                        username: row.username,
+                        children: (
+                          <a className='d-flex align-center gap-2'>
+                            {UserAvatar({
+                              global: global,
+                              size: 'medium',
+                              username: row.username,
+                            })}
+                            <span className='d-block align-self-center ml-2'>
+                              {row.username}
+                            </span>
+                          </a>
+                        ),
+                      })}
+                    </td>
 
-                        <td className='align-middle'>
-                          <span className='bg-secondary reward-wrapper py-1 px-3 circle'>
-                            {row.rewarded === 0 ? _t("g.no") : _t("g.yes")}
-                          </span>
-                        </td>
-                        <td className='delegate-button'>
-                          <button
-                            className='btn btn-sm btn-primary'
-                            onClick={() =>
-                              this.openTransferDialog(
-                                'delegate',
-                                'HP',
-                                row.username,
-                              )
-                            }
-                          >
-                            {_t("referral.delegate-hp")}
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })
-                : sliced.map((row, i) => {
-                    var dateObj = new Date(row.created);
-                    var momentObj = moment(dateObj);
-                    var createdAt = momentObj.format('YYYY/MM/DD');
-                    return (
-                      <tr key={i}>
-                        <td>
-                          <div className='witness-rank'>
-                            <span className='rank-number'>{createdAt}</span>
-                          </div>
-                        </td>
-                        <td>
-                          {ProfileLink({
-                            history: this.props.history,
-                            addAccount: () => {},
-                            username: row.username,
-                            children: (
-                              <a className='d-flex align-center gap-2'>
-                                {UserAvatar({
-                                  global: global,
-                                  size: 'medium',
-                                  username: row.username,
-                                })}
-                                <span className='d-block align-self-center ml-2'>
-                                  {row.username}
-                                </span>
-                              </a>
-                            ),
-                          })}
-                        </td>
-
-                        <td className='align-middle'>
-                          <span className='bg-primary text-white reward-wrapper py-1 px-3 circle'>
-                            {row.rewarded === 0 ? _t("g.no") : _t("g.yes")}
-                          </span>
-                        </td>
-                        <td className='delegate-button'>
-                          <button
-                            className='btn btn-sm btn-primary'
-                            onClick={() =>
-                              this.openTransferDialog(
-                                'delegate',
-                                'HP',
-                                row.username,
-                              )
-                            }
-                          >
-                            {_t("referral.delegate-hp")}
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                    <td className='align-middle'>
+                      <span className='bg-primary text-white reward-wrapper py-1 px-3 circle'>
+                        {row.rewarded === 0 ? _t('g.no') : _t('g.yes')}
+                      </span>
+                    </td>
+                    <td className='delegate-button'>
+                      <button
+                        className='btn btn-sm btn-primary'
+                        onClick={() =>
+                          this.openTransferDialog(
+                            'delegate',
+                            'HP',
+                            row.username,
+                          )
+                        }
+                      >
+                        {_t('referral.delegate-hp')}
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
-        )}
+        }
 
         {this.state.transfer && (
           <Transfer
@@ -332,13 +257,13 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
             <h5 className='header-title text-left'>
               {this.state.claimed_points}
             </h5>
-            <h6 className=' text-left'>{_t("referral.earned-reward")}</h6>
+            <h6 className=' text-left'>{_t('referral.earned-reward')}</h6>
           </div>
           <div>
             <h5 className='header-title text-left ml-3'>
               {this.state.pending_points}
             </h5>
-            <h6 className=' text-left ml-3'>{_t("referral.pending-reward")}</h6>
+            <h6 className=' text-left ml-3'>{_t('referral.pending-reward')}</h6>
           </div>
           <div className='ml-5'>
             <button
@@ -349,7 +274,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
               }
               className='btn btn-primary'
             >
-              {_t("entry.address-copy")} {shareVariantSvg}
+              {_t('entry.address-copy')} {shareVariantSvg}
             </button>
           </div>
         </div>
@@ -379,21 +304,23 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
               <div className='table-responsive'>
                 {table}
 
-                {referrals.length>=pageSize && <MyPagination
-                  className='mt-4'
-                  dataLength={this.state.totalPages}
-                  pageSize={pageSize}
-                  maxItems={4}
-                  page={page}
-                  onPageChange={(page: number) => {
-                    this.stateSet({
-                      page,
-                      lastReferralId: referrals[referrals.length - 1].id,
-                    });
-                    this.getReferrals(referrals[referrals.length - 1].id);
-                  }}
-                  showLastNo={false}
-                />}
+                {referrals.length >= pageSize && (
+                  <MyPagination
+                    className='mt-4'
+                    dataLength={this.state.totalPages}
+                    pageSize={pageSize}
+                    maxItems={4}
+                    page={page}
+                    onPageChange={(page: number) => {
+                      this.stateSet({
+                        page,
+                        lastReferralId: referrals[referrals.length - 1].id,
+                      });
+                      this.getReferrals(referrals[referrals.length - 1].id);
+                    }}
+                    showLastNo={false}
+                  />
+                )}
               </div>
             </>
           );
