@@ -46,6 +46,8 @@ import isElectron from "../../../../common/util/is-electron";
 
 const pathToRegexp = require("path-to-regexp");
 import isCommunity from "../../../../common/helper/is-community";
+import { NotifyTypes } from '../../../../common/enums';
+import { setNotificationsSettingsItem, updateNotificationsSettings } from '../../../../common/store/notifications';
 const logo = "./img/logo-circle.svg";
 
 
@@ -318,6 +320,8 @@ interface Props {
     step?: number,
     match?: any;
     fetchNotificationsSettings: (username: string) => void;
+    updateNotificationsSettings: typeof updateNotificationsSettings;
+    setNotificationsSettingsItem: typeof setNotificationsSettingsItem;
 }
 
 interface State {
@@ -513,6 +517,8 @@ export default (p: Props) => {
         setStepTwo: p.setStepTwo,
         match: p.match,
         fetchNotificationsSettings: p.fetchNotificationsSettings,
+        updateNotificationsSettings: p.updateNotificationsSettings,
+        setNotificationsSettingsItem: p.setNotificationsSettingsItem
     }
 
     return <NavBar {...props} />;

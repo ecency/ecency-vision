@@ -15,6 +15,7 @@ import {
   Notifications,
   SetFilterAction,
   SetSettingsAction,
+  SetSettingsItemAction,
   SetUnreadCountAction
 } from './types';
 
@@ -127,6 +128,18 @@ export default (state: Notifications = initialState, action: Actions): Notificat
         ...state,
         settings: action.settings,
       };
+    case ActionTypes.SET_SETTINGS_ITEM:
+      const types = state.settings?.notify_types || [];
+      const nextTypes = types.includes(action.settingsType) ?
+        types.filter(t => t !== action.settingsType) :
+        [...types, action.settingsType];
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          notify_types: nextTypes
+        } as ApiNotificationSetting
+      }
     default:
       return state;
   }
@@ -187,14 +200,24 @@ export const markNotifications = (id: string | null) => (dispatch: Dispatch, get
   })
 }
 
-export const updateNotificationsSettings = (username: string, notifyTypes: NotifyTypes[]) => async (dispatch: Dispatch, getState: () => AppState) => {
-  const settings = await saveNotificationsSettings(username, notifyTypes, notifyTypes.length > 0, username + (isElectron() ? '-Desktop' : '-Web'));
+export const setNotificationsSettingsItem = (type: NotifyTypes, value: boolean) => (dispatch: Dispatch, getState: () => AppState) => {
+  dispatch(setSettingsItemAct(type, value));
+};
+
+export const updateNotificationsSettings = (username: string) => async (dispatch: Dispatch, getState: () => AppState) => {
+  const notifyTypes = getState().notifications.settings?.notify_types || [];
+  const settings = await saveNotificationsSettings(
+    username,
+    notifyTypes,
+    notifyTypes.length > 0,
+    username + (isElectron() ? '-desktop' : '-web')
+  );
   dispatch(setSettingsAct(settings));
 }
 
 export const fetchNotificationsSettings = (username: string) => async (dispatch: Dispatch, getState: () => AppState) => {
   try {
-    const settings = await getNotificationSetting(username, username + (isElectron() ? '-Desktop' : '-Web'));
+    const settings = await getNotificationSetting(username, username + (isElectron() ? '-desktop' : '-web'));
     dispatch(setSettingsAct(settings));
   } catch(e) {
     const allTypes = [
@@ -253,4 +276,10 @@ export const markAct = (id: string | null): MarkAction => {
 export const setSettingsAct = (settings: ApiNotificationSetting): SetSettingsAction => ({
   type: ActionTypes.SET_SETTINGS,
   settings,
+});
+
+export const setSettingsItemAct = (settingsType: NotifyTypes, value: boolean): SetSettingsItemAction => ({
+  type: ActionTypes.SET_SETTINGS_ITEM,
+  settingsType,
+  value
 });

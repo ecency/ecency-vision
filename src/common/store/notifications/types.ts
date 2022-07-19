@@ -1,4 +1,5 @@
 import {LoginAction, LogoutAction} from "../active-user/types";
+import { NotifyTypes } from '../../enums';
 
 // Web socket notification types
 
@@ -236,7 +237,8 @@ export enum ActionTypes {
     SET_FILTER = "@notifications/SET_FILTER",
     SET_UNREAD_COUNT = "@notifications/SET_UNREAD_COUNT",
     MARK = "@notifications/MARK",
-    SET_SETTINGS = "@notifications/SET_SETTINGS"
+    SET_SETTINGS = "@notifications/SET_SETTINGS",
+    SET_SETTINGS_ITEM = "@notifications/SET_SETTINGS_ITEM",
 }
 
 export interface FetchAction {
@@ -270,6 +272,12 @@ export interface SetSettingsAction {
     settings: ApiNotificationSetting;
 }
 
+export interface SetSettingsItemAction {
+    type: ActionTypes.SET_SETTINGS_ITEM;
+    settingsType: NotifyTypes;
+    value: boolean;
+}
+
 export type Actions = FetchAction
     | FetchedAction
     | SetFilterAction
@@ -277,4 +285,5 @@ export type Actions = FetchAction
     | LoginAction
     | LogoutAction
     | MarkAction
-    | SetSettingsAction;
+    | SetSettingsAction
+    | SetSettingsItemAction;

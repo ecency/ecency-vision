@@ -49,7 +49,8 @@ import {
   setNotificationsFilter,
   markNotifications,
   updateNotificationsSettings,
-  fetchNotificationsSettings
+  fetchNotificationsSettings,
+  setNotificationsSettingsItem
 } from '../store/notifications';
 import {fetchPoints, resetPoints} from "../store/points";
 import {setSigningKey} from "../store/signing-key";
@@ -136,6 +137,7 @@ export interface PageProps {
     markNotifications: (id: string | null) => void;
     updateNotificationsSettings: typeof updateNotificationsSettings;
     fetchNotificationsSettings: typeof fetchNotificationsSettings;
+    setNotificationsSettingsItem: typeof setNotificationsSettingsItem;
 
     points: Points;
     fetchPoints: (username: string, filter?: number) => void;
@@ -217,6 +219,7 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             setDeckDataFilters,
             updateNotificationsSettings,
             fetchNotificationsSettings,
+            setNotificationsSettingsItem,
         },
         dispatch
     );

@@ -40,7 +40,7 @@ import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountO
 import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
 import isCommunity from "../../helper/is-community";
-import { updateNotificationsSettings } from '../../store/notifications';
+import { setNotificationsSettingsItem, updateNotificationsSettings } from '../../store/notifications';
 //const logo = require('../../img/logo-circle.svg');
 
 interface Props {
@@ -74,6 +74,7 @@ interface Props {
     setStepTwo?:() => void;
     fetchNotificationsSettings: (username: string) => void;
     updateNotificationsSettings: typeof updateNotificationsSettings;
+    setNotificationsSettingsItem: typeof setNotificationsSettingsItem;
 }
 
 interface State {
@@ -506,6 +507,7 @@ export default (p: Props) => {
         match: p.match,
         fetchNotificationsSettings: p.fetchNotificationsSettings,
         updateNotificationsSettings: p.updateNotificationsSettings,
+        setNotificationsSettingsItem: p.setNotificationsSettingsItem
     }
 
     return <NavBar {...props} />;

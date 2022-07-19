@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Form, Modal } from 'react-bootstrap';
 import moment from 'moment';
 import { History } from 'history';
 import { hiveNotifySetLastRead } from '../../api/operations';
@@ -18,8 +18,7 @@ import _c from '../../util/fix-class-names'
 import { bellCheckSvg, bellOffSvg, checkSvg, settingsSvg, syncSvg } from '../../img/svg';
 import { NotifyTypes } from '../../enums';
 import NotificationListItem from './notification-list-item';
-import { updateNotificationsSettings } from '../../store/notifications';
-
+import { setNotificationsSettingsItem, updateNotificationsSettings } from '../../store/notifications';
 
 export const date2key = (s: string): string => {
   if (s === 'Yesterday') {
@@ -59,14 +58,52 @@ interface NotificationProps {
   muteNotifications: () => void;
   unMuteNotifications: () => void;
   updateNotificationsSettings: typeof updateNotificationsSettings;
+  setNotificationsSettingsItem: typeof setNotificationsSettingsItem;
 }
 
-export class DialogContent extends Component<NotificationProps> {
+export class DialogContent extends Component<NotificationProps, any> {
+  constructor(props: NotificationProps) {
+    super(props);
+    this.state = {
+      settings: {
+        [NotifyTypes.COMMENT]: false,
+        [NotifyTypes.FOLLOW]: false,
+        [NotifyTypes.MENTION]: false,
+        [NotifyTypes.VOTE]: false,
+        [NotifyTypes.RE_BLOG]: false,
+        [NotifyTypes.TRANSFERS]: false
+      },
+      saveSettingsWithDebounce: null,
+    };
+  }
+
   componentDidMount() {
     const { notifications, fetchNotifications } = this.props;
 
     if (notifications.list.length === 0) {
       fetchNotifications(null);
+    }
+  }
+
+  componentDidUpdate(prevProps: Readonly<NotificationProps>, prevState: Readonly<{ settings: { [p: number]: boolean } }>, snapshot?: any) {
+    const { notifications } = this.props;
+    if (notifications.settings) {
+      const settings = {};
+      Object.keys(this.state.settings)
+        .forEach(type => {
+          const isTurnedOn = (notifications.settings?.notify_types || []).includes(+type);
+          if (isTurnedOn !== this.state.settings[type]) {
+            settings[type] = isTurnedOn;
+          }
+        });
+      if (Object.keys(settings).length > 0) {
+        this.setState({
+          settings: {
+            ...this.state.settings,
+            ...settings,
+          },
+        });
+      }
     }
   }
 
@@ -113,31 +150,27 @@ export class DialogContent extends Component<NotificationProps> {
     unMuteNotifications();
   }
 
-  saveSettings = (type: NotifyTypes) => {
-    const { updateNotificationsSettings, activeUser, notifications } = this.props;
-    const { settings } = notifications;
-    const types = [...(settings?.notify_types || [])];
-    updateNotificationsSettings(
-      activeUser.username,
-      types.includes(type) ? types.filter(t => t !== type) : [...types, type]
-    );
+  saveSettings = () => {
+    const { updateNotificationsSettings, activeUser } = this.props;
+    updateNotificationsSettings(activeUser.username);
   }
 
-  muteAll = () => {
-    const { updateNotificationsSettings, activeUser } = this.props;
-    updateNotificationsSettings(activeUser.username, []);
-  }
+  saveSettingsWithDebounce = (type: NotifyTypes) => {
+    const { setNotificationsSettingsItem } = this.props;
+    setNotificationsSettingsItem(type, !this.state.settings[type]);
 
-  enableAll = () => {
-    const { updateNotificationsSettings, activeUser } = this.props;
-    updateNotificationsSettings(activeUser.username, [
-      NotifyTypes.COMMENT,
-      NotifyTypes.FOLLOW,
-      NotifyTypes.MENTION,
-      NotifyTypes.VOTE,
-      NotifyTypes.RE_BLOG,
-      NotifyTypes.TRANSFERS,
-    ]);
+    if (this.state.saveSettingsWithDebounce) {
+      clearTimeout(this.state.saveSettingsWithDebounce);
+    }
+
+    this.setState({
+      saveSettingsWithDebounce: setTimeout(() => {
+        this.saveSettings();
+        this.setState({
+          saveSettingsWithDebounce: null,
+        });
+      }, 500)
+    });
   }
 
   render() {
@@ -166,21 +199,14 @@ export class DialogContent extends Component<NotificationProps> {
     ];
 
     const getNotificationSettingsItem = (title: string, type: NotifyTypes) => ({
-      label: title,
-      onClick: () => this.saveSettings(type),
-      icon: <>{(settings?.notify_types || []).includes(type) ? bellOffSvg : bellCheckSvg}</>
+      label: _t(title),
+      content: <Form.Check
+        type="switch"
+        checked={this.state.settings[type]}
+        onChange={() => this.saveSettingsWithDebounce(type)}
+      />,
+      onClick: () => this.saveSettingsWithDebounce(type)
     });
-    const notificationSettingsItems = [
-      getNotificationSettingsItem('Votes', NotifyTypes.VOTE),
-      getNotificationSettingsItem('Comments', NotifyTypes.COMMENT),
-      getNotificationSettingsItem('Mentions', NotifyTypes.MENTION),
-      getNotificationSettingsItem('Re-blogs', NotifyTypes.RE_BLOG),
-      getNotificationSettingsItem('Follows', NotifyTypes.FOLLOW),
-      getNotificationSettingsItem('Transfers', NotifyTypes.TRANSFERS),
-      ...((settings?.notify_types || []).length > 0 ?
-        [{ label: 'Mute all', onClick: () => this.muteAll() }] :
-        [{ label: 'Enable all', onClick: () => this.enableAll() }]),
-    ];
     const dropDownConfig = {
       history: this.props.history || history,
       label: '',
@@ -199,23 +225,32 @@ export class DialogContent extends Component<NotificationProps> {
           </div>
           <div className="list-actions">
             <DropDown
-              header="Notification filters"
-              items={notificationSettingsItems}
+              className={'settings'}
+              header="Settings"
+              items={[
+                getNotificationSettingsItem('Votes', NotifyTypes.VOTE),
+                getNotificationSettingsItem('Comments', NotifyTypes.COMMENT),
+                getNotificationSettingsItem('Mentions', NotifyTypes.MENTION),
+                getNotificationSettingsItem('Re-blogs', NotifyTypes.RE_BLOG),
+                getNotificationSettingsItem('Follows', NotifyTypes.FOLLOW),
+                getNotificationSettingsItem('Transfers', NotifyTypes.TRANSFERS),
+              ]}
               history={this.props.history || history}
               label={<span className={_c(`list-action ${loading ? 'disabled' : ''}`)}>{settingsSvg}</span>}
               float="right"
+              notHideOnClick={true}
             />
-            {global.notifications && (
-              <Tooltip content={_t('notifications.mute')}>
-                <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.mute}>{bellOffSvg}</span>
-              </Tooltip>
-            )}
-            {!global.notifications && (
-              <Tooltip content={_t('notifications.unmute')}>
-                <span className={_c(`list-action ${loading ? 'disabled' : ''}`)}
-                      onClick={this.unMute}>{bellCheckSvg}</span>
-              </Tooltip>
-            )}
+            {/*{global.notifications && (*/}
+            {/*  <Tooltip content={_t('notifications.mute')}>*/}
+            {/*    <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.mute}>{bellOffSvg}</span>*/}
+            {/*  </Tooltip>*/}
+            {/*)}*/}
+            {/*{!global.notifications && (*/}
+            {/*  <Tooltip content={_t('notifications.unmute')}>*/}
+            {/*    <span className={_c(`list-action ${loading ? 'disabled' : ''}`)}*/}
+            {/*          onClick={this.unMute}>{bellCheckSvg}</span>*/}
+            {/*  </Tooltip>*/}
+            {/*)}*/}
             <Tooltip content={_t('notifications.refresh')}>
               <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.refresh}>{syncSvg}</span>
             </Tooltip>
