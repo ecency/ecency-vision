@@ -547,11 +547,13 @@
     "section-communities": "Сообщества",
     "section-wallet": "Кошелек",
     "section-settings": "Настройки",
+    "section-referrals": "Referrals",
     "section-permission": "Разрешение",
     "communities-title": "Участники",
     "create-community": "Создать сообщество",
     "witnesses": "Заверители",
-    "proposals": "Предложения"
+    "proposals": "Предложения",
+    "referrals": "Referrals"
   },
   "profile-info": {
     "joined": "Присоединился: {{n}}",
@@ -1108,6 +1110,16 @@
     "proxy-active-current": "Ваш действующий прокси",
     "proxy-active-btn-label": "Очистить прокси",
     "proxy-votes-for": "@{{username}} голосует за"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Предложения",
