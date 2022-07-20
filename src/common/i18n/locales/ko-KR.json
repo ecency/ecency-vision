@@ -547,11 +547,13 @@
     "section-communities": "커뮤니티",
     "section-wallet": "지갑",
     "section-settings": "설정",
+    "section-referrals": "Referrals",
     "section-permission": "Permission",
     "communities-title": "멤버쉽",
     "create-community": "커뮤니티 만들기",
     "witnesses": "증인",
-    "proposals": "제안서"
+    "proposals": "제안서",
+    "referrals": "Referrals"
   },
   "profile-info": {
     "joined": "가입: {{n}}",
@@ -1108,6 +1110,16 @@
     "proxy-active-current": "현재 프록시",
     "proxy-active-btn-label": "프록시 삭제하기",
     "proxy-votes-for": "@{{username}}의 투표는"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "제안서",
