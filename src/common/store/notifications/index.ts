@@ -31,6 +31,7 @@ import {
 import { NotifyTypes } from '../../enums';
 import isElectron from '../../util/is-electron';
 import * as ls from '../../util/local-storage';
+import { getFcmToken, initFirebase, listenFCM } from '../../api/firebase';
 
 export const initialState: Notifications = {
   filter: null,
@@ -204,35 +205,64 @@ export const setNotificationsSettingsItem = (type: NotifyTypes, value: boolean) 
   dispatch(setSettingsItemAct(type, value));
 };
 
-export const updateNotificationsSettings = (username: string) => async (dispatch: Dispatch, getState: () => AppState) => {
+export const updateNotificationsSettings = (
+  username: string,
+  token = username + (isElectron() ? '-desktop' : '-web'),
+) => async (dispatch: Dispatch, getState: () => AppState) => {
   const notifyTypes = getState().notifications.settings?.notify_types || [];
   const settings = await saveNotificationsSettings(
     username,
     notifyTypes,
     notifyTypes.length > 0,
-    username + (isElectron() ? '-desktop' : '-web')
+    token,
   );
   dispatch(setSettingsAct(settings));
 }
 
 export const fetchNotificationsSettings = (username: string) => async (dispatch: Dispatch, getState: () => AppState) => {
+  initFirebase();
+
   try {
     const settings = await getNotificationSetting(username, username + (isElectron() ? '-desktop' : '-web'));
     dispatch(setSettingsAct(settings));
   } catch(e) {
-    const allTypes = [
-      NotifyTypes.COMMENT,
-      NotifyTypes.FOLLOW,
-      NotifyTypes.MENTION,
-      NotifyTypes.VOTE,
-      NotifyTypes.RE_BLOG,
-      NotifyTypes.TRANSFERS,
-    ];
     const wasMutedPreviously = ls.get("notifications") === false;
+    const settings = {
+      ...getState().notifications.settings as ApiNotificationSetting,
+      notify_types: wasMutedPreviously ? [] : [
+        NotifyTypes.COMMENT,
+        NotifyTypes.FOLLOW,
+        NotifyTypes.MENTION,
+        NotifyTypes.VOTE,
+        NotifyTypes.RE_BLOG,
+        NotifyTypes.TRANSFERS,
+      ] as number[],
+    };
+    dispatch(setSettingsAct(settings));
     ls.remove('notifications');
 
+    const permission = await Notification.requestPermission();
+    let token;
+    if (permission === 'granted') {
+      token = await getFcmToken();
+    }
+
     // @ts-ignore
-    dispatch(updateNotificationsSettings(username, wasMutedPreviously ? [] : allTypes))
+    dispatch(updateNotificationsSettings(username, token));
+  }
+
+  const permission = await Notification.requestPermission();
+  if (permission === 'granted') {
+    const token = await getFcmToken();
+    // @ts-ignore
+    dispatch(updateNotificationsSettings(username, token));
+    await listenFCM(false, () => {
+      // @ts-ignore
+      dispatch(fetchUnreadNotificationCount());
+
+      // @ts-ignore
+      dispatch(fetchNotifications(null));
+    });
   }
 }
 
