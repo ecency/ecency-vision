@@ -12,7 +12,7 @@ interface Props {
     showLastNo?: boolean;
 }
 
-const MyPagination = ({dataLength, maxItems, onPageChange, pageSize, className, page:pageFromProps, showLastNo}:Props) => {
+const MyPagination = ({dataLength, maxItems, onPageChange, pageSize, className, page:pageFromProps, showLastNo = true}:Props) => {
     const [page, setPage] = useState<number>(pageFromProps || 1)
 
     const changePage = (num: number) => {
