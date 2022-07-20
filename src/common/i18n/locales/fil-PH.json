@@ -547,11 +547,13 @@
     "section-communities": "Mga Pamayanan",
     "section-wallet": "Pitaka",
     "section-settings": "Mga Setting",
+    "section-referrals": "Referrals",
     "section-permission": "Permission",
     "communities-title": "Pagkamiyembro",
     "create-community": "Gumawa ng pamayanan",
     "witnesses": "Mga testigo",
-    "proposals": "Mga Panukala"
+    "proposals": "Mga Panukala",
+    "referrals": "Referrals"
   },
   "profile-info": {
     "joined": "Joined: {{n}}",
@@ -1108,6 +1110,16 @@
     "proxy-active-current": "Ang iyong kasalukuyang kinatawan ay",
     "proxy-active-btn-label": "Tanggalin ang Kinatawan",
     "proxy-votes-for": "@{{username}} ibinoto si"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Mga panukala",
