@@ -783,7 +783,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegado de <span class=\"from-user\">{{from}}</span> para <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span>desdelegado de <span class=\"from-user\">{{from}}</span> para <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Diminuição de poder hive concluído como <span class=\"amount\">{{amount}}</span>",
-    "claim-interest-summary": "Interest claimed and added to your savings balance",
+    "claim-interest-summary": "Rendimentos recebidos e adicionados ao saldo da poupança",
     "reset": "Reiniciar",
     "powering-down": "Você está atualmente fazendo power down.",
     "stop-power-down": "Parar"
@@ -1336,7 +1336,7 @@
       "why-publish-gray-body": "<p>After writing your post you can see that Publish button is still gray, be sure that you chose a good title and at least one valid tag. If you miss them Publish button will be disabled.</p>",
       "what-links-show-header": "What do the Trending, Hot, New, Rising and Controversial links show?",
       "what-links-show-body": "<p>This is the way of sorting content on Ecency. <ul><li>Trending - Widely mentioned or discussed posts.</li><li>Hot - Popular posts in last couple hours.</li><li>New - The newest posts sorted by the published time.</li><li>Rising - Posts that have more comments and votes compare to others.</li><li>Controversial - Has a relatively equal number of upvotes and downvotes.</li></ul></p>",
-      "what-my-rewards-header": "What kind of rewards I have in my wallet?",
+      "what-my-rewards-header": "Quais recompensas tenho na minha carteira?",
       "what-my-rewards-body": "<p>There are two kind of rewards are shown in your wallet: <ul><li>Curation rewards - The rewards earned for upvoting posts and comments.</li><li>Author rewards - The rewards earned by your own posts and comments.</li><li>Points rewards - Social actions and interactions also rewarded with Ecency points.</li></ul><p/>",
       "what-information-profile-header": "Quais informações são exibidas no meu perfil?",
       "what-information-profile-body": "<p>As primeiras informações junto à sua imagem de perfil são a sua reputação, nome de exibição e descrição. Abaixo disso estão as informações sobre seguidores e data de registro no Ecency. Você pode editar a sua descrição, incluir imagem de capa, perfil e localização acessando as configurações da Ecency.</p>",
