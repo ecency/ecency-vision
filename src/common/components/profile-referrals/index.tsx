@@ -165,73 +165,71 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
 
     const table = (
       <>
-        {
-          <table className='table d-none d-sm-block d-flex flex-column'>
-            <thead>
-              <tr>
-                <th className='col-rank'>{_t('referral.created')}</th>
-                <th>{_t('referral.list-referral')}</th>
-                <th className='col-version'>{_t('referral.rewarded')}</th>
-                <th className='col-version'></th>
-              </tr>
-            </thead>
-            <tbody>
-              {sliced.map((row, i) => {
-                var dateObj = new Date(row.created);
-                var momentObj = moment(dateObj);
-                var createdAt = momentObj.format('YYYY/MM/DD');
-                return (
-                  <tr key={i}>
-                    <td>
-                      <div className='witness-rank'>
-                        <span className='rank-number'>{createdAt}</span>
-                      </div>
-                    </td>
-                    <td>
-                      {ProfileLink({
-                        history: this.props.history,
-                        addAccount: () => {},
-                        username: row.username,
-                        children: (
-                          <a className='d-flex align-center gap-2'>
-                            {UserAvatar({
-                              global: global,
-                              size: 'medium',
-                              username: row.username,
-                            })}
-                            <span className='d-block align-self-center ml-2'>
-                              {row.username}
-                            </span>
-                          </a>
-                        ),
-                      })}
-                    </td>
+        <table className='table d-none d-sm-block d-flex flex-column'>
+          <thead>
+            <tr>
+              <th className='col-rank'>{_t('referral.created')}</th>
+              <th>{_t('referral.list-referral')}</th>
+              <th className='col-version'>{_t('referral.rewarded')}</th>
+              <th className='col-version'/>
+            </tr>
+          </thead>
+          <tbody>
+            {sliced.map((row, i) => {
+              var dateObj = new Date(row.created);
+              var momentObj = moment(dateObj);
+              var createdAt = momentObj.format('YYYY/MM/DD');
+              return (
+                <tr key={i}>
+                  <td>
+                    <div className='witness-rank'>
+                      <span className='rank-number'>{createdAt}</span>
+                    </div>
+                  </td>
+                  <td>
+                    {ProfileLink({
+                      history: this.props.history,
+                      addAccount: () => {},
+                      username: row.username,
+                      children: (
+                        <a className='d-flex align-center gap-2'>
+                          {UserAvatar({
+                            global: global,
+                            size: 'medium',
+                            username: row.username,
+                          })}
+                          <span className='d-block align-self-center ml-2'>
+                            {row.username}
+                          </span>
+                        </a>
+                      ),
+                    })}
+                  </td>
 
-                    <td className='align-middle'>
-                      <span className='bg-primary text-white reward-wrapper py-1 px-3 circle'>
-                        {row.rewarded === 0 ? _t('g.no') : _t('g.yes')}
-                      </span>
-                    </td>
-                    <td className='delegate-button'>
-                      <button
-                        className='btn btn-sm btn-primary'
-                        onClick={() =>
-                          this.openTransferDialog(
-                            'delegate',
-                            'HP',
-                            row.username,
-                          )
-                        }
-                      >
-                        {_t('referral.delegate-hp')}
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        }
+                  <td className='align-middle'>
+                    <span className='bg-primary text-white reward-wrapper py-1 px-3 circle'>
+                      {row.rewarded === 0 ? _t('g.no') : _t('g.yes')}
+                    </span>
+                  </td>
+                  <td className='delegate-button'>
+                    <button
+                      className='btn btn-sm btn-primary'
+                      onClick={() =>
+                        this.openTransferDialog(
+                          'delegate',
+                          'HP',
+                          row.username,
+                        )
+                      }
+                    >
+                      {_t('referral.delegate-hp')}
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
 
         {this.state.transfer && (
           <Transfer
