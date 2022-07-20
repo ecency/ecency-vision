@@ -783,6 +783,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> делегировано пользователем <span class=\"from-user\">{{from}}</span> для <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> снято с делегирования от <span class=\"from-user\">{{from}}</span> в <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Проведено понижение Силы в размере <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Сбросить",
     "powering-down": "В настоящее время вы понижаете Силу.",
     "stop-power-down": "Остановить"
