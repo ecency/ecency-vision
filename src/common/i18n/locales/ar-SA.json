@@ -547,11 +547,13 @@
     "section-communities": "المجتمعات",
     "section-wallet": "المحفظة",
     "section-settings": "الإعدادات",
+    "section-referrals": "Referrals",
     "section-permission": "الصلاحية",
     "communities-title": "العضوية",
     "create-community": "إنشاء مجتمع",
     "witnesses": "الشهود",
-    "proposals": "المقترحات"
+    "proposals": "المقترحات",
+    "referrals": "Referrals"
   },
   "profile-info": {
     "joined": "انضم: {{n}}",
@@ -1108,6 +1110,16 @@
     "proxy-active-current": "الوكيل الحالي الخاص بك هو",
     "proxy-active-btn-label": "مسح الوكيل",
     "proxy-votes-for": "@{{username}} يصوت ل"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "المقترحات",
