@@ -783,6 +783,7 @@
     "delegate-summary": "<span class=\"from-user\">{{from}}</span> göndericisinden <span class=\"to-user\">{{to}}</span> kullanıcısına <span class=\"amount\">{{amount}}</span> delegasyon yapıldı",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down <span class=\"amount\">{{amount}}</span> olarak gerçekleşti",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Sıfırla",
     "powering-down": "Şu anda gücünüzü azaltıyorsunuz.",
     "stop-power-down": "Durdur"
