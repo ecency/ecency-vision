@@ -783,6 +783,7 @@
     "delegate-summary": "<span class=\"from-user\">{{from}}</span> yuboruvchidan <span class=\"to-user\">{{to}}</span> <span class=\"amount\">{{amount}}}</span> vakolat berilgan",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "<span class=\"amount\">{{amount}}</span> miqdorda Kuch kamaytirildi",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Qayta o'rnatish",
     "powering-down": "Siz hozir kuchingizni kamaytiryapsiz.",
     "stop-power-down": "To'xtash"
