@@ -783,6 +783,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> perduotas iš <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Išjungimas baigtas kaip <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Atstatyti",
     "powering-down": "Jūs šiuo metu mažinate galią.",
     "stop-power-down": "Sustabdyti"
