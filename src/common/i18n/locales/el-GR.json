@@ -783,6 +783,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> εξουσιοδότηση από<span class=\"from-user\">{{from}}</span>to<span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Το Powerd down έχει ολοκληρωθεί<span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Επαναφορά αρχικών ρυθμίσεων",
     "powering-down": "Αυτήν τη στιγμή είστε σε κατάσταση power down.",
     "stop-power-down": "Διακοπή"
