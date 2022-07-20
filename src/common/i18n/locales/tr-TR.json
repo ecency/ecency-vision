@@ -547,11 +547,13 @@
     "section-communities": "Topluluklar",
     "section-wallet": "Cüzdan",
     "section-settings": "Ayarlar",
+    "section-referrals": "Referrals",
     "section-permission": "İzin",
     "communities-title": "Üyelik",
     "create-community": "Bir topluluk oluştur",
     "witnesses": "Tanıklar",
-    "proposals": "Teklifler"
+    "proposals": "Teklifler",
+    "referrals": "Referrals"
   },
   "profile-info": {
     "joined": "Katılan: {{n}}",
@@ -1108,6 +1110,16 @@
     "proxy-active-current": "Mevcut vekiliniz",
     "proxy-active-btn-label": "Vekili Kaldır",
     "proxy-votes-for": "@{{username}} şu postu oyladı"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Teklifler",
