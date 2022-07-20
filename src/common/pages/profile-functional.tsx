@@ -25,6 +25,7 @@ import ProfileMenu from '../components/profile-menu';
 import ProfileCover from '../components/profile-cover';
 import ProfileCommunities from '../components/profile-communities';
 import ProfileSettings from '../components/profile-settings';
+import ProfileReferrals from "../components/profile-referrals";
 import WalletHive from '../components/wallet-hive';
 import WalletHiveEngine from '../components/wallet-hive-engine';
 import WalletEcency from '../components/wallet-ecency';
@@ -440,6 +441,9 @@ export const Profile = (props: Props) => {
                 }
                 if (section === 'settings') {
                   return ProfileSettings({ ...props, account });
+                }
+                if (section === 'referrals') {
+                  return ProfileReferrals({ ...props, account, updateWalletValues: ensureAccount });
                 }
 
                 if (section === 'permissions' && props.activeUser) {

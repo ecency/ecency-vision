@@ -386,7 +386,7 @@ export class NavBar extends Component<Props, State> {
         const communityPage = match && match.params.name && isCommunity(match.params.name)
         const tagValue = global.tag ? `/${global.tag}` : ''
         const logoHref = activeUser ? 
-        (communityPage || ((global.tag.includes('@')) && (['engine','wallet','points','communities','settings','permissions','comments','replies','blog', 'posts'].includes(global.filter)))) ?
+        (communityPage || ((global.tag.includes('@')) && (['engine','wallet','points','communities','settings','permissions','comments','replies','blog','posts','feed','referrals','followers','following'].includes(global.filter)))) ?
         '/hot' : 
         global.filter === 'feed' ? `${tagValue}/${global.filter}` : `/${global.filter}${tagValue}` 
         : '/';
