@@ -783,6 +783,7 @@
     "delegate-summary": "<span class=\"from-user\">{{from}}</span>님이 <span class=\"to-user\">{{to}}</span>님에게<span class=\"amount\">{{amount}}</span>를 임대했습니다",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "파워다운 <span class=\"amount\">{{amount}}</span>으로 완료되었습니다",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "초기화",
     "powering-down": "현재 파워 다운 중입니다.",
     "stop-power-down": "중지"
