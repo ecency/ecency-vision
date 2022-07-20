@@ -783,6 +783,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> valtuutettu <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> valtuutus poistettu <span class=\"from-user\">{{from}}</span> käyttäjältä <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down valmis <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Nollaa",
     "powering-down": "Olet power downaamassa.",
     "stop-power-down": "Lopeta"
