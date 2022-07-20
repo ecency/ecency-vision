@@ -547,13 +547,13 @@
     "section-communities": "Comunidades",
     "section-wallet": "Monedero",
     "section-settings": "Ajustes",
-    "section-referrals": "Referrals",
+    "section-referrals": "Referidos",
     "section-permission": "Permisos",
     "communities-title": "Membresía",
     "create-community": "Crear una Comunidad",
     "witnesses": "Testigos",
     "proposals": "Propuestas",
-    "referrals": "Referrals"
+    "referrals": "Referidos"
   },
   "profile-info": {
     "joined": "Se unió: {{n}}",
@@ -783,6 +783,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegado de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> retirar delegación de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Apagado completado como <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Reestablecer",
     "powering-down": "Actualmente estas apagando.",
     "stop-power-down": "Detener"
@@ -1112,14 +1113,14 @@
     "proxy-votes-for": "@{{username}} votos para"
   },
   "referral": {
-    "page-title": "Referrals",
-    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
-    "created": "Created",
-    "list-referral": "Account",
-    "rewarded": "Rewarded",
-    "pending-reward": "Pending Points",
-    "earned-reward": "Earned Points",
-    "delegate-hp": "Delegate HP"
+    "page-title": "Referidos",
+    "page-description-long": "Aquí hay una lista de todos los usuarios que tú has referido a la aplicación Ecency.",
+    "created": "Creado",
+    "list-referral": "Cuenta",
+    "rewarded": "Recompensado",
+    "pending-reward": "Puntos pendientes",
+    "earned-reward": "Puntos ganados",
+    "delegate-hp": "HP Delegando"
   },
   "proposals": {
     "page-title": "Propuestas",
