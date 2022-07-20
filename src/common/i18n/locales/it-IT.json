@@ -783,6 +783,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegati da <span class=\"from-user\">{{from}}</span> in favore di <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Depotenziamento completato in <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Ripristina",
     "powering-down": "Depotenziamento attualmente in atto.",
     "stop-power-down": "Interrompi"
