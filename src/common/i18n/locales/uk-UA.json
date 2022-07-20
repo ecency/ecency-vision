@@ -783,6 +783,7 @@
     "delegate-summary": "Делеговано <span class=\"amount\">{{amount}}</span> від <span class=\"from-user\">{{from}}</span> до <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Зменшення сили було завершено як <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Скинути",
     "powering-down": "Ви зараз зменшує вашу силу голосу.",
     "stop-power-down": "Зупинити"
