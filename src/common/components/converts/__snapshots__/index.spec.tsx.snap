@@ -126,26 +126,6 @@ exports[`(1) Default render 1`] = `
         </span>
       </span>
     </li>
-    <li
-      className="page-item disabled"
-    >
-      <span
-        className="page-link"
-        disabled={true}
-        onClick={[Function]}
-      >
-        <span
-          aria-hidden="true"
-        >
-          »
-        </span>
-        <span
-          className="sr-only"
-        >
-          Last
-        </span>
-      </span>
-    </li>
   </ul>
 </div>
 `;
@@ -241,26 +221,6 @@ exports[`(2) Empty list 1`] = `
           className="sr-only"
         >
           Next
-        </span>
-      </span>
-    </li>
-    <li
-      className="page-item disabled"
-    >
-      <span
-        className="page-link"
-        disabled={true}
-        onClick={[Function]}
-      >
-        <span
-          aria-hidden="true"
-        >
-          »
-        </span>
-        <span
-          className="sr-only"
-        >
-          Last
         </span>
       </span>
     </li>

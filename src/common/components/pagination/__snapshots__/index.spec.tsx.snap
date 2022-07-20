@@ -121,27 +121,5 @@ exports[`(1) Default render 1`] = `
       </span>
     </a>
   </li>
-  <li
-    className="page-item"
-  >
-    <a
-      className="page-link"
-      href="#"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      role="button"
-    >
-      <span
-        aria-hidden="true"
-      >
-        »
-      </span>
-      <span
-        className="sr-only"
-      >
-        Last
-      </span>
-    </a>
-  </li>
 </ul>
 `;
