@@ -547,11 +547,13 @@
     "section-communities": "Comunidades",
     "section-wallet": "Carteira",
     "section-settings": "Definições",
+    "section-referrals": "Referrals",
     "section-permission": "Permissão",
     "communities-title": "Subscrição",
     "create-community": "Criar uma comunidade",
     "witnesses": "Testemunhas",
-    "proposals": "Propostas"
+    "proposals": "Propostas",
+    "referrals": "Referrals"
   },
   "profile-info": {
     "joined": "Entrou: {{n}}",
@@ -1108,6 +1110,16 @@
     "proxy-active-current": "O teu proxy atual é",
     "proxy-active-btn-label": "Limpar o Proxy",
     "proxy-votes-for": "@{{username}} votos para"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Propostas",
