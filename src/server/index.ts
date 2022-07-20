@@ -59,7 +59,7 @@ server
     .get(
         [
             "^/@:username$", // /@esteemapp
-            `^/@:username/:section(${profileFilters.join("|")}|communities|wallet|points|engine|settings)$`, // /@esteemapp/comments
+            `^/@:username/:section(${profileFilters.join("|")}|communities|wallet|points|engine|settings|permissions|referrals|followers|following)$`, // /@esteemapp/comments
         ],
         profileHandler
     )

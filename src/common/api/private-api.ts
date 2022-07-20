@@ -405,3 +405,49 @@ export const getPromotedEntries = (): Promise<Entry[]> => {
 export const saveNotificationsSettings = (username: string, notifyTypes: NotifyTypes[], isEnabled: boolean, token: string) => {
     return saveNotificationSetting(username, isElectron() ? 'desktop' : 'web', Number(isEnabled), notifyTypes, token);
 }
+
+export interface ReferralItem {
+    id: number;
+    username: string;
+    referrer: string;
+    created: string;
+    rewarded: number;
+    v: number;
+}
+
+export interface ReferralItems {
+    data: ReferralItem[]
+}
+export const getReferrals = (username:any, maxId: any): Promise<ReferralItems> => {
+
+    return axios.get(apiBase(`/private-api/referrals/${username}`), {
+      params: {
+        max_id: maxId,
+      },
+    });;
+
+}
+export interface ReferralStat {
+  total: number;
+  rewarded: number;
+}
+export const getReferralsStats = async (
+  username: any,
+): Promise<ReferralStat> => {
+  try {
+    const res = await axios.get(apiBase(`/private-api/referrals/${username}/stats`));
+    if (!res.data) {
+      throw new Error('No Referrals for this user!');
+    }
+    const convertReferralStat = (rawData: any) => {
+      return {
+        total: rawData.total || 0,
+        rewarded: rawData.rewarded || 0,
+      } as ReferralStat;
+    };
+    return convertReferralStat(res.data);
+  } catch (error) {
+    console.warn(error);
+    throw error;
+  }
+};

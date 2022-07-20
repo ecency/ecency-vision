@@ -91,6 +91,13 @@ export class TagSelector extends Component<Props, State> {
             this.filter(cats);
             this.setState({value: cats.join(' ')});
         }
+
+        const rawValue = e.target.value.toLocaleLowerCase();
+        if (rawValue.endsWith(' ') || rawValue.endsWith(',')) {
+            e.preventDefault();
+            const {value} = this.state;
+            this.add(value);
+        }
     };
 
     handlePaste = async (e:any) => {
@@ -115,7 +122,7 @@ export class TagSelector extends Component<Props, State> {
     }
 
     onKeyDown = (e: React.KeyboardEvent) => {
-        if (([13, 32, 188].includes(e.which) || [13, 32, 188].includes(e.keyCode) || [13, 32, 188].includes(e.charCode) || ['Enter', ',', ' '].includes(e.key)) && this.state.warning === '') {
+        if ((13 === e.which || 13 ===e.keyCode || 13 === e.charCode || 'Enter' === e.key) && this.state.warning === '') {
             e.preventDefault();
             const {value} = this.state;
             this.add(value);
