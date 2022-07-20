@@ -783,7 +783,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegado de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> retirar delegación de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Apagado completado como <span class=\"amount\">{{amount}}</span>",
-    "claim-interest-summary": "Interest claimed and added to your savings balance",
+    "claim-interest-summary": "Interés reclamado y añadido a su saldo de ahorros",
     "reset": "Reestablecer",
     "powering-down": "Actualmente estas apagando.",
     "stop-power-down": "Detener"
