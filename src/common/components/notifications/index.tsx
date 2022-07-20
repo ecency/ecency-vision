@@ -83,9 +83,15 @@ export class DialogContent extends Component<NotificationProps, any> {
     if (notifications.list.length === 0) {
       fetchNotifications(null);
     }
+
+    this.prepareSettings();
   }
 
   componentDidUpdate(prevProps: Readonly<NotificationProps>, prevState: Readonly<{ settings: { [p: number]: boolean } }>, snapshot?: any) {
+    this.prepareSettings();
+  }
+
+  prepareSettings = () => {
     const { notifications } = this.props;
     if (notifications.settings) {
       const settings = {};
