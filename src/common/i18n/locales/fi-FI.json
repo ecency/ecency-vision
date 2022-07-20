@@ -547,11 +547,13 @@
     "section-communities": "Yhteisöt",
     "section-wallet": "Lompakko",
     "section-settings": "Asetukset",
+    "section-referrals": "Referrals",
     "section-permission": "Käyttöoikeus",
     "communities-title": "Jäsenyys",
     "create-community": "Luo yhteisö",
     "witnesses": "Todistajat",
-    "proposals": "Ehdotukset"
+    "proposals": "Ehdotukset",
+    "referrals": "Referrals"
   },
   "profile-info": {
     "joined": "Liittynyt: {{n}}",
@@ -1108,6 +1110,16 @@
     "proxy-active-current": "Nykyinen valtuutettusi",
     "proxy-active-btn-label": "Poista valtuutus",
     "proxy-votes-for": "@{{username}} ääntä"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Ehdotukset",
