@@ -547,13 +547,13 @@
     "section-communities": "Comunidades",
     "section-wallet": "Carteira",
     "section-settings": "Definições",
-    "section-referrals": "Referrals",
+    "section-referrals": "Referências",
     "section-permission": "Permissão",
     "communities-title": "Subscrição",
     "create-community": "Criar uma comunidade",
     "witnesses": "Testemunhas",
     "proposals": "Propostas",
-    "referrals": "Referrals"
+    "referrals": "Referências"
   },
   "profile-info": {
     "joined": "Entrou: {{n}}",
@@ -783,6 +783,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegado de <span class=\"from-user\">{{from}}</span> para <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span>desdelegado de <span class=\"from-user\">{{from}}</span> para <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Diminuição de poder hive concluído como <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Reiniciar",
     "powering-down": "Você está atualmente fazendo power down.",
     "stop-power-down": "Parar"
@@ -1112,14 +1113,14 @@
     "proxy-votes-for": "@{{username}} votos para"
   },
   "referral": {
-    "page-title": "Referrals",
-    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
-    "created": "Created",
-    "list-referral": "Account",
-    "rewarded": "Rewarded",
-    "pending-reward": "Pending Points",
-    "earned-reward": "Earned Points",
-    "delegate-hp": "Delegate HP"
+    "page-title": "Referências",
+    "page-description-long": "Aqui está a lista de todos os usuários que você recomendou utilizar o aplicativo da Ecency.",
+    "created": "Criado",
+    "list-referral": "Conta",
+    "rewarded": "Recompensa",
+    "pending-reward": "Pontos Pendentes",
+    "earned-reward": "Pontos Ganhos",
+    "delegate-hp": "Delegar HP"
   },
   "proposals": {
     "page-title": "Propostas",
