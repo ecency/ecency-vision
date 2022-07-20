@@ -63,7 +63,7 @@ export const ProfileCard = (props: Props) => {
     const [, updateState] = useState();
     const forceUpdate = useCallback(() => updateState({} as any), []);
 
-    const {activeUser, account, section} = props;
+    const {activeUser, account, section, global} = props;
 
     useEffect(() => {
         if(activeUser && activeUser.username){
@@ -219,7 +219,7 @@ export const ProfileCard = (props: Props) => {
 
             {isMyProfile && (
                 <div className="btn-controls">
-                    <Link className="btn btn-sm btn-primary" to={`/@${account.name}/referrals`}>{_t("profile.referrals")}</Link>
+                    {global.usePrivate && (<Link className="btn btn-sm btn-primary" to={`/@${account.name}/referrals`}>{_t("profile.referrals")}</Link>)}
                     <Link className="btn btn-sm btn-primary" to="/witnesses">{_t("profile.witnesses")}</Link>
                     <Link className="btn btn-sm btn-primary" to="/proposals">{_t("profile.proposals")}</Link>
                 </div>
