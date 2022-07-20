@@ -547,11 +547,13 @@
     "section-communities": "Guruhlar",
     "section-wallet": "Hamyon",
     "section-settings": "Sozlamalar",
+    "section-referrals": "Referrals",
     "section-permission": "Ruxsat",
     "communities-title": "A'zolik",
     "create-community": "Guruh yaratish",
     "witnesses": "Guvohlar",
-    "proposals": "Takliflar"
+    "proposals": "Takliflar",
+    "referrals": "Referrals"
   },
   "profile-info": {
     "joined": "Qo'shildi: {{n}}",
@@ -1108,6 +1110,16 @@
     "proxy-active-current": "Sizning hozirgi proksingiz",
     "proxy-active-btn-label": "Proksini tozalash",
     "proxy-votes-for": "@{{username}} uchun ovoz beradi"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Takliflar",
