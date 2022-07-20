@@ -783,6 +783,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> से प्रत्यायोजित किया गया <span class=\"from-user\">{{from}}</span> के लिये <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "पावर डाउन के रूप में पूरा किया <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "रीसेट करें",
     "powering-down": "आप वर्तमान में शक्ति प्राप्त कर रहे हैं।",
     "stop-power-down": "रुको"
