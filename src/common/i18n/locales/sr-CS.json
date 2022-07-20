@@ -783,6 +783,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegirano od <span class=\"from-user\">{{from}}</span> za <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Smanjenje snage izvršeno kao <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Resetuj",
     "powering-down": "Trenutno smanjujete snagu.",
     "stop-power-down": "Zaustavi"
