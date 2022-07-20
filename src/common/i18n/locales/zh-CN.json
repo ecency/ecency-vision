@@ -547,11 +547,13 @@
     "section-communities": "社区",
     "section-wallet": "钱包",
     "section-settings": "设置",
+    "section-referrals": "Referrals",
     "section-permission": "Permission",
     "communities-title": "成员",
     "create-community": "创建社区",
     "witnesses": "见证人",
-    "proposals": "提案"
+    "proposals": "提案",
+    "referrals": "Referrals"
   },
   "profile-info": {
     "joined": "加入: {{n}}",
@@ -1108,6 +1110,16 @@
     "proxy-active-current": "您当前的投票代理是",
     "proxy-active-btn-label": "清除代理",
     "proxy-votes-for": "@{{username}} 投票给"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "建议",
