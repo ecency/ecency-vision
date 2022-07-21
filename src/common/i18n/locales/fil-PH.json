@@ -1025,7 +1025,8 @@
     "mark-all-read": "Markahan lahat bilang nabasa na",
     "mark-read": "Markahan bilang nabasa na",
     "mute": "Patigilin ang pagpapaala ng mga abiso",
-    "unmute": "Paganahan ang pagpapaalala ng mga abiso"
+    "unmute": "Paganahan ang pagpapaalala ng mga abiso",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "Most active",
