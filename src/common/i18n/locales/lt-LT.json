@@ -1025,7 +1025,8 @@
     "mark-all-read": "Pažymėti visus kaip skaitytus",
     "mark-read": "Pažymėti kaip skaitytą",
     "mute": "Išjungti pranešimus",
-    "unmute": "Įjungti pranešimus"
+    "unmute": "Įjungti pranešimus",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "Pats aktyviausias",
