@@ -1025,7 +1025,8 @@
     "mark-all-read": "Позначити все як прочитане",
     "mark-read": "Позначити як прочитане",
     "mute": "Вимкнути сповіщення",
-    "unmute": "Увімкнути сповіщення"
+    "unmute": "Увімкнути сповіщення",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "Most active",
