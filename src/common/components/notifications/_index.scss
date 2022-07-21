@@ -157,8 +157,6 @@
           margin-right: 10px;
           width: 40px;
         }
-
-        // text content.
         .item-content {
           float: left;
           width: calc(100% - 94px);
@@ -200,7 +198,7 @@
 
           .post-link {
             display: block;
-            font-weight: 500;
+            font-weight: 500; 
             max-width: 140%;
             overflow: hidden;
             text-overflow: ellipsis;
