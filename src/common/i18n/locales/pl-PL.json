@@ -1025,7 +1025,8 @@
     "mark-all-read": "Oznacz wszystkie jako przeczytane",
     "mark-read": "Oznacz jako przeczytane",
     "mute": "Wyłącz powiadomienia",
-    "unmute": "Włącz powiadomienia"
+    "unmute": "Włącz powiadomienia",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "Najbardziej aktywne",
