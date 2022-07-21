@@ -1025,7 +1025,8 @@
     "mark-all-read": "Marcar todas como lidas",
     "mark-read": "Marcar como Lido",
     "mute": "Desativar alertas de notificação",
-    "unmute": "Ativar alertas de notificação"
+    "unmute": "Ativar alertas de notificação",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "Mais ativo",
