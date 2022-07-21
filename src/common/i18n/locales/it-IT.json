@@ -1025,7 +1025,8 @@
     "mark-all-read": "Segna tutto come letto",
     "mark-read": "Segna come letto",
     "mute": "Disattiva gli avvisi di notifica",
-    "unmute": "Attiva gli avvisi di notifica"
+    "unmute": "Attiva gli avvisi di notifica",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "Più attivo",
