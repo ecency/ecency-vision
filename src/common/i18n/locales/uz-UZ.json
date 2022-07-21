@@ -1025,7 +1025,8 @@
     "mark-all-read": "Hammasini o'qilgan deb belgilash",
     "mark-read": "O'qilgan deb belgilash",
     "mute": "Xabarnomalarni o'chirish",
-    "unmute": "Xabarnomalarni yoqish"
+    "unmute": "Xabarnomalarni yoqish",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "Eng aktivlar",
