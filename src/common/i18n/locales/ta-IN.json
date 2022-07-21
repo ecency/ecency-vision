@@ -1025,7 +1025,8 @@
     "mark-all-read": "Mark All as Read",
     "mark-read": "Mark as Read",
     "mute": "Turn off notification alerts",
-    "unmute": "Turn on notification alerts"
+    "unmute": "Turn on notification alerts",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "Most active",
