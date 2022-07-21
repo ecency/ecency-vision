@@ -1025,7 +1025,8 @@
     "mark-all-read": "تحديد الكل كمقروء",
     "mark-read": "تحديد كمقروء",
     "mute": "إيقاف تنبيهات الإشعارات",
-    "unmute": "تشغيل تنبيهات الإشعارات"
+    "unmute": "تشغيل تنبيهات الإشعارات",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "الأكثر نشاطا",
