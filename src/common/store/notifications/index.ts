@@ -221,9 +221,14 @@ export const updateNotificationsSettings = (
 
 export const fetchNotificationsSettings = (username: string) => async (dispatch: Dispatch, getState: () => AppState) => {
   initFirebase();
+  let token = username + (isElectron() ? '-desktop' : '-web');
+  const permission = await Notification.requestPermission();
+  if (permission === 'granted') {
+    token = await getFcmToken();
+  }
 
   try {
-    const settings = await getNotificationSetting(username, username + (isElectron() ? '-desktop' : '-web'));
+    const settings = await getNotificationSetting(username, token);
     dispatch(setSettingsAct(settings));
   } catch(e) {
     const wasMutedPreviously = ls.get("notifications") === false;
@@ -241,22 +246,15 @@ export const fetchNotificationsSettings = (username: string) => async (dispatch:
     dispatch(setSettingsAct(settings));
     ls.remove('notifications');
 
-    const permission = await Notification.requestPermission();
-    let token;
-    if (permission === 'granted') {
-      token = await getFcmToken();
-    }
-
     // @ts-ignore
     dispatch(updateNotificationsSettings(username, token));
   }
 
-  const permission = await Notification.requestPermission();
   if (permission === 'granted') {
-    const token = await getFcmToken();
     // @ts-ignore
     dispatch(updateNotificationsSettings(username, token));
-    await listenFCM(false, () => {
+
+    listenFCM(() => {
       // @ts-ignore
       dispatch(fetchUnreadNotificationCount());
 

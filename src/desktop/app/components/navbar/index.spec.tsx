@@ -9,6 +9,8 @@ import {Theme} from "../../../../common/store/global/types";
 
 import {globalInstance, UiInstance, notificationsInstance1, activeUserInstance, dynamicPropsIntance1} from "../../../../common/helper/test-helper";
 import {initialState as trendingTags} from "../../../../common/store/trending-tags";
+import { Dispatch } from 'redux';
+import { AppState } from '../../../../common/store';
 
 const defProps = {
     history: createBrowserHistory(),
@@ -54,9 +56,11 @@ const defProps = {
     },
     reloadFn: () => {
     },
-    reloading: false
-
-};
+    reloading: false,
+    fetchNotificationsSettings: () => {},
+    setNotificationsSettingsItem: () => {},
+    updateNotificationsSettings: () => {}
+} as any;
 
 it("(1) Default render", () => {
     const component = <NavBar {...defProps} />;
@@ -153,4 +157,3 @@ it("(5) With active user && usePrivate = false", () => {
 
     expect(renderer.toJSON()).toMatchSnapshot();
 });
-

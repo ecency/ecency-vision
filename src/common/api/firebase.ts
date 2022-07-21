@@ -3,7 +3,7 @@ import { FirebaseApp, initializeApp } from '@firebase/app';
 import { _t } from '../i18n';
 
 let app: FirebaseApp;
-let FCM: Messaging;
+export let FCM: Messaging;
 
 export function initFirebase() {
   if (typeof window === 'undefined') {
@@ -48,29 +48,40 @@ export const notificationBody = (data: any): string => {
   }
 };
 
-const handleMessage = (payload: MessagePayload) => {
-  console.log('[firebase-messaging-sw.js] Received background message ', payload);
-  // Customize notification here
+export const handleMessage = (payload: MessagePayload) => {
   const notificationTitle = payload.notification?.title || 'Ecency';
 
-  new Notification(notificationTitle, {
-    body: payload.notification?.body,
+  const notification = new Notification(notificationTitle, {
+    body: notificationBody(payload.data),
     icon: payload.notification?.image,
   });
+
+  notification.onclick = () => {
+    let url = 'https://ecency.com';
+    const data = (payload.data || {}) as any;
+
+    if (data.parent_permlink1) {
+      url += '/' + data.parent_permlink1;
+    }
+    if (data.source) {
+      url += '/@' + data.source;
+    }
+    if (data.permlink1) {
+      url += '/' + data.permlink1;
+    }
+
+    window.open(url, '_blank');
+  }
 }
 
 export const getFcmToken = () => getToken(FCM, {
   vapidKey: 'BA3SrGKAKMU_6PXOFwD9EQ1wIPzyYt90Q9ByWb3CkazBe8Isg7xr9Cgy0ka6SctHDW0VZLShTV_UDYNxewzWDjk'
 });
 
-export const listenFCM = async (isBackground: boolean, callback: Function) => {
-
-  // if (isBackground) {
-  //   onBackgroundMessage(FCM, p => handleMessage(p));
-  // } else {
-    onMessage(FCM, p => {
-      handleMessage(p);
-      callback();
-    });
-  // }
+export const listenFCM = (callback: Function) => {
+  onMessage(FCM, p => {
+    console.log('[firebase-messaging-sw.ts] Received foreground message ', p);
+    handleMessage(p);
+    callback();
+  });
 }

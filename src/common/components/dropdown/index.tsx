@@ -118,11 +118,11 @@ const MyDropDown = (props: Props) => {
             label
         );
 
-    const menuCls = _c(`custom-dropdown float-${float} ${props?.alignBottom ? "align-bottom" : ""} ${props.className}`);
+    const menuCls = _c(`custom-dropdown float-${float} ${props?.alignBottom ? "align-bottom" : ""} ${props.className || ''}`);
 
     return mounted ? (
         <div
-            className={menuCls}
+            className={menuCls.trim()}
             onClick={mouseClick}
             onMouseEnter={mouseEnter}
             onMouseLeave={mouseOut}
