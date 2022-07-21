@@ -157,7 +157,7 @@ export class NotificationListItem extends Component<{
                                     entry: {category: 'category', author: notification.author, permlink: notification.permlink},
                                     afterClick: this.afterClick,
                                     children: <div className="markdown-view mini-markdown reply-body">
-                                        {postBodySummary(notification.body, 100)}
+                                        {postBodySummary(notification.body, 1000)}
                                     </div>
                                 })}
                             </div>
