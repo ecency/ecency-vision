@@ -20,7 +20,7 @@ import { DraggableDeckView } from './draggable-deck-view';
 import { HotListItem, SearchListItem } from "../deck/deck-items";
 import { TransactionRow } from "../transactions";
 import MyTooltip from "../tooltip";
-import { NotificationListItem } from "../notifications";
+import NotificationListItem from "../notifications/notification-list-item";
 import { _t } from "../../i18n";
 import { error } from "../feedback";
 import { IdentifiableDeckModel } from './types';

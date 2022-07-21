@@ -12,7 +12,8 @@ export interface MenuItem {
     flash?: boolean;
     disabled?: boolean;
     id?: string;
-    icon?: JSX.Element
+    icon?: JSX.Element;
+    content?: JSX.Element;
 }
 
 interface Props {
@@ -27,6 +28,8 @@ interface Props {
     items: MenuItem[];
     onShow?: () => void;
     onHide?: () => void;
+    notHideOnClick?: boolean;
+    className?: string;
 }
 
 const MyDropDown = (props: Props) => {
@@ -88,7 +91,9 @@ const MyDropDown = (props: Props) => {
     };
 
     const itemClicked = (i: MenuItem) => {
-        hideMenu();
+        if (props.notHideOnClick) {
+            hideMenu();
+        }
 
         setTimeout(() => {
             if (i?.href) {
@@ -113,7 +118,7 @@ const MyDropDown = (props: Props) => {
             label
         );
 
-    const menuCls = _c(`custom-dropdown float-${float} ${props?.alignBottom ? "align-bottom" : ""}`);
+    const menuCls = _c(`custom-dropdown float-${float} ${props?.alignBottom ? "align-bottom" : ""} ${props.className}`);
 
     return mounted ? (
         <div
@@ -141,7 +146,7 @@ const MyDropDown = (props: Props) => {
                                         }}
                                     >
                                         <span className="item-inner">
-                                            {i?.icon ? <span className="item-icon">{i?.icon as JSX.Element}{" "}</span> : ""}{i.label as string|JSX.Element}
+                                            {i?.content ? i?.content : i?.icon ? <span className="item-icon">{i?.icon as JSX.Element}{" "}</span> : ""}{i.label as string|JSX.Element}
                                         </span>
                                     </div>
                                 );
@@ -167,7 +172,8 @@ export default (p: Props) => {
         label: p.label,
         items: p.items,
         onShow: p?.onShow,
-        onHide: p?.onHide
+        onHide: p?.onHide,
+        className: p?.className,
     };
 
     return <MyDropDown {...props} />

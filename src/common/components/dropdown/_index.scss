@@ -133,6 +133,8 @@
         align-items: center;
 
         .item-icon {
+          display: flex;
+
           svg {
             height: 14px;
             margin-right: 6px;

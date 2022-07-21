@@ -28,6 +28,7 @@ import HiveWallet from "../../helper/hive-wallet";
 import {creditCardSvg, gifCardSvg, bellSvg, bellOffSvg, chevronUpSvg} from "../../img/svg";
 
 import {votingPower, downVotingPower} from "../../api/hive";
+import { updateNotificationsSettings, setNotificationsSettingsItem } from '../../store/notifications';
 
 class WalletBadge extends Component<{
     activeUser: ActiveUser;
@@ -92,6 +93,8 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
     muteNotifications: () => void;
     unMuteNotifications: () => void;
+    updateNotificationsSettings: typeof updateNotificationsSettings;
+    setNotificationsSettingsItem: typeof setNotificationsSettingsItem;
 }
 
 interface State {

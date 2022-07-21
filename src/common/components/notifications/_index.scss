@@ -52,6 +52,12 @@
         height: 18px;
         color: $primary;
       }
+
+      .settings {
+        .custom-control-label {
+          cursor: pointer;
+        }
+      }
     }
   }
 

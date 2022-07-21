@@ -47,6 +47,7 @@ interface Props {
     fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;
     toggleUIProp: (what: ToggleType) => void;
+    fetchNotificationsSettings: (username: string) => void;
 }
 
 export default class NotificationHandler extends Component<Props> {
@@ -60,7 +61,7 @@ export default class NotificationHandler extends Component<Props> {
     }
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any) {
-        const {activeUser, fetchUnreadNotificationCount} = this.props;
+        const {activeUser, fetchUnreadNotificationCount, fetchNotificationsSettings} = this.props;
         if(!prevProps.activeUser && activeUser && activeUser.username){
             this.nwsDisconnect();
             this.nwsConnect();
@@ -73,6 +74,7 @@ export default class NotificationHandler extends Component<Props> {
 
             if (activeUser) {
                 fetchUnreadNotificationCount();
+                fetchNotificationsSettings(activeUser.username);
             }
         }
     }

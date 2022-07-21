@@ -43,7 +43,15 @@ import {addUser, deleteUser} from "../store/users";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {toggleUIProp} from "../store/ui";
 import {fetchReblogs, addReblog, deleteReblog} from "../store/reblogs";
-import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
+import {
+  fetchNotifications,
+  fetchUnreadNotificationCount,
+  setNotificationsFilter,
+  markNotifications,
+  updateNotificationsSettings,
+  fetchNotificationsSettings,
+  setNotificationsSettingsItem
+} from '../store/notifications';
 import {fetchPoints, resetPoints} from "../store/points";
 import {setSigningKey} from "../store/signing-key";
 import {trackEntryPin, setEntryPin} from "../store/entry-pin-tracker";
@@ -127,6 +135,9 @@ export interface PageProps {
     fetchUnreadNotificationCount: () => void;
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
     markNotifications: (id: string | null) => void;
+    updateNotificationsSettings: typeof updateNotificationsSettings;
+    fetchNotificationsSettings: typeof fetchNotificationsSettings;
+    setNotificationsSettingsItem: typeof setNotificationsSettingsItem;
 
     points: Points;
     fetchPoints: (username: string, filter?: number) => void;
@@ -206,6 +217,9 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             savePageScroll,
             setDeckUpdateInterval,
             setDeckDataFilters,
+            updateNotificationsSettings,
+            fetchNotificationsSettings,
+            setNotificationsSettingsItem,
         },
         dispatch
     );

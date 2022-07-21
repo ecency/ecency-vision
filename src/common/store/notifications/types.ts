@@ -1,4 +1,5 @@
 import {LoginAction, LogoutAction} from "../active-user/types";
+import { NotifyTypes } from '../../enums';
 
 // Web socket notification types
 
@@ -187,7 +188,7 @@ export interface ApiDelegationsNotification extends BaseAPiNotification {
 }
 
 export interface ApiNotificationSetting {
-    system: string; //"web"
+    system: string; //"web" | "desktop"
     allows_notify: number; //0|1
     notify_types: number[]; //vote:1,mention:2,follow:3,reply:4,reblog:5,transfers:6,delegations:10,engine-transfers:12
     status: number; //0|1
@@ -224,9 +225,10 @@ export interface Notifications {
     filter: NotificationFilter | null;
     unread: number;
     list: ApiNotification[];
-    loading: boolean,
-    hasMore: boolean,
-    unreadFetchFlag: boolean,
+    loading: boolean;
+    hasMore: boolean;
+    unreadFetchFlag: boolean;
+    settings?: ApiNotificationSetting;
 }
 
 export enum ActionTypes {
@@ -234,7 +236,9 @@ export enum ActionTypes {
     FETCHED = "@notifications/FETCHED",
     SET_FILTER = "@notifications/SET_FILTER",
     SET_UNREAD_COUNT = "@notifications/SET_UNREAD_COUNT",
-    MARK = "@notifications/MARK"
+    MARK = "@notifications/MARK",
+    SET_SETTINGS = "@notifications/SET_SETTINGS",
+    SET_SETTINGS_ITEM = "@notifications/SET_SETTINGS_ITEM",
 }
 
 export interface FetchAction {
@@ -263,10 +267,23 @@ export interface MarkAction {
     id: string | null;
 }
 
+export interface SetSettingsAction {
+    type: ActionTypes.SET_SETTINGS;
+    settings: ApiNotificationSetting;
+}
+
+export interface SetSettingsItemAction {
+    type: ActionTypes.SET_SETTINGS_ITEM;
+    settingsType: NotifyTypes;
+    value: boolean;
+}
+
 export type Actions = FetchAction
     | FetchedAction
     | SetFilterAction
     | SetUnreadCountAction
     | LoginAction
     | LogoutAction
-    | MarkAction;
+    | MarkAction
+    | SetSettingsAction
+    | SetSettingsItemAction;
