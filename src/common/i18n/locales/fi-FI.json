@@ -1025,7 +1025,8 @@
     "mark-all-read": "Merkitse kaikki luetuksi",
     "mark-read": "Merkitse luetuksi",
     "mute": "Poista ilmoitukset käytöstä",
-    "unmute": "Ota ilmoitukset käyttöön"
+    "unmute": "Ota ilmoitukset käyttöön",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "Aktiivisin",
