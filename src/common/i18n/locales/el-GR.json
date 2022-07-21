@@ -1025,7 +1025,8 @@
     "mark-all-read": "Σήμανση όλων ως αναγνωσμένων",
     "mark-read": "Σήμανση ως αναγνωσμένο",
     "mute": "Απενεργοποίηση ειδοποιήσεων",
-    "unmute": "Ενεργοποίηση ειδοποιήσεων"
+    "unmute": "Ενεργοποίηση ειδοποιήσεων",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "Most active",
