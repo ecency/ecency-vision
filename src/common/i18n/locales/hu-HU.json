@@ -1025,7 +1025,8 @@
     "mark-all-read": "Összes jelölése olvasottként",
     "mark-read": "Olvasottnak jelölve",
     "mute": "Értesítések kikapcsolása",
-    "unmute": "Értesítések bekapcsolása"
+    "unmute": "Értesítések bekapcsolása",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "Most active",
