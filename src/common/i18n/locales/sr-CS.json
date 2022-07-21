@@ -1025,7 +1025,8 @@
     "mark-all-read": "Označi svе kao pročitano",
     "mark-read": "Označi kao pročitano",
     "mute": "Isključite obaveštenja",
-    "unmute": "Uključite obaveštenja"
+    "unmute": "Uključite obaveštenja",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "Most active",
