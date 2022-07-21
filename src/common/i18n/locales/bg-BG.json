@@ -1025,7 +1025,8 @@
     "mark-all-read": "Маркирайте всички, като прочетени",
     "mark-read": "Маркирай като прочетено",
     "mute": "Изключи всички известия",
-    "unmute": "Включи всички известия"
+    "unmute": "Включи всички известия",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "Most active",
