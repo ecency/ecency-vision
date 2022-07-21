@@ -1025,7 +1025,8 @@
     "mark-all-read": "Tandai semua sebagai yang telah dibaca",
     "mark-read": "Tandai sebagai telah dibaca",
     "mute": "Matikan pemberitahun notifikasi",
-    "unmute": "Hidupkan pemberitahuan notifikasi"
+    "unmute": "Hidupkan pemberitahuan notifikasi",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "Paling Aktif",
