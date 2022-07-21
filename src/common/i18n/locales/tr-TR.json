@@ -1025,7 +1025,8 @@
     "mark-all-read": "Tümünü Okundu Olarak İşaretle",
     "mark-read": "Okundu Olarak İşaretle",
     "mute": "Bildirimleri devre dışı bırak",
-    "unmute": "Bildirimleri aç"
+    "unmute": "Bildirimleri aç",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "En aktif",
