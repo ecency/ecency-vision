@@ -23,36 +23,11 @@ export function initFirebase() {
   FCM = getMessaging(app);
 }
 
-export const notificationBody = (data: any): string => {
-  const { source } = data;
-
-  switch (data.type) {
-    case 'vote':
-      return _t('notification.voted', { source });
-    case 'mention':
-      return data.extra.is_post === 1
-        ? _t('notification.mention-post', { source })
-        : _t('notification.mention-comment', { source });
-    case 'follow':
-      return _t('notification.followed', { source });
-    case 'reply':
-      return _t('notification.replied', { source });
-    case 'reblog':
-      return _t('notification.reblogged', { source });
-    case 'transfer':
-      return _t('notification.transfer', { source, amount: data.extra.amount });
-    case 'delegations':
-      return _t('notification.delegations', { source, amount: data.extra.amount });
-    default:
-      return '';
-  }
-};
-
 export const handleMessage = (payload: MessagePayload) => {
   const notificationTitle = payload.notification?.title || 'Ecency';
 
   const notification = new Notification(notificationTitle, {
-    body: notificationBody(payload.data),
+    body: payload.notification?.body,
     icon: payload.notification?.image,
   });
 
