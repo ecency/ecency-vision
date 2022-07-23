@@ -32,6 +32,7 @@ import { NotifyTypes } from '../../enums';
 import isElectron from '../../util/is-electron';
 import * as ls from '../../util/local-storage';
 import { getFcmToken, initFirebase, listenFCM } from '../../api/firebase';
+import { isSupported } from '@firebase/messaging';
 
 export const initialState: Notifications = {
   filter: null,
@@ -226,11 +227,14 @@ export const updateNotificationsSettings = (
  * @param username
  */
 export const fetchNotificationsSettings = (username: string) => async (dispatch: Dispatch, getState: () => AppState) => {
-  initFirebase();
+  const isFbSupported = await isSupported();
+  if (isFbSupported) {
+    initFirebase();
+  }
   let token = username + (isElectron() ? '-desktop' : '-web');
   let oldToken = ls.get('fb-notifications-token');
   const permission = await Notification.requestPermission();
-  if (permission === 'granted') {
+  if (permission === 'granted' && isFbSupported) {
     token = await getFcmToken();
   }
 
@@ -264,13 +268,15 @@ export const fetchNotificationsSettings = (username: string) => async (dispatch:
       ls.set('fb-notifications-token', token);
     }
 
-    listenFCM(() => {
-      // @ts-ignore
-      dispatch(fetchUnreadNotificationCount());
+    if (isFbSupported) {
+      listenFCM(() => {
+        // @ts-ignore
+        dispatch(fetchUnreadNotificationCount());
 
-      // @ts-ignore
-      dispatch(fetchNotifications(null));
-    });
+        // @ts-ignore
+        dispatch(fetchNotifications(null));
+      });
+    }
   }
 }
 
