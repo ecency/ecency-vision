@@ -219,16 +219,23 @@ export const updateNotificationsSettings = (
   dispatch(setSettingsAct(settings));
 }
 
+/**
+ * Fetch notifications settings from a backend with an existing firebase token
+ * * Token will be created each time then We have to store old token in a local storage
+ * to getting existing settings
+ * @param username
+ */
 export const fetchNotificationsSettings = (username: string) => async (dispatch: Dispatch, getState: () => AppState) => {
   initFirebase();
   let token = username + (isElectron() ? '-desktop' : '-web');
+  let oldToken = ls.get('fb-notifications-token');
   const permission = await Notification.requestPermission();
   if (permission === 'granted') {
     token = await getFcmToken();
   }
 
   try {
-    const settings = await getNotificationSetting(username, token);
+    const settings = await getNotificationSetting(username, oldToken);
     dispatch(setSettingsAct(settings));
   } catch(e) {
     const wasMutedPreviously = ls.get("notifications") === false;
@@ -251,8 +258,11 @@ export const fetchNotificationsSettings = (username: string) => async (dispatch:
   }
 
   if (permission === 'granted') {
-    // @ts-ignore
-    dispatch(updateNotificationsSettings(username, token));
+    if (oldToken !== token) {
+      // @ts-ignore
+      dispatch(updateNotificationsSettings(username, token));
+      ls.set('fb-notifications-token', token);
+    }
 
     listenFCM(() => {
       // @ts-ignore
