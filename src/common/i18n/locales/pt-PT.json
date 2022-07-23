@@ -1332,11 +1332,11 @@
       "what-are-tags-header": "O que são tags ou tópicos?",
       "what-are-tags-body": "<p>Uma etiqueta é um pedaço de informação que descreve o conteúdo da publicação associada. Elas ajudam os mecanismos de pesquisa a identificar o conteúdo das páginas On-line. A utilização dessa informação proporciona os melhores resultados possíveis numa pesquisa. Não esqueça que as etiquetas necessitam ser escritas em letra minúscula. Espaços não são permitidos dentro da mesma etiqueta, mas a utilização de traço é permitida.</p>",
       "how-use-tags-header": "Como usar as etiquetas?",
-      "how-use-tags-body": "<p>Users can create the tags of their choice but by choosing a useful tag users may reveal your post very easy. For example, your first indrotuction post can be popular just by using introduction tag. Be sure that you are using tags that are related to your post otherwise your post may get downvotes for mistagging.</p>",
+      "how-use-tags-body": "<p>Os usuários podem criar as etiquetas, ou tags, a sua escolha. A etiqueta certa será útil para revelar seu post mais facilmente. Por exemplo, seu primeiro post de introdução à comunidade pode obter mais engajamento apenas por ter utilizado a etiqueta \"introdução\". Cuide para utilizar etiquetas de assuntos relacionados a sua publicação, caso contrário poderá receber votos negativos no seu post.</p>",
       "why-publish-gray-header": "Por que o botão Publicar está acinzentado?",
       "why-publish-gray-body": "<p>Se depois de escrever seu post o botão Publicar estiver cinza, cheque se colocou o título e ao menos uma etiqueta válida. Se você não colocá-los, o botão Publicar ficará indisponível.</p>",
       "what-links-show-header": "O que os links de Destaque, Quente, Novo, Em Alta e Controverso mostram?",
-      "what-links-show-body": "<p>This is the way of sorting content on Ecency. <ul><li>Trending - Widely mentioned or discussed posts.</li><li>Hot - Popular posts in last couple hours.</li><li>New - The newest posts sorted by the published time.</li><li>Rising - Posts that have more comments and votes compare to others.</li><li>Controversial - Has a relatively equal number of upvotes and downvotes.</li></ul></p>",
+      "what-links-show-body": "<p>Essa é a maneira de classificar o conteúdo na Ecency. <ul><li>Destaques - Publicações muitas vezes mencionadas ou discutidas.</li><li>Quente - As publicações mais populares das últimas horas.</li><li>Novo - As publicações mais recentes da última hora.</li><li>Subindo - Publicações com mais comentários e votos em comparação com as demais.</li><li>Controverso - Possuem um número relativamente igual de votos positivos e negativos.</li></ul></p>",
       "what-my-rewards-header": "Quais tipos de recompensas são mostradas na minha carteira?",
       "what-my-rewards-body": "<p>Existem dois tipos de recompensa disponíveis na sua carteira:<ul><li>Recompensas de curadoria - As recompensas ganhas por votar em publicações e comentários.</li><li>Recompensas de Autor - As recompensas recebidas pelos seus próprios posts e comentários.</li><li>Recompensas de pontos - Interações sociais também são recompensadas com pontos da Ecency.</li></ul><p/>",
       "what-information-profile-header": "Quais informações são exibidas no meu perfil?",
@@ -1344,7 +1344,7 @@
       "what-can-post-header": "O que eu posso postar na Ecency?",
       "what-can-post-body": "<p>Ecency é a casa da liberdade de expressão, onde é possível publicar suas criações: frases, ditados, blogs, piadas, fotos, vídeos, memes, músicas e muito mais. Seja criativo! Só cuide com <a href=\"/faq#what-spam-abuse\" class=\"push-link\">spam ou abusos na plataforma</a></p>",
       "add-images-videos-header": "Como adicionar imagens e vídeos nas minhas publicações?",
-      "add-images-videos-body": "<p>You have several options like browsing your hard drive to add an image by clicking on the selecting them link from within the editor or if you have copied image just click ctrl+v (cmd+v) and your image will be uploaded into your post or comment. Another way that you can use for videos and images is paste the image or video's web address (URL) into the editor and it will automatically be added.</p>",
+      "add-images-videos-body": "<p>Você possui várias opções para adicionar uma imagem. Copie uma imagem de dentro do seu computador. Clique ctrl+v no Windows ou cmd+v no Mac, no editor de publicações, para colar sua imagem copiada a sua publicação. Outra forma que você pode utilizar para incluir vídeos e imagens é colando o endereço (URL) no editor de publicações.</p>",
       "what-thumbnail-image-header": "O que é a imagem de capa?",
       "what-thumbnail-image-body": "<p>A imagem de capa é uma versão reduzida da foto disponível numa publicação. Ela representa a primeira impressão que os leitores terão do seu post. Para escolher a imagem de capa antes de publicar seu conteúdo, clique no botão \"Avançado\" na página de criação de post, e selecione uma foto como imagem de capa.</p>",
       "what-dollar-amount-header": "O que significa o valor em dólar próximo às publicações e comentários?",
@@ -1356,7 +1356,7 @@
       "what-voting-power-header": "O que é força de voto?",
       "what-voting-power-body": "<p>Your voting power goes down a little bit every time you vote. It begins with 100% voting power and by voting you use small amount of voting power. The more you vote the fewer influence you have, meaning efficiency of your vote will decay. Daily 10 votes are recommended to utilize efficiency and curation rewards better.</p>",
       "how-many-vote-header": "Quantas vezes posso votar com o meu poder de voto?",
-      "how-many-vote-body": "<p>Every 100% vote you cast will use 2% of your remaining voting mana. Your voting mana will recharge by 20% each day. You can vote more than 10 times per day, but each vote will be worth less, and it will take longer to reach full voting power again.</p>"
+      "how-many-vote-body": "<p>Para cada voto positivo com 100% de força realizado, 2% do poder de voto é utilizado. Seu poder de voto é recarregado em 20% por dia. Embora seja possível votar mais de 10 vezes por dia, cada novo voto valerá menos, e seu poder de voto demorará mais tempo para atingir sua força total novamente.</p>"
     }
   },
   "contributors": {
