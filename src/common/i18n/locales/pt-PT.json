@@ -1354,7 +1354,7 @@
       "convert-hive-dollar-header": "Quanto tempo leva para converter Hive Dollars em HIVE?",
       "convert-hive-dollar-body": "<p>A blockchain processará a transação durante 3,5 dias para conversões de Hive Dollars em HIVE.</p>",
       "what-voting-power-header": "O que é força de voto?",
-      "what-voting-power-body": "<p>Your voting power goes down a little bit every time you vote. It begins with 100% voting power and by voting you use small amount of voting power. The more you vote the fewer influence you have, meaning efficiency of your vote will decay. Daily 10 votes are recommended to utilize efficiency and curation rewards better.</p>",
+      "what-voting-power-body": "<p>O seu poder de voto diminui a cada voto realizado. Ele inicia com 100%, e votando você utiliza uma pequena quantidade do seu poder de voto. Quanto mais votos, menos influência eles terão, portanto a eficácia do voto diminuirá. Recomenda-se 10 votos diários para melhor utilização das recompensas da curadoria.</p>",
       "how-many-vote-header": "Quantas vezes posso votar com o meu poder de voto?",
       "how-many-vote-body": "<p>Para cada voto positivo com 100% de força realizado, 2% do poder de voto é utilizado. Seu poder de voto é recarregado em 20% por dia. Embora seja possível votar mais de 10 vezes por dia, cada novo voto valerá menos, e seu poder de voto demorará mais tempo para atingir sua força total novamente.</p>"
     }
