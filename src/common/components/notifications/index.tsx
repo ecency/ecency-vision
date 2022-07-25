@@ -219,11 +219,7 @@ export class DialogContent extends Component<NotificationProps, any> {
     return (
       <div className="notification-list">
         <div className="list-header">
-          <div className="list-filter">
-            <span>{filter ? _t(`notifications.type-${filter}`) : _t('notifications.type-all')}</span>
-            <DropDown {...dropDownConfig} float="left"/>
-          </div>
-          <div className="list-actions">
+          <div className="list-filter list-actions">
             <DropDown
               className={'settings'}
               header="Settings"
@@ -237,20 +233,13 @@ export class DialogContent extends Component<NotificationProps, any> {
               ]}
               history={this.props.history || history}
               label={<span className={_c(`list-action ${loading ? 'disabled' : ''}`)}>{settingsSvg}</span>}
-              float="right"
+              float="left"
               notHideOnClick={true}
             />
-            {/*{global.notifications && (*/}
-            {/*  <Tooltip content={_t('notifications.mute')}>*/}
-            {/*    <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.mute}>{bellOffSvg}</span>*/}
-            {/*  </Tooltip>*/}
-            {/*)}*/}
-            {/*{!global.notifications && (*/}
-            {/*  <Tooltip content={_t('notifications.unmute')}>*/}
-            {/*    <span className={_c(`list-action ${loading ? 'disabled' : ''}`)}*/}
-            {/*          onClick={this.unMute}>{bellCheckSvg}</span>*/}
-            {/*  </Tooltip>*/}
-            {/*)}*/}
+            <span>{filter ? _t(`notifications.type-${filter}`) : _t('notifications.type-all')}</span>
+            <DropDown {...dropDownConfig} float="left"/>
+          </div>
+          <div className="list-actions">
             <Tooltip content={_t('notifications.refresh')}>
               <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.refresh}>{syncSvg}</span>
             </Tooltip>
