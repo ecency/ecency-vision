@@ -227,7 +227,7 @@ export const updateNotificationsSettings = (
  * @param username
  */
 export const fetchNotificationsSettings = (username: string) => async (dispatch: Dispatch, getState: () => AppState) => {
-  const isFbSupported = await isSupported();
+  const isFbSupported = await isSupported() && !isElectron();
   if (isFbSupported) {
     initFirebase();
   }
