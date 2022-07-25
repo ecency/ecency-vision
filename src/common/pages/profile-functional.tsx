@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useCallback } from 'react';
 import { match } from 'react-router';
 
 import { Redirect } from 'react-router-dom'
@@ -278,7 +278,7 @@ export const Profile = (props: Props) => {
   }
 
   const handleInputChange = async (value: string) => {
-    setSearch(value || '');
+    // setSearch(value || '');
     setTyping(false);
     if (value.trim() === '') {
       // this.setState({proposals: this.state.allProposals});
@@ -295,7 +295,7 @@ export const Profile = (props: Props) => {
       }
       let data: any;
       try {
-        data = await searchApi(query, 'newest', '0')
+        data = await searchApi(query, 'newest', '0');
       } catch (error) {
         data = null;
       }
@@ -308,7 +308,7 @@ export const Profile = (props: Props) => {
     }
   }
 
-  const delayedSearch = _.debounce(handleInputChange, 2000);
+  const delayedSearch = useCallback(_.debounce(handleInputChange, 3000, {leading: true}), [])
 
   const getNavBar = () => {
     return props.global.isElectron ? NavBarElectron({
