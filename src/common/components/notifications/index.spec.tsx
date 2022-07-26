@@ -5,7 +5,7 @@ import {createBrowserHistory} from 'history';
 
 import {dynamicPropsIntance1, globalInstance} from "../../helper/test-helper";
 
-import {NotificationListItem} from './index';
+import NotificationListItem from './notification-list-item';
 
 import {
     apiVoteNotification,

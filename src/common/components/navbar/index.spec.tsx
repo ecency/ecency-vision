@@ -53,7 +53,8 @@ const defProps = {
     },
     setStepOne: () => {
     },
-};
+    fetchNotificationsSettings: () => {}
+} as any;
 
 //const itif = (condition) => condition ? it : it.skip;
 
