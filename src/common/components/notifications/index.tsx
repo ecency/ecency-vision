@@ -15,7 +15,7 @@ import DropDown from '../dropdown';
 import Tooltip from '../tooltip';
 import { _t } from '../../i18n';
 import _c from '../../util/fix-class-names'
-import { bellCheckSvg, bellOffSvg, checkSvg, settingsSvg, syncSvg } from '../../img/svg';
+import { checkSvg, settingsSvg, syncSvg } from '../../img/svg';
 import { NotifyTypes } from '../../enums';
 import NotificationListItem from './notification-list-item';
 import { setNotificationsSettingsItem, updateNotificationsSettings } from '../../store/notifications';
@@ -71,7 +71,8 @@ export class DialogContent extends Component<NotificationProps, any> {
         [NotifyTypes.MENTION]: false,
         [NotifyTypes.VOTE]: false,
         [NotifyTypes.RE_BLOG]: false,
-        [NotifyTypes.TRANSFERS]: false
+        [NotifyTypes.TRANSFERS]: false,
+        [NotifyTypes.ALLOW_NOTIFY]: false,
       },
       saveSettingsWithDebounce: null,
     };
@@ -83,20 +84,31 @@ export class DialogContent extends Component<NotificationProps, any> {
     if (notifications.list.length === 0) {
       fetchNotifications(null);
     }
+
+    this.prepareSettings();
   }
 
   componentDidUpdate(prevProps: Readonly<NotificationProps>, prevState: Readonly<{ settings: { [p: number]: boolean } }>, snapshot?: any) {
+    this.prepareSettings();
+  }
+
+  prepareSettings = () => {
     const { notifications } = this.props;
     if (notifications.settings) {
-      const settings = {};
+      const settings = {
+        [NotifyTypes.ALLOW_NOTIFY]: notifications.settings.allows_notify === 1
+      };
       Object.keys(this.state.settings)
+        .filter(key => key !== NotifyTypes.ALLOW_NOTIFY)
         .forEach(type => {
           const isTurnedOn = (notifications.settings?.notify_types || []).includes(+type);
           if (isTurnedOn !== this.state.settings[type]) {
             settings[type] = isTurnedOn;
           }
         });
-      if (Object.keys(settings).length > 0) {
+      const hasAtLeastOneChange = Object.keys(settings).filter(key => key !== NotifyTypes.ALLOW_NOTIFY).length > 0;
+      const allowsNotifyChanged = (notifications.settings.allows_notify === 1) !== this.state.settings[NotifyTypes.ALLOW_NOTIFY];
+      if (hasAtLeastOneChange || allowsNotifyChanged) {
         this.setState({
           settings: {
             ...this.state.settings,
@@ -156,7 +168,13 @@ export class DialogContent extends Component<NotificationProps, any> {
   }
 
   saveSettingsWithDebounce = (type: NotifyTypes) => {
-    const { setNotificationsSettingsItem } = this.props;
+    const { setNotificationsSettingsItem, notifications } = this.props;
+
+    // disabled
+    if (notifications.settings?.allows_notify === 0 && type !== NotifyTypes.ALLOW_NOTIFY) {
+      return;
+    }
+
     setNotificationsSettingsItem(type, !this.state.settings[type]);
 
     if (this.state.saveSettingsWithDebounce) {
@@ -169,13 +187,11 @@ export class DialogContent extends Component<NotificationProps, any> {
         this.setState({
           saveSettingsWithDebounce: null,
         });
-      }, 500)
+      }, 1000)
     });
   }
 
   render() {
-    const { settings } = this.props.notifications;
-
     const filters = Object.values(NotificationFilter);
     const menuItems = [
       {
@@ -203,6 +219,7 @@ export class DialogContent extends Component<NotificationProps, any> {
       content: <Form.Check
         type="switch"
         checked={this.state.settings[type]}
+        disabled={this.props.notifications.settings?.allows_notify === 0 && type !== NotifyTypes.ALLOW_NOTIFY}
         onChange={() => this.saveSettingsWithDebounce(type)}
       />,
       onClick: () => this.saveSettingsWithDebounce(type)
@@ -213,7 +230,7 @@ export class DialogContent extends Component<NotificationProps, any> {
       items: menuItems
     };
 
-    const { notifications, global } = this.props;
+    const { notifications } = this.props;
     const { list, loading, filter, hasMore, unread } = notifications;
 
     return (
@@ -224,6 +241,7 @@ export class DialogContent extends Component<NotificationProps, any> {
               className={'settings'}
               header="Settings"
               items={[
+                getNotificationSettingsItem('Enable', NotifyTypes.ALLOW_NOTIFY),
                 getNotificationSettingsItem('Votes', NotifyTypes.VOTE),
                 getNotificationSettingsItem('Comments', NotifyTypes.COMMENT),
                 getNotificationSettingsItem('Mentions', NotifyTypes.MENTION),

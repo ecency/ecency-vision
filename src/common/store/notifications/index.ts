@@ -15,6 +15,7 @@ import {
   Notifications,
   SetFilterAction,
   SetSettingsAction,
+  SetSettingsAllowNotifyAction,
   SetSettingsItemAction,
   SetUnreadCountAction
 } from './types';
@@ -132,7 +133,7 @@ export default (state: Notifications = initialState, action: Actions): Notificat
       };
     case ActionTypes.SET_SETTINGS_ITEM:
       const types = state.settings?.notify_types || [];
-      const nextTypes = types.includes(action.settingsType) ?
+      const nextTypes = types.includes(action.settingsType as number) ?
         types.filter(t => t !== action.settingsType) :
         [...types, action.settingsType];
       return {
@@ -140,6 +141,14 @@ export default (state: Notifications = initialState, action: Actions): Notificat
         settings: {
           ...state.settings,
           notify_types: nextTypes
+        } as ApiNotificationSetting
+      }
+    case ActionTypes.SET_SETTINGS_ALLOW_NOTIFY:
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          allows_notify: action.value ? 1 : 0
         } as ApiNotificationSetting
       }
     default:
@@ -203,19 +212,21 @@ export const markNotifications = (id: string | null) => (dispatch: Dispatch, get
 }
 
 export const setNotificationsSettingsItem = (type: NotifyTypes, value: boolean) => (dispatch: Dispatch, getState: () => AppState) => {
+  if (type === NotifyTypes.ALLOW_NOTIFY) {
+    const isEnabled = getState().notifications.settings?.allows_notify === 1;
+    dispatch(setSettingsAllowAll(!isEnabled));
+    return;
+  }
   dispatch(setSettingsItemAct(type, value));
 };
 
-export const updateNotificationsSettings = (
-  username: string,
-  token = username + (isElectron() ? '-desktop' : '-web'),
-) => async (dispatch: Dispatch, getState: () => AppState) => {
+export const updateNotificationsSettings = (username: string, token?: string) => async (dispatch: Dispatch, getState: () => AppState) => {
   const notifyTypes = getState().notifications.settings?.notify_types || [];
   const settings = await saveNotificationsSettings(
     username,
     notifyTypes,
-    notifyTypes.length > 0,
-    token,
+    getState().notifications.settings?.allows_notify === 1,
+    token || ls.get('fb-notifications-token') || username + (isElectron() ? '-desktop' : '-web'),
   );
   dispatch(setSettingsAct(settings));
 }
@@ -325,5 +336,10 @@ export const setSettingsAct = (settings: ApiNotificationSetting): SetSettingsAct
 export const setSettingsItemAct = (settingsType: NotifyTypes, value: boolean): SetSettingsItemAction => ({
   type: ActionTypes.SET_SETTINGS_ITEM,
   settingsType,
+  value
+});
+
+export const setSettingsAllowAll = (value: boolean): SetSettingsAllowNotifyAction => ({
+  type: ActionTypes.SET_SETTINGS_ALLOW_NOTIFY,
   value
 });

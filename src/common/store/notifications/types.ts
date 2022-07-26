@@ -239,6 +239,7 @@ export enum ActionTypes {
     MARK = "@notifications/MARK",
     SET_SETTINGS = "@notifications/SET_SETTINGS",
     SET_SETTINGS_ITEM = "@notifications/SET_SETTINGS_ITEM",
+    SET_SETTINGS_ALLOW_NOTIFY = "@notifications/SET_ALLOW_NOTIFY"
 }
 
 export interface FetchAction {
@@ -278,6 +279,11 @@ export interface SetSettingsItemAction {
     value: boolean;
 }
 
+export interface SetSettingsAllowNotifyAction {
+    type: ActionTypes.SET_SETTINGS_ALLOW_NOTIFY;
+    value: boolean;
+}
+
 export type Actions = FetchAction
     | FetchedAction
     | SetFilterAction
@@ -286,4 +292,5 @@ export type Actions = FetchAction
     | LogoutAction
     | MarkAction
     | SetSettingsAction
-    | SetSettingsItemAction;
+    | SetSettingsItemAction
+    | SetSettingsAllowNotifyAction;
