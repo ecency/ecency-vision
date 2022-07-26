@@ -14,6 +14,7 @@ export interface MenuItem {
     id?: string;
     icon?: JSX.Element;
     content?: JSX.Element;
+    isStatic?: boolean;
 }
 
 interface Props {
@@ -30,6 +31,7 @@ interface Props {
     onHide?: () => void;
     notHideOnClick?: boolean;
     className?: string;
+    withPadding?: boolean;
 }
 
 const MyDropDown = (props: Props) => {
@@ -118,7 +120,7 @@ const MyDropDown = (props: Props) => {
             label
         );
 
-    const menuCls = _c(`custom-dropdown float-${float} ${props?.alignBottom ? "align-bottom" : ""} ${props.className || ''}`);
+    const menuCls = _c(`custom-dropdown float-${float} ${props.withPadding ? 'with-padding' : ''} ${props?.alignBottom ? "align-bottom" : ""} ${props.className || ''}`);
 
     return mounted ? (
         <div
@@ -138,9 +140,19 @@ const MyDropDown = (props: Props) => {
                             {items.map((i, k) => {
                                 return (
                                     <div
-                                        {...i}
+                                        {...{
+                                            label: i.label,
+                                            href: i.href,
+                                            onClick: i.onClick,
+                                            selected: i.selected,
+                                            flash: i.flash,
+                                            disabled: i.disabled,
+                                            id: i.id,
+                                            icon: i.icon,
+                                            content: i.content
+                                        }}
                                         key={k}
-                                        className={`menu-item ${i?.selected ? "active" : ""}`}
+                                        className={`menu-item ${i.isStatic ? 'static' : ''} ${i?.selected ? "active" : ""}`}
                                         onClick={() => {
                                             itemClicked(i);
                                         }}
@@ -174,6 +186,7 @@ export default (p: Props) => {
         onShow: p?.onShow,
         onHide: p?.onHide,
         className: p?.className,
+        withPadding: p?.withPadding,
     };
 
     return <MyDropDown {...props} />

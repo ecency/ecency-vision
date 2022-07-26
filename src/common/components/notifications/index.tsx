@@ -237,10 +237,35 @@ export class DialogContent extends Component<NotificationProps, any> {
       <div className="notification-list">
         <div className="list-header">
           <div className="list-filter list-actions">
+            <span>{filter ? _t(`notifications.type-${filter}`) : _t('notifications.type-all')}</span>
+            <DropDown {...dropDownConfig} float="left"/>
+          </div>
+          <div className="list-actions">
             <DropDown
               className={'settings'}
               header="Settings"
+              withPadding={true}
               items={[
+                {
+                  label: 'Refresh',
+                  isStatic: true,
+                  content: <div className="list-actions">
+                    <Tooltip content={_t('notifications.refresh')}>
+                      <span className={_c(`list-action ${loading ? 'disabled' : ''}`)}>{syncSvg}</span>
+                    </Tooltip>
+                  </div>,
+                  onClick: () => this.refresh(),
+                },
+                {
+                  label: 'Mark all as read',
+                  isStatic: true,
+                  content: <div className="list-actions">
+                    <Tooltip content={_t('notifications.mark-all-read')}>
+                      <span className={_c(`list-action ${loading || unread === 0 ? 'disabled' : ''}`)}>{checkSvg}</span>
+                    </Tooltip>
+                  </div>,
+                  onClick: () => this.markAsRead()
+                },
                 getNotificationSettingsItem('Enable', NotifyTypes.ALLOW_NOTIFY),
                 getNotificationSettingsItem('Votes', NotifyTypes.VOTE),
                 getNotificationSettingsItem('Comments', NotifyTypes.COMMENT),
@@ -251,20 +276,9 @@ export class DialogContent extends Component<NotificationProps, any> {
               ]}
               history={this.props.history || history}
               label={<span className={_c(`list-action ${loading ? 'disabled' : ''}`)}>{settingsSvg}</span>}
-              float="left"
+              float="right"
               notHideOnClick={true}
             />
-            <span>{filter ? _t(`notifications.type-${filter}`) : _t('notifications.type-all')}</span>
-            <DropDown {...dropDownConfig} float="left"/>
-          </div>
-          <div className="list-actions">
-            <Tooltip content={_t('notifications.refresh')}>
-              <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.refresh}>{syncSvg}</span>
-            </Tooltip>
-            <Tooltip content={_t('notifications.mark-all-read')}>
-              <span className={_c(`list-action ${loading || unread === 0 ? 'disabled' : ''}`)}
-                    onClick={this.markAsRead}>{checkSvg}</span>
-            </Tooltip>
           </div>
         </div>
 
