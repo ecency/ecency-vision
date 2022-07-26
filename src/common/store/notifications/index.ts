@@ -222,6 +222,17 @@ export const setNotificationsSettingsItem = (type: NotifyTypes, value: boolean) 
   if (type === NotifyTypes.ALLOW_NOTIFY) {
     const isEnabled = getState().notifications.settings?.allows_notify === 1;
     dispatch(setSettingsAllowAllAct(!isEnabled));
+    dispatch(setSettingsAct({
+      ...(getState().notifications.settings || {}),
+      notify_types: !isEnabled ? [
+        NotifyTypes.COMMENT,
+        NotifyTypes.FOLLOW,
+        NotifyTypes.VOTE,
+        NotifyTypes.MENTION,
+        NotifyTypes.RE_BLOG,
+        NotifyTypes.TRANSFERS
+      ] : []
+    } as ApiNotificationSetting));
     return;
   }
   dispatch(setSettingsItemAct(type, value));
