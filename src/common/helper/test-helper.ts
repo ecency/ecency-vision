@@ -843,7 +843,8 @@ export const notificationsInstance1: Notifications = {
     list: [],
     loading: false,
     hasMore: true,
-    unreadFetchFlag: true
+    unreadFetchFlag: true,
+    fbSupport: 'pending'
 }
 
 export const apiVoteNotification: ApiVoteNotification = {

@@ -403,7 +403,7 @@ export const getPromotedEntries = (): Promise<Entry[]> => {
 }
 
 export const saveNotificationsSettings = (username: string, notifyTypes: NotifyTypes[], isEnabled: boolean, token: string) => {
-    return saveNotificationSetting(username, isElectron() ? 'desktop' : 'web', Number(isEnabled), notifyTypes, token);
+    return saveNotificationSetting(username, isElectron() ? 'desktop' : 'web', Number(isEnabled), notifyTypes as number[], token);
 }
 
 export interface ReferralItem {

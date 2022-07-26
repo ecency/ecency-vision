@@ -12,6 +12,8 @@
   "dependencies": {
     "@ecency/render-helper": "^2.2.19",
     "@ecency/render-helper-amp": "^1.1.0",
+    "@firebase/app": "^0.7.28",
+    "@firebase/messaging": "^0.9.16",
     "@hiveio/dhive": "^1.2.1",
     "@hiveio/hivescript": "^1.2.7",
     "@loadable/component": "^5.15.2",

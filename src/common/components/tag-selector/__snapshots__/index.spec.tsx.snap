@@ -19,6 +19,7 @@ exports[`(1) No tags 1`] = `
       onPaste={[Function]}
       placeholder="Tags. First tag is main category. Sortable."
       spellCheck={true}
+      tabIndex={0}
       type="text"
       value=""
     />
@@ -47,6 +48,7 @@ exports[`(2) With tags 1`] = `
       onPaste={[Function]}
       placeholder="Add More"
       spellCheck={true}
+      tabIndex={0}
       type="text"
       value=""
     />
@@ -129,6 +131,7 @@ exports[`(3) No tags with focus 1`] = `
       onPaste={[Function]}
       placeholder="Enter tag"
       spellCheck={true}
+      tabIndex={0}
       type="text"
       value=""
     />

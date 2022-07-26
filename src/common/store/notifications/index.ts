@@ -13,8 +13,10 @@ import {
   NFetchMode,
   NotificationFilter,
   Notifications,
+  SetFbSupportedAction,
   SetFilterAction,
   SetSettingsAction,
+  SetSettingsAllowNotifyAction,
   SetSettingsItemAction,
   SetUnreadCountAction
 } from './types';
@@ -31,6 +33,8 @@ import {
 import { NotifyTypes } from '../../enums';
 import isElectron from '../../util/is-electron';
 import * as ls from '../../util/local-storage';
+import { getFcmToken, initFirebase, listenFCM } from '../../api/firebase';
+import { isSupported } from '@firebase/messaging';
 
 export const initialState: Notifications = {
   filter: null,
@@ -39,6 +43,7 @@ export const initialState: Notifications = {
   loading: false,
   hasMore: true,
   unreadFetchFlag: true,
+  fbSupport: 'pending',
 };
 
 export default (state: Notifications = initialState, action: Actions): Notifications => {
@@ -130,7 +135,7 @@ export default (state: Notifications = initialState, action: Actions): Notificat
       };
     case ActionTypes.SET_SETTINGS_ITEM:
       const types = state.settings?.notify_types || [];
-      const nextTypes = types.includes(action.settingsType) ?
+      const nextTypes = types.includes(action.settingsType as number) ?
         types.filter(t => t !== action.settingsType) :
         [...types, action.settingsType];
       return {
@@ -140,6 +145,19 @@ export default (state: Notifications = initialState, action: Actions): Notificat
           notify_types: nextTypes
         } as ApiNotificationSetting
       }
+    case ActionTypes.SET_SETTINGS_ALLOW_NOTIFY:
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          allows_notify: action.value ? 1 : 0
+        } as ApiNotificationSetting
+      }
+    case ActionTypes.SET_FB_SUPPORTED:
+      return {
+        ...state,
+        fbSupport: action.value
+      };
     default:
       return state;
   }
@@ -201,39 +219,100 @@ export const markNotifications = (id: string | null) => (dispatch: Dispatch, get
 }
 
 export const setNotificationsSettingsItem = (type: NotifyTypes, value: boolean) => (dispatch: Dispatch, getState: () => AppState) => {
+  if (type === NotifyTypes.ALLOW_NOTIFY) {
+    const isEnabled = getState().notifications.settings?.allows_notify === 1;
+    dispatch(setSettingsAllowAllAct(!isEnabled));
+    dispatch(setSettingsAct({
+      ...(getState().notifications.settings || {}),
+      notify_types: !isEnabled ? [
+        NotifyTypes.COMMENT,
+        NotifyTypes.FOLLOW,
+        NotifyTypes.VOTE,
+        NotifyTypes.MENTION,
+        NotifyTypes.RE_BLOG,
+        NotifyTypes.TRANSFERS
+      ] : []
+    } as ApiNotificationSetting));
+    return;
+  }
   dispatch(setSettingsItemAct(type, value));
 };
 
-export const updateNotificationsSettings = (username: string) => async (dispatch: Dispatch, getState: () => AppState) => {
+export const updateNotificationsSettings = (username: string, token?: string) => async (dispatch: Dispatch, getState: () => AppState) => {
   const notifyTypes = getState().notifications.settings?.notify_types || [];
   const settings = await saveNotificationsSettings(
     username,
     notifyTypes,
-    notifyTypes.length > 0,
-    username + (isElectron() ? '-desktop' : '-web')
+    getState().notifications.settings?.allows_notify === 1,
+    token || ls.get('fb-notifications-token') || username + (isElectron() ? '-desktop' : '-web'),
   );
   dispatch(setSettingsAct(settings));
 }
 
+/**
+ * Fetch notifications settings from a backend with an existing firebase token
+ * * Token will be created each time then We have to store old token in a local storage
+ * to getting existing settings
+ * @param username
+ */
 export const fetchNotificationsSettings = (username: string) => async (dispatch: Dispatch, getState: () => AppState) => {
+  let isFbSupported = await isSupported() && !isElectron();
+  if (isFbSupported) {
+    initFirebase();
+  }
+  let token = username + (isElectron() ? '-desktop' : '-web');
+  let oldToken = ls.get('fb-notifications-token');
+  const permission = await Notification.requestPermission();
+  if (permission === 'granted' && isFbSupported) {
+    try {
+      token = await getFcmToken();
+    } catch (e) {
+      isFbSupported = false;
+    }
+  }
+
   try {
-    const settings = await getNotificationSetting(username, username + (isElectron() ? '-desktop' : '-web'));
+    const settings = await getNotificationSetting(username, oldToken);
     dispatch(setSettingsAct(settings));
   } catch(e) {
-    const allTypes = [
-      NotifyTypes.COMMENT,
-      NotifyTypes.FOLLOW,
-      NotifyTypes.MENTION,
-      NotifyTypes.VOTE,
-      NotifyTypes.RE_BLOG,
-      NotifyTypes.TRANSFERS,
-    ];
     const wasMutedPreviously = ls.get("notifications") === false;
+    const settings = {
+      ...getState().notifications.settings as ApiNotificationSetting,
+      notify_types: wasMutedPreviously ? [] : [
+        NotifyTypes.COMMENT,
+        NotifyTypes.FOLLOW,
+        NotifyTypes.MENTION,
+        NotifyTypes.VOTE,
+        NotifyTypes.RE_BLOG,
+        NotifyTypes.TRANSFERS,
+      ] as number[],
+    };
+    dispatch(setSettingsAct(settings));
     ls.remove('notifications');
 
     // @ts-ignore
-    dispatch(updateNotificationsSettings(username, wasMutedPreviously ? [] : allTypes))
+    dispatch(updateNotificationsSettings(username, token));
   }
+
+  if (permission === 'granted') {
+    if (oldToken !== token) {
+      // @ts-ignore
+      dispatch(updateNotificationsSettings(username, token));
+      ls.set('fb-notifications-token', token);
+    }
+
+    if (isFbSupported) {
+      listenFCM(() => {
+        // @ts-ignore
+        dispatch(fetchUnreadNotificationCount());
+
+        // @ts-ignore
+        dispatch(fetchNotifications(null));
+      });
+    }
+  }
+
+  dispatch(setFbSupportedAct(isFbSupported ? 'granted' : 'denied'));
 }
 
 /* Action Creators */
@@ -281,5 +360,15 @@ export const setSettingsAct = (settings: ApiNotificationSetting): SetSettingsAct
 export const setSettingsItemAct = (settingsType: NotifyTypes, value: boolean): SetSettingsItemAction => ({
   type: ActionTypes.SET_SETTINGS_ITEM,
   settingsType,
+  value
+});
+
+export const setSettingsAllowAllAct = (value: boolean): SetSettingsAllowNotifyAction => ({
+  type: ActionTypes.SET_SETTINGS_ALLOW_NOTIFY,
+  value
+});
+
+export const setFbSupportedAct = (value: 'pending' | 'granted' | 'denied'): SetFbSupportedAction => ({
+  type: ActionTypes.SET_FB_SUPPORTED,
   value
 });

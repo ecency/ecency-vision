@@ -15,7 +15,7 @@ import DropDown from '../dropdown';
 import Tooltip from '../tooltip';
 import { _t } from '../../i18n';
 import _c from '../../util/fix-class-names'
-import { bellCheckSvg, bellOffSvg, checkSvg, settingsSvg, syncSvg } from '../../img/svg';
+import { checkSvg, settingsSvg, syncSvg } from '../../img/svg';
 import { NotifyTypes } from '../../enums';
 import NotificationListItem from './notification-list-item';
 import { setNotificationsSettingsItem, updateNotificationsSettings } from '../../store/notifications';
@@ -71,7 +71,8 @@ export class DialogContent extends Component<NotificationProps, any> {
         [NotifyTypes.MENTION]: false,
         [NotifyTypes.VOTE]: false,
         [NotifyTypes.RE_BLOG]: false,
-        [NotifyTypes.TRANSFERS]: false
+        [NotifyTypes.TRANSFERS]: false,
+        [NotifyTypes.ALLOW_NOTIFY]: false,
       },
       saveSettingsWithDebounce: null,
     };
@@ -94,15 +95,20 @@ export class DialogContent extends Component<NotificationProps, any> {
   prepareSettings = () => {
     const { notifications } = this.props;
     if (notifications.settings) {
-      const settings = {};
+      const settings = {
+        [NotifyTypes.ALLOW_NOTIFY]: notifications.settings.allows_notify === 1
+      };
       Object.keys(this.state.settings)
+        .filter(key => key !== NotifyTypes.ALLOW_NOTIFY)
         .forEach(type => {
           const isTurnedOn = (notifications.settings?.notify_types || []).includes(+type);
           if (isTurnedOn !== this.state.settings[type]) {
             settings[type] = isTurnedOn;
           }
         });
-      if (Object.keys(settings).length > 0) {
+      const hasAtLeastOneChange = Object.keys(settings).filter(key => key !== NotifyTypes.ALLOW_NOTIFY).length > 0;
+      const allowsNotifyChanged = (notifications.settings.allows_notify === 1) !== this.state.settings[NotifyTypes.ALLOW_NOTIFY];
+      if (hasAtLeastOneChange || allowsNotifyChanged) {
         this.setState({
           settings: {
             ...this.state.settings,
@@ -162,7 +168,13 @@ export class DialogContent extends Component<NotificationProps, any> {
   }
 
   saveSettingsWithDebounce = (type: NotifyTypes) => {
-    const { setNotificationsSettingsItem } = this.props;
+    const { setNotificationsSettingsItem, notifications } = this.props;
+
+    // disabled
+    if (notifications.settings?.allows_notify === 0 && type !== NotifyTypes.ALLOW_NOTIFY) {
+      return;
+    }
+
     setNotificationsSettingsItem(type, !this.state.settings[type]);
 
     if (this.state.saveSettingsWithDebounce) {
@@ -175,13 +187,11 @@ export class DialogContent extends Component<NotificationProps, any> {
         this.setState({
           saveSettingsWithDebounce: null,
         });
-      }, 500)
+      }, 1000)
     });
   }
 
   render() {
-    const { settings } = this.props.notifications;
-
     const filters = Object.values(NotificationFilter);
     const menuItems = [
       {
@@ -209,6 +219,7 @@ export class DialogContent extends Component<NotificationProps, any> {
       content: <Form.Check
         type="switch"
         checked={this.state.settings[type]}
+        disabled={this.props.notifications.settings?.allows_notify === 0 && type !== NotifyTypes.ALLOW_NOTIFY}
         onChange={() => this.saveSettingsWithDebounce(type)}
       />,
       onClick: () => this.saveSettingsWithDebounce(type)
@@ -219,13 +230,13 @@ export class DialogContent extends Component<NotificationProps, any> {
       items: menuItems
     };
 
-    const { notifications, global } = this.props;
+    const { notifications } = this.props;
     const { list, loading, filter, hasMore, unread } = notifications;
 
     return (
       <div className="notification-list">
         <div className="list-header">
-          <div className="list-filter">
+          <div className="list-filter list-actions">
             <span>{filter ? _t(`notifications.type-${filter}`) : _t('notifications.type-all')}</span>
             <DropDown {...dropDownConfig} float="left"/>
           </div>
@@ -233,7 +244,29 @@ export class DialogContent extends Component<NotificationProps, any> {
             <DropDown
               className={'settings'}
               header={_t(`notifications.settings`)}
+              withPadding={true}
               items={[
+                {
+                  label: _t(`notifications.mark-all-read`),
+                  isStatic: true,
+                  content: <div className="list-actions">
+                    <Tooltip content={_t('notifications.mark-all-read')}>
+                      <span className={_c(`list-action ${loading || unread === 0 ? 'disabled' : ''}`)}>{checkSvg}</span>
+                    </Tooltip>
+                  </div>,
+                  onClick: () => this.markAsRead()
+                },
+                {
+                  label: _t(`notifications.refresh`),
+                  isStatic: true,
+                  content: <div className="list-actions">
+                    <Tooltip content={_t('notifications.refresh')}>
+                      <span className={_c(`list-action ${loading ? 'disabled' : ''}`)}>{syncSvg}</span>
+                    </Tooltip>
+                  </div>,
+                  onClick: () => this.refresh(),
+                },
+                getNotificationSettingsItem(_t(`notifications.type-all-short`), NotifyTypes.ALLOW_NOTIFY),
                 getNotificationSettingsItem(_t(`notifications.type-rvotes`), NotifyTypes.VOTE),
                 getNotificationSettingsItem(_t(`notifications.type-replies`), NotifyTypes.COMMENT),
                 getNotificationSettingsItem(_t(`notifications.type-mentions`), NotifyTypes.MENTION),
@@ -246,24 +279,6 @@ export class DialogContent extends Component<NotificationProps, any> {
               float="right"
               notHideOnClick={true}
             />
-            {/*{global.notifications && (*/}
-            {/*  <Tooltip content={_t('notifications.mute')}>*/}
-            {/*    <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.mute}>{bellOffSvg}</span>*/}
-            {/*  </Tooltip>*/}
-            {/*)}*/}
-            {/*{!global.notifications && (*/}
-            {/*  <Tooltip content={_t('notifications.unmute')}>*/}
-            {/*    <span className={_c(`list-action ${loading ? 'disabled' : ''}`)}*/}
-            {/*          onClick={this.unMute}>{bellCheckSvg}</span>*/}
-            {/*  </Tooltip>*/}
-            {/*)}*/}
-            <Tooltip content={_t('notifications.refresh')}>
-              <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.refresh}>{syncSvg}</span>
-            </Tooltip>
-            <Tooltip content={_t('notifications.mark-all-read')}>
-              <span className={_c(`list-action ${loading || unread === 0 ? 'disabled' : ''}`)}
-                    onClick={this.markAsRead}>{checkSvg}</span>
-            </Tooltip>
           </div>
         </div>
 
