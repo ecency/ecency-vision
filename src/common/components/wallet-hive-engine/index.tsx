@@ -333,7 +333,7 @@ closeTransferDialog = () => {
                               </OverlayTrigger>
                             </div>
                           </div>
-                          <div className="d-flex justify-between ml-auto">
+                          {isMyPage && <div className="d-flex justify-between ml-auto">
                               <div className="mr-1">
                               <OverlayTrigger
                                 delay={{ show: 0, hide: 500 }}
@@ -466,7 +466,7 @@ closeTransferDialog = () => {
                                   </div>
                                 </OverlayTrigger>
                               </div>}
-                          </div>
+                          </div>}
 
                         </div>
 

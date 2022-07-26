@@ -278,6 +278,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
     canSubmit = () => {
         const {toData, toError, amountError, memoError, inProgress, amount} = this.state;
+        if (this.props.mode === 'unstake') return parseFloat(amount) > 0;
         return toData && !toError && !amountError && !memoError && !inProgress && parseFloat(amount) > 0;
     };
 

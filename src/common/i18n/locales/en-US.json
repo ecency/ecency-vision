@@ -547,11 +547,13 @@
     "section-communities": "Communities",
     "section-wallet": "Wallet",
     "section-settings": "Settings",
+    "section-referrals": "Referrals",
     "section-permission": "Permission",
     "communities-title": "Membership",
     "create-community": "Create a community",
     "witnesses": "Witnesses",
-    "proposals": "Proposals"
+    "proposals": "Proposals",
+    "referrals": "Referrals"
   },
   "profile-info": {
     "joined": "Joined: {{n}}",
@@ -781,6 +783,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Reset",
     "powering-down": "You are currently powering down.",
     "stop-power-down": "Stop"
@@ -1022,7 +1025,8 @@
     "mark-all-read": "Mark All as Read",
     "mark-read": "Mark as Read",
     "mute": "Turn off notification alerts",
-    "unmute": "Turn on notification alerts"
+    "unmute": "Turn on notification alerts",
+    "settings": "Alert settings"
   },
   "leaderboard": {
     "title-stars": "Most active",
@@ -1108,6 +1112,16 @@
     "proxy-active-current": "Your current proxy is",
     "proxy-active-btn-label": "Clear Proxy",
     "proxy-votes-for": "@{{username}} votes for"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Proposals",

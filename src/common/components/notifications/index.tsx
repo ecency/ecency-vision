@@ -243,11 +243,11 @@ export class DialogContent extends Component<NotificationProps, any> {
           <div className="list-actions">
             <DropDown
               className={'settings'}
-              header="Settings"
+              header={_t(`notifications.settings`)}
               withPadding={true}
               items={[
                 {
-                  label: 'Mark all as read',
+                  label: _t(`notifications.mark-all-read`),
                   isStatic: true,
                   content: <div className="list-actions">
                     <Tooltip content={_t('notifications.mark-all-read')}>
@@ -257,7 +257,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                   onClick: () => this.markAsRead()
                 },
                 {
-                  label: 'Refresh',
+                  label: _t(`notifications.refresh`),
                   isStatic: true,
                   content: <div className="list-actions">
                     <Tooltip content={_t('notifications.refresh')}>
@@ -266,13 +266,13 @@ export class DialogContent extends Component<NotificationProps, any> {
                   </div>,
                   onClick: () => this.refresh(),
                 },
-                getNotificationSettingsItem('Enable', NotifyTypes.ALLOW_NOTIFY),
-                getNotificationSettingsItem('Votes', NotifyTypes.VOTE),
-                getNotificationSettingsItem('Comments', NotifyTypes.COMMENT),
-                getNotificationSettingsItem('Mentions', NotifyTypes.MENTION),
-                getNotificationSettingsItem('Re-blogs', NotifyTypes.RE_BLOG),
-                getNotificationSettingsItem('Follows', NotifyTypes.FOLLOW),
-                getNotificationSettingsItem('Transfers', NotifyTypes.TRANSFERS),
+                getNotificationSettingsItem(_t(`notifications.type-all-short`), NotifyTypes.ALLOW_NOTIFY),
+                getNotificationSettingsItem(_t(`notifications.type-rvotes`), NotifyTypes.VOTE),
+                getNotificationSettingsItem(_t(`notifications.type-replies`), NotifyTypes.COMMENT),
+                getNotificationSettingsItem(_t(`notifications.type-mentions`), NotifyTypes.MENTION),
+                getNotificationSettingsItem(_t(`notifications.type-reblogs`), NotifyTypes.RE_BLOG),
+                getNotificationSettingsItem(_t(`notifications.type-follows`), NotifyTypes.FOLLOW),
+                getNotificationSettingsItem(_t(`notifications.type-transfers`), NotifyTypes.TRANSFERS),
               ]}
               history={this.props.history || history}
               label={<span className={_c(`list-action ${loading ? 'disabled' : ''}`)}>{settingsSvg}</span>}

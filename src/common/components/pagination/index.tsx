@@ -9,9 +9,10 @@ interface Props {
     page?: number,
     onPageChange: (num: number) => void,
     className?: string;
+    showLastNo?: boolean;
 }
 
-const MyPagination = ({dataLength, maxItems, onPageChange, pageSize, className, page:pageFromProps}:Props) => {
+const MyPagination = ({dataLength, maxItems, onPageChange, pageSize, className, page:pageFromProps, showLastNo = true}:Props) => {
     const [page, setPage] = useState<number>(pageFromProps || 1)
 
     const changePage = (num: number) => {
@@ -54,9 +55,9 @@ const MyPagination = ({dataLength, maxItems, onPageChange, pageSize, className, 
             <Pagination.Next disabled={page >= pages} onClick={() => {
                 changePage(page + 1);
             }}/>
-            <Pagination.Last disabled={page >= pages} onClick={() => {
+            {showLastNo && <Pagination.Last disabled={page >= pages} onClick={() => {
                 changePage(pages);
-            }}/>
+            }}/>}
         </Pagination>;
 }
 
