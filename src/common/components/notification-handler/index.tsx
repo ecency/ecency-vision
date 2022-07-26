@@ -32,25 +32,17 @@ export default class NotificationHandler extends Component<Props> {
       ui
     } = this.props;
 
-    isSupported().then(isSupported => {
-      if (isSupported) {
-        return;
-      }
-
-      this.nws
-        .withActiveUser(activeUser)
-        .withElectron(global.isElectron)
-        .withSound(document.getElementById('notifications-audio') as HTMLAudioElement)
-        .withCallbackOnMessage(() => {
-          fetchUnreadNotificationCount();
-          fetchNotifications(null);
-        })
-        .withToggleUi(toggleUIProp)
-        .setHasUiNotifications(ui.notifications)
-        .setHasNotifications(global.notifications)
-        .connect();
-
-    });
+    this.nws
+      .withActiveUser(activeUser)
+      .withElectron(global.isElectron)
+      .withSound(document.getElementById('notifications-audio') as HTMLAudioElement)
+      .withCallbackOnMessage(() => {
+        fetchUnreadNotificationCount();
+        fetchNotifications(null);
+      })
+      .withToggleUi(toggleUIProp)
+      .setHasUiNotifications(ui.notifications)
+      .setHasNotifications(global.notifications);
 
     if (activeUser) {
       fetchNotificationsSettings(activeUser!!.username);
@@ -61,26 +53,25 @@ export default class NotificationHandler extends Component<Props> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any) {
-    const { activeUser, fetchUnreadNotificationCount, fetchNotificationsSettings } = this.props;
+    const { activeUser, fetchUnreadNotificationCount, fetchNotificationsSettings, notifications } = this.props;
+
+    if (notifications.fbSupport === 'denied' && activeUser) {
+      this.nws.withActiveUser(activeUser).connect();
+    }
+
     if (!prevProps.activeUser && activeUser && activeUser.username) {
       this.nws.disconnect();
-      isSupported().then(isSupported => {
-        if (isSupported) {
-          return;
-        }
+      if (notifications.fbSupport === 'denied') {
         this.nws.withActiveUser(activeUser).connect();
-      });
+      }
       fetchUnreadNotificationCount();
     }
 
     if (activeUser?.username !== prevProps.activeUser?.username) {
       this.nws.disconnect();
-      isSupported().then(isSupported => {
-        if (isSupported) {
-          return;
-        }
+      if (notifications.fbSupport === 'denied') {
         this.nws.withActiveUser(activeUser).connect();
-      });
+      }
 
       if (activeUser) {
         fetchNotificationsSettings(activeUser!!.username);

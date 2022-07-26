@@ -13,6 +13,7 @@ import {
   NFetchMode,
   NotificationFilter,
   Notifications,
+  SetFbSupportedAction,
   SetFilterAction,
   SetSettingsAction,
   SetSettingsAllowNotifyAction,
@@ -42,6 +43,7 @@ export const initialState: Notifications = {
   loading: false,
   hasMore: true,
   unreadFetchFlag: true,
+  fbSupport: 'pending',
 };
 
 export default (state: Notifications = initialState, action: Actions): Notifications => {
@@ -151,6 +153,11 @@ export default (state: Notifications = initialState, action: Actions): Notificat
           allows_notify: action.value ? 1 : 0
         } as ApiNotificationSetting
       }
+    case ActionTypes.SET_FB_SUPPORTED:
+      return {
+        ...state,
+        fbSupport: action.value
+      };
     default:
       return state;
   }
@@ -214,7 +221,7 @@ export const markNotifications = (id: string | null) => (dispatch: Dispatch, get
 export const setNotificationsSettingsItem = (type: NotifyTypes, value: boolean) => (dispatch: Dispatch, getState: () => AppState) => {
   if (type === NotifyTypes.ALLOW_NOTIFY) {
     const isEnabled = getState().notifications.settings?.allows_notify === 1;
-    dispatch(setSettingsAllowAll(!isEnabled));
+    dispatch(setSettingsAllowAllAct(!isEnabled));
     return;
   }
   dispatch(setSettingsItemAct(type, value));
@@ -238,7 +245,7 @@ export const updateNotificationsSettings = (username: string, token?: string) =>
  * @param username
  */
 export const fetchNotificationsSettings = (username: string) => async (dispatch: Dispatch, getState: () => AppState) => {
-  const isFbSupported = await isSupported() && !isElectron();
+  let isFbSupported = await isSupported() && !isElectron();
   if (isFbSupported) {
     initFirebase();
   }
@@ -246,7 +253,11 @@ export const fetchNotificationsSettings = (username: string) => async (dispatch:
   let oldToken = ls.get('fb-notifications-token');
   const permission = await Notification.requestPermission();
   if (permission === 'granted' && isFbSupported) {
-    token = await getFcmToken();
+    try {
+      token = await getFcmToken();
+    } catch (e) {
+      isFbSupported = false;
+    }
   }
 
   try {
@@ -289,6 +300,8 @@ export const fetchNotificationsSettings = (username: string) => async (dispatch:
       });
     }
   }
+
+  dispatch(setFbSupportedAct(isFbSupported ? 'granted' : 'denied'));
 }
 
 /* Action Creators */
@@ -339,7 +352,12 @@ export const setSettingsItemAct = (settingsType: NotifyTypes, value: boolean): S
   value
 });
 
-export const setSettingsAllowAll = (value: boolean): SetSettingsAllowNotifyAction => ({
+export const setSettingsAllowAllAct = (value: boolean): SetSettingsAllowNotifyAction => ({
   type: ActionTypes.SET_SETTINGS_ALLOW_NOTIFY,
+  value
+});
+
+export const setFbSupportedAct = (value: 'pending' | 'granted' | 'denied'): SetFbSupportedAction => ({
+  type: ActionTypes.SET_FB_SUPPORTED,
   value
 });
