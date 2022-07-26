@@ -247,16 +247,6 @@ export class DialogContent extends Component<NotificationProps, any> {
               withPadding={true}
               items={[
                 {
-                  label: 'Refresh',
-                  isStatic: true,
-                  content: <div className="list-actions">
-                    <Tooltip content={_t('notifications.refresh')}>
-                      <span className={_c(`list-action ${loading ? 'disabled' : ''}`)}>{syncSvg}</span>
-                    </Tooltip>
-                  </div>,
-                  onClick: () => this.refresh(),
-                },
-                {
                   label: 'Mark all as read',
                   isStatic: true,
                   content: <div className="list-actions">
@@ -265,6 +255,16 @@ export class DialogContent extends Component<NotificationProps, any> {
                     </Tooltip>
                   </div>,
                   onClick: () => this.markAsRead()
+                },
+                {
+                  label: 'Refresh',
+                  isStatic: true,
+                  content: <div className="list-actions">
+                    <Tooltip content={_t('notifications.refresh')}>
+                      <span className={_c(`list-action ${loading ? 'disabled' : ''}`)}>{syncSvg}</span>
+                    </Tooltip>
+                  </div>,
+                  onClick: () => this.refresh(),
                 },
                 getNotificationSettingsItem('Enable', NotifyTypes.ALLOW_NOTIFY),
                 getNotificationSettingsItem('Votes', NotifyTypes.VOTE),
