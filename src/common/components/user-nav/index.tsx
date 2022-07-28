@@ -25,10 +25,11 @@ import {_t} from "../../i18n";
 
 import HiveWallet from "../../helper/hive-wallet";
 
-import {creditCardSvg, gifCardSvg, bellSvg, bellOffSvg, chevronUpSvg} from "../../img/svg";
+import { creditCardSvg, gifCardSvg, bellSvg, bellOffSvg, chevronUpSvg, rocketSvg } from '../../img/svg';
 
 import {votingPower, downVotingPower} from "../../api/hive";
 import { updateNotificationsSettings, setNotificationsSettingsItem } from '../../store/notifications';
+import { PurchaseQrDialog } from '../purchase-qr';
 
 class WalletBadge extends Component<{
     activeUser: ActiveUser;
@@ -103,6 +104,7 @@ interface State {
     bookmarks: boolean,
     schedules: boolean,
     fragments: boolean,
+    showPurchaseDialog: boolean,
 }
 
 export default class UserNav extends Component<Props, State> {
@@ -111,7 +113,8 @@ export default class UserNav extends Component<Props, State> {
         drafts: false,
         bookmarks: false,
         schedules: false,
-        fragments: false
+        fragments: false,
+        showPurchaseDialog: false,
     }
 
     toggleLogin = () => {
@@ -222,6 +225,9 @@ export default class UserNav extends Component<Props, State> {
         return (
             <>
                 <div className="user-nav">
+                    <div onClick={() => this.setState({ showPurchaseDialog: true })} className="user-points cursor-pointer">
+                        {rocketSvg}
+                    </div>
                     {global.usePrivate && <PointsBadge activeUser={activeUser}/>}
 
                     <WalletBadge activeUser={activeUser} dynamicProps={dynamicProps}/>
@@ -249,6 +255,10 @@ export default class UserNav extends Component<Props, State> {
                 {bookmarks && <Bookmarks {...this.props} onHide={this.toggleBookmarks}/>}
                 {schedules && <Schedules {...this.props} onHide={this.toggleSchedules}/>}
                 {fragments && <Fragments {...this.props} onHide={this.toggleFragments}/>}
+                <PurchaseQrDialog
+                  show={this.state.showPurchaseDialog}
+                  setShow={() => this.setState({ showPurchaseDialog: false })}
+                />
             </>
         );
     }
