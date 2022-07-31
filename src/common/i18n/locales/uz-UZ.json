@@ -553,7 +553,9 @@
     "create-community": "Guruh yaratish",
     "witnesses": "Guvohlar",
     "proposals": "Takliflar",
-    "referrals": "Referrals"
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Qo'shildi: {{n}}",
