@@ -553,7 +553,9 @@
     "create-community": "Gumawa ng pamayanan",
     "witnesses": "Mga testigo",
     "proposals": "Mga Panukala",
-    "referrals": "Referrals"
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Joined: {{n}}",
