@@ -553,7 +553,9 @@
     "create-community": "Create a community",
     "witnesses": "Witnesses",
     "proposals": "Proposals",
-    "referrals": "Referrals"
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Joined: {{n}}",
