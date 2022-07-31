@@ -553,7 +553,9 @@
     "create-community": "커뮤니티 만들기",
     "witnesses": "증인",
     "proposals": "제안서",
-    "referrals": "Referrals"
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "가입: {{n}}",
