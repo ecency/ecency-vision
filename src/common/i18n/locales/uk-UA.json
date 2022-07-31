@@ -553,7 +553,9 @@
     "create-community": "Створити спільноту",
     "witnesses": "Делегати",
     "proposals": "Пропозиції",
-    "referrals": "Referrals"
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Joined: {{n}}",
