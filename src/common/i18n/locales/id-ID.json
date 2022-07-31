@@ -553,7 +553,9 @@
     "create-community": "Buatlah sebuah komunitas",
     "witnesses": "Saksi",
     "proposals": "Proposal",
-    "referrals": "Referrals"
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Terhubung: {{n}}",
