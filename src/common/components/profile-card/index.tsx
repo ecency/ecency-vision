@@ -36,6 +36,7 @@ import { EditPic } from '../community-card';
 import { getRelationshipBetweenAccounts } from "../../api/bridge";
 import { Skeleton } from "../skeleton";
 import { dateToFormatted } from '../../helper/parse-date';
+import isCommunity from '../../helper/is-community';
 
 interface Props {
     global: Global;
@@ -217,13 +218,15 @@ export const ProfileCard = (props: Props) => {
                 </div>
             </div>
 
-            {isMyProfile && (
-                <div className="btn-controls">
-                    {global.usePrivate && (<Link className="btn btn-sm btn-primary" to={`/@${account.name}/referrals`}>{_t("profile.referrals")}</Link>)}
-                    <Link className="btn btn-sm btn-primary" to="/witnesses">{_t("profile.witnesses")}</Link>
-                    <Link className="btn btn-sm btn-primary" to="/proposals">{_t("profile.proposals")}</Link>
-                </div>
-            )}
+            <div className="btn-controls">
+                {isCommunity(account.name) && (<Link className="btn btn-sm btn-primary" to={`/created/${account.name}`}>{_t("profile.go-community")}</Link>)}
+                {isMyProfile && (<>
+                        {global.usePrivate && (<Link className="btn btn-sm btn-primary" to={`/@${account.name}/referrals`}>{_t("profile.referrals")}</Link>)}
+                        <Link className="btn btn-sm btn-primary" to="/witnesses">{_t("profile.witnesses")}</Link>
+                        <Link className="btn btn-sm btn-primary" to="/proposals">{_t("profile.proposals")}</Link>
+                    </>
+                )}
+            </div>
 
             {followersList && <Followers {...props} account={account} onHide={toggleFollowers}/>}
             {followingList && <Following {...props} account={account} onHide={toggleFollowing}/>}
