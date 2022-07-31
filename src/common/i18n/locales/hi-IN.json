@@ -553,7 +553,9 @@
     "create-community": "एक समुदाय बनाएँ",
     "witnesses": "गवाहों",
     "proposals": "प्रस्ताव",
-    "referrals": "Referrals"
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "में शामिल हो गए {{n}}",
