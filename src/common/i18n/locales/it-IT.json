@@ -553,7 +553,9 @@
     "create-community": "Crea una community",
     "witnesses": "Convalidatori",
     "proposals": "Propositi",
-    "referrals": "Referrals"
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Iscritto: {{n}}",
