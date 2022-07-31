@@ -553,7 +553,9 @@
     "create-community": "Създай общност",
     "witnesses": "Свидетели",
     "proposals": "Предложения",
-    "referrals": "Referrals"
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Присъединил: {{n}}",
