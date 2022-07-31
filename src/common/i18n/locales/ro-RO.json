@@ -553,7 +553,9 @@
     "create-community": "Creează o comunitate",
     "witnesses": "Martori",
     "proposals": "Propuneri",
-    "referrals": "Referrals"
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Joined: {{n}}",
