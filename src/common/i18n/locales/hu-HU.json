@@ -553,7 +553,9 @@
     "create-community": "Hozz létre egy közösséget",
     "witnesses": "Tanúk",
     "proposals": "Javaslatok",
-    "referrals": "Referrals"
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Joined: {{n}}",
