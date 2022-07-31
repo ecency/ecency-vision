@@ -554,7 +554,8 @@
     "witnesses": "Witnesses",
     "proposals": "Proposals",
     "referrals": "Referrals",
-    "go-community": "Community page"
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Joined: {{n}}",

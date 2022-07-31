@@ -23,9 +23,6 @@ import {votingPower} from "../../api/hive";
 import {_t} from "../../i18n";
 
 import {
-    formatListBulledttedSvg,
-    accountMultipleSvg,
-    accountPlusSvg,
     nearMeSvg,
     earthSvg,
     calendarRangeSvg,
@@ -33,10 +30,11 @@ import {
 } from "../../img/svg";
 
 import { EditPic } from '../community-card';
-import { getRelationshipBetweenAccounts } from "../../api/bridge";
+import { getRelationshipBetweenAccounts, getSubscriptions } from "../../api/bridge";
 import { Skeleton } from "../skeleton";
 import { dateToFormatted } from '../../helper/parse-date';
 import isCommunity from '../../helper/is-community';
+import { Subscription } from '../../store/subscriptions/types';
 
 interface Props {
     global: Global;
@@ -48,19 +46,14 @@ interface Props {
     updateActiveUser: (data?: Account) => void;
 }
 
-interface State {
-    followersList: boolean;
-    followingList: boolean;
-    followsActiveUser: boolean;
-    followsActiveUserLoading: boolean;
-}
-
 export const ProfileCard = (props: Props) => {
     const [followersList, setFollowersList] = useState(false);
     const [followingList, setFollowingList] = useState(false);
     const [followsActiveUser, setFollowsActiveUser] = useState(false);
     const [isMounted, setIsmounted] = useState(false);
     const [followsActiveUserLoading, setFollowsActiveUserLoading] = useState(false);
+    const [subs, setSubs] = useState([] as Subscription[]);
+
     const [, updateState] = useState();
     const forceUpdate = useCallback(() => updateState({} as any), []);
 
@@ -71,7 +64,15 @@ export const ProfileCard = (props: Props) => {
             setFollowsActiveUserLoading(activeUser && activeUser.username ? true : false);
             getFollowsInfo(account.name);
         }
-    }, 
+        getSubscriptions(account.name).then(r => {
+            if (r) {
+                const communities = r.filter((x) => (x[2]==='mod' || x[2]==='admin'));
+                setSubs(communities);
+            }
+        }).catch((e) => {
+            setSubs([])
+        });
+    },
     [account]);
 
     useEffect(()=>{
@@ -218,6 +219,11 @@ export const ProfileCard = (props: Props) => {
                 </div>
             </div>
 
+            { subs.length > 0 && <div className="com-props">
+                    <div className="com-title">{_t("profile.com-mod")}</div>
+                    {subs.map(x => <Link className="prop" to={`/created/${x[0]}`}>{x[1]}</Link>)}
+                </div>
+            }
             <div className="btn-controls">
                 {isCommunity(account.name) && (<Link className="btn btn-sm btn-primary" to={`/created/${account.name}`}>{_t("profile.go-community")}</Link>)}
                 {isMyProfile && (<>

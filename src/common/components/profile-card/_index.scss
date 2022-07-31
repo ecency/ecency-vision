@@ -98,7 +98,8 @@
 
   .basic-info,
   .stats,
-  .extra-props {
+  .extra-props,
+  .com-props {
     padding-bottom: 16px;
     margin-bottom: 16px;
 
@@ -201,6 +202,25 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
+    }
+  }
+  .com-props {
+    grid-gap: 10px;
+    display: none;
+
+    @media (min-width: $md-break) {
+      display: grid;
+    }
+    .prop {
+      display: inline-flex;
+      align-items: center;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+    }
+    .com-title {
+      padding-bottom: 10px;
+      font-weight: 600;
     }
   }
 
