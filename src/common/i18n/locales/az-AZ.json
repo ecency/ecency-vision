@@ -553,7 +553,9 @@
     "create-community": "Bir cəmiyyət yarat",
     "witnesses": "Şahidlər",
     "proposals": "Proposals",
-    "referrals": "Referrals"
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Qoşuldu: {{n}}",
