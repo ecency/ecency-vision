@@ -553,7 +553,9 @@
     "create-community": "Luo yhteisö",
     "witnesses": "Todistajat",
     "proposals": "Ehdotukset",
-    "referrals": "Referrals"
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Liittynyt: {{n}}",
