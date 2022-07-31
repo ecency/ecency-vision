@@ -553,7 +553,9 @@
     "create-community": "Criar uma comunidade",
     "witnesses": "Testemunhas",
     "proposals": "Propostas",
-    "referrals": "Referências"
+    "referrals": "Referências",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Entrou: {{n}}",
