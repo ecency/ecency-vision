@@ -553,7 +553,9 @@
     "create-community": "创建社区",
     "witnesses": "见证人",
     "proposals": "提案",
-    "referrals": "Referrals"
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "加入: {{n}}",
