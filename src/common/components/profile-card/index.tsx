@@ -221,7 +221,7 @@ export const ProfileCard = (props: Props) => {
 
             { subs.length > 0 && <div className="com-props">
                     <div className="com-title">{_t("profile.com-mod")}</div>
-                    {subs.map(x => <Link className="prop" to={`/created/${x[0]}`}>{x[1]}</Link>)}
+                    {subs.map(x => <Link className="prop" key={x[0]} to={`/created/${x[0]}`}>{x[1]}</Link>)}
                 </div>
             }
             <div className="btn-controls">
