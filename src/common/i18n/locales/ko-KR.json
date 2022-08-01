@@ -838,7 +838,8 @@
     "type-update_proposal_vote-detail": "제안서 id: <strong>{{pid}}</strong>",
     "type-limit_order_create": "New trade created",
     "type-limit_order_cancel": "Open trade cancelled",
-    "type-effective_comment_vote": "유효 투표"
+    "type-effective_comment_vote": "유효 투표",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "로그인",
