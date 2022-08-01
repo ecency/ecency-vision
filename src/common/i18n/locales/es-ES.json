@@ -554,8 +554,8 @@
     "witnesses": "Testigos",
     "proposals": "Propuestas",
     "referrals": "Referidos",
-    "go-community": "Community page",
-    "com-mod": "Moderator of these communities"
+    "go-community": "Página de la comunidad",
+    "com-mod": "Moderador de estas comunidades"
   },
   "profile-info": {
     "joined": "Se unió: {{n}}",
