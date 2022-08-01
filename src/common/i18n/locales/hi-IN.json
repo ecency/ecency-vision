@@ -838,7 +838,8 @@
     "type-update_proposal_vote-detail": "प्रस्ताव आईडी: <strong>{{pid}}</strong>",
     "type-limit_order_create": "नया व्यापार बनाया",
     "type-limit_order_cancel": "खुला व्यापार रद्द",
-    "type-effective_comment_vote": "प्रभावी वोट"
+    "type-effective_comment_vote": "प्रभावी वोट",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "साइन करें",
