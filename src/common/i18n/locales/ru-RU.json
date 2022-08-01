@@ -838,7 +838,8 @@
     "type-update_proposal_vote-detail": "Идентификатор предложения: <strong>{{pid}}</strong>",
     "type-limit_order_create": "Создана новая сделка",
     "type-limit_order_cancel": "Открытая сделка отменена",
-    "type-effective_comment_vote": "Эффективное голосование"
+    "type-effective_comment_vote": "Эффективное голосование",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Подписать",
