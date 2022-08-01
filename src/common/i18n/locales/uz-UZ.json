@@ -838,7 +838,8 @@
     "type-update_proposal_vote-detail": "Taklif identifikatori:<strong>{{pid}}</strong>",
     "type-limit_order_create": "Yangi savdo yaratildi",
     "type-limit_order_cancel": "Ochiq savdo bekor qiindi",
-    "type-effective_comment_vote": "Samarali ovoz"
+    "type-effective_comment_vote": "Samarali ovoz",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Obuna bo'ling",
