@@ -67,12 +67,10 @@
       }
 
       @include themify(day) {
-        background: $white;
         color: $steel-grey;
       }
 
       @include themify(night) {
-        background: $metallic-blue;
         color: lighten($metallic-blue, 40);
       }
     }
@@ -152,13 +150,6 @@
       }
     }
 
-    @include themify(day) {
-      &:nth-child(odd) {
-        .transaction-icon {
-          background-color: $white-three;
-        }
-      }
-    }
   }
 
   .transaction-list-item-raw {
