@@ -838,7 +838,8 @@
     "type-update_proposal_vote-detail": "ID de la propuesta: <strong>{{pid}}</strong>",
     "type-limit_order_create": "Nueva operación creada",
     "type-limit_order_cancel": "Operación abierta cancelada",
-    "type-effective_comment_vote": "Voto efectivo"
+    "type-effective_comment_vote": "Voto efectivo",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Firmar",
