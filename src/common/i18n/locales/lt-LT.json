@@ -838,7 +838,8 @@
     "type-update_proposal_vote-detail": "Pasiūlymo Id: <strong>{{pid}}</strong>",
     "type-limit_order_create": "Sukurta nauja prekyba",
     "type-limit_order_cancel": "Atvira prekyba atšaukta",
-    "type-effective_comment_vote": "Efektyvus balsavimas"
+    "type-effective_comment_vote": "Efektyvus balsavimas",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Pasirašyti",
