@@ -838,7 +838,8 @@
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
     "type-limit_order_create": "Neuer Handel erstellt",
     "type-limit_order_cancel": "Offener Handel abgebrochen",
-    "type-effective_comment_vote": "Effektive Abstimmung"
+    "type-effective_comment_vote": "Effektive Abstimmung",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Sign",
