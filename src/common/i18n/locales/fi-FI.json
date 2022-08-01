@@ -838,7 +838,8 @@
     "type-update_proposal_vote-detail": "Ehdotus id: <strong>{{pid}}</strong>",
     "type-limit_order_create": "Uusi vaihto luotu",
     "type-limit_order_cancel": "Avoin vaihto peruutettu",
-    "type-effective_comment_vote": "Tehokas äänestys"
+    "type-effective_comment_vote": "Tehokas äänestys",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Allekirjoita",
