@@ -838,7 +838,8 @@
     "type-update_proposal_vote-detail": "Teklif kimliği: <strong>{{pid}}</strong>",
     "type-limit_order_create": "New trade created",
     "type-limit_order_cancel": "Open trade cancelled",
-    "type-effective_comment_vote": "Etkili oy"
+    "type-effective_comment_vote": "Etkili oy",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Gönder",
