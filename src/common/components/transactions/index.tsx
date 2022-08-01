@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useEffect, useState, useCallback } from 'react';
 
 import {History} from "history";
 
@@ -452,9 +452,12 @@ const List = (props: Props) => {
     useEffect(() => {
         const { transactions } = props;
         if (previousTransactions && previousTransactions.list !== transactions.list) {
-            const trl = (previousTransactions.group === transactions.group) ? transactionsList : [];
-            const ttl = [...trl, ...transactions.list];
-            setTransactionsList(ttl);
+            const txs = [
+                ...previousTransactions.group === transactions.group ? transactionsList : [],
+                ...transactions.list,
+            ];
+            const uniqueTxs = [...new Map(txs.map((item) => [item["num"], item])).values()];
+            setTransactionsList(uniqueTxs);
         }
     }, [props.transactions]);
 
