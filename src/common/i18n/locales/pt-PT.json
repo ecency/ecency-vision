@@ -839,7 +839,7 @@
     "type-limit_order_create": "Nova ordem criada",
     "type-limit_order_cancel": "Ordem cancelada",
     "type-effective_comment_vote": "Voto efetivo",
-    "type-account_witness_proxy": "Governance proxy update"
+    "type-account_witness_proxy": "Atualização de proxy governamental"
   },
   "key-or-hot": {
     "sign": "Assinar",
