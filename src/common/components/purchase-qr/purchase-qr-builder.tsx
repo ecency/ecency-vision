@@ -9,6 +9,7 @@ import { formatError } from '../../api/operations';
 import qrcode from 'qrcode';
 import { copyContent } from '../../img/svg';
 import { ActiveUser } from '../../store/active-user/types';
+import defaults from "../../constants/defaults.json";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -110,7 +111,7 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
     success(_t('purchase-qr.copied'));
   };
 
-  const getURL = () =>`${window.location.protocol}//${window.location.hostname}/purchase?username=${username}&type=boost`;
+  const getURL = () =>`${defaults.base}/purchase?username=${username}&type=boost`;
 
   return <div className="d-flex flex-column align-items-center my-5 px-3 text-center">
     <h2>{isQrShow ? _t('purchase-qr.scan-code') : _t('purchase-qr.select-user')}</h2>
