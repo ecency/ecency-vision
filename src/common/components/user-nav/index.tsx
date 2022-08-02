@@ -228,8 +228,6 @@ export default class UserNav extends Component<Props, State> {
                     <div onClick={() => this.setState({ showPurchaseDialog: true })} className="user-points cursor-pointer">
                         {rocketSvg}
                     </div>
-                    {global.usePrivate && <PointsBadge activeUser={activeUser}/>}
-
                     <WalletBadge activeUser={activeUser} dynamicProps={dynamicProps}/>
 
                     {global.usePrivate && (<ToolTip content={_t("user-nav.notifications")}>
@@ -257,7 +255,9 @@ export default class UserNav extends Component<Props, State> {
                 {fragments && <Fragments {...this.props} onHide={this.toggleFragments}/>}
                 <PurchaseQrDialog
                   show={this.state.showPurchaseDialog}
-                  setShow={() => this.setState({ showPurchaseDialog: false })}
+                  setShow={v => this.setState({ showPurchaseDialog: v })}
+                  activeUser={activeUser}
+                  location={this.props.location}
                 />
             </>
         );

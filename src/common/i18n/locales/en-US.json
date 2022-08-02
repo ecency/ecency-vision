@@ -706,9 +706,10 @@
     "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
   "purchase-qr": {
-    "scan-code": "Now,scan the code with your smartphone",
+    "scan-code": "Scan the QR code with Ecency mobile app",
     "select-user": "Please, select an user",
-    "title": "Boost account"
+    "title": "Boost account",
+    "copied": "Boost link copied!"
   },
   "promote": {
     "title": "Promote",

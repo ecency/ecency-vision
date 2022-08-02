@@ -82,6 +82,7 @@ const App = ({ setLang }: any) => {
         <Route exact={true} path={routes.HOME} component={EntryIndexContainer}/>
         <Route exact={true} strict={true} path={routes.FILTER} component={EntryIndexContainer}/>
         <Route exact={true} strict={true} path={routes.USER_FEED} component={EntryIndexContainer}/>
+        <Route exact={true} strict={true} path={routes.PURCHASE} component={EntryIndexContainer}/>
         <Route exact={true} strict={true} path={routes.USER} component={ProfilePage}/>
         <Route exact={true} strict={true} path={routes.USER_SECTION} component={ProfilePage}/>
         <Route exact={true} strict={true} path={routes.ENTRY} component={EntryPage}/>

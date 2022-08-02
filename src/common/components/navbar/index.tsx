@@ -58,7 +58,6 @@ import {
     upArrowSvg,
     keySvg,
     sunSvg,
-    gifCardSvg,
     rocketSvg
 } from '../../img/svg';
 import userAvatar from "../user-avatar";
@@ -462,12 +461,6 @@ export class NavBar extends Component<Props, State> {
                                     <div className="navbar-icon text-dark">{notificationSvg}</div>
                                     <div className="ml-3 text-15">{_t("user-nav.notifications")}</div>
                                 </div>
-                                <Link to={`/@${activeUser.username}/points`} onClick={() => this.setState({ smVisible: false} )}>
-                                    <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                        <div className="navbar-icon text-dark">{gifCardSvg}</div>
-                                        <div className="ml-3 text-15">{_t("user-nav.points")}</div>
-                                    </div>
-                                </Link>
                                 <div onClick={() => this.setState({ showPurchaseDialog: true })} className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                                     <div className="navbar-icon text-dark">{rocketSvg}</div>
                                     <div className="ml-3 text-15">{_t("user-nav.boost")}</div>
@@ -503,7 +496,9 @@ export class NavBar extends Component<Props, State> {
                 </div>
                 <PurchaseQrDialog
                   show={this.state.showPurchaseDialog}
-                  setShow={() => this.setState({ showPurchaseDialog: false })}
+                  setShow={v => this.setState({ showPurchaseDialog: v })}
+                  activeUser={activeUser}
+                  location={this.props.location}
                 />
             </div>
         );
