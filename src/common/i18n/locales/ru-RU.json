@@ -1019,7 +1019,7 @@
     "type-transfers": "Переводы",
     "type-delegations": "Делегации",
     "group-title-recent": "Недавние",
-    "vote-str": "{{p}}% проголосовал за ваш пост:",
+    "vote-str": "{{p}}% votes your post:",
     "reply-str": "ответил на ваш пост:",
     "mention-str": "упомянул вас в:",
     "followed-str": "подписался на",
