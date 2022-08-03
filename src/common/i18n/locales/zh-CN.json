@@ -1019,7 +1019,7 @@
     "type-transfers": "转账",
     "type-delegations": "Delegations",
     "group-title-recent": "最近",
-    "vote-str": "{{p}}%喜欢您的帖子：",
+    "vote-str": "{{p}}% votes your post:",
     "reply-str": "回复了您的文章:",
     "mention-str": "提到了您:",
     "followed-str": "已关注",
