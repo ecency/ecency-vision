@@ -1019,7 +1019,7 @@
     "type-transfers": "송금",
     "type-delegations": "Delegations",
     "group-title-recent": "최근",
-    "vote-str": "{{p}}님이 당신 글을 좋아합니다:",
+    "vote-str": "{{p}}% votes your post:",
     "reply-str": "댓글을 남겼습니다:",
     "mention-str": "당신을 언급했습니다:",
     "followed-str": "팔로우됨",
