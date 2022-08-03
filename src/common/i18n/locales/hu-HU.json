@@ -1019,7 +1019,7 @@
     "type-transfers": "Átutalások",
     "type-delegations": "Delegations",
     "group-title-recent": "Recent",
-    "vote-str": "{{p}}% kedvencelte a bejegyzésed:",
+    "vote-str": "{{p}}% votes your post:",
     "reply-str": "válaszolt a bejegyzésedre:",
     "mention-str": "megemlített téged itt:",
     "followed-str": "követés",
