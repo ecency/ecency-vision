@@ -1019,7 +1019,7 @@
     "type-transfers": "Przelewy",
     "type-delegations": "Delegations",
     "group-title-recent": "Ostatnie",
-    "vote-str": "{{p}}% lubi Twój wpis:",
+    "vote-str": "{{p}}% votes your post:",
     "reply-str": "odpowiedział na twój post:",
     "mention-str": "wspomniał o Tobie w:",
     "followed-str": "obserwowany",
