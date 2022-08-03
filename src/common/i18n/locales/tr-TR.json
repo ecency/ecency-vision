@@ -1019,7 +1019,7 @@
     "type-transfers": "Transferler",
     "type-delegations": "Delegations",
     "group-title-recent": "Son",
-    "vote-str": "{{p}}% gönderi beğeniniz:",
+    "vote-str": "{{p}}% votes your post:",
     "reply-str": "gönderini yanıtladı:",
     "mention-str": "senden bahsetti:",
     "followed-str": "takip etti",
