@@ -118,14 +118,23 @@ export const toggleTheme = (theme_key?:Theme) => (
   getState: () => AppState
 ) => {
   const { global } = getState();
-
   const { theme, isMobile } = global;
   let newTheme: any = theme === Theme.day ? Theme.night : Theme.day;
   
   if (!!theme_key) {
     newTheme = theme_key;
   }
+  let systemTheme: any = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.night : Theme.day
+  if (theme_key === 'system') {
+    newTheme = systemTheme;
+    ls.set('use_system_theme', true)
+  }
+  if (theme_key !== 'system') {
+    ls.remove('use_system_theme')
+  }
+  if(theme_key !== undefined) ls.set('system_theme', theme_key);
 
+  
   ls.set("theme", newTheme);
   Cookies.set("theme", newTheme);
 

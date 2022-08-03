@@ -26,6 +26,7 @@ interface Props {
     setCurrency: (currency: string, rate: number, symbol: string) => void;
     setLang: (lang: string) => void;
     setNsfw: (value: boolean) => void;
+    toggleTheme: (theme_key?: string) => void;
 }
 
 export class ProfileSettings extends Component<Props> {
@@ -67,6 +68,7 @@ export default (p: Props) => {
         setCurrency: p.setCurrency,
         setLang: p.setLang,
         setNsfw: p.setNsfw,
+        toggleTheme: p.toggleTheme,
     }
 
     return <ProfileSettings {...props} />

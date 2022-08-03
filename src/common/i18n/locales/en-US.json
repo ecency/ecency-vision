@@ -137,8 +137,7 @@
     "light": "light",
     "dark": "dark",
     "switch-to": "Switch",
-    "vote-power": "Vote Power:",
-    "boost": "Boost"
+    "vote-power": "Vote Power:"
   },
   "intro": {
     "title": "Aspire to greatness",
@@ -596,6 +595,10 @@
     "language": "Language",
     "nsfw": "Show NSFW content",
     "referral-link": "Referral link",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day Mode",
+    "theme-night": "Night Mode",
     "updated": "Preference updated!"
   },
   "wallet": {
@@ -706,12 +709,6 @@
     "slider-hint": "Drag the slider to adjust the amount.",
     "submit": "Purchase",
     "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
-  },
-  "purchase-qr": {
-    "scan-code": "Scan the QR code with Ecency mobile app",
-    "select-user": "Please, select an user",
-    "title": "Account boost",
-    "copied": "Account boost link copied!"
   },
   "promote": {
     "title": "Promote",
@@ -1019,7 +1016,7 @@
     "type-transfers": "Transfers",
     "type-delegations": "Delegations",
     "group-title-recent": "Recent",
-    "vote-str": "{{p}}% votes your post:",
+    "vote-str": "{{p}}% likes your post:",
     "reply-str": "replied to your post:",
     "mention-str": "mentioned you in:",
     "followed-str": "followed",
