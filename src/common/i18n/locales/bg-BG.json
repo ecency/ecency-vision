@@ -1019,7 +1019,7 @@
     "type-transfers": "Преводи",
     "type-delegations": "Delegations",
     "group-title-recent": "Скорошни",
-    "vote-str": "{{p}}% хареса вашия пост:",
+    "vote-str": "{{p}}% votes your post:",
     "reply-str": "отговори на твоя пост:",
     "mention-str": "ви спомена в:",
     "followed-str": "последван",
