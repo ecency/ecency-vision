@@ -137,7 +137,8 @@
     "light": "yorug'",
     "dark": "qorong'u",
     "switch-to": "O'zgartirish",
-    "vote-power": "Ovoz kuchi:"
+    "vote-power": "Ovoz kuchi:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Buyuklikka intiling",
@@ -705,6 +706,12 @@
     "slider-hint": "Miqdorni belgilash uchun slayderni torting.",
     "submit": "Sotib oling",
     "purchase-message": "Yoki Ballarni xarid qilish uchun eslatmadagi “ballar” bilan @esteem.app manziliga istalgan summani yuboring."
+  },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
   },
   "promote": {
     "title": "Targ'ib qilish",
