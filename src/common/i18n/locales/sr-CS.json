@@ -1019,7 +1019,7 @@
     "type-transfers": "Prenosi",
     "type-delegations": "Delegations",
     "group-title-recent": "Recent",
-    "vote-str": "{{p}}% se sviđa vaša objava:",
+    "vote-str": "{{p}}% votes your post:",
     "reply-str": "je odgovorio na vaš post:",
     "mention-str": "spomenuo vas je u:",
     "followed-str": "zapraćen",
