@@ -137,7 +137,8 @@
     "light": "浅色主题",
     "dark": "深色主题",
     "switch-to": "切换",
-    "vote-power": "投票能量："
+    "vote-power": "投票能量：",
+    "boost": "Boost"
   },
   "intro": {
     "title": "渴望伟大",
@@ -705,6 +706,12 @@
     "slider-hint": "拖动滑块来调整金额。",
     "submit": "购买",
     "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
+  },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
   },
   "promote": {
     "title": "推广",
