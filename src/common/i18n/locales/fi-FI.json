@@ -138,7 +138,7 @@
     "dark": "tumma",
     "switch-to": "Vaihda",
     "vote-power": "Äänivalta:",
-    "boost": "Boost"
+    "boost": "Tehosta"
   },
   "intro": {
     "title": "Ajattele isosti",
@@ -708,10 +708,10 @@
     "purchase-message": "Tai lähetä mikä tahansa summa osoitteeseen @esteem.app lisäten `points` muistioon ostaessasi Pisteitä."
   },
   "purchase-qr": {
-    "scan-code": "Scan the QR code with Ecency mobile app",
-    "select-user": "Please, select an user",
-    "title": "Account boost",
-    "copied": "Account boost link copied!"
+    "scan-code": "Skannaa QR-koodi Ecency-mobiilisovelluksella",
+    "select-user": "Valitse käyttäjä",
+    "title": "Tilin tehostaminen",
+    "copied": "Tilin tehostuslinkki kopioitu!"
   },
   "promote": {
     "title": "Korosta",
@@ -1352,7 +1352,7 @@
       "what-information-profile-header": "Millaisia tietoja profiilissäni on esillä?",
       "what-information-profile-body": "<p>Ensimmäinen kuvan lähellä näkyvä tieto on mainepisteet ja nimi, sekä kuvaus. Alla olevat tiedot seuraajista ja seuratuista, sekä liittymispäivä. Sinulla on mahdollisuus saada lisätietoa Ecencyn asetuksista, kuten tiedoista, profiilikuvasta, kansikuvasta, tai sijainnistasi.</p>",
       "what-can-post-header": "Mitä voin julkaista Ecencyssä?",
-      "what-can-post-body": "<p>Ecency on sananvapauden mahdollistaja, jossa voit julkaista kaiken luomasi: lauseita, lainauksia, blogeja, anekdootteja, kuvia, videoita, muistoja, lauluja ja vaikka mitä. Ole luova! Ole vain varovainen <a href=\"/faq#what-spam-abuse\" class=\"push-link\">roskaposteista tai väärinkäytöstä</a></p>",
+      "what-can-post-body": "<p>Ecency mahdollistaa sananvapauden, jossa voit julkaista kaiken luomasi: lauseita, lainauksia, blogeja, anekdootteja, kuvia, videoita, muistoja, lauluja ja vaikka mitä. Ole luova! Varo <a href=\"/faq#what-spam-abuse\" class=\"push-link\">roskaposteja tai väärinkäyttöä</a></p>",
       "add-images-videos-header": "Miten lisätä kuvia ja videoita julkaisuihin?",
       "add-images-videos-body": "<p>Sinulla on useita vaihtoehtoja, kuten kiintolevyn selaaminen lisätäksesi kuvan klikkaamalla niiden linkkiä editorin sisällä, tai jos olet kopioinut kuvan klikkaamalla ctrl+v (cmd+v) ja kuva ladataan julkaisuun tai kommenttiin. Toinen tapa, jolla voit käyttää videoita ja kuvia, on liittää kuvan tai videon web-osoite (URL) editoriin ja se lisätään automaattisesti.</p>",
       "what-thumbnail-image-header": "Mikä on pikkukuva?",
