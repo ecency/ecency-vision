@@ -137,7 +137,8 @@
     "light": "vaalea",
     "dark": "tumma",
     "switch-to": "Vaihda",
-    "vote-power": "Äänivalta:"
+    "vote-power": "Äänivalta:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Ajattele isosti",
@@ -705,6 +706,12 @@
     "slider-hint": "Siirrä liukusäädintä muuttaaksesi määrää.",
     "submit": "Osta",
     "purchase-message": "Tai lähetä mikä tahansa summa osoitteeseen @esteem.app lisäten `points` muistioon ostaessasi Pisteitä."
+  },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
   },
   "promote": {
     "title": "Korosta",
