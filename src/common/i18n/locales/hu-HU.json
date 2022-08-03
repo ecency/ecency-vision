@@ -137,7 +137,8 @@
     "light": "light",
     "dark": "dark",
     "switch-to": "Switch",
-    "vote-power": "Vote Power:"
+    "vote-power": "Vote Power:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Aspire to greatness",
@@ -705,6 +706,12 @@
     "slider-hint": "A csúszka húzásával állítsd be a mennyiséget.",
     "submit": "Vásárlás",
     "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
+  },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
   },
   "promote": {
     "title": "Hirdetés",
