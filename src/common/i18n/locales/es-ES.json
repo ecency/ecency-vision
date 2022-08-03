@@ -138,7 +138,7 @@
     "dark": "oscuro",
     "switch-to": "Cambiar",
     "vote-power": "Poder de voto:",
-    "boost": "Boost"
+    "boost": "Impulsar"
   },
   "intro": {
     "title": "Aspira a la grandeza",
@@ -708,10 +708,10 @@
     "purchase-message": "O envía cualquier cantidad a @esteem.app con `points` como nota en el memo para comprar puntos."
   },
   "purchase-qr": {
-    "scan-code": "Scan the QR code with Ecency mobile app",
-    "select-user": "Please, select an user",
-    "title": "Account boost",
-    "copied": "Account boost link copied!"
+    "scan-code": "Escanear el código QR con la aplicación móvil Ecency",
+    "select-user": "Por favor, selecciona un usuario",
+    "title": "Impulsar la cuenta",
+    "copied": "¡Enlace de impulso de la cuenta copiado!"
   },
   "promote": {
     "title": "Promocionar",
@@ -1019,7 +1019,7 @@
     "type-transfers": "Transacciones",
     "type-delegations": "Delegaciones",
     "group-title-recent": "Recientes",
-    "vote-str": "{{p}}% votes your post:",
+    "vote-str": "{{p}}% votó tu publicación:",
     "reply-str": "contestó a tu publicación:",
     "mention-str": "te mencionó en:",
     "followed-str": "seguido",
