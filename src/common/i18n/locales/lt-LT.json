@@ -137,7 +137,8 @@
     "light": "šviesa",
     "dark": "tamsa",
     "switch-to": "Perjungti",
-    "vote-power": "Balsų galia:"
+    "vote-power": "Balsų galia:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Siekite didybės",
@@ -705,6 +706,12 @@
     "slider-hint": "Vilkite slankiklį, kad sureguliuotumėte kiekį.",
     "submit": "Pirkti",
     "purchase-message": "Arba nusiųskite bet kokią sumą į @esteem.app su „taškais“ kaip atmintinę, kad įsigytumėte taškus."
+  },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
   },
   "promote": {
     "title": "Reklamuoti",
