@@ -15,19 +15,7 @@ interface Props {
   location: Location;
 }
 
-export const PurchaseQrDialog = ({ show, setShow, activeUser, location }: Props) => {
-  const [username, setUsername] = useState<string>('');
-
-  useEffect(() => {
-    const params = queryString.parse(location.search);
-    const hasAtLeastOneShow = Array.from(document.querySelectorAll('.purchase-qr-dialog').values())
-      .some(dialog => (dialog as HTMLElement).style.display === 'block');
-    if (location.pathname === routes.PURCHASE && params.username && !hasAtLeastOneShow) {
-      setUsername(params.username as string);
-      setShow(true);
-    }
-  }, [location]);
-
+export const PurchaseQrDialog = ({ show, setShow, activeUser }: Props) => {
   return <Modal
     animation={false}
     show={show}
@@ -39,7 +27,7 @@ export const PurchaseQrDialog = ({ show, setShow, activeUser, location }: Props)
       <Modal.Title>{_t('purchase-qr.title')}</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      <PurchaseQrBuilder activeUser={username ? { username } as ActiveUser : activeUser} />
+      <PurchaseQrBuilder activeUser={activeUser} />
     </Modal.Body>
   </Modal>
 }

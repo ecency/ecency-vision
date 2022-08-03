@@ -112,7 +112,7 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
 
   const getURL = () =>`${window.location.protocol}//${window.location.hostname}/purchase?username=${username}&type=boost`;
 
-  return <div className="d-flex flex-column align-items-center my-5 px-3 text-center">
+  return <div className="d-flex flex-column align-items-center my-4 px-3 text-center">
     <h2>{isQrShow ? _t('purchase-qr.scan-code') : _t('purchase-qr.select-user')}</h2>
     <div className="w-100 mt-4">
       <SuggestionList items={usernameData} {...suggestionProps}>
@@ -144,7 +144,6 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
     <img ref={qrImgRef as any} alt="Boost QR Code" className="my-4" style={{ display: isQrShow ? 'block' : 'none' }} />
     {isQrShow ? <Form.Group className="w-100">
       <InputGroup
-        className="mb-3"
         onClick={() => copyToClipboard(getURL())}
       >
         <Form.Control
