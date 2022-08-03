@@ -1019,7 +1019,7 @@
     "type-transfers": "التحويلات",
     "type-delegations": "Delegations",
     "group-title-recent": "الأحدث",
-    "vote-str": "{{p}}% يحب منشورك:",
+    "vote-str": "{{p}}% votes your post:",
     "reply-str": "رد على منشورك:",
     "mention-str": "ذكرك في:",
     "followed-str": "تابع",
