@@ -137,7 +137,8 @@
     "light": "light",
     "dark": "dark",
     "switch-to": "Αλλαγή",
-    "vote-power": "Δύναμη ψήφου:"
+    "vote-power": "Δύναμη ψήφου:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Φιλοδοξία στο μεγαλείο",
@@ -705,6 +706,12 @@
     "slider-hint": "Σύρετε τον ολισθητή για να ρυθμίσετε το ποσό.",
     "submit": "Αγορά",
     "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
+  },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
   },
   "promote": {
     "title": "Προώθηση",
