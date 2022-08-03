@@ -1019,7 +1019,7 @@
     "type-transfers": "Transfers",
     "type-delegations": "Delegations",
     "group-title-recent": "Recent",
-    "vote-str": "{{p}} hat deinen Beitrag gevotet:",
+    "vote-str": "{{p}}% votes your post:",
     "reply-str": "antwortete auf deinen Beitrag:",
     "mention-str": "erwähnte dich in:",
     "followed-str": "gefolgt",
