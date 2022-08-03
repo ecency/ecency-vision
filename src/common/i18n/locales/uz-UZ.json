@@ -1019,7 +1019,7 @@
     "type-transfers": "O'tkazmalar",
     "type-delegations": "Delegatsiyalar",
     "group-title-recent": "Yaqinda",
-    "vote-str": "{{p}}% postingizga ijobiy ovoz berdi:",
+    "vote-str": "{{p}}% votes your post:",
     "reply-str": "postingizga javob berdi:",
     "mention-str": "sizni eslatib o'tdi:",
     "followed-str": "kuzatdi",
