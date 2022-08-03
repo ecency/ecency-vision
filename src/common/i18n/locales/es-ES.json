@@ -1019,7 +1019,7 @@
     "type-transfers": "Transacciones",
     "type-delegations": "Delegaciones",
     "group-title-recent": "Recientes",
-    "vote-str": "A {{p}}% le gusta tu publicación:",
+    "vote-str": "{{p}}% votes your post:",
     "reply-str": "contestó a tu publicación:",
     "mention-str": "te mencionó en:",
     "followed-str": "seguido",
