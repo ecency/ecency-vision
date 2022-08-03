@@ -225,9 +225,11 @@ export default class UserNav extends Component<Props, State> {
         return (
             <>
                 <div className="user-nav">
-                    <div onClick={() => this.setState({ showPurchaseDialog: true })} className="user-points cursor-pointer">
-                        {rocketSvg}
-                    </div>
+                    { global.usePrivate && (
+                        <div onClick={() => this.setState({ showPurchaseDialog: true })} className="user-points cursor-pointer">
+                            {rocketSvg}
+                        </div>
+                    )}
                     <WalletBadge activeUser={activeUser} dynamicProps={dynamicProps}/>
 
                     {global.usePrivate && (<ToolTip content={_t("user-nav.notifications")}>

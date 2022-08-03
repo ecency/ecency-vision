@@ -708,8 +708,8 @@
   "purchase-qr": {
     "scan-code": "Scan the QR code with Ecency mobile app",
     "select-user": "Please, select an user",
-    "title": "Boost account",
-    "copied": "Boost link copied!"
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
   },
   "promote": {
     "title": "Promote",
