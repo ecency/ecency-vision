@@ -137,7 +137,8 @@
     "light": "licht",
     "dark": "Donker",
     "switch-to": "Switch",
-    "vote-power": "Stem Kracht:"
+    "vote-power": "Stem Kracht:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Streef naar grootsheid",
@@ -705,6 +706,12 @@
     "slider-hint": "Drag the slider to adjust the amount.",
     "submit": "Purchase",
     "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
+  },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
   },
   "promote": {
     "title": "Promoten",
