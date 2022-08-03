@@ -137,7 +137,8 @@
     "light": "فاتح",
     "dark": "داكن",
     "switch-to": "تبديل",
-    "vote-power": "قوة التصويت:"
+    "vote-power": "قوة التصويت:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "التطلع إلى العظمة",
@@ -705,6 +706,12 @@
     "slider-hint": "اسحب شريط التمرير لضبط الكمية.",
     "submit": "شراء",
     "purchase-message": "أو أرسل أي مبلغ إلى @esteem.app مع 'points' كمذكرة لشراء النقاط."
+  },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
   },
   "promote": {
     "title": "قم بالترويج لمقالك",
