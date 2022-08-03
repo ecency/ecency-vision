@@ -137,7 +137,8 @@
     "light": "claro",
     "dark": "oscuro",
     "switch-to": "Cambiar",
-    "vote-power": "Poder de voto:"
+    "vote-power": "Poder de voto:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Aspira a la grandeza",
@@ -705,6 +706,12 @@
     "slider-hint": "Arrastra el deslizador para ajustar la cantidad.",
     "submit": "Comprar",
     "purchase-message": "O envía cualquier cantidad a @esteem.app con `points` como nota en el memo para comprar puntos."
+  },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
   },
   "promote": {
     "title": "Promocionar",
