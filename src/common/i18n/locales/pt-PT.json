@@ -137,7 +137,8 @@
     "light": "claro",
     "dark": "escuro",
     "switch-to": "Alternar",
-    "vote-power": "Força do Voto:"
+    "vote-power": "Força do Voto:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Pense Grande",
@@ -705,6 +706,12 @@
     "slider-hint": "Deslize o cursor para ajustar a quantidade.",
     "submit": "Compra",
     "purchase-message": "Ou envie qualquer quantia para @esteem.app com `pontos` no memo, para comprar Pontos."
+  },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
   },
   "promote": {
     "title": "Promover",
