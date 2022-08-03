@@ -137,7 +137,8 @@
     "light": "світлий",
     "dark": "dark",
     "switch-to": "Switch",
-    "vote-power": "Сила голосу:"
+    "vote-power": "Сила голосу:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Прагніть до величі",
@@ -705,6 +706,12 @@
     "slider-hint": "Перетягніть повзунок, щоб налаштувати суму.",
     "submit": "Придбати",
     "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
+  },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
   },
   "promote": {
     "title": "Просувати",
