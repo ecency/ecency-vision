@@ -11,7 +11,7 @@ type FilterTag = {
 };
 
 export default (location: string): FilterTag | null => {
-    if (location === routes.HOME) {
+    if (location === routes.HOME || location === routes.PURCHASE) {
         return {
             filter: defaults.filter,
             tag: "",

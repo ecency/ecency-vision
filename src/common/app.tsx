@@ -63,6 +63,9 @@ const EntryPage = (props: any) => {
   return isAmp ? <EntryAMPContainer {...props} /> : <EntryContainer {...props} />;
 }
 
+const PurchaseContainer = loadable(() => import('./pages/purchase'));
+const PurchasePage = (props: any) => <PurchaseContainer {...props} />
+
 const App = ({ setLang }: any) => {
   useEffect(() => {
     let pathname = window.location.pathname;
@@ -82,6 +85,7 @@ const App = ({ setLang }: any) => {
         <Route exact={true} path={routes.HOME} component={EntryIndexContainer}/>
         <Route exact={true} strict={true} path={routes.FILTER} component={EntryIndexContainer}/>
         <Route exact={true} strict={true} path={routes.USER_FEED} component={EntryIndexContainer}/>
+        <Route exact={true} strict={true} path={routes.PURCHASE} component={PurchasePage}/>
         <Route exact={true} strict={true} path={routes.USER} component={ProfilePage}/>
         <Route exact={true} strict={true} path={routes.USER_SECTION} component={ProfilePage}/>
         <Route exact={true} strict={true} path={routes.ENTRY} component={EntryPage}/>

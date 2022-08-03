@@ -36,11 +36,35 @@ import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg, chevronUpSvg, upArrowSvg, keySvg, sunSvg, gifCardSvg} from "../../img/svg";
+import {
+    brightnessSvg,
+    pencilOutlineSvg,
+    menuSvg,
+    closeSvg,
+    magnifySvg,
+    accountOutlineSvg,
+    powerDownSvg,
+    chevronDownSvgForSlider,
+    moonSvg,
+    globeSvg,
+    bellSvg,
+    walletTravelSvg,
+    walletSvg,
+    notificationSvg,
+    pencilOutlinedSvg,
+    userOutlineSvg,
+    downArrowSvg,
+    chevronUpSvg,
+    upArrowSvg,
+    keySvg,
+    sunSvg,
+    rocketSvg
+} from '../../img/svg';
 import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
 import isCommunity from "../../helper/is-community";
 import { setNotificationsSettingsItem, updateNotificationsSettings } from '../../store/notifications';
+import { PurchaseQrDialog } from '../purchase-qr';
 //const logo = require('../../img/logo-circle.svg');
 
 interface Props {
@@ -87,7 +111,8 @@ interface State {
     bookmarks: boolean,
     schedules: boolean,
     fragments: boolean,
-    notifications: boolean
+    notifications: boolean,
+    showPurchaseDialog: boolean
 }
 
 export class NavBar extends Component<Props, State> {
@@ -102,6 +127,7 @@ export class NavBar extends Component<Props, State> {
         schedules: false,
         fragments: false,
         notifications: false,
+        showPurchaseDialog: false,
     }
 
     timer: any = null;
@@ -435,12 +461,10 @@ export class NavBar extends Component<Props, State> {
                                     <div className="navbar-icon text-dark">{notificationSvg}</div>
                                     <div className="ml-3 text-15">{_t("user-nav.notifications")}</div>
                                 </div>
-                                <Link to={`/@${activeUser.username}/points`} onClick={() => this.setState({ smVisible: false} )}>
-                                    <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                        <div className="navbar-icon text-dark">{gifCardSvg}</div>
-                                        <div className="ml-3 text-15">{_t("user-nav.points")}</div>
-                                    </div>
-                                </Link>
+                                <div onClick={() => this.setState({ showPurchaseDialog: true })} className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                    <div className="navbar-icon text-dark">{rocketSvg}</div>
+                                    <div className="ml-3 text-15">{_t("user-nav.boost")}</div>
+                                </div>
                                 <Link to={`/@${activeUser?.username}/wallet`} onClick={() => this.setState({ smVisible: false} )}>
                                     <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                                         <div className="icon-stroke text-dark">{walletSvg}</div>
@@ -470,6 +494,12 @@ export class NavBar extends Component<Props, State> {
                     {schedules && activeUser && <Schedules {...this.props} onHide={() => this.setState({schedules:!schedules})} activeUser={activeUser as ActiveUser} />}
                     {fragments && activeUser && <Fragments {...this.props} onHide={() => this.setState({fragments:!fragments})} activeUser={activeUser as ActiveUser} />}
                 </div>
+                <PurchaseQrDialog
+                  show={this.state.showPurchaseDialog}
+                  setShow={v => this.setState({ showPurchaseDialog: v })}
+                  activeUser={activeUser}
+                  location={this.props.location}
+                />
             </div>
         );
     }
