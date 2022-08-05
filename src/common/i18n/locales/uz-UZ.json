@@ -788,11 +788,11 @@
     "convert-summary": "<span class=\"amount\">{{amount}}</span> konvertatsiya qilinmoqda",
     "power-up-summary": "<span class=\"from-user\">{{from}}</span> da<span class=\"to-user\">{{to}}</span> ga ulush qo'shilgan <span class=\"amount\">{{amount}}</span>",
     "stake-summary": "<span class=\"amount\">{{amount}}</span>{{from}}</span>dan <span class=\"to-user\">{{to}}</span>ga steyklandi",
-    "unstake-summary": "<span class=\"amount\">{{amount}}</span> unstaked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "unstake-summary": "<span class=\"amount\">{{amount}}</span></span><span class=\"from-user\"><span class=\"from-user\">{{from}}</span> dan<span class=\"to-user\">{{to}}</span> ga steyk bekor qilindi",
     "delegate-summary": "<span class=\"from-user\">{{from}}</span> yuboruvchidan <span class=\"to-user\">{{to}}</span> <span class=\"amount\">{{amount}}}</span> vakolat berilgan",
-    "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "undelegate-summary": "<span class=\"amount\">{{amount}}</span> <span class=\"from-user\">{{from}}</span> dan <span class=\"to-user\" ga delegatsiya bekor qilindi >{{to}}</span>",
     "power-down-summary": "<span class=\"amount\">{{amount}}</span> miqdorda Kuch kamaytirildi",
-    "claim-interest-summary": "Interest claimed and added to your savings balance",
+    "claim-interest-summary": "Foizlar olindi va balansingizga qo'shildi",
     "reset": "Qayta o'rnatish",
     "powering-down": "Siz hozir kuchingizni kamaytiryapsiz.",
     "stop-power-down": "To'xtash"
@@ -846,7 +846,7 @@
     "type-limit_order_create": "Yangi savdo yaratildi",
     "type-limit_order_cancel": "Ochiq savdo bekor qiindi",
     "type-effective_comment_vote": "Samarali ovoz",
-    "type-account_witness_proxy": "Governance proxy update"
+    "type-account_witness_proxy": "Boshqaruv proksi yangilanishi"
   },
   "key-or-hot": {
     "sign": "Obuna bo'ling",
@@ -955,7 +955,7 @@
     "empty-title-alert": "Post sarlavhasini kiriting",
     "empty-tags-alert": "Post teglarini kiriting",
     "empty-body-alert": "Post matnini kiriting",
-    "description": "Short description"
+    "description": "Qisqa Tasvir"
   },
   "tag-selector": {
     "placeholder-empty": "Teglar. Birinchi teg asosiy toifadir. Uni saralash mumkin.",
@@ -1019,7 +1019,7 @@
     "type-transfers": "O'tkazmalar",
     "type-delegations": "Delegatsiyalar",
     "group-title-recent": "Yaqinda",
-    "vote-str": "{{p}}% votes your post:",
+    "vote-str": "{{p}} postingizga ovoz berdi:",
     "reply-str": "postingizga javob berdi:",
     "mention-str": "sizni eslatib o'tdi:",
     "followed-str": "kuzatdi",
@@ -1036,7 +1036,7 @@
     "mark-read": "O'qilgan deb belgilash",
     "mute": "Xabarnomalarni o'chirish",
     "unmute": "Xabarnomalarni yoqish",
-    "settings": "Settings"
+    "settings": "Sozlamalar"
   },
   "leaderboard": {
     "title-stars": "Eng aktivlar",
@@ -1124,11 +1124,11 @@
     "proxy-votes-for": "@{{username}} uchun ovoz beradi"
   },
   "referral": {
-    "page-title": "Referrals",
-    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
-    "created": "Created",
-    "list-referral": "Account",
-    "rewarded": "Rewarded",
+    "page-title": "Ma'lumotnomalar",
+    "page-description-long": "Bu yerda siz Ecency ilovasiga havola qilgan barcha foydalanuvchilarning roʻyxati keltirilgan.",
+    "created": "Yaratilgan",
+    "list-referral": "Akkaunt",
+    "rewarded": "Mukofotlangan",
     "pending-reward": "Pending Points",
     "earned-reward": "Earned Points",
     "delegate-hp": "Delegate HP"
