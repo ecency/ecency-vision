@@ -39,5 +39,5 @@ jobs:
           mac_certs_password: ${{ secrets.mac_certs_password }}
           windows_certs: ${{ secrets.windows_certs }}
           windows_certs_password: ${{ secrets.windows_certs_password }}
-          build_script_name: "publish-all"
+          args: "--publish always"
           
