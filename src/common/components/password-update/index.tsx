@@ -100,7 +100,7 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
                 onUpdate && onUpdate();
             })
             .catch((e) => {
-                error(formatError(e));
+                error(...formatError(e));
             })
             .finally(() => {
                 this.stateSet({inProgress: false});

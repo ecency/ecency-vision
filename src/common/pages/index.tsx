@@ -90,7 +90,7 @@ const Index = (props: PageProps) => {
     <Meta {...metaProps} />
     <ScrollToTop/>
     <Theme global={props.global}/>
-    <Feedback/>
+    <Feedback activeUser={props.activeUser} />
     {props.global.isElectron ?
       NavBarElectron({
         ...props,

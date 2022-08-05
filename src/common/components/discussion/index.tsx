@@ -221,7 +221,7 @@ export const Item = (props: ItemProps) => {
             }
         }).catch((e) => {
             console.log(e);
-            error(formatError(e));
+            error(...formatError(e));
         }).finally(() => {
             setInProgress(false);
         });
@@ -254,7 +254,7 @@ export const Item = (props: ItemProps) => {
             updateReply(nReply); // update store
             toggleEdit(); // close comment box
         }).catch((e) => {
-            error(formatError(e));
+            error(...formatError(e));
         }).finally(() => {
             setInProgress(false);
         });

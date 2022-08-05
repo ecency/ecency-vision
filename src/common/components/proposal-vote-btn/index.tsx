@@ -87,7 +87,7 @@ export class ProposalVoteBtn extends BaseComponent<Props, State> {
             call.then(() => {
                 this.stateSet({voted: approve});
             }).catch((e: any) => {
-                error(formatError(e));
+                error(...formatError(e));
             }).finally(() => {
                 this.stateSet({inProgress: false});
             });

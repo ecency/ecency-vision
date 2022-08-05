@@ -1,12 +1,10 @@
 import { Modal } from 'react-bootstrap';
 import { _t } from '../../i18n';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { PurchaseQrBuilder } from './purchase-qr-builder';
 import './purchase-qr-dialog.scss';
 import { ActiveUser } from '../../store/active-user/types';
 import { Location } from 'history';
-import queryString from 'query-string';
-import routes from '../../routes';
 
 interface Props {
   show: boolean;

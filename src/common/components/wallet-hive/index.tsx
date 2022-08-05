@@ -258,7 +258,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                 this.stateSet({claiming: false, claimed: true});
                 updateActiveUser(account);
             }).catch(err => {
-                error(formatError(err));
+                error(...formatError(err));
                 this.stateSet({claiming: false});
             })
     }

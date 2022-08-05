@@ -203,7 +203,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 history.push('/');
             })
             .catch((e) => {
-                error(formatError(e));
+                error(...formatError(e));
             })
     }
 
@@ -228,7 +228,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
             })
             .catch(err => {
-                error(formatError(err));
+                error(...formatError(err));
             }) 
     }
 

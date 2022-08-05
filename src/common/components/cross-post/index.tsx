@@ -104,7 +104,7 @@ export class CrossPost extends BaseComponent<Props, State> {
                 this.props.onSuccess(theCommunity.id);
             })
             .catch((e) => {
-                error(formatError(e));
+                error(...formatError(e));
             })
             .finally(() => {
                 this.stateSet({posting: false});

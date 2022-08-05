@@ -245,7 +245,7 @@ class EntryPage extends BaseComponent<Props, State> {
             this.reload()
 
         }).catch((e) => {
-            error(formatError(e));
+            error(...formatError(e));
         }).finally(() => {
             this.stateSet({replying: false, isCommented: false});
         });
@@ -456,7 +456,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 updateEntry(nEntry);
             }
         }).catch((e) => {
-            error(formatError(e));
+            error(...formatError(e));
         }).finally(() => {
             this.stateSet({replying: false, isCommented: false});
         })
@@ -612,7 +612,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 <Meta {...metaProps} />
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
-                <Feedback/>
+                <Feedback activeUser={this.props.activeUser} />
                 <MdHandler global={this.props.global} history={this.props.history}/>
                 {navBar}
                 <div className={containerClasses}>

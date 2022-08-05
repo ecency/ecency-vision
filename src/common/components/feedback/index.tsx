@@ -1,16 +1,18 @@
 import React from "react";
-
 import BaseComponent from "../base";
-
 import random from "../../util/rnd";
-
 import {checkSvg, alertCircleSvg, informationSvg} from "../../img/svg";
+import { Button } from 'react-bootstrap';
+import { FeedbackModal } from '../feedback-modal';
+import { ErrorTypes } from '../../enums';
+import { ActiveUser } from '../../store/active-user/types';
 
-export const error = (message: string) => {
-    const detail: FeedbackObject = {
+export const error = (message: string, errorType = ErrorTypes.COMMON) => {
+    const detail: ErrorFeedbackObject = {
         id: random(),
         type: "error",
         message,
+        errorType,
     };
     const ev = new CustomEvent("feedback", {detail});
     window.dispatchEvent(ev);
@@ -44,16 +46,25 @@ export interface FeedbackObject {
     message: string;
 }
 
+export interface ErrorFeedbackObject extends FeedbackObject {
+    errorType: ErrorTypes;
+}
+
 interface Props {
+    activeUser: ActiveUser | null;
 }
 
 interface State {
     list: FeedbackObject[];
+    showDialog: boolean;
+    detailedObject: FeedbackObject | null;
 }
 
 export default class Feedback extends BaseComponent<Props, State> {
     state: State = {
         list: [],
+        showDialog: false,
+        detailedObject: null,
     };
 
     componentDidMount() {
@@ -86,10 +97,6 @@ export default class Feedback extends BaseComponent<Props, State> {
 
     render() {
         const {list} = this.state;
-
-        if (list.length === 0) {
-            return null;
-        }
         return (
             <div className="feedback-container">
                 {list.map((x) => {
@@ -103,7 +110,15 @@ export default class Feedback extends BaseComponent<Props, State> {
                         case "error":
                             return (
                                 <div key={x.id} className="feedback-error">
-                                    {alertCircleSvg} {x.message}
+                                    {alertCircleSvg}
+                                    <div className=" d-flex flex-column align-items-start">
+                                        {x.message}
+                                        <Button
+                                          className="mt-2 details-button px-0"
+                                          variant="link"
+                                          onClick={() => this.setState({ showDialog: true, detailedObject: x })}
+                                        >Try this</Button>
+                                    </div>
                                 </div>
                             );
                         case "info":
@@ -116,6 +131,14 @@ export default class Feedback extends BaseComponent<Props, State> {
                             return null;
                     }
                 })}
+
+                {this.state.detailedObject ?
+                <FeedbackModal
+                  activeUser={this.props.activeUser}
+                  instance={this.state.detailedObject as ErrorFeedbackObject}
+                  show={this.state.showDialog}
+                  setShow={v => this.setState({ showDialog: v, detailedObject: null })}
+                /> : <></>}
             </div>
         );
     }

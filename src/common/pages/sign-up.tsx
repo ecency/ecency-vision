@@ -107,7 +107,7 @@ class SignUpPage extends Component<PageProps, State> {
                 <Meta {...metaProps} />
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
-                <Feedback/>
+                <Feedback activeUser={this.props.activeUser} />
                 {global.isElectron ?
                     NavBarElectron({
                         ...this.props,

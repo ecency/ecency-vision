@@ -50,7 +50,7 @@ export default class SubscriptionBtn extends BaseComponent<Props, State> {
             updateSubscriptions([...subscriptions, s]);
             this.stateSet({inProgress: false});
         }).catch(e => {
-            error(formatError(e));
+            error(...formatError(e));
             this.stateSet({inProgress: false});
         });
     }
@@ -63,7 +63,7 @@ export default class SubscriptionBtn extends BaseComponent<Props, State> {
             updateSubscriptions([...s]);
             this.stateSet({inProgress: false});
         }).catch(e => {
-            error(formatError(e));
+            error(...formatError(e));
             this.stateSet({inProgress: false});
         });
     }

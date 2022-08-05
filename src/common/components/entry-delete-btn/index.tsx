@@ -42,7 +42,7 @@ export class EntryDeleteBtn extends BaseComponent<Props> {
                 setDeleteInProgress && setDeleteInProgress(false);
             })
             .catch((e) => {
-                error(formatError(e));
+                error(...formatError(e));
                 this.stateSet({inProgress: false});
                 setDeleteInProgress && setDeleteInProgress(false);
             })
