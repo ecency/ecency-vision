@@ -138,7 +138,7 @@
     "dark": "qorong'u",
     "switch-to": "O'zgartirish",
     "vote-power": "Ovoz kuchi:",
-    "boost": "Boost"
+    "boost": "Kuchaytirish"
   },
   "intro": {
     "title": "Buyuklikka intiling",
@@ -189,7 +189,7 @@
   "entry-list-item": {
     "cross-posted": "oʻzaro joylashtirilgan",
     "cross-posted-to": "ga",
-    "reblogged": "{{n}} reblogged",
+    "reblogged": "{{n}} tarqatildi",
     "promoted": "Ko'tarilgan",
     "pinned": "Belgilangan post",
     "replies": "1 javob. Javob berish uchun bosing.",
@@ -316,18 +316,18 @@
     "refresh-time": "Yangilanish vaqti",
     "hours": "soatlar",
     "save": "Saqlash",
-    "update-interval": "Update interval",
-    "update-interval-min": "In minutes",
-    "update-n-seconds": "Every {{sec}} sec",
-    "update-n-minutes": "Every {{min}} min",
-    "update-n-hours": "Every {{hour}} h",
-    "update-custom": "Custom interval...",
-    "update-interval-value-error": "Interval should be between 30 seconds and 24 hours",
-    "update-interval-placeholder": "Select an interval",
-    "update-custom-interval-in-minutes-placeholder": "Enter interval in minutes",
-    "filters": "Filters",
-    "history": "History",
-    "type": "Type"
+    "update-interval": "Intervalni yangilash",
+    "update-interval-min": "Daqiqalarda",
+    "update-n-seconds": "Har {{sec}} sekund",
+    "update-n-minutes": "Har {{min}} daqiqa",
+    "update-n-hours": "Har {{hour}} soat",
+    "update-custom": "Maxsus interval...",
+    "update-interval-value-error": "Interval 30 daqiqadan 24 soatgacha bo'lishi kerak",
+    "update-interval-placeholder": "Intervalni tanlang",
+    "update-custom-interval-in-minutes-placeholder": "Intervalni daqiqalar ichida kiriting",
+    "filters": "Filtrlar",
+    "history": "Tarix",
+    "type": "Tur"
   },
   "market-data": {
     "title": "Bozor narxi",
@@ -548,15 +548,15 @@
     "section-communities": "Guruhlar",
     "section-wallet": "Hamyon",
     "section-settings": "Sozlamalar",
-    "section-referrals": "Referrals",
+    "section-referrals": "Yo'llanmalar",
     "section-permission": "Ruxsat",
     "communities-title": "A'zolik",
     "create-community": "Guruh yaratish",
     "witnesses": "Guvohlar",
     "proposals": "Takliflar",
-    "referrals": "Referrals",
-    "go-community": "Community page",
-    "com-mod": "Moderator of these communities"
+    "referrals": "Yo'llanmalar",
+    "go-community": "Guruh sahifasi",
+    "com-mod": "Guruh moderatorlari"
   },
   "profile-info": {
     "joined": "Qo'shildi: {{n}}",
