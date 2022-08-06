@@ -1462,5 +1462,13 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "insufficient-resource-credits-details": {
+      "purchase": "Purchase account boost (get delegation)",
+      "buy-hive": "Buy HIVE and Power up or stake that HIVE",
+      "wait": "Wait few hours until resource credits refills"
+    }
   }
 }
