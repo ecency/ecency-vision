@@ -212,36 +212,36 @@
     "deleted": "Saqlanganlardan olib tashlandi"
   },
   "entry-reblog": {
-    "reblog": "Qayta bloglash",
+    "reblog": "Ulashish",
     "confirm-title": "Ushbu post ulashilsinmi?",
-    "confirm-ok": "Qayta bloglash",
+    "confirm-ok": "Ulashish",
     "success": "Qayta bloglandi!",
-    "delete-reblog": "Qayta bloglashni bekor qilish",
-    "delete-confirm-title": "Qayta bloglash bekor qilinsinmi?",
+    "delete-reblog": "Ulashishni bekor qilish",
+    "delete-confirm-title": "Ulashish bekor qilinsinmi?",
     "delete-confirm-ok": "Bekor qilish",
-    "delete-success": "Qayta bloglash o'chirildi"
+    "delete-success": "Ulashish bekor qilindi"
   },
   "entry-tip": {
-    "title": "Maslahat"
+    "title": "Sovg'a"
   },
   "entry-share": {
-    "title": "Ulashish"
+    "title": "Bo‘lishish"
   },
   "entry-menu": {
     "cross-post": "Tarqatish",
-    "share": "Ulashish",
+    "share": "Bo‘lishish",
     "edit-history": "Tarixni Tahrirlash",
-    "pin": "Qadamoq",
-    "pin-to-blog": "Blogga qo'yish",
-    "pin-to-community": "Guruhga ulash",
+    "pin": "Qadash",
+    "pin-to-blog": "Blogga qadash",
+    "pin-to-community": "Guruhga qadash",
     "pin-success": "Post qadaldi",
     "unpin": "Olib tashlash",
     "unpin-from-blog": "Blogdan olish",
     "unpin-from-community": "Guruhdan olish",
-    "unpin-success": "Post olib tashlandi",
+    "unpin-success": "Post olindi",
     "mute": "O'chirish",
     "mute-success": "Post o'chirilgan",
-    "unmute": "Ovozli",
+    "unmute": "Ochish",
     "unmute-success": "Post blokdan ochildi",
     "promote": "Targ'ib qilish",
     "boost": "Kuchaytirish"
@@ -1129,9 +1129,9 @@
     "created": "Yaratilgan",
     "list-referral": "Akkaunt",
     "rewarded": "Mukofotlangan",
-    "pending-reward": "Pending Points",
-    "earned-reward": "Earned Points",
-    "delegate-hp": "Delegate HP"
+    "pending-reward": "Kutilayotgan ballar",
+    "earned-reward": "Ishlangan ballar",
+    "delegate-hp": "HPni delegatsiyalash"
   },
   "proposals": {
     "page-title": "Takliflar",
@@ -1311,8 +1311,8 @@
       "boosting-vote-buying-body": "<p>Yo'q! Chunki, ovoz olish kafolati yo‘q, ovozlarning aniq soniga kafolat yo‘q, postni kuchaytirishning maksimal miqdori cheklangan, kuratorlarimiz tomonidan ko'rib chiqilgan kontentlardan hech qanday foyda yo'q. Barcha kuratorlik mukofotlari delegatorlarga 100% qaytariladi. Biz erishishimiz mumkin bo'lgan yagona muvaffaqiyat - bu butun ekotizimda ishtirok etish va o'sishni ko'rishdir. Boosting shunchaki platformadagi ishtirokni yaxshilab, Ecency Ballaridan qo'shimcha foydalanish holatlarini yaratadi, shuning uchun u Hivedagi boshqa har qanday kuratorlik gildiyasi bilan bir xil. Bu gildiyalarning maqsadi platformadagi ishtirokni yaxshilash va faollikni oshirish.</p>",
       "how-exchange-work-header": "Token almashinuvi qanday ishlaydi?",
       "how-exchange-work-body": "<p>Ecency-da tokenlarni almashish va sotish juda oddiy. Biz Hive blokcheyniga asoslangan P2P, peer-to-peer, markazlashmagan almashishdan foydalanamiz. U foydalanish uchun qulay interfeysni taklif etadi, shuning uchun siz bir tokenni boshqasiga almashtirishingiz mumkin, butunlay markazlashtirilmagan. Sotib olish yoki sotish buyrug'ini yarating va boshqa odamlar buyurtmangizni to'ldirishini kuting. Agar tokenlarni tezda sotmoqchi boʻlsangiz, tez savdo qilish uchun boshqa birovning ochiq buyurtmasini toʻldirishingiz mumkin.</p>",
-      "how-voting-works-header": "How voting content on Ecency?",
-      "how-voting-works-body": "<p>To vote content on Ecency is quite simple, you can learn all about it in following article <a href=\"/hive-125125/@ecency/how-to-vote-content-on\" class=\"push-link\">Voting content</a></p>",
+      "how-voting-works-header": "Kontentga qanday qilib ovoz beriladi?",
+      "how-voting-works-body": "<p> Ecencyda komtentga ovoz berish juda oson, bu haqda batafsila <a href=\"/hive-125125/@ecency/how-to-vote-content-on\" class=\"push-link\"> Kontentga ovoz berish</a> da o'qish mumkin</p>",
       "what-reputation-header": "What is Reputation?",
       "what-reputation-body": "<p>Every user has a reputation score next to their name. The more value you bring to the community the more reputation score you will have. It is also a mechanism that is designed to help reduce abuse of the Hive platform. Getting upvoted by people increases your reputation and getting downvoted by people with a higher reputation can push your reputation down and make your posts less visible. Users with a lower reputation score are unable to affect your reputation.</p>",
       "improve-reputation-score-header": "How to improve my Reputaion score?",
