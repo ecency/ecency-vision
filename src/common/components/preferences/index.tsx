@@ -41,7 +41,7 @@ interface State {
 export class Preferences extends BaseComponent<Props, State> {
     state: State = {
         inProgress: false,
-        defaultTheme: "system",
+        defaultTheme: "",
     }
 
     notificationsChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
@@ -94,6 +94,7 @@ export class Preferences extends BaseComponent<Props, State> {
         const {toggleTheme} = this.props;
         const {value} = e.target;
         toggleTheme(value);
+        this.setState({ ...this.state, defaultTheme: value });
         success(_t('preferences.updated'));
     }
 
@@ -107,9 +108,14 @@ export class Preferences extends BaseComponent<Props, State> {
         success(_t('profile-edit.copied'));
     }
     componentDidMount () {
+        let use_system_theme = localStorage.getItem('ecency_use_system_theme');
         let theme = localStorage.getItem("ecency_system_theme");
+        if (use_system_theme) {
+            this.setState({ ...this.state, defaultTheme: 'system' });
+            return;
+        }
         if (theme) {
-            this.setState({...this.state, defaultTheme: theme});
+            this.setState({ ...this.state, defaultTheme: JSON.parse(theme) });
         }
     }
     render() {
@@ -187,7 +193,7 @@ export class Preferences extends BaseComponent<Props, State> {
                         <Col lg={6} xl={4}>
                         <Form.Group>
                                 <Form.Label>{_t('preferences.theme')}</Form.Label>
-                                <Form.Control type="text" defaultValue={Theme[this.state.defaultTheme]} as="select" onChange={this.themeChanged}>
+                                <Form.Control type="text" value={Theme[this.state.defaultTheme]}  as="select" onChange={this.themeChanged}>
                                     <option value={Theme.system}>{_t('preferences.theme-system-default')}</option>
                                     <option value={Theme.day}>{_t('preferences.theme-day')}</option>
                                     <option value={Theme.night}>{_t('preferences.theme-night')}</option>

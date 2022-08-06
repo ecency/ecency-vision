@@ -32,10 +32,12 @@ import * as ls from '../../util/local-storage';
 
 import filterTagExtract from '../../helper/filter-tag-extract';
 
+const defaultTheme = ls.get('theme') || defaults.theme;
+
 export const initialState: Global = {
   filter: AllFilter[defaults.filter],
   tag: "",
-  theme: Theme[defaults.theme],
+  theme: Theme[defaultTheme],
   listStyle: ListStyle[defaults.listStyle],
   intro: true,
   currency: defaults && defaults.currency && defaults.currency.currency,
@@ -128,11 +130,12 @@ export const toggleTheme = (theme_key?:Theme) => (
   if (theme_key === 'system') {
     newTheme = systemTheme;
     ls.set('use_system_theme', true)
+    ls.set('system_theme', theme_key);
   }
   if (theme_key !== 'system') {
     ls.remove('use_system_theme')
   }
-  if(theme_key !== undefined) ls.set('system_theme', theme_key);
+  ls.set('system_theme', newTheme);
 
   
   ls.set("theme", newTheme);
