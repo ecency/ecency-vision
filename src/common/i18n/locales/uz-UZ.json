@@ -1355,18 +1355,18 @@
       "what-can-post-body": "<p>Ecency soʻz erkinligi maskani boʻlib, unda siz yaratgan hamma narsani: iboralar, iqtiboslar, bloglar, latifalar, fotosuratlar, videolar, memlar, qoʻshiqlar va boshqalarni joylashtirishingiz mumkin. Ijodkor bo'ling! <a href=\"/faq#what-spam-abuse\" class=\"push-link\">spam yoki haqoratdan</a> ehtiyot bo'ling.</p>",
       "add-images-videos-header": "Postlarimga rasm va videolarni qanday qo'shish mumkin?",
       "add-images-videos-body": "<p>Sizda bir nechta variant bor, masalan, qattiq diskni ko‘rib chiqib tanlash havolasini bosing yoki rasm qo‘shish uchun rasmdan nusxa olgan bo‘lsangiz, ctrl+v (cmd+v) tugmalarini bosing va rasmingiz postingiz yoki sharhingizga yuklanadi. Video va tasvirlar uchun foydalanishingiz mumkin boʻlgan yana bir usul bu muharrirga rasm yoki videoning veb-manzilini (URL) joylashtirish va u avtomatik ravishda qoʻshiladi.</p>",
-      "what-thumbnail-image-header": "What is thumbnail image?",
-      "what-thumbnail-image-body": "<p>Thumbnail is reduced-size version of picture taken from your post that can be viewer's first impression about your post. You can choose a thumbnail before publishing your post. In post creation page, click Advanced button and select any one of your images as thumbnail.</p>",
-      "what-dollar-amount-header": "What are the dollar amounts next to posts and comments?",
+      "what-thumbnail-image-header": "Eskiz tasviri nima?",
+      "what-thumbnail-image-body": "<p>Eskiz - bu sizning postingizdan olingan rasmning kichraytirilgan versiyasi bo'lib, u sizning postingiz haqidagi tomoshabinning birinchi taassurotiga aylanishi mumkin. Siz postingizni chop etishdan oldin eskizni tanlashingiz mumkin. Post yaratish sahifasida \"Kengaytirilgan\" tugmasini bosing va eskiz sifatida rasmlaringizdan birini tanlang.</p>",
+      "what-dollar-amount-header": "Postlar va sharhlar yonidagi dollar miqdori nimani bildiradi?",
       "what-dollar-amount-body": "<p>Postlar va sharhlar yonidagi dollar miqdori joriy ovoz berish faolligi va HIVE narxiga asoslangan holda toʻlov muddati tugaganda yuzaga kelishi mumkin boʻlgan taxminiy toʻlov. Ular davr tugaguniga qadar ko'payishi yoki kamayishi mumkin bo'lgan potentsial daromadlardir. To'lovlar Hive Power va Hive Dollars kombinatsiyasi sifatida amalga oshiriladi. Ba'zan blokcheyn bozor sharoitlariga qarab Hive Dollars o'rniga suyuq HIVE ni almashtirishi mumkin.</p>",
       "hive-dollar-worth-header": "1 Hive Dollar har doim 1,00 AQSh dollariga teng bo'ladimi?",
       "hive-dollar-worth-body": "<p>Hive Dollar narxi bozordagi talab va taklifga qarab 1 USD atrofida o'zgaradi. Agar narx 1 AQSh dollaridan past bo'lsa, 1 dollarlik HIVE tokenlarini olish uchun HBD-ni HIVE-ga aylantirish tavsiya etiladi. 1 AQSh dollaridan yuqori bo'lsa, siz bozorda ko'proq HIVE sotib olish uchun ularni sotishingiz mumkin.</p>",
       "convert-hive-dollar-header": "Hive Dollarni HIVEga aylantirish uchun qancha vaqt ketadi?",
       "convert-hive-dollar-body": "<p>Blokcheynda Hive Dollarsni HIVEga aylantirish tranzaksiyasi 3,5 kun davom etadi.</p>",
-      "what-voting-power-header": "What is voting power?",
-      "what-voting-power-body": "<p>Your voting power goes down a little bit every time you vote. It begins with 100% voting power and by voting you use small amount of voting power. The more you vote the fewer influence you have, meaning efficiency of your vote will decay. Daily 10 votes are recommended to utilize efficiency and curation rewards better.</p>",
-      "how-many-vote-header": "How many times can I vote with my voting power?",
-      "how-many-vote-body": "<p>Every 100% vote you cast will use 2% of your remaining voting mana. Your voting mana will recharge by 20% each day. You can vote more than 10 times per day, but each vote will be worth less, and it will take longer to reach full voting power again.</p>"
+      "what-voting-power-header": "Ovoz berish kuchi nima?",
+      "what-voting-power-body": "<p>Har safar ovoz berganingizda ovoz berish kuchingiz biroz pasayadi. Bu 100% ovoz berish bilan boshlanadi va ovoz berish orqali siz o'z ovoz berish kuchingizdan foydalanasiz. Qanchalik ko'p ovoz bersangiz, shunchalik kam ta'sirga ega bo'lasiz, ya'ni ovozingiz samaradorligi pasayadi. Samaradorlik va mukofotlardan yaxshiroq foydalanish uchun kuniga 10 ta ovoz berish tavsiya etiladi.</p>",
+      "how-many-vote-header": "Ovoz berish kuchim bilan necha marta ovoz berishim mumkin?",
+      "how-many-vote-body": "<p>Siz bergan har 100% ovozingiz qolgan ovoz berish kuchingizning 2 foizidan foydalanadi. Ovoz berish kuchingiz har kuni 20% ga to‘ldiriladi. Siz kuniga 10 martadan ortiq ovoz berishingiz mumkin, lekin har bir ovoz kamroq qiymatga ega bo'ladi va yana to'liq ovoz berish huquqiga ega bo'lish uchun ko'proq vaqt ketadi.</p>"
     }
   },
   "contributors": {
@@ -1461,6 +1461,6 @@
     "deck": "Ustun"
   },
   "top-communities": {
-    "title": "Top communities"
+    "title": "Eng yaxshi guruhlar"
   }
 }
