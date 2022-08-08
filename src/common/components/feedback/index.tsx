@@ -6,6 +6,7 @@ import { Button } from 'react-bootstrap';
 import { FeedbackModal } from '../feedback-modal';
 import { ErrorTypes } from '../../enums';
 import { ActiveUser } from '../../store/active-user/types';
+import { _t } from '../../i18n';
 
 export const error = (message: string, errorType = ErrorTypes.COMMON) => {
     const detail: ErrorFeedbackObject = {
@@ -117,7 +118,7 @@ export default class Feedback extends BaseComponent<Props, State> {
                                           className="mt-2 details-button px-0"
                                           variant="link"
                                           onClick={() => this.setState({ showDialog: true, detailedObject: x })}
-                                        >Try this</Button>
+                                        >{_t("feedback-modal.question")}</Button>
                                     </div>
                                 </div>
                             );
