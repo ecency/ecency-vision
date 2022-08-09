@@ -596,6 +596,10 @@
     "language": "언어",
     "nsfw": "성인 콘텐츠 공개",
     "referral-link": "추천인 링크",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "설정 업데이트 완료!"
   },
   "wallet": {
@@ -1019,7 +1023,7 @@
     "type-transfers": "송금",
     "type-delegations": "Delegations",
     "group-title-recent": "최근",
-    "vote-str": "{{p}}% votes your post:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "댓글을 남겼습니다:",
     "mention-str": "당신을 언급했습니다:",
     "followed-str": "팔로우됨",
