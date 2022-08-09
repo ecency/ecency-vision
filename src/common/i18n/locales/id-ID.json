@@ -1392,7 +1392,7 @@
   "chain-error": {
     "min-root-comment": "Anda hanya dapat mempublikasikan satu konten saja setiap lima menit.",
     "identical-vote": "Voting terbaru Anda pada konten ini sudah dilakukan.",
-    "insufficient-resource": "Kekuatan Anda tidak cukup. Silakan tunggu transaksi berikutnya, atau tambahkan kekuatan HIVE Anda.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Tidak bisa menghapus sebuah konten dengan reward yang belum dibayar.",
     "comment-cashout": "Konten setelah pembayaran tidak bisa dihapus.",
     "comment-children": "Tidak bisa mengahapus konten yang sudah ada balasan.",
@@ -1462,5 +1462,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }
