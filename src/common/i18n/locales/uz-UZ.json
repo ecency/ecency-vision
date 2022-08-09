@@ -1392,7 +1392,7 @@
   "chain-error": {
     "min-root-comment": "Siz har besh daqiqada bir marta xabar yozishingiz mumkin.",
     "identical-vote": "Bu kontentdagi hozirgi ovozingiz shu ovoz bilan bir xil.",
-    "insufficient-resource": "Resurs kreditlari yetarli emas. Iltimos, tranzaksiyani kuting yoki HIVEni kuchaytiring.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Mukofot kutilayotgan ijobiy kontentni oʻchirib boʻlmaydi.",
     "comment-cashout": "Toʻlovdan keyin kontentni oʻchirib boʻlmaydi.",
     "comment-children": "Javoblari bor kontentni oʻchirib boʻlmaydi.",
@@ -1462,5 +1462,14 @@
   },
   "top-communities": {
     "title": "Eng yaxshi guruhlar"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }
