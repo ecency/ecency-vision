@@ -596,6 +596,10 @@
     "language": "اللغة",
     "nsfw": "إظهار محتوى غير مناسب لمكان العمل",
     "referral-link": "رابط الإحالة",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "تم تحديث التفضيل!"
   },
   "wallet": {
@@ -1019,7 +1023,7 @@
     "type-transfers": "التحويلات",
     "type-delegations": "Delegations",
     "group-title-recent": "الأحدث",
-    "vote-str": "{{p}}% votes your post:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "رد على منشورك:",
     "mention-str": "ذكرك في:",
     "followed-str": "تابع",
