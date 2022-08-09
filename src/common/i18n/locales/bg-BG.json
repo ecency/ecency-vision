@@ -596,6 +596,10 @@
     "language": "Език",
     "nsfw": "Show NSFW content",
     "referral-link": "Реферална връзка",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Предпочитанията са обновени!"
   },
   "wallet": {
@@ -1019,7 +1023,7 @@
     "type-transfers": "Преводи",
     "type-delegations": "Delegations",
     "group-title-recent": "Скорошни",
-    "vote-str": "{{p}}% votes your post:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "отговори на твоя пост:",
     "mention-str": "ви спомена в:",
     "followed-str": "последван",
