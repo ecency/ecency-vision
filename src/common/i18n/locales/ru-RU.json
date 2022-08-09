@@ -596,6 +596,10 @@
     "language": "Язык",
     "nsfw": "Показать NSFW контент",
     "referral-link": "Реферальная ссылка",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Настройки обновлены!"
   },
   "wallet": {
@@ -1019,7 +1023,7 @@
     "type-transfers": "Переводы",
     "type-delegations": "Делегации",
     "group-title-recent": "Недавние",
-    "vote-str": "{{p}}% votes your post:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "ответил на ваш пост:",
     "mention-str": "упомянул вас в:",
     "followed-str": "подписался на",
