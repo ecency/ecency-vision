@@ -1392,7 +1392,7 @@
   "chain-error": {
     "min-root-comment": "You may only post once every five minutes.",
     "identical-vote": "Your current vote on this content is identical to this vote.",
-    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
+    "insufficient-resource": "Kòsí oun-èlò.",
     "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
     "comment-cashout": "Content after their payout cannot be deleted.",
     "comment-children": "Cannot delete a content with replies.",
@@ -1462,5 +1462,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Àlàyé àṣìṣe",
+    "question": "Kí ni àtúnṣe sí èyí?",
+    "insufficient-resource-title": "Bí ó se lè rí oun-èlò gba síi?",
+    "insufficient-resource-purchase": "Ra igbèrú àkáǹtì tàbí ìṣojú",
+    "insufficient-resource-buy-hive": "Ra HIVE ki o sì gbéra sọ",
+    "insufficient-resource-wait": "Dúró fún wákàtí díẹ̀ kí oun-èlò fi se àtúnkún",
+    "report": "Ìròyìn"
   }
 }
