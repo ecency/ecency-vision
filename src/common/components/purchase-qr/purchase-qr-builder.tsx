@@ -97,7 +97,7 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
     success(_t('purchase-qr.copied'));
   };
 
-  const getURL = () =>`${defaults.base}/purchase?username=${username}&type=${type}`;
+  const getURL = () =>`${defaults.base}/purchase?username=${username}&type=${type}&product_id=999points`;
 
   return <div className="d-flex flex-column align-items-center my-3 px-3 text-center">
     <h2>{isQrShow ? _t('purchase-qr.scan-code') : _t('purchase-qr.select-user')}</h2>
@@ -134,7 +134,7 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
       </InputGroup>
     </Form.Group> : <></>}
     {type === PurchaseTypes.BOOST && isQrShow ?
-      <Alert variant={"primary"} className="text-left mt-3 mb-0">{_t('purchase-qr.boost-info')}</Alert> :
+      <Alert variant={"primary"} className="text-left mt-3 mb-0 text-small">{_t('purchase-qr.boost-info')}</Alert> :
       <></>}
   </div>
 }
