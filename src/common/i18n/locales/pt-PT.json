@@ -1392,7 +1392,7 @@
   "chain-error": {
     "min-root-comment": "Você só pode postar a cada 5 minutos.",
     "identical-vote": "O teu voto actual neste conteúdo é idêntico a este voto.",
-    "insufficient-resource": "Créditos de Recursos insuficientes. Por favor, espere para realizar transações ou aumente o HIVE.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Conteúdo com recompensas positivas não podem ser deletados.",
     "comment-cashout": "Após o pagamento, o conteúdo não pode ser deletado.",
     "comment-children": "Conteúdo com respostas ao pode ser deletado.",
@@ -1462,5 +1462,14 @@
   },
   "top-communities": {
     "title": "Principais comunidades"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }
