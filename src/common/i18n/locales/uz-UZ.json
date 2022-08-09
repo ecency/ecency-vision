@@ -596,6 +596,10 @@
     "language": "Til",
     "nsfw": "NSFW kontentni ko'rsatish",
     "referral-link": "Taklif ssilkasi",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Sozlamalar yangilandi!"
   },
   "wallet": {
@@ -1019,7 +1023,7 @@
     "type-transfers": "O'tkazmalar",
     "type-delegations": "Delegatsiyalar",
     "group-title-recent": "Yaqinda",
-    "vote-str": "{{p}} postingizga ovoz berdi:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "postingizga javob berdi:",
     "mention-str": "sizni eslatib o'tdi:",
     "followed-str": "kuzatdi",
