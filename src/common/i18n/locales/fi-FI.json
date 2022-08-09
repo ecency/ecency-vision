@@ -1392,7 +1392,7 @@
   "chain-error": {
     "min-root-comment": "Voit julkaista vain kerran viidessä minuutissa.",
     "identical-vote": "Tämänhetkinen äänestyksenne tästä sisällöstä on sama kuin tässä äänestyksessä.",
-    "insufficient-resource": "Resurssikrediitit eivät riitä. Odota siirtoa tai hommaa lisää HIVEä.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Sisältöä ei voi poistaa positiivisesta odottavasta palkinnosta johtuen.",
     "comment-cashout": "Sisältöä ei voi poistaa niiden maksun jälkeen.",
     "comment-children": "Keskustelua, jossa on vastauksia, ei voi poistaa.",
@@ -1462,5 +1462,14 @@
   },
   "top-communities": {
     "title": "Suosituimmat Yhteisöt"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }
