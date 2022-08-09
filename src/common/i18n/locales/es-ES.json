@@ -1392,7 +1392,7 @@
   "chain-error": {
     "min-root-comment": "Sólo puedes publicar una vez cada cinco minutos.",
     "identical-vote": "Tu voto actual sobre este contenido es idéntico a esta votación.",
-    "insufficient-resource": "Créditos de recursos insuficientes. Por favor espere para transaccionar o Incrementa tus HIVE por Power Up.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "No se puede eliminar un contenido con recompensas positivas pendientes.",
     "comment-cashout": "El contenido después de su pago no puede ser eliminado.",
     "comment-children": "No se puede eliminar un contenido con respuestas.",
@@ -1462,5 +1462,14 @@
   },
   "top-communities": {
     "title": "Comunidades populares"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }
