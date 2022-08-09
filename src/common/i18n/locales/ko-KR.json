@@ -1392,7 +1392,7 @@
   "chain-error": {
     "min-root-comment": "5분에 한 번만 게시할 수 있습니다.",
     "identical-vote": "이 콘텐츠에 대한 현재 투표는 이 투표와 동일합니다.",
-    "insufficient-resource": "리소스 크레딧이 부족합니다. 거래를 기다리거나 하이브 파워업하세요.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "보상이 보류 중인 콘텐츠는 삭제할 수 없습니다.",
     "comment-cashout": "지불 후 콘텐츠는 삭제할 수 없습니다.",
     "comment-children": "답글이 달린 콘텐츠는 삭제할 수 없습니다.",
@@ -1462,5 +1462,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }
