@@ -359,13 +359,13 @@
     "stock-info": "Stock information",
     "barter": "Exchange tokens",
     "stock-values": "Values",
-    "transaction-low": "Total amount exceeds your available balance. Please add more funds or try with smaller amount.",
-    "confirm-cancel": "Are you sure? You are cancelling order #{{orderid}}!",
-    "confirm-buy": "You're trading {{amount}} HIVE for {{price}} HBD/HIVE and total will be {{total}} HBD.",
-    "confirm-sell": "Values",
-    "transaction-succeeded": "Transaction submitted",
-    "lowest-ask": "Lowest ask",
-    "decimal-error": "Only {{decimals}} decimal digits allowed!"
+    "transaction-low": "Το συνολικό ποσό υπερβαίνει το διαθέσιμο υπόλοιπό σας. Προσθέστε περισσότερα κεφάλαια ή δοκιμάστε με μικρότερο ποσό.",
+    "confirm-cancel": "Είστε σίγουροι? Ακυρώνετε την παραγγελία #{{orderid}}!",
+    "confirm-buy": "Συναλλάσσεται {{amount}} HIVE για {{price}} HBD/HIVE και το σύνολο θα είναι {{total}} HBD.",
+    "confirm-sell": "Αξίες",
+    "transaction-succeeded": "Η συναλλαγή υποβλήθηκε",
+    "lowest-ask": "Χαμηλότερη ζήτηση",
+    "decimal-error": "Επιτρέπονται μόνο {{decimals}} δεκαδικά ψηφία!"
   },
   "list-style": {
     "title": "Αλλαγή στιλ λίστας"
@@ -382,12 +382,12 @@
   },
   "entry": {
     "via-app": "μέσω<span class=\"app-name\">{{app}}</span>",
-    "author-reputation": "Author's reputation",
+    "author-reputation": "Φήμη του συγγραφέα",
     "comment-entry-title": "Βλέπετε ένα μοναδικό νήμα απο: ",
     "comment-entry-go-root": "Δείτε το πλήρες κείμενο",
     "comment-entry-go-parent": "Δείτε το άμεσο σχόλιο",
-    "hidden-warning": "This content got low rating by people.",
-    "delete-disabled": "Content after their payout cannot be deleted.",
+    "hidden-warning": "Αυτό το περιεχόμενο πήρε χαμηλή αξιολόγηση από άτομα.",
+    "delete-disabled": "Το περιεχόμενο μετά την πληρωμή του δεν μπορεί να διαγραφεί.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
     "lowrep-warning": "Author of this content has low reputation.",
     "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
@@ -596,6 +596,10 @@
     "language": "Γλώσσα",
     "nsfw": "Show NSFW content",
     "referral-link": "Referral link",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Οι προτιμήσεις ενημερώθηκαν!"
   },
   "wallet": {
@@ -1019,7 +1023,7 @@
     "type-transfers": "Μεταφορές",
     "type-delegations": "Delegations",
     "group-title-recent": "Recent",
-    "vote-str": "{{p}}% votes your post:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "απάντησε στην δημοσίευση σας:",
     "mention-str": "σε ανέφερε σε:",
     "followed-str": "ακολούθησε",
