@@ -596,6 +596,10 @@
     "language": "Język",
     "nsfw": "Show NSFW content",
     "referral-link": "Referral link",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Ustawienia zostały zaktualizowane!"
   },
   "wallet": {
@@ -1019,7 +1023,7 @@
     "type-transfers": "Przelewy",
     "type-delegations": "Delegations",
     "group-title-recent": "Ostatnie",
-    "vote-str": "{{p}}% votes your post:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "odpowiedział na twój post:",
     "mention-str": "wspomniał o Tobie w:",
     "followed-str": "obserwowany",
