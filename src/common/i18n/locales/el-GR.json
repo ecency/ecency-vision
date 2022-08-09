@@ -388,17 +388,17 @@
     "comment-entry-go-parent": "Δείτε το άμεσο σχόλιο",
     "hidden-warning": "Αυτό το περιεχόμενο πήρε χαμηλή αξιολόγηση από άτομα.",
     "delete-disabled": "Το περιεχόμενο μετά την πληρωμή του δεν μπορεί να διαγραφεί.",
-    "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
-    "lowrep-warning": "Author of this content has low reputation.",
-    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
-    "comments-hidden": "Author of this post is muted by you.",
-    "address-copy": "Copy link",
-    "address-copied": "Link copied to clipboard",
-    "content-copied": "Content copied to clipboard",
-    "browse-original": "Open original post",
-    "cross-post-by": "Cross post by",
-    "cross-post-community": "community",
-    "community-in": "in"
+    "muted-warning": "Αυτό το περιεχόμενο είναι σε σίγαση από τους {{community}} συντονιστές επειδή δεν ακολουθεί τις οδηγίες της κοινότητας.",
+    "lowrep-warning": "Ο συγγραφέας αυτού του περιεχομένου έχει χαμηλή αξιολόγηση.",
+    "deleted-content-warning": "Αυτό το περιεχόμενο διαγράφηκε από τον συγγραφέα. Μπορείτε να το δείτε από το Blockchain ",
+    "comments-hidden": "Ο συγγραφέας αυτής της ανάρτησης είναι σε σίγαση από εσάς.",
+    "address-copy": "Αντιγραφή συνδέσμου",
+    "address-copied": "Ο σύνδεσμος αντιγράφτηκε στο πρόχειρο",
+    "content-copied": "Το περιεχόμενο αντιγράφηκε στο πρόχειρο",
+    "browse-original": "Εμφάνιση αρχικής δημοσίευσης",
+    "cross-post-by": "Διασταυρούμενη δημοσίευση από",
+    "cross-post-community": "κοινότητα",
+    "community-in": "σε"
   },
   "edit-history": {
     "title": "Ιστορικό Επεξεργασίας",
@@ -406,14 +406,14 @@
     "version": "Εκδοχή {{n}}"
   },
   "similar-entries": {
-    "title": "Read next"
+    "title": "Ανάγνωση επόμενου"
   },
   "comment": {
     "body-placeholder": "Γράψτε την απάντηση σας εδώ",
     "preview": "Προεπισκόπηση"
   },
   "discussion": {
-    "join": "Join the conversation now",
+    "join": "Μπες στην συζήτηση τώρα",
     "btn-join": "Συμμετοχή",
     "replies": "1 Σχόλιο",
     "n-replies": "{{n}} Σχόλια",
@@ -423,8 +423,8 @@
     "order-votes": "Ψήφοι",
     "order-created": "Ηλικία",
     "read-more": "...διαβάστε περισσότερες απαντήσεις...",
-    "reveal-muted": "Muted author - Reveal comment",
-    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
+    "reveal-muted": "Συγγραφέας σε σίγαση - Αποκάλυψη σχολίου",
+    "reveal-muted-long-description": "Εμφάνιση πρόσθετων απαντήσεων, συμπεριλαμβανομένων εκείνων που μπορεί να περιέχουν προσβλητικό περιεχόμενο",
     "reveal": "Εμφάνιση σχολίου"
   },
   "community": {
@@ -456,8 +456,8 @@
     "team": "Ηγεσία",
     "edit": "Επεξεργασία Ιδιοτήτων",
     "edit-team": "Επεξεργασία ρόλών",
-    "community-rewards": "Community Rewards",
-    "profile-image": "Profile image",
+    "community-rewards": "Ανταμοιβές Κοινότητας",
+    "profile-image": "Εικόνα προφίλ",
     "profile-image-edit": "Επεξεργαστείτε την φωτογραφία προφίλ",
     "profile-image-updated": "Η φωτογραφία προφίλ ενημερώθηκε!"
   },
@@ -476,7 +476,7 @@
     "description": "Περιγραφή",
     "rules": "Κανόνες",
     "rules-help": "Ένα ανά γραμμή",
-    "validation-title": "Title is required."
+    "validation-title": "Απαιτείται τίτλος."
   },
   "communities": {
     "title": "Κοινότητες",
@@ -497,7 +497,7 @@
     "title": "Τίτλος",
     "about": "Σχετικά",
     "description": "Δημιουργήστε μια καλύτερη, αποκεντρωμένη, αμετάβλητη που επιβραβεύει κοινότητα",
-    "fee": "Creation fee",
+    "fee": "Τέλος δημιουργίας",
     "creator": "Δημιουργός",
     "username": "Community username",
     "username-available": "Διαθέσιμο.",
