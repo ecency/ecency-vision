@@ -1,25 +1,32 @@
-import hs from "hivesigner";
+import hs from 'hivesigner';
 
-import {PrivateKey, Operation, TransactionConfirmation, AccountUpdateOperation, CustomJsonOperation} from '@hiveio/dhive';
+import {
+    AccountUpdateOperation,
+    CustomJsonOperation,
+    Operation,
+    PrivateKey,
+    TransactionConfirmation
+} from '@hiveio/dhive';
 
-import {Parameters} from 'hive-uri';
+import { Parameters } from 'hive-uri';
 
-import {client as hiveClient} from "./hive";
+import { client as hiveClient } from './hive';
 
-import {Account} from "../store/accounts/types";
+import { Account } from '../store/accounts/types';
 
-import {usrActivity} from "./private-api";
+import { usrActivity } from './private-api';
 
-import {getAccessToken, getPostingKey} from "../helper/user-token";
+import { getAccessToken, getPostingKey } from '../helper/user-token';
 
-import * as keychain from "../helper/keychain";
+import * as keychain from '../helper/keychain';
 
-import parseAsset from "../helper/parse-asset";
+import parseAsset from '../helper/parse-asset';
 
-import {hotSign} from "../helper/hive-signer";
+import { hotSign } from '../helper/hive-signer';
 
-import {_t} from "../i18n";
-import { TransactionType } from "../components/buy-sell-hive";
+import { _t } from '../i18n';
+import { TransactionType } from '../components/buy-sell-hive';
+import { ErrorTypes } from '../enums';
 
 export interface MetaData {
     links?: string[];
@@ -50,52 +57,51 @@ export interface CommentOptions {
 
 export type RewardType = "default" | "sp" | "dp";
 
-const handleChainError = (strErr: string) => {
+const handleChainError = (strErr: string): [string | null, ErrorTypes] => {
     if (/You may only post once every/.test(strErr)) {
-        return _t("chain-error.min-root-comment");
+        return [_t("chain-error.min-root-comment"), ErrorTypes.COMMON];
     } else if (/Your current vote on this comment is identical/.test(strErr)) {
-        return _t("chain-error.identical-vote");
+        return [_t("chain-error.identical-vote"), ErrorTypes.COMMON];
     } else if (/Please wait to transact, or power up/.test(strErr)) {
-        return _t("chain-error.insufficient-resource");
+        return [_t("chain-error.insufficient-resource"), ErrorTypes.INSUFFICIENT_RESOURCE_CREDITS];
     } else if (/Cannot delete a comment with net positive/.test(strErr)) {
-        return _t("chain-error.delete-comment-with-vote");
+        return [_t("chain-error.delete-comment-with-vote"), ErrorTypes.COMMON];
     } else if (/children == 0/.test(strErr)) {
-        return _t("chain-error.comment-children");
+        return [_t("chain-error.comment-children"), ErrorTypes.COMMON];
     } else if (/comment_cashout/.test(strErr)) {
-        return _t("chain-error.comment-cashout");
+        return [_t("chain-error.comment-cashout"), ErrorTypes.COMMON];
     } else if (/Votes evaluating for comment that is paid out is forbidden/.test(strErr)) {
-        return _t("chain-error.paid-out-post-forbidden");
+        return [_t("chain-error.paid-out-post-forbidden"), ErrorTypes.COMMON];
     }
 
-    return null;
+    return [null, ErrorTypes.COMMON];
 }
 
-export const formatError = (err: any): string => {
-
-    let chainErr = handleChainError(err.toString());
+export const formatError = (err: any): [string, ErrorTypes] => {
+    let [chainErr, type] = handleChainError(err.toString());
     if (chainErr) {
-        return chainErr;
+        return [chainErr, type];
     }
 
     if (err.error_description && typeof err.error_description === "string") {
-        let chainErr = handleChainError(err.error_description);
+        let [chainErr, type] = handleChainError(err.error_description);
         if (chainErr) {
-            return chainErr;
+            return [chainErr, type];
         }
 
         return err.error_description.substring(0, 80);
     }
 
     if (err.message && typeof err.message === "string") {
-        let chainErr = handleChainError(err.message);
+        let [chainErr, type] = handleChainError(err.message);
         if (chainErr) {
-            return chainErr;
+            return [chainErr, type];
         }
 
         return err.message.substring(0, 80);
     }
 
-    return '';
+    return ['', ErrorTypes.COMMON];
 };
 
 export const broadcastPostingJSON = (username: string, id: string, json: {}): Promise<TransactionConfirmation> => {

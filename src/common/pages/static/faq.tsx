@@ -84,7 +84,7 @@ class FaqPage extends Component<PageProps, FAQPageState> {
       <>
         <Meta {...metaProps} />
         <ScrollToTop/>
-        <Feedback />
+        <Feedback activeUser={this.props.activeUser}  />
         <Theme global={this.props.global}/>
         {global.isElectron ?
           NavBarElectron({

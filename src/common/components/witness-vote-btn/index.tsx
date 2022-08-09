@@ -57,7 +57,7 @@ export class WitnessVoteBtn extends BaseComponent<Props, State> {
             call.then(() => {
                 onSuccess(approve);
             }).catch((e: any) => {
-                error(formatError(e));
+                error(...formatError(e));
             }).finally(() => {
                 this.stateSet({inProgress: false});
                 if (onEnd) onEnd();

@@ -153,7 +153,7 @@ const AddColumn = ({
           }
         })
         .catch((err: any) => {
-          error(formatError(err));
+          error(...formatError(err));
         })
         .finally(() => {
           setToDataLoading(false);

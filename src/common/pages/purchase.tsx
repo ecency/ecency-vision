@@ -39,7 +39,7 @@ const Purchase = (props: PageProps) => {
     <Meta {...getMetaProps()} />
     <ScrollToTop/>
     <Theme global={props.global}/>
-    <Feedback/>
+    <Feedback activeUser={props.activeUser} />
     {getNavBar()}
 
     <div className={props.global.isElectron ? 'app-content container mt-0 pt-6' : 'app-content container'}>

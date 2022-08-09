@@ -377,7 +377,7 @@ export const Profile = (props: Props) => {
     <Meta {...getMetaProps()} />
     <ScrollToTop/>
     <Theme global={props.global}/>
-    <Feedback/>
+    <Feedback activeUser={props.activeUser} />
     {getNavBar()}
 
     <div className={props.global.isElectron ? 'app-content profile-page mt-0 pt-6' : 'app-content profile-page'}>

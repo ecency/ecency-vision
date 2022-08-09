@@ -94,7 +94,7 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
                 addCommunity(nCom);
                 onHide();
             })
-            .catch(err => error(formatError(err)))
+            .catch(err => error(...formatError(err)))
             .finally(() => this.stateSet({inProgress: false}));
     }
 

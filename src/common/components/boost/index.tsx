@@ -192,7 +192,7 @@ export class Boost extends BaseComponent<Props, State> {
         boost(key, activeUser.username, author, permlink, `${amount}.000`).then(() => {
             this.stateSet({step: 3});
         }).catch(err => {
-            error(formatError(err));
+            error(...formatError(err));
         }).finally(() => {
             this.setState({inProgress: false});
         });
@@ -207,7 +207,7 @@ export class Boost extends BaseComponent<Props, State> {
         boostKc(activeUser.username, author, permlink, `${amount}.000`).then(() => {
             this.stateSet({step: 3});
         }).catch(err => {
-            error(formatError(err));
+            error(...formatError(err));
         }).finally(() => {
             this.setState({inProgress: false});
         });

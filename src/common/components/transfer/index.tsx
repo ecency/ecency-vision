@@ -266,7 +266,7 @@ export class Transfer extends BaseComponent<Props, State> {
                     return resp;
                 })
                 .catch(err => {
-                    error(formatError(err));
+                    error(...formatError(err));
                 })
                 .finally(() => {
                     this.stateSet({inProgress: false});
@@ -444,7 +444,7 @@ export class Transfer extends BaseComponent<Props, State> {
                 this.stateSet({step: 4, inProgress: false});
             })
             .catch(err => {
-                error(formatError(err));
+                error(...formatError(err));
                 this.stateSet({inProgress: false});
             });
     }
@@ -562,7 +562,7 @@ export class Transfer extends BaseComponent<Props, State> {
                 this.stateSet({step: 4, inProgress: false});
             })
             .catch(err => {
-                error(formatError(err));
+                error(...formatError(err));
                 this.stateSet({inProgress: false});
             });
     }

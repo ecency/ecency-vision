@@ -69,7 +69,7 @@ export class CommunityRewardsRegistration extends BaseComponent<Props, State> {
         communityRewardsRegister(key, community.name).then(r => {
             this.stateSet({done: true});
         }).catch(err => {
-            error(formatError(err));
+            error(...formatError(err));
         }).finally(() => {
             this.setState({inProgress: false});
         });
@@ -88,7 +88,7 @@ export class CommunityRewardsRegistration extends BaseComponent<Props, State> {
         communityRewardsRegisterKc(community.name).then(r => {
             this.stateSet({done: true});
         }).catch(err => {
-            error(formatError(err));
+            error(...formatError(err));
         }).finally(() => {
             this.setState({inProgress: false});
         });

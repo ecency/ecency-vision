@@ -248,7 +248,7 @@ class SubmitPage extends BaseComponent<Props, State> {
             try {
                 entry = await bridgeApi.normalizePost(await hiveApi.getPost(params.username!.replace("@", ""), params.permlink!));
             } catch (e) {
-                error(formatError(e));
+                error(...formatError(e));
                 return;
             }
 
@@ -608,7 +608,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                 }
             })
             .catch((e) => {
-                error(formatError(e));
+                error(...formatError(e));
             })
             .finally(() => {
                 this.stateSet({posting: false});
@@ -676,7 +676,7 @@ class SubmitPage extends BaseComponent<Props, State> {
             })
             .catch((e) => {
                 this.stateSet({posting: false});
-                error(formatError(e));
+                error(...formatError(e));
             });
     };
 
@@ -796,7 +796,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                 <Meta {...metaProps} />
                 <FullHeight/>
                 <Theme global={this.props.global}/>
-                <Feedback/>
+                <Feedback activeUser={this.props.activeUser} />
                 {clearModal && <ModalConfirm onConfirm={this.clear} onCancel={() => this.setState({clearModal:false})}/>}
                 {global.isElectron && <MdHandler global={this.props.global} history={this.props.history}/>}
                 {global.isElectron ?

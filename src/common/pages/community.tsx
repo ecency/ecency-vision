@@ -295,7 +295,7 @@ class CommunityPage extends BaseComponent<Props, State> {
         <Meta {...metaProps} />
         <ScrollToTop />
         <Theme global={this.props.global} />
-        <Feedback />
+        <Feedback activeUser={this.props.activeUser} />
         {navBar}
 
         <div className={containerClasses}>

@@ -182,7 +182,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
     try {
       await client.broadcast.sendOperations([operation], creatorKey);
     } catch (e) {
-      error(formatError(e));
+      error(...formatError(e));
       this.stateSet({inProgress: false, progress: ''});
       return;
     }
@@ -223,7 +223,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
       await keychain.broadcast(activeUser!.username, [operation], "Active");
     } catch
       (e) {
-      error(formatError(e));
+      error(...formatError(e));
       this.stateSet({inProgress: false, progress: ''});
       return;
     }
@@ -236,7 +236,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         memo: keys.memoKey.toString()
       });
     } catch (e) {
-      error(formatError(e));
+      error(...formatError(e));
       this.stateSet({inProgress: false, progress: ''});
       return;
     }
@@ -264,7 +264,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         postingKey: null
       }));
     } catch (e) {
-      error(formatError(e));
+      error(...formatError(e));
       this.stateSet({inProgress: false, progress: ''});
       return;
     }
@@ -278,7 +278,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
     try {
       await setUserRole(username, username, activeUser.username, "admin");
     } catch (e) {
-      error(formatError(e));
+      error(...formatError(e));
       this.stateSet({inProgress: false, progress: ''});
       return;
     }
@@ -289,7 +289,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
     try {
       await updateCommunity(username, username, {title, about, lang: 'en', description: '', flag_text: '', is_nsfw: false});
     } catch (e) {
-      error(formatError(e));
+      error(...formatError(e));
       this.stateSet({inProgress: false, progress: ''});
       return;
     }
@@ -353,7 +353,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
       <>
         <Meta {...metaProps} />
         <Theme global={global}/>
-        <Feedback/>
+        <Feedback activeUser={activeUser} />
         {global.isElectron ?
           NavBarElectron({
             ...this.props

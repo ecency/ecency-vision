@@ -88,7 +88,7 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
         setUsernameData(resp);
       }
     } catch (e) {
-      error(formatError(e));
+      error(...formatError(e));
     } finally {
       setIsUsernameDataLoading(false);
     }

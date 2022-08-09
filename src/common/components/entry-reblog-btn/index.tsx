@@ -72,7 +72,7 @@ export class EntryReblogBtn extends BaseComponent<Props> {
                 success(_t("entry-reblog.success"));
             })
             .catch((e) => {
-                error(formatError(e));
+                error(...formatError(e));
             })
             .finally(() => {
                 this.stateSet({inProgress: false});
@@ -89,7 +89,7 @@ export class EntryReblogBtn extends BaseComponent<Props> {
                 info(_t("entry-reblog.delete-success"));
             })
             .catch((e) => {
-                error(formatError(e));
+                error(...formatError(e));
             })
             .finally(() => {
                 this.stateSet({inProgress: false});

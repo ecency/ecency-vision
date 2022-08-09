@@ -151,7 +151,7 @@ closeTransferDialog = () => {
       })
       .catch((err) => {
         console.log(err);
-        error(formatError(err));
+        error(...formatError(err));
       })
       .finally(() => {
         this.setState({ claiming: false });

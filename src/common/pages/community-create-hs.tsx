@@ -58,7 +58,7 @@ class CommunityCreateHSPage extends BaseComponent<PageProps, CreateHsState> {
         postingKey: null
       }));
     } catch (e) {
-      error(formatError(e));
+      error(...formatError(e));
       this.stateSet({inProgress: false, progress: ''});
       return;
     }
@@ -75,7 +75,7 @@ class CommunityCreateHSPage extends BaseComponent<PageProps, CreateHsState> {
     try {
       await setUserRole(user.username, user.username, activeUser.username, "admin");
     } catch (e) {
-      error(formatError(e));
+      error(...formatError(e));
       this.stateSet({inProgress: false, progress: ''});
       return;
     }
@@ -86,7 +86,7 @@ class CommunityCreateHSPage extends BaseComponent<PageProps, CreateHsState> {
     try {
       await updateCommunity(user.username, user.username, {title, about, lang: 'en', description: '', flag_text: '', is_nsfw: false});
     } catch (e) {
-      error(formatError(e));
+      error(...formatError(e));
       this.stateSet({inProgress: false, progress: ''});
       return;
     }
@@ -112,14 +112,14 @@ class CommunityCreateHSPage extends BaseComponent<PageProps, CreateHsState> {
       description: _t("communities-create.description"),
     };
 
-    const {global} = this.props;
+    const {global, activeUser} = this.props;
     const {inProgress, progress, done} = this.state;
     let containerClasses = global.isElectron ? "app-content communities-page mt-0 pt-6" : "app-content communities-page"
 
     return <>
       <Meta {...metaProps} />
       <Theme global={global}/>
-      <Feedback/>
+      <Feedback activeUser={activeUser} />
       {global.isElectron ?
         NavBarElectron({
           ...this.props

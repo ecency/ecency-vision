@@ -216,7 +216,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                 <Meta {...metaProps} />
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
-                <Feedback/>
+                <Feedback activeUser={this.props.activeUser} />
                 {navBar}
                 <div className={containerClasses}>
                     <div className="page-header mt-5">
@@ -379,7 +379,7 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
                 <Meta {...metaProps} />
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
-                <Feedback/>
+                <Feedback activeUser={this.props.activeUser} />
                 {navBar}
                 <div className={containerClasses}>
                     <div className="page-header mt-5">

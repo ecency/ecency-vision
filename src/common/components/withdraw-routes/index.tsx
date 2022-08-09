@@ -87,7 +87,7 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
             .then(() => this.stateSet(pureState()))
             .then(() => this.fetchRoutes())
             .catch(err => {
-                error(formatError(err));
+                error(...formatError(err));
                 this.stateSet({inProgress: false});
             });
     }
@@ -109,7 +109,7 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
             .then(() => this.stateSet(pureState()))
             .then(() => this.fetchRoutes())
             .catch(err => {
-                error(formatError(err));
+                error(...formatError(err));
                 this.stateSet({inProgress: false});
             });
     }

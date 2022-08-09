@@ -126,7 +126,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
         try {
             code = await makeHsCode(username, signer);
         } catch (err) {
-            error(formatError(err));
+            error(...formatError(err));
             this.stateSet({inProgress: false});
             return;
         }
