@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Form, InputGroup } from 'react-bootstrap';
+import { Alert, Button, Form, InputGroup } from 'react-bootstrap';
 import { _t } from '../../i18n';
 import SuggestionList from '../suggestion-list';
 import userAvatar from '../user-avatar';
@@ -10,6 +10,9 @@ import qrcode from 'qrcode';
 import { copyContent } from '../../img/svg';
 import { ActiveUser } from '../../store/active-user/types';
 import defaults from "../../constants/defaults.json";
+import { PurchaseQrUsername } from './purchase-qr-username';
+import { PurchaseTypes } from './purchase-types';
+import { PurchaseQrTypes } from './purchase-qr-types';
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -24,6 +27,7 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
   const qrImgRef = useRef<HTMLImageElement | undefined>();
   const [isQrShow, setIsQrShow] = useState(false);
   const [isActiveUserSet, setIsActiveUserSet] = useState(false);
+  const [type, setType] = useState(PurchaseTypes.BOOST);
 
   useEffect(() => {
     if (!usernameInput) {
@@ -37,7 +41,7 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
     if (username) {
       compileQR(getURL());
     }
-  }, [username]);
+  }, [username, type]);
 
   useEffect(() => {
     if (activeUser) {
@@ -47,24 +51,6 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
       compileQR(getURL());
     }
   }, [activeUser]);
-
-  const suggestionProps = {
-    renderer: (i: any) => {
-      return (
-        <>
-          {userAvatar({
-            username: i.name || i,
-            size: 'medium',
-            global: {} as any,
-          })}{' '}
-          <span style={{ marginLeft: '4px' }}>{i}</span>
-        </>
-      );
-    },
-    onSelect: (selectedText: any) => {
-      setUsername(selectedText);
-    }
-  };
 
   const fetchUsernameData = (query: string) => {
     if (timer) {
@@ -111,36 +97,19 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
     success(_t('purchase-qr.copied'));
   };
 
-  const getURL = () =>`${defaults.base}/purchase?username=${username}&type=boost`;
+  const getURL = () =>`${defaults.base}/purchase?username=${username}&type=${type}`;
 
-  return <div className="d-flex flex-column align-items-center my-4 px-3 text-center">
+  return <div className="d-flex flex-column align-items-center my-3 px-3 text-center">
     <h2>{isQrShow ? _t('purchase-qr.scan-code') : _t('purchase-qr.select-user')}</h2>
     <div className="w-100 mt-4">
-      <SuggestionList items={usernameData} {...suggestionProps}>
-        <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text>
-              {isUsernameDataLoading ? (
-                <div
-                  className="spinner-border text-primary spinner-border-sm"
-                  role="status"
-                >
-                  <span className="sr-only">{_t('g.loading')}</span>
-                </div>
-              ) : (
-                '@'
-              )}
-            </InputGroup.Text>
-          </InputGroup.Prepend>
-          <Form.Control
-            type="text"
-            autoFocus={true}
-            placeholder=""
-            value={usernameInput}
-            onChange={(e) => setUsernameInput(e.target.value)}
-          />
-        </InputGroup>
-      </SuggestionList>
+      <PurchaseQrUsername
+        usernameData={usernameData}
+        usernameInput={usernameInput}
+        setUsernameInput={setUsernameInput}
+        isUsernameDataLoading={isUsernameDataLoading}
+        setUsername={setUsername}
+      />
+      {isQrShow ? <PurchaseQrTypes className="mt-3" type={type} setType={setType} /> : <></>}
     </div>
     <img ref={qrImgRef as any} alt="Boost QR Code" className="my-4" style={{ display: isQrShow ? 'block' : 'none' }} />
     {isQrShow ? <Form.Group className="w-100">
@@ -164,5 +133,8 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
         </InputGroup.Append>
       </InputGroup>
     </Form.Group> : <></>}
+    {type === PurchaseTypes.BOOST && isQrShow ?
+      <Alert variant={"primary"} className="text-left mt-3 mb-0">{_t('purchase-qr.boost-info')}</Alert> :
+      <></>}
   </div>
 }

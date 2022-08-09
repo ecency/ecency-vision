@@ -14,6 +14,7 @@ interface Props {
     onSelect?: (item: any) => void;
     children: JSX.Element;
     searchValue?: string;
+    ignoreFirstInputFocus?: boolean;
 }
 
 interface State {
@@ -33,9 +34,14 @@ export default class SuggestionList extends Component<Props> {
 
         const input = this.getPossibleInput();
         if (input) {
-            if (input === document.activeElement) {
+            if (input === document.activeElement && !this.props.ignoreFirstInputFocus) {
                 this.setState({showList: true});
             }
+
+            if (this.props.ignoreFirstInputFocus) {
+                input.blur();
+            }
+
             input.addEventListener("focus", this.watchInputFocus);
         }
     }
