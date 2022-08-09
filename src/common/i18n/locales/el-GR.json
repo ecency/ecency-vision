@@ -638,24 +638,24 @@
     "delegate": "Εξουσιoδοτήστε",
     "power-down": "Power Down",
     "withdraw-routes": "Οδοί Ανάληψης",
-    "calculating": "Calculating",
-    "converting-hbd-amount": "Converting to HIVE",
-    "withdrawing-amount": "Withdrawing from Savings",
-    "reserved-amount": "Reserved for Open order in Market"
+    "calculating": "Υπολογισμός",
+    "converting-hbd-amount": "Μετατροπή σε HIVE",
+    "withdrawing-amount": "Απόσυρση από αποταμίευση",
+    "reserved-amount": "Δεσμευμένη για Ανοικτή Παραγγελία στην Αγορά"
   },
   "wallet-engine": {
-    "title": "Hive Engine Tokens",
+    "title": "Hive Engine Νομίσματα",
     "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
-    "no-results": "No tokens found.",
-    "token": "Token",
-    "balance": "Balance",
+    "no-results": "Δεν βρέθηκαν νομίσματα.",
+    "token": "Νόμισμα",
+    "balance": "Υπόλοιπο",
     "staked": "Staked"
   },
   "withdraw-routes": {
     "title": "Λογαριασμοί Ανάληψης",
     "account": "Λογαριασμός",
     "percent": "Ποσοστό",
-    "validation-account": "Account is required.",
+    "validation-account": "Απαιτείται λογαριασμός.",
     "validation-percent": "Percentage is required.",
     "auto-power-up": "Αυτομάτως κάνε power up"
   },
