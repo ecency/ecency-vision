@@ -35,6 +35,7 @@ import Fragments from "../fragments";
 import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
+import * as ls from '../../util/local-storage';
 
 import {
     brightnessSvg,
@@ -65,6 +66,7 @@ import { downVotingPower, votingPower } from "../../api/hive";
 import isCommunity from "../../helper/is-community";
 import { setNotificationsSettingsItem, updateNotificationsSettings } from '../../store/notifications';
 import { PurchaseQrDialog } from '../purchase-qr';
+import { lstatSync } from 'original-fs';
 //const logo = require('../../img/logo-circle.svg');
 
 interface Props {
@@ -140,15 +142,13 @@ export class NavBar extends Component<Props, State> {
         if (!location.pathname.startsWith("/signup") && qs.referral) {
             history.push(`/signup?referral=${qs.referral}`)
         }
-
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', this.handleAutoDetectTheme); // listen to dark theme
-        // this.handleSetTheme(); // detect default set theme on load page
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', this.handleSetTheme);
+        //this.handleSetTheme(); // detect default set theme on load page
     }
 
     componentWillUnmount() {
         document.getElementsByTagName('body')[0].classList.remove("overflow-hidden");
-
-        window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', this.handleAutoDetectTheme)
+        window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', this.handleSetTheme);
     }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
@@ -185,6 +185,7 @@ export class NavBar extends Component<Props, State> {
     }
 
     changeTheme = () => {
+        ls.remove('use_system_theme');
         this.props.toggleTheme();
     };
 
@@ -210,14 +211,14 @@ export class NavBar extends Component<Props, State> {
         }
     }
 
-    // handleSetTheme = () => {
-    //     const _default_theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.night : Theme.day
-    //     this.props.toggleTheme(_default_theme);
-    // }
-
-    handleAutoDetectTheme = (e: any = null) => {        
-        const _default_theme = e && e.matches ? Theme.night : Theme.day
-        this.props.toggleTheme(_default_theme);
+    handleSetTheme = () => {
+        const use_system = ls.get('use_system_theme', false);
+        let _theme = ls.get('theme');
+        if (use_system) {
+            let systemTheme: any = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.night : Theme.day    
+            _theme = systemTheme;
+        }
+        this.props.toggleTheme(_theme);
     }
 
     render() {
