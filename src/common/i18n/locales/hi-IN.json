@@ -596,6 +596,10 @@
     "language": "भाषा",
     "nsfw": "NSFW सामग्री दिखाएं",
     "referral-link": "रेफ़रल लिंक",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "वरीयता अद्यतन!"
   },
   "wallet": {
@@ -1019,7 +1023,7 @@
     "type-transfers": "स्थानांतरण",
     "type-delegations": "डेलीगेशन्स",
     "group-title-recent": "ताजा",
-    "vote-str": "{{p}}% votes your post:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "आपके पोस्ट का जवाब दिया:",
     "mention-str": "में आपका उल्लेख किया:",
     "followed-str": "अनुगमन करना",
