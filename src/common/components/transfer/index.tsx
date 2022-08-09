@@ -877,13 +877,13 @@ export class Transfer extends BaseComponent<Props, State> {
                             <div className="confirm-title">{_t(`transfer.${titleLngKey}`)}</div>
                             <div className="users">
                                 <div className="from-user">
-                                    {UserAvatar({...this.props, username: activeUser.username, size: "medium"})}
+                                    {UserAvatar({...this.props, username: activeUser.username, size: "large"})}
                                 </div>
                                 {showTo && (
                                     <>
                                         <div className="arrow">{arrowRightSvg}</div>
                                         <div className="to-user">
-                                            {UserAvatar({...this.props, username: to, size: "medium"})}
+                                            {UserAvatar({...this.props, username: to, size: "large"})}
                                         </div>
                                     </>
                                 )}
