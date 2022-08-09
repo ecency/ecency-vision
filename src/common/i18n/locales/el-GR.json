@@ -187,9 +187,9 @@
     "title": "Προτεινόμενα"
   },
   "entry-list-item": {
-    "cross-posted": "cross-posted",
+    "cross-posted": "διασταυρούμενη δημοσίευση",
     "cross-posted-to": "σε",
-    "reblogged": "{{n}} reblogged",
+    "reblogged": "{{n}} αναδημοσιεύτηκε",
     "promoted": "Προωθήθηκε",
     "pinned": "Καρφιτσωμένη Δημοσίευση",
     "replies": "1 απάντηση. Κάντε κλικ για να απαντήσετε.",
@@ -247,7 +247,7 @@
     "boost": "Ενίσχυση"
   },
   "cross-post": {
-    "title": "Cross Post",
+    "title": "Διασταυρούμενη Δημοσίευση",
     "community-placeholder": "Διαλέξτε μια κοινότητα",
     "message-placeholder": "Ξεκινήστε μία συζήτηση με ένα μήνυμα",
     "submit-label": "Επιβεβαίωση",
@@ -265,7 +265,7 @@
     "payout-date": "Πληρωμή",
     "beneficiary": "Δικαιούχος",
     "breakdown": "Ανάλυση",
-    "max-accepted": "Max accepted"
+    "max-accepted": "Μέγιστο αποδεκτό"
   },
   "entry-index": {
     "feed": "Ροή",
@@ -321,24 +321,24 @@
     "update-n-seconds": "Κάθε {{sec}} δευτ",
     "update-n-minutes": "Κάθε {{min}} λεπτά",
     "update-n-hours": "Κάθε {{hour}} ώρες",
-    "update-custom": "Custom interval...",
+    "update-custom": "Προσαρμοσμένο διάστημα...",
     "update-interval-value-error": "Το διάστημα πρέπει να είναι μεταξύ 30 δευτερολέπτων και 24 ωρών",
     "update-interval-placeholder": "Επιλέξτε ένα διάστημα",
-    "update-custom-interval-in-minutes-placeholder": "Enter interval in minutes",
+    "update-custom-interval-in-minutes-placeholder": "Εισάγετε χρονικό διάστημα σε λεπτά",
     "filters": "Φίλτρα",
     "history": "Ιστορικό",
     "type": "Τύπος"
   },
   "market-data": {
     "title": "Τιμή αγοράς",
-    "trade": "Trade token",
+    "trade": "Συναλλαγές ψηφιακών νομισμάτων",
     "credits": "δεδομένα από <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "market": {
-    "title": "Token exchange",
-    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "title": "Ανταλλαγή ψηφιακών νομισμάτων",
+    "description": "Αποκεντρωμένη ανταλλαγή με αγορά και πώληση νομισμάτων στο Hive blockchain. Για να μάθετε περισσότερα, διαβάστε τις <a href=\"/faq#how-exchange-work\">Συχνές Ερωτήσεις</a>.",
     "last-price": "Τελευταία Τιμή",
-    "volume": "24h volume",
+    "volume": "24ωρος όγκος",
     "bid": "Bid",
     "spread": "Spread",
     "ask": "Ask",
