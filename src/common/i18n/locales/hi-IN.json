@@ -1392,7 +1392,7 @@
   "chain-error": {
     "min-root-comment": "आप हर पांच मिनट में केवल एक बार पोस्ट कर सकते हैं।",
     "identical-vote": "इस सामग्री पर आपका वर्तमान वोट इस वोट के समान है।",
-    "insufficient-resource": "अपर्याप्त संसाधन क्रेडिट। कृपया लेनदेन करने के लिए प्रतीक्षा करें, या HIVE को शक्ति दें।",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "सकारात्मक लंबित पुरस्कारों वाली सामग्री को हटाया नहीं जा सकता।",
     "comment-cashout": "उनके पेआउट के बाद की सामग्री को हटाया नहीं जा सकता।",
     "comment-children": "उत्तरों वाली सामग्री को हटाया नहीं जा सकता।",
@@ -1462,5 +1462,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }
