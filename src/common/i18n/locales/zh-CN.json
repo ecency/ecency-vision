@@ -596,6 +596,10 @@
     "language": "语言",
     "nsfw": "显示 NSFW 内容",
     "referral-link": "邀请链接",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "首选项已更新！"
   },
   "wallet": {
@@ -1019,7 +1023,7 @@
     "type-transfers": "转账",
     "type-delegations": "Delegations",
     "group-title-recent": "最近",
-    "vote-str": "{{p}}% votes your post:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "回复了您的文章:",
     "mention-str": "提到了您:",
     "followed-str": "已关注",
