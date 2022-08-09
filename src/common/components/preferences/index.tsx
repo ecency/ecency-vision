@@ -1,24 +1,14 @@
 import React from "react";
-
 import i18n from "i18next";
-
-import {Global, Theme} from "../../store/global/types";
-
 import {Col, Form, FormControl, InputGroup, Button} from "react-bootstrap";
 
+import {Global, Theme} from "../../store/global/types";
 import BaseComponent from "../base";
 import {success} from "../feedback";
-
-import {_t} from "../../i18n";
-
-import {langOptions} from "../../i18n";
-
+import {_t, langOptions} from "../../i18n";
 import {getCurrencyRate} from "../../api/misc";
-
 import currencySymbol from "../../helper/currency-symbol";
-
 import currencies from "../../constants/currencies.json";
-import activeUser from "../../store/active-user";
 import { ActiveUser } from "../../store/active-user/types";
 import { copyContent } from "../../img/svg";
 import * as ls from "../../util/local-storage";

@@ -3,9 +3,7 @@ import Cookies from 'js-cookie';
 import { Dispatch } from 'redux';
 
 import defaults from '../../constants/defaults.json';
-
 import { AppState } from '../index';
-
 import {
   Actions,
   ActionTypes,
@@ -25,11 +23,8 @@ import {
   Theme,
   ThemeChangeAction,
 } from './types';
-
 import { CommonActionTypes } from '../common';
-
 import * as ls from '../../util/local-storage';
-
 import filterTagExtract from '../../helper/filter-tag-extract';
 
 const defaultTheme = ls.get('theme') || defaults.theme;
@@ -54,7 +49,6 @@ export const initialState: Global = {
   isMobile: false,
   usePrivate: true,
   lastIndexPath: null,
-  
 };
 
 export default (state: Global = initialState, action: Actions): Global => {

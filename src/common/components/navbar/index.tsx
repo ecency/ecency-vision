@@ -18,9 +18,9 @@ import {ActiveUser} from "../../store/active-user/types";
 import {UI, ToggleType} from "../../store/ui/types";
 import {NotificationFilter, Notifications} from "../../store/notifications/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
+
 import NotificationHandler from "../notification-handler";
 import SwitchLang from "../switch-lang";
-
 import ToolTip from "../tooltip";
 import Search from "../search";
 import Login from "../login";
@@ -33,7 +33,6 @@ import Schedules from "../schedules";
 import Fragments from "../fragments";
 
 import {_t} from "../../i18n";
-
 import _c from "../../util/fix-class-names";
 import * as ls from '../../util/local-storage';
 
@@ -43,19 +42,13 @@ import {
     menuSvg,
     closeSvg,
     magnifySvg,
-    accountOutlineSvg,
-    powerDownSvg,
-    chevronDownSvgForSlider,
     moonSvg,
     globeSvg,
-    bellSvg,
-    walletTravelSvg,
     walletSvg,
     notificationSvg,
     pencilOutlinedSvg,
     userOutlineSvg,
     downArrowSvg,
-    chevronUpSvg,
     upArrowSvg,
     keySvg,
     sunSvg,
@@ -66,7 +59,6 @@ import { downVotingPower, votingPower } from "../../api/hive";
 import isCommunity from "../../helper/is-community";
 import { setNotificationsSettingsItem, updateNotificationsSettings } from '../../store/notifications';
 import { PurchaseQrDialog } from '../purchase-qr';
-import { lstatSync } from 'original-fs';
 //const logo = require('../../img/logo-circle.svg');
 
 interface Props {
