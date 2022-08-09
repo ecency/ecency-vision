@@ -596,10 +596,10 @@
     "language": "Idioma",
     "nsfw": "Mostrar contenido NSFW",
     "referral-link": "Enlace de referido",
-    "theme": "Theme Settings",
-    "theme-system-default": "System Default",
-    "theme-day": "Day mode",
-    "theme-night": "Night mode",
+    "theme": "Configuración del Tema",
+    "theme-system-default": "Predeterminado del Sistema",
+    "theme-day": "Modo Día",
+    "theme-night": "Modo Noche",
     "updated": "Preferencias actualizadas!"
   },
   "wallet": {
@@ -1023,7 +1023,7 @@
     "type-transfers": "Transacciones",
     "type-delegations": "Delegaciones",
     "group-title-recent": "Recientes",
-    "vote-str": "{{p}}% voted your post:",
+    "vote-str": "{{p}}% votó tu publicación:",
     "reply-str": "contestó a tu publicación:",
     "mention-str": "te mencionó en:",
     "followed-str": "seguido",
@@ -1396,7 +1396,7 @@
   "chain-error": {
     "min-root-comment": "Sólo puedes publicar una vez cada cinco minutos.",
     "identical-vote": "Tu voto actual sobre este contenido es idéntico a esta votación.",
-    "insufficient-resource": "Insufficient Resource Credits.",
+    "insufficient-resource": "Créditos de Recursos insuficientes.",
     "delete-comment-with-vote": "No se puede eliminar un contenido con recompensas positivas pendientes.",
     "comment-cashout": "El contenido después de su pago no puede ser eliminado.",
     "comment-children": "No se puede eliminar un contenido con respuestas.",
@@ -1468,12 +1468,12 @@
     "title": "Comunidades populares"
   },
   "feedback-modal": {
-    "title": "Error details",
-    "question": "How to fix this?",
-    "insufficient-resource-title": "How to get more Resource credits?",
-    "insufficient-resource-purchase": "Purchase account boost or delegation",
-    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
-    "insufficient-resource-wait": "Wait few hours for RC refill",
-    "report": "Report"
+    "title": "Detalles del error",
+    "question": "¿Cómo arreglar esto?",
+    "insufficient-resource-title": "¿Cómo obtener más créditos de Recursos?",
+    "insufficient-resource-purchase": "Comprar potenciador de cuenta o delegación",
+    "insufficient-resource-buy-hive": "Comprar HIVE y aumentar poder",
+    "insufficient-resource-wait": "Espere unas horas para la recarga de RC",
+    "report": "Reporte"
   }
 }
