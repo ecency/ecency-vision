@@ -1392,7 +1392,7 @@
   "chain-error": {
     "min-root-comment": "Her beş dakikada bir yalnızca bir gönderi paylaşabilirsiniz.",
     "identical-vote": "Bu içerikteki mevcut oyunuz bu oy ile aynıdır.",
-    "insufficient-resource": "Yetersiz Kaynak Kredisi. Lütfen işlem yapmak için bekleyin veya HIVE gücü ekleyin.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Bekleyen pozitif ödülleri olan bir içerik silinemez.",
     "comment-cashout": "Ödemesini almış olan içerikler silinemez.",
     "comment-children": "Yorumları olan bir içerik silinemez.",
@@ -1462,5 +1462,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }
