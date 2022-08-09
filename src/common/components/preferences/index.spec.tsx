@@ -19,7 +19,8 @@ it("(1) Default render", () => {
         setLang: () => {
         },
         setNsfw: () => {
-
+        },
+        toggleTheme: () => {
         }
     };
 
