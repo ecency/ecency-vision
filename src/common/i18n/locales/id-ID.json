@@ -596,6 +596,10 @@
     "language": "Bahasa",
     "nsfw": "Perlihatkan konten NSFW",
     "referral-link": "Link referral",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Preferensi diperbaharui!"
   },
   "wallet": {
@@ -1019,7 +1023,7 @@
     "type-transfers": "Transfer",
     "type-delegations": "Delegations",
     "group-title-recent": "Terbaru",
-    "vote-str": "{{p}}% votes your post:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "membalas postingan Anda:",
     "mention-str": "menyebut Anda dalam:",
     "followed-str": "diikuti",
