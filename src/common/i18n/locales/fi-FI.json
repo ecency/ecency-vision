@@ -596,6 +596,10 @@
     "language": "Kieli",
     "nsfw": "Näytä NSFW-sisältö",
     "referral-link": "Suosituslinkki",
+    "theme": "Teeman asetukset",
+    "theme-system-default": "Järjestelmän oletus",
+    "theme-day": "Päivätila",
+    "theme-night": "Yötila",
     "updated": "Asetukset päivitetty!"
   },
   "wallet": {
@@ -1392,7 +1396,7 @@
   "chain-error": {
     "min-root-comment": "Voit julkaista vain kerran viidessä minuutissa.",
     "identical-vote": "Tämänhetkinen äänestyksenne tästä sisällöstä on sama kuin tässä äänestyksessä.",
-    "insufficient-resource": "Insufficient Resource Credits.",
+    "insufficient-resource": "Liian vähän Resurssihyvityksiä.",
     "delete-comment-with-vote": "Sisältöä ei voi poistaa positiivisesta odottavasta palkinnosta johtuen.",
     "comment-cashout": "Sisältöä ei voi poistaa niiden maksun jälkeen.",
     "comment-children": "Keskustelua, jossa on vastauksia, ei voi poistaa.",
@@ -1464,12 +1468,12 @@
     "title": "Suosituimmat Yhteisöt"
   },
   "feedback-modal": {
-    "title": "Error details",
-    "question": "How to fix this?",
-    "insufficient-resource-title": "How to get more Resource credits?",
-    "insufficient-resource-purchase": "Purchase account boost or delegation",
-    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
-    "insufficient-resource-wait": "Wait few hours for RC refill",
-    "report": "Report"
+    "title": "Virhetiedot",
+    "question": "Kuinka voit välttää tämän?",
+    "insufficient-resource-title": "Miten saada lisää Resurssihyvityksiä?",
+    "insufficient-resource-purchase": "Lunasta tilin tehostus tai valtuutus",
+    "insufficient-resource-buy-hive": "Osta HIVE ja Vahvista",
+    "insufficient-resource-wait": "Odota muutama tunti RH täyttymistä",
+    "report": "Raportoi"
   }
 }
