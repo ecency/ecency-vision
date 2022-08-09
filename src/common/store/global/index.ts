@@ -3,9 +3,7 @@ import Cookies from 'js-cookie';
 import { Dispatch } from 'redux';
 
 import defaults from '../../constants/defaults.json';
-
 import { AppState } from '../index';
-
 import {
   Actions,
   ActionTypes,
@@ -25,17 +23,16 @@ import {
   Theme,
   ThemeChangeAction,
 } from './types';
-
 import { CommonActionTypes } from '../common';
-
 import * as ls from '../../util/local-storage';
-
 import filterTagExtract from '../../helper/filter-tag-extract';
+
+const defaultTheme = ls.get('theme') || defaults.theme;
 
 export const initialState: Global = {
   filter: AllFilter[defaults.filter],
   tag: "",
-  theme: Theme[defaults.theme],
+  theme: Theme[defaultTheme],
   listStyle: ListStyle[defaults.listStyle],
   intro: true,
   currency: defaults && defaults.currency && defaults.currency.currency,
@@ -124,6 +121,12 @@ export const toggleTheme = (theme_key?:Theme) => (
   
   if (!!theme_key) {
     newTheme = theme_key;
+  }
+
+  const use_system = ls.get('use_system_theme', false);
+  if (use_system) {
+    let systemTheme: any = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.night : Theme.day;
+    newTheme = systemTheme;
   }
 
   ls.set("theme", newTheme);

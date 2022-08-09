@@ -596,6 +596,10 @@
     "language": "Language",
     "nsfw": "Show NSFW content",
     "referral-link": "Referral link",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Preference updated!"
   },
   "wallet": {
@@ -1019,7 +1023,7 @@
     "type-transfers": "Transfers",
     "type-delegations": "Delegations",
     "group-title-recent": "Recent",
-    "vote-str": "{{p}}% votes your post:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "replied to your post:",
     "mention-str": "mentioned you in:",
     "followed-str": "followed",
