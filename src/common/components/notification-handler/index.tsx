@@ -5,6 +5,7 @@ import { ToggleType, UI } from '../../store/ui/types';
 import { Notifications } from '../../store/notifications/types';
 import { NotificationsWebSocket } from '../../api/notifications-ws-api';
 import { isSupported } from '@firebase/messaging';
+import { NotifyTypes } from '../../enums';
 
 interface Props {
   global: Global;
@@ -42,7 +43,8 @@ export default class NotificationHandler extends Component<Props> {
       })
       .withToggleUi(toggleUIProp)
       .setHasUiNotifications(ui.notifications)
-      .setHasNotifications(global.notifications);
+      .setHasNotifications(global.notifications)
+      .setEnabledNotificationsTypes(notifications.settings?.notify_types as NotifyTypes[] || [])
 
     if (activeUser) {
       fetchNotificationsSettings(activeUser!!.username);
@@ -54,6 +56,8 @@ export default class NotificationHandler extends Component<Props> {
 
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any) {
     const { activeUser, fetchUnreadNotificationCount, fetchNotificationsSettings, notifications } = this.props;
+
+    this.nws.setEnabledNotificationsTypes(notifications.settings?.notify_types as NotifyTypes[] || []);
 
     if (notifications.fbSupport === 'denied' && activeUser) {
       this.nws.withActiveUser(activeUser).connect();
