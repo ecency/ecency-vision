@@ -3,7 +3,6 @@ import { createClient, RedisClient } from 'redis';
 import { AppState } from '../../common/store';
 import { renderAmp } from '../amp-template';
 // @ts-ignore
-import amp from '@ampproject/toolbox-optimizer';
 import { htmlToAMP } from '@ecency/render-helper-amp';
 import * as fs from 'fs';
 import { promisify } from 'util';
