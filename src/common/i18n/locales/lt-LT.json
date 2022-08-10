@@ -137,7 +137,8 @@
     "light": "šviesa",
     "dark": "tamsa",
     "switch-to": "Perjungti",
-    "vote-power": "Balsų galia:"
+    "vote-power": "Balsų galia:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Siekite didybės",
@@ -547,11 +548,15 @@
     "section-communities": "Bendruomenės",
     "section-wallet": "Piniginė",
     "section-settings": "Settings",
+    "section-referrals": "Referrals",
     "section-permission": "Permission",
     "communities-title": "Membership",
     "create-community": "Sukurti bendruomenę",
     "witnesses": "Witnesses",
-    "proposals": "Proposals"
+    "proposals": "Proposals",
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Joined: {{n}}",
@@ -591,6 +596,10 @@
     "language": "Language",
     "nsfw": "Show NSFW content",
     "referral-link": "Referral link",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Preference updated!"
   },
   "wallet": {
@@ -702,6 +711,12 @@
     "submit": "Pirkti",
     "purchase-message": "Arba nusiųskite bet kokią sumą į @esteem.app su „taškais“ kaip atmintinę, kad įsigytumėte taškus."
   },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
+  },
   "promote": {
     "title": "Reklamuoti",
     "sub-title": "Reklamuoti savo įrašą",
@@ -781,6 +796,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> perduotas iš <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Išjungimas baigtas kaip <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Atstatyti",
     "powering-down": "Jūs šiuo metu mažinate galią.",
     "stop-power-down": "Sustabdyti"
@@ -833,7 +849,8 @@
     "type-update_proposal_vote-detail": "Pasiūlymo Id: <strong>{{pid}}</strong>",
     "type-limit_order_create": "Sukurta nauja prekyba",
     "type-limit_order_cancel": "Atvira prekyba atšaukta",
-    "type-effective_comment_vote": "Efektyvus balsavimas"
+    "type-effective_comment_vote": "Efektyvus balsavimas",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Pasirašyti",
@@ -1006,7 +1023,7 @@
     "type-transfers": "Transfers",
     "type-delegations": "Delegations",
     "group-title-recent": "Recent",
-    "vote-str": "{{p}}% likes your post:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "replied to your post:",
     "mention-str": "paminėjo jus:",
     "followed-str": "seka",
@@ -1022,7 +1039,8 @@
     "mark-all-read": "Pažymėti visus kaip skaitytus",
     "mark-read": "Pažymėti kaip skaitytą",
     "mute": "Išjungti pranešimus",
-    "unmute": "Įjungti pranešimus"
+    "unmute": "Įjungti pranešimus",
+    "settings": "Settings"
   },
   "leaderboard": {
     "title-stars": "Pats aktyviausias",
@@ -1108,6 +1126,16 @@
     "proxy-active-current": "Jūsų dabartinė proxy yra",
     "proxy-active-btn-label": "Panaikinti Proxy",
     "proxy-votes-for": "@{{username}} balsavo už"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Pasiūlymai",
@@ -1368,7 +1396,7 @@
   "chain-error": {
     "min-root-comment": "You may only post once every five minutes.",
     "identical-vote": "Your current vote on this content is identical to this vote.",
-    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
     "comment-cashout": "Content after their payout cannot be deleted.",
     "comment-children": "Cannot delete a content with replies.",
@@ -1438,5 +1466,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }

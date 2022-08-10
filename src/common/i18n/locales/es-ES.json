@@ -137,7 +137,8 @@
     "light": "claro",
     "dark": "oscuro",
     "switch-to": "Cambiar",
-    "vote-power": "Poder de voto:"
+    "vote-power": "Poder de voto:",
+    "boost": "Impulsar"
   },
   "intro": {
     "title": "Aspira a la grandeza",
@@ -547,11 +548,15 @@
     "section-communities": "Comunidades",
     "section-wallet": "Monedero",
     "section-settings": "Ajustes",
+    "section-referrals": "Referidos",
     "section-permission": "Permisos",
     "communities-title": "Membresía",
     "create-community": "Crear una Comunidad",
     "witnesses": "Testigos",
-    "proposals": "Propuestas"
+    "proposals": "Propuestas",
+    "referrals": "Referidos",
+    "go-community": "Página de la comunidad",
+    "com-mod": "Moderador de estas comunidades"
   },
   "profile-info": {
     "joined": "Se unió: {{n}}",
@@ -591,6 +596,10 @@
     "language": "Idioma",
     "nsfw": "Mostrar contenido NSFW",
     "referral-link": "Enlace de referido",
+    "theme": "Configuración del Tema",
+    "theme-system-default": "Predeterminado del Sistema",
+    "theme-day": "Modo Día",
+    "theme-night": "Modo Noche",
     "updated": "Preferencias actualizadas!"
   },
   "wallet": {
@@ -702,6 +711,12 @@
     "submit": "Comprar",
     "purchase-message": "O envía cualquier cantidad a @esteem.app con `points` como nota en el memo para comprar puntos."
   },
+  "purchase-qr": {
+    "scan-code": "Escanear el código QR con la aplicación móvil Ecency",
+    "select-user": "Por favor, selecciona un usuario",
+    "title": "Impulsar la cuenta",
+    "copied": "¡Enlace de impulso de la cuenta copiado!"
+  },
   "promote": {
     "title": "Promocionar",
     "sub-title": "Promociona tu post",
@@ -781,6 +796,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegado de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> retirar delegación de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Apagado completado como <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interés reclamado y añadido a su saldo de ahorros",
     "reset": "Reestablecer",
     "powering-down": "Actualmente estas apagando.",
     "stop-power-down": "Detener"
@@ -833,7 +849,8 @@
     "type-update_proposal_vote-detail": "ID de la propuesta: <strong>{{pid}}</strong>",
     "type-limit_order_create": "Nueva operación creada",
     "type-limit_order_cancel": "Operación abierta cancelada",
-    "type-effective_comment_vote": "Voto efectivo"
+    "type-effective_comment_vote": "Voto efectivo",
+    "type-account_witness_proxy": "Actualización del proxy de gobernanza"
   },
   "key-or-hot": {
     "sign": "Firmar",
@@ -1006,7 +1023,7 @@
     "type-transfers": "Transacciones",
     "type-delegations": "Delegaciones",
     "group-title-recent": "Recientes",
-    "vote-str": "A {{p}}% le gusta tu publicación:",
+    "vote-str": "{{p}}% votó tu publicación:",
     "reply-str": "contestó a tu publicación:",
     "mention-str": "te mencionó en:",
     "followed-str": "seguido",
@@ -1022,7 +1039,8 @@
     "mark-all-read": "Marcar todo como leído",
     "mark-read": "Marcar como leído",
     "mute": "Desactivar notificaciones",
-    "unmute": "Activar notificaciones"
+    "unmute": "Activar notificaciones",
+    "settings": "Configuraciones"
   },
   "leaderboard": {
     "title-stars": "Más activo",
@@ -1108,6 +1126,16 @@
     "proxy-active-current": "Tu proxy actual es",
     "proxy-active-btn-label": "Borrar proxy",
     "proxy-votes-for": "@{{username}} votos para"
+  },
+  "referral": {
+    "page-title": "Referidos",
+    "page-description-long": "Aquí hay una lista de todos los usuarios que tú has referido a la aplicación Ecency.",
+    "created": "Creado",
+    "list-referral": "Cuenta",
+    "rewarded": "Recompensado",
+    "pending-reward": "Puntos pendientes",
+    "earned-reward": "Puntos ganados",
+    "delegate-hp": "HP Delegando"
   },
   "proposals": {
     "page-title": "Propuestas",
@@ -1368,7 +1396,7 @@
   "chain-error": {
     "min-root-comment": "Sólo puedes publicar una vez cada cinco minutos.",
     "identical-vote": "Tu voto actual sobre este contenido es idéntico a esta votación.",
-    "insufficient-resource": "Créditos de recursos insuficientes. Por favor espere para transaccionar o Incrementa tus HIVE por Power Up.",
+    "insufficient-resource": "Créditos de Recursos insuficientes.",
     "delete-comment-with-vote": "No se puede eliminar un contenido con recompensas positivas pendientes.",
     "comment-cashout": "El contenido después de su pago no puede ser eliminado.",
     "comment-children": "No se puede eliminar un contenido con respuestas.",
@@ -1438,5 +1466,14 @@
   },
   "top-communities": {
     "title": "Comunidades populares"
+  },
+  "feedback-modal": {
+    "title": "Detalles del error",
+    "question": "¿Cómo arreglar esto?",
+    "insufficient-resource-title": "¿Cómo obtener más créditos de Recursos?",
+    "insufficient-resource-purchase": "Comprar potenciador de cuenta o delegación",
+    "insufficient-resource-buy-hive": "Comprar HIVE y aumentar poder",
+    "insufficient-resource-wait": "Espere unas horas para la recarga de RC",
+    "report": "Reporte"
   }
 }

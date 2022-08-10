@@ -137,7 +137,8 @@
     "light": "terang",
     "dark": "gelap",
     "switch-to": "Beralih",
-    "vote-power": "Kekuatan Vote:"
+    "vote-power": "Kekuatan Vote:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Bangun impian menjadi besar",
@@ -547,11 +548,15 @@
     "section-communities": "Komunitas",
     "section-wallet": "Dompet",
     "section-settings": "Pengaturan",
+    "section-referrals": "Referrals",
     "section-permission": "Permission",
     "communities-title": "Keanggotaan",
     "create-community": "Buatlah sebuah komunitas",
     "witnesses": "Saksi",
-    "proposals": "Proposal"
+    "proposals": "Proposal",
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Terhubung: {{n}}",
@@ -591,6 +596,10 @@
     "language": "Bahasa",
     "nsfw": "Perlihatkan konten NSFW",
     "referral-link": "Link referral",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Preferensi diperbaharui!"
   },
   "wallet": {
@@ -702,6 +711,12 @@
     "submit": "Pembelian",
     "purchase-message": "Atau kirim jumlah berapa pun ke @esteem.app dengan `poin` sebagai memo untuk membeli Poin."
   },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
+  },
   "promote": {
     "title": "Promosikan",
     "sub-title": "Promosikan postingan Anda",
@@ -781,6 +796,7 @@
     "delegate-summary": "<span class=\"amount\">{{jumlah}}</span> didelagasikan dari <span class=\"from-user\">{{dari}}</span> ke <span class=\"to-user\">{{ke}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down selesai pada <span class=\"amount\">{{jumlah}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Riset",
     "powering-down": "Kamy sedang melakukan power down.",
     "stop-power-down": "Hentikan"
@@ -833,7 +849,8 @@
     "type-update_proposal_vote-detail": "Id proposal:<strong>{{pid}}</strong>",
     "type-limit_order_create": "New trade created",
     "type-limit_order_cancel": "Open trade cancelled",
-    "type-effective_comment_vote": "Vote efektif"
+    "type-effective_comment_vote": "Vote efektif",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Masuk",
@@ -1006,7 +1023,7 @@
     "type-transfers": "Transfer",
     "type-delegations": "Delegations",
     "group-title-recent": "Terbaru",
-    "vote-str": "{{p}}% menyukai postingan Anda:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "membalas postingan Anda:",
     "mention-str": "menyebut Anda dalam:",
     "followed-str": "diikuti",
@@ -1022,7 +1039,8 @@
     "mark-all-read": "Tandai semua sebagai yang telah dibaca",
     "mark-read": "Tandai sebagai telah dibaca",
     "mute": "Matikan pemberitahun notifikasi",
-    "unmute": "Hidupkan pemberitahuan notifikasi"
+    "unmute": "Hidupkan pemberitahuan notifikasi",
+    "settings": "Pengaturan"
   },
   "leaderboard": {
     "title-stars": "Paling Aktif",
@@ -1108,6 +1126,16 @@
     "proxy-active-current": "Proxy anda sekarang",
     "proxy-active-btn-label": "Hapus proxy",
     "proxy-votes-for": "@{{username}} vote untuk"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Proposal",
@@ -1368,7 +1396,7 @@
   "chain-error": {
     "min-root-comment": "Anda hanya dapat mempublikasikan satu konten saja setiap lima menit.",
     "identical-vote": "Voting terbaru Anda pada konten ini sudah dilakukan.",
-    "insufficient-resource": "Kekuatan Anda tidak cukup. Silakan tunggu transaksi berikutnya, atau tambahkan kekuatan HIVE Anda.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Tidak bisa menghapus sebuah konten dengan reward yang belum dibayar.",
     "comment-cashout": "Konten setelah pembayaran tidak bisa dihapus.",
     "comment-children": "Tidak bisa mengahapus konten yang sudah ada balasan.",
@@ -1438,5 +1466,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }

@@ -137,7 +137,8 @@
     "light": "लाइट",
     "dark": "डार्क",
     "switch-to": "स्विच",
-    "vote-power": "वोट पावर:"
+    "vote-power": "वोट पावर:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "महाप्राण की आकांक्षा",
@@ -547,11 +548,15 @@
     "section-communities": "समुदाय",
     "section-wallet": "बटुआ",
     "section-settings": "सेटिंग्स",
+    "section-referrals": "Referrals",
     "section-permission": "अनुमति",
     "communities-title": "सदस्यता",
     "create-community": "एक समुदाय बनाएँ",
     "witnesses": "गवाहों",
-    "proposals": "प्रस्ताव"
+    "proposals": "प्रस्ताव",
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "में शामिल हो गए {{n}}",
@@ -591,6 +596,10 @@
     "language": "भाषा",
     "nsfw": "NSFW सामग्री दिखाएं",
     "referral-link": "रेफ़रल लिंक",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "वरीयता अद्यतन!"
   },
   "wallet": {
@@ -702,6 +711,12 @@
     "submit": "खरीद फरोख्त",
     "purchase-message": "या प्वॉइंट्स खरीदने के लिए मेमो के रूप में `अंक' के साथ @esteem.app को कोई भी राशि भेजें।"
   },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
+  },
   "promote": {
     "title": "बढ़ावा देना",
     "sub-title": "अपनी पोस्ट का प्रचार करें",
@@ -781,6 +796,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> से प्रत्यायोजित किया गया <span class=\"from-user\">{{from}}</span> के लिये <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "पावर डाउन के रूप में पूरा किया <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "रीसेट करें",
     "powering-down": "आप वर्तमान में शक्ति प्राप्त कर रहे हैं।",
     "stop-power-down": "रुको"
@@ -833,7 +849,8 @@
     "type-update_proposal_vote-detail": "प्रस्ताव आईडी: <strong>{{pid}}</strong>",
     "type-limit_order_create": "नया व्यापार बनाया",
     "type-limit_order_cancel": "खुला व्यापार रद्द",
-    "type-effective_comment_vote": "प्रभावी वोट"
+    "type-effective_comment_vote": "प्रभावी वोट",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "साइन करें",
@@ -1006,7 +1023,7 @@
     "type-transfers": "स्थानांतरण",
     "type-delegations": "डेलीगेशन्स",
     "group-title-recent": "ताजा",
-    "vote-str": "{{p}}% आपकी पोस्ट को पसंद किया है:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "आपके पोस्ट का जवाब दिया:",
     "mention-str": "में आपका उल्लेख किया:",
     "followed-str": "अनुगमन करना",
@@ -1022,7 +1039,8 @@
     "mark-all-read": "सभी को पढ़ा हुआ मार्क करें",
     "mark-read": "पढ़ा हुआ मार्क करें",
     "mute": "अधिसूचना अलर्ट बंद करें",
-    "unmute": "अधिसूचना अलर्ट चालू करें"
+    "unmute": "अधिसूचना अलर्ट चालू करें",
+    "settings": "Settings"
   },
   "leaderboard": {
     "title-stars": "सर्वाधिक क्रियाशील",
@@ -1108,6 +1126,16 @@
     "proxy-active-current": "आपका वर्तमान प्रॉक्सी है",
     "proxy-active-btn-label": "प्रॉक्सी हटाये",
     "proxy-votes-for": "@{{username}} के लिए वोट"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "प्रस्ताव",
@@ -1368,7 +1396,7 @@
   "chain-error": {
     "min-root-comment": "आप हर पांच मिनट में केवल एक बार पोस्ट कर सकते हैं।",
     "identical-vote": "इस सामग्री पर आपका वर्तमान वोट इस वोट के समान है।",
-    "insufficient-resource": "अपर्याप्त संसाधन क्रेडिट। कृपया लेनदेन करने के लिए प्रतीक्षा करें, या HIVE को शक्ति दें।",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "सकारात्मक लंबित पुरस्कारों वाली सामग्री को हटाया नहीं जा सकता।",
     "comment-cashout": "उनके पेआउट के बाद की सामग्री को हटाया नहीं जा सकता।",
     "comment-children": "उत्तरों वाली सामग्री को हटाया नहीं जा सकता।",
@@ -1438,5 +1466,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }
