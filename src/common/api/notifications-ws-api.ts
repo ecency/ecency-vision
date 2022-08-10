@@ -3,6 +3,7 @@ import { _t } from '../i18n';
 import { requestNotificationPermission } from '../util/request-notification-permission';
 import { ActiveUser } from '../store/active-user/types';
 import defaults from '../constants/defaults.json';
+import { NotifyTypes } from '../enums';
 
 declare var window: Window & {
   nws?: WebSocket;
@@ -15,6 +16,7 @@ export class NotificationsWebSocket {
   private hasNotifications = false;
   private hasUiNotifications = false;
   private onSuccessCallbacks: Function[] = [];
+  private enabledNotifyTypes: NotifyTypes[] = [];
   private toggleUiProp: Function = () => {
   };
 
@@ -62,7 +64,12 @@ export class NotificationsWebSocket {
     const data = JSON.parse(evt.data);
     const msg = NotificationsWebSocket.getBody(data);
 
-    if (msg) {
+    const messageNotifyType = this.getNotificationType(data.type);
+    const allowedToNotify = messageNotifyType && this.enabledNotifyTypes.length > 0 ?
+      this.enabledNotifyTypes.includes(messageNotifyType) :
+      true;
+
+    if (msg && allowedToNotify) {
       this.onSuccessCallbacks.forEach(cb => cb());
       if (!this.hasNotifications) {
         return;
@@ -152,5 +159,30 @@ export class NotificationsWebSocket {
   public setHasUiNotifications(has: boolean) {
     this.hasUiNotifications = has;
     return this;
+  }
+
+  public setEnabledNotificationsTypes(value: NotifyTypes[]) {
+    this.enabledNotifyTypes = value;
+    return this;
+  }
+
+
+  public getNotificationType(value: string): NotifyTypes | null {
+    switch (value) {
+      case 'vote':
+        return NotifyTypes.VOTE;
+      case 'mention':
+        return NotifyTypes.MENTION;
+      case 'follow':
+        return NotifyTypes.FOLLOW;
+      case 'reply':
+        return NotifyTypes.COMMENT;
+      case 'reblog':
+        return NotifyTypes.RE_BLOG;
+      case 'transfer':
+        return NotifyTypes.TRANSFERS;
+      default:
+        return null;
+    }
   }
 }
