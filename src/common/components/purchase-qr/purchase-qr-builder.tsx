@@ -109,7 +109,7 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
         isUsernameDataLoading={isUsernameDataLoading}
         setUsername={setUsername}
       />
-      {isQrShow ? <PurchaseQrTypes className="mt-3" type={type} setType={setType} /> : <></>}
+      {/*{isQrShow ? <PurchaseQrTypes className="mt-3" type={type} setType={setType} /> : <></>}*/}
     </div>
     <img ref={qrImgRef as any} alt="Boost QR Code" className="my-4" style={{ display: isQrShow ? 'block' : 'none' }} />
     {isQrShow ? <Form.Group className="w-100">
