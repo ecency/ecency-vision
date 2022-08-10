@@ -98,7 +98,7 @@ export default class Feedback extends BaseComponent<Props, State> {
 
     render() {
         const {list} = this.state;
-        const errorType = x => (x as ErrorFeedbackObject).errorType;
+        const errorType = (x: FeedbackObject) => (x as ErrorFeedbackObject).errorType;
         return (
             <div className="feedback-container">
                 {list.map((x) => {
