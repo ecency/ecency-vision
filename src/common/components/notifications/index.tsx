@@ -168,12 +168,7 @@ export class DialogContent extends Component<NotificationProps, any> {
   }
 
   saveSettingsWithDebounce = (type: NotifyTypes) => {
-    const { setNotificationsSettingsItem, notifications } = this.props;
-
-    // disabled
-    if (notifications.settings?.allows_notify === 0 && type !== NotifyTypes.ALLOW_NOTIFY) {
-      return;
-    }
+    const { setNotificationsSettingsItem } = this.props;
 
     setNotificationsSettingsItem(type, !this.state.settings[type]);
 
@@ -219,7 +214,6 @@ export class DialogContent extends Component<NotificationProps, any> {
       content: <Form.Check
         type="switch"
         checked={this.state.settings[type]}
-        disabled={this.props.notifications.settings?.allows_notify === 0 && type !== NotifyTypes.ALLOW_NOTIFY}
         onChange={() => this.saveSettingsWithDebounce(type)}
       />,
       onClick: () => this.saveSettingsWithDebounce(type)
@@ -266,7 +260,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                   </div>,
                   onClick: () => this.refresh(),
                 },
-                getNotificationSettingsItem(_t(`notifications.type-all-short`), NotifyTypes.ALLOW_NOTIFY),
+                // getNotificationSettingsItem(_t(`notifications.type-all-short`), NotifyTypes.ALLOW_NOTIFY),
                 getNotificationSettingsItem(_t(`notifications.type-rvotes`), NotifyTypes.VOTE),
                 getNotificationSettingsItem(_t(`notifications.type-replies`), NotifyTypes.COMMENT),
                 getNotificationSettingsItem(_t(`notifications.type-mentions`), NotifyTypes.MENTION),
