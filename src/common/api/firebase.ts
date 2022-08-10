@@ -1,6 +1,7 @@
 import { getMessaging, getToken, MessagePayload, Messaging, onMessage } from '@firebase/messaging';
 import { FirebaseApp, initializeApp } from '@firebase/app';
 import { _t } from '../i18n';
+import { NotifyTypes } from '../enums';
 
 let app: FirebaseApp;
 export let FCM: Messaging;
@@ -38,7 +39,10 @@ export const handleMessage = (payload: MessagePayload) => {
     if (data.parent_permlink1) {
       url += '/' + data.parent_permlink1;
     }
-    if (data.source) {
+    if (['vote', 'unvote', 'reply', 'spin', 'inactive'].includes(data.type)) {
+      url += '/@' + data.target;
+    } else {
+      // delegation, mention, transfer, follow, unfollow, ignore, blacklist, reblog
       url += '/@' + data.source;
     }
     if (data.permlink1) {

@@ -38,7 +38,10 @@ self.addEventListener('notificationclick', function (event) {
   if (data.parent_permlink1) {
     url += '/' + data.parent_permlink1;
   }
-  if (data.source) {
+  if (['vote', 'unvote', 'reply', 'spin', 'inactive'].includes(data.type)) {
+    url += '/@' + data.target;
+  } else {
+    // delegation, mention, transfer, follow, unfollow, ignore, blacklist, reblog
     url += '/@' + data.source;
   }
   if (data.permlink1) {
