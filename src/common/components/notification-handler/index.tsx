@@ -60,6 +60,7 @@ export default class NotificationHandler extends Component<Props> {
     this.nws.setEnabledNotificationsTypes(notifications.settings?.notify_types as NotifyTypes[] || []);
 
     if (notifications.fbSupport === 'denied' && activeUser) {
+      this.nws.disconnect();
       this.nws.withActiveUser(activeUser).connect();
     }
 
