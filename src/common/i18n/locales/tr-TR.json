@@ -137,7 +137,8 @@
     "light": "açık",
     "dark": "koyu",
     "switch-to": "Değiştir",
-    "vote-power": "Oylama Gücü:"
+    "vote-power": "Oylama Gücü:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Aspire to greatness",
@@ -547,11 +548,15 @@
     "section-communities": "Topluluklar",
     "section-wallet": "Cüzdan",
     "section-settings": "Ayarlar",
+    "section-referrals": "Referrals",
     "section-permission": "İzin",
     "communities-title": "Üyelik",
     "create-community": "Bir topluluk oluştur",
     "witnesses": "Tanıklar",
-    "proposals": "Teklifler"
+    "proposals": "Teklifler",
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Katılan: {{n}}",
@@ -591,6 +596,10 @@
     "language": "Dil",
     "nsfw": "NSFW içeriği göster",
     "referral-link": "Referans bağlantısı",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Tercihler güncellendi!"
   },
   "wallet": {
@@ -702,6 +711,12 @@
     "submit": "Satın al",
     "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
+  },
   "promote": {
     "title": "Tanıtım Yap",
     "sub-title": "Gönderini tanıt",
@@ -781,6 +796,7 @@
     "delegate-summary": "<span class=\"from-user\">{{from}}</span> göndericisinden <span class=\"to-user\">{{to}}</span> kullanıcısına <span class=\"amount\">{{amount}}</span> delegasyon yapıldı",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down <span class=\"amount\">{{amount}}</span> olarak gerçekleşti",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Sıfırla",
     "powering-down": "Şu anda gücünüzü azaltıyorsunuz.",
     "stop-power-down": "Durdur"
@@ -833,7 +849,8 @@
     "type-update_proposal_vote-detail": "Teklif kimliği: <strong>{{pid}}</strong>",
     "type-limit_order_create": "New trade created",
     "type-limit_order_cancel": "Open trade cancelled",
-    "type-effective_comment_vote": "Etkili oy"
+    "type-effective_comment_vote": "Etkili oy",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Gönder",
@@ -1006,7 +1023,7 @@
     "type-transfers": "Transferler",
     "type-delegations": "Delegations",
     "group-title-recent": "Son",
-    "vote-str": "{{p}}% gönderi beğeniniz:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "gönderini yanıtladı:",
     "mention-str": "senden bahsetti:",
     "followed-str": "takip etti",
@@ -1022,7 +1039,8 @@
     "mark-all-read": "Tümünü Okundu Olarak İşaretle",
     "mark-read": "Okundu Olarak İşaretle",
     "mute": "Bildirimleri devre dışı bırak",
-    "unmute": "Bildirimleri aç"
+    "unmute": "Bildirimleri aç",
+    "settings": "Settings"
   },
   "leaderboard": {
     "title-stars": "En aktif",
@@ -1108,6 +1126,16 @@
     "proxy-active-current": "Mevcut vekiliniz",
     "proxy-active-btn-label": "Vekili Kaldır",
     "proxy-votes-for": "@{{username}} şu postu oyladı"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Teklifler",
@@ -1368,7 +1396,7 @@
   "chain-error": {
     "min-root-comment": "Her beş dakikada bir yalnızca bir gönderi paylaşabilirsiniz.",
     "identical-vote": "Bu içerikteki mevcut oyunuz bu oy ile aynıdır.",
-    "insufficient-resource": "Yetersiz Kaynak Kredisi. Lütfen işlem yapmak için bekleyin veya HIVE gücü ekleyin.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Bekleyen pozitif ödülleri olan bir içerik silinemez.",
     "comment-cashout": "Ödemesini almış olan içerikler silinemez.",
     "comment-children": "Yorumları olan bir içerik silinemez.",
@@ -1438,5 +1466,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }

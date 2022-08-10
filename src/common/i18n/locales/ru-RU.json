@@ -137,7 +137,8 @@
     "light": "светлый",
     "dark": "темный",
     "switch-to": "Переключатель",
-    "vote-power": "Сила голоса:"
+    "vote-power": "Сила голоса:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Стремитесь к величию",
@@ -547,11 +548,15 @@
     "section-communities": "Сообщества",
     "section-wallet": "Кошелек",
     "section-settings": "Настройки",
+    "section-referrals": "Referrals",
     "section-permission": "Разрешение",
     "communities-title": "Участники",
     "create-community": "Создать сообщество",
     "witnesses": "Заверители",
-    "proposals": "Предложения"
+    "proposals": "Предложения",
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Присоединился: {{n}}",
@@ -591,6 +596,10 @@
     "language": "Язык",
     "nsfw": "Показать NSFW контент",
     "referral-link": "Реферальная ссылка",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Настройки обновлены!"
   },
   "wallet": {
@@ -702,6 +711,12 @@
     "submit": "Купить",
     "purchase-message": "Или отправьте любую сумму на @esteem.app, указав в примечании `points`, чтобы приобрести Поинты."
   },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
+  },
   "promote": {
     "title": "Продвинуть",
     "sub-title": "Продвижение вашего поста",
@@ -781,6 +796,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> делегировано пользователем <span class=\"from-user\">{{from}}</span> для <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> снято с делегирования от <span class=\"from-user\">{{from}}</span> в <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Проведено понижение Силы в размере <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Сбросить",
     "powering-down": "В настоящее время вы понижаете Силу.",
     "stop-power-down": "Остановить"
@@ -833,7 +849,8 @@
     "type-update_proposal_vote-detail": "Идентификатор предложения: <strong>{{pid}}</strong>",
     "type-limit_order_create": "Создана новая сделка",
     "type-limit_order_cancel": "Открытая сделка отменена",
-    "type-effective_comment_vote": "Эффективное голосование"
+    "type-effective_comment_vote": "Эффективное голосование",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Подписать",
@@ -1006,7 +1023,7 @@
     "type-transfers": "Переводы",
     "type-delegations": "Делегации",
     "group-title-recent": "Недавние",
-    "vote-str": "{{p}}% проголосовал за ваш пост:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "ответил на ваш пост:",
     "mention-str": "упомянул вас в:",
     "followed-str": "подписался на",
@@ -1022,7 +1039,8 @@
     "mark-all-read": "Пометить всё как прочитанное",
     "mark-read": "Пометить как прочитанное",
     "mute": "Отключить уведомления",
-    "unmute": "Включить уведомления"
+    "unmute": "Включить уведомления",
+    "settings": "Settings"
   },
   "leaderboard": {
     "title-stars": "Наиболее активны",
@@ -1108,6 +1126,16 @@
     "proxy-active-current": "Ваш действующий прокси",
     "proxy-active-btn-label": "Очистить прокси",
     "proxy-votes-for": "@{{username}} голосует за"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Предложения",
@@ -1368,7 +1396,7 @@
   "chain-error": {
     "min-root-comment": "Вы можете писать только раз в пять минут.",
     "identical-vote": "Ваш текущий голос за этот контент идентичен этому голосованию.",
-    "insufficient-resource": "Недостаточно Ресурс Кредитов. Пожалуйста, подождите с транзакцией или сделайте power up HIVE.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Невозможно удалить контент с ожидающими положительными наградами.",
     "comment-cashout": "Контент после выплаты не может быть удален.",
     "comment-children": "Невозможно удалить контент с ответами.",
@@ -1438,5 +1466,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }
