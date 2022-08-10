@@ -142,7 +142,8 @@ export default (state: Notifications = initialState, action: Actions): Notificat
         ...state,
         settings: {
           ...state.settings,
-          notify_types: nextTypes
+          notify_types: nextTypes,
+          allows_notify: nextTypes.length > 0 ? 1 : 0,
         } as ApiNotificationSetting
       }
     case ActionTypes.SET_SETTINGS_ALLOW_NOTIFY:
@@ -235,6 +236,7 @@ export const setNotificationsSettingsItem = (type: NotifyTypes, value: boolean) 
     } as ApiNotificationSetting));
     return;
   }
+
   dispatch(setSettingsItemAct(type, value));
 };
 
