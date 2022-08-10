@@ -59,7 +59,7 @@ export const getFcmToken = () => getToken(FCM, {
 
 export const listenFCM = (callback: Function) => {
   onMessage(FCM, p => {
-    console.log('Received fg message');
+    //console.log('Received fg message', p);
     handleMessage(p);
     callback();
   });

@@ -20,8 +20,7 @@ firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage(function (payload) {
-  console.log('Received bg notification');
-  // Customize notification here
+  //console.log('Received bg notification', payload);
   const notificationTitle = payload.notification?.title || 'Ecency';
 
   self.registration.showNotification(notificationTitle, {
