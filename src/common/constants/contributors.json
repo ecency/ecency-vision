@@ -360,5 +360,23 @@
       "Troubleshooter",
       "Developer"
     ]
-  }
+  },
+  {
+    "name": "damla",
+    "contributes":[
+      "Translation (Turkish)"
+    ]
+  },
+  {
+    "name": "jywahaha",
+    "contributes":[
+      "Translation (Chinese)"
+    ]
+  },
+ {
+    "name": "Sudeginsiu",
+    "contributes":[
+      "Translation (Lithuanian and Russian)"
+    ]
+  }   
 ]
