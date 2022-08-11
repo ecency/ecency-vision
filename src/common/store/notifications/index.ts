@@ -35,6 +35,7 @@ import isElectron from '../../util/is-electron';
 import * as ls from '../../util/local-storage';
 import { getFcmToken, initFirebase, listenFCM } from '../../api/firebase';
 import { isSupported } from '@firebase/messaging';
+import { playNotificationSound } from '../../util/play-notification-sound';
 
 export const initialState: Notifications = {
   filter: null,
@@ -305,11 +306,7 @@ export const fetchNotificationsSettings = (username: string) => async (dispatch:
 
     if (isFbSupported) {
       listenFCM(() => {
-        const sound = document.querySelector('#notification-audio') as HTMLAudioElement;
-        if (sound) {
-          sound.muted = false;
-          sound.play();
-        }
+        playNotificationSound(getState().global.isElectron);
         // @ts-ignore
         dispatch(fetchUnreadNotificationCount());
 

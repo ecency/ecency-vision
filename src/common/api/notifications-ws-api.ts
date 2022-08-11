@@ -4,6 +4,7 @@ import { requestNotificationPermission } from '../util/request-notification-perm
 import { ActiveUser } from '../store/active-user/types';
 import defaults from '../constants/defaults.json';
 import { NotifyTypes } from '../enums';
+import { playNotificationSound } from '../util/play-notification-sound';
 
 declare var window: Window & {
   nws?: WebSocket;
@@ -52,12 +53,7 @@ export class NotificationsWebSocket {
     const permission = await requestNotificationPermission();
     if (permission !== 'granted') return;
 
-    const sound = document.querySelector('#notification-audio') as HTMLAudioElement;
-
-    if (sound) {
-      sound.muted = false;
-      await sound.play();
-    }
+    playNotificationSound(this.isElectron);
   }
 
   private async onMessageReceive(evt: MessageEvent) {
@@ -85,21 +81,6 @@ export class NotificationsWebSocket {
         }
       };
     }
-
-    window.nws!.onclose = (evt: CloseEvent) => {
-      console.log('nws disconnected');
-
-      window.nws = undefined;
-
-      if (!evt.wasClean) {
-        // Disconnected due connection error
-        console.log('nws trying to reconnect');
-
-        setTimeout(() => {
-          this.connect();
-        }, 2000);
-      }
-    };
   }
 
   public async connect() {
@@ -126,6 +107,20 @@ export class NotificationsWebSocket {
       this.isConnected = true;
     }
     window.nws.onmessage = e => this.onMessageReceive(e);
+    window.nws.onclose = (evt: CloseEvent) => {
+      console.log('nws disconnected');
+
+      window.nws = undefined;
+
+      if (!evt.wasClean) {
+        // Disconnected due connection error
+        console.log('nws trying to reconnect');
+
+        setTimeout(() => {
+          this.connect();
+        }, 2000);
+      }
+    };
   }
 
   public disconnect() {
