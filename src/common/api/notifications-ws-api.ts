@@ -11,7 +11,6 @@ declare var window: Window & {
 
 export class NotificationsWebSocket {
   private activeUser: ActiveUser | null = null;
-  private sound: HTMLAudioElement | null = null;
   private isElectron = false;
   private hasNotifications = false;
   private hasUiNotifications = false;
@@ -52,13 +51,15 @@ export class NotificationsWebSocket {
     const permission = await requestNotificationPermission();
     if (permission !== 'granted') return;
 
-    if (this.sound) {
-      this.sound.muted = false;
-      await this.sound.play();
+    const sound = document.querySelector('#notification-audio') as HTMLAudioElement;
+
+    if (sound) {
+      sound.muted = false;
+      await sound.play();
     }
   }
 
-  private onMessageReceive(evt: MessageEvent) {
+  private async onMessageReceive(evt: MessageEvent) {
     const logo = this.isElectron ? './img/logo-circle.svg' : require('../img/logo-circle.svg');
 
     const data = JSON.parse(evt.data);
@@ -75,7 +76,7 @@ export class NotificationsWebSocket {
         return;
       }
 
-      this.playSound();
+      await this.playSound();
 
       new Notification(_t('notification.popup-title'), { body: msg, icon: logo }).onclick = () => {
         if (!this.hasUiNotifications) {
@@ -128,11 +129,6 @@ export class NotificationsWebSocket {
 
   public withActiveUser(activeUser: ActiveUser | null) {
     this.activeUser = activeUser;
-    return this;
-  }
-
-  public withSound(element: HTMLAudioElement) {
-    this.sound = element;
     return this;
   }
 

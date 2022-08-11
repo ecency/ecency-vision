@@ -36,7 +36,6 @@ export default class NotificationHandler extends Component<Props> {
     this.nws
       .withActiveUser(activeUser)
       .withElectron(global.isElectron)
-      .withSound(document.getElementById('notifications-audio') as HTMLAudioElement)
       .withCallbackOnMessage(() => {
         fetchUnreadNotificationCount();
         fetchNotifications(null);
