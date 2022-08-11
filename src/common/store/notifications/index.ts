@@ -305,6 +305,11 @@ export const fetchNotificationsSettings = (username: string) => async (dispatch:
 
     if (isFbSupported) {
       listenFCM(() => {
+        const sound = document.querySelector('#notification-audio') as HTMLAudioElement;
+        if (sound) {
+          sound.muted = false;
+          sound.play();
+        }
         // @ts-ignore
         dispatch(fetchUnreadNotificationCount());
 

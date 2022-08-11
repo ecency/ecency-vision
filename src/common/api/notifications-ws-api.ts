@@ -11,7 +11,6 @@ declare var window: Window & {
 
 export class NotificationsWebSocket {
   private activeUser: ActiveUser | null = null;
-  private sound: HTMLAudioElement | null = null;
   private isElectron = false;
   private hasNotifications = false;
   private hasUiNotifications = false;
@@ -19,6 +18,7 @@ export class NotificationsWebSocket {
   private enabledNotifyTypes: NotifyTypes[] = [];
   private toggleUiProp: Function = () => {
   };
+  private isConnected = false;
 
   private static getBody(data: WsNotification) {
     const { source } = data;
@@ -52,13 +52,15 @@ export class NotificationsWebSocket {
     const permission = await requestNotificationPermission();
     if (permission !== 'granted') return;
 
-    if (this.sound) {
-      this.sound.muted = false;
-      await this.sound.play();
+    const sound = document.querySelector('#notification-audio') as HTMLAudioElement;
+
+    if (sound) {
+      sound.muted = false;
+      await sound.play();
     }
   }
 
-  private onMessageReceive(evt: MessageEvent) {
+  private async onMessageReceive(evt: MessageEvent) {
     const logo = this.isElectron ? './img/logo-circle.svg' : require('../img/logo-circle.svg');
 
     const data = JSON.parse(evt.data);
@@ -75,7 +77,7 @@ export class NotificationsWebSocket {
         return;
       }
 
-      this.playSound();
+      await this.playSound();
 
       new Notification(_t('notification.popup-title'), { body: msg, icon: logo }).onclick = () => {
         if (!this.hasUiNotifications) {
@@ -101,6 +103,10 @@ export class NotificationsWebSocket {
   }
 
   public async connect() {
+    if (this.isConnected) {
+      return;
+    }
+
     if (!this.activeUser) {
       this.disconnect();
       return;
@@ -115,12 +121,15 @@ export class NotificationsWebSocket {
     }
 
     window.nws = new WebSocket(`${defaults.nwsServer}/ws?user=${this.activeUser.username}`);
-    window.nws.onopen = () => console.log('nws connected');
+    window.nws.onopen = () => {
+      console.log('nws connected');
+      this.isConnected = true;
+    }
     window.nws.onmessage = e => this.onMessageReceive(e);
   }
 
   public disconnect() {
-    if (window.nws !== undefined) {
+    if (window.nws !== undefined && this.isConnected) {
       window.nws.close();
       window.nws = undefined;
     }
@@ -128,11 +137,6 @@ export class NotificationsWebSocket {
 
   public withActiveUser(activeUser: ActiveUser | null) {
     this.activeUser = activeUser;
-    return this;
-  }
-
-  public withSound(element: HTMLAudioElement) {
-    this.sound = element;
     return this;
   }
 
