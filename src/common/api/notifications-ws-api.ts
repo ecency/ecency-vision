@@ -4,6 +4,7 @@ import { requestNotificationPermission } from '../util/request-notification-perm
 import { ActiveUser } from '../store/active-user/types';
 import defaults from '../constants/defaults.json';
 import { NotifyTypes } from '../enums';
+import { playNotificationSound } from '../util/play-notification-sound';
 
 declare var window: Window & {
   nws?: WebSocket;
@@ -52,12 +53,7 @@ export class NotificationsWebSocket {
     const permission = await requestNotificationPermission();
     if (permission !== 'granted') return;
 
-    const sound = document.querySelector('#notification-audio') as HTMLAudioElement;
-
-    if (sound) {
-      sound.muted = false;
-      await sound.play();
-    }
+    playNotificationSound(this.isElectron);
   }
 
   private async onMessageReceive(evt: MessageEvent) {
