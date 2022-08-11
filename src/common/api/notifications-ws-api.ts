@@ -18,6 +18,7 @@ export class NotificationsWebSocket {
   private enabledNotifyTypes: NotifyTypes[] = [];
   private toggleUiProp: Function = () => {
   };
+  private isConnected = false;
 
   private static getBody(data: WsNotification) {
     const { source } = data;
@@ -102,6 +103,10 @@ export class NotificationsWebSocket {
   }
 
   public async connect() {
+    if (this.isConnected) {
+      return;
+    }
+
     if (!this.activeUser) {
       this.disconnect();
       return;
@@ -116,12 +121,15 @@ export class NotificationsWebSocket {
     }
 
     window.nws = new WebSocket(`${defaults.nwsServer}/ws?user=${this.activeUser.username}`);
-    window.nws.onopen = () => console.log('nws connected');
+    window.nws.onopen = () => {
+      console.log('nws connected');
+      this.isConnected = true;
+    }
     window.nws.onmessage = e => this.onMessageReceive(e);
   }
 
   public disconnect() {
-    if (window.nws !== undefined) {
+    if (window.nws !== undefined && this.isConnected) {
       window.nws.close();
       window.nws = undefined;
     }
