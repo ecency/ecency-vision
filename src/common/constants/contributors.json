@@ -360,5 +360,65 @@
       "Troubleshooter",
       "Developer"
     ]
+  },
+  {
+    "name": "damla",
+    "contributes":[
+      "Translation (Turkish)"
+    ]
+  },
+  {
+    "name": "jywahaha",
+    "contributes":[
+      "Translation (Chinese)"
+    ]
+  },
+ {
+    "name": "sudeginsiu",
+    "contributes":[
+      "Translation (Lithuanian and Russian)"
+    ]
+  },
+   {
+    "name": "lofone",
+    "contributes":[
+      "Translation (Acehnese)"
+    ]
+  },
+   {
+    "name": "fiatgirl",
+    "contributes":[
+      "Translation (Dutch)"
+    ]
+  },
+   {
+    "name": "yaziris",
+    "contributes":[
+      "Translation (Arabian)"
+    ]
+  },
+   {
+    "name": "shahinF27",
+    "contributes":[
+      "Translation (Azerbaijani)"
+    ]
+  },
+   {
+    "name": "dzoji",
+    "contributes":[
+      "Translation (Bosnian)"
+    ]
+  },
+   {
+    "name": "therealflaws",
+    "contributes":[
+      "Translation (Spanish)"
+    ]
+  },
+  {
+    "name": "teooo",
+    "contributes":[
+      "Translation (Lithuanian)"
+    ]
   }
 ]
