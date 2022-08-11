@@ -741,6 +741,16 @@ export class WalletHive extends BaseComponent<Props, State> {
                             </div>
                         )}
 
+                        
+                        {w.isPoweringDown && (
+                            <div className="next-power-down">
+                                {_t("wallet.weeks-power-down", {
+                                    weeks: w.weeksLeft,
+                                    total: w.toWithdraw
+                                })}
+                            </div>
+                        )}
+
                         {TransactionList({...this.props})}
                     </div>
                     <WalletMenu global={global} username={account.name} active="hive"/>

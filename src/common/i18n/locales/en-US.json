@@ -641,7 +641,8 @@
     "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE",
     "withdrawing-amount": "Withdrawing from Savings",
-    "reserved-amount": "Reserved for Open order in Market"
+    "reserved-amount": "Reserved for Open order in Market",
+    "weeks-power-down": "You have {{weeks}} weeks remaining"
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",
