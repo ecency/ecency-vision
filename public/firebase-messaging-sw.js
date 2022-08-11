@@ -33,18 +33,15 @@ messaging.onBackgroundMessage(function (payload) {
 self.addEventListener('notificationclick', function (event) {
   const data = event.notification.data;
   let url = 'https://ecency.com';
-
-  if (data.parent_permlink1) {
-    url += '/' + data.parent_permlink1;
-  }
-  if (['vote', 'unvote', 'reply', 'spin', 'inactive'].includes(data.type)) {
+  const fullPermlink = data.permlink1 + data.permlink2 + data.permlink3;
+  if (['vote', 'unvote', 'spin', 'inactive'].includes(data.type)) {
     url += '/@' + data.target;
   } else {
     // delegation, mention, transfer, follow, unfollow, ignore, blacklist, reblog
     url += '/@' + data.source;
   }
-  if (data.permlink1) {
-    url += '/' + data.permlink1;
+  if (fullPermlink) {
+    url += '/' + fullPermlink;
   }
 
   clients.openWindow(url, '_blank');

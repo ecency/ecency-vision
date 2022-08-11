@@ -35,18 +35,16 @@ export const handleMessage = (payload: MessagePayload) => {
   notification.onclick = () => {
     let url = 'https://ecency.com';
     const data = (payload.data || {}) as any;
+    const fullPermlink = data.permlink1 + data.permlink2 + data.permlink3;
 
-    if (data.parent_permlink1) {
-      url += '/' + data.parent_permlink1;
-    }
-    if (['vote', 'unvote', 'reply', 'spin', 'inactive'].includes(data.type)) {
+    if (['vote', 'unvote', 'spin', 'inactive'].includes(data.type)) {
       url += '/@' + data.target;
     } else {
       // delegation, mention, transfer, follow, unfollow, ignore, blacklist, reblog
       url += '/@' + data.source;
     }
-    if (data.permlink1) {
-      url += '/' + data.permlink1;
+    if (fullPermlink) {
+      url += '/' + fullPermlink;
     }
 
     window.open(url, '_blank');
