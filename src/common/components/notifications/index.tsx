@@ -235,12 +235,27 @@ export class DialogContent extends Component<NotificationProps, any> {
             <DropDown {...dropDownConfig} float="left"/>
           </div>
           <div className="list-actions">
+            {!this.props.global.isMobile ? <>
+              <Tooltip content={_t('notifications.mark-all-read')}>
+                <span
+                  className={_c(`list-action ${loading || unread === 0 ? 'disabled' : ''}`)}
+                  onClick={() => this.markAsRead()}
+                >{checkSvg}</span>
+              </Tooltip>
+              <Tooltip content={_t('notifications.refresh')}>
+                <span
+                  className={_c(`list-action ${loading ? 'disabled' : ''}`)}
+                  onClick={() => this.refresh()}
+                >{syncSvg}</span>
+              </Tooltip>
+            </> : <></>}
+
             <DropDown
               className={'settings'}
               header={_t(`notifications.settings`)}
               withPadding={true}
               items={[
-                {
+                ...(this.props.global.isMobile ? [{
                   label: _t(`notifications.mark-all-read`),
                   isStatic: true,
                   content: <div className="list-actions">
@@ -259,7 +274,7 @@ export class DialogContent extends Component<NotificationProps, any> {
                     </Tooltip>
                   </div>,
                   onClick: () => this.refresh(),
-                },
+                }] : []),
                 // getNotificationSettingsItem(_t(`notifications.type-all-short`), NotifyTypes.ALLOW_NOTIFY),
                 getNotificationSettingsItem(_t(`notifications.type-rvotes`), NotifyTypes.VOTE),
                 getNotificationSettingsItem(_t(`notifications.type-replies`), NotifyTypes.COMMENT),
