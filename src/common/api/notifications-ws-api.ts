@@ -85,21 +85,6 @@ export class NotificationsWebSocket {
         }
       };
     }
-
-    window.nws!.onclose = (evt: CloseEvent) => {
-      console.log('nws disconnected');
-
-      window.nws = undefined;
-
-      if (!evt.wasClean) {
-        // Disconnected due connection error
-        console.log('nws trying to reconnect');
-
-        setTimeout(() => {
-          this.connect();
-        }, 2000);
-      }
-    };
   }
 
   public async connect() {
@@ -126,6 +111,20 @@ export class NotificationsWebSocket {
       this.isConnected = true;
     }
     window.nws.onmessage = e => this.onMessageReceive(e);
+    window.nws.onclose = (evt: CloseEvent) => {
+      console.log('nws disconnected');
+
+      window.nws = undefined;
+
+      if (!evt.wasClean) {
+        // Disconnected due connection error
+        console.log('nws trying to reconnect');
+
+        setTimeout(() => {
+          this.connect();
+        }, 2000);
+      }
+    };
   }
 
   public disconnect() {
