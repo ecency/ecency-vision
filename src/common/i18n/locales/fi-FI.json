@@ -165,8 +165,8 @@
     "sign-up-text-2": "Rekisteröidy nyt!"
   },
   "sign-up": {
-    "header": "Rewarding communities",
-    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
+    "header": "Palkitsevia yhteisöjä",
+    "description": "Arvosta Sananvapautta, ota ohjat ja saavuta taloudellinen vapaus!",
     "bottom-description": "Jokainen tili on luotu lohkoketjulle ja vain sinulla on määräysvalta tällä tilillä. Yhdellä tilillä voit hallita kaikkea lohkoketjussa ja Ecencyssä.",
     "learn-more": "Lue lisää hyödyistä <a href=\"/faq#how-to-join\">UKK:sta</a>",
     "username": "Valitse käyttäjänimi",
@@ -1292,7 +1292,7 @@
       "what-are-rc-header": "Mitä Resurssipisteet ovat?",
       "what-are-rc-body": "<p>Siirrot Hive-lohkoketjussa eivät ole maksullisia, tapahtumakoron rajoittamista käytetään suojaamaan lohkoketjua roskapostihyökkäyksiltä. Jokainesta toiminnostasi lohkoketju kuluttaa pienen määrän Resurssihyvityksiä. Tämä sisältää julkaisun, kommentoinnin, äänestämisen, merkkien siirrot, jne. Sisällön katselu ei kuluta resurssihyvityksiä.</p><p>Jokaisella käyttäjällä on rajallinen määrä resurssihyvityksiä joka viikko. Mitä enemmän tapahtumia käyttäjä tekee, sitä vähemmän resurssihyvityksiä jää jäljelle (kunnes he latautuvat). Käyttäjillä, joilla on enemmän HIVE POWER:a, on enemmän resurssihyvityksiä.</p><p>Jos resurssihyvitykset ovat loppuneet, et voi tehdä siirtoja lohkoketjussa, ennen kuin resurssihyvitykset palautuvat (tapahtuu automaattisesti) tai saat lisää HIVE POWER:a lisätäksesi Resurssihyvityssaldoasi tai voit <a href=\"/faq#how-boost-account\">pyytää Ecency</a> -tilin vahvistamista saadaksesi väliaikaisen valtuutuksen.</p>",
       "how-boost-account-header": "Kuinka pyytää tilin tehostamista?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation (553311 VESTS) which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can request account boosting quickly with <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR page</a> just change username and scan QR image with Ecency mobile app.</p>",
+      "how-boost-account-body": "<p>Jos tililläsi on niukasti <a href=\"/faq#what-are-rc\">Resurssihyvityksiä</a>, voit pyytää tilin tehostamista Ecencyltä. Saat 30pv valtuutuksen (553311 VESTS), joka tehostaa tiliäsi suorittaaksesi enemmän toimintoja lohkoketjussa. Valtuutus voidaan kotiuttaa milloin vain, mikäli sitä käytetään väärin. Tilin tehostamista voit pyytää <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR-sivulla</a> muuttamalla käyttäjätunnuksen ja voit skannata QR-kuvan Ecency Mobiiliapissa.</p>",
       "what-spam-abuse-header": "Mitä lasketaan roskapostiksi tai väärinkäytöksi?",
       "what-spam-abuse-body": "<p><ul><li>Plagiarisoidut viestit tai kopioitu sisältö.</li><li>Lähes identtisten tai olennaisesti samanlaisten kommenttien jättäminen useisiin viesteihin.</li><li>Käyttämällä tunnisteita, jotka eivät liity viestiin.</li><li>Käyttäjien uhkaaminen kaikenlaisella fyysisellä väkivallalla.</li><li>Lähteitä ei viitata jonkun toisen materiaalia käytettäessä.</li><li>Lähettäminen ”ei ole turvallista työlle” ilman ”nsfw”-tunnusta.</li><li>Huijaukset tai petokselliset tarjoukset.</li></ul></p>",
       "can-link-post-header": "Voinko pyytää käänteislinkin lisäämistä sivuilleni Ecencyltä?",
