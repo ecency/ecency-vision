@@ -67,9 +67,9 @@ export class NotificationsWebSocket {
       this.enabledNotifyTypes.includes(messageNotifyType) :
       true;
 
-    if (msg && allowedToNotify) {
+    if (msg) {
       this.onSuccessCallbacks.forEach(cb => cb());
-      if (!this.hasNotifications) {
+      if (!this.hasNotifications || !allowedToNotify) {
         return;
       }
 
@@ -127,6 +127,7 @@ export class NotificationsWebSocket {
     if (window.nws !== undefined && this.isConnected) {
       window.nws.close();
       window.nws = undefined;
+      this.isConnected = false;
     }
   }
 

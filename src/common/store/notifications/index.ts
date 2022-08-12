@@ -271,11 +271,12 @@ export const fetchNotificationsSettings = (username: string) => async (dispatch:
       token = await getFcmToken();
     } catch (e) {
       isFbSupported = false;
+      oldToken = null;
     }
   }
 
   try {
-    const settings = await getNotificationSetting(username, oldToken);
+    const settings = await getNotificationSetting(username, oldToken || token);
     dispatch(setSettingsAct(settings));
   } catch(e) {
     const wasMutedPreviously = ls.get("notifications") === false;
