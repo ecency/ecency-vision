@@ -130,7 +130,7 @@ export const toggleTheme = (theme_key?:Theme) => (
   }
 
   ls.set("theme", newTheme);
-  Cookies.set("theme", newTheme);
+  Cookies.set("theme", newTheme, { expires: 365 });
 
   dispatch(themeChangeAct(newTheme));
   if (isMobile) {
@@ -158,14 +158,14 @@ export const toggleListStyle = (view: string | null) => (
   }
 
   ls.set("list-style", newStyle);
-  Cookies.set("list-style", newStyle);
+  Cookies.set("list-style", newStyle, { expires: 365 });
 
   dispatch(listStyleChangeAct(newStyle));
 };
 
 export const hideIntro = () => (dispatch: Dispatch) => {
   ls.set("hide-intro", "1");
-  Cookies.set("hide-intro", "1");
+  Cookies.set("hide-intro", "1", { expires: 365 });
 
   dispatch(hideIntroAct());
 };

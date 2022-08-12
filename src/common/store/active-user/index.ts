@@ -43,7 +43,7 @@ export default (state: ActiveUser | null = initialState, action: Actions): Activ
 export const setActiveUser = (name: string | null) => async (dispatch: Dispatch) => {
     if (name) {
         ls.set("active_user", name);
-        Cookies.set("active_user", name);
+        Cookies.set("active_user", name, { expires: 365 });
         dispatch(loginAct());
     } else {
         ls.remove("active_user");
