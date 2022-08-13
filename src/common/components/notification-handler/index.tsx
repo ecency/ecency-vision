@@ -20,7 +20,7 @@ interface Props {
 
 export default class NotificationHandler extends Component<Props> {
   private nws = new NotificationsWebSocket();
-  private hasInterval = false;
+  private countInterval: any = null;
 
   componentDidMount() {
     const {
@@ -59,9 +59,12 @@ export default class NotificationHandler extends Component<Props> {
 
     this.nws.setEnabledNotificationsTypes(notifications.settings?.notify_types as NotifyTypes[] || []);
 
-    if (notifications.fbSupport === 'granted' && activeUser && !this.hasInterval) {
-      setInterval(() => fetchUnreadNotificationCount(), 60000);
-      this.hasInterval = true;
+    if (!activeUser && this.countInterval) {
+      clearInterval(this.countInterval);
+    }
+
+    if (notifications.fbSupport === 'granted' && activeUser && !this.countInterval) {
+      this.countInterval = setInterval(() => fetchUnreadNotificationCount(), 60000);
     }
 
     if (notifications.fbSupport === 'denied' && activeUser) {
