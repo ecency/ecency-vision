@@ -382,7 +382,7 @@
    {
     "name": "lofone",
     "contributes":[
-      "Translation (Acehnese)"
+      "Translation (Acehnese)","Guest Curator"
     ]
   },
    {
@@ -420,5 +420,83 @@
     "contributes":[
       "Translation (Lithuanian)"
     ]
+  },
+ {
+    "name": "samostically",
+    "contributes":[
+      "Guest Curator"
+    ]
+  },
+   {
+    "name": "infinitytcg",
+    "contributes":[
+      "Guest Curator"
+    ]
+  },
+   {
+    "name": "luizeba",
+    "contributes":[
+      "Guest Curator"
+    ]
+  },
+   {
+    "name": "ziabutt3836",
+    "contributes":[
+      "Guest Curator"
+    ]
+  },
+   {
+    "name": "suncooper",
+    "contributes":[
+      "Guest Curator"
+    ]
+  }, {
+    "name": "weone",
+    "contributes":[
+      "Guest Curator"
+    ]
+  },
+   {
+    "name": "beeber",
+    "contributes":[
+      "Guest Curator"
+    ]
+  },
+   {
+    "name": "unklebonehead",
+    "contributes":[
+      "Guest Curator"
+    ]
+  },
+   {
+    "name": "fsc69",
+    "contributes":[
+      "Guest Curator"
+    ]
+  },
+   {
+    "name": "mypathtofire",
+    "contributes":[
+      "Guest Curator"
+    ]
+  },
+   {
+    "name": "underlock",
+    "contributes":[
+      "Guest Curator"
+    ]
+  },
+   {
+    "name": "jane1289",
+    "contributes":[
+      "Guest Curator"
+    ]
+  },
+   {
+    "name": "chaosmagic23",
+    "contributes":[
+      "Guest Curator"
+    ]
   }
 ]
+
