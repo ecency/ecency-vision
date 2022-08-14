@@ -105,15 +105,15 @@
   },
   "search": {
     "placeholder": "Zoeken",
-    "placeholder-proposals": "Search proposals",
+    "placeholder-proposals": "Zoek voorstellen",
     "placeholder-count": "Zoek {{n}} publicaties",
     "header-tag": "Labels",
     "header-account": "Gebruikers",
     "header-community": "Gemeenschappen"
   },
   "tag": {
-    "unmoderated": "Unmoderated topics",
-    "moderated": "Moderated community"
+    "unmoderated": "Ongemodereerde onderwerpen",
+    "moderated": "gemodereerde community"
   },
   "switch-lang": {
     "contributors": "Bijdragers"
@@ -125,7 +125,7 @@
     "unclaimed-points-notice": "Je hebt niet-opgeëiste punten",
     "notifications": "Meldingen",
     "profile": "Profiel",
-    "profile-menu": "Profile menu",
+    "profile-menu": "Profiel menu",
     "gallery": "Gallerij",
     "drafts": "Concepten",
     "bookmarks": "Bladwijzers",
@@ -133,10 +133,10 @@
     "fragments": "Fragmenten",
     "settings": "Instellingen",
     "logout": "Afmelden",
-    "theme": "theme",
+    "theme": "Thema",
     "light": "licht",
     "dark": "Donker",
-    "switch-to": "Switch",
+    "switch-to": "Wisselen",
     "vote-power": "Stem Kracht:",
     "boost": "Boost"
   },
@@ -149,16 +149,16 @@
     "title": "Welkom terug!",
     "with-user-pass": "Aanmelden met jouw gebruikersnaam en privé sleutel.",
     "username-placeholder": "gebruikersnaam",
-    "key-placeholder": "password / private key",
+    "key-placeholder": "wachtwoord / privé sleutel",
     "login-info-1": "We slaan je privé sleutels niet op.",
     "login-info-2": "Meer info",
     "error-fields-required": "Voer aub gebruikersnaam en prive sleutel in",
     "error-public-key": "Je gebruikte de openbare sleutel. Wachtwoord/ WIF benodigd",
     "error-user-fetch": "Gebruikersgegevens konden niet worden opgehaald",
     "error-user-not-found": "Gebruiker bestaat niet",
-    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
+    "error-user-not-found-cache": "Ongeregeldheden in geheugen gedetecteerd. Gelieve opnieuw in te loggen met uw gegevens.",
     "error-permission": "Kon geen toestemming krijgen voor publiceren",
-    "error-authenticate": "Wrong private key. Master or active or posting private key required.",
+    "error-authenticate": "Verkeerde privésleutel. Meester of actief, of posten van privésleutel vereist.",
     "with-hive-signer": "Aanmelden via HiveSigner",
     "with-keychain": "Aanmelden via KeyChain",
     "sign-up-text-1": "Nog geen lid?",
