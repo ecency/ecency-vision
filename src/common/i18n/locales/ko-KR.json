@@ -628,7 +628,7 @@
     "hive-dollars-description": "하이브로 환산했을때 $1.00 만큼의 가치를 갖는 토큰.",
     "savings": "안전 금고",
     "savings-description": "잔액을 출금하려면 3일간 기다려야 합니다.",
-    "next-power-down": "다음 번 파워 다운은 {{time}}, {{amount}} 입니다",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "송금",
     "transfer-to-savings": "안전 금고로 전송",
     "convert": "전환",
