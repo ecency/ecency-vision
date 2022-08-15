@@ -628,7 +628,7 @@
     "hive-dollars-description": "Žetonai verti apie $1.00 HIVE.",
     "savings": "SANTAUPOS",
     "savings-description": "Balansas apsaugotas 3 dienų laikotarpiu išsiėmimui.",
-    "next-power-down": "Kitas maitinimo išjungimas yra {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Pervesti",
     "transfer-to-savings": "Pervesti į santaupas",
     "convert": "Konvertuoti",
