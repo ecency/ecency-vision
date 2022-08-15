@@ -628,7 +628,7 @@
     "hive-dollars-description": "Tokeni vredni oko $1.00 u HIVE-u.",
     "savings": "Štednja",
     "savings-description": "Saldo je podložan trodnevnom periodu čekanja za povlačenje sredstava.",
-    "next-power-down": "Sledeće smanjenje snage je {{time}} {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Prenos",
     "transfer-to-savings": "Premestite u ušteđevinu",
     "convert": "Pretvori",
