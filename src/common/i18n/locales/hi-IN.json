@@ -628,7 +628,7 @@
     "hive-dollars-description": "हाइव के $ 1.00 के टोकन।",
     "savings": "बचत",
     "savings-description": "शेष 3 दिन की प्रतीक्षा अवधि के अधीन।",
-    "next-power-down": "अगली शक्ति नीचे {{time}},{{amount}} है",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "स्थानांतरण",
     "transfer-to-savings": "बचत खाते में स्थांतरण करें",
     "convert": "बदलें",
