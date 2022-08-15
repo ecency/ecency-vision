@@ -628,7 +628,7 @@
     "hive-dollars-description": "Tokens worth about $1.00 of HIVE.",
     "savings": "SAVINGS",
     "savings-description": "Balance subject to 3 day withdraw waiting period.",
-    "next-power-down": "The next power down is {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Transfer",
     "transfer-to-savings": "Transfer to savings",
     "convert": "Convert",
@@ -641,8 +641,7 @@
     "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE",
     "withdrawing-amount": "Withdrawing from Savings",
-    "reserved-amount": "Reserved for Open order in Market",
-    "weeks-power-down": "You have {{weeks}} weeks remaining"
+    "reserved-amount": "Reserved for Open order in Market"
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",

@@ -84,6 +84,6 @@ export default class HiveWallet {
 
         this.toWithdraw = this.isPoweringDown ? vestsToHp((Number(account.to_withdraw) / 1e6), hivePerMVests) : 0;
         this.withdrawn = this.isPoweringDown ? vestsToHp(Number(account.withdrawn), hivePerMVests / 1e6) : 0;
-        this.weeksLeft = Math.round(Math.ceil((Number(this.toWithdraw) - Number(this.withdrawn)) / this.nextVestingSharesWithdrawalHive));
+        this.weeksLeft = Math.round((Number(this.toWithdraw) - Number(this.withdrawn)) / this.nextVestingSharesWithdrawalHive);
     }
 }
