@@ -628,7 +628,7 @@
     "hive-dollars-description": "Tokenin arvo on noin $1.00 edestä HIVEä.",
     "savings": "SÄÄSTÖT",
     "savings-description": "Tilillä on 3 päivän kotiutusjakso.",
-    "next-power-down": "Seuraava power down on {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Siirto",
     "transfer-to-savings": "Siirrä säästöihin",
     "convert": "Muunna",
