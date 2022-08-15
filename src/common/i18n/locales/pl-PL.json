@@ -628,7 +628,7 @@
     "hive-dollars-description": "Tokeny warte około 1,00 USD z HIVE.",
     "savings": "OSZCZĘDNOŚCI",
     "savings-description": "Saldo z 3-dniowym okresem oczekiwania na wypłatę.",
-    "next-power-down": "Następne zmniejszenie mocy nastąpi {{time}} {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Przelew",
     "transfer-to-savings": "Transfer do oszczędności",
     "convert": "Konwertuj",
