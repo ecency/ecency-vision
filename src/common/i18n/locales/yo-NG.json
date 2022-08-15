@@ -628,7 +628,7 @@
     "hive-dollars-description": "Tokens worth about $1.00 of HIVE.",
     "savings": "SAVINGS",
     "savings-description": "Balance subject to 3 day withdraw waiting period.",
-    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
+    "next-power-down": "Àìsí ìgbéra tó ḿbọ̀ ni {{àkókò}}, (~{{iye}}, {{ọ̀sẹ̀}} ọ̀sẹ̀ tí ó kù)",
     "transfer": "Transfer",
     "transfer-to-savings": "Transfer to savings",
     "convert": "Convert",
