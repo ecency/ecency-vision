@@ -628,7 +628,7 @@
     "hive-dollars-description": "الرموز التي تبلغ قيمتها حوالي 1.00$ من HIVE.",
     "savings": "المدخرات",
     "savings-description": "الرصيد خاضع لفترة انتظار لمدة 3 أيام.",
-    "next-power-down": "خفض القوة القادم هو {{time}}، {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "تحويل",
     "transfer-to-savings": "تحويل إلى المدخرات",
     "convert": "تحويل",
