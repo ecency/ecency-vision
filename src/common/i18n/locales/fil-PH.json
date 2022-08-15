@@ -628,7 +628,7 @@
     "hive-dollars-description": "Mga token na kasinghalaga ng isang dolyar na HIVE.",
     "savings": "MGA IMPOK",
     "savings-description": "Kailangang maghintay ng 3 araw bago ang balanse ay mailabas.",
-    "next-power-down": "Ang susunod na pagpapahina ay {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Ilipat",
     "transfer-to-savings": "Ilipat sa impukan",
     "convert": "Isalin",
