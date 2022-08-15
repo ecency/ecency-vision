@@ -628,7 +628,7 @@
     "hive-dollars-description": "Токены стоимостью около $1.00 от HIVE.",
     "savings": "СЕЙФ",
     "savings-description": "Баланс подлежит снятию в течение 3 дней.",
-    "next-power-down": "Следующее понижение силы {{amount}} запланировано {{time}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Перевод",
     "transfer-to-savings": "Перевод в сейф",
     "convert": "Конвертировать",
