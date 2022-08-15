@@ -628,7 +628,7 @@
     "hive-dollars-description": "Tokenlar taxminan $1,00 HIVEga teng.",
     "savings": "JAMG'ARMA",
     "savings-description": "Balansni yechib olish uchun 3 kunlik kutish muddati belgilanadi.",
-    "next-power-down": "Keyingi kuch kamayishi {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "O'tkazma",
     "transfer-to-savings": "Jang'armaga o'tqazish",
     "convert": "Konvertatsiya qilish",
