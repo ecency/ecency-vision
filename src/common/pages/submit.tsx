@@ -1,73 +1,71 @@
-import React, {Component} from "react";
+import React, { Component } from 'react';
 
-import {connect} from "react-redux";
+import { connect } from 'react-redux';
 
-import {match} from "react-router";
+import { match } from 'react-router';
 
-import queryString from "query-string";
+import queryString from 'query-string';
 
-import isEqual from "react-fast-compare";
+import isEqual from 'react-fast-compare';
 
-import {History} from "history";
+import { History } from 'history';
 
-import {Form, FormControl, Button, Spinner, Col, Row} from "react-bootstrap";
+import { Button, Col, Form, FormControl, Row, Spinner } from 'react-bootstrap';
 
-import moment, {Moment} from "moment";
+import moment, { Moment } from 'moment';
 
-import defaults from "../constants/defaults.json";
+import defaults from '../constants/defaults.json';
 
-import {proxifyImageSrc, renderPostBody, setProxyBase, postBodySummary} from "@ecency/render-helper";
+import { postBodySummary, proxifyImageSrc, renderPostBody, setProxyBase } from '@ecency/render-helper';
+import { Entry } from '../store/entries/types';
+import { Global } from '../store/global/types';
+import { FullAccount } from '../store/accounts/types';
+
+import BaseComponent from '../components/base';
+import Meta from '../components/meta';
+import Theme from '../components/theme';
+import Feedback, { error, success } from '../components/feedback';
+import NavBar from '../components/navbar';
+import NavBarElectron from '../../desktop/app/components/navbar';
+import FullHeight from '../components/full-height';
+import EditorToolbar from '../components/editor-toolbar';
+import TagSelector from '../components/tag-selector';
+import CommunitySelector from '../components/community-selector';
+import Tag from '../components/tag';
+import LoginRequired from '../components/login-required';
+import WordCount from '../components/word-counter';
+import { makePath as makePathEntry } from '../components/entry-link';
+import MdHandler from '../components/md-handler';
+import BeneficiaryEditor from '../components/beneficiary-editor';
+import PostScheduler from '../components/post-scheduler';
+
+import { addDraft, addSchedule, Draft, DraftMetadata, getDrafts, updateDraft } from '../api/private-api';
+
+import { createPatch, createPermlink, extractMetaData, makeCommentOptions, makeJsonMetaData } from '../helper/posting';
+
+import tempEntry, { correctIsoDate } from '../helper/temp-entry';
+import isCommunity from '../helper/is-community';
+
+import { BeneficiaryRoute, comment, formatError, reblog, RewardType } from '../api/operations';
+
+import * as bridgeApi from '../api/bridge';
+import * as hiveApi from '../api/hive';
+
+import { _t } from '../i18n';
+
+import _c from '../util/fix-class-names'
+
+import * as ls from '../util/local-storage';
+
+import { version } from '../../../package.json';
+
+import { checkSvg, contentSaveSvg } from '../img/svg';
+
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from './common';
+import ModalConfirm from '../components/modal-confirm';
+import TextareaAutocomplete from '../components/textarea-autocomplete';
 
 setProxyBase(defaults.imageServer);
-
-import {Entry} from "../store/entries/types";
-import {Global} from "../store/global/types";
-import {FullAccount} from "../store/accounts/types";
-
-import BaseComponent from "../components/base";
-import Meta from "../components/meta";
-import Theme from "../components/theme";
-import Feedback from "../components/feedback";
-import NavBar from "../components/navbar";
-import NavBarElectron from "../../desktop/app/components/navbar";
-import FullHeight from "../components/full-height";
-import EditorToolbar from "../components/editor-toolbar";
-import TagSelector from "../components/tag-selector";
-import CommunitySelector from "../components/community-selector";
-import Tag from "../components/tag";
-import LoginRequired from "../components/login-required";
-import WordCount from "../components/word-counter";
-import {makePath as makePathEntry} from "../components/entry-link";
-import {error, success} from "../components/feedback";
-import MdHandler from "../components/md-handler";
-import BeneficiaryEditor from "../components/beneficiary-editor";
-import PostScheduler from "../components/post-scheduler";
-
-import {getDrafts, addDraft, updateDraft, addSchedule, Draft} from "../api/private-api";
-
-import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, createPatch} from "../helper/posting";
-
-import tempEntry, {correctIsoDate} from "../helper/temp-entry";
-import isCommunity from "../helper/is-community" ;
-
-import {RewardType, comment, reblog, formatError, BeneficiaryRoute} from "../api/operations";
-
-import * as bridgeApi from "../api/bridge";
-import * as hiveApi from "../api/hive";
-
-import {_t} from "../i18n";
-
-import _c from "../util/fix-class-names"
-
-import * as ls from "../util/local-storage";
-
-import {version} from "../../../package.json";
-
-import {checkSvg, contentSaveSvg} from "../img/svg";
-
-import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-import ModalConfirm from "../components/modal-confirm";
-import TextareaAutocomplete from "../components/textarea-autocomplete";
 
 interface PostBase {
     title: string;
@@ -178,7 +176,7 @@ class SubmitPage extends BaseComponent<Props, State> {
             body: "",
             description: '',
         },
-        disabled: true
+        disabled: true,
     };
 
     _updateTimer: any = null;
@@ -299,7 +297,17 @@ class SubmitPage extends BaseComponent<Props, State> {
                     tags = [];
                 }
 
-                this.stateSet({title, tags, body, editingDraft: draft}, this.updatePreview);
+                const image = draft.meta?.image && draft.meta?.image.length > 0 ? draft.meta.image[0] : '';
+                this.stateSet({
+                    title,
+                    tags,
+                    body,
+                    editingDraft: draft,
+                    beneficiaries: draft.meta?.beneficiaries || [],
+                    reward: draft.meta?.rewardType || 'default',
+                    selectedThumbnail: image,
+                    description: draft.meta?.description || '',
+                }, this.updatePreview);
             } else {
                 error('Could not fetch draft data.');
                 history.push('/submit');
@@ -518,7 +526,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const {activeUser, history, addEntry} = this.props;
-        const {title, tags, body, description, reward, reblogSwitch, beneficiaries, selectedThumbnail, selectionTouched} = this.state;
+        const {title, tags, body, description, reward, reblogSwitch, beneficiaries} = this.state;
 
         // clean body
         const cbody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, '')
@@ -551,28 +559,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const [parentPermlink] = tags;
-        const meta = extractMetaData(body);
-        let localThumbnail = ls.get('draft_selected_image');
-
-        if(meta.image){
-            if(selectionTouched){
-                meta.image = [selectedThumbnail, ...meta.image!.splice(0,9)]
-            }
-            else {
-                meta.image = [ ...meta.image!.splice(0,9)]
-            }
-        }
-        else if(selectedThumbnail === localThumbnail){
-            ls.remove('draft_selected_image');
-        }
-        else {
-            meta.image = [selectedThumbnail]
-        }
-        if(meta.image){
-            meta.image = [...new Set(meta.image)]
-        }
-        const summary = description === null ? postBodySummary(this.state.body, 200) : description;
-        const jsonMeta = makeJsonMetaData(meta, tags, summary, version);
+        const jsonMeta = this.buildMetadata();
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
         this.stateSet({posting: true});
         comment(author, "", parentPermlink, permlink, title, cbody, jsonMeta, options, true)
@@ -621,7 +608,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const {activeUser, updateEntry, history} = this.props;
-        const {title, tags, body, description, editingEntry, selectionTouched, selectedThumbnail} = this.state;
+        const {title, tags, body, description, editingEntry} = this.state;
         if (!editingEntry) {
             return;
         }
@@ -634,24 +621,8 @@ class SubmitPage extends BaseComponent<Props, State> {
             newBody = patch;
         }
 
-        const meta = extractMetaData(body);
-        if(meta.image){
-            if(selectionTouched){
-                meta.image = [selectedThumbnail, ...meta.image!.splice(0,9)]
-            }
-            else {
-                meta.image = [ ...meta.image!.splice(0,9)]
-            }
-        }
-        else if(selectionTouched){
-            meta.image = [selectedThumbnail]
-        }
-        if(meta.image){
-            meta.image = [...new Set(meta.image)]
-        }
-        // TODO: Add summary to update
-        // const summary = this.state.description.trim() === '' ? postBodySummary(this.state.body, 200) : this.state.description;
-        const jsonMeta = Object.assign({}, json_metadata, meta, {tags}, {description});
+
+        const jsonMeta = Object.assign({}, json_metadata, this.buildMetadata(), {tags}, {description});
 
         this.stateSet({posting: true});
         
@@ -697,19 +668,26 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
 
         const {activeUser, history} = this.props;
-        const {title, body, tags, editingDraft} = this.state;
+        const {title, body, tags, editingDraft, beneficiaries, reward, schedule} = this.state;
         const tagJ = tags.join(' ');
+
+        const meta = this.buildMetadata();
+        const draftMeta: DraftMetadata = {
+            ...meta,
+            beneficiaries,
+            rewardType: reward
+        };
 
         let promise: Promise<any>;
 
         this.stateSet({saving: true});
 
         if (editingDraft) {
-            promise = updateDraft(activeUser?.username!, editingDraft._id, title, body, tagJ).then(() => {
+            promise = updateDraft(activeUser?.username!, editingDraft._id, title, body, tagJ, draftMeta).then(() => {
                 success(_t('submit.draft-updated'));
             })
         } else {
-            promise = addDraft(activeUser?.username!, title, body, tagJ).then(resp => {
+            promise = addDraft(activeUser?.username!, title, body, tagJ, draftMeta).then(resp => {
                 success(_t('submit.draft-saved'));
 
                 const {drafts} = resp;
@@ -775,6 +753,31 @@ class SubmitPage extends BaseComponent<Props, State> {
     selectThumbnails = (selectedThumbnail: string) => {
         this.setState({ selectedThumbnail });
         ls.set('draft_selected_image', selectedThumbnail)
+    }
+
+    buildMetadata = () => {
+        const { tags, body, description, selectedThumbnail, selectionTouched } = this.state;
+        const meta = extractMetaData(body);
+        let localThumbnail = ls.get('draft_selected_image');
+
+        if (meta.image) {
+            if(selectionTouched) {
+                meta.image = [selectedThumbnail, ...meta.image!.splice(0,9)]
+            }
+            else {
+                meta.image = [ ...meta.image!.splice(0,9)]
+            }
+        }
+        else if (selectedThumbnail === localThumbnail) {
+            ls.remove('draft_selected_image');
+        } else {
+            meta.image = [selectedThumbnail]
+        }
+        if(meta.image) {
+            meta.image = [...new Set(meta.image)]
+        }
+        const summary = description === null ? postBodySummary(this.state.body, 200) : description;
+        return makeJsonMetaData(meta, tags, summary, version);
     }
 
     render() {
