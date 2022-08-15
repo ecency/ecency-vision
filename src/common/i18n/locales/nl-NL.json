@@ -628,7 +628,7 @@
     "hive-dollars-description": "Tokens zijn ongeveer $1.00 in HIVE waard.",
     "savings": "SPAARPOT",
     "savings-description": "Opname van saldo onderhevig aan wachttijd van 3 dagen.",
-    "next-power-down": "De volgende power down is {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Overschrijven",
     "transfer-to-savings": "Overschrijven naar spaarpot",
     "convert": "Omzetten",
