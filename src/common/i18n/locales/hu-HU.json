@@ -628,7 +628,7 @@
     "hive-dollars-description": "Tokenek, melyek körülbelül $1.00-nyi HIVE-t érnek.",
     "savings": "MEGTAKARÍTÁSOK",
     "savings-description": "Egyenleg visszavonás esetén 3 nap a várakozási idő.",
-    "next-power-down": "The next power down is {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Átutalás",
     "transfer-to-savings": "Átutalás a megtakarításokhoz",
     "convert": "Konvertálás",
