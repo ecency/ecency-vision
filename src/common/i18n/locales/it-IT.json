@@ -628,7 +628,7 @@
     "hive-dollars-description": "Token dal valore di circa $1.00 in HIVE.",
     "savings": "RISPARMI",
     "savings-description": "Bilancio soggetto a tempo di attesa prima del pagamento di 3 giorni.",
-    "next-power-down": "Il prossimo depotenziamento è previsto per {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Trasferisci",
     "transfer-to-savings": "Trasferisci nei risparmi",
     "convert": "Converti",
