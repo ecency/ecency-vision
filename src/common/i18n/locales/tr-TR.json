@@ -628,7 +628,7 @@
     "hive-dollars-description": "Tokenlar yaklaşık $1.00 HIVE değerindedir.",
     "savings": "BİRİKİM",
     "savings-description": "Bakiye çekimi 3 gün bekleme süresine tabidir.",
-    "next-power-down": "Bir sonraki güç azalma {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Transfer",
     "transfer-to-savings": "Birikimlere aktar",
     "convert": "Dönüştür",
