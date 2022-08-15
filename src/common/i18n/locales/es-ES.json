@@ -628,7 +628,7 @@
     "hive-dollars-description": "Fichas por valor de alrededor de $ 1.00 de HIVE.",
     "savings": "AHORROS",
     "savings-description": "El balance está sujeto a 3 días de espera para la retirada.",
-    "next-power-down": "El siguiente apagado será en {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Transferir",
     "transfer-to-savings": "Transferir a ahorros",
     "convert": "Convertir",
