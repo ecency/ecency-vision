@@ -554,6 +554,7 @@ export class Transfer extends BaseComponent<Props, State> {
                             <p> {_t("wallet.next-power-down", {
                                 time: dateToFullRelative(w.nextVestingWithdrawalDate.toString()),
                                 amount: `${this.formatNumber(w.nextVestingSharesWithdrawalHive, precision)} ${asset}`,
+                                weeks: w.weeksLeft,
                             })}</p>
                             <p>
                                 <Button onClick={this.nextPowerDown} variant="danger">{_t("transfer.stop-power-down")}</Button>
