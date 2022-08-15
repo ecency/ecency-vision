@@ -628,7 +628,7 @@
     "hive-dollars-description": "Жетони на стойност около $1.00 HIVE.",
     "savings": "СПЕСТЯВАНИЯ",
     "savings-description": "Сметката е обект на 3 дневнен период на чакане преди теглене.",
-    "next-power-down": "Следващото намаляне на силата е {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Трансфер",
     "transfer-to-savings": "Трансфер към спестяванията",
     "convert": "Преобразуване",
