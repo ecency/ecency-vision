@@ -628,7 +628,7 @@
     "hive-dollars-description": "Token nilainya kira-kira 1 Dolar HIVE.",
     "savings": "SIMPANAN",
     "savings-description": "Jumlah Saldo masa tunggu pengambilan selama 3 hari.",
-    "next-power-down": "Power Down berikutnya adalah {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Transfer",
     "transfer-to-savings": "Transfer ke penyimpanan",
     "convert": "Konversi",
