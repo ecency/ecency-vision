@@ -628,7 +628,7 @@
     "hive-dollars-description": "Μάρκες αξίας περίπου $1.00 του HIVE.",
     "savings": "ΑΠΟΤΑΜΙΕΎΣΕΙΣ",
     "savings-description": "Διαθέσιμο υπόλοιπο που υπόκειται σε χρόνο αναμονής ανάληψης 3 ημερών.",
-    "next-power-down": "Το επόμενο power down είναι σε {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Μεταφορά",
     "transfer-to-savings": "Μεταφορά στην αποταμίευση",
     "convert": "Μετατροπή",
