@@ -628,7 +628,7 @@
     "hive-dollars-description": "Token-uri în valoare de $1,00 HIVE.",
     "savings": "SAVINGS",
     "savings-description": "Soldul este supus unei perioade de așteptare de 3 zile în caz de retragere.",
-    "next-power-down": "The next power down is {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Transfer",
     "transfer-to-savings": "Transfer la economii",
     "convert": "Converteşte",
