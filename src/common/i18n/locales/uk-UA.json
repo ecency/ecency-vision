@@ -628,7 +628,7 @@
     "hive-dollars-description": "Токени вартістю близько $1.00 у HIVE.",
     "savings": "СКАРБНИЧКА",
     "savings-description": "Баланс для якого діє 3-денний період очікування при знятті коштів.",
-    "next-power-down": "Наступний час зменшення сили {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Переказ",
     "transfer-to-savings": "Перевести до заощаджень",
     "convert": "Конвертувати",
