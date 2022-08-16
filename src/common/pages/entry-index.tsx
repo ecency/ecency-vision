@@ -24,25 +24,35 @@ interface Props extends PageProps {
 interface State {
     entryList: Entry[];
     promoted: Entry[];
+    noReblog: boolean;
 }
 
 class EntryIndexPage extends Component<Props, State> {
     state: State = {
         entryList: [],
         promoted: [],
+        noReblog: false,
     };
 
     componentDidMount() {
+        console.log('componentDidMount');
         const {global, fetchEntries, fetchTrendingTags} = this.props;
         fetchEntries(global.filter, global.tag, false);
         fetchTrendingTags();
         this.loadEntries();
     }
 
-    componentDidUpdate(prevProps: Readonly<PageProps>): void {
+    componentDidUpdate(prevProps: Readonly<PageProps>, prevState: Readonly<State>): void {
         const {global, fetchEntries, activeUser} = this.props;
         const {global: pGlobal, activeUser: pActiveUser, entries: pEntries} = prevProps;
-
+        if (prevState.noReblog !== this.state.noReblog) {
+            if (this.state.noReblog === true) {
+                this.loadEntries();
+            } else {
+                this.props.reload()
+            }
+            return;
+        } 
         // page changed.
         if (!global.filter) {
             return;
@@ -59,17 +69,27 @@ class EntryIndexPage extends Component<Props, State> {
             this.loadEntries();
         }
     }
+    handleFilterReblog = () => {
+        this.setState(prevState => {
+            return {...prevState, noReblog: !prevState.noReblog }
+        });
+    }
 
     loadEntries = () => {
         const { entries, global } = this.props;
         const { filter, tag } = global;
-        const groupKey = makeGroupKey(filter, tag);
-        const data = entries[groupKey];
 
+        const groupKey = makeGroupKey(filter, tag);
+
+        let data = entries[groupKey];
         if (data === undefined) {
             return;
         }
-
+        if (this.state.noReblog === true) {
+            data.entries = data?.entries?.filter( entry => {
+                return !entry?.reblogged_by?.length
+            } );
+        }
         this.setState({
             entryList: data.entries,
             promoted: entries['__promoted__'].entries
@@ -122,7 +142,7 @@ class EntryIndexPage extends Component<Props, State> {
                         </div>
                         <div className={_c(`entry-page-content ${this.props.loading ? "loading" : ""}`)}>
                             <div className="page-tools">
-                                {EntryIndexMenu({...this.props})}
+                                {EntryIndexMenu({...this.props, handleFilterReblog: this.handleFilterReblog, noReblog: this.state.noReblog})}
                             </div>
                             {this.props.loading && entryList.length === 0 ? <LinearProgress/> : ""}
                             <div className={_c(`entry-list ${this.props.loading ? "loading" : ""}`)}>
