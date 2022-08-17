@@ -39,3 +39,7 @@ export const geLatestDesktopTag = (): Promise<string> =>
     axios.get("https://api.github.com/repos/ecency/ecency-vision/releases/latest")
         .then(r => r.data)
         .then(r => r.tag_name);
+
+export const GIPHY_API_KEY = '2Y4Lk5nY8wLKuDvnCEM2nkoRm7xaAywY';
+export const GIPHY_API = `https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_API_KEY}&limit=20offset=0`;
+export const GIPHY_SEARCH_API = `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&limit=20offset=0&q=`;

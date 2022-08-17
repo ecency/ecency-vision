@@ -8,6 +8,7 @@ import {Global} from "../../store/global/types";
 
 import Tooltip from "../tooltip";
 import EmojiPicker from "../emoji-picker";
+import GifPicker from "../gif-picker";
 import Gallery from "../gallery";
 import Fragments from "../fragments";
 import AddImage from "../add-image";
@@ -40,7 +41,8 @@ import {
     imageSvg,
     gridSvg,
     emoticonHappyOutlineSvg,
-    textShortSvg
+    textShortSvg,
+    gifIcon
 } from "../../img/svg";
 
 
@@ -50,6 +52,7 @@ interface Props {
     activeUser: ActiveUser | null;
     sm?: boolean;
     showEmoji?: boolean;
+    showGif?: boolean;
 }
 
 interface State {
@@ -76,6 +79,7 @@ export class EditorToolbar extends Component<Props> {
         return !isEqual(this.props.users, nextProps.users)
             || !isEqual(this.props.activeUser, nextProps.activeUser)
             || !isEqual(this.props.showEmoji, nextProps.showEmoji)
+            || !isEqual(this.props.showGif, nextProps.showGif)
             || !isEqual(this.state, nextState);
     }
 
@@ -355,7 +359,7 @@ export class EditorToolbar extends Component<Props> {
 
     render() {
         const {gallery, fragments, image, link, mobileImage} = this.state;
-        const {global, sm, activeUser, showEmoji = true} = this.props;
+        const {global, sm, activeUser, showEmoji, showGif = true} = this.props;
 
         return (
             <>
@@ -399,6 +403,7 @@ export class EditorToolbar extends Component<Props> {
                         <div className="editor-tool" onClick={this.code}>
                             {codeTagsSvg}
                         </div>
+                        
                     </Tooltip>
                     <Tooltip content={_t("editor-toolbar.quote")}>
                         <div className="editor-tool" onClick={this.quote}>
@@ -488,6 +493,14 @@ export class EditorToolbar extends Component<Props> {
                             }}/>}
                         </div>
                     </Tooltip>
+                    <Tooltip content={_t("editor-toolbar.gif")}>
+                        <div className="editor-tool" role="none">
+                            {gifIcon}
+                            {showGif && <GifPicker fallback={(e) => {
+                                this.insertText(e, '');
+                            }}/>}
+                        </div>
+                    </Tooltip>
                     {global.usePrivate && <Tooltip content={_t("editor-toolbar.fragments")}>
                       <div className="editor-tool" onClick={this.toggleFragments}>
                           {textShortSvg}
@@ -553,6 +566,7 @@ export default (props: Props) => {
         activeUser: props.activeUser,
         sm: props.sm,
         showEmoji: props.showEmoji,
+        showGif: props.showGif,
     }
     return <EditorToolbar {...p} />
 }
