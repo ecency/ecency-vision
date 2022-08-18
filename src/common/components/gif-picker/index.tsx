@@ -6,12 +6,12 @@ import BaseComponent from "../base";
 import SearchBox from "../search-box";
 
 import {_t} from "../../i18n";
-import clipboard from "../../util/clipboard";
+
+import {insertOrReplace} from "../../util/input-util";
+
 
 import axios from "axios";
-import * as ls from "../../util/local-storage";
-import { GIPHY_API,GIPHY_API_KEY, GIPHY_SEARCH_API } from "../../api/misc";
-import { filter } from "lodash";
+import { GIPHY_API, GIPHY_SEARCH_API } from "../../api/misc";
 
 interface Props {
     fallback?: (e: string) => void;
@@ -28,7 +28,6 @@ export default class GifPicker extends BaseComponent<Props> {
         data: null,
         filter: null
     };
-
     _target: HTMLInputElement | null = null;
 
     componentDidMount() {
@@ -55,6 +54,7 @@ export default class GifPicker extends BaseComponent<Props> {
         }
     };
 
+    
     getGifsData = async (_filter: string | null, _api: string) => {
         await axios(_api + _filter).then(res => {
             // console.log('res', res)
@@ -66,14 +66,13 @@ export default class GifPicker extends BaseComponent<Props> {
         })
     }
 
+    
+
     itemClicked = (url: string) => {
-        const {onPick} = this.props;
-        if (onPick) {
-            onPick(url);
-            return;
+        if(this._target) {
+            // console.log(this._target);
+            insertOrReplace(this._target, url);
         }
-        
-        clipboard(url);
     }
 
 
@@ -81,7 +80,6 @@ export default class GifPicker extends BaseComponent<Props> {
         this.setState({filter: e.target.value});
         // console.log(this.state.filter);
     };
-
 
     renderEmoji = () => {
         return this.state.data?.map(_gif => {
@@ -116,9 +114,7 @@ export default class GifPicker extends BaseComponent<Props> {
                         
                         this.getGifsData(filter, GIPHY_SEARCH_API);
                         return (
-                            
                             <div className="emoji-cat-list">
-                                <h1>showing filtered data!</h1>
                                 <div className="emoji-cat">
                                     <div className="cat-title">{_t("emoji-picker.recently-used")}</div>
                                     <div className="emoji-list">{data.map(() => this.renderEmoji())}</div>
