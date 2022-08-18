@@ -1,33 +1,31 @@
-import React, {Component, Fragment, useEffect, useState} from "react";
+import React, { Component, Fragment, useEffect, useState } from 'react';
 
-import {History} from "history";
+import { History } from 'history';
 
-import {FormControl} from "react-bootstrap";
+import { FormControl } from 'react-bootstrap';
 
-import {ActiveUser} from "../../store/active-user/types";
-import {Account} from "../../store/accounts/types";
-import {Global} from "../../store/global/types";
-import {DynamicProps} from "../../store/dynamic-props/types";
-import {Transactions} from "../../store/transactions/types";
-import {Points, PointTransaction, TransactionType} from "../../store/points/types"
+import { ActiveUser } from '../../store/active-user/types';
+import { Account } from '../../store/accounts/types';
+import { Global } from '../../store/global/types';
+import { DynamicProps } from '../../store/dynamic-props/types';
+import { Transactions } from '../../store/transactions/types';
+import { Points, PointTransaction, TransactionType } from '../../store/points/types'
+import DropDown from '../dropdown';
+import Transfer from '../transfer';
+import Tooltip from '../tooltip';
+import Purchase from '../purchase';
+import Promote from '../promote';
+import Boost from '../boost';
 
-import BaseComponent from "../base";
-import DropDown from "../dropdown";
-import Transfer from "../transfer";
-import Tooltip from "../tooltip";
-import Purchase from "../purchase";
-import Promote from "../promote";
-import Boost from "../boost";
+import LinearProgress from '../linear-progress';
+import WalletMenu from '../wallet-menu';
+import EntryLink from '../entry-link';
 
-import LinearProgress from "../linear-progress";
-import WalletMenu from "../wallet-menu";
-import EntryLink from "../entry-link";
+import { error, success } from '../feedback';
 
-import {error, success} from "../feedback";
+import { _t } from '../../i18n';
 
-import {_t} from "../../i18n";
-
-import {claimPoints, getCurrencyTokenRate} from "../../api/private-api";
+import { claimPoints, getCurrencyTokenRate } from '../../api/private-api';
 
 import {
     accountGroupSvg,
@@ -43,9 +41,11 @@ import {
     repeatSvg,
     starOutlineSvg,
     ticketSvg
-} from "../../img/svg";
-import FormattedCurrency from "../formatted-currency";
+} from '../../img/svg';
+import FormattedCurrency from '../formatted-currency';
 import { dateToFullRelative } from '../../helper/parse-date';
+import { PurchaseQrDialog } from '../purchase-qr';
+import { PurchaseTypes } from '../purchase-qr/purchase-types';
 
 
 export const formatMemo = (memo: string, history: History) => {
@@ -194,6 +194,7 @@ export const WalletEcency = (props: Props) => {
     const [estimatedPointsValue, setEstimatedPointsValue] = useState(0);
     const [estimatedPointsValueLoading, setEstimatedPointsValueLoading] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
+    const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
 
     const {global, activeUser, account, points, history, fetchPoints, updateActiveUser} = props;
 
@@ -458,7 +459,7 @@ export const WalletEcency = (props: Props) => {
                             </div>
                             {isMyPage && (
                                 <div className="buy-points">
-                                    <a href="#" onClick={togglePurchase}> {_t('points.get')}</a>
+                                    <a href="#" onClick={() => setShowPurchaseDialog(true)}> {_t('points.get')}</a>
                                 </div>
                             )}
                         </div>
@@ -500,6 +501,12 @@ export const WalletEcency = (props: Props) => {
                 {purchase && (<Purchase {...props} activeUser={activeUser!} onHide={togglePurchase}/>)}
                 {promote && (<Promote {...props} activeUser={activeUser!} onHide={togglePromote}/>)}
                 {boost && (<Boost {...props} activeUser={activeUser!} onHide={toggleBoost}/>)}
+                <PurchaseQrDialog
+                  type={PurchaseTypes.POINTS}
+                  show={showPurchaseDialog}
+                  setShow={(v: boolean) => setShowPurchaseDialog(v)}
+                  activeUser={props.activeUser}
+                />
             </div>
         </>
     );

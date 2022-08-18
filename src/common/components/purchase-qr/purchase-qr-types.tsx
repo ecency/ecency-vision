@@ -2,39 +2,36 @@ import SuggestionList from '../suggestion-list';
 import { Form } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import { _t } from '../../i18n';
-import { PurchaseTypes } from './purchase-types';
 
 interface Props {
   className: string;
-  type: PurchaseTypes;
-  setType: (value: PurchaseTypes) => void;
+  value: string;
+  setValue: (value: string) => void;
 }
 
 interface Item {
-  type: PurchaseTypes;
+  value: string;
   title: string;
 }
 
-export const PurchaseQrTypes = ({ type, setType, className }: Props) => {
+export const PurchaseQrTypes = ({ value, setValue, className }: Props) => {
   const [input, setInput] = useState('');
   const items: Item[] = [
-    {
-      type: PurchaseTypes.BOOST,
-      title: _t('purchase-qr.boost'),
-    },
-    {
-      type: PurchaseTypes.POINTS,
-      title: _t('purchase-qr.points'),
-    }
+    { value: '099points', title: _t('purchase-qr.points-amount', { n: '099' }) },
+    { value: '199points', title: _t('purchase-qr.points-amount', { n: '199' }) },
+    { value: '499points', title: _t('purchase-qr.points-amount', { n: '499' }) },
+    { value: '999points', title: _t('purchase-qr.points-amount', { n: '999' }) },
+    { value: '4999points', title: _t('purchase-qr.points-amount', { n: '4999' }) },
+    { value: '9999points', title: _t('purchase-qr.points-amount', { n: '9999' }) },
   ];
   useEffect(() => {
-    setInput(items.find(i => i.type === type)!.title);
-  }, [type]);
+    setInput(items.find(i => i.value === value)!.title);
+  }, [value]);
 
   useEffect(() => {
-    const existing = Object.values(PurchaseTypes).find(item => item === input.toLowerCase());
+    const existing = items.find(item => item.value === input);
     if (existing) {
-      setType(existing as PurchaseTypes);
+      setValue(existing.value);
     }
   }, [input]);
 
@@ -43,7 +40,7 @@ export const PurchaseQrTypes = ({ type, setType, className }: Props) => {
       return <span>{i.title}</span>;
     },
     onSelect: (selected: Item) => {
-      setType(selected.type);
+      setValue(selected.value);
     },
     ignoreFirstInputFocus: true,
   };
@@ -52,7 +49,7 @@ export const PurchaseQrTypes = ({ type, setType, className }: Props) => {
     <Form.Control
       type="text"
       autoFocus={true}
-      placeholder={_t('purchase-qr.select-type')}
+      placeholder={_t('purchase-qr.select-amount')}
       value={input}
       onChange={(e) => setInput(e.target.value)}
     />
