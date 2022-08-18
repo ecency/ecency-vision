@@ -123,11 +123,20 @@ export const toggleTheme = (theme_key?:Theme) => (
     newTheme = theme_key;
   }
 
-  const use_system = ls.get('use_system_theme', false);
-  if (use_system) {
+  
     let systemTheme: any = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.night : Theme.day;
-    newTheme = systemTheme;
-  }
+    if (theme_key === 'system') {
+      newTheme = systemTheme;
+      ls.set('use_system_theme', true)
+      ls.set('system_theme', theme_key);
+    }
+    if (theme_key !== 'system') {
+      ls.remove('use_system_theme')
+    }
+    ls.set('system_theme', newTheme);
+  
+
+
 
   ls.set("theme", newTheme);
   Cookies.set("theme", newTheme, { expires: 365 });
