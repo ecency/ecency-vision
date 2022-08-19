@@ -79,12 +79,13 @@ export default class GifPicker extends BaseComponent<Props> {
         })
     }
 
-    
 
     itemClicked = (url: string) => {
+        let _url = url.split(".gif");
+        let gifUrl = _url[0] + ".gif";
         if(this._target) {
             // console.log(this._target);
-            insertOrReplace(this._target, url);
+            insertOrReplace(this._target, gifUrl);
         }
     }
 
