@@ -21,18 +21,20 @@ interface Props {
 interface State {
     data: any[] | null;
     filter: string | null,
+    filteredData: any[] | null,
 }
 
 export default class GifPicker extends BaseComponent<Props> {
     state: State = {
         data: null,
-        filter: null
+        filter: null,
+        filteredData: null,
     };
     _target: HTMLInputElement | null = null;
 
     componentDidMount() {
                     
-        this.getGifsData(null, GIPHY_API);
+        this.getGifsData(null, GIPHY_API, false);
 
         this.watchTarget(); // initial
 
@@ -55,14 +57,25 @@ export default class GifPicker extends BaseComponent<Props> {
     };
 
     
-    getGifsData = async (_filter: string | null, _api: string) => {
+    getGifsData = async (_filter: string | null, _api: string, isFiltered: boolean) => {
         await axios(_api + _filter).then(res => {
             // console.log('res', res)
-            const _data: State = {
-                data: res.data.data,
-                filter: null
+            if(isFiltered) {
+                const _data: State = {
+                    data: this.state.data,
+                    filteredData: res.data.data,
+                    filter: this.state.filter,
+                }
+                this.stateSet(_data)
+            } else {
+                const _data: State = {
+                    data: res.data.data,
+                    filteredData: null,
+                    filter: null
+                }
+                this.stateSet(_data)
             }
-            this.stateSet(_data)
+           
         })
     }
 
@@ -81,8 +94,8 @@ export default class GifPicker extends BaseComponent<Props> {
         // console.log(this.state.filter);
     };
 
-    renderEmoji = () => {
-        return this.state.data?.map(_gif => {
+    renderEmoji = (gifData: any[]) => {
+        return gifData.map(_gif => {
             return(
                 <div className="emoji" key={_gif.id}>
                     <img src={_gif.images.fixed_height.url} alt="can't fetch :(" onClick={() => {
@@ -97,8 +110,8 @@ export default class GifPicker extends BaseComponent<Props> {
 
 
     render() {
-        const {data, filter} = this.state;
-        if (!data) {
+        const {data,filteredData, filter} = this.state;
+        if (!data && !filteredData) {
             return null;
         }
 
@@ -112,12 +125,12 @@ export default class GifPicker extends BaseComponent<Props> {
                 {(() => {
                     if (filter) {
                         
-                        this.getGifsData(filter, GIPHY_SEARCH_API);
+                        this.getGifsData(filter, GIPHY_SEARCH_API, true);
                         return (
                             <div className="emoji-cat-list">
                                 <div className="emoji-cat">
                                     <div className="cat-title">{_t("emoji-picker.recently-used")}</div>
-                                    <div className="emoji-list">{data.map(() => this.renderEmoji())}</div>
+                                    <div className="emoji-list">{filteredData?.map(() => this.renderEmoji(filteredData))}</div>
                                 </div>
                                 
                             </div>
@@ -130,7 +143,7 @@ export default class GifPicker extends BaseComponent<Props> {
                                 
                                 <div className="emoji-cat">
                                     <div className="cat-title">{_t("emoji-picker.recently-used")}</div>
-                                    <div className="emoji-list">{data.map(() => this.renderEmoji())}</div>
+                                    <div className="emoji-list">{data?.map(() => this.renderEmoji(data))}</div>
                                 </div>
                                 
                             </div>
