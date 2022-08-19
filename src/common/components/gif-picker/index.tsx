@@ -129,7 +129,6 @@ export default class GifPicker extends BaseComponent<Props> {
                         return (
                             <div className="emoji-cat-list">
                                 <div className="emoji-cat">
-                                    <div className="cat-title">{_t("emoji-picker.recently-used")}</div>
                                     <div className="emoji-list">{filteredData?.map(() => this.renderEmoji(filteredData))}</div>
                                 </div>
                                 
@@ -142,7 +141,6 @@ export default class GifPicker extends BaseComponent<Props> {
                             <div className="emoji-cat-list">
                                 
                                 <div className="emoji-cat">
-                                    <div className="cat-title">{_t("emoji-picker.recently-used")}</div>
                                     <div className="emoji-list">{data?.map(() => this.renderEmoji(data))}</div>
                                 </div>
                                 
