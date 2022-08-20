@@ -11,6 +11,7 @@ import {apiBase} from "./helper";
 import {AppWindow} from "../../client/window";
 import isElectron from '../util/is-electron';
 import { NotifyTypes } from '../enums';
+import { BeneficiaryRoute, MetaData, RewardType } from './operations';
 
 declare var window: AppWindow;
 
@@ -169,6 +170,11 @@ export const addImage = (username: string, url: string): Promise<any> => {
     return axios.post(apiBase(`/private-api/images-add`), data).then(resp => resp.data);
 }
 
+export interface DraftMetadata extends MetaData {
+    beneficiaries: BeneficiaryRoute[];
+    rewardType: RewardType;
+}
+
 export interface Draft {
     body: string
     created: string
@@ -177,6 +183,7 @@ export interface Draft {
     timestamp: number
     title: string
     _id: string
+    meta?: DraftMetadata
 }
 
 export const getDrafts = (username: string): Promise<Draft[]> => {
@@ -184,13 +191,13 @@ export const getDrafts = (username: string): Promise<Draft[]> => {
     return axios.post(apiBase(`/private-api/drafts`), data).then(resp => resp.data);
 }
 
-export const addDraft = (username: string, title: string, body: string, tags: string): Promise<{ drafts: Draft[] }> => {
-    const data = {code: getAccessToken(username), title, body, tags};
+export const addDraft = (username: string, title: string, body: string, tags: string, meta: DraftMetadata): Promise<{ drafts: Draft[] }> => {
+    const data = {code: getAccessToken(username), title, body, tags, meta};
     return axios.post(apiBase(`/private-api/drafts-add`), data).then(resp => resp.data);
 }
 
-export const updateDraft = (username: string, draftId: string, title: string, body: string, tags: string): Promise<any> => {
-    const data = {code: getAccessToken(username), id: draftId, title, body, tags};
+export const updateDraft = (username: string, draftId: string, title: string, body: string, tags: string, meta: DraftMetadata): Promise<any> => {
+    const data = {code: getAccessToken(username), id: draftId, title, body, tags, meta};
     return axios.post(apiBase(`/private-api/drafts-update`), data).then(resp => resp.data);
 }
 

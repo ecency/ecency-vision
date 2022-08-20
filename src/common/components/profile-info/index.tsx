@@ -44,7 +44,8 @@ export class InfoContent extends BaseComponent<ContentProps> {
         // Last active
         const lastVoteDate = moment.utc(account.last_vote_time);
         const lastPostDate = moment.utc(account.last_post);
-        const lastActive = moment.max(lastVoteDate, lastPostDate);
+        const createdDate = moment.utc(account.created);
+        const lastActive = moment.max(lastVoteDate, lastPostDate, createdDate);
 
         // Down vote power
         const dvPower = downVotingPower(account);
