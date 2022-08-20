@@ -81,9 +81,9 @@ export class DialogContent extends Component<NotificationProps, any> {
   componentDidMount() {
     const { notifications, fetchNotifications } = this.props;
 
-    if (notifications.list.length === 0) {
-      fetchNotifications(null);
-    }
+    // if (notifications.list.length === 0) {
+    fetchNotifications(null);
+    // }
 
     this.prepareSettings();
   }
