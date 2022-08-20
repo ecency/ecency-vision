@@ -138,7 +138,7 @@
     "dark": "темный",
     "switch-to": "Переключатель",
     "vote-power": "Сила голоса:",
-    "boost": "Boost"
+    "boost": "Усилить"
   },
   "intro": {
     "title": "Стремитесь к величию",
@@ -165,7 +165,7 @@
     "sign-up-text-2": "Зарегистрируйтесь сейчас!"
   },
   "sign-up": {
-    "header": "Rewarding communities",
+    "header": "Вознаграждающие сообщества",
     "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
     "bottom-description": "Каждая учетная запись создается на блокчейне, и только вы имеете контроль над этой учетной записью. Одна учетная запись для управления всем, что связано с блокчейном и Ecency.",
     "learn-more": "Узнайте больше о преимуществах <a href=\"/faq#how-to-join\">FAQ</a>",
@@ -548,15 +548,15 @@
     "section-communities": "Сообщества",
     "section-wallet": "Кошелек",
     "section-settings": "Настройки",
-    "section-referrals": "Referrals",
+    "section-referrals": "Рефералы",
     "section-permission": "Разрешение",
     "communities-title": "Участники",
     "create-community": "Создать сообщество",
     "witnesses": "Заверители",
     "proposals": "Предложения",
-    "referrals": "Referrals",
-    "go-community": "Community page",
-    "com-mod": "Moderator of these communities"
+    "referrals": "Рефералы",
+    "go-community": "Страница сообщества",
+    "com-mod": "Модератор этих сообществ"
   },
   "profile-info": {
     "joined": "Присоединился: {{n}}",
@@ -596,10 +596,10 @@
     "language": "Язык",
     "nsfw": "Показать NSFW контент",
     "referral-link": "Реферальная ссылка",
-    "theme": "Theme Settings",
-    "theme-system-default": "System Default",
-    "theme-day": "Day mode",
-    "theme-night": "Night mode",
+    "theme": "Настройки темы",
+    "theme-system-default": "По умолчанию",
+    "theme-day": "Дневной режим",
+    "theme-night": "Ночной режим",
     "updated": "Настройки обновлены!"
   },
   "wallet": {
@@ -713,9 +713,9 @@
   },
   "purchase-qr": {
     "scan-code": "Scan the QR code with Ecency mobile app",
-    "select-user": "Please, select an user",
-    "title": "Account boost",
-    "copied": "Account boost link copied!"
+    "select-user": "Пожалуйста, выберите пользователя",
+    "title": "Усиление аккаунта",
+    "copied": "Ссылка для усиления аккаунта скопирована!"
   },
   "promote": {
     "title": "Продвинуть",
@@ -850,7 +850,7 @@
     "type-limit_order_create": "Создана новая сделка",
     "type-limit_order_cancel": "Открытая сделка отменена",
     "type-effective_comment_vote": "Эффективное голосование",
-    "type-account_witness_proxy": "Governance proxy update"
+    "type-account_witness_proxy": "Обновление прокси сервера управления"
   },
   "key-or-hot": {
     "sign": "Подписать",
@@ -1040,7 +1040,7 @@
     "mark-read": "Пометить как прочитанное",
     "mute": "Отключить уведомления",
     "unmute": "Включить уведомления",
-    "settings": "Settings"
+    "settings": "Настройки"
   },
   "leaderboard": {
     "title-stars": "Наиболее активны",
@@ -1128,14 +1128,14 @@
     "proxy-votes-for": "@{{username}} голосует за"
   },
   "referral": {
-    "page-title": "Referrals",
+    "page-title": "Рефералы",
     "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
-    "created": "Created",
-    "list-referral": "Account",
-    "rewarded": "Rewarded",
+    "created": "Создано",
+    "list-referral": "Аккаунт",
+    "rewarded": "Награжден",
     "pending-reward": "Pending Points",
-    "earned-reward": "Earned Points",
-    "delegate-hp": "Delegate HP"
+    "earned-reward": "Заработанные поинты",
+    "delegate-hp": "Делегировать HP"
   },
   "proposals": {
     "page-title": "Предложения",
@@ -1317,21 +1317,21 @@
       "how-exchange-work-body": "<p>Обменять и торговать токенами на Ecency очень просто. Мы используем внутреннюю одноранговую децентрализованную биржу, встроенную в блокчейн Hive. Предлагайте простой в использовании интерфейс, чтобы вы могли обменивать один токен на другой, полностью децентрализованно. Создайте ордер на покупку или продажу и подождите, пока другие люди не выполнят ваш ордер. Если вы хотите быстро обменять токены, вы можете заполнить чужой открытый ордер для быстрой торговли.</p>",
       "how-voting-works-header": "How voting content on Ecency?",
       "how-voting-works-body": "<p>To vote content on Ecency is quite simple, you can learn all about it in following article <a href=\"/hive-125125/@ecency/how-to-vote-content-on\" class=\"push-link\">Voting content</a></p>",
-      "what-reputation-header": "What is Reputation?",
+      "what-reputation-header": "Что такое репутация?",
       "what-reputation-body": "<p>Every user has a reputation score next to their name. The more value you bring to the community the more reputation score you will have. It is also a mechanism that is designed to help reduce abuse of the Hive platform. Getting upvoted by people increases your reputation and getting downvoted by people with a higher reputation can push your reputation down and make your posts less visible. Users with a lower reputation score are unable to affect your reputation.</p>",
       "improve-reputation-score-header": "How to improve my Reputaion score?",
       "improve-reputation-score-body": "<p>The more upvotes from the users with high reputation you have the higher reputation score you will have. The best way of improving your reputation score is earn upvotes by adding value to the community.</p>",
-      "why-score-going-down-header": "Why my Reputation score is going down?",
+      "why-score-going-down-header": "Почему мой рейтинг репутации становится меньше?",
       "why-score-going-down-body": "<p>Your earned upvotes and downvotes influence on your reputation score. Downvote given by another user with higher reputation can cause your reputation score to go down. If you are having downvote but your upvotes more than downvotes (weighted by Hive Power), then the net effect on your reputation score will still be positive.</p>",
       "what-hive-witnesses-header": "What are Hive witnesses?",
       "what-hive-witnesses-body": "<p>Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. Community elects them to represent their voice and each user can elect up to 30 witnesses. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses. Witnesses are compensated with Hive Power for each block they create.</p>",
       "how-vote-witnesses-header": "How can I vote for witnesses?",
       "how-vote-witnesses-body": "<p>Visit <a href=\"/witnesses\" class=\"push-link\">Witness page</a> and click voting icon.</p>",
-      "what-are-hive-header": "What are HIVE?",
+      "what-are-hive-header": "Что такое HIVE?",
       "what-are-hive-body": "<p>HIVE are tradeable tokens that may be transferred at anytime. HIVE can be converted to Hive Power in a process called powering up or staking HIVE. It is a cryptocurrency token, similar to Bitcoin.</p>",
-      "what-are-hive-power-header": "What are HIVE POWER?",
+      "what-are-hive-power-header": "Что такое HIVE POWER?",
       "what-are-hive-power-body": "<p>Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other's rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.</p>",
-      "what-are-hd-header": "What are HIVE DOLLARS or HBD?",
+      "what-are-hd-header": "Что такое HIVE DOLLARS или HBD?",
       "what-are-hd-body": "<p>Hive Dollars (commonly abbreviated HBD) are tokens worth about $1.00 of HIVE. Hive Dollars can be traded with HIVE, and transferred to other accounts for commerce or exchange. Hive Dollars may also be converted into HIVE via a process that takes 3.5 days.</p>",
       "what-delegated-hp-header": "What is delegated Hive Power?",
       "what-delegated-hp-body": "<p>Hive Power can be delegated to users by another user. When user is delegated Hive Power - their Resource Credits, content votes, and curation rewards are calculated as if it were their own Hive Power. Users are not able to power down or cash out delegated Hive Power however, as it still belongs to the original owner.</p>",
