@@ -126,7 +126,7 @@ export default class Feedback extends BaseComponent<Props, State> {
                                             <Button
                                               className="mt-2 details-button px-0"
                                               variant="link"
-                                              onClick={() => window.open('mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, <br/> I would like to report issue: <br/>', '_blank')}
+                                              onClick={() => window.open('mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, \n I would like to report issue: \n', '_blank')}
                                             >{_t("feedback-modal.report")}</Button>
                                         </div>
                                     </div>
