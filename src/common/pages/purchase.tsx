@@ -15,6 +15,7 @@ import { PurchaseTypes } from '../components/purchase-qr/purchase-types';
 const Purchase = (props: PageProps) => {
   const [username, setUsername] = useState('');
   const [type, setType] = useState(PurchaseTypes.BOOST);
+  const [productId, setProductId] = useState('999points');
 
   const getNavBar = () => {
     return props.global.isElectron ? NavBarElectron({ ...props }) : NavBar({ ...props });
@@ -38,6 +39,9 @@ const Purchase = (props: PageProps) => {
     if (params.type) {
       setType(params.type as PurchaseTypes);
     }
+    if (params.product_id) {
+      setProductId(params.product_id as string);
+    }
   }, [props.location]);
 
   return <>
@@ -54,6 +58,7 @@ const Purchase = (props: PageProps) => {
             activeUser={username ? { username } as ActiveUser : props.activeUser}
             location={props.location}
             queryType={type}
+            queryProductId={productId}
           />
         </div>
       </div>

@@ -17,9 +17,10 @@ interface Props {
   activeUser: ActiveUser | null;
   location?: Location;
   queryType?: PurchaseTypes;
+  queryProductId?: string;
 }
 
-export const PurchaseQrBuilder = ({ activeUser, queryType }: Props) => {
+export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId }: Props) => {
   const [username, setUsername] = useState('');
   const [usernameInput, setUsernameInput] = useState('');
   const [usernameData, setUsernameData] = useState<string[]>([]);
@@ -36,6 +37,12 @@ export const PurchaseQrBuilder = ({ activeUser, queryType }: Props) => {
       setType(queryType);
     }
   }, [queryType]);
+
+  useEffect(() => {
+    if (queryProductId) {
+      setPointsValue(queryProductId);
+    }
+  }, [queryProductId]);
 
   useEffect(() => {
     if (!usernameInput) {

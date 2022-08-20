@@ -17,12 +17,12 @@ interface Item {
 export const PurchaseQrTypes = ({ value, setValue, className }: Props) => {
   const [input, setInput] = useState('');
   const items: Item[] = [
-    { value: '099points', title: _t('purchase-qr.points-amount', { n: '099' }) },
-    { value: '199points', title: _t('purchase-qr.points-amount', { n: '199' }) },
-    { value: '499points', title: _t('purchase-qr.points-amount', { n: '499' }) },
-    { value: '999points', title: _t('purchase-qr.points-amount', { n: '999' }) },
-    { value: '4999points', title: _t('purchase-qr.points-amount', { n: '4999' }) },
-    { value: '9999points', title: _t('purchase-qr.points-amount', { n: '9999' }) },
+    { value: '099points', title: _t('purchase-qr.points-amount', { n: '500' }) },
+    { value: '199points', title: _t('purchase-qr.points-amount', { n: '1000' }) },
+    { value: '499points', title: _t('purchase-qr.points-amount', { n: '2500' }) },
+    { value: '999points', title: _t('purchase-qr.points-amount', { n: '5000' }) },
+    { value: '4999points', title: _t('purchase-qr.points-amount', { n: '25000' }) },
+    { value: '9999points', title: _t('purchase-qr.points-amount', { n: '50000' }) },
   ];
   useEffect(() => {
     setInput(items.find(i => i.value === value)!.title);
