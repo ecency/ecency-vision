@@ -1468,12 +1468,12 @@
     "title": "Top communities"
   },
   "feedback-modal": {
-    "title": "Error details",
-    "question": "How to fix this?",
+    "title": "Подробные сведения об ошибке",
+    "question": "Как это исправить?",
     "insufficient-resource-title": "How to get more Resource credits?",
     "insufficient-resource-purchase": "Purchase account boost or delegation",
     "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
-    "insufficient-resource-wait": "Wait few hours for RC refill",
-    "report": "Report"
+    "insufficient-resource-wait": "Подождите несколько часов для пополнения RC",
+    "report": "Пожаловаться"
   }
 }
