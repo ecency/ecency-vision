@@ -35,6 +35,7 @@ import isElectron from '../../util/is-electron';
 import * as ls from '../../util/local-storage';
 import { getFcmToken, initFirebase, listenFCM } from '../../api/firebase';
 import { isSupported } from '@firebase/messaging';
+import { playNotificationSound } from '../../util/play-notification-sound';
 
 export const initialState: Notifications = {
   filter: null,
@@ -142,7 +143,8 @@ export default (state: Notifications = initialState, action: Actions): Notificat
         ...state,
         settings: {
           ...state.settings,
-          notify_types: nextTypes
+          notify_types: nextTypes,
+          allows_notify: nextTypes.length > 0 ? 1 : 0,
         } as ApiNotificationSetting
       }
     case ActionTypes.SET_SETTINGS_ALLOW_NOTIFY:
@@ -235,6 +237,7 @@ export const setNotificationsSettingsItem = (type: NotifyTypes, value: boolean) 
     } as ApiNotificationSetting));
     return;
   }
+
   dispatch(setSettingsItemAct(type, value));
 };
 
@@ -268,11 +271,12 @@ export const fetchNotificationsSettings = (username: string) => async (dispatch:
       token = await getFcmToken();
     } catch (e) {
       isFbSupported = false;
+      oldToken = null;
     }
   }
 
   try {
-    const settings = await getNotificationSetting(username, oldToken);
+    const settings = await getNotificationSetting(username, oldToken || token);
     dispatch(setSettingsAct(settings));
   } catch(e) {
     const wasMutedPreviously = ls.get("notifications") === false;
@@ -303,6 +307,7 @@ export const fetchNotificationsSettings = (username: string) => async (dispatch:
 
     if (isFbSupported) {
       listenFCM(() => {
+        playNotificationSound(getState().global.isElectron);
         // @ts-ignore
         dispatch(fetchUnreadNotificationCount());
 

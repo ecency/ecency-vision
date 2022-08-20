@@ -137,7 +137,8 @@
     "light": "luce",
     "dark": "scuro",
     "switch-to": "Passa a",
-    "vote-power": "Potere di Voto:"
+    "vote-power": "Potere di Voto:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Aspira alla grandezza",
@@ -164,8 +165,8 @@
     "sign-up-text-2": "Registrati ora!"
   },
   "sign-up": {
-    "header": "Benvenuto in Ecency",
-    "description": "Casa della libertà di parola e delle community ricompensate!",
+    "header": "Rewarding communities",
+    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
     "bottom-description": "Ogni account viene creato sulla blockchain e solo tu ne hai il controllo. Un account per gestire ogni cosa sulla blockchain e su Ecency.",
     "learn-more": "Leggi di più sui benefici nelle nostre <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Scegli un nome utente",
@@ -547,11 +548,15 @@
     "section-communities": "Community",
     "section-wallet": "Portafoglio",
     "section-settings": "Impostazioni",
+    "section-referrals": "Referrals",
     "section-permission": "Permission",
     "communities-title": "Appartenenza",
     "create-community": "Crea una community",
     "witnesses": "Convalidatori",
-    "proposals": "Propositi"
+    "proposals": "Propositi",
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Iscritto: {{n}}",
@@ -591,6 +596,10 @@
     "language": "Lingua",
     "nsfw": "Mostra Contenuti NSFW",
     "referral-link": "Link di affiliazione",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Preferenza aggiornata!"
   },
   "wallet": {
@@ -702,6 +711,12 @@
     "submit": "Acquista",
     "purchase-message": "O invia qualunque somma a @esteem.app con la parola \"points\" nello spazio memo per acquistare Punti."
   },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
+  },
   "promote": {
     "title": "Promuovi",
     "sub-title": "Promuovi il tuo post",
@@ -781,6 +796,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegati da <span class=\"from-user\">{{from}}</span> in favore di <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Depotenziamento completato in <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Ripristina",
     "powering-down": "Depotenziamento attualmente in atto.",
     "stop-power-down": "Interrompi"
@@ -833,7 +849,8 @@
     "type-update_proposal_vote-detail": "ID della proposta: <strong>{{pid}}</strong>",
     "type-limit_order_create": "New trade created",
     "type-limit_order_cancel": "Open trade cancelled",
-    "type-effective_comment_vote": "Voto reale"
+    "type-effective_comment_vote": "Voto reale",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Accesso",
@@ -1006,7 +1023,7 @@
     "type-transfers": "Trasferimenti",
     "type-delegations": "Delegations",
     "group-title-recent": "Recenti",
-    "vote-str": "{{p}}% di gradimento del tuo post:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "ha risposto al tuo post:",
     "mention-str": "ti ha menzionato in:",
     "followed-str": "seguito",
@@ -1022,7 +1039,8 @@
     "mark-all-read": "Segna tutto come letto",
     "mark-read": "Segna come letto",
     "mute": "Disattiva gli avvisi di notifica",
-    "unmute": "Attiva gli avvisi di notifica"
+    "unmute": "Attiva gli avvisi di notifica",
+    "settings": "Settings"
   },
   "leaderboard": {
     "title-stars": "Più attivo",
@@ -1108,6 +1126,16 @@
     "proxy-active-current": "Attualmente, il tuo delegato è",
     "proxy-active-btn-label": "Rimuovi Delegato",
     "proxy-votes-for": "@{{username}} vota per"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Propositi",
@@ -1264,7 +1292,7 @@
       "what-are-rc-header": "Che cosa sono i crediti di risorsa?",
       "what-are-rc-body": "<p>Creare transazioni sulla blockchain Hive non prevede commissioni, ma viene attuata una limitazione del tasso di transazioni per proteggere la blockchain da attacchi spam. Ogni azione che operi sulla blockchain consumerà una piccola quantità di crediti di risorse. Questo include il postare, commentare, votare, trasferire token, eccetera. Visionare contenuti non consuma risorse.</p><p>Ogni utente ha un quantitativo limitato di crediti di risorsa da utilizzare ogni settimana. Più transazioni un utente effettua, meno crediti gli rimarranno (fino a che non si saranno ricaricati). Utenti con più HIVE POWER avranno più crediti di risorsa.</p><p>Se termini i tuoi crediti, non sarai in grado di effettuare transazioni sulla blockchain fino a che i crediti non si saranno ricaricati (il che avviene automaticamente con il trascorrere del tempo) o che avrai acquistato più HIVE POWER per aumentare i tuoi crediti, o che <a href=\"/faq#how-boost-account\">avrai richiesto un Boost dell'account da parte di Ecency</a> per ricevere una delega temporanea.</p>",
       "how-boost-account-header": "Come richiedere il boost dell'account?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can find account boosting feature in Points options.</p>",
+      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation (553311 VESTS) which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can request account boosting quickly with <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR page</a> just change username and scan QR image with Ecency mobile app.</p>",
       "what-spam-abuse-header": "Che cosa è considerato spam o uso illecito?",
       "what-spam-abuse-body": "<p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Posso richiedere di aggiungere un backlink al mio sito web al team Ecency?",
@@ -1368,7 +1396,7 @@
   "chain-error": {
     "min-root-comment": "Puoi pubblicare soltanto una volta ogni cinque minuti.",
     "identical-vote": "Il tuo voto attuale sul contenuto corrente è identico a questo voto.",
-    "insufficient-resource": "Crediti di Riserva insufficienti. Attendi per effettuare la transazione, oppure completa un nuovo power-up di HIVE.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Non puoi eliminare un contenuto con una ricompensa positiva in attesa.",
     "comment-cashout": "I contenuti non possono essere eliminati dopo il loro pagamento.",
     "comment-children": "Non puoi eliminare un contenuto con dei commenti.",
@@ -1438,5 +1466,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }

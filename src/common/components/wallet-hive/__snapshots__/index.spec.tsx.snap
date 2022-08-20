@@ -268,7 +268,7 @@ exports[`(1) Default Render 1`] = `
       <div
         className="next-power-down"
       >
-        The next power down is in 5 days, 3,626.559 HIVE
+        The next power down is in 5 days, (~3,626.559 HIVE, 5 weeks remaining)
       </div>
       <div
         className="transaction-list"
@@ -719,7 +719,7 @@ exports[`(2) Render with converting HBD 1`] = `
       <div
         className="next-power-down"
       >
-        The next power down is in 5 days, 3,626.559 HIVE
+        The next power down is in 5 days, (~3,626.559 HIVE, 5 weeks remaining)
       </div>
       <div
         className="transaction-list"
@@ -1169,7 +1169,7 @@ exports[`(3) usePrivate = false 1`] = `
       <div
         className="next-power-down"
       >
-        The next power down is in 5 days, 3,626.559 HIVE
+        The next power down is in 5 days, (~3,626.559 HIVE, 5 weeks remaining)
       </div>
       <div
         className="transaction-list"

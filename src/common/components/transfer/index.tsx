@@ -714,6 +714,7 @@ export class Transfer extends BaseComponent<Props, State> {
                             <p> {_t("wallet.next-power-down", {
                                 time: dateToFullRelative(w.nextVestingWithdrawalDate.toString()),
                                 amount: `${this.formatNumber(w.nextVestingSharesWithdrawalHive, 3)} HIVE`,
+                                weeks: w.weeksLeft,
                             })}</p>
                             <p>
                                 <Button onClick={this.nextPowerDown} variant="danger">{_t("transfer.stop-power-down")}</Button>
@@ -877,13 +878,13 @@ export class Transfer extends BaseComponent<Props, State> {
                             <div className="confirm-title">{_t(`transfer.${titleLngKey}`)}</div>
                             <div className="users">
                                 <div className="from-user">
-                                    {UserAvatar({...this.props, username: activeUser.username, size: "medium"})}
+                                    {UserAvatar({...this.props, username: activeUser.username, size: "large"})}
                                 </div>
                                 {showTo && (
                                     <>
                                         <div className="arrow">{arrowRightSvg}</div>
                                         <div className="to-user">
-                                            {UserAvatar({...this.props, username: to, size: "medium"})}
+                                            {UserAvatar({...this.props, username: to, size: "large"})}
                                         </div>
                                     </>
                                 )}

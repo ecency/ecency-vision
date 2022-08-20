@@ -98,6 +98,7 @@ export default class Feedback extends BaseComponent<Props, State> {
 
     render() {
         const {list} = this.state;
+        const errorType = (x: FeedbackObject) => (x as ErrorFeedbackObject).errorType;
         return (
             <div className="feedback-container">
                 {list.map((x) => {
@@ -115,7 +116,7 @@ export default class Feedback extends BaseComponent<Props, State> {
                                     <div className=" d-flex flex-column align-items-start">
                                         {x.message}
                                         <div className="d-flex">
-                                            {(x as ErrorFeedbackObject).errorType !== ErrorTypes.COMMON &&
+                                            { errorType(x) && errorType(x) !== ErrorTypes.COMMON &&
                                               <Button
                                                 className="mt-2 details-button px-0 mr-3"
                                                 variant="link"
@@ -125,7 +126,7 @@ export default class Feedback extends BaseComponent<Props, State> {
                                             <Button
                                               className="mt-2 details-button px-0"
                                               variant="link"
-                                              onClick={() => window.open('mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, <br/> I would like to report issue: <br/>', '_blank')}
+                                              onClick={() => window.open('mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, \n I would like to report issue: \n', '_blank')}
                                             >{_t("feedback-modal.report")}</Button>
                                         </div>
                                     </div>

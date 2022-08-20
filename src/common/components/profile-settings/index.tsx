@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-
 import {History} from "history";
+import { Link } from "react-router-dom";
 
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
@@ -8,11 +8,8 @@ import {Global} from "../../store/global/types";
 
 import ProfileEdit from "../profile-edit";
 import Preferences from "../preferences";
-import PasswordUpdate from "../password-update";
-import ViewKeys from "../view-keys";
-import { Link } from "react-router-dom";
+
 import { _t } from "../../i18n";
-import { keySvg } from "../../img/svg";
 
 interface Props {
     history: History;
@@ -26,6 +23,7 @@ interface Props {
     setCurrency: (currency: string, rate: number, symbol: string) => void;
     setLang: (lang: string) => void;
     setNsfw: (value: boolean) => void;
+    toggleTheme: (theme_key?: string) => void;
 }
 
 export class ProfileSettings extends Component<Props> {
@@ -67,6 +65,7 @@ export default (p: Props) => {
         setCurrency: p.setCurrency,
         setLang: p.setLang,
         setNsfw: p.setNsfw,
+        toggleTheme: p.toggleTheme,
     }
 
     return <ProfileSettings {...props} />

@@ -137,7 +137,8 @@
     "light": "светлый",
     "dark": "темный",
     "switch-to": "Переключатель",
-    "vote-power": "Сила голоса:"
+    "vote-power": "Сила голоса:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Стремитесь к величию",
@@ -164,8 +165,8 @@
     "sign-up-text-2": "Зарегистрируйтесь сейчас!"
   },
   "sign-up": {
-    "header": "Добро пожаловать в Ecency",
-    "description": "Дом свободы слова и поощрения сообществ!",
+    "header": "Rewarding communities",
+    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
     "bottom-description": "Каждая учетная запись создается на блокчейне, и только вы имеете контроль над этой учетной записью. Одна учетная запись для управления всем, что связано с блокчейном и Ecency.",
     "learn-more": "Узнайте больше о преимуществах <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Выберите имя пользователя",
@@ -547,11 +548,15 @@
     "section-communities": "Сообщества",
     "section-wallet": "Кошелек",
     "section-settings": "Настройки",
+    "section-referrals": "Referrals",
     "section-permission": "Разрешение",
     "communities-title": "Участники",
     "create-community": "Создать сообщество",
     "witnesses": "Заверители",
-    "proposals": "Предложения"
+    "proposals": "Предложения",
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Присоединился: {{n}}",
@@ -591,6 +596,10 @@
     "language": "Язык",
     "nsfw": "Показать NSFW контент",
     "referral-link": "Реферальная ссылка",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Настройки обновлены!"
   },
   "wallet": {
@@ -702,6 +711,12 @@
     "submit": "Купить",
     "purchase-message": "Или отправьте любую сумму на @esteem.app, указав в примечании `points`, чтобы приобрести Поинты."
   },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
+  },
   "promote": {
     "title": "Продвинуть",
     "sub-title": "Продвижение вашего поста",
@@ -781,6 +796,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> делегировано пользователем <span class=\"from-user\">{{from}}</span> для <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> снято с делегирования от <span class=\"from-user\">{{from}}</span> в <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Проведено понижение Силы в размере <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Сбросить",
     "powering-down": "В настоящее время вы понижаете Силу.",
     "stop-power-down": "Остановить"
@@ -833,7 +849,8 @@
     "type-update_proposal_vote-detail": "Идентификатор предложения: <strong>{{pid}}</strong>",
     "type-limit_order_create": "Создана новая сделка",
     "type-limit_order_cancel": "Открытая сделка отменена",
-    "type-effective_comment_vote": "Эффективное голосование"
+    "type-effective_comment_vote": "Эффективное голосование",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Подписать",
@@ -1006,7 +1023,7 @@
     "type-transfers": "Переводы",
     "type-delegations": "Делегации",
     "group-title-recent": "Недавние",
-    "vote-str": "{{p}}% проголосовал за ваш пост:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "ответил на ваш пост:",
     "mention-str": "упомянул вас в:",
     "followed-str": "подписался на",
@@ -1022,7 +1039,8 @@
     "mark-all-read": "Пометить всё как прочитанное",
     "mark-read": "Пометить как прочитанное",
     "mute": "Отключить уведомления",
-    "unmute": "Включить уведомления"
+    "unmute": "Включить уведомления",
+    "settings": "Settings"
   },
   "leaderboard": {
     "title-stars": "Наиболее активны",
@@ -1108,6 +1126,16 @@
     "proxy-active-current": "Ваш действующий прокси",
     "proxy-active-btn-label": "Очистить прокси",
     "proxy-votes-for": "@{{username}} голосует за"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Предложения",
@@ -1264,7 +1292,7 @@
       "what-are-rc-header": "Что такое кредиты на ресурсы?",
       "what-are-rc-body": "<p>За транзакции в блокчейне Hive взимается нулевая комиссия, ограничение скорости транзакций используется для защиты блокчейна от спам-атак. Каждое действие, которое вы предпринимаете в блокчейне, потребляет небольшое количество ресурсов. Сюда входит публикация, комментирование, голосование, передача токенов и т. Д. Для просмотра контента не требуются кредиты ресурсов.</p><p> У каждого пользователя есть ограниченное количество ресурсов для использования каждую неделю. Чем больше транзакций совершает пользователь, тем меньше у него ресурсов ресурсов (до тех пор, пока он не пополнится). Пользователи с большим количеством HIVE POWER будут иметь больше кредитов ресурсов.</p><p> Если у вас закончатся кредиты ресурсов, вы не сможете совершать транзакции с блокчейном до тех пор, пока ваши кредиты ресурсов не пополнятся (происходит автоматически), или вы не приобретете дополнительный HIVE POWER для увеличения баланса кредитов ресурсов, или вы можете <a href=\"/faq#how-boost-account\">запросить повышение учетной записи в Ecency</a> для получения временного делегирования. .</p>",
       "how-boost-account-header": "Как запросить буст аккаунта?",
-      "how-boost-account-body": "<p>Если ваш аккаунт на <a href=\"/faq#what-are-rc\">кредитах ресурсов</a>, вы можете попросить увеличить счет с Ecency. Вы получите 30-дневную делегацию, которая должна увеличить Ваш аккаунт, чтобы выполнить больше действий в блокчейне. Делегирование может быть снято в любое время, если наша команда сочтет неподходящим использование силы. Вы можете найти функцию повышения учетной записи в опциях Очков.</p>",
+      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation (553311 VESTS) which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can request account boosting quickly with <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR page</a> just change username and scan QR image with Ecency mobile app.</p>",
       "what-spam-abuse-header": "Что считается спамом или злоупотреблением?",
       "what-spam-abuse-body": "<p><ul><li>Плагиализованные сообщения или скопированные содержимое</li><li>Оставляя почти идентичные или существенно похожие комментарии к нескольким постам.</li><li>Использование тегов, которые не имеют отношения к поста.</li><li>Угроза пользователей с любым видом физического насилия.</li><li>Не цитировать источники при использовании чужого материала.</li><li>Отправка «небезопасно для работы» содержимого без использования тега «nsfw».</li><li>Scams или Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Могу ли я попросить у команды Ecence добавить обратную ссылку на мой сайт?",
@@ -1368,7 +1396,7 @@
   "chain-error": {
     "min-root-comment": "Вы можете писать только раз в пять минут.",
     "identical-vote": "Ваш текущий голос за этот контент идентичен этому голосованию.",
-    "insufficient-resource": "Недостаточно Ресурс Кредитов. Пожалуйста, подождите с транзакцией или сделайте power up HIVE.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Невозможно удалить контент с ожидающими положительными наградами.",
     "comment-cashout": "Контент после выплаты не может быть удален.",
     "comment-children": "Невозможно удалить контент с ответами.",
@@ -1438,5 +1466,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }

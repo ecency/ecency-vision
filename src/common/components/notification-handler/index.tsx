@@ -5,6 +5,7 @@ import { ToggleType, UI } from '../../store/ui/types';
 import { Notifications } from '../../store/notifications/types';
 import { NotificationsWebSocket } from '../../api/notifications-ws-api';
 import { isSupported } from '@firebase/messaging';
+import { NotifyTypes } from '../../enums';
 
 interface Props {
   global: Global;
@@ -19,6 +20,7 @@ interface Props {
 
 export default class NotificationHandler extends Component<Props> {
   private nws = new NotificationsWebSocket();
+  private countInterval: any = null;
 
   componentDidMount() {
     const {
@@ -35,14 +37,14 @@ export default class NotificationHandler extends Component<Props> {
     this.nws
       .withActiveUser(activeUser)
       .withElectron(global.isElectron)
-      .withSound(document.getElementById('notifications-audio') as HTMLAudioElement)
       .withCallbackOnMessage(() => {
         fetchUnreadNotificationCount();
         fetchNotifications(null);
       })
       .withToggleUi(toggleUIProp)
       .setHasUiNotifications(ui.notifications)
-      .setHasNotifications(global.notifications);
+      .setHasNotifications(global.notifications)
+      .setEnabledNotificationsTypes(notifications.settings?.notify_types as NotifyTypes[] || [])
 
     if (activeUser) {
       fetchNotificationsSettings(activeUser!!.username);
@@ -55,7 +57,18 @@ export default class NotificationHandler extends Component<Props> {
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any) {
     const { activeUser, fetchUnreadNotificationCount, fetchNotificationsSettings, notifications } = this.props;
 
+    this.nws.setEnabledNotificationsTypes(notifications.settings?.notify_types as NotifyTypes[] || []);
+
+    if (!activeUser && this.countInterval) {
+      clearInterval(this.countInterval);
+    }
+
+    if (notifications.fbSupport === 'granted' && activeUser && !this.countInterval) {
+      this.countInterval = setInterval(() => fetchUnreadNotificationCount(), 60000);
+    }
+
     if (notifications.fbSupport === 'denied' && activeUser) {
+      this.nws.disconnect();
       this.nws.withActiveUser(activeUser).connect();
     }
 
@@ -81,7 +94,6 @@ export default class NotificationHandler extends Component<Props> {
   }
 
   render() {
-    const notificationSound = this.props.global.isElectron ? "./img/notification.mp3" :  require("../../img/notification.mp3");
-    return <audio id="notification-audio" autoPlay={false} src={notificationSound} muted={true} style={{display: 'none'}}/>;
+    return <></>;
   }
 }

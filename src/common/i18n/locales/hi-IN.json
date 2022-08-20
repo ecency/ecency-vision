@@ -137,7 +137,8 @@
     "light": "लाइट",
     "dark": "डार्क",
     "switch-to": "स्विच",
-    "vote-power": "वोट पावर:"
+    "vote-power": "वोट पावर:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "महाप्राण की आकांक्षा",
@@ -164,8 +165,8 @@
     "sign-up-text-2": "अभी साइनअप करें!"
   },
   "sign-up": {
-    "header": "इसेंसी में आपका स्वागत है",
-    "description": "नि: शुल्क भाषण और पुरस्कृत समुदायों का घर!",
+    "header": "Rewarding communities",
+    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
     "bottom-description": "प्रत्येक खाता एक ब्लॉकचेन पर बनाया गया है और केवल उस खाते पर आपका नियंत्रण है। ब्लॉकचेन और इसेंसी पर सब कुछ प्रबंधित करने के लिए एक खाता।",
     "learn-more": "हमारे लाभ के बारे में अधिक जानें <a href=\"/faq#how-to-join\">अकसर किये गए सवाल</a>",
     "username": "एक उपयोगकर्ता नाम चुनें",
@@ -547,11 +548,15 @@
     "section-communities": "समुदाय",
     "section-wallet": "बटुआ",
     "section-settings": "सेटिंग्स",
+    "section-referrals": "Referrals",
     "section-permission": "अनुमति",
     "communities-title": "सदस्यता",
     "create-community": "एक समुदाय बनाएँ",
     "witnesses": "गवाहों",
-    "proposals": "प्रस्ताव"
+    "proposals": "प्रस्ताव",
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "में शामिल हो गए {{n}}",
@@ -591,6 +596,10 @@
     "language": "भाषा",
     "nsfw": "NSFW सामग्री दिखाएं",
     "referral-link": "रेफ़रल लिंक",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "वरीयता अद्यतन!"
   },
   "wallet": {
@@ -702,6 +711,12 @@
     "submit": "खरीद फरोख्त",
     "purchase-message": "या प्वॉइंट्स खरीदने के लिए मेमो के रूप में `अंक' के साथ @esteem.app को कोई भी राशि भेजें।"
   },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
+  },
   "promote": {
     "title": "बढ़ावा देना",
     "sub-title": "अपनी पोस्ट का प्रचार करें",
@@ -781,6 +796,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> से प्रत्यायोजित किया गया <span class=\"from-user\">{{from}}</span> के लिये <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "पावर डाउन के रूप में पूरा किया <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "रीसेट करें",
     "powering-down": "आप वर्तमान में शक्ति प्राप्त कर रहे हैं।",
     "stop-power-down": "रुको"
@@ -833,7 +849,8 @@
     "type-update_proposal_vote-detail": "प्रस्ताव आईडी: <strong>{{pid}}</strong>",
     "type-limit_order_create": "नया व्यापार बनाया",
     "type-limit_order_cancel": "खुला व्यापार रद्द",
-    "type-effective_comment_vote": "प्रभावी वोट"
+    "type-effective_comment_vote": "प्रभावी वोट",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "साइन करें",
@@ -1006,7 +1023,7 @@
     "type-transfers": "स्थानांतरण",
     "type-delegations": "डेलीगेशन्स",
     "group-title-recent": "ताजा",
-    "vote-str": "{{p}}% आपकी पोस्ट को पसंद किया है:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "आपके पोस्ट का जवाब दिया:",
     "mention-str": "में आपका उल्लेख किया:",
     "followed-str": "अनुगमन करना",
@@ -1022,7 +1039,8 @@
     "mark-all-read": "सभी को पढ़ा हुआ मार्क करें",
     "mark-read": "पढ़ा हुआ मार्क करें",
     "mute": "अधिसूचना अलर्ट बंद करें",
-    "unmute": "अधिसूचना अलर्ट चालू करें"
+    "unmute": "अधिसूचना अलर्ट चालू करें",
+    "settings": "Settings"
   },
   "leaderboard": {
     "title-stars": "सर्वाधिक क्रियाशील",
@@ -1108,6 +1126,16 @@
     "proxy-active-current": "आपका वर्तमान प्रॉक्सी है",
     "proxy-active-btn-label": "प्रॉक्सी हटाये",
     "proxy-votes-for": "@{{username}} के लिए वोट"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "प्रस्ताव",
@@ -1264,7 +1292,7 @@
       "what-are-rc-header": "संसाधन क्रेडिट क्या हैं?",
       "what-are-rc-body": "<p>हाइव ब्लॉकचैन पर लेनदेन करने पर शून्य फीस लगती है, ब्लॉकचैन को स्पैम हमलों से बचाने के लिए लेनदेन की दर सीमित होती है। ब्लॉकचेन पर आपके द्वारा की जाने वाली प्रत्येक कार्रवाई में संसाधन क्रेडिट की थोड़ी मात्रा का उपभोग होगा। इसमें पोस्टिंग, कमेंटिंग, वोटिंग, टोकन ट्रांसफर करना आदि शामिल हैं, कंटेंट देखने से रिसोर्स क्रेडिट का उपभोग नहीं होता है। </p> <p> प्रत्येक उपयोगकर्ता के पास प्रत्येक सप्ताह उपयोग करने के लिए सीमित मात्रा में रिसोर्स क्रेडिट होते हैं। उपयोगकर्ता जितना अधिक लेन-देन करता है, उसके पास उतने कम रिसोर्स क्रेडिट होते हैं (जब तक वे रिचार्ज नहीं हो जाते)। अधिक HIVE POWER वाले उपयोगकर्ताओं के पास अधिक संसाधन क्रेडिट होंगे। </p> <p> यदि आप संसाधन क्रेडिट से बाहर निकलते हैं, तो आप ब्लॉकचैन के साथ तब तक लेन-देन नहीं कर पाएंगे, जब तक कि आपके संसाधन क्रेडिट रिचार्ज (स्वचालित रूप से नहीं हो जाते) या आप अतिरिक्त HIT POWER प्राप्त कर लेते हैं अपने संसाधन क्रेडिट संतुलन को बढ़ाने के लिए या आप अस्थायी प्रतिनिधिमंडल प्राप्त करने के लिए <a href=\"/faq#how-boost-account\"> Ecency से Boosting खाते का अनुरोध करें </a> कर सकते हैं।</p>",
       "how-boost-account-header": "खाता बढ़ाने का अनुरोध कैसे करें?",
-      "how-boost-account-body": "<p>यदि आपके खाते में <a href=\"/faq#what-are-rc\">संसाधन क्रेडिट</a> कम है, तो आप Ecency से खाता बूस्ट करने का अनुरोध कर सकते हैं। आपको 30 दिनों का प्रतिनिधिमंडल प्राप्त होगा जो आपके खाते को ब्लॉकचैन पर अधिक गतिविधियों को करने के लिए बढ़ावा देगा। यदि हमारी टीम को शक्ति का अनुचित उपयोग मिलता है तो प्रतिनिधिमंडल को कभी भी वापस लिया जा सकता है। आप पॉइंट विकल्पों में खाता बढ़ाने की सुविधा पा सकते हैं।</p>",
+      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation (553311 VESTS) which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can request account boosting quickly with <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR page</a> just change username and scan QR image with Ecency mobile app.</p>",
       "what-spam-abuse-header": "स्पैम या दुरुपयोग क्या माना जाता है?",
       "what-spam-abuse-body": "<p><ul><li>साहित्यिक पोस्ट या कॉपी की गई सामग्री।</li><li>कई पोस्ट पर लगभग समान या भौतिक रूप से समान टिप्पणियों को छोड़ना।</li><li>टैग का उपयोग करना जो पोस्ट से संबंधित नहीं हैं।< /li><li>उपयोगकर्ताओं को किसी भी प्रकार की शारीरिक हिंसा के लिए धमकाना।</li><li>किसी और की सामग्री का उपयोग करते समय स्रोतों का हवाला नहीं देना।</li><li>\"काम के लिए सुरक्षित नहीं है\" सामग्री को बिना उपयोग किए पोस्ट करना nsfw” टैग।</li><li>धोखाधड़ी या कपटपूर्ण प्रस्ताव।</li></ul></p>",
       "can-link-post-header": "क्या मैं अपनी वेबसाइट पर इसेंसी टीम से बैकलिंक जोड़ने का अनुरोध कर सकता हूं?",
@@ -1368,7 +1396,7 @@
   "chain-error": {
     "min-root-comment": "आप हर पांच मिनट में केवल एक बार पोस्ट कर सकते हैं।",
     "identical-vote": "इस सामग्री पर आपका वर्तमान वोट इस वोट के समान है।",
-    "insufficient-resource": "अपर्याप्त संसाधन क्रेडिट। कृपया लेनदेन करने के लिए प्रतीक्षा करें, या HIVE को शक्ति दें।",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "सकारात्मक लंबित पुरस्कारों वाली सामग्री को हटाया नहीं जा सकता।",
     "comment-cashout": "उनके पेआउट के बाद की सामग्री को हटाया नहीं जा सकता।",
     "comment-children": "उत्तरों वाली सामग्री को हटाया नहीं जा सकता।",
@@ -1438,5 +1466,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }

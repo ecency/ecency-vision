@@ -737,6 +737,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                                 {_t("wallet.next-power-down", {
                                     time: dateToFullRelative(w.nextVestingWithdrawalDate.toString()),
                                     amount: formattedNumber(w.nextVestingSharesWithdrawalHive, {suffix: "HIVE"}),
+                                    weeks: w.weeksLeft,
                                 })}
                             </div>
                         )}

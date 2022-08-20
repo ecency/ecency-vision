@@ -1,6 +1,7 @@
 import { getMessaging, getToken, MessagePayload, Messaging, onMessage } from '@firebase/messaging';
 import { FirebaseApp, initializeApp } from '@firebase/app';
 import { _t } from '../i18n';
+import { NotifyTypes } from '../enums';
 
 let app: FirebaseApp;
 export let FCM: Messaging;
@@ -34,15 +35,16 @@ export const handleMessage = (payload: MessagePayload) => {
   notification.onclick = () => {
     let url = 'https://ecency.com';
     const data = (payload.data || {}) as any;
+    const fullPermlink = data.permlink1 + data.permlink2 + data.permlink3;
 
-    if (data.parent_permlink1) {
-      url += '/' + data.parent_permlink1;
-    }
-    if (data.source) {
+    if (['vote', 'unvote', 'spin', 'inactive'].includes(data.type)) {
+      url += '/@' + data.target;
+    } else {
+      // delegation, mention, transfer, follow, unfollow, ignore, blacklist, reblog
       url += '/@' + data.source;
     }
-    if (data.permlink1) {
-      url += '/' + data.permlink1;
+    if (fullPermlink) {
+      url += '/' + fullPermlink;
     }
 
     window.open(url, '_blank');
@@ -55,7 +57,7 @@ export const getFcmToken = () => getToken(FCM, {
 
 export const listenFCM = (callback: Function) => {
   onMessage(FCM, p => {
-    console.log('[firebase-messaging-sw.ts] Received foreground message ', p);
+    //console.log('Received fg message', p);
     handleMessage(p);
     callback();
   });

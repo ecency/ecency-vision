@@ -137,7 +137,8 @@
     "light": "light",
     "dark": "dark",
     "switch-to": "Switch",
-    "vote-power": "Hääletamise jõud:"
+    "vote-power": "Hääletamise jõud:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Pürgige suurepärasuse poole",
@@ -164,8 +165,8 @@
     "sign-up-text-2": "Loo konto kohe!"
   },
   "sign-up": {
-    "header": "Welcome to Ecency",
-    "description": "Home of Free speech and Rewarding communities!",
+    "header": "Rewarding communities",
+    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
     "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
     "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Vali kasutajanimi",
@@ -547,11 +548,15 @@
     "section-communities": "Communities",
     "section-wallet": "Wallet",
     "section-settings": "Settings",
+    "section-referrals": "Referrals",
     "section-permission": "Permission",
     "communities-title": "Membership",
     "create-community": "Create a community",
     "witnesses": "Witnesses",
-    "proposals": "Proposals"
+    "proposals": "Proposals",
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Joined: {{n}}",
@@ -591,6 +596,10 @@
     "language": "Language",
     "nsfw": "Show NSFW content",
     "referral-link": "Referral link",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Preference updated!"
   },
   "wallet": {
@@ -702,6 +711,12 @@
     "submit": "Purchase",
     "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "copied": "Account boost link copied!"
+  },
   "promote": {
     "title": "Promote",
     "sub-title": "Promote your post",
@@ -781,6 +796,7 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Reset",
     "powering-down": "You are currently powering down.",
     "stop-power-down": "Stop"
@@ -833,7 +849,8 @@
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
     "type-limit_order_create": "New trade created",
     "type-limit_order_cancel": "Open trade cancelled",
-    "type-effective_comment_vote": "Effective vote"
+    "type-effective_comment_vote": "Effective vote",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Sign",
@@ -1006,7 +1023,7 @@
     "type-transfers": "Transfers",
     "type-delegations": "Delegations",
     "group-title-recent": "Recent",
-    "vote-str": "{{p}}% likes your post:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "replied to your post:",
     "mention-str": "mentioned you in:",
     "followed-str": "followed",
@@ -1022,7 +1039,8 @@
     "mark-all-read": "Mark All as Read",
     "mark-read": "Mark as Read",
     "mute": "Turn off notification alerts",
-    "unmute": "Turn on notification alerts"
+    "unmute": "Turn on notification alerts",
+    "settings": "Settings"
   },
   "leaderboard": {
     "title-stars": "Most active",
@@ -1108,6 +1126,16 @@
     "proxy-active-current": "Your current proxy is",
     "proxy-active-btn-label": "Clear Proxy",
     "proxy-votes-for": "@{{username}} votes for"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Proposals",
@@ -1264,7 +1292,7 @@
       "what-are-rc-header": "What are Resource Credits?",
       "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
       "how-boost-account-header": "How to request account boosting?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can find account boosting feature in Points options.</p>",
+      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation (553311 VESTS) which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can request account boosting quickly with <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR page</a> just change username and scan QR image with Ecency mobile app.</p>",
       "what-spam-abuse-header": "What is considered spam or abuse?",
       "what-spam-abuse-body": "<p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Can I request adding backlink to my website from Ecency team?",
@@ -1368,7 +1396,7 @@
   "chain-error": {
     "min-root-comment": "You may only post once every five minutes.",
     "identical-vote": "Your current vote on this content is identical to this vote.",
-    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
     "comment-cashout": "Content after their payout cannot be deleted.",
     "comment-children": "Cannot delete a content with replies.",
@@ -1438,5 +1466,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }
