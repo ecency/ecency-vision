@@ -715,13 +715,13 @@
     "scan-code": "Scan the QR code with Ecency mobile app",
     "select-user": "Please, select an user",
     "title": "Account boost",
-    "title-points": "Buy points",
+    "title-points": "Koop punten",
     "copied": "Account boost link copied!",
     "select-type": "Select a type",
     "boost": "Boost",
-    "points": "Points",
+    "points": "Punten",
     "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
-    "points-amount": "{{n}} points"
+    "points-amount": "{{n}} punten"
   },
   "promote": {
     "title": "Promoten",
