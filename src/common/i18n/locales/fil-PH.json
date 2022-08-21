@@ -715,7 +715,13 @@
     "scan-code": "Scan the QR code with Ecency mobile app",
     "select-user": "Please, select an user",
     "title": "Account boost",
-    "copied": "Account boost link copied!"
+    "title-points": "Buy points",
+    "copied": "Account boost link copied!",
+    "select-type": "Select a type",
+    "boost": "Boost",
+    "points": "Points",
+    "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
+    "points-amount": "{{n}} points"
   },
   "promote": {
     "title": "Isulong",
