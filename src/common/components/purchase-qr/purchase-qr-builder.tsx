@@ -1,21 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Form, InputGroup } from 'react-bootstrap';
+import { Alert, Button, Form, InputGroup } from 'react-bootstrap';
 import { _t } from '../../i18n';
-import SuggestionList from '../suggestion-list';
-import userAvatar from '../user-avatar';
 import { lookupAccounts } from '../../api/hive';
 import { error, success } from '../feedback';
 import { formatError } from '../../api/operations';
 import qrcode from 'qrcode';
 import { copyContent } from '../../img/svg';
 import { ActiveUser } from '../../store/active-user/types';
-import defaults from "../../constants/defaults.json";
+import defaults from '../../constants/defaults.json';
+import { PurchaseQrUsername } from './purchase-qr-username';
+import { PurchaseTypes } from './purchase-types';
+import { PurchaseQrTypes } from './purchase-qr-types';
+import { Location } from 'history';
 
 interface Props {
   activeUser: ActiveUser | null;
+  location?: Location;
+  queryType?: PurchaseTypes;
+  queryProductId?: string;
 }
 
-export const PurchaseQrBuilder = ({ activeUser }: Props) => {
+export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId }: Props) => {
   const [username, setUsername] = useState('');
   const [usernameInput, setUsernameInput] = useState('');
   const [usernameData, setUsernameData] = useState<string[]>([]);
@@ -24,6 +29,20 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
   const qrImgRef = useRef<HTMLImageElement | undefined>();
   const [isQrShow, setIsQrShow] = useState(false);
   const [isActiveUserSet, setIsActiveUserSet] = useState(false);
+  const [type, setType] = useState(PurchaseTypes.BOOST);
+  const [pointsValue, setPointsValue] = useState('999points');
+
+  useEffect(() => {
+    if (queryType) {
+      setType(queryType);
+    }
+  }, [queryType]);
+
+  useEffect(() => {
+    if (queryProductId) {
+      setPointsValue(queryProductId);
+    }
+  }, [queryProductId]);
 
   useEffect(() => {
     if (!usernameInput) {
@@ -37,7 +56,7 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
     if (username) {
       compileQR(getURL());
     }
-  }, [username]);
+  }, [username, type, pointsValue]);
 
   useEffect(() => {
     if (activeUser) {
@@ -47,24 +66,6 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
       compileQR(getURL());
     }
   }, [activeUser]);
-
-  const suggestionProps = {
-    renderer: (i: any) => {
-      return (
-        <>
-          {userAvatar({
-            username: i.name || i,
-            size: 'medium',
-            global: {} as any,
-          })}{' '}
-          <span style={{ marginLeft: '4px' }}>{i}</span>
-        </>
-      );
-    },
-    onSelect: (selectedText: any) => {
-      setUsername(selectedText);
-    }
-  };
 
   const fetchUsernameData = (query: string) => {
     if (timer) {
@@ -111,36 +112,23 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
     success(_t('purchase-qr.copied'));
   };
 
-  const getURL = () =>`${defaults.base}/purchase?username=${username}&type=boost`;
+  const getURL = () =>`${defaults.base}/purchase?username=${username}&type=${type}&product_id=${pointsValue}`;
 
-  return <div className="d-flex flex-column align-items-center my-4 px-3 text-center">
+  return <div className="d-flex flex-column align-items-center my-3 px-3 text-center">
     <h2>{isQrShow ? _t('purchase-qr.scan-code') : _t('purchase-qr.select-user')}</h2>
     <div className="w-100 mt-4">
-      <SuggestionList items={usernameData} {...suggestionProps}>
-        <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text>
-              {isUsernameDataLoading ? (
-                <div
-                  className="spinner-border text-primary spinner-border-sm"
-                  role="status"
-                >
-                  <span className="sr-only">{_t('g.loading')}</span>
-                </div>
-              ) : (
-                '@'
-              )}
-            </InputGroup.Text>
-          </InputGroup.Prepend>
-          <Form.Control
-            type="text"
-            autoFocus={true}
-            placeholder=""
-            value={usernameInput}
-            onChange={(e) => setUsernameInput(e.target.value)}
-          />
-        </InputGroup>
-      </SuggestionList>
+      <PurchaseQrUsername
+        usernameData={usernameData}
+        usernameInput={usernameInput}
+        setUsernameInput={setUsernameInput}
+        isUsernameDataLoading={isUsernameDataLoading}
+        setUsername={setUsername}
+      />
+      {type === PurchaseTypes.POINTS ? <PurchaseQrTypes
+        className="mt-3"
+        value={pointsValue}
+        setValue={(v: string) => setPointsValue(v)}
+      /> : <></>}
     </div>
     <img ref={qrImgRef as any} alt="Boost QR Code" className="my-4" style={{ display: isQrShow ? 'block' : 'none' }} />
     {isQrShow ? <Form.Group className="w-100">
@@ -164,5 +152,8 @@ export const PurchaseQrBuilder = ({ activeUser }: Props) => {
         </InputGroup.Append>
       </InputGroup>
     </Form.Group> : <></>}
+    {type === PurchaseTypes.BOOST && isQrShow ?
+      <Alert variant={"primary"} className="text-left mt-3 mb-0 text-small">{_t('purchase-qr.boost-info')}</Alert> :
+      <></>}
   </div>
 }
