@@ -715,7 +715,13 @@
     "scan-code": "Skannaa QR-koodi Ecency-mobiilisovelluksella",
     "select-user": "Valitse käyttäjä",
     "title": "Tilin tehostaminen",
-    "copied": "Tilin tehostuslinkki kopioitu!"
+    "title-points": "Buy points",
+    "copied": "Tilin tehostuslinkki kopioitu!",
+    "select-type": "Select a type",
+    "boost": "Boost",
+    "points": "Points",
+    "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
+    "points-amount": "{{n}} points"
   },
   "promote": {
     "title": "Korosta",
