@@ -1,12 +1,12 @@
 import { getMessaging, getToken, MessagePayload, Messaging, onMessage } from '@firebase/messaging';
 import { FirebaseApp, initializeApp } from '@firebase/app';
-import { _t } from '../i18n';
-import { NotifyTypes } from '../enums';
+import { Analytics, getAnalytics, logEvent } from '@firebase/analytics';
 
 let app: FirebaseApp;
 export let FCM: Messaging;
+export let FA: Analytics;
 
-export function initFirebase() {
+export function initFirebase(initMessaging = true) {
   if (typeof window === 'undefined') {
     return;
   }
@@ -21,7 +21,12 @@ export function initFirebase() {
     appId: '1:211285790917:web:c259d25ed1834c683760ac',
     measurementId: 'G-TYQD1N3NR3'
   });
-  FCM = getMessaging(app);
+  if (initMessaging) {
+    FCM = getMessaging(app);
+  }
+  FA = getAnalytics(app);
+
+  logEvent(FA, 'test-event');
 }
 
 export const handleMessage = (payload: MessagePayload) => {
