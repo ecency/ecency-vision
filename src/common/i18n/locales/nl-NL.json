@@ -717,10 +717,10 @@
     "title": "Account boost",
     "title-points": "Koop punten",
     "copied": "Account boost link copied!",
-    "select-type": "Select a type",
+    "select-type": "Selecteer een betaalwijze",
     "boost": "Boost",
     "points": "Punten",
-    "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
+    "boost-info": "Ecency heeft het recht om delegaties/boosts in te trekken als deze verkeerd worden gebruikt",
     "points-amount": "{{n}} punten"
   },
   "promote": {
