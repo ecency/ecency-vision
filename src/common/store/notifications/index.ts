@@ -259,18 +259,16 @@ export const updateNotificationsSettings = (username: string, token?: string) =>
  * @param username
  */
 export const fetchNotificationsSettings = (username: string) => async (dispatch: Dispatch, getState: () => AppState) => {
-  let isFbSupported = await isSupported() && !isElectron();
-  if (isFbSupported) {
-    initFirebase();
-  }
+  let isFbMessagingSupported = await isSupported() && !isElectron();
+  initFirebase(isFbMessagingSupported);
   let token = username + (isElectron() ? '-desktop' : '-web');
   let oldToken = ls.get('fb-notifications-token');
   const permission = await Notification.requestPermission();
-  if (permission === 'granted' && isFbSupported) {
+  if (permission === 'granted' && isFbMessagingSupported) {
     try {
       token = await getFcmToken();
     } catch (e) {
-      isFbSupported = false;
+      isFbMessagingSupported = false;
       oldToken = null;
     }
   }
@@ -305,7 +303,7 @@ export const fetchNotificationsSettings = (username: string) => async (dispatch:
       ls.set('fb-notifications-token', token);
     }
 
-    if (isFbSupported) {
+    if (isFbMessagingSupported) {
       listenFCM(() => {
         playNotificationSound(getState().global.isElectron);
         // @ts-ignore
@@ -317,7 +315,7 @@ export const fetchNotificationsSettings = (username: string) => async (dispatch:
     }
   }
 
-  dispatch(setFbSupportedAct(isFbSupported ? 'granted' : 'denied'));
+  dispatch(setFbSupportedAct(isFbMessagingSupported ? 'granted' : 'denied'));
 }
 
 /* Action Creators */
