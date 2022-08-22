@@ -52,7 +52,12 @@ export class Preferences extends BaseComponent<Props, State> {
     themeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {toggleTheme} = this.props;
         const {value} = e.target;
-        value == 'system' ? ls.set('use_system_theme', true) : ls.set('theme', value);
+        if (value === 'system') {
+            ls.set('use_system_theme', true);
+        } else {
+            ls.remove('use_system_theme');
+            ls.set('theme', value);
+        }
         this.setState({ ...this.state, defaultTheme: value });
         toggleTheme(value);
         success(_t('preferences.updated'));
