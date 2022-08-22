@@ -717,11 +717,11 @@
     "title": "Impulsar la cuenta",
     "title-points": "Comprar puntos",
     "copied": "¡Enlace de impulso de la cuenta copiado!",
-    "select-type": "Select a type",
-    "boost": "Boost",
-    "points": "Points",
-    "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
-    "points-amount": "{{n}} points"
+    "select-type": "Selecciona un tipo",
+    "boost": "Impulsar",
+    "points": "Puntos",
+    "boost-info": "Ecency tiene derecho a revocar delegaciones/impulsos si la estaca se utiliza incorrectamente",
+    "points-amount": "{{n}} puntos"
   },
   "promote": {
     "title": "Promocionar",
