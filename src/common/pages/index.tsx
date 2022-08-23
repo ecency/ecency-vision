@@ -32,6 +32,9 @@ const Index = (props: PageProps) => {
 
   useEffect(() => {
     initStep(props.activeUser ? 2 : 1);
+    if (props.global.usePrivate && !props.activeUser && props.location.search === "?login") {
+        props.toggleUIProp('login');
+    }
   }, [props.activeUser, props.location.pathname]);
 
   const reload = () => {

@@ -33,6 +33,18 @@ export const decodeToken = (code: string): HiveSignerMessage | null => {
     }
 }
 
+export const validateToken = (code: string): boolean => {
+    const dt = decodeToken(code);
+    const sevenDaysAgo: Date = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+
+    if (dt) {
+        if (new Date(dt.timestamp*1000) > sevenDaysAgo) {
+            return true;
+        }
+    }
+    return false;
+}
+
 export const makeHsCode = async (account: string, signer: (message: string) => Promise<string>): Promise<string> => {
     const timestamp = new Date().getTime() / 1000;
 
