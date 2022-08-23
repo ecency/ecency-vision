@@ -18,7 +18,7 @@ import EntryLink, {PartialEntry} from "../components/entry-link";
 import WitnessVoteBtn from "../components/witness-vote-btn";
 import WitnessesExtra from "../components/witnesses-extra"
 import WitnessesProxy from "../components/witnesses-proxy"
-import WitnessesActiveProxy from "../components/witnesses-active-proxy";
+// import WitnessesActiveProxy from "../components/witnesses-active-proxy";
 
 import routes from "../../common/routes";
 
@@ -100,6 +100,7 @@ const transform = (list: Witness[]): WitnessTransformed[] => {
 interface State {
     witnesses: WitnessTransformed[];
     witnessVotes: string[];
+    proxyVotes: string[];
     proxy: string | null;
     loading: boolean;
 }
@@ -108,6 +109,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     state: State = {
         witnesses: [],
         witnessVotes: [],
+        proxyVotes: [],
         proxy: null,
         loading: true
     }
@@ -132,11 +134,11 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         if (activeUser) {
             const resp = await getAccount(activeUser.username);
             const {witness_votes: witnessVotes, proxy} = resp;
-            this.stateSet({witnessVotes: witnessVotes || [], proxy: proxy || null});
+            const { witness_votes: proxyVotes } = await getAccount(proxy)
+            this.stateSet({witnessVotes: witnessVotes || [], proxyVotes, proxy: proxy || null});
         } else {
             this.stateSet({witnessVotes: [], proxy: null});
         }
-
         const witnesses = await getWitnessesByVote();
         await this.getWitness(transform(witnesses));
     }
@@ -216,7 +218,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
             </thead>
             <tbody>
             {witnesses.map((row, i) => {
-                return <tr key={row.rank}>
+                return <tr key={row.rank} className={`${this.state.proxyVotes.includes(row.name) ? 'voted-by-voter' : ''}`}>
                     <td>
                         <div className="witness-rank">
                             <span className="rank-number">{row.rank}</span>
@@ -336,18 +338,18 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                             </>
                         }
 
-                        if (proxy) {
-                            return <>
-                                {header}
-                                <WitnessesActiveProxy
-                                    {...this.props}
-                                    username={proxy}
-                                    onDone={() => {
-                                        this.stateSet({proxy: null});
-                                    }}
-                                />
-                            </>
-                        }
+                        // if (proxy) {
+                        //     return <>
+                        //         {header}
+                        //         <WitnessesActiveProxy
+                        //             {...this.props}
+                        //             username={proxy}
+                        //             onDone={() => {
+                        //                 this.stateSet({proxy: null});
+                        //             }}
+                        //         />
+                        //     </>
+                        // }
 
                         return <>
                             {header}
