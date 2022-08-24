@@ -87,6 +87,12 @@ export class DialogContent extends Component<NotificationProps, any> {
 
     if (notifications.list.length === 0) {
       fetchNotifications(null);
+    } else if (this.props.notifications.unread > 0) {
+      const unreadCount = notifications.list.filter(n => n.read === 0).length;
+
+      if (unreadCount !== this.props.notifications.unread) {
+        fetchNotifications(null);
+      }
     }
 
     this.prepareSettings();
