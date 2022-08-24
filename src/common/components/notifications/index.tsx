@@ -18,7 +18,11 @@ import _c from '../../util/fix-class-names'
 import { checkSvg, settingsSvg, syncSvg } from '../../img/svg';
 import { NotifyTypes } from '../../enums';
 import NotificationListItem from './notification-list-item';
-import { setNotificationsSettingsItem, updateNotificationsSettings } from '../../store/notifications';
+import {
+  fetchNotifications,
+  setNotificationsSettingsItem,
+  updateNotificationsSettings
+} from '../../store/notifications';
 
 export const date2key = (s: string): string => {
   if (s === 'Yesterday') {
@@ -90,6 +94,10 @@ export class DialogContent extends Component<NotificationProps, any> {
 
   componentDidUpdate(prevProps: Readonly<NotificationProps>, prevState: Readonly<{ settings: { [p: number]: boolean } }>, snapshot?: any) {
     this.prepareSettings();
+
+    if (this.props.notifications.unread > 0 && this.props.notifications.unread !== prevProps.notifications.unread) {
+      fetchNotifications(null);
+    }
   }
 
   prepareSettings = () => {
