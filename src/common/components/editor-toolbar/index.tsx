@@ -101,6 +101,15 @@ export class EditorToolbar extends Component<Props> {
         this.setState({image: !image});
     }
 
+    // toggleGif = (e?: React.MouseEvent<HTMLElement>) => {
+    //     const {showGif} = this.props;
+    //     if(e) {
+    //         <GifPicker fallback={(e) => {
+    //             this.insertText(e, '');
+    //         }}/>
+    //     } 
+    // }
+
     toggleMobileImage = (e?: React.MouseEvent<HTMLElement>) => {
         if (e) {
             e.stopPropagation();
@@ -259,6 +268,8 @@ export class EditorToolbar extends Component<Props> {
     link = (text: string, url: string) => {
         this.insertText(`[${text}`, `](${url})`);
     };
+
+
 
     image = (text: string, url: string) => {
         this.insertText(`![${text}`, `](${url})`);
@@ -493,8 +504,8 @@ export class EditorToolbar extends Component<Props> {
                             }}/>}
                         </div>
                     </Tooltip>
-                    <Tooltip content={_t("editor-toolbar.gif")}>
-                        <div className="editor-tool" role="none">
+                    <Tooltip content={_t("Gif")}>
+                        <div className="editor-tool" role="none" onClick={this.toggleGif}>
                             {gifIcon}
                             {showGif && <GifPicker fallback={(e) => {
                                 this.insertText(e, '');
