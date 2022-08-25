@@ -6,7 +6,7 @@ import {Global} from "../../store/global/types";
 
 import _c from "../../util/fix-class-names";
 
-import {hiveSvg} from "../../img/svg";
+import { hiveSvg, spkSvg } from '../../img/svg';
 import {hiveEngineSvg} from "../../img/svg";
 
 
@@ -40,6 +40,12 @@ export default class WalletMenu extends Component<Props> {
                     <span className="sub-title">Tokens</span>
                     <span className="platform-logo">{hiveEngineSvg}</span>
                 </Link>
+
+              <Link className={_c(`menu-item spk ${active === "spk" ? "active" : ""}`)} to={`/@${username}/spk`}>
+                <span className="title">SPK</span>
+                <span className="sub-title">Tokens</span>
+                <span className="platform-logo">{spkSvg}</span>
+              </Link>
             </div>
         );
     }

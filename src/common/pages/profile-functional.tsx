@@ -48,6 +48,7 @@ import { Account, FullAccount } from '../store/accounts/types';
 import { withPersistentScroll } from '../components/with-persistent-scroll';
 import useAsyncEffect from 'use-async-effect';
 import { usePrevious } from '../util/use-previous';
+import { WalletSpk } from '../components/wallet-spk';
 
 interface MatchParams {
   username: string;
@@ -432,6 +433,9 @@ export const Profile = (props: Props) => {
                 }
                 if (section === 'engine') {
                   return WalletHiveEngine({ ...props, account, updateWalletValues: ensureAccount });
+                }
+                if (section === 'spk') {
+                  return WalletSpk({ ...props, account });
                 }
                 if (section === 'points') {
                   return WalletEcency({ ...props, account, updateWalletValues: ensureAccount });
