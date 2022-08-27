@@ -7,6 +7,8 @@ import { ToggleType } from "../../store/ui/types";
 import {
   menuDownSvg,
 } from "../../img/svg";
+import { ActiveUser } from '../../store/active-user/types';
+
 
 interface Props {
   global: Global;
@@ -15,10 +17,16 @@ interface Props {
   isGlobal: boolean;
   toggleUIProp: (what: ToggleType) => void;
   isActive: boolean;
+  activeUser: ActiveUser | any;
+  noReblog: boolean;
+  handleFilterReblog: () => void;
 }
 
+const feedUrlParams : string = window.location.pathname;
+const feedByUsername : string = feedUrlParams.substring(1, (feedUrlParams.length - 5));
+
 export const EntryIndexMenuDropdown = (props: Props) => {
-  const { global: { filter, tag }, history, onChangeGlobal, isGlobal } = props;
+  const { global: { filter, tag }, history, onChangeGlobal, isGlobal, activeUser } = props;
 
   let dropDownItems: MenuItem[] = [
     {
@@ -100,12 +108,22 @@ export const EntryIndexMenuDropdown = (props: Props) => {
         ]
   }
 
+  if (filter === 'feed') {
+    dropDownItems = [
+          {
+            label: <span>{props.noReblog === true ? _t('entry-filter.filter-with-reblog') : _t('entry-filter.filter-no-reblog')}</span>,
+            selected: tag === "no_reblog",
+            onClick: () => onTagValueClick('no_reblog'),
+          },
+        ]
+  }
+
   const dropDownConfig = {
     history: null,
     label: (
       <div className='tagDropDown'>
         <span className='pl-2' />
-        {tag === "" ? _t('entry-filter.filter-global') : tag === 'my' ? _t('entry-filter.filter-community') : tag === 'today' ? _t('entry-filter.filter-today') : tag === 'week' ? _t('entry-filter.filter-week') : tag === 'month' ? _t('entry-filter.filter-month'): tag === 'year' ? _t('entry-filter.filter-year') : tag === 'all' ? _t('entry-filter.filter-alltime') : tag}
+        {tag === "" ? _t('entry-filter.filter-global') : tag === 'my' ? _t('entry-filter.filter-community') : tag === 'today' ? _t('entry-filter.filter-today') : tag === 'week' ? _t('entry-filter.filter-week') : tag === 'month' ? _t('entry-filter.filter-month'): tag === 'year' ? _t('entry-filter.filter-year') : tag === 'all' ? _t('entry-filter.filter-alltime') : tag === `@${activeUser.username}` || feedByUsername ? (props.noReblog === true ? _t('entry-filter.filter-no-reblog') : _t('entry-filter.filter-with-reblog')) : tag}
         {" "}
         {menuDownSvg}
       </div>
@@ -117,6 +135,8 @@ export const EntryIndexMenuDropdown = (props: Props) => {
     const { toggleUIProp, isActive } = props;
     if (key === 'my' && !isActive) {
       toggleUIProp('login')
+    } else if (key === 'no_reblog') {
+      props.handleFilterReblog();
     } else {
       // onChangeGlobal(!(key.length > 0))
       onChangeGlobal(key)
