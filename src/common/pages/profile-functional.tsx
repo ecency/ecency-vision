@@ -15,7 +15,6 @@ import Theme from '../components/theme';
 import Feedback from '../components/feedback';
 import NavBar from '../components/navbar';
 import NavBarElectron from '../../desktop/app/components/navbar';
-import NotFound from '../components/404';
 import LinearProgress from '../components/linear-progress/index';
 import EntryListLoadingItem from '../components/entry-list-loading-item';
 import DetectBottom from '../components/detect-bottom';
@@ -48,7 +47,7 @@ import { Account, FullAccount } from '../store/accounts/types';
 import { withPersistentScroll } from '../components/with-persistent-scroll';
 import useAsyncEffect from 'use-async-effect';
 import { usePrevious } from '../util/use-previous';
-import { WalletSpk } from '../components/wallet-spk';
+import WalletSpk from '../components/wallet-spk';
 
 interface MatchParams {
   username: string;
