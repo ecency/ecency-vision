@@ -118,7 +118,7 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
 
                 {theBtn}
 
-                {(account && account.witness_votes && account.witness_votes.length > 0) && (
+                {/* {(account && account.witness_votes && account.witness_votes.length > 0) && (
                     <div className="proxy-votes">
                         <div className="proxy-votes-title">
                             {_t("witnesses.proxy-votes-for", {username})}
@@ -132,7 +132,7 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
                             </div>
                         })}
                     </div>
-                )}
+                )} */}
             </div>
         </div>
     }

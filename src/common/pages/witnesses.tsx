@@ -18,7 +18,7 @@ import EntryLink, {PartialEntry} from "../components/entry-link";
 import WitnessVoteBtn from "../components/witness-vote-btn";
 import WitnessesExtra from "../components/witnesses-extra"
 import WitnessesProxy from "../components/witnesses-proxy"
-// import WitnessesActiveProxy from "../components/witnesses-active-proxy";
+import WitnessesActiveProxy from "../components/witnesses-active-proxy";
 
 import routes from "../../common/routes";
 
@@ -101,7 +101,7 @@ interface State {
     witnesses: WitnessTransformed[];
     witnessVotes: string[];
     proxyVotes: string[];
-    proxy: string | null;
+    proxy: string;
     loading: boolean;
 }
 
@@ -110,7 +110,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         witnesses: [],
         witnessVotes: [],
         proxyVotes: [],
-        proxy: null,
+        proxy: '',
         loading: true
     }
 
@@ -125,19 +125,29 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                 this.load();
             })
         }
+        if(this.state.proxy !== prevState.proxy) {
+            this.stateSet({loading: true}, () => {
+                this.load();
+            })
+        }
     }
 
     load = async () => {
         this.stateSet({loading: true});
 
         const {activeUser} = this.props;
+        const params = window.location.search.split('=')[1];
         if (activeUser) {
             const resp = await getAccount(activeUser.username);
             const {witness_votes: witnessVotes, proxy} = resp;
-            const { witness_votes: proxyVotes } = await getAccount(proxy)
-            this.stateSet({witnessVotes: witnessVotes || [], proxyVotes, proxy: proxy || null});
+            const data = await getAccount(params || proxy);
+            this.stateSet({
+                witnessVotes: witnessVotes || [],
+                proxyVotes: data ? data.witness_votes : [],
+                proxy: proxy || '',
+            });
         } else {
-            this.stateSet({witnessVotes: [], proxy: null});
+            this.stateSet({witnessVotes: [], proxy: ''});
         }
         const witnesses = await getWitnessesByVote();
         await this.getWitness(transform(witnesses));
@@ -366,12 +376,20 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                                     }
                                 })}
                                 <div className="flex-spacer"/>
-                                {WitnessesProxy({
+                                {!proxy ? WitnessesProxy({
                                     ...this.props,
                                     onDone: (username) => {
                                         this.stateSet({proxy: username, witnesses: []});
                                     }
-                                })}
+                                }) : (
+                                    <WitnessesActiveProxy
+                                    {...this.props}
+                                    username={proxy}
+                                    onDone={() => {
+                                        this.stateSet({proxy: ''});
+                                    }}
+                                />
+                                )}
                             </div>
                         </>
                     })()}
