@@ -18,7 +18,7 @@ export const wordCounter = (val: string): WordStat => {
     charactersNoSpaces: val.replace(/\s+/g, "").length,
     characters: val.length,
     words: wom ? wom.length : 0,
-    lines: val.split(/\r*\n/).length,
+    lines: val.split(/\r*\n/).length
   };
 };
 
@@ -35,7 +35,7 @@ interface State {
 export default class WordCount extends Component<Props, State> {
   state: State = {
     count: 0,
-    time: 0,
+    time: 0
   };
 
   _timer: any = null;

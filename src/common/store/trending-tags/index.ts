@@ -4,12 +4,19 @@ import { getTrendingTags } from "../../api/hive";
 
 import { AppState } from "../index";
 
-import { TrendingTags, Actions, ActionTypes, FetchAction, FetchedAction, FetchErrorAction } from "./types";
+import {
+  TrendingTags,
+  Actions,
+  ActionTypes,
+  FetchAction,
+  FetchedAction,
+  FetchErrorAction
+} from "./types";
 
 export const initialState: TrendingTags = {
   list: [],
   loading: false,
-  error: false,
+  error: false
 };
 
 export default (state: TrendingTags = initialState, action: Actions): TrendingTags => {
@@ -18,21 +25,21 @@ export default (state: TrendingTags = initialState, action: Actions): TrendingTa
       return {
         list: [],
         loading: true,
-        error: false,
+        error: false
       };
     }
     case ActionTypes.FETCHED: {
       return {
         list: action.tags,
         loading: false,
-        error: false,
+        error: false
       };
     }
     case ActionTypes.FETCH_ERROR: {
       return {
         list: [],
         loading: false,
-        error: true,
+        error: true
       };
     }
     default:
@@ -63,19 +70,19 @@ export const fetchTrendingTags = () => (dispatch: Dispatch, getState: () => AppS
 /* Action Creators */
 export const fetchAct = (): FetchAction => {
   return {
-    type: ActionTypes.FETCH,
+    type: ActionTypes.FETCH
   };
 };
 
 export const fetchedAct = (tags: string[]): FetchedAction => {
   return {
     type: ActionTypes.FETCHED,
-    tags,
+    tags
   };
 };
 
 export const fetchErrorAct = (): FetchErrorAction => {
   return {
-    type: ActionTypes.FETCH_ERROR,
+    type: ActionTypes.FETCH_ERROR
   };
 };

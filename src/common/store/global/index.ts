@@ -1,9 +1,9 @@
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
-import defaults from '../../constants/defaults.json';
-import { AppState } from '../index';
+import defaults from "../../constants/defaults.json";
+import { AppState } from "../index";
 import {
   Actions,
   ActionTypes,
@@ -21,13 +21,13 @@ import {
   NsfwSetAction,
   SetLastIndexPathAction,
   Theme,
-  ThemeChangeAction,
-} from './types';
-import { CommonActionTypes } from '../common';
-import * as ls from '../../util/local-storage';
-import filterTagExtract from '../../helper/filter-tag-extract';
+  ThemeChangeAction
+} from "./types";
+import { CommonActionTypes } from "../common";
+import * as ls from "../../util/local-storage";
+import filterTagExtract from "../../helper/filter-tag-extract";
 
-const defaultTheme = ls.get('theme') || defaults.theme;
+const defaultTheme = ls.get("theme") || defaults.theme;
 
 export const initialState: Global = {
   filter: AllFilter[defaults.filter],
@@ -48,7 +48,7 @@ export const initialState: Global = {
   nsfw: false,
   isMobile: false,
   usePrivate: true,
-  lastIndexPath: null,
+  lastIndexPath: null
 };
 
 export default (state: Global = initialState, action: Actions): Global => {
@@ -110,58 +110,67 @@ export default (state: Global = initialState, action: Actions): Global => {
 };
 
 /* Actions */
-export const toggleTheme = (theme_key?:Theme) => (
-  dispatch: Dispatch,
-  getState: () => AppState
-) => {
-  const { global } = getState();
+export const toggleTheme =
+  (theme_key?: Theme) => (dispatch: Dispatch, getState: () => AppState) => {
+    const { global } = getState();
 
-  const { theme, isMobile } = global;
-  let newTheme: any = theme === Theme.day ? Theme.night : Theme.day;
-  
-  if (!!theme_key) {
-    newTheme = theme_key;
-  }
+    const { theme, isMobile } = global;
+    let newTheme: any = theme === Theme.day ? Theme.night : Theme.day;
 
-  const use_system = ls.get('use_system_theme', false);
-  if (use_system) {
-    let systemTheme: any = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.night : Theme.day;
-    newTheme = systemTheme;
-  }
+    if (!!theme_key) {
+      newTheme = theme_key;
+    }
 
-  ls.set("theme", newTheme);
-  Cookies.set("theme", newTheme, { expires: 365 });
+    const use_system = ls.get("use_system_theme", false);
+    if (use_system) {
+      let systemTheme: any =
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? Theme.night
+          : Theme.day;
+      newTheme = systemTheme;
+    }
 
-  dispatch(themeChangeAct(newTheme));
-  if (isMobile) {
-    let body: any = document.getElementsByTagName("body");
-    if (!body) return;
-    body = body[0];
-    body.classList.remove(`theme-${theme}`);
-    body.classList.add(`theme-${newTheme}`);
-  }
-};
+    ls.set("theme", newTheme);
+    Cookies.set("theme", newTheme, { expires: 365 });
 
-export const toggleListStyle = (view: string | null) => (
-  dispatch: Dispatch,
-  getState: () => AppState
-) => {
-  const { global } = getState();
+    dispatch(themeChangeAct(newTheme));
+    if (isMobile) {
+      let body: any = document.getElementsByTagName("body");
+      if (!body) return;
+      body = body[0];
+      body.classList.remove(`theme-${theme}`);
+      body.classList.add(`theme-${newTheme}`);
+    }
+  };
 
-  const { listStyle } = global;
-  let newStyle: any = null;
+export const toggleListStyle =
+  (view: string | null) => (dispatch: Dispatch, getState: () => AppState) => {
+    const { global } = getState();
 
-  if (view) {
-    newStyle = view === ListStyle.row ? ListStyle.row : view === ListStyle.grid ? ListStyle.grid : ListStyle.deck;
-  } else {
-    newStyle = listStyle === ListStyle.row ? ListStyle.grid : listStyle === ListStyle.grid ? ListStyle.row : ListStyle.deck;
-  }
+    const { listStyle } = global;
+    let newStyle: any = null;
 
-  ls.set("list-style", newStyle);
-  Cookies.set("list-style", newStyle, { expires: 365 });
+    if (view) {
+      newStyle =
+        view === ListStyle.row
+          ? ListStyle.row
+          : view === ListStyle.grid
+          ? ListStyle.grid
+          : ListStyle.deck;
+    } else {
+      newStyle =
+        listStyle === ListStyle.row
+          ? ListStyle.grid
+          : listStyle === ListStyle.grid
+          ? ListStyle.row
+          : ListStyle.deck;
+    }
 
-  dispatch(listStyleChangeAct(newStyle));
-};
+    ls.set("list-style", newStyle);
+    Cookies.set("list-style", newStyle, { expires: 365 });
+
+    dispatch(listStyleChangeAct(newStyle));
+  };
 
 export const hideIntro = () => (dispatch: Dispatch) => {
   ls.set("hide-intro", "1");
@@ -186,13 +195,12 @@ export const unMuteNotifications = () => (dispatch: Dispatch) => {
   dispatch(unMuteNotificationsAct());
 };
 
-export const setCurrency = (currency: string, rate: number, symbol: string) => (
-  dispatch: Dispatch
-) => {
-  ls.set("currency", currency);
+export const setCurrency =
+  (currency: string, rate: number, symbol: string) => (dispatch: Dispatch) => {
+    ls.set("currency", currency);
 
-  dispatch(setCurrencyAct(currency, rate, symbol));
-};
+    dispatch(setCurrencyAct(currency, rate, symbol));
+  };
 
 export const setLang = (lang: string) => (dispatch: Dispatch) => {
   ls.set("lang", lang);
@@ -208,49 +216,45 @@ export const setNsfw = (value: boolean) => (dispatch: Dispatch) => {
 
 export const setLastIndexPath = (path: string | null) => (dispatch: Dispatch) => {
   dispatch(setLastIndexPathAct(path));
-}
+};
 
 /* Action Creators */
 export const themeChangeAct = (theme: Theme): ThemeChangeAction => {
   return {
     type: ActionTypes.THEME_CHANGE,
-    theme,
+    theme
   };
 };
 
 export const hideIntroAct = (): IntroHideAction => {
   return {
-    type: ActionTypes.INTRO_HIDE,
+    type: ActionTypes.INTRO_HIDE
   };
 };
 
-export const listStyleChangeAct = (
-  listStyle: ListStyle
-): ListStyleChangeAction => {
+export const listStyleChangeAct = (listStyle: ListStyle): ListStyleChangeAction => {
   return {
     type: ActionTypes.LIST_STYLE_CHANGE,
-    listStyle,
+    listStyle
   };
 };
 
-export const newVersionChangeAct = (
-  version: string | null
-): NewVersionChangeAction => {
+export const newVersionChangeAct = (version: string | null): NewVersionChangeAction => {
   return {
     type: ActionTypes.NEW_VERSION_CHANGE,
-    version,
+    version
   };
 };
 
 export const muteNotificationsAct = (): NotificationsMuteAction => {
   return {
-    type: ActionTypes.NOTIFICATIONS_MUTE,
+    type: ActionTypes.NOTIFICATIONS_MUTE
   };
 };
 
 export const unMuteNotificationsAct = (): NotificationsUnMuteAction => {
   return {
-    type: ActionTypes.NOTIFICATIONS_UNMUTE,
+    type: ActionTypes.NOTIFICATIONS_UNMUTE
   };
 };
 
@@ -263,31 +267,31 @@ export const setCurrencyAct = (
     type: ActionTypes.CURRENCY_SET,
     currency,
     currencyRate,
-    currencySymbol,
+    currencySymbol
   };
 };
 
 export const setLangAct = (lang: string): LangSetAction => {
   return {
     type: ActionTypes.LANG_SET,
-    lang,
+    lang
   };
 };
 
 export const setNsfwAct = (value: boolean): NsfwSetAction => {
   return {
     type: ActionTypes.NSFW_SET,
-    value,
+    value
   };
 };
 
 export const hasKeyChainAct = (): HasKeyChainAction => {
   return {
-    type: ActionTypes.HAS_KEYCHAIN,
+    type: ActionTypes.HAS_KEYCHAIN
   };
 };
 
 export const setLastIndexPathAct = (path: string | null): SetLastIndexPathAction => ({
   type: ActionTypes.SET_LAST_INDEX_PATH,
-  path,
+  path
 });

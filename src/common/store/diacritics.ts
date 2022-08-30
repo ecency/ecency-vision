@@ -1,4 +1,4 @@
-export function removeDiacritics(str:string) {
+export function removeDiacritics(str: string) {
   let normalizedString = decodeURI(str);
-  return normalizedString
+  return normalizedString;
 }

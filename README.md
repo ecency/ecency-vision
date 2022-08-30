@@ -73,6 +73,7 @@ docker run -it --rm -p 3000:3000 ecency/vision:latest
 
 Configure the instance using following environment variables:
  * `USE_PRIVATE`
+ * `REDIS_URL`
 
 ```bash
 docker run -it --rm -p 3000:3000 -e USE_PRIVATE=1 ecency/vision:latest

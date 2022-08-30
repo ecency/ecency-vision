@@ -1,7 +1,7 @@
 import React from "react";
 import { _t } from "../../i18n";
 import { ListStyle } from "../../store/global/types";
-import { DeckHeader } from './deck-header';
+import { DeckHeader } from "./deck-header";
 
 export interface DeckProps {
   header: { title: string; icon: any; updateIntervalMs: number };
@@ -26,14 +26,12 @@ export const Deck = ({
   ...rest
 }: DeckProps) => {
   const notificationTranslated = _t("decks.notifications");
-  const containerClass = header.title.includes(notificationTranslated)
-    ? "list-body pb-0"
-    : "";
+  const containerClass = header.title.includes(notificationTranslated) ? "list-body pb-0" : "";
 
   return (
     <div className={`deck mr-3 rounded-top ${containerClass}`}>
       <DeckHeader
-        account={(rest as any).activeUser ? (rest as any).activeUser.username :  ''}
+        account={(rest as any).activeUser ? (rest as any).activeUser.username : ""}
         {...header}
         index={index}
         onRemove={onRemove}
@@ -63,7 +61,6 @@ export const Deck = ({
               {...rest}
             />
           ))}
-
       </div>
     </div>
   );

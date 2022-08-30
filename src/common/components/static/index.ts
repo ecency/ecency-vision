@@ -1,1 +1,1 @@
-export * from './static-navbar';
+export * from "./static-navbar";
