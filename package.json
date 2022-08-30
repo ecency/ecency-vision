@@ -139,7 +139,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,md,json}": [
-      "prettier --write",
+      "yarn format",
       "git add"
     ]
   },
