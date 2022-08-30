@@ -8,7 +8,7 @@
     "build": "razzle build --noninteractive",
     "test": "TZ=UTC razzle test --env=jsdom",
     "prepare": "husky install",
-    "format": "prettier --ignore-unknown --write './src/**/**/*.{js,jsx,ts,tsx,scss,md,json}' --config ./.prettierrc",
+    "format": "prettier --ignore-unknown --write './src/**/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "precommit": "lint-staged",
     "start:prod": "NODE_ENV=production node build/server.js"
   },
