@@ -20,7 +20,7 @@ import { DraggableDeckView } from './draggable-deck-view';
 import { HotListItem, SearchListItem } from "../deck/deck-items";
 import { TransactionRow } from "../transactions";
 import MyTooltip from "../tooltip";
-import { NotificationListItem } from "../notifications";
+import NotificationListItem from "../notifications/notification-list-item";
 import { _t } from "../../i18n";
 import { error } from "../feedback";
 import { IdentifiableDeckModel } from './types';
@@ -39,8 +39,8 @@ const DeckViewContainer = ({
 }: any) => {
   const [openModal, setOpenModal] = useState(false);
   const [loadingNewContent, setLoadingNewContent] = useState(false);
-  const [user, setUser] = useState("");
-  const [fetched, setFetched] = useState(false);
+  const [user, setUser] = useState(null);
+  const [fetched, setFetched] = useState(true);
 
   const onSelectColumn = async (account: string, contentType: string) => {
     setOpenModal(false);
@@ -96,7 +96,11 @@ const DeckViewContainer = ({
     }
   }, [loadingNewContent]);
 
-  useEffect(() => setUser(rest.activeUser && rest.activeUser.username), [rest]);
+  useEffect(() => {
+    if (rest.activeUser && rest.activeUser.username !== user) {
+      setUser(rest.activeUser.username);
+    }
+  }, [rest.activeUser]);
 
   const onReloadColumn = async (title: string) => {
     setUser(rest.activeUser && rest.activeUser.username);
@@ -106,25 +110,22 @@ const DeckViewContainer = ({
 
   // Load decks from storage
   useEffect(() => {
-    if (!deck.items.length) {
-      setUser(rest.activeUser && rest.activeUser.username);
-      loadDeckFromStorage(user, {
-        SearchListItem,
-        HotListItem,
-        NotificationListItem,
-        TransactionRow,
-      });
-    }
-  }, [rest]);
+    loadDeckFromStorage(user, {
+      SearchListItem,
+      HotListItem,
+      NotificationListItem,
+      TransactionRow,
+    });
+    setFetched(false);
+  }, [user]);
 
   useEffect(() => {
-    setUser(rest.activeUser && rest.activeUser.username);
     const items = (deck.items as IdentifiableDeckModel[]);
     if (!fetched && items.length) {
       items.forEach(({header: {title}}) => fetchDeckData(title));
       setFetched(true);
     }
-  }, [deck]);
+  }, [deck.items]);
 
   return (
     <>

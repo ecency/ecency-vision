@@ -46,6 +46,8 @@ import isElectron from "../../../../common/util/is-electron";
 
 const pathToRegexp = require("path-to-regexp");
 import isCommunity from "../../../../common/helper/is-community";
+import { NotifyTypes } from '../../../../common/enums';
+import { setNotificationsSettingsItem, updateNotificationsSettings } from '../../../../common/store/notifications';
 const logo = "./img/logo-circle.svg";
 
 
@@ -317,6 +319,9 @@ interface Props {
     reloading?: boolean,
     step?: number,
     match?: any;
+    fetchNotificationsSettings: (username: string) => void;
+    updateNotificationsSettings: typeof updateNotificationsSettings;
+    setNotificationsSettingsItem: typeof setNotificationsSettingsItem;
 }
 
 interface State {
@@ -386,7 +391,7 @@ export class NavBar extends Component<Props, State> {
         const communityPage = match && match.params.name && isCommunity(match.params.name)
         const tagValue = global.tag ? `/${global.tag}` : ''
         const logoHref = activeUser ? 
-        (communityPage || ((global.tag.includes('@')) && (['engine','wallet','points','communities','settings','permissions','comments','replies','blog', 'posts'].includes(global.filter)))) ?
+        (communityPage || ((global.tag.includes('@')) && (['engine','wallet','points','communities','settings','permissions','comments','replies','blog','posts','feed','referrals','followers','following'].includes(global.filter)))) ?
         '/hot' : 
         global.filter === 'feed' ? `${tagValue}/${global.filter}` : `/${global.filter}${tagValue}` 
         : '/';
@@ -511,6 +516,9 @@ export default (p: Props) => {
         step: p.step,
         setStepTwo: p.setStepTwo,
         match: p.match,
+        fetchNotificationsSettings: p.fetchNotificationsSettings,
+        updateNotificationsSettings: p.updateNotificationsSettings,
+        setNotificationsSettingsItem: p.setNotificationsSettingsItem
     }
 
     return <NavBar {...props} />;

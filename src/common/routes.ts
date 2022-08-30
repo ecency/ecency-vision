@@ -21,7 +21,7 @@ export default {
     ENTRY: `/:category/:username(@[\\w\\.\\d-]+)/:permlink`,
     USER: `/:username(@[\\w\\.\\d-]+)`,
     USER_FEED: `/:username(@[\\w\\.\\d-]+)/:section(feed)`,
-    USER_SECTION: `/:username(@[\\w\\.\\d-]+)/:section(${profileFilters.join("|")}|wallet|points|engine|communities|settings|permissions)`,
+    USER_SECTION: `/:username(@[\\w\\.\\d-]+)/:section(${profileFilters.join("|")}|wallet|points|engine|communities|settings|permissions|referrals|followers|following)`,
     COMMUNITIES: `/communities`,
     COMMUNITIES_CREATE: `/communities/create`,
     COMMUNITIES_CREATE_HS: `/communities/create-hs`,
@@ -34,5 +34,6 @@ export default {
     SEARCH_MORE: `/search-more/`,
     WITNESSES: `/witnesses`,
     PROPOSALS: `/proposals`,
-    PROPOSAL_DETAIL: `/proposals/:id(\\d+)`
+    PROPOSAL_DETAIL: `/proposals/:id(\\d+)`,
+    PURCHASE: '/purchase'
 };

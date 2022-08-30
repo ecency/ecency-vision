@@ -110,7 +110,7 @@ const MarketPage = (props: PageProps) => {
   return mounted ? (
     <>
       <Meta {...metaProps} />
-      <Feedback />
+      <Feedback activeUser={props.activeUser}  />
       <div className="d-flex justify-content-center">
         <div className="w-sm-75 p-3 p-sm-0">
           <div style={{ marginBottom: "6rem" }}>{navbar}</div>

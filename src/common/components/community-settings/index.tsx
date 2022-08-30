@@ -163,7 +163,7 @@ export class CommunitySettings extends BaseComponent<Props, State> {
     onChange = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {target: el} = e;
         const key = el.name;
-        const val = el.hasOwnProperty("checked") ? el.checked : cleanString(el.value);
+        const val = el.hasOwnProperty("checked") ? el.checked : el.value;
 
         // @ts-ignore
         this.stateSet({[key]: val});
@@ -172,7 +172,14 @@ export class CommunitySettings extends BaseComponent<Props, State> {
     submit = () => {
         const {activeUser, community, addCommunity, onHide} = this.props;
         const {title, about, description, lang, flag_text, is_nsfw} = this.state;
-        const newProps = {title, about, description, lang, flag_text, is_nsfw};
+        const newProps = {
+            title: cleanString(title),
+            about: cleanString(about),
+            description: cleanString(description),
+            lang,
+            flag_text: cleanString(flag_text),
+            is_nsfw
+        };
 
         this.stateSet({inProgress: true});
         return updateCommunity(activeUser.username, community.name, newProps)
@@ -181,7 +188,7 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                 addCommunity(nCom);
                 onHide();
             })
-            .catch(err => error(formatError(err)))
+            .catch(err => error(...formatError(err)))
             .finally(() => this.stateSet({inProgress: false}));
     }
 

@@ -137,7 +137,7 @@ export class EntryIndexMenu extends Component<Props, States> {
             }
         }
         else if(['controversial', 'rising'].includes(filter)) {
-            const tagValue = (tag && tag !== 'my' && ['today', 'week', 'month', 'year', 'all'].includes(tag)) ? '/' + tag : '/week'
+            const tagValue = (tag && tag !== 'my' && ['today', 'week', 'month', 'year', 'all'].includes(tag)) ? '/' + tag : '/today'
             history.push(`/${filter}${tagValue}`)
         }
         /*else if(!['controversial', 'rising'].includes(filter)) {
@@ -427,7 +427,7 @@ export class EntryIndexMenu extends Component<Props, States> {
 
                             </div>
                         </div>
-                        <div className="d-flex align-items-center ml-auto ml-md-0">
+                        <div className="d-flex align-items-center ml-auto ml-md-0 pl-3">
                             <span className="info-icon mr-0 mr-md-2"
                                 onClick={() => 
                                     this.setState({ introduction: filter === 'feed' ? IntroductionType.FRIENDS : filter === 'trending' ? IntroductionType.TRENDING : filter === 'hot' ? IntroductionType.HOT : filter === 'created' ? IntroductionType.NEW : IntroductionType.NONE })

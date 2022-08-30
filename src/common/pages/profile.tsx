@@ -26,6 +26,7 @@ import ProfileMenu from "../components/profile-menu";
 import ProfileCover from "../components/profile-cover";
 import ProfileCommunities from "../components/profile-communities";
 import ProfileSettings from "../components/profile-settings";
+import ProfileReferrals from '../components/profile-referrals';
 import WalletHive from "../components/wallet-hive";
 import WalletHiveEngine from "../components/wallet-hive-engine";
 import WalletEcency from "../components/wallet-ecency";
@@ -113,9 +114,6 @@ class ProfilePage extends BaseComponent<Props, State> {
             // fetch posts
             fetchEntries(global.filter, global.tag, false);
         }
-
-        // fetch wallet transactions
-        fetchTransactions(username);
 
         // fetch points
         fetchPoints(username);
@@ -380,7 +378,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                 <Meta {...metaProps} />
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
-                <Feedback/>
+                <Feedback activeUser={this.props.activeUser} />
                 {navBar}
 
                 <div className={containerClasses}>
@@ -454,7 +452,8 @@ class ProfilePage extends BaseComponent<Props, State> {
                                 if (section === "engine") {
                                     return WalletHiveEngine({
                                         ...this.props,
-                                        account
+                                        account,
+                                        updateWalletValues: this.ensureAccount
                                     });
                                 }
 
@@ -478,6 +477,14 @@ class ProfilePage extends BaseComponent<Props, State> {
                                         ...this.props,
                                         account
                                     })
+                                }
+
+                                if (section === "referrals") {
+                                    return ProfileReferrals({
+                                      ...this.props,
+                                      account,
+                                      updateWalletValues: this.ensureAccount,
+                                    });
                                 }
 
                                 if (section === "permissions" && activeUser) {

@@ -186,6 +186,9 @@ exports[`(2) Render with loaded data 1`] = `
       </a>
     </div>
   </div>
+  <div
+    className="btn-controls"
+  />
 </div>
 `;
 
@@ -352,6 +355,13 @@ exports[`(3) Should show profile edits 1`] = `
   <div
     className="btn-controls"
   >
+    <a
+      className="btn btn-sm btn-primary"
+      href="/@user1/referrals"
+      onClick={[Function]}
+    >
+      Referrals
+    </a>
     <a
       className="btn btn-sm btn-primary"
       href="/witnesses"

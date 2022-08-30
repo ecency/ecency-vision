@@ -119,6 +119,20 @@ const defProps = {
   users: [],
   activeUser: {...activeUserInstance},
   account,
+  transactions: transactionsInitialState,
+  signingKey: '',
+  addAccount: () => {
+  },
+  updateActiveUser: () => {
+  },
+  setSigningKey: () => {
+  },
+  fetchTransactions: () => {
+  },
+  fetchPoints: () => {
+  },
+  updateWalletValues: () => {
+  }
 };
 
 it("(1) Render an empty list when no tokens found", async () => {

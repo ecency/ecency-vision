@@ -217,6 +217,12 @@ export interface EffectiveCommentVote extends BaseTransaction {
     weight: number
 }
 
+export interface VoteProxy extends BaseTransaction {
+    type: "account_witness_proxy"
+    account: string
+    proxy: string
+}
+
 export type Transaction =
     | CurationReward
     | AuthorReward
@@ -245,6 +251,7 @@ export type Transaction =
     | LimitOrderCancel
     | FillVestingWithdraw
     | EffectiveCommentVote
+    | VoteProxy
     | DelegateVestingShares;
 
 export type OperationGroup = "transfers" | "market-orders" | "interests" | "stake-operations" | "rewards";

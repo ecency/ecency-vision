@@ -2,11 +2,16 @@ import {Entry} from "../store/entries/types";
 import {Community} from "../store/communities/types";
 import {Subscription} from "../store/subscriptions/types";
 
-import {client as hiveClient} from "./hive";
+import {Client} from "@hiveio/dhive";
 
+export const bridgeServer = new Client(["https://api.hive.blog","https://rpc.ecency.com","https://api.deathwing.me"], {
+    timeout: 3000,
+    failoverThreshold: 3,
+    consoleOnFailover: true,
+});
 export const dataLimit = typeof window !== "undefined" && window.screen.width < 540 ? 5 : 20 || 20
 
-const bridgeApiCall = <T>(endpoint: string, params: {}): Promise<T> => hiveClient.call("bridge", endpoint, params);
+const bridgeApiCall = <T>(endpoint: string, params: {}): Promise<T> => bridgeServer.call("bridge", endpoint, params);
 
 const resolvePost = (post: Entry, observer: string): Promise<Entry> => {
     const {json_metadata: json} = post;

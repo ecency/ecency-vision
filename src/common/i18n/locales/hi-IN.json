@@ -137,7 +137,8 @@
     "light": "लाइट",
     "dark": "डार्क",
     "switch-to": "स्विच",
-    "vote-power": "वोट पावर:"
+    "vote-power": "वोट पावर:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "महाप्राण की आकांक्षा",
@@ -164,8 +165,8 @@
     "sign-up-text-2": "अभी साइनअप करें!"
   },
   "sign-up": {
-    "header": "इसेंसी में आपका स्वागत है",
-    "description": "नि: शुल्क भाषण और पुरस्कृत समुदायों का घर!",
+    "header": "Rewarding communities",
+    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
     "bottom-description": "प्रत्येक खाता एक ब्लॉकचेन पर बनाया गया है और केवल उस खाते पर आपका नियंत्रण है। ब्लॉकचेन और इसेंसी पर सब कुछ प्रबंधित करने के लिए एक खाता।",
     "learn-more": "हमारे लाभ के बारे में अधिक जानें <a href=\"/faq#how-to-join\">अकसर किये गए सवाल</a>",
     "username": "एक उपयोगकर्ता नाम चुनें",
@@ -188,7 +189,7 @@
   "entry-list-item": {
     "cross-posted": "पोस्ट की गई",
     "cross-posted-to": "को",
-    "reblogged": "{{n}} रीब्लॉगड",
+    "reblogged": "{{n}} reblogged",
     "promoted": "प्रचारित",
     "pinned": "पिन की गई पोस्ट",
     "replies": "१ प्रतिक्रिया| क्लिक करें जबाब के लिए|",
@@ -547,11 +548,15 @@
     "section-communities": "समुदाय",
     "section-wallet": "बटुआ",
     "section-settings": "सेटिंग्स",
+    "section-referrals": "Referrals",
     "section-permission": "अनुमति",
     "communities-title": "सदस्यता",
     "create-community": "एक समुदाय बनाएँ",
     "witnesses": "गवाहों",
-    "proposals": "प्रस्ताव"
+    "proposals": "प्रस्ताव",
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "में शामिल हो गए {{n}}",
@@ -591,6 +596,10 @@
     "language": "भाषा",
     "nsfw": "NSFW सामग्री दिखाएं",
     "referral-link": "रेफ़रल लिंक",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "वरीयता अद्यतन!"
   },
   "wallet": {
@@ -608,6 +617,9 @@
     "hive-power-description": "हाइव पावर प्रभावशाली टोकन हैं जो लंबे समय तक रखने और सामग्री पर मतदान करने के लिए अधिक शक्ति अर्जित करते हैं। एक व्यक्ति जितना अधिक हाइव पावर रखता है, उतना ही वह दूसरे के पुरस्कारों को प्रभावित कर सकता है और सटीक मतदान के लिए पुरस्कार अर्जित कर सकता है। हाइव पावर एचआईवीई टोकन है जिसे 13 सप्ताह में बिना दांव पर लगाया जा सकता है।",
     "hive-power-apr-rate": "हाइव पावर के लिए एपीआर ब्याज दर {{value}}% है",
     "hive-dollars-apr-rate": "एच बी डी($) के लिए APR ब्याज दर {{value}}% है",
+    "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
+    "hive-dollars-apr-when": "Claim in {{value}} days",
+    "hive-dollars-apr-now": "Claim now",
     "hive-power-delegated": "प्रत्यायोजित हाइव पावर",
     "hive-power-received": "हाइव पावर प्राप्त किया",
     "next-power-down-amount": "अगली पावर डाउन राशि",
@@ -616,7 +628,7 @@
     "hive-dollars-description": "हाइव के $ 1.00 के टोकन।",
     "savings": "बचत",
     "savings-description": "शेष 3 दिन की प्रतीक्षा अवधि के अधीन।",
-    "next-power-down": "अगली शक्ति नीचे {{time}},{{amount}} है",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "स्थानांतरण",
     "transfer-to-savings": "बचत खाते में स्थांतरण करें",
     "convert": "बदलें",
@@ -699,6 +711,18 @@
     "submit": "खरीद फरोख्त",
     "purchase-message": "या प्वॉइंट्स खरीदने के लिए मेमो के रूप में `अंक' के साथ @esteem.app को कोई भी राशि भेजें।"
   },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "title-points": "Buy points",
+    "copied": "Account boost link copied!",
+    "select-type": "Select a type",
+    "boost": "Boost",
+    "points": "Points",
+    "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
+    "points-amount": "{{n}} points"
+  },
   "promote": {
     "title": "बढ़ावा देना",
     "sub-title": "अपनी पोस्ट का प्रचार करें",
@@ -708,7 +732,8 @@
     "title": "बूस्ट",
     "sub-title": "अपनी पोस्ट का प्रचार करें",
     "amount": "रकम",
-    "slider-hint": "राशि समायोजित करने के लिए स्लाइडर को खींचें।"
+    "slider-hint": "राशि समायोजित करने के लिए स्लाइडर को खींचें।",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "शेष रकम",
@@ -723,6 +748,10 @@
     "transfer-title": "खाते में स्थानांतरण",
     "transfer-title-point": "खाते को उपहार",
     "transfer-sub-title": "फंड्स को दूसरे हाइव अकाउंट में ले जाएं",
+    "stake-hive-engine-title": "Stake token",
+    "stake-hive-engine-sub-title": "Stake token to earn passive rewards",
+    "unstake-hive-engine-title": "Unstake token",
+    "unstake-hive-engine-sub-title": "Unstake token you will stop earning passive rewards",
     "transfer-saving-title": "बचत में स्थानांतरण",
     "transfer-saving-sub-title": "3 दिन की प्रतीक्षा अवधि को हटाकर धन की सुरक्षा करें",
     "withdraw-saving-title": "बचत वापस लेना",
@@ -733,8 +762,14 @@
     "convert-sub-title": "केवल तभी अनुशंसित किया जाता है जब एचबीडी $1 से कम हो। आपको 3.5 दिनों में $1 का हाइव मिलेगा।",
     "delegate-title": "प्रतिनिधि",
     "delegate-sub-title": "प्रतिनिधि हाइव पावर",
+    "delegate-hive-engine-title": "Delegate",
+    "delegate-hive-engine-sub-title": "Delegate Tokens",
+    "undelegate-hive-engine-title": "Undelegate",
+    "undelegate-hive-engine-sub-title": "Undelegate Tokens to add them back to your Hive Engine balance",
     "power-down-title": "शक्तिक्षय करें",
     "power-down-sub-title": "पावर डाउन हाइव पावर",
+    "claim-interest-title": "Claim HBD Interest",
+    "claim-interest-sub-title": "Withdraw small amount that will be cancelled right away",
     "from": "से",
     "to": "को",
     "to-placeholder": "प्रयोक्ता नाम",
@@ -749,6 +784,7 @@
     "memo": "ज्ञापन",
     "memo-placeholder": "यहां अपने नोट्स दर्ज करें",
     "memo-help": "यह ज्ञापन सार्वजनिक है",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* उपलब्ध हाइव शक्ति",
     "override-warning-1": "नई राशि पिछले एक को ओवरराइड करती है।",
     "override-warning-2": "खाता ({{account}}) पहले ही {{previousAmount}} के साथ प्रत्यायोजित किया जा चुका है।",
@@ -761,8 +797,12 @@
     "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> से स्थानांतरित किया गया <span class=\"from-user\">{{from}}</span> के लिये <span class=\"to-user\">{{to}}</span>",
     "convert-summary": "<span class=\"amount\">{{amount}}</span> परिवर्तित किया जा रहा है",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> से चुराया हुआ<span class=\"from-user\">{{from}}</span>के लिये <span class=\"to-user\">{{to}}</span>",
+    "stake-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "unstake-summary": "<span class=\"amount\">{{amount}}</span> unstaked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> से प्रत्यायोजित किया गया <span class=\"from-user\">{{from}}</span> के लिये <span class=\"to-user\">{{to}}</span>",
+    "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "पावर डाउन के रूप में पूरा किया <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "रीसेट करें",
     "powering-down": "आप वर्तमान में शक्ति प्राप्त कर रहे हैं।",
     "stop-power-down": "रुको"
@@ -815,7 +855,8 @@
     "type-update_proposal_vote-detail": "प्रस्ताव आईडी: <strong>{{pid}}</strong>",
     "type-limit_order_create": "नया व्यापार बनाया",
     "type-limit_order_cancel": "खुला व्यापार रद्द",
-    "type-effective_comment_vote": "प्रभावी वोट"
+    "type-effective_comment_vote": "प्रभावी वोट",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "साइन करें",
@@ -923,7 +964,8 @@
     "scheduled": "पोस्ट अनुसूचित करें",
     "empty-title-alert": "पोस्ट का शीर्षक दर्ज करें",
     "empty-tags-alert": "पोस्ट टैग दर्ज करें",
-    "empty-body-alert": "पोस्ट बॉडी दर्ज करें"
+    "empty-body-alert": "पोस्ट बॉडी दर्ज करें",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "टैग। पहला टैग मुख्य श्रेणी है। क्रमित करने योग्य।",
@@ -987,7 +1029,7 @@
     "type-transfers": "स्थानांतरण",
     "type-delegations": "डेलीगेशन्स",
     "group-title-recent": "ताजा",
-    "vote-str": "{{p}}% आपकी पोस्ट को पसंद किया है:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "आपके पोस्ट का जवाब दिया:",
     "mention-str": "में आपका उल्लेख किया:",
     "followed-str": "अनुगमन करना",
@@ -1003,7 +1045,8 @@
     "mark-all-read": "सभी को पढ़ा हुआ मार्क करें",
     "mark-read": "पढ़ा हुआ मार्क करें",
     "mute": "अधिसूचना अलर्ट बंद करें",
-    "unmute": "अधिसूचना अलर्ट चालू करें"
+    "unmute": "अधिसूचना अलर्ट चालू करें",
+    "settings": "Settings"
   },
   "leaderboard": {
     "title-stars": "सर्वाधिक क्रियाशील",
@@ -1089,6 +1132,16 @@
     "proxy-active-current": "आपका वर्तमान प्रॉक्सी है",
     "proxy-active-btn-label": "प्रॉक्सी हटाये",
     "proxy-votes-for": "@{{username}} के लिए वोट"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "प्रस्ताव",
@@ -1245,7 +1298,7 @@
       "what-are-rc-header": "संसाधन क्रेडिट क्या हैं?",
       "what-are-rc-body": "<p>हाइव ब्लॉकचैन पर लेनदेन करने पर शून्य फीस लगती है, ब्लॉकचैन को स्पैम हमलों से बचाने के लिए लेनदेन की दर सीमित होती है। ब्लॉकचेन पर आपके द्वारा की जाने वाली प्रत्येक कार्रवाई में संसाधन क्रेडिट की थोड़ी मात्रा का उपभोग होगा। इसमें पोस्टिंग, कमेंटिंग, वोटिंग, टोकन ट्रांसफर करना आदि शामिल हैं, कंटेंट देखने से रिसोर्स क्रेडिट का उपभोग नहीं होता है। </p> <p> प्रत्येक उपयोगकर्ता के पास प्रत्येक सप्ताह उपयोग करने के लिए सीमित मात्रा में रिसोर्स क्रेडिट होते हैं। उपयोगकर्ता जितना अधिक लेन-देन करता है, उसके पास उतने कम रिसोर्स क्रेडिट होते हैं (जब तक वे रिचार्ज नहीं हो जाते)। अधिक HIVE POWER वाले उपयोगकर्ताओं के पास अधिक संसाधन क्रेडिट होंगे। </p> <p> यदि आप संसाधन क्रेडिट से बाहर निकलते हैं, तो आप ब्लॉकचैन के साथ तब तक लेन-देन नहीं कर पाएंगे, जब तक कि आपके संसाधन क्रेडिट रिचार्ज (स्वचालित रूप से नहीं हो जाते) या आप अतिरिक्त HIT POWER प्राप्त कर लेते हैं अपने संसाधन क्रेडिट संतुलन को बढ़ाने के लिए या आप अस्थायी प्रतिनिधिमंडल प्राप्त करने के लिए <a href=\"/faq#how-boost-account\"> Ecency से Boosting खाते का अनुरोध करें </a> कर सकते हैं।</p>",
       "how-boost-account-header": "खाता बढ़ाने का अनुरोध कैसे करें?",
-      "how-boost-account-body": "<p>यदि आपके खाते में <a href=\"/faq#what-are-rc\">संसाधन क्रेडिट</a> कम है, तो आप Ecency से खाता बूस्ट करने का अनुरोध कर सकते हैं। आपको 30 दिनों का प्रतिनिधिमंडल प्राप्त होगा जो आपके खाते को ब्लॉकचैन पर अधिक गतिविधियों को करने के लिए बढ़ावा देगा। यदि हमारी टीम को शक्ति का अनुचित उपयोग मिलता है तो प्रतिनिधिमंडल को कभी भी वापस लिया जा सकता है। आप पॉइंट विकल्पों में खाता बढ़ाने की सुविधा पा सकते हैं।</p>",
+      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation (553311 VESTS) which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can request account boosting quickly with <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR page</a> just change username and scan QR image with Ecency mobile app.</p>",
       "what-spam-abuse-header": "स्पैम या दुरुपयोग क्या माना जाता है?",
       "what-spam-abuse-body": "<p><ul><li>साहित्यिक पोस्ट या कॉपी की गई सामग्री।</li><li>कई पोस्ट पर लगभग समान या भौतिक रूप से समान टिप्पणियों को छोड़ना।</li><li>टैग का उपयोग करना जो पोस्ट से संबंधित नहीं हैं।< /li><li>उपयोगकर्ताओं को किसी भी प्रकार की शारीरिक हिंसा के लिए धमकाना।</li><li>किसी और की सामग्री का उपयोग करते समय स्रोतों का हवाला नहीं देना।</li><li>\"काम के लिए सुरक्षित नहीं है\" सामग्री को बिना उपयोग किए पोस्ट करना nsfw” टैग।</li><li>धोखाधड़ी या कपटपूर्ण प्रस्ताव।</li></ul></p>",
       "can-link-post-header": "क्या मैं अपनी वेबसाइट पर इसेंसी टीम से बैकलिंक जोड़ने का अनुरोध कर सकता हूं?",
@@ -1267,7 +1320,71 @@
       "boosting-vote-buying-header": "क्या बूस्टिंग को वोट खरीदना माना जाता है?",
       "boosting-vote-buying-body": "<p>नहीं! क्योंकि, वोट प्राप्त करने की कोई गारंटी नहीं है, वोट की सही मात्रा की कोई गारंटी नहीं है, अधिकतम राशि बढ़ाना सीमित है, हमारे क्यूरेटर द्वारा समीक्षा की गई प्रत्येक सामग्री में कोई लाभ नहीं है। सभी क्यूरेशन पुरस्कार प्रतिनिधियों को 100% वापस भेज दिए जाते हैं। केवल मापने योग्य सफलता जो हम चाहते हैं वह है पूरे पारिस्थितिकी तंत्र पर जुड़ाव और विकास देखना। बूस्टिंग प्लेटफॉर्म पर जुड़ाव को बेहतर बनाने के लिए इसेंसी अंक के लिए अतिरिक्त उपयोग का मामला बना रहा है, इसलिए यह अनिवार्य रूप से हाइव पर किसी भी अन्य क्यूरेशन गिल्ड के समान है। उन गिल्डों का लक्ष्य अंततः मंच पर जुड़ाव में सुधार करना और गतिविधि को बढ़ाना है, जिस तरह से प्रत्येक उपाय करता है कि सफलता अलग है।</p>",
       "how-exchange-work-header": "टोकन एक्सचेंज कैसे काम करता है?",
-      "how-exchange-work-body": "<p>इसेंसी पर टोकन का आदान-प्रदान और व्यापार करना बहुत सरल है। हम आंतरिक सहकर्मी से सहकर्मी, हाइव ब्लॉकचेन में निर्मित विकेंद्रीकृत विनिमय का उपयोग करते हैं। इंटरफ़ेस का उपयोग करने में आसान ऑफ़र करें ताकि आप एक टोकन को दूसरे टोकन का आदान-प्रदान कर सकें, पूरी तरह से विकेन्द्रीकृत तरीके से। खरीदें या बेचें ऑर्डर बनाएं और अन्य लोगों द्वारा आपका ऑर्डर भरने की प्रतीक्षा करें। यदि आप जल्दी से टोकन स्वैप करना चाहते हैं तो आप त्वरित व्यापार के लिए किसी और के खुले आदेश को भर सकते हैं।</p>"
+      "how-exchange-work-body": "<p>इसेंसी पर टोकन का आदान-प्रदान और व्यापार करना बहुत सरल है। हम आंतरिक सहकर्मी से सहकर्मी, हाइव ब्लॉकचेन में निर्मित विकेंद्रीकृत विनिमय का उपयोग करते हैं। इंटरफ़ेस का उपयोग करने में आसान ऑफ़र करें ताकि आप एक टोकन को दूसरे टोकन का आदान-प्रदान कर सकें, पूरी तरह से विकेन्द्रीकृत तरीके से। खरीदें या बेचें ऑर्डर बनाएं और अन्य लोगों द्वारा आपका ऑर्डर भरने की प्रतीक्षा करें। यदि आप जल्दी से टोकन स्वैप करना चाहते हैं तो आप त्वरित व्यापार के लिए किसी और के खुले आदेश को भर सकते हैं।</p>",
+      "how-voting-works-header": "How voting content on Ecency?",
+      "how-voting-works-body": "<p>To vote content on Ecency is quite simple, you can learn all about it in following article <a href=\"/hive-125125/@ecency/how-to-vote-content-on\" class=\"push-link\">Voting content</a></p>",
+      "what-reputation-header": "What is Reputation?",
+      "what-reputation-body": "<p>Every user has a reputation score next to their name. The more value you bring to the community the more reputation score you will have. It is also a mechanism that is designed to help reduce abuse of the Hive platform. Getting upvoted by people increases your reputation and getting downvoted by people with a higher reputation can push your reputation down and make your posts less visible. Users with a lower reputation score are unable to affect your reputation.</p>",
+      "improve-reputation-score-header": "How to improve my Reputaion score?",
+      "improve-reputation-score-body": "<p>The more upvotes from the users with high reputation you have the higher reputation score you will have. The best way of improving your reputation score is earn upvotes by adding value to the community.</p>",
+      "why-score-going-down-header": "Why my Reputation score is going down?",
+      "why-score-going-down-body": "<p>Your earned upvotes and downvotes influence on your reputation score. Downvote given by another user with higher reputation can cause your reputation score to go down. If you are having downvote but your upvotes more than downvotes (weighted by Hive Power), then the net effect on your reputation score will still be positive.</p>",
+      "what-hive-witnesses-header": "What are Hive witnesses?",
+      "what-hive-witnesses-body": "<p>Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. Community elects them to represent their voice and each user can elect up to 30 witnesses. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses. Witnesses are compensated with Hive Power for each block they create.</p>",
+      "how-vote-witnesses-header": "How can I vote for witnesses?",
+      "how-vote-witnesses-body": "<p>Visit <a href=\"/witnesses\" class=\"push-link\">Witness page</a> and click voting icon.</p>",
+      "what-are-hive-header": "What are HIVE?",
+      "what-are-hive-body": "<p>HIVE are tradeable tokens that may be transferred at anytime. HIVE can be converted to Hive Power in a process called powering up or staking HIVE. It is a cryptocurrency token, similar to Bitcoin.</p>",
+      "what-are-hive-power-header": "What are HIVE POWER?",
+      "what-are-hive-power-body": "<p>Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other's rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.</p>",
+      "what-are-hd-header": "What are HIVE DOLLARS or HBD?",
+      "what-are-hd-body": "<p>Hive Dollars (commonly abbreviated HBD) are tokens worth about $1.00 of HIVE. Hive Dollars can be traded with HIVE, and transferred to other accounts for commerce or exchange. Hive Dollars may also be converted into HIVE via a process that takes 3.5 days.</p>",
+      "what-delegated-hp-header": "What is delegated Hive Power?",
+      "what-delegated-hp-body": "<p>Hive Power can be delegated to users by another user. When user is delegated Hive Power - their Resource Credits, content votes, and curation rewards are calculated as if it were their own Hive Power. Users are not able to power down or cash out delegated Hive Power however, as it still belongs to the original owner.</p>",
+      "what-powering-up-header": "What is powering up?",
+      "what-powering up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
+      "what-powering-down-header": "What is powering down?",
+      "what-powering-up-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
+      "why-different-keys-header": "Why are there different keys?",
+      "why-different-keys-body": "<p>There are different keys with the appropriate permissions for what you are doing. <ul><li>Posting keys - this key should be used for social networking actions, like posting, commenting and voting. This key has a limited set of permissions and it is not able to be used for monetary actions. So you can't lose money if someone else gets access to this key.</li><li>Active key - this key has additional permissions for more sensitive monetary-related actions, like transferring and exchanging tokens. When performing a wallet related action, you may be prompted to authenticate with your Active key. You should only enter your Active Key into apps which you trust because anyone with access to this key can take your tokens. Do yourself a favor and store this key safely to avoid losing tokens in the future.</li><li>Owner key - is the most powerful key because it can change any key of an account, including the owner key. Ideally it is meant to be stored offline, and only used to recover a compromised account.</li></ul></p>",
+      "stolen-hive-hbd-header": "What can I do if my HIVE or Hive dollar tokens stolen or sent to wrong account?",
+      "stolen-hive-hbd-body": "<p>There is nothing to do if your liquid tokens are stolen or sent to wrong acoount but if your tokens are in Hive Power it is impossible to be hacked more than 1/13 per week and if your tokens are in savings they need to a three-day wait period for them to become transferable. Staking/powering up or transferring funds into savings might be more safer.</>",
+      "what-are-tags-header": "What are tags or topics?",
+      "what-are-tags-body": "<p>A tag is a piece of information that describes the content that it is assigned to. They help search engines identify the content of pages online and using that information, produce the best results for a given search. All tags must be lowercase letters. Spaces aren't allowed, but hyphenated words with a single dash are allowed.</p>",
+      "how-use-tags-header": "How to use tags?",
+      "how-use-tags-body": "<p>Users can create the tags of their choice but by choosing a useful tag users may reveal your post very easy. For example, your first indrotuction post can be popular just by using introduction tag. Be sure that you are using tags that are related to your post otherwise your post may get downvotes for mistagging.</p>",
+      "why-publish-gray-header": "Why is the Publish button grayed out?",
+      "why-publish-gray-body": "<p>After writing your post you can see that Publish button is still gray, be sure that you chose a good title and at least one valid tag. If you miss them Publish button will be disabled.</p>",
+      "what-links-show-header": "What do the Trending, Hot, New, Rising and Controversial links show?",
+      "what-links-show-body": "<p>This is the way of sorting content on Ecency. <ul><li>Trending - Widely mentioned or discussed posts.</li><li>Hot - Popular posts in last couple hours.</li><li>New - The newest posts sorted by the published time.</li><li>Rising - Posts that have more comments and votes compare to others.</li><li>Controversial - Has a relatively equal number of upvotes and downvotes.</li></ul></p>",
+      "what-my-rewards-header": "What kind of rewards I have in my wallet?",
+      "what-my-rewards-body": "<p>There are three kind of rewards are shown in your wallet: <ul><li>Curation rewards - The rewards earned for upvoting posts and comments.</li><li>Author rewards - The rewards earned by your own posts and comments.</li><li>Points rewards - Social actions and interactions also rewarded with Ecency points.</li></ul><p/>",
+      "what-information-profile-header": "What kind of information is shown on my profile?",
+      "what-information-profile-body": "<p>The first information shown near your image is your reputation score and display name, description. Below information about followers and following, registration date on Ecency. You have the option to add extra information on Ecency settings such as about information, profile image, cover image, your location.</p>",
+      "what-can-post-header": "What can I post on Ecency?",
+      "what-can-post-body": "<p>Ecency is home of free speech where you can post everything you created: phrases, quotes, blogs, anecdotes, photos, videos, memes, songs, and more. Be creative! Just be careful of <a href=\"/faq#what-spam-abuse\" class=\"push-link\">spam or abuse</a></p>",
+      "add-images-videos-header": "How to add images and videos to my posts?",
+      "add-images-videos-body": "<p>You have several options like browsing your hard drive to add an image by clicking on the selecting them link from within the editor or if you have copied image just click ctrl+v (cmd+v) and your image will be uploaded into your post or comment. Another way that you can use for videos and images is paste the image or video's web address (URL) into the editor and it will automatically be added.</p>",
+      "what-thumbnail-image-header": "What is thumbnail image?",
+      "what-thumbnail-image-body": "<p>Thumbnail is reduced-size version of picture taken from your post that can be viewer's first impression about your post. You can choose a thumbnail before publishing your post. In post creation page, click Advanced button and select any one of your images as thumbnail.</p>",
+      "what-dollar-amount-header": "What are the dollar amounts next to posts and comments?",
+      "what-dollar-amount-body": "<p>The dollar amounts next to posts and comments are estimates of the potential payout that will occur when the payout period ends, based on the current voting activity and price of HIVE. It is the potential payout that may go up or down until the period ends. Payouts occur as a combination of Hive Power and Hive Dollars. Sometimes the blockchain may substitute HIVE in place of the Hive Dollars based on market conditions.</p>",
+      "hive-dollar-worth-header": "Will 1 Hive Dollar always be worth $1.00 USD?",
+      "hive-dollar-worth-body": "<p>The price of Hive Dollar changes around 1 USD depending on market conditions of the demand and supply. If price is below 1 USD, you are encouraged to convert HBD to HIVE to get 1 USD worth of HIVE tokens. When above 1 USD, you can trade them to buy more HIVE on market.</p>",
+      "convert-hive-dollar-header": "How long does it take to convert Hive Dollars to HIVE?",
+      "convert-hive-dollar-body": "<p>The blockchain will process the transaction over a period of 3.5 days for conversions Hive Dollars to HIVE.</p>",
+      "what-voting-power-header": "What is voting power?",
+      "what-voting-power-body": "<p>Your voting power goes down a little bit every time you vote. It begins with 100% voting power and by voting you use small amount of voting power. The more you vote the fewer influence you have, meaning efficiency of your vote will decay. Daily 10 votes are recommended to utilize efficiency and curation rewards better.</p>",
+      "how-many-vote-header": "How many times can I vote with my voting power?",
+      "how-many-vote-body": "<p>Every 100% vote you cast will use 2% of your remaining voting mana. Your voting mana will recharge by 20% each day. You can vote more than 10 times per day, but each vote will be worth less, and it will take longer to reach full voting power again.</p>",
+      "what-is-hivesigner-header": "What is Hivesigner?",
+      "what-is-hivesigner-body": "<p>When you were signing up on Hive you were given lots of keys that are hard to remember. The work of this Hivesigner is, it gives you the access to create your own password that you can remember and to provide a protection not to use your active key when logging into Hive platforms.</p>",
+      "what-is-keychain-header": "What is Keychain?",
+      "what-is-keychain-body": "<p>Hive Keychain is a wallet browser extension for the Hive blockchain and cryptocurrency and allows users to securely log into and access multiple Hive-based platforms. It is available for Chrome, Brave and Firefox.</p>",
+      "videos-pictures-stored-header": "Are pictures and video stored on the blockchain?",
+      "videos-pictures-stored-body": "<p>Media content such as pictures, videos etc. are typically not stored directly on a blockchain. When you add pictures or video you are only adding a source reference to where they are located. Meaning you can add video content from other locations. As of right now, when you upload a photo, this gets hosted on a regular web server.</p>",
+      "value-hive-hbd-header": "What determines the value of HIVE and HBD?",
+      "value-hive-hbd-body": "<p>The value of HIVE comes from the demand and supply of the token. HIVE will always be in demand based on the way the system is designed and there will always be supply for HIVE. As long as the Hive blockchain exist with continuous development and users being active, there will always be demand and supply for HIVE, adding value to the token.</p>"
     }
   },
   "contributors": {
@@ -1293,7 +1410,7 @@
   "chain-error": {
     "min-root-comment": "आप हर पांच मिनट में केवल एक बार पोस्ट कर सकते हैं।",
     "identical-vote": "इस सामग्री पर आपका वर्तमान वोट इस वोट के समान है।",
-    "insufficient-resource": "अपर्याप्त संसाधन क्रेडिट। कृपया लेनदेन करने के लिए प्रतीक्षा करें, या HIVE को शक्ति दें।",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "सकारात्मक लंबित पुरस्कारों वाली सामग्री को हटाया नहीं जा सकता।",
     "comment-cashout": "उनके पेआउट के बाद की सामग्री को हटाया नहीं जा सकता।",
     "comment-children": "उत्तरों वाली सामग्री को हटाया नहीं जा सकता।",
@@ -1360,5 +1477,17 @@
     "grid": "ग्रिड",
     "classic": "क्लॅसिक",
     "deck": "डेक"
+  },
+  "top-communities": {
+    "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }

@@ -405,7 +405,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
         updateActiveUser(); // refresh voting power
       })
       .catch((e) => {
-        error(formatError(e));
+        error(...formatError(e));
       })
       .finally(() => {
         this.stateSet({ inProgress: false });

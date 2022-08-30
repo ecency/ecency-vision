@@ -63,7 +63,7 @@ interface State {
     search: string;
     minVotes: number;
     isReturnProposalId: any;
-    thresholdProposalIds: any[];
+    thresholdProposalId: any;
 }
 
 class ProposalsPage extends BaseComponent<PageProps, State> {
@@ -80,7 +80,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         search: '',
         minVotes: 0,
         isReturnProposalId: null,
-        thresholdProposalIds: [],
+        thresholdProposalId: null,
     }
 
     constructor(props: any) {
@@ -93,52 +93,49 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         this.load();
     }
 
-    load = () => {
+    load = async () => {
         this.stateSet({loading: true});
-        getProposals()
-            .then(proposals => {
-                // put expired proposals in the end of the list
-                const expired = proposals.filter(x => x.status === "expired");
-                const others = proposals.filter(x => x.status !== "expired");
-                return [...others, ...expired];
-            })
-            .then(proposals => {
-                // get return proposal's total votes
-                const minVotes = Number(proposals.find(x => x.id === 0)?.total_votes || 0);
-                // // find eligible proposals and
-                // const eligible = proposals.filter(x => this.eligibleFilter(x, minVotes));
-                // //  add up total votes
-                // const dailyFunded = eligible.reduce((a, b) => a + Number(b.daily_pay.amount), 0) / 1000;
 
-                this.stateSet({proposals, proposals_: proposals, allProposals: proposals, minVotes});
+        try {
+            let proposals = await getProposals();
+            // put expired proposals in the end of the list
+            const expired = proposals.filter(x => x.status === "expired");
+            const others = proposals.filter(x => x.status !== "expired");
+            proposals = [...others, ...expired];
 
-                return getAccount("hive.fund");
-            })
-            .then(fund => {
-                const { proposals, minVotes } = this.state;
-                const totalBudget = parseAsset(fund.hbd_balance).amount;
-                const dailyBudget = totalBudget / 100;
-                
+            // get return proposal's total votes
+            const minVotes = Number(proposals.find(x => x.id === 0)?.total_votes || 0);
+            // // find eligible proposals and
+            // const eligible = proposals.filter(x => this.eligibleFilter(x, minVotes));
+            // //  add up total votes
+            // const dailyFunded = eligible.reduce((a, b) => a + Number(b.daily_pay.amount), 0) / 1000;
 
-                // find eligible proposals and
-                // const eligible = proposals.filter(x => this.eligibleFilter(x, minVotes));
-                const eligible = proposals.filter(proposal => proposal.status !== 'expired');
-                //  add up total votes
-                let _thresholdProposalIds : any[] = [];
-                const dailyFunded = eligible.reduce((a, b) => {
-                    const _sum_amount = a + Number(b.daily_pay.amount) / 1000;
-                    if (_sum_amount >= dailyBudget) {
-                        _thresholdProposalIds = _.union([b.id], _thresholdProposalIds);    
-                    }
-                    _sum_amount >= dailyBudget && this.stateSet({isReturnProposalId: b.id});
-                    return _sum_amount <= dailyBudget ? _sum_amount : a;
-                }, 0);
+            this.stateSet({proposals, proposals_: proposals, allProposals: proposals, minVotes});
 
-                this.stateSet({totalBudget, dailyBudget, dailyFunded, thresholdProposalIds: _thresholdProposalIds})
-            })
-            .finally(() => {
-                this.stateSet({loading: false});
-            });
+            const fund = await getAccount("hive.fund");
+            const totalBudget = parseAsset(fund.hbd_balance).amount;
+            const dailyBudget = totalBudget / 100;
+
+            // find eligible proposals and
+            // const eligible = proposals.filter(x => this.eligibleFilter(x, minVotes));
+            const eligible = proposals.filter(proposal => proposal.status !== 'expired');
+            //  add up total votes
+            let _thresholdProposalId: number | null = null;
+            const dailyFunded = eligible.reduce((a, b) => {
+                const _sum_amount = a + Number(b.daily_pay.amount) / 1000;
+                if (_sum_amount >= dailyBudget && !_thresholdProposalId) {
+                    _thresholdProposalId = b.id;
+                }
+                _sum_amount >= dailyBudget && this.stateSet({isReturnProposalId: b.id});
+                return _sum_amount <= dailyBudget ? _sum_amount : a;
+            }, 0);
+
+            this.stateSet({totalBudget, dailyBudget, dailyFunded, thresholdProposalId: _thresholdProposalId})
+        }  catch (e) {
+            throw e;
+        } finally {
+            this.stateSet({loading: false});
+        }
     }
 
     eligibleFilter = (proposal: Proposal, minVotes: number) => {
@@ -200,7 +197,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         };
 
         const {global} = this.props;
-        const {loading, proposals, totalBudget, dailyBudget, dailyFunded, filter, inProgress, minVotes, isReturnProposalId, thresholdProposalIds} = this.state;
+        const {loading, proposals, totalBudget, dailyBudget, dailyFunded, filter, inProgress, minVotes, isReturnProposalId, thresholdProposalId} = this.state;
         const navBar = global.isElectron ?
             NavBarElectron({
                 ...this.props,
@@ -219,7 +216,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                 <Meta {...metaProps} />
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
-                <Feedback/>
+                <Feedback activeUser={this.props.activeUser} />
                 {navBar}
                 <div className={containerClasses}>
                     <div className="page-header mt-5">
@@ -279,7 +276,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                                             ...this.props,
                                             proposal: p,
                                             isReturnProposalId,
-                                            thresholdProposalIds
+                                            thresholdProposalId
                                         })}
                                     </Fragment>)}
                             </div>
@@ -382,7 +379,7 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
                 <Meta {...metaProps} />
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
-                <Feedback/>
+                <Feedback activeUser={this.props.activeUser} />
                 {navBar}
                 <div className={containerClasses}>
                     <div className="page-header mt-5">

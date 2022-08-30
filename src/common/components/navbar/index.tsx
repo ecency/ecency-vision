@@ -18,9 +18,9 @@ import {ActiveUser} from "../../store/active-user/types";
 import {UI, ToggleType} from "../../store/ui/types";
 import {NotificationFilter, Notifications} from "../../store/notifications/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
+
 import NotificationHandler from "../notification-handler";
 import SwitchLang from "../switch-lang";
-
 import ToolTip from "../tooltip";
 import Search from "../search";
 import Login from "../login";
@@ -33,13 +33,32 @@ import Schedules from "../schedules";
 import Fragments from "../fragments";
 
 import {_t} from "../../i18n";
-
 import _c from "../../util/fix-class-names";
+import * as ls from '../../util/local-storage';
 
-import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg, chevronUpSvg, upArrowSvg, keySvg, sunSvg, gifCardSvg} from "../../img/svg";
+import {
+    brightnessSvg,
+    pencilOutlineSvg,
+    menuSvg,
+    closeSvg,
+    magnifySvg,
+    moonSvg,
+    globeSvg,
+    walletSvg,
+    notificationSvg,
+    pencilOutlinedSvg,
+    userOutlineSvg,
+    downArrowSvg,
+    upArrowSvg,
+    keySvg,
+    sunSvg,
+    rocketSvg
+} from '../../img/svg';
 import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
 import isCommunity from "../../helper/is-community";
+import { setNotificationsSettingsItem, updateNotificationsSettings } from '../../store/notifications';
+import { PurchaseQrDialog } from '../purchase-qr';
 //const logo = require('../../img/logo-circle.svg');
 
 interface Props {
@@ -71,6 +90,9 @@ interface Props {
     setLang: (lang: string) => void;
     setStepOne?:() => void;
     setStepTwo?:() => void;
+    fetchNotificationsSettings: (username: string) => void;
+    updateNotificationsSettings: typeof updateNotificationsSettings;
+    setNotificationsSettingsItem: typeof setNotificationsSettingsItem;
 }
 
 interface State {
@@ -83,7 +105,8 @@ interface State {
     bookmarks: boolean,
     schedules: boolean,
     fragments: boolean,
-    notifications: boolean
+    notifications: boolean,
+    showPurchaseDialog: boolean
 }
 
 export class NavBar extends Component<Props, State> {
@@ -98,6 +121,7 @@ export class NavBar extends Component<Props, State> {
         schedules: false,
         fragments: false,
         notifications: false,
+        showPurchaseDialog: false,
     }
 
     timer: any = null;
@@ -110,15 +134,13 @@ export class NavBar extends Component<Props, State> {
         if (!location.pathname.startsWith("/signup") && qs.referral) {
             history.push(`/signup?referral=${qs.referral}`)
         }
-
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', this.handleAutoDetectTheme); // listen to dark theme
-        // this.handleSetTheme(); // detect default set theme on load page
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', this.handleSetTheme);
+        //this.handleSetTheme(); // detect default set theme on load page
     }
 
     componentWillUnmount() {
         document.getElementsByTagName('body')[0].classList.remove("overflow-hidden");
-
-        window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', this.handleAutoDetectTheme)
+        window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', this.handleSetTheme);
     }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
@@ -155,6 +177,7 @@ export class NavBar extends Component<Props, State> {
     }
 
     changeTheme = () => {
+        ls.remove('use_system_theme');
         this.props.toggleTheme();
     };
 
@@ -180,14 +203,14 @@ export class NavBar extends Component<Props, State> {
         }
     }
 
-    // handleSetTheme = () => {
-    //     const _default_theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.night : Theme.day
-    //     this.props.toggleTheme(_default_theme);
-    // }
-
-    handleAutoDetectTheme = (e: any = null) => {        
-        const _default_theme = e && e.matches ? Theme.night : Theme.day
-        this.props.toggleTheme(_default_theme);
+    handleSetTheme = () => {
+        const use_system = ls.get('use_system_theme', false);
+        let _theme = ls.get('theme');
+        if (use_system) {
+            let systemTheme: any = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.night : Theme.day    
+            _theme = systemTheme;
+        }
+        this.props.toggleTheme(_theme);
     }
 
     render() {
@@ -198,7 +221,7 @@ export class NavBar extends Component<Props, State> {
         const communityPage = match && match.params.name && isCommunity(match.params.name)
         const tagValue = global.tag ? `/${global.tag}` : ''
         const logoHref = activeUser ? 
-        (communityPage || ((global.tag.includes('@')) && (['engine','wallet','points','communities','settings','permissions','comments','replies','blog', 'posts'].includes(global.filter)))) ?
+        (communityPage || ((global.tag.includes('@')) && (['engine','wallet','points','communities','settings','permissions','comments','replies','blog','posts','feed','referrals','followers','following'].includes(global.filter)))) ?
         '/hot' : 
         global.filter === 'feed' ? `${tagValue}/${global.filter}` : `/${global.filter}${tagValue}` 
         : '/';
@@ -431,12 +454,10 @@ export class NavBar extends Component<Props, State> {
                                     <div className="navbar-icon text-dark">{notificationSvg}</div>
                                     <div className="ml-3 text-15">{_t("user-nav.notifications")}</div>
                                 </div>
-                                <Link to={`/@${activeUser.username}/points`} onClick={() => this.setState({ smVisible: false} )}>
-                                    <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
-                                        <div className="navbar-icon text-dark">{gifCardSvg}</div>
-                                        <div className="ml-3 text-15">{_t("user-nav.points")}</div>
-                                    </div>
-                                </Link>
+                                <div onClick={() => this.setState({ showPurchaseDialog: true })} className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
+                                    <div className="navbar-icon text-dark">{rocketSvg}</div>
+                                    <div className="ml-3 text-15">{_t("user-nav.boost")}</div>
+                                </div>
                                 <Link to={`/@${activeUser?.username}/wallet`} onClick={() => this.setState({ smVisible: false} )}>
                                     <div className="p-2 pl-3 w-100 mb-2 d-flex align-items-center list-item text-dark">
                                         <div className="icon-stroke text-dark">{walletSvg}</div>
@@ -466,6 +487,12 @@ export class NavBar extends Component<Props, State> {
                     {schedules && activeUser && <Schedules {...this.props} onHide={() => this.setState({schedules:!schedules})} activeUser={activeUser as ActiveUser} />}
                     {fragments && activeUser && <Fragments {...this.props} onHide={() => this.setState({fragments:!fragments})} activeUser={activeUser as ActiveUser} />}
                 </div>
+                <PurchaseQrDialog
+                  show={this.state.showPurchaseDialog}
+                  setShow={v => this.setState({ showPurchaseDialog: v })}
+                  activeUser={activeUser}
+                  location={this.props.location}
+                />
             </div>
         );
     }
@@ -501,6 +528,9 @@ export default (p: Props) => {
         setStepOne: p.setStepOne,
         setStepTwo: p.setStepTwo,
         match: p.match,
+        fetchNotificationsSettings: p.fetchNotificationsSettings,
+        updateNotificationsSettings: p.updateNotificationsSettings,
+        setNotificationsSettingsItem: p.setNotificationsSettingsItem
     }
 
     return <NavBar {...props} />;

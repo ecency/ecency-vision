@@ -15,6 +15,7 @@ interface Props {
   published?: string;
   modified?: string;
   rss?: string;
+  amp?: string;
 }
 
 const capitalize = (s: string) => {
@@ -25,7 +26,7 @@ const title_ = (s: string): string => `${s} | ${capitalize(defaults.name)}`;
 
 export default class Meta extends Component<Props> {
   render() {
-    const { title, description, url, canonical, tag, keywords, published, modified, rss } = this.props;
+    const { title, description, url, canonical, tag, keywords, published, modified, rss, amp } = this.props;
     let { image } = this.props;
 
     if (!image) {
@@ -84,6 +85,12 @@ export default class Meta extends Component<Props> {
         {canonical && (
           <Helmet>
             <link rel="canonical" href={canonical} />
+          </Helmet>
+        )}
+
+        {amp && (
+          <Helmet>
+            <link rel="amphtml" href={amp} />
           </Helmet>
         )}
 

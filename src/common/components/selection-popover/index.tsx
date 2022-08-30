@@ -49,7 +49,7 @@ export const SelectionPopover = ({children, onQuotesClick, postUrl}: any) => {
           {({ ref, style, placement, arrowProps }) => {
             ;
             return selectedText.length !== 0 && (
-            <ClickAwayListener onClickAway={() => {setSelectedText(""); document.getSelection()?.removeAllRanges()}}>
+            <ClickAwayListener onClickAway={() => {setSelectedText("");}}>
                 <div ref={ref} style={{ ...style, ...tooltipStyle }} className="p-2 d-flex icons-container align-items-center">
                     <div onClick={() => copyToClipboard(selectedText)} className="pointer">{copyContent}</div>
                     <a onClick={() =>setSelectedText("")}href={`https://twitter.com/intent/tweet?text=${selectedText} https://ecency.com${postUrl}`} target="_blank" className="mx-2 pointer twitter">{twitterSvg}</a>

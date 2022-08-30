@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {PrivateKey} from "@hiveio/dhive";
+import {PrivateKey, cryptoUtils} from "@hiveio/dhive";
 
 import numeral from "numeral";
 
@@ -44,6 +44,9 @@ import {
     transferFromSavings,
     transferFromSavingsHot,
     transferFromSavingsKc,
+    claimInterest,
+    claimInterestHot,
+    claimInterestKc,
     transferToVesting,
     transferToVestingHot,
     transferToVestingKc,
@@ -67,7 +70,7 @@ import formattedNumber from "../../util/formatted-number";
 import activeUser from "../../store/active-user";
 import { dateToFullRelative } from '../../helper/parse-date';
 
-export type TransferMode = "transfer" | "transfer-saving" | "withdraw-saving" | "convert" | "power-up" | "power-down" | "delegate";
+export type TransferMode = "transfer" | "transfer-saving" | "withdraw-saving" | "convert" | "power-up" | "power-down" | "delegate" | "claim-interest";
 export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT";
 
 interface AssetSwitchProps {
@@ -136,6 +139,7 @@ interface State {
     to: string,
     toData: Account | null,
     toError: string,
+    memoError: string,
     toWarning: string,
     amount: string,
     amountError: string;
@@ -147,7 +151,7 @@ const pureState = (props: Props): State => {
     let _to: string = "";
     let _toData: Account | null = null;
 
-    if (["transfer-saving", "withdraw-saving", "convert", "power-up", "power-down"].includes(props.mode)) {
+    if (["transfer-saving", "withdraw-saving", "convert", "power-up", "power-down", "claim-interest"].includes(props.mode)) {
         _to = props.activeUser.username;
         _toData = props.activeUser.data
     }
@@ -158,6 +162,7 @@ const pureState = (props: Props): State => {
         to: props.to || _to,
         toData: props.to ? {name: props.to} : _toData,
         toError: "",
+        memoError: "",
         toWarning: "",
         amount: props.amount || "0.001",
         amountError: "",
@@ -215,6 +220,8 @@ export class Transfer extends BaseComponent<Props, State> {
 
     memoChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: memo} = e.target;
+        const mError = cryptoUtils.isWif(memo.trim());
+        if (mError) this.setState({ memoError: _t("transfer.memo-error").toUpperCase() });
         this.stateSet({memo});
     };
 
@@ -259,7 +266,7 @@ export class Transfer extends BaseComponent<Props, State> {
                     return resp;
                 })
                 .catch(err => {
-                    error(formatError(err));
+                    error(...formatError(err));
                 })
                 .finally(() => {
                     this.stateSet({inProgress: false});
@@ -317,7 +324,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
         const w = new HiveWallet(account, dynamicProps);
 
-        if (mode === "withdraw-saving") {
+        if (mode === "withdraw-saving" || mode === "claim-interest") {
             return asset === "HIVE" ? w.savingBalance : w.savingBalanceHbd;
         }
 
@@ -351,8 +358,8 @@ export class Transfer extends BaseComponent<Props, State> {
     }
 
     canSubmit = () => {
-        const {toData, toError, amountError, inProgress, amount} = this.state;
-        return toData && !toError && !amountError && !inProgress && parseFloat(amount) > 0;
+        const {toData, toError, amountError, memoError, inProgress, amount} = this.state;
+        return toData && !toError && !amountError && !memoError && !inProgress && parseFloat(amount) > 0;
     };
 
     next = () => {
@@ -403,6 +410,10 @@ export class Transfer extends BaseComponent<Props, State> {
                 promise = transferFromSavings(username, key, to, fullAmount, memo);
                 break;
             }
+            case "claim-interest": {
+                promise = claimInterest(username, key, to, fullAmount, memo);
+                break;
+            }
             case "power-up": {
                 promise = transferToVesting(username, key, to, fullAmount);
                 break;
@@ -433,7 +444,7 @@ export class Transfer extends BaseComponent<Props, State> {
                 this.stateSet({step: 4, inProgress: false});
             })
             .catch(err => {
-                error(formatError(err));
+                error(...formatError(err));
                 this.stateSet({inProgress: false});
             });
     }
@@ -463,6 +474,10 @@ export class Transfer extends BaseComponent<Props, State> {
             }
             case "withdraw-saving": {
                 transferFromSavingsHot(username, to, fullAmount, memo);
+                break;
+            }
+            case "claim-interest": {
+                claimInterestHot(username, to, fullAmount, memo);
                 break;
             }
             case "power-up": {
@@ -514,6 +529,10 @@ export class Transfer extends BaseComponent<Props, State> {
                 promise = transferFromSavingsKc(username, to, fullAmount, memo);
                 break;
             }
+            case "claim-interest": {
+                promise = claimInterestKc(username, to, fullAmount, memo);
+                break;
+            }
             case "power-up": {
                 promise = transferToVestingKc(username, to, fullAmount);
                 break;
@@ -543,7 +562,7 @@ export class Transfer extends BaseComponent<Props, State> {
                 this.stateSet({step: 4, inProgress: false});
             })
             .catch(err => {
-                error(formatError(err));
+                error(...formatError(err));
                 this.stateSet({inProgress: false});
             });
     }
@@ -567,7 +586,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
     render() {
         const {global, mode, activeUser, transactions, dynamicProps} = this.props;
-        const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress, toData, delegationList} = this.state;
+        const {step, asset, to, toError, toWarning, amount, amountError, memoError, memo, inProgress, toData, delegationList} = this.state;
         const {hivePerMVests} = dynamicProps;
 
         const recent = [...new Set(
@@ -605,6 +624,9 @@ export class Transfer extends BaseComponent<Props, State> {
             case "transfer-saving":
             case "withdraw-saving":
                 assets = ["HIVE", "HBD"];
+                break;
+            case "claim-interest":
+                assets = ["HBD"];
                 break;
             case "convert":
                 assets = ["HBD"];
@@ -692,6 +714,7 @@ export class Transfer extends BaseComponent<Props, State> {
                             <p> {_t("wallet.next-power-down", {
                                 time: dateToFullRelative(w.nextVestingWithdrawalDate.toString()),
                                 amount: `${this.formatNumber(w.nextVestingSharesWithdrawalHive, 3)} HIVE`,
+                                weeks: w.weeksLeft,
                             })}</p>
                             <p>
                                 <Button onClick={this.nextPowerDown} variant="danger">{_t("transfer.stop-power-down")}</Button>
@@ -832,12 +855,15 @@ export class Transfer extends BaseComponent<Props, State> {
                                     </Col>
                                 </Form.Group>
                                 <FormText msg={_t("transfer.memo-help")} type="muted"/>
+                                {memoError && (
+                                    <FormText msg={memoError} type="danger"/>
+                                )}
                             </>
                         )}
 
                         <Form.Group as={Row}>
                             <Col sm={{span: 10, offset: 2}}>
-                                <Button onClick={this.next} disabled={!this.canSubmit() && amount > balance}>{_t('g.next')}</Button>
+                                <Button onClick={this.next} disabled={!this.canSubmit()}>{_t('g.next')}</Button>
                             </Col>
                         </Form.Group>
                     </Form>
@@ -852,13 +878,13 @@ export class Transfer extends BaseComponent<Props, State> {
                             <div className="confirm-title">{_t(`transfer.${titleLngKey}`)}</div>
                             <div className="users">
                                 <div className="from-user">
-                                    {UserAvatar({...this.props, username: activeUser.username, size: "medium"})}
+                                    {UserAvatar({...this.props, username: activeUser.username, size: "large"})}
                                 </div>
                                 {showTo && (
                                     <>
                                         <div className="arrow">{arrowRightSvg}</div>
                                         <div className="to-user">
-                                            {UserAvatar({...this.props, username: to, size: "medium"})}
+                                            {UserAvatar({...this.props, username: to, size: "large"})}
                                         </div>
                                     </>
                                 )}

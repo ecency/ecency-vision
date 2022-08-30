@@ -121,7 +121,7 @@ export class MuteBtn extends BaseComponent<Props, State> {
                 const nEntry: Entry = {...clone(entry), stats: nStats};
                 onSuccess(nEntry, mute);
             })
-            .catch(err => error(formatError(err)))
+            .catch(err => error(...formatError(err)))
             .finally(() => this.stateSet({inProgress: false}));
     }
 

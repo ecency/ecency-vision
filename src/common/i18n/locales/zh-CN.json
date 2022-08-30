@@ -137,7 +137,8 @@
     "light": "浅色主题",
     "dark": "深色主题",
     "switch-to": "切换",
-    "vote-power": "投票能量："
+    "vote-power": "投票能量：",
+    "boost": "Boost"
   },
   "intro": {
     "title": "渴望伟大",
@@ -164,8 +165,8 @@
     "sign-up-text-2": "立即注册！"
   },
   "sign-up": {
-    "header": "欢迎使用 Ecency",
-    "description": "言论自由之家和获得社区奖励！",
+    "header": "Rewarding communities",
+    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
     "bottom-description": "每个帐户都是在区块链上创建的，只有你才能控制该帐户。该帐户能够管理Ecency以及区块链上的一切。",
     "learn-more": "在我们的 <a href=\"/faq#how-to-join\">常见问题</a>中了解更多好处",
     "username": "选择用户名",
@@ -188,7 +189,7 @@
   "entry-list-item": {
     "cross-posted": "转发帖子",
     "cross-posted-to": "至",
-    "reblogged": "{{n}} 已重新发布",
+    "reblogged": "{{n}} reblogged",
     "promoted": "推广",
     "pinned": "置顶帖",
     "replies": "1个回复。请点击回复。",
@@ -547,11 +548,15 @@
     "section-communities": "社区",
     "section-wallet": "钱包",
     "section-settings": "设置",
+    "section-referrals": "Referrals",
     "section-permission": "Permission",
     "communities-title": "成员",
     "create-community": "创建社区",
     "witnesses": "见证人",
-    "proposals": "提案"
+    "proposals": "提案",
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "加入: {{n}}",
@@ -591,6 +596,10 @@
     "language": "语言",
     "nsfw": "显示 NSFW 内容",
     "referral-link": "邀请链接",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "首选项已更新！"
   },
   "wallet": {
@@ -608,6 +617,9 @@
     "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.",
     "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
+    "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
+    "hive-dollars-apr-when": "Claim in {{value}} days",
+    "hive-dollars-apr-now": "Claim now",
     "hive-power-delegated": "已委托的 Hive Power",
     "hive-power-received": "已接收的 Hive Power",
     "next-power-down-amount": "下一次 Power 释放大约是在",
@@ -616,7 +628,7 @@
     "hive-dollars-description": "代币价值约为 $1.00 的HIVE",
     "savings": "储蓄",
     "savings-description": "余额提现需要 3 天等待周期。",
-    "next-power-down": "下一次释放能量为 {{time}}， {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "转账",
     "transfer-to-savings": "转入储蓄账户",
     "convert": "转换",
@@ -699,6 +711,18 @@
     "submit": "购买",
     "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
   },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "title-points": "Buy points",
+    "copied": "Account boost link copied!",
+    "select-type": "Select a type",
+    "boost": "Boost",
+    "points": "Points",
+    "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
+    "points-amount": "{{n}} points"
+  },
   "promote": {
     "title": "推广",
     "sub-title": "推广您的帖子",
@@ -708,7 +732,8 @@
     "title": "推荐",
     "sub-title": "推荐您的帖子",
     "amount": "数量",
-    "slider-hint": "拖动滑块来调整金额。"
+    "slider-hint": "拖动滑块来调整金额。",
+    "hint": "Actual value of vote you receive may vary"
   },
   "redeem-common": {
     "balance": "余额",
@@ -723,6 +748,10 @@
     "transfer-title": "转入帐户",
     "transfer-title-point": "赠送到帐户",
     "transfer-sub-title": "将资金转移到另一个Hive 帐户",
+    "stake-hive-engine-title": "Stake token",
+    "stake-hive-engine-sub-title": "Stake token to earn passive rewards",
+    "unstake-hive-engine-title": "Unstake token",
+    "unstake-hive-engine-sub-title": "Unstake token you will stop earning passive rewards",
     "transfer-saving-title": "转入储蓄",
     "transfer-saving-sub-title": "需要3天的等待期来保护资金",
     "withdraw-saving-title": "储蓄提款",
@@ -733,8 +762,14 @@
     "convert-sub-title": "仅当HBD低于1美元时推荐。您将在3.5天内获得1美元等值的HIVE。",
     "delegate-title": "委托",
     "delegate-sub-title": "已委托的 Hive Power",
+    "delegate-hive-engine-title": "Delegate",
+    "delegate-hive-engine-sub-title": "Delegate Tokens",
+    "undelegate-hive-engine-title": "Undelegate",
+    "undelegate-hive-engine-sub-title": "Undelegate Tokens to add them back to your Hive Engine balance",
     "power-down-title": "减少能量",
     "power-down-sub-title": "减少 Hive 能量",
+    "claim-interest-title": "Claim HBD Interest",
+    "claim-interest-sub-title": "Withdraw small amount that will be cancelled right away",
     "from": "从",
     "to": "至",
     "to-placeholder": "用户名",
@@ -749,6 +784,7 @@
     "memo": "备注",
     "memo-placeholder": "在此输入您的备注",
     "memo-help": "此备忘录是公开的",
+    "memo-error": "Never put private keys into a memo field, it is publicly visible to everyone.",
     "available-hp-hint": "* 可用的HIVE Power",
     "override-warning-1": "The new amount overrides the previous one.",
     "override-warning-2": "Account ({{account}}) has already been delegated with {{previousAmount}}.",
@@ -761,8 +797,12 @@
     "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> 已转账 从 <span class=\"from-user\">{{from}}</span> 到 <span class=\"to-user\">{{to}}</span>",
     "convert-summary": "<span class=\"amount\">{{amount}}</span> being converted",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> 已质押 从 <span class=\"from-user\">{{from}}</span> 到 <span class=\"to-user\">{{to}}</span>",
+    "stake-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "unstake-summary": "<span class=\"amount\">{{amount}}</span> unstaked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> 已委托 从 <span class=\"from-user\">{{from}}</span> 到 <span class=\"to-user\">{{to}}</span>",
+    "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "已完成降低能量过程，数量为 <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "重置",
     "powering-down": "您目前正在降低能量。",
     "stop-power-down": "停止"
@@ -815,7 +855,8 @@
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
     "type-limit_order_create": "New trade created",
     "type-limit_order_cancel": "Open trade cancelled",
-    "type-effective_comment_vote": "Effective vote"
+    "type-effective_comment_vote": "Effective vote",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "签名",
@@ -923,7 +964,8 @@
     "scheduled": "帖子已计划",
     "empty-title-alert": "输入帖子标题",
     "empty-tags-alert": "输入帖子标签",
-    "empty-body-alert": "输入帖子内容"
+    "empty-body-alert": "输入帖子内容",
+    "description": "Short description"
   },
   "tag-selector": {
     "placeholder-empty": "标签：第一个标签是主要分类，可排序。",
@@ -987,7 +1029,7 @@
     "type-transfers": "转账",
     "type-delegations": "Delegations",
     "group-title-recent": "最近",
-    "vote-str": "{{p}}%喜欢您的帖子：",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "回复了您的文章:",
     "mention-str": "提到了您:",
     "followed-str": "已关注",
@@ -1003,7 +1045,8 @@
     "mark-all-read": "全部标为已读",
     "mark-read": "标为已读",
     "mute": "关闭通知",
-    "unmute": "开启通知"
+    "unmute": "开启通知",
+    "settings": "Settings"
   },
   "leaderboard": {
     "title-stars": "最活跃的",
@@ -1089,6 +1132,16 @@
     "proxy-active-current": "您当前的投票代理是",
     "proxy-active-btn-label": "清除代理",
     "proxy-votes-for": "@{{username}} 投票给"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "建议",
@@ -1245,7 +1298,7 @@
       "what-are-rc-header": "什么是资源信贷？",
       "what-are-rc-body": "<p>Hive 区块链上的交易费用为零，使用交易率限制来保护区块链免受垃圾邮件攻击。 你在区块链上采取的每个行动都会消耗少量资源点数。 这包括发布、评论、投票、传输令牌等。查看内容不会消耗资源积分。</p><p>每个用户每周使用的资源积分。 用户进行的交易越多，他们离开的资源积分就越少(直到他们重新充电)。 拥有更多HIVE能量的用户将获得更多的资源积分。</p><p>如果您的资源积分已用完， 您将无法与区块链进行交易，除非您的资源信用充值 (自动发生)，或您获取额外的HIVE能量来增加您的资源信用余额，或您可以 <a href=\"/faq#how-boost-account\">从Ecency请求提升帐户</a> 接收临时授权。</p>",
       "how-boost-account-header": "如何请求账户推荐？",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can find account boosting feature in Points options.</p>",
+      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation (553311 VESTS) which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can request account boosting quickly with <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR page</a> just change username and scan QR image with Ecency mobile app.</p>",
       "what-spam-abuse-header": "什么被认为是垃圾邮件或滥用？",
       "what-spam-abuse-body": "<p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "我可以从Ecency 团队请求添加背链接到我的网站吗？",
@@ -1267,7 +1320,71 @@
       "boosting-vote-buying-header": "Is boosting considered a vote buying?",
       "boosting-vote-buying-body": "<p>No! Because, there is no guarantee of receiving vote, there is no guarantee of exact amount of vote, boosting maximum amount is limited, each content reviewed by our curators, there is no profit in it. All curation rewards are sent back to delegators 100%. Only measurable success we seek is to see engagement and growth on entire ecosystem. Boosting is simply creating additional use case for Ecency Points to improve engagement on platform, so it is essentially same as any other curation guilds on Hive. Goal of those guilds ultimately to improve engagement on platform and grow activity, the way each measures that success is the different.</p>",
       "how-exchange-work-header": "How token exchange works?",
-      "how-exchange-work-body": "<p>Exchanging and trading tokens on Ecency is very simple. We utilize internal peer to peer, decentralized exchange built into Hive blockchain. Offer easy to use interface so you can exchange one token to another, completely decentralized manner. Create buy or sell order and wait for other people to fill your order. If you want to quickly swap tokens then you can fill someone else's open order for quick trade.</p>"
+      "how-exchange-work-body": "<p>Exchanging and trading tokens on Ecency is very simple. We utilize internal peer to peer, decentralized exchange built into Hive blockchain. Offer easy to use interface so you can exchange one token to another, completely decentralized manner. Create buy or sell order and wait for other people to fill your order. If you want to quickly swap tokens then you can fill someone else's open order for quick trade.</p>",
+      "how-voting-works-header": "How voting content on Ecency?",
+      "how-voting-works-body": "<p>To vote content on Ecency is quite simple, you can learn all about it in following article <a href=\"/hive-125125/@ecency/how-to-vote-content-on\" class=\"push-link\">Voting content</a></p>",
+      "what-reputation-header": "What is Reputation?",
+      "what-reputation-body": "<p>Every user has a reputation score next to their name. The more value you bring to the community the more reputation score you will have. It is also a mechanism that is designed to help reduce abuse of the Hive platform. Getting upvoted by people increases your reputation and getting downvoted by people with a higher reputation can push your reputation down and make your posts less visible. Users with a lower reputation score are unable to affect your reputation.</p>",
+      "improve-reputation-score-header": "How to improve my Reputaion score?",
+      "improve-reputation-score-body": "<p>The more upvotes from the users with high reputation you have the higher reputation score you will have. The best way of improving your reputation score is earn upvotes by adding value to the community.</p>",
+      "why-score-going-down-header": "Why my Reputation score is going down?",
+      "why-score-going-down-body": "<p>Your earned upvotes and downvotes influence on your reputation score. Downvote given by another user with higher reputation can cause your reputation score to go down. If you are having downvote but your upvotes more than downvotes (weighted by Hive Power), then the net effect on your reputation score will still be positive.</p>",
+      "what-hive-witnesses-header": "What are Hive witnesses?",
+      "what-hive-witnesses-body": "<p>Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. Community elects them to represent their voice and each user can elect up to 30 witnesses. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses. Witnesses are compensated with Hive Power for each block they create.</p>",
+      "how-vote-witnesses-header": "How can I vote for witnesses?",
+      "how-vote-witnesses-body": "<p>Visit <a href=\"/witnesses\" class=\"push-link\">Witness page</a> and click voting icon.</p>",
+      "what-are-hive-header": "What are HIVE?",
+      "what-are-hive-body": "<p>HIVE are tradeable tokens that may be transferred at anytime. HIVE can be converted to Hive Power in a process called powering up or staking HIVE. It is a cryptocurrency token, similar to Bitcoin.</p>",
+      "what-are-hive-power-header": "What are HIVE POWER?",
+      "what-are-hive-power-body": "<p>Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other's rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.</p>",
+      "what-are-hd-header": "What are HIVE DOLLARS or HBD?",
+      "what-are-hd-body": "<p>Hive Dollars (commonly abbreviated HBD) are tokens worth about $1.00 of HIVE. Hive Dollars can be traded with HIVE, and transferred to other accounts for commerce or exchange. Hive Dollars may also be converted into HIVE via a process that takes 3.5 days.</p>",
+      "what-delegated-hp-header": "What is delegated Hive Power?",
+      "what-delegated-hp-body": "<p>Hive Power can be delegated to users by another user. When user is delegated Hive Power - their Resource Credits, content votes, and curation rewards are calculated as if it were their own Hive Power. Users are not able to power down or cash out delegated Hive Power however, as it still belongs to the original owner.</p>",
+      "what-powering-up-header": "What is powering up?",
+      "what-powering up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
+      "what-powering-down-header": "What is powering down?",
+      "what-powering-up-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
+      "why-different-keys-header": "Why are there different keys?",
+      "why-different-keys-body": "<p>There are different keys with the appropriate permissions for what you are doing. <ul><li>Posting keys - this key should be used for social networking actions, like posting, commenting and voting. This key has a limited set of permissions and it is not able to be used for monetary actions. So you can't lose money if someone else gets access to this key.</li><li>Active key - this key has additional permissions for more sensitive monetary-related actions, like transferring and exchanging tokens. When performing a wallet related action, you may be prompted to authenticate with your Active key. You should only enter your Active Key into apps which you trust because anyone with access to this key can take your tokens. Do yourself a favor and store this key safely to avoid losing tokens in the future.</li><li>Owner key - is the most powerful key because it can change any key of an account, including the owner key. Ideally it is meant to be stored offline, and only used to recover a compromised account.</li></ul></p>",
+      "stolen-hive-hbd-header": "What can I do if my HIVE or Hive dollar tokens stolen or sent to wrong account?",
+      "stolen-hive-hbd-body": "<p>There is nothing to do if your liquid tokens are stolen or sent to wrong acoount but if your tokens are in Hive Power it is impossible to be hacked more than 1/13 per week and if your tokens are in savings they need to a three-day wait period for them to become transferable. Staking/powering up or transferring funds into savings might be more safer.</>",
+      "what-are-tags-header": "What are tags or topics?",
+      "what-are-tags-body": "<p>A tag is a piece of information that describes the content that it is assigned to. They help search engines identify the content of pages online and using that information, produce the best results for a given search. All tags must be lowercase letters. Spaces aren't allowed, but hyphenated words with a single dash are allowed.</p>",
+      "how-use-tags-header": "How to use tags?",
+      "how-use-tags-body": "<p>Users can create the tags of their choice but by choosing a useful tag users may reveal your post very easy. For example, your first indrotuction post can be popular just by using introduction tag. Be sure that you are using tags that are related to your post otherwise your post may get downvotes for mistagging.</p>",
+      "why-publish-gray-header": "Why is the Publish button grayed out?",
+      "why-publish-gray-body": "<p>After writing your post you can see that Publish button is still gray, be sure that you chose a good title and at least one valid tag. If you miss them Publish button will be disabled.</p>",
+      "what-links-show-header": "What do the Trending, Hot, New, Rising and Controversial links show?",
+      "what-links-show-body": "<p>This is the way of sorting content on Ecency. <ul><li>Trending - Widely mentioned or discussed posts.</li><li>Hot - Popular posts in last couple hours.</li><li>New - The newest posts sorted by the published time.</li><li>Rising - Posts that have more comments and votes compare to others.</li><li>Controversial - Has a relatively equal number of upvotes and downvotes.</li></ul></p>",
+      "what-my-rewards-header": "What kind of rewards I have in my wallet?",
+      "what-my-rewards-body": "<p>There are three kind of rewards are shown in your wallet: <ul><li>Curation rewards - The rewards earned for upvoting posts and comments.</li><li>Author rewards - The rewards earned by your own posts and comments.</li><li>Points rewards - Social actions and interactions also rewarded with Ecency points.</li></ul><p/>",
+      "what-information-profile-header": "What kind of information is shown on my profile?",
+      "what-information-profile-body": "<p>The first information shown near your image is your reputation score and display name, description. Below information about followers and following, registration date on Ecency. You have the option to add extra information on Ecency settings such as about information, profile image, cover image, your location.</p>",
+      "what-can-post-header": "What can I post on Ecency?",
+      "what-can-post-body": "<p>Ecency is home of free speech where you can post everything you created: phrases, quotes, blogs, anecdotes, photos, videos, memes, songs, and more. Be creative! Just be careful of <a href=\"/faq#what-spam-abuse\" class=\"push-link\">spam or abuse</a></p>",
+      "add-images-videos-header": "How to add images and videos to my posts?",
+      "add-images-videos-body": "<p>You have several options like browsing your hard drive to add an image by clicking on the selecting them link from within the editor or if you have copied image just click ctrl+v (cmd+v) and your image will be uploaded into your post or comment. Another way that you can use for videos and images is paste the image or video's web address (URL) into the editor and it will automatically be added.</p>",
+      "what-thumbnail-image-header": "What is thumbnail image?",
+      "what-thumbnail-image-body": "<p>Thumbnail is reduced-size version of picture taken from your post that can be viewer's first impression about your post. You can choose a thumbnail before publishing your post. In post creation page, click Advanced button and select any one of your images as thumbnail.</p>",
+      "what-dollar-amount-header": "What are the dollar amounts next to posts and comments?",
+      "what-dollar-amount-body": "<p>The dollar amounts next to posts and comments are estimates of the potential payout that will occur when the payout period ends, based on the current voting activity and price of HIVE. It is the potential payout that may go up or down until the period ends. Payouts occur as a combination of Hive Power and Hive Dollars. Sometimes the blockchain may substitute HIVE in place of the Hive Dollars based on market conditions.</p>",
+      "hive-dollar-worth-header": "Will 1 Hive Dollar always be worth $1.00 USD?",
+      "hive-dollar-worth-body": "<p>The price of Hive Dollar changes around 1 USD depending on market conditions of the demand and supply. If price is below 1 USD, you are encouraged to convert HBD to HIVE to get 1 USD worth of HIVE tokens. When above 1 USD, you can trade them to buy more HIVE on market.</p>",
+      "convert-hive-dollar-header": "How long does it take to convert Hive Dollars to HIVE?",
+      "convert-hive-dollar-body": "<p>The blockchain will process the transaction over a period of 3.5 days for conversions Hive Dollars to HIVE.</p>",
+      "what-voting-power-header": "What is voting power?",
+      "what-voting-power-body": "<p>Your voting power goes down a little bit every time you vote. It begins with 100% voting power and by voting you use small amount of voting power. The more you vote the fewer influence you have, meaning efficiency of your vote will decay. Daily 10 votes are recommended to utilize efficiency and curation rewards better.</p>",
+      "how-many-vote-header": "How many times can I vote with my voting power?",
+      "how-many-vote-body": "<p>Every 100% vote you cast will use 2% of your remaining voting mana. Your voting mana will recharge by 20% each day. You can vote more than 10 times per day, but each vote will be worth less, and it will take longer to reach full voting power again.</p>",
+      "what-is-hivesigner-header": "What is Hivesigner?",
+      "what-is-hivesigner-body": "<p>When you were signing up on Hive you were given lots of keys that are hard to remember. The work of this Hivesigner is, it gives you the access to create your own password that you can remember and to provide a protection not to use your active key when logging into Hive platforms.</p>",
+      "what-is-keychain-header": "What is Keychain?",
+      "what-is-keychain-body": "<p>Hive Keychain is a wallet browser extension for the Hive blockchain and cryptocurrency and allows users to securely log into and access multiple Hive-based platforms. It is available for Chrome, Brave and Firefox.</p>",
+      "videos-pictures-stored-header": "Are pictures and video stored on the blockchain?",
+      "videos-pictures-stored-body": "<p>Media content such as pictures, videos etc. are typically not stored directly on a blockchain. When you add pictures or video you are only adding a source reference to where they are located. Meaning you can add video content from other locations. As of right now, when you upload a photo, this gets hosted on a regular web server.</p>",
+      "value-hive-hbd-header": "What determines the value of HIVE and HBD?",
+      "value-hive-hbd-body": "<p>The value of HIVE comes from the demand and supply of the token. HIVE will always be in demand based on the way the system is designed and there will always be supply for HIVE. As long as the Hive blockchain exist with continuous development and users being active, there will always be demand and supply for HIVE, adding value to the token.</p>"
     }
   },
   "contributors": {
@@ -1293,7 +1410,7 @@
   "chain-error": {
     "min-root-comment": "您只能每五分钟发布一次。",
     "identical-vote": "您当前对此内容的投票与本次投票完全相同。",
-    "insufficient-resource": "资源积分不足。请等待交易，或提高HIVE能量。",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
     "comment-cashout": "Content after their payout cannot be deleted.",
     "comment-children": "Cannot delete a content with replies.",
@@ -1360,5 +1477,17 @@
     "grid": "Grid",
     "classic": "Classic",
     "deck": "Deck"
+  },
+  "top-communities": {
+    "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }

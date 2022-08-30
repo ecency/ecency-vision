@@ -295,7 +295,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                                 this.deleteWitness(row.name);
                             }
                     }}
-                    global={global}
+                    {...this.props}
                     />
         })}
         </div>
@@ -319,7 +319,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                 <Meta {...metaProps} />
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
-                <Feedback/>
+                <Feedback activeUser={this.props.activeUser} />
                 {global.isElectron ?
                     NavBarElectron({
                         ...this.props,

@@ -92,6 +92,8 @@ const account: FullAccount = {
     reward_vesting_hive: "10.207 HIVE",
     savings_balance: "0.001 HIVE",
     savings_hbd_balance: "0.000 HBD",
+    savings_hbd_last_interest_payment: "2021-03-18T15:42:03",
+    savings_hbd_seconds_last_update: "2021-03-18T15:42:03",
     hbd_balance: "447.514 HBD",
     to_withdraw: "91765607000000",
     vesting_shares: "83549915.208336 VESTS",

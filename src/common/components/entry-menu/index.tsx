@@ -65,6 +65,7 @@ interface Props {
     setEntryPin: (entry: Entry, pin: boolean) => void;
     toggleUIProp: (what: ToggleType) => void;
     toggleEdit?: () => void;
+    pinEntry?: (entry: Entry | null) => void;
 }
 
 interface State {
@@ -202,7 +203,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 history.push('/');
             })
             .catch((e) => {
-                error(formatError(e));
+                error(...formatError(e));
             })
     }
 
@@ -227,7 +228,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
             })
             .catch(err => {
-                error(formatError(err));
+                error(...formatError(err));
             }) 
     }
 
@@ -254,6 +255,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 // update reducers
                 addAccount(account);
                 updateActiveUser(account);
+                this.props.pinEntry && this.props.pinEntry(pin ? entry : null);
             }).catch(() => {
                 error(_t('g.server-error'));
             })
@@ -274,6 +276,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 // update reducers
                 addAccount(account);
                 updateActiveUser(account);
+                this.props.pinEntry && this.props.pinEntry(pin ? entry : null);
             }).catch(() => {
                 error(_t('g.server-error'));
             })
@@ -632,6 +635,7 @@ export default (p: Props) => {
         setEntryPin: p.setEntryPin,
         toggleUIProp: p.toggleUIProp,
         toggleEdit: p.toggleEdit,
+        pinEntry: p.pinEntry,
     }
 
     return <EntryMenu {...props} />

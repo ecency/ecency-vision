@@ -162,7 +162,7 @@ export class List extends BaseComponent<Props, State> {
                                     this.setState({inProgress: true});
                                     delegateVestingShares(activeUser.username, key, username, "0.000000 VESTS")
                                         .then(() => this.fetch())
-                                        .catch(err => error(formatError(err)))
+                                        .catch(err => error(...formatError(err)))
                                         .finally(() => this.setState({inProgress: false}))
                                 },
                                 onHot: () => {
@@ -172,7 +172,7 @@ export class List extends BaseComponent<Props, State> {
                                     this.setState({inProgress: true});
                                     delegateVestingSharesKc(activeUser.username, username, "0.000000 VESTS")
                                         .then(() => this.fetch())
-                                        .catch(err => error(formatError(err)))
+                                        .catch(err => error(...formatError(err)))
                                         .finally(() => this.setState({inProgress: false}))
                                 }
                             }) : null;

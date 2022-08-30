@@ -31,6 +31,11 @@ $popover-arrow-color: lighten($dark-six, 2);
 $modal-content-bg: lighten($dark-six, 2);
 $modal-header-border-color: null default;
 $modal-content-border-color: $dark-two;
+$list-group-bg: lighten($dark-six, 3);
+$list-group-border-color: lighten($dark-six, 1);
+$list-group-action-color: #fff;
+$list-group-hover-bg: lighten($dark-six, 5);
+$list-group-action-active-bg: lighten($dark-six, 6);
 
 $table-accent-bg: $dark-six;
 
@@ -80,9 +85,10 @@ $tooltip-max-width: 380px;
   @import "bootstrap/scss/progress";
   @import "bootstrap/scss/card";
   @import "bootstrap/scss/tooltip";
+  @import "bootstrap/scss/list-group";
 
-  background: $dark-six;
-  color: $silver;
+  background: $dark-seven;
+  color: $white-two;
 }
 
 @import "bootstrap";

@@ -82,7 +82,7 @@ export class BuySellHive extends BaseComponent<any, State> {
     p && p.then(() => getAccountFull(this.props.activeUser!.username))
       .then((a: any) => this.updateAll(a))
       .catch((err: any) => {
-        error(formatError(err));
+        error(...formatError(err));
         this.setState({ inProgress: false });
         onHide();
       });

@@ -56,7 +56,13 @@
 }
 
 .the-editor {
-  background: $white-two;
+  @include themify(night) {
+    color: $silver;
+    background: $dark-two;
+  }
+  @include themify(day) {
+    background: $white-two;
+  }
   border-width: 0px;
   resize: none;
   outline: none;
@@ -65,4 +71,5 @@
   line-height: 1.5;
   font-size: 1rem;
   font-weight: 400;
+  width: 100%;
 }

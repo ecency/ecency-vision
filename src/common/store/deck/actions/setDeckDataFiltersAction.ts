@@ -8,5 +8,8 @@ export const setDeckDataFilters = (data: SetDataFiltersAction['data']) => (dispa
   dispatch(setDataFiltersAct(data));
 
   const { items } = getState().deck;
+  if (!data.username) {
+    data.username = 'anonymous';
+  }
   set(`user-${data.username}-decks`, serializeDecks(items));
 }

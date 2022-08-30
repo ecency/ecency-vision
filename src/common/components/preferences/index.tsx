@@ -1,26 +1,17 @@
 import React from "react";
-
 import i18n from "i18next";
-
-import {Global} from "../../store/global/types";
-
 import {Col, Form, FormControl, InputGroup, Button} from "react-bootstrap";
 
+import {Global, Theme} from "../../store/global/types";
 import BaseComponent from "../base";
 import {success} from "../feedback";
-
-import {_t} from "../../i18n";
-
-import {langOptions} from "../../i18n";
-
+import {_t, langOptions} from "../../i18n";
 import {getCurrencyRate} from "../../api/misc";
-
 import currencySymbol from "../../helper/currency-symbol";
-
 import currencies from "../../constants/currencies.json";
-import activeUser from "../../store/active-user";
 import { ActiveUser } from "../../store/active-user/types";
 import { copyContent } from "../../img/svg";
+import * as ls from "../../util/local-storage";
 
 interface Props {
     global: Global;
@@ -30,15 +21,18 @@ interface Props {
     setLang: (lang: string) => void;
     setNsfw: (value: boolean) => void;
     activeUser: ActiveUser;
+    toggleTheme: (theme_key?: string) => void;
 }
 
 interface State {
-    inProgress: boolean
+    inProgress: boolean,
+    defaultTheme: string,
 }
 
 export class Preferences extends BaseComponent<Props, State> {
     state: State = {
         inProgress: false,
+        defaultTheme: "",
     }
 
     notificationsChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
@@ -52,6 +46,20 @@ export class Preferences extends BaseComponent<Props, State> {
             muteNotifications();
         }
 
+        success(_t('preferences.updated'));
+    }
+
+    themeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+        const {toggleTheme} = this.props;
+        const {value} = e.target;
+        if (value === 'system') {
+            ls.set('use_system_theme', true);
+        } else {
+            ls.remove('use_system_theme');
+            ls.set('theme', value);
+        }
+        this.setState({ ...this.state, defaultTheme: value });
+        toggleTheme(value);
         success(_t('preferences.updated'));
     }
 
@@ -96,6 +104,15 @@ export class Preferences extends BaseComponent<Props, State> {
         document.execCommand('copy');
         textField.remove();
         success(_t('profile-edit.copied'));
+    }
+
+    componentDidMount () {
+        let use_system_theme = ls.get('use_system_theme', false);
+        let theme = ls.get("theme");
+        if (use_system_theme) {
+            theme = 'system';
+        }
+        this.setState({ ...this.state, defaultTheme: theme });
     }
 
     render() {
@@ -144,32 +161,44 @@ export class Preferences extends BaseComponent<Props, State> {
                         </Form.Group>
                     </Col>
 
-                    {activeUser && activeUser.username && 
-                    <Col lg={6} xl={4}>
-                        <Form.Group>
-                            <Form.Label>{_t('preferences.referral-link')}</Form.Label>
-                            <InputGroup 
-                                className="mb-3"
-                                onClick={() => this.copyToClipboard(`https://ecency.com/signup?referral=${activeUser!.username}`)}
-                            >
-                                <Form.Control 
-                                    value={`https://ecency.com/signup?referral=${activeUser!.username}`} 
-                                    disabled={true}
-                                    className="text-primary pointer"
-                                />
-                                <InputGroup.Append>
-                                    <Button
-                                        variant="primary"
-                                        size="sm"
-                                        className="copy-to-clipboard"
-                                        onClick={() => this.copyToClipboard(`https://ecency.com/signup?referral=${activeUser!.username}`)}
-                                    >
-                                        {copyContent}
-                                    </Button>
-                                </InputGroup.Append>
-                            </InputGroup>
-                        </Form.Group>
-                    </Col>}
+                    {activeUser && activeUser.username && <>
+                        <Col lg={6} xl={4}>
+                            <Form.Group>
+                                <Form.Label>{_t('preferences.referral-link')}</Form.Label>
+                                <InputGroup 
+                                    className="mb-3"
+                                    onClick={() => this.copyToClipboard(`https://ecency.com/signup?referral=${activeUser!.username}`)}
+                                >
+                                    <Form.Control 
+                                        value={`https://ecency.com/signup?referral=${activeUser!.username}`} 
+                                        disabled={true}
+                                        className="text-primary pointer"
+                                    />
+                                    <InputGroup.Append>
+                                        <Button
+                                            variant="primary"
+                                            size="sm"
+                                            className="copy-to-clipboard"
+                                            onClick={() => this.copyToClipboard(`https://ecency.com/signup?referral=${activeUser!.username}`)}
+                                        >
+                                            {copyContent}
+                                        </Button>
+                                    </InputGroup.Append>
+                                </InputGroup>
+                            </Form.Group>
+                        </Col>
+                        <Col lg={6} xl={4}>
+                            <Form.Group>
+                                <Form.Label>{_t('preferences.theme')}</Form.Label>
+                                <Form.Control type="text" value={Theme[this.state.defaultTheme]}  as="select" onChange={this.themeChanged}>
+                                    <option value={Theme.system}>{_t('preferences.theme-system-default')}</option>
+                                    <option value={Theme.day}>{_t('preferences.theme-day')}</option>
+                                    <option value={Theme.night}>{_t('preferences.theme-night')}</option>
+                                </Form.Control>
+                            </Form.Group>
+                        </Col>
+                    </>
+                    }
                 </Form.Row>
             </div>
         </>
@@ -185,7 +214,8 @@ export default (p: Props) => {
         unMuteNotifications: p.unMuteNotifications,
         setCurrency: p.setCurrency,
         setLang: p.setLang,
-        setNsfw: p.setNsfw
+        setNsfw: p.setNsfw,
+        toggleTheme: p.toggleTheme,
     }
 
     return <Preferences {...props} />

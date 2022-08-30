@@ -69,7 +69,7 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
             call.then(() => {
                 onDone();
             }).catch((e: any) => {
-                error(formatError(e));
+                error(...formatError(e));
             }).finally(() => {
                 this.stateSet({inProgress: false});
             });

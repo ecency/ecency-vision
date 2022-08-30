@@ -22,7 +22,7 @@ import {
     ProposalPay
 } from "../../store/transactions/types";
 
-import {dynamicPropsIntance1, fullAccountInstance} from "../../helper/test-helper";
+import {dynamicPropsIntance1, fullAccountInstance, globalInstance} from "../../helper/test-helper";
 
 jest.mock("moment", () => () => ({
     fromNow: () => "2 hours ago",
@@ -30,6 +30,7 @@ jest.mock("moment", () => () => ({
 
 const defProps = {
     history: createBrowserHistory(),
+    global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
     account: fullAccountInstance,
     fetchTransactions: () => {}

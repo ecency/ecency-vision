@@ -259,14 +259,26 @@ exports[`(5) transfer 1`] = `
   <div
     className="transaction-icon"
   >
-    <svg
-      viewBox="0 0 24 24"
+    <div
+      className="route d-flex"
     >
-      <path
-        d="M9 14H2V16H9V19L13 15L9 11V14M15 13V10H22V8H15V5L11 9L15 13Z"
-        fill="currentColor"
+      <span
+        className="two-user-avatar small"
+        style={
+          Object {
+            "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
+          }
+        }
       />
-    </svg>
+      <span
+        className="two-user-avatar small"
+        style={
+          Object {
+            "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
+          }
+        }
+      />
+    </div>
   </div>
   <div
     className="transaction-title"
@@ -321,22 +333,26 @@ exports[`(6) transfer_to_vesting 1`] = `
   <div
     className="transaction-icon"
   >
-    <svg
-      fill="currentColor"
-      height="16"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      className="route d-flex"
     >
-      <path
-        d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z"
-        fillRule="evenodd"
+      <span
+        className="two-user-avatar small"
+        style={
+          Object {
+            "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
+          }
+        }
       />
-      <path
-        d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z"
-        fillRule="evenodd"
+      <span
+        className="two-user-avatar small"
+        style={
+          Object {
+            "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
+          }
+        }
       />
-    </svg>
+    </div>
   </div>
   <div
     className="transaction-title"
@@ -579,14 +595,26 @@ exports[`(11) transfer_to_savings 1`] = `
   <div
     className="transaction-icon"
   >
-    <svg
-      viewBox="0 0 24 24"
+    <div
+      className="route d-flex"
     >
-      <path
-        d="M9 14H2V16H9V19L13 15L9 11V14M15 13V10H22V8H15V5L11 9L15 13Z"
-        fill="currentColor"
+      <span
+        className="two-user-avatar small"
+        style={
+          Object {
+            "backgroundImage": "url(https://images.ecency.com/u/talhasch/avatar/small)",
+          }
+        }
       />
-    </svg>
+      <span
+        className="two-user-avatar small"
+        style={
+          Object {
+            "backgroundImage": "url(https://images.ecency.com/u/talhasch/avatar/small)",
+          }
+        }
+      />
+    </div>
   </div>
   <div
     className="transaction-title"

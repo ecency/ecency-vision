@@ -57,7 +57,8 @@ const defProps = {
     deleteReply: () => {
     },
     toggleUIProp: () => {
-    }
+    },
+    hideControls: false
 };
 
 it("(1) Full render with active user", async() => {

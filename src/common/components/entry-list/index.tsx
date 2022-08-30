@@ -54,6 +54,7 @@ interface Props {
     trackEntryPin: (entry: Entry) => void;
     setSigningKey: (key: string) => void;
     setEntryPin: (entry: Entry, pin: boolean) => void;
+    pinEntry?: (entry: Entry | null) => void;
 }
 
 interface State {
@@ -142,7 +143,7 @@ export class EntryListContent extends Component<Props, State> {
                                 return [...l];
                             })}
                         </>
-                    ) : !loading &&  (isMyProfile) ?
+                    ) : !loading && (isMyProfile ?
                             <MessageNoData
                                 title={filter == 'feed' ? `${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}` : _t("profile-info.no-posts")}
                                 description={filter == 'feed' ? _t("g.fill-feed") : `${_t("g.nothing-found-in")} ${_t(`g.${filter}`)}`}
@@ -168,7 +169,7 @@ export class EntryListContent extends Component<Props, State> {
                                     buttonTo="/submit"
                                     global={global}
                                 />
-                                )
+                                ))
                             )
                 }
             </>
@@ -207,7 +208,8 @@ export default (p: Props) => {
         setEntryPin: p.setEntryPin,
         loading: p.loading,
         account: p.account,
-        match: p.match
+        match: p.match,
+        pinEntry: p.pinEntry,
     }
 
     return <EntryListContent {...props} />;

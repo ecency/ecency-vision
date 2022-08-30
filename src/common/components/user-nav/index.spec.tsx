@@ -48,7 +48,7 @@ const defProps = {
     },
     unMuteNotifications: () => {
     },
-};
+} as any;
 
 it("(1) Default render", () => {
     const component = renderer.create(

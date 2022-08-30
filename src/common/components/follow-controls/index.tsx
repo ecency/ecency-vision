@@ -91,7 +91,7 @@ export default class FollowControls extends BaseComponent<Props, State> {
             await follow(activeUser?.username!, targetUsername);
             this.stateSet({following: true, muted: false});
         } catch (err) {
-            error(formatError(err));
+            error(...formatError(err));
         } finally {
             this.stateSet({inProgress: false});
         }
@@ -110,7 +110,7 @@ export default class FollowControls extends BaseComponent<Props, State> {
             ls.set("muted-list", muted_list);
             this.stateSet({following: false, muted: false});
         } catch (err) {
-            error(formatError(err));
+            error(...formatError(err));
         } finally {
             this.stateSet({inProgress: false});
         }
@@ -129,7 +129,7 @@ export default class FollowControls extends BaseComponent<Props, State> {
             ls.set("muted-list",muted_list);
             this.stateSet({following: false, muted: true});
         } catch (err) {
-            error(formatError(err));
+            error(...formatError(err));
         } finally {
             this.stateSet({inProgress: false});
         }

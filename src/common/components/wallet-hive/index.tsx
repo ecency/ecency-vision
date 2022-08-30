@@ -41,7 +41,7 @@ import parseAsset from "../../helper/parse-asset";
 import {_t} from "../../i18n";
 
 import {plusCircle} from "../../img/svg";
-import { dateToFullRelative } from '../../helper/parse-date';
+import { dayDiff, dateToFullRelative } from '../../helper/parse-date';
 
 interface Props {
     history: History;
@@ -229,6 +229,10 @@ export class WalletHive extends BaseComponent<Props, State> {
         this.stateSet({withdrawRoutes: !withdrawRoutes});
     }
 
+    toggleClaimInterest = () => {
+        this.openTransferDialog('claim-interest', 'HBD');
+    }
+
     claimRewardBalance = () => {
         const {activeUser, updateActiveUser} = this.props;
         const {claiming} = this.state;
@@ -254,7 +258,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                 this.stateSet({claiming: false, claimed: true});
                 updateActiveUser(account);
             }).catch(err => {
-                error(formatError(err));
+                error(...formatError(err));
                 this.stateSet({claiming: false});
             })
     }
@@ -278,6 +282,13 @@ export class WalletHive extends BaseComponent<Props, State> {
         const {hivePerMVests} = dynamicProps;
         const isMyPage = activeUser && activeUser.username === account.name;
         const w = new HiveWallet(account, dynamicProps, converting);
+
+        const lastIPaymentRelative = account.savings_hbd_last_interest_payment=="1970-01-01T00:00:00"?null:dateToFullRelative(account.savings_hbd_last_interest_payment);
+        const lastIPaymentDiff = dayDiff(account.savings_hbd_last_interest_payment=="1970-01-01T00:00:00"?account.savings_hbd_seconds_last_update:account.savings_hbd_last_interest_payment);
+        const interestAmount = (Number(hbd)/100) * (w.savingBalanceHbd/(12*30)) * lastIPaymentDiff;
+        const estimatedInterest = formattedNumber(interestAmount, {suffix: "$"});
+        const remainingDays = 30-lastIPaymentDiff;
+
         const totalHP = formattedNumber(vestsToHp(w.vestingShares, hivePerMVests), {suffix: "HP"})
         const totalDelegated = formattedNumber(vestsToHp(w.vestingSharesDelegated, hivePerMVests), {prefix: "-", suffix: "HP"})
 
@@ -314,18 +325,6 @@ export class WalletHive extends BaseComponent<Props, State> {
                                 </div>
                             </div>
                         )}
-
-                        <div className="balance-row estimated alternative">
-                            <div className="balance-info">
-                                <div className="title">{_t("wallet.estimated")}</div>
-                                <div className="description">{_t("wallet.estimated-description")}</div>
-                            </div>
-                            <div className="balance-values">
-                                <div className="amount amount-bold">
-                                    <FormattedCurrency {...this.props} value={w.estimatedValue} fixAt={3}/>
-                                </div>
-                            </div>
-                        </div>
 
                         <div className="balance-row hive">
                             <div className="balance-info">
@@ -628,6 +627,19 @@ export class WalletHive extends BaseComponent<Props, State> {
                                 <div className="title">{_t("wallet.savings")}</div>
                                 <div className="description">{_t("wallet.savings-description")}</div>
                                 <div className="description font-weight-bold mt-2">{_t("wallet.hive-dollars-apr-rate", {value: hbd})}</div>
+                                {w.savingBalanceHbd > 0 && <div className="description font-weight-bold mt-2">{_t("wallet.hive-dollars-apr-claim", {value:  lastIPaymentRelative})} {estimatedInterest}</div>}
+                                {isMyPage && w.savingBalanceHbd > 0 && (
+                                    <div className="unclaimed-rewards" style={{marginBottom: "0"}}>
+                                        <div className="rewards" style={{height: "40px"}}>
+                                            <a
+                                                className={`claim-btn ${remainingDays>=0 ? 'disabled': ''}`}
+                                                onClick={this.toggleClaimInterest}
+                                            >
+                                               {remainingDays>=0 ? _t("wallet.hive-dollars-apr-when", {value:  remainingDays}) : _t("wallet.hive-dollars-apr-now")} {plusCircle}
+                                            </a>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                             <div className="balance-values">
                                 <div className="amount">
@@ -708,11 +720,24 @@ export class WalletHive extends BaseComponent<Props, State> {
                             </div>
                         </div>
 
+                        <div className="balance-row estimated alternative">
+                            <div className="balance-info">
+                                <div className="title">{_t("wallet.estimated")}</div>
+                                <div className="description">{_t("wallet.estimated-description")}</div>
+                            </div>
+                            <div className="balance-values">
+                                <div className="amount amount-bold">
+                                    <FormattedCurrency {...this.props} value={w.estimatedValue} fixAt={3}/>
+                                </div>
+                            </div>
+                        </div>
+
                         {w.isPoweringDown && (
                             <div className="next-power-down">
                                 {_t("wallet.next-power-down", {
                                     time: dateToFullRelative(w.nextVestingWithdrawalDate.toString()),
                                     amount: formattedNumber(w.nextVestingSharesWithdrawalHive, {suffix: "HIVE"}),
+                                    weeks: w.weeksLeft,
                                 })}
                             </div>
                         )}

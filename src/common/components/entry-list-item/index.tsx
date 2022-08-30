@@ -81,6 +81,7 @@ interface Props {
     setSigningKey: (key: string) => void;
     setEntryPin: (entry: Entry, pin: boolean) => void;
     muted?: boolean;
+    pinEntry?: (entry: Entry | null) => void;
 }
 
 interface State {

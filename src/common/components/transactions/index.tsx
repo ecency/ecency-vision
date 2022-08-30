@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component, useEffect, useState, useCallback } from 'react';
 
 import {History} from "history";
 
@@ -10,6 +10,8 @@ import {Account} from "../../store/accounts/types";
 
 import LinearProgress from "../linear-progress";
 import EntryLink from "../entry-link";
+import UserAvatar from "../user-avatar";
+import TwoUserAvatar from '../two-user-avatar';
 
 import parseAsset from "../../helper/parse-asset";
 import { dateToFullRelative } from "../../helper/parse-date";
@@ -21,9 +23,13 @@ import {ticketSvg, compareHorizontalSvg, cashMultiple, reOrderHorizontalSvg, pic
 
 import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
+import { usePrevious } from '../../util/use-previous';
+import { Global } from '../../store/global/types';
+
 
 interface RowProps {
     history: History;
+    global: Global;
     dynamicProps: DynamicProps;
     transaction: Transaction;
     entry?: Transaction
@@ -31,7 +37,7 @@ interface RowProps {
 
 export class TransactionRow extends Component<RowProps> {
     render() {
-        const {dynamicProps, transaction: item, entry} = this.props;
+        const {dynamicProps, transaction: item, entry, global} = this.props;
         const {hivePerMVests} = dynamicProps;
         const tr = item || entry;
 
@@ -112,7 +118,7 @@ export class TransactionRow extends Component<RowProps> {
 
         if (tr.type === "transfer" || tr.type === "transfer_to_vesting" || tr.type === "transfer_to_savings") {
             flag = true;
-            icon = tr.type === "transfer_to_vesting" ? powerUpSvg : compareHorizontalSvg;
+            icon = TwoUserAvatar({global: global, from: tr.from, to: tr.to, size: "small"})
 
             details = (
                 <span>
@@ -130,7 +136,7 @@ export class TransactionRow extends Component<RowProps> {
 
         if (tr.type === "set_withdraw_vesting_route") {
             flag = true;
-            icon = compareHorizontalSvg;
+            icon = TwoUserAvatar({global: global, from: tr.from_account, to: tr.to_account, size: "small"})
 
             details = (
                 <span>
@@ -144,7 +150,7 @@ export class TransactionRow extends Component<RowProps> {
 
         if (tr.type ==="recurrent_transfer" || tr.type ==="fill_recurrent_transfer") {
             flag = true;
-            icon = compareHorizontalSvg;
+            icon = TwoUserAvatar({global: global, from: tr.from, to: tr.to, size: "small"})
 
             details = (
                 <span>
@@ -200,7 +206,7 @@ export class TransactionRow extends Component<RowProps> {
         
         if (tr.type === "delegate_vesting_shares") {
             flag = true;
-            icon = starSvg;
+            icon = TwoUserAvatar({global: global, from: tr.delegator, to: tr.delegatee, size: "small"})
 
             const vesting_shares = parseAsset(tr.vesting_shares);
             numbers = (
@@ -397,6 +403,13 @@ export class TransactionRow extends Component<RowProps> {
             });
         }
 
+        if (tr.type === "account_witness_proxy") {
+            flag = true;
+            icon = tr.proxy?TwoUserAvatar({global: global, from: tr.account, to: tr.proxy, size: "small"}):UserAvatar({global: global, username: tr.account, size: "small"})
+
+            details = <span><strong>@{tr.account}</strong> -&gt; <strong>{tr.proxy ? `@${tr.proxy}` : ""}</strong></span>
+        }
+
         if (flag) {
             return (
                 <div className="transaction-list-item">
@@ -419,90 +432,92 @@ export class TransactionRow extends Component<RowProps> {
 
 interface Props {
     history: History;
+    global: Global;
     dynamicProps: DynamicProps;
     transactions: Transactions;
     account: Account;
     fetchTransactions: (username: string, group?: OperationGroup | "", start?: number, limit?: number) => void;
 }
 
-interface State {
-    loadingLoadMore: boolean;
-    transactionsList: any[];
-}
+const List = (props: Props) => {
+    const [loadingLoadMore, setLoadingLoadMore] = useState(false);
+    const [transactionsList, setTransactionsList] = useState<Transaction[]>([]);
+    const previousTransactions = usePrevious(props.transactions);
 
-export class TransactionList extends Component<Props> {
-    state: State = {
-        loadingLoadMore: false,
-        transactionsList: []
-    };
+    useEffect(() => {
+        const { account, fetchTransactions } = props;
+        account && account.name && fetchTransactions(account.name);
+    }, []);
 
-    componentDidMount(){
-        const {account, fetchTransactions} = this.props;
-        account && account.name && fetchTransactions(account.name)
-    }
-
-    componentDidUpdate(prevProps: any) {
-        const {transactionsList} = this.state;
-        const {transactions} = this.props;
-        if(prevProps.transactions.list !== transactions.list){
-            const new_transactions = [...prevProps.transactions.group === transactions.group ? transactionsList : [], ...transactions.list];
-            this.setState({transactionsList: new_transactions});
+    useEffect(() => {
+        const { transactions } = props;
+        if (previousTransactions && previousTransactions.list !== transactions.list) {
+            const txs = [
+                ...previousTransactions.group === transactions.group ? transactionsList : [],
+                ...transactions.list,
+            ];
+            const uniqueTxs = [...new Map(txs.map((item) => [item["num"], item])).values()];
+            setTransactionsList(uniqueTxs);
         }
-    }
+    }, [props.transactions]);
 
-    typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-        const {account, fetchTransactions} = this.props;
+    const typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+        const { account, fetchTransactions } = props;
         const group = e.target.value;
 
-        this.setState({...this.state});
+        setLoadingLoadMore(loadingLoadMore);
+        setTransactionsList(transactionsList);
 
         fetchTransactions(account.name, group as OperationGroup);
     }
 
-    loadMore = () => {
-        const {account, fetchTransactions, transactions: {list,group}} = this.props;
-        if(list.length > 0) {
+    const loadMore = () => {
+        const { account, fetchTransactions, transactions: { list, group } } = props;
+        if (list.length > 0) {
             const last_num = list[list.length-1].num - 1;
             fetchTransactions(account.name, group as OperationGroup, last_num);
         }
     }
 
-    render() {
-        const {loadingLoadMore, transactionsList} = this.state;
-        const {transactions} = this.props;
-        const {list, loading, group} = transactions;
-
-        const hasMore = !loading && list.length > 0;
-
-        return (
-            <div className="transaction-list">
-                <div className="transaction-list-header">
-                    <h2>{_t("transactions.title")} </h2>
-                    <FormControl as="select" value={group} onChange={this.typeChanged}>
-                        <option value="">{_t("transactions.group-all")}</option>
-                        {["transfers", "market-orders", "interests", "stake-operations", "rewards"].map(x =>
-                            <option key={x} value={x}>{_t(`transactions.group-${x}`)}</option>)}
-                    </FormControl>
-                </div>
-                {loading && <LinearProgress/>}
-                {transactionsList.map((x, k) => (
-                    <TransactionRow {...this.props} key={k} transaction={x}/>
-                ))}
-                {(!loading && transactionsList.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
-                {(!loading && hasMore && transactionsList.length > 0) && <Button disabled={loadingLoadMore} block={true} onClick={this.loadMore} className="mt-2">{_t('g.load-more')}</Button>}
-            </div>
-        );
-    }
+    return (
+      <div className="transaction-list">
+          <div className="transaction-list-header">
+              <h2>{_t("transactions.title")} </h2>
+              <FormControl as="select" value={props.transactions.group} onChange={typeChanged}>
+                  <option value="">{_t("transactions.group-all")}</option>
+                  {["transfers", "market-orders", "interests", "stake-operations", "rewards"].map(x =>
+                    <option key={x} value={x}>{_t(`transactions.group-${x}`)}</option>)}
+              </FormControl>
+          </div>
+          {props.transactions.loading && <LinearProgress/>}
+          {transactionsList.map((x, k) => (
+            <TransactionRow {...props} key={k} transaction={x}/>
+          ))}
+          {(!props.transactions.loading && transactionsList.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
+          {(!props.transactions.loading &&
+              !props.transactions.loading &&
+              props.transactions.list.length > 0 &&
+              transactionsList.length > 0) &&
+            <Button
+              disabled={loadingLoadMore}
+              block={true}
+              onClick={loadMore}
+              className="mt-2">
+                {_t('g.load-more')}
+            </Button>}
+      </div>
+    );
 }
 
 export default (p: Props) => {
     const props: Props = {
         history: p.history,
+        global: p.global,
         dynamicProps: p.dynamicProps,
         transactions: p.transactions,
         account: p.account,
         fetchTransactions: p.fetchTransactions
     }
 
-    return <TransactionList {...props} />
+    return <List {...props} />
 }

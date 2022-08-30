@@ -9,6 +9,7 @@ import { _t } from "../../i18n";
 import { lookupAccounts } from "../../api/hive";
 import { searchPath } from '../../api/search-api';
 import { isMobile } from '../../util/is-mobile';
+import NoSSR from '../../util/no-ssr';
 
 interface State {
 	value: string;
@@ -69,60 +70,68 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 	};
 
 	render() {
-		const {activeUser, rows, isComment, ...other} = this.props;
-		return (
-			<ReactTextareaAutocomplete
-				{...other}
-				loadingComponent={Loading}
-				rows={isComment ? rows : this.state.rows}
-				value={this.state.value}
-				placeholder={this.props.placeholder}
-				onChange={this.handleChange}
-				{...(isComment ? {} : {boundariesElement: ".body-input"})}
-				minChar={2}
-				trigger={{
-					["@"]: {
-						dataProvider: token => {
-							clearTimeout(timer);
-							return new Promise((resolve) => {
-								timer = setTimeout(async () => {
-									if(token.includes("/")){
-										let ignoreList = ['wallet', 'feed', 'followers', 'following', 'points', 'communities', 'posts', 'blog', 'comments', 'replies', 'settings', 'engine']
-										let searchIsInvalid = ignoreList.some(item => token.includes(`/${item}`))
-										if(!searchIsInvalid){
-											searchPath(activeUser, token).then(resp => {
-											resolve(resp)
-										})
-									} else {
-										resolve([])
-									}
-									}
-									else {
-										let suggestions = await lookupAccounts(token, 5)
-										resolve(suggestions)
-									}
-								}, 300);
-							});
-						},
-						component: (props: any) => {
-							let textToShow: string = props.entity.includes("/") ? props.entity.split("/")[1] : props.entity;
-							let charLimit = isMobile() ? 16 : 30
-							
-							if(textToShow.length > charLimit && props.entity.includes("/")){
-								textToShow = textToShow.substring(0, charLimit - 5) + "..." + textToShow.substring(textToShow.length - 6, textToShow.length-1)
-							}
+		const {activeUser, rows, isComment, disableRows, ...other} = this.props;
+		const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 992;
+		const attrs = { ...other };
 
-							return (
-								<>
-									{props.entity.includes("/") ? null : UserAvatar({ global: this.props.global, username: props.entity, size: "small" })}
-									<span style={{ marginLeft: "8px" }}>{textToShow}</span>
-								</>
-							)
-						},
-						output: (item: any, trigger) => `@${item}`
-					}
-				}}
-			/>
+		if ((!disableRows || !isDesktop) && typeof window !== 'undefined') {
+			attrs.rows = isComment ? rows : this.state.rows;
+		}
+
+		return (
+			<NoSSR>
+				<ReactTextareaAutocomplete
+					{...attrs}
+					loadingComponent={Loading}
+					value={this.state.value}
+					placeholder={this.props.placeholder}
+					onChange={this.handleChange}
+					{...(isComment ? {} : {boundariesElement: ".body-input"})}
+					minChar={2}
+					trigger={{
+						["@"]: {
+							dataProvider: token => {
+								clearTimeout(timer);
+								return new Promise((resolve) => {
+									timer = setTimeout(async () => {
+										if(token.includes("/")){
+											let ignoreList = ['engine','wallet','points','communities','settings','permissions','comments','replies','blog','posts','feed','referrals','followers','following']
+											let searchIsInvalid = ignoreList.some(item => token.includes(`/${item}`))
+											if(!searchIsInvalid){
+												searchPath(activeUser, token).then(resp => {
+												resolve(resp)
+											})
+										} else {
+											resolve([])
+										}
+										}
+										else {
+											let suggestions = await lookupAccounts(token, 5)
+											resolve(suggestions)
+										}
+									}, 300);
+								});
+							},
+							component: (props: any) => {
+								let textToShow: string = props.entity.includes("/") ? props.entity.split("/")[1] : props.entity;
+								let charLimit = isMobile() ? 16 : 30
+
+								if(textToShow.length > charLimit && props.entity.includes("/")){
+									textToShow = textToShow.substring(0, charLimit - 5) + "..." + textToShow.substring(textToShow.length - 6, textToShow.length-1)
+								}
+
+								return (
+									<>
+										{props.entity.includes("/") ? null : UserAvatar({ global: this.props.global, username: props.entity, size: "small" })}
+										<span style={{ marginLeft: "8px" }}>{textToShow}</span>
+									</>
+								)
+							},
+							output: (item: any, trigger) => `@${item}`
+						}
+					}}
+				/>
+			</NoSSR>
 		);
 	}
 }

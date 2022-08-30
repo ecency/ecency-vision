@@ -73,8 +73,8 @@ export const nodeList = async (req: express.Request, res: express.Response) => {
     res.send({
         "hived": [
           "https://rpc.ecency.com",
-          "https://api.hive.blog",
           "https://api.deathwing.me",
+          "https://api.hive.blog",
           "https://anyx.io",
           "https://rpc.ausbit.dev",
           "https://api.openhive.network",

@@ -54,9 +54,10 @@ const defProps = {
     },
     reloadFn: () => {
     },
-    reloading: false
-
-};
+    reloading: false,
+    fetchNotificationsSettings: () => {},
+    updateNotificationsSettings: () => {}
+} as any;
 
 it("(1) Default render", () => {
     const component = <NavBar {...defProps} />;

@@ -8,5 +8,8 @@ export const reorderDecks = (data: ReOrderAction['data'], username: string) => (
   dispatch(reorderAct(data));
 
   const { items } = getState().deck;
+  if (!username) {
+    username = 'anonymous';
+  }
   set(`user-${username}-decks`, serializeDecks(items));
 };

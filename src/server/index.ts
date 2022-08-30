@@ -11,44 +11,12 @@ import entryHandler from "./handlers/entry";
 import fallbackHandler, {healthCheck, iosURI, androidURI, nodeList} from "./handlers/fallback";
 import {entryRssHandler, authorRssHandler} from "./handlers/rss";
 import * as authApi from "./handlers/auth-api";
-import config from "../config";
+import { cleanURL, authCheck, stripLastSlash } from "./util";
 
 const server = express();
 
 const entryFilters = Object.values(EntryFilter);
 const profileFilters = Object.values(ProfileFilter);
-
-const cleanURL = (req: any, res: any, next: any) => {
-    if (req.url.includes('//')) {
-        res.redirect(req.url.replace(new RegExp('/{2,}', 'g'),'/'));
-    }
-    if(req.url.includes('-hs?code')){
-        next();
-    }
-    else if (req.url !== req.url.toLowerCase() && !req.url.includes('auth?code')) {
-        res.redirect(301, req.url.toLowerCase());
-    }
-    else {
-        next();
-    }
-}
-
-const stripLastSlash = (req: any, res: any, next: any) => {
-    if (req.path.substr(-1) === '/' && req.path.length > 1) {
-        let query = req.url.slice(req.path.length);
-        res.redirect(301, req.path.slice(0, -1) + query);
-    } else {
-        next();
-    }
-}
-
-const authCheck = (req: any, res: any, next: any) => {
-    if (config.hsClientSecret && config.usePrivate !== "1") {
-        next();
-    } else {
-        res.json({error: "Define HIVESIGNER_SECRET ENV variable or set USE_PRIVATE=1"});
-    }
-}
 
 server
     .disable("x-powered-by")
@@ -91,7 +59,7 @@ server
     .get(
         [
             "^/@:username$", // /@esteemapp
-            `^/@:username/:section(${profileFilters.join("|")}|communities|wallet|points|engine|settings)$`, // /@esteemapp/comments
+            `^/@:username/:section(${profileFilters.join("|")}|communities|wallet|points|engine|settings|permissions|referrals|followers|following)$`, // /@esteemapp/comments
         ],
         profileHandler
     )

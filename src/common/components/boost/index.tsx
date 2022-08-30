@@ -192,7 +192,7 @@ export class Boost extends BaseComponent<Props, State> {
         boost(key, activeUser.username, author, permlink, `${amount}.000`).then(() => {
             this.stateSet({step: 3});
         }).catch(err => {
-            error(formatError(err));
+            error(...formatError(err));
         }).finally(() => {
             this.setState({inProgress: false});
         });
@@ -207,7 +207,7 @@ export class Boost extends BaseComponent<Props, State> {
         boostKc(activeUser.username, author, permlink, `${amount}.000`).then(() => {
             this.stateSet({step: 3});
         }).catch(err => {
-            error(formatError(err));
+            error(...formatError(err));
         }).finally(() => {
             this.setState({inProgress: false});
         });
@@ -306,6 +306,7 @@ export class Boost extends BaseComponent<Props, State> {
                             <Form.Label column={true} sm="2"/>
                             <Col sm="10">
                                 <Button type="button" onClick={this.next} disabled={!canSubmit || inProgress} variant="primary">{_t('g.next')}</Button>
+                                <Form.Text className="text-warning font-italic">{_t('boost.hint')}</Form.Text>
                             </Col>
                         </Form.Group>
                     </div>

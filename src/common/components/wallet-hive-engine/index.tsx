@@ -3,6 +3,7 @@ import React from "react";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
+import {OperationGroup, Transactions} from "../../store/transactions/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import BaseComponent from "../base";
@@ -11,6 +12,8 @@ import LinearProgress from "../linear-progress";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import WalletMenu from "../wallet-menu";
 
+import Transfer, {TransferMode} from "../transfer-he";
+
 import {
   claimRewards,
   getHiveEngineTokenBalances,
@@ -18,7 +21,7 @@ import {
   TokenStatus,
 } from "../../api/hive-engine";
 import { proxifyImageSrc } from "@ecency/render-helper";
-import { informationVariantSvg, plusCircle } from "../../img/svg";
+import { informationVariantSvg, plusCircle, transferOutlineSvg, lockOutlineSvg, unlockOutlineSvg, delegateOutlineSvg, undelegateOutlineSvg } from "../../img/svg";
 import { error, success } from "../feedback";
 import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
@@ -30,6 +33,13 @@ interface Props {
   dynamicProps: DynamicProps;
   account: Account;
   activeUser: ActiveUser | null;
+  transactions: Transactions;
+  signingKey: string;
+  addAccount: (data: Account) => void;
+  updateActiveUser: (data?: Account) => void;
+  setSigningKey: (key: string) => void;
+  fetchPoints: (username: string, type?: number) => void;
+  updateWalletValues: () => void;
 }
 
 interface State {
@@ -38,6 +48,10 @@ interface State {
   loading: boolean;
   claiming: boolean;
   claimed: boolean;
+  transfer: boolean;
+  transferMode: null | TransferMode;
+  transferAsset: null | string;
+  assetBalance: number;
 }
 
 export class WalletHiveEngine extends BaseComponent<Props, State> {
@@ -47,6 +61,10 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     loading: true,
     claiming: false,
     claimed: false,
+    transfer: false,
+    transferMode: null,
+    transferAsset: null,
+    assetBalance: 0,
   };
   _isMounted = false;
 
@@ -59,6 +77,14 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
   componentWillUnmount() {
     this._isMounted = false;
   }
+
+openTransferDialog = (mode: TransferMode, asset: string, balance: number) => {
+    this.stateSet({transfer: true, transferMode: mode, transferAsset: asset, assetBalance: balance});
+}
+
+closeTransferDialog = () => {
+    this.stateSet({transfer: false, transferMode: null, transferAsset: null});
+}
 
   fetch = async () => {
     const { account } = this.props;
@@ -125,7 +151,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       })
       .catch((err) => {
         console.log(err);
-        error(formatError(err));
+        error(...formatError(err));
       })
       .finally(() => {
         this.setState({ claiming: false });
@@ -261,43 +287,189 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                           {b.symbol}
                         </div>
 
-                        <div className="ml-auto mr-1">
-                          <OverlayTrigger
-                            delay={{ show: 0, hide: 500 }}
-                            key={"bottom"}
-                            placement={"bottom"}
-                            overlay={
-                              <Tooltip id={`tooltip-${b.symbol}`}>
-                                <div className="tooltip-inner">
-                                  <div className="profile-info-tooltip-content">
-                                    <p>
-                                      {_t("wallet-engine.token")}: {b.name}
-                                    </p>
-                                    <p>
-                                      {_t("wallet-engine.balance")}:{" "}
-                                      {b.balanced()}
-                                    </p>
-                                    <p>
-                                      {_t("wallet-engine.staked")}: {b.staked()}
-                                    </p>
-                                    {b.hasDelegations() &&
-                                      `<p>${b.delegations()}</p>`}
-                                  </div>
-                                </div>
-                              </Tooltip>
-                            }
-                          >
-                            <div className="d-flex align-items-center">
-                              <span className="info-icon mr-0 mr-md-2">
-                                {informationVariantSvg}
-                              </span>
+                        <div className="ml-auto d-flex flex-column justify-between">
+                          <div className="d-flex mb-1 align-self-end">
+
+                            <div className="entry-body mr-md-2">
+                              <span className="item-balance">{b.balanced()}</span>
                             </div>
-                          </OverlayTrigger>
+
+                            <div className="ml-1">
+                              <OverlayTrigger
+                                delay={{ show: 0, hide: 300 }}
+                                key={"bottom"}
+                                placement={"bottom"}
+                                overlay={
+                                  <Tooltip id={`tooltip-${b.symbol}`}>
+                                    <div className="tooltip-inner">
+                                      <div className="profile-info-tooltip-content">
+                                        <p>
+                                          {_t("wallet-engine.token")}: {b.name}
+                                        </p>
+                                        <p>
+                                          {_t("wallet-engine.balance")}:{" "}
+                                          {b.balanced()}
+                                        </p>
+                                        <p>
+                                          {_t("wallet-engine.staked")}: {b.staked()}
+                                        </p>
+                                        {b.delegationEnabled &&
+                                          <>
+                                            <p>In: {b.delegationsIn}</p>
+                                            <p>Out: {b.delegationsOut}</p>
+                                          </>
+                                          
+                                          }
+                                      </div>
+                                    </div>
+                                  </Tooltip>
+                                }
+                              >
+                                <div className="d-flex align-items-center">
+                                  <span className="info-icon mr-0 mr-md-2">
+                                    {informationVariantSvg}
+                                  </span>
+                                </div>
+                              </OverlayTrigger>
+                            </div>
+                          </div>
+                          {isMyPage && <div className="d-flex justify-between ml-auto">
+                              <div className="mr-1">
+                              <OverlayTrigger
+                                delay={{ show: 0, hide: 500 }}
+                                key={"bottom"}
+                                placement={"bottom"}
+                                overlay={
+                                  <Tooltip id={`tooltip-${b.symbol}`}>
+                                    <div className="tooltip-inner">
+                                      <div className="profile-info-tooltip-content">
+                                        <p>
+                                          Transfer
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </Tooltip>
+                                }
+                              >
+                                <div className="d-flex align-items-center flex-justify-center">
+                                  <span 
+                                  onClick={() => this.openTransferDialog('transfer', b.symbol, b.balance)} 
+                                  className="he-icon mr-0 mr-md-2">
+                                    {transferOutlineSvg}
+                                  </span>
+                                </div>
+                              </OverlayTrigger>
+                              </div>
+
+                              {b.delegationEnabled && b.delegationsOut !== b.balance && <div className="mr-1">
+                                <OverlayTrigger
+                                  delay={{ show: 0, hide: 500 }}
+                                  key={"bottom"}
+                                  placement={"bottom"}
+                                  overlay={
+                                    <Tooltip id={`tooltip-${b.symbol}`}>
+                                      <div className="tooltip-inner">
+                                        <div className="profile-info-tooltip-content">
+                                          <p>
+                                            Delegate
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </Tooltip>
+                                  }
+                                >
+                                  <div className="d-flex align-items-center flex-justify-center">
+                                    <span 
+                                    onClick={() => this.openTransferDialog('delegate', b.symbol, (b.balance - b.delegationsOut))} 
+                                    className="he-icon mr-0 mr-md-2">
+                                      {delegateOutlineSvg}
+                                    </span>
+                                  </div>
+                                </OverlayTrigger>
+                              </div>}
+                              {b.delegationEnabled && b.delegationsOut > 0 && <div className="mr-1">
+                                <OverlayTrigger
+                                  delay={{ show: 0, hide: 500 }}
+                                  key={"bottom"}
+                                  placement={"bottom"}
+                                  overlay={
+                                    <Tooltip id={`tooltip-${b.symbol}`}>
+                                      <div className="tooltip-inner">
+                                        <div className="profile-info-tooltip-content">
+                                          <p>
+                                            Undelegate
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </Tooltip>
+                                  }
+                                >
+                                  <div className="d-flex align-items-center flex-justify-center">
+                                    <span 
+                                    onClick={() => this.openTransferDialog('undelegate', b.symbol, b.delegationsOut)} 
+                                    className="he-icon mr-0 mr-md-2">
+                                      {undelegateOutlineSvg}
+                                    </span>
+                                  </div>
+                                </OverlayTrigger>
+                              </div>}
+
+                              {b.stakingEnabled && <div className="mr-1">
+                                <OverlayTrigger
+                                  delay={{ show: 0, hide: 500 }}
+                                  key={"bottom"}
+                                  placement={"bottom"}
+                                  overlay={
+                                    <Tooltip id={`tooltip-${b.symbol}`}>
+                                      <div className="tooltip-inner">
+                                        <div className="profile-info-tooltip-content">
+                                          <p>
+                                            Stake
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </Tooltip>
+                                  }
+                                >
+                                  <div className="d-flex align-items-center flex-justify-center align-center">
+                                    <span 
+                                    onClick={() => this.openTransferDialog('stake', b.symbol, b.balance)} 
+                                    className="he-icon mr-0 mr-md-2">
+                                      {lockOutlineSvg}
+                                    </span>
+                                  </div>
+                                </OverlayTrigger>
+                              </div>}
+                              {b.stake > 0 && <div className="mr-1">
+                                <OverlayTrigger
+                                  delay={{ show: 0, hide: 500 }}
+                                  key={"bottom"}
+                                  placement={"bottom"}
+                                  overlay={
+                                    <Tooltip id={`tooltip-${b.symbol}`}>
+                                      <div className="tooltip-inner">
+                                        <div className="profile-info-tooltip-content">
+                                          <p>
+                                            Unstake
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </Tooltip>
+                                  }
+                                >
+                                  <div className="d-flex align-items-center flex-justify-center align-center">
+                                    <span 
+                                    onClick={() => this.openTransferDialog('unstake', b.symbol, b.stakedBalance)}
+                                    className="he-icon mr-0 mr-md-2">
+                                      {unlockOutlineSvg}
+                                    </span>
+                                  </div>
+                                </OverlayTrigger>
+                              </div>}
+                          </div>}
+
                         </div>
 
-                        <div className="entry-body mr-md-2">
-                          <span className="item-balance">{b.balanced()}</span>
-                        </div>
                       </div>
                     );
                   })}
@@ -311,6 +483,14 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
             active="engine"
           />
         </div>
+        {this.state.transfer && <Transfer {...this.props} 
+          activeUser={activeUser!} 
+          to={isMyPage ? undefined : account.name}
+          mode={this.state.transferMode!} 
+          asset={this.state.transferAsset!} 
+          onHide={this.closeTransferDialog}
+          assetBalance={this.state.assetBalance} 
+        />}
       </div>
     );
   }
@@ -322,6 +502,13 @@ export default (p: Props) => {
     dynamicProps: p.dynamicProps,
     account: p.account,
     activeUser: p.activeUser,
+    transactions: p.transactions,
+    signingKey: p.signingKey,
+    addAccount: p.addAccount,
+    updateActiveUser: p.updateActiveUser,
+    setSigningKey: p.setSigningKey,
+    updateWalletValues: p.updateWalletValues,
+    fetchPoints: p.fetchPoints
   };
 
   return <WalletHiveEngine {...props} />;

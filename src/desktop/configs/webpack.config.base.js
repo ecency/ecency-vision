@@ -47,5 +47,8 @@ export default {
     }),
 
     new webpack.NamedModulesPlugin(),
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1
+    })
   ],
 };

@@ -75,7 +75,6 @@ export const customJson = (account: string, id: string, key: AuthorityTypes, jso
             if (!resp.success) {
                 reject({message: "Operation cancelled"});
             }
-
             resolve(resp);
         }, rpc);
     })

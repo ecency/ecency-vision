@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import {PointTransaction} from "../store/points/types";
-import {ApiNotification, NotificationFilter} from "../store/notifications/types";
+import {ApiNotification, ApiNotificationSetting, NotificationFilter} from "../store/notifications/types";
 import {Entry} from "../store/entries/types";
 
 import {getAccessToken} from "../helper/user-token";
@@ -9,6 +9,9 @@ import {getAccessToken} from "../helper/user-token";
 import {apiBase} from "./helper";
 
 import {AppWindow} from "../../client/window";
+import isElectron from '../util/is-electron';
+import { NotifyTypes } from '../enums';
+import { BeneficiaryRoute, MetaData, RewardType } from './operations';
 
 declare var window: AppWindow;
 
@@ -115,6 +118,16 @@ export const getNotifications = (username: string, filter: NotificationFilter | 
     return axios.post(apiBase(`/private-api/notifications`), data).then(resp => resp.data);
 };
 
+export const saveNotificationSetting = (username: string, system: string, allows_notify: number, notify_types: number[], token: string): Promise<ApiNotificationSetting> => {
+    const data = {code: getAccessToken(username), username, token, system, allows_notify, notify_types};
+    return axios.post(apiBase(`/private-api/register-device`), data).then(resp => resp.data);
+};
+
+export const getNotificationSetting = (username: string, token: string): Promise<ApiNotificationSetting> => {
+    const data = {code: getAccessToken(username), username, token};
+    return axios.post(apiBase(`/private-api/detail-device`), data).then(resp => resp.data);
+};
+
 export const getCurrencyTokenRate = (currency:string, token:string): Promise<number> => 
     axios.get(apiBase(`/private-api/market-data/${currency==="hbd" ? "usd" : currency}/${token}`)).then((resp:any) => resp.data)
 
@@ -157,6 +170,11 @@ export const addImage = (username: string, url: string): Promise<any> => {
     return axios.post(apiBase(`/private-api/images-add`), data).then(resp => resp.data);
 }
 
+export interface DraftMetadata extends MetaData {
+    beneficiaries: BeneficiaryRoute[];
+    rewardType: RewardType;
+}
+
 export interface Draft {
     body: string
     created: string
@@ -165,6 +183,7 @@ export interface Draft {
     timestamp: number
     title: string
     _id: string
+    meta?: DraftMetadata
 }
 
 export const getDrafts = (username: string): Promise<Draft[]> => {
@@ -172,13 +191,13 @@ export const getDrafts = (username: string): Promise<Draft[]> => {
     return axios.post(apiBase(`/private-api/drafts`), data).then(resp => resp.data);
 }
 
-export const addDraft = (username: string, title: string, body: string, tags: string): Promise<{ drafts: Draft[] }> => {
-    const data = {code: getAccessToken(username), title, body, tags};
+export const addDraft = (username: string, title: string, body: string, tags: string, meta: DraftMetadata): Promise<{ drafts: Draft[] }> => {
+    const data = {code: getAccessToken(username), title, body, tags, meta};
     return axios.post(apiBase(`/private-api/drafts-add`), data).then(resp => resp.data);
 }
 
-export const updateDraft = (username: string, draftId: string, title: string, body: string, tags: string): Promise<any> => {
-    const data = {code: getAccessToken(username), id: draftId, title, body, tags};
+export const updateDraft = (username: string, draftId: string, title: string, body: string, tags: string, meta: DraftMetadata): Promise<any> => {
+    const data = {code: getAccessToken(username), id: draftId, title, body, tags, meta};
     return axios.post(apiBase(`/private-api/drafts-update`), data).then(resp => resp.data);
 }
 
@@ -390,6 +409,52 @@ export const getPromotedEntries = (): Promise<Entry[]> => {
     return new Promise(resolve => resolve([]));
 }
 
+export const saveNotificationsSettings = (username: string, notifyTypes: NotifyTypes[], isEnabled: boolean, token: string) => {
+    return saveNotificationSetting(username, isElectron() ? 'desktop' : 'web', Number(isEnabled), notifyTypes as number[], token);
+}
 
+export interface ReferralItem {
+    id: number;
+    username: string;
+    referrer: string;
+    created: string;
+    rewarded: number;
+    v: number;
+}
 
+export interface ReferralItems {
+    data: ReferralItem[]
+}
+export const getReferrals = (username:any, maxId: any): Promise<ReferralItems> => {
 
+    return axios.get(apiBase(`/private-api/referrals/${username}`), {
+      params: {
+        max_id: maxId,
+      },
+    });;
+
+}
+export interface ReferralStat {
+  total: number;
+  rewarded: number;
+}
+export const getReferralsStats = async (
+  username: any,
+): Promise<ReferralStat> => {
+  try {
+    const res = await axios.get(apiBase(`/private-api/referrals/${username}/stats`));
+    if (!res.data) {
+      throw new Error('No Referrals for this user!');
+    }
+    const convertReferralStat = (rawData: any) => {
+      return {
+        total: rawData.total || 0,
+        rewarded: rawData.rewarded || 0,
+      } as ReferralStat;
+    };
+    return convertReferralStat(res.data);
+  } catch (error) {
+    console.warn(error);
+    throw error;
+  }
+};

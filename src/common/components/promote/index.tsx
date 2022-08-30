@@ -192,7 +192,7 @@ export class Promote extends BaseComponent<Props, State> {
         promote(key, activeUser.username, author, permlink, duration).then(() => {
             this.stateSet({step: 3});
         }).catch(err => {
-            error(formatError(err));
+            error(...formatError(err));
         }).finally(() => {
             this.setState({inProgress: false});
         });
@@ -207,7 +207,7 @@ export class Promote extends BaseComponent<Props, State> {
         promoteKc(activeUser.username, author, permlink, duration).then(() => {
             this.stateSet({step: 3});
         }).catch(err => {
-            error(formatError(err));
+            error(...formatError(err));
         }).finally(() => {
             this.setState({inProgress: false});
         });

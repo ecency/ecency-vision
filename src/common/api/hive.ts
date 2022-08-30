@@ -15,8 +15,8 @@ import { dataLimit } from './bridge';
 import moment from "moment";
 
 export const client = new Client(SERVERS, {
-    timeout: 4000,
-    failoverThreshold: 5,
+    timeout: 3000,
+    failoverThreshold: 3,
     consoleOnFailover: true,
 });
 
@@ -191,6 +191,8 @@ export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
                 hbd_balance: x.hbd_balance,
                 savings_balance: x.savings_balance,
                 savings_hbd_balance: x.savings_hbd_balance,
+                savings_hbd_last_interest_payment: x.savings_hbd_last_interest_payment,
+                savings_hbd_seconds_last_update: x.savings_hbd_seconds_last_update,
                 next_vesting_withdrawal: x.next_vesting_withdrawal,
                 vesting_shares: x.vesting_shares,
                 delegated_vesting_shares: x.delegated_vesting_shares,

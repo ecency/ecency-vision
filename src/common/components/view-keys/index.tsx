@@ -60,7 +60,7 @@ export default class ViewKeys extends BaseComponent<Props, State> {
                 if (r === 'memo') keyCheck = k.createPublic().toString();
             });    
         } catch (err) {
-            error(formatError(err));
+            error(...formatError(err));
         }
         
         if (activeUser.data.memo_key !== keyCheck) {
