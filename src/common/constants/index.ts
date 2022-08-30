@@ -1,1 +1,1 @@
-export * from './faq-keys-general';
+export * from "./faq-keys-general";

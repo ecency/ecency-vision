@@ -26,7 +26,10 @@ it("(4) Hive", () => {
 });
 
 it("(5) From canonical field", () => {
-  const entry = { ...entryInstance1, ...{ json_metadata: { canonical_url: "http://foo.bar/baz" } } };
+  const entry = {
+    ...entryInstance1,
+    ...{ json_metadata: { canonical_url: "http://foo.bar/baz" } }
+  };
   const result = entryCanonical(entry);
   expect(result).toBe("http://foo.bar/baz");
 });

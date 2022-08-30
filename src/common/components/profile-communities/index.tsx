@@ -1,111 +1,131 @@
 import React from "react";
 
-import {History} from "history";
+import { History } from "history";
 
 import isEqual from "react-fast-compare";
 
-import {Global} from "../../store/global/types";
-import {Account} from "../../store/accounts/types";
-import {ActiveUser} from "../../store/active-user/types";
-import {Subscription} from "../../store/subscriptions/types";
+import { Global } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { Subscription } from "../../store/subscriptions/types";
 
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import Tag from "../tag";
-import {error} from "../feedback";
+import { error } from "../feedback";
 
-import {getSubscriptions} from "../../api/bridge";
+import { getSubscriptions } from "../../api/bridge";
 
-import {_t} from "../../i18n";
-import {Link} from "react-router-dom";
-
+import { _t } from "../../i18n";
+import { Link } from "react-router-dom";
 
 interface Props {
-    global: Global;
-    history: History;
-    activeUser: ActiveUser | null;
-    account: Account;
+  global: Global;
+  history: History;
+  activeUser: ActiveUser | null;
+  account: Account;
 }
 
 interface State {
-    loading: boolean;
-    items: Subscription[]
+  loading: boolean;
+  items: Subscription[];
 }
 
 export class ProfileCommunities extends BaseComponent<Props, State> {
-    state: State = {
-        loading: true,
-        items: []
-    };
+  state: State = {
+    loading: true,
+    items: []
+  };
 
-    componentDidMount() {
-        const {account} = this.props;
-        getSubscriptions(account.name)
-            .then(items => {
-                if(items){
-                    this.stateSet({items});
-                }
-            })
-            .catch(() => error(_t('g.server-error')))
-            .finally(() => this.stateSet({loading: false}));
-    }
+  componentDidMount() {
+    const { account } = this.props;
+    getSubscriptions(account.name)
+      .then((items) => {
+        if (items) {
+          this.stateSet({ items });
+        }
+      })
+      .catch(() => error(_t("g.server-error")))
+      .finally(() => this.stateSet({ loading: false }));
+  }
 
-    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
-        return !isEqual(this.props.account, nextProps.account)
-            || !isEqual(this.props.activeUser, nextProps.activeUser)
-            || !isEqual(this.state, nextState);
-    }
+  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
+    return (
+      !isEqual(this.props.account, nextProps.account) ||
+      !isEqual(this.props.activeUser, nextProps.activeUser) ||
+      !isEqual(this.state, nextState)
+    );
+  }
 
-    render() {
-        const {activeUser, account} = this.props;
-        const {items, loading} = this.state;
+  render() {
+    const { activeUser, account } = this.props;
+    const { items, loading } = this.state;
 
-        const showCreateLink = activeUser && activeUser.username === account.name;
+    const showCreateLink = activeUser && activeUser.username === account.name;
 
-        return (
-            <div className="profile-communities">
+    return (
+      <div className="profile-communities">
+        {(() => {
+          if (loading) {
+            return <LinearProgress />;
+          }
 
-                {(() => {
-                    if (loading) {
-                        return <LinearProgress/>;
-                    }
+          if (items.length === 0) {
+            return (
+              <>
+                <h2>{_t("profile.communities-title")}</h2>
+                <p className="text-muted">{_t("g.empty-list")}</p>
+                {showCreateLink && (
+                  <p>
+                    <Link to="/communities/create" className="create-link">
+                      {_t("profile.create-community")}
+                    </Link>
+                  </p>
+                )}
+              </>
+            );
+          }
 
-                    if (items.length === 0) {
-                        return <>
-                            <h2>{_t('profile.communities-title')}</h2>
-                            <p className="text-muted">{_t('g.empty-list')}</p>
-                            {showCreateLink && (<p><Link to="/communities/create" className="create-link">{_t('profile.create-community')}</Link></p>)}
-                        </>
-                    }
-
-                    return <>
-                        <h2>{_t('profile.communities-title')}</h2>
-                        <ul className="community-list">
-                            {items.map((i, k) => {
-                                return <li key={k}>{Tag({
-                                    ...this.props,
-                                    tag: i[0],
-                                    type: "link",
-                                    children: <span>{i[1]}</span>
-                                })} <span className="user-role">{i[2]}</span></li>
-                            })}
-                        </ul>
-                        {showCreateLink && (<p><Link to="/communities/create" className="create-link">{_t('profile.create-community')}</Link></p>)}
-                    </>
-                })()}
-            </div>
-        );
-    }
+          return (
+            <>
+              <h2>{_t("profile.communities-title")}</h2>
+              <ul className="community-list">
+                {items.map((i, k) => {
+                  return (
+                    <li key={k}>
+                      {Tag({
+                        ...this.props,
+                        tag: i[0],
+                        type: "link",
+                        children: <span>{i[1]}</span>
+                      })}{" "}
+                      <span className="user-role">{i[2]}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+              {showCreateLink && (
+                <p>
+                  <Link to="/communities/create" className="create-link">
+                    {_t("profile.create-community")}
+                  </Link>
+                </p>
+              )}
+            </>
+          );
+        })()}
+      </div>
+    );
+  }
 }
 
 export default (p: Props) => {
-    const props: Props = {
-        global: p.global,
-        history: p.history,
-        activeUser: p.activeUser,
-        account: p.account,
-    }
+  const props: Props = {
+    global: p.global,
+    history: p.history,
+    activeUser: p.activeUser,
+    account: p.account
+  };
 
-    return <ProfileCommunities {...props} />;
-}
-
+  return <ProfileCommunities {...props} />;
+};

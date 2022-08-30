@@ -33,7 +33,7 @@ interface State {
 
 export class Search extends BaseComponent<Props, State> {
   state: State = {
-    query: "",
+    query: ""
   };
 
   componentDidMount() {
@@ -48,7 +48,7 @@ export class Search extends BaseComponent<Props, State> {
 
     if (location.pathname !== prevProps.location.pathname) {
       this.stateSet({
-        query: "",
+        query: ""
       });
       return;
     }
@@ -70,9 +70,7 @@ export class Search extends BaseComponent<Props, State> {
 
   isSearchPage = () => this.props.location.pathname.startsWith("/search");
 
-  queryChanged = (
-    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
-  ) => {
+  queryChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const query = e.target.value.toLowerCase();
     this.stateSet({ query });
   };
@@ -96,7 +94,7 @@ export class Search extends BaseComponent<Props, State> {
     const placeholder =
       global.searchIndexCount > 0
         ? _t("search.placeholder-count", {
-            n: numeral(global.searchIndexCount).format("0,0"),
+            n: numeral(global.searchIndexCount).format("0,0")
           })
         : _t("search.placeholder");
 
@@ -128,7 +126,7 @@ export default (p: Props) => {
     global: p.global,
     trendingTags: p.trendingTags,
     fetchTrendingTags: p.fetchTrendingTags,
-    containerClassName: p.containerClassName,
+    containerClassName: p.containerClassName
   };
   return <Search {...props} />;
 };
