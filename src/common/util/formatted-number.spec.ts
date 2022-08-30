@@ -8,7 +8,7 @@ it("(1) formattedNumber", () => {
 it("(2) formattedNumber - with fraction digits", () => {
   const opts = {
     value: 1250,
-    fractionDigits: 2,
+    fractionDigits: 2
   };
 
   const res = formattedNumber(1250, opts);
@@ -17,7 +17,7 @@ it("(2) formattedNumber - with fraction digits", () => {
 
 it("(3) formattedNumber - with prefix", () => {
   const opts = {
-    prefix: "$",
+    prefix: "$"
   };
 
   const res = formattedNumber(100, opts);
@@ -26,7 +26,7 @@ it("(3) formattedNumber - with prefix", () => {
 
 it("(4) formattedNumber - with suffix", () => {
   const opts = {
-    suffix: "TL",
+    suffix: "TL"
   };
 
   const res = formattedNumber(100, opts);

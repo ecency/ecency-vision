@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from "react";
 
 export function useMounted(): boolean {
   const ref = useRef<boolean>(false);
@@ -7,4 +7,3 @@ export function useMounted(): boolean {
   }, []);
   return ref.current;
 }
-

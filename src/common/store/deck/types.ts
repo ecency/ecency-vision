@@ -32,7 +32,7 @@ export interface WalletDeckModel extends IdentifiableDeckModel {
 
 export enum ActionTypes {
   CREATE = "@deck/CREATE",
-  SET_DATA =  "@deck/FETCH_DATA",
+  SET_DATA = "@deck/FETCH_DATA",
   SET_RELOADING = "@deck/SET_RELOADING",
   REORDER = "@deck/REORDER",
   DELETE = "@deck/DELETE",
@@ -44,13 +44,13 @@ export enum ActionTypes {
 export interface CreateAction {
   type: ActionTypes.CREATE;
   data: [
-    DeckModel['listItemComponent'],
-    DeckModel['header']['title'],
-    DeckModel['header']['icon'],
-    DeckModel['dataParams'],
-    DeckModel['createdAt']?,
-    DeckModel['header']['updateIntervalMs']?,
-    DeckModel['dataFilters']?
+    DeckModel["listItemComponent"],
+    DeckModel["header"]["title"],
+    DeckModel["header"]["icon"],
+    DeckModel["dataParams"],
+    DeckModel["createdAt"]?,
+    DeckModel["header"]["updateIntervalMs"]?,
+    DeckModel["dataFilters"]?
   ];
 }
 
@@ -75,7 +75,7 @@ export interface ReOrderAction {
   data: {
     startIndex: number;
     endIndex: number;
-  }
+  };
 }
 
 export interface DeleteAction {
@@ -93,8 +93,8 @@ export interface UpdateIntervalAction {
   type: ActionTypes.UPDATE_INTERVAL;
   data: {
     title: string;
-    updateIntervalMs: DeckModel['header']['updateIntervalMs'];
-  }
+    updateIntervalMs: DeckModel["header"]["updateIntervalMs"];
+  };
 }
 
 export interface SetDataFiltersAction {
@@ -103,7 +103,7 @@ export interface SetDataFiltersAction {
     title: string;
     username: string;
     dataFilters: any;
-  }
+  };
 }
 
 export type DeckState = {
@@ -111,5 +111,12 @@ export type DeckState = {
   isContentLoading: boolean;
 };
 
-export type Actions = CreateAction | SetDataAction | SetReloadingAction | ReOrderAction | DeleteAction
-  | UpdateIntervalAction | SetDataFiltersAction | DeleteAllAction;
+export type Actions =
+  | CreateAction
+  | SetDataAction
+  | SetReloadingAction
+  | ReOrderAction
+  | DeleteAction
+  | UpdateIntervalAction
+  | SetDataFiltersAction
+  | DeleteAllAction;

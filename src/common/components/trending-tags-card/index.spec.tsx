@@ -15,7 +15,7 @@ it("(1) Default render", () => {
     trendingTags: {
       list: ["art", "hive", "news"],
       loading: false,
-      error: false,
+      error: false
     },
     activeUser: activeUserInstance
   };
@@ -31,7 +31,7 @@ it("(2) Selected tag", () => {
     trendingTags: {
       list: ["art", "hive", "news"],
       loading: false,
-      error: false,
+      error: false
     },
     activeUser: null
   };

@@ -6,10 +6,10 @@ import renderer from "react-test-renderer";
 
 import { createBrowserHistory } from "history";
 
-import {globalInstance} from "../../helper/test-helper";
+import { globalInstance } from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
-  imageServer: "https://images.ecency.com",
+  imageServer: "https://images.ecency.com"
 }));
 
 jest.mock("../../api/hive", () => ({
@@ -19,18 +19,18 @@ jest.mock("../../api/hive", () => ({
         {
           follower: "foo",
           following: "user1",
-          what: ["blog"],
+          what: ["blog"]
         },
         {
           follower: "bar",
           following: "user2",
-          what: ["blog"],
+          what: ["blog"]
         },
         {
           follower: "baz",
           following: "user3",
-          what: ["blog"],
-        },
+          what: ["blog"]
+        }
       ]);
     }),
   getAccounts: () =>
@@ -38,25 +38,25 @@ jest.mock("../../api/hive", () => ({
       resolve([
         {
           name: "user1",
-          profile: { name: "User One" },
+          profile: { name: "User One" }
         },
         {
           name: "user2",
-          profile: { name: "User Two" },
+          profile: { name: "User Two" }
         },
         {
           name: "user3",
-          profile: { name: "User Three" },
-        },
+          profile: { name: "User Three" }
+        }
       ]);
-    }),
+    })
 }));
 
 const props = {
   global: globalInstance,
   history: createBrowserHistory(),
   account: { name: "foo" },
-  addAccount: () => {},
+  addAccount: () => {}
 };
 
 const component = renderer.create(<List {...props} mode="follower" />);
