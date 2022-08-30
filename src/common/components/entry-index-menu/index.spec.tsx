@@ -24,7 +24,9 @@ const defaultProps = {
 it("(1) No active user. Default filter", () => {
     const renderer = TestRenderer.create(
         <StaticRouter location="/" context={{}}>
-            <EntryIndexMenu {...defaultProps} />
+            <EntryIndexMenu noReblog={false} handleFilterReblog={function (): void {
+                throw new Error("Function not implemented.");
+            } } {...defaultProps} />
         </StaticRouter>);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
@@ -40,7 +42,9 @@ it("(2) No active user. Trending filter", () => {
 
     const renderer = TestRenderer.create(
         <StaticRouter location="/" context={{}}>
-            <EntryIndexMenu {...props} />
+            <EntryIndexMenu noReblog={false} handleFilterReblog={function (): void {
+                throw new Error("Function not implemented.");
+            } } {...props} />
         </StaticRouter>);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
@@ -58,7 +62,9 @@ it("(3) Active user. Trending filter", () => {
 
     const renderer = TestRenderer.create(
         <StaticRouter location="/" context={{}}>
-            <EntryIndexMenu {...props} />
+            <EntryIndexMenu noReblog={false} handleFilterReblog={function (): void {
+                throw new Error("Function not implemented.");
+            } } {...props} />
         </StaticRouter>);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
@@ -77,7 +83,9 @@ it("(4) Active user. Friends", () => {
 
     const renderer = TestRenderer.create(
         <StaticRouter location="/" context={{}}>
-            <EntryIndexMenu {...props} />
+            <EntryIndexMenu noReblog={false} handleFilterReblog={function (): void {
+                throw new Error("Function not implemented.");
+            } } {...props} />
         </StaticRouter>);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
@@ -95,7 +103,9 @@ it("(5) Active user. Communities", () => {
 
     const renderer = TestRenderer.create(
         <StaticRouter location="/" context={{}}>
-            <EntryIndexMenu {...props} />
+            <EntryIndexMenu noReblog={false} handleFilterReblog={function (): void {
+                throw new Error("Function not implemented.");
+            } } {...props} />
         </StaticRouter>);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
@@ -114,7 +124,9 @@ it("(6) No active user. Communities", () => {
 
     const renderer = TestRenderer.create(
         <StaticRouter location="/" context={{}}>
-            <EntryIndexMenu {...props} />
+            <EntryIndexMenu noReblog={false} handleFilterReblog={function (): void {
+                throw new Error("Function not implemented.");
+            } } {...props} />
         </StaticRouter>);
     expect(renderer.toJSON()).toMatchSnapshot();
 });

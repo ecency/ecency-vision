@@ -123,7 +123,7 @@ export const EntryIndexMenuDropdown = (props: Props) => {
     label: (
       <div className='tagDropDown'>
         <span className='pl-2' />
-        {tag === "" ? _t('entry-filter.filter-global') : tag === 'my' ? _t('entry-filter.filter-community') : tag === 'today' ? _t('entry-filter.filter-today') : tag === 'week' ? _t('entry-filter.filter-week') : tag === 'month' ? _t('entry-filter.filter-month'): tag === 'year' ? _t('entry-filter.filter-year') : tag === 'all' ? _t('entry-filter.filter-alltime') : tag === `@${activeUser.username}` || feedByUsername ? (props.noReblog === true ? _t('entry-filter.filter-no-reblog') : _t('entry-filter.filter-with-reblog')) : tag}
+        {tag === "" ? _t('entry-filter.filter-global') : tag === 'my' ? _t('entry-filter.filter-community') : tag === 'today' ? _t('entry-filter.filter-today') : tag === 'week' ? _t('entry-filter.filter-week') : tag === 'month' ? _t('entry-filter.filter-month'): tag === 'year' ? _t('entry-filter.filter-year') : tag === 'all' ? _t('entry-filter.filter-alltime') : tag === `@${activeUser?.username}` || feedByUsername ? (props.noReblog === true ? _t('entry-filter.filter-no-reblog') : _t('entry-filter.filter-with-reblog')) : tag}
         {" "}
         {menuDownSvg}
       </div>
