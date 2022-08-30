@@ -8,7 +8,7 @@
     "build": "razzle build --noninteractive",
     "test": "TZ=UTC razzle test --env=jsdom",
     "prepare": "husky install",
-    "format": "prettier --ignore-unknown --write './src/**/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "format": "prettier --ignore-unknown --write './src/**/**/*.{js,jsx,ts,tsx,scss,md,json}' --config ./.prettierrc",
     "precommit": "lint-staged",
     "start:prod": "NODE_ENV=production node build/server.js"
   },
@@ -112,7 +112,7 @@
     "mini-css-extract-plugin": "0.9.0",
     "mockdate": "^3.0.2",
     "postcss": "8.2.13",
-    "prettier": "^2.5.1",
+    "prettier": "^2.7.1",
     "razzle": "^4.0.5",
     "razzle-dev-utils": "^4.0.5",
     "razzle-plugin-scss": "^4.0.5",
