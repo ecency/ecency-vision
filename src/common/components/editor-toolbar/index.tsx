@@ -61,6 +61,7 @@ interface State {
     image: boolean;
     link: boolean;
     mobileImage: boolean;
+    shGif: boolean;
 }
 
 export class EditorToolbar extends Component<Props> {
@@ -69,7 +70,8 @@ export class EditorToolbar extends Component<Props> {
         fragments: false,
         image: false,
         link: false,
-        mobileImage: false
+        mobileImage: false,
+        shGif: false
     }
 
     holder = React.createRef<HTMLDivElement>();
@@ -101,14 +103,14 @@ export class EditorToolbar extends Component<Props> {
         this.setState({image: !image});
     }
 
-    // toggleGif = (e?: React.MouseEvent<HTMLElement>) => {
-    //     const {showGif} = this.props;
-    //     if(e) {
-    //         <GifPicker fallback={(e) => {
-    //             this.insertText(e, '');
-    //         }}/>
-    //     } 
-    // }
+    toggleGif = (e?: React.MouseEvent<HTMLElement>) => {
+        const {shGif} = this.state;
+        if(e) {
+            e.stopPropagation();
+        }
+        this.setState({shGif: !shGif});
+        
+    }
 
     toggleMobileImage = (e?: React.MouseEvent<HTMLElement>) => {
         if (e) {
@@ -370,7 +372,8 @@ export class EditorToolbar extends Component<Props> {
 
     render() {
         const {gallery, fragments, image, link, mobileImage} = this.state;
-        const {global, sm, activeUser, showEmoji, showGif = true} = this.props;
+        const {global, sm, activeUser, showEmoji, showGif} = this.props;
+        let {shGif} = this.state;
 
         return (
             <>
@@ -505,10 +508,19 @@ export class EditorToolbar extends Component<Props> {
                         </div>
                     </Tooltip>
                     <Tooltip content={_t("Gif")}>
-                        <div className="editor-tool" role="none" onClick={this.toggleGif}>
-                            {gifIcon}
-                            {showGif && <GifPicker fallback={(e) => {
-                                this.insertText(e, '');
+                        <div className="editor-tool" role="none">
+                            <div className="editor-tool-gif-icon" onClick={this.toggleGif}>
+                                {gifIcon}
+                            </div>
+                            
+                            {this.state.shGif && <GifPicker 
+                                shGif 
+                                changeState={(gifState) => {
+                                    let {shGif} = this.state;
+                                    this.setState({shGif: gifState});
+                                }}
+                                fallback={(e) => {
+                                    this.insertText(e, '');
                             }}/>}
                         </div>
                     </Tooltip>

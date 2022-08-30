@@ -14,7 +14,9 @@ import axios from "axios";
 import { GIPHY_API, GIPHY_SEARCH_API } from "../../api/misc";
 
 interface Props {
-    fallback?: (e: string) => void;
+    fallback?: (e: string) => void; 
+    shGif: boolean;
+    changeState: (gifState?: boolean) => void;
 }
 
 interface State {
@@ -74,7 +76,7 @@ export default class GifPicker extends BaseComponent<Props> {
             let _data:State = {
                 data: res.data.data,
                 filteredData: null,
-                filter: null
+                filter: null,
             }
             this.stateSet(_data);
         })
@@ -84,14 +86,18 @@ export default class GifPicker extends BaseComponent<Props> {
     itemClicked = (url: string) => {
         let _url = url.split(".gif");
         let gifUrl = _url[0] + ".gif";
-      
         if(this._target) {
             insertOrReplace(this._target, gifUrl);
+        } else {
+            const {fallback} = this.props;
+            if (fallback) fallback(gifUrl);
         }
+        this.props.changeState(!this.props.shGif);
     }
 
     delayedSearch = _.debounce(this.getSearchedData, 2000);
 
+    
     filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.setState({filter: e.target.value});
         this.delayedSearch(e.target.value, GIPHY_SEARCH_API);
@@ -104,13 +110,12 @@ export default class GifPicker extends BaseComponent<Props> {
                 <div className="emoji gifs" key={_gif.id}>
                     <img loading="lazy" src={_gif.images.fixed_height.url} alt="can't fetch :(" onClick={() => {
                         this.itemClicked(_gif.images.fixed_height.url);
+                        
                     }}/>
                 </div>
             )
         });
     };
-
-   
 
     render() {
         const {data,filteredData, filter} = this.state;
@@ -118,15 +123,13 @@ export default class GifPicker extends BaseComponent<Props> {
             return null;
         }
 
-        // const recent: string[] = ls.get("recent-emoji", []);
-
         return (
             <div className="emoji-picker gif">
                 <SearchBox autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" 
                     placeholder={_t("emoji-picker.filter-placeholder")}
                     onChange={this.filterChanged}
                 />
-
+            
                 {(() => {
                     if (filter) {
                         
@@ -152,7 +155,11 @@ export default class GifPicker extends BaseComponent<Props> {
                     
                     
                 })()}
+
+                
             </div>
         );
+    
+        
     }
 }
