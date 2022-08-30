@@ -7,10 +7,11 @@
     "start": "razzle start",
     "build": "razzle build --noninteractive",
     "test": "TZ=UTC razzle test --env=jsdom",
+    "prepare": "husky install",
     "lint": "eslint src/ --ext .ts,.tsx",
     "lint:fix": "eslint src/ --ext .ts,.tsx --fix",
-    "format": "prettier --write './src/**/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "pre-commit": "lint-staged",
+    "format": "prettier --ignore-unknown --write './src/**/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "precommit": "lint-staged",
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
@@ -139,8 +140,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,md,json}": [
-      "yarn format",
-      "git add"
+      "yarn format"
     ]
   },
   "jest": {
