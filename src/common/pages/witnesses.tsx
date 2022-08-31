@@ -363,6 +363,17 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
 
                         return <>
                             {header}
+
+                            <div>
+                            {proxy ? <WitnessesActiveProxy
+                                    {...this.props}
+                                    username={proxy}
+                                    onDone={() => {
+                                        this.stateSet({proxy: ''});
+                                    }}
+                                /> : null}
+                           </div>
+        
                             <div className="table-responsive witnesses-table">{table}</div>
                             <div className="witnesses-controls">
                                 {WitnessesExtra({
@@ -376,7 +387,15 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                                     }
                                 })}
                                 <div className="flex-spacer"/>
+
                                 {!proxy ? WitnessesProxy({
+                                    ...this.props,
+                                    onDone: (username) => {
+                                        this.stateSet({proxy: username, witnesses: []});
+                                    }
+                                }) : null}
+
+                                {/* {!proxy ? WitnessesProxy({
                                     ...this.props,
                                     onDone: (username) => {
                                         this.stateSet({proxy: username, witnesses: []});
@@ -389,7 +408,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                                         this.stateSet({proxy: ''});
                                     }}
                                 />
-                                )}
+                                )} */}
                             </div>
                         </>
                     })()}
