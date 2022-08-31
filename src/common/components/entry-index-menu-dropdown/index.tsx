@@ -22,8 +22,8 @@ interface Props {
   handleFilterReblog: () => void;
 }
 
-const feedUrlParams : string = window.location.pathname;
-const feedByUsername : string = feedUrlParams.substring(1, (feedUrlParams.length - 5));
+// const feedUrlParams : string = window.location.pathname;
+// const feedByUsername : string = feedUrlParams.substring(1, (feedUrlParams.length - 5));
 
 export const EntryIndexMenuDropdown = (props: Props) => {
   const { global: { filter, tag }, history, onChangeGlobal, isGlobal, activeUser } = props;
@@ -123,7 +123,7 @@ export const EntryIndexMenuDropdown = (props: Props) => {
     label: (
       <div className='tagDropDown'>
         <span className='pl-2' />
-        {tag === "" ? _t('entry-filter.filter-global') : tag === 'my' ? _t('entry-filter.filter-community') : tag === 'today' ? _t('entry-filter.filter-today') : tag === 'week' ? _t('entry-filter.filter-week') : tag === 'month' ? _t('entry-filter.filter-month'): tag === 'year' ? _t('entry-filter.filter-year') : tag === 'all' ? _t('entry-filter.filter-alltime') : tag === `@${activeUser?.username}` || feedByUsername ? (props.noReblog === true ? _t('entry-filter.filter-no-reblog') : _t('entry-filter.filter-with-reblog')) : tag}
+        {tag === "" ? _t('entry-filter.filter-global') : tag === 'my' ? _t('entry-filter.filter-community') : tag === 'today' ? _t('entry-filter.filter-today') : tag === 'week' ? _t('entry-filter.filter-week') : tag === 'month' ? _t('entry-filter.filter-month'): tag === 'year' ? _t('entry-filter.filter-year') : tag === 'all' ? _t('entry-filter.filter-alltime') : tag === `@${activeUser?.username}` || tag.startsWith('@') ? (props.noReblog === true ? _t('entry-filter.filter-no-reblog') : _t('entry-filter.filter-with-reblog')) : tag}
         {" "}
         {menuDownSvg}
       </div>
@@ -142,7 +142,7 @@ export const EntryIndexMenuDropdown = (props: Props) => {
       onChangeGlobal(key)
     }
   }
-
+  
   return (
     <DropDown {...dropDownConfig} float="left" header="" />
   );
