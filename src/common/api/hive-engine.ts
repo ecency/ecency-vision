@@ -52,15 +52,15 @@ export const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
       contract: "tokens",
       table: "balances",
       query: {
-        account: account,
-      },
+        account: account
+      }
     },
-    id: 1,
+    id: 1
   };
 
   return axios
     .post(HIVE_ENGINE_RPC_URL, data, {
-      headers: { "Content-type": "application/json" },
+      headers: { "Content-type": "application/json" }
     })
     .then((r) => r.data.result)
     .catch((e) => {
@@ -76,15 +76,15 @@ const getTokens = (tokens: string[]): Promise<Token[]> => {
       contract: "tokens",
       table: "tokens",
       query: {
-        symbol: { $in: tokens },
-      },
+        symbol: { $in: tokens }
+      }
     },
-    id: 2,
+    id: 2
   };
 
   return axios
     .post(HIVE_ENGINE_RPC_URL, data, {
-      headers: { "Content-type": "application/json" },
+      headers: { "Content-type": "application/json" }
     })
     .then((r) => r.data.result)
     .catch((e) => {
@@ -92,42 +92,41 @@ const getTokens = (tokens: string[]): Promise<Token[]> => {
     });
 };
 
-export const getHiveEngineTokenBalances = async (
-  account: string
-): Promise<HiveEngineToken[]> => {
-// commented just to try removing the non-existing unknowing HiveEngineTokenBalance type
-// ): Promise<HiveEngineTokenBalance[]> => {
+export const getHiveEngineTokenBalances = async (account: string): Promise<HiveEngineToken[]> => {
+  // commented just to try removing the non-existing unknowing HiveEngineTokenBalance type
+  // ): Promise<HiveEngineTokenBalance[]> => {
   const balances = await getTokenBalances(account);
   const tokens = await getTokens(balances.map((t) => t.symbol));
 
   return balances.map((balance) => {
     const token = tokens.find((t) => t.symbol == balance.symbol);
-    const tokenMetadata = token && JSON.parse(token!.metadata) as TokenMetadata;
+    const tokenMetadata = token && (JSON.parse(token!.metadata) as TokenMetadata);
 
     return new HiveEngineToken({ ...balance, ...token, ...tokenMetadata } as any);
   });
 };
 
-export const getUnclaimedRewards = async(
-  account: string
-): Promise<TokenStatus[]> => {
-  return (axios
-    .get(`https://scot-api.hive-engine.com/@${account}?hive=1`)
-    .then((r) => r.data)
-    .then((r) => Object.values(r))
-    .then((r) => r.filter((t) => (t as TokenStatus).pending_token > 0)) as any)
-    .catch(() => {
-      return [];
-    });
+export const getUnclaimedRewards = async (account: string): Promise<TokenStatus[]> => {
+  return (
+    axios
+      .get(`https://scot-api.hive-engine.com/@${account}?hive=1`)
+      .then((r) => r.data)
+      .then((r) => Object.values(r))
+      .then((r) => r.filter((t) => (t as TokenStatus).pending_token > 0)) as any
+  ).catch(() => {
+    return [];
+  });
 };
 
 export const claimRewards = async (
   account: string,
   tokens: string[]
 ): Promise<TransactionConfirmation> => {
-  const json = JSON.stringify(tokens.map((r) => {
-    return { symbol: r };
-  }));
+  const json = JSON.stringify(
+    tokens.map((r) => {
+      return { symbol: r };
+    })
+  );
 
   return broadcastPostingJSON(account, "scot_claim_token", json);
 };
@@ -135,7 +134,7 @@ export const claimRewards = async (
 export const stakeTokens = async (
   account: string,
   token: string,
-  amount: string,
+  amount: string
 ): Promise<TransactionConfirmation> => {
   const json = JSON.stringify({
     contractName: "tokens",
@@ -143,8 +142,8 @@ export const stakeTokens = async (
     contractPayload: {
       symbol: token,
       to: account,
-      quantity: amount,
-    },
+      quantity: amount
+    }
   });
 
   return broadcastPostingJSON(account, "ssc-mainnet-hive", json);

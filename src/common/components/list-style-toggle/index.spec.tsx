@@ -11,7 +11,7 @@ import { globalInstance } from "../../helper/test-helper";
 it("(1) Default", () => {
   const props = {
     global: globalInstance,
-    toggleListStyle: () => {},
+    toggleListStyle: () => {}
   };
   const renderer = TestRenderer.create(<ListStyleToggle {...props} />);
   expect(renderer.toJSON()).toMatchSnapshot();
@@ -20,7 +20,7 @@ it("(1) Default", () => {
 it("(2) Toggled", () => {
   const props = {
     global: { ...globalInstance, listStyle: ListStyle.grid },
-    toggleListStyle: () => {},
+    toggleListStyle: () => {}
   };
   const renderer = TestRenderer.create(<ListStyleToggle {...props} />);
   expect(renderer.toJSON()).toMatchSnapshot();

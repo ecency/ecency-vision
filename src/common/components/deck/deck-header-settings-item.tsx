@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Accordion, Button, Card } from 'react-bootstrap';
-import { chevronDownSvgForSlider, chevronUpSvgForSlider } from '../../img/svg';
+import React, { useState } from "react";
+import { Accordion, Button, Card } from "react-bootstrap";
+import { chevronDownSvgForSlider, chevronUpSvgForSlider } from "../../img/svg";
 
 interface Props {
   title: string;
@@ -11,7 +11,7 @@ interface Props {
 export const DeckHeaderSettingsItem = ({ title, children, hasBorderBottom }: Props) => {
   const [expanded, setExpanded] = useState(false);
   return (
-    <Accordion className={'deck-header-settings-item ' + (hasBorderBottom ? 'border-bottom' : '')}>
+    <Accordion className={"deck-header-settings-item " + (hasBorderBottom ? "border-bottom" : "")}>
       <Accordion.Toggle
         as={Button}
         variant="link"
@@ -20,11 +20,13 @@ export const DeckHeaderSettingsItem = ({ title, children, hasBorderBottom }: Pro
         onClick={() => setExpanded(!expanded)}
       >
         {title}
-        <span className="text-secondary">{expanded ? chevronUpSvgForSlider : chevronDownSvgForSlider}</span>
+        <span className="text-secondary">
+          {expanded ? chevronUpSvgForSlider : chevronDownSvgForSlider}
+        </span>
       </Accordion.Toggle>
       <Accordion.Collapse eventKey="0">
         <Card.Body className="p-0 d-flex justify-content-end p-2">{children}</Card.Body>
       </Accordion.Collapse>
     </Accordion>
-  )
+  );
 };

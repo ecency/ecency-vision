@@ -1,5 +1,5 @@
-import React, { FormEvent, useRef, useState } from 'react';
-import htmlParse from 'html-react-parser';
+import React, { FormEvent, useRef, useState } from "react";
+import htmlParse from "html-react-parser";
 import { subscribeEmail } from "../../api/private-api";
 import { _t } from "../../i18n";
 import { scrollDown } from "../../img/svg";
@@ -12,28 +12,36 @@ import { handleInvalid, handleOnInput } from "../../util/input-util";
 import isElectron from "../../util/is-electron";
 
 export default (props: any) => {
-  const {global} = props;
+  const { global } = props;
 
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const EarnMoney = apiBase(`/assets/illustration-earn-money.${global.canUseWebp?"webp":"png"}`);
-  const WhaleCatchsFish = apiBase(`/assets/illustration-true-ownership.${global.canUseWebp?"webp":"png"}`);
-  const Decentralization = apiBase(`/assets/illustration-decentralization.${global.canUseWebp?"webp":"png"}`);
-  const MechanicFish = apiBase(`/assets/illustration-open-source.${global.canUseWebp?"webp":"png"}`);
-  const FishOne = apiBase(`/assets/fish-1.${global.canUseWebp?"webp":"png"}`);
-  const FishTwo = apiBase(`/assets/fish-2.${global.canUseWebp?"webp":"png"}`);
-  const FishThree = apiBase(`/assets/fish-3.${global.canUseWebp?"webp":"png"}`);
-  const FishFour = apiBase(`/assets/fish-4.${global.canUseWebp?"webp":"png"}`);
-  const FishFive = apiBase(`/assets/fish-5.${global.canUseWebp?"webp":"png"}`);
-  const JuniorFish = apiBase(`/assets/fish-junior.${global.canUseWebp?"webp":"png"}`);
-  const SeniorFish = apiBase(`/assets/fish-senior.${global.canUseWebp?"webp":"png"}`);
-  const DownloadAndroid = apiBase(`/assets/icon-android.${global.canUseWebp?"webp":"png"}`);
-  const OurHistory = apiBase(`/assets/our-history.${global.canUseWebp?"webp":"png"}`);
-  const OurTeam = apiBase(`/assets/our-team.${global.canUseWebp?"webp":"png"}`);
-  const OurVision = apiBase(`/assets/our-vision.${global.canUseWebp?"webp":"png"}`);
-  const FooterMainFish = apiBase(`/assets/footer-main-fish.${global.canUseWebp?"webp":"png"}`);
-  const LeftFishes = apiBase(`/assets/left-fishes.${global.canUseWebp?"webp":"png"}`);
+  const EarnMoney = apiBase(
+    `/assets/illustration-earn-money.${global.canUseWebp ? "webp" : "png"}`
+  );
+  const WhaleCatchsFish = apiBase(
+    `/assets/illustration-true-ownership.${global.canUseWebp ? "webp" : "png"}`
+  );
+  const Decentralization = apiBase(
+    `/assets/illustration-decentralization.${global.canUseWebp ? "webp" : "png"}`
+  );
+  const MechanicFish = apiBase(
+    `/assets/illustration-open-source.${global.canUseWebp ? "webp" : "png"}`
+  );
+  const FishOne = apiBase(`/assets/fish-1.${global.canUseWebp ? "webp" : "png"}`);
+  const FishTwo = apiBase(`/assets/fish-2.${global.canUseWebp ? "webp" : "png"}`);
+  const FishThree = apiBase(`/assets/fish-3.${global.canUseWebp ? "webp" : "png"}`);
+  const FishFour = apiBase(`/assets/fish-4.${global.canUseWebp ? "webp" : "png"}`);
+  const FishFive = apiBase(`/assets/fish-5.${global.canUseWebp ? "webp" : "png"}`);
+  const JuniorFish = apiBase(`/assets/fish-junior.${global.canUseWebp ? "webp" : "png"}`);
+  const SeniorFish = apiBase(`/assets/fish-senior.${global.canUseWebp ? "webp" : "png"}`);
+  const DownloadAndroid = apiBase(`/assets/icon-android.${global.canUseWebp ? "webp" : "png"}`);
+  const OurHistory = apiBase(`/assets/our-history.${global.canUseWebp ? "webp" : "png"}`);
+  const OurTeam = apiBase(`/assets/our-team.${global.canUseWebp ? "webp" : "png"}`);
+  const OurVision = apiBase(`/assets/our-vision.${global.canUseWebp ? "webp" : "png"}`);
+  const FooterMainFish = apiBase(`/assets/footer-main-fish.${global.canUseWebp ? "webp" : "png"}`);
+  const LeftFishes = apiBase(`/assets/left-fishes.${global.canUseWebp ? "webp" : "png"}`);
   const DownloadAndroidWhite = apiBase(`/assets/icon-android-white.svg`);
   const DownloadIPhone = apiBase(`/assets/icon-apple.svg`);
   const DownloadIPhoneWhite = apiBase(`/assets/icon-apple-white.svg`);
@@ -43,20 +51,28 @@ export default (props: any) => {
   const FooterTwitter = apiBase(`/assets/footer-twitter.svg`);
   const FooterTelegram = apiBase(`/assets/footer-telegram.svg`);
   const FooterDiscord = apiBase(`/assets/footer-discord.svg`);
-  const PhoneDarkPc = apiBase(`/assets/phone-download-tiny.${global.canUseWebp?"webp":"png"}`);
+  const PhoneDarkPc = apiBase(`/assets/phone-download-tiny.${global.canUseWebp ? "webp" : "png"}`);
 
-  const BubbleLeftTop = apiBase(`/assets/bubble-left-top.${global.canUseWebp?"webp":"png"}`);
-  const BubbleLeftBottom = apiBase(`/assets/bubble-left-bottom.${global.canUseWebp?"webp":"png"}`);
-  const BubbleRightTop = apiBase(`/assets/bubble-right-top.${global.canUseWebp?"webp":"png"}`);
-  const BubbleLRightBottom = apiBase(`/assets/bubble-right-bottom.${global.canUseWebp?"webp":"png"}`);
-  const BubbleLCenter = apiBase(`/assets/bubble-center.${global.canUseWebp?"webp":"png"}`);
-  const DownloadDarkFishes = apiBase(`/assets/download-dark-fishes.${global.canUseWebp?"webp":"png"}`);  
+  const BubbleLeftTop = apiBase(`/assets/bubble-left-top.${global.canUseWebp ? "webp" : "png"}`);
+  const BubbleLeftBottom = apiBase(
+    `/assets/bubble-left-bottom.${global.canUseWebp ? "webp" : "png"}`
+  );
+  const BubbleRightTop = apiBase(`/assets/bubble-right-top.${global.canUseWebp ? "webp" : "png"}`);
+  const BubbleLRightBottom = apiBase(
+    `/assets/bubble-right-bottom.${global.canUseWebp ? "webp" : "png"}`
+  );
+  const BubbleLCenter = apiBase(`/assets/bubble-center.${global.canUseWebp ? "webp" : "png"}`);
+  const DownloadDarkFishes = apiBase(
+    `/assets/download-dark-fishes.${global.canUseWebp ? "webp" : "png"}`
+  );
 
-  const FounderImg = apiBase(`/assets/good-karma.${global.canUseWebp?"webp":"jpeg"}`);
-  const DevopsImg = apiBase(`/assets/talhasch.${global.canUseWebp?"webp":"jpeg"}`);
-  const DesignGuru = apiBase(`/assets/dunsky.${global.canUseWebp?"webp":"jpeg"}`);;
+  const FounderImg = apiBase(`/assets/good-karma.${global.canUseWebp ? "webp" : "jpeg"}`);
+  const DevopsImg = apiBase(`/assets/talhasch.${global.canUseWebp ? "webp" : "jpeg"}`);
+  const DesignGuru = apiBase(`/assets/dunsky.${global.canUseWebp ? "webp" : "jpeg"}`);
 
-  const LogoCircle = global.isElectron ? "./img/logo-circle.svg" : require("../../img/logo-circle.svg");
+  const LogoCircle = global.isElectron
+    ? "./img/logo-circle.svg"
+    : require("../../img/logo-circle.svg");
   const earnMoneyRef = useRef<HTMLDivElement>(null);
 
   const handleSubsccribe = async (e: FormEvent<HTMLDivElement>) => {
@@ -64,19 +80,22 @@ export default (props: any) => {
     setLoading(true);
     try {
       const response = await subscribeEmail(email);
-      if(200 == response?.status) {
-        success(_t("landing-page.success-message-subscribe"))
-      } 
+      if (200 == response?.status) {
+        success(_t("landing-page.success-message-subscribe"));
+      }
     } catch (err) {
-      error(_t('landing-page.error-occured'));
+      error(_t("landing-page.error-occured"));
     }
 
     setEmail("");
-    setLoading(false)
+    setLoading(false);
   };
-  
+
   return (
-    <div className={global.isElectron ? "landing-wrapper pt-5" : "landing-wrapper"} id="landing-wrapper">
+    <div
+      className={global.isElectron ? "landing-wrapper pt-5" : "landing-wrapper"}
+      id="landing-wrapper"
+    >
       <div className="top-bg" />
       <div className="tob-bg-algae" />
       <div className="tob-bg-fishes" />
@@ -86,15 +105,12 @@ export default (props: any) => {
           <div className="d-flex flex-wrap justify-content-center align-items-center">
             <p className="mb-3 w-88">{_t("landing-page.what-is-ecency")}</p>
           </div>
-          <button
-            className="get-started mx-auto"
-            onClick={() => props.setStep(2)}
-          >
+          <button className="get-started mx-auto" onClick={() => props.setStep(2)}>
             {_t("landing-page.get-started")}
           </button>
           <span
             className="scroll-down cursor-pointer"
-            onClick={() => earnMoneyRef.current?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => earnMoneyRef.current?.scrollIntoView({ behavior: "smooth" })}
           >
             {scrollDown}
           </span>
@@ -109,9 +125,7 @@ export default (props: any) => {
               <p className="mt-2 w-88 mb-5 mb-sm-0">
                 {_t("landing-page.earn-money-block-chain-based")}
                 <span>
-                  <Link to="/signup?referral=ecency">
-                    {_t("landing-page.join-us")}
-                  </Link>
+                  <Link to="/signup?referral=ecency">{_t("landing-page.join-us")}</Link>
                 </span>
                 {_t("landing-page.various-digital-tokens")}
               </p>
@@ -155,7 +169,18 @@ export default (props: any) => {
               <h2>{_t("landing-page.decentralization")}</h2>
               <p>
                 <span>
-                  <Link to={"https://hive.io"} target="_blank" onClick={()=> isElectron() && window.open('https://hive.io', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
+                  <Link
+                    to={"https://hive.io"}
+                    target="_blank"
+                    onClick={() =>
+                      isElectron() &&
+                      window.open(
+                        "https://hive.io",
+                        "_blank",
+                        "top=500,left=200,frame=false,nodeIntegration=no"
+                      )
+                    }
+                  >
                     {_t("landing-page.hive-blockchain")}
                   </Link>
                 </span>{" "}
@@ -168,20 +193,13 @@ export default (props: any) => {
           <div className="inner">
             <div className="text-group">
               <h2>{_t("landing-page.open-source")}</h2>
-              <p>
-                {_t("landing-page.open-source-desc")}
-              </p>
+              <p>{_t("landing-page.open-source-desc")}</p>
               <Link to="/signup?referral=ecency" className="no-break">
                 {_t("landing-page.feel-free-join")}
               </Link>
             </div>
             <div className="img-wrapper">
-              <img
-                className="mechanic"
-                src={MechanicFish}
-                alt="mechanic"
-                loading="lazy"
-              />
+              <img className="mechanic" src={MechanicFish} alt="mechanic" loading="lazy" />
             </div>
           </div>
         </div>
@@ -225,59 +243,132 @@ export default (props: any) => {
           <div className="inner">
             <span />
             <span />
-            <img src={PhoneDarkPc} alt="dark phone image" className="phone-bg phone-dark-pc" loading="lazy" />
-            <img src={PhoneDarkPc} alt="dark phone image" className="phone-bg phone-dark-tablet" loading="lazy" />
-            <img src={PhoneDarkPc} alt="light phone image" className="phone-bg phone-light-pc" loading="lazy" />
-            <img src={PhoneDarkPc} alt="light phone image" className="phone-bg phone-light-tablet"  loading="lazy"/>
+            <img
+              src={PhoneDarkPc}
+              alt="dark phone image"
+              className="phone-bg phone-dark-pc"
+              loading="lazy"
+            />
+            <img
+              src={PhoneDarkPc}
+              alt="dark phone image"
+              className="phone-bg phone-dark-tablet"
+              loading="lazy"
+            />
+            <img
+              src={PhoneDarkPc}
+              alt="light phone image"
+              className="phone-bg phone-light-pc"
+              loading="lazy"
+            />
+            <img
+              src={PhoneDarkPc}
+              alt="light phone image"
+              className="phone-bg phone-light-tablet"
+              loading="lazy"
+            />
 
-            <img src={BubbleLeftTop} alt="bubble" className="bubble-bg bubble-left-top" loading="lazy" />
-            <img src={BubbleLeftBottom} alt="bubble" className="bubble-bg bubble-left-bottom" loading="lazy" />
-            <img src={BubbleLCenter} alt="bubble" className="bubble-bg bubble-center" loading="lazy" />
-            <img src={BubbleRightTop} alt="bubble" className="bubble-bg bubble-right-top"  loading="lazy"/>
-            <img src={BubbleLRightBottom} alt="bubble" className="bubble-bg bubble-right-bottom"  loading="lazy"/>
+            <img
+              src={BubbleLeftTop}
+              alt="bubble"
+              className="bubble-bg bubble-left-top"
+              loading="lazy"
+            />
+            <img
+              src={BubbleLeftBottom}
+              alt="bubble"
+              className="bubble-bg bubble-left-bottom"
+              loading="lazy"
+            />
+            <img
+              src={BubbleLCenter}
+              alt="bubble"
+              className="bubble-bg bubble-center"
+              loading="lazy"
+            />
+            <img
+              src={BubbleRightTop}
+              alt="bubble"
+              className="bubble-bg bubble-right-top"
+              loading="lazy"
+            />
+            <img
+              src={BubbleLRightBottom}
+              alt="bubble"
+              className="bubble-bg bubble-right-bottom"
+              loading="lazy"
+            />
 
-            <img src={LeftFishes} alt="fishes" className="download-fishes left-fishes"  loading="lazy"/>           
-            <img src={DownloadDarkFishes} alt="fish" className="download-fishes right-dark-fishes"  loading="lazy"/>
-            <img src={FishOne} alt="fish" className="download-fishes right-small"  loading="lazy"/>
-            <img src={FishTwo} alt="fish" className="download-fishes right-big"  loading="lazy"/>
+            <img
+              src={LeftFishes}
+              alt="fishes"
+              className="download-fishes left-fishes"
+              loading="lazy"
+            />
+            <img
+              src={DownloadDarkFishes}
+              alt="fish"
+              className="download-fishes right-dark-fishes"
+              loading="lazy"
+            />
+            <img src={FishOne} alt="fish" className="download-fishes right-small" loading="lazy" />
+            <img src={FishTwo} alt="fish" className="download-fishes right-big" loading="lazy" />
 
             <div className="text-group">
               <h2>{_t("landing-page.download-our-application")}</h2>
               <p className="mt-4">{_t("landing-page.download-our-application-desc-1")}</p>
               <p>{_t("landing-page.download-our-application-desc-2")}</p>
-              <Link to={"https://desktop.ecency.com/"}
+              <Link
+                to={"https://desktop.ecency.com/"}
                 className="windows"
                 target="blank"
-                onClick={()=> isElectron() && window.open('https://desktop.ecency.com/', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}
+                onClick={() =>
+                  isElectron() &&
+                  window.open(
+                    "https://desktop.ecency.com/",
+                    "_blank",
+                    "top=500,left=200,frame=false,nodeIntegration=no"
+                  )
+                }
               >
                 <img
-                  src={
-                    props?.global?.theme === "day"
-                      ? DownloadWindows
-                      : DownloadWindowsWhite
-                  }
+                  src={props?.global?.theme === "day" ? DownloadWindows : DownloadWindowsWhite}
                   alt="Download for Windows"
                 />
                 {_t("landing-page.download-for-windows")}
               </Link>
-              <Link to={"https://ios.ecency.com/"} target="blank" onClick={()=> isElectron() && window.open('https://ios.ecency.com/', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
+              <Link
+                to={"https://ios.ecency.com/"}
+                target="blank"
+                onClick={() =>
+                  isElectron() &&
+                  window.open(
+                    "https://ios.ecency.com/",
+                    "_blank",
+                    "top=500,left=200,frame=false,nodeIntegration=no"
+                  )
+                }
+              >
                 <img
-                  src={
-                    props?.global?.theme === "day"
-                      ? DownloadIPhone
-                      : DownloadIPhoneWhite
-                  }
+                  src={props?.global?.theme === "day" ? DownloadIPhone : DownloadIPhoneWhite}
                   alt="Download for IOS"
                 />
                 {_t("landing-page.download-for-ios")}
               </Link>
-              <Link to={"https://android.ecency.com/"} target="blank" onClick={()=> isElectron() && window.open('https://android.ecency.com/', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
+              <Link
+                to={"https://android.ecency.com/"}
+                target="blank"
+                onClick={() =>
+                  isElectron() &&
+                  window.open(
+                    "https://android.ecency.com/",
+                    "_blank",
+                    "top=500,left=200,frame=false,nodeIntegration=no"
+                  )
+                }
+              >
                 <img
-                  src={
-                    props?.global?.theme === "day"
-                      ? DownloadAndroid
-                      : DownloadAndroidWhite
-                  }
+                  src={props?.global?.theme === "day" ? DownloadAndroid : DownloadAndroidWhite}
                   alt="Download for Android"
                 />
                 {_t("landing-page.download-for-android")}
@@ -292,10 +383,10 @@ export default (props: any) => {
           <div className="inner">
             <div className="text-group mt-sm-5 mt-lg-0">
               <h2>{_t("landing-page.our-history")}</h2>
-              <p>{htmlParse(_t('landing-page.our-history-p-one'))}</p>
+              <p>{htmlParse(_t("landing-page.our-history-p-one"))}</p>
               <p>{_t("landing-page.our-history-p-two")}</p>
             </div>
-            <img className="our-history" src={OurHistory} alt="Our History" loading="lazy"/>
+            <img className="our-history" src={OurHistory} alt="Our History" loading="lazy" />
           </div>
         </div>
         <div className="part-bottom">
@@ -304,8 +395,8 @@ export default (props: any) => {
 
             <div className="text-group pb-0 pb-sm-5 pb-md-0">
               <h2>{_t("landing-page.our-vision")}</h2>
-              <p>{htmlParse(_t('landing-page.our-vision-p-one'))}</p>
-              <p>{htmlParse(_t('landing-page.our-vision-p-two'))}</p>
+              <p>{htmlParse(_t("landing-page.our-vision-p-one"))}</p>
+              <p>{htmlParse(_t("landing-page.our-vision-p-two"))}</p>
             </div>
           </div>
         </div>
@@ -325,14 +416,14 @@ export default (props: any) => {
                   </div>
                 </li>
                 <li>
-                  <img src={DevopsImg} alt="Devops" loading="lazy"/>
+                  <img src={DevopsImg} alt="Devops" loading="lazy" />
                   <div className="text-wrapper">
                     <Link to="/@talhasch">@talhasch</Link>
                     <p>{_t("landing-page.devops-guru")}</p>
                   </div>
                 </li>
                 <li>
-                  <img src={DesignGuru} alt="Designer" loading="lazy"/>
+                  <img src={DesignGuru} alt="Designer" loading="lazy" />
                   <div className="text-wrapper">
                     <Link to="/@dunsky">@dunsky</Link>
                     <p>{_t("landing-page.design-guru")}</p>
@@ -347,17 +438,8 @@ export default (props: any) => {
 
             <div className="image-container">
               <img className="our-team together" src={OurTeam} alt="Our Team" loading="lazy" />
-              <img
-                className="our-team senior"
-                src={SeniorFish}
-                alt="Senior Fish"
-              />
-              <img
-                className="our-team junior"
-                src={JuniorFish}
-                alt="Junior Fish"
-                loading="lazy"
-              />
+              <img className="our-team senior" src={SeniorFish} alt="Senior Fish" />
+              <img className="our-team junior" src={JuniorFish} alt="Junior Fish" loading="lazy" />
             </div>
           </div>
         </div>
@@ -396,7 +478,7 @@ export default (props: any) => {
                   </li>
                 </ul>
               </div>
-              
+
               <div className="subscribe-form" onSubmit={handleSubsccribe}>
                 <h2>{_t("landing-page.subscribe-us")}</h2>
                 <form>
@@ -406,16 +488,23 @@ export default (props: any) => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required={true}
-                    onInvalid={(e: any) => handleInvalid(e, "landing-page.", 'validation-email')} 
+                    onInvalid={(e: any) => handleInvalid(e, "landing-page.", "validation-email")}
                     onInput={handleOnInput}
                   />
-                  <button disabled={loading}>{loading ? <span><LinearProgress /></span>  : _t("landing-page.send")}</button>
+                  <button disabled={loading}>
+                    {loading ? (
+                      <span>
+                        <LinearProgress />
+                      </span>
+                    ) : (
+                      _t("landing-page.send")
+                    )}
+                  </button>
                 </form>
 
                 <p>{_t("landing-page.subscribe-paragraph")}</p>
 
-
-            <div className="socials w-100 d-none d-lg-block">
+                <div className="socials w-100 d-none d-lg-block">
                   <ul className="p-0 m-0 d-flex justify-content-between w-50">
                     <li>
                       <Link to={"https://youtube.com/ecency"} target="_blank">
@@ -423,25 +512,58 @@ export default (props: any) => {
                       </Link>
                     </li>
                     <li>
-                      <Link to={"https://twitter.com/ecency_official"} target="_blank" onClick={()=> isElectron() && window.open('https://twitter.com/ecency_official', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
+                      <Link
+                        to={"https://twitter.com/ecency_official"}
+                        target="_blank"
+                        onClick={() =>
+                          isElectron() &&
+                          window.open(
+                            "https://twitter.com/ecency_official",
+                            "_blank",
+                            "top=500,left=200,frame=false,nodeIntegration=no"
+                          )
+                        }
+                      >
                         <img src={FooterTwitter} alt="twitter" />
                       </Link>
                     </li>
                     <li>
-                      <Link to={"https://t.me/ecency"} target="_blank" onClick={()=> isElectron() && window.open('https://t.me/ecency', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
+                      <Link
+                        to={"https://t.me/ecency"}
+                        target="_blank"
+                        onClick={() =>
+                          isElectron() &&
+                          window.open(
+                            "https://t.me/ecency",
+                            "_blank",
+                            "top=500,left=200,frame=false,nodeIntegration=no"
+                          )
+                        }
+                      >
                         <img src={FooterTelegram} alt="telegram" />
                       </Link>
                     </li>
                     <li>
-                      <Link to={"https://discord.me/ecency"} target="_blank" onClick={()=> isElectron() && window.open('https://discord.me/ecency', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')}>
+                      <Link
+                        to={"https://discord.me/ecency"}
+                        target="_blank"
+                        onClick={() =>
+                          isElectron() &&
+                          window.open(
+                            "https://discord.me/ecency",
+                            "_blank",
+                            "top=500,left=200,frame=false,nodeIntegration=no"
+                          )
+                        }
+                      >
                         <img src={FooterDiscord} alt="discord" />
                       </Link>
                     </li>
                   </ul>
                 </div>
-            
-                </div>
-            </div><div className="site-icon">
+              </div>
+            </div>
+            <div className="site-icon">
               <Link to="#">
                 <img src={LogoCircle} alt="ecency logo" />
               </Link>
@@ -453,4 +575,3 @@ export default (props: any) => {
     </div>
   );
 };
-
