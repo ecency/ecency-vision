@@ -643,6 +643,15 @@
     "withdrawing-amount": "Withdrawing from Savings",
     "reserved-amount": "Reserved for Open order in Market",
     "spk": {
+      "send": {
+        "balance": "Balance",
+        "button": "Send",
+        "from": "From",
+        "to": "To",
+        "amount": "Amount",
+        "optional": "optional",
+        "send-spk": "Send SPK"
+      },
       "token": "SPK Token",
       "token-description": "The governance token for the SPK network.",
       "larynx-air": "LARYNX Airdrop Claim",
