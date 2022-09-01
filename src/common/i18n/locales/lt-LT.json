@@ -628,7 +628,7 @@
     "hive-dollars-description": "Žetonai verti apie $1.00 HIVE.",
     "savings": "SANTAUPOS",
     "savings-description": "Balansas apsaugotas 3 dienų laikotarpiu išsiėmimui.",
-    "next-power-down": "Kitas maitinimo išjungimas yra {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Pervesti",
     "transfer-to-savings": "Pervesti į santaupas",
     "convert": "Konvertuoti",
@@ -715,7 +715,13 @@
     "scan-code": "Scan the QR code with Ecency mobile app",
     "select-user": "Please, select an user",
     "title": "Account boost",
-    "copied": "Account boost link copied!"
+    "title-points": "Buy points",
+    "copied": "Account boost link copied!",
+    "select-type": "Select a type",
+    "boost": "Boost",
+    "points": "Points",
+    "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
+    "points-amount": "{{n}} points"
   },
   "promote": {
     "title": "Reklamuoti",
@@ -1342,7 +1348,7 @@
       "why-different-keys-header": "Why are there different keys?",
       "why-different-keys-body": "<p>There are different keys with the appropriate permissions for what you are doing. <ul><li>Posting keys - this key should be used for social networking actions, like posting, commenting and voting. This key has a limited set of permissions and it is not able to be used for monetary actions. So you can't lose money if someone else gets access to this key.</li><li>Active key - this key has additional permissions for more sensitive monetary-related actions, like transferring and exchanging tokens. When performing a wallet related action, you may be prompted to authenticate with your Active key. You should only enter your Active Key into apps which you trust because anyone with access to this key can take your tokens. Do yourself a favor and store this key safely to avoid losing tokens in the future.</li><li>Owner key - is the most powerful key because it can change any key of an account, including the owner key. Ideally it is meant to be stored offline, and only used to recover a compromised account.</li></ul></p>",
       "stolen-hive-hbd-header": "What can I do if my HIVE or Hive dollar tokens stolen or sent to wrong account?",
-      "stolen-hive-hbd-body": "<p>There is nothing to do if your liquid tokens are stolen or sent to wrong acoount but if your tokens are in Hive Power it is impossible to be hacked more than 1/13 per week and if your tkens are in savings they need to a three-day wait period for them to become transferable. Staking/powering up or transferring funds into savings might be more safer.</>",
+      "stolen-hive-hbd-body": "<p>There is nothing to do if your liquid tokens are stolen or sent to wrong acoount but if your tokens are in Hive Power it is impossible to be hacked more than 1/13 per week and if your tokens are in savings they need to a three-day wait period for them to become transferable. Staking/powering up or transferring funds into savings might be more safer.</>",
       "what-are-tags-header": "What are tags or topics?",
       "what-are-tags-body": "<p>A tag is a piece of information that describes the content that it is assigned to. They help search engines identify the content of pages online and using that information, produce the best results for a given search. All tags must be lowercase letters. Spaces aren't allowed, but hyphenated words with a single dash are allowed.</p>",
       "how-use-tags-header": "How to use tags?",
@@ -1352,7 +1358,7 @@
       "what-links-show-header": "What do the Trending, Hot, New, Rising and Controversial links show?",
       "what-links-show-body": "<p>This is the way of sorting content on Ecency. <ul><li>Trending - Widely mentioned or discussed posts.</li><li>Hot - Popular posts in last couple hours.</li><li>New - The newest posts sorted by the published time.</li><li>Rising - Posts that have more comments and votes compare to others.</li><li>Controversial - Has a relatively equal number of upvotes and downvotes.</li></ul></p>",
       "what-my-rewards-header": "What kind of rewards I have in my wallet?",
-      "what-my-rewards-body": "<p>There are two kind of rewards are shown in your wallet: <ul><li>Curation rewards - The rewards earned for upvoting posts and comments.</li><li>Author rewards - The rewards earned by your own posts and comments.</li><li>Points rewards - Social actions and interactions also rewarded with Ecency points.</li></ul><p/>",
+      "what-my-rewards-body": "<p>There are three kind of rewards are shown in your wallet: <ul><li>Curation rewards - The rewards earned for upvoting posts and comments.</li><li>Author rewards - The rewards earned by your own posts and comments.</li><li>Points rewards - Social actions and interactions also rewarded with Ecency points.</li></ul><p/>",
       "what-information-profile-header": "What kind of information is shown on my profile?",
       "what-information-profile-body": "<p>The first information shown near your image is your reputation score and display name, description. Below information about followers and following, registration date on Ecency. You have the option to add extra information on Ecency settings such as about information, profile image, cover image, your location.</p>",
       "what-can-post-header": "What can I post on Ecency?",
@@ -1370,7 +1376,15 @@
       "what-voting-power-header": "What is voting power?",
       "what-voting-power-body": "<p>Your voting power goes down a little bit every time you vote. It begins with 100% voting power and by voting you use small amount of voting power. The more you vote the fewer influence you have, meaning efficiency of your vote will decay. Daily 10 votes are recommended to utilize efficiency and curation rewards better.</p>",
       "how-many-vote-header": "How many times can I vote with my voting power?",
-      "how-many-vote-body": "<p>Every 100% vote you cast will use 2% of your remaining voting mana. Your voting mana will recharge by 20% each day. You can vote more than 10 times per day, but each vote will be worth less, and it will take longer to reach full voting power again.</p>"
+      "how-many-vote-body": "<p>Every 100% vote you cast will use 2% of your remaining voting mana. Your voting mana will recharge by 20% each day. You can vote more than 10 times per day, but each vote will be worth less, and it will take longer to reach full voting power again.</p>",
+      "what-is-hivesigner-header": "What is Hivesigner?",
+      "what-is-hivesigner-body": "<p>When you were signing up on Hive you were given lots of keys that are hard to remember. The work of this Hivesigner is, it gives you the access to create your own password that you can remember and to provide a protection not to use your active key when logging into Hive platforms.</p>",
+      "what-is-keychain-header": "What is Keychain?",
+      "what-is-keychain-body": "<p>Hive Keychain is a wallet browser extension for the Hive blockchain and cryptocurrency and allows users to securely log into and access multiple Hive-based platforms. It is available for Chrome, Brave and Firefox.</p>",
+      "videos-pictures-stored-header": "Are pictures and video stored on the blockchain?",
+      "videos-pictures-stored-body": "<p>Media content such as pictures, videos etc. are typically not stored directly on a blockchain. When you add pictures or video you are only adding a source reference to where they are located. Meaning you can add video content from other locations. As of right now, when you upload a photo, this gets hosted on a regular web server.</p>",
+      "value-hive-hbd-header": "What determines the value of HIVE and HBD?",
+      "value-hive-hbd-body": "<p>The value of HIVE comes from the demand and supply of the token. HIVE will always be in demand based on the way the system is designed and there will always be supply for HIVE. As long as the Hive blockchain exist with continuous development and users being active, there will always be demand and supply for HIVE, adding value to the token.</p>"
     }
   },
   "contributors": {

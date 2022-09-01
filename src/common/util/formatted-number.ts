@@ -10,7 +10,7 @@ export default (value: number | string, options: Options | undefined = undefined
   let opts: Options = {
     fractionDigits: 3,
     prefix: "",
-    suffix: "",
+    suffix: ""
   };
 
   if (options) {

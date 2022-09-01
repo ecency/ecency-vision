@@ -12,7 +12,7 @@ interface Props {
 
 export default class FormattedCurrency extends Component<Props> {
   public static defaultProps: Partial<Props> = {
-    fixAt: 2,
+    fixAt: 2
   };
 
   render() {

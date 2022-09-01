@@ -1,59 +1,62 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
 import Tooltip from "../tooltip";
 
-import {_t} from "../../i18n";
+import { _t } from "../../i18n";
 
-import {chevronUpSvg} from "../../img/svg";
+import { chevronUpSvg } from "../../img/svg";
 
 export default class ScrollToTop extends Component {
-    timer: any = null;
-    button = React.createRef<HTMLDivElement>();
+  timer: any = null;
+  button = React.createRef<HTMLDivElement>();
 
-    componentDidMount() {
-        this.detect();
-        window.addEventListener("scroll", this.scrollChanged);
-        window.addEventListener("resize", this.scrollChanged);
+  componentDidMount() {
+    this.detect();
+    window.addEventListener("scroll", this.scrollChanged);
+    window.addEventListener("resize", this.scrollChanged);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.scrollChanged);
+    window.removeEventListener("resize", this.scrollChanged);
+  }
+
+  shouldShow = () => {
+    return window.scrollY > window.innerHeight;
+  };
+
+  scrollChanged = () => {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(this.detect, 5);
+  };
+
+  detect = () => {
+    if (!this.button.current) {
+      return;
     }
 
-    componentWillUnmount() {
-        window.removeEventListener("scroll", this.scrollChanged);
-        window.removeEventListener("resize", this.scrollChanged);
+    if (this.shouldShow()) {
+      this.button.current.classList.add("visible");
+      return;
     }
 
-    shouldShow = () => {
-        return window.scrollY > window.innerHeight;
-    }
+    this.button.current.classList.remove("visible");
+  };
 
-    scrollChanged = () => {
-        clearTimeout(this.timer);
-        this.timer = setTimeout(this.detect, 5);
-    }
+  clicked = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
 
-    detect = () => {
-
-        if (!this.button.current) {
-            return;
-        }
-
-        if (this.shouldShow()) {
-            this.button.current.classList.add('visible');
-            return;
-        }
-
-        this.button.current.classList.remove('visible');
-    }
-
-    clicked = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    }
-
-    render() {
-        return <Tooltip content={_t('scroll-to-top.title')}>
-            <div ref={this.button} className="scroll-to-top" onClick={this.clicked}>{chevronUpSvg}</div>
-        </Tooltip>;
-    }
+  render() {
+    return (
+      <Tooltip content={_t("scroll-to-top.title")}>
+        <div ref={this.button} className="scroll-to-top" onClick={this.clicked}>
+          {chevronUpSvg}
+        </div>
+      </Tooltip>
+    );
+  }
 }

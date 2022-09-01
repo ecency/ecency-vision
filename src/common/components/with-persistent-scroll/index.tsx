@@ -1,8 +1,8 @@
-import React, { ComponentType, useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppState, history } from '../../store';
-import { savePageScroll } from '../../store/persistent-page-scroll';
+import React, { ComponentType, useEffect, useState } from "react";
+import { useLocation } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState, history } from "../../store";
+import { savePageScroll } from "../../store/persistent-page-scroll";
 
 /**
  * Make scroll position on page persistent between navigations
@@ -16,17 +16,23 @@ export function withPersistentScroll<P>(Component: ComponentType<P>) {
 
     const [isPageScrolledToPersistent, setPageScrolledToPersistent] = useState(false);
 
-    const pageScrollState = useSelector((state: AppState) => state.persistentPageScroll[location.pathname] || {});
+    const pageScrollState = useSelector(
+      (state: AppState) => state.persistentPageScroll[location.pathname] || {}
+    );
 
     // Do scroll to the given position with retries while it won't be achieved or retries won't be 5
-    const scrollWithDebounce = async (scrollValue: number, debounceTime = 100, retries = 1): Promise<any> => {
+    const scrollWithDebounce = async (
+      scrollValue: number,
+      debounceTime = 100,
+      retries = 1
+    ): Promise<any> => {
       if (retries === 5) {
         setPageScrolledToPersistent(true);
         return;
       }
 
       window.scroll(0, scrollValue);
-      await new Promise(resolve => setTimeout(resolve, debounceTime));
+      await new Promise((resolve) => setTimeout(resolve, debounceTime));
 
       if (window.scrollY <= scrollValue) {
         return scrollWithDebounce(scrollValue, debounceTime, retries + 1);
@@ -36,7 +42,7 @@ export function withPersistentScroll<P>(Component: ComponentType<P>) {
     };
 
     useEffect(() => {
-      if (history!!.action === 'POP' && !isPageScrolledToPersistent) {
+      if (history!!.action === "POP" && !isPageScrolledToPersistent) {
         scrollWithDebounce(pageScrollState.scroll);
       }
 
@@ -45,6 +51,6 @@ export function withPersistentScroll<P>(Component: ComponentType<P>) {
       };
     }, [props]);
 
-    return <Component {...props} />
-  }
+    return <Component {...props} />;
+  };
 }
