@@ -1,17 +1,11 @@
-import {
-  communities,
-  hot,
-  magnifySvg,
-  notifications,
-  wallet,
-} from "../../img/svg";
+import { communities, hot, magnifySvg, notifications, wallet } from "../../img/svg";
 import { HotListItem, SearchListItem } from "../deck/deck-items";
 import {
   hotListItems,
   notificationListItems,
   searchListItems,
   tagsListItems,
-  walletListItems,
+  walletListItems
 } from "../deck/mockData";
 
 export const decks = [

@@ -1,6 +1,9 @@
-import { DeckState, SetReloadingAction } from '../types';
+import { DeckState, SetReloadingAction } from "../types";
 
-export function setReloadingReducer(state: DeckState, { title, isReloading }: SetReloadingAction['data']): DeckState {
+export function setReloadingReducer(
+  state: DeckState,
+  { title, isReloading }: SetReloadingAction["data"]
+): DeckState {
   const deck = state.items.find((d) => d.header.title === title);
 
   if (!deck) {
@@ -14,6 +17,6 @@ export function setReloadingReducer(state: DeckState, { title, isReloading }: Se
 
   return {
     ...state,
-    items,
+    items
   };
 }

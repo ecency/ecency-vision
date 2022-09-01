@@ -25,7 +25,7 @@ export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId }: Pro
   const qrImgRef = useRef<HTMLImageElement | undefined>();
   const [isQrShow, setIsQrShow] = useState(false);
   const [type, setType] = useState(PurchaseTypes.BOOST);
-  const [pointsValue, setPointsValue] = useState('999points');
+  const [pointsValue, setPointsValue] = useState("999points");
 
   useEffect(() => {
     if (queryType) {
@@ -53,59 +53,73 @@ export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId }: Pro
   };
 
   const copyToClipboard = (text: string) => {
-    const textField = document.createElement('textarea');
+    const textField = document.createElement("textarea");
     textField.innerText = text;
     document.body.appendChild(textField);
     textField.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     textField.remove();
-    success(_t('purchase-qr.copied'));
+    success(_t("purchase-qr.copied"));
   };
 
-  const getURL = () =>`${defaults.base}/purchase?username=${username}&type=${type}&product_id=${pointsValue}`;
+  const getURL = () =>
+    `${defaults.base}/purchase?username=${username}&type=${type}&product_id=${pointsValue}`;
 
-  return <div className="d-flex flex-column align-items-center my-3 px-3 text-center">
-    <h2>{isQrShow ? _t('purchase-qr.scan-code') : _t('purchase-qr.select-user')}</h2>
-    <div className="w-100 mt-4">
-      <SearchByUsername activeUser={activeUser} setUsername={(value: string) => {
-        setUsername(value);
+  return (
+    <div className="d-flex flex-column align-items-center my-3 px-3 text-center">
+      <h2>{isQrShow ? _t("purchase-qr.scan-code") : _t("purchase-qr.select-user")}</h2>
+      <div className="w-100 mt-4">
+        <SearchByUsername activeUser={activeUser} setUsername={(value: string) => {
+          setUsername(value);
 
-        if (!value) {
+          if (!value) {
           setIsQrShow(false);
-        } else {
+          } else {
           compileQR(getURL());
         }
       }} />
-      {type === PurchaseTypes.POINTS ? <PurchaseQrTypes
-        className="mt-3"
-        value={pointsValue}
-        setValue={(v: string) => setPointsValue(v)}
-      /> : <></>}
+      {type === PurchaseTypes.POINTS ? (
+          <PurchaseQrTypes
+            className="mt-3"
+            value={pointsValue}
+            setValue={(v: string) => setPointsValue(v)}
+          />
+        ) : (
+          <></>
+        )}
+      </div>
+      <img
+        ref={qrImgRef as any}
+        alt="Boost QR Code"
+        className="my-4"
+        style={{ display: isQrShow ? "block" : "none" }}
+      />
+      {isQrShow ? (
+        <Form.Group className="w-100">
+          <InputGroup onClick={() => copyToClipboard(getURL())}>
+            <Form.Control value={getURL()} disabled={true} className="text-primary pointer" />
+            <InputGroup.Append>
+              <Button
+                variant="primary"
+                size="sm"
+                className="copy-to-clipboard"
+                onClick={() => copyToClipboard(getURL())}
+              >
+                {copyContent}
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
+        </Form.Group>
+      ) : (
+        <></>
+      )}
+      {type === PurchaseTypes.BOOST && isQrShow ? (
+        <Alert variant={"primary"} className="text-left mt-3 mb-0 text-small">
+          {_t("purchase-qr.boost-info")}
+        </Alert>
+      ) : (
+        <></>
+      )}
     </div>
-    <img ref={qrImgRef as any} alt="Boost QR Code" className="my-4" style={{ display: isQrShow ? 'block' : 'none' }} />
-    {isQrShow ? <Form.Group className="w-100">
-      <InputGroup
-        onClick={() => copyToClipboard(getURL())}
-      >
-        <Form.Control
-          value={getURL()}
-          disabled={true}
-          className="text-primary pointer"
-        />
-        <InputGroup.Append>
-          <Button
-            variant="primary"
-            size="sm"
-            className="copy-to-clipboard"
-            onClick={() => copyToClipboard(getURL())}
-          >
-            {copyContent}
-          </Button>
-        </InputGroup.Append>
-      </InputGroup>
-    </Form.Group> : <></>}
-    {type === PurchaseTypes.BOOST && isQrShow ?
-      <Alert variant={"primary"} className="text-left mt-3 mb-0 text-small">{_t('purchase-qr.boost-info')}</Alert> :
-      <></>}
-  </div>
-}
+  );
+};

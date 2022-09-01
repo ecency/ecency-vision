@@ -1,8 +1,8 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
-import {History} from "history";
+import { History } from "history";
 
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Meta from "../meta";
 import { Global } from "../../store/global/types";
@@ -11,75 +11,86 @@ import isElectron from "../../util/is-electron";
 const logoCircle = require("../../img/logo-circle.svg");
 
 interface Props {
-    history: History;
-    global: Global;
+  history: History;
+  global: Global;
 }
 
 interface State {
-    loaded: boolean
+  loaded: boolean;
 }
 
 export class NotFound extends Component<Props, State> {
-    state: State = {
-        loaded: false
+  state: State = {
+    loaded: false
+  };
+
+  componentDidMount() {
+    this.setState({ loaded: true });
+  }
+
+  goBack = () => {
+    const { history } = this.props;
+
+    history.goBack();
+  };
+
+  render() {
+    const { loaded } = this.state;
+    if (!loaded) {
+      return "";
     }
 
-    componentDidMount() {
-        this.setState({loaded: true});
-    }
-
-    goBack = () => {
-        const {history} = this.props;
-
-        history.goBack();
+    const metaProps = {
+      title: "404"
     };
 
-    render() {
-        const {loaded} = this.state;
-        if (!loaded) {
-            return ''
-        }
+    const { history, global } = this.props;
 
-        const metaProps = {
-            title: "404",
-        };
+    // @ts-ignore make ide happy. code compiles without error.
+    const entries = history.entries || {};
+    // @ts-ignore
+    const index = history.index || 0;
 
-        const {history, global} = this.props;
+    const canGoBack = !!entries[index - 1];
 
-        // @ts-ignore make ide happy. code compiles without error.
-        const entries = history.entries || {}
-        // @ts-ignore
-        const index = history.index || 0;
-
-        const canGoBack = !!entries[index - 1];
-
-        return (
-            <>
-                <Meta {...metaProps} />
-                <div className="not-found-404">
-                    <img src={isElectron() ? "./img/logo-circle.svg" : logoCircle} className="logo" alt="Ecency"/>
-                    <h1>This page doesn't exist.</h1>
-                    <p className="links">
-                        {canGoBack && <a href="#" onClick={(e) => {
-                            e.preventDefault();
-                            this.goBack();
-                        }}>Back</a>}
-                        <Link to="/">Home</Link>
-                        <Link to="/created">New posts</Link>
-                        <Link to="/hot">Hot posts</Link>
-                        <Link to="/trending">Trending posts</Link>
-                    </p>
-                </div>
-            </>
-        );
-    }
+    return (
+      <>
+        <Meta {...metaProps} />
+        <div className="not-found-404">
+          <img
+            src={isElectron() ? "./img/logo-circle.svg" : logoCircle}
+            className="logo"
+            alt="Ecency"
+          />
+          <h1>This page doesn't exist.</h1>
+          <p className="links">
+            {canGoBack && (
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.goBack();
+                }}
+              >
+                Back
+              </a>
+            )}
+            <Link to="/">Home</Link>
+            <Link to="/created">New posts</Link>
+            <Link to="/hot">Hot posts</Link>
+            <Link to="/trending">Trending posts</Link>
+          </p>
+        </div>
+      </>
+    );
+  }
 }
 
 export default (p: Props) => {
-    const props = {
-        history: p.history,
-        global:  p.global
-    }
+  const props = {
+    history: p.history,
+    global: p.global
+  };
 
-    return <NotFound {...props}/>
-}
+  return <NotFound {...props} />;
+};

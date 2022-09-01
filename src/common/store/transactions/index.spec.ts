@@ -33,7 +33,7 @@ it("5- fetched", () => {
       curator: "user2",
       num: 3204035,
       reward: "12061.044067 VESTS",
-      timestamp: "2020-06-06T07:59:18",
+      timestamp: "2020-06-06T07:59:18"
     },
     {
       trx_id: "0x123124",
@@ -42,8 +42,8 @@ it("5- fetched", () => {
       num: 3204009,
       timestamp: "2020-06-06T07:46:06",
       to: "user4",
-      type: "transfer_to_vesting",
-    },
+      type: "transfer_to_vesting"
+    }
   ];
   state = reducer(state, fetchedAct(list));
   expect(state).toMatchSnapshot();

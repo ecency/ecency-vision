@@ -1,77 +1,86 @@
-import React, {Component, Fragment} from "react";
+import React, { Component, Fragment } from "react";
 
-import {History} from "history";
+import { History } from "history";
 
-import {Global} from "../../store/global/types";
-import {TrendingTags} from "../../store/trending-tags/types";
+import { Global } from "../../store/global/types";
+import { TrendingTags } from "../../store/trending-tags/types";
 
-import Tag, {makePath} from "../tag";
+import Tag, { makePath } from "../tag";
 
-import {_t} from "../../i18n";
+import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 import { ActiveUser } from "../../store/active-user/types";
 
 interface Props {
-    history: History;
-    global: Global;
-    trendingTags: TrendingTags;
-    activeUser: ActiveUser | null;
+  history: History;
+  global: Global;
+  trendingTags: TrendingTags;
+  activeUser: ActiveUser | null;
 }
 
 export class TrendingTagsCard extends Component<Props> {
+  handleUnselection = () => {
+    const {
+      history,
+      global: { filter },
+      activeUser
+    } = this.props;
+    history.push("/" + filter + ((activeUser && activeUser.username && "/my") || ""));
+  };
 
-    handleUnselection = () => {
-        const { history, global: { filter }, activeUser } = this.props;
-        history.push('/' + filter + (activeUser && activeUser.username && "/my" || "" ));
-    }
+  render() {
+    const { trendingTags, global } = this.props;
 
-    render() {
-        const { trendingTags, global } = this.props;
+    return (
+      <div className="trending-tags-card">
+        <h2 className="list-header">{_t("trending-tags.title")}</h2>
+        {trendingTags.list.slice(0, 30).map((t) => {
+          const cls = _c(
+            `tag-list-item ${global.tag === t ? "selected-item" : ""} d-flex align-items-center`
+          );
 
-        return (
-            <div className="trending-tags-card">
-                <h2 className="list-header">{_t('trending-tags.title')}</h2>
-                {trendingTags.list.slice(0, 30).map((t) => {
-                    const cls = _c(`tag-list-item ${global.tag === t ? "selected-item" : ""} d-flex align-items-center`);
-
-                    return <Fragment key={t}>
-                        <div className="d-flex">
-                            {Tag({
-                                ...this.props,
-                                tag: t,
-                                type: "link",
-                                children: 
-                                <a href={makePath(global.filter, t)} className={cls}>
-                                    {t}
-                                    {global.tag === t &&
-                                        <div
-                                            className="text-secondary ml-4 pointer"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                this.handleUnselection()
-                                                }}
-                                        >
-                                            ✖
-                                        </div>}
-                                </a>
-                            })}
+          return (
+            <Fragment key={t}>
+              <div className="d-flex">
+                {Tag({
+                  ...this.props,
+                  tag: t,
+                  type: "link",
+                  children: (
+                    <a href={makePath(global.filter, t)} className={cls}>
+                      {t}
+                      {global.tag === t && (
+                        <div
+                          className="text-secondary ml-4 pointer"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            this.handleUnselection();
+                          }}
+                        >
+                          ✖
                         </div>
-                    </Fragment>
+                      )}
+                    </a>
+                  )
                 })}
-            </div>
-        );
-    }
+              </div>
+            </Fragment>
+          );
+        })}
+      </div>
+    );
+  }
 }
 
 export default (p: Props) => {
-    const props = {
-        history: p.history,
-        global: p.global,
-        trendingTags: p.trendingTags,
-        activeUser: p.activeUser,
-    }
+  const props = {
+    history: p.history,
+    global: p.global,
+    trendingTags: p.trendingTags,
+    activeUser: p.activeUser
+  };
 
-    return <TrendingTagsCard {...props} />
-}
+  return <TrendingTagsCard {...props} />;
+};
