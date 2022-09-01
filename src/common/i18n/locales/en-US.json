@@ -650,7 +650,8 @@
         "to": "To",
         "amount": "Amount",
         "optional": "optional",
-        "send-spk": "Send SPK"
+        "send-spk": "Send SPK",
+        "warning": "You are going to transfer more than balance available"
       },
       "token": "SPK Token",
       "token-description": "The governance token for the SPK network.",

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form, InputGroup, Modal } from 'react-bootstrap';
+import { Alert, Button, Form, InputGroup, Modal } from 'react-bootstrap';
 import { _t } from '../../i18n';
 import { SearchByUsername } from '../search-by-username';
 import { ActiveUser } from '../../store/active-user/types';
@@ -32,7 +32,7 @@ export const SendSpkDialog = ({ show, setShow, activeUser, balance, account }: P
     keyboard={false}
     className="send-spk-dialog">
     <Modal.Header closeButton={true}>
-      <Modal.Title>{_t('wallet.spk.send-spk')}</Modal.Title>
+      <Modal.Title>{_t('wallet.spk.send.send-spk')}</Modal.Title>
     </Modal.Header>
     <Modal.Body>
       <Form.Group className={'mb-3'}>
@@ -65,6 +65,8 @@ export const SendSpkDialog = ({ show, setShow, activeUser, balance, account }: P
         <Form.Label>{_t('wallet.spk.send.amount')}({_t('wallet.spk.send.balance')} {balance} SPK)</Form.Label>
         <InputGroup>
           <Form.Control
+            min={0}
+            max={balance}
             type="number"
             autoFocus={true}
             placeholder=""
@@ -76,6 +78,7 @@ export const SendSpkDialog = ({ show, setShow, activeUser, balance, account }: P
           </InputGroup.Append>
         </InputGroup>
       </Form.Group>
+      {amount > balance ? <Alert className="mt-3" variant={'warning'}>{_t('wallet.spk.send.warning')}</Alert> : <></>}
 
       <Form.Group className={'mb-3'}>
         <Form.Label>Memo({_t('wallet.spk.send.optional')})</Form.Label>
