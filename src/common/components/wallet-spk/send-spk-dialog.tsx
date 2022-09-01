@@ -4,18 +4,25 @@ import { _t } from '../../i18n';
 import { SearchByUsername } from '../search-by-username';
 import { ActiveUser } from '../../store/active-user/types';
 import './wallet-spk-dialog.scss';
+import { sendSpk } from '../../api/spk-api';
+import { Account } from '../../store/accounts/types';
 
 interface Props {
   show: boolean;
   setShow: (value: boolean) => void;
   activeUser: ActiveUser | null;
   balance: number;
+  account: Account;
 }
 
-export const SendSpkDialog = ({ show, setShow, activeUser, balance }: Props) => {
+export const SendSpkDialog = ({ show, setShow, activeUser, balance, account }: Props) => {
   const [username, setUsername] = useState('');
   const [amount, setAmount] = useState(0);
   const [memo, setMemo] = useState('');
+
+  const send = async () => {
+    await sendSpk(account.name, username, amount, memo);
+  }
 
   return <Modal
     animation={false}
@@ -82,7 +89,11 @@ export const SendSpkDialog = ({ show, setShow, activeUser, balance }: Props) => 
       </Form.Group>
 
       <Form.Group className={'justify-content-end d-flex'}>
-        <Button disabled={!amount || !username} variant={'primary'}>{_t('wallet.spk.send.button')}</Button>
+        <Button
+          disabled={!amount || !username}
+          variant={'primary'}
+          onClick={send}
+        >{_t('wallet.spk.send.button')}</Button>
       </Form.Group>
     </Modal.Body>
   </Modal>

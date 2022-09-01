@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as sdk from 'hivesigner';
 
 interface SpkApiWallet {
   balance: number;
@@ -34,4 +35,22 @@ interface SpkApiWallet {
 export const getSpkWallet = async (username: string): Promise<SpkApiWallet> => {
   const resp = await axios.get<SpkApiWallet>(`https://spkinstant.hivehoneycomb.com/@${username}`);
   return resp.data;
+}
+
+export const sendSpk = async (from: string, to: string, amount: number, memo?: string) => {
+  const params = {
+    authority: 'active',
+    required_auths: from,
+    required_posting_auths: '[]',
+    id: 'spkcc_spk_send',
+    json: JSON.stringify({
+      to,
+      amount,
+      ...(memo ? { memo } : {})
+    })
+  };
+  const url = sdk.sign('custom_json', params, window.location.href);
+  if (typeof url === 'string') {
+    window.open(url, 'blank');
+  }
 }
