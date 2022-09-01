@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
 export function isMobile() {
-  const [screenWidth, setScreenWidth] = React.useState(typeof window !== "undefined" && window.innerWidth)
-  
+  const [screenWidth, setScreenWidth] = React.useState(
+    typeof window !== "undefined" && window.innerWidth
+  );
+
   useEffect(() => {
     function handleResize() {
-        setScreenWidth(window.innerWidth);
-}
+      setScreenWidth(window.innerWidth);
+    }
 
-    window.addEventListener('resize', handleResize)
-  })
-  
-  return screenWidth < 570
+    window.addEventListener("resize", handleResize);
+  });
+
+  return screenWidth < 570;
 }

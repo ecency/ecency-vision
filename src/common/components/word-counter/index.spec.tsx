@@ -7,7 +7,7 @@ describe("Word counter", () => {
       charactersNoSpaces: 15,
       characters: 17,
       words: 3,
-      lines: 1,
+      lines: 1
     };
     expect(wordCounter(input)).toMatchObject(expected);
   });
@@ -18,7 +18,7 @@ describe("Word counter", () => {
       charactersNoSpaces: 136,
       characters: 157,
       words: 21,
-      lines: 3,
+      lines: 3
     };
     expect(wordCounter(input)).toMatchObject(expected);
   });

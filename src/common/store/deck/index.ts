@@ -1,21 +1,22 @@
-import { Actions, ActionTypes, DeckState, } from './types';
+import { Actions, ActionTypes, DeckState } from "./types";
 import {
-  createDeckReducer, deleteAllDecksReducer,
+  createDeckReducer,
+  deleteAllDecksReducer,
   deleteDeckReducer,
   reorderReducer,
   setDataFilterReducer,
   setDataReducer,
   setReloadingReducer,
   setUpdateIntervalReducer
-} from './reducers';
+} from "./reducers";
 
 export const initialState: DeckState = { items: [], isContentLoading: false };
 
-export * from './actions';
-export * from './acts';
+export * from "./actions";
+export * from "./acts";
 
 export default (state: DeckState = initialState, action: Actions): DeckState => {
-  if (action.type ===ActionTypes.CREATE) {
+  if (action.type === ActionTypes.CREATE) {
     return createDeckReducer(state, action.data);
   } else if (action.type === ActionTypes.SET_DATA) {
     return setDataReducer(state, action.data);
@@ -23,7 +24,7 @@ export default (state: DeckState = initialState, action: Actions): DeckState => 
     return setReloadingReducer(state, action.data);
   } else if (action.type === ActionTypes.REORDER) {
     return reorderReducer(state, action.data);
-  }  else if (action.type === ActionTypes.DELETE) {
+  } else if (action.type === ActionTypes.DELETE) {
     return deleteDeckReducer(state, action.data);
   } else if (action.type === ActionTypes.UPDATE_INTERVAL) {
     return setUpdateIntervalReducer(state, action.data);

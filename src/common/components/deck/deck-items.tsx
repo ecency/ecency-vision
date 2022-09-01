@@ -22,11 +22,7 @@ export interface HotListItemProps {
   toggleListStyle?: (listStyle: ListStyle) => void;
 }
 
-export const HotListItem = ({
-  index,
-  entry,
-  toggleListStyle,
-}: HotListItemProps) => {
+export const HotListItem = ({ index, entry, toggleListStyle }: HotListItemProps) => {
   return (
     <div className="pb-5 d-flex align-items-center">
       <div className="hot-item-index">{index}</div>
@@ -102,9 +98,9 @@ export const SearchListItem = ({
                     entry: {
                       category: "post",
                       author: s[0].replace("@", ""),
-                      permlink: s[1],
+                      permlink: s[1]
                     },
-                    children: <>{part}</>,
+                    children: <>{part}</>
                   } as any)}
                 </Fragment>
               );
@@ -115,7 +111,7 @@ export const SearchListItem = ({
               <div key={i} className="mr-1">
                 {profileLink({
                   username: part.replace("@", ""),
-                  children: <>{part}</>,
+                  children: <>{part}</>
                 } as any)}
               </div>
             );
@@ -162,13 +158,8 @@ export const SearchListItem = ({
             />
           )}
           <div className="ml-3 deck-body">
-            <div
-              onClick={() => history && history.push(url)}
-              className="pointer text-dark"
-            >
-              <div className="d-flex align-items-start flex-grow-1 hot-item-link">
-                {msg}
-              </div>
+            <div onClick={() => history && history.push(url)} className="pointer text-dark">
+              <div className="d-flex align-items-start flex-grow-1 hot-item-link">{msg}</div>
             </div>
           </div>
 
@@ -205,14 +196,14 @@ export const SearchListItem = ({
               {community && (
                 <div className="ml-2 flex-grow-1">
                   {" "}
-                  {_t('entry.community-in')}{" "}
+                  {_t("entry.community-in")}{" "}
                   <Link to={`/created/${community}`}> {community_title} </Link>
                 </div>
               )}
               {!community && (
                 <div className="ml-2 flex-grow-1">
                   {" "}
-                  {_t('entry.community-in')} <Link to={`/created/${category}`}> #{category} </Link>
+                  {_t("entry.community-in")} <Link to={`/created/${category}`}> #{category} </Link>
                 </div>
               )}
               {isPinned && (
@@ -224,15 +215,10 @@ export const SearchListItem = ({
                 <small>{`${dateToRelative(created)}`}</small>
               </div>
             </div>
-            <div
-              onClick={() => history && history.push(url)}
-              className="pointer"
-            >
+            <div onClick={() => history && history.push(url)} className="pointer">
               {title && (
                 <div className="d-flex">
-                  <div className="hot-item-link font-weight-bold mt-3">
-                    {title}
-                  </div>
+                  <div className="hot-item-link font-weight-bold mt-3">{title}</div>
                 </div>
               )}
 
@@ -248,7 +234,7 @@ export const SearchListItem = ({
                         undefined,
                         undefined,
                         (rest as any).global.canUseWebp ? "webp" : "match"
-                      )})`,
+                      )})`
                     }}
                   />
                 )}
@@ -263,19 +249,19 @@ export const SearchListItem = ({
               {entryVoteBtn({
                 afterVote: () => {},
                 entry,
-                ...rest,
+                ...rest
               } as any)}
               <div className="pl-2">
                 {entryPayout({
                   ...rest,
-                  entry,
+                  entry
                 } as any)}
               </div>
             </div>
 
             {entryVotes({
               ...rest,
-              entry,
+              entry
             } as any)}
             <Link to={`${url}#discussion`} className="text-secondary">
               <div className="d-flex align-items-center comments">
@@ -285,13 +271,13 @@ export const SearchListItem = ({
             </Link>
 
             {entryReblogBtn({
-              ...rest,
+              ...rest
             } as any)}
 
             {entryMenu({
               ...rest,
               alignBottom: false,
-              entry,
+              entry
             } as any)}
           </div>
         </div>

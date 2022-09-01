@@ -1,2 +1,2 @@
-export * from './initDecks';
-export * from './serializeDecks';
+export * from "./initDecks";
+export * from "./serializeDecks";
