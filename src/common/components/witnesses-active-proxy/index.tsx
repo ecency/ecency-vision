@@ -102,7 +102,7 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
                 children: btn
             });
 
-        return <div className="witnesses-active-proxy">
+        return <div className="witnesses-active-proxy" style={{marginBottom : '50px'}}>
             <p className="description">
                 {_t("witnesses.proxy-active-description")}
             </p>
@@ -115,8 +115,12 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
                     })
                 }
                 </div>
-
+                
                 {theBtn}
+
+            <p className="description">
+                {_t("witnesses.proxy-active-highlighted")}
+            </p>
 
                 {/* {(account && account.witness_votes && account.witness_votes.length > 0) && (
                     <div className="proxy-votes">
