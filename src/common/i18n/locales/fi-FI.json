@@ -93,7 +93,9 @@
     "filter-week": "Tällä viikolla",
     "filter-month": "Tässä kuussa",
     "filter-year": "Tänä vuonna",
-    "filter-alltime": "Koko ajalta"
+    "filter-alltime": "Koko ajalta",
+    "filter-no-reblog": "Exclude reblog",
+    "filter-with-reblog": "Include reblog"
   },
   "navbar": {
     "discover": "Löydä uutta",
