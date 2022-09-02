@@ -44,6 +44,7 @@ export enum AllFilter {
   replies = "replies",
   communities = "communities",
   feed = "feed",
+  no_reblog = "no_reblog",
   controversial = "controversial",
   rising = "rising"
 }

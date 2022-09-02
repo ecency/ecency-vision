@@ -6,7 +6,7 @@ import { createBrowserHistory } from "history";
 
 import { EntryIndexMenuDropdown } from "./index";
 
-import { globalInstance } from "../../helper/test-helper";
+import { activeUserInstance, globalInstance } from "../../helper/test-helper";
 
 const defaultProps = {
   history: createBrowserHistory(),
@@ -14,7 +14,10 @@ const defaultProps = {
   onChangeGlobal: () => {},
   isGlobal: true,
   toggleUIProp: () => {},
-  isActive: true
+  isActive: true,
+  activeUser: activeUserInstance,
+  noReblog: false,
+  handleFilterReblog: () => {}
 };
 
 it("(1) Renders correctly for global true and active true", () => {

@@ -458,7 +458,6 @@ exports[`(1) NotificationListItem (7) Transfer  1`] = `
         >
           sent you
            
-           
           <span
             className="transfer-amount"
           >

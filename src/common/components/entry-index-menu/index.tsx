@@ -23,9 +23,11 @@ import { UI, ToggleType } from "../../store/ui/types";
 interface Props {
   history: History;
   global: Global;
-  activeUser: ActiveUser | null;
+  activeUser: ActiveUser | any;
+  noReblog: boolean;
   toggleListStyle: (view: string | null) => void;
   toggleUIProp: (what: ToggleType) => void;
+  handleFilterReblog: () => void;
 }
 
 export enum IntroductionType {
@@ -524,7 +526,6 @@ export class EntryIndexMenu extends Component<Props, States> {
                   </ul>
                 </div>
               </div>
-
               <div className="main-menu d-flex d-lg-none">
                 <div className="sm-menu position-relative">
                   <DropDown {...mobileMenuConfig} float="left" />
@@ -557,7 +558,6 @@ export class EntryIndexMenu extends Component<Props, States> {
                   </ul>
                 </div>
               </div>
-
               {filter !== "feed" ? (
                 <>
                   <div className="border-left ml-3 dropDown-left-border-height" />
@@ -570,7 +570,19 @@ export class EntryIndexMenu extends Component<Props, States> {
                     />
                   </span>
                 </>
-              ) : null}
+              ) : (
+                <>
+                  <div className="border-left ml-3 dropDown-left-border-height" />
+                  <span id="check-isGlobal" className="d-flex align-items-center pl-3">
+                    <EntryIndexMenuDropdown
+                      {...this.props}
+                      isGlobal={isGlobal}
+                      isActive={isActive}
+                      onChangeGlobal={this.onChangeGlobal}
+                    />
+                  </span>
+                </>
+              )}
             </div>
           </div>
           <div className="d-flex align-items-center ml-auto ml-md-0 pl-3">
@@ -610,8 +622,10 @@ export default (p: Props) => {
     history: p.history,
     global: p.global,
     activeUser: p.activeUser,
+    noReblog: p.noReblog,
     toggleListStyle: p.toggleListStyle,
-    toggleUIProp: p.toggleUIProp
+    toggleUIProp: p.toggleUIProp,
+    handleFilterReblog: p.handleFilterReblog
   };
 
   return <EntryIndexMenu {...props} />;

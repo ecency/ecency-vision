@@ -71,6 +71,7 @@ const Index = (props: PageProps) => {
       "/" === props.location?.pathname;
     const nextShowEntryPage =
       currentStep === 2 ||
+      props.location?.pathname?.startsWith("/@") ||
       props.location?.pathname?.startsWith("/hot") ||
       props.location?.pathname?.startsWith("/created") ||
       props.location?.pathname?.startsWith("/trending") ||

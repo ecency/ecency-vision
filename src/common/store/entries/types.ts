@@ -61,7 +61,7 @@ export interface Entry {
   post_id: number;
   id?: number;
   promoted: string;
-  reblogged_by?: string[];
+  reblogged_by?: string[] | any;
   replies: any[];
   stats?: EntryStat;
   title: string;
@@ -71,6 +71,7 @@ export interface Entry {
 }
 
 export interface EntryGroup {
+  // filter(arg0: (entry: any) => boolean): EntryGroup;
   entries: Entry[];
   error: string | null;
   sid: string; //scroll_id for controversial/rising results
