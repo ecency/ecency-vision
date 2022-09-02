@@ -93,7 +93,9 @@
     "filter-week": "Deze week",
     "filter-month": "Deze maand",
     "filter-year": "Dit jaar",
-    "filter-alltime": "Van alle tijden"
+    "filter-alltime": "Van alle tijden",
+    "filter-no-reblog": "Exclude reblog",
+    "filter-with-reblog": "Include reblog"
   },
   "navbar": {
     "discover": "Ontdek",
