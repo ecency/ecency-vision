@@ -93,7 +93,9 @@
     "filter-week": "Šią savaitę",
     "filter-month": "Šį mėnesį",
     "filter-year": "Šiais metais",
-    "filter-alltime": "Visą laiką"
+    "filter-alltime": "Visą laiką",
+    "filter-no-reblog": "Exclude reblog",
+    "filter-with-reblog": "Include reblog"
   },
   "navbar": {
     "discover": "Atrasti",
