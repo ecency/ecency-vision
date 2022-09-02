@@ -455,17 +455,6 @@ exports[`(1) Default render 1`] = `
         </div>
       </div>
     </div>
-    <audio
-      autoPlay={false}
-      id="notification-audio"
-      muted={true}
-      src="notification.mp3"
-      style={
-        Object {
-          "display": "none",
-        }
-      }
-    />
   </div>
 </div>
 `;
@@ -972,17 +961,6 @@ exports[`(2) Night Theme 1`] = `
         </div>
       </div>
     </div>
-    <audio
-      autoPlay={false}
-      id="notification-audio"
-      muted={true}
-      src="notification.mp3"
-      style={
-        Object {
-          "display": "none",
-        }
-      }
-    />
   </div>
 </div>
 `;
@@ -1332,7 +1310,7 @@ exports[`(3) With active user 1`] = `
                   </svg>
                 </span>
                  
-                %  
+                % 
                 <span>
                   <svg
                     fill="none"
@@ -1660,17 +1638,6 @@ exports[`(3) With active user 1`] = `
         </div>
       </div>
     </div>
-    <audio
-      autoPlay={false}
-      id="notification-audio"
-      muted={true}
-      src="notification.mp3"
-      style={
-        Object {
-          "display": "none",
-        }
-      }
-    />
   </div>
 </div>
 `;
@@ -1981,7 +1948,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
                   </svg>
                 </span>
                  
-                %  
+                % 
                 <span>
                   <svg
                     fill="none"
