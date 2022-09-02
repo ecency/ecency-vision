@@ -94,8 +94,8 @@
     "filter-month": "Этот месяц",
     "filter-year": "В этом году",
     "filter-alltime": "За все время",
-    "filter-no-reblog": "Exclude reblog",
-    "filter-with-reblog": "Include reblog"
+    "filter-no-reblog": "Исключить репост",
+    "filter-with-reblog": "Включить репост"
   },
   "navbar": {
     "discover": "Подборка",
