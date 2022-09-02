@@ -93,7 +93,9 @@
     "filter-week": "Esta semana",
     "filter-month": "Este mês",
     "filter-year": "Este ano",
-    "filter-alltime": "Desde o início"
+    "filter-alltime": "Desde o início",
+    "filter-no-reblog": "Exclude reblog",
+    "filter-with-reblog": "Include reblog"
   },
   "navbar": {
     "discover": "Descubra",
