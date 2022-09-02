@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as sdk from 'hivesigner';
 
-interface SpkApiWallet {
+export interface SpkApiWallet {
   balance: number;
   claim: number;
   drop: {

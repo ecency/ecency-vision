@@ -113,6 +113,7 @@ class WalletSpk extends Component<Props, State> {
       </div>
 
       <SendSpkDialog
+        global={this.props.global}
         account={this.props.account}
         show={this.state.sendSpkShow}
         setShow={(v: boolean) => this.setState({ sendSpkShow: v })}

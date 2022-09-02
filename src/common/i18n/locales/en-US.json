@@ -650,7 +650,10 @@
         "to": "To",
         "amount": "Amount",
         "optional": "optional",
-        "send-spk": "Send SPK",
+        "title": "Send SPK",
+        "memo": "Memo",
+        "next": "Next",
+        "subtitle": "Move funds to another SPK wallet",
         "warning": "You are going to transfer more than balance available"
       },
       "token": "SPK Token",

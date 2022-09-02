@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { Alert, Button, Form, InputGroup, Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { _t } from '../../i18n';
-import { SearchByUsername } from '../search-by-username';
 import { ActiveUser } from '../../store/active-user/types';
 import './wallet-spk-dialog.scss';
-import { sendSpk } from '../../api/spk-api';
 import { Account } from '../../store/accounts/types';
+import { WalletSpkGroup } from './wallet-spk-group';
+import { WalletSpkSteps } from './wallet-spk-steps';
+import { SendSpkDialogForm } from './dialog-steps/send-spk-dialog-form';
+import { SendSpkDialogConfirm } from './dialog-steps/send-spk-dialog-confirm';
+import { Global } from '../../store/global/types';
+import numeral from 'numeral';
 
 interface Props {
+  global: Global;
   show: boolean;
   setShow: (value: boolean) => void;
   activeUser: ActiveUser | null;
@@ -15,14 +20,35 @@ interface Props {
   account: Account;
 }
 
-export const SendSpkDialog = ({ show, setShow, activeUser, balance, account }: Props) => {
+export const SendSpkDialog = ({ global, show, setShow, activeUser, balance }: Props) => {
   const [username, setUsername] = useState('');
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState('0');
   const [memo, setMemo] = useState('');
+  const [stepIndex, setStepIndex] = useState(0);
+  const precision = (balance + "").split(".")[1]?.length || 3;
+  const steps = [
+    {
+      title: 'wallet.spk.send.title',
+      subtitle: 'wallet.spk.send.subtitle',
+      submit: () => {
+        // make sure 3 decimals in amount
+        const fixedAmount = formatNumber(amount, precision);
+        setAmount(fixedAmount);
+        setStepIndex(stepIndex + 1);
+      }
+    },
+    {
+      title: 'transfer.confirm-title',
+      subtitle: 'transfer.confirm-sub-title',
+      submit: () => {}
+    }
+  ];
 
-  const send = async () => {
-    await sendSpk(account.name, username, amount, memo);
-  }
+  const formatNumber = (num: number | string, precision: number) => {
+    const format = `0.${"0".repeat(precision)}`;
+
+    return numeral(num).format(format, Math.floor); // round to floor
+  };
 
   return <Modal
     animation={false}
@@ -30,74 +56,41 @@ export const SendSpkDialog = ({ show, setShow, activeUser, balance, account }: P
     centered={true}
     onHide={setShow}
     keyboard={false}
-    className="send-spk-dialog">
-    <Modal.Header closeButton={true}>
-      <Modal.Title>{_t('wallet.spk.send.send-spk')}</Modal.Title>
-    </Modal.Header>
+    size="lg"
+    className="send-spk-dialog modal-thin-header transfer-dialog-content">
+    <Modal.Header closeButton={true}/>
     <Modal.Body>
-      <Form.Group className={'mb-3'}>
-        <Form.Label>{_t('wallet.spk.send.from')}</Form.Label>
-        <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text>@</InputGroup.Text>
-          </InputGroup.Prepend>
-          <Form.Control
-            type="text"
-            autoFocus={true}
-            placeholder=""
-            value={activeUser!.username}
-            onChange={() => {
+      <WalletSpkSteps steps={steps} stepIndex={stepIndex}>
+        <>
+          {stepIndex === 0 ? <SendSpkDialogForm
+            username={username}
+            activeUser={activeUser}
+            amount={amount}
+            balance={balance}
+            memo={memo}
+            setMemo={setMemo}
+            setUsername={setUsername}
+            setAmount={setAmount}
+            submit={() => steps[stepIndex]?.submit()}
+          /> : <></>}
+
+          {stepIndex === 1 ? <SendSpkDialogConfirm
+            global={global}
+            title="transfer-title"
+            activeUser={activeUser}
+            showTo={true}
+            to={username}
+            memo={memo}
+            amount={amount}
+            asset="SPK"
+            inProgress={false}
+            back={() => {
             }}
-          />
-        </InputGroup>
-      </Form.Group>
-
-      <Form.Group className={'mb-3'}>
-        <Form.Label>{_t('wallet.spk.send.to')}</Form.Label>
-        <SearchByUsername
-          activeUser={activeUser}
-          excludeActiveUser={true}
-          setUsername={setUsername}
-        />
-      </Form.Group>
-
-      <Form.Group className={'mb-3'}>
-        <Form.Label>{_t('wallet.spk.send.amount')}({_t('wallet.spk.send.balance')} {balance} SPK)</Form.Label>
-        <InputGroup>
-          <Form.Control
-            min={0}
-            max={balance}
-            type="number"
-            autoFocus={true}
-            placeholder=""
-            value={amount}
-            onChange={((event) => setAmount(+event.target.value))}
-          />
-          <InputGroup.Append>
-            <InputGroup.Text>SPK</InputGroup.Text>
-          </InputGroup.Append>
-        </InputGroup>
-      </Form.Group>
-      {amount > balance ? <Alert className="mt-3" variant={'warning'}>{_t('wallet.spk.send.warning')}</Alert> : <></>}
-
-      <Form.Group className={'mb-3'}>
-        <Form.Label>Memo({_t('wallet.spk.send.optional')})</Form.Label>
-        <Form.Control
-          type="text"
-          autoFocus={true}
-          placeholder=""
-          value={memo}
-          onChange={((event) => setMemo(event.target.value))}
-        />
-      </Form.Group>
-
-      <Form.Group className={'justify-content-end d-flex'}>
-        <Button
-          disabled={!amount || !username}
-          variant={'primary'}
-          onClick={send}
-        >{_t('wallet.spk.send.button')}</Button>
-      </Form.Group>
+            confirm={() => {
+            }}
+          /> : <></>}
+        </>
+      </WalletSpkSteps>
     </Modal.Body>
   </Modal>
 }
