@@ -1,101 +1,78 @@
-import React from 'react';
+import React from "react";
 
-import TestRenderer from 'react-test-renderer';
-import {createBrowserHistory} from 'history';
+import TestRenderer from "react-test-renderer";
+import { createBrowserHistory } from "history";
 
-import {dynamicPropsIntance1, globalInstance} from "../../helper/test-helper";
+import { dynamicPropsIntance1, globalInstance } from "../../helper/test-helper";
 
-import NotificationListItem from './notification-list-item';
+import NotificationListItem from "./notification-list-item";
 
 import {
-    apiVoteNotification,
-    apiMentionNotification,
-    apiFollowNotification,
-    apiUnfollowNotification,
-    apiReplyNotification,
-    apiReblogNotification,
-    apiTransferNotification
+  apiVoteNotification,
+  apiMentionNotification,
+  apiFollowNotification,
+  apiUnfollowNotification,
+  apiReplyNotification,
+  apiReblogNotification,
+  apiTransferNotification
 } from "../../helper/test-helper";
 
+describe("(1) NotificationListItem", () => {
+  const defProps = {
+    global: globalInstance,
+    history: createBrowserHistory(),
+    dynamicProps: dynamicPropsIntance1,
+    markNotifications: () => {},
+    addAccount: () => {},
+    toggleUIProp: () => {}
+  };
 
-describe('(1) NotificationListItem', () => {
+  it("(1) Vote ", () => {
+    const props = { ...defProps, notification: apiVoteNotification };
+    const renderer = TestRenderer.create(<NotificationListItem {...props} />);
 
-    const defProps = {
-        global: globalInstance,
-        history: createBrowserHistory(),
-        dynamicProps: dynamicPropsIntance1,
-        markNotifications: () => {
+    expect(renderer.toJSON()).toMatchSnapshot();
+  });
 
-        },
-        addAccount: () => {
+  it("(2) Mention ", () => {
+    const props = { ...defProps, notification: apiMentionNotification };
+    const renderer = TestRenderer.create(<NotificationListItem {...props} />);
 
-        },
-        toggleUIProp: () => {
+    expect(renderer.toJSON()).toMatchSnapshot();
+  });
 
-        }
-    }
+  it("(3) Follow ", () => {
+    const props = { ...defProps, notification: apiFollowNotification };
+    const renderer = TestRenderer.create(<NotificationListItem {...props} />);
 
-    it('(1) Vote ', () => {
-        const props = {...defProps, notification: apiVoteNotification,};
-        const renderer = TestRenderer.create(
-            <NotificationListItem {...props}/>
-        );
+    expect(renderer.toJSON()).toMatchSnapshot();
+  });
 
-        expect(renderer.toJSON()).toMatchSnapshot();
-    });
+  it("(4) Unfollow ", () => {
+    const props = { ...defProps, notification: apiUnfollowNotification };
+    const renderer = TestRenderer.create(<NotificationListItem {...props} />);
 
-    it('(2) Mention ', () => {
-        const props = {...defProps, notification: apiMentionNotification,};
-        const renderer = TestRenderer.create(
-            <NotificationListItem {...props}/>
-        );
+    expect(renderer.toJSON()).toMatchSnapshot();
+  });
 
-        expect(renderer.toJSON()).toMatchSnapshot();
-    });
+  it("(5) Reply ", () => {
+    const props = { ...defProps, notification: apiReplyNotification };
+    const renderer = TestRenderer.create(<NotificationListItem {...props} />);
 
-    it('(3) Follow ', () => {
-        const props = {...defProps, notification: apiFollowNotification,};
-        const renderer = TestRenderer.create(
-            <NotificationListItem {...props}/>
-        );
+    expect(renderer.toJSON()).toMatchSnapshot();
+  });
 
-        expect(renderer.toJSON()).toMatchSnapshot();
-    });
+  it("(6) Reblog ", () => {
+    const props = { ...defProps, notification: apiReblogNotification };
+    const renderer = TestRenderer.create(<NotificationListItem {...props} />);
 
-    it('(4) Unfollow ', () => {
-        const props = {...defProps, notification: apiUnfollowNotification,};
-        const renderer = TestRenderer.create(
-            <NotificationListItem {...props}/>
-        );
+    expect(renderer.toJSON()).toMatchSnapshot();
+  });
 
-        expect(renderer.toJSON()).toMatchSnapshot();
-    });
+  it("(7) Transfer ", () => {
+    const props = { ...defProps, notification: apiTransferNotification };
+    const renderer = TestRenderer.create(<NotificationListItem {...props} />);
 
-    it('(5) Reply ', () => {
-        const props = {...defProps, notification: apiReplyNotification,};
-        const renderer = TestRenderer.create(
-            <NotificationListItem {...props}/>
-        );
-
-        expect(renderer.toJSON()).toMatchSnapshot();
-    });
-
-    it('(6) Reblog ', () => {
-        const props = {...defProps, notification: apiReblogNotification,};
-        const renderer = TestRenderer.create(
-            <NotificationListItem {...props}/>
-        );
-
-        expect(renderer.toJSON()).toMatchSnapshot();
-    });
-
-    it('(7) Transfer ', () => {
-        const props = {...defProps, notification: apiTransferNotification,};
-        const renderer = TestRenderer.create(
-            <NotificationListItem {...props}/>
-        );
-
-        expect(renderer.toJSON()).toMatchSnapshot();
-    });
-})
-
+    expect(renderer.toJSON()).toMatchSnapshot();
+  });
+});

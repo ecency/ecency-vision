@@ -165,8 +165,8 @@
     "sign-up-text-2": "¡Regístrate ahora!"
   },
   "sign-up": {
-    "header": "Rewarding communities",
-    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
+    "header": "Recompensando comunidades",
+    "description": "¡Valorar la Libertad de expresión, Estar en Avance, Alcanzar la libertad financiera!",
     "bottom-description": "Cada cuenta es creada en un blockchain y sólo tú tienes el control sobre esa cuenta. Una cuenta para administrar todo en Blockchain y Ecency.",
     "learn-more": "Obtenga más información sobre los beneficios en nuestras <a href=\"/faq#how-to-join\">Preguntas frecuentes</a>",
     "username": "Elige un nombre de usuario",
@@ -628,7 +628,7 @@
     "hive-dollars-description": "Fichas por valor de alrededor de $ 1.00 de HIVE.",
     "savings": "AHORROS",
     "savings-description": "El balance está sujeto a 3 días de espera para la retirada.",
-    "next-power-down": "El siguiente apagado será en {{time}}, {{amount}}",
+    "next-power-down": "El siguiente apagado es {{time}}, (~{{amount}}, {{weeks}} semanas restantes)",
     "transfer": "Transferir",
     "transfer-to-savings": "Transferir a ahorros",
     "convert": "Convertir",
@@ -715,7 +715,13 @@
     "scan-code": "Escanear el código QR con la aplicación móvil Ecency",
     "select-user": "Por favor, selecciona un usuario",
     "title": "Impulsar la cuenta",
-    "copied": "¡Enlace de impulso de la cuenta copiado!"
+    "title-points": "Comprar puntos",
+    "copied": "¡Enlace de impulso de la cuenta copiado!",
+    "select-type": "Selecciona un tipo",
+    "boost": "Impulsar",
+    "points": "Puntos",
+    "boost-info": "Ecency tiene derecho a revocar delegaciones/impulsos si la estaca se utiliza incorrectamente",
+    "points-amount": "{{n}} puntos"
   },
   "promote": {
     "title": "Promocionar",
@@ -1342,7 +1348,7 @@
       "why-different-keys-header": "¿Por qué hay diferentes llaves?",
       "why-different-keys-body": "<p>Hay diferentes claves con los permisos apropiados para lo que estás haciendo. <ul><li>Clave de Publicación - esta clave debe ser usada para acciones de redes sociales, como publicar, comentar y votar. Esta clave tiene un conjunto limitado de permisos y no se puede utilizar para acciones monetarias. Así que no se puede perder dinero si alguien más tiene acceso a esta clave.</li><li>Clave activa - esta clave tiene permisos adicionales para acciones más sensibles relacionadas con lo monetario, como transferir e intercambiar tokens. Al realizar una acción relacionada con una cartera, se te puede pedir que te autentifiques con su clave activa. Solamente debes introducir tu Clave Activa en aplicaciones en las que confías porque cualquiera con acceso a esta clave puede tomar tus tokens. Hazte un favor y almacena esta clave de forma segura para evitar perder fichas en el futuro.</li><li>Clave de propietario - es la clave más poderosa porque puede cambiar cualquier clave de una cuenta, incluyendo la clave de propietario. Idealmente, está pensado para ser almacenada fuera de línea, y solo se utiliza para recuperar una cuenta comprometida.</li></ul></p>",
       "stolen-hive-hbd-header": "¿Qué puedo hacer si mis tokens de HIVE o de Hive dollars son robados o enviados a una cuenta incorrecta?",
-      "stolen-hive-hbd-body": "<p>No hay nada que hacer si tus tokens de liquidez son robadas o enviadas a una couenta incorrecta, pero si tus fichas están en Hive Power, es imposible que sean hackeadas más de 1/13 por semana y si tus fichas están ahorradas, necesitan un período de espera de tres días para que sean transferibles. Estacar/potenciar o transferir fondos a ahorros puede ser más seguro.</>",
+      "stolen-hive-hbd-body": "<p>No hay nada que hacer si tus fichas de líquido son robadas o enviadas a una cuenta incorrecta, pero si tus fichas están estacadas en Hive Power es imposible que sean hackeadas más de 1/13 por semana y si tus fichas están ahorradas, necesitan un período de espera de tres días para que se puedan transferir. Estacar/potenciar o transferir fondos a ahorros puede ser más seguro.</>",
       "what-are-tags-header": "¿Qué son las etiquetas o temas?",
       "what-are-tags-body": "<p>Una etiqueta es una pieza de información que describe el contenido al que se le asigna. Ayudan a los motores de búsqueda a identificar el contenido de las páginas en línea y a utilizar esa información, producen los mejores resultados para una búsqueda determinada. Todas las etiquetas deben ser letras minúsculas. Los espacios no están permitidos, pero se permiten palabras separadas por guiones, con un solo guión.</p>",
       "how-use-tags-header": "¿Cómo usar etiquetas?",
@@ -1352,7 +1358,7 @@
       "what-links-show-header": "¿Qué muestran los enlaces de Tendencias, Calientes, Nuevos, Ascendientes y Controversiales?",
       "what-links-show-body": "<p>Esta es la forma de ordenar contenido en Ecency. <ul><li>Tendencias - Anteriormente publicado o discutido.</li><li>Caliente - Mensajes populares en las últimas horas.</li><li>Nuevos - Los mensajes más recientes ordenados por el tiempo de publicado.</li><li>Ascendente - Mensajes que tienen más comentarios y votos comparados con otros.</li><li>Controversial - Tiene un número relativamente igual de votos positivos y negativos.</li></ul></p>",
       "what-my-rewards-header": "¿Qué tipo de recompensas tengo en mi cartera?",
-      "what-my-rewards-body": "<p>Hay dos tipos de recompensas en tu monedero: <ul><li>Recompensas de curación - Las recompensas ganadas por votar publicaciones y comentarios.</li><li>Recompensas de autor - Las recompensas ganadas por tus propias publicaciones y comentarios.</li><li>Recompensas de Puntos - Acciones sociales e interacciones también recompensadas con puntos de Ecency.</li></ul><p/>",
+      "what-my-rewards-body": "<p>Hay tres tipos de recompensas en tu monedero: <ul><li>Recompensas de Curación - Las recompensas ganadas por votar publicaciones y comentarios.</li><li>Recompensas de autor - Las recompensas ganadas por tus propios posts y comentarios.</li><li>Recompensas de Puntos - Acciones sociales e interacciones también recompensadas con puntos de Ecency.</li></ul><p/>",
       "what-information-profile-header": "¿Qué tipo de información se muestra en mi perfil?",
       "what-information-profile-body": "<p>La primera información que se muestra cerca de su imagen es su puntaje de reputación y tu nombre, abajo la descripción. Debajo de eso, la información sobre seguidores y a quien sigues, fecha de registro en Ecency. Tienes la opción de añadir información adicional en la configuración de Ecency, como información sobre la imagen, imagen de perfil, imagen de portada, tu ubicación.</p>",
       "what-can-post-header": "¿Qué puedo publicar en Ecency?",
@@ -1370,7 +1376,15 @@
       "what-voting-power-header": "¿Qué es el poder de voto?",
       "what-voting-power-body": "<p>Tu poder de voto disminuye un poco cada vez que votas. Comienza con un poder de voto del 100% y al votar usas una pequeña cantidad de poder de voto. Cuanto más votas menos influencia tienen, lo que significa que la eficiencia de su voto se deteriorará. Se recomiendan 10 votos diarios para utilizar mejor eficiencia y recompensas de curación.</p>",
       "how-many-vote-header": "¿Cuántas veces puedo votar con mi poder de voto?",
-      "how-many-vote-body": "<p>Cada voto al 100% de votos que otorgues usará el 2% del total de tu maná de voto restante. Tu maná de voto recargará un 20% cada día. Puedes votar más de 10 veces al día, pero cada voto valdrá menos y tomará más tiempo alcanzar el pleno poder de votación de nuevo.</p>"
+      "how-many-vote-body": "<p>Cada voto al 100% de votos que otorgues usará el 2% del total de tu maná de voto restante. Tu maná de voto recargará un 20% cada día. Puedes votar más de 10 veces al día, pero cada voto valdrá menos y tomará más tiempo alcanzar el pleno poder de votación de nuevo.</p>",
+      "what-is-hivesigner-header": "¿Qué es Hivesigner?",
+      "what-is-hivesigner-body": "<p>Cuando estabas registrándote en Hive, recibiste un montón de claves difíciles de recordar. El trabajo de este Hivesigner es, darte acceso a crear tu propia contraseña que puedas recordar y proporcionar una protección para no usar tu clave activa al iniciar sesión en las plataformas Hive.</p>",
+      "what-is-keychain-header": "¿Qué es Keychain?",
+      "what-is-keychain-body": "<p>Hive Keychain es una extensión del navegador para el monedero en la blockchain y criptomoneda de Hive, permite a los usuarios iniciar sesión de forma segura y acceder a múltiples plataformas basadas en Hive. Está disponible para Chrome, Brave y Firefox.</p>",
+      "videos-pictures-stored-header": "¿Las imágenes y el vídeo se almacenan en la blockchain?",
+      "videos-pictures-stored-body": "<p>El contenido multimedia como imágenes, vídeos, etc. normalmente no se almacenan directamente en una blockchain. Cuando añades fotos o vídeos, solamente estás añadiendo una referencia de origen a donde se encuentran. Puedes añadir contenido de vídeo desde otras ubicaciones. A partir de ahora, cuando subas una foto, esta se alojará en un servidor web normal.</p>",
+      "value-hive-hbd-header": "¿Qué determina el valor del HIVE y del HBD?",
+      "value-hive-hbd-body": "<p>El valor del HIVE proviene de la demanda y oferta del token. El HIVE siempre será demandado según la forma en que el sistema está diseñado y siempre habrá oferta para el HIVE. Mientras la blockchain de Hive exista con el desarrollo continuo y los usuarios estén activos, siempre habrá demanda y oferta para el HIVE, añadiendo valor al token.</p>"
     }
   },
   "contributors": {

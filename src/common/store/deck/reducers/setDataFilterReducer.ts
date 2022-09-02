@@ -1,6 +1,9 @@
-import { DeckState, SetDataFiltersAction } from '../types';
+import { DeckState, SetDataFiltersAction } from "../types";
 
-export function setDataFilterReducer(state: DeckState, data: SetDataFiltersAction['data']): DeckState {
+export function setDataFilterReducer(
+  state: DeckState,
+  data: SetDataFiltersAction["data"]
+): DeckState {
   const { title, dataFilters } = data;
   const deck = state.items.find((d) => d.header.title === title);
 

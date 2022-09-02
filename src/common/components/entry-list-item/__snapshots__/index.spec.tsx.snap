@@ -660,9 +660,7 @@ exports[`(3) Nsfw 1`] = `
           Reveal this post
         </a>
          
-         
         or
-         
          
         <span
           dangerouslySetInnerHTML={
@@ -944,9 +942,7 @@ exports[`(4) Nsfw with active user 1`] = `
           Reveal this post
         </a>
          
-         
         or
-         
          
         adjust your
          

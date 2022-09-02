@@ -218,17 +218,6 @@ exports[`(1) Default render 1`] = `
       </a>
     </div>
   </div>
-  <audio
-    autoPlay={false}
-    id="notification-audio"
-    muted={true}
-    src="notification.mp3"
-    style={
-      Object {
-        "display": "none",
-      }
-    }
-  />
 </div>
 `;
 
@@ -451,17 +440,6 @@ Array [
         </a>
       </div>
     </div>
-    <audio
-      autoPlay={false}
-      id="notification-audio"
-      muted={true}
-      src="notification.mp3"
-      style={
-        Object {
-          "display": "none",
-        }
-      }
-    />
   </div>,
   <div
     className="updater"
@@ -715,17 +693,6 @@ exports[`(3) Night Theme 1`] = `
       </a>
     </div>
   </div>
-  <audio
-    autoPlay={false}
-    id="notification-audio"
-    muted={true}
-    src="notification.mp3"
-    style={
-      Object {
-        "display": "none",
-      }
-    }
-  />
 </div>
 `;
 
@@ -1001,17 +968,6 @@ exports[`(4) With active user 1`] = `
       </div>
     </div>
   </div>
-  <audio
-    autoPlay={false}
-    id="notification-audio"
-    muted={true}
-    src="notification.mp3"
-    style={
-      Object {
-        "display": "none",
-      }
-    }
-  />
 </div>
 `;
 

@@ -9,7 +9,7 @@ it("(1) Render", () => {
     history: createBrowserHistory(),
     children: <span>username</span>,
     username: "username",
-    addAccount: () => {},
+    addAccount: () => {}
   };
   const renderer = TestRenderer.create(<ProfileLink {...props} />);
   expect(renderer.toJSON()).toMatchSnapshot();

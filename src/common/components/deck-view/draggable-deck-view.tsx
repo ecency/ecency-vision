@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { DragDropContext, Draggable, Droppable, resetServerContext, } from 'react-beautiful-dnd';
-import { _t } from '../../i18n';
-import { Deck } from '../deck';
-import { success } from '../feedback';
+import React, { useEffect, useState } from "react";
+import { DragDropContext, Draggable, Droppable, resetServerContext } from "react-beautiful-dnd";
+import { _t } from "../../i18n";
+import { Deck } from "../deck";
+import { success } from "../feedback";
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
-  ...draggableStyle,
+  ...draggableStyle
 });
 
 const getListStyle = (isDraggingOver: boolean, theme: string) => ({
@@ -13,7 +13,7 @@ const getListStyle = (isDraggingOver: boolean, theme: string) => ({
   display: "flex",
   padding: "0 80px 16px 28px",
   overflow: "auto",
-  scrollBehavior: "smooth",
+  scrollBehavior: "smooth"
 });
 
 resetServerContext();
@@ -46,23 +46,15 @@ const DraggableDeckView = ({
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}
-            style={
-              getListStyle(snapshot.isDraggingOver, rest.global.theme) as any
-            }
+            style={getListStyle(snapshot.isDraggingOver, rest.global.theme) as any}
             {...provided.droppableProps}
             id="draggable-container"
           >
             {deck.items.map((item: any, index: any) => (
-              <Draggable
-                key={item.id + index}
-                draggableId={item.id}
-                index={index}
-              >
+              <Draggable key={item.id + index} draggableId={item.id} index={index}>
                 {(provided, snapshot) => {
                   const notificationTranslated = _t("decks.notifications");
-                  const containerClass = item.header.title.includes(
-                    notificationTranslated
-                  )
+                  const containerClass = item.header.title.includes(notificationTranslated)
                     ? "list-body pb-0"
                     : "";
 
@@ -71,10 +63,7 @@ const DraggableDeckView = ({
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      style={getItemStyle(
-                        snapshot.isDragging,
-                        provided.draggableProps.style
-                      )}
+                      style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
                       id={item.id}
                       className={
                         item.header.title.includes(_t("decks.notifications"))
@@ -101,10 +90,7 @@ const DraggableDeckView = ({
 
             {loading && (
               <div className="d-flex justify-content-center align-items-center h-100 w-100 deck">
-                <div
-                  className="spinner-border text-primary spinner-border"
-                  role="status"
-                >
+                <div className="spinner-border text-primary spinner-border" role="status">
                   <span className="sr-only">{_t("g.loading")}</span>
                 </div>
               </div>

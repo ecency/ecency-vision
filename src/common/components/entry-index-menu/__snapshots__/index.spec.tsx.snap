@@ -982,6 +982,13 @@ exports[`(4) Active user. Friends 1`] = `
             </ul>
           </div>
         </div>
+        <div
+          className="border-left ml-3 dropDown-left-border-height"
+        />
+        <span
+          className="d-flex align-items-center pl-3"
+          id="check-isGlobal"
+        />
       </div>
     </div>
     <div
