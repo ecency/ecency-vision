@@ -93,7 +93,9 @@
     "filter-week": "Αυτή την εβδομάδα",
     "filter-month": "Αυτό τον μήνα",
     "filter-year": "Αυτό το έτος",
-    "filter-alltime": "All time"
+    "filter-alltime": "All time",
+    "filter-no-reblog": "Exclude reblog",
+    "filter-with-reblog": "Include reblog"
   },
   "navbar": {
     "discover": "Ανακαλύψτε",
