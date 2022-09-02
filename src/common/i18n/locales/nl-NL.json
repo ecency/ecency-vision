@@ -94,8 +94,8 @@
     "filter-month": "Deze maand",
     "filter-year": "Dit jaar",
     "filter-alltime": "Van alle tijden",
-    "filter-no-reblog": "Exclude reblog",
-    "filter-with-reblog": "Include reblog"
+    "filter-no-reblog": "Gedeelde berichten uitsluiten",
+    "filter-with-reblog": "Inclusief gedeelde berichten"
   },
   "navbar": {
     "discover": "Ontdek",
@@ -891,43 +891,43 @@
     "order-id": "Order id"
   },
   "friends": {
-    "followers": "Followers ({{n}})",
-    "following": "Following ({{n}})",
-    "search-placeholder": "Search"
+    "followers": "Volgers ({{n}})",
+    "following": "Volgen ({{n}})",
+    "search-placeholder": "Zoeken"
   },
   "follow-controls": {
-    "follow": "Follow",
-    "unFollow": "Unfollow",
-    "mute": "Mute",
-    "unMute": "Unmute"
+    "follow": "Volgen",
+    "unFollow": "Stop met volgen",
+    "mute": "Negeren",
+    "unMute": "Niet langer negeren"
   },
   "favorite-btn": {
-    "add": "Add to favorites",
-    "added": "Added to favorites",
-    "delete": "Remove from favorites",
-    "deleted": "Removed from favorites"
+    "add": "Toevoegen aan favorieten",
+    "added": "Aan favorieten toegevoegd",
+    "delete": "Uit favorieten verwijderen",
+    "deleted": "Verwijderd uit favorieten"
   },
   "editor-toolbar": {
-    "bold": "Bold",
-    "italic": "Italic",
-    "header": "Heading",
+    "bold": "Vetgedrukt",
+    "italic": "Schuingedrukt",
+    "header": "Kop",
     "code": "Code",
-    "quote": "Quote",
-    "ul": "Unordered List",
-    "ol": "Ordered List",
-    "link": "Link",
-    "image": "Image",
-    "table": "Table",
-    "table-3-col": "3 columns",
-    "table-2-col": "2 columns",
-    "table-1-col": "1 column",
+    "quote": "Citaat",
+    "ul": "Ongesorteerde lijst",
+    "ol": "Geordende lijst",
+    "link": "Koppeling",
+    "image": "Afbeelding",
+    "table": "Tabel",
+    "table-3-col": "3 kolommen",
+    "table-2-col": "2 kolommen",
+    "table-1-col": "1 kolom",
     "upload": "Upload",
-    "gallery": "Gallery",
+    "gallery": "Gallerij",
     "emoji": "Emoji",
-    "image-error": "Couldn't upload image.",
-    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
-    "image-error-size": "Image size is too large, try smaller size image again.",
-    "fragments": "Snippets"
+    "image-error": "Kan afbeelding niet uploaden.",
+    "image-error-cache": "Kan de afbeelding niet uploaden. Je lijkt te zijn afgemeld. Probeer je opnieuw aan te melden.",
+    "image-error-size": "Je afbeelding is te groot, probeer een kleinere afbeelding.",
+    "fragments": "Tekstfragmenten"
   },
   "emoji-picker": {
     "filter-placeholder": "Filter",
