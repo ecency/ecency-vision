@@ -1,10 +1,8 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useEffect, useLayoutEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 const useEnhancedEffect =
-  typeof window !== 'undefined' && process.env.NODE_ENV !== 'test'
-    ? useLayoutEffect
-    : useEffect;
+  typeof window !== "undefined" && process.env.NODE_ENV !== "test" ? useLayoutEffect : useEffect;
 
 const NoSSR = ({ children, defer, fallback }: any) => {
   const [isMounted, setMountedState] = useState(false);
@@ -23,12 +21,12 @@ const NoSSR = ({ children, defer, fallback }: any) => {
 NoSSR.propTypes = {
   children: PropTypes.node.isRequired,
   defer: PropTypes.bool,
-  fallback: PropTypes.node,
+  fallback: PropTypes.node
 };
 
 NoSSR.defaultProps = {
   defer: false,
-  fallback: null,
+  fallback: null
 };
 
 export default NoSSR;

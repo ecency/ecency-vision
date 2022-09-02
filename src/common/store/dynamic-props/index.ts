@@ -16,7 +16,7 @@ export const initialState: State = {
   totalVestingFund: 1,
   totalVestingShares: 1,
   virtualSupply: 1,
-  vestingRewardPercent: 1,
+  vestingRewardPercent: 1
 };
 
 export default (state: State = initialState, action: Actions): State => {
@@ -40,6 +40,6 @@ export const fetchDynamicProps = () => (dispatch: Dispatch) => {
 export const fetchedAct = (props: DynamicProps): FetchedAction => {
   return {
     type: ActionTypes.FETCHED,
-    props,
+    props
   };
 };

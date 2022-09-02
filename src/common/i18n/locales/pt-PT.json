@@ -628,7 +628,7 @@
     "hive-dollars-description": "Os tokens valem aproximadamene $1.00 de HIVE.",
     "savings": "Poupanças",
     "savings-description": "O saldo está sujeito a 3 dias de espera para retirá-lo.",
-    "next-power-down": "O próximo Power Down será em {{time}} {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Transferir",
     "transfer-to-savings": "Transferir para as poupanças",
     "convert": "Converter",
@@ -715,7 +715,13 @@
     "scan-code": "Scan the QR code with Ecency mobile app",
     "select-user": "Please, select an user",
     "title": "Account boost",
-    "copied": "Account boost link copied!"
+    "title-points": "Buy points",
+    "copied": "Account boost link copied!",
+    "select-type": "Select a type",
+    "boost": "Boost",
+    "points": "Points",
+    "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
+    "points-amount": "{{n}} points"
   },
   "promote": {
     "title": "Promover",
@@ -1342,7 +1348,7 @@
       "why-different-keys-header": "Por que existem várias chaves?",
       "why-different-keys-body": "<p>Existem diferentes chaves, e cada uma delas possui as permissões apropriadas para o que você precisa fazer. <ul><li>Chave de Postagem - essa chave deverá ser usada para interações sociais na rede, como publicações, comentários e votos. Essa chave possui um número limitado de permissões e não é capaz de ser utilizada para ações monetárias. Portanto, caso alguém obtenha acesso a sua chave de postagem, você não perderá dinheiro.</li><li>Chave Ativa - essa chave possui permissões adicionais para utilização monetária da conta, como realização de transferências e trocas de tokens. Quando realizar um procedimento na sua carteira, você poderá ser requisitado a introduzir sua Chave Ativa. Você apenas deve utilizar sua Chave Ativa em aplicativos de confiança, pois qualquer um que obtiver acesso a essa chave poderá transferir seus tokens. Faça um favor a si mesmo e guarde essa chave com cuidado para evitar perder seus tokens no futuro.</li><li>Chave de Proprietário - é a mais poderosa das chaves, pois ela possui permissões para modificar qualquer chave de uma conta, incluindo a si mesma. O ideal é mantê-la de forma Off-line, e apenas ser usada para recuperar uma conta comprometida.</li></ul></p>",
       "stolen-hive-hbd-header": "O que eu posso fazer se os meus HIVE tokens ou Hive Dollars forem roubados ou enviados para uma conta errada?",
-      "stolen-hive-hbd-body": "<p>Não há nada a fazer se o Hive líquido é enviado para uma conta errada. Entretanto, se os tokens estão convertidos em Hive Power, será impossível um roubo maior do que 1/13 por semana. Caso os tokens estejam na poupança, será necessário aguardar três dias para que eles se tornem transferíveis. Em conclusão, guardar os tokens na poupança, ou convertê-los em Hive Power poderá ser mais seguro.</>",
+      "stolen-hive-hbd-body": "<p>There is nothing to do if your liquid tokens are stolen or sent to wrong acoount but if your tokens are in Hive Power it is impossible to be hacked more than 1/13 per week and if your tokens are in savings they need to a three-day wait period for them to become transferable. Staking/powering up or transferring funds into savings might be more safer.</>",
       "what-are-tags-header": "O que são tags ou tópicos?",
       "what-are-tags-body": "<p>Uma etiqueta é um pedaço de informação que descreve o conteúdo da publicação associada. Elas ajudam os mecanismos de pesquisa a identificar o conteúdo das páginas On-line. A utilização dessa informação proporciona os melhores resultados possíveis numa pesquisa. Não esqueça que as etiquetas necessitam ser escritas em letra minúscula. Espaços não são permitidos dentro da mesma etiqueta, mas a utilização de traço é permitida.</p>",
       "how-use-tags-header": "Como usar as etiquetas?",
@@ -1352,7 +1358,7 @@
       "what-links-show-header": "O que os links de Destaque, Quente, Novo, Em Alta e Controverso mostram?",
       "what-links-show-body": "<p>Essa é a maneira de classificar o conteúdo na Ecency. <ul><li>Destaques - Publicações muitas vezes mencionadas ou discutidas.</li><li>Quente - As publicações mais populares das últimas horas.</li><li>Novo - As publicações mais recentes da última hora.</li><li>Subindo - Publicações com mais comentários e votos em comparação com as demais.</li><li>Controverso - Possuem um número relativamente igual de votos positivos e negativos.</li></ul></p>",
       "what-my-rewards-header": "Quais tipos de recompensas são mostradas na minha carteira?",
-      "what-my-rewards-body": "<p>Existem dois tipos de recompensa disponíveis na sua carteira:<ul><li>Recompensas de curadoria - As recompensas ganhas por votar em publicações e comentários.</li><li>Recompensas de Autor - As recompensas recebidas pelos seus próprios posts e comentários.</li><li>Recompensas de pontos - Interações sociais também são recompensadas com pontos da Ecency.</li></ul><p/>",
+      "what-my-rewards-body": "<p>There are three kind of rewards are shown in your wallet: <ul><li>Curation rewards - The rewards earned for upvoting posts and comments.</li><li>Author rewards - The rewards earned by your own posts and comments.</li><li>Points rewards - Social actions and interactions also rewarded with Ecency points.</li></ul><p/>",
       "what-information-profile-header": "Quais informações são exibidas no meu perfil?",
       "what-information-profile-body": "<p>As primeiras informações junto à sua imagem de perfil são a sua reputação, nome de exibição e descrição. Abaixo disso estão as informações sobre seguidores e data de registro no Ecency. Você pode editar a sua descrição, incluir imagem de capa, perfil e localização acessando as configurações da Ecency.</p>",
       "what-can-post-header": "O que eu posso postar na Ecency?",
@@ -1370,7 +1376,15 @@
       "what-voting-power-header": "O que é força de voto?",
       "what-voting-power-body": "<p>O seu poder de voto diminui a cada voto realizado. Ele inicia com 100%, e votando você utiliza uma pequena quantidade do seu poder de voto. Quanto mais votos, menos influência eles terão, portanto a eficácia do voto diminuirá. Recomenda-se 10 votos diários para melhor utilização das recompensas da curadoria.</p>",
       "how-many-vote-header": "Quantas vezes posso votar com o meu poder de voto?",
-      "how-many-vote-body": "<p>Para cada voto positivo com 100% de força realizado, 2% do poder de voto é utilizado. Seu poder de voto é recarregado em 20% por dia. Embora seja possível votar mais de 10 vezes por dia, cada novo voto valerá menos, e seu poder de voto demorará mais tempo para atingir sua força total novamente.</p>"
+      "how-many-vote-body": "<p>Para cada voto positivo com 100% de força realizado, 2% do poder de voto é utilizado. Seu poder de voto é recarregado em 20% por dia. Embora seja possível votar mais de 10 vezes por dia, cada novo voto valerá menos, e seu poder de voto demorará mais tempo para atingir sua força total novamente.</p>",
+      "what-is-hivesigner-header": "What is Hivesigner?",
+      "what-is-hivesigner-body": "<p>When you were signing up on Hive you were given lots of keys that are hard to remember. The work of this Hivesigner is, it gives you the access to create your own password that you can remember and to provide a protection not to use your active key when logging into Hive platforms.</p>",
+      "what-is-keychain-header": "What is Keychain?",
+      "what-is-keychain-body": "<p>Hive Keychain is a wallet browser extension for the Hive blockchain and cryptocurrency and allows users to securely log into and access multiple Hive-based platforms. It is available for Chrome, Brave and Firefox.</p>",
+      "videos-pictures-stored-header": "Are pictures and video stored on the blockchain?",
+      "videos-pictures-stored-body": "<p>Media content such as pictures, videos etc. are typically not stored directly on a blockchain. When you add pictures or video you are only adding a source reference to where they are located. Meaning you can add video content from other locations. As of right now, when you upload a photo, this gets hosted on a regular web server.</p>",
+      "value-hive-hbd-header": "What determines the value of HIVE and HBD?",
+      "value-hive-hbd-body": "<p>The value of HIVE comes from the demand and supply of the token. HIVE will always be in demand based on the way the system is designed and there will always be supply for HIVE. As long as the Hive blockchain exist with continuous development and users being active, there will always be demand and supply for HIVE, adding value to the token.</p>"
     }
   },
   "contributors": {

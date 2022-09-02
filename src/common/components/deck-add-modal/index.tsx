@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Form, InputGroup, Modal, ModalBody } from 'react-bootstrap';
-import { getCommunities } from '../../api/bridge';
-import { lookupAccounts } from '../../api/hive';
-import { formatError } from '../../api/operations';
-import { _t } from '../../i18n';
+import React, { useEffect, useState } from "react";
+import { Button, Form, InputGroup, Modal, ModalBody } from "react-bootstrap";
+import { getCommunities } from "../../api/bridge";
+import { lookupAccounts } from "../../api/hive";
+import { formatError } from "../../api/operations";
+import { _t } from "../../i18n";
 import {
   arrowLeftSvg,
   communities,
@@ -13,9 +13,9 @@ import {
   notificationSvg,
   person,
   tags,
-  wallet,
+  wallet
 } from "../../img/svg";
-import isElectron from '../../util/is-electron';
+import isElectron from "../../util/is-electron";
 import { error } from "../feedback";
 import SuggestionList from "../suggestion-list";
 import userAvatar from "../user-avatar";
@@ -26,68 +26,69 @@ const comingSoon = isElectron() ? "./img/coming-soon.png" : require("../../img/c
 const OptionWithIcon = ({ title, icon, onOptionClick, disabled, na }: any) => (
   <div
     className={`d-flex flex-column align-items-center justify-content-center option mr-2 pointer mt-2 position-relative${
-      (disabled || na ) ? " bg-light text-muted" : ""
+      disabled || na ? " bg-light text-muted" : ""
     }`}
     onClick={() => !disabled && onOptionClick(title)}
-    style={{cursor: (disabled || na ) ? 'auto' : ""}}
+    style={{ cursor: disabled || na ? "auto" : "" }}
   >
     <div>{icon}</div>
     <div className="mt-2 text-center">{title}</div>
-    {na && <img src={comingSoon} width="23px" height="23px" className="coming-soon"/>}
+    {na && <img src={comingSoon} width="23px" height="23px" className="coming-soon" />}
   </div>
 );
 
-const options = (activeUser:any) => {
+const options = (activeUser: any) => {
   let isLoggedIn = activeUser && activeUser.username;
-  return[
-  {
-    title: _t("decks.users"),
-    icon: person
-  },
-  {
-    title: _t("decks.community"),
-    icon: communities,
-  },
-  {
-    title: _t("decks.wallet"),
-    icon: wallet,
-  },
-  {
-    title: _t("decks.notifications"),
-    icon: notificationSvg,
-    disabled: !isLoggedIn
-  },
-  {
-    title: _t("decks.trending"),
-    icon: globalTrending,
-  },
-  {
-    title: _t("decks.trending-topics"),
-    icon: hot,
-  },
-  {
-    title: _t("decks.search"),
-    icon: magnify,
-    na:true
-  },
-  {
-    title: _t("decks.topic"),
-    icon: tags,
-    na:true
-  },
-  /*{
+  return [
+    {
+      title: _t("decks.users"),
+      icon: person
+    },
+    {
+      title: _t("decks.community"),
+      icon: communities
+    },
+    {
+      title: _t("decks.wallet"),
+      icon: wallet
+    },
+    {
+      title: _t("decks.notifications"),
+      icon: notificationSvg,
+      disabled: !isLoggedIn
+    },
+    {
+      title: _t("decks.trending"),
+      icon: globalTrending
+    },
+    {
+      title: _t("decks.trending-topics"),
+      icon: hot
+    },
+    {
+      title: _t("decks.search"),
+      icon: magnify,
+      na: true
+    },
+    {
+      title: _t("decks.topic"),
+      icon: tags,
+      na: true
+    }
+    /*{
     title: _t("decks.favorite"),
     icon: starOutlineSvg,
     na:true
   },*/
-];}
+  ];
+};
 
 const contentTypes = [
   { code: "", name: _t("decks.select") },
   { code: "blogs", name: _t("decks.blogs") },
   { code: "posts", name: _t("decks.posts") },
   { code: "comments", name: _t("decks.comments") },
-  { code: "replies", name: _t("decks.replies") },
+  { code: "replies", name: _t("decks.replies") }
 ];
 
 const communityContentTypes = [
@@ -96,15 +97,10 @@ const communityContentTypes = [
   { code: "hot", name: _t("decks.hot") },
   { code: "created", name: _t("decks.created") },
   { code: "payout", name: _t("decks.payout") },
-  { code: "muted", name: _t("decks.muted") },
+  { code: "muted", name: _t("decks.muted") }
 ];
 
-const AddColumn = ({
-  setSelectedValue,
-  onSelect,
-  selectedValue,
-  decks,
-}: any) => {
+const AddColumn = ({ setSelectedValue, onSelect, selectedValue, decks }: any) => {
   const [to, setTo] = useState("");
   const [contentType, setContentType] = useState("");
   const [toSelected, setToSelected] = useState("");
@@ -126,10 +122,7 @@ const AddColumn = ({
     }
 
     _timer = setTimeout(() => {
-      let fetchData =
-        selectedValue === _t("decks.community")
-          ? getCommunities
-          : lookupAccounts;
+      let fetchData = selectedValue === _t("decks.community") ? getCommunities : lookupAccounts;
       let searchTerm = selectedValue === _t("decks.community") ? "" : toValue;
       return (fetchData as any)(searchTerm, 5, toValue)
         .then((resp: any) => {
@@ -142,12 +135,8 @@ const AddColumn = ({
             );
             if (existing) {
               let valueToSelect =
-                selectedValue === _t("decks.community")
-                  ? existing.name
-                  : existing;
-              setTo(selectedValue === _t("decks.community")
-              ? existing.title
-              : existing);
+                selectedValue === _t("decks.community") ? existing.name : existing;
+              setTo(selectedValue === _t("decks.community") ? existing.title : existing);
               setToSelected(valueToSelect);
             }
           }
@@ -186,7 +175,7 @@ const AddColumn = ({
           {userAvatar({
             username: i.name || i,
             size: "medium",
-            global: {} as any,
+            global: {} as any
           })}{" "}
           <span style={{ marginLeft: "4px" }}>{valueToShow}</span>
         </>
@@ -194,22 +183,15 @@ const AddColumn = ({
     },
     onSelect: (selectedText: any) => {
       let valueToSelect =
-        selectedValue === _t("decks.community")
-          ? selectedText.name
-          : selectedText;
-      setTo(
-        selectedValue === _t("decks.community")
-          ? selectedText.title
-          : valueToSelect
-      );
+        selectedValue === _t("decks.community") ? selectedText.name : selectedText;
+      setTo(selectedValue === _t("decks.community") ? selectedText.title : valueToSelect);
       setToSelected(valueToSelect);
-    },
+    }
   };
 
   const handleAddColumn = () => {
     let couldBeExistingDeck = `${
-      selectedValue === _t("decks.users") ||
-      selectedValue === _t("decks.community")
+      selectedValue === _t("decks.users") || selectedValue === _t("decks.community")
         ? contentType
         : selectedValue
     } @${selectedValue === _t("decks.community") ? toSelected : to}`;
@@ -222,8 +204,7 @@ const AddColumn = ({
     } else {
       onSelect(
         toSelected,
-        selectedValue === _t("decks.users") ||
-          selectedValue === _t("decks.community")
+        selectedValue === _t("decks.users") || selectedValue === _t("decks.community")
           ? contentType
           : selectedValue
       );
@@ -232,10 +213,7 @@ const AddColumn = ({
     }
   };
 
-  let type =
-    selectedValue === _t("decks.community")
-      ? communityContentTypes
-      : contentTypes;
+  let type = selectedValue === _t("decks.community") ? communityContentTypes : contentTypes;
 
   return (
     <div className="d-flex flex-column align-items-center mt-5">
@@ -256,10 +234,7 @@ const AddColumn = ({
                 <InputGroup.Prepend>
                   <InputGroup.Text>
                     {toDataLoading ? (
-                      <div
-                        className="spinner-border text-primary spinner-border-sm"
-                        role="status"
-                      >
+                      <div className="spinner-border text-primary spinner-border-sm" role="status">
                         <span className="sr-only">{_t("g.loading")}</span>
                       </div>
                     ) : (
@@ -277,13 +252,10 @@ const AddColumn = ({
                 />
               </InputGroup>
             </SuggestionList>
-            {deckExists && (
-              <small className="text-danger">{_t("decks.deck-exists")}</small>
-            )}
+            {deckExists && <small className="text-danger">{_t("decks.deck-exists")}</small>}
           </Form.Group>
 
-          {(selectedValue === _t("decks.users") ||
-            selectedValue === _t("decks.community")) && (
+          {(selectedValue === _t("decks.users") || selectedValue === _t("decks.community")) && (
             <Form.Group className="w-100">
               <Form.Label>{_t("decks.content-type")}</Form.Label>
               <Form.Control
@@ -306,8 +278,7 @@ const AddColumn = ({
           <Button
             className="align-self-start mb-5"
             disabled={
-              selectedValue === _t("decks.notifications") ||
-              selectedValue === _t("decks.wallet")
+              selectedValue === _t("decks.notifications") || selectedValue === _t("decks.wallet")
                 ? toSelected.length === 0
                 : contentType === "" || toSelected.length === 0
             }
@@ -354,10 +325,7 @@ export const DeckAddModal = ({
 
   return (
     <Modal show={open} centered={true} onHide={onClose}>
-      <ModalHeader
-        className="header mt-5 justify-content-center mb-3"
-        closeButton={true}
-      >
+      <ModalHeader className="header mt-5 justify-content-center mb-3" closeButton={true}>
         <div className="flex-grow-1 text-center title">
           {selectedOption &&
           (selectedOption === _t("decks.users") ||
@@ -405,7 +373,7 @@ export const DeckAddModal = ({
                 key={option.title}
                 na={option.na}
                 disabled={currentlyActivatedOptions.some(
-                  (item: any) => (item.header.title === option.title) || option.disabled
+                  (item: any) => item.header.title === option.title || option.disabled
                 )}
               />
             ))}

@@ -165,8 +165,8 @@
     "sign-up-text-2": "Rekisteröidy nyt!"
   },
   "sign-up": {
-    "header": "Rewarding communities",
-    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
+    "header": "Palkitsevia yhteisöjä",
+    "description": "Arvosta Sananvapautta, ota ohjat ja saavuta taloudellinen vapaus!",
     "bottom-description": "Jokainen tili on luotu lohkoketjulle ja vain sinulla on määräysvalta tällä tilillä. Yhdellä tilillä voit hallita kaikkea lohkoketjussa ja Ecencyssä.",
     "learn-more": "Lue lisää hyödyistä <a href=\"/faq#how-to-join\">UKK:sta</a>",
     "username": "Valitse käyttäjänimi",
@@ -628,7 +628,7 @@
     "hive-dollars-description": "Tokenin arvo on noin $1.00 edestä HIVEä.",
     "savings": "SÄÄSTÖT",
     "savings-description": "Tilillä on 3 päivän kotiutusjakso.",
-    "next-power-down": "Seuraava power down on {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Siirto",
     "transfer-to-savings": "Siirrä säästöihin",
     "convert": "Muunna",
@@ -715,7 +715,13 @@
     "scan-code": "Skannaa QR-koodi Ecency-mobiilisovelluksella",
     "select-user": "Valitse käyttäjä",
     "title": "Tilin tehostaminen",
-    "copied": "Tilin tehostuslinkki kopioitu!"
+    "title-points": "Buy points",
+    "copied": "Tilin tehostuslinkki kopioitu!",
+    "select-type": "Select a type",
+    "boost": "Boost",
+    "points": "Points",
+    "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
+    "points-amount": "{{n}} points"
   },
   "promote": {
     "title": "Korosta",
@@ -1292,7 +1298,7 @@
       "what-are-rc-header": "Mitä Resurssipisteet ovat?",
       "what-are-rc-body": "<p>Siirrot Hive-lohkoketjussa eivät ole maksullisia, tapahtumakoron rajoittamista käytetään suojaamaan lohkoketjua roskapostihyökkäyksiltä. Jokainesta toiminnostasi lohkoketju kuluttaa pienen määrän Resurssihyvityksiä. Tämä sisältää julkaisun, kommentoinnin, äänestämisen, merkkien siirrot, jne. Sisällön katselu ei kuluta resurssihyvityksiä.</p><p>Jokaisella käyttäjällä on rajallinen määrä resurssihyvityksiä joka viikko. Mitä enemmän tapahtumia käyttäjä tekee, sitä vähemmän resurssihyvityksiä jää jäljelle (kunnes he latautuvat). Käyttäjillä, joilla on enemmän HIVE POWER:a, on enemmän resurssihyvityksiä.</p><p>Jos resurssihyvitykset ovat loppuneet, et voi tehdä siirtoja lohkoketjussa, ennen kuin resurssihyvitykset palautuvat (tapahtuu automaattisesti) tai saat lisää HIVE POWER:a lisätäksesi Resurssihyvityssaldoasi tai voit <a href=\"/faq#how-boost-account\">pyytää Ecency</a> -tilin vahvistamista saadaksesi väliaikaisen valtuutuksen.</p>",
       "how-boost-account-header": "Kuinka pyytää tilin tehostamista?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation (553311 VESTS) which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can request account boosting quickly with <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR page</a> just change username and scan QR image with Ecency mobile app.</p>",
+      "how-boost-account-body": "<p>Jos tililläsi on niukasti <a href=\"/faq#what-are-rc\">Resurssihyvityksiä</a>, voit pyytää tilin tehostamista Ecencyltä. Saat 30pv valtuutuksen (553311 VESTS), joka tehostaa tiliäsi suorittaaksesi enemmän toimintoja lohkoketjussa. Valtuutus voidaan kotiuttaa milloin vain, mikäli sitä käytetään väärin. Tilin tehostamista voit pyytää <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR-sivulla</a> muuttamalla käyttäjätunnuksen ja voit skannata QR-kuvan Ecency Mobiiliapissa.</p>",
       "what-spam-abuse-header": "Mitä lasketaan roskapostiksi tai väärinkäytöksi?",
       "what-spam-abuse-body": "<p><ul><li>Plagiarisoidut viestit tai kopioitu sisältö.</li><li>Lähes identtisten tai olennaisesti samanlaisten kommenttien jättäminen useisiin viesteihin.</li><li>Käyttämällä tunnisteita, jotka eivät liity viestiin.</li><li>Käyttäjien uhkaaminen kaikenlaisella fyysisellä väkivallalla.</li><li>Lähteitä ei viitata jonkun toisen materiaalia käytettäessä.</li><li>Lähettäminen ”ei ole turvallista työlle” ilman ”nsfw”-tunnusta.</li><li>Huijaukset tai petokselliset tarjoukset.</li></ul></p>",
       "can-link-post-header": "Voinko pyytää käänteislinkin lisäämistä sivuilleni Ecencyltä?",
@@ -1342,7 +1348,7 @@
       "why-different-keys-header": "Miksi on olemassa erilaisia avaimia?",
       "why-different-keys-body": "<p>On olemassa erilaisia avaimia, joilla on asianmukaiset oikeudet riippuen tarkoituksesta. <ul><li>Julkaisuavaimet - tätä avainta tulisi käyttää sosiaalisen verkostoitumisen toimintaan, kuten julkaisemiseen, kommentointiin ja äänestämiseen. Tällä avaimella on rajalliset luvat, eikä sitä voida käyttää rahapoliittisissa toimissa. Joten et voi menettää rahaa, jos joku muu saa pääsyn tähän avaimeen.</li><li>Aktiivinen avain - tällä avaimella on lisäoikeudet arkaluonteisempiin rahaan liittyviin toimiin, kuten merkkien siirtämiseen ja vaihtamiseen. Kun suoritat lompakkoon liittyvää toimintoa, sinua saatetaan kehottaa todentamaan aktiivisella avaimellasi. Sinun pitäisi syöttää Active Key sovelluksiin, joihin luotat, koska kuka tahansa, jolla on pääsy tähän avaimeen, voi ottaa merkkisi. Tee hyvin ja tallenna tämä avain turvallisesti välttäen polettien menettämisen tulevaisuudessa.</li><li>Omistaja-avain - on tehokkain avain, koska sillä voi muuttaa mitä tahansa tilin avainta, mukaan lukien omistajaavaimen. Ihannetapauksessa se on tarkoitettu tallennettavaksi offline-tilaan, sekä sitä käytetään vain tilin palauttamiseen.</li></ul></p>",
       "stolen-hive-hbd-header": "Mitä voin tehdä, jos HIVE tai Hive dollar on varastettu tai lähetetty väärä määrä?",
-      "stolen-hive-hbd-body": "<p>Ei ole mitään tehtävissä, jos maksuvalmiit merkkisi varastetaan tai lähetetään väärään lompakkoon, mutta jos rahakkeesi ovat Hive Powerissa, on mahdotonta hakkeroida yli 1/13 viikossa ja jos merkit ovat säästössä, ne tarvitsevat kolmen päivän odotusajan. ennenkuin niistä tulee siirrettäviä. Panostus/voimistaminen tai varojen siirtäminen säästöihin saattaa olla turvallisempaa.</>",
+      "stolen-hive-hbd-body": "<p>There is nothing to do if your liquid tokens are stolen or sent to wrong acoount but if your tokens are in Hive Power it is impossible to be hacked more than 1/13 per week and if your tokens are in savings they need to a three-day wait period for them to become transferable. Staking/powering up or transferring funds into savings might be more safer.</>",
       "what-are-tags-header": "Mitä ovat tunnisteet tai aiheet?",
       "what-are-tags-body": "<p>Tunniste on pala tietoa, joka kuvaa sisältöä, johon se on osoitettu. Ne auttavat hakukoneita tunnistamaan sivujen sisällön verkossa ja tuottamaan parhaat tulokset tiettyä hakua varten. Kaikkien tunnisteiden on oltava pieniä kirjaimia. Välilyönnit eivät ole sallittuja, mutta tavutetut sanat yhdellä väliviivalla ovat.</p>",
       "how-use-tags-header": "Miten tunnisteita käytetään?",
@@ -1352,7 +1358,7 @@
       "what-links-show-header": "Mitä Nousussa, Kuumat, Uudet, Nousevat ja Kiistanalaiset linkit näyttävät?",
       "what-links-show-body": "<p>Tämä on tapa lajitella sisältöä Ecencyssä. <ul><li>Nousussa - Usein mainitut tai keskustellut julkaisut.</li><li>Kuumat - Suosittuja viestejä parin viime tunnin ajalta.</li><li>Uudet - Uusimmat julkaisut lajitellaan julkaisuajan mukaan.</li><li>Nousevat - Julkaisut, joilla on enemmän kommentteja ja ääniä verraten muihin.</li><li>Kiistanalainen - Suhteellisen suuri määrä ääniä ylös ja alas.</li></ul></p>",
       "what-my-rewards-header": "Millaisia palkkioita minulla on lompakossa?",
-      "what-my-rewards-body": "<p>Lompakossa on kahdenlaisia palkintoja: <ul><li>Tarkistuspalkinnot - Palkinnot ylennysäänistä ja kommenteista.</li><li>Julkaisupalkinnot - Omista viesteistä ja kommenteista ansaitut palkkiot.</li><li>Pistepalkintoja - Sosiaalisuus ja vuorovaikutus palkitaan myös Ecency-pisteillä.</li></ul><p/>",
+      "what-my-rewards-body": "<p>There are three kind of rewards are shown in your wallet: <ul><li>Curation rewards - The rewards earned for upvoting posts and comments.</li><li>Author rewards - The rewards earned by your own posts and comments.</li><li>Points rewards - Social actions and interactions also rewarded with Ecency points.</li></ul><p/>",
       "what-information-profile-header": "Millaisia tietoja profiilissäni on esillä?",
       "what-information-profile-body": "<p>Ensimmäinen kuvan lähellä näkyvä tieto on mainepisteet ja nimi, sekä kuvaus. Alla olevat tiedot seuraajista ja seuratuista, sekä liittymispäivä. Sinulla on mahdollisuus saada lisätietoa Ecencyn asetuksista, kuten tiedoista, profiilikuvasta, kansikuvasta, tai sijainnistasi.</p>",
       "what-can-post-header": "Mitä voin julkaista Ecencyssä?",
@@ -1370,7 +1376,15 @@
       "what-voting-power-header": "Mikä on äänivalta?",
       "what-voting-power-body": "<p>Äänivalta menee hieman alas joka kerta kun äänestät. Se alkaa 100-prosenttisesta äänivallasta ja äänestämisessä käytetään pieni määrän äänivaltaa. Mitä enemmän äänestät, sitä vähemmän vaikutusvaltaa on, mikä tarkoittaa äänestyksen tehokkuuden heikkenemistä. Päivittäistä 10 ääntä suositellaan hyödyntämään tehokkuutta ja tarkastuspalkkioita paremmin.</p>",
       "how-many-vote-header": "Kuinka monta kertaa voin äänestää äänivoimallani?",
-      "how-many-vote-body": "<p>Joka 100 % äänestä käytät 2% jäljellä olevasta äänimanasta. Äänestysmanastasi veloitetaan joka päivä 20 %. Voit äänestää enemmän kuin 10 kertaa päivässä, mutta jokainen ääni on vähempiarvoinen ja kestää kauemmin, että täysi äänivalta saavutetaan.</p>"
+      "how-many-vote-body": "<p>Joka 100 % äänestä käytät 2% jäljellä olevasta äänimanasta. Äänestysmanastasi veloitetaan joka päivä 20 %. Voit äänestää enemmän kuin 10 kertaa päivässä, mutta jokainen ääni on vähempiarvoinen ja kestää kauemmin, että täysi äänivalta saavutetaan.</p>",
+      "what-is-hivesigner-header": "What is Hivesigner?",
+      "what-is-hivesigner-body": "<p>When you were signing up on Hive you were given lots of keys that are hard to remember. The work of this Hivesigner is, it gives you the access to create your own password that you can remember and to provide a protection not to use your active key when logging into Hive platforms.</p>",
+      "what-is-keychain-header": "What is Keychain?",
+      "what-is-keychain-body": "<p>Hive Keychain is a wallet browser extension for the Hive blockchain and cryptocurrency and allows users to securely log into and access multiple Hive-based platforms. It is available for Chrome, Brave and Firefox.</p>",
+      "videos-pictures-stored-header": "Are pictures and video stored on the blockchain?",
+      "videos-pictures-stored-body": "<p>Media content such as pictures, videos etc. are typically not stored directly on a blockchain. When you add pictures or video you are only adding a source reference to where they are located. Meaning you can add video content from other locations. As of right now, when you upload a photo, this gets hosted on a regular web server.</p>",
+      "value-hive-hbd-header": "What determines the value of HIVE and HBD?",
+      "value-hive-hbd-body": "<p>The value of HIVE comes from the demand and supply of the token. HIVE will always be in demand based on the way the system is designed and there will always be supply for HIVE. As long as the Hive blockchain exist with continuous development and users being active, there will always be demand and supply for HIVE, adding value to the token.</p>"
     }
   },
   "contributors": {

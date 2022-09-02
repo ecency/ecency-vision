@@ -1,4 +1,4 @@
 export enum PurchaseTypes {
-  BOOST = 'boost',
-  POINTS = 'points'
+  BOOST = "boost",
+  POINTS = "points"
 }
