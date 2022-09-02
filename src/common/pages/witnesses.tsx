@@ -376,7 +376,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         
                             <div className="table-responsive witnesses-table">{table}</div>
                             <div className="witnesses-controls">
-                                {WitnessesExtra({
+                                {!proxy ? WitnessesExtra({
                                     ...this.props,
                                     list: extraWitnesses,
                                     onAdd: (name) => {
@@ -385,7 +385,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                                     onDelete: (name) => {
                                         this.deleteWitness(name);
                                     }
-                                })}
+                                }): null}
                                 <div className="flex-spacer"/>
 
                                 {!proxy ? WitnessesProxy({
