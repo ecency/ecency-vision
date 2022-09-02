@@ -1,11 +1,11 @@
-import React from 'react'
-import { DeckHeaderUpdateIntervalSettings } from './deck-header-update-interval-settings';
-import { DeckHeaderWalletSettings } from './deck-header-wallet-settings';
-import { connect } from 'react-redux';
-import { pageMapDispatchToProps, pageMapStateToProps } from '../../pages/common';
-import { DeckState } from '../../store/deck/types';
-import { _t } from '../../i18n';
-import { DeckHeaderNotificationsSettings } from './deck-header-notifications-settings';
+import React from "react";
+import { DeckHeaderUpdateIntervalSettings } from "./deck-header-update-interval-settings";
+import { DeckHeaderWalletSettings } from "./deck-header-wallet-settings";
+import { connect } from "react-redux";
+import { pageMapDispatchToProps, pageMapStateToProps } from "../../pages/common";
+import { DeckState } from "../../store/deck/types";
+import { _t } from "../../i18n";
+import { DeckHeaderNotificationsSettings } from "./deck-header-notifications-settings";
 
 interface Props {
   updateInterval: number;
@@ -24,39 +24,45 @@ const DeckHeaderSettingsComponent = ({
   setDeckUpdateInterval,
   setDeckDataFilters,
   deck,
-  fetchDeckData,
+  fetchDeckData
 }: Props) => {
   const getWalletSettings = () => {
     const isWalletType = title.toLocaleLowerCase().includes(_t("decks.wallet").toLocaleLowerCase());
     if (isWalletType) {
       const deckInstance = deck.items.find((d) => d.header.title === title);
-      return <DeckHeaderWalletSettings
-        deck={deckInstance!!}
-        title={title}
-        username={username}
-        setDeckDataFilters={setDeckDataFilters}
-        fetchDeckData={fetchDeckData}
-      />
+      return (
+        <DeckHeaderWalletSettings
+          deck={deckInstance!!}
+          title={title}
+          username={username}
+          setDeckDataFilters={setDeckDataFilters}
+          fetchDeckData={fetchDeckData}
+        />
+      );
     } else {
       return <></>;
     }
   };
 
-  const getNotificationsSettings = () =>  {
-    const isNotificationsType = title.toLocaleLowerCase().includes(_t("decks.notifications").toLocaleLowerCase());
+  const getNotificationsSettings = () => {
+    const isNotificationsType = title
+      .toLocaleLowerCase()
+      .includes(_t("decks.notifications").toLocaleLowerCase());
     if (isNotificationsType) {
       const deckInstance = deck.items.find((d) => d.header.title === title);
-      return <DeckHeaderNotificationsSettings
-        deck={deckInstance!!}
-        title={title}
-        username={username}
-        setDeckDataFilters={setDeckDataFilters}
-        fetchDeckData={fetchDeckData}
-      />
+      return (
+        <DeckHeaderNotificationsSettings
+          deck={deckInstance!!}
+          title={title}
+          username={username}
+          setDeckDataFilters={setDeckDataFilters}
+          fetchDeckData={fetchDeckData}
+        />
+      );
     } else {
       return <></>;
     }
-  }
+  };
 
   return (
     <>
@@ -70,6 +76,9 @@ const DeckHeaderSettingsComponent = ({
       />
     </>
   );
-}
+};
 
-export const DeckHeaderSettings = connect(pageMapStateToProps, pageMapDispatchToProps)(DeckHeaderSettingsComponent);
+export const DeckHeaderSettings = connect(
+  pageMapStateToProps,
+  pageMapDispatchToProps
+)(DeckHeaderSettingsComponent);

@@ -8,11 +8,13 @@ const props = {
   items: ["foo", "bar", "baz"],
   // header: "My List",
   // renderer: (i: any) => <> {`# ${i}`}</>,
-  modeItems: [{
-    items: ["foo", "bar", "baz"],
-    header: "My List",
-    renderer: (i: any) => <> {`# ${i}`}</>,
-  }]
+  modeItems: [
+    {
+      items: ["foo", "bar", "baz"],
+      header: "My List",
+      renderer: (i: any) => <> {`# ${i}`}</>
+    }
+  ]
 };
 
 const component = renderer.create(
