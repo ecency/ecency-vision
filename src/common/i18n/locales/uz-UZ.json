@@ -93,7 +93,9 @@
     "filter-week": "Shu hafta",
     "filter-month": "Shu oy",
     "filter-year": "Shu yil",
-    "filter-alltime": "Doimiy"
+    "filter-alltime": "Doimiy",
+    "filter-no-reblog": "Exclude reblog",
+    "filter-with-reblog": "Include reblog"
   },
   "navbar": {
     "discover": "Kashf qilish\n",
