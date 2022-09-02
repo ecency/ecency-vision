@@ -94,8 +94,8 @@
     "filter-month": "Este mes",
     "filter-year": "Este año",
     "filter-alltime": "Todos los tiempos",
-    "filter-no-reblog": "Exclude reblog",
-    "filter-with-reblog": "Include reblog"
+    "filter-no-reblog": "Excluir re-publicación",
+    "filter-with-reblog": "Incluir re-publicación"
   },
   "navbar": {
     "discover": "Descubrir",
