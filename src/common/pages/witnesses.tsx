@@ -98,28 +98,10 @@ const transform = (list: Witness[]): WitnessTransformed[] => {
 };
 
 interface State {
-
-    witnesses: WitnessTransformed[];
-    witnessVotes: string[];
-    proxyVotes: string[];
-    proxy: string;
-    loading: boolean;
-}
-
-class WitnessesPage extends BaseComponent<PageProps, State> {
-    state: State = {
-        witnesses: [],
-        witnessVotes: [],
-        proxyVotes: [],
-        proxy: '',
-        loading: true
-    }
-
-    componentDidMount() {
-=======
   witnesses: WitnessTransformed[];
   witnessVotes: string[];
-  proxy: string | null;
+  proxyVotes: string[];
+  proxy: string;
   loading: boolean;
 }
 
@@ -127,7 +109,8 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
   state: State = {
     witnesses: [],
     witnessVotes: [],
-    proxy: null,
+    proxyVotes: [],
+    proxy: "",
     loading: true
   };
 
@@ -139,94 +122,33 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     // active user changed
     if (this.props.activeUser?.username !== prevProps.activeUser?.username) {
       this.stateSet({ loading: true }, () => {
-
         this.load();
       });
     }
-
-
-    componentDidUpdate(prevProps: Readonly<PageProps>, prevState: Readonly<State>, snapshot?: any) {
-        // active user changed
-        if (this.props.activeUser?.username !== prevProps.activeUser?.username) {
-            this.stateSet({loading: true}, () => {
-                this.load();
-            })
-        }
-        if(this.state.proxy !== prevState.proxy) {
-            this.stateSet({loading: true}, () => {
-                this.load();
-            })
-        }
+    if (this.state.proxy !== prevState.proxy) {
+      this.stateSet({ loading: true }, () => {
+        this.load();
+      });
     }
-
-    load = async () => {
-        this.stateSet({loading: true});
-
-        const {activeUser} = this.props;
-        const params = window.location.search.split('=')[1];
-        if (activeUser) {
-            const resp = await getAccount(activeUser.username);
-            const {witness_votes: witnessVotes, proxy} = resp;
-            const data = await getAccount(params || proxy);
-            this.stateSet({
-                witnessVotes: witnessVotes || [],
-                proxyVotes: data ? data.witness_votes : [],
-                proxy: proxy || '',
-            });
-        } else {
-            this.stateSet({witnessVotes: [], proxy: ''});
-        }
-        const witnesses = await getWitnessesByVote();
-        await this.getWitness(transform(witnesses));
-    }
-
-    addWitness = (name: string) => {
-        const {witnessVotes} = this.state;
-        const newVotes = [...witnessVotes, name]
-        this.stateSet({witnessVotes: newVotes});
-    }
-
-    deleteWitness = (name: string) => {
-        const {witnessVotes} = this.state;
-        const newVotes = witnessVotes.filter(x => x !== name)
-        this.stateSet({witnessVotes: newVotes});
-    }
-
-    getWitness = async (witnessArray:WitnessTransformed[])=>{
-        const witnessUserNamesArray:string[] = witnessArray.map((item: WitnessTransformed)=> {
-            return item.name
-        })
-        try {
-            const accounts:FullAccount[] = await getAccounts(witnessUserNamesArray);
-            const byWitnessState:WitnessTransformed[] = witnessArray.map((item: WitnessTransformed, index: number) => {
-                try {
-                    const parsedArray = JSON.parse(accounts[index].posting_json_metadata?accounts[index].posting_json_metadata:'');
-                    return {
-                        ...item,
-                        witnessBy:parsedArray.profile.witness_owner ? parsedArray.profile.witness_owner: undefined
-                    }
-                }
-                catch (e) {
-                    return item
-                }
-            })
-            this.stateSet({witnesses:byWitnessState, loading: false});
-        } catch (error) {
-
   }
 
   load = async () => {
     this.stateSet({ loading: true });
 
     const { activeUser } = this.props;
+    const params = window.location.search.split("=")[1];
     if (activeUser) {
       const resp = await getAccount(activeUser.username);
       const { witness_votes: witnessVotes, proxy } = resp;
-      this.stateSet({ witnessVotes: witnessVotes || [], proxy: proxy || null });
+      const data = await getAccount(params || proxy);
+      this.stateSet({
+        witnessVotes: witnessVotes || [],
+        proxyVotes: data ? data.witness_votes : [],
+        proxy: proxy || ""
+      });
     } else {
-      this.stateSet({ witnessVotes: [], proxy: null });
+      this.stateSet({ witnessVotes: [], proxy: "" });
     }
-
     const witnesses = await getWitnessesByVote();
     await this.getWitness(transform(witnesses));
   };
@@ -264,7 +186,6 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
           } catch (e) {
             return item;
           }
-
         }
       );
       this.stateSet({ witnesses: byWitnessState, loading: false });
@@ -300,30 +221,11 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
           </thead>
           <tbody>
             {witnesses.map((row, i) => {
-
-                return <tr key={row.rank} className={`${this.state.proxyVotes.includes(row.name) ? 'voted-by-voter' : ''}`}>
-                    <td>
-                        <div className="witness-rank">
-                            <span className="rank-number">{row.rank}</span>
-                            {WitnessVoteBtn({
-                                ...this.props,
-                                voted: witnessVotes.includes(row.name),
-                                witness: row.name,
-                                onSuccess: (approve) => {
-                                    if (approve) {
-                                        this.addWitness(row.name);
-                                    } else {
-                                        this.deleteWitness(row.name);
-                                    }
-                                }
-                            })}
-                        </div>
-                    </td>
-                    <td>
-                        {ProfileLink({
-
               return (
-                <tr key={row.rank}>
+                <tr
+                  key={row.rank}
+                  className={`${this.state.proxyVotes.includes(row.name) ? "voted-by-voter" : ""}`}
+                >
                   <td>
                     <div className="witness-rank">
                       <span className="rank-number">{row.rank}</span>
@@ -349,7 +251,6 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                         <span className="witness-card notranslate">
                           {" "}
                           {UserAvatar({
-
                             ...this.props,
                             username: row.name,
                             size: "medium"
@@ -376,7 +277,6 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                   <td>
                     {(() => {
                       const { parsedUrl } = row;
-
                       if (parsedUrl) {
                         return (
                           <EntryLink {...this.props} entry={parsedUrl}>
@@ -384,7 +284,6 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                           </EntryLink>
                         );
                       }
-
                       return (
                         <a target="_external" href={row.url} className="witness-link">
                           {openInNewSvg}
@@ -474,55 +373,61 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
               );
             }
 
+            // if (proxy) {
+            //     return <>
+            //         {header}
+            //         <WitnessesActiveProxy
+            //             {...this.props}
+            //             username={proxy}
+            //             onDone={() => {
+            //                 this.stateSet({proxy: null});
+            //             }}
+            //         />
+            //     </>
+            // }
 
-                        // if (proxy) {
-                        //     return <>
-                        //         {header}
-                        //         <WitnessesActiveProxy
-                        //             {...this.props}
-                        //             username={proxy}
-                        //             onDone={() => {
-                        //                 this.stateSet({proxy: null});
-                        //             }}
-                        //         />
-                        //     </>
-                        // }
+            return (
+              <>
+                {header}
 
-                        return <>
-                            {header}
+                <div>
+                  {proxy ? (
+                    <WitnessesActiveProxy
+                      {...this.props}
+                      username={proxy}
+                      onDone={() => {
+                        this.stateSet({ proxy: "" });
+                      }}
+                    />
+                  ) : null}
+                </div>
 
-                            <div>
-                            {proxy ? <WitnessesActiveProxy
-                                    {...this.props}
-                                    username={proxy}
-                                    onDone={() => {
-                                        this.stateSet({proxy: ''});
-                                    }}
-                                /> : null}
-                           </div>
-        
-                            <div className="table-responsive witnesses-table">{table}</div>
-                            <div className="witnesses-controls">
-                                {WitnessesExtra({
-                                    ...this.props,
-                                    list: extraWitnesses,
-                                    onAdd: (name) => {
-                                        this.addWitness(name);
-                                    },
-                                    onDelete: (name) => {
-                                        this.deleteWitness(name);
-                                    }
-                                })}
-                                <div className="flex-spacer"/>
+                <div className="table-responsive witnesses-table">{table}</div>
+                <div className="witnesses-controls">
+                  {!proxy
+                    ? WitnessesExtra({
+                        ...this.props,
+                        list: extraWitnesses,
+                        onAdd: (name) => {
+                          this.addWitness(name);
+                        },
+                        onDelete: (name) => {
+                          this.deleteWitness(name);
+                        }
+                      })
+                    : null}
+                  <div className="flex-spacer" />
 
-                                {!proxy ? WitnessesProxy({
-                                    ...this.props,
-                                    onDone: (username) => {
-                                        this.stateSet({proxy: username, witnesses: []});
-                                    }
-                                }) : null}
+                  {!proxy
+                    ? WitnessesProxy({
+                        ...this.props,
+                        onDone: (username) => {
+                          this.stateSet({ proxy: username, witnesses: [] });
+                        }
+                      })
+                    : null}
 
-                                {/* {!proxy ? WitnessesProxy({
+                  {/* {!proxy ? WitnessesProxy({
                                     ...this.props,
                                     onDone: (username) => {
                                         this.stateSet({proxy: username, witnesses: []});
@@ -536,48 +441,6 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                                     }}
                                 />
                                 )} */}
-                            </div>
-                        </>
-                    })()}
-
-            if (proxy) {
-              return (
-                <>
-                  {header}
-                  <WitnessesActiveProxy
-                    {...this.props}
-                    username={proxy}
-                    onDone={() => {
-                      this.stateSet({ proxy: null });
-                    }}
-                  />
-                </>
-              );
-            }
-
-            return (
-              <>
-                {header}
-                <div className="table-responsive witnesses-table">{table}</div>
-                <div className="witnesses-controls">
-                  {WitnessesExtra({
-                    ...this.props,
-                    list: extraWitnesses,
-                    onAdd: (name) => {
-                      this.addWitness(name);
-                    },
-                    onDelete: (name) => {
-                      this.deleteWitness(name);
-                    }
-                  })}
-                  <div className="flex-spacer" />
-                  {WitnessesProxy({
-                    ...this.props,
-                    onDone: (username) => {
-                      this.stateSet({ proxy: username, witnesses: [] });
-                    }
-                  })}
-
                 </div>
               </>
             );

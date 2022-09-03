@@ -21,7 +21,6 @@ import { getAccount } from "../../api/hive";
 import { formatError, witnessProxy, witnessProxyHot, witnessProxyKc } from "../../api/operations";
 
 import { _t } from "../../i18n";
-
 interface Props {
   history: History;
   global: Global;
@@ -38,33 +37,27 @@ interface Props {
   username: string;
   onDone: () => void;
 }
-
 interface State {
   account: FullAccount | null;
   inProgress: boolean;
 }
-
 export class WitnessesActiveProxy extends BaseComponent<Props, State> {
   state: State = {
     account: null,
     inProgress: false
   };
-
   componentDidMount() {
     const { username } = this.props;
     getAccount(username).then((account) => {
       this.stateSet({ account });
     });
   }
-
   proxy = (fn: any, args: any[]) => {
     const { onDone } = this.props;
     const fnArgs = [...args];
     const call = fn(...fnArgs);
-
     if (typeof call?.then === "function") {
       this.stateSet({ inProgress: true });
-
       call
         .then(() => {
           onDone();
@@ -76,94 +69,10 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
           this.stateSet({ inProgress: false });
         });
     }
-
-
-    proxy = (fn: any, args: any[]) => {
-        const {onDone} = this.props;
-        const fnArgs = [...args]
-        const call = fn(...fnArgs);
-
-        if (typeof call?.then === 'function') {
-            this.stateSet({inProgress: true});
-
-            call.then(() => {
-                onDone();
-            }).catch((e: any) => {
-                error(...formatError(e));
-            }).finally(() => {
-                this.stateSet({inProgress: false});
-            });
-        }
-    }
-
-    render() {
-        const {inProgress, account} = this.state;
-        const {activeUser, username} = this.props;
-
-        const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
-        const btn = <Button disabled={inProgress}>{inProgress && spinner}{_t("witnesses.proxy-active-btn-label")}</Button>;
-        const theBtn = activeUser ?
-            KeyOrHotDialog({
-                ...this.props,
-                activeUser: activeUser!,
-                children: btn,
-                onKey: (key) => {
-                    this.proxy(witnessProxy, [activeUser!.username, key, '']);
-                },
-                onHot: () => {
-                    this.proxy(witnessProxyHot, [activeUser!.username, '']);
-                },
-                onKc: () => {
-                    this.proxy(witnessProxyKc, [activeUser!.username, '']);
-                }
-            }) :
-            LoginRequired({
-                ...this.props,
-                children: btn
-            });
-
-        return <div className="witnesses-active-proxy" style={{marginBottom : '50px'}}>
-            <p className="description">
-                {_t("witnesses.proxy-active-description")}
-            </p>
-            <div className="proxy-form">
-                <div className="current-proxy">
-                    {_t("witnesses.proxy-active-current")}{" "}{
-                    ProfileLink({
-                        ...this.props, username,
-                        children: <span>{`@${username}`}</span>
-                    })
-                }
-                </div>
-                
-                {theBtn}
-
-            <p className="description">
-                {_t("witnesses.proxy-active-highlighted")}
-            </p>
-
-                {/* {(account && account.witness_votes && account.witness_votes.length > 0) && (
-                    <div className="proxy-votes">
-                        <div className="proxy-votes-title">
-                            {_t("witnesses.proxy-votes-for", {username})}
-                        </div>
-                        {account.witness_votes.map(x => {
-                            return <div className="proxy-votes-item" key={x}>
-                                {ProfileLink({
-                                    ...this.props, username,
-                                    children: <span>{`@${x}`}</span>
-                                })}
-                            </div>
-                        })}
-                    </div>
-                )} */}
-
   };
-
   render() {
     const { inProgress, account } = this.state;
     const { activeUser, username } = this.props;
-
     const spinner = (
       <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
     );
@@ -194,7 +103,7 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
         });
 
     return (
-      <div className="witnesses-active-proxy">
+      <div className="witnesses-active-proxy" style={{ marginBottom: "50px" }}>
         <p className="description">{_t("witnesses.proxy-active-description")}</p>
         <div className="proxy-form">
           <div className="current-proxy">
@@ -208,31 +117,28 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
 
           {theBtn}
 
-          {account && account.witness_votes && account.witness_votes.length > 0 && (
-            <div className="proxy-votes">
-              <div className="proxy-votes-title">
-                {_t("witnesses.proxy-votes-for", { username })}
-              </div>
-              {account.witness_votes.map((x) => {
-                return (
-                  <div className="proxy-votes-item" key={x}>
-                    {ProfileLink({
-                      ...this.props,
-                      username,
-                      children: <span>{`@${x}`}</span>
-                    })}
-                  </div>
-                );
-              })}
+          <p className="description">{_t("witnesses.proxy-active-highlighted")}</p>
 
-            </div>
-          )}
+          {/* {(account && account.witness_votes && account.witness_votes.length > 0) && (
+                    <div className="proxy-votes">
+                        <div className="proxy-votes-title">
+                            {_t("witnesses.proxy-votes-for", {username})}
+                        </div>
+                        {account.witness_votes.map(x => {
+                            return <div className="proxy-votes-item" key={x}>
+                                {ProfileLink({
+                                    ...this.props, username,
+                                    children: <span>{`@${x}`}</span>
+                                })}
+                            </div>
+                        })}
+                    </div>
+                )} */}
         </div>
       </div>
     );
   }
 }
-
 export default (p: Props) => {
   const props: Props = {
     history: p.history,
@@ -250,6 +156,5 @@ export default (p: Props) => {
     username: p.username,
     onDone: p.onDone
   };
-
   return <WitnessesActiveProxy {...props} />;
 };
