@@ -36,6 +36,7 @@ interface Props {
   setSigningKey: (key: string) => void;
   username: string;
   onDone: () => void;
+  isProxy: boolean;
 }
 interface State {
   account: FullAccount | null;
@@ -104,7 +105,8 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
 
     return (
       <div className="witnesses-active-proxy" style={{ marginBottom: "50px" }}>
-        <p className="description">{_t("witnesses.proxy-active-description")}</p>
+     { this.props.isProxy ? <>
+       <p className="description">{_t("witnesses.proxy-active-description")}</p>
         <div className="proxy-form">
           <div className="current-proxy">
             {_t("witnesses.proxy-active-current")}{" "}
@@ -119,22 +121,14 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
 
           <p className="description">{_t("witnesses.proxy-active-highlighted")}</p>
 
-          {/* {(account && account.witness_votes && account.witness_votes.length > 0) && (
-                    <div className="proxy-votes">
-                        <div className="proxy-votes-title">
-                            {_t("witnesses.proxy-votes-for", {username})}
-                        </div>
-                        {account.witness_votes.map(x => {
-                            return <div className="proxy-votes-item" key={x}>
-                                {ProfileLink({
-                                    ...this.props, username,
-                                    children: <span>{`@${x}`}</span>
-                                })}
-                            </div>
-                        })}
-                    </div>
-                )} */}
         </div>
+       </> :  <div className="current-proxy">
+            {ProfileLink({
+              ...this.props,
+              username,
+              children: <span>{`@${username}'s`}</span>
+            })}{" "} {_t("witnesses.check-witness-highlighted") }
+          </div> }
       </div>
     );
   }
@@ -154,7 +148,8 @@ export default (p: Props) => {
     toggleUIProp: p.toggleUIProp,
     setSigningKey: p.setSigningKey,
     username: p.username,
-    onDone: p.onDone
+    onDone: p.onDone,
+    isProxy: p.isProxy
   };
   return <WitnessesActiveProxy {...props} />;
 };

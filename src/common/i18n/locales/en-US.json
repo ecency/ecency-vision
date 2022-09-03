@@ -1134,7 +1134,8 @@
     "proxy-active-current": "Your current proxy is",
     "proxy-active-btn-label": "Clear Proxy",
     "proxy-votes-for": "@{{username}} votes for",
-    "proxy-active-highlighted": "Your proxy votes are highlighted"
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
