@@ -35,7 +35,14 @@ exports[`(1) Default Render 1`] = `
           >
             <div
               className="amount-actions"
-            />
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              />
+            </div>
             12.010
              
             POINTS
@@ -65,7 +72,7 @@ exports[`(1) Default Render 1`] = `
           <div
             className="amount amount-bold"
           >
-            $ 0.000
+            Calculating...
           </div>
         </div>
       </div>

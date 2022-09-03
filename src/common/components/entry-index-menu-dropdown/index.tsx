@@ -5,6 +5,7 @@ import { History } from "history";
 import { _t } from "../../i18n";
 import { ToggleType } from "../../store/ui/types";
 import { menuDownSvg } from "../../img/svg";
+import { ActiveUser } from "../../store/active-user/types";
 
 interface Props {
   global: Global;
@@ -13,14 +14,21 @@ interface Props {
   isGlobal: boolean;
   toggleUIProp: (what: ToggleType) => void;
   isActive: boolean;
+  activeUser: ActiveUser | any;
+  noReblog: boolean;
+  handleFilterReblog: () => void;
 }
+
+// const feedUrlParams : string = window.location.pathname;
+// const feedByUsername : string = feedUrlParams.substring(1, (feedUrlParams.length - 5));
 
 export const EntryIndexMenuDropdown = (props: Props) => {
   const {
     global: { filter, tag },
     history,
     onChangeGlobal,
-    isGlobal
+    isGlobal,
+    activeUser
   } = props;
 
   let dropDownItems: MenuItem[] = [
@@ -102,6 +110,22 @@ export const EntryIndexMenuDropdown = (props: Props) => {
     ];
   }
 
+  if (filter === "feed") {
+    dropDownItems = [
+      {
+        label: (
+          <span>
+            {props.noReblog === true
+              ? _t("entry-filter.filter-with-reblog")
+              : _t("entry-filter.filter-no-reblog")}
+          </span>
+        ),
+        selected: tag === "no_reblog",
+        onClick: () => onTagValueClick("no_reblog")
+      }
+    ];
+  }
+
   const dropDownConfig = {
     history: null,
     label: (
@@ -121,6 +145,10 @@ export const EntryIndexMenuDropdown = (props: Props) => {
           ? _t("entry-filter.filter-year")
           : tag === "all"
           ? _t("entry-filter.filter-alltime")
+          : tag === `@${activeUser?.username}` || tag.startsWith("@")
+          ? props.noReblog === true
+            ? _t("entry-filter.filter-no-reblog")
+            : _t("entry-filter.filter-with-reblog")
           : tag}{" "}
         {menuDownSvg}
       </div>
@@ -132,6 +160,8 @@ export const EntryIndexMenuDropdown = (props: Props) => {
     const { toggleUIProp, isActive } = props;
     if (key === "my" && !isActive) {
       toggleUIProp("login");
+    } else if (key === "no_reblog") {
+      props.handleFilterReblog();
     } else {
       // onChangeGlobal(!(key.length > 0))
       onChangeGlobal(key);
