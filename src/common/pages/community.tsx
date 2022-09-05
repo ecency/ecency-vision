@@ -279,7 +279,6 @@ class CommunityPage extends BaseComponent<Props, State> {
         <Theme global={this.props.global} />
         <Feedback activeUser={this.props.activeUser} />
         {navBar}
-
         <div className={containerClasses}>
           <div className="profile-side">
             {CommunityCard({

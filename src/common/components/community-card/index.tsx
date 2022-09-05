@@ -36,6 +36,7 @@ import {
   scriptTextOutlineSvg,
   pencilOutlineSvg
 } from "../../img/svg";
+import { renderPostBody } from "@ecency/render-helper";
 
 interface EditPicProps {
   activeUser: ActiveUser;
@@ -202,11 +203,10 @@ export class CommunityCard extends Component<Props, State> {
 
     const description: JSX.Element | null =
       community.description.trim() !== "" ? (
-        <>
-          {ln2list(community.description).map((x, i) => (
-            <p key={i}>{x}</p>
-          ))}
-        </>
+        <div
+          className="preview-body markdown-view"
+          dangerouslySetInnerHTML={{ __html: renderPostBody(community.description, true) }}
+        />
       ) : null;
 
     const rules: JSX.Element | null =
