@@ -41,6 +41,7 @@ import capitalize from "../util/capitalize";
 import defaults from "../constants/defaults.json";
 import SearchBox from "../components/search-box";
 import { withPersistentScroll } from "../components/with-persistent-scroll";
+import MdHandler from "../components/md-handler";
 
 interface MatchParams {
   filter: string;
@@ -279,7 +280,6 @@ class CommunityPage extends BaseComponent<Props, State> {
         <Theme global={this.props.global} />
         <Feedback activeUser={this.props.activeUser} />
         {navBar}
-
         <div className={containerClasses}>
           <div className="profile-side">
             {CommunityCard({
