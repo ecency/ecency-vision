@@ -489,8 +489,8 @@ class SubmitPage extends BaseComponent<Props, State> {
         clearModal: false
       },
       () => {
+        this.clearAdvanced();
         this.updatePreview();
-        this.saveAdvanced();
         ls.remove("draft_selected_image");
       }
     );
