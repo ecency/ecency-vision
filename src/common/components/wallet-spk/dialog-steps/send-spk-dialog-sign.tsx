@@ -52,6 +52,7 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
 
     setInProgress(true);
     try {
+      // @ts-ignore
       await promise;
       const a = await getAccountFull(activeUser!.username);
       addAccount(a);
