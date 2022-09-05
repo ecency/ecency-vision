@@ -51,7 +51,7 @@ interface WitnessTransformed {
   witnessBy?: string;
 }
 
-const params = window.location.search.split("=")[1];
+let params = window.location.search.split("=")[1];
 
 const transform = (list: Witness[]): WitnessTransformed[] => {
   return list.map((x, i) => {
@@ -141,7 +141,13 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
     if (activeUser) {
       const resp = await getAccount(activeUser.username);
       const { witness_votes: witnessVotes, proxy } = resp;
-      const data = await getAccount(params || proxy);
+      let data = await getAccount(params || proxy);
+
+      if (params && data.proxy) {
+        params =  data.proxy;
+        data = await getAccount(data.proxy);
+       };
+
       this.stateSet({
         witnessVotes: witnessVotes || [],
         proxyVotes: data ? data.witness_votes : [],
@@ -392,7 +398,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                 {header}
 
                 <div>
-                  {proxy ? (
+                  {proxy || params ? (
                     <WitnessesActiveProxy
                       {...this.props}
                       isProxy={!params ? true : false}
