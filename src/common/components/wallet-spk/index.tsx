@@ -13,6 +13,8 @@ interface Props {
   global: Global;
   account: Account;
   activeUser: ActiveUser | null;
+  addAccount: (account: Account) => void;
+  updateActiveUser: (account: Account) => void;
 }
 
 interface State {
@@ -119,6 +121,9 @@ class WalletSpk extends Component<Props, State> {
         setShow={(v: boolean) => this.setState({ sendSpkShow: v })}
         activeUser={this.props.activeUser}
         balance={this.state.tokenBalance}
+        addAccount={this.props.addAccount}
+        updateActiveUser={this.props.updateActiveUser}
+        onFinish={() => this.fetch()}
       />
     </div>
   }

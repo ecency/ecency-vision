@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
-import { _t } from '../../i18n';
+import { Modal } from 'react-bootstrap';
 import { ActiveUser } from '../../store/active-user/types';
 import './wallet-spk-dialog.scss';
 import { Account } from '../../store/accounts/types';
-import { WalletSpkGroup } from './wallet-spk-group';
 import { WalletSpkSteps } from './wallet-spk-steps';
 import { SendSpkDialogForm } from './dialog-steps/send-spk-dialog-form';
 import { SendSpkDialogConfirm } from './dialog-steps/send-spk-dialog-confirm';
 import { Global } from '../../store/global/types';
 import numeral from 'numeral';
+import { SendSpkDialogSign } from './dialog-steps/send-spk-dialog-sign';
+import { SendSpkSuccess } from './dialog-steps/send-spk-success';
 
 interface Props {
   global: Global;
@@ -18,13 +18,17 @@ interface Props {
   activeUser: ActiveUser | null;
   balance: number;
   account: Account;
+  addAccount: (account: Account) => void;
+  updateActiveUser: (account: Account) => void;
+  onFinish: () => void;
 }
 
-export const SendSpkDialog = ({ global, show, setShow, activeUser, balance }: Props) => {
+export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addAccount, updateActiveUser, onFinish }: Props) => {
   const [username, setUsername] = useState('');
   const [amount, setAmount] = useState('0');
   const [memo, setMemo] = useState('');
   const [stepIndex, setStepIndex] = useState(0);
+
   const precision = (balance + "").split(".")[1]?.length || 3;
   const steps = [
     {
@@ -40,6 +44,18 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance }: Pr
     {
       title: 'transfer.confirm-title',
       subtitle: 'transfer.confirm-sub-title',
+      submit: () => {
+        setStepIndex(stepIndex + 1);
+      }
+    },
+    {
+      title: 'trx-common.sign-title',
+      subtitle: 'trx-common.sign-sub-title',
+      submit: () => {}
+    },
+    {
+      title: 'trx-common.success-title',
+      subtitle: 'trx-common.success-sub-title',
       submit: () => {}
     }
   ];
@@ -49,6 +65,13 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance }: Pr
 
     return numeral(num).format(format, Math.floor); // round to floor
   };
+
+  const clear = () => {
+    setUsername('');
+    setAmount('');
+    setMemo('');
+    setStepIndex(0);
+  }
 
   return <Modal
     animation={false}
@@ -83,11 +106,34 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance }: Pr
             memo={memo}
             amount={amount}
             asset="SPK"
-            inProgress={false}
-            back={() => {
+            back={() => setStepIndex(stepIndex - 1)}
+            confirm={() => steps[stepIndex]?.submit()}
+          /> : <></>}
+          {stepIndex === 2 ? <SendSpkDialogSign
+            global={global}
+            asset="SPK"
+            mode="transfer"
+            memo={memo}
+            activeUser={activeUser}
+            onBack={() => setStepIndex(stepIndex - 1)}
+            setNextStep={() => setStepIndex(stepIndex + 1)}
+            to={username}
+            amount={amount}
+            addAccount={addAccount}
+            updateActiveUser={updateActiveUser}
+          /> : <></>}
+          {stepIndex === 3 ? <SendSpkSuccess
+            amount={amount}
+            activeUser={activeUser}
+            asset="SPK"
+            reset={() => clear()}
+            onFinish={() => {
+              setShow(false);
+              clear();
+              onFinish();
             }}
-            confirm={() => {
-            }}
+            to={username}
+            mode="transfer"
           /> : <></>}
         </>
       </WalletSpkSteps>

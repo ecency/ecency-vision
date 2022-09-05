@@ -15,12 +15,11 @@ interface Props {
   memo: string;
   amount: string;
   asset: string;
-  inProgress: boolean;
   back: Function;
   confirm: Function;
 }
 
-export const SendSpkDialogConfirm = ({ global, title, activeUser, showTo, to, memo, amount, asset, inProgress, back, confirm }: Props) => {
+export const SendSpkDialogConfirm = ({ global, title, activeUser, showTo, to, memo, amount, asset, back, confirm }: Props) => {
   return <>
     <div className="confirmation">
       <div className="confirm-title">{_t(`transfer.${title}`)}</div>
@@ -43,12 +42,11 @@ export const SendSpkDialogConfirm = ({ global, title, activeUser, showTo, to, me
       {memo && <div className="memo">{memo}</div>}
     </div>
     <div className="d-flex justify-content-center">
-      <Button variant="outline-secondary" disabled={inProgress} onClick={() => back()}>
+      <Button variant="outline-secondary" onClick={() => back()}>
         {_t('g.back')}
       </Button>
       <span className="hr-6px-btn-spacer"/>
-      <Button disabled={inProgress} onClick={() => confirm()}>
-        {inProgress && <span>spinner</span>}
+      <Button onClick={() => confirm()}>
         {_t('transfer.confirm')}
       </Button>
     </div>
