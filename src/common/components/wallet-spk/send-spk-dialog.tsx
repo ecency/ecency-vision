@@ -10,6 +10,7 @@ import { Global } from '../../store/global/types';
 import numeral from 'numeral';
 import { SendSpkDialogSign } from './dialog-steps/send-spk-dialog-sign';
 import { SendSpkSuccess } from './dialog-steps/send-spk-success';
+import { Transactions } from '../../store/transactions/types';
 
 interface Props {
   global: Global;
@@ -21,9 +22,10 @@ interface Props {
   addAccount: (account: Account) => void;
   updateActiveUser: (account: Account) => void;
   onFinish: () => void;
+  transactions: Transactions;
 }
 
-export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addAccount, updateActiveUser, onFinish }: Props) => {
+export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addAccount, updateActiveUser, onFinish, transactions }: Props) => {
   const [username, setUsername] = useState('');
   const [amount, setAmount] = useState('0');
   const [memo, setMemo] = useState('');
@@ -86,6 +88,7 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
       <WalletSpkSteps steps={steps} stepIndex={stepIndex}>
         <>
           {stepIndex === 0 ? <SendSpkDialogForm
+            transactions={transactions}
             username={username}
             activeUser={activeUser}
             amount={amount}

@@ -4,6 +4,7 @@ import { SearchByUsername } from '../../search-by-username';
 import { _t } from '../../../i18n';
 import React from 'react';
 import { ActiveUser } from '../../../store/active-user/types';
+import { Transactions } from '../../../store/transactions/types';
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -16,20 +17,33 @@ interface Props {
   setAmount: (value: string) => void;
   submit: Function;
   asset: string;
+  transactions: Transactions;
 }
 
-export const SendSpkDialogForm = ({
-                                    activeUser,
-                                    amount,
-                                    setUsername,
-                                    setAmount,
-                                    balance,
-                                    memo,
-                                    setMemo,
-                                    submit,
-                                    username,
-                                    asset
-                                  }: Props) => {
+export const SendSpkDialogForm = ({ activeUser, amount, setUsername, setAmount, balance, memo, setMemo, submit, username, asset, transactions }: Props) => {
+  const recent = [
+    ...new Set(
+      transactions.list
+        .filter(
+          (x) =>
+            (x.type === 'transfer' && x.from === activeUser!.username) ||
+            (x.type === 'delegate_vesting_shares' && x.delegator === activeUser!.username)
+        )
+        .map((x) =>
+          x.type === 'transfer' ? x.to : x.type === 'delegate_vesting_shares' ? x.delegatee : ''
+        )
+        .filter((x) => {
+          if (username.trim() === '') {
+            return true;
+          }
+
+          return x.indexOf(username) !== -1;
+        })
+        .reverse()
+        .slice(0, 5)
+    )
+  ];
+
   return <>
     <WalletSpkGroup label="wallet.spk.send.from">
       <InputGroup>
@@ -51,6 +65,7 @@ export const SendSpkDialogForm = ({
         activeUser={activeUser}
         excludeActiveUser={true}
         setUsername={setUsername}
+        recent={recent}
       />
     </WalletSpkGroup>
     <WalletSpkGroup label="wallet.spk.send.amount">

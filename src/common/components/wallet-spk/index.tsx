@@ -9,6 +9,7 @@ import { SendSpkDialog } from './send-spk-dialog';
 import { ActiveUser } from '../../store/active-user/types';
 import { Button } from 'react-bootstrap';
 import { History } from 'history';
+import { Transactions } from '../../store/transactions/types';
 
 interface Props {
   global: Global;
@@ -17,6 +18,7 @@ interface Props {
   addAccount: (account: Account) => void;
   updateActiveUser: (account: Account) => void;
   history: History;
+  transactions: Transactions;
 }
 
 interface State {
@@ -126,6 +128,7 @@ class WalletSpk extends Component<Props, State> {
       </div>
 
       <SendSpkDialog
+        transactions={this.props.transactions}
         global={this.props.global}
         account={this.props.account}
         show={this.state.sendSpkShow}

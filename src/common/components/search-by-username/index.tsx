@@ -12,9 +12,10 @@ interface Props {
   setUsername: (value: string) => void;
   activeUser: ActiveUser | null;
   excludeActiveUser?: boolean;
+  recent: string[];
 }
 
-export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser }: Props) => {
+export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser, recent }: Props) => {
   const [usernameInput, setUsernameInput] = useState('');
   const [usernameData, setUsernameData] = useState<string[]>([]);
   const [isActiveUserSet, setIsActiveUserSet] = useState(false);
@@ -24,6 +25,7 @@ export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser }:
   useEffect(() => {
     if (!usernameInput) {
       setUsername('');
+      setUsernameData(recent);
     }
     fetchUsernameData(usernameInput);
   }, [usernameInput]);
@@ -83,7 +85,11 @@ export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser }:
     }
   };
 
-  return <SuggestionList items={usernameData} {...suggestionProps}>
+  return <SuggestionList
+    items={usernameData}
+    {...suggestionProps}
+    header={!usernameInput ? _t('transfer.recent-transfers') : ''}
+  >
     <InputGroup>
       <InputGroup.Prepend>
         <InputGroup.Text>
