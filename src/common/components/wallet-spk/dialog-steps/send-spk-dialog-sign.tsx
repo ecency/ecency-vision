@@ -9,7 +9,7 @@ import { getAccountFull } from '../../../api/hive';
 import { error } from '../../feedback';
 import { PrivateKey } from '@hiveio/dhive';
 import { Account } from '../../../store/accounts/types';
-import { transferSpkByKey } from '../../../api/spk-api';
+import { sendSpk, transferSpkByKey } from '../../../api/spk-api';
 
 interface Props {
   global: Global;
@@ -23,9 +23,10 @@ interface Props {
   to: string;
   addAccount: (account: Account) => void;
   updateActiveUser: (account: Account) => void;
+  username: string;
 }
 
-export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, memo, mode, setNextStep, to, addAccount, updateActiveUser }: Props) => {
+export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, memo, mode, setNextStep, to, addAccount, updateActiveUser, username }: Props) => {
   const [inProgress, setInProgress] = useState(false);
   const [signingKey, setSigningKey] = useState('');
 
@@ -66,7 +67,7 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
   }
 
   const signHs = () => {
-
+    sendSpk(activeUser!.username, username, amount, memo);
   }
 
   const signKs = () => {

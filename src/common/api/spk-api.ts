@@ -39,7 +39,7 @@ export const getSpkWallet = async (username: string): Promise<SpkApiWallet> => {
   return resp.data;
 }
 
-export const sendSpk = async (from: string, to: string, amount: number, memo?: string) => {
+export const sendSpk = (from: string, to: string, amount: string, memo?: string) => {
   const params = {
     authority: 'active',
     required_auths: from,
