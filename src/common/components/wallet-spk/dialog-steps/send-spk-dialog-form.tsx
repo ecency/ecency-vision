@@ -9,7 +9,7 @@ interface Props {
   activeUser: ActiveUser | null;
   username: string;
   amount: string;
-  balance: number;
+  balance: string;
   memo: string;
   setMemo: (value: string) => void;
   setUsername: (value: string) => void;
@@ -53,7 +53,7 @@ export const SendSpkDialogForm = ({ activeUser, amount, setUsername, setAmount, 
         <div className="align-self-center ml-1">SPK</div>
       </InputGroup>
     </WalletSpkGroup>
-    {+amount > balance ? <Alert className="mt-3" variant={'warning'}>{_t('wallet.spk.send.warning')}</Alert> : <></>}
+    {+amount > +balance ? <Alert className="mt-3" variant={'warning'}>{_t('wallet.spk.send.warning')}</Alert> : <></>}
 
     <WalletSpkGroup label="wallet.spk.send.memo">
       <Form.Control

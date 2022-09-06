@@ -8,6 +8,7 @@ import { WalletSpkSection } from './wallet-spk-section';
 import { SendSpkDialog } from './send-spk-dialog';
 import { ActiveUser } from '../../store/active-user/types';
 import { Button } from 'react-bootstrap';
+import { History } from 'history';
 
 interface Props {
   global: Global;
@@ -15,14 +16,15 @@ interface Props {
   activeUser: ActiveUser | null;
   addAccount: (account: Account) => void;
   updateActiveUser: (account: Account) => void;
+  history: History;
 }
 
 interface State {
-  tokenBalance: number;
-  larynxAirBalance: number;
-  larynxTokenBalance: number;
-  larynxPowerBalance: number;
-  estimatedBalance: number;
+  tokenBalance: string;
+  larynxAirBalance: string;
+  larynxTokenBalance: string;
+  larynxPowerBalance: string;
+  estimatedBalance: string;
   sendSpkShow: boolean;
 }
 
@@ -31,11 +33,11 @@ class WalletSpk extends Component<Props, State> {
     super(props);
 
     this.state = {
-      tokenBalance: 0,
-      larynxAirBalance: 0,
-      larynxPowerBalance: 0,
-      larynxTokenBalance: 0,
-      estimatedBalance: 0,
+      tokenBalance: '0',
+      larynxAirBalance: '0',
+      larynxPowerBalance: '0',
+      larynxTokenBalance: '0',
+      estimatedBalance: '0',
       sendSpkShow: false
     };
   }
@@ -47,12 +49,13 @@ class WalletSpk extends Component<Props, State> {
   async fetch() {
     try {
       const wallet = await getSpkWallet(this.props.account.name);
+      const format = (value: number) => value.toFixed(3);
       this.setState({
-        tokenBalance: wallet.spk,
-        larynxAirBalance: wallet.drop.availible.amount / 1000,
-        larynxTokenBalance: wallet.balance,
-        larynxPowerBalance: wallet.poweredUp,
-        estimatedBalance: wallet.balance
+        tokenBalance: format(wallet.spk / 1000),
+        larynxAirBalance: format(wallet.drop.availible.amount / 1000),
+        larynxTokenBalance: format(wallet.balance / 1000),
+        larynxPowerBalance: format(wallet.poweredUp / 1000),
+        estimatedBalance: format(wallet.balance / 1000)
       })
     } catch (e) {
       console.error(e);
@@ -65,8 +68,12 @@ class WalletSpk extends Component<Props, State> {
         <div className="wallet-info">
           <WalletSpkSection
             {...this.props}
-            title={_t("wallet.spk.token")}
-            description={_t("wallet.spk.token-description")}
+            items={[{
+              label: _t('wallet.transfer'),
+              onClick: () => this.setState({ sendSpkShow: true })
+            }]}
+            title={_t('wallet.spk.token')}
+            description={_t('wallet.spk.token-description')}
             amountSlot={<>{this.state.tokenBalance} SPK</>}
             actionSlot={<Button
               variant={'primary'}
@@ -75,39 +82,43 @@ class WalletSpk extends Component<Props, State> {
           />
           <WalletSpkSection
             {...this.props}
+            items={[]}
             isAlternative={true}
-            title={_t("wallet.spk.larynx-air")}
-            description={_t("wallet.spk.larynx-air-description")}
-            slot={<div className="warning">{_t("wallet.spk.larynx-air-warning")}</div>}
+            title={_t('wallet.spk.larynx-air')}
+            description={_t('wallet.spk.larynx-air-description')}
+            slot={<div className="warning">{_t('wallet.spk.larynx-air-warning')}</div>}
             amountSlot={<>{this.state.larynxAirBalance} LARYNX</>}
           />
           <WalletSpkSection
             {...this.props}
-            title={_t("wallet.spk.larynx-token")}
-            description={_t("wallet.spk.larynx-token-description")}
+            items={[]}
+            title={_t('wallet.spk.larynx-token')}
+            description={_t('wallet.spk.larynx-token-description')}
             amountSlot={<>{this.state.larynxTokenBalance} LARYNX</>}
           />
           <WalletSpkSection
             {...this.props}
+            items={[]}
             isAlternative={true}
-            title={_t("wallet.spk.larynx-power")}
-            description={_t("wallet.spk.larynx-power-description")}
+            title={_t('wallet.spk.larynx-power')}
+            description={_t('wallet.spk.larynx-power-description')}
             slot={<div className="menu">
-              <p>{_t("wallet.spk.larynx-power-benefits.title")}</p>
+              <p>{_t('wallet.spk.larynx-power-benefits.title')}</p>
               <ul>
-                <li>{_t("wallet.spk.larynx-power-benefits.1")}</li>
-                <li>{_t("wallet.spk.larynx-power-benefits.2")}</li>
-                <li>{_t("wallet.spk.larynx-power-benefits.3")}</li>
-                <li>{_t("wallet.spk.larynx-power-benefits.4")}</li>
-                <li>{_t("wallet.spk.larynx-power-benefits.5")}</li>
+                <li>{_t('wallet.spk.larynx-power-benefits.1')}</li>
+                <li>{_t('wallet.spk.larynx-power-benefits.2')}</li>
+                <li>{_t('wallet.spk.larynx-power-benefits.3')}</li>
+                <li>{_t('wallet.spk.larynx-power-benefits.4')}</li>
+                <li>{_t('wallet.spk.larynx-power-benefits.5')}</li>
               </ul>
             </div>}
             amountSlot={<>{this.state.larynxPowerBalance} LP</>}
           />
           <WalletSpkSection
             {...this.props}
-            title={_t("wallet.spk.account-value")}
-            description={_t("wallet.spk.account-value-description")}
+            items={[]}
+            title={_t('wallet.spk.account-value')}
+            description={_t('wallet.spk.account-value-description')}
             amountSlot={<>${this.state.estimatedBalance}</>}
           />
         </div>

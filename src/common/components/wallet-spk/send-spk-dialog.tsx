@@ -16,7 +16,7 @@ interface Props {
   show: boolean;
   setShow: (value: boolean) => void;
   activeUser: ActiveUser | null;
-  balance: number;
+  balance: string;
   account: Account;
   addAccount: (account: Account) => void;
   updateActiveUser: (account: Account) => void;
