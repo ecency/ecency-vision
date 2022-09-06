@@ -95,6 +95,7 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
             setUsername={setUsername}
             setAmount={setAmount}
             submit={() => steps[stepIndex]?.submit()}
+            asset="SPK"
           /> : <></>}
 
           {stepIndex === 1 ? <SendSpkDialogConfirm
