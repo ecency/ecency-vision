@@ -105,30 +105,34 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
 
     return (
       <div className="witnesses-active-proxy" style={{ marginBottom: "50px" }}>
-     { this.props.isProxy ? <>
-       <p className="description">{_t("witnesses.proxy-active-description")}</p>
-        <div className="proxy-form">
+        {this.props.isProxy ? (
+          <>
+            <p className="description">{_t("witnesses.proxy-active-description")}</p>
+            <div className="proxy-form">
+              <div className="current-proxy">
+                {_t("witnesses.proxy-active-current")}{" "}
+                {ProfileLink({
+                  ...this.props,
+                  username,
+                  children: <span>{`@${username}`}</span>
+                })}
+              </div>
+
+              {theBtn}
+
+              <p className="description">{_t("witnesses.proxy-active-highlighted")}</p>
+            </div>
+          </>
+        ) : (
           <div className="current-proxy">
-            {_t("witnesses.proxy-active-current")}{" "}
-            {ProfileLink({
-              ...this.props,
-              username,
-              children: <span>{`@${username}`}</span>
-            })}
-          </div>
-
-          {theBtn}
-
-          <p className="description">{_t("witnesses.proxy-active-highlighted")}</p>
-
-        </div>
-       </> :  <div className="current-proxy">
             {ProfileLink({
               ...this.props,
               username,
               children: <span>{`@${username}'s`}</span>
-            })}{" "} {_t("witnesses.check-witness-highlighted") }
-          </div> }
+            })}{" "}
+            {_t("witnesses.check-witness-highlighted")}
+          </div>
+        )}
       </div>
     );
   }

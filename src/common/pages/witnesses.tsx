@@ -51,8 +51,6 @@ interface WitnessTransformed {
   witnessBy?: string;
 }
 
-let params = window.location.search.split("=")[1];
-
 const transform = (list: Witness[]): WitnessTransformed[] => {
   return list.map((x, i) => {
     const rank = i + 1;
@@ -137,16 +135,17 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
   load = async () => {
     this.stateSet({ loading: true });
 
-    const { activeUser } = this.props;
+    const { activeUser, location } = this.props;
+    let params = location.search.split("=")[1];
     if (activeUser) {
       const resp = await getAccount(activeUser.username);
       const { witness_votes: witnessVotes, proxy } = resp;
       let data = await getAccount(params || proxy);
 
       if (params && data.proxy) {
-        params =  data.proxy;
+        params = data.proxy;
         data = await getAccount(data.proxy);
-       };
+      }
 
       this.stateSet({
         witnessVotes: witnessVotes || [],
@@ -208,7 +207,8 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
       description: _t("witnesses.page-description")
     };
 
-    const { global, activeUser } = this.props;
+    const { global, activeUser, location } = this.props;
+    let params = location.search.split("=")[1];
     const { witnesses, loading, witnessVotes, proxy } = this.state;
     const extraWitnesses = witnessVotes.filter((w) => !witnesses.find((y) => y.name === w));
 
