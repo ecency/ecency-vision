@@ -9,7 +9,7 @@ import { getAccountFull } from '../../../api/hive';
 import { error } from '../../feedback';
 import { PrivateKey } from '@hiveio/dhive';
 import { Account } from '../../../store/accounts/types';
-import { sendSpk, transferSpkByKey } from '../../../api/spk-api';
+import { sendSpk, transferSpkByKc, transferSpkByKey } from '../../../api/spk-api';
 
 interface Props {
   global: Global;
@@ -51,6 +51,38 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
         return;
     }
 
+    await afterSign();
+  }
+
+  const signHs = () => {
+    sendSpk(activeUser!.username, username, amount, memo);
+  }
+
+  const signKs = async () => {
+    const username = activeUser?.username!;
+
+    let promise: Promise<any>;
+    switch (mode) {
+      case 'transfer':
+        // Perform HE operation
+        promise = transferSpkByKc(username, asset, to, amount, memo);
+        break;
+      case 'delegate':
+        break;
+      case 'undelegate':
+        break;
+      case 'stake':
+        break;
+      case 'unstake':
+        break;
+      default:
+        return;
+    }
+
+    await afterSign();
+  }
+
+  const afterSign = async () => {
     setInProgress(true);
     try {
       // @ts-ignore
@@ -64,14 +96,6 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
     } finally {
       setInProgress(false);
     }
-  }
-
-  const signHs = () => {
-    sendSpk(activeUser!.username, username, amount, memo);
-  }
-
-  const signKs = () => {
-
   }
 
   return <div className="d-flex flex-column align-items-center">

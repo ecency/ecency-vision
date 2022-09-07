@@ -2,6 +2,8 @@ import axios from 'axios';
 import * as sdk from 'hivesigner';
 import { PrivateKey, TransactionConfirmation } from '@hiveio/dhive';
 import { client as hiveClient } from './hive';
+import * as keychain from '../helper/keychain';
+import parseAsset, { Symbol } from '../helper/parse-asset';
 
 export interface SpkApiWallet {
   balance: number;
@@ -66,8 +68,8 @@ export const transferSpkByKey = async (
   memo: string
 ): Promise<TransactionConfirmation> => {
   const json = JSON.stringify({
-    contractName: "tokens",
-    contractAction: "transfer",
+    contractName: 'tokens',
+    contractAction: 'transfer',
     contractPayload: {
       symbol,
       to,
@@ -77,7 +79,7 @@ export const transferSpkByKey = async (
   });
 
   const op = {
-    id: "spkcc_spk_send",
+    id: 'spkcc_spk_send',
     json,
     required_auths: [from],
     required_posting_auths: []
@@ -85,3 +87,23 @@ export const transferSpkByKey = async (
 
   return await hiveClient.broadcast.json(op, key);
 };
+
+export const transferSpkByKc = async (
+  from: string,
+  symbol: string,
+  to: string,
+  amount: string,
+  memo: string
+) => {
+  const json = JSON.stringify({
+    contractName: 'tokens',
+    contractAction: 'transfer',
+    contractPayload: {
+      symbol,
+      to,
+      quantity: amount.toString(),
+      memo
+    }
+  });
+  return keychain.customJson(from, 'spkcc_spk_send', 'Active', json, '', '');
+}
