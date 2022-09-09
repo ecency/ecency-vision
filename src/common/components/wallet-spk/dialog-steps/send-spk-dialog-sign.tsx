@@ -37,7 +37,7 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
     switch (mode) {
       case 'transfer':
         // Perform HE operation
-        promise = transferSpkByKey(username, key, asset, to, amount, memo);
+        promise = transferSpkByKey(username, key, to, amount, memo);
         break;
       case 'delegate':
         break;
@@ -65,7 +65,7 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
     switch (mode) {
       case 'transfer':
         // Perform HE operation
-        promise = transferSpkByKc(username, asset, to, amount, memo);
+        promise = transferSpkByKc(username, to, amount, memo);
         break;
       case 'delegate':
         break;

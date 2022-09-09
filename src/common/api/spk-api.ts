@@ -62,20 +62,14 @@ export const sendSpk = (from: string, to: string, amount: string, memo?: string)
 export const transferSpkByKey = async (
   from: string,
   key: PrivateKey,
-  symbol: string,
   to: string,
   amount: string,
   memo: string
 ): Promise<TransactionConfirmation> => {
   const json = JSON.stringify({
-    contractName: 'tokens',
-    contractAction: 'transfer',
-    contractPayload: {
-      symbol,
-      to,
-      quantity: amount.toString(),
-      memo
-    }
+    to,
+    amount,
+    ...(memo ? { memo } : {})
   });
 
   const op = {
@@ -90,20 +84,14 @@ export const transferSpkByKey = async (
 
 export const transferSpkByKc = async (
   from: string,
-  symbol: string,
   to: string,
   amount: string,
   memo: string
 ) => {
   const json = JSON.stringify({
-    contractName: 'tokens',
-    contractAction: 'transfer',
-    contractPayload: {
-      symbol,
-      to,
-      quantity: amount.toString(),
-      memo
-    }
+    to,
+    amount,
+    ...(memo ? { memo } : {})
   });
   return keychain.customJson(from, 'spkcc_spk_send', 'Active', json, '', '');
 }
