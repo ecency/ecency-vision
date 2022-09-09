@@ -321,6 +321,8 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         <div className="d-md-none">
           {witnesses.map((row, i) => {
             return (
+              <>
+              <div className={`${this.state.proxyVotes.includes(row.name) ? "voted-by-voter" : ""}`}>
               <WitnessCard
                 voted={witnessVotes.includes(row.name)}
                 witness={row.name}
@@ -335,6 +337,8 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                 }}
                 {...this.props}
               />
+              </div>
+              </>
             );
           })}
         </div>
