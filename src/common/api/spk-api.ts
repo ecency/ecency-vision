@@ -3,7 +3,6 @@ import * as sdk from 'hivesigner';
 import { PrivateKey, TransactionConfirmation } from '@hiveio/dhive';
 import { client as hiveClient } from './hive';
 import * as keychain from '../helper/keychain';
-import parseAsset, { Symbol } from '../helper/parse-asset';
 
 export interface SpkApiWallet {
   balance: number;
@@ -41,25 +40,26 @@ export const getSpkWallet = async (username: string): Promise<SpkApiWallet> => {
   return resp.data;
 }
 
-export const sendSpk = (from: string, to: string, amount: string, memo?: string) => {
+const sendSpkGeneralByHs = (id: string, from: string, to: string, amount: string, memo?: string) => {
   const params = {
     authority: 'active',
     required_auths: from,
     required_posting_auths: '[]',
-    id: 'spkcc_spk_send',
+    id,
     json: JSON.stringify({
       to,
       amount,
-      ...(memo ? { memo } : {})
+      memo: memo || ''
     })
   };
   const url = sdk.sign('custom_json', params, window.location.href);
   if (typeof url === 'string') {
     window.open(url, 'blank');
   }
-}
+};
 
-export const transferSpkByKey = async (
+const transferSpkGeneralByKey = async (
+  id: string,
   from: string,
   key: PrivateKey,
   to: string,
@@ -73,7 +73,7 @@ export const transferSpkByKey = async (
   });
 
   const op = {
-    id: 'spkcc_spk_send',
+    id,
     json,
     required_auths: [from],
     required_posting_auths: []
@@ -82,7 +82,8 @@ export const transferSpkByKey = async (
   return await hiveClient.broadcast.json(op, key);
 };
 
-export const transferSpkByKc = async (
+const transferSpkGeneralByKc = async (
+  id: string,
   from: string,
   to: string,
   amount: string,
@@ -93,5 +94,52 @@ export const transferSpkByKc = async (
     amount,
     memo: memo || ''
   });
-  return keychain.customJson(from, 'spkcc_spk_send', 'Active', json, '', '');
+  return keychain.customJson(from, id, 'Active', json, '', '');
 }
+
+
+export const sendSpkByHs = (from: string, to: string, amount: string, memo?: string) => {
+  return sendSpkGeneralByHs('spkcc_spk_send', from, to, amount, memo);
+};
+
+export const sendLarynxByHs = (from: string, to: string, amount: string, memo?: string) => {
+  return sendSpkGeneralByHs('spkcc_send', from, to, amount, memo);
+};
+
+export const transferSpkByKey = async (
+  from: string,
+  key: PrivateKey,
+  to: string,
+  amount: string,
+  memo: string
+): Promise<TransactionConfirmation> => {
+  return transferSpkGeneralByKey('spkcc_spk_send', from, key, to, amount, memo);
+};
+
+export const transferLarynxByKey = async (
+  from: string,
+  key: PrivateKey,
+  to: string,
+  amount: string,
+  memo: string
+): Promise<TransactionConfirmation> => {
+  return transferSpkGeneralByKey('spkcc_send', from, key, to, amount, memo);
+};
+
+export const transferSpkByKc = async (
+  from: string,
+  to: string,
+  amount: string,
+  memo: string
+) => {
+  return transferSpkGeneralByKc('spkcc_spk_send', from , to, amount, memo);
+};
+
+export const transferLarynxByKc = async (
+  from: string,
+  to: string,
+  amount: string,
+  memo: string
+) => {
+  return transferSpkGeneralByKc('spkcc_send', from , to, amount, memo);
+};

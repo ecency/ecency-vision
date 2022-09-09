@@ -7,7 +7,6 @@ import { getSpkWallet } from '../../api/spk-api';
 import { WalletSpkSection } from './wallet-spk-section';
 import { SendSpkDialog } from './send-spk-dialog';
 import { ActiveUser } from '../../store/active-user/types';
-import { Button } from 'react-bootstrap';
 import { History } from 'history';
 import { Transactions } from '../../store/transactions/types';
 
@@ -28,6 +27,7 @@ interface State {
   larynxPowerBalance: string;
   estimatedBalance: string;
   sendSpkShow: boolean;
+  selectedAsset: 'SPK' | 'LARYNX';
 }
 
 class WalletSpk extends Component<Props, State> {
@@ -40,7 +40,8 @@ class WalletSpk extends Component<Props, State> {
       larynxPowerBalance: '0',
       larynxTokenBalance: '0',
       estimatedBalance: '0',
-      sendSpkShow: false
+      sendSpkShow: false,
+      selectedAsset: 'SPK'
     };
   }
 
@@ -65,6 +66,17 @@ class WalletSpk extends Component<Props, State> {
   }
 
   render() {
+    let balance = '0';
+
+    switch (this.state.selectedAsset) {
+      case 'SPK':
+        balance = this.state.tokenBalance;
+        break;
+      case 'LARYNX':
+        balance = this.state.larynxTokenBalance;
+        break;
+    }
+
     return <div className="wallet-hive">
       <div className="wallet-main">
         <div className="wallet-info">
@@ -72,15 +84,11 @@ class WalletSpk extends Component<Props, State> {
             {...this.props}
             items={[{
               label: _t('wallet.transfer'),
-              onClick: () => this.setState({ sendSpkShow: true })
+              onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'SPK' })
             }]}
             title={_t('wallet.spk.token')}
             description={_t('wallet.spk.token-description')}
             amountSlot={<>{this.state.tokenBalance} SPK</>}
-            actionSlot={<Button
-              variant={'primary'}
-              onClick={() => this.setState({ sendSpkShow: true })}
-            >{_t('wallet.spk.send.button')}</Button>}
           />
           <WalletSpkSection
             {...this.props}
@@ -93,7 +101,10 @@ class WalletSpk extends Component<Props, State> {
           />
           <WalletSpkSection
             {...this.props}
-            items={[]}
+            items={[{
+              label: _t('wallet.transfer'),
+              onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LARYNX' })
+            }]}
             title={_t('wallet.spk.larynx-token')}
             description={_t('wallet.spk.larynx-token-description')}
             amountSlot={<>{this.state.larynxTokenBalance} LARYNX</>}
@@ -128,13 +139,14 @@ class WalletSpk extends Component<Props, State> {
       </div>
 
       <SendSpkDialog
+        asset={this.state.selectedAsset}
         transactions={this.props.transactions}
         global={this.props.global}
         account={this.props.account}
         show={this.state.sendSpkShow}
         setShow={(v: boolean) => this.setState({ sendSpkShow: v })}
         activeUser={this.props.activeUser}
-        balance={this.state.tokenBalance}
+        balance={balance}
         addAccount={this.props.addAccount}
         updateActiveUser={this.props.updateActiveUser}
         onFinish={() => this.fetch()}

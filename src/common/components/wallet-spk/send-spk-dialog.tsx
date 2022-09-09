@@ -23,9 +23,10 @@ interface Props {
   updateActiveUser: (account: Account) => void;
   onFinish: () => void;
   transactions: Transactions;
+  asset: 'SPK' | 'LARYNX';
 }
 
-export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addAccount, updateActiveUser, onFinish, transactions }: Props) => {
+export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addAccount, updateActiveUser, onFinish, transactions, asset }: Props) => {
   const [username, setUsername] = useState('');
   const [amount, setAmount] = useState('0');
   const [memo, setMemo] = useState('');
@@ -98,7 +99,7 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
             setUsername={setUsername}
             setAmount={setAmount}
             submit={() => steps[stepIndex]?.submit()}
-            asset="SPK"
+            asset={asset}
           /> : <></>}
 
           {stepIndex === 1 ? <SendSpkDialogConfirm
@@ -109,14 +110,13 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
             to={username}
             memo={memo}
             amount={amount}
-            asset="SPK"
+            asset={asset}
             back={() => setStepIndex(stepIndex - 1)}
             confirm={() => steps[stepIndex]?.submit()}
           /> : <></>}
           {stepIndex === 2 ? <SendSpkDialogSign
-            username={username}
             global={global}
-            asset="SPK"
+            asset={asset}
             mode="transfer"
             memo={memo}
             activeUser={activeUser}
@@ -130,7 +130,7 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
           {stepIndex === 3 ? <SendSpkSuccess
             amount={amount}
             activeUser={activeUser}
-            asset="SPK"
+            asset={asset}
             reset={() => clear()}
             onFinish={() => {
               setShow(false);

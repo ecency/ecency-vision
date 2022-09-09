@@ -81,14 +81,11 @@ export const SendSpkDialogForm = ({ activeUser, amount, setUsername, setAmount, 
             value={amount}
             onChange={((event) => setAmount(event.target.value))}
           />
-          <div className="align-self-center ml-1">SPK</div>
+          <div className="align-self-center ml-1">{asset}</div>
         </InputGroup>
         <div className="balance">
           <span className="balance-label">{_t('transfer.balance')}{': '}</span>
           <span className="balance-num" onClick={() => setAmount(balance)}>{balance} {asset}</span>
-          {asset === 'HP' && (
-            <div className="balance-hp-hint">{_t('transfer.available-hp-hint')}</div>
-          )}
         </div>
       </>
     </WalletSpkGroup>

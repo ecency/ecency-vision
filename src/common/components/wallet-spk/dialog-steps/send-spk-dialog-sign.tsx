@@ -9,7 +9,7 @@ import { getAccountFull } from '../../../api/hive';
 import { error } from '../../feedback';
 import { PrivateKey } from '@hiveio/dhive';
 import { Account } from '../../../store/accounts/types';
-import { sendSpk, transferSpkByKc, transferSpkByKey } from '../../../api/spk-api';
+import { transferByHs, transferByKc, transferByKey } from './util';
 
 interface Props {
   global: Global;
@@ -23,10 +23,9 @@ interface Props {
   to: string;
   addAccount: (account: Account) => void;
   updateActiveUser: (account: Account) => void;
-  username: string;
 }
 
-export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, memo, mode, setNextStep, to, addAccount, updateActiveUser, username }: Props) => {
+export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, memo, mode, setNextStep, to, addAccount, updateActiveUser }: Props) => {
   const [inProgress, setInProgress] = useState(false);
   const [signingKey, setSigningKey] = useState('');
 
@@ -36,16 +35,7 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
     let promise: Promise<any>;
     switch (mode) {
       case 'transfer':
-        // Perform HE operation
-        promise = transferSpkByKey(username, key, to, amount, memo);
-        break;
-      case 'delegate':
-        break;
-      case 'undelegate':
-        break;
-      case 'stake':
-        break;
-      case 'unstake':
+        promise = transferByKey(key, asset, username, to, amount, memo);
         break;
       default:
         return;
@@ -55,7 +45,13 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
   }
 
   const signHs = () => {
-    sendSpk(activeUser!.username, username, amount, memo);
+    switch (mode) {
+      case 'transfer':
+        transferByHs(asset, activeUser!.username, to, amount, memo);
+        break;
+      default:
+        return;
+    }
   }
 
   const signKs = async () => {
@@ -64,16 +60,7 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
     let promise: Promise<any>;
     switch (mode) {
       case 'transfer':
-        // Perform HE operation
-        promise = transferSpkByKc(username, to, amount, memo);
-        break;
-      case 'delegate':
-        break;
-      case 'undelegate':
-        break;
-      case 'stake':
-        break;
-      case 'unstake':
+        promise = transferByKc(asset, username, to, amount, memo);
         break;
       default:
         return;
