@@ -12,7 +12,7 @@ interface Props {
   setUsername: (value: string) => void;
   activeUser: ActiveUser | null;
   excludeActiveUser?: boolean;
-  recent: string[];
+  recent?: string[];
 }
 
 export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser, recent }: Props) => {
@@ -25,7 +25,9 @@ export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser, r
   useEffect(() => {
     if (!usernameInput) {
       setUsername('');
-      setUsernameData(recent);
+      if (recent) {
+        setUsernameData(recent);
+      }
     }
     fetchUsernameData(usernameInput);
   }, [usernameInput]);
