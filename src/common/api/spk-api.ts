@@ -69,7 +69,7 @@ export const transferSpkByKey = async (
   const json = JSON.stringify({
     to,
     amount,
-    ...(memo ? { memo } : {})
+    memo: memo || ''
   });
 
   const op = {
@@ -91,7 +91,7 @@ export const transferSpkByKc = async (
   const json = JSON.stringify({
     to,
     amount,
-    ...(memo ? { memo } : {})
+    memo: memo || ''
   });
   return keychain.customJson(from, 'spkcc_spk_send', 'Active', json, '', '');
 }
