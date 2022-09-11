@@ -37,8 +37,8 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
   const precision = (balance + "").split(".")[1]?.length || 3;
   const steps = [
     {
-      title: 'wallet.spk.send.title',
-      subtitle: 'wallet.spk.send.subtitle',
+      title: type === 'delegate' ? 'wallet.spk.delegate.title' : 'wallet.spk.send.title',
+      subtitle: type === 'delegate' ? 'wallet.spk.delegate.subtitle' : 'wallet.spk.send.subtitle',
       submit: () => {
         // make sure 3 decimals in amount
         const fixedAmount = formatNumber(amount, precision);
@@ -154,7 +154,7 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
               onFinish();
             }}
             to={username}
-            mode="transfer"
+            mode={type}
           /> : <></>}
         </>
       </WalletSpkSteps>

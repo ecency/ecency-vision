@@ -644,6 +644,8 @@
     "reserved-amount": "Reserved for Open order in Market",
     "spk": {
       "delegate": {
+        "title": "Delegate",
+        "subtitle": "Delegate tokens",
         "node-operator-placeholder": "Select a node operator"
       },
       "send": {
