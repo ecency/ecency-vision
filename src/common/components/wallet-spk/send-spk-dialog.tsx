@@ -5,6 +5,7 @@ import './wallet-spk-dialog.scss';
 import { Account } from '../../store/accounts/types';
 import { WalletSpkSteps } from './wallet-spk-steps';
 import { SendSpkDialogForm } from './dialog-steps/send-spk-dialog-form';
+import { SendSpkDialogDelegateForm } from './dialog-steps/send-spk-dialog-delegate-form';
 import { SendSpkDialogConfirm } from './dialog-steps/send-spk-dialog-confirm';
 import { Global } from '../../store/global/types';
 import numeral from 'numeral';
@@ -23,10 +24,11 @@ interface Props {
   updateActiveUser: (account: Account) => void;
   onFinish: () => void;
   transactions: Transactions;
-  asset: 'SPK' | 'LARYNX';
+  asset: 'SPK' | 'LARYNX' | 'LP';
+  type: 'transfer' | 'delegate';
 }
 
-export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addAccount, updateActiveUser, onFinish, transactions, asset }: Props) => {
+export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addAccount, updateActiveUser, onFinish, transactions, asset, type }: Props) => {
   const [username, setUsername] = useState('');
   const [amount, setAmount] = useState('0');
   const [memo, setMemo] = useState('');
@@ -88,7 +90,21 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
     <Modal.Body>
       <WalletSpkSteps steps={steps} stepIndex={stepIndex}>
         <>
-          {stepIndex === 0 ? <SendSpkDialogForm
+          {stepIndex === 0 && type === 'transfer' ? <SendSpkDialogForm
+            transactions={transactions}
+            username={username}
+            activeUser={activeUser}
+            amount={amount}
+            balance={balance}
+            memo={memo}
+            setMemo={setMemo}
+            setUsername={setUsername}
+            setAmount={setAmount}
+            submit={() => steps[stepIndex]?.submit()}
+            asset={asset}
+          /> : <></>}
+
+          {stepIndex === 0 && type === 'delegate' ? <SendSpkDialogDelegateForm
             transactions={transactions}
             username={username}
             activeUser={activeUser}
@@ -117,7 +133,7 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
           {stepIndex === 2 ? <SendSpkDialogSign
             global={global}
             asset={asset}
-            mode="transfer"
+            mode={type}
             memo={memo}
             activeUser={activeUser}
             onBack={() => setStepIndex(stepIndex - 1)}

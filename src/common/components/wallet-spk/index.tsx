@@ -27,7 +27,8 @@ interface State {
   larynxPowerBalance: string;
   estimatedBalance: string;
   sendSpkShow: boolean;
-  selectedAsset: 'SPK' | 'LARYNX';
+  selectedAsset: 'SPK' | 'LARYNX' | 'LP';
+  selectedType: 'transfer' | 'delegate';
 }
 
 class WalletSpk extends Component<Props, State> {
@@ -41,7 +42,8 @@ class WalletSpk extends Component<Props, State> {
       larynxTokenBalance: '0',
       estimatedBalance: '0',
       sendSpkShow: false,
-      selectedAsset: 'SPK'
+      selectedAsset: 'SPK',
+      selectedType: 'transfer'
     };
   }
 
@@ -73,7 +75,11 @@ class WalletSpk extends Component<Props, State> {
         balance = this.state.tokenBalance;
         break;
       case 'LARYNX':
-        balance = this.state.larynxTokenBalance;
+        if (this.state.selectedType === 'transfer') {
+          balance = this.state.larynxTokenBalance;
+        } else if (this.state.selectedType === 'delegate') {
+          balance = this.state.larynxPowerBalance;
+        }
         break;
     }
 
@@ -84,7 +90,7 @@ class WalletSpk extends Component<Props, State> {
             {...this.props}
             items={[{
               label: _t('wallet.transfer'),
-              onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'SPK' })
+              onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'SPK', selectedType: 'transfer' })
             }]}
             title={_t('wallet.spk.token')}
             description={_t('wallet.spk.token-description')}
@@ -103,7 +109,7 @@ class WalletSpk extends Component<Props, State> {
             {...this.props}
             items={[{
               label: _t('wallet.transfer'),
-              onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LARYNX' })
+              onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LARYNX', selectedType: 'transfer' })
             }]}
             title={_t('wallet.spk.larynx-token')}
             description={_t('wallet.spk.larynx-token-description')}
@@ -111,7 +117,6 @@ class WalletSpk extends Component<Props, State> {
           />
           <WalletSpkSection
             {...this.props}
-            items={[]}
             isAlternative={true}
             title={_t('wallet.spk.larynx-power')}
             description={_t('wallet.spk.larynx-power-description')}
@@ -126,6 +131,10 @@ class WalletSpk extends Component<Props, State> {
               </ul>
             </div>}
             amountSlot={<>{this.state.larynxPowerBalance} LP</>}
+            items={[{
+              label: _t('wallet.delegate'),
+              onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'delegate' })
+            }]}
           />
           <WalletSpkSection
             {...this.props}
@@ -139,6 +148,7 @@ class WalletSpk extends Component<Props, State> {
       </div>
 
       <SendSpkDialog
+        type={this.state.selectedType}
         asset={this.state.selectedAsset}
         transactions={this.props.transactions}
         global={this.props.global}

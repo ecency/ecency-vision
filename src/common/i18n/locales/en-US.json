@@ -643,6 +643,9 @@
     "withdrawing-amount": "Withdrawing from Savings",
     "reserved-amount": "Reserved for Open order in Market",
     "spk": {
+      "delegate": {
+        "node-operator-placeholder": "Select a node operator"
+      },
       "send": {
         "balance": "Balance",
         "button": "Send",

@@ -9,7 +9,7 @@ import { getAccountFull } from '../../../api/hive';
 import { error } from '../../feedback';
 import { PrivateKey } from '@hiveio/dhive';
 import { Account } from '../../../store/accounts/types';
-import { transferByHs, transferByKc, transferByKey } from './util';
+import { delegateByHs, delegateByKc, delegateByKey, transferByHs, transferByKc, transferByKey } from './util';
 
 interface Props {
   global: Global;
@@ -37,6 +37,9 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
       case 'transfer':
         promise = transferByKey(key, asset, username, to, amount, memo);
         break;
+      case 'delegate':
+        promise = delegateByKey(key, asset, username, to, amount);
+        break;
       default:
         return;
     }
@@ -48,6 +51,9 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
     switch (mode) {
       case 'transfer':
         transferByHs(asset, activeUser!.username, to, amount, memo);
+        break;
+      case 'delegate':
+        delegateByHs(asset, activeUser!.username, to, amount);
         break;
       default:
         return;
@@ -61,6 +67,9 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
     switch (mode) {
       case 'transfer':
         promise = transferByKc(asset, username, to, amount, memo);
+        break;
+      case 'delegate':
+        promise = delegateByKc(asset, username, to, amount);
         break;
       default:
         return;
