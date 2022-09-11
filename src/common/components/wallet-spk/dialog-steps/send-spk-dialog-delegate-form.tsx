@@ -22,7 +22,7 @@ interface Props {
 
 export const SendSpkDialogDelegateForm = ({ activeUser, amount, username, setUsername, setAmount, balance, submit, asset }: Props) => {
   const [markets, setMarkets] = useState<Market[]>([]);
-  const selectRef = useRef<HTMLSelectElement>();
+  const selectRef = useRef<any>();
 
   useEffect(() => {
     getMarkets()
