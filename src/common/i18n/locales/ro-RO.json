@@ -1133,7 +1133,9 @@
     "proxy-active-description": "Ai setat un proxy de votare. Dacă vrei să activezi votarea manuală, te rugăm să-ți deselectezi proxy-ul.",
     "proxy-active-current": "Proxy-ul tău actual este",
     "proxy-active-btn-label": "Elimină Proxy",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-votes-for": "@{{username}} votes for",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
