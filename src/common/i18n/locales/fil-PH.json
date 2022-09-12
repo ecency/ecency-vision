@@ -1133,7 +1133,9 @@
     "proxy-active-description": "Nagtalaga ka ng kinatawan. Kung gusto mong i-enable muli ang iyong manual na pagboto, maaring tanggalin ang iyong kinatawan.",
     "proxy-active-current": "Ang iyong kasalukuyang kinatawan ay",
     "proxy-active-btn-label": "Tanggalin ang Kinatawan",
-    "proxy-votes-for": "@{{username}} ibinoto si"
+    "proxy-votes-for": "@{{username}} ibinoto si",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
