@@ -66,6 +66,7 @@ export interface FullAccount {
   profile?: AccountProfile;
   follow_stats?: AccountFollowStats;
   __loaded?: true;
+  proxyVotes?: [];
 }
 
 export type Account = FullAccount | BaseAccount;

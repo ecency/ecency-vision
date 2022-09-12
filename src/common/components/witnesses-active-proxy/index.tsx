@@ -21,7 +21,6 @@ import { getAccount } from "../../api/hive";
 import { formatError, witnessProxy, witnessProxyHot, witnessProxyKc } from "../../api/operations";
 
 import { _t } from "../../i18n";
-
 interface Props {
   history: History;
   global: Global;
@@ -37,34 +36,29 @@ interface Props {
   setSigningKey: (key: string) => void;
   username: string;
   onDone: () => void;
+  isProxy: boolean;
 }
-
 interface State {
   account: FullAccount | null;
   inProgress: boolean;
 }
-
 export class WitnessesActiveProxy extends BaseComponent<Props, State> {
   state: State = {
     account: null,
     inProgress: false
   };
-
   componentDidMount() {
     const { username } = this.props;
     getAccount(username).then((account) => {
       this.stateSet({ account });
     });
   }
-
   proxy = (fn: any, args: any[]) => {
     const { onDone } = this.props;
     const fnArgs = [...args];
     const call = fn(...fnArgs);
-
     if (typeof call?.then === "function") {
       this.stateSet({ inProgress: true });
-
       call
         .then(() => {
           onDone();
@@ -77,11 +71,9 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
         });
     }
   };
-
   render() {
     const { inProgress, account } = this.state;
     const { activeUser, username } = this.props;
-
     const spinner = (
       <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
     );
@@ -112,44 +104,39 @@ export class WitnessesActiveProxy extends BaseComponent<Props, State> {
         });
 
     return (
-      <div className="witnesses-active-proxy">
-        <p className="description">{_t("witnesses.proxy-active-description")}</p>
-        <div className="proxy-form">
+      <div className="witnesses-active-proxy" style={{ marginBottom: "50px" }}>
+        {this.props.isProxy ? (
+          <>
+            <p className="description">{_t("witnesses.proxy-active-description")}</p>
+            <div className="proxy-form">
+              <div className="current-proxy">
+                {_t("witnesses.proxy-active-current")}{" "}
+                {ProfileLink({
+                  ...this.props,
+                  username,
+                  children: <span>{`@${username}`}</span>
+                })}
+              </div>
+
+              {theBtn}
+
+              <p className="description">{_t("witnesses.proxy-active-highlighted")}</p>
+            </div>
+          </>
+        ) : (
           <div className="current-proxy">
-            {_t("witnesses.proxy-active-current")}{" "}
             {ProfileLink({
               ...this.props,
               username,
-              children: <span>{`@${username}`}</span>
-            })}
+              children: <span>{`@${username}'s`}</span>
+            })}{" "}
+            {_t("witnesses.check-witness-highlighted")}
           </div>
-
-          {theBtn}
-
-          {account && account.witness_votes && account.witness_votes.length > 0 && (
-            <div className="proxy-votes">
-              <div className="proxy-votes-title">
-                {_t("witnesses.proxy-votes-for", { username })}
-              </div>
-              {account.witness_votes.map((x) => {
-                return (
-                  <div className="proxy-votes-item" key={x}>
-                    {ProfileLink({
-                      ...this.props,
-                      username,
-                      children: <span>{`@${x}`}</span>
-                    })}
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
+        )}
       </div>
     );
   }
 }
-
 export default (p: Props) => {
   const props: Props = {
     history: p.history,
@@ -165,8 +152,8 @@ export default (p: Props) => {
     toggleUIProp: p.toggleUIProp,
     setSigningKey: p.setSigningKey,
     username: p.username,
-    onDone: p.onDone
+    onDone: p.onDone,
+    isProxy: p.isProxy
   };
-
   return <WitnessesActiveProxy {...props} />;
 };

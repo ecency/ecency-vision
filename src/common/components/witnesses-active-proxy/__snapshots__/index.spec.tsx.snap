@@ -3,74 +3,23 @@
 exports[`(1) Default render 1`] = `
 <div
   className="witnesses-active-proxy"
+  style={
+    Object {
+      "marginBottom": "50px",
+    }
+  }
 >
-  <p
-    className="description"
-  >
-    You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.
-  </p>
   <div
-    className="proxy-form"
+    className="current-proxy"
   >
-    <div
-      className="current-proxy"
-    >
-      Your current proxy is
-       
-      <a
-        href="/@foo"
-        onClick={[Function]}
-      >
-        @foo
-      </a>
-    </div>
-    <button
-      className="btn btn-primary"
-      disabled={false}
+    <a
+      href="/@foo"
       onClick={[Function]}
-      type="button"
     >
-      Clear Proxy
-    </button>
-    <div
-      className="proxy-votes"
-    >
-      <div
-        className="proxy-votes-title"
-      >
-        @foo votes for
-      </div>
-      <div
-        className="proxy-votes-item"
-      >
-        <a
-          href="/@foo"
-          onClick={[Function]}
-        >
-          @blocktrades
-        </a>
-      </div>
-      <div
-        className="proxy-votes-item"
-      >
-        <a
-          href="/@foo"
-          onClick={[Function]}
-        >
-          @good-karma
-        </a>
-      </div>
-      <div
-        className="proxy-votes-item"
-      >
-        <a
-          href="/@foo"
-          onClick={[Function]}
-        >
-          @gtg
-        </a>
-      </div>
-    </div>
+      @foo's
+    </a>
+     
+    votes are highlighted
   </div>
 </div>
 `;

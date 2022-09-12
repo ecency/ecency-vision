@@ -100,7 +100,8 @@ const transform = (list: Witness[]): WitnessTransformed[] => {
 interface State {
   witnesses: WitnessTransformed[];
   witnessVotes: string[];
-  proxy: string | null;
+  proxyVotes: string[];
+  proxy: string;
   loading: boolean;
 }
 
@@ -108,7 +109,8 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
   state: State = {
     witnesses: [],
     witnessVotes: [],
-    proxy: null,
+    proxyVotes: [],
+    proxy: "",
     loading: true
   };
 
@@ -123,20 +125,36 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         this.load();
       });
     }
+    if (this.state.proxy !== prevState.proxy) {
+      this.stateSet({ loading: true }, () => {
+        this.load();
+      });
+    }
   }
 
   load = async () => {
     this.stateSet({ loading: true });
 
-    const { activeUser } = this.props;
+    const { activeUser, location } = this.props;
+    let params = location.search.split("=")[1];
     if (activeUser) {
       const resp = await getAccount(activeUser.username);
       const { witness_votes: witnessVotes, proxy } = resp;
-      this.stateSet({ witnessVotes: witnessVotes || [], proxy: proxy || null });
-    } else {
-      this.stateSet({ witnessVotes: [], proxy: null });
-    }
+      let data = await getAccount(params || proxy);
 
+      if (params && data.proxy) {
+        params = data.proxy;
+        data = await getAccount(data.proxy);
+      }
+
+      this.stateSet({
+        witnessVotes: witnessVotes || [],
+        proxyVotes: data ? data.witness_votes : [],
+        proxy: proxy || ""
+      });
+    } else {
+      this.stateSet({ witnessVotes: [], proxy: "" });
+    }
     const witnesses = await getWitnessesByVote();
     await this.getWitness(transform(witnesses));
   };
@@ -189,7 +207,8 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
       description: _t("witnesses.page-description")
     };
 
-    const { global, activeUser } = this.props;
+    const { global, activeUser, location } = this.props;
+    let params = location.search.split("=")[1];
     const { witnesses, loading, witnessVotes, proxy } = this.state;
     const extraWitnesses = witnessVotes.filter((w) => !witnesses.find((y) => y.name === w));
 
@@ -210,7 +229,10 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
           <tbody>
             {witnesses.map((row, i) => {
               return (
-                <tr key={row.rank}>
+                <tr
+                  key={`${row.name}-${row.rank}${i}`}
+                  className={`${this.state.proxyVotes.includes(row.name) ? "voted-by-voter" : ""}`}
+                >
                   <td>
                     <div className="witness-rank">
                       <span className="rank-number">{row.rank}</span>
@@ -262,7 +284,6 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                   <td>
                     {(() => {
                       const { parsedUrl } = row;
-
                       if (parsedUrl) {
                         return (
                           <EntryLink {...this.props} entry={parsedUrl}>
@@ -270,7 +291,6 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
                           </EntryLink>
                         );
                       }
-
                       return (
                         <a target="_external" href={row.url} className="witness-link">
                           {openInNewSvg}
@@ -301,20 +321,26 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         <div className="d-md-none">
           {witnesses.map((row, i) => {
             return (
-              <WitnessCard
-                voted={witnessVotes.includes(row.name)}
-                witness={row.name}
-                row={row}
-                key={i}
-                onSuccess={(approve: any) => {
-                  if (approve) {
-                    this.addWitness(row.name);
-                  } else {
-                    this.deleteWitness(row.name);
-                  }
-                }}
-                {...this.props}
-              />
+              <span key={`${row.name}${i}`}>
+                <div
+                  className={`${this.state.proxyVotes.includes(row.name) ? "voted-by-voter" : ""}`}
+                >
+                  <WitnessCard
+                    voted={witnessVotes.includes(row.name)}
+                    witness={row.name}
+                    row={row}
+                    key={`${row.name}-${i}`}
+                    onSuccess={(approve: any) => {
+                      if (approve) {
+                        this.addWitness(row.name);
+                      } else {
+                        this.deleteWitness(row.name);
+                      }
+                    }}
+                    {...this.props}
+                  />
+                </div>
+              </span>
             );
           })}
         </div>
@@ -360,43 +386,75 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
               );
             }
 
-            if (proxy) {
-              return (
-                <>
-                  {header}
-                  <WitnessesActiveProxy
-                    {...this.props}
-                    username={proxy}
-                    onDone={() => {
-                      this.stateSet({ proxy: null });
-                    }}
-                  />
-                </>
-              );
-            }
+            // if (proxy) {
+            //     return <>
+            //         {header}
+            //         <WitnessesActiveProxy
+            //             {...this.props}
+            //             username={proxy}
+            //             onDone={() => {
+            //                 this.stateSet({proxy: null});
+            //             }}
+            //         />
+            //     </>
+            // }
 
             return (
               <>
                 {header}
+
+                <div>
+                  {proxy || params ? (
+                    <WitnessesActiveProxy
+                      {...this.props}
+                      isProxy={!params ? true : false}
+                      username={params || proxy}
+                      onDone={() => {
+                        this.stateSet({ proxy: "" });
+                      }}
+                    />
+                  ) : null}
+                </div>
+
                 <div className="table-responsive witnesses-table">{table}</div>
                 <div className="witnesses-controls">
-                  {WitnessesExtra({
-                    ...this.props,
-                    list: extraWitnesses,
-                    onAdd: (name) => {
-                      this.addWitness(name);
-                    },
-                    onDelete: (name) => {
-                      this.deleteWitness(name);
-                    }
-                  })}
+                  {!proxy
+                    ? WitnessesExtra({
+                        ...this.props,
+                        list: extraWitnesses,
+                        onAdd: (name) => {
+                          this.addWitness(name);
+                        },
+                        onDelete: (name) => {
+                          this.deleteWitness(name);
+                        }
+                      })
+                    : null}
                   <div className="flex-spacer" />
-                  {WitnessesProxy({
-                    ...this.props,
-                    onDone: (username) => {
-                      this.stateSet({ proxy: username, witnesses: [] });
-                    }
-                  })}
+
+                  {!proxy
+                    ? WitnessesProxy({
+                        ...this.props,
+                        onDone: (username) => {
+                          this.stateSet({ proxy: username, witnesses: [] });
+                        }
+                      })
+                    : null}
+
+                  {/* {!proxy ? WitnessesProxy({
+                                    ...this.props,
+                                    onDone: (username) => {
+                                        this.stateSet({proxy: username, witnesses: []});
+                                    }
+                                }) : (
+                                    <WitnessesActiveProxy
+                                    {...this.props}
+                                    username={proxy}
+                                    onDone={() => {
+                                        this.stateSet({proxy: ''});
+                                    }}
+                                />
+                                )} */}
                 </div>
               </>
             );

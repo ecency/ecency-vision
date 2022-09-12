@@ -29,7 +29,8 @@ const defProps = {
   toggleUIProp: () => {},
   setSigningKey: () => {},
   username: "foo",
-  onDone: () => {}
+  onDone: () => {},
+  isProxy: false
 };
 
 it("(1) Default render", async () => {
