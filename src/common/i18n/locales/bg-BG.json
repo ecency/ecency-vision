@@ -1133,7 +1133,9 @@
     "proxy-active-description": "Избрали сте прокси за гласуване. Ако желаете да възобновите ръчното гласуване, моля премахнете проксито си.",
     "proxy-active-current": "Вашето текущо прокси е",
     "proxy-active-btn-label": "Изчисти Прокси",
-    "proxy-votes-for": "@{{username}} гласове за"
+    "proxy-votes-for": "@{{username}} гласове за",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
