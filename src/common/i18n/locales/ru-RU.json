@@ -1133,7 +1133,9 @@
     "proxy-active-description": "У вас установлен прокси для голосования. Если вы хотите вернуть голосование вручную, пожалуйста, очистите ваш прокси.",
     "proxy-active-current": "Ваш действующий прокси",
     "proxy-active-btn-label": "Очистить прокси",
-    "proxy-votes-for": "@{{username}} голосует за"
+    "proxy-votes-for": "@{{username}} голосует за",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Рефералы",
