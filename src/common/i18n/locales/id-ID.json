@@ -1133,7 +1133,9 @@
     "proxy-active-description": "Anda telah menetapkan pemungutan suara proxy. Jika Anda ingin mengaktifkan kembali pemungutan suara secara manual, harap hapus proxy Anda.",
     "proxy-active-current": "Proxy anda sekarang",
     "proxy-active-btn-label": "Hapus proxy",
-    "proxy-votes-for": "@{{username}} vote untuk"
+    "proxy-votes-for": "@{{username}} vote untuk",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
