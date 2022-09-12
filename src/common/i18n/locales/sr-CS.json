@@ -1133,7 +1133,9 @@
     "proxy-active-description": "Podesili ste glasački proxy. Ukoliko želite da ponovo omogućite ručno glasanje, molimo uklonite proxy.",
     "proxy-active-current": "Vaš trenutni proxy je",
     "proxy-active-btn-label": "Uklonite proxy",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-votes-for": "@{{username}} votes for",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
