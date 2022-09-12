@@ -230,7 +230,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
             {witnesses.map((row, i) => {
               return (
                 <tr
-                  key={row.rank}
+                  key={`${row.name}-${row.rank}${i}`}
                   className={`${this.state.proxyVotes.includes(row.name) ? "voted-by-voter" : ""}`}
                 >
                   <td>
@@ -321,24 +321,26 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         <div className="d-md-none">
           {witnesses.map((row, i) => {
             return (
-              <>
-              <div className={`${this.state.proxyVotes.includes(row.name) ? "voted-by-voter" : ""}`}>
-              <WitnessCard
-                voted={witnessVotes.includes(row.name)}
-                witness={row.name}
-                row={row}
-                key={i}
-                onSuccess={(approve: any) => {
-                  if (approve) {
-                    this.addWitness(row.name);
-                  } else {
-                    this.deleteWitness(row.name);
-                  }
-                }}
-                {...this.props}
-              />
-              </div>
-              </>
+              <span key={`${row.name}${i}`}>
+                <div
+                  className={`${this.state.proxyVotes.includes(row.name) ? "voted-by-voter" : ""}`}
+                >
+                  <WitnessCard
+                    voted={witnessVotes.includes(row.name)}
+                    witness={row.name}
+                    row={row}
+                    key={`${row.name}-${i}`}
+                    onSuccess={(approve: any) => {
+                      if (approve) {
+                        this.addWitness(row.name);
+                      } else {
+                        this.deleteWitness(row.name);
+                      }
+                    }}
+                    {...this.props}
+                  />
+                </div>
+              </span>
             );
           })}
         </div>
