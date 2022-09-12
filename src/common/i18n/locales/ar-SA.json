@@ -1133,7 +1133,9 @@
     "proxy-active-description": "لقد قمت بتعيين وكيل التصويت. إذا كنت ترغب في إعادة تمكين التصويت اليدوي، الرجاء مسح الوكيل الخاص بك.",
     "proxy-active-current": "الوكيل الحالي الخاص بك هو",
     "proxy-active-btn-label": "مسح الوكيل",
-    "proxy-votes-for": "@{{username}} يصوت ل"
+    "proxy-votes-for": "@{{username}} يصوت ل",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
