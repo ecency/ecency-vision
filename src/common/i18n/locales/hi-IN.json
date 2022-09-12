@@ -1133,7 +1133,9 @@
     "proxy-active-description": "आपने एक मतदान प्रॉक्सी निर्धारित की है। यदि आप मैन्युअल मतदान को फिर से सक्षम करना चाहते हैं, तो कृपया अपना प्रॉक्सी साफ़ करें।",
     "proxy-active-current": "आपका वर्तमान प्रॉक्सी है",
     "proxy-active-btn-label": "प्रॉक्सी हटाये",
-    "proxy-votes-for": "@{{username}} के लिए वोट"
+    "proxy-votes-for": "@{{username}} के लिए वोट",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
