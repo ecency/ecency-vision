@@ -1133,7 +1133,9 @@
     "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
     "proxy-active-current": "Your current proxy is",
     "proxy-active-btn-label": "Clear Proxy",
-    "proxy-votes-for": "@{{username}} głosuje na"
+    "proxy-votes-for": "@{{username}} głosuje na",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
