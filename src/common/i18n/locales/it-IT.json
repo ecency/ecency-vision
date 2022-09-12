@@ -1133,7 +1133,9 @@
     "proxy-active-description": "Hai impostato un votante delegato. Se volessi riattivare il voto manuale, ti preghiamo di rimuovere il tuo delegato.",
     "proxy-active-current": "Attualmente, il tuo delegato è",
     "proxy-active-btn-label": "Rimuovi Delegato",
-    "proxy-votes-for": "@{{username}} vota per"
+    "proxy-votes-for": "@{{username}} vota per",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
