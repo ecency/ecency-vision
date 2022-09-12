@@ -1134,8 +1134,8 @@
     "proxy-active-current": "Tu proxy actual es",
     "proxy-active-btn-label": "Borrar proxy",
     "proxy-votes-for": "@{{username}} votos para",
-    "proxy-active-highlighted": "Your proxy votes are highlighted",
-    "check-witness-highlighted": "votes are highlighted"
+    "proxy-active-highlighted": "Tus votos de proxy están resaltados",
+    "check-witness-highlighted": "votos resaltados"
   },
   "referral": {
     "page-title": "Referidos",
