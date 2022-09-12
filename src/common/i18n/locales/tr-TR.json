@@ -1133,7 +1133,9 @@
     "proxy-active-description": "Bir oylama vekili ayarladınız. Manuel oylamayı yeniden etkinleştirmek istiyorsanız lütfen veikili kaldırın.",
     "proxy-active-current": "Mevcut vekiliniz",
     "proxy-active-btn-label": "Vekili Kaldır",
-    "proxy-votes-for": "@{{username}} şu postu oyladı"
+    "proxy-votes-for": "@{{username}} şu postu oyladı",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
