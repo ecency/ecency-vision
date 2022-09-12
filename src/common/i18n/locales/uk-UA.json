@@ -1133,7 +1133,9 @@
     "proxy-active-description": "Ви встановили proxy. Якщо ви бажаєте знов увімкнути голосування вручну, будь ласка, зніміть proxy.",
     "proxy-active-current": "Ваш поточний проксі є",
     "proxy-active-btn-label": "Зняти проксі",
-    "proxy-votes-for": "@{{username}} голосів за"
+    "proxy-votes-for": "@{{username}} голосів за",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
