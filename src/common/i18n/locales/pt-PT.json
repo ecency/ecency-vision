@@ -1133,7 +1133,9 @@
     "proxy-active-description": "Você definiu um proxy de votação. Se você deseja reativar as votações manuais, por favor, limpe seu proxy.",
     "proxy-active-current": "O teu proxy atual é",
     "proxy-active-btn-label": "Limpar o Proxy",
-    "proxy-votes-for": "@{{username}} votos para"
+    "proxy-votes-for": "@{{username}} votos para",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referências",
