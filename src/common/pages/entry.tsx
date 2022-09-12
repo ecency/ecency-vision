@@ -104,12 +104,15 @@ interface State {
   comment: string;
   editHistory: boolean;
   showProfileBox: boolean;
+  showWordCount: boolean;
   entryIsMuted: boolean;
   selection: string;
   isCommented: boolean;
   isMounted: boolean;
   postIsDeleted: boolean;
   deletedEntry: { title: string; body: string; tags: any } | null;
+  readTime: number;
+  wordCount: number;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -122,11 +125,14 @@ class EntryPage extends BaseComponent<Props, State> {
     comment: "",
     isCommented: false,
     showProfileBox: false,
+    showWordCount: false,
     entryIsMuted: false,
     isMounted: false,
     selection: "",
     postIsDeleted: false,
-    deletedEntry: null
+    deletedEntry: null,
+    readTime: 1,
+    wordCount: 0
   };
 
   commentInput: Ref<HTMLInputElement>;
@@ -150,7 +156,14 @@ class EntryPage extends BaseComponent<Props, State> {
     window.addEventListener("resize", this.detect);
     let replyDraft = ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`);
     replyDraft = (replyDraft && replyDraft.trim()) || "";
-    this.setState({ isMounted: true, selection: replyDraft });
+
+    const wordsWithoutSpace: any = entry?.body.trim()?.split(/\s+/);
+    const totalCount: number = wordsWithoutSpace.length;
+    const wordPerMinuite: number = 225;
+    const readTime: number = Math.ceil(totalCount / wordPerMinuite);
+
+    this.setState({ isMounted: true, selection: replyDraft, readTime, wordCount: totalCount });
+
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
@@ -197,12 +210,14 @@ class EntryPage extends BaseComponent<Props, State> {
 
   // detects distance between title and comments section sets visibility of profile card
   detect = () => {
-    const { showProfileBox } = this.state;
+    const { showProfileBox, showWordCount } = this.state;
     const infoCard: HTMLElement | null = document.getElementById("avatar-fixed-container");
+    const wordCounter: HTMLElement | null = document.getElementById("word-count");
     const top = this?.viewElement?.getBoundingClientRect()?.top || 120;
 
     if (infoCard != null && window.scrollY > 180 && top && !(top <= 0)) {
       infoCard.classList.replace("invisible", "visible");
+      console.log('word counter')
       if (!showProfileBox) {
         this.setState({ showProfileBox: true });
       }
@@ -217,8 +232,26 @@ class EntryPage extends BaseComponent<Props, State> {
         this.setState({ showProfileBox: false });
       }
     } else return;
-  };
 
+     if (wordCounter != null && window.scrollY > 180 && top && !(top <= 0)) {
+      wordCounter.classList.replace("visible", "invisible");
+      console.log('word counter')
+      if (!showWordCount) {
+        this.setState({ showWordCount: true });
+      }
+    } else if (wordCounter != null && window.scrollY <= 180) {
+      wordCounter.classList.replace("visible", "invisible");
+      if (showWordCount) {
+        this.setState({ showWordCount: false });
+      }
+    } else if (top && top <= 0 && wordCounter !== null) {
+      wordCounter.classList.replace("visible", "invisible");
+      if (showWordCount) {
+        this.setState({ showWordCount: false });
+      }
+    } else return;
+  };
+  
   updateReply = (text: string) => {
     const entry = this.getEntry();
     const { activeUser, updateReply } = this.props;
@@ -498,7 +531,8 @@ class EntryPage extends BaseComponent<Props, State> {
       /*commentText,*/ isMounted,
       postIsDeleted,
       deletedEntry,
-      showProfileBox
+      showProfileBox,
+      showWordCount
     } = this.state;
     const { global, history, match, location } = this.props;
 
@@ -543,7 +577,8 @@ class EntryPage extends BaseComponent<Props, State> {
                   <div className="mb-4 mt-5">
                     <div id="avatar-fixed-container" className="invisible">
                       {!global.isMobile && showProfileBox && (
-                        <AuthorInfoCard {...this.props} entry={{ author } as any} />
+                        <AuthorInfoCard {...this.props} entry={{ author } as any}  
+                        />
                       )}
                     </div>
                   </div>
@@ -664,9 +699,8 @@ class EntryPage extends BaseComponent<Props, State> {
                       <div className="cross-post-author">
                         {UserAvatar({ ...this.props, username: entry.author, size: "medium" })}
                         {`@${entry.author}`}
-                      </div>
-                    )
-                  })}
+                      </div>) 
+                })}
                 </div>
                 <div className="cross-post-community">
                   {Tag({
@@ -698,7 +732,7 @@ class EntryPage extends BaseComponent<Props, State> {
                           onClick={(e) => {
                             e.preventDefault();
                             this.stateSet({ showIfNsfw: true });
-                          }}
+                          }}          
                         >
                           {_t("nsfw.reveal")}
                         </a>{" "}
@@ -1015,6 +1049,12 @@ class EntryPage extends BaseComponent<Props, State> {
                                   extraMenuItems: extraItems
                                 })}
                             </div>
+
+                           {showWordCount && ( <div id="word-count" className="invisible">
+                                 <p>{_t("entry.post-word-count")} {' '} {this.state.wordCount}</p>
+                                 <p>{_t("entry.post-read-time")} {' '} {this.state.readTime} {' '} {_t("entry.post-read-minuites")}</p>
+                           </div>)}
+                        
                           </div>
                           <meta itemProp="headline name" content={entry.title} />
 
@@ -1064,7 +1104,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
                     {!global.isMobile && (
                       <div id="avatar-fixed-container" className="invisible">
-                        {showProfileBox && <AuthorInfoCard {...this.props} entry={entry} />}
+                        {showProfileBox && <AuthorInfoCard {...this.props} entry={entry}/>}
                       </div>
                     )}
 

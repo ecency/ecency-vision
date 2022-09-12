@@ -400,7 +400,10 @@
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
-    "community-in": "in"
+    "community-in": "in",
+    "post-word-count": "Total words:",
+    "post-read-time": "Read time:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "Edit History",

@@ -338,6 +338,13 @@
       }
     }
 
+    #word-count {
+      margin-left: 60%;
+      position: absolute;
+      color: #357ce6;
+      position: fixed;
+    }
+
     .entry-body {
       @include clearfix();
       padding: 0 0 2em 0;
