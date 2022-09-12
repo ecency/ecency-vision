@@ -1133,7 +1133,9 @@
     "proxy-active-description": "Έχετε ορίσει μεσολαβητή. Αν θέλετε να ψηφίζετε μόνοι σας για witness, παρακαλούμε αφαιρέστε τον μεσολαβητή σας.",
     "proxy-active-current": "Ο τρέχων μεσολαβητής σας είναι ο",
     "proxy-active-btn-label": "Αφαίρεση μεσολαβητή",
-    "proxy-votes-for": "@{{username}} ψηφίζει για"
+    "proxy-votes-for": "@{{username}} ψηφίζει για",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
