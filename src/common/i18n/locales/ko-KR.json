@@ -1133,7 +1133,9 @@
     "proxy-active-description": "투표 프록시를 설정했습니다. 다시 직접 투표하고 싶다면, 프록시 설정을 삭제해주세요.",
     "proxy-active-current": "현재 프록시",
     "proxy-active-btn-label": "프록시 삭제하기",
-    "proxy-votes-for": "@{{username}}의 투표는"
+    "proxy-votes-for": "@{{username}}의 투표는",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
