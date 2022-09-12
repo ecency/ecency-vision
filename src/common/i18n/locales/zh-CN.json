@@ -1133,7 +1133,9 @@
     "proxy-active-description": "您已经设置了一个投票代理。如果你想重启手动投票，请清除您的代理。",
     "proxy-active-current": "您当前的投票代理是",
     "proxy-active-btn-label": "清除代理",
-    "proxy-votes-for": "@{{username}} 投票给"
+    "proxy-votes-for": "@{{username}} 投票给",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
