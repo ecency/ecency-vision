@@ -233,19 +233,12 @@ class EntryPage extends BaseComponent<Props, State> {
       }
     } else return;
 
-     if (wordCounter != null && window.scrollY > 180 && top && !(top <= 0)) {
-      wordCounter.classList.replace("visible", "invisible");
-      console.log('word counter')
+    if (top && top > 0) {
       if (!showWordCount) {
         this.setState({ showWordCount: true });
       }
-    } else if (wordCounter != null && window.scrollY <= 180) {
-      wordCounter.classList.replace("visible", "invisible");
-      if (showWordCount) {
-        this.setState({ showWordCount: false });
-      }
-    } else if (top && top <= 0 && wordCounter !== null) {
-      wordCounter.classList.replace("visible", "invisible");
+    } else if (top && top < 0) {
+      wordCounter?.classList.replace("visible", "invisible");
       if (showWordCount) {
         this.setState({ showWordCount: false });
       }
@@ -1050,10 +1043,12 @@ class EntryPage extends BaseComponent<Props, State> {
                                 })}
                             </div>
 
-                           {showWordCount && ( <div id="word-count" className="invisible">
+                            {!global.isMobile && showWordCount && ( 
+                           <div id="word-count" className="visible hide-xl">
                                  <p>{_t("entry.post-word-count")} {' '} {this.state.wordCount}</p>
                                  <p>{_t("entry.post-read-time")} {' '} {this.state.readTime} {' '} {_t("entry.post-read-minuites")}</p>
-                           </div>)}
+                           </div>
+                           )} 
                         
                           </div>
                           <meta itemProp="headline name" content={entry.title} />
