@@ -344,7 +344,6 @@ export class DialogContent extends Component<NotificationProps, any> {
                 </span>
               }
               float="right"
-              notHideOnClick={true}
             />
           </div>
         </div>

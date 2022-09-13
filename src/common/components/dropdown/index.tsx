@@ -29,7 +29,6 @@ interface Props {
   items: MenuItem[];
   onShow?: () => void;
   onHide?: () => void;
-  notHideOnClick?: boolean;
   className?: string;
   withPadding?: boolean;
 }
@@ -92,9 +91,7 @@ const MyDropDown = (props: Props) => {
   };
 
   const itemClicked = (i: MenuItem) => {
-    if (props.notHideOnClick) {
-      hideMenu();
-    }
+    hideMenu();
 
     setTimeout(() => {
       if (i?.href) {
