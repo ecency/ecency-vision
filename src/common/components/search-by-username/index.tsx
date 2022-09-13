@@ -112,7 +112,10 @@ export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser, r
         autoFocus={true}
         placeholder=""
         value={usernameInput}
-        onChange={(e) => setUsernameInput(e.target.value)}
+        onChange={(e) => {
+          setUsernameInput(e.target.value);
+          setUsername(e.target.value);
+        }}
       />
     </InputGroup>
   </SuggestionList>

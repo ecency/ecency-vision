@@ -82,7 +82,10 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
     animation={false}
     show={show}
     centered={true}
-    onHide={setShow}
+    onHide={() => {
+      setShow(false);
+      clear();
+    }}
     keyboard={false}
     size="lg"
     className="send-spk-dialog modal-thin-header transfer-dialog-content">

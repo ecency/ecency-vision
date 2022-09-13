@@ -26,9 +26,9 @@ export const WalletSpkSection = (props: Props) => {
     </div>
     <div className="balance-values">
       <div className="amount">
-        <div className="amount-actions">
+        {props.items.length > 0 ? <div className="amount-actions">
           <DropDown history={props.history} label="" items={props.items} float="right" />
-        </div>
+        </div> : <></>}
         <span>{props.amountSlot}</span>
       </div>
     </div>

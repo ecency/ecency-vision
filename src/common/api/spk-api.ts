@@ -52,6 +52,12 @@ export interface Market {
   isAvailable: boolean;
 }
 
+export interface HivePrice {
+  hive: {
+    usd: number;
+  };
+}
+
 export const getSpkWallet = async (username: string): Promise<SpkApiWallet> => {
   const resp = await axios.get<SpkApiWallet>(`https://spkinstant.hivehoneycomb.com/@${username}`);
   return resp.data;
@@ -65,16 +71,30 @@ export const getMarkets = async (): Promise<Market[]> => {
   }));
 }
 
+export const getHivePrice = async (): Promise<HivePrice> => {
+  try {
+    const resp = await axios.get<HivePrice>('https://api.coingecko.com/api/v3/simple/price', {
+      params: {
+        ids: 'hive',
+        vs_currencies: 'usd'
+      }
+    });
+    return resp.data;
+  } catch (e) {
+    return { hive: { usd: 0 } }
+  }
+}
+
 const sendSpkGeneralByHs = (id: string, from: string, to: string, amount: string | number, memo?: string) => {
   const params = {
     authority: 'active',
-    required_auths: from,
+    required_auths: `["${from}"]`,
     required_posting_auths: '[]',
     id,
     json: JSON.stringify({
       to,
-      amount,
-      ...(typeof memo != 'string' ? { memo } : {})
+      amount: +amount * 1000,
+      ...(typeof memo === 'string' ? { memo } : {})
     })
   };
   const url = sdk.sign('custom_json', params, window.location.href);
@@ -93,8 +113,8 @@ const transferSpkGeneralByKey = async (
 ): Promise<TransactionConfirmation> => {
   const json = JSON.stringify({
     to,
-    amount,
-    ...(typeof memo != 'string' ? { memo } : {})
+    amount: +amount * 1000,
+    ...(typeof memo === 'string' ? { memo } : {})
   });
 
   const op = {
@@ -116,8 +136,8 @@ const transferSpkGeneralByKc = async (
 ) => {
   const json = JSON.stringify({
     to,
-    amount,
-    ...(typeof memo != 'string' ? { memo } : {})
+    amount: +amount * 1000,
+    ...(typeof memo === 'string' ? { memo } : {})
   });
   return keychain.customJson(from, id, 'Active', json, '', '');
 }

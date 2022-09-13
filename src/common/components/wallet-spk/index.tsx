@@ -3,7 +3,7 @@ import WalletMenu from '../wallet-menu';
 import { Global } from '../../store/global/types';
 import { Account } from '../../store/accounts/types';
 import { _t } from '../../i18n';
-import { getSpkWallet } from '../../api/spk-api';
+import { getHivePrice, getSpkWallet } from '../../api/spk-api';
 import { WalletSpkSection } from './wallet-spk-section';
 import { SendSpkDialog } from './send-spk-dialog';
 import { ActiveUser } from '../../store/active-user/types';
@@ -59,9 +59,13 @@ class WalletSpk extends Component<Props, State> {
         tokenBalance: format(wallet.spk / 1000),
         larynxAirBalance: format(wallet.drop.availible.amount / 1000),
         larynxTokenBalance: format(wallet.balance / 1000),
-        larynxPowerBalance: format(wallet.poweredUp / 1000),
-        estimatedBalance: format(wallet.balance / 1000)
-      })
+        larynxPowerBalance: format(wallet.poweredUp / 1000)
+      });
+
+      const hivePrice = await getHivePrice();
+      this.setState({
+        estimatedBalance: (((wallet.gov + wallet.poweredUp + wallet.claim + wallet.spk + wallet.balance) / 1000) * +wallet.tick * hivePrice.hive.usd).toFixed(2)
+      });
     } catch (e) {
       console.error(e);
     }
