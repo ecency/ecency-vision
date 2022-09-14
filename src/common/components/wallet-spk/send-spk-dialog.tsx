@@ -29,11 +29,12 @@ interface Props {
   asset: 'SPK' | 'LARYNX' | 'LP';
   type: 'transfer' | 'delegate' | 'claim' | 'powerup' | 'powerdown';
   prefilledTo?: string;
+  prefilledAmount?: string;
 }
 
-export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addAccount, updateActiveUser, onFinish, transactions, asset, type, prefilledTo }: Props) => {
+export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addAccount, updateActiveUser, onFinish, transactions, asset, type, prefilledTo, prefilledAmount }: Props) => {
   const [username, setUsername] = useState(prefilledTo || '');
-  const [amount, setAmount] = useState('0');
+  const [amount, setAmount] = useState(prefilledAmount || '0');
   const [memo, setMemo] = useState('');
   const [stepIndex, setStepIndex] = useState(0);
 
@@ -142,7 +143,7 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
             asset={asset}
           /> : <></>}
 
-          {stepIndex ===0 && type === 'claim' ? <SendSpkDialogClaimForm
+          {stepIndex === 0 && type === 'claim' ? <SendSpkDialogClaimForm
             activeUser={activeUser}
             submit={() => steps[stepIndex]?.submit()}
           /> : <></>}

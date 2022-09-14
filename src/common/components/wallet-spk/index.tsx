@@ -35,6 +35,7 @@ interface State {
   hasClaim: boolean;
   headBlock: number;
   powerDownList: string[];
+  prefilledAmount: string;
 }
 
 class WalletSpk extends Component<Props, State> {
@@ -53,7 +54,8 @@ class WalletSpk extends Component<Props, State> {
       selectedType: 'transfer',
       hasClaim: false,
       headBlock: 0,
-      powerDownList: []
+      powerDownList: [],
+      prefilledAmount: ''
     };
   }
 
@@ -168,7 +170,7 @@ class WalletSpk extends Component<Props, State> {
               <WalletSpkActivePowerDown
                 headBlock={this.state.headBlock}
                 powerUpList={this.state.powerDownList}
-                onStop={() => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'powerdown' })}
+                onStop={() => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'powerdown', prefilledAmount: '0' })}
               />
             </>}
             amountSlot={<div className="d-flex align-items-center">
@@ -199,6 +201,7 @@ class WalletSpk extends Component<Props, State> {
       </div>
 
       <SendSpkDialog
+        prefilledAmount={this.state.prefilledAmount}
         prefilledTo={this.props.isActiveUserWallet ? '' : this.props.account.name}
         type={this.state.selectedType}
         asset={this.state.selectedAsset}
