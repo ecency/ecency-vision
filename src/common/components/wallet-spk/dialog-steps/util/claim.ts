@@ -15,7 +15,7 @@ export const claimByKc = (asset: string, username: string) => {
     case 'LARYNX':
       return claimLarynxByKc(username);
     default:
-      throw new Error('Delegation modal not configured.');
+      throw new Error('Claiming modal not configured.');
   }
 }
 
@@ -25,6 +25,6 @@ export const claimByHs = (asset: string, from: string) => {
       claimLarynxByHs(from);
       break;
     default:
-      throw new Error('Delegation modal not configured.');
+      throw new Error('Claiming modal not configured.');
   }
 }

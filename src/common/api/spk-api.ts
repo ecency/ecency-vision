@@ -238,11 +238,11 @@ export const claimLarynxByKc = async (from: string) => {
   return keychain.customJson(from, 'spkcc_claim', 'Active', json, '', '');
 }
 
-export const powerUpLarynxByKey = async (from: string, key: PrivateKey, amount: string) => {
+export const powerLarynxByKey = async (mode: 'up' | 'down', from: string, key: PrivateKey, amount: string) => {
   const json = JSON.stringify({ amount: +amount * 1000 });
 
   const op = {
-    id: 'spkcc_power_up',
+    id: `spkcc_power_${mode}`,
     json,
     required_auths: [from],
     required_posting_auths: []
@@ -251,12 +251,12 @@ export const powerUpLarynxByKey = async (from: string, key: PrivateKey, amount: 
   return await hiveClient.broadcast.json(op, key);
 }
 
-export const powerUpLarynxByHs = (from: string, amount: string) => {
+export const powerLarynxByHs = (mode: 'up' | 'down', from: string, amount: string) => {
   const params = {
     authority: 'active',
     required_auths: `["${from}"]`,
     required_posting_auths: '[]',
-    id: 'spkcc_power_up',
+    id: `spkcc_power_${mode}`,
     json: JSON.stringify({ amount: +amount * 1000 })
   };
   const url = sdk.sign('custom_json', params, window.location.href);
@@ -265,7 +265,7 @@ export const powerUpLarynxByHs = (from: string, amount: string) => {
   }
 }
 
-export const powerUpLarynxByKc = async (from: string, amount: string) => {
+export const powerLarynxByKc = async (mode: 'up' | 'down', from: string, amount: string) => {
   const json = JSON.stringify({ amount: +amount * 1000 });
-  return keychain.customJson(from, 'spkcc_claim', 'Active', json, '', '');
+  return keychain.customJson(from, `spkcc_power_${mode}`, 'Active', json, '', '');
 }

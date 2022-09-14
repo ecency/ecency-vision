@@ -27,7 +27,7 @@ interface Props {
   onFinish: () => void;
   transactions: Transactions;
   asset: 'SPK' | 'LARYNX' | 'LP';
-  type: 'transfer' | 'delegate' | 'claim' | 'powerup';
+  type: 'transfer' | 'delegate' | 'claim' | 'powerup' | 'powerdown';
   prefilledTo?: string;
 }
 
@@ -44,6 +44,7 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
     if (type === 'transfer') return 'wallet.spk.send.title';
     if (type === 'claim') return 'wallet.spk.claim.title';
     if (type === 'powerup') return 'wallet.spk.power-up.title';
+    if (type === 'powerdown') return 'wallet.spk.power-down.title';
     return '';
   };
 
@@ -51,6 +52,7 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
     if (type === 'delegate') return 'wallet.spk.delegate.subtitle';
     if (type === 'transfer') return 'wallet.spk.send.subtitle';
     if (type === 'powerup') return 'wallet.spk.power-up.subtitle';
+    if (type === 'powerdown') return 'wallet.spk.power-down.subtitle';
     return '';
   }
 
@@ -145,7 +147,7 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
             submit={() => steps[stepIndex]?.submit()}
           /> : <></>}
 
-          {stepIndex === 0 && type === 'powerup' ? <SendSpkDialogPowerUpForm
+          {stepIndex === 0 && ['powerup', 'powerdown'].includes(type) ? <SendSpkDialogPowerUpForm
             activeUser={activeUser}
             amount={amount}
             balance={balance}
@@ -158,7 +160,7 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
             global={global}
             title={`${type}-title`}
             activeUser={activeUser}
-            showTo={!['claim', 'powerup'].includes(type)}
+            showTo={!['claim', 'powerup', 'powerdown'].includes(type)}
             to={username}
             memo={memo}
             amount={amount}

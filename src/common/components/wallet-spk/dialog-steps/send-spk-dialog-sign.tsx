@@ -12,7 +12,7 @@ import { Account } from '../../../store/accounts/types';
 import {
   claimByHs, claimByKc, claimByKey,
   delegateByHs, delegateByKc, delegateByKey,
-  powerUpByHs, powerUpByKc, powerUpByKey,
+  powerByHs, powerByKc, powerByKey,
   transferByHs, transferByKc, transferByKey
 } from './util';
 
@@ -23,7 +23,7 @@ interface Props {
   amount: string;
   asset: string;
   memo: string;
-  mode: 'transfer' | 'delegate' | 'claim' | 'powerup';
+  mode: 'transfer' | 'delegate' | 'claim' | 'powerup' | 'powerdown';
   setNextStep: () => void;
   to: string;
   addAccount: (account: Account) => void;
@@ -49,7 +49,10 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
         promise = claimByKey(key, asset, username);
         break;
       case 'powerup':
-        promise = powerUpByKey(key, asset, username, amount);
+        promise = powerByKey('up', key, asset, username, amount);
+        break;
+      case 'powerdown':
+        promise = powerByKey('down', key, asset, username, amount);
         break;
       default:
         return;
@@ -70,7 +73,10 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
         claimByHs(asset, activeUser!.username);
         break;
       case 'powerup':
-        powerUpByHs(asset, activeUser!.username, amount);
+        powerByHs('up', asset, activeUser!.username, amount);
+        break;
+      case 'powerdown':
+        powerByHs('down', asset, activeUser!.username, amount);
         break;
       default:
         return;
@@ -92,7 +98,10 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
         promise = claimByKc(asset, username);
         break;
       case 'powerup':
-        promise = powerUpByKc(asset, username, amount);
+        promise = powerByKc('up', asset, username, amount);
+        break;
+      case 'powerdown':
+        promise = powerByKc('down', asset, username, amount);
         break;
       default:
         return;

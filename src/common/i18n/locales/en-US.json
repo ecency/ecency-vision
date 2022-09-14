@@ -655,6 +655,10 @@
         "title": "Power up",
         "subtitle": "Power up to earn passive rewards"
       },
+      "power-down": {
+        "title": "Power down",
+        "subtitle": "Power down to earn passive rewards"
+      },
       "send": {
         "balance": "Balance",
         "button": "Send",
@@ -850,11 +854,15 @@
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
     "claim-interest-summary": "Interest claimed and added to your savings balance",
+    "claim-summary": "Claimed and added to your savings balance",
+    "powerup-summary": "Power up completed successfully",
+    "powerdown-summary": "Power down completed successfully",
     "reset": "Reset",
     "powering-down": "You are currently powering down.",
     "stop-power-down": "Stop",
     "claim-title": "Claim",
-    "powerup-title": "Power Up"
+    "powerup-title": "Power Up",
+    "powerdown-title": "Power down"
   },
   "trx-common": {
     "insufficient-funds": "Insufficient funds",

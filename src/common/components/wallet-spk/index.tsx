@@ -30,7 +30,7 @@ interface State {
   larynxPowerRate: string;
   sendSpkShow: boolean;
   selectedAsset: 'SPK' | 'LARYNX' | 'LP';
-  selectedType: 'transfer' | 'delegate' | 'claim' | 'powerup';
+  selectedType: 'transfer' | 'delegate' | 'claim' | 'powerup' | 'powerdown';
   hasClaim: boolean;
 }
 
@@ -94,6 +94,10 @@ class WalletSpk extends Component<Props, State> {
           balance = this.state.larynxTokenBalance;
         }
         break;
+      case 'LP':
+        if (this.state.selectedType === 'powerdown') {
+          balance = this.state.larynxPowerBalance;
+        }
     }
 
     return <div className="wallet-hive">
@@ -158,10 +162,16 @@ class WalletSpk extends Component<Props, State> {
               <span>{this.state.larynxPowerBalance} LP</span>
             </div>}
             showItems={this.props.isActiveUserWallet}
-            items={[{
-              label: _t('wallet.delegate'),
-              onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'delegate' })
-            }]}
+            items={[
+              {
+                label: _t('wallet.delegate'),
+                onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'delegate' })
+              },
+              {
+                label: _t('wallet.power-down'),
+                onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'powerdown' })
+              }
+            ]}
           />
           <WalletSpkSection
             {...this.props}
