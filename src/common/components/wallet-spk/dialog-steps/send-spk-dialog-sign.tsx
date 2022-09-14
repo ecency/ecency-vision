@@ -10,15 +10,10 @@ import { error } from '../../feedback';
 import { PrivateKey } from '@hiveio/dhive';
 import { Account } from '../../../store/accounts/types';
 import {
-  claimByHs,
-  claimByKc,
-  claimByKey,
-  delegateByHs,
-  delegateByKc,
-  delegateByKey,
-  transferByHs,
-  transferByKc,
-  transferByKey
+  claimByHs, claimByKc, claimByKey,
+  delegateByHs, delegateByKc, delegateByKey,
+  powerUpByHs, powerUpByKc, powerUpByKey,
+  transferByHs, transferByKc, transferByKey
 } from './util';
 
 interface Props {
@@ -28,7 +23,7 @@ interface Props {
   amount: string;
   asset: string;
   memo: string;
-  mode: 'transfer' | 'delegate' | 'claim';
+  mode: 'transfer' | 'delegate' | 'claim' | 'powerup';
   setNextStep: () => void;
   to: string;
   addAccount: (account: Account) => void;
@@ -53,6 +48,9 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
       case 'claim':
         promise = claimByKey(key, asset, username);
         break;
+      case 'powerup':
+        promise = powerUpByKey(key, asset, username, amount);
+        break;
       default:
         return;
     }
@@ -70,6 +68,9 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
         break;
       case 'claim':
         claimByHs(asset, activeUser!.username);
+        break;
+      case 'powerup':
+        powerUpByHs(asset, activeUser!.username, amount);
         break;
       default:
         return;
@@ -89,6 +90,9 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
         break;
       case 'claim':
         promise = claimByKc(asset, username);
+        break;
+      case 'powerup':
+        promise = powerUpByKc(asset, username, amount);
         break;
       default:
         return;

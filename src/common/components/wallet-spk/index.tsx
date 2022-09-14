@@ -27,9 +27,10 @@ interface State {
   larynxTokenBalance: string;
   larynxPowerBalance: string;
   estimatedBalance: string;
+  larynxPowerRate: string;
   sendSpkShow: boolean;
   selectedAsset: 'SPK' | 'LARYNX' | 'LP';
-  selectedType: 'transfer' | 'delegate' | 'claim';
+  selectedType: 'transfer' | 'delegate' | 'claim' | 'powerup';
   hasClaim: boolean;
 }
 
@@ -43,6 +44,7 @@ class WalletSpk extends Component<Props, State> {
       larynxPowerBalance: '0',
       larynxTokenBalance: '0',
       estimatedBalance: '0',
+      larynxPowerRate: '0',
       sendSpkShow: false,
       selectedAsset: 'SPK',
       selectedType: 'transfer',
@@ -63,7 +65,8 @@ class WalletSpk extends Component<Props, State> {
         larynxAirBalance: format(wallet.drop.availible.amount / 1000),
         larynxTokenBalance: format(wallet.balance / 1000),
         larynxPowerBalance: format(wallet.poweredUp / 1000),
-        hasClaim: wallet.claim > 0
+        hasClaim: wallet.claim > 0,
+        larynxPowerRate: wallet.gov * 100 > 0 ? (wallet.gov * 100).toFixed(3) : '0.010'
       });
 
       const hivePrice = await getHivePrice();
@@ -87,6 +90,8 @@ class WalletSpk extends Component<Props, State> {
           balance = this.state.larynxTokenBalance;
         } else if (this.state.selectedType === 'delegate') {
           balance = this.state.larynxPowerBalance;
+        } else if (this.state.selectedType === 'powerup') {
+          balance = this.state.larynxTokenBalance;
         }
         break;
     }
@@ -122,10 +127,16 @@ class WalletSpk extends Component<Props, State> {
             title={_t('wallet.spk.larynx-token')}
             description={_t('wallet.spk.larynx-token-description')}
             amountSlot={<>{this.state.larynxTokenBalance} LARYNX</>}
-            items={[{
-              label: _t('wallet.transfer'),
-              onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LARYNX', selectedType: 'transfer' })
-            }]}
+            items={[
+              {
+                label: _t('wallet.transfer'),
+                onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LARYNX', selectedType: 'transfer' })
+              },
+              {
+                label: _t('wallet.power-up'),
+                onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LARYNX', selectedType: 'powerup' })
+              }
+            ]}
           />
           <WalletSpkSection
             {...this.props}
@@ -142,7 +153,10 @@ class WalletSpk extends Component<Props, State> {
                 <li>{_t('wallet.spk.larynx-power-benefits.5')}</li>
               </ul>
             </div>}
-            amountSlot={<>{this.state.larynxPowerBalance} LP</>}
+            amountSlot={<div className="d-flex align-items-center">
+              <span className="badge badge-success text-white mr-2">{this.state.larynxPowerRate}%</span>
+              <span>{this.state.larynxPowerBalance} LP</span>
+            </div>}
             showItems={this.props.isActiveUserWallet}
             items={[{
               label: _t('wallet.delegate'),

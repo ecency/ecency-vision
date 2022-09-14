@@ -13,6 +13,7 @@ import { SendSpkDialogSign } from './dialog-steps/send-spk-dialog-sign';
 import { SendSpkSuccess } from './dialog-steps/send-spk-success';
 import { Transactions } from '../../store/transactions/types';
 import { SendSpkDialogClaimForm } from './dialog-steps/send-spk-dialog-claim-form';
+import { SendSpkDialogPowerUpForm } from './dialog-steps/send-spk-dialog-power-up-form';
 
 interface Props {
   global: Global;
@@ -26,7 +27,7 @@ interface Props {
   onFinish: () => void;
   transactions: Transactions;
   asset: 'SPK' | 'LARYNX' | 'LP';
-  type: 'transfer' | 'delegate' | 'claim';
+  type: 'transfer' | 'delegate' | 'claim' | 'powerup';
   prefilledTo?: string;
 }
 
@@ -42,12 +43,14 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
     if (type === 'delegate') return 'wallet.spk.delegate.title';
     if (type === 'transfer') return 'wallet.spk.send.title';
     if (type === 'claim') return 'wallet.spk.claim.title';
+    if (type === 'powerup') return 'wallet.spk.power-up.title';
     return '';
   };
 
   const getSubTitle = () => {
     if (type === 'delegate') return 'wallet.spk.delegate.subtitle';
     if (type === 'transfer') return 'wallet.spk.send.subtitle';
+    if (type === 'powerup') return 'wallet.spk.power-up.subtitle';
     return '';
   }
 
@@ -142,11 +145,20 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
             submit={() => steps[stepIndex]?.submit()}
           /> : <></>}
 
+          {stepIndex === 0 && type === 'powerup' ? <SendSpkDialogPowerUpForm
+            activeUser={activeUser}
+            amount={amount}
+            balance={balance}
+            setAmount={setAmount}
+            submit={() => steps[stepIndex]?.submit()}
+            asset={asset}
+          /> : <></>}
+
           {stepIndex === 1 ? <SendSpkDialogConfirm
             global={global}
             title={`${type}-title`}
             activeUser={activeUser}
-            showTo={type !== 'claim'}
+            showTo={!['claim', 'powerup'].includes(type)}
             to={username}
             memo={memo}
             amount={amount}

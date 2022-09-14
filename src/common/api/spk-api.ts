@@ -237,3 +237,35 @@ export const claimLarynxByKc = async (from: string) => {
   const json = JSON.stringify({ claim: true });
   return keychain.customJson(from, 'spkcc_claim', 'Active', json, '', '');
 }
+
+export const powerUpLarynxByKey = async (from: string, key: PrivateKey, amount: string) => {
+  const json = JSON.stringify({ amount: +amount * 1000 });
+
+  const op = {
+    id: 'spkcc_power_up',
+    json,
+    required_auths: [from],
+    required_posting_auths: []
+  };
+
+  return await hiveClient.broadcast.json(op, key);
+}
+
+export const powerUpLarynxByHs = (from: string, amount: string) => {
+  const params = {
+    authority: 'active',
+    required_auths: `["${from}"]`,
+    required_posting_auths: '[]',
+    id: 'spkcc_power_up',
+    json: JSON.stringify({ amount: +amount * 1000 })
+  };
+  const url = sdk.sign('custom_json', params, window.location.href);
+  if (typeof url === 'string') {
+    window.open(url, 'blank');
+  }
+}
+
+export const powerUpLarynxByKc = async (from: string, amount: string) => {
+  const json = JSON.stringify({ amount: +amount * 1000 });
+  return keychain.customJson(from, 'spkcc_claim', 'Active', json, '', '');
+}

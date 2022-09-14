@@ -651,6 +651,10 @@
         "subtitle": "Delegate tokens",
         "node-operator-placeholder": "Select a node operator"
       },
+      "power-up": {
+        "title": "Power up",
+        "subtitle": "Power up to earn passive rewards"
+      },
       "send": {
         "balance": "Balance",
         "button": "Send",
@@ -849,7 +853,8 @@
     "reset": "Reset",
     "powering-down": "You are currently powering down.",
     "stop-power-down": "Stop",
-    "claim-title": "Claim"
+    "claim-title": "Claim",
+    "powerup-title": "Power Up"
   },
   "trx-common": {
     "insufficient-funds": "Insufficient funds",
