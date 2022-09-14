@@ -23,7 +23,7 @@ export interface SpkApiWallet {
   contracts: unknown[];
   up: unknown;
   down: unknown;
-  power_downs: unknown;
+  power_downs: { [key: string]: string };
   gov_downs: unknown;
   gov: number;
   spk: number;

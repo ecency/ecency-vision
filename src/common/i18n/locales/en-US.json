@@ -62,7 +62,8 @@
     "price": "Price",
     "more-results": "More results",
     "close": "Close",
-    "loading": "Loading"
+    "loading": "Loading",
+    "stop": "Stop"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -657,7 +658,8 @@
       },
       "power-down": {
         "title": "Power down",
-        "subtitle": "Power down to earn passive rewards"
+        "subtitle": "Power down to earn passive rewards",
+        "in-progress": "A power down is scheduled to happen in {{date}} ({{count}} installments remaining)"
       },
       "send": {
         "balance": "Balance",

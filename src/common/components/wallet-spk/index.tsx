@@ -9,6 +9,7 @@ import { SendSpkDialog } from './send-spk-dialog';
 import { ActiveUser } from '../../store/active-user/types';
 import { History } from 'history';
 import { Transactions } from '../../store/transactions/types';
+import { WalletSpkActivePowerDown } from './wallet-spk-active-power-down';
 
 interface Props {
   global: Global;
@@ -32,6 +33,8 @@ interface State {
   selectedAsset: 'SPK' | 'LARYNX' | 'LP';
   selectedType: 'transfer' | 'delegate' | 'claim' | 'powerup' | 'powerdown';
   hasClaim: boolean;
+  headBlock: number;
+  powerDownList: string[];
 }
 
 class WalletSpk extends Component<Props, State> {
@@ -48,7 +51,9 @@ class WalletSpk extends Component<Props, State> {
       sendSpkShow: false,
       selectedAsset: 'SPK',
       selectedType: 'transfer',
-      hasClaim: false
+      hasClaim: false,
+      headBlock: 0,
+      powerDownList: []
     };
   }
 
@@ -66,7 +71,9 @@ class WalletSpk extends Component<Props, State> {
         larynxTokenBalance: format(wallet.balance / 1000),
         larynxPowerBalance: format(wallet.poweredUp / 1000),
         hasClaim: wallet.claim > 0,
-        larynxPowerRate: wallet.gov * 100 > 0 ? (wallet.gov * 100).toFixed(3) : '0.010'
+        larynxPowerRate: wallet.gov * 100 > 0 ? (wallet.gov * 100).toFixed(3) : '0.010',
+        headBlock: wallet.head_block,
+        powerDownList: Object.values(wallet.power_downs)
       });
 
       const hivePrice = await getHivePrice();
@@ -147,16 +154,23 @@ class WalletSpk extends Component<Props, State> {
             isAlternative={true}
             title={_t('wallet.spk.larynx-power')}
             description={_t('wallet.spk.larynx-power-description')}
-            slot={<div className="menu">
-              <p>{_t('wallet.spk.larynx-power-benefits.title')}</p>
-              <ul>
-                <li>{_t('wallet.spk.larynx-power-benefits.1')}</li>
-                <li>{_t('wallet.spk.larynx-power-benefits.2')}</li>
-                <li>{_t('wallet.spk.larynx-power-benefits.3')}</li>
-                <li>{_t('wallet.spk.larynx-power-benefits.4')}</li>
-                <li>{_t('wallet.spk.larynx-power-benefits.5')}</li>
-              </ul>
-            </div>}
+            slot={<>
+              <div className="description menu">
+                <p>{_t('wallet.spk.larynx-power-benefits.title')}</p>
+                <ul>
+                  <li>{_t('wallet.spk.larynx-power-benefits.1')}</li>
+                  <li>{_t('wallet.spk.larynx-power-benefits.2')}</li>
+                  <li>{_t('wallet.spk.larynx-power-benefits.3')}</li>
+                  <li>{_t('wallet.spk.larynx-power-benefits.4')}</li>
+                  <li>{_t('wallet.spk.larynx-power-benefits.5')}</li>
+                </ul>
+              </div>
+              <WalletSpkActivePowerDown
+                headBlock={this.state.headBlock}
+                powerUpList={this.state.powerDownList}
+                onStop={() => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'powerdown' })}
+              />
+            </>}
             amountSlot={<div className="d-flex align-items-center">
               <span className="badge badge-success text-white mr-2">{this.state.larynxPowerRate}%</span>
               <span>{this.state.larynxPowerBalance} LP</span>
