@@ -62,6 +62,7 @@ export const SendSpkDialogForm = ({ activeUser, amount, setUsername, setAmount, 
     </WalletSpkGroup>
     <WalletSpkGroup label="wallet.spk.send.to">
       <SearchByUsername
+        username={username}
         activeUser={activeUser}
         excludeActiveUser={true}
         setUsername={setUsername}

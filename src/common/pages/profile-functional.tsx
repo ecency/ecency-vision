@@ -491,7 +491,7 @@ export const Profile = (props: Props) => {
                   return WalletHiveEngine({ ...props, account, updateWalletValues: ensureAccount });
                 }
                 if (section === 'spk') {
-                  return WalletSpk({ ...props, account });
+                  return WalletSpk({ ...props, account, isActiveUserWallet: account.name === props.activeUser?.username });
                 }
                 if (section === "points") {
                   return WalletEcency({ ...props, account, updateWalletValues: ensureAccount });

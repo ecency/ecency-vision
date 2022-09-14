@@ -27,10 +27,11 @@ interface Props {
   transactions: Transactions;
   asset: 'SPK' | 'LARYNX' | 'LP';
   type: 'transfer' | 'delegate' | 'claim';
+  prefilledTo?: string;
 }
 
-export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addAccount, updateActiveUser, onFinish, transactions, asset, type }: Props) => {
-  const [username, setUsername] = useState('');
+export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addAccount, updateActiveUser, onFinish, transactions, asset, type, prefilledTo }: Props) => {
+  const [username, setUsername] = useState(prefilledTo || '');
   const [amount, setAmount] = useState('0');
   const [memo, setMemo] = useState('');
   const [stepIndex, setStepIndex] = useState(0);
@@ -87,8 +88,8 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
   };
 
   const clear = () => {
-    setUsername('');
-    setAmount('');
+    setUsername(prefilledTo || '');
+    setAmount('0');
     setMemo('');
     setStepIndex(0);
   }

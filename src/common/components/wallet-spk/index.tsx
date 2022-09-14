@@ -18,6 +18,7 @@ interface Props {
   updateActiveUser: (account: Account) => void;
   history: History;
   transactions: Transactions;
+  isActiveUserWallet: boolean;
 }
 
 interface State {
@@ -29,6 +30,7 @@ interface State {
   sendSpkShow: boolean;
   selectedAsset: 'SPK' | 'LARYNX' | 'LP';
   selectedType: 'transfer' | 'delegate' | 'claim';
+  hasClaim: boolean;
 }
 
 class WalletSpk extends Component<Props, State> {
@@ -43,7 +45,8 @@ class WalletSpk extends Component<Props, State> {
       estimatedBalance: '0',
       sendSpkShow: false,
       selectedAsset: 'SPK',
-      selectedType: 'transfer'
+      selectedType: 'transfer',
+      hasClaim: false
     };
   }
 
@@ -59,7 +62,8 @@ class WalletSpk extends Component<Props, State> {
         tokenBalance: format(wallet.spk / 1000),
         larynxAirBalance: format(wallet.drop.availible.amount / 1000),
         larynxTokenBalance: format(wallet.balance / 1000),
-        larynxPowerBalance: format(wallet.poweredUp / 1000)
+        larynxPowerBalance: format(wallet.poweredUp / 1000),
+        hasClaim: wallet.claim > 0
       });
 
       const hivePrice = await getHivePrice();
@@ -92,35 +96,36 @@ class WalletSpk extends Component<Props, State> {
         <div className="wallet-info">
           <WalletSpkSection
             {...this.props}
+            title={_t('wallet.spk.token')}
+            description={_t('wallet.spk.token-description')}
+            amountSlot={<>{this.state.tokenBalance} SPK</>}
             items={[{
               label: _t('wallet.transfer'),
               onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'SPK', selectedType: 'transfer' })
             }]}
-            title={_t('wallet.spk.token')}
-            description={_t('wallet.spk.token-description')}
-            amountSlot={<>{this.state.tokenBalance} SPK</>}
           />
           <WalletSpkSection
             {...this.props}
+            showItems={this.state.hasClaim && this.props.isActiveUserWallet}
+            isAlternative={true}
+            title={_t('wallet.spk.larynx-air')}
+            description={_t('wallet.spk.larynx-air-description')}
+            slot={<div className="description font-weight-bold mt-2">{this.state.hasClaim ? _t('wallet.spk.larynx-air-warning') : _t('wallet.spk.larynx-already-claimed')}</div>}
+            amountSlot={<>{this.state.larynxAirBalance} LARYNX</>}
             items={[{
               label: _t('wallet.spk.claim.title'),
               onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LARYNX', selectedType: 'claim' })
             }]}
-            isAlternative={true}
-            title={_t('wallet.spk.larynx-air')}
-            description={_t('wallet.spk.larynx-air-description')}
-            slot={<div className="warning">{_t('wallet.spk.larynx-air-warning')}</div>}
-            amountSlot={<>{this.state.larynxAirBalance} LARYNX</>}
           />
           <WalletSpkSection
             {...this.props}
+            title={_t('wallet.spk.larynx-token')}
+            description={_t('wallet.spk.larynx-token-description')}
+            amountSlot={<>{this.state.larynxTokenBalance} LARYNX</>}
             items={[{
               label: _t('wallet.transfer'),
               onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LARYNX', selectedType: 'transfer' })
             }]}
-            title={_t('wallet.spk.larynx-token')}
-            description={_t('wallet.spk.larynx-token-description')}
-            amountSlot={<>{this.state.larynxTokenBalance} LARYNX</>}
           />
           <WalletSpkSection
             {...this.props}
@@ -138,6 +143,7 @@ class WalletSpk extends Component<Props, State> {
               </ul>
             </div>}
             amountSlot={<>{this.state.larynxPowerBalance} LP</>}
+            showItems={this.props.isActiveUserWallet}
             items={[{
               label: _t('wallet.delegate'),
               onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'delegate' })
@@ -155,6 +161,7 @@ class WalletSpk extends Component<Props, State> {
       </div>
 
       <SendSpkDialog
+        prefilledTo={this.props.isActiveUserWallet ? '' : this.props.account.name}
         type={this.state.selectedType}
         asset={this.state.selectedAsset}
         transactions={this.props.transactions}

@@ -15,6 +15,7 @@ interface Props {
   isAlternative?: boolean;
   history: History;
   items: MenuItem[];
+  showItems?: boolean;
 }
 
 export const WalletSpkSection = (props: Props) => {
@@ -26,9 +27,10 @@ export const WalletSpkSection = (props: Props) => {
     </div>
     <div className="balance-values">
       <div className="amount">
-        {props.items.length > 0 ? <div className="amount-actions">
-          <DropDown history={props.history} label="" items={props.items} float="right" />
-        </div> : <></>}
+        {props.items.length > 0 && (typeof props.showItems === 'boolean' ? props.showItems : true) ?
+          <div className="amount-actions">
+            <DropDown history={props.history} label="" items={props.items} float="right" />
+          </div> : <></>}
         <span>{props.amountSlot}</span>
       </div>
     </div>

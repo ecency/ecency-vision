@@ -9,14 +9,16 @@ import { formatError } from '../../api/operations';
 import { ActiveUser } from '../../store/active-user/types';
 
 interface Props {
+  username: string;
   setUsername: (value: string) => void;
   activeUser: ActiveUser | null;
   excludeActiveUser?: boolean;
   recent?: string[];
 }
 
-export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser, recent }: Props) => {
-  const [usernameInput, setUsernameInput] = useState('');
+export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser, recent, username }: Props) => {
+  const [prefilledUsername, setPrefilledUsername] = useState(username || '');
+  const [usernameInput, setUsernameInput] = useState(username || '');
   const [usernameData, setUsernameData] = useState<string[]>([]);
   const [isActiveUserSet, setIsActiveUserSet] = useState(false);
   const [timer, setTimer] = useState<any>(null);
@@ -29,7 +31,10 @@ export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser, r
         setUsernameData(recent);
       }
     }
-    fetchUsernameData(usernameInput);
+    if (usernameInput !== prefilledUsername) {
+      fetchUsernameData(usernameInput);
+      setPrefilledUsername('');
+    }
   }, [usernameInput]);
 
   useEffect(() => {
