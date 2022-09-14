@@ -20,7 +20,7 @@ interface Props {
 
 export const WalletSpkSection = (props: Props) => {
   return <div className={"balance-row hive " + (props.isAlternative ? "alternative" : "")}>
-    <div className="balance-info">
+    <div className="balance-info text-left">
       <div className="title">{props.title}</div>
       <div className="description">{props.description}</div>
       {props.slot}
