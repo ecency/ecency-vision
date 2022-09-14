@@ -12,6 +12,7 @@ import numeral from 'numeral';
 import { SendSpkDialogSign } from './dialog-steps/send-spk-dialog-sign';
 import { SendSpkSuccess } from './dialog-steps/send-spk-success';
 import { Transactions } from '../../store/transactions/types';
+import { SendSpkDialogClaimForm } from './dialog-steps/send-spk-dialog-claim-form';
 
 interface Props {
   global: Global;
@@ -25,7 +26,7 @@ interface Props {
   onFinish: () => void;
   transactions: Transactions;
   asset: 'SPK' | 'LARYNX' | 'LP';
-  type: 'transfer' | 'delegate';
+  type: 'transfer' | 'delegate' | 'claim';
 }
 
 export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addAccount, updateActiveUser, onFinish, transactions, asset, type }: Props) => {
@@ -35,10 +36,24 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
   const [stepIndex, setStepIndex] = useState(0);
 
   const precision = (balance + "").split(".")[1]?.length || 3;
+
+  const getTitle = () => {
+    if (type === 'delegate') return 'wallet.spk.delegate.title';
+    if (type === 'transfer') return 'wallet.spk.send.title';
+    if (type === 'claim') return 'wallet.spk.claim.title';
+    return '';
+  };
+
+  const getSubTitle = () => {
+    if (type === 'delegate') return 'wallet.spk.delegate.subtitle';
+    if (type === 'transfer') return 'wallet.spk.send.subtitle';
+    return '';
+  }
+
   const steps = [
     {
-      title: type === 'delegate' ? 'wallet.spk.delegate.title' : 'wallet.spk.send.title',
-      subtitle: type === 'delegate' ? 'wallet.spk.delegate.subtitle' : 'wallet.spk.send.subtitle',
+      title: getTitle(),
+      subtitle: getSubTitle(),
       submit: () => {
         // make sure 3 decimals in amount
         const fixedAmount = formatNumber(amount, precision);
@@ -121,11 +136,16 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
             asset={asset}
           /> : <></>}
 
+          {stepIndex ===0 && type === 'claim' ? <SendSpkDialogClaimForm
+            activeUser={activeUser}
+            submit={() => steps[stepIndex]?.submit()}
+          /> : <></>}
+
           {stepIndex === 1 ? <SendSpkDialogConfirm
             global={global}
-            title="transfer-title"
+            title={`${type}-title`}
             activeUser={activeUser}
-            showTo={true}
+            showTo={type !== 'claim'}
             to={username}
             memo={memo}
             amount={amount}

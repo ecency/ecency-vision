@@ -205,3 +205,35 @@ export const delegateLarynxByHs = async (from: string, to: string, amount: strin
 export const delegateLarynxByKc = async (from: string, to: string, amount: string) => {
   return transferSpkGeneralByKc('spkcc_power_grant', from , to, +amount * 1000);
 };
+
+export const claimLarynxByKey = async (from: string, key: PrivateKey) => {
+  const json = JSON.stringify({ claim: true });
+
+  const op = {
+    id: 'spkcc_claim',
+    json,
+    required_auths: [from],
+    required_posting_auths: []
+  };
+
+  return await hiveClient.broadcast.json(op, key);
+}
+
+export const claimLarynxByHs = (from: string) => {
+  const params = {
+    authority: 'active',
+    required_auths: `["${from}"]`,
+    required_posting_auths: '[]',
+    id: 'spkcc_claim',
+    json: JSON.stringify({ claim: true })
+  };
+  const url = sdk.sign('custom_json', params, window.location.href);
+  if (typeof url === 'string') {
+    window.open(url, 'blank');
+  }
+}
+
+export const claimLarynxByKc = async (from: string) => {
+  const json = JSON.stringify({ claim: true });
+  return keychain.customJson(from, 'spkcc_claim', 'Active', json, '', '');
+}

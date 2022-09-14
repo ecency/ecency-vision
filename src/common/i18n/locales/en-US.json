@@ -643,6 +643,9 @@
     "withdrawing-amount": "Withdrawing from Savings",
     "reserved-amount": "Reserved for Open order in Market",
     "spk": {
+      "claim": {
+        "title": "Claim"
+      },
       "delegate": {
         "title": "Delegate",
         "subtitle": "Delegate tokens",
@@ -844,7 +847,8 @@
     "claim-interest-summary": "Interest claimed and added to your savings balance",
     "reset": "Reset",
     "powering-down": "You are currently powering down.",
-    "stop-power-down": "Stop"
+    "stop-power-down": "Stop",
+    "claim-title": "Claim"
   },
   "trx-common": {
     "insufficient-funds": "Insufficient funds",

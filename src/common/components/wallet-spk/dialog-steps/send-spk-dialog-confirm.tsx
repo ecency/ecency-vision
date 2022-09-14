@@ -24,7 +24,7 @@ export const SendSpkDialogConfirm = ({ global, title, activeUser, showTo, to, me
     <div className="confirmation">
       <div className="confirm-title">{_t(`transfer.${title}`)}</div>
       <div className="users">
-        <div className="from-user">
+        <div className="from-user d-flex justify-content-center align-items-center">
           {UserAvatar({ global, username: activeUser!!.username, size: 'large' })}
         </div>
         {showTo && (

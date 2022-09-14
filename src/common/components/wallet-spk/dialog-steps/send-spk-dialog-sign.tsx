@@ -9,7 +9,17 @@ import { getAccountFull } from '../../../api/hive';
 import { error } from '../../feedback';
 import { PrivateKey } from '@hiveio/dhive';
 import { Account } from '../../../store/accounts/types';
-import { delegateByHs, delegateByKc, delegateByKey, transferByHs, transferByKc, transferByKey } from './util';
+import {
+  claimByHs,
+  claimByKc,
+  claimByKey,
+  delegateByHs,
+  delegateByKc,
+  delegateByKey,
+  transferByHs,
+  transferByKc,
+  transferByKey
+} from './util';
 
 interface Props {
   global: Global;
@@ -18,7 +28,7 @@ interface Props {
   amount: string;
   asset: string;
   memo: string;
-  mode: 'transfer' | 'delegate' | 'undelegate' | 'stake' | 'unstake';
+  mode: 'transfer' | 'delegate' | 'claim';
   setNextStep: () => void;
   to: string;
   addAccount: (account: Account) => void;
@@ -40,6 +50,9 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
       case 'delegate':
         promise = delegateByKey(key, asset, username, to, amount);
         break;
+      case 'claim':
+        promise = claimByKey(key, asset, username);
+        break;
       default:
         return;
     }
@@ -54,6 +67,9 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
         break;
       case 'delegate':
         delegateByHs(asset, activeUser!.username, to, amount);
+        break;
+      case 'claim':
+        claimByHs(asset, activeUser!.username);
         break;
       default:
         return;
@@ -70,6 +86,9 @@ export const SendSpkDialogSign = ({ global, activeUser, onBack, amount, asset, m
         break;
       case 'delegate':
         promise = delegateByKc(asset, username, to, amount);
+        break;
+      case 'claim':
+        promise = claimByKc(asset, username);
         break;
       default:
         return;

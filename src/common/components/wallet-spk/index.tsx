@@ -28,7 +28,7 @@ interface State {
   estimatedBalance: string;
   sendSpkShow: boolean;
   selectedAsset: 'SPK' | 'LARYNX' | 'LP';
-  selectedType: 'transfer' | 'delegate';
+  selectedType: 'transfer' | 'delegate' | 'claim';
 }
 
 class WalletSpk extends Component<Props, State> {
@@ -102,7 +102,10 @@ class WalletSpk extends Component<Props, State> {
           />
           <WalletSpkSection
             {...this.props}
-            items={[]}
+            items={[{
+              label: _t('wallet.spk.claim.title'),
+              onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LARYNX', selectedType: 'claim' })
+            }]}
             isAlternative={true}
             title={_t('wallet.spk.larynx-air')}
             description={_t('wallet.spk.larynx-air-description')}
