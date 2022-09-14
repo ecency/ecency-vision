@@ -14,6 +14,7 @@ import { SendSpkSuccess } from './dialog-steps/send-spk-success';
 import { Transactions } from '../../store/transactions/types';
 import { SendSpkDialogClaimForm } from './dialog-steps/send-spk-dialog-claim-form';
 import { SendSpkDialogPowerUpForm } from './dialog-steps/send-spk-dialog-power-up-form';
+import { Market } from '../../api/spk-api';
 
 interface Props {
   global: Global;
@@ -30,9 +31,10 @@ interface Props {
   type: 'transfer' | 'delegate' | 'claim' | 'powerup' | 'powerdown';
   prefilledTo?: string;
   prefilledAmount?: string;
+  markets: Market[];
 }
 
-export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addAccount, updateActiveUser, onFinish, transactions, asset, type, prefilledTo, prefilledAmount }: Props) => {
+export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addAccount, updateActiveUser, onFinish, transactions, asset, type, prefilledTo, prefilledAmount, markets }: Props) => {
   const [username, setUsername] = useState(prefilledTo || '');
   const [amount, setAmount] = useState(prefilledAmount || '0');
   const [memo, setMemo] = useState('');
@@ -141,6 +143,7 @@ export const SendSpkDialog = ({ global, show, setShow, activeUser, balance, addA
             setAmount={setAmount}
             submit={() => steps[stepIndex]?.submit()}
             asset={asset}
+            markets={markets}
           /> : <></>}
 
           {stepIndex === 0 && type === 'claim' ? <SendSpkDialogClaimForm

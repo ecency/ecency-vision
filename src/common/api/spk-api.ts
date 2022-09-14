@@ -17,7 +17,9 @@ export interface SpkApiWallet {
     total_claims: number;
   },
   poweredUp: number;
-  granted: unknown;
+  granted?: {
+    t: number;
+  };
   granting: unknown;
   heldCollateral: number;
   contracts: unknown[];

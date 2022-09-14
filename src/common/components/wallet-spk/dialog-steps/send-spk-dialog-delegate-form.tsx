@@ -18,20 +18,16 @@ interface Props {
   submit: Function;
   asset: string;
   transactions: Transactions;
+  markets: Market[];
 }
 
-export const SendSpkDialogDelegateForm = ({ activeUser, amount, username, setUsername, setAmount, balance, submit, asset }: Props) => {
-  const [markets, setMarkets] = useState<Market[]>([]);
+export const SendSpkDialogDelegateForm = ({ activeUser, amount, username, setUsername, setAmount, balance, submit, asset, markets }: Props) => {
   const selectRef = useRef<any>();
 
   useEffect(() => {
-    getMarkets()
-      .then(markets => {
-        setMarkets(Object.values(markets));
-        if (selectRef.current) {
-          setUsername(selectRef.current.value);
-        }
-      });
+    if (selectRef.current) {
+      setUsername(selectRef.current.value);
+    }
   }, []);
 
   return <>

@@ -3,15 +3,15 @@ import WalletMenu from '../wallet-menu';
 import { Global } from '../../store/global/types';
 import { Account } from '../../store/accounts/types';
 import { _t } from '../../i18n';
-import { getHivePrice, getSpkWallet } from '../../api/spk-api';
+import { getHivePrice, getMarkets, getSpkWallet, Market } from '../../api/spk-api';
 import { WalletSpkSection } from './wallet-spk-section';
 import { SendSpkDialog } from './send-spk-dialog';
 import { ActiveUser } from '../../store/active-user/types';
 import { History } from 'history';
 import { Transactions } from '../../store/transactions/types';
-import { WalletSpkActivePowerDown } from './wallet-spk-active-power-down';
+import { WalletSpkLarynxPower } from './wallet-spk-larynx-power';
 
-interface Props {
+export interface Props {
   global: Global;
   account: Account;
   activeUser: ActiveUser | null;
@@ -29,6 +29,7 @@ interface State {
   larynxPowerBalance: string;
   estimatedBalance: string;
   larynxPowerRate: string;
+  larynxPowerTotal: string;
   sendSpkShow: boolean;
   selectedAsset: 'SPK' | 'LARYNX' | 'LP';
   selectedType: 'transfer' | 'delegate' | 'claim' | 'powerup' | 'powerdown';
@@ -36,6 +37,8 @@ interface State {
   headBlock: number;
   powerDownList: string[];
   prefilledAmount: string;
+  markets: Market[];
+  isNode: boolean;
 }
 
 class WalletSpk extends Component<Props, State> {
@@ -49,13 +52,16 @@ class WalletSpk extends Component<Props, State> {
       larynxTokenBalance: '0',
       estimatedBalance: '0',
       larynxPowerRate: '0',
+      larynxPowerTotal: '',
       sendSpkShow: false,
       selectedAsset: 'SPK',
       selectedType: 'transfer',
       hasClaim: false,
       headBlock: 0,
       powerDownList: [],
-      prefilledAmount: ''
+      prefilledAmount: '',
+      markets: [],
+      isNode: false
     };
   }
 
@@ -72,8 +78,9 @@ class WalletSpk extends Component<Props, State> {
         larynxAirBalance: format(wallet.drop.availible.amount / 1000),
         larynxTokenBalance: format(wallet.balance / 1000),
         larynxPowerBalance: format(wallet.poweredUp / 1000),
+        larynxPowerTotal: wallet.granted ? format(wallet.granted.t / 1000) : '',
         hasClaim: wallet.claim > 0,
-        larynxPowerRate: wallet.gov * 100 > 0 ? (wallet.gov * 100).toFixed(3) : '0.010',
+        larynxPowerRate: '0.010',
         headBlock: wallet.head_block,
         powerDownList: Object.values(wallet.power_downs)
       });
@@ -82,6 +89,9 @@ class WalletSpk extends Component<Props, State> {
       this.setState({
         estimatedBalance: (((wallet.gov + wallet.poweredUp + wallet.claim + wallet.spk + wallet.balance) / 1000) * +wallet.tick * hivePrice.hive.usd).toFixed(2)
       });
+
+      const markets = await getMarkets();
+      this.setState({ markets, isNode: markets.some(market => market.name === this.props.activeUser?.username) });
     } catch (e) {
       console.error(e);
     }
@@ -151,56 +161,30 @@ class WalletSpk extends Component<Props, State> {
               }
             ]}
           />
-          <WalletSpkSection
+          <WalletSpkLarynxPower
             {...this.props}
-            isAlternative={true}
-            title={_t('wallet.spk.larynx-power')}
-            description={_t('wallet.spk.larynx-power-description')}
-            slot={<>
-              <div className="description menu">
-                <p>{_t('wallet.spk.larynx-power-benefits.title')}</p>
-                <ul>
-                  <li>{_t('wallet.spk.larynx-power-benefits.1')}</li>
-                  <li>{_t('wallet.spk.larynx-power-benefits.2')}</li>
-                  <li>{_t('wallet.spk.larynx-power-benefits.3')}</li>
-                  <li>{_t('wallet.spk.larynx-power-benefits.4')}</li>
-                  <li>{_t('wallet.spk.larynx-power-benefits.5')}</li>
-                </ul>
-              </div>
-              <WalletSpkActivePowerDown
-                headBlock={this.state.headBlock}
-                powerUpList={this.state.powerDownList}
-                onStop={() => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'powerdown', prefilledAmount: '0' })}
-              />
-            </>}
-            amountSlot={<div className="d-flex align-items-center">
-              <span className="badge badge-success text-white mr-2">{this.state.larynxPowerRate}%</span>
-              <span>{this.state.larynxPowerBalance} LP</span>
-            </div>}
-            showItems={this.props.isActiveUserWallet}
-            items={[
-              {
-                label: _t('wallet.delegate'),
-                onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'delegate' })
-              },
-              {
-                label: _t('wallet.power-down'),
-                onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'powerdown' })
-              }
-            ]}
+            larynxPowerTotal={this.state.larynxPowerTotal}
+            headBlock={this.state.headBlock}
+            powerDownList={this.state.powerDownList}
+            onStop={() => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'powerdown', prefilledAmount: '0' })}
+            larynxPowerRate={this.state.larynxPowerRate}
+            larynxPowerBalance={this.state.larynxPowerBalance}
+            onDelegate={() => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'delegate' })}
+            onPowerDown={() => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'powerdown' })}
           />
           <WalletSpkSection
             {...this.props}
             items={[]}
             title={_t('wallet.spk.account-value')}
             description={_t('wallet.spk.account-value-description')}
-            amountSlot={<>${this.state.estimatedBalance}</>}
+            amountSlot={<div className="amount amount-bold">${this.state.estimatedBalance}</div>}
           />
         </div>
         <WalletMenu global={this.props.global} username={this.props.account.name} active="spk"/>
       </div>
 
       <SendSpkDialog
+        markets={this.state.markets}
         prefilledAmount={this.state.prefilledAmount}
         prefilledTo={this.props.isActiveUserWallet ? '' : this.props.account.name}
         type={this.state.selectedType}
