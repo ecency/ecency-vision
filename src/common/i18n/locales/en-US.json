@@ -690,10 +690,20 @@
         "2": "Instant Lock | 4 Week Unlock",
         "3": "Delegate to node service accounts to build consensus (DPoS)",
         "4": "LARYNX POWER (LP) earns SPK tokens at 0.010%",
-        "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegatee at 0.015%"
+        "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at 0.015%"
+      },
+      "larynx-locked-benefits": {
+        "title": "Benefits of LARYNX Locked",
+        "1": "Proof of Stake Consensus",
+        "2": "Collateral for DEX transactions",
+        "3": "Instant Lock | 4 Week Unlock",
+        "4": "Requires an operating LARYNX node",
+        "5": "Earns 0.100%"
       },
       "account-value": "Estimated Account Value",
-      "account-value-description": "The approximate US Dollar value for all SPK assets in your account"
+      "account-value-description": "The approximate US Dollar value for all SPK assets in your account",
+      "larynx-locked": "LARYNX Locked",
+      "larynx-locked-description": "Locked tokens provide liquidity to the network, aid in determining consensus, and earn rewards for node runners"
     }
   },
   "wallet-engine": {

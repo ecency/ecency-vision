@@ -10,6 +10,7 @@ import { ActiveUser } from '../../store/active-user/types';
 import { History } from 'history';
 import { Transactions } from '../../store/transactions/types';
 import { WalletSpkLarynxPower } from './wallet-spk-larynx-power';
+import { WalletSpkLarynxLocked } from './wallet-spk-larynx-locked';
 
 export interface Props {
   global: Global;
@@ -30,6 +31,7 @@ interface State {
   estimatedBalance: string;
   larynxPowerRate: string;
   larynxPowerTotal: string;
+  larynxLockedBalance: string;
   sendSpkShow: boolean;
   selectedAsset: 'SPK' | 'LARYNX' | 'LP';
   selectedType: 'transfer' | 'delegate' | 'claim' | 'powerup' | 'powerdown';
@@ -53,6 +55,7 @@ class WalletSpk extends Component<Props, State> {
       estimatedBalance: '0',
       larynxPowerRate: '0',
       larynxPowerTotal: '',
+      larynxLockedBalance: '',
       sendSpkShow: false,
       selectedAsset: 'SPK',
       selectedType: 'transfer',
@@ -78,7 +81,8 @@ class WalletSpk extends Component<Props, State> {
         larynxAirBalance: format(wallet.drop.availible.amount / 1000),
         larynxTokenBalance: format(wallet.balance / 1000),
         larynxPowerBalance: format(wallet.poweredUp / 1000),
-        larynxPowerTotal: wallet.granted ? format(wallet.granted.t / 1000) : '',
+        larynxPowerTotal: wallet.granted?.t ? format(wallet.granted.t / 1000) : '',
+        larynxLockedBalance: wallet.gov > 0 ? format(wallet.gov / 1000) : '',
         hasClaim: wallet.claim > 0,
         larynxPowerRate: '0.010',
         headBlock: wallet.head_block,
@@ -91,7 +95,7 @@ class WalletSpk extends Component<Props, State> {
       });
 
       const markets = await getMarkets();
-      this.setState({ markets, isNode: markets.some(market => market.name === this.props.activeUser?.username) });
+      this.setState({ markets, isNode: markets.some(market => market.name === this.props.account?.name) });
     } catch (e) {
       console.error(e);
     }
@@ -161,6 +165,10 @@ class WalletSpk extends Component<Props, State> {
               }
             ]}
           />
+          {this.state.larynxLockedBalance && this.state.isNode ? <WalletSpkLarynxLocked
+              {...this.props}
+              larynxLockedBalance={this.state.larynxLockedBalance}
+          /> : <></>}
           <WalletSpkLarynxPower
             {...this.props}
             larynxPowerTotal={this.state.larynxPowerTotal}
