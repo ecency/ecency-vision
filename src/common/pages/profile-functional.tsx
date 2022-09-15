@@ -7,23 +7,23 @@ import _ from "lodash";
 import { _t } from "../i18n";
 import { ListStyle } from "../store/global/types";
 
-import { makeGroupKey } from '../store/entries';
-import { ProfileFilter } from '../store/global/types';
-import { Entry, EntryGroup } from '../store/entries/types';
-import Meta from '../components/meta';
-import Theme from '../components/theme';
-import Feedback from '../components/feedback';
-import NavBar from '../components/navbar';
-import NavBarElectron from '../../desktop/app/components/navbar';
-import LinearProgress from '../components/linear-progress/index';
-import EntryListLoadingItem from '../components/entry-list-loading-item';
-import DetectBottom from '../components/detect-bottom';
-import EntryListContent from '../components/entry-list';
-import ProfileCard from '../components/profile-card';
-import ProfileMenu from '../components/profile-menu';
-import ProfileCover from '../components/profile-cover';
-import ProfileCommunities from '../components/profile-communities';
-import ProfileSettings from '../components/profile-settings';
+import { makeGroupKey } from "../store/entries";
+import { ProfileFilter } from "../store/global/types";
+import { Entry, EntryGroup } from "../store/entries/types";
+import Meta from "../components/meta";
+import Theme from "../components/theme";
+import Feedback from "../components/feedback";
+import NavBar from "../components/navbar";
+import NavBarElectron from "../../desktop/app/components/navbar";
+import LinearProgress from "../components/linear-progress/index";
+import EntryListLoadingItem from "../components/entry-list-loading-item";
+import DetectBottom from "../components/detect-bottom";
+import EntryListContent from "../components/entry-list";
+import ProfileCard from "../components/profile-card";
+import ProfileMenu from "../components/profile-menu";
+import ProfileCover from "../components/profile-cover";
+import ProfileCommunities from "../components/profile-communities";
+import ProfileSettings from "../components/profile-settings";
 import ProfileReferrals from "../components/profile-referrals";
 import WalletHive from "../components/wallet-hive";
 import WalletHiveEngine from "../components/wallet-hive-engine";
@@ -47,7 +47,7 @@ import { Account, FullAccount } from "../store/accounts/types";
 import { withPersistentScroll } from "../components/with-persistent-scroll";
 import useAsyncEffect from "use-async-effect";
 import { usePrevious } from "../util/use-previous";
-import WalletSpk from '../components/wallet-spk';
+import WalletSpk from "../components/wallet-spk";
 
 interface MatchParams {
   username: string;
@@ -490,8 +490,12 @@ export const Profile = (props: Props) => {
                 if (section === "engine") {
                   return WalletHiveEngine({ ...props, account, updateWalletValues: ensureAccount });
                 }
-                if (section === 'spk') {
-                  return WalletSpk({ ...props, account, isActiveUserWallet: account.name === props.activeUser?.username });
+                if (section === "spk") {
+                  return WalletSpk({
+                    ...props,
+                    account,
+                    isActiveUserWallet: account.name === props.activeUser?.username
+                  });
                 }
                 if (section === "points") {
                   return WalletEcency({ ...props, account, updateWalletValues: ensureAccount });

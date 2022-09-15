@@ -1,12 +1,12 @@
-import { Form, InputGroup } from 'react-bootstrap';
-import { _t } from '../../i18n';
-import SuggestionList from '../suggestion-list';
-import React, { useEffect, useState } from 'react';
-import userAvatar from '../user-avatar';
-import { lookupAccounts } from '../../api/hive';
-import { error } from '../feedback';
-import { formatError } from '../../api/operations';
-import { ActiveUser } from '../../store/active-user/types';
+import { Form, InputGroup } from "react-bootstrap";
+import { _t } from "../../i18n";
+import SuggestionList from "../suggestion-list";
+import React, { useEffect, useState } from "react";
+import userAvatar from "../user-avatar";
+import { lookupAccounts } from "../../api/hive";
+import { error } from "../feedback";
+import { formatError } from "../../api/operations";
+import { ActiveUser } from "../../store/active-user/types";
 
 interface Props {
   username?: string;
@@ -16,9 +16,15 @@ interface Props {
   recent?: string[];
 }
 
-export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser, recent, username }: Props) => {
-  const [prefilledUsername, setPrefilledUsername] = useState(username || '');
-  const [usernameInput, setUsernameInput] = useState(username || '');
+export const SearchByUsername = ({
+  setUsername,
+  activeUser,
+  excludeActiveUser,
+  recent,
+  username
+}: Props) => {
+  const [prefilledUsername, setPrefilledUsername] = useState(username || "");
+  const [usernameInput, setUsernameInput] = useState(username || "");
   const [usernameData, setUsernameData] = useState<string[]>([]);
   const [isActiveUserSet, setIsActiveUserSet] = useState(false);
   const [timer, setTimer] = useState<any>(null);
@@ -26,14 +32,14 @@ export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser, r
 
   useEffect(() => {
     if (!usernameInput) {
-      setUsername('');
+      setUsername("");
       if (recent) {
         setUsernameData(recent);
       }
     }
     if (usernameInput !== prefilledUsername) {
       fetchUsernameData(usernameInput);
-      setPrefilledUsername('');
+      setPrefilledUsername("");
     }
   }, [usernameInput]);
 
@@ -50,7 +56,7 @@ export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser, r
       clearTimeout(timer);
     }
 
-    if (usernameInput === '' || isActiveUserSet) {
+    if (usernameInput === "" || isActiveUserSet) {
       setIsActiveUserSet(false);
       setIsUsernameDataLoading(false);
       return;
@@ -64,14 +70,16 @@ export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser, r
     try {
       const resp = await lookupAccounts(query, 5);
       if (resp) {
-        setUsernameData(resp.filter(item => excludeActiveUser ? item !== activeUser?.username : true));
+        setUsernameData(
+          resp.filter((item) => (excludeActiveUser ? item !== activeUser?.username : true))
+        );
       }
     } catch (e) {
       error(...formatError(e));
     } finally {
       setIsUsernameDataLoading(false);
     }
-  }
+  };
 
   const suggestionProps = {
     renderer: (i: any) => {
@@ -79,10 +87,10 @@ export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser, r
         <>
           {userAvatar({
             username: i.name || i,
-            size: 'medium',
-            global: {} as any,
-          })}{' '}
-          <span style={{ marginLeft: '4px' }}>{i}</span>
+            size: "medium",
+            global: {} as any
+          })}{" "}
+          <span style={{ marginLeft: "4px" }}>{i}</span>
         </>
       );
     },
@@ -92,36 +100,35 @@ export const SearchByUsername = ({ setUsername, activeUser, excludeActiveUser, r
     }
   };
 
-  return <SuggestionList
-    items={usernameData}
-    {...suggestionProps}
-    header={!usernameInput ? _t('transfer.recent-transfers') : ''}
-  >
-    <InputGroup>
-      <InputGroup.Prepend>
-        <InputGroup.Text>
-          {isUsernameDataLoading ? (
-            <div
-              className="spinner-border text-primary spinner-border-sm"
-              role="status"
-            >
-              <span className="sr-only">{_t('g.loading')}</span>
-            </div>
-          ) : (
-            '@'
-          )}
-        </InputGroup.Text>
-      </InputGroup.Prepend>
-      <Form.Control
-        type="text"
-        autoFocus={true}
-        placeholder=""
-        value={usernameInput}
-        onChange={(e) => {
-          setUsernameInput(e.target.value);
-          setUsername(e.target.value);
-        }}
-      />
-    </InputGroup>
-  </SuggestionList>
-}
+  return (
+    <SuggestionList
+      items={usernameData}
+      {...suggestionProps}
+      header={!usernameInput ? _t("transfer.recent-transfers") : ""}
+    >
+      <InputGroup>
+        <InputGroup.Prepend>
+          <InputGroup.Text>
+            {isUsernameDataLoading ? (
+              <div className="spinner-border text-primary spinner-border-sm" role="status">
+                <span className="sr-only">{_t("g.loading")}</span>
+              </div>
+            ) : (
+              "@"
+            )}
+          </InputGroup.Text>
+        </InputGroup.Prepend>
+        <Form.Control
+          type="text"
+          autoFocus={true}
+          placeholder=""
+          value={usernameInput}
+          onChange={(e) => {
+            setUsernameInput(e.target.value);
+            setUsername(e.target.value);
+          }}
+        />
+      </InputGroup>
+    </SuggestionList>
+  );
+};
