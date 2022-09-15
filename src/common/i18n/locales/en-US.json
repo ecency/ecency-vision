@@ -667,12 +667,12 @@
       },
       "lock": {
         "title": "Lock Liquidity",
-        "subtitle": "",
+        "subtitle": "Locking Larynx for liquidity reward",
         "button": "Lock liquidity"
       },
       "unlock": {
         "title": "Unlock Liquidity",
-        "subtitle": "",
+        "subtitle": "Unlock LARYNX to liquid form",
         "button": "Unlock liquidity"
       },
       "send": {
