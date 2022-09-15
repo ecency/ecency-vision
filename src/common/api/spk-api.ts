@@ -94,7 +94,8 @@ export function rewardSpk(data: SpkApiWallet, sstats: any) {
     a = data.gov ? simpleInterest(data.gov, t, sstats.spk_rate_lgov) : 0;
     b = data.pow ? simpleInterest(data.pow, t, sstats.spk_rate_lpow) : 0;
     c = simpleInterest(
-      (data.granted.t > 0 ? data.granted.t : 0) + (data.granting.t > 0 ? data.granting.t : 0),
+      (data.granted.t > 0 ? data.granted.t : 0) +
+        (data.granting.t && data.granting.t > 0 ? data.granting.t : 0),
       t,
       sstats.spk_rate_ldel
     );
@@ -263,7 +264,7 @@ export const delegateLarynxByKc = async (from: string, to: string, amount: strin
   return transferSpkGeneralByKc("spkcc_power_grant", from, to, +amount * 1000);
 };
 
-export const claimLarynxByKey = async (from: string, key: PrivateKey) => {
+export const claimAirdropLarynxByKey = async (from: string, key: PrivateKey) => {
   const json = JSON.stringify({ claim: true });
 
   const op = {
@@ -276,7 +277,7 @@ export const claimLarynxByKey = async (from: string, key: PrivateKey) => {
   return await hiveClient.broadcast.json(op, key);
 };
 
-export const claimLarynxByHs = (from: string) => {
+export const claimAirdropLarynxByHs = (from: string) => {
   const params = {
     authority: "active",
     required_auths: `["${from}"]`,
@@ -290,9 +291,41 @@ export const claimLarynxByHs = (from: string) => {
   }
 };
 
-export const claimLarynxByKc = async (from: string) => {
+export const claimAirdropLarynxByKc = async (from: string) => {
   const json = JSON.stringify({ claim: true });
   return keychain.customJson(from, "spkcc_claim", "Active", json, "", "");
+};
+
+export const claimLarynxByKey = async (from: string, key: PrivateKey) => {
+  const json = JSON.stringify({ gov: false });
+
+  const op = {
+    id: "spkcc_shares_claim",
+    json,
+    required_auths: [from],
+    required_posting_auths: []
+  };
+
+  return await hiveClient.broadcast.json(op, key);
+};
+
+export const claimLarynxByHs = (from: string) => {
+  const params = {
+    authority: "active",
+    required_auths: `["${from}"]`,
+    required_posting_auths: "[]",
+    id: "spkcc_shares_claim",
+    json: JSON.stringify({ gov: false })
+  };
+  const url = sdk.sign("custom_json", params, window.location.href);
+  if (typeof url === "string") {
+    window.open(url, "blank");
+  }
+};
+
+export const claimLarynxByKc = async (from: string) => {
+  const json = JSON.stringify({ gov: false });
+  return keychain.customJson(from, "spkcc_shares_claim", "Active", json, "", "");
 };
 
 export const powerLarynxByKey = async (

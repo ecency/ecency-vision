@@ -157,6 +157,7 @@ class WalletSpk extends Component<Props, State> {
               <WalletSpkUnclaimedPoints
                 claim={this.state.claim}
                 claiming={false}
+                asset={"LARYNX"}
                 isActiveUserWallet={this.props.isActiveUserWallet}
                 onClaim={() =>
                   this.setState({

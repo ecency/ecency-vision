@@ -646,7 +646,7 @@
     "spk": {
       "claim": {
         "title": "Claim",
-        "unclaimed-rewards": "Unclaimed LARYNX"
+        "unclaimed-rewards": "Unclaimed rewards"
       },
       "delegate": {
         "title": "Delegate",
@@ -676,13 +676,13 @@
         "memo": "Memo",
         "next": "Next",
         "subtitle": "Move funds to another SPK wallet",
-        "warning": "You are going to transfer more than balance available"
+        "warning": "Transferring more than available balance"
       },
       "token": "SPK Token",
       "token-description": "The governance token for the SPK network.",
       "larynx-air": "LARYNX Airdrop Claim",
       "larynx-air-description": "This months claimable tokens based on a January 6th HIVE blockchain snapshot.",
-      "larynx-air-warning": "Tokens not claimed do not roll over to next month.",
+      "larynx-air-warning": "Tokens not claimed, do not roll over to next month.",
       "larynx-already-claimed": "Already claimed.",
       "larynx-token": "LARYNX Token",
       "larynx-token-description": "The mining token for the SPK network.",

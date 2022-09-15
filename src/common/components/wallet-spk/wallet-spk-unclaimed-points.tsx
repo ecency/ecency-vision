@@ -5,6 +5,7 @@ import React from "react";
 
 interface Props {
   claim: string;
+  asset: string;
   isActiveUserWallet: boolean;
   claiming: boolean;
   onClaim: () => void;
@@ -12,6 +13,7 @@ interface Props {
 
 export const WalletSpkUnclaimedPoints = ({
   claim,
+  asset,
   isActiveUserWallet,
   claiming,
   onClaim
@@ -20,7 +22,7 @@ export const WalletSpkUnclaimedPoints = ({
     <div className="unclaimed-rewards">
       <div className="title">{_t("wallet.spk.claim.unclaimed-rewards")}</div>
       <div className="rewards">
-        <span className="reward-type">{claim}</span>
+        {Number(claim) > 0 && <span className="reward-type">{`${claim} ${asset}`}</span>}
         {isActiveUserWallet && (
           <Tooltip content={_t("points.claim-reward-points")}>
             <a className={`claim-btn ${claiming ? "in-progress" : ""}`} onClick={onClaim}>
