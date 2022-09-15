@@ -20,6 +20,7 @@ import {
   transferByKc,
   transferByKey
 } from "./util";
+import { lockByHs, lockByKc, lockByKey } from "./util/lock";
 
 interface Props {
   global: Global;
@@ -28,7 +29,7 @@ interface Props {
   amount: string;
   asset: string;
   memo: string;
-  mode: "transfer" | "delegate" | "powerup" | "powerdown";
+  mode: "transfer" | "delegate" | "powerup" | "powerdown" | "lock" | "unlock";
   setNextStep: () => void;
   to: string;
   addAccount: (account: Account) => void;
@@ -68,6 +69,12 @@ export const SendSpkDialogSign = ({
       case "powerdown":
         promise = powerByKey("down", key, asset, username, amount);
         break;
+      case "lock":
+        promise = lockByKey("lock", key, asset, username, amount);
+        break;
+      case "unlock":
+        promise = lockByKey("unlock", key, asset, username, amount);
+        break;
       default:
         return;
     }
@@ -88,6 +95,12 @@ export const SendSpkDialogSign = ({
         break;
       case "powerdown":
         powerByHs("down", asset, activeUser!.username, amount);
+        break;
+      case "lock":
+        lockByHs("lock", asset, activeUser!.username, amount);
+        break;
+      case "unlock":
+        lockByHs("unlock", asset, activeUser!.username, amount);
         break;
       default:
         return;
@@ -110,6 +123,12 @@ export const SendSpkDialogSign = ({
         break;
       case "powerdown":
         promise = powerByKc("down", asset, username, amount);
+        break;
+      case "lock":
+        promise = lockByKc("lock", asset, username, amount);
+        break;
+      case "unlock":
+        promise = lockByKc("unlock", asset, username, amount);
         break;
       default:
         return;

@@ -665,6 +665,16 @@
         "subtitle": "Power down to earn passive rewards",
         "in-progress": "A power down is scheduled to happen in {{date}} ({{count}} installments remaining)"
       },
+      "lock": {
+        "title": "Lock Liquidity",
+        "subtitle": "Locking Larynx for liquidity reward",
+        "button": "Lock liquidity"
+      },
+      "unlock": {
+        "title": "Unlock Liquidity",
+        "subtitle": "Unlock LARYNX to liquid form",
+        "button": "Unlock liquidity"
+      },
       "send": {
         "balance": "Balance",
         "button": "Send",
@@ -878,7 +888,11 @@
     "stop-power-down": "Stop",
     "claim-title": "Claim",
     "powerup-title": "Power Up",
-    "powerdown-title": "Power down"
+    "powerdown-title": "Power down",
+    "lock-title": "Lock liquidity",
+    "unlock-title": "Unlock liquidity",
+    "lock-summary": "Locking completed as <span class=\"amount\">{{amount}}</span>",
+    "unlock-summary": "Unlocking completed as <span class=\"amount\">{{amount}}</span>"
   },
   "trx-common": {
     "insufficient-funds": "Insufficient funds",

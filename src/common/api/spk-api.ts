@@ -313,3 +313,47 @@ export const powerLarynxByKc = async (mode: "up" | "down", from: string, amount:
   const json = JSON.stringify({ amount: +amount * 1000 });
   return keychain.customJson(from, `spkcc_power_${mode}`, "Active", json, "", "");
 };
+
+export const lockLarynxByKey = async (
+  mode: "lock" | "unlock",
+  key: PrivateKey,
+  from: string,
+  amount: string
+) => {
+  const json = JSON.stringify({ amount: +amount * 1000 });
+
+  const op = {
+    id: mode === "lock" ? "spkcc_gov_up" : "spkcc_gov_down",
+    json,
+    required_auths: [from],
+    required_posting_auths: []
+  };
+
+  return await hiveClient.broadcast.json(op, key);
+};
+
+export const lockLarynxByHs = async (mode: "lock" | "unlock", from: string, amount: string) => {
+  const params = {
+    authority: "active",
+    required_auths: `["${from}"]`,
+    required_posting_auths: "[]",
+    id: mode === "lock" ? "spkcc_gov_up" : "spkcc_gov_down",
+    json: JSON.stringify({ amount: +amount * 1000 })
+  };
+  const url = sdk.sign("custom_json", params, window.location.href);
+  if (typeof url === "string") {
+    window.open(url, "blank");
+  }
+};
+
+export const lockLarynxByKc = async (mode: "lock" | "unlock", from: string, amount: string) => {
+  const json = JSON.stringify({ amount: +amount * 1000 });
+  return keychain.customJson(
+    from,
+    mode === "lock" ? "spkcc_gov_up" : "spkcc_gov_down",
+    "Active",
+    json,
+    "",
+    ""
+  );
+};

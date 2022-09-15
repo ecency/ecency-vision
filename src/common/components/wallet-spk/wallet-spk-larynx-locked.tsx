@@ -5,6 +5,8 @@ import { Props } from "./index";
 
 interface ComponentProps {
   larynxLockedBalance: string;
+  onUnlock: () => void;
+  showActions?: boolean;
 }
 
 export const WalletSpkLarynxLocked = (props: Props & ComponentProps) => {
@@ -27,7 +29,13 @@ export const WalletSpkLarynxLocked = (props: Props & ComponentProps) => {
         </div>
       }
       amountSlot={<>{props.larynxLockedBalance} LL</>}
-      items={[]}
+      showItems={props.showActions}
+      items={[
+        {
+          label: _t("wallet.spk.unlock.button"),
+          onClick: props.onUnlock
+        }
+      ]}
     />
   );
 };
