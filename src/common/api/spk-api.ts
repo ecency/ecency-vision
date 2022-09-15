@@ -78,24 +78,23 @@ export interface HivePrice {
   };
 }
 
-export function rewardSpk(saccountapi: SpkApiWallet, sstats: any) {
+export function rewardSpk(data: SpkApiWallet, sstats: any) {
   let r = 0,
     a = 0,
     b = 0,
     c = 0,
     t = 0,
-    diff = saccountapi.head_block - saccountapi.spk_block;
-  if (!saccountapi.spk_block) {
+    diff = data.head_block - data.spk_block;
+  if (!data.spk_block) {
     return 0;
   } else if (diff < 28800) {
     return 0;
   } else {
     t = diff / 28800;
-    a = saccountapi.gov ? simpleInterest(saccountapi.gov, t, sstats.spk_rate_lgov) : 0;
-    b = saccountapi.pow ? simpleInterest(saccountapi.pow, t, sstats.spk_rate_lpow) : 0;
+    a = data.gov ? simpleInterest(data.gov, t, sstats.spk_rate_lgov) : 0;
+    b = data.pow ? simpleInterest(data.pow, t, sstats.spk_rate_lpow) : 0;
     c = simpleInterest(
-      (saccountapi.granted.t > 0 ? saccountapi.granted.t : 0) +
-        (saccountapi.granting.t > 0 ? saccountapi.granting.t : 0),
+      (data.granted.t > 0 ? data.granted.t : 0) + (data.granting.t > 0 ? data.granting.t : 0),
       t,
       sstats.spk_rate_ldel
     );
