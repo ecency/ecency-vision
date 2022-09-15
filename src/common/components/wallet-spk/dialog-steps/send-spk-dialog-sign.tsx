@@ -10,9 +10,6 @@ import { error } from "../../feedback";
 import { PrivateKey } from "@hiveio/dhive";
 import { Account } from "../../../store/accounts/types";
 import {
-  claimByHs,
-  claimByKc,
-  claimByKey,
   delegateByHs,
   delegateByKc,
   delegateByKey,
@@ -31,7 +28,7 @@ interface Props {
   amount: string;
   asset: string;
   memo: string;
-  mode: "transfer" | "delegate" | "claim" | "powerup" | "powerdown";
+  mode: "transfer" | "delegate" | "powerup" | "powerdown";
   setNextStep: () => void;
   to: string;
   addAccount: (account: Account) => void;
@@ -65,9 +62,6 @@ export const SendSpkDialogSign = ({
       case "delegate":
         promise = delegateByKey(key, asset, username, to, amount);
         break;
-      case "claim":
-        promise = claimByKey(key, asset, username);
-        break;
       case "powerup":
         promise = powerByKey("up", key, asset, username, amount);
         break;
@@ -88,9 +82,6 @@ export const SendSpkDialogSign = ({
         break;
       case "delegate":
         delegateByHs(asset, activeUser!.username, to, amount);
-        break;
-      case "claim":
-        claimByHs(asset, activeUser!.username);
         break;
       case "powerup":
         powerByHs("up", asset, activeUser!.username, amount);
@@ -113,9 +104,6 @@ export const SendSpkDialogSign = ({
         break;
       case "delegate":
         promise = delegateByKc(asset, username, to, amount);
-        break;
-      case "claim":
-        promise = claimByKc(asset, username);
         break;
       case "powerup":
         promise = powerByKc("up", asset, username, amount);
