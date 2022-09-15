@@ -15,6 +15,7 @@ import { Transactions } from "../../store/transactions/types";
 import { SendSpkDialogClaimForm } from "./dialog-steps/send-spk-dialog-claim-form";
 import { SendSpkDialogPowerUpForm } from "./dialog-steps/send-spk-dialog-power-up-form";
 import { Market } from "../../api/spk-api";
+import { SendSpkDialogLockForm } from './dialog-steps/send-spk-dialog-lock';
 
 interface Props {
   global: Global;
@@ -28,7 +29,7 @@ interface Props {
   onFinish: () => void;
   transactions: Transactions;
   asset: "SPK" | "LARYNX" | "LP";
-  type: "transfer" | "delegate" | "claim" | "powerup" | "powerdown";
+  type: "transfer" | "delegate" | "claim" | "powerup" | "powerdown" | "lock" | "unlock";
   prefilledTo?: string;
   prefilledAmount?: string;
   markets: Market[];
@@ -63,6 +64,8 @@ export const SendSpkDialog = ({
     if (type === "claim") return "wallet.spk.claim.title";
     if (type === "powerup") return "wallet.spk.power-up.title";
     if (type === "powerdown") return "wallet.spk.power-down.title";
+    if (type === "lock") return "wallet.spk.lock.title";
+    if (type === "unlock") return "wallet.spk.unlock.title";
     return "";
   };
 
@@ -71,6 +74,8 @@ export const SendSpkDialog = ({
     if (type === "transfer") return "wallet.spk.send.subtitle";
     if (type === "powerup") return "wallet.spk.power-up.subtitle";
     if (type === "powerdown") return "wallet.spk.power-down.subtitle";
+    if (type === "lock") return "wallet.spk.lock.subtitle";
+    if (type === "unlock") return "wallet.spk.unlock.subtitle";
     return "";
   };
 
@@ -193,12 +198,25 @@ export const SendSpkDialog = ({
               <></>
             )}
 
+            {stepIndex === 0 && ["lock", "unlock"].includes(type) ? (
+              <SendSpkDialogLockForm
+                activeUser={activeUser}
+                amount={amount}
+                balance={balance}
+                setAmount={setAmount}
+                submit={() => steps[stepIndex]?.submit()}
+                asset={asset}
+              />
+            ) : (
+              <></>
+            )}
+
             {stepIndex === 1 ? (
               <SendSpkDialogConfirm
                 global={global}
                 title={`${type}-title`}
                 activeUser={activeUser}
-                showTo={!["claim", "powerup", "powerdown"].includes(type)}
+                showTo={!["claim", "powerup", "powerdown", "lock", "unlock"].includes(type)}
                 to={username}
                 memo={memo}
                 amount={amount}

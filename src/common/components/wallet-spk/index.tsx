@@ -37,7 +37,7 @@ interface State {
   sendSpkShow: boolean;
   delegatedPowerDialogShow: boolean;
   selectedAsset: "SPK" | "LARYNX" | "LP";
-  selectedType: "transfer" | "delegate" | "claim" | "powerup" | "powerdown";
+  selectedType: "transfer" | "delegate" | "claim" | "powerup" | "powerdown" | "lock" | "unlock";
   claim: string;
   headBlock: number;
   powerDownList: string[];
@@ -217,12 +217,27 @@ class WalletSpk extends Component<Props, State> {
                       selectedAsset: "LARYNX",
                       selectedType: "powerup"
                     })
-                }
+                },
+                ...(this.props.isActiveUserWallet ? [{
+                  label: _t("wallet.spk.lock.button"),
+                  onClick: () =>
+                    this.setState({
+                      sendSpkShow: true,
+                      selectedAsset: "LARYNX",
+                      selectedType: "lock"
+                    })
+                }] : [])
               ]}
             />
             {this.state.larynxLockedBalance && this.state.isNode ? (
               <WalletSpkLarynxLocked
                 {...this.props}
+                showActions={this.props.isActiveUserWallet}
+                onUnlock={() => this.setState({
+                  sendSpkShow: true,
+                  selectedAsset: "LARYNX",
+                  selectedType: "unlock"
+                })}
                 larynxLockedBalance={this.state.larynxLockedBalance}
               />
             ) : (
