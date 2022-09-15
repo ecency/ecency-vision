@@ -880,6 +880,13 @@
     "amount": "Amount",
     "pending": "Pending"
   },
+  "collateralized-conversion-requests": {
+    "title": "Collateralized Convert requests",
+    "request-id": "Request id",
+    "collateral_amount": "Collateral",
+    "converted_amount": "Converted",
+    "pending": "Pending"
+  },
   "savings-withdraw": {
     "title": "Withdraw from Savings",
     "to": "To"
