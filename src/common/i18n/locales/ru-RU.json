@@ -642,6 +642,7 @@
     "withdraw-routes": "Пути вывода",
     "calculating": "Идет расчет",
     "converting-hbd-amount": "Конвертация в HIVE",
+    "converting-hive-amount": "Converting to HBD",
     "withdrawing-amount": "Вывод из сбережений",
     "reserved-amount": "Зарезервировано для открытого ордера на рынке"
   },
@@ -879,6 +880,13 @@
     "request-id": "ID запроса",
     "amount": "Количество",
     "pending": "В обработке"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Collateralized Convert requests",
+    "request-id": "Request id",
+    "collateral_amount": "Collateral",
+    "converted_amount": "Converted",
+    "pending": "Pending"
   },
   "savings-withdraw": {
     "title": "Вывести из сбережений",
