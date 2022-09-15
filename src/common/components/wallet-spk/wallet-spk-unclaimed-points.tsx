@@ -12,7 +12,7 @@ interface Props {
 
 export const WalletSpkUnclaimedPoints = ({ claim, isActiveUserWallet, claiming, onClaim }: Props) => {
   return <div className="unclaimed-rewards">
-    <div className="title">{_t("points.unclaimed-points")}</div>
+    <div className="title">{_t("wallet.spk.claim.unclaimed-rewards")}</div>
     <div className="rewards">
       <span className="reward-type">{`${claim}`}</span>
       {isActiveUserWallet && (

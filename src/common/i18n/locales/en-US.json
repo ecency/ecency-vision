@@ -645,7 +645,8 @@
     "reserved-amount": "Reserved for Open order in Market",
     "spk": {
       "claim": {
-        "title": "Claim"
+        "title": "Claim",
+        "unclaimed-rewards": "Unclaimed LARYNX"
       },
       "delegate": {
         "title": "Delegate",

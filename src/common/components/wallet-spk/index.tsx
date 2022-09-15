@@ -89,7 +89,7 @@ class WalletSpk extends Component<Props, State> {
         larynxPowerBalance: format(wallet.poweredUp / 1000),
         larynxPowerTotal: wallet.granted?.t ? format(wallet.granted.t / 1000) : '',
         larynxLockedBalance: wallet.gov > 0 ? format(wallet.gov / 1000) : '',
-        claim: wallet.claim,
+        claim: format(wallet.claim / 1000),
         larynxPowerRate: '0.010',
         headBlock: wallet.head_block,
         powerDownList: Object.values(wallet.power_downs),
