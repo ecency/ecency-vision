@@ -693,8 +693,8 @@
         "1": "Earns SPK governance tokens",
         "2": "Instant Lock | 4 Week Unlock",
         "3": "Delegate to node service accounts to build consensus (DPoS)",
-        "4": "LARYNX POWER (LP) earns SPK tokens at 0.010%",
-        "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at 0.015%"
+        "4": "LARYNX POWER (LP) earns SPK tokens at {{rate}}%",
+        "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at {{rate}}%"
       },
       "larynx-locked-benefits": {
         "title": "Benefits of LARYNX Locked",

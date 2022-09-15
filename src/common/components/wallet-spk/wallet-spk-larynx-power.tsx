@@ -15,6 +15,8 @@ interface ComponentProps {
   onDelegate: () => void;
   onPowerDown: () => void;
   onDlpClick: () => void;
+  rateLPow: string;
+  rateLDel: string;
 }
 
 export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
@@ -31,8 +33,8 @@ export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
               <li>{_t("wallet.spk.larynx-power-benefits.1")}</li>
               <li>{_t("wallet.spk.larynx-power-benefits.2")}</li>
               <li>{_t("wallet.spk.larynx-power-benefits.3")}</li>
-              <li>{_t("wallet.spk.larynx-power-benefits.4")}</li>
-              <li>{_t("wallet.spk.larynx-power-benefits.5")}</li>
+              <li>{_t("wallet.spk.larynx-power-benefits.4", { rate: props.rateLPow })}</li>
+              <li>{_t("wallet.spk.larynx-power-benefits.5", { rate: props.rateLDel })}</li>
             </ul>
           </div>
           {props.isActiveUserWallet ? (

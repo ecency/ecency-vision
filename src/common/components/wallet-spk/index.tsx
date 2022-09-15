@@ -45,6 +45,8 @@ interface State {
   markets: Market[];
   isNode: boolean;
   delegatedItems: [string, number][];
+  rateLPow: string;
+  rateLDel: string;
 }
 
 class WalletSpk extends Component<Props, State> {
@@ -70,7 +72,9 @@ class WalletSpk extends Component<Props, State> {
       prefilledAmount: "",
       markets: [],
       isNode: false,
-      delegatedItems: []
+      delegatedItems: [],
+      rateLPow: "0.0001",
+      rateLDel: "0.00015"
     };
   }
 
@@ -109,14 +113,16 @@ class WalletSpk extends Component<Props, State> {
       this.setState({
         markets: list,
         isNode: list.some((market) => market.name === this.props.account?.name),
+        rateLPow: format(parseFloat(raw.stats.spk_rate_lpow) * 100),
+        rateLDel: format(parseFloat(raw.stats.spk_rate_ldel) * 100),
         tokenBalance: format(
           (wallet.spk +
             rewardSpk(
               wallet,
               raw.stats || {
                 spk_rate_lgov: "0.001",
-                spk_rate_lpow: "0.0001",
-                spk_rate_ldel: "0.00015"
+                spk_rate_lpow: this.state.rateLPow,
+                spk_rate_ldel: this.state.rateLDel
               }
             )) /
             1000
@@ -224,6 +230,8 @@ class WalletSpk extends Component<Props, State> {
             )}
             <WalletSpkLarynxPower
               {...this.props}
+              rateLDel={this.state.rateLDel}
+              rateLPow={this.state.rateLPow}
               larynxPowerTotal={this.state.larynxPowerTotal}
               headBlock={this.state.headBlock}
               powerDownList={this.state.powerDownList}
