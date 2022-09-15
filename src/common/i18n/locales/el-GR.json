@@ -642,6 +642,7 @@
     "withdraw-routes": "Οδοί Ανάληψης",
     "calculating": "Υπολογισμός",
     "converting-hbd-amount": "Μετατροπή σε HIVE",
+    "converting-hive-amount": "Converting to HBD",
     "withdrawing-amount": "Απόσυρση από αποταμίευση",
     "reserved-amount": "Δεσμευμένη για Ανοικτή Παραγγελία στην Αγορά"
   },
@@ -878,6 +879,13 @@
     "title": "Convert requests",
     "request-id": "Request id",
     "amount": "Amount",
+    "pending": "Pending"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Collateralized Convert requests",
+    "request-id": "Request id",
+    "collateral_amount": "Collateral",
+    "converted_amount": "Converted",
     "pending": "Pending"
   },
   "savings-withdraw": {
