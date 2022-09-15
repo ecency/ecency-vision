@@ -9,7 +9,7 @@ import { formatError } from '../../api/operations';
 import { ActiveUser } from '../../store/active-user/types';
 
 interface Props {
-  username: string;
+  username?: string;
   setUsername: (value: string) => void;
   activeUser: ActiveUser | null;
   excludeActiveUser?: boolean;

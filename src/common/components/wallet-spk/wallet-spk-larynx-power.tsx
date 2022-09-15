@@ -19,7 +19,6 @@ interface ComponentProps {
 export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
   return <WalletSpkSection
     {...props}
-    isAlternative={true}
     title={_t('wallet.spk.larynx-power')}
     description={_t('wallet.spk.larynx-power-description')}
     slot={<>
@@ -33,11 +32,11 @@ export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
           <li>{_t('wallet.spk.larynx-power-benefits.5')}</li>
         </ul>
       </div>
-      <WalletSpkActivePowerDown
+      {props.isActiveUserWallet ? <WalletSpkActivePowerDown
         headBlock={props.headBlock}
         powerUpList={props.powerDownList}
         onStop={props.onStop}
-      />
+      /> : <></>}
     </>}
     amountSlot={<div>
       <div className="d-flex align-items-center">

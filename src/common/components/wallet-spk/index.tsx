@@ -11,6 +11,7 @@ import { History } from 'history';
 import { Transactions } from '../../store/transactions/types';
 import { WalletSpkLarynxPower } from './wallet-spk-larynx-power';
 import { WalletSpkLarynxLocked } from './wallet-spk-larynx-locked';
+import { WalletSpkUnclaimedPoints } from './wallet-spk-unclaimed-points';
 
 export interface Props {
   global: Global;
@@ -35,7 +36,7 @@ interface State {
   sendSpkShow: boolean;
   selectedAsset: 'SPK' | 'LARYNX' | 'LP';
   selectedType: 'transfer' | 'delegate' | 'claim' | 'powerup' | 'powerdown';
-  hasClaim: boolean;
+  claim: number;
   headBlock: number;
   powerDownList: string[];
   prefilledAmount: string;
@@ -59,7 +60,7 @@ class WalletSpk extends Component<Props, State> {
       sendSpkShow: false,
       selectedAsset: 'SPK',
       selectedType: 'transfer',
-      hasClaim: false,
+      claim: 0,
       headBlock: 0,
       powerDownList: [],
       prefilledAmount: '',
@@ -83,7 +84,7 @@ class WalletSpk extends Component<Props, State> {
         larynxPowerBalance: format(wallet.poweredUp / 1000),
         larynxPowerTotal: wallet.granted?.t ? format(wallet.granted.t / 1000) : '',
         larynxLockedBalance: wallet.gov > 0 ? format(wallet.gov / 1000) : '',
-        hasClaim: wallet.claim > 0,
+        claim: wallet.claim,
         larynxPowerRate: '0.010',
         headBlock: wallet.head_block,
         powerDownList: Object.values(wallet.power_downs)
@@ -123,9 +124,15 @@ class WalletSpk extends Component<Props, State> {
         }
     }
 
-    return <div className="wallet-hive">
+    return <div className="wallet-ecency wallet-spk">
       <div className="wallet-main">
         <div className="wallet-info">
+          {this.state.claim > 0 ? <WalletSpkUnclaimedPoints
+            claim={this.state.claim}
+            claiming={false}
+            isActiveUserWallet={this.props.isActiveUserWallet}
+            onClaim={() => this.setState({ sendSpkShow: true, selectedAsset: 'LARYNX', selectedType: 'claim' })}
+          /> : <></>}
           <WalletSpkSection
             {...this.props}
             title={_t('wallet.spk.token')}
@@ -138,19 +145,7 @@ class WalletSpk extends Component<Props, State> {
           />
           <WalletSpkSection
             {...this.props}
-            showItems={this.state.hasClaim && this.props.isActiveUserWallet}
             isAlternative={true}
-            title={_t('wallet.spk.larynx-air')}
-            description={_t('wallet.spk.larynx-air-description')}
-            slot={<div className="description font-weight-bold mt-2">{this.state.hasClaim ? _t('wallet.spk.larynx-air-warning') : _t('wallet.spk.larynx-already-claimed')}</div>}
-            amountSlot={<>{this.state.larynxAirBalance} LARYNX</>}
-            items={[{
-              label: _t('wallet.spk.claim.title'),
-              onClick: () => this.setState({ sendSpkShow: true, selectedAsset: 'LARYNX', selectedType: 'claim' })
-            }]}
-          />
-          <WalletSpkSection
-            {...this.props}
             title={_t('wallet.spk.larynx-token')}
             description={_t('wallet.spk.larynx-token-description')}
             amountSlot={<>{this.state.larynxTokenBalance} LARYNX</>}
@@ -182,6 +177,7 @@ class WalletSpk extends Component<Props, State> {
           />
           <WalletSpkSection
             {...this.props}
+            isAlternative={true}
             items={[]}
             title={_t('wallet.spk.account-value')}
             description={_t('wallet.spk.account-value-description')}

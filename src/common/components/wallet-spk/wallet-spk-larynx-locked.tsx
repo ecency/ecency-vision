@@ -10,6 +10,7 @@ interface ComponentProps {
 export const WalletSpkLarynxLocked = (props: Props & ComponentProps) => {
   return <WalletSpkSection
     {...props}
+    isAlternative={true}
     title={_t('wallet.spk.larynx-locked')}
     description={_t('wallet.spk.larynx-locked-description')}
     slot={<div className="description menu">
