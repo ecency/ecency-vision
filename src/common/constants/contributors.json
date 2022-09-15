@@ -335,4 +335,9 @@
     "name": "missingnins",
     "contributes": ["Translation (Malay)"]
   }
+   {
+    "name": "susurrodmisterio",
+    "contributes": ["Guest Curator"]
+  }
 ]
+
