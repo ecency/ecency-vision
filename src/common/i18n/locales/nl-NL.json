@@ -883,10 +883,10 @@
   },
   "collateralized-conversion-requests": {
     "title": "Verzoek onderpand verzilveren",
-    "request-id": "Request id",
-    "collateral_amount": "Collateral",
-    "converted_amount": "Converted",
-    "pending": "Pending"
+    "request-id": "Verzoek id",
+    "collateral_amount": "Onderpand",
+    "converted_amount": "Omgerekend",
+    "pending": "In behandeling"
   },
   "savings-withdraw": {
     "title": "Withdraw from Savings",
