@@ -642,7 +642,7 @@
     "withdraw-routes": "Rutas de Retiro",
     "calculating": "Calculando",
     "converting-hbd-amount": "Convirtiendo a HIVE",
-    "converting-hive-amount": "Converting to HBD",
+    "converting-hive-amount": "Convirtiendo a HBD",
     "withdrawing-amount": "Retiro de ahorros",
     "reserved-amount": "Reservado para Orden Abierta en Mercado"
   },
@@ -882,11 +882,11 @@
     "pending": "Pendiente"
   },
   "collateralized-conversion-requests": {
-    "title": "Collateralized Convert requests",
-    "request-id": "Request id",
-    "collateral_amount": "Collateral",
-    "converted_amount": "Converted",
-    "pending": "Pending"
+    "title": "Peticiones de conversión colateralizadas",
+    "request-id": "Id de solicitud",
+    "collateral_amount": "Colateral",
+    "converted_amount": "Convertido",
+    "pending": "Pendiente"
   },
   "savings-withdraw": {
     "title": "Retirar de ahorros",
