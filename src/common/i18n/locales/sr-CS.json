@@ -642,6 +642,7 @@
     "withdraw-routes": "Povucite rute",
     "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE",
+    "converting-hive-amount": "Converting to HBD",
     "withdrawing-amount": "Withdrawing from Savings",
     "reserved-amount": "Reserved for Open order in Market"
   },
@@ -878,6 +879,13 @@
     "title": "Convert requests",
     "request-id": "Request id",
     "amount": "Amount",
+    "pending": "Pending"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Collateralized Convert requests",
+    "request-id": "Request id",
+    "collateral_amount": "Collateral",
+    "converted_amount": "Converted",
     "pending": "Pending"
   },
   "savings-withdraw": {
