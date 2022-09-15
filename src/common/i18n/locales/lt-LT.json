@@ -642,6 +642,7 @@
     "withdraw-routes": "Išsitraukti iš paskyrų",
     "calculating": "Skaičiuojama",
     "converting-hbd-amount": "Konvertavimas į HIVE",
+    "converting-hive-amount": "Converting to HBD",
     "withdrawing-amount": "Išsiėmimas iš santaupų",
     "reserved-amount": "Rezervuota atviram užsakymui rinkoje"
   },
@@ -879,6 +880,13 @@
     "request-id": "Užsakyti id",
     "amount": "Suma",
     "pending": "Laukiama"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Collateralized Convert requests",
+    "request-id": "Request id",
+    "collateral_amount": "Collateral",
+    "converted_amount": "Converted",
+    "pending": "Pending"
   },
   "savings-withdraw": {
     "title": "Išsiėmimas iš santaupų",
