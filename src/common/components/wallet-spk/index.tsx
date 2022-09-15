@@ -48,7 +48,7 @@ interface State {
   sendSpkShow: boolean;
   delegatedPowerDialogShow: boolean;
   selectedAsset: "SPK" | "LARYNX" | "LP";
-  selectedType: "transfer" | "delegate" | "claim" | "powerup" | "powerdown" | "lock" | "unlock";
+  selectedType: "transfer" | "delegate" | "powerup" | "powerdown" | "lock" | "unlock";
   claim: string;
   airdropClaim: string;
   claiming: boolean;
@@ -309,22 +309,6 @@ class WalletSpk extends Component<Props, State> {
                   : [])
               ]}
             />
-            {this.state.larynxLockedBalance && this.state.isNode ? (
-              <WalletSpkLarynxLocked
-                {...this.props}
-                showActions={this.props.isActiveUserWallet && +this.state.larynxLockedBalance > 0}
-                onUnlock={() =>
-                  this.setState({
-                    sendSpkShow: true,
-                    selectedAsset: "LARYNX",
-                    selectedType: "unlock"
-                  })
-                }
-                larynxLockedBalance={this.state.larynxLockedBalance}
-              />
-            ) : (
-              <></>
-            )}
             <WalletSpkLarynxPower
               {...this.props}
               rateLDel={this.state.rateLDel}
@@ -350,6 +334,22 @@ class WalletSpk extends Component<Props, State> {
               }
               onDlpClick={() => this.setState({ delegatedPowerDialogShow: true })}
             />
+            {this.state.larynxLockedBalance && this.state.isNode ? (
+              <WalletSpkLarynxLocked
+                {...this.props}
+                showActions={this.props.isActiveUserWallet && +this.state.larynxLockedBalance > 0}
+                onUnlock={() =>
+                  this.setState({
+                    sendSpkShow: true,
+                    selectedAsset: "LARYNX",
+                    selectedType: "unlock"
+                  })
+                }
+                larynxLockedBalance={this.state.larynxLockedBalance}
+              />
+            ) : (
+              <></>
+            )}
             <WalletSpkSection
               {...this.props}
               isAlternative={true}
