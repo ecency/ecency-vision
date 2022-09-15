@@ -12,6 +12,7 @@ import { Transactions } from '../../store/transactions/types';
 import { WalletSpkLarynxPower } from './wallet-spk-larynx-power';
 import { WalletSpkLarynxLocked } from './wallet-spk-larynx-locked';
 import { WalletSpkUnclaimedPoints } from './wallet-spk-unclaimed-points';
+import { WalletSpkDelegatedPowerDialog } from './wallet-spk-delegated-power-dialog';
 
 export interface Props {
   global: Global;
@@ -34,6 +35,7 @@ interface State {
   larynxPowerTotal: string;
   larynxLockedBalance: string;
   sendSpkShow: boolean;
+  delegatedPowerDialogShow: boolean;
   selectedAsset: 'SPK' | 'LARYNX' | 'LP';
   selectedType: 'transfer' | 'delegate' | 'claim' | 'powerup' | 'powerdown';
   claim: number;
@@ -42,6 +44,7 @@ interface State {
   prefilledAmount: string;
   markets: Market[];
   isNode: boolean;
+  delegatedItems: [string, number][];
 }
 
 class WalletSpk extends Component<Props, State> {
@@ -58,6 +61,7 @@ class WalletSpk extends Component<Props, State> {
       larynxPowerTotal: '',
       larynxLockedBalance: '',
       sendSpkShow: false,
+      delegatedPowerDialogShow: false,
       selectedAsset: 'SPK',
       selectedType: 'transfer',
       claim: 0,
@@ -65,7 +69,8 @@ class WalletSpk extends Component<Props, State> {
       powerDownList: [],
       prefilledAmount: '',
       markets: [],
-      isNode: false
+      isNode: false,
+      delegatedItems: []
     };
   }
 
@@ -87,7 +92,8 @@ class WalletSpk extends Component<Props, State> {
         claim: wallet.claim,
         larynxPowerRate: '0.010',
         headBlock: wallet.head_block,
-        powerDownList: Object.values(wallet.power_downs)
+        powerDownList: Object.values(wallet.power_downs),
+        delegatedItems: Object.entries(wallet.granted).filter(([name]) => name !== 't')
       });
 
       const hivePrice = await getHivePrice();
@@ -174,6 +180,7 @@ class WalletSpk extends Component<Props, State> {
             larynxPowerBalance={this.state.larynxPowerBalance}
             onDelegate={() => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'delegate' })}
             onPowerDown={() => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'powerdown' })}
+            onDlpClick={() => this.setState({ delegatedPowerDialogShow: true })}
           />
           <WalletSpkSection
             {...this.props}
@@ -203,6 +210,15 @@ class WalletSpk extends Component<Props, State> {
         addAccount={this.props.addAccount}
         updateActiveUser={this.props.updateActiveUser}
         onFinish={() => this.fetch()}
+      />
+
+      <WalletSpkDelegatedPowerDialog
+        show={this.state.delegatedPowerDialogShow}
+        setShow={(value: boolean) => this.setState({ delegatedPowerDialogShow: value })}
+        items={this.state.delegatedItems}
+        global={this.props.global}
+        history={this.props.history}
+        addAccount={this.props.addAccount}
       />
     </div>
   }

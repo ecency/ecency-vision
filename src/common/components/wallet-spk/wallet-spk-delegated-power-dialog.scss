@@ -1,0 +1,26 @@
+.spk-delegation-power-dialog {
+  height: 370px;
+  overflow: auto;
+
+  &.hidden {
+    display: none;
+  }
+
+  &.in-progress {
+    pointer-events: none;
+    animation: anim-fadein-out 2s infinite;
+  }
+
+  .user-list {
+    @include user-grid-list(1, 2, 2);
+    min-height: 361px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .item-extra {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

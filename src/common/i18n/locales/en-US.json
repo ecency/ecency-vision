@@ -650,7 +650,10 @@
       "delegate": {
         "title": "Delegate",
         "subtitle": "Delegate tokens",
-        "node-operator-placeholder": "Select a node operator"
+        "node-operator-placeholder": "Select a node operator",
+        "delegated-larynx-power": {
+          "title": "Delegated LARYNX Power"
+        }
       },
       "power-up": {
         "title": "Power up",

@@ -14,6 +14,7 @@ interface ComponentProps {
   isActiveUserWallet: boolean;
   onDelegate: () => void;
   onPowerDown: () => void;
+  onDlpClick: () => void;
 }
 
 export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
@@ -39,7 +40,7 @@ export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
       /> : <></>}
     </>}
     amountSlot={<div><div>{props.larynxPowerBalance} LP</div>
-      {props.larynxPowerTotal ? <div>{props.larynxPowerTotal} DLP</div> : <></>}
+      {props.larynxPowerTotal ? <span className="amount-btn primary" onClick={props.onDlpClick}>{props.larynxPowerTotal} DLP</span> : <></>}
     </div>}
     showItems={props.isActiveUserWallet}
     items={[
