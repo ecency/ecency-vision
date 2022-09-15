@@ -1,17 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Alert, Button, Form, InputGroup } from 'react-bootstrap';
-import { _t } from '../../i18n';
-import { lookupAccounts } from '../../api/hive';
-import { error, success } from '../feedback';
-import { formatError } from '../../api/operations';
-import qrcode from 'qrcode';
-import { copyContent } from '../../img/svg';
-import { ActiveUser } from '../../store/active-user/types';
-import defaults from '../../constants/defaults.json';
-import { PurchaseTypes } from './purchase-types';
-import { PurchaseQrTypes } from './purchase-qr-types';
-import { Location } from 'history';
-import { SearchByUsername } from '../search-by-username';
+import React, { useEffect, useRef, useState } from "react";
+import { Alert, Button, Form, InputGroup } from "react-bootstrap";
+import { _t } from "../../i18n";
+import { lookupAccounts } from "../../api/hive";
+import { error, success } from "../feedback";
+import { formatError } from "../../api/operations";
+import qrcode from "qrcode";
+import { copyContent } from "../../img/svg";
+import { ActiveUser } from "../../store/active-user/types";
+import defaults from "../../constants/defaults.json";
+import { PurchaseTypes } from "./purchase-types";
+import { PurchaseQrTypes } from "./purchase-qr-types";
+import { Location } from "history";
+import { SearchByUsername } from "../search-by-username";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -21,7 +21,7 @@ interface Props {
 }
 
 export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId }: Props) => {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const qrImgRef = useRef<HTMLImageElement | undefined>();
   const [isQrShow, setIsQrShow] = useState(false);
   const [type, setType] = useState(PurchaseTypes.BOOST);
@@ -69,16 +69,19 @@ export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId }: Pro
     <div className="d-flex flex-column align-items-center my-3 px-3 text-center">
       <h2>{isQrShow ? _t("purchase-qr.scan-code") : _t("purchase-qr.select-user")}</h2>
       <div className="w-100 mt-4">
-        <SearchByUsername activeUser={activeUser} setUsername={(value: string) => {
-          setUsername(value);
+        <SearchByUsername
+          activeUser={activeUser}
+          setUsername={(value: string) => {
+            setUsername(value);
 
-          if (!value) {
-          setIsQrShow(false);
-          } else {
-          compileQR(getURL());
-        }
-      }} />
-      {type === PurchaseTypes.POINTS ? (
+            if (!value) {
+              setIsQrShow(false);
+            } else {
+              compileQR(getURL());
+            }
+          }}
+        />
+        {type === PurchaseTypes.POINTS ? (
           <PurchaseQrTypes
             className="mt-3"
             value={pointsValue}
