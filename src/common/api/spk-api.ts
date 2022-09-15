@@ -1,9 +1,16 @@
-import axios from 'axios';
-import * as sdk from 'hivesigner';
-import { PrivateKey, TransactionConfirmation } from '@hiveio/dhive';
-import { client as hiveClient } from './hive';
-import * as keychain from '../helper/keychain';
+import axios from "axios";
+import * as sdk from "hivesigner";
+import { PrivateKey, TransactionConfirmation } from "@hiveio/dhive";
+import { client as hiveClient } from "./hive";
+import * as keychain from "../helper/keychain";
 
+const spkNode = "https://spk.good-karma.xyz";
+const spkNodes = [
+  "https://spk.good-karma.xyz",
+  "https://spknode.blocktrades.us",
+  "https://spk.tcmd-spkcc.com",
+  "https://spktoken.dlux.io"
+];
 export interface SpkApiWallet {
   balance: number;
   claim: number;
@@ -15,7 +22,7 @@ export interface SpkApiWallet {
     };
     last_claim: number;
     total_claims: number;
-  },
+  };
   poweredUp: number;
   granted: {
     t: number;
@@ -62,47 +69,53 @@ export interface HivePrice {
 }
 
 export const getSpkWallet = async (username: string): Promise<SpkApiWallet> => {
-  const resp = await axios.get<SpkApiWallet>(`https://spkinstant.hivehoneycomb.com/@${username}`);
+  const resp = await axios.get<SpkApiWallet>(`${spkNode}/@${username}`);
   return resp.data;
-}
+};
 
 export const getMarkets = async (): Promise<Market[]> => {
-  const resp = await axios.get<SpkMarkets>('https://spkinstant.hivehoneycomb.com/markets');
+  const resp = await axios.get<SpkMarkets>(`${spkNode}/markets`);
   return Object.entries(resp.data.markets.node).map(([name, value]) => ({
     name,
     isAvailable: value.report.block > 67819000
   }));
-}
+};
 
 export const getHivePrice = async (): Promise<HivePrice> => {
   try {
-    const resp = await axios.get<HivePrice>('https://api.coingecko.com/api/v3/simple/price', {
+    const resp = await axios.get<HivePrice>("https://api.coingecko.com/api/v3/simple/price", {
       params: {
-        ids: 'hive',
-        vs_currencies: 'usd'
+        ids: "hive",
+        vs_currencies: "usd"
       }
     });
     return resp.data;
   } catch (e) {
-    return { hive: { usd: 0 } }
+    return { hive: { usd: 0 } };
   }
-}
+};
 
-const sendSpkGeneralByHs = (id: string, from: string, to: string, amount: string | number, memo?: string) => {
+const sendSpkGeneralByHs = (
+  id: string,
+  from: string,
+  to: string,
+  amount: string | number,
+  memo?: string
+) => {
   const params = {
-    authority: 'active',
+    authority: "active",
     required_auths: `["${from}"]`,
-    required_posting_auths: '[]',
+    required_posting_auths: "[]",
     id,
     json: JSON.stringify({
       to,
       amount: +amount * 1000,
-      ...(typeof memo === 'string' ? { memo } : {})
+      ...(typeof memo === "string" ? { memo } : {})
     })
   };
-  const url = sdk.sign('custom_json', params, window.location.href);
-  if (typeof url === 'string') {
-    window.open(url, 'blank');
+  const url = sdk.sign("custom_json", params, window.location.href);
+  if (typeof url === "string") {
+    window.open(url, "blank");
   }
 };
 
@@ -117,7 +130,7 @@ const transferSpkGeneralByKey = async (
   const json = JSON.stringify({
     to,
     amount: +amount * 1000,
-    ...(typeof memo === 'string' ? { memo } : {})
+    ...(typeof memo === "string" ? { memo } : {})
   });
 
   const op = {
@@ -140,18 +153,17 @@ const transferSpkGeneralByKc = async (
   const json = JSON.stringify({
     to,
     amount: +amount * 1000,
-    ...(typeof memo === 'string' ? { memo } : {})
+    ...(typeof memo === "string" ? { memo } : {})
   });
-  return keychain.customJson(from, id, 'Active', json, '', '');
-}
-
+  return keychain.customJson(from, id, "Active", json, "", "");
+};
 
 export const sendSpkByHs = (from: string, to: string, amount: string, memo?: string) => {
-  return sendSpkGeneralByHs('spkcc_spk_send', from, to, amount, memo || '');
+  return sendSpkGeneralByHs("spkcc_spk_send", from, to, amount, memo || "");
 };
 
 export const sendLarynxByHs = (from: string, to: string, amount: string, memo?: string) => {
-  return sendSpkGeneralByHs('spkcc_send', from, to, amount, memo || '');
+  return sendSpkGeneralByHs("spkcc_send", from, to, amount, memo || "");
 };
 
 export const transferSpkByKey = async (
@@ -161,7 +173,7 @@ export const transferSpkByKey = async (
   amount: string,
   memo: string
 ): Promise<TransactionConfirmation> => {
-  return transferSpkGeneralByKey('spkcc_spk_send', from, key, to, amount, memo || '');
+  return transferSpkGeneralByKey("spkcc_spk_send", from, key, to, amount, memo || "");
 };
 
 export const transferLarynxByKey = async (
@@ -171,16 +183,11 @@ export const transferLarynxByKey = async (
   amount: string,
   memo: string
 ): Promise<TransactionConfirmation> => {
-  return transferSpkGeneralByKey('spkcc_send', from, key, to, amount, memo || '');
+  return transferSpkGeneralByKey("spkcc_send", from, key, to, amount, memo || "");
 };
 
-export const transferSpkByKc = async (
-  from: string,
-  to: string,
-  amount: string,
-  memo: string
-) => {
-  return transferSpkGeneralByKc('spkcc_spk_send', from , to, amount, memo || '');
+export const transferSpkByKc = async (from: string, to: string, amount: string, memo: string) => {
+  return transferSpkGeneralByKc("spkcc_spk_send", from, to, amount, memo || "");
 };
 
 export const transferLarynxByKc = async (
@@ -189,7 +196,7 @@ export const transferLarynxByKc = async (
   amount: string,
   memo: string
 ) => {
-  return transferSpkGeneralByKc('spkcc_send', from , to, amount, memo || '');
+  return transferSpkGeneralByKc("spkcc_send", from, to, amount, memo || "");
 };
 
 export const delegateLarynxByKey = async (
@@ -198,50 +205,55 @@ export const delegateLarynxByKey = async (
   to: string,
   amount: string
 ) => {
-  return transferSpkGeneralByKey('spkcc_power_grant', from, key, to, +amount * 1000);
+  return transferSpkGeneralByKey("spkcc_power_grant", from, key, to, +amount * 1000);
 };
 
 export const delegateLarynxByHs = async (from: string, to: string, amount: string) => {
-  return sendSpkGeneralByHs('spkcc_power_grant', from, to, +amount * 1000);
+  return sendSpkGeneralByHs("spkcc_power_grant", from, to, +amount * 1000);
 };
 
 export const delegateLarynxByKc = async (from: string, to: string, amount: string) => {
-  return transferSpkGeneralByKc('spkcc_power_grant', from , to, +amount * 1000);
+  return transferSpkGeneralByKc("spkcc_power_grant", from, to, +amount * 1000);
 };
 
 export const claimLarynxByKey = async (from: string, key: PrivateKey) => {
   const json = JSON.stringify({ claim: true });
 
   const op = {
-    id: 'spkcc_claim',
+    id: "spkcc_claim",
     json,
     required_auths: [from],
     required_posting_auths: []
   };
 
   return await hiveClient.broadcast.json(op, key);
-}
+};
 
 export const claimLarynxByHs = (from: string) => {
   const params = {
-    authority: 'active',
+    authority: "active",
     required_auths: `["${from}"]`,
-    required_posting_auths: '[]',
-    id: 'spkcc_claim',
+    required_posting_auths: "[]",
+    id: "spkcc_claim",
     json: JSON.stringify({ claim: true })
   };
-  const url = sdk.sign('custom_json', params, window.location.href);
-  if (typeof url === 'string') {
-    window.open(url, 'blank');
+  const url = sdk.sign("custom_json", params, window.location.href);
+  if (typeof url === "string") {
+    window.open(url, "blank");
   }
-}
+};
 
 export const claimLarynxByKc = async (from: string) => {
   const json = JSON.stringify({ claim: true });
-  return keychain.customJson(from, 'spkcc_claim', 'Active', json, '', '');
-}
+  return keychain.customJson(from, "spkcc_claim", "Active", json, "", "");
+};
 
-export const powerLarynxByKey = async (mode: 'up' | 'down', from: string, key: PrivateKey, amount: string) => {
+export const powerLarynxByKey = async (
+  mode: "up" | "down",
+  from: string,
+  key: PrivateKey,
+  amount: string
+) => {
   const json = JSON.stringify({ amount: +amount * 1000 });
 
   const op = {
@@ -252,23 +264,23 @@ export const powerLarynxByKey = async (mode: 'up' | 'down', from: string, key: P
   };
 
   return await hiveClient.broadcast.json(op, key);
-}
+};
 
-export const powerLarynxByHs = (mode: 'up' | 'down', from: string, amount: string) => {
+export const powerLarynxByHs = (mode: "up" | "down", from: string, amount: string) => {
   const params = {
-    authority: 'active',
+    authority: "active",
     required_auths: `["${from}"]`,
-    required_posting_auths: '[]',
+    required_posting_auths: "[]",
     id: `spkcc_power_${mode}`,
     json: JSON.stringify({ amount: +amount * 1000 })
   };
-  const url = sdk.sign('custom_json', params, window.location.href);
-  if (typeof url === 'string') {
-    window.open(url, 'blank');
+  const url = sdk.sign("custom_json", params, window.location.href);
+  if (typeof url === "string") {
+    window.open(url, "blank");
   }
-}
+};
 
-export const powerLarynxByKc = async (mode: 'up' | 'down', from: string, amount: string) => {
+export const powerLarynxByKc = async (mode: "up" | "down", from: string, amount: string) => {
   const json = JSON.stringify({ amount: +amount * 1000 });
-  return keychain.customJson(from, `spkcc_power_${mode}`, 'Active', json, '', '');
-}
+  return keychain.customJson(from, `spkcc_power_${mode}`, "Active", json, "", "");
+};
