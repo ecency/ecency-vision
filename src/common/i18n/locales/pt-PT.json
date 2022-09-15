@@ -642,6 +642,7 @@
     "withdraw-routes": "Rotas de Saque",
     "calculating": "Calculando",
     "converting-hbd-amount": "Convertendo em HIVE",
+    "converting-hive-amount": "Converting to HBD",
     "withdrawing-amount": "Sacando da Poupança",
     "reserved-amount": "Reservado em ordem aberta no Câmbio"
   },
@@ -879,6 +880,13 @@
     "request-id": "Id de Solicitação",
     "amount": "Quantidade",
     "pending": "Pendente"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Collateralized Convert requests",
+    "request-id": "Request id",
+    "collateral_amount": "Collateral",
+    "converted_amount": "Converted",
+    "pending": "Pending"
   },
   "savings-withdraw": {
     "title": "Sacar da Poupança",
