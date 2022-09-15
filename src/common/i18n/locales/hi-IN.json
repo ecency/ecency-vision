@@ -642,6 +642,7 @@
     "withdraw-routes": "निकाशी मार्ग",
     "calculating": "गिना जा रहा है",
     "converting-hbd-amount": "हाइव में परिवर्तित हो रहा हैं",
+    "converting-hive-amount": "Converting to HBD",
     "withdrawing-amount": "बचत से निकासी",
     "reserved-amount": "बाजार में खुले आदेश के लिए आरक्षित"
   },
@@ -879,6 +880,13 @@
     "request-id": "अनुरोध आईडी",
     "amount": "राशी",
     "pending": "लंबित"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Collateralized Convert requests",
+    "request-id": "Request id",
+    "collateral_amount": "Collateral",
+    "converted_amount": "Converted",
+    "pending": "Pending"
   },
   "savings-withdraw": {
     "title": "बचत से निकासी",
