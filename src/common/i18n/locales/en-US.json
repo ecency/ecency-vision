@@ -642,6 +642,7 @@
     "withdraw-routes": "Withdraw Routes",
     "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE",
+    "converting-hive-amount": "Converting to HBD",
     "withdrawing-amount": "Withdrawing from Savings",
     "reserved-amount": "Reserved for Open order in Market"
   },

@@ -8,7 +8,7 @@ import {
   dynamicPropsIntance1,
   globalInstance,
   allOver,
-  conversionRequestInstance
+  collateralizedConversionRequestInstance
 } from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
@@ -18,10 +18,10 @@ jest.mock("../../constants/defaults.json", () => ({
 let MOCK_MODE = 1;
 
 jest.mock("../../api/hive", () => ({
-  getConversionRequests: () =>
+  getCollateralizedConversionRequests: () =>
     new Promise((resolve) => {
       if (MOCK_MODE === 1) {
-        resolve(conversionRequestInstance);
+        resolve(collateralizedConversionRequestInstance);
       }
 
       if (MOCK_MODE === 2) {

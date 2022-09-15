@@ -2,7 +2,7 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="conversion-content"
+  className="collateralized-conversion-content"
 >
   <div
     className="list-body"
@@ -16,7 +16,10 @@ exports[`(1) Default render 1`] = `
             Request id
           </th>
           <th>
-            Amount
+            Collateral
+          </th>
+          <th>
+            Converted
           </th>
           <th>
             Pending
@@ -26,21 +29,28 @@ exports[`(1) Default render 1`] = `
       <tbody>
         <tr>
           <td>
-            3179660325
+            1663076563
           </td>
           <td>
             <span
-              title="1.000 HBD"
+              title="14481.756 HIVE"
             >
-              $ 1.000
+              14,481.756 HIVE
+            </span>
+          </td>
+          <td>
+            <span
+              title="3806.633 HBD"
+            >
+              $ 3,806.633
             </span>
           </td>
           <td>
             <div
               className="date"
-              title="Sunday, February 6, 2022 2:59 AM"
+              title="Saturday, September 17, 2022 1:42 AM"
             >
-              7 months ago
+              in a day
             </div>
           </td>
         </tr>
@@ -152,7 +162,7 @@ exports[`(1) Default render 1`] = `
 
 exports[`(2) Empty list 1`] = `
 <div
-  className="conversion-content"
+  className="collateralized-conversion-content"
 >
   <div
     className="list-body"
@@ -171,7 +181,10 @@ exports[`(2) Empty list 1`] = `
             Request id
           </th>
           <th>
-            Amount
+            Collateral
+          </th>
+          <th>
+            Converted
           </th>
           <th>
             Pending

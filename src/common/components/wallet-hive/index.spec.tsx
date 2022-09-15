@@ -12,7 +12,8 @@ import {
   globalInstance,
   dynamicPropsIntance1,
   fullAccountInstance,
-  allOver
+  allOver,
+  collateralizedConversionRequestInstance
 } from "../../helper/test-helper";
 import { StaticRouter } from "react-router-dom";
 import { FullAccount } from "../../store/accounts/types";
@@ -40,6 +41,16 @@ jest.mock("../../api/hive", () => ({
             requestid: 1040029198
           }
         ]);
+      }
+    }),
+  getCollateralizedConversionRequests: () =>
+    new Promise((resolve) => {
+      if (MOCK_MODE === 1) {
+        resolve([]);
+      }
+
+      if (MOCK_MODE === 2) {
+        resolve(collateralizedConversionRequestInstance);
       }
     }),
   getSavingsWithdrawFrom: () =>
