@@ -170,7 +170,6 @@ export class WalletHive extends BaseComponent<Props, State> {
     const { account } = this.props;
 
     const ccrd = await getCollateralizedConversionRequests(account.name);
-    console.log(ccrd);
     if (ccrd.length === 0) {
       return;
     }
