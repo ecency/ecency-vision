@@ -21,7 +21,10 @@ export interface SpkApiWallet {
     t: number;
     [key: string]: number;
   };
-  granting: unknown;
+  granting: {
+    t: number;
+    [key: string]: number;
+  };
   heldCollateral: number;
   contracts: unknown[];
   up: unknown;
@@ -36,6 +39,7 @@ export interface SpkApiWallet {
   head_block: number;
   behind: number;
   VERSION: string; // v<x.x.x>
+  pow: number;
 }
 
 export interface SpkMarkets {
@@ -55,10 +59,53 @@ export interface Market {
   isAvailable: boolean;
 }
 
+export interface Markets {
+  list: Market[];
+  raw: any;
+}
+
 export interface HivePrice {
   hive: {
     usd: number;
   };
+}
+
+export function rewardSpk(saccountapi: SpkApiWallet, sstats: any) {
+  let r = 0,
+    a = 0,
+    b = 0,
+    c = 0,
+    t = 0,
+    diff = saccountapi.head_block - saccountapi.spk_block;
+  if (!saccountapi.spk_block) {
+    return 0;
+  } else if (diff < 28800) {
+    return 0;
+  } else {
+    t = diff / 28800;
+    a = saccountapi.gov
+      ? simpleInterest(saccountapi.gov, t, sstats.spk_rate_lgov)
+      : 0;
+    b = saccountapi.pow
+      ? simpleInterest(saccountapi.pow, t, sstats.spk_rate_lpow)
+      : 0;
+    c = simpleInterest(
+      (saccountapi.granted.t > 0 ? saccountapi.granted.t : 0) + (saccountapi.granting.t > 0 ? saccountapi.granting.t : 0),
+      t,
+      sstats.spk_rate_ldel
+    );
+    const i = a + b + c;
+    if (i) {
+      return i;
+    } else {
+      return 0;
+    }
+  }
+  function simpleInterest(p: number, t: number, r: number) {
+    const amount = p * (1 + (r / 365));
+    const interest = amount - p;
+    return interest * t;
+  }
 }
 
 export const getSpkWallet = async (username: string): Promise<SpkApiWallet> => {
@@ -66,12 +113,15 @@ export const getSpkWallet = async (username: string): Promise<SpkApiWallet> => {
   return resp.data;
 }
 
-export const getMarkets = async (): Promise<Market[]> => {
+export const getMarkets = async (): Promise<Markets> => {
   const resp = await axios.get<SpkMarkets>('https://spkinstant.hivehoneycomb.com/markets');
-  return Object.entries(resp.data.markets.node).map(([name, value]) => ({
-    name,
-    isAvailable: value.report.block > 67819000
-  }));
+  return {
+    list: Object.entries(resp.data.markets.node).map(([name, value]) => ({
+      name,
+      isAvailable: value.report.block > 67819000
+    })),
+    raw: resp.data
+  };
 }
 
 export const getHivePrice = async (): Promise<HivePrice> => {

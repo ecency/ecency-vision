@@ -4,7 +4,7 @@ import { plusCircle } from '../../img/svg';
 import React from 'react';
 
 interface Props {
-  claim: number;
+  claim: string;
   isActiveUserWallet: boolean;
   claiming: boolean;
   onClaim: () => void;
@@ -14,7 +14,7 @@ export const WalletSpkUnclaimedPoints = ({ claim, isActiveUserWallet, claiming, 
   return <div className="unclaimed-rewards">
     <div className="title">{_t("wallet.spk.claim.unclaimed-rewards")}</div>
     <div className="rewards">
-      <span className="reward-type">{`${claim}`}</span>
+      <span className="reward-type">{claim}</span>
       {isActiveUserWallet && (
         <Tooltip content={_t("points.claim-reward-points")}>
           <a className={`claim-btn ${claiming ? "in-progress" : ""}`} onClick={onClaim}>

@@ -3,7 +3,7 @@ import WalletMenu from '../wallet-menu';
 import { Global } from '../../store/global/types';
 import { Account } from '../../store/accounts/types';
 import { _t } from '../../i18n';
-import { getHivePrice, getMarkets, getSpkWallet, Market } from '../../api/spk-api';
+import { getHivePrice, getMarkets, getSpkWallet, Market, rewardSpk } from '../../api/spk-api';
 import { WalletSpkSection } from './wallet-spk-section';
 import { SendSpkDialog } from './send-spk-dialog';
 import { ActiveUser } from '../../store/active-user/types';
@@ -38,7 +38,7 @@ interface State {
   delegatedPowerDialogShow: boolean;
   selectedAsset: 'SPK' | 'LARYNX' | 'LP';
   selectedType: 'transfer' | 'delegate' | 'claim' | 'powerup' | 'powerdown';
-  claim: number;
+  claim: string;
   headBlock: number;
   powerDownList: string[];
   prefilledAmount: string;
@@ -64,7 +64,7 @@ class WalletSpk extends Component<Props, State> {
       delegatedPowerDialogShow: false,
       selectedAsset: 'SPK',
       selectedType: 'transfer',
-      claim: 0,
+      claim: '0',
       headBlock: 0,
       powerDownList: [],
       prefilledAmount: '',
@@ -101,8 +101,16 @@ class WalletSpk extends Component<Props, State> {
         estimatedBalance: (((wallet.gov + wallet.poweredUp + wallet.claim + wallet.spk + wallet.balance) / 1000) * +wallet.tick * hivePrice.hive.usd).toFixed(2)
       });
 
-      const markets = await getMarkets();
-      this.setState({ markets, isNode: markets.some(market => market.name === this.props.account?.name) });
+      const { raw, list } = await getMarkets();
+      this.setState({
+        markets: list,
+        isNode: list.some(market => market.name === this.props.account?.name),
+        tokenBalance: format((wallet.spk + rewardSpk(wallet, raw.stats || {
+          spk_rate_lgov: '0.001',
+          spk_rate_lpow: '0.0001',
+          spk_rate_ldel: '0.00015',
+        })) / 1000)
+      });
     } catch (e) {
       console.error(e);
     }
@@ -133,7 +141,7 @@ class WalletSpk extends Component<Props, State> {
     return <div className="wallet-ecency wallet-spk">
       <div className="wallet-main">
         <div className="wallet-info">
-          {this.state.claim > 0 ? <WalletSpkUnclaimedPoints
+          {+this.state.claim > 0 ? <WalletSpkUnclaimedPoints
             claim={this.state.claim}
             claiming={false}
             isActiveUserWallet={this.props.isActiveUserWallet}
@@ -167,15 +175,20 @@ class WalletSpk extends Component<Props, State> {
             ]}
           />
           {this.state.larynxLockedBalance && this.state.isNode ? <WalletSpkLarynxLocked
-              {...this.props}
-              larynxLockedBalance={this.state.larynxLockedBalance}
+            {...this.props}
+            larynxLockedBalance={this.state.larynxLockedBalance}
           /> : <></>}
           <WalletSpkLarynxPower
             {...this.props}
             larynxPowerTotal={this.state.larynxPowerTotal}
             headBlock={this.state.headBlock}
             powerDownList={this.state.powerDownList}
-            onStop={() => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'powerdown', prefilledAmount: '0' })}
+            onStop={() => this.setState({
+              sendSpkShow: true,
+              selectedAsset: 'LP',
+              selectedType: 'powerdown',
+              prefilledAmount: '0'
+            })}
             larynxPowerRate={this.state.larynxPowerRate}
             larynxPowerBalance={this.state.larynxPowerBalance}
             onDelegate={() => this.setState({ sendSpkShow: true, selectedAsset: 'LP', selectedType: 'delegate' })}
