@@ -70,6 +70,14 @@ export interface HivePrice {
   };
 }
 
+const spkNode = "https://spk.good-karma.xyz";
+const spkNodes = [
+  "https://spk.good-karma.xyz",
+  "https://spknode.blocktrades.us",
+  "https://spk.tcmd-spkcc.com",
+  "https://spktoken.dlux.io"
+];
+
 export function rewardSpk(saccountapi: SpkApiWallet, sstats: any) {
   let r = 0,
     a = 0,
@@ -109,12 +117,12 @@ export function rewardSpk(saccountapi: SpkApiWallet, sstats: any) {
 }
 
 export const getSpkWallet = async (username: string): Promise<SpkApiWallet> => {
-  const resp = await axios.get<SpkApiWallet>(`https://spkinstant.hivehoneycomb.com/@${username}`);
+  const resp = await axios.get<SpkApiWallet>(`${spkNode}/@${username}`);
   return resp.data;
 }
 
 export const getMarkets = async (): Promise<Markets> => {
-  const resp = await axios.get<SpkMarkets>('https://spkinstant.hivehoneycomb.com/markets');
+  const resp = await axios.get<SpkMarkets>(`${spkNode}/markets`);
   return {
     list: Object.entries(resp.data.markets.node).map(([name, value]) => ({
       name,
