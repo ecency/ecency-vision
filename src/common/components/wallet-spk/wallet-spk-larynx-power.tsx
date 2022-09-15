@@ -38,15 +38,8 @@ export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
         onStop={props.onStop}
       /> : <></>}
     </>}
-    amountSlot={<div>
-      <div className="d-flex align-items-center">
-        <span className="badge badge-success text-white mr-2">{props.larynxPowerRate}%</span>
-        <span>{props.larynxPowerBalance} LP</span>
-      </div>
-      {props.larynxPowerTotal ? <div className="d-flex align-items-center">
-        <span className="badge badge-success text-white mr-2">0.015%</span>
-        <span>{props.larynxPowerTotal} DLP</span>
-      </div> : <></>}
+    amountSlot={<div><div>{props.larynxPowerBalance} LP</div>
+      {props.larynxPowerTotal ? <div>{props.larynxPowerTotal} DLP</div> : <></>}
     </div>}
     showItems={props.isActiveUserWallet}
     items={[

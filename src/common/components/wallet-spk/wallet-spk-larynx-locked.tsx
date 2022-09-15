@@ -23,7 +23,7 @@ export const WalletSpkLarynxLocked = (props: Props & ComponentProps) => {
         <li>{_t('wallet.spk.larynx-locked-benefits.5')}</li>
       </ul>
     </div>}
-    amountSlot={<>{props.larynxLockedBalance} LARYNX</>}
+    amountSlot={<>{props.larynxLockedBalance} LL</>}
     items={[]}
   />
 }
