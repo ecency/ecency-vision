@@ -20,6 +20,7 @@ interface Props {
 export const WalletSpkDelegatedPowerDialog = ({ show, setShow, items, history, global, addAccount }: Props) => {
   const [query, setQuery] = useState('');
   const clear = () => {
+    setQuery('');
   }
 
   return <Modal
@@ -47,33 +48,35 @@ export const WalletSpkDelegatedPowerDialog = ({ show, setShow, items, history, g
       <div className="delegated-vesting-content">
         <div className="user-list">
           <div className="list-body">
-            {items.map(([username, value]) => <div className="list-item" key={username}>
-              <div className="item-main">
-                <ProfileLink username={username} history={history} addAccount={addAccount}>
-                  {UserAvatar({ global, username, size: 'small' })}
-                </ProfileLink>
-                {ProfileLink({
-                  history,
-                  addAccount,
-                  username,
-                  children: (
-                    <>{UserAvatar({ global, username, size: 'small' })}</>
-                  )
-                })}
-                <div className="item-info">
-                  <ProfileLink history={history} username={username} addAccount={addAccount}>
-                    <a className="item-name notransalte">{username}</a>
+            {items
+              .filter(([username]) => username.toLowerCase().includes(query.toLowerCase()))
+              .map(([username, value]) => <div className="list-item" key={username}>
+                <div className="item-main">
+                  <ProfileLink username={username} history={history} addAccount={addAccount}>
+                    {UserAvatar({ global, username, size: 'small' })}
                   </ProfileLink>
+                  {ProfileLink({
+                    history,
+                    addAccount,
+                    username,
+                    children: (
+                      <>{UserAvatar({ global, username, size: 'small' })}</>
+                    )
+                  })}
+                  <div className="item-info">
+                    <ProfileLink history={history} username={username} addAccount={addAccount}>
+                      <a className="item-name notransalte">{username}</a>
+                    </ProfileLink>
+                  </div>
                 </div>
-              </div>
-              <div className="item-extra">
-                <Tooltip content="">
+                <div className="item-extra">
+                  <Tooltip content="">
                 <span>
                   {formattedNumber(value / 1000)} LP
                 </span>
-                </Tooltip>
-              </div>
-            </div>)}
+                  </Tooltip>
+                </div>
+              </div>)}
           </div>
         </div>
       </div>
