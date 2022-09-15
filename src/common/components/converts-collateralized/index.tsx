@@ -83,7 +83,7 @@ export class List extends BaseComponent<Props, State> {
     const sliced = displayData.slice(start, end);
 
     return (
-      <div className="conversion-content">
+      <div className="collateralized-conversion-content">
         <div className="list-body">
           {sliced.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
           <Table striped={true} bordered={true} hover={true}>
