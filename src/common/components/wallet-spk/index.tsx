@@ -218,7 +218,7 @@ class WalletSpk extends Component<Props, State> {
                       selectedType: "powerup"
                     })
                 },
-                ...(this.props.isActiveUserWallet ? [{
+                ...(this.props.isActiveUserWallet && +this.state.larynxTokenBalance > 0 ? [{
                   label: _t("wallet.spk.lock.button"),
                   onClick: () =>
                     this.setState({
@@ -232,7 +232,7 @@ class WalletSpk extends Component<Props, State> {
             {this.state.larynxLockedBalance && this.state.isNode ? (
               <WalletSpkLarynxLocked
                 {...this.props}
-                showActions={this.props.isActiveUserWallet}
+                showActions={this.props.isActiveUserWallet && +this.state.larynxLockedBalance > 0}
                 onUnlock={() => this.setState({
                   sendSpkShow: true,
                   selectedAsset: "LARYNX",
