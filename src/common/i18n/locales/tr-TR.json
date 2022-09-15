@@ -642,6 +642,7 @@
     "withdraw-routes": "Çekim Hesapları",
     "calculating": "Hesaplanıyor",
     "converting-hbd-amount": "HIVE'a Dönüştür",
+    "converting-hive-amount": "Converting to HBD",
     "withdrawing-amount": "Withdrawing from Savings",
     "reserved-amount": "Reserved for Open order in Market"
   },
@@ -878,6 +879,13 @@
     "title": "Dönüştürme istekleri",
     "request-id": "Request id",
     "amount": "Amount",
+    "pending": "Pending"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Collateralized Convert requests",
+    "request-id": "Request id",
+    "collateral_amount": "Collateral",
+    "converted_amount": "Converted",
     "pending": "Pending"
   },
   "savings-withdraw": {
