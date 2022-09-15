@@ -642,6 +642,7 @@
     "withdraw-routes": "Opname traject",
     "calculating": "Berekenen",
     "converting-hbd-amount": "Omzetten naar HIVE",
+    "converting-hive-amount": "Converting to HBD",
     "withdrawing-amount": "Opnemen van spaargeld",
     "reserved-amount": "Gereserveerd voor Open order in de markt"
   },
@@ -878,6 +879,13 @@
     "title": "Convert requests",
     "request-id": "Request id",
     "amount": "Amount",
+    "pending": "Pending"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Collateralized Convert requests",
+    "request-id": "Request id",
+    "collateral_amount": "Collateral",
+    "converted_amount": "Converted",
     "pending": "Pending"
   },
   "savings-withdraw": {
