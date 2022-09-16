@@ -102,6 +102,12 @@ class WalletSpk extends Component<Props, State> {
     this.fetch();
   }
 
+  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any) {
+    if (this.props.activeUser && prevProps.activeUser?.username !== this.props.activeUser?.username) {
+      this.fetchActiveUserWallet();
+    }
+  }
+
   airCalc = (data: SpkApiWallet): string => {
     if (
       data.drop?.last_claim
@@ -164,6 +170,7 @@ class WalletSpk extends Component<Props, State> {
     try {
       const wallet = await getSpkWallet(this.props.account.name);
       const format = (value: number) => value.toFixed(3);
+
       this.setState({
         tokenBalance: format(wallet.spk / 1000),
         larynxAirBalance: format(wallet.drop.availible.amount / 1000),
@@ -179,14 +186,7 @@ class WalletSpk extends Component<Props, State> {
         delegatedItems: Object.entries(wallet.granted).filter(([name]) => name !== "t")
       });
 
-      if (!this.props.isActiveUserWallet && this.props.activeUser) {
-        const activeUserWallet = await getSpkWallet(this.props.activeUser?.username);
-        this.setState({
-          activeUserTokenBalance: format(activeUserWallet.spk / 1000),
-          activeUserLarynxTokenBalance: format(activeUserWallet.balance / 1000)
-        });
-      }
-
+      this.fetchActiveUserWallet();
       this.setState({ estimatedBalance: await getEstimatedBalance(wallet) });
 
       const { raw, list } = await getMarkets();
@@ -210,6 +210,17 @@ class WalletSpk extends Component<Props, State> {
       });
     } catch (e) {
       console.error(e);
+    }
+  }
+
+  async fetchActiveUserWallet() {
+    const format = (value: number) => value.toFixed(3);
+    if (!this.props.isActiveUserWallet && this.props.activeUser) {
+      const activeUserWallet = await getSpkWallet(this.props.activeUser?.username);
+      this.setState({
+        activeUserTokenBalance: format(activeUserWallet.spk / 1000),
+        activeUserLarynxTokenBalance: format(activeUserWallet.balance / 1000)
+      });
     }
   }
 
