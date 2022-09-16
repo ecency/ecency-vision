@@ -107,9 +107,6 @@ interface State {
   editHistory: boolean;
   showProfileBox: boolean;
   showWordCount: boolean;
-  // showWordCountInfo: any;
-  // hideWordCountInfo: any;
-  // show: boolean;
   entryIsMuted: boolean;
   selection: string;
   isCommented: boolean;
@@ -131,9 +128,6 @@ class EntryPage extends BaseComponent<Props, State> {
     isCommented: false,
     showProfileBox: false,
     showWordCount: false,
-    // showWordCountInfo: true,
-    // hideWordCountInfo: true,
-    // show: false, 
     entryIsMuted: false,
     isMounted: false,
     selection: "",
@@ -169,14 +163,6 @@ class EntryPage extends BaseComponent<Props, State> {
     const totalCount: number = wordsWithoutSpace.length;
     const wordPerMinuite: number = 225;
     const readTime: number = Math.ceil(totalCount / wordPerMinuite);
-
-
-  //   const showWordCountInfo = () => {
-  // this.state.show = true; 
-  //   }
-  //   const hideWordCountInfo = () => {
-  // this.state.show = false; 
-  //   }
     
  this.setState({ isMounted: true, selection: replyDraft, readTime, wordCount: totalCount});
 
@@ -1080,29 +1066,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                 </div>
                               </OverlayTrigger>
                                 </div>
-
-                                  {/* <Modal 
-                                animation={false}
-                                show={this.state.show}
-                                centered={true} 
-                                id="word-count-modal"
-                                className="hidden"
-                               >
-                                <Modal.Header closeButton={true} onClick={this.state.hideWordCountInfo}>
-                                  <Modal.Title>Post count info</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                  <p>{_t("entry.post-word-count")} {' '} {this.state.wordCount}</p>
-                                  <p>{_t("entry.post-read-time")} {' '} {this.state.readTime} {' '}
-                                   {_t("entry.post-read-minuites")}</p>
-                                </Modal.Body>
-                              </Modal>
- 
-                                <div id="post-info" onClick={this.state.showWordCountInfo}>
-                                  <span className="info-icon mr-0 mr-md-2">
-                                    {informationVariantSvg} 
-                                  </span>
-                                </div> */}
 
                               {!isComment &&
                                 global.usePrivate &&
