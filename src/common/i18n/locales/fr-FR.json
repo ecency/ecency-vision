@@ -401,7 +401,10 @@
     "browse-original": "Afficher le post d'origine",
     "cross-post-by": "Message croisé par",
     "cross-post-community": "communauté",
-    "community-in": "dans"
+    "community-in": "dans",
+    "post-word-count": "Words:",
+    "post-read-time": "Reading:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "Modifier l'historique",
