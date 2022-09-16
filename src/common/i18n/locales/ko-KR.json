@@ -401,7 +401,10 @@
     "browse-original": "원본 게시물 보기",
     "cross-post-by": "교차 게시물 작성자",
     "cross-post-community": "커뮤니티",
-    "community-in": "에서"
+    "community-in": "에서",
+    "post-word-count": "Words:",
+    "post-read-time": "Reading:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "편집 내역",
