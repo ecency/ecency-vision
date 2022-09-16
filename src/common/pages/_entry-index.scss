@@ -17,6 +17,7 @@
 
   .entry-page-content {
     flex-grow: 1;
+    min-height: 100vh;
 
     &.loading {
       .page-tools {
