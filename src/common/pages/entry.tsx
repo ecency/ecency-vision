@@ -75,12 +75,13 @@ import dmca from "../constants/dmca.json";
 
 import { getFollowing } from "../api/hive";
 import { history } from "../store";
-import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
+import { deleteForeverSvg, pencilOutlineSvg, informationVariantSvg } from "../img/svg";
 import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
 import { getPost } from "../api/bridge";
 import { Helmet } from "react-helmet";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 setProxyBase(defaults.imageServer);
 
@@ -104,12 +105,15 @@ interface State {
   comment: string;
   editHistory: boolean;
   showProfileBox: boolean;
+  showWordCount: boolean;
   entryIsMuted: boolean;
   selection: string;
   isCommented: boolean;
   isMounted: boolean;
   postIsDeleted: boolean;
   deletedEntry: { title: string; body: string; tags: any } | null;
+  readTime: number;
+  wordCount: number;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -122,11 +126,14 @@ class EntryPage extends BaseComponent<Props, State> {
     comment: "",
     isCommented: false,
     showProfileBox: false,
+    showWordCount: false,
     entryIsMuted: false,
     isMounted: false,
     selection: "",
     postIsDeleted: false,
-    deletedEntry: null
+    deletedEntry: null,
+    readTime: 1,
+    wordCount: 0
   };
 
   commentInput: Ref<HTMLInputElement>;
@@ -150,7 +157,13 @@ class EntryPage extends BaseComponent<Props, State> {
     window.addEventListener("resize", this.detect);
     let replyDraft = ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`);
     replyDraft = (replyDraft && replyDraft.trim()) || "";
-    this.setState({ isMounted: true, selection: replyDraft });
+
+    const wordsWithoutSpace: any = entry?.body.trim()?.split(/\s+/);
+    const totalCount: number = wordsWithoutSpace.length;
+    const wordPerMinuite: number = 225;
+    const readTime: number = Math.ceil(totalCount / wordPerMinuite);
+
+    this.setState({ isMounted: true, selection: replyDraft, readTime, wordCount: totalCount });
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
@@ -197,8 +210,9 @@ class EntryPage extends BaseComponent<Props, State> {
 
   // detects distance between title and comments section sets visibility of profile card
   detect = () => {
-    const { showProfileBox } = this.state;
+    const { showProfileBox, showWordCount } = this.state;
     const infoCard: HTMLElement | null = document.getElementById("avatar-fixed-container");
+    const wordCounter: HTMLElement | null = document.getElementById("word-count");
     const top = this?.viewElement?.getBoundingClientRect()?.top || 120;
 
     if (infoCard != null && window.scrollY > 180 && top && !(top <= 0)) {
@@ -215,6 +229,17 @@ class EntryPage extends BaseComponent<Props, State> {
       infoCard.classList.replace("visible", "invisible");
       if (showProfileBox) {
         this.setState({ showProfileBox: false });
+      }
+    } else return;
+
+    if (top && top > 0) {
+      if (!showWordCount) {
+        this.setState({ showWordCount: true });
+      }
+    } else if (top && top < 0) {
+      wordCounter?.classList.replace("visible", "invisible");
+      if (showWordCount) {
+        this.setState({ showWordCount: false });
       }
     } else return;
   };
@@ -498,7 +523,8 @@ class EntryPage extends BaseComponent<Props, State> {
       /*commentText,*/ isMounted,
       postIsDeleted,
       deletedEntry,
-      showProfileBox
+      showProfileBox,
+      showWordCount
     } = this.state;
     const { global, history, match, location } = this.props;
 
@@ -652,6 +678,20 @@ class EntryPage extends BaseComponent<Props, State> {
         <MdHandler global={this.props.global} history={this.props.history} />
         {navBar}
         <div className={containerClasses}>
+          <>
+            {!global.isMobile && showWordCount && (
+              <div id="word-count" className="visible hide-xl">
+                <p>
+                  {_t("entry.post-word-count")} {this.state.wordCount}
+                </p>
+                <p>
+                  {_t("entry.post-read-time")} {this.state.readTime}{" "}
+                  {_t("entry.post-read-minuites")}
+                </p>
+              </div>
+            )}
+          </>
+
           <div className="the-entry">
             {originalEntry && (
               <div className="cross-post">
@@ -1001,6 +1041,36 @@ class EntryPage extends BaseComponent<Props, State> {
                                 </div>
                               </div>
                               <span className="flex-spacer" />
+
+                              <div className="post-info">
+                                <OverlayTrigger
+                                  delay={{ show: 0, hide: 300 }}
+                                  key={"bottom"}
+                                  placement={"bottom"}
+                                  overlay={
+                                    <Tooltip id={`tooltip-word-count`}>
+                                      <div className="tooltip-inner">
+                                        <div className="profile-info-tooltip-content">
+                                          <p>
+                                            {_t("entry.post-word-count")} {this.state.wordCount}
+                                          </p>
+                                          <p>
+                                            {_t("entry.post-read-time")} {this.state.readTime}{" "}
+                                            {_t("entry.post-read-minuites")}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </Tooltip>
+                                  }
+                                >
+                                  <div className="d-flex align-items-center">
+                                    <span className="info-icon mr-0 mr-md-2">
+                                      {informationVariantSvg}
+                                    </span>
+                                  </div>
+                                </OverlayTrigger>
+                              </div>
+
                               {!isComment &&
                                 global.usePrivate &&
                                 BookmarkBtn({

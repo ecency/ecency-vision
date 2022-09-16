@@ -514,3 +514,23 @@
     opacity: 1 !important;
   }
 }
+
+@media screen and (max-width: 1210px) {
+  div#word-count {
+  display: none
+  }
+  }
+#word-count {
+  position: fixed;
+  top: 250px;
+  right: 100px;
+  display: block;
+}
+@media screen and (min-width: 1210px) {
+  div.post-info {
+  display: none
+  }
+  }
+.post-info {
+  margin-right: 10px;
+}
