@@ -1,4 +1,4 @@
-import { getHivePrice, SpkApiWallet } from '../../../api/spk-api';
+import { getHivePrice, SpkApiWallet } from "../../../api/spk-api";
 
 export const getEstimatedBalance = async (wallet: SpkApiWallet) => {
   const hivePrice = await getHivePrice();
@@ -7,4 +7,4 @@ export const getEstimatedBalance = async (wallet: SpkApiWallet) => {
     +wallet.tick *
     hivePrice.hive.usd
   ).toFixed(2);
-}
+};

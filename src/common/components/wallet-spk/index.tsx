@@ -24,7 +24,7 @@ import { WalletSpkUnclaimedPoints } from "./wallet-spk-unclaimed-points";
 import { WalletSpkDelegatedPowerDialog } from "./wallet-spk-delegated-power-dialog";
 import { error, success } from "../feedback";
 import { formatError } from "../../api/operations";
-import { getEstimatedBalance } from './util';
+import { getEstimatedBalance } from "./util";
 
 export interface Props {
   global: Global;
@@ -103,7 +103,10 @@ class WalletSpk extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any) {
-    if (this.props.activeUser && prevProps.activeUser?.username !== this.props.activeUser?.username) {
+    if (
+      this.props.activeUser &&
+      prevProps.activeUser?.username !== this.props.activeUser?.username
+    ) {
       this.fetchActiveUserWallet();
     }
   }
@@ -229,11 +232,15 @@ class WalletSpk extends Component<Props, State> {
 
     switch (this.state.selectedAsset) {
       case "SPK":
-        balance = +this.props.isActiveUserWallet ? this.state.activeUserTokenBalance : this.state.activeUserTokenBalance;
+        balance = +this.props.isActiveUserWallet
+          ? this.state.activeUserTokenBalance
+          : this.state.activeUserTokenBalance;
         break;
       case "LARYNX":
         if (["transfer", "powerup", "lock"].includes(this.state.selectedType)) {
-          balance = +this.props.isActiveUserWallet ? this.state.larynxTokenBalance : this.state.activeUserLarynxTokenBalance;
+          balance = +this.props.isActiveUserWallet
+            ? this.state.larynxTokenBalance
+            : this.state.activeUserLarynxTokenBalance;
         } else if (this.state.selectedType === "delegate") {
           balance = this.state.larynxPowerBalance;
         } else if (this.state.selectedType === "unlock") {
@@ -302,15 +309,19 @@ class WalletSpk extends Component<Props, State> {
                       selectedType: "transfer"
                     })
                 },
-                ...(this.props.isActiveUserWallet ? [{
-                  label: _t("wallet.power-up"),
-                  onClick: () =>
-                    this.setState({
-                      sendSpkShow: true,
-                      selectedAsset: "LARYNX",
-                      selectedType: "powerup"
-                    })
-                }]: []),
+                ...(this.props.isActiveUserWallet
+                  ? [
+                      {
+                        label: _t("wallet.power-up"),
+                        onClick: () =>
+                          this.setState({
+                            sendSpkShow: true,
+                            selectedAsset: "LARYNX",
+                            selectedType: "powerup"
+                          })
+                      }
+                    ]
+                  : []),
                 ...(this.props.isActiveUserWallet && +this.state.larynxTokenBalance > 0
                   ? [
                       {

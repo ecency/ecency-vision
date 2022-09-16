@@ -61,7 +61,7 @@ server
       "^/@:username$", // /@esteemapp
       `^/@:username/:section(${profileFilters.join(
         "|"
-      )}|communities|wallet|points|engine|settings|permissions|referrals|followers|following)$` // /@esteemapp/comments
+      )}|communities|wallet|points|engine|settings|permissions|referrals|followers|following|spk)$` // /@esteemapp/comments
     ],
     profileHandler
   )
