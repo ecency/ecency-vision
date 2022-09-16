@@ -63,7 +63,7 @@
     "more-results": "More results",
     "close": "Close",
     "loading": "Loading",
-    "stop": "Stop"
+    "stop": "Dúró"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -648,7 +648,7 @@
     "reserved-amount": "Reserved for Open order in Market",
     "spk": {
       "claim": {
-        "title": "Claim",
+        "title": "Gba",
         "unclaimed-rewards": "Unclaimed rewards"
       },
       "delegate": {
