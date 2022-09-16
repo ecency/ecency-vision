@@ -83,7 +83,6 @@ import { getPost } from "../api/bridge";
 import { Helmet } from "react-helmet";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
-
 setProxyBase(defaults.imageServer);
 
 interface MatchParams {
@@ -163,9 +162,8 @@ class EntryPage extends BaseComponent<Props, State> {
     const totalCount: number = wordsWithoutSpace.length;
     const wordPerMinuite: number = 225;
     const readTime: number = Math.ceil(totalCount / wordPerMinuite);
-    
- this.setState({ isMounted: true, selection: replyDraft, readTime, wordCount: totalCount});
 
+    this.setState({ isMounted: true, selection: replyDraft, readTime, wordCount: totalCount });
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
@@ -245,7 +243,7 @@ class EntryPage extends BaseComponent<Props, State> {
       }
     } else return;
   };
-  
+
   updateReply = (text: string) => {
     const entry = this.getEntry();
     const { activeUser, updateReply } = this.props;
@@ -571,8 +569,7 @@ class EntryPage extends BaseComponent<Props, State> {
                   <div className="mb-4 mt-5">
                     <div id="avatar-fixed-container" className="invisible">
                       {!global.isMobile && showProfileBox && (
-                        <AuthorInfoCard {...this.props} entry={{ author } as any}  
-                        />
+                        <AuthorInfoCard {...this.props} entry={{ author } as any} />
                       )}
                     </div>
                   </div>
@@ -681,16 +678,19 @@ class EntryPage extends BaseComponent<Props, State> {
         <MdHandler global={this.props.global} history={this.props.history} />
         {navBar}
         <div className={containerClasses}>
-
-        <>
-          {!global.isMobile && showWordCount && ( 
-          <div id="word-count" className="visible hide-xl">
-                <p>{_t("entry.post-word-count")} {' '} {this.state.wordCount}</p>
-                <p>{_t("entry.post-read-time")} {' '} {this.state.readTime} {' '} 
-                {_t("entry.post-read-minuites")}</p>
-          </div>
-          )} 
-        </>
+          <>
+            {!global.isMobile && showWordCount && (
+              <div id="word-count" className="visible hide-xl">
+                <p>
+                  {_t("entry.post-word-count")} {this.state.wordCount}
+                </p>
+                <p>
+                  {_t("entry.post-read-time")} {this.state.readTime}{" "}
+                  {_t("entry.post-read-minuites")}
+                </p>
+              </div>
+            )}
+          </>
 
           <div className="the-entry">
             {originalEntry && (
@@ -704,8 +704,9 @@ class EntryPage extends BaseComponent<Props, State> {
                       <div className="cross-post-author">
                         {UserAvatar({ ...this.props, username: entry.author, size: "medium" })}
                         {`@${entry.author}`}
-                      </div>) 
-                })}
+                      </div>
+                    )
+                  })}
                 </div>
                 <div className="cross-post-community">
                   {Tag({
@@ -737,7 +738,7 @@ class EntryPage extends BaseComponent<Props, State> {
                           onClick={(e) => {
                             e.preventDefault();
                             this.stateSet({ showIfNsfw: true });
-                          }}          
+                          }}
                         >
                           {_t("nsfw.reveal")}
                         </a>{" "}
@@ -1040,32 +1041,35 @@ class EntryPage extends BaseComponent<Props, State> {
                                 </div>
                               </div>
                               <span className="flex-spacer" />
-                              
-                                <div className="post-info">
-                                 <OverlayTrigger
-                                delay={{ show: 0, hide: 300 }}
-                                key={"bottom"}
-                                placement={"bottom"}
-                                overlay={
-                                  <Tooltip id={`tooltip-word-count`}>
-                                    <div className="tooltip-inner">
-                                      <div className="profile-info-tooltip-content">
-                                      <p>{_t("entry.post-word-count")} {' '} {this.state.wordCount}</p>
-                                      <p>{_t("entry.post-read-time")} {' '} {this.state.readTime} {' '}
-                                         {_t("entry.post-read-minuites")}
-                                       </p>
+
+                              <div className="post-info">
+                                <OverlayTrigger
+                                  delay={{ show: 0, hide: 300 }}
+                                  key={"bottom"}
+                                  placement={"bottom"}
+                                  overlay={
+                                    <Tooltip id={`tooltip-word-count`}>
+                                      <div className="tooltip-inner">
+                                        <div className="profile-info-tooltip-content">
+                                          <p>
+                                            {_t("entry.post-word-count")} {this.state.wordCount}
+                                          </p>
+                                          <p>
+                                            {_t("entry.post-read-time")} {this.state.readTime}{" "}
+                                            {_t("entry.post-read-minuites")}
+                                          </p>
+                                        </div>
                                       </div>
-                                    </div>
-                                  </Tooltip>
-                                }
-                              >
-                                <div className="d-flex align-items-center">
-                                  <span className="info-icon mr-0 mr-md-2">
-                                    {informationVariantSvg}
-                                  </span>
-                                </div>
-                              </OverlayTrigger>
-                                </div>
+                                    </Tooltip>
+                                  }
+                                >
+                                  <div className="d-flex align-items-center">
+                                    <span className="info-icon mr-0 mr-md-2">
+                                      {informationVariantSvg}
+                                    </span>
+                                  </div>
+                                </OverlayTrigger>
+                              </div>
 
                               {!isComment &&
                                 global.usePrivate &&
@@ -1130,7 +1134,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
                     {!global.isMobile && (
                       <div id="avatar-fixed-container" className="invisible">
-                        {showProfileBox && <AuthorInfoCard {...this.props} entry={entry}/>}
+                        {showProfileBox && <AuthorInfoCard {...this.props} entry={entry} />}
                       </div>
                     )}
 
