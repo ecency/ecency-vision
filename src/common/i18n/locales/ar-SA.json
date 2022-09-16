@@ -401,7 +401,10 @@
     "browse-original": "فتح المنشور الأصلي",
     "cross-post-by": "نشر متقاطع بواسطة",
     "cross-post-community": "مجتمع",
-    "community-in": "في"
+    "community-in": "في",
+    "post-word-count": "Words:",
+    "post-read-time": "Reading:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "تعديل التاريخ",
