@@ -401,7 +401,10 @@
     "browse-original": "打开原始帖子",
     "cross-post-by": "交叉帖子由",
     "cross-post-community": "社区",
-    "community-in": "在"
+    "community-in": "在",
+    "post-word-count": "Words:",
+    "post-read-time": "Reading:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "编辑历史记录",
