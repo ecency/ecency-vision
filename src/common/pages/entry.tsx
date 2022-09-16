@@ -75,12 +75,14 @@ import dmca from "../constants/dmca.json";
 
 import { getFollowing } from "../api/hive";
 import { history } from "../store";
-import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
+import { deleteForeverSvg, pencilOutlineSvg, informationVariantSvg } from "../img/svg";
 import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
 import { getPost } from "../api/bridge";
 import { Helmet } from "react-helmet";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+
 
 setProxyBase(defaults.imageServer);
 
@@ -105,6 +107,9 @@ interface State {
   editHistory: boolean;
   showProfileBox: boolean;
   showWordCount: boolean;
+  // showWordCountInfo: any;
+  // hideWordCountInfo: any;
+  // show: boolean;
   entryIsMuted: boolean;
   selection: string;
   isCommented: boolean;
@@ -126,6 +131,9 @@ class EntryPage extends BaseComponent<Props, State> {
     isCommented: false,
     showProfileBox: false,
     showWordCount: false,
+    // showWordCountInfo: true,
+    // hideWordCountInfo: true,
+    // show: false, 
     entryIsMuted: false,
     isMounted: false,
     selection: "",
@@ -162,7 +170,15 @@ class EntryPage extends BaseComponent<Props, State> {
     const wordPerMinuite: number = 225;
     const readTime: number = Math.ceil(totalCount / wordPerMinuite);
 
-    this.setState({ isMounted: true, selection: replyDraft, readTime, wordCount: totalCount });
+
+  //   const showWordCountInfo = () => {
+  // this.state.show = true; 
+  //   }
+  //   const hideWordCountInfo = () => {
+  // this.state.show = false; 
+  //   }
+    
+ this.setState({ isMounted: true, selection: replyDraft, readTime, wordCount: totalCount});
 
   }
 
@@ -217,7 +233,6 @@ class EntryPage extends BaseComponent<Props, State> {
 
     if (infoCard != null && window.scrollY > 180 && top && !(top <= 0)) {
       infoCard.classList.replace("invisible", "visible");
-      console.log('word counter')
       if (!showProfileBox) {
         this.setState({ showProfileBox: true });
       }
@@ -680,6 +695,17 @@ class EntryPage extends BaseComponent<Props, State> {
         <MdHandler global={this.props.global} history={this.props.history} />
         {navBar}
         <div className={containerClasses}>
+
+        <>
+          {!global.isMobile && showWordCount && ( 
+          <div id="word-count" className="visible hide-xl">
+                <p>{_t("entry.post-word-count")} {' '} {this.state.wordCount}</p>
+                <p>{_t("entry.post-read-time")} {' '} {this.state.readTime} {' '} 
+                {_t("entry.post-read-minuites")}</p>
+          </div>
+          )} 
+        </>
+
           <div className="the-entry">
             {originalEntry && (
               <div className="cross-post">
@@ -1028,6 +1054,56 @@ class EntryPage extends BaseComponent<Props, State> {
                                 </div>
                               </div>
                               <span className="flex-spacer" />
+                              
+                                <div className="post-info">
+                                 <OverlayTrigger
+                                delay={{ show: 0, hide: 300 }}
+                                key={"bottom"}
+                                placement={"bottom"}
+                                overlay={
+                                  <Tooltip id={`tooltip-word-count`}>
+                                    <div className="tooltip-inner">
+                                      <div className="profile-info-tooltip-content">
+                                      <p>{_t("entry.post-word-count")} {' '} {this.state.wordCount}</p>
+                                      <p>{_t("entry.post-read-time")} {' '} {this.state.readTime} {' '}
+                                         {_t("entry.post-read-minuites")}
+                                       </p>
+                                      </div>
+                                    </div>
+                                  </Tooltip>
+                                }
+                              >
+                                <div className="d-flex align-items-center">
+                                  <span className="info-icon mr-0 mr-md-2">
+                                    {informationVariantSvg}
+                                  </span>
+                                </div>
+                              </OverlayTrigger>
+                                </div>
+
+                                  {/* <Modal 
+                                animation={false}
+                                show={this.state.show}
+                                centered={true} 
+                                id="word-count-modal"
+                                className="hidden"
+                               >
+                                <Modal.Header closeButton={true} onClick={this.state.hideWordCountInfo}>
+                                  <Modal.Title>Post count info</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                  <p>{_t("entry.post-word-count")} {' '} {this.state.wordCount}</p>
+                                  <p>{_t("entry.post-read-time")} {' '} {this.state.readTime} {' '}
+                                   {_t("entry.post-read-minuites")}</p>
+                                </Modal.Body>
+                              </Modal>
+ 
+                                <div id="post-info" onClick={this.state.showWordCountInfo}>
+                                  <span className="info-icon mr-0 mr-md-2">
+                                    {informationVariantSvg} 
+                                  </span>
+                                </div> */}
+
                               {!isComment &&
                                 global.usePrivate &&
                                 BookmarkBtn({
@@ -1042,14 +1118,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                   extraMenuItems: extraItems
                                 })}
                             </div>
-
-                            {!global.isMobile && showWordCount && ( 
-                           <div id="word-count" className="visible hide-xl">
-                                 <p>{_t("entry.post-word-count")} {' '} {this.state.wordCount}</p>
-                                 <p>{_t("entry.post-read-time")} {' '} {this.state.readTime} {' '} {_t("entry.post-read-minuites")}</p>
-                           </div>
-                           )} 
-                        
                           </div>
                           <meta itemProp="headline name" content={entry.title} />
 

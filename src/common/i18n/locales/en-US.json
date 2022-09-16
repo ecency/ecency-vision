@@ -401,8 +401,8 @@
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
     "community-in": "in",
-    "post-word-count": "Total words:",
-    "post-read-time": "Read time:",
+    "post-word-count": "Words:",
+    "post-read-time": "Reading:",
     "post-read-minuites": "min"
   },
   "edit-history": {
