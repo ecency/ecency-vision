@@ -29,7 +29,7 @@ interface Props {
   onFinish: () => void;
   transactions: Transactions;
   asset: "SPK" | "LARYNX" | "LP";
-  type: "transfer" | "delegate" | "claim" | "powerup" | "powerdown" | "lock" | "unlock";
+  type: "transfer" | "delegate" | "powerup" | "powerdown" | "lock" | "unlock";
   prefilledTo?: string;
   prefilledAmount?: string;
   markets: Market[];
