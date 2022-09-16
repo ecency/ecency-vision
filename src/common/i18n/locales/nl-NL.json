@@ -648,23 +648,23 @@
     "reserved-amount": "Gereserveerd voor Open order in de markt",
     "spk": {
       "claim": {
-        "title": "Claim",
-        "unclaimed-rewards": "Unclaimed rewards"
+        "title": "Opeisen",
+        "unclaimed-rewards": "Niet opgeëiste beloningen"
       },
       "delegate": {
-        "title": "Delegate",
-        "subtitle": "Delegate tokens",
-        "node-operator-placeholder": "Select a node operator",
+        "title": "Toewijzen",
+        "subtitle": "Tokens toewijzen",
+        "node-operator-placeholder": "Selecteer netwerk beheerder",
         "delegated-larynx-power": {
-          "title": "Delegated LARYNX Power"
+          "title": "Toegewezene LARYNX Power"
         }
       },
       "power-up": {
         "title": "Power up",
-        "subtitle": "Power up to earn passive rewards"
+        "subtitle": "Tegoeden vastzetten voor passieve beloning"
       },
       "power-down": {
-        "title": "Power down",
+        "title": "Vastegezete tegoeden loskoppelen",
         "subtitle": "Power down to earn passive rewards",
         "in-progress": "A power down is scheduled to happen in {{date}} ({{count}} installments remaining)"
       },
