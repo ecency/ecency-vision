@@ -1,6 +1,6 @@
 import React from "react";
 import { ActiveUser } from "../../../store/active-user/types";
-import { SendSpkDialogPowerUpForm } from './send-spk-dialog-power-up-form';
+import { SendSpkDialogPowerUpForm } from "./send-spk-dialog-power-up-form";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -19,12 +19,14 @@ export const SendSpkDialogLockForm = ({
   submit,
   asset
 }: Props) => {
-  return <SendSpkDialogPowerUpForm
-    activeUser={activeUser}
-    amount={amount}
-    balance={balance}
-    setAmount={setAmount}
-    submit={submit}
-    asset={asset}
-  />
+  return (
+    <SendSpkDialogPowerUpForm
+      activeUser={activeUser}
+      amount={amount}
+      balance={balance}
+      setAmount={setAmount}
+      submit={submit}
+      asset={asset}
+    />
+  );
 };

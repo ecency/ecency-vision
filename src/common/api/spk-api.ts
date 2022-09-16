@@ -3,6 +3,7 @@ import * as sdk from "hivesigner";
 import { PrivateKey, TransactionConfirmation } from "@hiveio/dhive";
 import { client as hiveClient } from "./hive";
 import * as keychain from "../helper/keychain";
+import { broadcastPostingJSON } from "./operations";
 
 const spkNode = "https://spk.good-karma.xyz";
 const spkNodes = [
@@ -264,68 +265,16 @@ export const delegateLarynxByKc = async (from: string, to: string, amount: strin
   return transferSpkGeneralByKc("spkcc_power_grant", from, to, +amount * 1000);
 };
 
-export const claimAirdropLarynxByKey = async (from: string, key: PrivateKey) => {
-  const json = JSON.stringify({ claim: true });
+export const claimLarynxRewards = async (from: string): Promise<TransactionConfirmation> => {
+  const json = { gov: false };
 
-  const op = {
-    id: "spkcc_claim",
-    json,
-    required_auths: [from],
-    required_posting_auths: []
-  };
-
-  return await hiveClient.broadcast.json(op, key);
+  return broadcastPostingJSON(from, "spkcc_shares_claim", json);
 };
 
-export const claimAirdropLarynxByHs = (from: string) => {
-  const params = {
-    authority: "active",
-    required_auths: `["${from}"]`,
-    required_posting_auths: "[]",
-    id: "spkcc_claim",
-    json: JSON.stringify({ claim: true })
-  };
-  const url = sdk.sign("custom_json", params, window.location.href);
-  if (typeof url === "string") {
-    window.open(url, "blank");
-  }
-};
+export const claimAirdropLarynxRewards = async (from: string): Promise<TransactionConfirmation> => {
+  const json = { claim: true };
 
-export const claimAirdropLarynxByKc = async (from: string) => {
-  const json = JSON.stringify({ claim: true });
-  return keychain.customJson(from, "spkcc_claim", "Active", json, "", "");
-};
-
-export const claimLarynxByKey = async (from: string, key: PrivateKey) => {
-  const json = JSON.stringify({ gov: false });
-
-  const op = {
-    id: "spkcc_shares_claim",
-    json,
-    required_auths: [from],
-    required_posting_auths: []
-  };
-
-  return await hiveClient.broadcast.json(op, key);
-};
-
-export const claimLarynxByHs = (from: string) => {
-  const params = {
-    authority: "active",
-    required_auths: `["${from}"]`,
-    required_posting_auths: "[]",
-    id: "spkcc_shares_claim",
-    json: JSON.stringify({ gov: false })
-  };
-  const url = sdk.sign("custom_json", params, window.location.href);
-  if (typeof url === "string") {
-    window.open(url, "blank");
-  }
-};
-
-export const claimLarynxByKc = async (from: string) => {
-  const json = JSON.stringify({ gov: false });
-  return keychain.customJson(from, "spkcc_shares_claim", "Active", json, "", "");
+  return broadcastPostingJSON(from, "spkcc_claim", json);
 };
 
 export const powerLarynxByKey = async (
@@ -365,7 +314,12 @@ export const powerLarynxByKc = async (mode: "up" | "down", from: string, amount:
   return keychain.customJson(from, `spkcc_power_${mode}`, "Active", json, "", "");
 };
 
-export const lockLarynxByKey = async (mode: "lock" | "unlock", key: PrivateKey, from: string, amount: string) => {
+export const lockLarynxByKey = async (
+  mode: "lock" | "unlock",
+  key: PrivateKey,
+  from: string,
+  amount: string
+) => {
   const json = JSON.stringify({ amount: +amount * 1000 });
 
   const op = {
@@ -376,7 +330,7 @@ export const lockLarynxByKey = async (mode: "lock" | "unlock", key: PrivateKey, 
   };
 
   return await hiveClient.broadcast.json(op, key);
-}
+};
 
 export const lockLarynxByHs = async (mode: "lock" | "unlock", from: string, amount: string) => {
   const params = {
@@ -390,9 +344,16 @@ export const lockLarynxByHs = async (mode: "lock" | "unlock", from: string, amou
   if (typeof url === "string") {
     window.open(url, "blank");
   }
-}
+};
 
 export const lockLarynxByKc = async (mode: "lock" | "unlock", from: string, amount: string) => {
   const json = JSON.stringify({ amount: +amount * 1000 });
-  return keychain.customJson(from, mode === "lock" ? "spkcc_gov_up" : "spkcc_gov_down", "Active", json, "", "");
-}
+  return keychain.customJson(
+    from,
+    mode === "lock" ? "spkcc_gov_up" : "spkcc_gov_down",
+    "Active",
+    json,
+    "",
+    ""
+  );
+};

@@ -15,7 +15,7 @@ import { Transactions } from "../../store/transactions/types";
 import { SendSpkDialogClaimForm } from "./dialog-steps/send-spk-dialog-claim-form";
 import { SendSpkDialogPowerUpForm } from "./dialog-steps/send-spk-dialog-power-up-form";
 import { Market } from "../../api/spk-api";
-import { SendSpkDialogLockForm } from './dialog-steps/send-spk-dialog-lock';
+import { SendSpkDialogLockForm } from "./dialog-steps/send-spk-dialog-lock";
 
 interface Props {
   global: Global;

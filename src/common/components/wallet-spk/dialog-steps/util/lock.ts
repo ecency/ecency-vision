@@ -1,9 +1,5 @@
 import { PrivateKey } from "@hiveio/dhive";
-import {
-  lockLarynxByHs,
-  lockLarynxByKc,
-  lockLarynxByKey
-} from '../../../../api/spk-api';
+import { lockLarynxByHs, lockLarynxByKc, lockLarynxByKey } from "../../../../api/spk-api";
 
 export const lockByKey = (
   mode: "lock" | "unlock",
@@ -20,7 +16,12 @@ export const lockByKey = (
   }
 };
 
-export const lockByKc = (mode: "lock" | "unlock", asset: string, username: string, amount: string) => {
+export const lockByKc = (
+  mode: "lock" | "unlock",
+  asset: string,
+  username: string,
+  amount: string
+) => {
   switch (asset) {
     case "LARYNX":
       return lockLarynxByKc(mode, username, amount);
