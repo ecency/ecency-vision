@@ -62,7 +62,8 @@
     "price": "Price",
     "more-results": "More results",
     "close": "Bağla",
-    "loading": "Loading"
+    "loading": "Loading",
+    "stop": "Stop"
   },
   "confirm": {
     "title": "Əminsiniz?",
@@ -93,7 +94,9 @@
     "filter-week": "This week",
     "filter-month": "This month",
     "filter-year": "This year",
-    "filter-alltime": "All time"
+    "filter-alltime": "All time",
+    "filter-no-reblog": "Exclude reblog",
+    "filter-with-reblog": "Include reblog"
   },
   "navbar": {
     "discover": "Kəşf et",
@@ -398,7 +401,10 @@
     "browse-original": "Orijinal göndərişi aç",
     "cross-post-by": "Cross post by",
     "cross-post-community": "cəmiyyət",
-    "community-in": "in"
+    "community-in": "in",
+    "post-word-count": "Words:",
+    "post-read-time": "Reading:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "Tarixçəyə düzəliş et",
@@ -640,8 +646,85 @@
     "withdraw-routes": "Withdraw Routes",
     "calculating": "Calculating",
     "converting-hbd-amount": "HIVE-a çevrilir",
+    "converting-hive-amount": "Converting to HBD",
     "withdrawing-amount": "Withdrawing from Savings",
-    "reserved-amount": "Reserved for Open order in Market"
+    "reserved-amount": "Reserved for Open order in Market",
+    "spk": {
+      "claim": {
+        "title": "Claim",
+        "unclaimed-rewards": "Unclaimed rewards"
+      },
+      "delegate": {
+        "title": "Delegate",
+        "subtitle": "Delegate tokens",
+        "node-operator-placeholder": "Select a node operator",
+        "delegated-larynx-power": {
+          "title": "Delegated LARYNX Power"
+        }
+      },
+      "power-up": {
+        "title": "Power up",
+        "subtitle": "Power up to earn passive rewards"
+      },
+      "power-down": {
+        "title": "Power down",
+        "subtitle": "Power down to earn passive rewards",
+        "in-progress": "A power down is scheduled to happen in {{date}} ({{count}} installments remaining)"
+      },
+      "lock": {
+        "title": "Lock Liquidity",
+        "subtitle": "Locking Larynx for liquidity reward",
+        "button": "Lock liquidity"
+      },
+      "unlock": {
+        "title": "Unlock Liquidity",
+        "subtitle": "Unlock LARYNX to liquid form",
+        "button": "Unlock liquidity"
+      },
+      "send": {
+        "balance": "Balance",
+        "button": "Send",
+        "from": "From",
+        "to": "To",
+        "amount": "Amount",
+        "optional": "optional",
+        "title": "Send SPK",
+        "memo": "Memo",
+        "next": "Next",
+        "subtitle": "Move funds to another SPK wallet",
+        "warning": "Transferring more than available balance"
+      },
+      "token": "SPK Token",
+      "token-description": "The governance token for the SPK network.",
+      "larynx-air": "LARYNX Airdrop Claim",
+      "larynx-air-description": "This months claimable tokens based on a January 6th HIVE blockchain snapshot.",
+      "larynx-air-warning": "Tokens not claimed, do not roll over to next month.",
+      "larynx-already-claimed": "Already claimed.",
+      "larynx-token": "LARYNX Token",
+      "larynx-token-description": "The mining token for the SPK network.",
+      "larynx-power": "LARYNX Power",
+      "larynx-power-description": "Powered tokens used to mine SPK",
+      "larynx-power-benefits": {
+        "title": "Benefits of LARYNX Power",
+        "1": "Earns SPK governance tokens",
+        "2": "Instant Lock | 4 Week Unlock",
+        "3": "Delegate to node service accounts to build consensus (DPoS)",
+        "4": "LARYNX POWER (LP) earns SPK tokens at {{rate}}%",
+        "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at {{rate}}%"
+      },
+      "larynx-locked-benefits": {
+        "title": "Benefits of LARYNX Locked",
+        "1": "Proof of Stake Consensus",
+        "2": "Collateral for DEX transactions",
+        "3": "Instant Lock | 4 Week Unlock",
+        "4": "Requires an operating LARYNX node",
+        "5": "Earns 0.100%"
+      },
+      "account-value": "Estimated Account Value",
+      "account-value-description": "The approximate US Dollar value for all SPK assets in your account",
+      "larynx-locked": "LARYNX Locked",
+      "larynx-locked-description": "Locked tokens provide liquidity to the network, aid in determining consensus, and earn rewards for node runners"
+    }
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",
@@ -803,9 +886,19 @@
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
     "claim-interest-summary": "Interest claimed and added to your savings balance",
+    "claim-summary": "Claimed and added to your savings balance",
+    "powerup-summary": "Power up completed successfully",
+    "powerdown-summary": "Power down completed successfully",
     "reset": "Sıfırla",
     "powering-down": "You are currently powering down.",
-    "stop-power-down": "Dayandır"
+    "stop-power-down": "Dayandır",
+    "claim-title": "Claim",
+    "powerup-title": "Power Up",
+    "powerdown-title": "Power down",
+    "lock-title": "Lock liquidity",
+    "unlock-title": "Unlock liquidity",
+    "lock-summary": "Locking completed as <span class=\"amount\">{{amount}}</span>",
+    "unlock-summary": "Unlocking completed as <span class=\"amount\">{{amount}}</span>"
   },
   "trx-common": {
     "insufficient-funds": "Yetərsiz fond",
@@ -876,6 +969,13 @@
     "title": "Convert requests",
     "request-id": "Request id",
     "amount": "Amount",
+    "pending": "Pending"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Collateralized Convert requests",
+    "request-id": "Request id",
+    "collateral_amount": "Collateral",
+    "converted_amount": "Converted",
     "pending": "Pending"
   },
   "savings-withdraw": {
@@ -1131,7 +1231,9 @@
     "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
     "proxy-active-current": "Your current proxy is",
     "proxy-active-btn-label": "Clear Proxy",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-votes-for": "@{{username}} votes for",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",

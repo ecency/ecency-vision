@@ -62,7 +62,8 @@
     "price": "Hinta",
     "more-results": "Lisää tuloksia",
     "close": "Sulje",
-    "loading": "Ladataan"
+    "loading": "Ladataan",
+    "stop": "Stop"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -93,7 +94,9 @@
     "filter-week": "Tällä viikolla",
     "filter-month": "Tässä kuussa",
     "filter-year": "Tänä vuonna",
-    "filter-alltime": "Koko ajalta"
+    "filter-alltime": "Koko ajalta",
+    "filter-no-reblog": "Exclude reblog",
+    "filter-with-reblog": "Include reblog"
   },
   "navbar": {
     "discover": "Löydä uutta",
@@ -398,7 +401,10 @@
     "browse-original": "Näytä alkuperäinen julkaisu",
     "cross-post-by": "Ristilähettäjä",
     "cross-post-community": "yhteisö",
-    "community-in": " "
+    "community-in": " ",
+    "post-word-count": "Words:",
+    "post-read-time": "Reading:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "Muokkaushistoria",
@@ -640,8 +646,85 @@
     "withdraw-routes": "Palauta Reitit",
     "calculating": "Lasketaan",
     "converting-hbd-amount": "Muunnos HIVE:ksi",
+    "converting-hive-amount": "Converting to HBD",
     "withdrawing-amount": "Kotiuta säästöistä",
-    "reserved-amount": "Varattu avoimeen tilaukseen markkinoilla"
+    "reserved-amount": "Varattu avoimeen tilaukseen markkinoilla",
+    "spk": {
+      "claim": {
+        "title": "Claim",
+        "unclaimed-rewards": "Unclaimed rewards"
+      },
+      "delegate": {
+        "title": "Delegate",
+        "subtitle": "Delegate tokens",
+        "node-operator-placeholder": "Select a node operator",
+        "delegated-larynx-power": {
+          "title": "Delegated LARYNX Power"
+        }
+      },
+      "power-up": {
+        "title": "Power up",
+        "subtitle": "Power up to earn passive rewards"
+      },
+      "power-down": {
+        "title": "Power down",
+        "subtitle": "Power down to earn passive rewards",
+        "in-progress": "A power down is scheduled to happen in {{date}} ({{count}} installments remaining)"
+      },
+      "lock": {
+        "title": "Lock Liquidity",
+        "subtitle": "Locking Larynx for liquidity reward",
+        "button": "Lock liquidity"
+      },
+      "unlock": {
+        "title": "Unlock Liquidity",
+        "subtitle": "Unlock LARYNX to liquid form",
+        "button": "Unlock liquidity"
+      },
+      "send": {
+        "balance": "Balance",
+        "button": "Send",
+        "from": "From",
+        "to": "To",
+        "amount": "Amount",
+        "optional": "optional",
+        "title": "Send SPK",
+        "memo": "Memo",
+        "next": "Next",
+        "subtitle": "Move funds to another SPK wallet",
+        "warning": "Transferring more than available balance"
+      },
+      "token": "SPK Token",
+      "token-description": "The governance token for the SPK network.",
+      "larynx-air": "LARYNX Airdrop Claim",
+      "larynx-air-description": "This months claimable tokens based on a January 6th HIVE blockchain snapshot.",
+      "larynx-air-warning": "Tokens not claimed, do not roll over to next month.",
+      "larynx-already-claimed": "Already claimed.",
+      "larynx-token": "LARYNX Token",
+      "larynx-token-description": "The mining token for the SPK network.",
+      "larynx-power": "LARYNX Power",
+      "larynx-power-description": "Powered tokens used to mine SPK",
+      "larynx-power-benefits": {
+        "title": "Benefits of LARYNX Power",
+        "1": "Earns SPK governance tokens",
+        "2": "Instant Lock | 4 Week Unlock",
+        "3": "Delegate to node service accounts to build consensus (DPoS)",
+        "4": "LARYNX POWER (LP) earns SPK tokens at {{rate}}%",
+        "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at {{rate}}%"
+      },
+      "larynx-locked-benefits": {
+        "title": "Benefits of LARYNX Locked",
+        "1": "Proof of Stake Consensus",
+        "2": "Collateral for DEX transactions",
+        "3": "Instant Lock | 4 Week Unlock",
+        "4": "Requires an operating LARYNX node",
+        "5": "Earns 0.100%"
+      },
+      "account-value": "Estimated Account Value",
+      "account-value-description": "The approximate US Dollar value for all SPK assets in your account",
+      "larynx-locked": "LARYNX Locked",
+      "larynx-locked-description": "Locked tokens provide liquidity to the network, aid in determining consensus, and earn rewards for node runners"
+    }
   },
   "wallet-engine": {
     "title": "Hive Engine Tokenit",
@@ -803,9 +886,19 @@
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> valtuutus poistettu <span class=\"from-user\">{{from}}</span> käyttäjältä <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down valmis <span class=\"amount\">{{amount}}</span>",
     "claim-interest-summary": "Korko lunastettu ja lisätty säästöihin",
+    "claim-summary": "Claimed and added to your savings balance",
+    "powerup-summary": "Power up completed successfully",
+    "powerdown-summary": "Power down completed successfully",
     "reset": "Nollaa",
     "powering-down": "Olet alentamassa tehoa.",
-    "stop-power-down": "Lopeta"
+    "stop-power-down": "Lopeta",
+    "claim-title": "Claim",
+    "powerup-title": "Power Up",
+    "powerdown-title": "Power down",
+    "lock-title": "Lock liquidity",
+    "unlock-title": "Unlock liquidity",
+    "lock-summary": "Locking completed as <span class=\"amount\">{{amount}}</span>",
+    "unlock-summary": "Unlocking completed as <span class=\"amount\">{{amount}}</span>"
   },
   "trx-common": {
     "insufficient-funds": "Riittämättömät varat",
@@ -877,6 +970,13 @@
     "request-id": "Pyynnin id",
     "amount": "Määrä",
     "pending": "Odottaa"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Collateralized Convert requests",
+    "request-id": "Request id",
+    "collateral_amount": "Collateral",
+    "converted_amount": "Converted",
+    "pending": "Pending"
   },
   "savings-withdraw": {
     "title": "Kotiuta säästöistä",
@@ -1131,7 +1231,9 @@
     "proxy-active-description": "Olet asettanut valtuutetun. Jos haluat äänestää itse, tyhjennä valtuutuksesi.",
     "proxy-active-current": "Nykyinen valtuutettusi",
     "proxy-active-btn-label": "Poista valtuutus",
-    "proxy-votes-for": "@{{username}} ääntä"
+    "proxy-votes-for": "@{{username}} ääntä",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Suositukset",

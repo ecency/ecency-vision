@@ -62,7 +62,8 @@
     "price": "Prijs",
     "more-results": "Meer resultaten",
     "close": "Sluiten",
-    "loading": "Laden"
+    "loading": "Laden",
+    "stop": "Stop"
   },
   "confirm": {
     "title": "Weet je het zeker?",
@@ -93,7 +94,9 @@
     "filter-week": "Deze week",
     "filter-month": "Deze maand",
     "filter-year": "Dit jaar",
-    "filter-alltime": "Van alle tijden"
+    "filter-alltime": "Van alle tijden",
+    "filter-no-reblog": "Gedeelde berichten uitsluiten",
+    "filter-with-reblog": "Inclusief gedeelde berichten"
   },
   "navbar": {
     "discover": "Ontdek",
@@ -398,7 +401,10 @@
     "browse-original": "Toon origineel bericht",
     "cross-post-by": "Gedeelde post door",
     "cross-post-community": "community",
-    "community-in": "in"
+    "community-in": "in",
+    "post-word-count": "Words:",
+    "post-read-time": "Reading:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "Geschiedenis bewerken",
@@ -640,8 +646,85 @@
     "withdraw-routes": "Opname traject",
     "calculating": "Berekenen",
     "converting-hbd-amount": "Omzetten naar HIVE",
+    "converting-hive-amount": "Converteren naar HBD",
     "withdrawing-amount": "Opnemen van spaargeld",
-    "reserved-amount": "Gereserveerd voor Open order in de markt"
+    "reserved-amount": "Gereserveerd voor Open order in de markt",
+    "spk": {
+      "claim": {
+        "title": "Opeisen",
+        "unclaimed-rewards": "Niet opgeëiste beloningen"
+      },
+      "delegate": {
+        "title": "Toewijzen",
+        "subtitle": "Tokens toewijzen",
+        "node-operator-placeholder": "Selecteer netwerk beheerder",
+        "delegated-larynx-power": {
+          "title": "Toegewezene LARYNX Power"
+        }
+      },
+      "power-up": {
+        "title": "Power up",
+        "subtitle": "Tegoeden vastzetten voor passieve beloning"
+      },
+      "power-down": {
+        "title": "Vastegezete tegoeden loskoppelen",
+        "subtitle": "Power down to earn passive rewards",
+        "in-progress": "A power down is scheduled to happen in {{date}} ({{count}} installments remaining)"
+      },
+      "lock": {
+        "title": "Lock Liquidity",
+        "subtitle": "Locking Larynx for liquidity reward",
+        "button": "Lock liquidity"
+      },
+      "unlock": {
+        "title": "Unlock Liquidity",
+        "subtitle": "Unlock LARYNX to liquid form",
+        "button": "Unlock liquidity"
+      },
+      "send": {
+        "balance": "Balance",
+        "button": "Send",
+        "from": "From",
+        "to": "To",
+        "amount": "Amount",
+        "optional": "optional",
+        "title": "Send SPK",
+        "memo": "Memo",
+        "next": "Next",
+        "subtitle": "Move funds to another SPK wallet",
+        "warning": "Transferring more than available balance"
+      },
+      "token": "SPK Token",
+      "token-description": "The governance token for the SPK network.",
+      "larynx-air": "LARYNX Airdrop Claim",
+      "larynx-air-description": "This months claimable tokens based on a January 6th HIVE blockchain snapshot.",
+      "larynx-air-warning": "Tokens not claimed, do not roll over to next month.",
+      "larynx-already-claimed": "Already claimed.",
+      "larynx-token": "LARYNX Token",
+      "larynx-token-description": "The mining token for the SPK network.",
+      "larynx-power": "LARYNX Power",
+      "larynx-power-description": "Powered tokens used to mine SPK",
+      "larynx-power-benefits": {
+        "title": "Benefits of LARYNX Power",
+        "1": "Earns SPK governance tokens",
+        "2": "Instant Lock | 4 Week Unlock",
+        "3": "Delegate to node service accounts to build consensus (DPoS)",
+        "4": "LARYNX POWER (LP) earns SPK tokens at {{rate}}%",
+        "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at {{rate}}%"
+      },
+      "larynx-locked-benefits": {
+        "title": "Benefits of LARYNX Locked",
+        "1": "Proof of Stake Consensus",
+        "2": "Collateral for DEX transactions",
+        "3": "Instant Lock | 4 Week Unlock",
+        "4": "Requires an operating LARYNX node",
+        "5": "Earns 0.100%"
+      },
+      "account-value": "Estimated Account Value",
+      "account-value-description": "The approximate US Dollar value for all SPK assets in your account",
+      "larynx-locked": "LARYNX Locked",
+      "larynx-locked-description": "Locked tokens provide liquidity to the network, aid in determining consensus, and earn rewards for node runners"
+    }
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",
@@ -803,9 +886,19 @@
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
     "claim-interest-summary": "Interest claimed and added to your savings balance",
+    "claim-summary": "Claimed and added to your savings balance",
+    "powerup-summary": "Power up completed successfully",
+    "powerdown-summary": "Power down completed successfully",
     "reset": "Herstellen",
     "powering-down": "Je bent momenteel Hive power aan het afbouwen.",
-    "stop-power-down": "Stop"
+    "stop-power-down": "Stop",
+    "claim-title": "Claim",
+    "powerup-title": "Power Up",
+    "powerdown-title": "Power down",
+    "lock-title": "Lock liquidity",
+    "unlock-title": "Unlock liquidity",
+    "lock-summary": "Locking completed as <span class=\"amount\">{{amount}}</span>",
+    "unlock-summary": "Unlocking completed as <span class=\"amount\">{{amount}}</span>"
   },
   "trx-common": {
     "insufficient-funds": "Saldo niet toereikend",
@@ -878,6 +971,13 @@
     "amount": "Amount",
     "pending": "Pending"
   },
+  "collateralized-conversion-requests": {
+    "title": "Verzoek onderpand verzilveren",
+    "request-id": "Verzoek id",
+    "collateral_amount": "Onderpand",
+    "converted_amount": "Omgerekend",
+    "pending": "In behandeling"
+  },
   "savings-withdraw": {
     "title": "Withdraw from Savings",
     "to": "To"
@@ -889,43 +989,43 @@
     "order-id": "Order id"
   },
   "friends": {
-    "followers": "Followers ({{n}})",
-    "following": "Following ({{n}})",
-    "search-placeholder": "Search"
+    "followers": "Volgers ({{n}})",
+    "following": "Volgen ({{n}})",
+    "search-placeholder": "Zoeken"
   },
   "follow-controls": {
-    "follow": "Follow",
-    "unFollow": "Unfollow",
-    "mute": "Mute",
-    "unMute": "Unmute"
+    "follow": "Volgen",
+    "unFollow": "Stop met volgen",
+    "mute": "Negeren",
+    "unMute": "Niet langer negeren"
   },
   "favorite-btn": {
-    "add": "Add to favorites",
-    "added": "Added to favorites",
-    "delete": "Remove from favorites",
-    "deleted": "Removed from favorites"
+    "add": "Toevoegen aan favorieten",
+    "added": "Aan favorieten toegevoegd",
+    "delete": "Uit favorieten verwijderen",
+    "deleted": "Verwijderd uit favorieten"
   },
   "editor-toolbar": {
-    "bold": "Bold",
-    "italic": "Italic",
-    "header": "Heading",
+    "bold": "Vetgedrukt",
+    "italic": "Schuingedrukt",
+    "header": "Kop",
     "code": "Code",
-    "quote": "Quote",
-    "ul": "Unordered List",
-    "ol": "Ordered List",
-    "link": "Link",
-    "image": "Image",
-    "table": "Table",
-    "table-3-col": "3 columns",
-    "table-2-col": "2 columns",
-    "table-1-col": "1 column",
+    "quote": "Citaat",
+    "ul": "Ongesorteerde lijst",
+    "ol": "Geordende lijst",
+    "link": "Koppeling",
+    "image": "Afbeelding",
+    "table": "Tabel",
+    "table-3-col": "3 kolommen",
+    "table-2-col": "2 kolommen",
+    "table-1-col": "1 kolom",
     "upload": "Upload",
-    "gallery": "Gallery",
+    "gallery": "Gallerij",
     "emoji": "Emoji",
-    "image-error": "Couldn't upload image.",
-    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
-    "image-error-size": "Image size is too large, try smaller size image again.",
-    "fragments": "Snippets"
+    "image-error": "Kan afbeelding niet uploaden.",
+    "image-error-cache": "Kan de afbeelding niet uploaden. Je lijkt te zijn afgemeld. Probeer je opnieuw aan te melden.",
+    "image-error-size": "Je afbeelding is te groot, probeer een kleinere afbeelding.",
+    "fragments": "Tekstfragmenten"
   },
   "emoji-picker": {
     "filter-placeholder": "Filter",
@@ -1131,7 +1231,9 @@
     "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
     "proxy-active-current": "Your current proxy is",
     "proxy-active-btn-label": "Clear Proxy",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-votes-for": "@{{username}} votes for",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",

@@ -62,7 +62,8 @@
     "price": "Price",
     "more-results": "More results",
     "close": "Close",
-    "loading": "Loading"
+    "loading": "Loading",
+    "stop": "Dúró"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -93,7 +94,9 @@
     "filter-week": "This week",
     "filter-month": "This month",
     "filter-year": "This year",
-    "filter-alltime": "All time"
+    "filter-alltime": "All time",
+    "filter-no-reblog": "Exclude reblog",
+    "filter-with-reblog": "Include reblog"
   },
   "navbar": {
     "discover": "Discover",
@@ -398,7 +401,10 @@
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
-    "community-in": "in"
+    "community-in": "in",
+    "post-word-count": "Words:",
+    "post-read-time": "Reading:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "Edit History",
@@ -640,8 +646,85 @@
     "withdraw-routes": "Withdraw Routes",
     "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE",
+    "converting-hive-amount": "Converting to HBD",
     "withdrawing-amount": "Withdrawing from Savings",
-    "reserved-amount": "Reserved for Open order in Market"
+    "reserved-amount": "Reserved for Open order in Market",
+    "spk": {
+      "claim": {
+        "title": "Gba",
+        "unclaimed-rewards": "Àwọn èrè àìtíìgbà"
+      },
+      "delegate": {
+        "title": "Asojú",
+        "subtitle": "Toókìnì Asojú",
+        "node-operator-placeholder": "Yan olùṣe nóòdì kan",
+        "delegated-larynx-power": {
+          "title": "Ìgbèra LARYNX ti aṣojú"
+        }
+      },
+      "power-up": {
+        "title": "Gbéra nílẹ̀",
+        "subtitle": "Gbéra nílẹ̀ láti gbá èrè àfikún"
+      },
+      "power-down": {
+        "title": "Simi ìgbéra",
+        "subtitle": "Simi ìgbéra láti gba èrè àfikún",
+        "in-progress": "Ìsinmi ìgbéra yóò wáyé ni {{date}} ({{count}} ìfimúlẹ̀ ló kù"
+      },
+      "lock": {
+        "title": "Ti ìfìdíjálẹ̀ pa",
+        "subtitle": "Títi Larynx pa láti gba èrè ìfìdíjálẹ̀",
+        "button": "Ti ìfìdíjálẹ̀ pa"
+      },
+      "unlock": {
+        "title": "Ṣí ìfìdíjálẹ̀ sílẹ̀",
+        "subtitle": "Ṣí LARYNX sílẹ̀ sí ipò ìfìdíjálẹ̀",
+        "button": "Ṣí ìfìdíjálẹ̀ sílẹ̀"
+      },
+      "send": {
+        "balance": "Ìyókù",
+        "button": "Firánṣẹ́",
+        "from": "Láti",
+        "to": "Sí",
+        "amount": "Iye",
+        "optional": "optional",
+        "title": "Fi SPK ránṣẹ́",
+        "memo": "Àkọsílẹ̀",
+        "next": "Èyí tó kàn",
+        "subtitle": "Kó owó sí àpò SPK míràn",
+        "warning": "Kíkó ju iye tó ṣẹ́kù nínú àpò"
+      },
+      "token": "Tókìnì SPK",
+      "token-description": "Tókìnì ìsèjoọba fún ìtàkùn SPK.",
+      "larynx-air": "Gbígba Airdrop LARYNX",
+      "larynx-air-description": "Tókìnì tí o ṣeé gba ní oṣù yìí gẹ́gẹ́ bíi àkámọ́ HIVE blockchain fún January 6th.",
+      "larynx-air-warning": "Tókìnì àìgbà, má ṣe yíi mọ́ra lọ sí oṣù tó ń bọ̀.",
+      "larynx-already-claimed": "O ti gbàá.",
+      "larynx-token": "Tókìnì LARYNX",
+      "larynx-token-description": "Tókìnì ìwakùsà fun ìtàkùn SPK.",
+      "larynx-power": "Ìgbéra LARYNX",
+      "larynx-power-description": "Tókìnì ìgbéra láti wakùsà SPK",
+      "larynx-power-benefits": {
+        "title": "Àwọn àǹfààní ìgbéra LARYNX",
+        "1": "Gba tókìnì ìsèjọba SPK",
+        "2": "Títìpa ẹsẹ̀kẹsẹ̀ | ṣíṣí sílẹ̀ fún ọ̀sẹ̀ mẹ́rin",
+        "3": "Delegate to node service accounts to build consensus (DPoS)",
+        "4": "ÌGBÉRA LARYNX (IL) ń gba tókìnì SPK ní ìdáa {{rate}}",
+        "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at {{rate}}%"
+      },
+      "larynx-locked-benefits": {
+        "title": "Àwọn àǹfààní LARYNX títì pa",
+        "1": "Proof of Stake Consensus",
+        "2": "Collateral for DEX transactions",
+        "3": "Instant Lock | 4 Week Unlock",
+        "4": "Requires an operating LARYNX node",
+        "5": "Earns 0.100%"
+      },
+      "account-value": "Estimated Account Value",
+      "account-value-description": "The approximate US Dollar value for all SPK assets in your account",
+      "larynx-locked": "LARYNX Locked",
+      "larynx-locked-description": "Locked tokens provide liquidity to the network, aid in determining consensus, and earn rewards for node runners"
+    }
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",
@@ -803,9 +886,19 @@
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
     "claim-interest-summary": "Interest claimed and added to your savings balance",
+    "claim-summary": "Claimed and added to your savings balance",
+    "powerup-summary": "Power up completed successfully",
+    "powerdown-summary": "Power down completed successfully",
     "reset": "Reset",
     "powering-down": "You are currently powering down.",
-    "stop-power-down": "Stop"
+    "stop-power-down": "Stop",
+    "claim-title": "Claim",
+    "powerup-title": "Power Up",
+    "powerdown-title": "Power down",
+    "lock-title": "Lock liquidity",
+    "unlock-title": "Unlock liquidity",
+    "lock-summary": "Locking completed as <span class=\"amount\">{{amount}}</span>",
+    "unlock-summary": "Unlocking completed as <span class=\"amount\">{{amount}}</span>"
   },
   "trx-common": {
     "insufficient-funds": "Insufficient funds",
@@ -876,6 +969,13 @@
     "title": "Convert requests",
     "request-id": "Request id",
     "amount": "Amount",
+    "pending": "Pending"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Collateralized Convert requests",
+    "request-id": "Request id",
+    "collateral_amount": "Collateral",
+    "converted_amount": "Converted",
     "pending": "Pending"
   },
   "savings-withdraw": {
@@ -1131,7 +1231,9 @@
     "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
     "proxy-active-current": "Your current proxy is",
     "proxy-active-btn-label": "Clear Proxy",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-votes-for": "@{{username}} votes for",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referrals",
