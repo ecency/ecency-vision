@@ -401,7 +401,10 @@
     "browse-original": "Εμφάνιση αρχικής δημοσίευσης",
     "cross-post-by": "Διασταυρούμενη δημοσίευση από",
     "cross-post-community": "κοινότητα",
-    "community-in": "σε"
+    "community-in": "σε",
+    "post-word-count": "Words:",
+    "post-read-time": "Reading:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "Ιστορικό Επεξεργασίας",
