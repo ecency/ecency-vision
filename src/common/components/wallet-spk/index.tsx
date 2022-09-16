@@ -13,6 +13,7 @@ import { WalletSpkLarynxPower } from "./wallet-spk-larynx-power";
 import { WalletSpkLarynxLocked } from "./wallet-spk-larynx-locked";
 import { WalletSpkUnclaimedPoints } from "./wallet-spk-unclaimed-points";
 import { WalletSpkDelegatedPowerDialog } from "./wallet-spk-delegated-power-dialog";
+import { getEstimatedBalance } from './util';
 
 export interface Props {
   global: Global;
@@ -25,10 +26,12 @@ export interface Props {
   isActiveUserWallet: boolean;
 }
 
-interface State {
+export interface State {
   tokenBalance: string;
   larynxAirBalance: string;
   larynxTokenBalance: string;
+  activeUserTokenBalance: string;
+  activeUserLarynxTokenBalance: string;
   larynxPowerBalance: string;
   estimatedBalance: string;
   larynxPowerRate: string;
@@ -58,6 +61,8 @@ class WalletSpk extends Component<Props, State> {
       larynxAirBalance: "0",
       larynxPowerBalance: "0",
       larynxTokenBalance: "0",
+      activeUserTokenBalance: "0",
+      activeUserLarynxTokenBalance: "0",
       estimatedBalance: "0",
       larynxPowerRate: "0",
       larynxPowerTotal: "",
@@ -100,14 +105,15 @@ class WalletSpk extends Component<Props, State> {
         delegatedItems: Object.entries(wallet.granted).filter(([name]) => name !== "t")
       });
 
-      const hivePrice = await getHivePrice();
-      this.setState({
-        estimatedBalance: (
-          ((wallet.gov + wallet.poweredUp + wallet.claim + wallet.spk + wallet.balance) / 1000) *
-          +wallet.tick *
-          hivePrice.hive.usd
-        ).toFixed(2)
-      });
+      if (!this.props.isActiveUserWallet && this.props.activeUser) {
+        const activeUserWallet = await getSpkWallet(this.props.activeUser?.username);
+        this.setState({
+          activeUserTokenBalance: format(activeUserWallet.spk / 1000),
+          activeUserLarynxTokenBalance: format(activeUserWallet.balance / 1000)
+        });
+      }
+
+      this.setState({ estimatedBalance: await getEstimatedBalance(wallet) });
 
       const { raw, list } = await getMarkets();
       this.setState({
@@ -138,15 +144,15 @@ class WalletSpk extends Component<Props, State> {
 
     switch (this.state.selectedAsset) {
       case "SPK":
-        balance = this.state.tokenBalance;
+        balance = +this.state.activeUserTokenBalance > 0 ? this.state.activeUserTokenBalance : this.state.tokenBalance;
         break;
       case "LARYNX":
-        if (this.state.selectedType === "transfer") {
-          balance = this.state.larynxTokenBalance;
+        if (["transfer", "powerup", "lock"].includes(this.state.selectedType)) {
+          balance = +this.state.activeUserLarynxTokenBalance > 0 ? this.state.activeUserLarynxTokenBalance : this.state.larynxTokenBalance;
         } else if (this.state.selectedType === "delegate") {
           balance = this.state.larynxPowerBalance;
-        } else if (this.state.selectedType === "powerup") {
-          balance = this.state.larynxTokenBalance;
+        } else if (this.state.selectedType === "unlock") {
+          balance = this.state.larynxLockedBalance;
         }
         break;
       case "LP":
@@ -209,7 +215,7 @@ class WalletSpk extends Component<Props, State> {
                       selectedType: "transfer"
                     })
                 },
-                {
+                ...(this.props.isActiveUserWallet ? [{
                   label: _t("wallet.power-up"),
                   onClick: () =>
                     this.setState({
@@ -217,7 +223,7 @@ class WalletSpk extends Component<Props, State> {
                       selectedAsset: "LARYNX",
                       selectedType: "powerup"
                     })
-                },
+                }] : []),
                 ...(this.props.isActiveUserWallet && +this.state.larynxTokenBalance > 0 ? [{
                   label: _t("wallet.spk.lock.button"),
                   onClick: () =>
