@@ -12,7 +12,6 @@ import numeral from "numeral";
 import { SendSpkDialogSign } from "./dialog-steps/send-spk-dialog-sign";
 import { SendSpkSuccess } from "./dialog-steps/send-spk-success";
 import { Transactions } from "../../store/transactions/types";
-import { SendSpkDialogClaimForm } from "./dialog-steps/send-spk-dialog-claim-form";
 import { SendSpkDialogPowerUpForm } from "./dialog-steps/send-spk-dialog-power-up-form";
 import { Market } from "../../api/spk-api";
 import { SendSpkDialogLockForm } from "./dialog-steps/send-spk-dialog-lock";
@@ -61,7 +60,6 @@ export const SendSpkDialog = ({
   const getTitle = () => {
     if (type === "delegate") return "wallet.spk.delegate.title";
     if (type === "transfer") return "wallet.spk.send.title";
-    if (type === "claim") return "wallet.spk.claim.title";
     if (type === "powerup") return "wallet.spk.power-up.title";
     if (type === "powerdown") return "wallet.spk.power-down.title";
     if (type === "lock") return "wallet.spk.lock.title";
@@ -176,15 +174,6 @@ export const SendSpkDialog = ({
               <></>
             )}
 
-            {stepIndex === 0 && type === "claim" ? (
-              <SendSpkDialogClaimForm
-                activeUser={activeUser}
-                submit={() => steps[stepIndex]?.submit()}
-              />
-            ) : (
-              <></>
-            )}
-
             {stepIndex === 0 && ["powerup", "powerdown"].includes(type) ? (
               <SendSpkDialogPowerUpForm
                 activeUser={activeUser}
@@ -216,7 +205,7 @@ export const SendSpkDialog = ({
                 global={global}
                 title={`${type}-title`}
                 activeUser={activeUser}
-                showTo={!["claim", "powerup", "powerdown", "lock", "unlock"].includes(type)}
+                showTo={!["powerup", "powerdown", "lock", "unlock"].includes(type)}
                 to={username}
                 memo={memo}
                 amount={amount}

@@ -114,8 +114,7 @@ exports[`(1) renders witness card successfully 1`] = `
       >
         $
         2
-         |
-         
+         | 
         22y
       </span>
     </div>
