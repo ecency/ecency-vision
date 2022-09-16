@@ -401,7 +401,10 @@
     "browse-original": "Otwórz oryginalny wpis",
     "cross-post-by": "Udostępnione przez",
     "cross-post-community": "społeczność",
-    "community-in": "w"
+    "community-in": "w",
+    "post-word-count": "Words:",
+    "post-read-time": "Reading:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "Edytuj historię",
