@@ -8,10 +8,10 @@ import qrcode from "qrcode";
 import { copyContent } from "../../img/svg";
 import { ActiveUser } from "../../store/active-user/types";
 import defaults from "../../constants/defaults.json";
-import { PurchaseQrUsername } from "./purchase-qr-username";
 import { PurchaseTypes } from "./purchase-types";
 import { PurchaseQrTypes } from "./purchase-qr-types";
 import { Location } from "history";
+import { SearchByUsername } from "../search-by-username";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -22,13 +22,8 @@ interface Props {
 
 export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId }: Props) => {
   const [username, setUsername] = useState("");
-  const [usernameInput, setUsernameInput] = useState("");
-  const [usernameData, setUsernameData] = useState<string[]>([]);
-  const [isUsernameDataLoading, setIsUsernameDataLoading] = useState(false);
-  const [timer, setTimer] = useState<any>(null);
   const qrImgRef = useRef<HTMLImageElement | undefined>();
   const [isQrShow, setIsQrShow] = useState(false);
-  const [isActiveUserSet, setIsActiveUserSet] = useState(false);
   const [type, setType] = useState(PurchaseTypes.BOOST);
   const [pointsValue, setPointsValue] = useState("999points");
 
@@ -45,55 +40,10 @@ export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId }: Pro
   }, [queryProductId]);
 
   useEffect(() => {
-    if (!usernameInput) {
-      setUsername("");
-      setIsQrShow(false);
-    }
-    fetchUsernameData(usernameInput);
-  }, [usernameInput]);
-
-  useEffect(() => {
     if (username) {
       compileQR(getURL());
     }
   }, [username, type, pointsValue]);
-
-  useEffect(() => {
-    if (activeUser) {
-      setIsActiveUserSet(true);
-      setUsername(activeUser.username);
-      setUsernameInput(activeUser.username);
-      compileQR(getURL());
-    }
-  }, [activeUser]);
-
-  const fetchUsernameData = (query: string) => {
-    if (timer) {
-      clearTimeout(timer);
-    }
-
-    if (usernameInput === "" || isActiveUserSet) {
-      setIsActiveUserSet(false);
-      setIsUsernameDataLoading(false);
-      return;
-    }
-
-    setIsUsernameDataLoading(true);
-    setTimer(setTimeout(() => getUsernameData(query), 500));
-  };
-
-  const getUsernameData = async (query: string) => {
-    try {
-      const resp = await lookupAccounts(query, 5);
-      if (resp) {
-        setUsernameData(resp);
-      }
-    } catch (e) {
-      error(...formatError(e));
-    } finally {
-      setIsUsernameDataLoading(false);
-    }
-  };
 
   const compileQR = async (url: string) => {
     if (qrImgRef.current) {
@@ -119,12 +69,17 @@ export const PurchaseQrBuilder = ({ activeUser, queryType, queryProductId }: Pro
     <div className="d-flex flex-column align-items-center my-3 px-3 text-center">
       <h2>{isQrShow ? _t("purchase-qr.scan-code") : _t("purchase-qr.select-user")}</h2>
       <div className="w-100 mt-4">
-        <PurchaseQrUsername
-          usernameData={usernameData}
-          usernameInput={usernameInput}
-          setUsernameInput={setUsernameInput}
-          isUsernameDataLoading={isUsernameDataLoading}
-          setUsername={setUsername}
+        <SearchByUsername
+          activeUser={activeUser}
+          setUsername={(value: string) => {
+            setUsername(value);
+
+            if (!value) {
+              setIsQrShow(false);
+            } else {
+              compileQR(getURL());
+            }
+          }}
         />
         {type === PurchaseTypes.POINTS ? (
           <PurchaseQrTypes
