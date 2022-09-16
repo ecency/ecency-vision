@@ -401,7 +401,10 @@
     "browse-original": "Atidaryti pradinį įrašą",
     "cross-post-by": "Kryžminis įrašas",
     "cross-post-community": "bendruomenė",
-    "community-in": "į"
+    "community-in": "į",
+    "post-word-count": "Words:",
+    "post-read-time": "Reading:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "Redagavimo Istorija",
