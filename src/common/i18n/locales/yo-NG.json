@@ -649,68 +649,68 @@
     "spk": {
       "claim": {
         "title": "Gba",
-        "unclaimed-rewards": "Unclaimed rewards"
+        "unclaimed-rewards": "Àwọn èrè àìtíìgbà"
       },
       "delegate": {
-        "title": "Delegate",
-        "subtitle": "Delegate tokens",
-        "node-operator-placeholder": "Select a node operator",
+        "title": "Asojú",
+        "subtitle": "Toókìnì Asojú",
+        "node-operator-placeholder": "Yan olùṣe nóòdì kan",
         "delegated-larynx-power": {
-          "title": "Delegated LARYNX Power"
+          "title": "Ìgbèra LARYNX ti aṣojú"
         }
       },
       "power-up": {
-        "title": "Power up",
-        "subtitle": "Power up to earn passive rewards"
+        "title": "Gbéra nílẹ̀",
+        "subtitle": "Gbéra nílẹ̀ láti gbá èrè àfikún"
       },
       "power-down": {
-        "title": "Power down",
-        "subtitle": "Power down to earn passive rewards",
-        "in-progress": "A power down is scheduled to happen in {{date}} ({{count}} installments remaining)"
+        "title": "Simi ìgbéra",
+        "subtitle": "Simi ìgbéra láti gba èrè àfikún",
+        "in-progress": "Ìsinmi ìgbéra yóò wáyé ni {{date}} ({{count}} ìfimúlẹ̀ ló kù"
       },
       "lock": {
-        "title": "Lock Liquidity",
-        "subtitle": "Locking Larynx for liquidity reward",
-        "button": "Lock liquidity"
+        "title": "Ti ìfìdíjálẹ̀ pa",
+        "subtitle": "Títi Larynx pa láti gba èrè ìfìdíjálẹ̀",
+        "button": "Ti ìfìdíjálẹ̀ pa"
       },
       "unlock": {
-        "title": "Unlock Liquidity",
-        "subtitle": "Unlock LARYNX to liquid form",
-        "button": "Unlock liquidity"
+        "title": "Ṣí ìfìdíjálẹ̀ sílẹ̀",
+        "subtitle": "Ṣí LARYNX sílẹ̀ sí ipò ìfìdíjálẹ̀",
+        "button": "Ṣí ìfìdíjálẹ̀ sílẹ̀"
       },
       "send": {
-        "balance": "Balance",
-        "button": "Send",
-        "from": "From",
-        "to": "To",
-        "amount": "Amount",
+        "balance": "Ìyókù",
+        "button": "Firánṣẹ́",
+        "from": "Láti",
+        "to": "Sí",
+        "amount": "Iye",
         "optional": "optional",
-        "title": "Send SPK",
-        "memo": "Memo",
-        "next": "Next",
-        "subtitle": "Move funds to another SPK wallet",
-        "warning": "Transferring more than available balance"
+        "title": "Fi SPK ránṣẹ́",
+        "memo": "Àkọsílẹ̀",
+        "next": "Èyí tó kàn",
+        "subtitle": "Kó owó sí àpò SPK míràn",
+        "warning": "Kíkó ju iye tó ṣẹ́kù nínú àpò"
       },
-      "token": "SPK Token",
-      "token-description": "The governance token for the SPK network.",
-      "larynx-air": "LARYNX Airdrop Claim",
-      "larynx-air-description": "This months claimable tokens based on a January 6th HIVE blockchain snapshot.",
-      "larynx-air-warning": "Tokens not claimed, do not roll over to next month.",
-      "larynx-already-claimed": "Already claimed.",
-      "larynx-token": "LARYNX Token",
-      "larynx-token-description": "The mining token for the SPK network.",
-      "larynx-power": "LARYNX Power",
-      "larynx-power-description": "Powered tokens used to mine SPK",
+      "token": "Tókìnì SPK",
+      "token-description": "Tókìnì ìsèjoọba fún ìtàkùn SPK.",
+      "larynx-air": "Gbígba Airdrop LARYNX",
+      "larynx-air-description": "Tókìnì tí o ṣeé gba ní oṣù yìí gẹ́gẹ́ bíi àkámọ́ HIVE blockchain fún January 6th.",
+      "larynx-air-warning": "Tókìnì àìgbà, má ṣe yíi mọ́ra lọ sí oṣù tó ń bọ̀.",
+      "larynx-already-claimed": "O ti gbàá.",
+      "larynx-token": "Tókìnì LARYNX",
+      "larynx-token-description": "Tókìnì ìwakùsà fun ìtàkùn SPK.",
+      "larynx-power": "Ìgbéra LARYNX",
+      "larynx-power-description": "Tókìnì ìgbéra láti wakùsà SPK",
       "larynx-power-benefits": {
-        "title": "Benefits of LARYNX Power",
-        "1": "Earns SPK governance tokens",
-        "2": "Instant Lock | 4 Week Unlock",
+        "title": "Àwọn àǹfààní ìgbéra LARYNX",
+        "1": "Gba tókìnì ìsèjọba SPK",
+        "2": "Títìpa ẹsẹ̀kẹsẹ̀ | ṣíṣí sílẹ̀ fún ọ̀sẹ̀ mẹ́rin",
         "3": "Delegate to node service accounts to build consensus (DPoS)",
-        "4": "LARYNX POWER (LP) earns SPK tokens at {{rate}}%",
+        "4": "ÌGBÉRA LARYNX (IL) ń gba tókìnì SPK ní ìdáa {{rate}}",
         "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at {{rate}}%"
       },
       "larynx-locked-benefits": {
-        "title": "Benefits of LARYNX Locked",
+        "title": "Àwọn àǹfààní LARYNX títì pa",
         "1": "Proof of Stake Consensus",
         "2": "Collateral for DEX transactions",
         "3": "Instant Lock | 4 Week Unlock",
