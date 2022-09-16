@@ -229,11 +229,11 @@ class WalletSpk extends Component<Props, State> {
 
     switch (this.state.selectedAsset) {
       case "SPK":
-        balance = +this.state.activeUserTokenBalance > 0 ? this.state.activeUserTokenBalance : this.state.tokenBalance;
+        balance = +this.props.isActiveUserWallet ? this.state.activeUserTokenBalance : this.state.activeUserTokenBalance;
         break;
       case "LARYNX":
         if (["transfer", "powerup", "lock"].includes(this.state.selectedType)) {
-          balance = +this.state.activeUserLarynxTokenBalance > 0 ? this.state.activeUserLarynxTokenBalance : this.state.larynxTokenBalance;
+          balance = +this.props.isActiveUserWallet ? this.state.larynxTokenBalance : this.state.activeUserLarynxTokenBalance;
         } else if (this.state.selectedType === "delegate") {
           balance = this.state.larynxPowerBalance;
         } else if (this.state.selectedType === "unlock") {
