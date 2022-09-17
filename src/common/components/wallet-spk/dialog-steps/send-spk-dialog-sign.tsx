@@ -79,7 +79,19 @@ export const SendSpkDialogSign = ({
         return;
     }
 
-    await afterSign();
+    setInProgress(true);
+    try {
+      // @ts-ignore
+      await promise;
+      const a = await getAccountFull(activeUser!.username);
+      addAccount(a);
+      updateActiveUser(a);
+      setNextStep();
+    } catch (e) {
+      error(...formatError(e));
+    } finally {
+      setInProgress(false);
+    }
   };
 
   const signHs = () => {
@@ -134,10 +146,6 @@ export const SendSpkDialogSign = ({
         return;
     }
 
-    await afterSign();
-  };
-
-  const afterSign = async () => {
     setInProgress(true);
     try {
       // @ts-ignore

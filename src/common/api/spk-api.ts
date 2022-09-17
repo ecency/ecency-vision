@@ -192,7 +192,7 @@ const transferSpkGeneralByKey = async (
   return await hiveClient.broadcast.json(op, key);
 };
 
-const transferSpkGeneralByKc = async (
+const transferSpkGeneralByKc = (
   id: string,
   from: string,
   to: string,
@@ -204,7 +204,19 @@ const transferSpkGeneralByKc = async (
     amount: +amount * 1000,
     ...(typeof memo === "string" ? { memo } : {})
   });
-  return keychain.customJson(from, id, "Active", json, "");
+  return keychain.customJson(
+    from,
+    id,
+    "Active",
+    json,
+    `${
+      id === "spkcc_spk_send"
+        ? "Transfer SPK"
+        : id === "spkcc_power_grant"
+        ? "Delegate LARYNX"
+        : "Transfer LARYNX"
+    }`
+  );
 };
 
 export const sendSpkByHs = (from: string, to: string, amount: string, memo?: string) => {
@@ -235,7 +247,7 @@ export const transferLarynxByKey = async (
   return transferSpkGeneralByKey("spkcc_send", from, key, to, amount, memo || "");
 };
 
-export const transferSpkByKc = async (from: string, to: string, amount: string, memo: string) => {
+export const transferSpkByKc = (from: string, to: string, amount: string, memo: string) => {
   return transferSpkGeneralByKc("spkcc_spk_send", from, to, amount, memo || "");
 };
 
