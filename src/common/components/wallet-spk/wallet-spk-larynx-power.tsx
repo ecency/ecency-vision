@@ -3,6 +3,8 @@ import { _t } from "../../i18n";
 import { WalletSpkActivePowerDown } from "./wallet-spk-active-power-down";
 import { WalletSpkSection } from "./wallet-spk-section";
 import { Props } from "./index";
+import Tooltip from "../tooltip";
+import formattedNumber from "../../util/formatted-number";
 
 interface ComponentProps {
   headBlock: number;
@@ -10,11 +12,13 @@ interface ComponentProps {
   onStop: () => void;
   larynxPowerRate: string;
   larynxPowerBalance: string;
-  larynxPowerTotal: string;
+  larynxGrantedPower: string;
+  larynxGrantingPower: string;
   isActiveUserWallet: boolean;
   onDelegate: () => void;
   onPowerDown: () => void;
   onDlpClick: () => void;
+  onDlipClick: () => void;
   rateLPow: string;
   rateLDel: string;
 }
@@ -51,12 +55,23 @@ export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
       amountSlot={
         <div>
           <div>{props.larynxPowerBalance} LP</div>
-          {props.larynxPowerTotal ? (
-            <span className="amount-btn primary" onClick={props.onDlpClick}>
-              {props.larynxPowerTotal} DLP
-            </span>
-          ) : (
-            <></>
+          {props.larynxGrantedPower && (
+            <div className="amount amount-passive delegated-larynx">
+              <Tooltip content={_t("wallet.reserved-amount")}>
+                <span className="amount-btn" onClick={props.onDlpClick}>
+                  {"+"} {formattedNumber(props.larynxGrantedPower, { suffix: "DLP" })}
+                </span>
+              </Tooltip>
+            </div>
+          )}
+          {props.larynxGrantedPower && (
+            <div className="amount amount-passive delegating-larynx">
+              <Tooltip content={_t("wallet.reserved-amount")}>
+                <span className="amount-btn" onClick={props.onDlipClick}>
+                  {"-"} {formattedNumber(props.larynxGrantingPower, { suffix: "DLP" })}
+                </span>
+              </Tooltip>
+            </div>
           )}
         </div>
       }

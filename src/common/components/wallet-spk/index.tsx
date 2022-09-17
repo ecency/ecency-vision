@@ -46,10 +46,12 @@ export interface State {
   larynxPowerBalance: string;
   estimatedBalance: string;
   larynxPowerRate: string;
-  larynxPowerTotal: string;
+  larynxGrantedPower: string;
+  larynxGrantingPower: string;
   larynxLockedBalance: string;
   sendSpkShow: boolean;
   delegatedPowerDialogShow: boolean;
+  delegatingPowerDialogShow: boolean;
   selectedAsset: "SPK" | "LARYNX" | "LP";
   selectedType: "transfer" | "delegate" | "powerup" | "powerdown" | "lock" | "unlock";
   claim: string;
@@ -61,6 +63,7 @@ export interface State {
   markets: Market[];
   isNode: boolean;
   delegatedItems: [string, number][];
+  delegatingItems: [string, number][];
   rateLPow: string;
   rateLDel: string;
 }
@@ -78,10 +81,12 @@ class WalletSpk extends Component<Props, State> {
       activeUserLarynxTokenBalance: "0",
       estimatedBalance: "0",
       larynxPowerRate: "0",
-      larynxPowerTotal: "",
+      larynxGrantedPower: "",
+      larynxGrantingPower: "",
       larynxLockedBalance: "",
       sendSpkShow: false,
       delegatedPowerDialogShow: false,
+      delegatingPowerDialogShow: false,
       selectedAsset: "SPK",
       selectedType: "transfer",
       claim: "0",
@@ -93,6 +98,7 @@ class WalletSpk extends Component<Props, State> {
       markets: [],
       isNode: false,
       delegatedItems: [],
+      delegatingItems: [],
       rateLPow: "0.0001",
       rateLDel: "0.00015"
     };
@@ -179,14 +185,16 @@ class WalletSpk extends Component<Props, State> {
         larynxAirBalance: format(wallet.drop.availible.amount / 1000),
         larynxTokenBalance: format(wallet.balance / 1000),
         larynxPowerBalance: format(wallet.poweredUp / 1000),
-        larynxPowerTotal: wallet.granted?.t ? format(wallet.granted.t / 1000) : "",
+        larynxGrantedPower: wallet.granted?.t ? format(wallet.granted.t / 1000) : "",
+        larynxGrantingPower: wallet.granting?.t ? format(wallet.granting.t / 1000) : "",
         larynxLockedBalance: wallet.gov > 0 ? format(wallet.gov / 1000) : "",
         claim: format(wallet.claim / 1000),
         airdropClaim: this.airCalc(wallet),
         larynxPowerRate: "0.010",
         headBlock: wallet.head_block,
         powerDownList: Object.values(wallet.power_downs),
-        delegatedItems: Object.entries(wallet.granted).filter(([name]) => name !== "t")
+        delegatedItems: Object.entries(wallet.granted).filter(([name]) => name !== "t"),
+        delegatingItems: Object.entries(wallet.granting).filter(([name]) => name !== "t")
       });
 
       this.fetchActiveUserWallet();
@@ -341,7 +349,8 @@ class WalletSpk extends Component<Props, State> {
               {...this.props}
               rateLDel={this.state.rateLDel}
               rateLPow={this.state.rateLPow}
-              larynxPowerTotal={this.state.larynxPowerTotal}
+              larynxGrantedPower={this.state.larynxGrantedPower}
+              larynxGrantingPower={this.state.larynxGrantingPower}
               headBlock={this.state.headBlock}
               powerDownList={this.state.powerDownList}
               onStop={() =>
@@ -361,6 +370,7 @@ class WalletSpk extends Component<Props, State> {
                 this.setState({ sendSpkShow: true, selectedAsset: "LP", selectedType: "powerdown" })
               }
               onDlpClick={() => this.setState({ delegatedPowerDialogShow: true })}
+              onDlipClick={() => this.setState({ delegatingPowerDialogShow: true })}
             />
             {this.state.larynxLockedBalance && this.state.isNode ? (
               <WalletSpkLarynxLocked
@@ -412,6 +422,14 @@ class WalletSpk extends Component<Props, State> {
           show={this.state.delegatedPowerDialogShow}
           setShow={(value: boolean) => this.setState({ delegatedPowerDialogShow: value })}
           items={this.state.delegatedItems}
+          global={this.props.global}
+          history={this.props.history}
+          addAccount={this.props.addAccount}
+        />
+        <WalletSpkDelegatedPowerDialog
+          show={this.state.delegatingPowerDialogShow}
+          setShow={(value: boolean) => this.setState({ delegatingPowerDialogShow: value })}
+          items={this.state.delegatingItems}
           global={this.props.global}
           history={this.props.history}
           addAccount={this.props.addAccount}
