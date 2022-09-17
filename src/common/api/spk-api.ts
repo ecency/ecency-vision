@@ -13,7 +13,7 @@ const spkNodes = [
   "https://spktoken.dlux.io"
 ];
 
-const spkNode = "https://spkinstant.hivehoneycomb.com"; //spkNodes[Math.floor(Math.random()*spkNodes.length)];
+const spkNode = "https://spkinstant.hivehoneycomb.com"; //"https://spk.good-karma.xyz"; //spkNodes[Math.floor(Math.random()*spkNodes.length)];
 
 export interface SpkApiWallet {
   balance: number;

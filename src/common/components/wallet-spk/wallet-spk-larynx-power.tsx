@@ -64,7 +64,7 @@ export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
               </Tooltip>
             </div>
           )}
-          {props.larynxGrantedPower && (
+          {props.larynxGrantingPower && (
             <div className="amount amount-passive delegating-larynx">
               <Tooltip content={_t("wallet.reserved-amount")}>
                 <span className="amount-btn" onClick={props.onDlipClick}>
