@@ -5,13 +5,15 @@ import { client as hiveClient } from "./hive";
 import * as keychain from "../helper/keychain";
 import { broadcastPostingJSON } from "./operations";
 
-const spkNode = "https://spk.good-karma.xyz";
 const spkNodes = [
   "https://spk.good-karma.xyz",
+  "https://spkinstant.hivehoneycomb.com",
   "https://spknode.blocktrades.us",
   "https://spk.tcmd-spkcc.com",
   "https://spktoken.dlux.io"
 ];
+
+const spkNode = "https://spkinstant.hivehoneycomb.com"; //spkNodes[Math.floor(Math.random()*spkNodes.length)];
 
 export interface SpkApiWallet {
   balance: number;
