@@ -204,7 +204,7 @@ const transferSpkGeneralByKc = async (
     amount: +amount * 1000,
     ...(typeof memo === "string" ? { memo } : {})
   });
-  return keychain.customJson(from, id, "Active", json, "", "");
+  return keychain.customJson(from, id, "Active", json, "");
 };
 
 export const sendSpkByHs = (from: string, to: string, amount: string, memo?: string) => {
@@ -311,7 +311,7 @@ export const powerLarynxByHs = (mode: "up" | "down", from: string, amount: strin
 
 export const powerLarynxByKc = async (mode: "up" | "down", from: string, amount: string) => {
   const json = JSON.stringify({ amount: +amount * 1000 });
-  return keychain.customJson(from, `spkcc_power_${mode}`, "Active", json, "", "");
+  return keychain.customJson(from, `spkcc_power_${mode}`, "Active", json, `Power ${mode} LARYNX`);
 };
 
 export const lockLarynxByKey = async (
@@ -353,7 +353,6 @@ export const lockLarynxByKc = async (mode: "lock" | "unlock", from: string, amou
     mode === "lock" ? "spkcc_gov_up" : "spkcc_gov_down",
     "Active",
     json,
-    "",
-    ""
+    `${mode.toUpperCase()} LARYNX`
   );
 };
