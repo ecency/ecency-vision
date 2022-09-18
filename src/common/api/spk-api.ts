@@ -54,9 +54,11 @@ export interface SpkApiWallet {
 }
 
 export interface SpkMarkets {
+  head_block: number;
   markets: {
     node: {
       [key: string]: {
+        lastGood: number;
         report: {
           block: number;
         };
@@ -67,7 +69,7 @@ export interface SpkMarkets {
 
 export interface Market {
   name: string;
-  isAvailable: boolean;
+  status: string;
 }
 
 export interface Markets {
@@ -124,9 +126,14 @@ export const getSpkWallet = async (username: string): Promise<SpkApiWallet> => {
 export const getMarkets = async (): Promise<Markets> => {
   const resp = await axios.get<SpkMarkets>(`${spkNode}/markets`);
   return {
-    list: Object.entries(resp.data.markets.node).map(([name, value]) => ({
+    list: Object.entries(resp.data.markets.node).map(([name, node]) => ({
       name,
-      isAvailable: value.report.block > 67819000
+      status:
+        node.lastGood >= resp.data.head_block - 1200
+          ? "🟩"
+          : node.lastGood > resp.data.head_block - 28800
+          ? "🟨"
+          : "🟥"
     })),
     raw: resp.data
   };

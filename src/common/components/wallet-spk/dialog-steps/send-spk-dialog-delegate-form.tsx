@@ -4,7 +4,7 @@ import { _t } from "../../../i18n";
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { ActiveUser } from "../../../store/active-user/types";
 import { Transactions } from "../../../store/transactions/types";
-import { getMarkets, Market } from "../../../api/spk-api";
+import { getSpkWallet, Market } from "../../../api/spk-api";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -33,12 +33,34 @@ export const SendSpkDialogDelegateForm = ({
   markets
 }: Props) => {
   const selectRef = useRef<any>();
+  const [delegatedAlready, setDelegatedAlready] = useState(0);
 
   useEffect(() => {
     if (selectRef.current) {
       setUsername(selectRef.current.value);
     }
   }, []);
+
+  useEffect(() => {
+    if (username) {
+      setDelegatedAlready(0);
+      fetchNodeDetails(username);
+    }
+  }, [username]);
+
+  const fetchNodeDetails = async (name: string) => {
+    const wallet = await getSpkWallet(name);
+    const totalDelegated = Object.entries(wallet.granted).find(
+      ([name]) => name === activeUser?.username
+    );
+    if (totalDelegated) {
+      setDelegatedAlready(totalDelegated[1] / 1000);
+    }
+  };
+
+  const getBalance = () => {
+    return (+balance + delegatedAlready).toFixed(3);
+  };
 
   return (
     <>
@@ -70,7 +92,7 @@ export const SendSpkDialogDelegateForm = ({
           >
             {markets.map((market) => (
               <option key={market.name} value={market.name}>
-                {market.isAvailable ? "🟩" : "🟥"} {market.name}
+                {market.status} {market.name}
               </option>
             ))}
           </select>
@@ -96,13 +118,13 @@ export const SendSpkDialogDelegateForm = ({
               {_t("transfer.balance")}
               {": "}
             </span>
-            <span className="balance-num" onClick={() => setAmount(balance)}>
-              {balance} {asset}
+            <span className="balance-num" onClick={() => setAmount(getBalance())}>
+              {getBalance()} {asset}
             </span>
           </div>
         </>
       </WalletSpkGroup>
-      {+amount > +balance ? (
+      {+amount > +getBalance() ? (
         <Alert className="mt-3" variant={"warning"}>
           {_t("wallet.spk.send.warning")}
         </Alert>
