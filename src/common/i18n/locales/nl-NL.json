@@ -402,9 +402,9 @@
     "cross-post-by": "Gedeelde post door",
     "cross-post-community": "community",
     "community-in": "in",
-    "post-word-count": "Words:",
-    "post-read-time": "Reading:",
-    "post-read-minuites": "min"
+    "post-word-count": "Woorden:",
+    "post-read-time": "Lezen:",
+    "post-read-minuites": "minuten"
   },
   "edit-history": {
     "title": "Geschiedenis bewerken",
@@ -1232,8 +1232,8 @@
     "proxy-active-current": "Your current proxy is",
     "proxy-active-btn-label": "Clear Proxy",
     "proxy-votes-for": "@{{username}} votes for",
-    "proxy-active-highlighted": "Your proxy votes are highlighted",
-    "check-witness-highlighted": "votes are highlighted"
+    "proxy-active-highlighted": "Uw proxystemmen zijn gemarkeerd",
+    "check-witness-highlighted": "keuzes zijn gemarkeerd"
   },
   "referral": {
     "page-title": "Referrals",
@@ -1517,7 +1517,7 @@
     "comment-cashout": "Content after their payout cannot be deleted.",
     "comment-children": "Cannot delete a content with replies.",
     "paid-out-post-forbidden": "Voting for paid out content is not available.",
-    "missing-authority": "Missing or invalid authority key."
+    "missing-authority": "Ontbrekende of ongeldige autorisatie sleutel."
   },
   "landing-page": {
     "welcome-text": "Welcome to Ecency!",
