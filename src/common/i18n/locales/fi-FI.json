@@ -1516,7 +1516,8 @@
     "delete-comment-with-vote": "Sisältöä ei voi poistaa positiivisesta odottavasta palkinnosta johtuen.",
     "comment-cashout": "Sisältöä ei voi poistaa niiden maksun jälkeen.",
     "comment-children": "Keskustelua, jossa on vastauksia, ei voi poistaa.",
-    "paid-out-post-forbidden": "Äänestäminen maksetusta sisällöstä ei ole saatavilla."
+    "paid-out-post-forbidden": "Äänestäminen maksetusta sisällöstä ei ole saatavilla.",
+    "missing-authority": "Missing or invalid authority key."
   },
   "landing-page": {
     "welcome-text": "Tervetuloa Ecencyyn!",
