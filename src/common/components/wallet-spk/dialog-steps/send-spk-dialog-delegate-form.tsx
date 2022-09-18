@@ -43,6 +43,7 @@ export const SendSpkDialogDelegateForm = ({
 
   useEffect(() => {
     if (username) {
+      setDelegatedAlready(0);
       fetchNodeDetails(username);
     }
   }, [username]);
