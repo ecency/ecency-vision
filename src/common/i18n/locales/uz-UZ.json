@@ -1516,7 +1516,8 @@
     "delete-comment-with-vote": "Mukofot kutilayotgan ijobiy kontentni oʻchirib boʻlmaydi.",
     "comment-cashout": "Toʻlovdan keyin kontentni oʻchirib boʻlmaydi.",
     "comment-children": "Javoblari bor kontentni oʻchirib boʻlmaydi.",
-    "paid-out-post-forbidden": "To'lovi qilingan kontentga ovoz berish mumkin emas."
+    "paid-out-post-forbidden": "To'lovi qilingan kontentga ovoz berish mumkin emas.",
+    "missing-authority": "Missing or invalid authority key."
   },
   "landing-page": {
     "welcome-text": "Ecencyga xush kelibsiz!",
