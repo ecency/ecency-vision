@@ -35,7 +35,7 @@ export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
       balance += +props.larynxGrantedPower;
     }
 
-    return balance;
+    return balance < 0 ? props.larynxPowerBalance : balance;
   };
 
   return (
@@ -73,7 +73,7 @@ export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
             <div className="amount amount-passive delegated-larynx">
               <Tooltip content={_t("wallet.reserved-amount")}>
                 <span className="amount-btn" onClick={props.onDlpClick}>
-                  {"+"} {formattedNumber(props.larynxGrantedPower, { suffix: "DLP" })}
+                  {"+"} {formattedNumber(props.larynxGrantedPower, { suffix: "LP" })}
                 </span>
               </Tooltip>
             </div>
@@ -82,14 +82,14 @@ export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
             <div className="amount amount-passive delegating-larynx">
               <Tooltip content={_t("wallet.reserved-amount")}>
                 <span className="amount-btn" onClick={props.onDlipClick}>
-                  {"-"} {formattedNumber(props.larynxGrantingPower, { suffix: "DLP" })}
+                  {"-"} {formattedNumber(props.larynxGrantingPower, { suffix: "LP" })}
                 </span>
               </Tooltip>
             </div>
           )}
           {(props.larynxGrantedPower || props.larynxGrantingPower) && (
             <div className="amount">
-              = {formattedNumber(getTotalLarynxPower(), { suffix: "DLP" })}
+              = {formattedNumber(getTotalLarynxPower(), { suffix: "LP" })}
             </div>
           )}
         </>
