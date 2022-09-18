@@ -1516,7 +1516,8 @@
     "delete-comment-with-vote": "Невозможно удалить контент с ожидающими положительными наградами.",
     "comment-cashout": "Контент после выплаты не может быть удален.",
     "comment-children": "Невозможно удалить контент с ответами.",
-    "paid-out-post-forbidden": "Нельзя голосовать за контент, по которому уже прошла выплата."
+    "paid-out-post-forbidden": "Нельзя голосовать за контент, по которому уже прошла выплата.",
+    "missing-authority": "Missing or invalid authority key."
   },
   "landing-page": {
     "welcome-text": "Добро пожаловать в Ecency!",
