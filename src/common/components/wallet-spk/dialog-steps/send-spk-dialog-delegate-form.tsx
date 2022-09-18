@@ -70,7 +70,7 @@ export const SendSpkDialogDelegateForm = ({
           >
             {markets.map((market) => (
               <option key={market.name} value={market.name}>
-                {market.isAvailable ? "🟩" : "🟥"} {market.name}
+                {market.status} {market.name}
               </option>
             ))}
           </select>
