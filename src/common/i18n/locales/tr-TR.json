@@ -1516,7 +1516,8 @@
     "delete-comment-with-vote": "Bekleyen pozitif ödülleri olan bir içerik silinemez.",
     "comment-cashout": "Ödemesini almış olan içerikler silinemez.",
     "comment-children": "Yorumları olan bir içerik silinemez.",
-    "paid-out-post-forbidden": "Ödülünü çekmiş olan içeriklere oy verilemez."
+    "paid-out-post-forbidden": "Ödülünü çekmiş olan içeriklere oy verilemez.",
+    "missing-authority": "Missing or invalid authority key."
   },
   "landing-page": {
     "welcome-text": "Ecency'ye Hoş Geldiniz!",

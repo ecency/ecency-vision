@@ -1516,7 +1516,8 @@
     "delete-comment-with-vote": "Non puoi eliminare un contenuto con una ricompensa positiva in attesa.",
     "comment-cashout": "I contenuti non possono essere eliminati dopo il loro pagamento.",
     "comment-children": "Non puoi eliminare un contenuto con dei commenti.",
-    "paid-out-post-forbidden": "Non è disponibile il voto per contenuti già pagati."
+    "paid-out-post-forbidden": "Non è disponibile il voto per contenuti già pagati.",
+    "missing-authority": "Missing or invalid authority key."
   },
   "landing-page": {
     "welcome-text": "Benvenuto in Ecency!",

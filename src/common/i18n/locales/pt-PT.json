@@ -1516,7 +1516,8 @@
     "delete-comment-with-vote": "Conteúdo com recompensas positivas não podem ser deletados.",
     "comment-cashout": "Após o pagamento, o conteúdo não pode ser deletado.",
     "comment-children": "Conteúdo com respostas ao pode ser deletado.",
-    "paid-out-post-forbidden": "Votação de conteúdo pago não está disponível."
+    "paid-out-post-forbidden": "Votação de conteúdo pago não está disponível.",
+    "missing-authority": "Missing or invalid authority key."
   },
   "landing-page": {
     "welcome-text": "Bem-vindo à Ecency!",

@@ -1516,7 +1516,8 @@
     "delete-comment-with-vote": "Tidak bisa menghapus sebuah konten dengan reward yang belum dibayar.",
     "comment-cashout": "Konten setelah pembayaran tidak bisa dihapus.",
     "comment-children": "Tidak bisa mengahapus konten yang sudah ada balasan.",
-    "paid-out-post-forbidden": "Voting untuk konten yang sudah dibayar tidak bisa dilakukan lagi."
+    "paid-out-post-forbidden": "Voting untuk konten yang sudah dibayar tidak bisa dilakukan lagi.",
+    "missing-authority": "Missing or invalid authority key."
   },
   "landing-page": {
     "welcome-text": "Selamat datang ke Ecency!",
