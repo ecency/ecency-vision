@@ -11,6 +11,7 @@ interface Props {
   description: string;
   slot?: JSX.Element;
   amountSlot?: JSX.Element;
+  additionalAmountSlot?: JSX.Element;
   actionSlot?: JSX.Element;
   isAlternative?: boolean;
   history: History;
@@ -38,6 +39,7 @@ export const WalletSpkSection = (props: Props) => {
           )}
           <span>{props.amountSlot}</span>
         </div>
+        {props.additionalAmountSlot}
       </div>
     </div>
   );

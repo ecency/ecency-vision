@@ -24,6 +24,20 @@ interface ComponentProps {
 }
 
 export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
+  const getTotalLarynxPower = () => {
+    let balance = +props.larynxPowerBalance;
+
+    if (+props.larynxGrantingPower > 0) {
+      balance -= +props.larynxGrantingPower;
+    }
+
+    if (+props.larynxGrantedPower > 0) {
+      balance += +props.larynxGrantedPower;
+    }
+
+    return balance;
+  };
+
   return (
     <WalletSpkSection
       {...props}
@@ -52,9 +66,9 @@ export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
           )}
         </>
       }
-      amountSlot={
-        <div>
-          <div>{props.larynxPowerBalance} LP</div>
+      amountSlot={<div className="amount">{props.larynxPowerBalance} LP</div>}
+      additionalAmountSlot={
+        <>
           {props.larynxGrantedPower && (
             <div className="amount amount-passive delegated-larynx">
               <Tooltip content={_t("wallet.reserved-amount")}>
@@ -73,7 +87,12 @@ export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
               </Tooltip>
             </div>
           )}
-        </div>
+          {(props.larynxGrantedPower || props.larynxGrantingPower) && (
+            <div className="amount">
+              = {formattedNumber(getTotalLarynxPower(), { suffix: "DLP" })}
+            </div>
+          )}
+        </>
       }
       showItems={props.isActiveUserWallet}
       items={[
