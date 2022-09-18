@@ -1516,7 +1516,8 @@
     "delete-comment-with-vote": "보상이 보류 중인 콘텐츠는 삭제할 수 없습니다.",
     "comment-cashout": "지불 후 콘텐츠는 삭제할 수 없습니다.",
     "comment-children": "답글이 달린 콘텐츠는 삭제할 수 없습니다.",
-    "paid-out-post-forbidden": "유료 콘텐츠에 대한 투표는 불가능합니다."
+    "paid-out-post-forbidden": "유료 콘텐츠에 대한 투표는 불가능합니다.",
+    "missing-authority": "Missing or invalid authority key."
   },
   "landing-page": {
     "welcome-text": "Ecency에 환영합니다!",
