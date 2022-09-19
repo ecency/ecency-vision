@@ -63,7 +63,7 @@
     "more-results": "Lisää tuloksia",
     "close": "Sulje",
     "loading": "Ladataan",
-    "stop": "Stop"
+    "stop": "Lopeta"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -95,8 +95,8 @@
     "filter-month": "Tässä kuussa",
     "filter-year": "Tänä vuonna",
     "filter-alltime": "Koko ajalta",
-    "filter-no-reblog": "Exclude reblog",
-    "filter-with-reblog": "Include reblog"
+    "filter-no-reblog": "Ilman uudelleenjakoa",
+    "filter-with-reblog": "Sisällytä uudelleenjako"
   },
   "navbar": {
     "discover": "Löydä uutta",
@@ -402,8 +402,8 @@
     "cross-post-by": "Ristilähettäjä",
     "cross-post-community": "yhteisö",
     "community-in": " ",
-    "post-word-count": "Words:",
-    "post-read-time": "Reading:",
+    "post-word-count": "Sanoja:",
+    "post-read-time": "Luettu:",
     "post-read-minuites": "min"
   },
   "edit-history": {
@@ -634,7 +634,7 @@
     "hive-dollars-description": "Tokenin arvo on noin $1.00 edestä HIVEä.",
     "savings": "SÄÄSTÖT",
     "savings-description": "Tilillä on 3 päivän kotiutusjakso.",
-    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
+    "next-power-down": "Seuraavaan heikennykseen on {{time}}, (~{{amount}}, {{weeks}} viikkoa jäljellä)",
     "transfer": "Siirto",
     "transfer-to-savings": "Siirrä säästöihin",
     "convert": "Muunna",
@@ -646,17 +646,17 @@
     "withdraw-routes": "Palauta Reitit",
     "calculating": "Lasketaan",
     "converting-hbd-amount": "Muunnos HIVE:ksi",
-    "converting-hive-amount": "Converting to HBD",
+    "converting-hive-amount": "Muunnos HBD:ksi",
     "withdrawing-amount": "Kotiuta säästöistä",
     "reserved-amount": "Varattu avoimeen tilaukseen markkinoilla",
     "spk": {
       "claim": {
-        "title": "Claim",
-        "unclaimed-rewards": "Unclaimed rewards"
+        "title": "Lunasta",
+        "unclaimed-rewards": "Lunastamattomat palkkiot"
       },
       "delegate": {
-        "title": "Delegate",
-        "subtitle": "Delegate tokens",
+        "title": "Valtuuta",
+        "subtitle": "Valtuuta merkkejä",
         "node-operator-placeholder": "Select a node operator",
         "delegated-larynx-power": {
           "title": "Delegated LARYNX Power"
@@ -1517,7 +1517,7 @@
     "comment-cashout": "Sisältöä ei voi poistaa niiden maksun jälkeen.",
     "comment-children": "Keskustelua, jossa on vastauksia, ei voi poistaa.",
     "paid-out-post-forbidden": "Äänestäminen maksetusta sisällöstä ei ole saatavilla.",
-    "missing-authority": "Missing or invalid authority key."
+    "missing-authority": "Puuttuva tai virheellinen valtuusavain."
   },
   "landing-page": {
     "welcome-text": "Tervetuloa Ecencyyn!",
