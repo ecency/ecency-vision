@@ -1517,7 +1517,7 @@
     "comment-cashout": "El contenido después de su pago no puede ser eliminado.",
     "comment-children": "No se puede eliminar un contenido con respuestas.",
     "paid-out-post-forbidden": "La votación por el contenido pagado no está disponible.",
-    "missing-authority": "Missing or invalid authority key."
+    "missing-authority": "Clave de autoridad no válida o faltante."
   },
   "landing-page": {
     "welcome-text": "¡Bienvenido a Ecency!",
