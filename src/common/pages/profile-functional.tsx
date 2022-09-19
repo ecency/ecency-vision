@@ -381,7 +381,8 @@ export const Profile = (props: Props) => {
   const initPinnedEntry = async (username: string, account: Account | undefined) => {
     if (
       !["blog", "posts"].includes(props.global.filter) ||
-      !(account as FullAccount)?.profile?.pinned
+      !((account as FullAccount)?.profile && (account as FullAccount)?.profile?.pinned) ||
+      !((account as FullAccount)?.profile && (account as FullAccount)?.profile?.pinned !== "none")
     ) {
       return;
     }
