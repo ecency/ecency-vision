@@ -28,7 +28,7 @@ export const WalletSpkLarynxPower = (props: Props & ComponentProps) => {
     let balance = +props.larynxPowerBalance;
 
     if (+props.larynxGrantingPower > 0) {
-      balance -= +props.larynxGrantingPower;
+      balance += +props.larynxGrantingPower;
     }
 
     if (+props.larynxGrantedPower > 0) {
