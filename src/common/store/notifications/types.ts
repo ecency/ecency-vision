@@ -29,6 +29,15 @@ export interface WsMentionNotification extends BaseWsNotification {
   };
 }
 
+export interface WsFavoriteNotification extends BaseWsNotification {
+  type: "favorite";
+  extra: {
+    permlink: string;
+    is_post: 0 | 1;
+    title: string | null;
+  };
+}
+
 export interface WsFollowNotification extends BaseWsNotification {
   type: "follow";
   extra: {
@@ -89,6 +98,7 @@ export interface WsReferralNotification extends BaseWsNotification {
 export type WsNotification =
   | WsVoteNotification
   | WsMentionNotification
+  | WsFavoriteNotification
   | WsFollowNotification
   | WsReplyNotification
   | WsReblogNotification
@@ -168,6 +178,15 @@ export interface ApiTransferNotification extends BaseAPiNotification {
   memo: string | null;
 }
 
+export interface ApiFavoriteNotification extends BaseAPiNotification {
+  type: "favorite";
+  author: string;
+  account: string;
+  permlink: string;
+  post: boolean;
+  title: string | null;
+}
+
 export interface ApiSpinNotification extends BaseAPiNotification {
   type: "spin";
 }
@@ -196,6 +215,7 @@ export interface ApiNotificationSetting {
 export type ApiNotification =
   | ApiVoteNotification
   | ApiMentionNotification
+  | ApiFavoriteNotification
   | ApiFollowNotification
   | ApiReblogNotification
   | ApiReplyNotification
@@ -208,6 +228,7 @@ export type ApiNotification =
 export enum NotificationFilter {
   VOTES = "rvotes",
   MENTIONS = "mentions",
+  FAVORITES = "favorites",
   FOLLOWS = "follows",
   REPLIES = "replies",
   REBLOGS = "reblogs",
