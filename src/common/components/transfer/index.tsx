@@ -743,11 +743,7 @@ export class Transfer extends BaseComponent<Props, State> {
           (item as DelegateVestingShares).delegator === activeUser.username
       );
     const previousAmount = delegateAccount
-      ? Number(
-          formattedNumber(
-            vestsToHp(Number(parseAsset(delegateAccount!.vesting_shares).amount), hivePerMVests)
-          )
-        )
+      ? vestsToHp(Number(parseAsset(delegateAccount!.vesting_shares).amount), hivePerMVests)
       : "";
 
     let balance: string | number = this.formatBalance(this.getBalance());
@@ -929,7 +925,7 @@ export class Transfer extends BaseComponent<Props, State> {
                           <br />
                           {_t("transfer.override-warning-2", {
                             account: to,
-                            previousAmount: previousAmount
+                            previousAmount: formattedNumber(previousAmount)
                           })}
                         </>
                       )}
