@@ -63,7 +63,7 @@
     "more-results": "Ko'proq",
     "close": "Yopish",
     "loading": "Yuklanmoqda",
-    "stop": "Stop"
+    "stop": "To'xtash"
   },
   "confirm": {
     "title": "Aminmisiz?",
@@ -95,8 +95,8 @@
     "filter-month": "Shu oy",
     "filter-year": "Shu yil",
     "filter-alltime": "Doimiy",
-    "filter-no-reblog": "Exclude reblog",
-    "filter-with-reblog": "Include reblog"
+    "filter-no-reblog": "Qayta bloglashni o'chirish",
+    "filter-with-reblog": "Repostni yoqish"
   },
   "navbar": {
     "discover": "Kashf qilish\n",
@@ -168,8 +168,8 @@
     "sign-up-text-2": "Hoziroq ro'yxatdan o'ting!"
   },
   "sign-up": {
-    "header": "Rewarding communities",
-    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
+    "header": "Mokofotlovchi guruhlar",
+    "description": "So'z erkinligini qadrlang, mas'uliyatni o'z zimmangizga oling, moliyaviy erkinlikka erishing!",
     "bottom-description": "Har bir hisob blokcheynda yaratilgan va faqat siz ushbu hisobni boshqarishingiz mumkin. Blockchain va Ecency bilan bog'liq hamma narsani boshqarish uchun bitta hisob yetarli.",
     "learn-more": "\nImtiyozlar haqida batafsil ma'lumotni <a href=\"/faq#how-to-join\">FAQ</a> bo‘limida o‘qing",
     "username": "Foydalanuvchi nomini tanlang",
@@ -402,9 +402,9 @@
     "cross-post-by": "Tomonidan tarqatish",
     "cross-post-community": "guruh",
     "community-in": "ichida",
-    "post-word-count": "Words:",
-    "post-read-time": "Reading:",
-    "post-read-minuites": "min"
+    "post-word-count": "So'zlar:",
+    "post-read-time": "O'qish:",
+    "post-read-minuites": "daq"
   },
   "edit-history": {
     "title": "Tarixni Tahrirlash",
@@ -602,10 +602,10 @@
     "language": "Til",
     "nsfw": "NSFW kontentni ko'rsatish",
     "referral-link": "Taklif ssilkasi",
-    "theme": "Theme Settings",
-    "theme-system-default": "System Default",
-    "theme-day": "Day mode",
-    "theme-night": "Night mode",
+    "theme": "Mavzuni sozlash",
+    "theme-system-default": "Tizim boʻyicha",
+    "theme-day": "Kunfuzgi rejim",
+    "theme-night": "Tungi rejim",
     "updated": "Sozlamalar yangilandi!"
   },
   "wallet": {
@@ -634,7 +634,7 @@
     "hive-dollars-description": "Tokenlar taxminan $1,00 HIVEga teng.",
     "savings": "JAMG'ARMA",
     "savings-description": "Balansni yechib olish uchun 3 kunlik kutish muddati belgilanadi.",
-    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
+    "next-power-down": "Keyingi quvvat power down {{time}}, (~{{amount}}, {{haftalar}} hafta qoldi)",
     "transfer": "O'tkazma",
     "transfer-to-savings": "Jang'armaga o'tqazish",
     "convert": "Konvertatsiya qilish",
@@ -646,25 +646,25 @@
     "withdraw-routes": "Yechib olish yo'llari",
     "calculating": "Hisoblash",
     "converting-hbd-amount": "HIVEga konvertatsiya qilish",
-    "converting-hive-amount": "Converting to HBD",
+    "converting-hive-amount": "HBDga konvertatsiya qilish",
     "withdrawing-amount": "J'amg'armadan yechib olish",
     "reserved-amount": "Bozorda ochiq buyurtma uchun ajratilgan",
     "spk": {
       "claim": {
-        "title": "Claim",
-        "unclaimed-rewards": "Unclaimed rewards"
+        "title": "Olish",
+        "unclaimed-rewards": "Olinmagan mukofotlar"
       },
       "delegate": {
-        "title": "Delegate",
-        "subtitle": "Delegate tokens",
-        "node-operator-placeholder": "Select a node operator",
+        "title": "Delegatsiyalash",
+        "subtitle": "Tokenlashni delegatsiyalash",
+        "node-operator-placeholder": "Tugun operatorini tanlang",
         "delegated-larynx-power": {
-          "title": "Delegated LARYNX Power"
+          "title": "Delegasiyalangan LARYNX Kuch"
         }
       },
       "power-up": {
-        "title": "Power up",
-        "subtitle": "Power up to earn passive rewards"
+        "title": "Kuchni oshirish",
+        "subtitle": "Passiv daromad uchun kuchni oshirish"
       },
       "power-down": {
         "title": "Power down",
