@@ -7,11 +7,11 @@ import { _t } from "../../i18n";
 function CommentEngagement({commentInput}: any) {
 
   
-  // const scrollToRef = (ref: any) => commentInput.current.scrollIntoView();
-  const scrollToCommentInput = () => commentInput.current.scrollIntoView();
+  const scrollToRef = (ref: any) => window.scrollTo(0, commentInput.current.offsetTop);
+  const scrollToCommentInput = () => scrollToRef(commentInput);
   
       useEffect(() => {
-          console.log(commentInput.current)
+          // console.log(commentInput.current) 
       },[]);
    
     return ( <div className="comment-engagement">
