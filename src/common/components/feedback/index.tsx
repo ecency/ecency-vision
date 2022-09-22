@@ -116,7 +116,7 @@ export default class Feedback extends BaseComponent<Props, State> {
                   <div className=" d-flex flex-column align-items-start">
                     {x.message}
                     <div className="d-flex">
-                      {errorType(x) && errorType(x) !== ErrorTypes.COMMON && (
+                      {errorType(x) !== ErrorTypes.COMMON ? (
                         <Button
                           className="mt-2 details-button px-0 mr-3"
                           variant="link"
@@ -124,6 +124,8 @@ export default class Feedback extends BaseComponent<Props, State> {
                         >
                           {_t("feedback-modal.question")}
                         </Button>
+                      ) : (
+                        <></>
                       )}
                       <Button
                         className="mt-2 details-button px-0"

@@ -91,7 +91,7 @@ export const formatError = (err: any): [string, ErrorTypes] => {
       return [chainErr, type];
     }
 
-    return err.error_description.substring(0, 80);
+    return [err.error_description.substring(0, 80), ErrorTypes.COMMON];
   }
 
   if (err.message && typeof err.message === "string") {
@@ -100,7 +100,7 @@ export const formatError = (err: any): [string, ErrorTypes] => {
       return [chainErr, type];
     }
 
-    return err.message.substring(0, 80);
+    return [err.message.substring(0, 80), ErrorTypes.COMMON];
   }
 
   return ["", ErrorTypes.COMMON];
