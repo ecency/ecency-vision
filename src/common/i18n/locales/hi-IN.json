@@ -1129,7 +1129,7 @@
     "type-reblogs": "रिब्लॉग्स",
     "type-transfers": "स्थानांतरण",
     "type-delegations": "डेलीगेशन्स",
-    "type-favorites": "Favorites",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "ताजा",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "आपके पोस्ट का जवाब दिया:",
