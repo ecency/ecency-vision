@@ -1129,7 +1129,7 @@
     "type-reblogs": "Reblogueos",
     "type-transfers": "Transacciones",
     "type-delegations": "Delegaciones",
-    "type-favorites": "Favoritos",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "Recientes",
     "vote-str": "{{p}}% votó tu publicación:",
     "reply-str": "contestó a tu publicación:",
