@@ -1129,7 +1129,7 @@
     "type-reblogs": "转发",
     "type-transfers": "转账",
     "type-delegations": "Delegations",
-    "type-favorites": "Favorites",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "最近",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "回复了您的文章:",
