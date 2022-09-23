@@ -178,7 +178,7 @@ export default class NotificationListItem extends Component<{
             )}
 
             {/* Favorites */}
-            {notification.type === "favorite" && (
+            {notification.type === "favorites" && (
               <div className="item-content">
                 <div className="first-line">
                   {sourceLink}

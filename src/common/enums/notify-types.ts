@@ -5,5 +5,6 @@ export enum NotifyTypes {
   COMMENT = 4,
   RE_BLOG = 5,
   TRANSFERS = 6,
+  FAVORITES = 13,
   ALLOW_NOTIFY = "ALLOW_NOTIFY"
 }

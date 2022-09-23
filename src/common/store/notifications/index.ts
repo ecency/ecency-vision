@@ -241,6 +241,7 @@ export const setNotificationsSettingsItem =
                 NotifyTypes.FOLLOW,
                 NotifyTypes.VOTE,
                 NotifyTypes.MENTION,
+                NotifyTypes.FAVORITES,
                 NotifyTypes.RE_BLOG,
                 NotifyTypes.TRANSFERS
               ]
@@ -300,6 +301,7 @@ export const fetchNotificationsSettings =
               NotifyTypes.COMMENT,
               NotifyTypes.FOLLOW,
               NotifyTypes.MENTION,
+              NotifyTypes.FAVORITES,
               NotifyTypes.VOTE,
               NotifyTypes.RE_BLOG,
               NotifyTypes.TRANSFERS
