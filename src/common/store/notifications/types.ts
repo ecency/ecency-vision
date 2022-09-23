@@ -179,7 +179,7 @@ export interface ApiTransferNotification extends BaseAPiNotification {
 }
 
 export interface ApiFavoriteNotification extends BaseAPiNotification {
-  type: "favorite";
+  type: "favorites";
   author: string;
   account: string;
   permlink: string;
@@ -228,7 +228,7 @@ export type ApiNotification =
 export enum NotificationFilter {
   VOTES = "rvotes",
   MENTIONS = "mentions",
-  FAVORITES = "favorites",
+  FAVORITES = "nfavorites",
   FOLLOWS = "follows",
   REPLIES = "replies",
   REBLOGS = "reblogs",
