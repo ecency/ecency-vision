@@ -1129,7 +1129,7 @@
     "type-reblogs": "리블로그",
     "type-transfers": "송금",
     "type-delegations": "Delegations",
-    "type-favorites": "Favorites",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "최근",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "댓글을 남겼습니다:",
