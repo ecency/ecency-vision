@@ -402,9 +402,9 @@
     "cross-post-by": "Gedeelde post door",
     "cross-post-community": "community",
     "community-in": "in",
-    "post-word-count": "Words:",
-    "post-read-time": "Reading:",
-    "post-read-minuites": "min"
+    "post-word-count": "Woorden:",
+    "post-read-time": "Lezen:",
+    "post-read-minuites": "minuten"
   },
   "edit-history": {
     "title": "Geschiedenis bewerken",
@@ -1112,6 +1112,7 @@
     "voted": "{{source}} voted your post",
     "mention-post": "{{source}} mentioned you in a post",
     "mention-comment": "{{source}} mentioned you in a comment",
+    "favorite": "{{source}} heeft een nieuw blog geplaatst",
     "followed": "{{source}} followed you",
     "replied": "{{source}} replied you",
     "reblogged": "{{source}} reblogged your post",
@@ -1128,10 +1129,12 @@
     "type-reblogs": "Reblogs",
     "type-transfers": "Transfers",
     "type-delegations": "Delegations",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "Recent",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "replied to your post:",
     "mention-str": "mentioned you in:",
+    "favorite-str": "nieuw blog gemaakt",
     "followed-str": "followed",
     "unfollowed-str": "unfollowed",
     "ignored-str": "ignored",
@@ -1232,8 +1235,8 @@
     "proxy-active-current": "Your current proxy is",
     "proxy-active-btn-label": "Clear Proxy",
     "proxy-votes-for": "@{{username}} votes for",
-    "proxy-active-highlighted": "Your proxy votes are highlighted",
-    "check-witness-highlighted": "votes are highlighted"
+    "proxy-active-highlighted": "Uw proxystemmen zijn gemarkeerd",
+    "check-witness-highlighted": "keuzes zijn gemarkeerd"
   },
   "referral": {
     "page-title": "Referrals",
@@ -1517,7 +1520,7 @@
     "comment-cashout": "Content after their payout cannot be deleted.",
     "comment-children": "Cannot delete a content with replies.",
     "paid-out-post-forbidden": "Voting for paid out content is not available.",
-    "missing-authority": "Missing or invalid authority key."
+    "missing-authority": "Ontbrekende of ongeldige autorisatie sleutel."
   },
   "landing-page": {
     "welcome-text": "Welcome to Ecency!",

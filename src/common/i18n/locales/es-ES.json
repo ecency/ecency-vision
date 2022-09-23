@@ -1112,6 +1112,7 @@
     "voted": "{{source}} votó tu publicación",
     "mention-post": "{{source}} te ha mencionado en una publicación",
     "mention-comment": "{{source}} te mencionó en un comentario",
+    "favorite": "{{source}} hizo una nueva publicación",
     "followed": "{{source}} te siguió",
     "replied": "{{source}} te respondió",
     "reblogged": "{{source}} ha reblogueado tu publicación",
@@ -1128,10 +1129,12 @@
     "type-reblogs": "Reblogueos",
     "type-transfers": "Transacciones",
     "type-delegations": "Delegaciones",
+    "type-nfavorites": "Favoritos",
     "group-title-recent": "Recientes",
     "vote-str": "{{p}}% votó tu publicación:",
     "reply-str": "contestó a tu publicación:",
     "mention-str": "te mencionó en:",
+    "favorite-str": "crear nuevo post",
     "followed-str": "seguido",
     "unfollowed-str": "dejar de seguir",
     "ignored-str": "ignorar",
@@ -1517,7 +1520,7 @@
     "comment-cashout": "El contenido después de su pago no puede ser eliminado.",
     "comment-children": "No se puede eliminar un contenido con respuestas.",
     "paid-out-post-forbidden": "La votación por el contenido pagado no está disponible.",
-    "missing-authority": "Missing or invalid authority key."
+    "missing-authority": "Clave de autoridad no válida o faltante."
   },
   "landing-page": {
     "welcome-text": "¡Bienvenido a Ecency!",

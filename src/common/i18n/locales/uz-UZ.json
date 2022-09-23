@@ -63,7 +63,7 @@
     "more-results": "Ko'proq",
     "close": "Yopish",
     "loading": "Yuklanmoqda",
-    "stop": "Stop"
+    "stop": "To'xtash"
   },
   "confirm": {
     "title": "Aminmisiz?",
@@ -95,8 +95,8 @@
     "filter-month": "Shu oy",
     "filter-year": "Shu yil",
     "filter-alltime": "Doimiy",
-    "filter-no-reblog": "Exclude reblog",
-    "filter-with-reblog": "Include reblog"
+    "filter-no-reblog": "Qayta bloglashni o'chirish",
+    "filter-with-reblog": "Repostni yoqish"
   },
   "navbar": {
     "discover": "Kashf qilish\n",
@@ -168,8 +168,8 @@
     "sign-up-text-2": "Hoziroq ro'yxatdan o'ting!"
   },
   "sign-up": {
-    "header": "Rewarding communities",
-    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
+    "header": "Mokofotlovchi guruhlar",
+    "description": "So'z erkinligini qadrlang, mas'uliyatni o'z zimmangizga oling, moliyaviy erkinlikka erishing!",
     "bottom-description": "Har bir hisob blokcheynda yaratilgan va faqat siz ushbu hisobni boshqarishingiz mumkin. Blockchain va Ecency bilan bog'liq hamma narsani boshqarish uchun bitta hisob yetarli.",
     "learn-more": "\nImtiyozlar haqida batafsil ma'lumotni <a href=\"/faq#how-to-join\">FAQ</a> bo‘limida o‘qing",
     "username": "Foydalanuvchi nomini tanlang",
@@ -402,9 +402,9 @@
     "cross-post-by": "Tomonidan tarqatish",
     "cross-post-community": "guruh",
     "community-in": "ichida",
-    "post-word-count": "Words:",
-    "post-read-time": "Reading:",
-    "post-read-minuites": "min"
+    "post-word-count": "So'zlar:",
+    "post-read-time": "O'qish:",
+    "post-read-minuites": "daq"
   },
   "edit-history": {
     "title": "Tarixni Tahrirlash",
@@ -602,10 +602,10 @@
     "language": "Til",
     "nsfw": "NSFW kontentni ko'rsatish",
     "referral-link": "Taklif ssilkasi",
-    "theme": "Theme Settings",
-    "theme-system-default": "System Default",
-    "theme-day": "Day mode",
-    "theme-night": "Night mode",
+    "theme": "Mavzuni sozlash",
+    "theme-system-default": "Tizim boʻyicha",
+    "theme-day": "Kunfuzgi rejim",
+    "theme-night": "Tungi rejim",
     "updated": "Sozlamalar yangilandi!"
   },
   "wallet": {
@@ -634,7 +634,7 @@
     "hive-dollars-description": "Tokenlar taxminan $1,00 HIVEga teng.",
     "savings": "JAMG'ARMA",
     "savings-description": "Balansni yechib olish uchun 3 kunlik kutish muddati belgilanadi.",
-    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
+    "next-power-down": "Keyingi quvvat power down {{time}}, (~{{amount}}, {{haftalar}} hafta qoldi)",
     "transfer": "O'tkazma",
     "transfer-to-savings": "Jang'armaga o'tqazish",
     "convert": "Konvertatsiya qilish",
@@ -646,84 +646,84 @@
     "withdraw-routes": "Yechib olish yo'llari",
     "calculating": "Hisoblash",
     "converting-hbd-amount": "HIVEga konvertatsiya qilish",
-    "converting-hive-amount": "Converting to HBD",
+    "converting-hive-amount": "HBDga konvertatsiya qilish",
     "withdrawing-amount": "J'amg'armadan yechib olish",
     "reserved-amount": "Bozorda ochiq buyurtma uchun ajratilgan",
     "spk": {
       "claim": {
-        "title": "Claim",
-        "unclaimed-rewards": "Unclaimed rewards"
+        "title": "Olish",
+        "unclaimed-rewards": "Olinmagan mukofotlar"
       },
       "delegate": {
-        "title": "Delegate",
-        "subtitle": "Delegate tokens",
-        "node-operator-placeholder": "Select a node operator",
+        "title": "Delegatsiyalash",
+        "subtitle": "Tokenlashni delegatsiyalash",
+        "node-operator-placeholder": "Tugun operatorini tanlang",
         "delegated-larynx-power": {
-          "title": "Delegated LARYNX Power"
+          "title": "Delegasiyalangan LARYNX Kuch"
         }
       },
       "power-up": {
-        "title": "Power up",
-        "subtitle": "Power up to earn passive rewards"
+        "title": "Kuchni oshirish",
+        "subtitle": "Passiv daromad uchun kuchni oshirish"
       },
       "power-down": {
-        "title": "Power down",
-        "subtitle": "Power down to earn passive rewards",
-        "in-progress": "A power down is scheduled to happen in {{date}} ({{count}} installments remaining)"
+        "title": "Kuchni pasaytirish",
+        "subtitle": "Passiv daromad uchun kuchni pasaytirish",
+        "in-progress": "Kuchni pasaytirish {{date}} ({{count}} ta toʻlov qoldi.) rejalashtirilgan"
       },
       "lock": {
-        "title": "Lock Liquidity",
-        "subtitle": "Locking Larynx for liquidity reward",
-        "button": "Lock liquidity"
+        "title": "Likvidlikni blokirovka qilish",
+        "subtitle": "Likvidlik mukofoti uchun Larynxni qulflash",
+        "button": "Likvidlikni bloklash"
       },
       "unlock": {
-        "title": "Unlock Liquidity",
-        "subtitle": "Unlock LARYNX to liquid form",
-        "button": "Unlock liquidity"
+        "title": "Likvidlikni ochish",
+        "subtitle": "LARYNXni blokdan chiqarish",
+        "button": "Likvidlikni ochish"
       },
       "send": {
-        "balance": "Balance",
-        "button": "Send",
-        "from": "From",
-        "to": "To",
-        "amount": "Amount",
-        "optional": "optional",
-        "title": "Send SPK",
+        "balance": "Balans",
+        "button": "Jo'natish",
+        "from": "Dan",
+        "to": "Ga",
+        "amount": "Miqdor",
+        "optional": "ixtiyoriy",
+        "title": "SPKni jo'natish",
         "memo": "Memo",
-        "next": "Next",
-        "subtitle": "Move funds to another SPK wallet",
-        "warning": "Transferring more than available balance"
+        "next": "Keyingi",
+        "subtitle": "Pul mablag'larini boshqa SPK hamyoniga o'tkazing",
+        "warning": "Mavjud balansdan ko'proq pul o'tkazilmoqda"
       },
-      "token": "SPK Token",
-      "token-description": "The governance token for the SPK network.",
-      "larynx-air": "LARYNX Airdrop Claim",
-      "larynx-air-description": "This months claimable tokens based on a January 6th HIVE blockchain snapshot.",
-      "larynx-air-warning": "Tokens not claimed, do not roll over to next month.",
-      "larynx-already-claimed": "Already claimed.",
+      "token": "SPK token",
+      "token-description": "SPK tarmog'i uchun boshqaruv tokeni.",
+      "larynx-air": "LARYNX Airdrop Olish",
+      "larynx-air-description": "Bu oyda olinadigan tokenlar 6-yanvardagi HIVE blokcheyn snapshotiga asoslangan.",
+      "larynx-air-warning": "Olinmagan tokenlar keyingi oyga o'tmaydi.",
+      "larynx-already-claimed": "Allaqachon olingan.",
       "larynx-token": "LARYNX Token",
-      "larynx-token-description": "The mining token for the SPK network.",
-      "larynx-power": "LARYNX Power",
-      "larynx-power-description": "Powered tokens used to mine SPK",
+      "larynx-token-description": "SPK tarmog'i uchun mayning tokeni.",
+      "larynx-power": "LARYNX Kuch",
+      "larynx-power-description": "Kuchaytirilgan tokenlar SPKni mayning qilishda ishlatiladi",
       "larynx-power-benefits": {
-        "title": "Benefits of LARYNX Power",
-        "1": "Earns SPK governance tokens",
-        "2": "Instant Lock | 4 Week Unlock",
-        "3": "Delegate to node service accounts to build consensus (DPoS)",
-        "4": "LARYNX POWER (LP) earns SPK tokens at {{rate}}%",
-        "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at {{rate}}%"
+        "title": "LARYNX kuchning foydalari",
+        "1": "SPK boshqaruv tokenlarini oladi",
+        "2": "Tezkor blokirovka | 4 hafta qulfni ochish",
+        "3": "Konsensus (DPoS) yaratish uchun xizmat hisoblarini node servisga delegatsiyalash",
+        "4": "LARYNX POWER (LP) {{rate}}% dan SPK tokenlarini oladi",
+        "5": "Delegatsiya qilingan LP (DLP) vakil va delegat uchun {{rate}}% dan SPK tokenlarini oladi"
       },
       "larynx-locked-benefits": {
-        "title": "Benefits of LARYNX Locked",
+        "title": "LARYNX Locked-ning afzalliklari",
         "1": "Proof of Stake Consensus",
-        "2": "Collateral for DEX transactions",
-        "3": "Instant Lock | 4 Week Unlock",
-        "4": "Requires an operating LARYNX node",
-        "5": "Earns 0.100%"
+        "2": "DEX operatsiyalari uchun garov",
+        "3": "Tezkor blokirovka | 4 hafta qulfni ochish",
+        "4": "Ishlaydigan LARYNX nodi talab qiladi",
+        "5": "0,100% daromad oladi"
       },
-      "account-value": "Estimated Account Value",
-      "account-value-description": "The approximate US Dollar value for all SPK assets in your account",
-      "larynx-locked": "LARYNX Locked",
-      "larynx-locked-description": "Locked tokens provide liquidity to the network, aid in determining consensus, and earn rewards for node runners"
+      "account-value": "Akkauntning taxminiy qiymati",
+      "account-value-description": "Hisobingizdagi barcha SPK aktivlari uchun taxminiy AQSh dollari qiymati",
+      "larynx-locked": "LARYNX qulflangan",
+      "larynx-locked-description": "Qulflangan tokenlar tarmoqdagi likvidlikni ta'minlaydi, konsensusni aniqlashga yordam beradi va nodlarni boshqaradiganlarni mukofotlaydi"
     }
   },
   "wallet-engine": {
@@ -798,13 +798,13 @@
     "scan-code": "Ecency mobil ilovasi yordamida QR kodini skanerlang",
     "select-user": "Iltimos, foydalanuvchini tanlang",
     "title": "Akkauntni kuchaytirish",
-    "title-points": "Buy points",
+    "title-points": "Ballarni sotib olish",
     "copied": "Akkaunt linki nusxalandi!",
-    "select-type": "Select a type",
-    "boost": "Boost",
-    "points": "Points",
-    "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
-    "points-amount": "{{n}} points"
+    "select-type": "Turni tanlang",
+    "boost": "Kuchaytirish",
+    "points": "Ballar",
+    "boost-info": "Agar staking noto'g'ri ishlatilsa, Ecency delegatsiyani/kuchaytirishlarni bekor qilish huquqiga ega",
+    "points-amount": "{{n}} ballar"
   },
   "promote": {
     "title": "Targ'ib qilish",
@@ -886,19 +886,19 @@
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> <span class=\"from-user\">{{from}}</span> dan <span class=\"to-user\" ga delegatsiya bekor qilindi >{{to}}</span>",
     "power-down-summary": "<span class=\"amount\">{{amount}}</span> miqdorda Kuch kamaytirildi",
     "claim-interest-summary": "Foizlar olindi va balansingizga qo'shildi",
-    "claim-summary": "Claimed and added to your savings balance",
-    "powerup-summary": "Power up completed successfully",
-    "powerdown-summary": "Power down completed successfully",
+    "claim-summary": "Olindi va balansingizga qo'shildi",
+    "powerup-summary": "Kuchni oshirish muvaffaqiyatli yakunlandi",
+    "powerdown-summary": "Kuchni pasaytirish muvaffaqiyatli yakunlandi",
     "reset": "Qayta o'rnatish",
     "powering-down": "Siz hozir kuchingizni kamaytiryapsiz.",
     "stop-power-down": "To'xtash",
-    "claim-title": "Claim",
-    "powerup-title": "Power Up",
-    "powerdown-title": "Power down",
-    "lock-title": "Lock liquidity",
-    "unlock-title": "Unlock liquidity",
-    "lock-summary": "Locking completed as <span class=\"amount\">{{amount}}</span>",
-    "unlock-summary": "Unlocking completed as <span class=\"amount\">{{amount}}</span>"
+    "claim-title": "Olish",
+    "powerup-title": "Kuchni oshirish",
+    "powerdown-title": "Kuchni pasaytirish",
+    "lock-title": "Likvidlikni bloklash",
+    "unlock-title": "Likvidlikni ochish",
+    "lock-summary": "Bloklash <span class=\"amount\">{{amount}}</span> sifatida yakunlandi",
+    "unlock-summary": "Qulfni ochish <span class=\"amount\">{{amount}}</span sifatida yakunlandi"
   },
   "trx-common": {
     "insufficient-funds": "Mablag' yetarli emas",
@@ -972,11 +972,11 @@
     "pending": "Kutish jarayonida"
   },
   "collateralized-conversion-requests": {
-    "title": "Collateralized Convert requests",
-    "request-id": "Request id",
-    "collateral_amount": "Collateral",
-    "converted_amount": "Converted",
-    "pending": "Pending"
+    "title": "Kafolatlangan konvertatsiya so'rovlari",
+    "request-id": "So'rov identifikatori",
+    "collateral_amount": "Garov",
+    "converted_amount": "Konvertatsiyalangan",
+    "pending": "Kutilayotgan"
   },
   "savings-withdraw": {
     "title": "J'amg'armadan yechib olish",
@@ -1112,6 +1112,7 @@
     "voted": "{{source}} sizning postingizga ovoz berdi",
     "mention-post": "{{source}} sizni postida ko'rsatdi",
     "mention-comment": "{{source}} sizni kommentida ko'rsatdi",
+    "favorite": "{{source}} yangi post yaratdi",
     "followed": "{{source}} sizni kuzatyapti",
     "replied": "{{source}} sizga javob berdi",
     "reblogged": "{{source}} sizni postingizni qayta blogladi",
@@ -1128,10 +1129,12 @@
     "type-reblogs": "Qayta bloglanganlar",
     "type-transfers": "O'tkazmalar",
     "type-delegations": "Delegatsiyalar",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "Yaqinda",
-    "vote-str": "{{p}}% voted your post:",
+    "vote-str": "{{p}} % postingizga ovoz berdi:",
     "reply-str": "postingizga javob berdi:",
     "mention-str": "sizni eslatib o'tdi:",
+    "favorite-str": "yangi post yaratmoq",
     "followed-str": "kuzatdi",
     "unfollowed-str": "kuzatishni to'xtatish",
     "ignored-str": "rad qildi",
@@ -1232,8 +1235,8 @@
     "proxy-active-current": "Sizning hozirgi proksingiz",
     "proxy-active-btn-label": "Proksini tozalash",
     "proxy-votes-for": "@{{username}} uchun ovoz beradi",
-    "proxy-active-highlighted": "Your proxy votes are highlighted",
-    "check-witness-highlighted": "votes are highlighted"
+    "proxy-active-highlighted": "Sizning proksi-serveringiz ovozlari ta'kidlangan",
+    "check-witness-highlighted": "ovozlar ta'kidlangan"
   },
   "referral": {
     "page-title": "Ma'lumotnomalar",
@@ -1400,7 +1403,7 @@
       "what-are-rc-header": "Resurs Kreditlari nima?",
       "what-are-rc-body": "<p>Hive blokcheynidagi tranzaksiya nol komissiyaga ega, tranzaksiya tezligini cheklash blokcheynni spam hujumlaridan himoya qilish uchun qo'llaniladi. Blockcheynda qilgan har bir harakatingiz oz miqdorda Resurs kreditlarini sarflaydi. Bunga nashr qilish, izoh qoldirish, ovoz berish, tokenlarni oʻtkazish va hokazo kiradi. Kontentni koʻrish Resurs kreditlarini sarflamaydi.</p><p>Har bir foydalanuvchi har hafta foydalanishi uchun cheklangan miqdordagi Resurs kreditlariga ega. Foydalanuvchi qanchalik ko'p tranzaktsiyalarni amalga oshirsa, shunchalik kam Resurs kreditlari qoladi (ular to'ldirilgunga qadar). Ko‘proq HIVE POWER’ga ega foydalanuvchilar ko‘proq Resurs kreditlariga ega bo‘ladilar.</p><p>Agar sizda resurs kreditlari tugasa, resurs kreditlari to‘ldirilmaguncha (avtomatik ravishda sodir bo‘ladi) yoki qo‘shimcha HIVE POWER ga ega bo‘lmaguncha blokcheyn bilan tranzaksiya qila olmaysiz. Resurs krediti balansini oshirish uchun yoki vaqtinchalik vakolatni olish uchun <a href=\"/faq#how-boost-account\">Ecencydan hisobni kuchaytishni so‘rashingiz</a> mumkin.</p>",
       "how-boost-account-header": "Hisobni kuchaytirishni qanday talab qilish kerak?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation (553311 VESTS) which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can request account boosting quickly with <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR page</a> just change username and scan QR image with Ecency mobile app.</p>",
+      "how-boost-account-body": "<p>Agar hisobingizda <a href=\"/faq#what-are-rc\">Resurs kreditlari</a> kam bo‘lsa, Ecencydan hisobnikuchaytirishni so‘rashingiz mumkin. Siz 30 kunlik delegatsiyani (553311 VESTS) olasiz, bu sizning hisobingizni blockchainda ko'proq faoliyatni amalga oshirish uchun akkauntingizni kuchaytiradi. Agar jamoamiz imkoniyatdan nomaqbul foydalanishni aniqlasa, delegatsiya istalgan vaqtda chaqirib olinishi mumkin. Siz <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR sahifasi</a> orqali hisobni tezda kuchaytirishni so‘rashingiz mumkin, shunchaki Ecency mobil ilovasi yordamida foydalanuvchi nomini o‘zgartiring va QR tasvirni skanerlang.</p >",
       "what-spam-abuse-header": "Nima spam yoki noto'g'ri foydalanish deb hisoblanadi?",
       "what-spam-abuse-body": "p><ul><li>Plagiat postlar yoki ko‘chirilgan kontent.</li><li>Bir nechta postlarda deyarli bir xil yoki o‘xshash fikrlarni qoldirish.</li><li>Postga aloqasi bo‘lmagan teglardan foydalanish.</li><li> li><li>Foydalanuvchilarni har qanday turdagi jismoniy zo‘ravonlik bilan tahdid qilish.</li><li>Birovning materialidan foydalanganda manbalarga link keltirmaslik.</li><li> post yaratishda “ish uchun xavfsiz emas” tegini joylashtirmaslik.</li><li>Firibgarlik yoki firibgarlik takliflari.</li></ul></p>",
       "can-link-post-header": "Ecency jamoasidan veb-saytimga link qo'shishni so'rashim mumkinmi?",
@@ -1450,7 +1453,7 @@
       "why-different-keys-header": "Nima uchun turli xil kalitlar mavjud?",
       "why-different-keys-body": "<p>Siz qilayotgan ish uchun tegishli ruxsatlarga ega turli xil kalitlar mavjud. <ul><li>E'lon qilish kalitlari - bu kalitdan post qo'yish, fikr bildirish va ovoz berish kabi ijtimoiy tarmoqlardagi amallar uchun foydalanish kerak. Ushbu kalit ba'zi faoliyatlar ichun ishlatiladi ega va uni pul operatsiyalari uchun ishlatib bo'lmaydi. Agar kimdir bu kalitga kirish huquqiga ega boʻlsa, pul yoʻqotib boʻlmaydi.</li><li>Faol kalit – bu kalit tokenlarni oʻtkazish va almashish kabi pul bilan bogʻliq nozikroq amallar uchun qoʻshimcha ruxsatlarga ega. Hamyon bilan bog'liq amalni bajarayotganda sizdan Faol kalit yordamida autentifikatsiya qilish so'ralishi mumkin. Faol kalitingizni faqat oʻzingiz ishonadigan ilovalarga kiritishingiz kerak, chunki bu kalitga kirish huquqiga ega boʻlgan har bir kishi tokenlaringizni olishi mumkin. Kelajakda tokenlarni yo'qotmaslik uchun ushbu kalitni xavfsiz saqlang.</li><li>Egalik kaliti - eng kuchli kalit, chunki u hisobning istalgan kalitini, jumladan, egalik kalitini ham o'zgartirishi mumkin. Ideal holda, u oflayn rejimda saqlanadi va faqat buzilgan hisobni tiklash uchun ishlatiladi.</li></ul></p>",
       "stolen-hive-hbd-header": "Agar mening HIVE yoki Hive dollar tokenlarim o'g'irlangan yoki noto'g'ri hisobga ketgan bo'lsa, nima qilishim mumkin?",
-      "stolen-hive-hbd-body": "<p>There is nothing to do if your liquid tokens are stolen or sent to wrong acoount but if your tokens are in Hive Power it is impossible to be hacked more than 1/13 per week and if your tokens are in savings they need to a three-day wait period for them to become transferable. Staking/powering up or transferring funds into savings might be more safer.</>",
+      "stolen-hive-hbd-body": "<p>Agar suyuq tokenlaringiz oʻgʻirlangan yoki notoʻgʻri hisob raqamiga yuborilgan boʻlsa, hech narsa qilishning ilojii yoʻq, lekin agar sizning tokenlaringiz Hive Powerda boʻlsa, haftasiga 1/13 qismidan koʻproq xakerlik hujumiga duchor boʻlish mumkin emas va agar sizning tokenlaringiz omonatda boʻlsa, ular buni qilishlari uchun 3 kun kutishlari kerak.. Mablag‘larni omonatga qo‘yish/to‘ldirish yoki o‘tkazish xavfsizroq bo‘lishi mumkin.</>",
       "what-are-tags-header": "Teglar yoki mavzular nima?",
       "what-are-tags-body": "<p>Teg - kontentning mazmunini ochib beruvchi qisqa ma'lumot. Ular qidiruv tizimlariga kontentlar mazmunini aniqlashga yordam beradi va bu ma'lumotlardan foydalanib, ma'lum bir qidiruv uchun eng yaxshi natijalarni beradi. Barcha teglar kichik harflardan iborat bo'lishi kerak. Boʻshliqlar qoʻyib boʻlmaydi, lekin bitta chiziqcha qoʻyilgan defisli soʻzlarga ruxsat beriladi.</p>",
       "how-use-tags-header": "Teglardan qanday foydalanish kerak?",
@@ -1460,7 +1463,7 @@
       "what-links-show-header": "Trendda, qaynoq, yangi, ko'tarilayotgan va bahsli havolalar nimani anglatadi?",
       "what-links-show-body": "<p>Bu Ecencyda kontentni saralash usuli. <ul><li>Trendda - Ko'p tilga olingan yoki muhokama qilingan postlar.</li><li>Qaynoq - Oxirgi bir necha soat ichida mashhur postlar.</li><li>Yangi - E'lon qilingan vaqt bo'yicha saralangan eng yangi postlar.</ li><li>Rising - Boshqalar bilan solishtirganda ko'proq sharh va ovozga ega postlar.</li><li>Munozarali - ijobiy va salbiy ovozlar soni nisbatan teng.</li></ul></p>",
       "what-my-rewards-header": "Mening hamyonimda qanday mukofotlar bor?",
-      "what-my-rewards-body": "<p>There are three kind of rewards are shown in your wallet: <ul><li>Curation rewards - The rewards earned for upvoting posts and comments.</li><li>Author rewards - The rewards earned by your own posts and comments.</li><li>Points rewards - Social actions and interactions also rewarded with Ecency points.</li></ul><p/>",
+      "what-my-rewards-body": "<p>Hamyoningizda uch turdagi mukofotlar ko‘rsatiladi: <ul><li>Kuratorlik mukofotlari - postlar va sharhlarga ijobiy ovoz berish uchun olinadigan mukofotlar.</li><li>Muallif mukofotlari - shaxsiy postlaringiz orqali olingan mukofotlar. va sharhlar.</li><li>Ballar mukofotlari - Faol bo'lish kabi faoliyatlar ham Ecency ballari bilan taqdirlanadi.</li></ul><p/>",
       "what-information-profile-header": "Profilimda qanday ma'lumotlar ko'rsatilgan?",
       "what-information-profile-body": "<p>Rasmingiz yonida ko'rsatilgan birinchi ma'lumot - bu sizning reputatsiyangiz va ko'rsatilgan nomingiz, tavsifingiz. Pastda kuzatuvchilar haqida ma'lumot va Ecencyda ro'yxatdan o'tish sanasi. Ecency sozlamalariga maʼlumot, profil rasmi, muqova rasmi, joylashuvingiz kabi qoʻshimcha maʼlumotlarni qoʻshish imkoniyati mavjud.</p>",
       "what-can-post-header": "Ecencyda nima yozishim mumkin?",
@@ -1479,14 +1482,14 @@
       "what-voting-power-body": "<p>Har safar ovoz berganingizda ovoz berish kuchingiz biroz pasayadi. Bu 100% ovoz berish bilan boshlanadi va ovoz berish orqali siz o'z ovoz berish kuchingizdan foydalanasiz. Qanchalik ko'p ovoz bersangiz, shunchalik kam ta'sirga ega bo'lasiz, ya'ni ovozingiz samaradorligi pasayadi. Samaradorlik va mukofotlardan yaxshiroq foydalanish uchun kuniga 10 ta ovoz berish tavsiya etiladi.</p>",
       "how-many-vote-header": "Ovoz berish kuchim bilan necha marta ovoz berishim mumkin?",
       "how-many-vote-body": "<p>Siz bergan har 100% ovozingiz qolgan ovoz berish kuchingizning 2 foizidan foydalanadi. Ovoz berish kuchingiz har kuni 20% ga to‘ldiriladi. Siz kuniga 10 martadan ortiq ovoz berishingiz mumkin, lekin har bir ovoz kamroq qiymatga ega bo'ladi va yana to'liq ovoz berish huquqiga ega bo'lish uchun ko'proq vaqt ketadi.</p>",
-      "what-is-hivesigner-header": "What is Hivesigner?",
-      "what-is-hivesigner-body": "<p>When you were signing up on Hive you were given lots of keys that are hard to remember. The work of this Hivesigner is, it gives you the access to create your own password that you can remember and to provide a protection not to use your active key when logging into Hive platforms.</p>",
-      "what-is-keychain-header": "What is Keychain?",
-      "what-is-keychain-body": "<p>Hive Keychain is a wallet browser extension for the Hive blockchain and cryptocurrency and allows users to securely log into and access multiple Hive-based platforms. It is available for Chrome, Brave and Firefox.</p>",
-      "videos-pictures-stored-header": "Are pictures and video stored on the blockchain?",
-      "videos-pictures-stored-body": "<p>Media content such as pictures, videos etc. are typically not stored directly on a blockchain. When you add pictures or video you are only adding a source reference to where they are located. Meaning you can add video content from other locations. As of right now, when you upload a photo, this gets hosted on a regular web server.</p>",
-      "value-hive-hbd-header": "What determines the value of HIVE and HBD?",
-      "value-hive-hbd-body": "<p>The value of HIVE comes from the demand and supply of the token. HIVE will always be in demand based on the way the system is designed and there will always be supply for HIVE. As long as the Hive blockchain exist with continuous development and users being active, there will always be demand and supply for HIVE, adding value to the token.</p>"
+      "what-is-hivesigner-header": "Hivesigner nima?",
+      "what-is-hivesigner-body": "<p>Hive-da ro'yxatdan o'tayotganingizda sizga eslab qolish qiyin bo'lgan ko'plab kalitlar berildi. Ushbu Hivesignerning ishi shundaki, u sizga eslab qoladigan shaxsiy parolingizni yaratish va Hive platformalariga kirishda faol kalitdan foydalanmaslik uchun himoya qilish imkonini beradi.</p>",
+      "what-is-keychain-header": "Keychain nima?",
+      "what-is-keychain-body": "<p>Hive Keychain - bu Hive blokcheyn va kriptovalyuta uchun hamyon brauzeri kengaytmasi va foydalanuvchilarga Hive-ga asoslangan bir nechta platformalarga xavfsiz kirish va ulardan foydalanish imkonini beradi. U Chrome, Brave va Firefox uchun mavjud.</p>",
+      "videos-pictures-stored-header": "Rasmlar va videolar blokcheynda saqlanadimi?",
+      "videos-pictures-stored-body": "<p>Rasmlar, videolar va h. k. kabi media-kontent odatda to'g'ridan-to'g'ri blokcheynda saqlanmaydi. Rasmlar yoki videolarni qo'shsangiz, faqat ular joylashgan joyga manba havolasini qo'shasiz. Ya'ni siz boshqa joylardan video kontent qo'shishingiz mumkin. Hozirdan boshlab, siz surat yuklaganingizda, u oddiy veb-serverda joylashtiriladi.</p>",
+      "value-hive-hbd-header": "HIVE va HBD qiymatini nima aniqlaydi?",
+      "value-hive-hbd-body": "<p>HIVE qiymati tokenga talab va taklifdan kelib chiqadi. HIVE har doim tizimning ishlab chiqilishiga qarab talabga ega bo'ladi va har doim HIVE uchun taklif mavjud bo'ladi. Hive blokcheyni uzluksiz rivojlanib borar ekan va foydalanuvchilar faol bo‘lsa, HIVEga doimo talab va taklif mavjud bo‘lib, tokenga qiymat qo‘shadi.</p>"
     }
   },
   "contributors": {
@@ -1512,12 +1515,12 @@
   "chain-error": {
     "min-root-comment": "Siz har besh daqiqada bir marta xabar yozishingiz mumkin.",
     "identical-vote": "Bu kontentdagi hozirgi ovozingiz shu ovoz bilan bir xil.",
-    "insufficient-resource": "Insufficient Resource Credits.",
+    "insufficient-resource": "Resurs kreditlari yetarli emas.",
     "delete-comment-with-vote": "Mukofot kutilayotgan ijobiy kontentni oʻchirib boʻlmaydi.",
     "comment-cashout": "Toʻlovdan keyin kontentni oʻchirib boʻlmaydi.",
     "comment-children": "Javoblari bor kontentni oʻchirib boʻlmaydi.",
     "paid-out-post-forbidden": "To'lovi qilingan kontentga ovoz berish mumkin emas.",
-    "missing-authority": "Missing or invalid authority key."
+    "missing-authority": "Avtorizatsiya kaliti mavjud emas yoki yaroqsiz."
   },
   "landing-page": {
     "welcome-text": "Ecencyga xush kelibsiz!",
@@ -1585,12 +1588,12 @@
     "title": "Eng yaxshi guruhlar"
   },
   "feedback-modal": {
-    "title": "Error details",
-    "question": "How to fix this?",
-    "insufficient-resource-title": "How to get more Resource credits?",
-    "insufficient-resource-purchase": "Purchase account boost or delegation",
-    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
-    "insufficient-resource-wait": "Wait few hours for RC refill",
-    "report": "Report"
+    "title": "Xatolik tafsilotlari",
+    "question": "Buni qanday tuzatish kerak?",
+    "insufficient-resource-title": "Qanday qilib ko'proq Resurs kreditlarini olish mumkin?",
+    "insufficient-resource-purchase": "Akkauntni kuchayrirish yoki delegatsiya orqali",
+    "insufficient-resource-buy-hive": "HIVE sotib olish va uni kuchaytirish",
+    "insufficient-resource-wait": "RKlari qayta to'lishi uchun bir necha soat kutish",
+    "report": "Xabar berish"
   }
 }
