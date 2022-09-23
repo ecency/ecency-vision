@@ -1129,7 +1129,7 @@
     "type-reblogs": "Qayta bloglanganlar",
     "type-transfers": "O'tkazmalar",
     "type-delegations": "Delegatsiyalar",
-    "type-favorites": "Sevimlilar",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "Yaqinda",
     "vote-str": "{{p}} % postingizga ovoz berdi:",
     "reply-str": "postingizga javob berdi:",
