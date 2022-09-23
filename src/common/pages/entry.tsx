@@ -1298,7 +1298,7 @@ class EntryPage extends BaseComponent<Props, State> {
                       
                      {activeUser && 
                      entry.children === 0 && 
-                     (<CommentEngagement commentInput= {this.commentInput} />)}
+                     (<CommentEngagement />)}
 
                     {Discussion({
                       ...this.props,
