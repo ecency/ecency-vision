@@ -1129,7 +1129,7 @@
     "type-reblogs": "Jaot",
     "type-transfers": "Siirrot",
     "type-delegations": "Valtuutukset",
-    "type-favorites": "Suosikit",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "Viimeisimmät",
     "vote-str": "{{p}} äänesti julkaisuasi:",
     "reply-str": "vastasi julkaisuusi:",
