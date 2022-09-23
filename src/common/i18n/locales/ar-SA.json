@@ -1129,7 +1129,7 @@
     "type-reblogs": "إعادات التدوين",
     "type-transfers": "التحويلات",
     "type-delegations": "Delegations",
-    "type-favorites": "Favorites",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "الأحدث",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "رد على منشورك:",
