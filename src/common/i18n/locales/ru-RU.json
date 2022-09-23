@@ -1129,7 +1129,7 @@
     "type-reblogs": "Репосты",
     "type-transfers": "Переводы",
     "type-delegations": "Делегации",
-    "type-favorites": "Favorites",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "Недавние",
     "vote-str": "{{p}}% проголосовали за вашу публикацию:",
     "reply-str": "ответил на ваш пост:",
