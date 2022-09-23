@@ -1129,7 +1129,7 @@
     "type-reblogs": "Yeniden Paylaşılanlar",
     "type-transfers": "Transferler",
     "type-delegations": "Delegations",
-    "type-favorites": "Favorites",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "Son",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "gönderini yanıtladı:",
