@@ -1129,7 +1129,7 @@
     "type-reblogs": "Tampilkan kembali",
     "type-transfers": "Transfer",
     "type-delegations": "Delegations",
-    "type-favorites": "Favorites",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "Terbaru",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "membalas postingan Anda:",
