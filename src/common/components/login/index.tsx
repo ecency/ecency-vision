@@ -43,9 +43,11 @@ import _c from "../../util/fix-class-names";
 
 import {deleteForeverSvg} from "../../img/svg";
 
+
 declare var window: AppWindow;
 
 interface LoginKcProps {
+    hiveSignerApp: string;
     toggleUIProp: (what: ToggleType) => void;
     doLogin: (hsCode: string, postingKey: null | undefined | string, account: Account) => Promise<void>;
     global: Global;
@@ -79,6 +81,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     }
 
     login = async () => {
+        const hiveSignerApp = this.props.hiveSignerApp;
         const {username} = this.state;
         if (!username) {
             return;
@@ -102,14 +105,14 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
             return;
         }
 
-        const hasPostingPerm = account?.posting!.account_auths.filter(x => x[0] === "ecency.app").length > 0;
+        const hasPostingPerm = account?.posting!.account_auths.filter(x => x[0] === hiveSignerApp).length > 0;
 
         if (!hasPostingPerm) {
             const weight = account.posting!.weight_threshold;
 
             this.stateSet({inProgress: true});
             try {
-                await addAccountAuthority(username, "ecency.app", "Posting", weight)
+                await addAccountAuthority(username, hiveSignerApp, "Posting", weight)
             } catch (err) {
                 error(_t('login.error-permission'));
                 return;
@@ -230,6 +233,7 @@ export class UserItem extends Component<UserItemProps> {
 }
 
 interface LoginProps {
+    hiveSignerApp: string;
     history: History;
     global: Global;
     users: User[];
@@ -341,6 +345,7 @@ export class Login extends BaseComponent<LoginProps, State> {
     }
 
     login = async () => {
+        const hiveSignerApp = this.props.hiveSignerApp;
         const {username, key} = this.state;
 
         if (username === '' || key === '') {
@@ -409,12 +414,12 @@ export class Login extends BaseComponent<LoginProps, State> {
                 return;
             }
 
-            const hasPostingPerm = account?.posting!.account_auths.filter(x => x[0] === "ecency.app").length > 0;
+            const hasPostingPerm = account?.posting!.account_auths.filter(x => x[0] === hiveSignerApp).length > 0;
 
             if (!hasPostingPerm) {
                 this.stateSet({inProgress: true});
                 try {
-                    await grantPostingPermission(thePrivateKey, account, "ecency.app")
+                    await grantPostingPermission(thePrivateKey, account, hiveSignerApp)
                 } catch (err) {
                     error(_t('login.error-permission'));
                     return;
@@ -557,6 +562,7 @@ export class Login extends BaseComponent<LoginProps, State> {
 }
 
 interface Props {
+    hiveSignerApp: string;
     history: History;
     location: Location;
     global: Global;

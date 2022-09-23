@@ -10,6 +10,7 @@ import {globalInstance, activeUserMaker} from "../../helper/test-helper";
 
 
 const defProps = {
+    hiveSignerApp: 'ecency.app',
     history: createBrowserHistory(),
     global: globalInstance,
     users: [],

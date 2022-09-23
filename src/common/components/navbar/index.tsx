@@ -39,11 +39,13 @@ import _c from "../../util/fix-class-names";
 import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg, magnifySvg, accountOutlineSvg, powerDownSvg, chevronDownSvgForSlider, moonSvg, globeSvg, bellSvg, walletTravelSvg, walletSvg, notificationSvg, pencilOutlinedSvg, userOutlineSvg, downArrowSvg, chevronUpSvg, upArrowSvg, keySvg, sunSvg, gifCardSvg} from "../../img/svg";
 import userAvatar from "../user-avatar";
 import { downVotingPower, votingPower } from "../../api/hive";
+
 //const logo = require('../../img/logo-circle.svg');
 
 const communityPattern = "^hive-[0-9]{6}$";
 
 interface Props {
+    hiveSignerApp: string;
     history: History;
     location: Location;
     global: Global;
@@ -472,6 +474,7 @@ export class NavBar extends Component<Props, State> {
 
 export default (p: Props) => {
     const props: Props = {
+        hiveSignerApp: p.hiveSignerApp,
         history: p.history,
         location: p.location,
         global: p.global,

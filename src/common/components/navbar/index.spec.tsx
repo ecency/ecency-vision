@@ -11,6 +11,7 @@ import {globalInstance, TrendingTagsInstance, UiInstance, notificationsInstance1
 import './matchMedia';
 
 const defProps = {
+    hiveSignerApp: 'ecency.app',  
     history: createBrowserHistory(),
     location: createLocation({}),
     global: globalInstance,

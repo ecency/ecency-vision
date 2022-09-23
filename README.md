@@ -43,6 +43,10 @@ Feel free to test it out and submit improvements and pull requests.
 ##### Edit config file or define environment variables
 `$ nano src/config.ts`
 
+##### Edit client config file or define environment variables
+`$ cp src/client_config_defaults.ts src/client_config.ts`
+`$ nano src/client_config.ts`
+
 ##### Environment variables
 
 * `USE_PRIVATE` -  if instance has private api address and auth (0 or 1 value)

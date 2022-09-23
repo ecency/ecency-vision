@@ -18,7 +18,6 @@ import {ActiveUser} from "../../../../common/store/active-user/types";
 import {UI, ToggleType} from "../../../../common/store/ui/types";
 import {NotificationFilter, Notifications} from "../../../../common/store/notifications/types";
 import {DynamicProps} from "../../../../common/store/dynamic-props/types";
-
 import ToolTip from "../../../../common/components/tooltip";
 import Login from "../../../../common/components/login";
 import UserNav from "../../../../common/components/user-nav";
@@ -26,6 +25,7 @@ import DropDown from "../../../../common/components/dropdown";
 import SearchSuggester from "../../../../common/components/search-suggester";
 import Updater from "../updater";
 import SwitchLang from "../../../../common/components/switch-lang";
+import {HIVE_SIGNER_APP} from "../../../../client_config";
 
 import NotificationHandler from "../../../../common/components/notification-handler";
 
@@ -472,7 +472,7 @@ export class NavBar extends Component<Props, State> {
                         {activeUser && <UserNav {...this.props} activeUser={activeUser}/>}
                     </div>
 
-                    {ui.login && <Login {...this.props} />}
+                    {ui.login && <Login {...this.props} hiveSignerApp={HIVE_SIGNER_APP} />}
                     {global.usePrivate && <NotificationHandler {...this.props} />}
                 </div>
                 {global.newVersion && <Updater global={global} dismissNewVersion={this.props.dismissNewVersion}/>}
