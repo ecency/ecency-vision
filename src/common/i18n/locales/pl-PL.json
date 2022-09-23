@@ -1129,7 +1129,7 @@
     "type-reblogs": "Reblogi",
     "type-transfers": "Przelewy",
     "type-delegations": "Delegations",
-    "type-favorites": "Favorites",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "Ostatnie",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "odpowiedział na twój post:",
