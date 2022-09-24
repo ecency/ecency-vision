@@ -431,7 +431,9 @@
     "read-more": "...weitere Antworten lesen...",
     "reveal-muted": "Stummgeschalteter Autor - Kommentar anzeigen",
     "reveal-muted-long-description": "Zeige zusätzliche Antworten, einschließlich solcher, die beleidigende Inhalte enthalten können",
-    "reveal": "Kommentar anzeigen"
+    "reveal": "Kommentar anzeigen",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} Themen",
