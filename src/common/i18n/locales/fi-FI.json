@@ -431,7 +431,9 @@
     "read-more": "...lue lisää vastauksia...",
     "reveal-muted": "Mykistetty tekijä - paljasta kommentti",
     "reveal-muted-long-description": "Näytä lisävastaukset, mukaan lukien ne, jotka voivat sisältää loukkaavaa sisältöä",
-    "reveal": "Näytä kommentti"
+    "reveal": "Näytä kommentti",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} aiheet",
