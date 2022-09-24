@@ -71,8 +71,8 @@
     "cancel": "Отменить"
   },
   "entry-filter": {
-    "filter-trending": "Популярное",
-    "filter-hot": "Популярное",
+    "filter-trending": "В тренде",
+    "filter-hot": "Актуальное",
     "filter-created": "Новое",
     "filter-promoted": "Продвигаемое",
     "filter-payout": "Выплаты",
@@ -82,7 +82,7 @@
     "filter-feed-subscriptions": "Сообщества",
     "filter-global": "Глобальный",
     "filter-community": "Мои сообщества",
-    "filter-controversial": "Спорное",
+    "filter-controversial": "Обсуждаемое",
     "filter-rising": "Восхождение",
     "filter-global-part1": "Этот фид содержит",
     "filter-global-part2": " обсуждения на всей платформе.",
@@ -432,8 +432,8 @@
     "reveal-muted": "Автор отключен - Показать комментарий",
     "reveal-muted-long-description": "Показать дополнительные ответы, в том числе те, которые могут содержать оскорбительный контент",
     "reveal": "Показать комментарий",
-    "no-conversation": "No conversation yet, be first to reply",
-    "start-conversation": "Start conversation"
+    "no-conversation": "Обсуждения пока нет, будьте первым, кто ответит",
+    "start-conversation": "Начать беседу"
   },
   "community": {
     "page-description": "{{f}} тем",
@@ -710,7 +710,7 @@
         "title": "Преимущества LARYNX Power",
         "1": "Зарабатывает токены управления SPK",
         "2": "Мгновенная блокировка | 4 недели разблокировки",
-        "3": "Делегирование учетным записям службы узла для достижения консенсуса (DPoS)",
+        "3": "Делегирование учетным записям держателям нод для достижения консенсуса (DPoS)",
         "4": "LARYNX POWER (LP) зарабатывает токены SPK на {{rate}}%",
         "5": "Делегированный LP (DLP) зарабатывает токены SPK как для делегатора, так и для делегата на {{rate}}%"
       },
