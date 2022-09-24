@@ -431,7 +431,9 @@
     "read-more": "...читать больше ответов...",
     "reveal-muted": "Автор отключен - Показать комментарий",
     "reveal-muted-long-description": "Показать дополнительные ответы, в том числе те, которые могут содержать оскорбительный контент",
-    "reveal": "Показать комментарий"
+    "reveal": "Показать комментарий",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} тем",
