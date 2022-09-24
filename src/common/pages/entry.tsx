@@ -30,6 +30,7 @@ import MdHandler from "../components/md-handler";
 import LinearProgress from "../components/linear-progress";
 import EntryReblogBtn from "../components/entry-reblog-btn/index";
 import Comment from "../components/comment";
+import CommentEngagement from "../components/comment-engagement";
 import SimilarEntries from "../components/similar-entries";
 import BookmarkBtn from "../components/bookmark-btn";
 import EditHistory from "../components/edit-history";
@@ -1293,6 +1294,8 @@ class EntryPage extends BaseComponent<Props, State> {
                         entry,
                         display: !activeUser ? "d-none" : ""
                       })}
+
+                    {activeUser && entry.children === 0 && <CommentEngagement />}
 
                     {Discussion({
                       ...this.props,
