@@ -431,7 +431,9 @@
     "read-more": "...baca balasan lainnya...",
     "reveal-muted": "Penulis diheningkan - Perlihatkan komentar",
     "reveal-muted-long-description": "Tunjukkan balasan tambahan, termasuk hal-hal yang mungkin berisi konten berlawan",
-    "reveal": "Ungkapkan komentar"
+    "reveal": "Ungkapkan komentar",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} topik",
