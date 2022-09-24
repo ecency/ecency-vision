@@ -431,7 +431,9 @@
     "read-more": "...اقرأ المزيد من الردود...",
     "reveal-muted": "مؤلف مكتوم - إظهار التعليق",
     "reveal-muted-long-description": "إظهار الردود الإضافية، بما في ذلك تلك التي قد تحتوي على محتوى مهين",
-    "reveal": "كشف التعليق"
+    "reveal": "كشف التعليق",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} مواضيع",
