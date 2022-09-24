@@ -431,7 +431,9 @@
     "read-more": "...skaityti daugiau atsakumų...",
     "reveal-muted": "Nutildytas autorius – atskleisti komentarą",
     "reveal-muted-long-description": "Rodyti papildomus atsakymus, įskaitant tuos, kuriuose gali būti įžeidžiančio turinio",
-    "reveal": "Parodyti komentarą"
+    "reveal": "Parodyti komentarą",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} temos",
