@@ -431,7 +431,9 @@
     "read-more": "...lire plus de réponses...",
     "reveal-muted": "Auteur mis en sourdine - Révéler le contenu",
     "reveal-muted-long-description": "Afficher des réponses supplémentaires, y compris celles qui peuvent contenir du contenu offensant",
-    "reveal": "Révéler le commentaire"
+    "reveal": "Révéler le commentaire",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} sujets",
