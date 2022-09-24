@@ -431,7 +431,9 @@
     "read-more": "...daha çox cavabı oxu...",
     "reveal-muted": "Muted author - Reveal comment",
     "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
-    "reveal": "Rəyi açın"
+    "reveal": "Rəyi açın",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} mövzu",
