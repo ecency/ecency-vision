@@ -1,52 +1,52 @@
-import React from 'react';
+import React from "react";
 
-import {List} from './index';
+import { List } from "./index";
 
-import renderer from 'react-test-renderer';
+import renderer from "react-test-renderer";
 
-import {createBrowserHistory} from 'history';
+import { createBrowserHistory } from "history";
 
-import {globalInstance} from '../../helper/test-helper';
+import {globalInstance} from "../../helper/test-helper";
 
-jest.mock('../../constants/defaults.json', () => ({
-  imageServer: 'https://images.ecency.com',
+jest.mock("../../constants/defaults.json", () => ({
+  imageServer: "https://images.ecency.com",
 }));
 
-jest.mock('../../api/hive', () => ({
+jest.mock("../../api/hive", () => ({
   getFollowers: () =>
-    new Promise(resolve => {
+    new Promise((resolve) => {
       resolve([
         {
-          follower: 'foo',
-          following: 'user1',
-          what: ['blog'],
+          follower: "foo",
+          following: "user1",
+          what: ["blog"],
         },
         {
-          follower: 'bar',
-          following: 'user2',
-          what: ['blog'],
+          follower: "bar",
+          following: "user2",
+          what: ["blog"],
         },
         {
-          follower: 'baz',
-          following: 'user3',
-          what: ['blog'],
+          follower: "baz",
+          following: "user3",
+          what: ["blog"],
         },
       ]);
     }),
   getAccounts: () =>
-    new Promise(resolve => {
+    new Promise((resolve) => {
       resolve([
         {
-          name: 'user1',
-          profile: {name: 'User One'},
+          name: "user1",
+          profile: { name: "User One" },
         },
         {
-          name: 'user2',
-          profile: {name: 'User Two'},
+          name: "user2",
+          profile: { name: "User Two" },
         },
         {
-          name: 'user3',
-          profile: {name: 'User Three'},
+          name: "user3",
+          profile: { name: "User Three" },
         },
       ]);
     }),
@@ -55,12 +55,12 @@ jest.mock('../../api/hive', () => ({
 const props = {
   global: globalInstance,
   history: createBrowserHistory(),
-  account: {name: 'foo'},
+  account: { name: "foo" },
   addAccount: () => {},
 };
 
-const component = renderer.create(<List {...props} mode='follower' />);
+const component = renderer.create(<List {...props} mode="follower" />);
 
-it('(1) Render list', () => {
+it("(1) Render list", () => {
   expect(component.toJSON()).toMatchSnapshot();
 });

@@ -1,22 +1,22 @@
-import React from 'react';
+import React from "react";
 
-import {History, Location} from 'history';
+import { History, Location } from "history";
 
-import {FormControl} from 'react-bootstrap';
+import { FormControl } from "react-bootstrap";
 
-import numeral from 'numeral';
+import numeral from "numeral";
 
-import {Global} from '../../store/global/types';
-import {TrendingTags} from '../../store/trending-tags/types';
+import { Global } from "../../store/global/types";
+import { TrendingTags } from "../../store/trending-tags/types";
 
-import BaseComponent from '../base';
-import SearchBox from '../search-box';
+import BaseComponent from "../base";
+import SearchBox from "../search-box";
 
-import SearchSuggester from '../search-suggester';
+import SearchSuggester from "../search-suggester";
 
-import {_t} from '../../i18n';
+import { _t } from "../../i18n";
 
-import queryString from 'query-string';
+import queryString from "query-string";
 
 interface Props {
   history: History;
@@ -33,22 +33,22 @@ interface State {
 
 export class Search extends BaseComponent<Props, State> {
   state: State = {
-    query: '',
+    query: "",
   };
 
   componentDidMount() {
-    const {fetchTrendingTags} = this.props;
+    const { fetchTrendingTags } = this.props;
     // fetchTrendingTags();
 
     // this.grabSearchQuery();
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    const {location} = this.props;
+    const { location } = this.props;
 
     if (location.pathname !== prevProps.location.pathname) {
       this.stateSet({
-        query: '',
+        query: "",
       });
       return;
     }
@@ -59,29 +59,29 @@ export class Search extends BaseComponent<Props, State> {
   }
 
   grabSearchQuery = () => {
-    const {location} = this.props;
+    const { location } = this.props;
 
     if (this.isSearchPage()) {
       const qs = queryString.parse(location.search);
-      const query = (qs.q as string) || '';
-      this.stateSet({query});
+      const query = (qs.q as string) || "";
+      this.stateSet({ query });
     }
   };
 
-  isSearchPage = () => this.props.location.pathname.startsWith('/search');
+  isSearchPage = () => this.props.location.pathname.startsWith("/search");
 
   queryChanged = (
-    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>,
+    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
   ) => {
     const query = e.target.value;
-    this.stateSet({query});
+    this.stateSet({ query });
   };
 
   onKeyDown = (e: React.KeyboardEvent) => {
     if (e.keyCode === 13) {
-      const {history, location} = this.props;
-      const {query} = this.state;
-      if (['/search-more', '/search-more/'].includes(location.pathname)) {
+      const { history, location } = this.props;
+      const { query } = this.state;
+      if (["/search-more", "/search-more/"].includes(location.pathname)) {
         history.push(`/search-more/?q=${encodeURIComponent(query)}`);
       } else {
         history.push(`/search/?q=${encodeURIComponent(query)}`);
@@ -90,15 +90,15 @@ export class Search extends BaseComponent<Props, State> {
   };
 
   render() {
-    const {global, containerClassName} = this.props;
-    const {query} = this.state;
+    const { global, containerClassName } = this.props;
+    const { query } = this.state;
 
     const placeholder =
       global.searchIndexCount > 0
-        ? _t('search.placeholder-count', {
-            n: numeral(global.searchIndexCount).format('0,0'),
+        ? _t("search.placeholder-count", {
+            n: numeral(global.searchIndexCount).format("0,0"),
           })
-        : _t('search.placeholder');
+        : _t("search.placeholder");
 
     return (
       <>
@@ -113,7 +113,7 @@ export class Search extends BaseComponent<Props, State> {
             value={query}
             onChange={this.queryChanged}
             onKeyDown={this.onKeyDown}
-            autoComplete='off'
+            autoComplete="off"
           />
         </SearchSuggester>
       </>

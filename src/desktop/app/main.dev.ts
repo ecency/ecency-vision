@@ -14,22 +14,22 @@ import path from 'path';
 import {app, BrowserWindow, ipcMain, shell} from 'electron';
 import {autoUpdater} from 'electron-updater';
 import MenuBuilder from './menu';
-import {HandlerDetails} from 'electron/main';
+import { HandlerDetails } from 'electron/main';
 
-const osPlatform = require('os').platform();
+const osPlatform = require("os").platform();
 
 let mainWindow: BrowserWindow | null = null;
 
 if (process.env.NODE_ENV === 'production') {
-  const sourceMapSupport = require('source-map-support');
-  sourceMapSupport.install();
+    const sourceMapSupport = require('source-map-support');
+    sourceMapSupport.install();
 }
 
 if (
-  process.env.NODE_ENV === 'development' ||
-  process.env.DEBUG_PROD === 'true'
+    process.env.NODE_ENV === 'development' ||
+    process.env.DEBUG_PROD === 'true'
 ) {
-  require('electron-debug')();
+    require('electron-debug')();
 }
 
 /**
@@ -43,136 +43,138 @@ app.setAsDefaultProtocolClient('ecency');
 app.setAsDefaultProtocolClient('esteem');
 
 const sendProtocolUrl2Window = (u: any): void => {
-  if (typeof u !== 'string') {
-    return;
-  }
+    if (typeof u !== 'string') {
+        return;
+    }
 
-  const m = u.match(/(hive|ecency|esteem):\/\/[-a-zA-Z0-9@:%._+~#=/]{2,500}/gi);
-  if (!m) {
-    return;
-  }
+    const m = u.match(/(hive|ecency|esteem):\/\/[-a-zA-Z0-9@:%._+~#=/]{2,500}/gi);
+    if (!m) {
+        return;
+    }
 
-  if (m[0]) {
-    mainWindow!.webContents.executeJavaScript(`protocolHandler('${m[0]}')`);
-  }
+    if (m[0]) {
+        mainWindow!.webContents.executeJavaScript(`protocolHandler('${m[0]}')`);
+    }
+
 };
 
 const sLock = app.requestSingleInstanceLock();
 
 if (!sLock) {
-  app.quit();
+    app.quit();
 }
 
 app.on('open-url', (event, url) => {
-  event.preventDefault();
+    event.preventDefault();
 
-  if (!mainWindow) {
-    deepUrl = url;
-    return;
-  }
+    if (!mainWindow) {
+        deepUrl = url;
+        return;
+    }
 
-  if (mainWindow.isMinimized()) {
-    mainWindow.restore();
-  }
-  mainWindow.focus();
+    if (mainWindow.isMinimized()) {
+        mainWindow.restore();
+    }
+    mainWindow.focus();
 
-  sendProtocolUrl2Window(url);
+    sendProtocolUrl2Window(url);
 });
 
 const installExtensions = async () => {
-  const installer = require('electron-devtools-installer');
-  const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-  const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
+    const installer = require('electron-devtools-installer');
+    const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+    const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
 
-  return Promise.all(
-    extensions.map(name => installer.default(installer[name], forceDownload)),
-  ).catch(console.log);
+    return Promise.all(
+        extensions.map((name) => installer.default(installer[name], forceDownload))
+    ).catch(console.log);
 };
 
 const createWindow = async () => {
-  if (
-    process.env.NODE_ENV === 'development' ||
-    process.env.DEBUG_PROD === 'true'
-  ) {
-    await installExtensions();
-  }
-
-  const RESOURCES_PATH = app.isPackaged
-    ? path.join(process.resourcesPath, 'resources')
-    : path.join(__dirname, '../resources');
-
-  const getAssetPath = (...paths: string[]): string => {
-    return path.join(RESOURCES_PATH, ...paths);
-  };
-
-  mainWindow = new BrowserWindow({
-    show: false,
-    width: 1200,
-    height: 800,
-    minWidth: 992,
-    minHeight: 600,
-    icon: getAssetPath('icon.png'),
-    webPreferences: {
-      nodeIntegration: true,
-      enableRemoteModule: true,
-      contextIsolation: false,
-      worldSafeExecuteJavaScript: false,
-    },
-  });
-
-  mainWindow.loadURL(`file://${__dirname}/app.html`);
-
-  // @TODO: Use 'ready-to-show' event
-  // https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
-  mainWindow.webContents.on('did-finish-load', () => {
-    if (!mainWindow) {
-      throw new Error('"mainWindow" is not defined');
-    }
-    if (process.env.START_MINIMIZED) {
-      mainWindow.minimize();
-    } else {
-      mainWindow.show();
-      mainWindow.focus();
+    if (
+        process.env.NODE_ENV === 'development' ||
+        process.env.DEBUG_PROD === 'true'
+    ) {
+        await installExtensions();
     }
 
-    // Enable zoom
-    mainWindow.webContents.setVisualZoomLevelLimits(1, 3);
+    const RESOURCES_PATH = app.isPackaged
+        ? path.join(process.resourcesPath, 'resources')
+        : path.join(__dirname, '../resources');
 
-    // Auto updater checks
-    if (process.env.NODE_ENV === 'production') {
-      autoUpdater.autoDownload = false;
+    const getAssetPath = (...paths: string[]): string => {
+        return path.join(RESOURCES_PATH, ...paths);
+    };
 
-      autoUpdater.checkForUpdates();
+    mainWindow = new BrowserWindow({
+        show: false,
+        width: 1200,
+        height: 800,
+        minWidth: 992,
+        minHeight: 600,
+        icon: getAssetPath('icon.png'),
+        webPreferences: {
+            nodeIntegration: true,
+            enableRemoteModule: true,
+            contextIsolation: false,
+            worldSafeExecuteJavaScript: false
+        },
+    });
 
-      // run auto updater to check if is there a new version for each 4 hours
-      setInterval(() => {
-        autoUpdater.checkForUpdates();
-      }, 1000 * 60 * 240);
-    }
+    mainWindow.loadURL(`file://${__dirname}/app.html`);
 
-    // Deeplink protocol handler for win32 and linux
-    if (process.platform === 'win32' || process.platform === 'linux') {
-      deepUrl = process.argv.slice(1);
-    }
+    // @TODO: Use 'ready-to-show' event
+    // https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
+    mainWindow.webContents.on('did-finish-load', () => {
+        if (!mainWindow) {
+            throw new Error('"mainWindow" is not defined');
+        }
+        if (process.env.START_MINIMIZED) {
+            mainWindow.minimize();
+        } else {
+            mainWindow.show();
+            mainWindow.focus();
+        }
 
-    if (deepUrl) {
-      setTimeout(() => {
-        sendProtocolUrl2Window(deepUrl);
-      }, 3000);
-    }
-  });
+        // Enable zoom
+        mainWindow.webContents.setVisualZoomLevelLimits(1, 3);
 
-  mainWindow.webContents.setWindowOpenHandler(({url}: HandlerDetails) => {
-    shell.openExternal(url);
-    return {action: 'allow'};
-  });
+        // Auto updater checks
+        if (process.env.NODE_ENV === 'production') {
+            autoUpdater.autoDownload = false;
 
-  mainWindow.on('closed', () => {
-    mainWindow = null;
-  });
+            autoUpdater.checkForUpdates();
 
-  const menuBuilder = new MenuBuilder(mainWindow);
-  menuBuilder.buildMenu();
+            // run auto updater to check if is there a new version for each 4 hours
+            setInterval(() => {
+                autoUpdater.checkForUpdates();
+            }, 1000 * 60 * 240);
+        }
+
+        // Deeplink protocol handler for win32 and linux
+        if (process.platform === 'win32' || process.platform === 'linux') {
+            deepUrl = process.argv.slice(1);
+        }
+
+        if (deepUrl) {
+            setTimeout(() => {
+                sendProtocolUrl2Window(deepUrl);
+            }, 3000);
+        }
+
+    })
+
+    mainWindow.webContents.setWindowOpenHandler(({url}: HandlerDetails)=>{
+        shell.openExternal(url);
+        return {action: "allow"}
+    })
+
+    mainWindow.on('closed', () => {
+        mainWindow = null;
+    });
+
+    const menuBuilder = new MenuBuilder(mainWindow);
+    menuBuilder.buildMenu();
 };
 
 /**
@@ -180,20 +182,20 @@ const createWindow = async () => {
  */
 
 app.on('window-all-closed', () => {
-  app.quit();
+    app.quit();
 });
 
 if (process.env.E2E_BUILD === 'true') {
-  // eslint-disable-next-line promise/catch-or-return
-  app.whenReady().then(createWindow);
+    // eslint-disable-next-line promise/catch-or-return
+    app.whenReady().then(createWindow);
 } else {
-  app.on('ready', createWindow);
+    app.on('ready', createWindow);
 }
 
 app.on('activate', () => {
-  // On macOS it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  if (mainWindow === null) createWindow();
+    // On macOS it's common to re-create a window in the app when the
+    // dock icon is clicked and there are no other windows open.
+    if (mainWindow === null) createWindow();
 });
 
 /**
@@ -201,30 +203,31 @@ app.on('activate', () => {
  */
 
 autoUpdater.on('update-available', info => {
-  mainWindow!.webContents.send('update-available', info.releaseName);
+    mainWindow!.webContents.send('update-available', info.releaseName);
 });
 
 autoUpdater.on('download-progress', progressObj => {
-  mainWindow!.webContents.send('download-progress', progressObj.percent);
+    mainWindow!.webContents.send('download-progress', progressObj.percent);
 });
 
 autoUpdater.on('update-downloaded', () => {
-  mainWindow!.webContents.send('update-downloaded');
+    mainWindow!.webContents.send('update-downloaded');
 });
 
 ipcMain.on('download-update', (event: any, version: any) => {
-  // Windows
-  if (osPlatform === 'win32') {
-    const u = `https://github.com/ecency/ecency-vision/releases/download/${version}/Ecency-Setup-${version}.exe`;
-    shell.openExternal(u);
-    return;
-  }
 
-  autoUpdater.downloadUpdate();
-  mainWindow!.webContents.send('download-started');
+    // Windows
+    if (osPlatform === "win32") {
+        const u = `https://github.com/ecency/ecency-vision/releases/download/${version}/Ecency-Setup-${version}.exe`;
+        shell.openExternal(u);
+        return;
+    }
+
+    autoUpdater.downloadUpdate();
+    mainWindow!.webContents.send('download-started');
 });
 
 ipcMain.on('update-restart', () => {
-  autoUpdater.quitAndInstall();
-  console.log('Restart');
+    autoUpdater.quitAndInstall();
+    console.log('Restart');
 });

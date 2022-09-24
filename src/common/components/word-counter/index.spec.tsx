@@ -1,7 +1,7 @@
-import {wordCounter} from './index';
+import { wordCounter } from "./index";
 
-describe('Word counter', () => {
-  it('word counter test 1', () => {
+describe("Word counter", () => {
+  it("word counter test 1", () => {
     const input = `lorem ipsum dolor`;
     const expected = {
       charactersNoSpaces: 15,
@@ -12,7 +12,7 @@ describe('Word counter', () => {
     expect(wordCounter(input)).toMatchObject(expected);
   });
 
-  it('word counter test 2', () => {
+  it("word counter test 2", () => {
     const input = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nSuspendisse ullamcorper egestas auctor.\nQuisque semper mauris velit, at auctor eros scelerisque ut. `;
     const expected = {
       charactersNoSpaces: 136,

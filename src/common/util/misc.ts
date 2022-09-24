@@ -1,10 +1,10 @@
 export const parseUrl = (s: string): URL | null => {
-  let url;
+    let url;
 
-  try {
-    url = new URL(s);
-    return url;
-  } catch (e) {
-    return null;
-  }
-};
+    try {
+        url = new URL(s);
+        return url;
+    } catch (e) {
+        return null;
+    }
+}

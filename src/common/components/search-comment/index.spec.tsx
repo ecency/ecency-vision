@@ -1,110 +1,107 @@
-import React from 'react';
+import React from "react";
 
-import TestRenderer from 'react-test-renderer';
+import TestRenderer from "react-test-renderer";
 
-import mockDate from 'mockdate';
-import {createBrowserHistory, createLocation} from 'history';
-import {StaticRouter} from 'react-router-dom';
+import mockDate from "mockdate";
+import {createBrowserHistory, createLocation} from "history";
+import {StaticRouter} from "react-router-dom";
 
-import {
-  globalInstance,
-  allOver,
-  searchResponseInstance,
-} from '../../helper/test-helper';
+import {globalInstance, allOver, searchResponseInstance} from "../../helper/test-helper";
 
-import {SearchComment} from './index';
+import {SearchComment} from "./index";
 
 mockDate.set(1591398131174);
 
 let TEST_MODE = 0;
 
-jest.mock('../../api/search-api', () => ({
-  search: () =>
-    new Promise(resolve => {
-      if (TEST_MODE === 0) {
-        resolve(searchResponseInstance);
-      }
+jest.mock("../../api/search-api", () => ({
+    search: () =>
+        new Promise((resolve) => {
+            if (TEST_MODE === 0) {
+                resolve(searchResponseInstance);
+            }
 
-      if (TEST_MODE === 1) {
-        resolve({
-          ...searchResponseInstance,
-          hits: 4,
-        });
-      }
+            if (TEST_MODE === 1) {
+                resolve({
+                    ...searchResponseInstance,
+                    hits: 4
+                });
+            }
 
-      if (TEST_MODE === 2) {
-        resolve({
-          ...searchResponseInstance,
-          hits: 0,
-          results: [],
-        });
-      }
-    }),
+            if (TEST_MODE === 2) {
+
+                resolve({
+                    ...searchResponseInstance,
+                    hits: 0,
+                    results: []
+                });
+            }
+        }),
 }));
 
 const defProps = {
-  history: createBrowserHistory(),
-  location: createLocation({search: 'q=foo'}),
-  global: globalInstance,
-  addAccount: () => {},
-};
+    history: createBrowserHistory(),
+    location: createLocation({search: "q=foo"}),
+    global: globalInstance,
+    addAccount: () => {
+    },
+}
 
-it('(1) Default render', async () => {
-  const props = {...defProps};
+it("(1) Default render", async () => {
+    const props = {...defProps};
 
-  const renderer = TestRenderer.create(
-    <StaticRouter location='/' context={{}}>
-      <SearchComment {...props} />
-    </StaticRouter>,
-  );
-  await allOver();
-  expect(renderer.toJSON()).toMatchSnapshot();
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/" context={{}}>
+            <SearchComment {...props}/>
+        </StaticRouter>);
+    await allOver();
+    expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(2) With limit', async () => {
-  const props = {
-    ...defProps,
-    limit: 8,
-  };
+it("(2) With limit", async () => {
+    const props = {
+        ...defProps,
+        limit: 8
+    };
 
-  const renderer = TestRenderer.create(
-    <StaticRouter location='/' context={{}}>
-      <SearchComment {...props} />
-    </StaticRouter>,
-  );
-  await allOver();
-  expect(renderer.toJSON()).toMatchSnapshot();
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/" context={{}}>
+            <SearchComment {...props}/>
+        </StaticRouter>);
+    await allOver();
+    expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(3) Hide show more button', async () => {
-  TEST_MODE = 1;
+it("(3) Hide show more button", async () => {
 
-  const props = {
-    ...defProps,
-    limit: 8,
-  };
+    TEST_MODE = 1;
 
-  const renderer = TestRenderer.create(
-    <StaticRouter location='/' context={{}}>
-      <SearchComment {...props} />
-    </StaticRouter>,
-  );
-  await allOver();
-  expect(renderer.toJSON()).toMatchSnapshot();
+    const props = {
+        ...defProps,
+        limit: 8
+    };
+
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/" context={{}}>
+            <SearchComment {...props}/>
+        </StaticRouter>);
+    await allOver();
+    expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it('(4) No matches', async () => {
-  TEST_MODE = 2;
 
-  const props = {
-    ...defProps,
-  };
+it("(4) No matches", async () => {
 
-  const renderer = TestRenderer.create(
-    <StaticRouter location='/' context={{}}>
-      <SearchComment {...props} />
-    </StaticRouter>,
-  );
-  await allOver();
-  expect(renderer.toJSON()).toMatchSnapshot();
+    TEST_MODE = 2;
+
+    const props = {
+        ...defProps
+    };
+
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/" context={{}}>
+            <SearchComment {...props}/>
+        </StaticRouter>);
+    await allOver();
+    expect(renderer.toJSON()).toMatchSnapshot();
 });

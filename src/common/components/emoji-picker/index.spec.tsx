@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 
-import renderer from 'react-test-renderer';
+import renderer from "react-test-renderer";
 
-import EmojiPicker from './index';
+import EmojiPicker from "./index";
 
-import emojiData from '../../../../public/emoji.json';
+import emojiData from "../../../../public/emoji.json";
 
-jest.mock('../../api/misc', () => ({
+jest.mock("../../api/misc", () => ({
   getEmojiData: () =>
-    new Promise(resolve => {
+    new Promise((resolve) => {
       resolve(emojiData);
     }),
 }));
 
-jest.mock('../../util/local-storage', () => ({
-  get: () => ['dog2', 'wink'],
+jest.mock("../../util/local-storage", () => ({
+  get: () => ["dog2", "wink"],
 }));
 
 const detailProps = {
@@ -23,18 +23,18 @@ const detailProps = {
 
 const component = renderer.create(<EmojiPicker {...detailProps} />);
 
-it('(1) Default full render', () => {
+it("(1) Default full render", () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Filter', () => {
+it("(2) Filter", () => {
   const instance: any = component.getInstance();
-  instance.setState({filter: 'dog'});
+  instance.setState({ filter: "dog" });
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(3) Filter - No result', () => {
+it("(3) Filter - No result", () => {
   const instance: any = component.getInstance();
-  instance.setState({filter: 'loremipsumdolorsit'});
+  instance.setState({ filter: "loremipsumdolorsit" });
   expect(component.toJSON()).toMatchSnapshot();
 });

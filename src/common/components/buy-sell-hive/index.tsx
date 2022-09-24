@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
-import {addUser} from '../../store/users';
-import {setActiveUser, updateActiveUser} from '../../store/active-user';
-import {setSigningKey} from '../../store/signing-key';
-import {addAccount} from '../../store/accounts';
+import React, { Component } from "react";
+import { addUser } from "../../store/users";
+import { setActiveUser, updateActiveUser } from "../../store/active-user";
+import { setSigningKey } from "../../store/signing-key";
+import { addAccount } from "../../store/accounts";
 
-import {Modal, Button} from 'react-bootstrap';
+import { Modal, Button } from "react-bootstrap";
 
-import {Global} from '../../store/global/types';
-import {ActiveUser} from '../../store/active-user/types';
+import { Global } from "../../store/global/types";
+import { ActiveUser } from "../../store/active-user/types";
 
-import BaseComponent from '../base';
-import {error} from '../feedback';
+import BaseComponent from "../base";
+import { error } from "../feedback";
 
-import {getAccountFull} from '../../api/hive';
+import { getAccountFull } from "../../api/hive";
 
 import {
   formatError,
@@ -22,14 +22,14 @@ import {
   limitOrderCancelKc,
   limitOrderCancelHot,
   limitOrderCancel,
-} from '../../api/operations';
+} from "../../api/operations";
 
-import {_t} from '../../i18n';
-import KeyOrHot from '../key-or-hot';
-import {AnyAction, bindActionCreators, Dispatch} from 'redux';
-import {connect} from 'react-redux';
-import {AppState} from '../../store';
-import {PrivateKey} from '@hiveio/dhive';
+import { _t } from "../../i18n";
+import KeyOrHot from "../key-or-hot";
+import { AnyAction, bindActionCreators, Dispatch } from "redux";
+import { connect } from "react-redux";
+import { AppState } from "../../store";
+import { PrivateKey } from "@hiveio/dhive";
 
 export enum TransactionType {
   None = 0,
@@ -41,7 +41,7 @@ export enum TransactionType {
 interface Props {
   type: TransactionType;
   onHide: () => void;
-  values?: {total: number; amount: number; price: number; available: number};
+  values?: { total: number; amount: number; price: number; available: number };
   global: Global;
   activeUser: ActiveUser;
   addAccount: (arg: any) => void;
@@ -67,83 +67,82 @@ export class BuySellHive extends BaseComponent<any, State> {
   }
 
   updateAll = (a: any) => {
-    const {addAccount, updateActiveUser, onTransactionSuccess} = this.props;
+    const { addAccount, updateActiveUser, onTransactionSuccess } =
+      this.props;
     // refresh
     addAccount(a);
     // update active
     updateActiveUser(a);
-    this.setState({inProgress: false, step: 3});
+    this.setState({ inProgress: false,step: 3 });
     onTransactionSuccess();
   };
 
   promiseCheck = (p: any) => {
-    const {onHide} = this.props;
-    p &&
-      p
-        .then(() => getAccountFull(this.props.activeUser!.username))
-        .then((a: any) => this.updateAll(a))
-        .catch((err: any) => {
-          error(formatError(err));
-          this.setState({inProgress: false});
-          onHide();
-        });
+    const { onHide, } = this.props;
+    p && p.then(() => getAccountFull(this.props.activeUser!.username))
+      .then((a: any) => this.updateAll(a))
+      .catch((err: any) => {
+        error(formatError(err));
+        this.setState({ inProgress: false });
+        onHide();
+      });
   };
 
   sign = (key: PrivateKey) => {
-    this.setState({inProgress: true});
-    const {activeUser, Ttype, orderid} = this.props;
+    this.setState({ inProgress: true });
+    const { activeUser, Ttype, orderid } = this.props;
     if (Ttype === TransactionType.Cancel && orderid) {
       this.promiseCheck(limitOrderCancel(activeUser!.username, key, orderid));
     } else {
       const {
-        values: {total, amount},
+        values: { total, amount },
       } = this.props;
       this.promiseCheck(
-        limitOrderCreate(activeUser!.username, key, total, amount, Ttype),
+        limitOrderCreate(activeUser!.username, key, total, amount, Ttype)
       );
     }
   };
 
   signHs = () => {
-    this.setState({inProgress: true});
-    const {activeUser, Ttype, orderid} = this.props;
+    this.setState({ inProgress: true });
+    const { activeUser, Ttype, orderid } = this.props;
     if (Ttype === TransactionType.Cancel && orderid) {
       this.promiseCheck(limitOrderCancelHot(activeUser!.username, orderid));
     } else {
       const {
-        values: {total, amount},
+        values: { total, amount },
       } = this.props;
       this.promiseCheck(
-        limitOrderCreateHot(activeUser!.username, total, amount, Ttype),
+        limitOrderCreateHot(activeUser!.username, total, amount, Ttype)
       );
     }
   };
 
   signKc = () => {
-    this.setState({inProgress: true});
-    const {activeUser, Ttype, orderid} = this.props;
+    this.setState({ inProgress: true });
+    const { activeUser, Ttype, orderid } = this.props;
     if (Ttype === TransactionType.Cancel && orderid) {
       this.promiseCheck(limitOrderCancelKc(activeUser!.username, orderid));
     } else {
       const {
-        values: {total, amount},
+        values: { total, amount },
       } = this.props;
       this.promiseCheck(
-        limitOrderCreateKc(activeUser!.username, total, amount, Ttype),
+        limitOrderCreateKc(activeUser!.username, total, amount, Ttype)
       );
     }
   };
 
   finish = () => {
-    const {onHide, onTransactionSuccess} = this.props;
+    const { onHide, onTransactionSuccess } = this.props;
     onTransactionSuccess();
     onHide();
-  };
+  }
 
   render() {
-    const {step, inProgress} = this.state;
+    const { step, inProgress } = this.state;
     const {
-      values: {amount, price, total, available} = {
+      values: { amount, price, total, available } = {
         amount: 0,
         price: 0,
         total: 0,
@@ -155,41 +154,34 @@ export class BuySellHive extends BaseComponent<any, State> {
       signingKey,
       setSigningKey,
       Ttype,
-      orderid,
+      orderid
     } = this.props;
 
     const formHeader1 = (
-      <div className='d-flex align-items-center border-bottom pb-3'>
-        <div className='step-no ml-3'>{step}</div>
-        <div className='flex-grow-1'>
-          <div className='main-title'>{_t('transfer.confirm-title')}</div>
-          <div className='sub-title'>{_t('transfer.confirm-sub-title')}</div>
+      <div className="d-flex align-items-center border-bottom pb-3">
+        <div className="step-no ml-3">{step}</div>
+        <div className="flex-grow-1">
+          <div className="main-title">{_t("transfer.confirm-title")}</div>
+          <div className="sub-title">{_t("transfer.confirm-sub-title")}</div>
         </div>
       </div>
     );
 
     if (step === 1) {
       return (
-        <div className='mb-3'>
+        <div className="mb-3">
           {formHeader1}
-          <div className='d-flex justify-content-center'>
+          <div className="d-flex justify-content-center">
             {Ttype === TransactionType.Cancel ? (
-              <div className='mt-5 w-75 text-center sub-title text-wrap'>
-                {_t('market.confirm-cancel', {orderid: orderid})}
+              <div className="mt-5 w-75 text-center sub-title text-wrap">
+                {_t("market.confirm-cancel", {orderid:orderid})}
               </div>
             ) : (
-              <div className='mt-5 w-75 text-center sub-title text-wrap'>
+              <div className="mt-5 w-75 text-center sub-title text-wrap">
                 {available < total
-                  ? _t('market.transaction-low')
+                  ? _t("market.transaction-low")
                   : TransactionType.Buy
-                  ? _t('market.confirm-buy', {
-                      amount,
-                      price,
-                      total,
-                      balance: parseFloat((available - total) as any).toFixed(
-                        3,
-                      ),
-                    })
+                  ? _t("market.confirm-buy", {amount, price, total, balance: parseFloat(available - total as any).toFixed(3)})
                   : ``}
               </div>
             )}
@@ -197,18 +189,18 @@ export class BuySellHive extends BaseComponent<any, State> {
           {available < total ? (
             <></>
           ) : (
-            <div className='d-flex justify-content-end mt-5'>
-              <div className='d-flex'>
-                <Button variant='secondary' className='mr-3' onClick={onHide}>
-                  {_t('g.cancel')}
+            <div className="d-flex justify-content-end mt-5">
+              <div className="d-flex">
+                <Button variant="secondary" className="mr-3" onClick={onHide}>
+                  {_t("g.cancel")}
                 </Button>
                 <Button
-                  onClick={() => this.setState({step: 2})}
+                  onClick={() => this.setState({ step: 2 })}
                   variant={
-                    Ttype === TransactionType.Cancel ? 'danger' : 'primary'
+                    Ttype === TransactionType.Cancel ? "danger" : "primary"
                   }
                 >
-                  {_t('g.continue')}
+                  {_t("g.continue")}
                 </Button>
               </div>
             </div>
@@ -219,9 +211,9 @@ export class BuySellHive extends BaseComponent<any, State> {
 
     if (step === 2) {
       return (
-        <div className='transaction-form'>
+        <div className="transaction-form">
           {formHeader1}
-          <div className='transaction-form'>
+          <div className="transaction-form">
             {KeyOrHot({
               global,
               activeUser,
@@ -232,16 +224,16 @@ export class BuySellHive extends BaseComponent<any, State> {
               onKey: this.sign,
               onKc: this.signKc,
             })}
-            <p className='text-center'>
+            <p className="text-center">
               <a
-                href='#'
-                onClick={e => {
+                href="#"
+                onClick={(e) => {
                   e.preventDefault();
 
-                  this.stateSet({step: 1});
+                  this.stateSet({ step: 1 });
                 }}
               >
-                {_t('g.back')}
+                {_t("g.back")}
               </a>
             </p>
           </div>
@@ -250,30 +242,33 @@ export class BuySellHive extends BaseComponent<any, State> {
     }
 
     if (step === 3) {
-      const formHeader4 = (
-        <div className='transaction-form-header'>
-          <div className='step-no'>{step}</div>
-          <div className='box-titles'>
-            <div className='main-title'>{_t('trx-common.success-title')}</div>
-            <div className='sub-title'>
-              {_t('trx-common.success-sub-title')}
-            </div>
+
+      const formHeader4 = <div className="transaction-form-header">
+          <div className="step-no">{step}</div>
+          <div className="box-titles">
+              <div className="main-title">
+                  {_t('trx-common.success-title')}
+              </div>
+              <div className="sub-title">
+                  {_t('trx-common.success-sub-title')}
+              </div>
           </div>
-        </div>
-      );
+      </div>;
       return (
-        <div className='transaction-form'>
-          {formHeader4}
-          <div className='transaction-form-body d-flex flex-column align-items-center'>
-            <div className='my-5 w-75 text-center sub-title text-wrap'>
-              {_t('market.transaction-succeeded')}
+        <div className="transaction-form">
+        {formHeader4}
+        <div className="transaction-form-body d-flex flex-column align-items-center">
+            <div className="my-5 w-75 text-center sub-title text-wrap">
+              {_t("market.transaction-succeeded")}
             </div>
-            <div className='d-flex justify-content-center'>
-              <span className='hr-6px-btn-spacer' />
-              <Button onClick={this.finish}>{_t('g.finish')}</Button>
+            <div className="d-flex justify-content-center">
+                <span className="hr-6px-btn-spacer"/>
+                <Button onClick={this.finish}>
+                    {_t("g.finish")}
+                </Button>
             </div>
-          </div>
         </div>
+    </div>
       );
     }
 
@@ -283,7 +278,7 @@ export class BuySellHive extends BaseComponent<any, State> {
 
 class BuySellHiveDialog extends Component<any> {
   render() {
-    const {onHide} = this.props;
+    const { onHide } = this.props;
     return (
       <Modal
         animation={false}
@@ -291,8 +286,8 @@ class BuySellHiveDialog extends Component<any> {
         centered={true}
         onHide={onHide}
         keyboard={false}
-        className='transfer-dialog modal-thin-header'
-        size='lg'
+        className="transfer-dialog modal-thin-header"
+        size="lg"
       >
         <Modal.Header closeButton={true} />
         <Modal.Body>
@@ -316,7 +311,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       addAccount,
       setSigningKey,
     },
-    dispatch,
+    dispatch
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(BuySellHiveDialog);

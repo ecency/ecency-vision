@@ -1,21 +1,21 @@
-import React, {useEffect} from 'react';
-import {Table} from 'react-bootstrap';
-import {OrdersDataItem, TradeDataItem} from '../../api/hive';
-import {Skeleton} from '../skeleton';
-import Pagination from '../pagination';
-import {useState} from 'react';
-import moment from 'moment';
-import {_t} from '../../i18n';
+import React, { useEffect } from "react";
+import { Table } from "react-bootstrap";
+import { OrdersDataItem, TradeDataItem } from "../../api/hive";
+import { Skeleton } from "../skeleton";
+import Pagination from "../pagination";
+import { useState } from "react";
+import moment from "moment";
+import { _t } from "../../i18n";
 
 const buyColumns = [
-  `${_t('market.price')}`,
+  `${_t("market.price")}`,
   `HIVE`,
-  `${_t('market.total')} HBD ($)`,
+  `${_t("market.total")} HBD ($)`,
 ];
 
 const tradeColumns = [
-  `${_t('market.date')}`,
-  `${_t('market.price')}`,
+  `${_t("market.date")}`,
+  `${_t("market.price")}`,
   `HIVE`,
   `HBD ($)`,
 ];
@@ -35,53 +35,47 @@ interface Props {
   onPriceClick?: (value: string | number) => void;
 }
 
-export const Orders = ({type, loading, data, onPriceClick}: Props) => {
+export const Orders = ({ type, loading, data, onPriceClick }: Props) => {
   const [page, setPage] = useState(1);
   let columns = buyColumns;
-  let title = `${_t('market.buy')} ${_t('market.orders')}`;
+  let title = `${_t("market.buy")} ${_t("market.orders")}`;
   let mappedData: MappedData[] = [];
   switch (type) {
     case 1:
       mappedData = (data as OrdersDataItem[]).map((item: OrdersDataItem) => {
         return {
           key3: (item as OrdersDataItem).hbd / 1000,
-          key2: (item as OrdersDataItem).order_price.quote.replace('HIVE', ''),
+          key2: (item as OrdersDataItem).order_price.quote.replace("HIVE", ""),
           key1: parseFloat((item as OrdersDataItem).real_price).toFixed(6),
         };
       });
       break;
     case 2:
       columns = buyColumns;
-      title = `${_t('market.sell')} ${_t('market.orders')}`;
+      title = `${_t("market.sell")} ${_t("market.orders")}`;
       mappedData = (data as OrdersDataItem[]).map((item: OrdersDataItem) => {
         return {
           key3: (item as OrdersDataItem).hbd / 1000,
-          key2: (item as OrdersDataItem).order_price.quote.replace('HBD', ''),
+          key2: (item as OrdersDataItem).order_price.quote.replace("HBD", ""),
           key1: parseFloat((item as OrdersDataItem).real_price).toFixed(6),
         };
       });
       break;
     case 3:
       columns = tradeColumns;
-      title = `${_t('market.trade-history')}`;
+      title = `${_t("market.trade-history")}`;
       mappedData = (data as TradeDataItem[])
         .map((item: TradeDataItem) => {
-          let hbd = parseFloat(item.current_pays.split(' ')[0]);
-          let hive = parseFloat(item.open_pays.toString().split(' ')[0]);
+          let hbd = parseFloat(item.current_pays.split(" ")[0]);
+          let hive = parseFloat(item.open_pays.toString().split(" ")[0]);
           let price = hbd / hive;
-          let type = item.current_pays.indexOf('HBD') !== -1 ? 'bid' : 'ask';
+          let type = item.current_pays.indexOf("HBD") !== -1 ? "bid" : "ask";
           let stringPrice = price.toFixed(6);
-
+          
           return {
             key5: type,
-            key4:
-              type === 'bid'
-                ? (item as TradeDataItem).current_pays.replace(' HBD', '')
-                : (item as TradeDataItem).open_pays.replace(' HBD', ''),
-            key3:
-              type === 'ask'
-                ? (item as TradeDataItem).current_pays.replace(' HIVE', '')
-                : (item as TradeDataItem).open_pays.replace(' HIVE', ''),
+            key4: type === "bid" ? (item as TradeDataItem).current_pays.replace(" HBD","") : (item as TradeDataItem).open_pays.replace(" HBD",""),
+            key3: type === "ask" ? (item as TradeDataItem).current_pays.replace(" HIVE","") : (item as TradeDataItem).open_pays.replace(" HIVE",""),
             key2: stringPrice,
             key1: moment
               .utc((item as TradeDataItem).date)
@@ -99,14 +93,14 @@ export const Orders = ({type, loading, data, onPriceClick}: Props) => {
   const sliced = mappedData.slice(start, end);
 
   return loading ? (
-    <Skeleton className='loading-hive' />
+    <Skeleton className="loading-hive" />
   ) : (
-    <div className='rounded'>
+    <div className="rounded">
       <h5>{title}</h5>
-      <Table striped={true} bordered={true} hover={true} size='sm'>
+      <Table striped={true} bordered={true} hover={true} size="sm">
         <thead>
           <tr>
-            {columns.map(item => (
+            {columns.map((item) => (
               <th key={item}>{item}</th>
             ))}
           </tr>
@@ -115,17 +109,17 @@ export const Orders = ({type, loading, data, onPriceClick}: Props) => {
           {sliced.map((item, index) => (
             <tr
               key={`${item.key1}-${index}`}
-              className={type === 1 || type === 2 ? 'pointer' : ''}
+              className={type === 1 || type === 2 ? "pointer" : ""}
               onClick={() => (onPriceClick ? onPriceClick(item.key1) : {})}
             >
               <td>{item.key1}</td>
               <td
                 className={
                   type === 3
-                    ? item.key5 === 'bid'
-                      ? 'text-success'
-                      : 'text-danger'
-                    : ''
+                    ? item.key5 === "bid"
+                      ? "text-success"
+                      : "text-danger"
+                    : ""
                 }
               >
                 {item.key2}
@@ -138,12 +132,12 @@ export const Orders = ({type, loading, data, onPriceClick}: Props) => {
       </Table>
       {data.length > pageSize && (
         <Pagination
-          className='justify-content-center flex-wrap'
+          className="justify-content-center flex-wrap"
           dataLength={data.length}
           pageSize={pageSize}
           maxItems={8}
           page={page}
-          onPageChange={page => setPage(page)}
+          onPageChange={(page) => setPage(page)}
         />
       )}
     </div>

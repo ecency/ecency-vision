@@ -1,31 +1,31 @@
-import {getAuthUrl} from '../../../common/helper/hive-signer';
+import {getAuthUrl} from "../../../common/helper/hive-signer";
 
-import {DesktopWindow} from '../window';
+import {DesktopWindow} from "../window";
 
 declare var window: DesktopWindow;
 
 const REDIR = 'http://127.0.0.1:3415/';
 
 const windowSettings = {
-  center: true,
-  width: 800,
-  height: 700,
-  minWidth: 800,
-  minHeight: 700,
-  maxWidth: 800,
-  maxHeight: 700,
-  maximizable: false,
-  alwaysOnTop: true,
-  webPreferences: {
-    enableRemoteModule: true,
-    nodeIntegration: true,
-    contextIsolation: false,
-    worldSafeExecuteJavaScript: false,
-  },
+    center: true,
+    width: 800,
+    height: 700,
+    minWidth: 800,
+    minHeight: 700,
+    maxWidth: 800,
+    maxHeight: 700,
+    maximizable: false,
+    alwaysOnTop: true,
+    webPreferences: {
+        enableRemoteModule: true,
+        nodeIntegration: true,
+        contextIsolation: false,
+        worldSafeExecuteJavaScript: false
+    }
 };
 
 const createWindowView = (redirectUrl: string): string => {
-  const content = encodeURIComponent(`
+    const content = encodeURIComponent(`
     <!DOCTYPE html>
     <html>
       <head>
@@ -68,43 +68,43 @@ const createWindowView = (redirectUrl: string): string => {
     </html>
   `);
 
-  return `data:text/html;charset=UTF-8, ${content}`;
+    return `data:text/html;charset=UTF-8, ${content}`;
 };
 
-export const hsLogin = (): Promise<{code: string}> =>
-  new Promise((resolve, reject) => {
-    const win = new window.remote.BrowserWindow(windowSettings);
-    win.webContents.setUserAgent(`Chrome/77.0.3835.0`);
+export const hsLogin = (): Promise<{ code: string }> =>
+    new Promise((resolve, reject) => {
+        const win = new window.remote.BrowserWindow(windowSettings);
+        win.webContents.setUserAgent(`Chrome/77.0.3835.0`);
 
-    const authUrl = getAuthUrl(REDIR);
+        const authUrl = getAuthUrl(REDIR);
 
-    win.loadURL(createWindowView(authUrl));
+        win.loadURL(createWindowView(authUrl));
 
-    const windowInt = setInterval(() => {
-      let url;
+        const windowInt = setInterval(() => {
+            let url;
 
-      try {
-        url = win.webContents.getURL();
-      } catch (e) {
-        clearInterval(windowInt);
-        reject('Window is not reachable');
-        return;
-      }
+            try {
+                url = win.webContents.getURL();
+            } catch (e) {
+                clearInterval(windowInt);
+                reject("Window is not reachable");
+                return;
+            }
 
-      if (url.startsWith(REDIR)) {
-        const parsedUrl = new URL(url);
-        const code = parsedUrl.searchParams.get('code');
+            if (url.startsWith(REDIR)) {
+                const parsedUrl = new URL(url);
+                const code = parsedUrl.searchParams.get('code');
 
-        if (code) {
-          resolve({
-            code,
-          });
-        } else {
-          reject("Couldn't get code");
-        }
+                if (code) {
+                    resolve({
+                        code
+                    })
+                } else {
+                    reject("Couldn't get code");
+                }
 
-        clearInterval(windowInt);
-        win.close();
-      }
-    }, 200);
-  });
+                clearInterval(windowInt);
+                win.close();
+            }
+        }, 200);
+    });

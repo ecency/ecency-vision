@@ -1,54 +1,54 @@
-import React, {Component} from 'react';
-import {History} from 'history';
+import React, {Component} from "react";
+import {History} from "history";
 
-import {Account} from '../../store/accounts/types';
+import {Account} from "../../store/accounts/types";
 
 export const makePath = (username: string) => `/@${username}`;
 
 interface Props {
-  history: History;
-  children: JSX.Element;
-  username: string;
-  addAccount: (data: Account) => void;
-  afterClick?: () => void;
+    history: History;
+    children: JSX.Element;
+    username: string;
+    addAccount: (data: Account) => void;
+    afterClick?: () => void;
 }
 
 export class ProfileLink extends Component<Props> {
-  public static defaultProps = {};
+    public static defaultProps = {};
 
-  clicked = async (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
+    clicked = async (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault();
 
-    const {username, history, addAccount, afterClick} = this.props;
+        const {username, history, addAccount, afterClick} = this.props;
 
-    addAccount({name: username});
+        addAccount({name: username});
 
-    history.push(makePath(username));
+        history.push(makePath(username));
 
-    if (afterClick) afterClick();
-  };
+        if (afterClick) afterClick();
+    };
 
-  render() {
-    const {children, username} = this.props;
-    const href = makePath(username);
+    render() {
+        const {children, username} = this.props;
+        const href = makePath(username);
 
-    const props = Object.assign({}, children.props, {
-      href,
-      onClick: this.clicked,
-    });
+        const props = Object.assign({}, children.props, {
+            href,
+            onClick: this.clicked,
+        });
 
-    return React.createElement('a', props);
-  }
+        return React.createElement("a", props);
+    }
 }
 
 export default (p: Props) => {
-  const props = {
-    history: p.history,
-    children: p.children,
-    username: p.username,
-    addAccount: p.addAccount,
-    afterClick: p.afterClick,
-  };
+    const props = {
+        history: p.history,
+        children: p.children,
+        username: p.username,
+        addAccount: p.addAccount,
+        afterClick: p.afterClick
+    }
 
-  return <ProfileLink {...props} />;
-};
+    return <ProfileLink {...props} />
+}

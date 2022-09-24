@@ -1,17 +1,17 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 /**
  * Component that alerts if you click outside of it
  */
 
 interface Props {
-  children: any;
-  onClickAway: () => void;
-  className?: string;
+    children:any;
+    onClickAway:()=>void;
+    className?:string;
 }
 export default class ClickAwayListener extends Component<Props> {
-  wrapperRef: any;
-  constructor(props: Props) {
+    wrapperRef: any;
+  constructor(props:Props){
     super(props);
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
@@ -28,24 +28,20 @@ export default class ClickAwayListener extends Component<Props> {
   /**
    * Set the wrapper ref
    */
-  setWrapperRef(node: any) {
+  setWrapperRef(node:any) {
     this.wrapperRef = node;
   }
 
   /**
    * Alert if clicked on outside of element
    */
-  handleClickOutside(event: any) {
+  handleClickOutside(event:any) {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.props.onClickAway();
+        this.props.onClickAway();
     }
   }
 
   render() {
-    return (
-      <div ref={this.setWrapperRef} className={this.props.className}>
-        {this.props.children}
-      </div>
-    );
+    return <div ref={this.setWrapperRef} className={this.props.className}>{this.props.children}</div>;
   }
 }

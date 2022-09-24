@@ -1,10 +1,12 @@
-import React from 'react';
-import DropDown, {MenuItem} from '../dropdown';
-import {Global} from '../../store/global/types';
-import {History} from 'history';
-import {_t} from '../../i18n';
-import {ToggleType} from '../../store/ui/types';
-import {menuDownSvg} from '../../img/svg';
+import React from 'react'
+import DropDown, { MenuItem } from "../dropdown";
+import { Global } from "../../store/global/types";
+import { History } from "history";
+import { _t } from "../../i18n";
+import { ToggleType } from "../../store/ui/types";
+import {
+  menuDownSvg,
+} from "../../img/svg";
 
 interface Props {
   global: Global;
@@ -16,25 +18,21 @@ interface Props {
 }
 
 export const EntryIndexMenuDropdown = (props: Props) => {
-  const {
-    global: {filter, tag},
-    history,
-    onChangeGlobal,
-    isGlobal,
-  } = props;
+  const { global: { filter, tag }, history, onChangeGlobal, isGlobal } = props;
 
   let dropDownItems: MenuItem[] = [
     {
       label: <span>{_t('entry-filter.filter-global')}</span>,
-      active: tag === '',
-      onClick: () => onTagValueClick(''),
+      active: tag === "",
+      onClick: () => onTagValueClick('')
     },
     {
       label: <span>{_t('entry-filter.filter-community')}</span>,
-      active: tag === 'my',
-      onClick: () => onTagValueClick('my'),
-    },
-  ];
+      active: tag === "my",
+      onClick: () => onTagValueClick('my')
+
+    }
+  ]
 
   if (filter === 'created') {
     dropDownItems = [
@@ -45,7 +43,7 @@ export const EntryIndexMenuDropdown = (props: Props) => {
       //   active: tag === "right_now",
       //   onClick: () => console.log('right_now clicked'),
       // },
-    ];
+    ]
   }
 
   const dropDownConfig = {
@@ -53,11 +51,8 @@ export const EntryIndexMenuDropdown = (props: Props) => {
     label: (
       <div className='tagDropDown'>
         <span className='pl-2' />
-        {tag === ''
-          ? _t('entry-filter.filter-global')
-          : tag === 'my'
-          ? _t('entry-filter.filter-community')
-          : tag}{' '}
+        {tag === "" ? _t('entry-filter.filter-global') : tag === 'my' ? _t('entry-filter.filter-community') : tag}
+        {" "}
         {menuDownSvg}
       </div>
     ),
@@ -65,13 +60,18 @@ export const EntryIndexMenuDropdown = (props: Props) => {
   };
 
   const onTagValueClick = (key: string) => {
-    const {toggleUIProp, isActive} = props;
+    const { toggleUIProp, isActive } = props;
     if (key === 'my' && !isActive) {
-      toggleUIProp('login');
+      toggleUIProp('login')
     } else {
-      onChangeGlobal(!(key.length > 0));
+      onChangeGlobal(!(key.length > 0))
     }
-  };
+  }
 
-  return <DropDown {...dropDownConfig} float='left' header='' />;
-};
+  return (
+    <DropDown {...dropDownConfig} float="left" header="" />
+  );
+}
+
+
+

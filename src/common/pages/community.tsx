@@ -1,45 +1,49 @@
-import React, {Fragment} from 'react';
-import {connect} from 'react-redux';
-import {match} from 'react-router';
-import _ from 'lodash';
+import React, { Fragment } from "react";
+import { connect } from "react-redux";
+import { match } from "react-router";
+import _ from "lodash";
 
-import SearchListItem from '../components/search-list-item';
+import SearchListItem from "../components/search-list-item";
 
-import {ListStyle} from '../store/global/types';
-import {EntryFilter} from '../store/global/types';
-import {makeGroupKey} from '../store/entries';
-import {search as searchApi, SearchResult} from '../api/search-api';
+import { ListStyle } from "../store/global/types";
+import { EntryFilter } from "../store/global/types";
+import { makeGroupKey } from "../store/entries";
+import { search as searchApi, SearchResult } from "../api/search-api";
 
-import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from './common';
+import {
+  PageProps,
+  pageMapDispatchToProps,
+  pageMapStateToProps,
+} from "./common";
 
-import BaseComponent from '../components/base';
-import Meta from '../components/meta';
-import Theme from '../components/theme/index';
-import NavBar from '../components/navbar/index';
-import NavBarElectron from '../../desktop/app/components/navbar';
-import LinearProgress from '../components/linear-progress';
-import CommunityCard from '../components/community-card';
-import CommunityMenu from '../components/community-menu';
-import CommunityCover from '../components/community-cover';
-import NotFound from '../components/404';
-import Feedback from '../components/feedback';
-import EntryListLoadingItem from '../components/entry-list-loading-item';
-import EntryListContent from '../components/entry-list';
-import DetectBottom from '../components/detect-bottom';
-import CommunitySubscribers from '../components/community-subscribers';
-import CommunityActivities from '../components/community-activities';
-import CommunityRoles from '../components/community-roles';
-import ScrollToTop from '../components/scroll-to-top';
+import BaseComponent from "../components/base";
+import Meta from "../components/meta";
+import Theme from "../components/theme/index";
+import NavBar from "../components/navbar/index";
+import NavBarElectron from "../../desktop/app/components/navbar";
+import LinearProgress from "../components/linear-progress";
+import CommunityCard from "../components/community-card";
+import CommunityMenu from "../components/community-menu";
+import CommunityCover from "../components/community-cover";
+import NotFound from "../components/404";
+import Feedback from "../components/feedback";
+import EntryListLoadingItem from "../components/entry-list-loading-item";
+import EntryListContent from "../components/entry-list";
+import DetectBottom from "../components/detect-bottom";
+import CommunitySubscribers from "../components/community-subscribers";
+import CommunityActivities from "../components/community-activities";
+import CommunityRoles from "../components/community-roles";
+import ScrollToTop from "../components/scroll-to-top";
 
-import {getCommunity, getSubscriptions} from '../api/bridge';
+import { getCommunity, getSubscriptions } from "../api/bridge";
 
-import {_t} from '../i18n';
+import { _t } from "../i18n";
 
-import _c from '../util/fix-class-names';
-import capitalize from '../util/capitalize';
+import _c from "../util/fix-class-names";
+import capitalize from "../util/capitalize";
 
-import defaults from '../constants/defaults.json';
-import SearchBox from '../components/search-box';
+import defaults from "../constants/defaults.json";
+import SearchBox from "../components/search-box";
 
 interface MatchParams {
   filter: string;
@@ -62,7 +66,7 @@ class CommunityPage extends BaseComponent<Props, State> {
   state: State = {
     loading: false,
     typing: false,
-    search: '',
+    search: "",
     searchDataLoading: false,
     searchData: [],
   };
@@ -70,10 +74,10 @@ class CommunityPage extends BaseComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const {location} = props;
-    let searchParam = location.search.replace('?', '');
-    searchParam = searchParam.replace('q', '');
-    searchParam = searchParam.replace('=', '');
+    const { location } = props;
+    let searchParam = location.search.replace("?", "");
+    searchParam = searchParam.replace("q", "");
+    searchParam = searchParam.replace("=", "");
 
     if (searchParam.length) {
       this.handleInputChange(searchParam);
@@ -90,29 +94,29 @@ class CommunityPage extends BaseComponent<Props, State> {
 
   async componentDidMount() {
     await this.ensureData();
-    const {match, fetchEntries} = this.props;
+    const { match, fetchEntries } = this.props;
 
-    const {filter, name} = match.params;
+    const { filter, name } = match.params;
     if (EntryFilter[filter]) {
       // fetch blog posts.
       fetchEntries(filter, name, false);
     }
 
     // fetch subscriptions.
-    const {activeUser, subscriptions, updateSubscriptions} = this.props;
+    const { activeUser, subscriptions, updateSubscriptions } = this.props;
     if (activeUser && subscriptions.length === 0) {
-      getSubscriptions(activeUser.username).then(r => {
+      getSubscriptions(activeUser.username).then((r) => {
         if (r) updateSubscriptions(r);
       });
     }
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    const {match, fetchEntries} = this.props;
-    const {match: prevMatch} = prevProps;
+    const { match, fetchEntries } = this.props;
+    const { match: prevMatch } = prevProps;
 
-    const {filter, name} = match.params;
-    const {params: prevParams} = prevMatch;
+    const { filter, name } = match.params;
+    const { params: prevParams } = prevMatch;
 
     // community changed. fetch community and account data.
     if (name !== prevParams.name) {
@@ -128,10 +132,10 @@ class CommunityPage extends BaseComponent<Props, State> {
     }
 
     // re-fetch subscriptions once active user changed.
-    const {activeUser, updateSubscriptions} = this.props;
+    const { activeUser, updateSubscriptions } = this.props;
     if (prevProps.activeUser?.username !== activeUser?.username) {
       if (activeUser) {
-        getSubscriptions(activeUser.username).then(r => {
+        getSubscriptions(activeUser.username).then((r) => {
           if (r) updateSubscriptions(r);
         });
       }
@@ -139,43 +143,49 @@ class CommunityPage extends BaseComponent<Props, State> {
   }
 
   ensureData = (): Promise<void> => {
-    const {match, communities, addCommunity, accounts, addAccount, activeUser} =
-      this.props;
+    const {
+      match,
+      communities,
+      addCommunity,
+      accounts,
+      addAccount,
+      activeUser,
+    } = this.props;
 
     const name = match.params.name;
-    const community = communities.find(x => x.name === name);
-    const account = accounts.find(x => x.name === name);
+    const community = communities.find((x) => x.name === name);
+    const account = accounts.find((x) => x.name === name);
 
     if (!community || !account) {
       // Community or account data aren't in reducer. Show loading indicator.
-      this.stateSet({loading: true});
+      this.stateSet({ loading: true });
     }
 
     return getCommunity(name, activeUser?.username)
-      .then(data => {
+      .then((data) => {
         if (data) {
           addCommunity(data);
         }
         return data;
       })
-      .then(data => {
+      .then((data) => {
         if (data && data.name === name) {
           addAccount(data);
         }
       })
       .finally(() => {
-        this.stateSet({loading: false});
+        this.stateSet({ loading: false });
       });
   };
 
   bottomReached = () => {
-    const {match, entries, fetchEntries} = this.props;
-    const {search} = this.state;
-    const {filter, name} = match.params;
+    const { match, entries, fetchEntries } = this.props;
+    const { search } = this.state;
+    const { filter, name } = match.params;
     const groupKey = makeGroupKey(filter, name);
 
     const data = entries[groupKey];
-    const {loading, hasMore} = data;
+    const { loading, hasMore } = data;
 
     if (!loading && hasMore && search.length === 0) {
       fetchEntries(filter, name, true);
@@ -183,10 +193,10 @@ class CommunityPage extends BaseComponent<Props, State> {
   };
 
   reload = () => {
-    this.stateSet({loading: true});
+    this.stateSet({ loading: true });
     this.ensureData().then(() => {
-      const {match, fetchEntries, invalidateEntries} = this.props;
-      const {filter, name} = match.params;
+      const { match, fetchEntries, invalidateEntries } = this.props;
+      const { filter, name } = match.params;
 
       if (EntryFilter[filter]) {
         invalidateEntries(makeGroupKey(filter, name));
@@ -196,20 +206,20 @@ class CommunityPage extends BaseComponent<Props, State> {
   };
 
   handleInputChange = async (value: string): Promise<void> => {
-    this.setState({typing: false});
-    if (value.trim() === '') {
+    this.setState({ typing: false });
+    if (value.trim() === "") {
     } else {
-      const {global} = this.props;
-      this.setState({searchDataLoading: true});
+      const { global } = this.props;
+      this.setState({ searchDataLoading: true });
 
       let query = `${value} category:${global.tag}`;
 
-      const data: any = await searchApi(query, 'newest', '0');
+      const data: any = await searchApi(query, "newest", "0");
 
       if (data && data.results) {
         let sortedResults = data.results.sort(
           (a: any, b: any) =>
-            Date.parse(b.created_at) - Date.parse(a.created_at),
+            Date.parse(b.created_at) - Date.parse(a.created_at)
         );
         this.setState({
           searchData: sortedResults,
@@ -223,16 +233,17 @@ class CommunityPage extends BaseComponent<Props, State> {
   delayedSearch = _.debounce(this.handleInputChange, 2000);
 
   handleChangeSearch = async (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ): Promise<void> => {
-    const {value} = event.target;
-    this.setState({search: value, typing: value.length === 0 ? false : true});
+    const { value } = event.target;
+    this.setState({ search: value, typing: value.length === 0 ? false : true });
     this.delayedSearch(value);
   };
 
   render() {
-    const {global, entries, communities, accounts, match} = this.props;
-    const {loading, search, searchData, searchDataLoading, typing} = this.state;
+    const { global, entries, communities, accounts, match } = this.props;
+    const { loading, search, searchData, searchDataLoading, typing } =
+      this.state;
 
     const navBar = global.isElectron
       ? NavBarElectron({
@@ -240,7 +251,7 @@ class CommunityPage extends BaseComponent<Props, State> {
           reloadFn: this.reload,
           reloading: loading,
         })
-      : NavBar({...this.props});
+      : NavBar({ ...this.props });
 
     if (loading) {
       return (
@@ -251,19 +262,19 @@ class CommunityPage extends BaseComponent<Props, State> {
       );
     }
 
-    const {name, filter} = match.params;
+    const { name, filter } = match.params;
 
-    const community = communities.find(x => x.name === name);
-    const account = accounts.find(x => x.name === name);
+    const community = communities.find((x) => x.name === name);
+    const account = accounts.find((x) => x.name === name);
 
     if (!community || !account) {
-      return NotFound({...this.props});
+      return NotFound({ ...this.props });
     }
 
     //  Meta config
     const fC = capitalize(filter);
     const title = `${community.title.trim()} community ${filter} list`;
-    const description = _t('community.page-description', {
+    const description = _t("community.page-description", {
       f: `${fC} ${community.title.trim()}`,
     });
     const url = `/${filter}/${community.name}`;
@@ -271,12 +282,12 @@ class CommunityPage extends BaseComponent<Props, State> {
     const image = `${defaults.imageServer}/u/${community.name}/avatar/medium`;
     const canonical = `${defaults.base}/created/${community.name}`;
 
-    const metaProps = {title, description, url, rss, image, canonical};
+    const metaProps = { title, description, url, rss, image, canonical };
 
-    const promoted = entries['__promoted__'].entries;
+    const promoted = entries["__promoted__"].entries;
     let containerClasses = global.isElectron
-      ? 'app-content community-page mt-0 pt-6'
-      : 'app-content community-page';
+      ? "app-content community-page mt-0 pt-6"
+      : "app-content community-page";
 
     return (
       <>
@@ -287,28 +298,28 @@ class CommunityPage extends BaseComponent<Props, State> {
         {navBar}
 
         <div className={containerClasses}>
-          <div className='profile-side'>
+          <div className="profile-side">
             {CommunityCard({
               ...this.props,
               community,
               account,
             })}
           </div>
-          <span itemScope={true} itemType='http://schema.org/Organization'>
+          <span itemScope={true} itemType="http://schema.org/Organization">
             <meta
-              itemProp='name'
+              itemProp="name"
               content={community.title.trim() || community.name}
             />
             <span
-              itemProp='logo'
+              itemProp="logo"
               itemScope={true}
-              itemType='http://schema.org/ImageObject'
+              itemType="http://schema.org/ImageObject"
             >
-              <meta itemProp='url' content={image} />
+              <meta itemProp="url" content={image} />
             </span>
-            <meta itemProp='url' content={`${defaults.base}${url}`} />
+            <meta itemProp="url" content={`${defaults.base}${url}`} />
           </span>
-          <div className='content-side'>
+          <div className="content-side">
             {CommunityMenu({
               ...this.props,
               community,
@@ -321,19 +332,19 @@ class CommunityPage extends BaseComponent<Props, State> {
             })}
 
             {(() => {
-              if (filter === 'subscribers') {
+              if (filter === "subscribers") {
                 return (
                   <CommunitySubscribers {...this.props} community={community} />
                 );
               }
 
-              if (filter === 'activities') {
+              if (filter === "activities") {
                 return (
                   <CommunityActivities {...this.props} community={community} />
                 );
               }
 
-              if (filter === 'roles') {
+              if (filter === "roles") {
                 return <CommunityRoles {...this.props} community={community} />;
               }
 
@@ -349,22 +360,22 @@ class CommunityPage extends BaseComponent<Props, State> {
                     {loading && entryList.length === 0 ? (
                       <LinearProgress />
                     ) : (
-                      ''
+                      ""
                     )}
 
-                    {(filter === 'hot' ||
-                      filter === 'created' ||
-                      filter === 'trending') &&
+                    {(filter === "hot" ||
+                      filter === "created" ||
+                      filter === "trending") &&
                       !loading &&
                       entryList.length > 0 && (
-                        <div className='searchProfile'>
+                        <div className="searchProfile">
                           <SearchBox
                             placeholder={_t(
-                              'search-comment.search-placeholder',
+                              "search-comment.search-placeholder"
                             )}
                             value={search}
                             onChange={this.handleChangeSearch}
-                            autoComplete='off'
+                            autoComplete="off"
                             showcopybutton={true}
                             filter={`${community.name}`}
                             username={filter}
@@ -376,29 +387,29 @@ class CommunityPage extends BaseComponent<Props, State> {
                     ) : search.length > 0 && searchDataLoading ? (
                       <LinearProgress />
                     ) : searchData.length > 0 && search.length > 0 ? (
-                      <div className='search-list'>
-                        {searchData.map(res => (
+                      <div className="search-list">
+                        {searchData.map((res) => (
                           <Fragment
                             key={`${res.author}-${res.permlink}-${res.id}`}
                           >
-                            {SearchListItem({...this.props, res: res})}
+                            {SearchListItem({ ...this.props, res: res })}
                           </Fragment>
                         ))}
                       </div>
                     ) : search.length === 0 ? null : (
-                      _t('g.no-matches')
+                      _t("g.no-matches")
                     )}
                     {search.length === 0 && !searchDataLoading && (
                       <div
-                        className={_c(`entry-list ${loading ? 'loading' : ''}`)}
+                        className={_c(`entry-list ${loading ? "loading" : ""}`)}
                       >
                         <div
                           className={_c(
                             `entry-list-body ${
                               global.listStyle === ListStyle.grid
-                                ? 'grid-view'
-                                : ''
-                            }`,
+                                ? "grid-view"
+                                : ""
+                            }`
                           )}
                         >
                           {loading && entryList.length === 0 && (
@@ -417,7 +428,7 @@ class CommunityPage extends BaseComponent<Props, State> {
                     {search.length === 0 && loading && entryList.length > 0 ? (
                       <LinearProgress />
                     ) : (
-                      ''
+                      ""
                     )}
                     <DetectBottom onBottom={this.bottomReached} />
                   </>
@@ -435,5 +446,5 @@ class CommunityPage extends BaseComponent<Props, State> {
 
 export default connect(
   pageMapStateToProps,
-  pageMapDispatchToProps,
+  pageMapDispatchToProps
 )(CommunityPage);

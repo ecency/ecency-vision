@@ -1,255 +1,232 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 
-import {History} from 'history';
+import {History} from "history";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import {Global} from '../../store/global/types';
-import {User} from '../../store/users/types';
-import {ActiveUser} from '../../store/active-user/types';
-import {Account, FullAccount} from '../../store/accounts/types';
-import {UI, ToggleType} from '../../store/ui/types';
-import {Community} from '../../store/communities/types';
-import {Subscription} from '../../store/subscriptions/types';
+import {Global} from "../../store/global/types";
+import {User} from "../../store/users/types";
+import {ActiveUser} from "../../store/active-user/types";
+import {Account, FullAccount} from "../../store/accounts/types";
+import {UI, ToggleType} from "../../store/ui/types";
+import {Community} from "../../store/communities/types";
+import {Subscription} from "../../store/subscriptions/types";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
-import {proxifyImageSrc, setProxyBase} from '@ecency/render-helper';
+import {proxifyImageSrc, setProxyBase} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
-import BaseComponent from '../base';
-import SubscriptionBtn from '../subscription-btn';
-import CommunityPostBtn from '../community-post-btn';
-import Tooltip from '../tooltip';
-import ImageUploadDialog from '../image-upload';
+import BaseComponent from "../base";
+import SubscriptionBtn from "../subscription-btn";
+import CommunityPostBtn from "../community-post-btn";
+import Tooltip from "../tooltip";
+import ImageUploadDialog from "../image-upload";
 
-import formattedNumber from '../../util/formatted-number';
+import formattedNumber from "../../util/formatted-number";
 
-import {updateProfile} from '../../api/operations';
-import {error, success} from '../feedback';
-import {getAccount} from '../../api/hive';
+import {updateProfile} from "../../api/operations";
+import {error, success} from "../feedback";
+import {getAccount} from "../../api/hive";
 
-import {_t} from '../../i18n';
+import {_t} from "../../i18n";
 
-import {pencilOutlineSvg} from '../../img/svg';
+import {pencilOutlineSvg} from "../../img/svg";
 
-const coverFallbackDay = require('../../img/cover-fallback-day.png');
-const coverFallbackNight = require('../../img/cover-fallback-night.png');
+const coverFallbackDay = require("../../img/cover-fallback-day.png");
+const coverFallbackNight = require("../../img/cover-fallback-night.png");
 
 interface EditCoverImageProps {
-  activeUser: ActiveUser;
-  community: Community;
-  account: FullAccount;
-  addAccount: (data: Account) => void;
+    activeUser: ActiveUser;
+    community: Community;
+    account: FullAccount;
+    addAccount: (data: Account) => void;
 }
 
 interface EditCoverImageState {
-  dialog: boolean;
-  inProgress: boolean;
+    dialog: boolean;
+    inProgress: boolean;
 }
 
-class EditCoverImage extends BaseComponent<
-  EditCoverImageProps,
-  EditCoverImageState
-> {
-  state: EditCoverImageState = {
-    dialog: false,
-    inProgress: false,
-  };
-
-  toggleDialog = () => {
-    const {dialog} = this.state;
-    this.stateSet({dialog: !dialog});
-  };
-
-  save = (url: string) => {
-    const {account} = this.props;
-    if (account.profile?.cover_image === url) {
-      this.toggleDialog();
-      return;
+class EditCoverImage extends BaseComponent<EditCoverImageProps, EditCoverImageState> {
+    state: EditCoverImageState = {
+        dialog: false,
+        inProgress: false
     }
 
-    this.stateSet({inProgress: true});
+    toggleDialog = () => {
+        const {dialog} = this.state;
+        this.stateSet({dialog: !dialog})
+    }
 
-    const {addAccount} = this.props;
-    const {profile} = account;
+    save = (url: string) => {
+        const {account} = this.props;
+        if (account.profile?.cover_image === url) {
+            this.toggleDialog();
+            return;
+        }
 
-    const newProfile = {
-      name: profile?.name || '',
-      about: profile?.about || '',
-      cover_image: url,
-      profile_image: profile?.profile_image || '',
-      website: profile?.website || '',
-      location: profile?.location || '',
-    };
+        this.stateSet({inProgress: true});
 
-    updateProfile(account, newProfile)
-      .then(r => {
-        success(_t('community-cover.cover-image-updated'));
-        return getAccount(account.name);
-      })
-      .then(account => {
-        // update reducer
-        addAccount(account);
+        const {addAccount} = this.props;
+        const {profile} = account;
 
-        // close dialog
-        this.toggleDialog();
-      })
-      .catch(() => {
-        error(_t('g.server-error'));
-      })
-      .finally(() => {
-        this.stateSet({inProgress: false});
-      });
-  };
+        const newProfile = {
+            name: profile?.name || '',
+            about: profile?.about || '',
+            cover_image: url,
+            profile_image: profile?.profile_image || '',
+            website: profile?.website || '',
+            location: profile?.location || '',
+        };
 
-  render() {
-    const {activeUser, account} = this.props;
-    const {dialog, inProgress} = this.state;
+        updateProfile(account, newProfile).then(r => {
+            success(_t('community-cover.cover-image-updated'));
+            return getAccount(account.name);
+        }).then((account) => {
+            // update reducer
+            addAccount(account);
 
-    return (
-      <>
-        <Tooltip content={_t('community-cover.cover-image-edit')}>
-          <div className='btn-edit-cover-image' onClick={this.toggleDialog}>
-            {pencilOutlineSvg}
-          </div>
-        </Tooltip>
-        {dialog && (
-          <ImageUploadDialog
-            activeUser={activeUser!}
-            title={_t('community-cover.cover-image')}
-            defImage={account.profile?.cover_image || ''}
-            inProgress={inProgress}
-            onDone={this.save}
-            onHide={this.toggleDialog}
-          />
-        )}
-      </>
-    );
-  }
+            // close dialog
+            this.toggleDialog();
+        }).catch(() => {
+            error(_t('g.server-error'));
+        }).finally(() => {
+            this.stateSet({inProgress: false});
+        });
+    }
+
+    render() {
+        const {activeUser, account} = this.props;
+        const {dialog, inProgress} = this.state;
+
+        return <>
+            <Tooltip content={_t('community-cover.cover-image-edit')}>
+                <div className="btn-edit-cover-image" onClick={this.toggleDialog}>{pencilOutlineSvg}</div>
+            </Tooltip>
+            {dialog && (
+                <ImageUploadDialog
+                    activeUser={activeUser!}
+                    title={_t('community-cover.cover-image')}
+                    defImage={account.profile?.cover_image || ""}
+                    inProgress={inProgress}
+                    onDone={this.save}
+                    onHide={this.toggleDialog}
+                />
+            )}
+        </>
+    }
 }
 
+
 interface Props {
-  history: History;
-  global: Global;
-  community: Community;
-  account: Account;
-  users: User[];
-  activeUser: ActiveUser | null;
-  subscriptions: Subscription[];
-  ui: UI;
-  setActiveUser: (username: string | null) => void;
-  updateActiveUser: (data?: Account) => void;
-  deleteUser: (username: string) => void;
-  toggleUIProp: (what: ToggleType) => void;
-  updateSubscriptions: (list: Subscription[]) => void;
-  addAccount: (data: Account) => void;
+    history: History;
+    global: Global;
+    community: Community;
+    account: Account;
+    users: User[];
+    activeUser: ActiveUser | null;
+    subscriptions: Subscription[];
+    ui: UI;
+    setActiveUser: (username: string | null) => void;
+    updateActiveUser: (data?: Account) => void;
+    deleteUser: (username: string) => void;
+    toggleUIProp: (what: ToggleType) => void;
+    updateSubscriptions: (list: Subscription[]) => void;
+    addAccount: (data: Account) => void;
 }
 
 export class CommunityCover extends Component<Props> {
-  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-    return (
-      !isEqual(this.props.global, nextProps.global) ||
-      !isEqual(this.props.community, nextProps.community) ||
-      !isEqual(this.props.subscriptions, nextProps.subscriptions) ||
-      !isEqual(this.props.account, nextProps.account) ||
-      !isEqual(this.props.users, nextProps.users) ||
-      !isEqual(this.props.activeUser, nextProps.activeUser) ||
-      !isEqual(this.props.ui, nextProps.ui)
-    );
-  }
 
-  render() {
-    const {global, account, community, activeUser, users} = this.props;
+    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+        return !isEqual(this.props.global, nextProps.global)
+            || !isEqual(this.props.community, nextProps.community)
+            || !isEqual(this.props.subscriptions, nextProps.subscriptions)
+            || !isEqual(this.props.account, nextProps.account)
+            || !isEqual(this.props.users, nextProps.users)
+            || !isEqual(this.props.activeUser, nextProps.activeUser)
+            || !isEqual(this.props.ui, nextProps.ui)
+    }
 
-    let bgImage = '';
+    render() {
+        const {global, account, community, activeUser, users} = this.props;
 
-    if (account.__loaded) {
-      bgImage = global.theme === 'day' ? coverFallbackDay : coverFallbackNight;
-      if (account.profile?.cover_image) {
-        bgImage = proxifyImageSrc(
-          account.profile.cover_image,
-          0,
-          0,
-          global.canUseWebp ? 'webp' : 'match',
+        let bgImage = "";
+
+        if (account.__loaded) {
+            bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
+            if (account.profile?.cover_image) {
+                bgImage = proxifyImageSrc(account.profile.cover_image, 0, 0, global.canUseWebp ? 'webp' : 'match');
+            }
+        }
+
+        let style = {};
+        if (bgImage) {
+            style = {backgroundImage: `url('${bgImage}')`};
+        }
+
+        const subscribers = formattedNumber(community.subscribers, {fractionDigits: 0});
+        const rewards = formattedNumber(community.sum_pending, {fractionDigits: 0});
+        const authors = formattedNumber(community.num_authors, {fractionDigits: 0});
+
+        const canUpdateCoverImage = activeUser && !!users.find(x => x.username === community.name);
+
+        return (
+            <div className="community-cover">
+                <div className="cover-image" style={style}/>
+                <div className="community-stats">
+                    <div className="community-stat">
+                        <div className="stat-value">{subscribers}</div>
+                        <div className="stat-label">{_t('community.subscribers')}</div>
+                    </div>
+                    <div className="community-stat">
+                        <div className="stat-value">{"$"} {rewards}</div>
+                        <div className="stat-label">{_t('community-cover.rewards')}</div>
+                    </div>
+                    <div className="community-stat">
+                        <div className="stat-value">{authors}</div>
+                        <div className="stat-label">{_t('community-cover.authors')}</div>
+                    </div>
+                    {community.lang.trim() !== "" && (
+                        <div className="community-stat">
+                            <div className="stat-value">
+                                {community.lang.toUpperCase()}
+                            </div>
+                            <div className="stat-label">
+                                {_t('community-cover.lang')}
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                <div className="controls-holder">
+                    <SubscriptionBtn {...this.props} />
+                    {CommunityPostBtn({...this.props})}
+                </div>
+                {canUpdateCoverImage && (<EditCoverImage {...this.props} account={account as FullAccount} activeUser={activeUser!}/>)}
+            </div>
         );
-      }
     }
-
-    let style = {};
-    if (bgImage) {
-      style = {backgroundImage: `url('${bgImage}')`};
-    }
-
-    const subscribers = formattedNumber(community.subscribers, {
-      fractionDigits: 0,
-    });
-    const rewards = formattedNumber(community.sum_pending, {fractionDigits: 0});
-    const authors = formattedNumber(community.num_authors, {fractionDigits: 0});
-
-    const canUpdateCoverImage =
-      activeUser && !!users.find(x => x.username === community.name);
-
-    return (
-      <div className='community-cover'>
-        <div className='cover-image' style={style} />
-        <div className='community-stats'>
-          <div className='community-stat'>
-            <div className='stat-value'>{subscribers}</div>
-            <div className='stat-label'>{_t('community.subscribers')}</div>
-          </div>
-          <div className='community-stat'>
-            <div className='stat-value'>
-              {'$'} {rewards}
-            </div>
-            <div className='stat-label'>{_t('community-cover.rewards')}</div>
-          </div>
-          <div className='community-stat'>
-            <div className='stat-value'>{authors}</div>
-            <div className='stat-label'>{_t('community-cover.authors')}</div>
-          </div>
-          {community.lang.trim() !== '' && (
-            <div className='community-stat'>
-              <div className='stat-value'>{community.lang.toUpperCase()}</div>
-              <div className='stat-label'>{_t('community-cover.lang')}</div>
-            </div>
-          )}
-        </div>
-
-        <div className='controls-holder'>
-          <SubscriptionBtn {...this.props} />
-          {CommunityPostBtn({...this.props})}
-        </div>
-        {canUpdateCoverImage && (
-          <EditCoverImage
-            {...this.props}
-            account={account as FullAccount}
-            activeUser={activeUser!}
-          />
-        )}
-      </div>
-    );
-  }
 }
 
 export default (p: Props) => {
-  const props: Props = {
-    history: p.history,
-    global: p.global,
-    community: p.community,
-    account: p.account,
-    users: p.users,
-    activeUser: p.activeUser,
-    subscriptions: p.subscriptions,
-    ui: p.ui,
-    setActiveUser: p.setActiveUser,
-    updateActiveUser: p.updateActiveUser,
-    deleteUser: p.deleteUser,
-    toggleUIProp: p.toggleUIProp,
-    updateSubscriptions: p.updateSubscriptions,
-    addAccount: p.addAccount,
-  };
+    const props: Props = {
+        history: p.history,
+        global: p.global,
+        community: p.community,
+        account: p.account,
+        users: p.users,
+        activeUser: p.activeUser,
+        subscriptions: p.subscriptions,
+        ui: p.ui,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        deleteUser: p.deleteUser,
+        toggleUIProp: p.toggleUIProp,
+        updateSubscriptions: p.updateSubscriptions,
+        addAccount: p.addAccount
+    }
 
-  return <CommunityCover {...props} />;
-};
+    return <CommunityCover {...props} />
+}

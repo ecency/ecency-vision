@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
 interface TooltipProps {
   content: string;
@@ -7,9 +7,9 @@ interface TooltipProps {
 
 export default class MyTooltip extends Component<TooltipProps> {
   render() {
-    const {content, children} = this.props;
+    const { content, children } = this.props;
 
-    const newChildren = React.cloneElement(children, {title: content});
+    const newChildren = React.cloneElement(children, { title: content });
 
     return newChildren;
   }

@@ -1,9 +1,9 @@
-import truncate from './truncate';
+import truncate from "./truncate";
 
 it('truncate', () => {
-  expect(truncate('lorem ipsum dolor sit amet', 10)).toBe('lorem ipsu...');
+    expect(truncate('lorem ipsum dolor sit amet', 10)).toBe('lorem ipsu...');
 });
 
 it('truncate', () => {
-  expect(truncate('lore', 5)).toBe('lore');
+    expect(truncate('lore', 5)).toBe('lore');
 });

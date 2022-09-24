@@ -1,58 +1,45 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-import {Button, FormControl, InputGroup} from 'react-bootstrap';
-import {_t} from '../../i18n';
+import { Button, FormControl, InputGroup } from "react-bootstrap";
+import { _t } from "../../i18n";
 
-import {copyContent, magnifySvg} from '../../img/svg';
-import {success} from '../feedback';
+import { copyContent, magnifySvg } from "../../img/svg";
+import { success } from "../feedback";
 
 type Props = any;
 
 export default class SearchBox extends Component<Props> {
+
   copyToClipboard = (text: string) => {
-    const textField = document.createElement('textarea');
-    textField.innerText = text;
-    document.body.appendChild(textField);
-    textField.select();
-    document.execCommand('copy');
-    textField.remove();
-    success(_t('profile-info.link-copied'));
-  };
+      const textField = document.createElement('textarea');
+      textField.innerText = text;
+      document.body.appendChild(textField);
+      textField.select();
+      document.execCommand('copy');
+      textField.remove();
+      success(_t('profile-info.link-copied'));
+  }
 
   render() {
-    const {showcopybutton, value, username, filter, ...other} = this.props;
-    return (
-      <div className='search-box'>
-        {showcopybutton ? (
-          <div className='d-flex focus-input'>
-            <FormControl
-              type='text'
-              {...{...other, value, username, filter}}
-              className={'input-with-copy rounded-right'}
-            />
-            <InputGroup.Append>
+    const {showcopybutton, value, username, filter, ...other} = this.props
+    return (<div className="search-box">
+      {showcopybutton ? 
+      <div className="d-flex focus-input">
+          <FormControl type="text" {...{...other, value, username, filter}} className={"input-with-copy rounded-right"}/>
+          <InputGroup.Append>
               <Button
-                variant='primary'
-                size='sm'
-                className='copy-to-clipboard rounded-left'
-                disabled={value.length === 0}
-                onClick={() => {
-                  this.copyToClipboard(
-                    `https://ecency.com/${username}/${filter}?q=${value}`,
-                  );
-                }}
+                  variant="primary"
+                  size="sm"
+                  className="copy-to-clipboard rounded-left"
+                  disabled={value.length === 0}
+                  onClick={() => {this.copyToClipboard(`https://ecency.com/${username}/${filter}?q=${value}`);}}
               >
-                {copyContent}
+                  {copyContent}
               </Button>
-            </InputGroup.Append>
-          </div>
-        ) : (
-          <>
-            <span className='prepend'>{magnifySvg}</span>
-            <FormControl type='text' {...{...other, value, username, filter}} />
-          </>
-        )}
-      </div>
-    );
+          </InputGroup.Append>
+          </div>: <>
+      <span className="prepend">{magnifySvg}</span>
+        <FormControl type="text" {...{...other, value, username, filter}}/></>}
+      </div> )
   }
 }
