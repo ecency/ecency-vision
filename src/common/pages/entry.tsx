@@ -1295,10 +1295,7 @@ class EntryPage extends BaseComponent<Props, State> {
                         display: !activeUser ? "d-none" : ""
                       })}
 
-                      
-                     {activeUser && 
-                     entry.children === 0 && 
-                     (<CommentEngagement />)}
+                    {activeUser && entry.children === 0 && <CommentEngagement />}
 
                     {Discussion({
                       ...this.props,
