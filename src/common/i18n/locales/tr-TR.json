@@ -431,7 +431,9 @@
     "read-more": "...daha fazla yanıt görüntüle...",
     "reveal-muted": "Engellenmiş yazar - Yorumu görüntüle",
     "reveal-muted-long-description": "Rahatsız edici yanıtlar da dahil olmak üzere diğer yorumları göster",
-    "reveal": "Yorumu görüntüle"
+    "reveal": "Yorumu görüntüle",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} konular",
