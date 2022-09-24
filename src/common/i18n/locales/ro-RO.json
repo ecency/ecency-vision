@@ -431,7 +431,9 @@
     "read-more": "...citește mai multe răspunsuri...",
     "reveal-muted": "Muted author - Reveal comment",
     "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
-    "reveal": "Arată comentariul"
+    "reveal": "Arată comentariul",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} subiecte",
