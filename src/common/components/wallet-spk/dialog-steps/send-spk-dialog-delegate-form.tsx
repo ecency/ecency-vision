@@ -34,11 +34,16 @@ export const SendSpkDialogDelegateForm = ({
 }: Props) => {
   const selectRef = useRef<any>();
   const [delegatedAlready, setDelegatedAlready] = useState(0);
+  const [_markets, setMarkets] = useState([] as Market[]);
 
   useEffect(() => {
     if (selectRef.current) {
       setUsername(selectRef.current.value);
     }
+    setMarkets([
+      ...markets.filter((item) => item.name == "good-karma.spk"),
+      ...markets.filter((item) => item.name !== "good-karma.spk")
+    ] as Market[]);
   }, []);
 
   useEffect(() => {
@@ -90,7 +95,7 @@ export const SendSpkDialogDelegateForm = ({
             value={username}
             onChange={(event: ChangeEvent<any>) => setUsername(event.target.value)}
           >
-            {markets.map((market) => (
+            {_markets.map((market) => (
               <option key={market.name} value={market.name}>
                 {market.status} {market.name}
               </option>
