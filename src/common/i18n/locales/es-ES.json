@@ -432,8 +432,8 @@
     "reveal-muted": "Autor silenciado - Revelar comentario",
     "reveal-muted-long-description": "Mostrar respuestas adicionales, incluyendo aquellas que pueden tener contenido ofensivo",
     "reveal": "Revelar comentario",
-    "no-conversation": "No conversation yet, be first to reply",
-    "start-conversation": "Start conversation"
+    "no-conversation": "Aún no hay conversación, se el primero en responder",
+    "start-conversation": "Iniciar conversación"
   },
   "community": {
     "page-description": "{{f}} temas",
