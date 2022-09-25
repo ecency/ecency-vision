@@ -4,7 +4,7 @@ import { StaticRouter } from "react-router-dom";
 
 import { createLocation, createBrowserHistory } from "history";
 
-import CommunityMenu from "./index";
+import { CommunityMenu } from "./index";
 import TestRenderer from "react-test-renderer";
 
 import { globalInstance, communityInstance1 } from "../../helper/test-helper";
