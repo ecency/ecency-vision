@@ -4,6 +4,7 @@ import { PrivateKey, TransactionConfirmation } from "@hiveio/dhive";
 import { client as hiveClient } from "./hive";
 import * as keychain from "../helper/keychain";
 import { broadcastPostingJSON } from "./operations";
+import { hotSign } from "../helper/hive-signer";
 
 const spkNodes = [
   "https://spk.good-karma.xyz",
@@ -171,10 +172,7 @@ const sendSpkGeneralByHs = (
       ...(typeof memo === "string" ? { memo } : {})
     })
   };
-  const url = sdk.sign("custom_json", params, window.location.href);
-  if (typeof url === "string") {
-    window.open(url, "blank");
-  }
+  hotSign("custom-json", params, `@${from}/spk`);
 };
 
 const transferSpkGeneralByKey = async (
@@ -324,10 +322,7 @@ export const powerLarynxByHs = (mode: "up" | "down", from: string, amount: strin
     id: `spkcc_power_${mode}`,
     json: JSON.stringify({ amount: +amount * 1000 })
   };
-  const url = sdk.sign("custom_json", params, window.location.href);
-  if (typeof url === "string") {
-    window.open(url, "blank");
-  }
+  hotSign("custom-json", params, `@${from}/spk`);
 };
 
 export const powerLarynxByKc = async (mode: "up" | "down", from: string, amount: string) => {
@@ -361,10 +356,7 @@ export const lockLarynxByHs = async (mode: "lock" | "unlock", from: string, amou
     id: mode === "lock" ? "spkcc_gov_up" : "spkcc_gov_down",
     json: JSON.stringify({ amount: +amount * 1000 })
   };
-  const url = sdk.sign("custom_json", params, window.location.href);
-  if (typeof url === "string") {
-    window.open(url, "blank");
-  }
+  hotSign("custom-json", params, `@${from}/spk`);
 };
 
 export const lockLarynxByKc = async (mode: "lock" | "unlock", from: string, amount: string) => {
