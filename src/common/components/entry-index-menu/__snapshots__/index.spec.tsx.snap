@@ -64,6 +64,30 @@ exports[`(1) No active user. Default filter 1`] = `
                   New
                 </a>
               </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-rising"
+                  href="/rising"
+                  id="rising"
+                  onClick={[Function]}
+                >
+                  Rising
+                </a>
+              </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -112,6 +136,28 @@ exports[`(1) No active user. Default filter 1`] = `
                   New
                 </a>
               </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-rising"
+                  href="/rising"
+                  onClick={[Function]}
+                >
+                  Rising
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -125,7 +171,7 @@ exports[`(1) No active user. Default filter 1`] = `
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0"
+      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"
@@ -212,6 +258,30 @@ exports[`(2) No active user. Trending filter 1`] = `
                   New
                 </a>
               </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-rising"
+                  href="/rising"
+                  id="rising"
+                  onClick={[Function]}
+                >
+                  Rising
+                </a>
+              </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -260,6 +330,28 @@ exports[`(2) No active user. Trending filter 1`] = `
                   New
                 </a>
               </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-rising"
+                  href="/rising"
+                  onClick={[Function]}
+                >
+                  Rising
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -273,7 +365,7 @@ exports[`(2) No active user. Trending filter 1`] = `
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0"
+      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"
@@ -468,6 +560,30 @@ exports[`(3) Active user. Trending filter 1`] = `
                   New
                 </a>
               </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-rising"
+                  href="/rising"
+                  id="rising"
+                  onClick={[Function]}
+                >
+                  Rising
+                </a>
+              </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -616,6 +732,28 @@ exports[`(3) Active user. Trending filter 1`] = `
                   New
                 </a>
               </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-rising"
+                  href="/rising"
+                  onClick={[Function]}
+                >
+                  Rising
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -629,7 +767,7 @@ exports[`(3) Active user. Trending filter 1`] = `
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0"
+      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"
@@ -736,6 +874,30 @@ exports[`(4) Active user. Friends 1`] = `
                   New
                 </a>
               </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-rising"
+                  href="/rising"
+                  id="rising"
+                  onClick={[Function]}
+                >
+                  Rising
+                </a>
+              </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -795,13 +957,42 @@ exports[`(4) Active user. Friends 1`] = `
                   New
                 </a>
               </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-rising"
+                  href="/rising"
+                  onClick={[Function]}
+                >
+                  Rising
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
             </ul>
           </div>
         </div>
+        <div
+          className="border-left ml-3 dropDown-left-border-height"
+        />
+        <span
+          className="d-flex align-items-center pl-3"
+          id="check-isGlobal"
+        />
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0"
+      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"
@@ -908,6 +1099,30 @@ exports[`(5) Active user. Communities 1`] = `
                   New
                 </a>
               </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-rising"
+                  href="/rising/my"
+                  id="rising"
+                  onClick={[Function]}
+                >
+                  Rising
+                </a>
+              </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial/my"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -967,6 +1182,28 @@ exports[`(5) Active user. Communities 1`] = `
                   New
                 </a>
               </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-rising"
+                  href="/rising/my"
+                  onClick={[Function]}
+                >
+                  Rising
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial/my"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -980,7 +1217,7 @@ exports[`(5) Active user. Communities 1`] = `
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0"
+      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"
@@ -1067,6 +1304,30 @@ exports[`(6) No active user. Communities 1`] = `
                   New
                 </a>
               </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-rising"
+                  href="/rising/my"
+                  id="rising"
+                  onClick={[Function]}
+                >
+                  Rising
+                </a>
+              </li>
+              <li
+                className="nav-item "
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial/my"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -1115,6 +1376,28 @@ exports[`(6) No active user. Communities 1`] = `
                   New
                 </a>
               </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-rising"
+                  href="/rising/my"
+                  onClick={[Function]}
+                >
+                  Rising
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-controversial"
+                  href="/controversial/my"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -1128,7 +1411,7 @@ exports[`(6) No active user. Communities 1`] = `
       </div>
     </div>
     <div
-      className="d-flex align-items-center ml-auto ml-md-0"
+      className="d-flex align-items-center ml-auto ml-md-0 pl-3"
     >
       <span
         className="info-icon mr-0 mr-md-2"

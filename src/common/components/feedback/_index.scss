@@ -1,3 +1,5 @@
+@import "../../../style/variables";
+
 @keyframes feedback-anim {
   0% {
     opacity: 0.3;
@@ -63,5 +65,24 @@
     svg {
       color: $duck-egg-blue;
     }
+  }
+}
+
+.theme-day .details-button {
+  color: #fff;
+  opacity: .5;
+
+  &:hover {
+    color: #fff;
+    opacity: .75;
+  }
+}
+
+.theme-night .details-button {
+  color: $primary;
+  opacity: .75;
+
+  &:hover {
+    opacity: 1;
   }
 }

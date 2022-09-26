@@ -2,6 +2,7 @@
 
 exports[`1- default state 1`] = `
 Object {
+  "fbSupport": "pending",
   "filter": null,
   "hasMore": true,
   "list": Array [],
@@ -13,6 +14,7 @@ Object {
 
 exports[`2- fetchAct 1`] = `
 Object {
+  "fbSupport": "pending",
   "filter": null,
   "hasMore": true,
   "list": Array [],
@@ -24,6 +26,7 @@ Object {
 
 exports[`3- fetchedAct 1`] = `
 Object {
+  "fbSupport": "pending",
   "filter": null,
   "hasMore": false,
   "list": Array [
@@ -94,6 +97,7 @@ Object {
 
 exports[`4- fetchedAct 1`] = `
 Object {
+  "fbSupport": "pending",
   "filter": null,
   "hasMore": false,
   "list": Array [
@@ -218,6 +222,7 @@ Object {
 
 exports[`5- markAct 1`] = `
 Object {
+  "fbSupport": "pending",
   "filter": null,
   "hasMore": false,
   "list": Array [
@@ -342,6 +347,7 @@ Object {
 
 exports[`6- markAct 1`] = `
 Object {
+  "fbSupport": "pending",
   "filter": null,
   "hasMore": false,
   "list": Array [
@@ -466,6 +472,7 @@ Object {
 
 exports[`8- setFilterAct 1`] = `
 Object {
+  "fbSupport": "pending",
   "filter": "rvotes",
   "hasMore": true,
   "list": Array [],
@@ -477,6 +484,7 @@ Object {
 
 exports[`9- setUnreadCountAct 1`] = `
 Object {
+  "fbSupport": "pending",
   "filter": "rvotes",
   "hasMore": true,
   "list": Array [],
@@ -488,6 +496,7 @@ Object {
 
 exports[`10- logoutAct 1`] = `
 Object {
+  "fbSupport": "pending",
   "filter": null,
   "hasMore": true,
   "list": Array [],

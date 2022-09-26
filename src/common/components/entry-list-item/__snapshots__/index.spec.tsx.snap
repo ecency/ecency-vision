@@ -90,7 +90,7 @@ exports[`(1) Default render 1`] = `
         className="date"
         title="Monday, June 1, 2020 5:53 AM"
       >
-        5 days
+        5d
       </span>
     </div>
     <div
@@ -343,7 +343,7 @@ exports[`(2) Grid view 1`] = `
         className="date"
         title="Monday, June 1, 2020 5:53 AM"
       >
-        5 days
+        5d
       </span>
     </div>
     <div
@@ -620,7 +620,7 @@ exports[`(3) Nsfw 1`] = `
         className="date"
         title="Monday, June 1, 2020 5:53 AM"
       >
-        5 days
+        5d
       </span>
     </div>
     <div
@@ -660,9 +660,7 @@ exports[`(3) Nsfw 1`] = `
           Reveal this post
         </a>
          
-         
         or
-         
          
         <span
           dangerouslySetInnerHTML={
@@ -904,7 +902,7 @@ exports[`(4) Nsfw with active user 1`] = `
         className="date"
         title="Monday, June 1, 2020 5:53 AM"
       >
-        5 days
+        5d
       </span>
     </div>
     <div
@@ -944,9 +942,7 @@ exports[`(4) Nsfw with active user 1`] = `
           Reveal this post
         </a>
          
-         
         or
-         
          
         adjust your
          
@@ -1187,7 +1183,7 @@ exports[`(5) Nsfw but allowed 1`] = `
         className="date"
         title="Monday, June 1, 2020 5:53 AM"
       >
-        5 days
+        5d
       </span>
     </div>
     <div
@@ -1497,7 +1493,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
         className="date"
         title="Wednesday, March 24, 2021 4:14 PM"
       >
-        10 months
+        10M
       </span>
     </div>
     <div

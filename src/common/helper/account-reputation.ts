@@ -1,36 +1,36 @@
 const isHumanReadable = (input: number): boolean => {
-    return Math.abs(input) > 0 && Math.abs(input) <= 100;
-}
+  return Math.abs(input) > 0 && Math.abs(input) <= 100;
+};
 
 export default (input: string | number): number => {
-    if (typeof input === 'number' && isHumanReadable(input)) {
-        return Math.floor(input);
+  if (typeof input === "number" && isHumanReadable(input)) {
+    return Math.floor(input);
+  }
+
+  if (typeof input === "string") {
+    input = Number(input);
+
+    if (isHumanReadable(input)) {
+      return Math.floor(input);
     }
+  }
 
-    if (typeof input === 'string') {
-        input = Number(input);
+  if (input === 0) {
+    return 25;
+  }
 
-        if (isHumanReadable(input)) {
-            return Math.floor(input);
-        }
-    }
+  let neg = false;
 
-    if (input === 0) {
-        return 25;
-    }
+  if (input < 0) neg = true;
 
-    let neg = false;
+  let reputationLevel = Math.log10(Math.abs(input));
+  reputationLevel = Math.max(reputationLevel - 9, 0);
 
-    if (input < 0) neg = true;
+  if (reputationLevel < 0) reputationLevel = 0;
 
-    let reputationLevel = Math.log10(Math.abs(input));
-    reputationLevel = Math.max(reputationLevel - 9, 0);
+  if (neg) reputationLevel *= -1;
 
-    if (reputationLevel < 0) reputationLevel = 0;
+  reputationLevel = reputationLevel * 9 + 25;
 
-    if (neg) reputationLevel *= -1;
-
-    reputationLevel = reputationLevel * 9 + 25;
-
-    return Math.floor(reputationLevel);
+  return Math.floor(reputationLevel);
 };

@@ -80,6 +80,8 @@ $tooltip-max-width: 380px;
   @import "bootstrap/scss/progress";
   @import "bootstrap/scss/card";
   @import "bootstrap/scss/tooltip";
+  @import "bootstrap/scss/list-group";
+  @import "bootstrap/scss/badge";
 
   background: $white;
   color: lighten($charcoal-grey, 10);

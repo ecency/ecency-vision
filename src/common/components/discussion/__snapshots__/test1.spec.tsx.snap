@@ -3,6 +3,7 @@
 exports[`(1) Full render with active user 1`] = `
 <div
   className="discussion"
+  id="discussion"
 >
   <div
     className="discussion-header"
@@ -214,8 +215,9 @@ exports[`(1) Full render with active user 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn no-data"
-                title="No Votes"
+                className="inner-btn"
+                onClick={[Function]}
+                title=" Votes"
               >
                 <svg
                   fill="currentColor"
@@ -230,7 +232,6 @@ exports[`(1) Full render with active user 1`] = `
                   />
                 </svg>
                  
-                0
               </span>
             </div>
             <a
@@ -392,8 +393,9 @@ exports[`(1) Full render with active user 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn no-data"
-                title="No Votes"
+                className="inner-btn"
+                onClick={[Function]}
+                title=" Votes"
               >
                 <svg
                   fill="currentColor"
@@ -408,7 +410,6 @@ exports[`(1) Full render with active user 1`] = `
                   />
                 </svg>
                  
-                0
               </span>
             </div>
             <a
@@ -572,8 +573,9 @@ exports[`(1) Full render with active user 1`] = `
                   className="entry-votes notranslate"
                 >
                   <span
-                    className="inner-btn no-data"
-                    title="No Votes"
+                    className="inner-btn"
+                    onClick={[Function]}
+                    title=" Votes"
                   >
                     <svg
                       fill="currentColor"
@@ -588,7 +590,6 @@ exports[`(1) Full render with active user 1`] = `
                       />
                     </svg>
                      
-                    0
                   </span>
                 </div>
                 <a
@@ -932,8 +933,9 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn no-data"
-                title="No Votes"
+                className="inner-btn"
+                onClick={[Function]}
+                title=" Votes"
               >
                 <svg
                   fill="currentColor"
@@ -948,7 +950,6 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                   />
                 </svg>
                  
-                0
               </span>
             </div>
             <a
@@ -1720,6 +1721,7 @@ exports[`(2) Full render with no active user 1`] = `
 exports[`(3) With selected item 1`] = `
 <div
   className="discussion"
+  id="discussion"
 >
   <div
     className="discussion-header"
@@ -1931,8 +1933,9 @@ exports[`(3) With selected item 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn no-data"
-                title="No Votes"
+                className="inner-btn"
+                onClick={[Function]}
+                title=" Votes"
               >
                 <svg
                   fill="currentColor"
@@ -1947,7 +1950,6 @@ exports[`(3) With selected item 1`] = `
                   />
                 </svg>
                  
-                0
               </span>
             </div>
             <a
@@ -2109,8 +2111,9 @@ exports[`(3) With selected item 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn no-data"
-                title="No Votes"
+                className="inner-btn"
+                onClick={[Function]}
+                title=" Votes"
               >
                 <svg
                   fill="currentColor"
@@ -2125,7 +2128,6 @@ exports[`(3) With selected item 1`] = `
                   />
                 </svg>
                  
-                0
               </span>
             </div>
             <a
@@ -2289,8 +2291,9 @@ exports[`(3) With selected item 1`] = `
                   className="entry-votes notranslate"
                 >
                   <span
-                    className="inner-btn no-data"
-                    title="No Votes"
+                    className="inner-btn"
+                    onClick={[Function]}
+                    title=" Votes"
                   >
                     <svg
                       fill="currentColor"
@@ -2305,7 +2308,6 @@ exports[`(3) With selected item 1`] = `
                       />
                     </svg>
                      
-                    0
                   </span>
                 </div>
                 <a
@@ -2649,8 +2651,9 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn no-data"
-                title="No Votes"
+                className="inner-btn"
+                onClick={[Function]}
+                title=" Votes"
               >
                 <svg
                   fill="currentColor"
@@ -2665,7 +2668,6 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                   />
                 </svg>
                  
-                0
               </span>
             </div>
             <a
@@ -3401,6 +3403,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
 exports[`(4) Show mute button, muted comment 1`] = `
 <div
   className="discussion"
+  id="discussion"
 >
   <div
     className="discussion-header"
@@ -3625,8 +3628,9 @@ exports[`(4) Show mute button, muted comment 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn no-data"
-                title="No Votes"
+                className="inner-btn"
+                onClick={[Function]}
+                title=" Votes"
               >
                 <svg
                   fill="currentColor"
@@ -3641,7 +3645,6 @@ exports[`(4) Show mute button, muted comment 1`] = `
                   />
                 </svg>
                  
-                0
               </span>
             </div>
             <a
@@ -3810,8 +3813,9 @@ exports[`(4) Show mute button, muted comment 1`] = `
               className="entry-votes notranslate"
             >
               <span
-                className="inner-btn no-data"
-                title="No Votes"
+                className="inner-btn"
+                onClick={[Function]}
+                title=" Votes"
               >
                 <svg
                   fill="currentColor"
@@ -3826,7 +3830,6 @@ exports[`(4) Show mute button, muted comment 1`] = `
                   />
                 </svg>
                  
-                0
               </span>
             </div>
             <a

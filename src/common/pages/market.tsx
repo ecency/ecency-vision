@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavBar } from "../components/navbar";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import { connect } from "react-redux";
-import {
-  pageMapDispatchToProps,
-  pageMapStateToProps,
-  PageProps,
-} from "./common";
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import { ChartStats } from "../components/chart-stats";
 import { HiveBarter } from "../components/hive-barter";
 import {
@@ -16,7 +12,7 @@ import {
   getTradeHistory,
   MarketStatistics,
   OpenOrdersData,
-  OrdersData,
+  OrdersData
 } from "../api/hive";
 import { FullAccount } from "../store/accounts/types";
 import { Orders } from "../components/orders";
@@ -58,7 +54,7 @@ const MarketPage = (props: PageProps) => {
       data &&
       setBidValues({
         lowest: parseFloat(data!.lowest_ask),
-        highest: parseFloat(data!.highest_bid),
+        highest: parseFloat(data!.highest_bid)
       });
     if (!dataLoadedFirstTime && data) {
       setDataLoadedFirstTime(true);
@@ -97,20 +93,20 @@ const MarketPage = (props: PageProps) => {
     NavBarElectron({
       ...props,
       reloadFn: () => {},
-      reloading: false,
+      reloading: false
     })
   ) : (
     <NavBar {...props} />
   );
   const metaProps = {
-      title: _t("market.title"),
-      description: _t("market.description")
+    title: _t("market.title"),
+    description: _t("market.description")
   };
 
   return mounted ? (
     <>
       <Meta {...metaProps} />
-      <Feedback />
+      <Feedback activeUser={props.activeUser} />
       <div className="d-flex justify-content-center">
         <div className="w-sm-75 p-3 p-sm-0">
           <div style={{ marginBottom: "6rem" }}>{navbar}</div>
@@ -123,11 +119,7 @@ const MarketPage = (props: PageProps) => {
           <div className="d-flex justify-content-md-between flex-column">
             <div className="mb-5">
               <h4 className="mb-3">
-                {loading ? (
-                  <Skeleton className="skeleton-loading" />
-                ) : (
-                  _t("market.stock-info")
-                )}
+                {loading ? <Skeleton className="skeleton-loading" /> : _t("market.stock-info")}
               </h4>
               <ChartStats data={data} loading={loading} />
             </div>
@@ -153,9 +145,7 @@ const MarketPage = (props: PageProps) => {
                       <HiveBarter
                         type={1}
                         available={
-                          (activeUser &&
-                            (activeUser.data as FullAccount).hbd_balance) ||
-                          ""
+                          (activeUser && (activeUser.data as FullAccount).hbd_balance) || ""
                         }
                         peakValue={parseFloat(bidValues.lowest)}
                         basePeakValue={data ? parseFloat(data!.lowest_ask) : 0}
@@ -174,11 +164,7 @@ const MarketPage = (props: PageProps) => {
                         type={2}
                         activeUser={activeUser}
                         global={global}
-                        available={
-                          (activeUser &&
-                            (activeUser.data as FullAccount).balance) ||
-                          ""
-                        }
+                        available={(activeUser && (activeUser.data as FullAccount).balance) || ""}
                         peakValue={parseFloat(bidValues.highest)}
                         basePeakValue={data ? parseFloat(data!.highest_bid) : 0}
                         loading={loading}
@@ -203,7 +189,7 @@ const MarketPage = (props: PageProps) => {
                           onClick={() => setExchangeType(1)}
                           style={{
                             borderTopRightRadius: "0px !important",
-                            borderBottomRightRadius: "0px !important",
+                            borderBottomRightRadius: "0px !important"
                           }}
                         >
                           {_t("market.buy")}
@@ -214,7 +200,7 @@ const MarketPage = (props: PageProps) => {
                           onClick={() => setExchangeType(2)}
                           style={{
                             borderTopLeftRadius: "0px !important",
-                            borderBottomLeftRadius: "0px !important",
+                            borderBottomLeftRadius: "0px !important"
                           }}
                         >
                           {_t("market.sell")}
@@ -228,9 +214,7 @@ const MarketPage = (props: PageProps) => {
                         global={global}
                         type={1}
                         available={
-                          (activeUser &&
-                            (activeUser.data as FullAccount).hbd_balance) ||
-                          ""
+                          (activeUser && (activeUser.data as FullAccount).hbd_balance) || ""
                         }
                         peakValue={parseFloat(bidValues.lowest)}
                         basePeakValue={data ? parseFloat(data!.lowest_ask) : 0}
@@ -240,7 +224,7 @@ const MarketPage = (props: PageProps) => {
                         onClickPeakValue={() =>
                           setBidValues({
                             ...bidValues,
-                            lowest: data ? parseFloat(data!.lowest_ask) : 0,
+                            lowest: data ? parseFloat(data!.lowest_ask) : 0
                           })
                         }
                       />
@@ -249,11 +233,7 @@ const MarketPage = (props: PageProps) => {
                         activeUser={activeUser}
                         global={global}
                         type={2}
-                        available={
-                          (activeUser &&
-                            (activeUser.data as FullAccount).balance) ||
-                          ""
-                        }
+                        available={(activeUser && (activeUser.data as FullAccount).balance) || ""}
                         peakValue={parseFloat(bidValues.highest)}
                         basePeakValue={data ? parseFloat(data!.highest_bid) : 0}
                         loading={loading}
@@ -262,7 +242,7 @@ const MarketPage = (props: PageProps) => {
                         onClickPeakValue={() =>
                           setBidValues({
                             ...bidValues,
-                            highest: data ? parseFloat(data!.highest_bid) : 0,
+                            highest: data ? parseFloat(data!.highest_bid) : 0
                           })
                         }
                       />
@@ -284,9 +264,7 @@ const MarketPage = (props: PageProps) => {
                   )}
                   <div className="col-12 col-xl-5 px-0">
                     <Orders
-                      onPriceClick={(value) =>
-                        setBidValues({ highest: value, lowest: value })
-                      }
+                      onPriceClick={(value) => setBidValues({ highest: value, lowest: value })}
                       type={1}
                       loading={loadingTablesData}
                       data={tablesData ? tablesData!.bids : []}
@@ -294,9 +272,7 @@ const MarketPage = (props: PageProps) => {
                   </div>
                   <div className="col-12 col-xl-5 px-0 px-sm-auto mt-5 mt-lg-0">
                     <Orders
-                      onPriceClick={(value) =>
-                        setBidValues({ lowest: value, highest: value })
-                      }
+                      onPriceClick={(value) => setBidValues({ lowest: value, highest: value })}
                       type={2}
                       loading={loadingTablesData}
                       data={tablesData ? tablesData!.asks : []}
@@ -321,7 +297,4 @@ const MarketPage = (props: PageProps) => {
   );
 };
 
-export default connect(
-  pageMapStateToProps,
-  pageMapDispatchToProps
-)(MarketPage as any);
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(MarketPage as any);

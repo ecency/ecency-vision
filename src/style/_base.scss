@@ -199,9 +199,6 @@ a[target="_blank"] {
 
 // Additional libraries
 
-// Chart lib
-@import "chartist/dist/scss/chartist";
-
 // Date picker
 @import "~react-datetime/css/react-datetime.css";
 // dark theme
@@ -282,4 +279,45 @@ a[target="_blank"] {
     }
     border-color: $pagination-disabled-border-color;
   }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: $dark-sky-blue;
+  @include themify(day) {
+    background-color: $dark-sky-blue;
+  }
+
+  @include themify(night) {
+    background-color: $dark-sky-blue;
+  }
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+
+  @include themify(day) {
+    background-color: $dusk-blue;
+  }
+
+  @include themify(night) {
+    background-color: $dusk-blue;
+  }
+}
+
+.text-underline {
+  text-decoration: underline;
 }

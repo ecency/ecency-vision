@@ -56,21 +56,18 @@ exports[`(1) Default render 1`] = `
       <div
         className="section-content"
       >
-        <p>
-          This is a collective curation community formed by @appreciator, @rocky1 and @upmewhale. You can post your genuine and creative content in this community to get more support.
-        </p>
-        <p>
-          You can post in languages other than English.
-        </p>
-        <p>
-          There are not many restrictions but just few simple ones and we expect you to adhere to them
-        </p>
-        <p>
-          Join our discord group to keep yourself updated:
-        </p>
-        <p>
-          https://discord.gg/n98Kpmm
-        </p>
+        <div
+          className="preview-body markdown-view"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<p><span>This is a collective curation community formed by <a class=\\"markdown-author-link\\" data-author=\\"appreciator\\">@appreciator</a>, <a class=\\"markdown-author-link\\" data-author=\\"rocky1\\">@rocky1</a> and <a class=\\"markdown-author-link\\" data-author=\\"upmewhale\\">@upmewhale</a>. You can post your genuine and creative content in this community to get more support.</span></p>
+<p>You can post in languages other than English.</p>
+<p>There are not many restrictions but just few simple ones and we expect you to adhere to them</p>
+<p>Join our discord group to keep yourself updated:<br />
+<a class=\\"markdown-external-link\\" data-href=\\"https://discord.gg/n98Kpmm\\">https://discord.gg/n98Kpmm</a></p>",
+            }
+          }
+        />
       </div>
     </div>
     <div
@@ -208,21 +205,18 @@ exports[`(2) Should show edit buttons with nsfw label 1`] = `
       <div
         className="section-content"
       >
-        <p>
-          This is a collective curation community formed by @appreciator, @rocky1 and @upmewhale. You can post your genuine and creative content in this community to get more support.
-        </p>
-        <p>
-          You can post in languages other than English.
-        </p>
-        <p>
-          There are not many restrictions but just few simple ones and we expect you to adhere to them
-        </p>
-        <p>
-          Join our discord group to keep yourself updated:
-        </p>
-        <p>
-          https://discord.gg/n98Kpmm
-        </p>
+        <div
+          className="preview-body markdown-view"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<p><span>This is a collective curation community formed by <a class=\\"markdown-author-link\\" data-author=\\"appreciator\\">@appreciator</a>, <a class=\\"markdown-author-link\\" data-author=\\"rocky1\\">@rocky1</a> and <a class=\\"markdown-author-link\\" data-author=\\"upmewhale\\">@upmewhale</a>. You can post your genuine and creative content in this community to get more support.</span></p>
+<p>You can post in languages other than English.</p>
+<p>There are not many restrictions but just few simple ones and we expect you to adhere to them</p>
+<p>Join our discord group to keep yourself updated:<br />
+<a class=\\"markdown-external-link\\" data-href=\\"https://discord.gg/n98Kpmm\\">https://discord.gg/n98Kpmm</a></p>",
+            }
+          }
+        />
       </div>
     </div>
     <div
@@ -397,21 +391,18 @@ exports[`(3) usePrivate = false 1`] = `
       <div
         className="section-content"
       >
-        <p>
-          This is a collective curation community formed by @appreciator, @rocky1 and @upmewhale. You can post your genuine and creative content in this community to get more support.
-        </p>
-        <p>
-          You can post in languages other than English.
-        </p>
-        <p>
-          There are not many restrictions but just few simple ones and we expect you to adhere to them
-        </p>
-        <p>
-          Join our discord group to keep yourself updated:
-        </p>
-        <p>
-          https://discord.gg/n98Kpmm
-        </p>
+        <div
+          className="preview-body markdown-view"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<p><span>This is a collective curation community formed by <a class=\\"markdown-author-link\\" data-author=\\"appreciator\\">@appreciator</a>, <a class=\\"markdown-author-link\\" data-author=\\"rocky1\\">@rocky1</a> and <a class=\\"markdown-author-link\\" data-author=\\"upmewhale\\">@upmewhale</a>. You can post your genuine and creative content in this community to get more support.</span></p>
+<p>You can post in languages other than English.</p>
+<p>There are not many restrictions but just few simple ones and we expect you to adhere to them</p>
+<p>Join our discord group to keep yourself updated:<br />
+<a class=\\"markdown-external-link\\" data-href=\\"https://discord.gg/n98Kpmm\\">https://discord.gg/n98Kpmm</a></p>",
+            }
+          }
+        />
       </div>
     </div>
     <div

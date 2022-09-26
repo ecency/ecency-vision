@@ -6,7 +6,7 @@ exports[`(2) Less than 3 entries. Should render null 1`] = `null`;
 
 exports[`(3) Should render entries 1`] = `
 <div
-  className="similar-entries-list"
+  className="similar-entries-list "
 >
   <div
     className="similar-entries-list-header"

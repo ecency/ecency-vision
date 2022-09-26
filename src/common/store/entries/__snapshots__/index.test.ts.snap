@@ -7,12 +7,14 @@ Object {
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "__promoted__": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
 }
 `;
@@ -24,18 +26,21 @@ Object {
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "__promoted__": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "hot": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": true,
+    "sid": "",
   },
 }
 `;
@@ -47,24 +52,28 @@ Object {
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "__promoted__": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "hot": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": true,
+    "sid": "",
   },
   "trending-bitcoin": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": true,
+    "sid": "",
   },
 }
 `;
@@ -76,24 +85,28 @@ Object {
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "__promoted__": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "hot": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": true,
+    "sid": "",
   },
   "trending-bitcoin": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": true,
+    "sid": "",
   },
 }
 `;
@@ -105,24 +118,28 @@ Object {
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "__promoted__": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "hot": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": true,
+    "sid": "",
   },
   "trending-bitcoin": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": true,
+    "sid": "",
   },
 }
 `;
@@ -134,24 +151,28 @@ Object {
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "__promoted__": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "hot": Object {
     "entries": Array [],
     "error": "fetch error",
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "trending-bitcoin": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": true,
+    "sid": "",
   },
 }
 `;
@@ -163,24 +184,28 @@ Object {
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "__promoted__": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "hot": Object {
     "entries": Array [],
     "error": "fetch error",
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "trending-bitcoin": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": true,
+    "sid": "",
   },
 }
 `;
@@ -192,18 +217,21 @@ Object {
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "__promoted__": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "hot": Object {
     "entries": Array [],
     "error": "fetch error",
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "trending-bitcoin": Object {
     "entries": Array [
@@ -229,8 +257,9 @@ Object {
       },
     ],
     "error": null,
-    "hasMore": true,
+    "hasMore": undefined,
     "loading": false,
+    "sid": true,
   },
 }
 `;
@@ -242,18 +271,21 @@ Object {
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "__promoted__": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "hot": Object {
     "entries": Array [],
     "error": "fetch error",
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "trending-bitcoin": Object {
     "entries": Array [
@@ -279,8 +311,9 @@ Object {
       },
     ],
     "error": null,
-    "hasMore": true,
+    "hasMore": undefined,
     "loading": true,
+    "sid": true,
   },
 }
 `;
@@ -292,18 +325,21 @@ Object {
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "__promoted__": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "hot": Object {
     "entries": Array [],
     "error": "fetch error",
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "trending-bitcoin": Object {
     "entries": Array [
@@ -334,8 +370,9 @@ Object {
       },
     ],
     "error": null,
-    "hasMore": false,
+    "hasMore": undefined,
     "loading": false,
+    "sid": false,
   },
 }
 `;
@@ -347,24 +384,28 @@ Object {
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "__promoted__": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "created-bitcoin": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": true,
+    "sid": "",
   },
   "hot": Object {
     "entries": Array [],
     "error": "fetch error",
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "trending-bitcoin": Object {
     "entries": Array [
@@ -395,8 +436,9 @@ Object {
       },
     ],
     "error": null,
-    "hasMore": false,
+    "hasMore": undefined,
     "loading": false,
+    "sid": false,
   },
 }
 `;
@@ -408,12 +450,14 @@ Object {
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "__promoted__": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "created-bitcoin": Object {
     "entries": Array [
@@ -424,14 +468,16 @@ Object {
       },
     ],
     "error": null,
-    "hasMore": false,
+    "hasMore": undefined,
     "loading": false,
+    "sid": false,
   },
   "hot": Object {
     "entries": Array [],
     "error": "fetch error",
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "trending-bitcoin": Object {
     "entries": Array [
@@ -462,8 +508,9 @@ Object {
       },
     ],
     "error": null,
-    "hasMore": false,
+    "hasMore": undefined,
     "loading": false,
+    "sid": false,
   },
 }
 `;
@@ -475,12 +522,14 @@ Object {
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "__promoted__": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "created-bitcoin": Object {
     "entries": Array [
@@ -491,14 +540,15 @@ Object {
       },
     ],
     "error": null,
-    "hasMore": false,
     "loading": false,
+    "sid": false,
   },
   "hot": Object {
     "entries": Array [],
     "error": "fetch error",
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "trending-bitcoin": Object {
     "entries": Array [
@@ -529,8 +579,8 @@ Object {
       },
     ],
     "error": null,
-    "hasMore": false,
     "loading": false,
+    "sid": false,
   },
 }
 `;
@@ -542,12 +592,14 @@ Object {
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "__promoted__": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "created-bitcoin": Object {
     "entries": Array [
@@ -558,20 +610,22 @@ Object {
       },
     ],
     "error": null,
-    "hasMore": false,
     "loading": false,
+    "sid": false,
   },
   "hot": Object {
     "entries": Array [],
     "error": "fetch error",
     "hasMore": false,
     "loading": false,
+    "sid": "",
   },
   "trending-bitcoin": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
     "loading": false,
+    "sid": false,
   },
 }
 `;

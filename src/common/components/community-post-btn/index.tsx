@@ -1,34 +1,34 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
-import {History} from "history";
+import { History } from "history";
 
-import {Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
-import {Community} from "../../store/communities/types";
+import { Community } from "../../store/communities/types";
 
-import {_t} from "../../i18n";
+import { _t } from "../../i18n";
 
 interface Props {
-    history: History;
-    community: Community;
+  history: History;
+  community: Community;
 }
 
 export class CommunityPostBtn extends Component<Props> {
-    clicked = () => {
-        const {community, history} = this.props;
-        history.push(`/submit?com=${community.name}`);
-    }
+  clicked = () => {
+    const { community, history } = this.props;
+    history.push(`/submit?com=${community.name}`);
+  };
 
-    render() {
-        return <Button onClick={this.clicked}>{_t("community.post")}</Button>
-    }
+  render() {
+    return <Button onClick={this.clicked}>{_t("community.post")}</Button>;
+  }
 }
 
 export default (p: Props) => {
-    const props: Props = {
-        history: p.history,
-        community: p.community
-    }
+  const props: Props = {
+    history: p.history,
+    community: p.community
+  };
 
-    return <CommunityPostBtn {...props} />
-}
+  return <CommunityPostBtn {...props} />;
+};

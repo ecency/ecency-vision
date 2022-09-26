@@ -11,17 +11,15 @@ const props = {
     {
       label: "Trending",
       href: "/trending",
-      active: true,
+      selected: true
     },
     {
       label: "Hot",
-      href: "/hot",
-    },
+      href: "/hot"
+    }
   ],
-  showMenu: () => {
-  },
-  hideMenu: () => {
-  },
+  showMenu: () => {},
+  hideMenu: () => {}
 };
 
 const component = renderer.create(<MyDropDown {...props} float="left" />);

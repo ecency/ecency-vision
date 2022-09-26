@@ -93,40 +93,15 @@ exports[`(2) Render with loaded data 1`] = `
     className="stats"
   >
     <div
-      className="stat"
-    >
-      <span
-        title="Post Count"
-      >
-        <svg
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M7,5H21V7H7V5M7,13V11H21V13H7M4,4.5A1.5,1.5 0 0,1 5.5,6A1.5,1.5 0 0,1 4,7.5A1.5,1.5 0 0,1 2.5,6A1.5,1.5 0 0,1 4,4.5M4,10.5A1.5,1.5 0 0,1 5.5,12A1.5,1.5 0 0,1 4,13.5A1.5,1.5 0 0,1 2.5,12A1.5,1.5 0 0,1 4,10.5M7,19V17H21V19H7M4,16.5A1.5,1.5 0 0,1 5.5,18A1.5,1.5 0 0,1 4,19.5A1.5,1.5 0 0,1 2.5,18A1.5,1.5 0 0,1 4,16.5Z"
-            fill="currentColor"
-          />
-        </svg>
-         
-        261
-      </span>
-    </div>
-    <div
       className="stat followers"
     >
       <span
         onClick={[Function]}
         title="Followers"
       >
-        <svg
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
-            fill="currentColor"
-          />
-        </svg>
-         
         232
+         
+        Followers
       </span>
     </div>
     <div
@@ -136,16 +111,9 @@ exports[`(2) Render with loaded data 1`] = `
         onClick={[Function]}
         title="Following"
       >
-        <svg
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z"
-            fill="currentColor"
-          />
-        </svg>
-         
         27
+         
+        Following
       </span>
     </div>
   </div>
@@ -218,6 +186,9 @@ exports[`(2) Render with loaded data 1`] = `
       </a>
     </div>
   </div>
+  <div
+    className="btn-controls"
+  />
 </div>
 `;
 
@@ -288,40 +259,15 @@ exports[`(3) Should show profile edits 1`] = `
     className="stats"
   >
     <div
-      className="stat"
-    >
-      <span
-        title="Post Count"
-      >
-        <svg
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M7,5H21V7H7V5M7,13V11H21V13H7M4,4.5A1.5,1.5 0 0,1 5.5,6A1.5,1.5 0 0,1 4,7.5A1.5,1.5 0 0,1 2.5,6A1.5,1.5 0 0,1 4,4.5M4,10.5A1.5,1.5 0 0,1 5.5,12A1.5,1.5 0 0,1 4,13.5A1.5,1.5 0 0,1 2.5,12A1.5,1.5 0 0,1 4,10.5M7,19V17H21V19H7M4,16.5A1.5,1.5 0 0,1 5.5,18A1.5,1.5 0 0,1 4,19.5A1.5,1.5 0 0,1 2.5,18A1.5,1.5 0 0,1 4,16.5Z"
-            fill="currentColor"
-          />
-        </svg>
-         
-        261
-      </span>
-    </div>
-    <div
       className="stat followers"
     >
       <span
         onClick={[Function]}
         title="Followers"
       >
-        <svg
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
-            fill="currentColor"
-          />
-        </svg>
-         
         232
+         
+        Followers
       </span>
     </div>
     <div
@@ -331,16 +277,9 @@ exports[`(3) Should show profile edits 1`] = `
         onClick={[Function]}
         title="Following"
       >
-        <svg
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z"
-            fill="currentColor"
-          />
-        </svg>
-         
         27
+         
+        Following
       </span>
     </div>
   </div>
@@ -416,6 +355,13 @@ exports[`(3) Should show profile edits 1`] = `
   <div
     className="btn-controls"
   >
+    <a
+      className="btn btn-sm btn-primary"
+      href="/@user1/referrals"
+      onClick={[Function]}
+    >
+      Referrals
+    </a>
     <a
       className="btn btn-sm btn-primary"
       href="/witnesses"

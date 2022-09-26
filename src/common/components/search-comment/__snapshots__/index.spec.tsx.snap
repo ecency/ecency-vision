@@ -81,7 +81,7 @@ exports[`(1) Default render 1`] = `
               className="date"
               title="Tuesday, July 7, 2020 4:03 PM"
             >
-              a month
+              1M
             </span>
           </div>
         </div>
@@ -225,7 +225,7 @@ Integration examples to get started: Esteem/
               className="date"
               title="Friday, August 14, 2020 4:57 PM"
             >
-              2 months
+              2M
             </span>
           </div>
         </div>
@@ -376,7 +376,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               className="date"
               title="Wednesday, June 17, 2020 10:44 AM"
             >
-              11 days
+              11d
             </span>
           </div>
         </div>
@@ -517,7 +517,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               className="date"
               title="Friday, July 17, 2020 11:35 AM"
             >
-              a month
+              1M
             </span>
           </div>
         </div>
@@ -663,7 +663,7 @@ We are 5 days away from official release of
               className="date"
               title="Thursday, May 21, 2020 9:50 AM"
             >
-              16 days
+              16d
             </span>
           </div>
         </div>
@@ -809,7 +809,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="date"
               title="Friday, July 10, 2020 4:31 AM"
             >
-              a month
+              1M
             </span>
           </div>
         </div>
@@ -953,7 +953,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="date"
               title="Wednesday, July 22, 2020 3:31 PM"
             >
-              2 months
+              2M
             </span>
           </div>
         </div>
@@ -1098,7 +1098,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="date"
               title="Saturday, August 1, 2020 2:23 PM"
             >
-              2 months
+              2M
             </span>
           </div>
         </div>
@@ -1285,7 +1285,7 @@ exports[`(2) With limit 1`] = `
               className="date"
               title="Tuesday, July 7, 2020 4:03 PM"
             >
-              a month
+              1M
             </span>
           </div>
         </div>
@@ -1429,7 +1429,7 @@ Integration examples to get started: Esteem/
               className="date"
               title="Friday, August 14, 2020 4:57 PM"
             >
-              2 months
+              2M
             </span>
           </div>
         </div>
@@ -1580,7 +1580,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               className="date"
               title="Wednesday, June 17, 2020 10:44 AM"
             >
-              11 days
+              11d
             </span>
           </div>
         </div>
@@ -1721,7 +1721,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               className="date"
               title="Friday, July 17, 2020 11:35 AM"
             >
-              a month
+              1M
             </span>
           </div>
         </div>
@@ -1867,7 +1867,7 @@ We are 5 days away from official release of
               className="date"
               title="Thursday, May 21, 2020 9:50 AM"
             >
-              16 days
+              16d
             </span>
           </div>
         </div>
@@ -2013,7 +2013,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="date"
               title="Friday, July 10, 2020 4:31 AM"
             >
-              a month
+              1M
             </span>
           </div>
         </div>
@@ -2157,7 +2157,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="date"
               title="Wednesday, July 22, 2020 3:31 PM"
             >
-              2 months
+              2M
             </span>
           </div>
         </div>
@@ -2302,7 +2302,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="date"
               title="Saturday, August 1, 2020 2:23 PM"
             >
-              2 months
+              2M
             </span>
           </div>
         </div>
@@ -2499,7 +2499,7 @@ exports[`(3) Hide show more button 1`] = `
               className="date"
               title="Tuesday, July 7, 2020 4:03 PM"
             >
-              a month
+              1M
             </span>
           </div>
         </div>
@@ -2643,7 +2643,7 @@ Integration examples to get started: Esteem/
               className="date"
               title="Friday, August 14, 2020 4:57 PM"
             >
-              2 months
+              2M
             </span>
           </div>
         </div>
@@ -2794,7 +2794,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               className="date"
               title="Wednesday, June 17, 2020 10:44 AM"
             >
-              11 days
+              11d
             </span>
           </div>
         </div>
@@ -2935,7 +2935,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
               className="date"
               title="Friday, July 17, 2020 11:35 AM"
             >
-              a month
+              1M
             </span>
           </div>
         </div>
@@ -3081,7 +3081,7 @@ We are 5 days away from official release of
               className="date"
               title="Thursday, May 21, 2020 9:50 AM"
             >
-              16 days
+              16d
             </span>
           </div>
         </div>
@@ -3227,7 +3227,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="date"
               title="Friday, July 10, 2020 4:31 AM"
             >
-              a month
+              1M
             </span>
           </div>
         </div>
@@ -3371,7 +3371,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="date"
               title="Wednesday, July 22, 2020 3:31 PM"
             >
-              2 months
+              2M
             </span>
           </div>
         </div>
@@ -3516,7 +3516,7 @@ Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com an
               className="date"
               title="Saturday, August 1, 2020 2:23 PM"
             >
-              2 months
+              2M
             </span>
           </div>
         </div>

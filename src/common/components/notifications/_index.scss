@@ -52,6 +52,12 @@
         height: 18px;
         color: $primary;
       }
+
+      .settings {
+        .custom-control-label {
+          cursor: pointer;
+        }
+      }
     }
   }
 
@@ -94,10 +100,15 @@
       @include clearfix();
       cursor: default;
       font-size: 90%;
-
+      border-radius: 0%;
+      
       &.not-read {
         @include themify(day) {
           background: $duck-egg-blue;
+        }
+
+        &:hover {
+          background: $pastel-blue;
         }
 
         @include themify(night) {
@@ -117,6 +128,8 @@
           padding: 14px 40px 15px 30px;
         }
 
+
+        // for unread notifications.
         .item-control {
           align-items: center;
           display: flex;
@@ -131,12 +144,17 @@
 
           .mark-read {
             background: $dark-sky-blue;
-            border-radius: 50%;
+            border-radius: 50%;  
             cursor: pointer;
             height: 4px;
             margin-left: 5px;
             width: 4px;
           }
+        }
+
+
+        .item-control-deck {
+          width: 16px;
         }
 
         .source {
@@ -145,7 +163,6 @@
           margin-right: 10px;
           width: 40px;
         }
-
         .item-content {
           float: left;
           width: calc(100% - 94px);
@@ -164,10 +181,6 @@
             a {
               color: $pinkish-grey;
             }
-          }
-
-          .first-line,
-          .second-line {
           }
 
           .first-line {
@@ -190,9 +203,9 @@
           }
 
           .post-link {
-            display: inline-block;
-            font-weight: 500;
-            max-width: 98%;
+            display: block;
+            font-weight: 500; 
+            max-width: 140%;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;

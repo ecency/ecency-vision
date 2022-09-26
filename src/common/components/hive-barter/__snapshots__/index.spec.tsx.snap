@@ -11,8 +11,7 @@ exports[`(1) Buying render 1`] = `
       className="mb-0"
     >
       Buy
-       
-      HIVE
+       HIVE
     </h3>
     <div>
       <small
@@ -145,8 +144,7 @@ exports[`(1) Selling render 1`] = `
       className="mb-0"
     >
       Sell
-       
-      HIVE
+       HIVE
     </h3>
     <div>
       <small
