@@ -22,7 +22,6 @@ export class NotificationsWebSocket {
 
   private static getBody(data: WsNotification) {
     const { source } = data;
-    console.log(data);
     switch (data.type) {
       case "vote":
         return _t("notification.voted", { source });
