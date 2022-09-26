@@ -30,7 +30,7 @@ export interface WsMentionNotification extends BaseWsNotification {
 }
 
 export interface WsFavoriteNotification extends BaseWsNotification {
-  type: "favorite";
+  type: "favorites";
   extra: {
     permlink: string;
     is_post: 0 | 1;

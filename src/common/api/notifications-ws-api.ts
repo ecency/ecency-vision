@@ -22,7 +22,7 @@ export class NotificationsWebSocket {
 
   private static getBody(data: WsNotification) {
     const { source } = data;
-
+    console.log(data);
     switch (data.type) {
       case "vote":
         return _t("notification.voted", { source });
@@ -30,7 +30,7 @@ export class NotificationsWebSocket {
         return data.extra.is_post === 1
           ? _t("notification.mention-post", { source })
           : _t("notification.mention-comment", { source });
-      case "favorite":
+      case "favorites":
         return _t("notification.favorite", { source });
       case "follow":
         return _t("notification.followed", { source });
