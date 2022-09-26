@@ -1,7 +1,8 @@
 import {b64uEnc} from "../util/b64";
+import {HIVE_SIGNER_APP} from '../../client_config';
 
 export const getAuthUrl = (redir: string = `${window.location.origin}/auth`) => {
-    const app = "ecency.app";
+    const app = HIVE_SIGNER_APP;
     const scope = "vote,comment,delete_comment,comment_options,custom_json,claim_reward_balance,offline";
 
     return `https://hivesigner.com/oauth2/authorize?client_id=${app}&redirect_uri=${encodeURIComponent(
@@ -36,7 +37,7 @@ export const decodeToken = (code: string): HiveSignerMessage | null => {
 export const makeHsCode = async (account: string, signer: (message: string) => Promise<string>): Promise<string> => {
     const timestamp = new Date().getTime() / 1000;
 
-    const messageObj: HiveSignerMessage = {signed_message: {type: 'code', app: "ecency.app"}, authors: [account], timestamp};
+    const messageObj: HiveSignerMessage = {signed_message: {type: 'code', app: HIVE_SIGNER_APP}, authors: [account], timestamp};
 
     const message = JSON.stringify(messageObj);
 
