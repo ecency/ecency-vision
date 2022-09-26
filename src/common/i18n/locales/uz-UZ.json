@@ -431,7 +431,9 @@
     "read-more": "....javoblarni o'qish...",
     "reveal-muted": "Ovozsiz muallif- Izhohni ko'rsatish",
     "reveal-muted-long-description": "Barcha jumladan nojo'ya javoblarni ham ko'rsatish",
-    "reveal": "Izhohni ko'rsatish"
+    "reveal": "Izhohni ko'rsatish",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} mavzular",

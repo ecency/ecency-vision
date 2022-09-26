@@ -431,7 +431,9 @@
     "read-more": "...댓글 더 보기...",
     "reveal-muted": "뮤트된 작성자 - 댓글 공개",
     "reveal-muted-long-description": "불쾌감을 주는 콘텐츠를 포함할 수 있는 댓글을 포함하여 추가 댓글 표시",
-    "reveal": "댓글 보기"
+    "reveal": "댓글 보기",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} 주제",

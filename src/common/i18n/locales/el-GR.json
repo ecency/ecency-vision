@@ -431,7 +431,9 @@
     "read-more": "...διαβάστε περισσότερες απαντήσεις...",
     "reveal-muted": "Συγγραφέας σε σίγαση - Αποκάλυψη σχολίου",
     "reveal-muted-long-description": "Εμφάνιση πρόσθετων απαντήσεων, συμπεριλαμβανομένων εκείνων που μπορεί να περιέχουν προσβλητικό περιεχόμενο",
-    "reveal": "Εμφάνιση σχολίου"
+    "reveal": "Εμφάνιση σχολίου",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} θέματα",

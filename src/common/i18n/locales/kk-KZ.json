@@ -431,7 +431,9 @@
     "read-more": "...read more replies...",
     "reveal-muted": "Muted author - Reveal comment",
     "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
-    "reveal": "Reveal comment"
+    "reveal": "Reveal comment",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} topics",

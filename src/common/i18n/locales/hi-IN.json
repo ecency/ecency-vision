@@ -431,7 +431,9 @@
     "read-more": "...और पढ़ें जवाब...",
     "reveal-muted": "मौन लेखक - टिप्पणी प्रकट करें",
     "reveal-muted-long-description": "आपत्तिजनक सामग्री वाले उत्तरों सहित अतिरिक्त उत्तर दिखाएं",
-    "reveal": "आलोचना प्रत्यक्ष करो"
+    "reveal": "आलोचना प्रत्यक्ष करो",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} विषय",

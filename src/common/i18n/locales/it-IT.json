@@ -431,7 +431,9 @@
     "read-more": "...leggi più commenti...",
     "reveal-muted": "Autore silenziato - Mostra commento",
     "reveal-muted-long-description": "Mostra altre risposte, incluse quelle che potrebbero contenere espressioni offensive",
-    "reveal": "Mostra commento"
+    "reveal": "Mostra commento",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "Argomenti {{f}}",
