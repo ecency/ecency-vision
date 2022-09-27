@@ -27,7 +27,7 @@ import loadable from "@loadable/component";
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
 const ProfilePage = (props: any) => <ProfileContainer {...props} />;
 
-const CommunityContainer = loadable(() => import("./pages/community"));
+const CommunityContainer = loadable(() => import("./pages/community-functional"));
 const CommunityPage = (props: any) => <CommunityContainer {...props} />;
 
 const DiscoverContainer = loadable(() => import("./pages/discover"));
