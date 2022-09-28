@@ -935,15 +935,15 @@
     "type-fill_collateralized_convert-detail": "ID: <strong>{{request}}</strong> , возвращено: {{returned}}",
     "type-cancel_transfer_from_savings": "Отменить перевод из сайфа",
     "type-cancel_transfer_from_savings-detail": "От: <strong>@ {{from}}</strong><br/> Идентификатор запроса: <strong>{{request}}</strong>",
-    "type-return_vesting_delegation": "Обратные делегации",
+    "type-return_vesting_delegation": "Отозвать делегацию",
     "type-proposal_pay": "Оплата предложения",
     "type-update_proposal_votes": "Голосование за предложение",
     "type-comment_payout_update": "Обновление выплат за контент",
     "type-comment_reward": "Награда за контент",
     "type-recurrent_transfer": "Повторяющийся перевод",
-    "type-recurrent_transfer-detail": "{{executions}} переводов, каждый каждые {{recurrence}} часов",
+    "type-recurrent_transfer-detail": "{{executions}} переводов, каждые {{recurrence}} часов",
     "type-fill_recurrent_transfer": "Произошла повторяющаяся передача",
-    "type-fill_recurrent_transfer-detail": "Оставшиеся переводы: {{remaining_executions}}",
+    "type-fill_recurrent_transfer-detail": "Осталось переводов: {{remaining_executions}}",
     "type-delegate_vesting_shares": "Делегирование",
     "type-collateralized_convert": "Обеспеченная конвертация",
     "type-collateralized_convert-detail": "Идентификатор запроса: <strong>{{request}}</strong>",
@@ -962,7 +962,7 @@
   "delegated-vesting": {
     "title": "Делегированная Hive Сила",
     "undelegate": "отозвать делегирование",
-    "subtitle": " Возврат HP в ожидании делегирования"
+    "subtitle": " Возвращение делегации HP в ожидании"
   },
   "received-vesting": {
     "title": "Полученная Hive Сила"
@@ -970,25 +970,25 @@
   "conversion-requests": {
     "title": "Преобразовать запрос",
     "request-id": "ID запроса",
-    "amount": "Количество",
+    "amount": "Сумма",
     "pending": "В обработке"
   },
   "collateralized-conversion-requests": {
     "title": "Обеспеченные запросы на конвертацию",
-    "request-id": "Идентификатор запроса",
-    "collateral_amount": "Залог",
-    "converted_amount": "Сконвертировано",
+    "request-id": "ID запроса",
+    "collateral_amount": "Обеспечение",
+    "converted_amount": "Конвертировано",
     "pending": "В ожидании"
   },
   "savings-withdraw": {
-    "title": "Вывести из сбережений",
+    "title": "Вывести из сейфа",
     "to": "В"
   },
   "open-orders-list": {
     "title": "Открытые ордера",
     "created": "Создано",
-    "expires": "Срок истекает",
-    "order-id": "ID заказа"
+    "expires": "Истекает",
+    "order-id": "ID ордера"
   },
   "friends": {
     "followers": "Подписчики ({{n}})",
@@ -1025,9 +1025,9 @@
     "gallery": "Галерея",
     "emoji": "Эмодзи",
     "image-error": "Не удалось загрузить изображение.",
-    "image-error-cache": "Не удалось загрузить изображение. Кажется, вы вышли из системы. Попробуйте войти еще раз.",
+    "image-error-cache": "Не удалось загрузить изображение. Похоже, что вы вышли из системы. Попробуйте авторизоваться заново.",
     "image-error-size": "Слишком большой размер изображения. Попробуйте уменьшить его.",
-    "fragments": "Источники"
+    "fragments": "Фрагменты"
   },
   "emoji-picker": {
     "filter-placeholder": "Фильтр",
@@ -1036,7 +1036,7 @@
   },
   "submit": {
     "page-title": "Создать пост",
-    "page-description": "Публикуйте статью, получайте вознаграждение, неизменяемый, децентрализованный контент без цензуры!",
+    "page-description": "Публикуйте статью, получайте вознаграждение, создавайте контент без цензуры, неизменяемый и децентрализованный!",
     "title-placeholder": "Заголовок",
     "body-placeholder": "Поделитесь своей историей...",
     "reward": "Вознаграждение",
@@ -1055,14 +1055,14 @@
     "clear": "Очистить",
     "published": "Пост опубликован",
     "updated": "Пост обновлён",
-    "thumbnail": "Обложка",
+    "thumbnail": "Миниатюра",
     "advanced": "Расширенный режим",
     "beneficiaries": "Бенефициары",
-    "beneficiaries-hint": "Установите бенефициаров чтобы поделиться авторским вознаграждением с другими аккаунтами",
+    "beneficiaries-hint": "Установите бенефициаров, чтобы поделиться авторским вознаграждением с другими аккаунтами",
     "reblog": "Репост",
     "reblog-hint": "Автоматическая публикация контента в вашем блоге",
     "schedule": "Расписание",
-    "schedule-hint": "Автоматическая публикация контента в определенное время",
+    "schedule-hint": "Автоматическая публикация контента в определённое время",
     "scheduled": "Пост запланирован",
     "empty-title-alert": "Введите название поста",
     "empty-tags-alert": "Введите теги поста",
@@ -1074,7 +1074,7 @@
     "placeholder-focus": "Введите тег",
     "placeholder-has-tags": "Добавить ещё",
     "suggestion-header": "Теги",
-    "error-max": "Максимум {{n}} тегов",
+    "error-max": "Максимум тегов:  {{n}}",
     "limited_tags": "Допустимы только 10 тегов, удалите некоторые",
     "limited_length": "Максимальная длина каждого тeга - 24 символа",
     "limited_dash": "Только один дефис в каждом теге",
@@ -1097,12 +1097,12 @@
   "beneficiary-editor": {
     "title": "Бенефициары",
     "btn-label": "Установить бенефициаров",
-    "btn-label-n": "Установить бенефициаров ({{n}})",
+    "btn-label-n": "Установлено бенефициаров: ({{n}})",
     "username": "Пользователь",
     "reward": "Вознаграждение",
     "user-error": "{{n}} не является пользователем.",
     "validation-percentage": "Требуется указать процент.",
-    "validation-username": "Требуется имя пользователя.",
+    "validation-username": "Требуется указать имя пользователя.",
     "user-exists-error": "{{n}} уже в списке"
   },
   "post-scheduler": {
@@ -1114,7 +1114,7 @@
     "voted": "{{source}} проголосовал за ваш пост",
     "mention-post": "{{source}} упомянул вас в посте",
     "mention-comment": "{{source}} упомянул вас в комментарии",
-    "favorite": "{{source}} новый пост",
+    "favorite": "{{source}} опубликовал новый пост",
     "followed": "{{source}} подписался на вас",
     "replied": "{{source}} ответил вам",
     "reblogged": "{{source}} сделал репост вашего поста",
@@ -1139,7 +1139,7 @@
     "favorite-str": "новый пост",
     "followed-str": "подписался на",
     "unfollowed-str": "отписался",
-    "ignored-str": "заглушил",
+    "ignored-str": "заблокировал",
     "reblog-str": "сделал репост вашего поста:",
     "transfer-str": "отправил вам",
     "delegations-str": "делегировано вам",
@@ -1157,8 +1157,8 @@
     "title-stars": "Наиболее активны",
     "title-curators": "Кураторы",
     "title-day": "Лидеры (за день)",
-    "title-week": "Еженедельные лидеры",
-    "title-month": "Ежемесячные лидеры",
+    "title-week": "Лидеры (за неделю)",
+    "title-month": "Лидеры (за месяц)",
     "period-day": "За день",
     "period-week": "За неделю",
     "period-month": "За месяц",
@@ -1177,7 +1177,7 @@
   },
   "search-page": {
     "title": "Поиск",
-    "description": "Находите контент, сообщества и пользователей без цензуры"
+    "description": "Находите контент, сообщества и пользователей"
   },
   "search-comment": {
     "title": "Результаты",
@@ -1195,18 +1195,18 @@
     "category": "Категория",
     "category-placeholder": "категория",
     "tags": "Теги",
-    "tags-placeholder": "теги, разделенные запятыми",
+    "tags-placeholder": "теги, разделённые запятыми",
     "date": "Дата",
-    "date-week": "На прошлой неделе",
-    "date-month": "Последний месяц",
-    "date-year": "В прошлом году",
+    "date-week": "Прошлая неделя",
+    "date-month": "Прошлый месяц",
+    "date-year": "Прошлый год",
     "date-all": "Все",
     "sort": "Сортировка",
     "sort-popularity": "Популярность",
     "sort-relevance": "Релевантность",
     "sort-newest": "Недавние",
     "hide-low": "Скрыть контент с низкой выплатой",
-    "show-more": "показать еще"
+    "show-more": "показать ещё"
   },
   "search-people": {
     "title": "Люди"
@@ -1219,7 +1219,7 @@
   },
   "witnesses": {
     "page-title": "Свидетели",
-    "page-description": "Выбор производителей консенсус-блока",
+    "page-description": "Выбор производителей блоков консенсуса",
     "page-description-long": "Роль свидетелей или производителей блоков в блокчейне Hive заключается в том, чтобы действовать как орган управления сетью. Сообщество выбирает их, чтобы они представляли свой голос, и каждый пользователь может выбрать до 30 свидетелей. 20 ведущих свидетелей создают блоки каждую минуту, в то время как остальные остаются в качестве резервного свидетеля и получают случайный шанс каждую минуту. Эта роль является неотъемлемой частью блокчейна механизма консенсуса и рекомендует участие пользователей для голосования за доверенных свидетелей.",
     "remaining": "<span>Осталось голосов: {{n}}</span> из {{max}}",
     "list-rank": "Рейтинг",
