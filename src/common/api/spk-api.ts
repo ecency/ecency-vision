@@ -273,15 +273,15 @@ export const delegateLarynxByKey = async (
   to: string,
   amount: string
 ) => {
-  return transferSpkGeneralByKey("spkcc_power_grant", from, key, to, +amount * 1000);
+  return transferSpkGeneralByKey("spkcc_power_grant", from, key, to, +amount);
 };
 
 export const delegateLarynxByHs = async (from: string, to: string, amount: string) => {
-  return sendSpkGeneralByHs("spkcc_power_grant", from, to, +amount * 1000);
+  return sendSpkGeneralByHs("spkcc_power_grant", from, to, +amount);
 };
 
 export const delegateLarynxByKc = async (from: string, to: string, amount: string) => {
-  return transferSpkGeneralByKc("spkcc_power_grant", from, to, +amount * 1000);
+  return transferSpkGeneralByKc("spkcc_power_grant", from, to, +amount);
 };
 
 export const claimLarynxRewards = async (from: string): Promise<TransactionConfirmation> => {

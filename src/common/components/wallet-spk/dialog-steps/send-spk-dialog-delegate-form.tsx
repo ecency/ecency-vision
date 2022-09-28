@@ -34,32 +34,25 @@ export const SendSpkDialogDelegateForm = ({
 }: Props) => {
   const selectRef = useRef<any>();
   const [delegatedAlready, setDelegatedAlready] = useState(0);
-  const [_markets, setMarkets] = useState([] as Market[]);
 
   useEffect(() => {
-    if (selectRef.current) {
-      setUsername(selectRef.current.value);
-    }
-    setMarkets([
-      ...markets.filter((item) => item.name == "good-karma.spk"),
-      ...markets.filter((item) => item.name !== "good-karma.spk")
-    ] as Market[]);
+    setUsername("good-karma.spk");
   }, []);
 
   useEffect(() => {
     if (username) {
       setDelegatedAlready(0);
-      fetchNodeDetails(username);
+      fetchUserDetails(activeUser?.username);
     }
   }, [username]);
 
-  const fetchNodeDetails = async (name: string) => {
-    const wallet = await getSpkWallet(name);
-    const totalDelegated = Object.entries(wallet.granted).find(
-      ([name]) => name === activeUser?.username
-    );
-    if (totalDelegated) {
-      setDelegatedAlready(totalDelegated[1] / 1000);
+  const fetchUserDetails = async (name: string | undefined) => {
+    if (name) {
+      const wallet = await getSpkWallet(name);
+      const totalDelegated = Object.entries(wallet.granting).find(([name]) => name === username);
+      if (totalDelegated) {
+        setDelegatedAlready(totalDelegated[1] / 1000);
+      }
     }
   };
 
@@ -95,7 +88,7 @@ export const SendSpkDialogDelegateForm = ({
             value={username}
             onChange={(event: ChangeEvent<any>) => setUsername(event.target.value)}
           >
-            {_markets.map((market) => (
+            {markets.map((market) => (
               <option key={market.name} value={market.name}>
                 {market.status} {market.name}
               </option>
