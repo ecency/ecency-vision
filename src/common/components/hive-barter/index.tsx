@@ -20,6 +20,8 @@ interface Props {
   global: Global;
   onClickPeakValue: (value: any) => void;
   onTransactionSuccess: () => void;
+  prefilledAmount?: any;
+  prefilledTotal?: any;
 }
 
 export const HiveBarter = ({
@@ -32,7 +34,9 @@ export const HiveBarter = ({
   onClickPeakValue,
   activeUser,
   global,
-  onTransactionSuccess
+  onTransactionSuccess,
+  prefilledAmount,
+  prefilledTotal
 }: Props) => {
   const [price, setPrice] = useState(peakValue.toFixed(6));
   const [amount, setAmount] = useState<any>(0.0);
@@ -47,6 +51,15 @@ export const HiveBarter = ({
     }
   }, [peakValue]);
 
+  useEffect(() => {
+    if (prefilledAmount) {
+      setAmountValue((+prefilledAmount).toFixed(3));
+    }
+    if (prefilledTotal) {
+      setTotalValue((+prefilledTotal).toFixed(3));
+    }
+  }, [prefilledAmount, prefilledTotal]);
+
   const fixDecimals = (value: string, decimals: number): string => {
     let splittedValue = value.split(".");
     let valueAfterPoints = splittedValue[1];
@@ -57,6 +70,40 @@ export const HiveBarter = ({
     }
     return value;
   };
+
+  const setTotalValue = (value: any) => {
+    setTotal(isNaN(value) ? 0 : value.includes(".") ? fixDecimals(value, 3) : value);
+    setAmount(
+      isNaN(`${parseFloat(value) / parseFloat(price)}` as any)
+        ? 0
+        : parseFloat(`${parseFloat(value) / parseFloat(price)}`).toFixed(3)
+    );
+  };
+
+  const setAmountValue = (value: any) => {
+    setAmount(value.includes(".") ? fixDecimals(value, 3) : value);
+    let refinedAmount = value ? parseFloat(value) : 0;
+    let total = parseFloat(`${(parseFloat(price) * refinedAmount) as any}`).toFixed(3);
+    setTotal(total);
+  };
+
+  const setPriceValue = (value: any) => {
+    setPrice(value.includes(".") ? fixDecimals(value, 6) : value);
+    let refinedAmount = amount ? parseFloat(amount) : 0;
+    let total = parseFloat(`${(parseFloat(value) * refinedAmount) as any}`).toFixed(3);
+    setTotal(total);
+  };
+
+  const getAvailable = (value: string) => value.split(" ")[0];
+
+  const prefillFromBalance = () => {
+    if (type === 1) {
+      setTotalValue(getAvailable(available));
+    } else if (type === 2) {
+      setAmountValue(getAvailable(available));
+    }
+  };
+
   let totalValue = parseFloat(total);
   const disabled = !(totalValue > 0);
 
@@ -67,7 +114,7 @@ export const HiveBarter = ({
       <div className="d-flex justify-content-between align-items-center">
         <h3 className="mb-0">{type === 1 ? _t("market.buy") : _t("market.sell")} HIVE</h3>
         <div>
-          <small className="d-flex">
+          <small className="d-flex cursor-pointer" onClick={() => prefillFromBalance()}>
             <div className="mr-1 text-primary">{_t("market.available")}:</div>
             <div>{available}</div>
           </small>
@@ -94,12 +141,7 @@ export const HiveBarter = ({
             <Form.Control
               value={price}
               placeholder="0.0"
-              onChange={({ target: { value } }) => {
-                setPrice(value.includes(".") ? fixDecimals(value, 6) : value);
-                let refinedAmount = amount ? parseFloat(amount) : 0;
-                let total = parseFloat(`${(parseFloat(value) * refinedAmount) as any}`).toFixed(3);
-                setTotal(total);
-              }}
+              onChange={(e) => setPriceValue(e.target.value)}
             />
             <InputGroup.Text className="rounded-left">HBD/HIVE</InputGroup.Text>
           </InputGroup>
@@ -111,12 +153,7 @@ export const HiveBarter = ({
             <Form.Control
               placeholder="0.0"
               value={isNaN(amount) ? 0 : amount}
-              onChange={({ target: { value } }) => {
-                setAmount(value.includes(".") ? fixDecimals(value, 3) : value);
-                let refinedAmount = value ? parseFloat(value) : 0;
-                let total = parseFloat(`${(parseFloat(price) * refinedAmount) as any}`).toFixed(3);
-                setTotal(total);
-              }}
+              onChange={(e) => setAmountValue(e.target.value)}
             />
             <InputGroup.Text className="rounded-left">HIVE</InputGroup.Text>
           </InputGroup>
@@ -128,16 +165,7 @@ export const HiveBarter = ({
             <Form.Control
               placeholder="0.0"
               value={isNaN(total) ? 0 : total}
-              onChange={({ target: { value } }) => {
-                setTotal(
-                  isNaN(value as any) ? 0 : value.includes(".") ? fixDecimals(value, 3) : value
-                );
-                setAmount(
-                  isNaN(`${parseFloat(value) / parseFloat(price)}` as any)
-                    ? 0
-                    : parseFloat(`${parseFloat(value) / parseFloat(price)}`).toFixed(3)
-                );
-              }}
+              onChange={(e) => setTotalValue(e.target.value)}
             />
             <InputGroup.Text className="rounded-left">HBD($)</InputGroup.Text>
           </InputGroup>
