@@ -20,12 +20,12 @@
     background: $dark-two;
   }
 
-  .emoji-cat-list {
+  .gif-cat-list {
     // height: 160px;
     height: 320px;
     overflow: auto;
 
-    .emoji-cat {
+    .gif-cat {
       .cat-title {
         font-weight: 500;
         font-size: 14px;
@@ -40,12 +40,12 @@
         }
       }
 
-      .emoji-list {
+      .gif-list {
         @include clearfix();
         display: flex;
         flex-wrap: wrap;
 
-        .emoji {
+        .gifs {
           cursor: pointer;
           font-size: 18px;
           margin: 3px 3px 1px 3px;
