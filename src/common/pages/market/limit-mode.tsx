@@ -21,7 +21,7 @@ import { Orders } from "../../components/orders";
 
 const MarketChart = React.lazy(() => import("../../components/market-chart"));
 
-export const AdvancedMarketMode = (props: PageProps) => {
+export const LimitMarketMode = (props: PageProps) => {
   const [data, setData] = useState<MarketStatistics | null>(null);
   const [loading, setLoading] = useState(false);
   const [mounted, setMounted] = useState(false);

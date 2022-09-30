@@ -1,5 +1,5 @@
 import React from "react";
 
-export const SimpleMode = () => {
+export const SwapMode = () => {
   return <></>;
 };
