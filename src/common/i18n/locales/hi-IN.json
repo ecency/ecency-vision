@@ -404,7 +404,7 @@
     "community-in": "में",
     "post-word-count": "शब्दों:",
     "post-read-time": "पढ़ना:",
-    "post-read-minuites": "min"
+    "post-read-minuites": "मिन"
   },
   "edit-history": {
     "title": "इतिहास संपादित करें",
@@ -432,8 +432,8 @@
     "reveal-muted": "मौन लेखक - टिप्पणी प्रकट करें",
     "reveal-muted-long-description": "आपत्तिजनक सामग्री वाले उत्तरों सहित अतिरिक्त उत्तर दिखाएं",
     "reveal": "आलोचना प्रत्यक्ष करो",
-    "no-conversation": "No conversation yet, be first to reply",
-    "start-conversation": "Start conversation"
+    "no-conversation": "अभी तक कोई बातचीत नहीं हुई है, जवाब देने के लिए पहले बनें",
+    "start-conversation": "चर्चा शुरू करें"
   },
   "community": {
     "page-description": "{{f}} विषय",
@@ -556,15 +556,15 @@
     "section-communities": "समुदाय",
     "section-wallet": "बटुआ",
     "section-settings": "सेटिंग्स",
-    "section-referrals": "Referrals",
+    "section-referrals": "रेफरलस",
     "section-permission": "अनुमति",
     "communities-title": "सदस्यता",
     "create-community": "एक समुदाय बनाएँ",
     "witnesses": "गवाहों",
     "proposals": "प्रस्ताव",
-    "referrals": "Referrals",
-    "go-community": "Community page",
-    "com-mod": "Moderator of these communities"
+    "referrals": "रेफरलस",
+    "go-community": "समुदाय पृष्ठ",
+    "com-mod": "इन समुदायों के मॉडरेटर"
   },
   "profile-info": {
     "joined": "में शामिल हो गए {{n}}",
@@ -604,10 +604,10 @@
     "language": "भाषा",
     "nsfw": "NSFW सामग्री दिखाएं",
     "referral-link": "रेफ़रल लिंक",
-    "theme": "Theme Settings",
-    "theme-system-default": "System Default",
-    "theme-day": "Day mode",
-    "theme-night": "Night mode",
+    "theme": "विषय सेटिंग",
+    "theme-system-default": "सिस्टम निर्धारित",
+    "theme-day": "दिन मोड",
+    "theme-night": "रात्रि मोड",
     "updated": "वरीयता अद्यतन!"
   },
   "wallet": {
@@ -625,9 +625,9 @@
     "hive-power-description": "हाइव पावर प्रभावशाली टोकन हैं जो लंबे समय तक रखने और सामग्री पर मतदान करने के लिए अधिक शक्ति अर्जित करते हैं। एक व्यक्ति जितना अधिक हाइव पावर रखता है, उतना ही वह दूसरे के पुरस्कारों को प्रभावित कर सकता है और सटीक मतदान के लिए पुरस्कार अर्जित कर सकता है। हाइव पावर एचआईवीई टोकन है जिसे 13 सप्ताह में बिना दांव पर लगाया जा सकता है।",
     "hive-power-apr-rate": "हाइव पावर के लिए एपीआर ब्याज दर {{value}}% है",
     "hive-dollars-apr-rate": "एच बी डी($) के लिए APR ब्याज दर {{value}}% है",
-    "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
-    "hive-dollars-apr-when": "Claim in {{value}} days",
-    "hive-dollars-apr-now": "Claim now",
+    "hive-dollars-apr-claim": "पिछले भुगतान के बाद से अनुमानित ब्याज {{value}}:",
+    "hive-dollars-apr-when": "{{value}} दिनों में दावा करें",
+    "hive-dollars-apr-now": "अब दावा करो",
     "hive-power-delegated": "प्रत्यायोजित हाइव पावर",
     "hive-power-received": "हाइव पावर प्राप्त किया",
     "next-power-down-amount": "अगली पावर डाउन राशि",
@@ -636,7 +636,7 @@
     "hive-dollars-description": "हाइव के $ 1.00 के टोकन।",
     "savings": "बचत",
     "savings-description": "शेष 3 दिन की प्रतीक्षा अवधि के अधीन।",
-    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
+    "next-power-down": "अगला पावर डाउन {{time}} है, (~{{amount}}, {{weeks}} सप्ताह शेष)",
     "transfer": "स्थानांतरण",
     "transfer-to-savings": "बचत खाते में स्थांतरण करें",
     "convert": "बदलें",
@@ -648,17 +648,17 @@
     "withdraw-routes": "निकाशी मार्ग",
     "calculating": "गिना जा रहा है",
     "converting-hbd-amount": "हाइव में परिवर्तित हो रहा हैं",
-    "converting-hive-amount": "Converting to HBD",
+    "converting-hive-amount": "एचबीडी में कनवर्ट हो रहा है",
     "withdrawing-amount": "बचत से निकासी",
     "reserved-amount": "बाजार में खुले आदेश के लिए आरक्षित",
     "spk": {
       "claim": {
-        "title": "Claim",
-        "unclaimed-rewards": "Unclaimed rewards"
+        "title": "दावा करें",
+        "unclaimed-rewards": "दावा न किए गए पुरस्कार"
       },
       "delegate": {
-        "title": "Delegate",
-        "subtitle": "Delegate tokens",
+        "title": "प्रतिनिधि",
+        "subtitle": "प्रतिनिधि टोकन",
         "node-operator-placeholder": "Select a node operator",
         "delegated-larynx-power": {
           "title": "Delegated LARYNX Power"
