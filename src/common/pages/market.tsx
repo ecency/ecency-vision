@@ -31,7 +31,7 @@ const MarketPage = (props: PageProps) => {
   const [data, setData] = useState<MarketStatistics | null>(null);
   const [loading, setLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [bidValues, setBidValues] = useState<any>({ lowest: 0, highest: 0 });
+  const [bidValues, setBidValues] = useState<any>({ lowest: 0, highest: 0, total: 0, amount: 0 });
   const [openOrdersdata, setopenOrdersdata] = useState<OpenOrdersData[]>([]);
   const [openOrdersDataLoading, setopenOrdersDataLoading] = useState(false);
   const [tablesData, setTablesData] = useState<OrdersData | null>(null);
@@ -147,6 +147,8 @@ const MarketPage = (props: PageProps) => {
                         available={
                           (activeUser && (activeUser.data as FullAccount).hbd_balance) || ""
                         }
+                        prefilledTotal={bidValues.total}
+                        prefilledAmount={bidValues.amount}
                         peakValue={parseFloat(bidValues.lowest)}
                         basePeakValue={data ? parseFloat(data!.lowest_ask) : 0}
                         loading={loading}
@@ -162,6 +164,8 @@ const MarketPage = (props: PageProps) => {
                     <div className="col-12 col-sm-5 p-0">
                       <HiveBarter
                         type={2}
+                        prefilledTotal={bidValues.total}
+                        prefilledAmount={bidValues.amount}
                         activeUser={activeUser}
                         global={global}
                         available={(activeUser && (activeUser.data as FullAccount).balance) || ""}
@@ -264,7 +268,14 @@ const MarketPage = (props: PageProps) => {
                   )}
                   <div className="col-12 col-xl-5 px-0">
                     <Orders
-                      onPriceClick={(value) => setBidValues({ highest: value, lowest: value })}
+                      onPriceClick={(value) =>
+                        setBidValues({
+                          highest: value.key1,
+                          lowest: value.key1,
+                          total: value.key3,
+                          amount: value.key2
+                        })
+                      }
                       type={1}
                       loading={loadingTablesData}
                       data={tablesData ? tablesData!.bids : []}
@@ -272,7 +283,14 @@ const MarketPage = (props: PageProps) => {
                   </div>
                   <div className="col-12 col-xl-5 px-0 px-sm-auto mt-5 mt-lg-0">
                     <Orders
-                      onPriceClick={(value) => setBidValues({ lowest: value, highest: value })}
+                      onPriceClick={(value) =>
+                        setBidValues({
+                          lowest: value.key1,
+                          highest: value.key1,
+                          total: value.key3,
+                          amount: value.key2
+                        })
+                      }
                       type={2}
                       loading={loadingTablesData}
                       data={tablesData ? tablesData!.asks : []}

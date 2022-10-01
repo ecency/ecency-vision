@@ -23,7 +23,7 @@ interface Props {
   type: 1 | 2 | 3;
   loading: boolean;
   data: OrdersDataItem[] | TradeDataItem[];
-  onPriceClick?: (value: string | number) => void;
+  onPriceClick?: (value: MappedData) => void;
 }
 
 export const Orders = ({ type, loading, data, onPriceClick }: Props) => {
@@ -107,7 +107,7 @@ export const Orders = ({ type, loading, data, onPriceClick }: Props) => {
             <tr
               key={`${item.key1}-${index}`}
               className={type === 1 || type === 2 ? "pointer" : ""}
-              onClick={() => (onPriceClick ? onPriceClick(item.key1) : {})}
+              onClick={() => (onPriceClick ? onPriceClick(item) : {})}
             >
               <td>{item.key1}</td>
               <td
