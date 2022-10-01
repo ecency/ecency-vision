@@ -539,6 +539,8 @@ export const WalletEcency = (props: Props) => {
             activeUser={activeUser!}
             to={isMyPage ? undefined : account.name}
             onHide={toggleTransfer}
+            assetBalance={0}
+            tokens={[]}
           />
         )}
 

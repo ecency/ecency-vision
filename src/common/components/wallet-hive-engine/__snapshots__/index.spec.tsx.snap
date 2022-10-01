@@ -195,6 +195,7 @@ exports[`(2) Render with some hive engine tokens 1`] = `
           >
             <div
               className="entry-header"
+              onClick={[Function]}
             >
               <img
                 alt="PIZZA"
@@ -251,6 +252,7 @@ exports[`(2) Render with some hive engine tokens 1`] = `
           >
             <div
               className="entry-header"
+              onClick={[Function]}
             >
               <img
                 alt="POB"
@@ -447,7 +449,7 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
           <span
             className="reward-type"
           >
-            0.00883586 POB
+            0.008,835,86 POB
           </span>
         </div>
       </div>
@@ -480,6 +482,7 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
           >
             <div
               className="entry-header"
+              onClick={[Function]}
             >
               <img
                 alt="PIZZA"
@@ -536,6 +539,7 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
           >
             <div
               className="entry-header"
+              onClick={[Function]}
             >
               <img
                 alt="POB"

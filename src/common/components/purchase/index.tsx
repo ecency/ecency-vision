@@ -96,6 +96,8 @@ export class Purchase extends BaseComponent<Props, State> {
           amount={`${amount}`}
           to="esteem.app"
           memo="points"
+          assetBalance={0}
+          tokens={[]}
         />
       );
     }

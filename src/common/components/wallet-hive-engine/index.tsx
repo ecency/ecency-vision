@@ -7,12 +7,11 @@ import { OperationGroup, Transactions } from "../../store/transactions/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import BaseComponent from "../base";
-import HiveEngineToken from "../../helper/hive-engine-wallet";
+import HiveEngineToken, { HiveEngineTokenEntryDelta } from "../../helper/hive-engine-wallet";
 import LinearProgress from "../linear-progress";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import WalletMenu from "../wallet-menu";
-
-import Transfer, { TransferMode } from "../transfer-he";
+import Transfer, { TransferMode, TransferAsset } from "../transfer";
 
 import {
   claimRewards,
@@ -33,6 +32,20 @@ import {
 import { error, success } from "../feedback";
 import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
+import DropDown from "../dropdown";
+interface TokenProps {
+  symbol: string;
+  name: "Payment Token";
+  icon: string;
+  precision: number;
+  stakingEnabled: true;
+  delegationEnabled: boolean;
+  balance: number;
+  stake: number;
+  delegationsIn: number;
+  delegationsOut: number;
+  stakedBalance: number;
+}
 
 import { _t } from "../../i18n";
 
@@ -80,6 +93,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     this._isMounted = true;
     this._isMounted && this.fetch();
     this._isMounted && this.fetchUnclaimedRewards();
+    this.modifyTokenValues = this.modifyTokenValues.bind(this);
   }
 
   componentWillUnmount() {
@@ -168,9 +182,26 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       });
   };
 
+  setActiveToken(newToken: HiveEngineToken) {
+    this.setState({ transferAsset: newToken.symbol });
+  }
+
+  modifyTokenValues(delta: HiveEngineTokenEntryDelta) {
+    const { tokens } = this.state;
+    const { symbol, balanceDelta, stakeDelta, delegationsInDelta, delegationsOutDelta } = delta;
+    let newTokens = [...tokens];
+    for (const t of newTokens) {
+      if (t.symbol !== symbol) continue;
+      t.modify(delta);
+      this.setState({ tokens: newTokens });
+      break;
+    }
+  }
+
   render() {
     const { global, dynamicProps, account, activeUser } = this.props;
-    const { rewards, tokens, loading, claiming, claimed } = this.state;
+    const { transfer, transferMode, transferAsset, rewards, tokens, loading, claiming, claimed } =
+      this.state;
     const hasUnclaimedRewards = rewards.length > 0;
     const hasMultipleUnclaimedRewards = rewards.length > 1;
     const isMyPage = activeUser && activeUser.username === account.name;
@@ -282,7 +313,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
                     return (
                       <div className="entry-list-item" key={i}>
-                        <div className="entry-header">
+                        <div className="entry-header" onClick={this.setActiveToken.bind(this, b)}>
                           <img
                             alt={b.symbol}
                             src={imageSrc}
@@ -518,6 +549,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
             asset={this.state.transferAsset!}
             onHide={this.closeTransferDialog}
             assetBalance={this.state.assetBalance}
+            tokens={tokens}
+            modifyTokenValues={this.modifyTokenValues}
           />
         )}
       </div>

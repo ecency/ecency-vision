@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useRef, Component } from "react";
 
 import { PrivateKey, cryptoUtils } from "@hiveio/dhive";
 
@@ -7,7 +7,7 @@ import numeral from "numeral";
 import isEqual from "react-fast-compare";
 
 import { Modal, Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
-
+import HiveEngineToken, { HiveEngineTokenEntryDelta } from "../../helper/hive-engine-wallet";
 import badActors from "@hiveio/hivescript/bad-actors.json";
 
 import { Global } from "../../store/global/types";
@@ -63,6 +63,17 @@ import {
   withdrawVesting,
   withdrawVestingHot,
   withdrawVestingKc,
+  // leprechaun fork code
+  collateralizedConvert,
+  collateralizedConvertHot,
+  collateralizedConvertKc,
+  transferHiveEngineAsset,
+  transferHiveEngineAssetKc,
+  transferHiveEngineAssetHot,
+  cancelWithdrawVesting,
+  cancelWithdrawVestingHot,
+  cancelWithdrawVestingKc,
+  // end of fork code
   formatError
 } from "../../api/operations";
 
@@ -74,6 +85,7 @@ import formattedNumber from "../../util/formatted-number";
 import activeUser from "../../store/active-user";
 import { dateToFullRelative } from "../../helper/parse-date";
 
+// To do: use 'power-up' and 'power-down' for HE assets as well.
 export type TransferMode =
   | "transfer"
   | "transfer-saving"
@@ -82,8 +94,18 @@ export type TransferMode =
   | "power-up"
   | "power-down"
   | "delegate"
-  | "claim-interest";
-export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT";
+  | "claim-interest"
+  | "stake"
+  | "unstake"
+  | "undelegate";
+
+const [HIVE, HP, HBD] = ["HIVE", "HP", "HBD"];
+
+function isBuiltinAsset(asset: string) {
+  return "HIVE,HP,HBD,TP,TEST,TBD".split(/,/).includes(asset);
+}
+
+export type TransferAsset = string;
 
 interface AssetSwitchProps {
   options: TransferAsset[];
@@ -98,8 +120,37 @@ class AssetSwitch extends Component<AssetSwitchProps> {
     onChange(i);
   };
 
+  selectSet = () => {
+    const el: HTMLSelectElement | null = document.getElementById("sel") as HTMLSelectElement | null;
+
+    if (el) {
+      console.log("set value:", el.value);
+      this.setState({ selected: el.value });
+      const { onChange } = this.props;
+      onChange(el.value);
+    } else {
+      console.log("selectSet dne");
+    }
+  };
+
   render() {
-    const { options, selected } = this.props;
+    const { options, selected, onChange } = this.props;
+
+    if (options.length > 4)
+      return (
+        <select
+          id="sel"
+          onChange={(e) => this.selectSet()}
+          className="asset-switch"
+          defaultValue={selected}
+        >
+          {options.map((opt) => (
+            <option key={opt} className={`asset ${selected === opt ? "selected" : ""}`}>
+              {opt}
+            </option>
+          ))}
+        </select>
+      );
 
     return (
       <div className="asset-switch">
@@ -149,7 +200,10 @@ interface Props {
   setSigningKey: (key: string) => void;
   fetchPoints: (username: string, type?: number) => void;
   updateWalletValues: () => void;
+  assetBalance: number;
   onHide: () => void;
+  tokens: HiveEngineToken[];
+  modifyTokenValues?: (delta: HiveEngineTokenEntryDelta) => void;
 }
 
 interface State {
@@ -165,6 +219,15 @@ interface State {
   amountError: string;
   memo: string;
   inProgress: boolean;
+  // HiveEngineToken members
+  precision: number;
+  stakingEnabled?: boolean;
+  delegationEnabled?: boolean;
+  balance: number;
+  stake: number;
+  stakedBalance: number;
+  delegationsIn: number;
+  delegationsOut: number;
 }
 
 const pureState = (props: Props): State => {
@@ -185,6 +248,32 @@ const pureState = (props: Props): State => {
     _toData = props.activeUser.data;
   }
 
+  const { asset } = props;
+  let thisToken = props?.tokens?.find && props.tokens.find((t) => t.symbol === asset);
+  if (!thisToken) {
+    thisToken = new HiveEngineToken({
+      name: asset,
+      icon: "",
+      balance: "0",
+      stake: "0",
+
+      delegationsIn: "0",
+      delegationsOut: "0",
+      symbol: asset,
+      stakingEnabled: true,
+      delegationEnabled: true,
+      precision: asset === "VESTS" ? 6 : 3
+    });
+  }
+  const tokenPrecision = thisToken?.precision ?? 3;
+  const defaultAmount =
+    props.amount ||
+    (tokenPrecision === 0
+      ? "1"
+      : formattedNumber("0." + "0".repeat(tokenPrecision - 1) + "1", {
+          fractionDigits: tokenPrecision
+        }));
+
   return {
     step: 1,
     asset: props.asset,
@@ -193,11 +282,13 @@ const pureState = (props: Props): State => {
     toError: "",
     memoError: "",
     toWarning: "",
-    amount: props.amount || "0.001",
+    amount: props.amount || defaultAmount,
     amountError: "",
     memo: props.memo || "",
     inProgress: false,
-    delegationList: []
+    delegationList: [],
+    ...thisToken,
+    precision: tokenPrecision
   };
 };
 
@@ -221,12 +312,52 @@ export class Transfer extends BaseComponent<Props, State> {
 
   formatNumber = (num: number | string, precision: number) => {
     const format = `0.${"0".repeat(precision)}`;
-
+    if (typeof num === "string") {
+      const stripedNumber = num.replace(/,/g, "");
+      const decimalLocation = stripedNumber.indexOf(".");
+      if (decimalLocation + 1 === 0) {
+        return stripedNumber + "." + "0".repeat(precision);
+      } else if (stripedNumber.length - decimalLocation - 1 < precision) {
+        return stripedNumber + "0".repeat(precision + 1 + decimalLocation - stripedNumber.length);
+      } else {
+        return stripedNumber.slice(0, decimalLocation + precision + 1);
+      }
+    }
     return numeral(num).format(format, Math.floor); // round to floor
   };
 
   assetChanged = (asset: TransferAsset) => {
-    this.stateSet({ asset }, () => {
+    const { amount } = this.state;
+    const { tokens } = this.props;
+    let precision: number = (() => {
+      if (asset === "POINT") {
+        return 3;
+      }
+
+      if (asset === "HIVE") {
+        return 3;
+      }
+
+      if (asset === "HBD") {
+        return 3;
+      }
+
+      if (asset === "HP") {
+        return 3;
+      }
+
+      const tokenInformation = tokens?.find && tokens.find((i) => asset === i.symbol);
+
+      if (tokenInformation) {
+        return tokenInformation.precision || 8;
+      }
+
+      return 0;
+    })() as number;
+    const newAmount = formattedNumber(amount, { fractionDigits: precision });
+    console.log({ newAmount });
+
+    this.stateSet({ asset, amount: newAmount, precision }, () => {
       this.checkAmount();
     });
   };
@@ -329,7 +460,7 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   checkAmount = () => {
-    const { amount } = this.state;
+    const { amount, precision } = this.state;
 
     if (amount === "") {
       this.stateSet({ amountError: "" });
@@ -343,15 +474,15 @@ export class Transfer extends BaseComponent<Props, State> {
 
     const dotParts = amount.split(".");
     if (dotParts.length > 1) {
-      const precision = dotParts[1];
-      if (precision.length > 3) {
+      const fractionPart = dotParts[1].replace(/,/g, "");
+      if (fractionPart.length > precision) {
         this.stateSet({ amountError: _t("transfer.amount-precision-error") });
         return;
       }
     }
 
     let balance = Number(this.formatBalance(this.getBalance()));
-    if (parseFloat(amount) > balance) {
+    if (parseFloat(amount.replace(/,/g, "")) > balance) {
       this.stateSet({ amountError: _t("trx-common.insufficient-funds") });
       return;
     }
@@ -367,7 +498,7 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   getBalance = (): number => {
-    const { mode, activeUser, dynamicProps } = this.props;
+    const { mode, activeUser, dynamicProps, tokens } = this.props;
     const { asset } = this.state;
 
     if (asset === "POINT") {
@@ -396,11 +527,24 @@ export class Transfer extends BaseComponent<Props, State> {
       return vestsToHp(vestingShares, hivePerMVests);
     }
 
+    const tokenInformation = tokens?.find && tokens.find((i) => asset === i.symbol);
+
+    if (tokenInformation) {
+      if (mode === "unstake" || mode == "delegate") {
+        return tokenInformation.stakedBalance;
+      }
+      if (mode === "undelegate") {
+        return tokenInformation.delegationsOut;
+      }
+      return tokenInformation.balance;
+    }
+
     return 0;
   };
 
   formatBalance = (balance: number): string => {
-    return this.formatNumber(balance, 3);
+    const { precision } = this.state;
+    return this.formatNumber(balance, precision);
   };
 
   hpToVests = (hp: number): string => {
@@ -414,14 +558,18 @@ export class Transfer extends BaseComponent<Props, State> {
   canSubmit = () => {
     const { toData, toError, amountError, memoError, inProgress, amount } = this.state;
     return (
-      toData && !toError && !amountError && !memoError && !inProgress && parseFloat(amount) > 0
+      toData &&
+      !toError &&
+      !amountError &&
+      !memoError &&
+      !inProgress &&
+      parseFloat(amount.replace(/,/g, "")) > 0
     );
   };
 
   next = () => {
-    // make sure 3 decimals in amount
-    const { amount } = this.state;
-    const fixedAmount = this.formatNumber(amount, 3);
+    const { amount, precision } = this.state;
+    const fixedAmount = this.formatNumber(amount, precision);
 
     this.stateSet({ step: 2, amount: fixedAmount });
   };
@@ -438,10 +586,39 @@ export class Transfer extends BaseComponent<Props, State> {
     this.stateSet({ step: 3 });
   };
 
+  modifyTokenValues() {
+    const { modifyTokenValues, mode } = this.props;
+    const { asset } = this.state;
+    const amount = parseFloat(this.state.amount.replace(/,/g, ""));
+    if (asset !== "POINT" && !isBuiltinAsset(asset) && modifyTokenValues)
+      switch (mode) {
+        case "transfer": {
+          modifyTokenValues({ symbol: asset, balanceDelta: -amount });
+          break;
+        }
+        case "stake":
+        case "power-up": {
+          modifyTokenValues({ symbol: asset, balanceDelta: -amount, stakeDelta: amount });
+          break;
+        }
+        case "unstake":
+        case "power-down": {
+          modifyTokenValues({ symbol: asset, stakeDelta: -amount });
+          break;
+        }
+        case "delegate": {
+          modifyTokenValues({ symbol: asset, delegationsOutDelta: amount });
+          break;
+        }
+        default:
+          return;
+      }
+  }
+
   sign = (key: PrivateKey) => {
     const { activeUser, mode } = this.props;
     const { to, amount, asset, memo } = this.state;
-    const fullAmount = `${amount} ${asset}`;
+    const fullAmount = `${amount.replace(/,/g, "")} ${asset}`;
     const username = activeUser?.username!;
 
     let promise: Promise<any>;
@@ -449,8 +626,10 @@ export class Transfer extends BaseComponent<Props, State> {
       case "transfer": {
         if (asset === "POINT") {
           promise = transferPoint(username, key, to, fullAmount, memo);
-        } else {
+        } else if (isBuiltinAsset(asset)) {
           promise = transfer(username, key, to, fullAmount, memo);
+        } else {
+          promise = transferHiveEngineAsset(username, key, to, fullAmount, memo);
         }
         break;
       }
@@ -498,6 +677,7 @@ export class Transfer extends BaseComponent<Props, State> {
         addAccount(a);
         // update active
         updateActiveUser(a);
+        this.modifyTokenValues();
         this.stateSet({ step: 4, inProgress: false });
       })
       .catch((err) => {
@@ -509,15 +689,17 @@ export class Transfer extends BaseComponent<Props, State> {
   signHs = () => {
     const { activeUser, mode, onHide } = this.props;
     const { to, amount, asset, memo } = this.state;
-    const fullAmount = `${amount} ${asset}`;
+    const fullAmount = `${amount.replace(/,/g, "")} ${asset}`;
     const username = activeUser?.username!;
 
     switch (mode) {
       case "transfer": {
         if (asset === "POINT") {
           transferPointHot(username, to, fullAmount, memo);
-        } else {
+        } else if (isBuiltinAsset(asset)) {
           transferHot(username, to, fullAmount, memo);
+        } else {
+          transferHiveEngineAssetHot(username, to, fullAmount, memo);
         }
         break;
       }
@@ -561,7 +743,7 @@ export class Transfer extends BaseComponent<Props, State> {
   signKs = () => {
     const { activeUser, mode } = this.props;
     const { to, amount, asset, memo } = this.state;
-    const fullAmount = `${amount} ${asset}`;
+    const fullAmount = `${amount.replace(/,/g, "")} ${asset}`;
     const username = activeUser?.username!;
 
     let promise: Promise<any>;
@@ -569,8 +751,10 @@ export class Transfer extends BaseComponent<Props, State> {
       case "transfer": {
         if (asset === "POINT") {
           promise = transferPointKc(username, to, fullAmount, memo);
-        } else {
+        } else if (isBuiltinAsset(asset)) {
           promise = transferKc(username, to, fullAmount, memo);
+        } else {
+          promise = transferHiveEngineAssetKc(username, to, fullAmount, memo);
         }
         break;
       }
@@ -617,6 +801,7 @@ export class Transfer extends BaseComponent<Props, State> {
         addAccount(a);
         // update active
         updateActiveUser(a);
+        this.modifyTokenValues();
         this.stateSet({ step: 4, inProgress: false });
       })
       .catch((err) => {
@@ -644,7 +829,7 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   render() {
-    const { global, mode, activeUser, transactions, dynamicProps } = this.props;
+    const { global, mode, activeUser, transactions, dynamicProps, tokens } = this.props;
     const {
       step,
       asset,
@@ -723,6 +908,11 @@ export class Transfer extends BaseComponent<Props, State> {
       case "delegate":
         assets = ["HP"];
         break;
+    }
+
+    for (const token of tokens) {
+      const { symbol } = token;
+      assets = [...assets, symbol];
     }
 
     const showTo = [

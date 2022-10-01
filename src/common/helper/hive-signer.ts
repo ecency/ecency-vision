@@ -1,5 +1,5 @@
 import { b64uEnc } from "../util/b64";
-import { HIVE_SIGNER_APP } from "../../client_config";
+import { HIVE_SIGNER_APP, APP_URL } from "../../client_config";
 
 export const getAuthUrl = (redir: string = `${window.location.origin}/auth`) => {
   const app = HIVE_SIGNER_APP;
@@ -77,7 +77,7 @@ export const buildHotSignUrl = (
 ): any => {
   const _params = {
     ...params,
-    redirect_uri: `https://ecency.com/${redirect}`
+    redirect_uri: `${APP_URL}/${redirect}`
   };
 
   const queryString = new URLSearchParams(_params).toString();

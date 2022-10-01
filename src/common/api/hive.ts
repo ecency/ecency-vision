@@ -1,4 +1,5 @@
 import { Client, RCAPI, utils } from "@hiveio/dhive";
+import { DEFAULT_CHAIN_ID, DEFAULT_ADDRESS_PREFIX } from "@hiveio/dhive";
 
 import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 
@@ -10,15 +11,33 @@ import parseAsset from "../helper/parse-asset";
 import { vestsToRshares } from "../helper/vesting";
 import isCommunity from "../helper/is-community";
 
-import SERVERS from "../constants/servers.json";
+import TESTNET_SERVERS from "../constants/servers-testnet.json";
+import MAINNET_SERVERS from "../constants/servers.json";
+import { TEST_NET } from "../../client_config";
 import { dataLimit } from "./bridge";
 import moment from "moment";
 
+const SERVERS = TEST_NET ? TESTNET_SERVERS : MAINNET_SERVERS;
+export const CHAIN_ID = TEST_NET
+  ? "18dcf0a285365fc58b71f18b3d3fec954aa0c141c44e4e5cb4cf777b9eab274e"
+  : DEFAULT_CHAIN_ID.toString("hex");
+export const ADDRESS_PREFIX = TEST_NET ? "TST" : DEFAULT_ADDRESS_PREFIX;
+export const HIVE_API_NAME = TEST_NET ? "TESTS" : "HIVE";
+export const DOLLAR_API_NAME = TEST_NET ? "TBD" : "HBD";
+export const HIVE_LANGUAGE_KEY = HIVE_API_NAME.toLowerCase();
+export const HIVE_HUMAN_NAME = TEST_NET ? "Tests" : "Hive";
+export const HIVE_HUMAN_NAME_UPPERCASE = TEST_NET ? "TESTS" : "HIVE";
+export const DOLLAR_HUMAN_NAME = DOLLAR_API_NAME;
 export const client = new Client(SERVERS, {
-  timeout: 3000,
-  failoverThreshold: 3,
-  consoleOnFailover: true
+  timeout: 4000,
+  failoverThreshold: 10,
+  consoleOnFailover: true,
+  addressPrefix: ADDRESS_PREFIX,
+  chainId: CHAIN_ID
 });
+
+export const HIVE_COLLATERALIZED_CONVERSION_FEE = 0.05;
+export const HIVE_CONVERSION_COLLATERAL_RATIO = 2;
 
 export interface Vote {
   percent: number;
@@ -42,10 +61,7 @@ export interface DynamicGlobalProperties {
 }
 
 export interface FeedHistory {
-  current_median_history: {
-    base: string;
-    quote: string;
-  };
+  current_median_history: Price;
 }
 
 export interface RewardFund {
@@ -543,3 +559,89 @@ export interface BlogEntry {
 
 export const getBlogEntries = (username: string, limit: number = dataLimit): Promise<BlogEntry[]> =>
   client.call("condenser_api", "get_blog_entries", [username, 0, limit]);
+
+export interface Price {
+  base: string;
+  quote: string;
+}
+/* group number and string */
+const gnas = (a: string) => {
+  const d = a.split(" ");
+  try {
+    const t = { n: parseFloat(d[0].replace(/,/g, "")), s: d[1] };
+    return t;
+  } catch (e) {
+    return { n: 0, s: "" };
+  }
+};
+/** Translated from hive/hive/libraries/protocol/include/hive/protocol
+      Applies price to given asset in order to calculate its value in the second asset (like operator* ).
+      Additionally applies fee scale factor to specific asset in price. Used f.e. to apply fee to
+      collateralized conversions. Fee scale parameter in basis points.
+    */
+export function multiply_with_fee(
+  a: string,
+  p: Price,
+  fee: number,
+  apply_fee_to: string
+): string | undefined {
+  if (a.indexOf(" ") == -1) return undefined;
+  let a_quantity: number;
+  let a_symbol: string;
+  {
+    const d = gnas(a);
+    a_quantity = d.n;
+    a_symbol = d.s;
+  }
+  const is_negative: boolean = a_quantity < 0;
+  let result: number = is_negative ? -a_quantity : a_quantity;
+  let scale_b = 1;
+  let scale_q = 1;
+  const { n: price_base_amount, s: price_base_symbol } = gnas(p.base);
+  const { n: price_quote_amount, s: price_quote_symbol } = gnas(p.quote);
+  if (apply_fee_to == price_base_symbol) {
+    scale_b += fee;
+  } else {
+    if (!(apply_fee_to == price_quote_symbol)) {
+      throw new Error(`Invalid fee symbol ${apply_fee_to} for price ${p.base}/${p.quote}`);
+    }
+    scale_q += fee;
+  }
+  if (a_symbol == price_base_symbol) {
+    result = (result * price_quote_amount * scale_q) / (price_base_amount * scale_b);
+    return `${is_negative ? -result : result}  ${price_quote_symbol}`;
+  } else {
+    console.log({
+      result,
+      price_base_amount,
+      scale_b,
+      price_quote_amount,
+      scale_q
+    });
+    if (a_symbol !== price_quote_symbol)
+      throw new Error(`invalid ${a} != ${price_quote_symbol} nor ${price_base_symbol}`);
+    result = (result * price_base_amount * scale_b) / (price_quote_amount * scale_q);
+    return `${is_negative ? -result : result} ${price_base_symbol}`;
+  }
+}
+
+export const estimateRequiredHiveCollateral = async (
+  hbd_amount_to_get: number
+): Promise<number> => {
+  const fhistory = await getFeedHistory();
+  if (fhistory.current_median_history === null)
+    throw new Error("Cannot estimate conversion collateral because there is no price feed.");
+  const needed_hive = multiply_with_fee(
+    `${hbd_amount_to_get} ${DOLLAR_API_NAME}`,
+    fhistory.current_median_history,
+    HIVE_COLLATERALIZED_CONVERSION_FEE,
+    HIVE_API_NAME
+  );
+  if (!needed_hive) {
+    console.log({ needed_hive });
+    return -1;
+  }
+  const { n: needed_hive_quantity, s: needed_hive_symbol } = gnas(needed_hive);
+  const _amount = needed_hive_quantity * HIVE_CONVERSION_COLLATERAL_RATIO;
+  return _amount;
+};

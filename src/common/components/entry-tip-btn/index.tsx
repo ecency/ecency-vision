@@ -68,6 +68,8 @@ export class TippingDialog extends Component<DialogProps> {
         amount={global.usePrivate ? "100.000" : "1.000"}
         to={to}
         memo={memo}
+        assetBalance={0}
+        tokens={[]}
       />
     );
   }

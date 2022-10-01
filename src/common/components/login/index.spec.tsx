@@ -16,7 +16,8 @@ const defProps = {
   setActiveUser: () => {},
   deleteUser: () => {},
   toggleUIProp: () => {},
-  doLogin: async () => {}
+  doLogin: async () => {},
+  hiveSignerApp: "ecency.app"
 };
 
 it("(1) Default render", () => {

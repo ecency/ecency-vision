@@ -51,6 +51,23 @@ Feel free to test it out and submit improvements and pull requests.
 `$ cp src/client_config_defaults.ts src/client_config.ts`
 `$ nano src/client_config.ts`
 
+##### Client Config Constants
+
+These are for values that the server or client code may both use. It must not be sensitive information yet it should be
+system-wide, and constant for this installation or site.
+
+###### HIVE_SIGNER_APP
+
+This can be left as 'ecency.app'. Unless you want to change the account proxy, you should leave this as is.
+
+###### APP_URL
+
+This should be the URL of the site. If you are running this testing, it should be "http://localhost" so hiveSigner redirects you back to localhost. The default is 'https://ecency.com'.
+
+###### APP_DOMAIN
+
+This should be the URL of the site without the protocol part. The default is "ecency.com".
+
 ##### Environment variables
 
 - `USE_PRIVATE` - if instance has private api address and auth (0 or 1 value)

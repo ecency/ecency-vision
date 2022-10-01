@@ -219,6 +219,8 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
             mode={this.state.transferMode!}
             asset={this.state.transferAsset!}
             onHide={this.closeTransferDialog}
+            assetBalance={0}
+            tokens={[]}
           />
         )}
       </>

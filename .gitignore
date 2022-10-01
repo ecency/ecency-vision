@@ -19,3 +19,6 @@ src/config.ts
 
 dev.sh
 src/client_config.ts
+*~
+*.marks
+
