@@ -204,7 +204,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue, decks }: any) =>
       setDeckExists(true);
     } else {
       onSelect(
-        toSelected,
+        selectedValue === _t("decks.search") ? search : toSelected,
         selectedValue === _t("decks.users") || selectedValue === _t("decks.community")
           ? contentType
           : selectedValue

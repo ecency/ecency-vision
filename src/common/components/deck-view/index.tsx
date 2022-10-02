@@ -43,12 +43,19 @@ const DeckViewContainer = ({
     setOpenModal(false);
     setLoadingNewContent(true);
     setUser(rest.activeUser && rest.activeUser.username);
-
     if (contentType) {
       let title = `${contentType} @${account}`;
       if (contentType === _t("decks.notifications")) {
         const dataParams = [user || account, null, null, account];
         createDeck([NotificationListItem, title, notifications, dataParams], user);
+        fetchDeckData(title);
+        setLoadingNewContent(false);
+      } else if (contentType === _t("decks.search")) {
+        debugger;
+        const dataParams: any[] = [];
+        const title = `${account}`;
+
+        createDeck([HotListItem, title, hot, dataParams], user);
         fetchDeckData(title);
         setLoadingNewContent(false);
       } else if (contentType === _t("decks.wallet")) {
