@@ -12,7 +12,8 @@ import {
   Proposal,
   SavingsWithdrawRequest,
   ConversionRequest,
-  OpenOrdersData
+  OpenOrdersData,
+  CollateralizedConversionRequest
 } from "../api/hive";
 import { ReceivedVestingShare } from "../api/private-api";
 import {
@@ -553,6 +554,16 @@ export const conversionRequestInstance: ConversionRequest[] = [
     id: 137870,
     owner: "ecency",
     requestid: 3179660325
+  }
+];
+export const collateralizedConversionRequestInstance: CollateralizedConversionRequest[] = [
+  {
+    collateral_amount: "14481.756 HIVE",
+    conversion_date: "2022-09-17T01:42:42",
+    converted_amount: "3806.633 HBD",
+    id: 18287,
+    owner: "hbdstabilizer",
+    requestid: 1663076563
   }
 ];
 export const openOrdersInstance: OpenOrdersData[] = [

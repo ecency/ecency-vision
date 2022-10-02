@@ -103,7 +103,7 @@ export class ProfileMenu extends Component<Props> {
           <Link
             className={_c(
               `profile-menu-item ${
-                ["wallet", "points", "engine"].includes(section) ? "selected-item" : ""
+                ["wallet", "points", "engine", "spk"].includes(section) ? "selected-item" : ""
               }`
             )}
             to={`/@${username}/wallet`}

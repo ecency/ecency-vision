@@ -62,7 +62,8 @@
     "price": "Hinta",
     "more-results": "Lisää tuloksia",
     "close": "Sulje",
-    "loading": "Ladataan"
+    "loading": "Ladataan",
+    "stop": "Lopeta"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -93,7 +94,9 @@
     "filter-week": "Tällä viikolla",
     "filter-month": "Tässä kuussa",
     "filter-year": "Tänä vuonna",
-    "filter-alltime": "Koko ajalta"
+    "filter-alltime": "Koko ajalta",
+    "filter-no-reblog": "Ilman uudelleenjakoa",
+    "filter-with-reblog": "Sisällytä uudelleenjako"
   },
   "navbar": {
     "discover": "Löydä uutta",
@@ -398,7 +401,10 @@
     "browse-original": "Näytä alkuperäinen julkaisu",
     "cross-post-by": "Ristilähettäjä",
     "cross-post-community": "yhteisö",
-    "community-in": " "
+    "community-in": " ",
+    "post-word-count": "Sanoja:",
+    "post-read-time": "Luettu:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "Muokkaushistoria",
@@ -425,7 +431,9 @@
     "read-more": "...lue lisää vastauksia...",
     "reveal-muted": "Mykistetty tekijä - paljasta kommentti",
     "reveal-muted-long-description": "Näytä lisävastaukset, mukaan lukien ne, jotka voivat sisältää loukkaavaa sisältöä",
-    "reveal": "Näytä kommentti"
+    "reveal": "Näytä kommentti",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} aiheet",
@@ -628,7 +636,7 @@
     "hive-dollars-description": "Tokenin arvo on noin $1.00 edestä HIVEä.",
     "savings": "SÄÄSTÖT",
     "savings-description": "Tilillä on 3 päivän kotiutusjakso.",
-    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
+    "next-power-down": "Seuraavaan heikennykseen on {{time}}, (~{{amount}}, {{weeks}} viikkoa jäljellä)",
     "transfer": "Siirto",
     "transfer-to-savings": "Siirrä säästöihin",
     "convert": "Muunna",
@@ -640,8 +648,85 @@
     "withdraw-routes": "Palauta Reitit",
     "calculating": "Lasketaan",
     "converting-hbd-amount": "Muunnos HIVE:ksi",
+    "converting-hive-amount": "Muunnos HBD:ksi",
     "withdrawing-amount": "Kotiuta säästöistä",
-    "reserved-amount": "Varattu avoimeen tilaukseen markkinoilla"
+    "reserved-amount": "Varattu avoimeen tilaukseen markkinoilla",
+    "spk": {
+      "claim": {
+        "title": "Lunasta",
+        "unclaimed-rewards": "Lunastamattomat palkkiot"
+      },
+      "delegate": {
+        "title": "Valtuuta",
+        "subtitle": "Valtuuta merkkejä",
+        "node-operator-placeholder": "Valitse solmukeskus",
+        "delegated-larynx-power": {
+          "title": "Valtuutettu LARYNX Power"
+        }
+      },
+      "power-up": {
+        "title": "Vahvistaminen",
+        "subtitle": "Vahvista merkkejä tienataksesi niitä passiivisesti"
+      },
+      "power-down": {
+        "title": "Heikennys",
+        "subtitle": "Heikennä merkkejä tienataksesi palkkioita passiivisesti",
+        "in-progress": "Heikennys on ajastettu tapahtumaan {{date}} ({{count}} erää jäljellä)"
+      },
+      "lock": {
+        "title": "Lukitse Likviditeetti",
+        "subtitle": "Lukitse Larynx likviditeettipalkkioksi",
+        "button": "Lukitse likviditeetti"
+      },
+      "unlock": {
+        "title": "Avaa Likviditeetti",
+        "subtitle": "Avaa LARYNX maksuvalmiiksi",
+        "button": "Avaa likviditeetti"
+      },
+      "send": {
+        "balance": "Saldo",
+        "button": "Lähetä",
+        "from": "Lähettäjä",
+        "to": "Vastaanottaja",
+        "amount": "Määrä",
+        "optional": "valinnainen",
+        "title": "Lähetä SPK",
+        "memo": "Muistio",
+        "next": "Seuraava",
+        "subtitle": "Siirrä varoja toiseen SPK lompakkoon",
+        "warning": "Siirretään enemmän kuin on käytettävissä oleva saldoa"
+      },
+      "token": "SPK Merkki",
+      "token-description": "SPK-verkoston hallinnoinnin merkki.",
+      "larynx-air": "LARYNX Airdrop Lunastus",
+      "larynx-air-description": "Tämän kuun lunastettavat merkit perustuvat 6. tammikuuta HIVE-lohkoketjun tilannekuvaan.",
+      "larynx-air-warning": "Tokens not claimed, do not roll over to next month.",
+      "larynx-already-claimed": "Lunastettu aiemmin.",
+      "larynx-token": "LARYNX Merkki",
+      "larynx-token-description": "SPK-verkoston louhintamerkki.",
+      "larynx-power": "LARYNX Power",
+      "larynx-power-description": "Vahvistetut merkit, joita käytetään SPK:n louhimiseen",
+      "larynx-power-benefits": {
+        "title": "LARYNX Power edut",
+        "1": "SPK hallintomerkkien ansainta",
+        "2": "Pikalukitus | 4 Viikon Avaus",
+        "3": "Valtuuta solmu palvelutileille konsensuksen luomiseksi (DPoS)",
+        "4": "LARYNX POWER (LP) ansaitsee SPK merkkejä {{rate}}%",
+        "5": "Valtuutettu LP (DLP) ansaitsee SPK merkkejä sekä valtuuttajalle että valtuutetulle {{rate}}%"
+      },
+      "larynx-locked-benefits": {
+        "title": "LARYNX Power edut lukittu",
+        "1": "Proof of Stake Consensus",
+        "2": "DEX-siirtojen vakuudet",
+        "3": "Pikalukitus | 4 Viikon Avaus",
+        "4": "Vaatii toimivan LARYNX-solmun käytön",
+        "5": "Ansaitsee 0,100%"
+      },
+      "account-value": "Arvioitu tilin arvo",
+      "account-value-description": "Arvioitu arvo kaikkien SPK omaisuuserien osalta tililläsi USD:ssä",
+      "larynx-locked": "LARYNX Lukittu",
+      "larynx-locked-description": "Lukitut merkit tarjoavat likviditeettiä verkostolle, apua yksimielisyyden määrittämisessä ja solmun pyörittäjät ansaitsevat palkkioita"
+    }
   },
   "wallet-engine": {
     "title": "Hive Engine Tokenit",
@@ -715,13 +800,13 @@
     "scan-code": "Skannaa QR-koodi Ecency-mobiilisovelluksella",
     "select-user": "Valitse käyttäjä",
     "title": "Tilin tehostaminen",
-    "title-points": "Buy points",
+    "title-points": "Osta pisteitä",
     "copied": "Tilin tehostuslinkki kopioitu!",
-    "select-type": "Select a type",
-    "boost": "Boost",
-    "points": "Points",
-    "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
-    "points-amount": "{{n}} points"
+    "select-type": "Valitse tyyppi",
+    "boost": "Tehosta",
+    "points": "Pisteet",
+    "boost-info": "Ecencylla on oikeus peruuttaa valtuutuksia tai tehostuksia, jos niitä käytetään väärin",
+    "points-amount": "{{n}} pistettä"
   },
   "promote": {
     "title": "Korosta",
@@ -803,9 +888,19 @@
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> valtuutus poistettu <span class=\"from-user\">{{from}}</span> käyttäjältä <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down valmis <span class=\"amount\">{{amount}}</span>",
     "claim-interest-summary": "Korko lunastettu ja lisätty säästöihin",
+    "claim-summary": "Lunastettu ja lisätty säästöihin",
+    "powerup-summary": "Vahvistaminen onnistui",
+    "powerdown-summary": "Heikennys onnistui",
     "reset": "Nollaa",
     "powering-down": "Olet alentamassa tehoa.",
-    "stop-power-down": "Lopeta"
+    "stop-power-down": "Lopeta",
+    "claim-title": "Lunasta",
+    "powerup-title": "Vahvistaminen",
+    "powerdown-title": "Heikentäminen",
+    "lock-title": "Lukitse likviditeetti",
+    "unlock-title": "Avaa likviditeetti",
+    "lock-summary": "Lukitus valmis <span class=\"amount\">{{amount}}</span>",
+    "unlock-summary": "Avaaminen valmis <span class=\"amount\">{{amount}}</span>"
   },
   "trx-common": {
     "insufficient-funds": "Riittämättömät varat",
@@ -876,6 +971,13 @@
     "title": "Muunnospyynnöt",
     "request-id": "Pyynnin id",
     "amount": "Määrä",
+    "pending": "Odottaa"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Vakuutetut muuntopyynnöt",
+    "request-id": "Pyyntötunnus",
+    "collateral_amount": "Vakuus",
+    "converted_amount": "Muunnettu",
     "pending": "Odottaa"
   },
   "savings-withdraw": {
@@ -1012,6 +1114,7 @@
     "voted": "{{source}} äänesti julkaisuasi",
     "mention-post": "{{source}} mainitsi sinut julkaisussa",
     "mention-comment": "{{source}} mainitsi sinut kommentissa",
+    "favorite": "{{source}} teki uuden julkaisun",
     "followed": "{{source}} seurasi sinua",
     "replied": "{{source}} vastasi",
     "reblogged": "{{source}} jakoi julkaisusi",
@@ -1028,10 +1131,12 @@
     "type-reblogs": "Jaot",
     "type-transfers": "Siirrot",
     "type-delegations": "Valtuutukset",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "Viimeisimmät",
     "vote-str": "{{p}} äänesti julkaisuasi:",
     "reply-str": "vastasi julkaisuusi:",
     "mention-str": "mainitsi sinut:",
+    "favorite-str": "teki uuden julkaisun",
     "followed-str": "seurasi",
     "unfollowed-str": "lopetti seuraamisen",
     "ignored-str": "sivuutetut",
@@ -1131,7 +1236,9 @@
     "proxy-active-description": "Olet asettanut valtuutetun. Jos haluat äänestää itse, tyhjennä valtuutuksesi.",
     "proxy-active-current": "Nykyinen valtuutettusi",
     "proxy-active-btn-label": "Poista valtuutus",
-    "proxy-votes-for": "@{{username}} ääntä"
+    "proxy-votes-for": "@{{username}} ääntä",
+    "proxy-active-highlighted": "Valtuutusäänet on korostettu",
+    "check-witness-highlighted": "äänet on korostettu"
   },
   "referral": {
     "page-title": "Suositukset",
@@ -1348,7 +1455,7 @@
       "why-different-keys-header": "Miksi on olemassa erilaisia avaimia?",
       "why-different-keys-body": "<p>On olemassa erilaisia avaimia, joilla on asianmukaiset oikeudet riippuen tarkoituksesta. <ul><li>Julkaisuavaimet - tätä avainta tulisi käyttää sosiaalisen verkostoitumisen toimintaan, kuten julkaisemiseen, kommentointiin ja äänestämiseen. Tällä avaimella on rajalliset luvat, eikä sitä voida käyttää rahapoliittisissa toimissa. Joten et voi menettää rahaa, jos joku muu saa pääsyn tähän avaimeen.</li><li>Aktiivinen avain - tällä avaimella on lisäoikeudet arkaluonteisempiin rahaan liittyviin toimiin, kuten merkkien siirtämiseen ja vaihtamiseen. Kun suoritat lompakkoon liittyvää toimintoa, sinua saatetaan kehottaa todentamaan aktiivisella avaimellasi. Sinun pitäisi syöttää Active Key sovelluksiin, joihin luotat, koska kuka tahansa, jolla on pääsy tähän avaimeen, voi ottaa merkkisi. Tee hyvin ja tallenna tämä avain turvallisesti välttäen polettien menettämisen tulevaisuudessa.</li><li>Omistaja-avain - on tehokkain avain, koska sillä voi muuttaa mitä tahansa tilin avainta, mukaan lukien omistajaavaimen. Ihannetapauksessa se on tarkoitettu tallennettavaksi offline-tilaan, sekä sitä käytetään vain tilin palauttamiseen.</li></ul></p>",
       "stolen-hive-hbd-header": "Mitä voin tehdä, jos HIVE tai Hive dollar on varastettu tai lähetetty väärä määrä?",
-      "stolen-hive-hbd-body": "<p>There is nothing to do if your liquid tokens are stolen or sent to wrong acoount but if your tokens are in Hive Power it is impossible to be hacked more than 1/13 per week and if your tokens are in savings they need to a three-day wait period for them to become transferable. Staking/powering up or transferring funds into savings might be more safer.</>",
+      "stolen-hive-hbd-body": "<p>Ei ole mitään tehtävissä, jos maksuvalmiit merkkisi varastetaan tai lähetetään väärään lompakkoon, mutta jos merkkisi ovat Hive Powerissa, on mahdotonta hakkeroida yli 1/13 viikossa ja jos merkit ovat säästössä, ne tarvitsevat kolmen päivän odotusajan, ennenkuin niistä tulee siirrettäviä. Panostus/voimistaminen tai varojen siirtäminen säästöihin saattaa olla turvallisempaa.</>",
       "what-are-tags-header": "Mitä ovat tunnisteet tai aiheet?",
       "what-are-tags-body": "<p>Tunniste on pala tietoa, joka kuvaa sisältöä, johon se on osoitettu. Ne auttavat hakukoneita tunnistamaan sivujen sisällön verkossa ja tuottamaan parhaat tulokset tiettyä hakua varten. Kaikkien tunnisteiden on oltava pieniä kirjaimia. Välilyönnit eivät ole sallittuja, mutta tavutetut sanat yhdellä väliviivalla ovat.</p>",
       "how-use-tags-header": "Miten tunnisteita käytetään?",
@@ -1358,7 +1465,7 @@
       "what-links-show-header": "Mitä Nousussa, Kuumat, Uudet, Nousevat ja Kiistanalaiset linkit näyttävät?",
       "what-links-show-body": "<p>Tämä on tapa lajitella sisältöä Ecencyssä. <ul><li>Nousussa - Usein mainitut tai keskustellut julkaisut.</li><li>Kuumat - Suosittuja viestejä parin viime tunnin ajalta.</li><li>Uudet - Uusimmat julkaisut lajitellaan julkaisuajan mukaan.</li><li>Nousevat - Julkaisut, joilla on enemmän kommentteja ja ääniä verraten muihin.</li><li>Kiistanalainen - Suhteellisen suuri määrä ääniä ylös ja alas.</li></ul></p>",
       "what-my-rewards-header": "Millaisia palkkioita minulla on lompakossa?",
-      "what-my-rewards-body": "<p>There are three kind of rewards are shown in your wallet: <ul><li>Curation rewards - The rewards earned for upvoting posts and comments.</li><li>Author rewards - The rewards earned by your own posts and comments.</li><li>Points rewards - Social actions and interactions also rewarded with Ecency points.</li></ul><p/>",
+      "what-my-rewards-body": "<p>Lompakossa on kahdenlaisia palkintoja: <ul><li>Tarkistuspalkinnot - Palkinnot ylennysäänistä ja kommenteista.</li><li>Julkaisupalkinnot - Omista viesteistä ja kommenteista ansaitut palkkiot.</li><li>Pistepalkintoja - Sosiaalisuus ja vuorovaikutus palkitaan myös Ecency-pisteillä.</li></ul><p/>",
       "what-information-profile-header": "Millaisia tietoja profiilissäni on esillä?",
       "what-information-profile-body": "<p>Ensimmäinen kuvan lähellä näkyvä tieto on mainepisteet ja nimi, sekä kuvaus. Alla olevat tiedot seuraajista ja seuratuista, sekä liittymispäivä. Sinulla on mahdollisuus saada lisätietoa Ecencyn asetuksista, kuten tiedoista, profiilikuvasta, kansikuvasta, tai sijainnistasi.</p>",
       "what-can-post-header": "Mitä voin julkaista Ecencyssä?",
@@ -1377,14 +1484,14 @@
       "what-voting-power-body": "<p>Äänivalta menee hieman alas joka kerta kun äänestät. Se alkaa 100-prosenttisesta äänivallasta ja äänestämisessä käytetään pieni määrän äänivaltaa. Mitä enemmän äänestät, sitä vähemmän vaikutusvaltaa on, mikä tarkoittaa äänestyksen tehokkuuden heikkenemistä. Päivittäistä 10 ääntä suositellaan hyödyntämään tehokkuutta ja tarkastuspalkkioita paremmin.</p>",
       "how-many-vote-header": "Kuinka monta kertaa voin äänestää äänivoimallani?",
       "how-many-vote-body": "<p>Joka 100 % äänestä käytät 2% jäljellä olevasta äänimanasta. Äänestysmanastasi veloitetaan joka päivä 20 %. Voit äänestää enemmän kuin 10 kertaa päivässä, mutta jokainen ääni on vähempiarvoinen ja kestää kauemmin, että täysi äänivalta saavutetaan.</p>",
-      "what-is-hivesigner-header": "What is Hivesigner?",
-      "what-is-hivesigner-body": "<p>When you were signing up on Hive you were given lots of keys that are hard to remember. The work of this Hivesigner is, it gives you the access to create your own password that you can remember and to provide a protection not to use your active key when logging into Hive platforms.</p>",
-      "what-is-keychain-header": "What is Keychain?",
-      "what-is-keychain-body": "<p>Hive Keychain is a wallet browser extension for the Hive blockchain and cryptocurrency and allows users to securely log into and access multiple Hive-based platforms. It is available for Chrome, Brave and Firefox.</p>",
-      "videos-pictures-stored-header": "Are pictures and video stored on the blockchain?",
-      "videos-pictures-stored-body": "<p>Media content such as pictures, videos etc. are typically not stored directly on a blockchain. When you add pictures or video you are only adding a source reference to where they are located. Meaning you can add video content from other locations. As of right now, when you upload a photo, this gets hosted on a regular web server.</p>",
-      "value-hive-hbd-header": "What determines the value of HIVE and HBD?",
-      "value-hive-hbd-body": "<p>The value of HIVE comes from the demand and supply of the token. HIVE will always be in demand based on the way the system is designed and there will always be supply for HIVE. As long as the Hive blockchain exist with continuous development and users being active, there will always be demand and supply for HIVE, adding value to the token.</p>"
+      "what-is-hivesigner-header": "Mikä Hivesigner on?",
+      "what-is-hivesigner-body": "<p>Kun olit rekisteröitymässä Hive sinulle annettiin paljon avaimia, joita on vaikea muistaa. Hivesignerin tehtävänä on antaa sinulle pääsyn oman salasanan luomiseen, jonka voit muistaa ja joka auttaa olla käyttämättä aktiivista avaintasi, kun kirjaudut Hive-alustoille.</p>",
+      "what-is-keychain-header": "Mikä on Keychain?",
+      "what-is-keychain-body": "<p>Hive Keychain on lompakon selainlaajennus Hive-lohkoketjulle ja kryptovaluutoille, tarjoten käyttäjille mahdollisuuden kirjautua turvallisesti ja käyttää useita Hive-pohjaisia alustoja. Se on saatavilla Chromelle, Bravelle ja Firefoxille.</p>",
+      "videos-pictures-stored-header": "Tallennetaanko kuvat ja videot lohkoketjuun?",
+      "videos-pictures-stored-body": "<p>Mediasisältöä, kuten kuvia, videoita jne. ei yleensä tallenneta suoraan lohkoketjuun. Kun lisäät kuvia tai videoita, lisäät lähteen viittauksen sinne, missä ne sijaitsevat. Eli voit lisätä videosisältöä muista paikoista. Joten kun lataat kuvan, tämä voi sijaita tavallisella web-palvelimella.</p>",
+      "value-hive-hbd-header": "Mikä määrittää HIVE:n ja HBD:n arvon?",
+      "value-hive-hbd-body": "<p>HIVE:n arvo perustuu merkkien kysyntään ja tarjontaan. HIVE tulee aina olemaan kysynnässä sen mukaan, miten järjestelmä on suunniteltu, sekä HIVE:n tarjontaa tulee aina olemaan. Niin kauan kuin Hive-lohkoketju on olemassa ja kehitys jatkuu, sekä käyttäjät ovat aktiivisia, HIVE:n kysyntä ja tarjonta tulevat aina olemaan olemassa, mikä tuo lisäarvoa merkille.</p>"
     }
   },
   "contributors": {
@@ -1414,7 +1521,8 @@
     "delete-comment-with-vote": "Sisältöä ei voi poistaa positiivisesta odottavasta palkinnosta johtuen.",
     "comment-cashout": "Sisältöä ei voi poistaa niiden maksun jälkeen.",
     "comment-children": "Keskustelua, jossa on vastauksia, ei voi poistaa.",
-    "paid-out-post-forbidden": "Äänestäminen maksetusta sisällöstä ei ole saatavilla."
+    "paid-out-post-forbidden": "Äänestäminen maksetusta sisällöstä ei ole saatavilla.",
+    "missing-authority": "Puuttuva tai virheellinen valtuusavain."
   },
   "landing-page": {
     "welcome-text": "Tervetuloa Ecencyyn!",

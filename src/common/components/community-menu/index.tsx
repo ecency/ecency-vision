@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 
 import { History, Location } from "history";
 
@@ -30,54 +30,62 @@ interface Props {
   toggleListStyle: (view: string | null) => void;
 }
 
-export class CommunityMenu extends Component<Props> {
-  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-    return (
-      !isEqual(this.props.location, nextProps.location) ||
-      !isEqual(this.props.global, nextProps.global)
-    );
-  }
+export const CommunityMenu = (props: Props) => {
+  const [menuItems, setMenuItems] = useState([
+    EntryFilter.trending,
+    EntryFilter.hot,
+    EntryFilter.created,
+    EntryFilter.payout,
+    EntryFilter.muted
+  ]);
+  const [label, setLabel] = useState<string>(EntryFilter.hot);
 
-  render() {
-    const { community, match } = this.props;
-    const { filter, name } = match.params;
+  useEffect(() => {
+    const { filter } = props.match.params;
+    let newLabel: string | undefined;
 
-    const menuConfig: {
-      history: History;
-      label: string;
-      items: MenuItem[];
-    } = {
-      history: this.props.history,
-      label:
-        filter === EntryFilter.trending
-          ? _t("community.posts")
-          : _t(`entry-filter.filter-${filter}`),
-      items: [
-        ...[
-          EntryFilter.trending,
-          EntryFilter.hot,
-          EntryFilter.created,
-          EntryFilter.payout,
-          EntryFilter.muted
-        ].map((x) => {
-          return {
-            label: _t(`entry-filter.filter-${x}`),
-            href: `/${x}/${community.name}`,
-            selected: filter === x
-          };
-        })
-      ]
-    };
+    if (filter === EntryFilter.trending) {
+      newLabel = _t("community.posts");
+    } else if (menuItems.some((item) => item === filter)) {
+      newLabel = _t(`entry-filter.filter-${filter}`);
+    } else if (label && !newLabel) {
+      newLabel = label;
+    } else {
+      newLabel = _t(`entry-filter.filter-${menuItems[0]}`);
+    }
+    setLabel(newLabel);
+  }, [props.match.params]);
 
-    return (
-      <div className="community-menu">
-        <div className="menu-items">
-          <>
-            <span className="d-flex d-lg-none community-menu-item selected-item">
-              <DropDown {...menuConfig} float="left" />
-            </span>
-            <div className="d-none d-lg-flex align-items-center">
-              {menuConfig.items.map((menuItem) => (
+  const isFilterInItems = () => menuItems.some((item) => props.match.params.filter === item);
+
+  return (
+    <div className="community-menu">
+      <div className="menu-items">
+        <>
+          <span
+            className={
+              "d-flex d-lg-none community-menu-item " + (isFilterInItems() ? "selected-item" : "")
+            }
+          >
+            <DropDown
+              history={props.history}
+              label={label}
+              items={menuItems.map((x) => ({
+                label: _t(`entry-filter.filter-${x}`),
+                href: `/${x}/${props.community.name}`,
+                selected: props.match.params.filter === x
+              }))}
+              float="left"
+            />
+          </span>
+          <div className="d-none d-lg-flex align-items-center">
+            {menuItems
+              .map((x) => ({
+                label: _t(`entry-filter.filter-${x}`),
+                href: `/${x}/${props.community.name}`,
+                selected: props.match.params.filter === x
+              }))
+              .map((menuItem) => (
                 <Link
                   className={_c(`community-menu-item ${menuItem.selected ? "selected-item" : ""}`)}
                   to={menuItem.href!}
@@ -86,45 +94,36 @@ export class CommunityMenu extends Component<Props> {
                   {menuItem.label}
                 </Link>
               ))}
-            </div>
-          </>
-
-          <Link
-            to={`/subscribers/${name}`}
-            className={_c(`community-menu-item ${filter === "subscribers" ? "selected-item" : ""}`)}
-          >
-            {_t("community.subscribers")}
-          </Link>
-          <Link
-            to={`/activities/${name}`}
-            className={_c(`community-menu-item ${filter === "activities" ? "selected-item" : ""}`)}
-          >
-            {_t("community.activities")}
-          </Link>
-        </div>
-
-        {EntryFilter[filter] && (
-          <div className="page-tools">
-            <ListStyleToggle
-              global={this.props.global}
-              toggleListStyle={this.props.toggleListStyle}
-            />
           </div>
-        )}
+        </>
+
+        <Link
+          to={`/subscribers/${props.match.params.name}`}
+          className={_c(
+            `community-menu-item ${
+              props.match.params.filter === "subscribers" ? "selected-item" : ""
+            }`
+          )}
+        >
+          {_t("community.subscribers")}
+        </Link>
+        <Link
+          to={`/activities/${props.match.params.name}`}
+          className={_c(
+            `community-menu-item ${
+              props.match.params.filter === "activities" ? "selected-item" : ""
+            }`
+          )}
+        >
+          {_t("community.activities")}
+        </Link>
       </div>
-    );
-  }
-}
 
-export default (p: Props) => {
-  const props: Props = {
-    history: p.history,
-    location: p.location,
-    match: p.match,
-    global: p.global,
-    community: p.community,
-    toggleListStyle: p.toggleListStyle
-  };
-
-  return <CommunityMenu {...props} />;
+      {EntryFilter[props.match.params.filter] && (
+        <div className="page-tools">
+          <ListStyleToggle global={props.global} toggleListStyle={props.toggleListStyle} />
+        </div>
+      )}
+    </div>
+  );
 };

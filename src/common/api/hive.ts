@@ -503,8 +503,22 @@ export interface ConversionRequest {
   requestid: number;
 }
 
+export interface CollateralizedConversionRequest {
+  collateral_amount: string;
+  conversion_date: string;
+  converted_amount: string;
+  id: number;
+  owner: string;
+  requestid: number;
+}
+
 export const getConversionRequests = (account: string): Promise<ConversionRequest[]> =>
   client.database.call("get_conversion_requests", [account]);
+
+export const getCollateralizedConversionRequests = (
+  account: string
+): Promise<CollateralizedConversionRequest[]> =>
+  client.database.call("get_collateralized_conversion_requests", [account]);
 
 export interface SavingsWithdrawRequest {
   id: number;

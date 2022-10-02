@@ -17,6 +17,7 @@ import TransactionList from "../transactions";
 import DelegatedVesting from "../delegated-vesting";
 import ReceivedVesting from "../received-vesting";
 import ConversionRequests from "../converts";
+import CollateralizedConversionRequests from "../converts-collateralized";
 import SavingsWithdraw from "../savings-withdraw";
 import OpenOrdersList from "../open-orders-list";
 
@@ -34,7 +35,8 @@ import {
   getAccount,
   getConversionRequests,
   getSavingsWithdrawFrom,
-  getOpenOrder
+  getOpenOrder,
+  getCollateralizedConversionRequests
 } from "../../api/hive";
 
 import { claimRewardBalance, formatError } from "../../api/operations";
@@ -67,6 +69,7 @@ interface Props {
 interface State {
   delegatedList: boolean;
   convertList: boolean;
+  cconvertList: boolean;
   receivedList: boolean;
   savingsWithdrawList: boolean;
   openOrdersList: boolean;
@@ -78,6 +81,7 @@ interface State {
   transferMode: null | TransferMode;
   transferAsset: null | TransferAsset;
   converting: number;
+  cconverting: number;
   withdrawSavings: { hbd: string | number; hive: string | number };
   openOrders: { hbd: string | number; hive: string | number };
   aprs: { hbd: string | number; hp: string | number };
@@ -88,6 +92,7 @@ export class WalletHive extends BaseComponent<Props, State> {
     delegatedList: false,
     receivedList: false,
     convertList: false,
+    cconvertList: false,
     savingsWithdrawList: false,
     openOrdersList: false,
     tokenType: "HBD",
@@ -98,6 +103,7 @@ export class WalletHive extends BaseComponent<Props, State> {
     transferMode: null,
     transferAsset: null,
     converting: 0,
+    cconverting: 0,
     withdrawSavings: { hbd: 0, hive: 0 },
     openOrders: { hbd: 0, hive: 0 },
     aprs: { hbd: 0, hp: 0 }
@@ -105,6 +111,7 @@ export class WalletHive extends BaseComponent<Props, State> {
 
   componentDidMount() {
     this.fetchConvertingAmount();
+    this.fetchCollateralizedConvertingAmount();
     this.fetchWithdrawFromSavings();
     this.getOrders();
   }
@@ -159,6 +166,21 @@ export class WalletHive extends BaseComponent<Props, State> {
     this.stateSet({ converting });
   };
 
+  fetchCollateralizedConvertingAmount = async () => {
+    const { account } = this.props;
+
+    const ccrd = await getCollateralizedConversionRequests(account.name);
+    if (ccrd.length === 0) {
+      return;
+    }
+
+    let cconverting = 0;
+    ccrd.forEach((x) => {
+      cconverting += parseAsset(x.collateral_amount).amount;
+    });
+    this.stateSet({ cconverting });
+  };
+
   fetchWithdrawFromSavings = async () => {
     const { account } = this.props;
 
@@ -209,6 +231,11 @@ export class WalletHive extends BaseComponent<Props, State> {
   toggleConvertList = () => {
     const { convertList } = this.state;
     this.stateSet({ convertList: !convertList });
+  };
+
+  toggleCConvertList = () => {
+    const { cconvertList } = this.state;
+    this.stateSet({ cconvertList: !cconvertList });
   };
 
   toggleSavingsWithdrawList = (tType: AssetSymbol) => {
@@ -289,6 +316,7 @@ export class WalletHive extends BaseComponent<Props, State> {
       transferAsset,
       transferMode,
       converting,
+      cconverting,
       withdrawSavings,
       aprs: { hbd, hp },
       openOrders,
@@ -417,6 +445,15 @@ export class WalletHive extends BaseComponent<Props, State> {
 
                   <span>{formattedNumber(w.balance, { suffix: "HIVE" })}</span>
                 </div>
+                {cconverting > 0 && (
+                  <div className="amount amount-passive converting-hbd">
+                    <Tooltip content={_t("wallet.converting-hive-amount")}>
+                      <span className="amount-btn" onClick={this.toggleCConvertList}>
+                        {"+"} {formattedNumber(cconverting, { suffix: "HIVE" })}
+                      </span>
+                    </Tooltip>
+                  </div>
+                )}
                 {openOrders && openOrders.hive > 0 && (
                   <div className="amount amount-passive converting-hbd">
                     <Tooltip content={_t("wallet.reserved-amount")}>
@@ -846,6 +883,14 @@ export class WalletHive extends BaseComponent<Props, State> {
 
         {this.state.convertList && (
           <ConversionRequests {...this.props} account={account} onHide={this.toggleConvertList} />
+        )}
+
+        {this.state.cconvertList && (
+          <CollateralizedConversionRequests
+            {...this.props}
+            account={account}
+            onHide={this.toggleCConvertList}
+          />
         )}
 
         {this.state.savingsWithdrawList && (

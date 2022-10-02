@@ -72,6 +72,8 @@ const handleChainError = (strErr: string): [string | null, ErrorTypes] => {
     return [_t("chain-error.comment-cashout"), ErrorTypes.COMMON];
   } else if (/Votes evaluating for comment that is paid out is forbidden/.test(strErr)) {
     return [_t("chain-error.paid-out-post-forbidden"), ErrorTypes.COMMON];
+  } else if (/Missing Active Authority/.test(strErr)) {
+    return [_t("chain-error.missing-authority"), ErrorTypes.COMMON];
   }
 
   return [null, ErrorTypes.COMMON];
@@ -89,7 +91,7 @@ export const formatError = (err: any): [string, ErrorTypes] => {
       return [chainErr, type];
     }
 
-    return err.error_description.substring(0, 80);
+    return [err.error_description.substring(0, 80), ErrorTypes.COMMON];
   }
 
   if (err.message && typeof err.message === "string") {
@@ -98,7 +100,7 @@ export const formatError = (err: any): [string, ErrorTypes] => {
       return [chainErr, type];
     }
 
-    return err.message.substring(0, 80);
+    return [err.message.substring(0, 80), ErrorTypes.COMMON];
   }
 
   return ["", ErrorTypes.COMMON];

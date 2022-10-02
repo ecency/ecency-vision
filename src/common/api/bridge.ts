@@ -3,15 +3,13 @@ import { Community } from "../store/communities/types";
 import { Subscription } from "../store/subscriptions/types";
 
 import { Client } from "@hiveio/dhive";
+import SERVERS from "../constants/servers.json";
 
-export const bridgeServer = new Client(
-  ["https://api.hive.blog", "https://rpc.ecency.com", "https://api.deathwing.me"],
-  {
-    timeout: 3000,
-    failoverThreshold: 3,
-    consoleOnFailover: true
-  }
-);
+export const bridgeServer = new Client(SERVERS, {
+  timeout: 3000,
+  failoverThreshold: 3,
+  consoleOnFailover: true
+});
 export const dataLimit = typeof window !== "undefined" && window.screen.width < 540 ? 5 : 20 || 20;
 
 const bridgeApiCall = <T>(endpoint: string, params: {}): Promise<T> =>

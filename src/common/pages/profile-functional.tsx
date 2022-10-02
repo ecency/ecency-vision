@@ -15,7 +15,6 @@ import Theme from "../components/theme";
 import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
 import NavBarElectron from "../../desktop/app/components/navbar";
-import NotFound from "../components/404";
 import LinearProgress from "../components/linear-progress/index";
 import EntryListLoadingItem from "../components/entry-list-loading-item";
 import DetectBottom from "../components/detect-bottom";
@@ -48,6 +47,7 @@ import { Account, FullAccount } from "../store/accounts/types";
 import { withPersistentScroll } from "../components/with-persistent-scroll";
 import useAsyncEffect from "use-async-effect";
 import { usePrevious } from "../util/use-previous";
+import WalletSpk from "../components/wallet-spk";
 
 interface MatchParams {
   username: string;
@@ -381,7 +381,8 @@ export const Profile = (props: Props) => {
   const initPinnedEntry = async (username: string, account: Account | undefined) => {
     if (
       !["blog", "posts"].includes(props.global.filter) ||
-      !(account as FullAccount)?.profile?.pinned
+      !((account as FullAccount)?.profile && (account as FullAccount)?.profile?.pinned) ||
+      !((account as FullAccount)?.profile && (account as FullAccount)?.profile?.pinned !== "none")
     ) {
       return;
     }
@@ -489,6 +490,13 @@ export const Profile = (props: Props) => {
                 }
                 if (section === "engine") {
                   return WalletHiveEngine({ ...props, account, updateWalletValues: ensureAccount });
+                }
+                if (section === "spk") {
+                  return WalletSpk({
+                    ...props,
+                    account,
+                    isActiveUserWallet: account.name === props.activeUser?.username
+                  });
                 }
                 if (section === "points") {
                   return WalletEcency({ ...props, account, updateWalletValues: ensureAccount });

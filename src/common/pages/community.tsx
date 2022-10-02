@@ -19,7 +19,7 @@ import NavBar from "../components/navbar/index";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import LinearProgress from "../components/linear-progress";
 import CommunityCard from "../components/community-card";
-import CommunityMenu from "../components/community-menu";
+import { CommunityMenu } from "../components/community-menu";
 import CommunityCover from "../components/community-cover";
 import NotFound from "../components/404";
 import Feedback from "../components/feedback";
@@ -295,10 +295,7 @@ class CommunityPage extends BaseComponent<Props, State> {
             <meta itemProp="url" content={`${defaults.base}${url}`} />
           </span>
           <div className="content-side">
-            {CommunityMenu({
-              ...this.props,
-              community
-            })}
+            <CommunityMenu {...this.props} community={community} />
 
             {CommunityCover({
               ...this.props,

@@ -177,6 +177,28 @@ export default class NotificationListItem extends Component<{
               </div>
             )}
 
+            {/* Favorites */}
+            {notification.type === "favorites" && (
+              <div className="item-content">
+                <div className="first-line">
+                  {sourceLink}
+                  <span className="item-action">{_t("notifications.favorite-str")}</span>
+                </div>
+                <div className="second-line">
+                  {EntryLink({
+                    ...this.props,
+                    entry: {
+                      category: "category",
+                      author: notification.author,
+                      permlink: notification.permlink
+                    },
+                    afterClick: this.afterClick,
+                    children: <a className="post-link">{notification.permlink}</a>
+                  })}
+                </div>
+              </div>
+            )}
+
             {/* Follows */}
             {(notification.type === "follow" ||
               notification.type === "unfollow" ||

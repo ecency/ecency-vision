@@ -62,7 +62,8 @@
     "price": "Preço",
     "more-results": "Mais resultados",
     "close": "Fechar",
-    "loading": "Carregando"
+    "loading": "Carregando",
+    "stop": "Stop"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -93,7 +94,9 @@
     "filter-week": "Esta semana",
     "filter-month": "Este mês",
     "filter-year": "Este ano",
-    "filter-alltime": "Desde o início"
+    "filter-alltime": "Desde o início",
+    "filter-no-reblog": "Exclude reblog",
+    "filter-with-reblog": "Include reblog"
   },
   "navbar": {
     "discover": "Descubra",
@@ -398,7 +401,10 @@
     "browse-original": "Abrir publicação original",
     "cross-post-by": "Repostado por",
     "cross-post-community": "comunidade",
-    "community-in": "em"
+    "community-in": "em",
+    "post-word-count": "Words:",
+    "post-read-time": "Reading:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "Editar Histórico",
@@ -425,7 +431,9 @@
     "read-more": "...ler mais respostas...",
     "reveal-muted": "Autor silenciado - Revelar comentário",
     "reveal-muted-long-description": "Mostrar respostas adicionais, incluindo aquelas que contém conteúdo ofensivo",
-    "reveal": "Revelar comentário"
+    "reveal": "Revelar comentário",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} tópicos",
@@ -640,8 +648,85 @@
     "withdraw-routes": "Rotas de Saque",
     "calculating": "Calculando",
     "converting-hbd-amount": "Convertendo em HIVE",
+    "converting-hive-amount": "Converting to HBD",
     "withdrawing-amount": "Sacando da Poupança",
-    "reserved-amount": "Reservado em ordem aberta no Câmbio"
+    "reserved-amount": "Reservado em ordem aberta no Câmbio",
+    "spk": {
+      "claim": {
+        "title": "Claim",
+        "unclaimed-rewards": "Unclaimed rewards"
+      },
+      "delegate": {
+        "title": "Delegate",
+        "subtitle": "Delegate tokens",
+        "node-operator-placeholder": "Select a node operator",
+        "delegated-larynx-power": {
+          "title": "Delegated LARYNX Power"
+        }
+      },
+      "power-up": {
+        "title": "Power up",
+        "subtitle": "Power up to earn passive rewards"
+      },
+      "power-down": {
+        "title": "Power down",
+        "subtitle": "Power down to earn passive rewards",
+        "in-progress": "A power down is scheduled to happen in {{date}} ({{count}} installments remaining)"
+      },
+      "lock": {
+        "title": "Lock Liquidity",
+        "subtitle": "Locking Larynx for liquidity reward",
+        "button": "Lock liquidity"
+      },
+      "unlock": {
+        "title": "Unlock Liquidity",
+        "subtitle": "Unlock LARYNX to liquid form",
+        "button": "Unlock liquidity"
+      },
+      "send": {
+        "balance": "Balance",
+        "button": "Send",
+        "from": "From",
+        "to": "To",
+        "amount": "Amount",
+        "optional": "optional",
+        "title": "Send SPK",
+        "memo": "Memo",
+        "next": "Next",
+        "subtitle": "Move funds to another SPK wallet",
+        "warning": "Transferring more than available balance"
+      },
+      "token": "SPK Token",
+      "token-description": "The governance token for the SPK network.",
+      "larynx-air": "LARYNX Airdrop Claim",
+      "larynx-air-description": "This months claimable tokens based on a January 6th HIVE blockchain snapshot.",
+      "larynx-air-warning": "Tokens not claimed, do not roll over to next month.",
+      "larynx-already-claimed": "Already claimed.",
+      "larynx-token": "LARYNX Token",
+      "larynx-token-description": "The mining token for the SPK network.",
+      "larynx-power": "LARYNX Power",
+      "larynx-power-description": "Powered tokens used to mine SPK",
+      "larynx-power-benefits": {
+        "title": "Benefits of LARYNX Power",
+        "1": "Earns SPK governance tokens",
+        "2": "Instant Lock | 4 Week Unlock",
+        "3": "Delegate to node service accounts to build consensus (DPoS)",
+        "4": "LARYNX POWER (LP) earns SPK tokens at {{rate}}%",
+        "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at {{rate}}%"
+      },
+      "larynx-locked-benefits": {
+        "title": "Benefits of LARYNX Locked",
+        "1": "Proof of Stake Consensus",
+        "2": "Collateral for DEX transactions",
+        "3": "Instant Lock | 4 Week Unlock",
+        "4": "Requires an operating LARYNX node",
+        "5": "Earns 0.100%"
+      },
+      "account-value": "Estimated Account Value",
+      "account-value-description": "The approximate US Dollar value for all SPK assets in your account",
+      "larynx-locked": "LARYNX Locked",
+      "larynx-locked-description": "Locked tokens provide liquidity to the network, aid in determining consensus, and earn rewards for node runners"
+    }
   },
   "wallet-engine": {
     "title": "Tokens da Hive Engine",
@@ -803,9 +888,19 @@
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span>desdelegado de <span class=\"from-user\">{{from}}</span> para <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Diminuição de poder hive concluído como <span class=\"amount\">{{amount}}</span>",
     "claim-interest-summary": "Rendimentos recebidos e adicionados ao saldo da poupança",
+    "claim-summary": "Claimed and added to your savings balance",
+    "powerup-summary": "Power up completed successfully",
+    "powerdown-summary": "Power down completed successfully",
     "reset": "Reiniciar",
     "powering-down": "Você está atualmente fazendo power down.",
-    "stop-power-down": "Parar"
+    "stop-power-down": "Parar",
+    "claim-title": "Claim",
+    "powerup-title": "Power Up",
+    "powerdown-title": "Power down",
+    "lock-title": "Lock liquidity",
+    "unlock-title": "Unlock liquidity",
+    "lock-summary": "Locking completed as <span class=\"amount\">{{amount}}</span>",
+    "unlock-summary": "Unlocking completed as <span class=\"amount\">{{amount}}</span>"
   },
   "trx-common": {
     "insufficient-funds": "Saldo insuficiente",
@@ -877,6 +972,13 @@
     "request-id": "Id de Solicitação",
     "amount": "Quantidade",
     "pending": "Pendente"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Collateralized Convert requests",
+    "request-id": "Request id",
+    "collateral_amount": "Collateral",
+    "converted_amount": "Converted",
+    "pending": "Pending"
   },
   "savings-withdraw": {
     "title": "Sacar da Poupança",
@@ -1012,6 +1114,7 @@
     "voted": "{{source}} votou na sua publicação",
     "mention-post": "{{source}} mencionou-te numa publicação",
     "mention-comment": "{{source}} mencionou-te num comentário",
+    "favorite": "{{source}} made new post",
     "followed": "{{source}} segui-te",
     "replied": "{{source}} respondeu-te",
     "reblogged": "{{source}} re-publicou a sua publicação",
@@ -1028,10 +1131,12 @@
     "type-reblogs": "Republicações",
     "type-transfers": "Transferências",
     "type-delegations": "Delegações",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "Recente",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "respondeu à sua publicação:",
     "mention-str": "mencionou-te em:",
+    "favorite-str": "made new post",
     "followed-str": "seguiu",
     "unfollowed-str": "deixou de seguir",
     "ignored-str": "ignorado",
@@ -1131,7 +1236,9 @@
     "proxy-active-description": "Você definiu um proxy de votação. Se você deseja reativar as votações manuais, por favor, limpe seu proxy.",
     "proxy-active-current": "O teu proxy atual é",
     "proxy-active-btn-label": "Limpar o Proxy",
-    "proxy-votes-for": "@{{username}} votos para"
+    "proxy-votes-for": "@{{username}} votos para",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
   },
   "referral": {
     "page-title": "Referências",
@@ -1414,7 +1521,8 @@
     "delete-comment-with-vote": "Conteúdo com recompensas positivas não podem ser deletados.",
     "comment-cashout": "Após o pagamento, o conteúdo não pode ser deletado.",
     "comment-children": "Conteúdo com respostas ao pode ser deletado.",
-    "paid-out-post-forbidden": "Votação de conteúdo pago não está disponível."
+    "paid-out-post-forbidden": "Votação de conteúdo pago não está disponível.",
+    "missing-authority": "Missing or invalid authority key."
   },
   "landing-page": {
     "welcome-text": "Bem-vindo à Ecency!",

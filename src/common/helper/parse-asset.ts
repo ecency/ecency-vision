@@ -3,7 +3,8 @@ import { SMTAsset } from "@hiveio/dhive";
 export enum Symbol {
   HIVE = "HIVE",
   HBD = "HBD",
-  VESTS = "VESTS"
+  VESTS = "VESTS",
+  SPK = "SPK"
 }
 
 export enum NaiMap {
