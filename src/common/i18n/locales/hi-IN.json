@@ -707,10 +707,10 @@
       "larynx-power": "लारेंक्स पावर",
       "larynx-power-description": "एसपीके को माइन करने के लिए इस्तेमाल किए जाने वाले पावर्ड टोकन",
       "larynx-power-benefits": {
-        "title": "Benefits of LARYNX Power",
-        "1": "Earns SPK governance tokens",
-        "2": "Instant Lock | 4 Week Unlock",
-        "3": "Delegate to node service accounts to build consensus (DPoS)",
+        "title": "लारेंक्स शक्ति के लाभ",
+        "1": "एसपीके शासन टोकन अर्जित करता है",
+        "2": "इंस्टेंट लॉक | 4 सप्ताह का अनलॉक",
+        "3": "सर्वसम्मति बनाने के लिए नोड सेवा खातों का प्रतिनिधि (डीपीओस)",
         "4": "LARYNX POWER (LP) earns SPK tokens at {{rate}}%",
         "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at {{rate}}%"
       },
