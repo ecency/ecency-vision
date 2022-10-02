@@ -711,7 +711,7 @@
         "1": "एसपीके शासन टोकन अर्जित करता है",
         "2": "इंस्टेंट लॉक | 4 सप्ताह का अनलॉक",
         "3": "सर्वसम्मति बनाने के लिए नोड सेवा खातों का प्रतिनिधि (डीपीओस)",
-        "4": "LARYNX POWER (LP) earns SPK tokens at {{rate}}%",
+        "4": "लारेंक्स शक्ति (एल. पी.) ने {{rate}}% पर एसपीके टोकन अर्जित किया",
         "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at {{rate}}%"
       },
       "larynx-locked-benefits": {
