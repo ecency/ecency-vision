@@ -23,7 +23,7 @@
   font-size: 21px;
   font-weight: 500;
   position: relative;
-  padding: 0px 0px!important;
+  padding: 0px 0px !important;
 
   button {
     position: absolute;
@@ -57,4 +57,10 @@
   position: absolute;
   left: 10px;
   top: 10px;
+}
+
+.d-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 1rem;
 }

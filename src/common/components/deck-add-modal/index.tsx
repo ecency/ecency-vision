@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, InputGroup, Modal, ModalBody } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal, ModalBody, Row } from "react-bootstrap";
 import { getCommunities } from "../../api/bridge";
 import { lookupAccounts } from "../../api/hive";
 import { formatError } from "../../api/operations";
+import { SearchType } from "../../helper/search-query";
 import { _t } from "../../i18n";
 import {
   arrowLeftSvg,
@@ -58,17 +59,16 @@ const options = (activeUser: any) => {
       disabled: !isLoggedIn
     },
     {
+      title: _t("decks.search"),
+      icon: magnify
+    },
+    {
       title: _t("decks.trending"),
       icon: globalTrending
     },
     {
       title: _t("decks.trending-topics"),
       icon: hot
-    },
-    {
-      title: _t("decks.search"),
-      icon: magnify,
-      na: true
     },
     {
       title: _t("decks.topic"),
@@ -102,6 +102,7 @@ const communityContentTypes = [
 
 const AddColumn = ({ setSelectedValue, onSelect, selectedValue, decks }: any) => {
   const [to, setTo] = useState("");
+  const [search, setSearch] = useState<any>({});
   const [contentType, setContentType] = useState("");
   const [toSelected, setToSelected] = useState("");
   const [toData, setToData] = useState<any>([]);
@@ -215,17 +216,142 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue, decks }: any) =>
 
   let type = selectedValue === _t("decks.community") ? communityContentTypes : contentTypes;
 
+  enum DateOpt {
+    W = "week",
+    M = "month",
+    Y = "year",
+    A = "all"
+  }
+
+  enum SearchSort {
+    POPULARITY = "popularity",
+    NEWEST = "newest",
+    RELEVANCE = "relevance"
+  }
+
+  const searchForm = (
+    <div className="advanced-section">
+      <Form.Group controlId="form-tag">
+        <Form.Label>{_t("search-comment.tags")}</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder={_t("search-comment.tags-placeholder")}
+          onChange={(e) => setSearch({ ...search, tags: e.target.value })}
+          value={search.tags}
+          // onKeyDown={this.textInputDown}
+        />
+      </Form.Group>
+      <div className="w-100 d-grid">
+        <Form.Group controlId="form-search">
+          <Form.Label>{_t("search-comment.search")}</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder={_t("search-comment.search-placeholder")}
+            value={search.phrase}
+            onChange={(e) => setSearch({ ...search, phrase: e.target.value })}
+            // onKeyDown={this.textInputDown}
+          />
+        </Form.Group>
+        <Form.Group controlId="form-author">
+          <Form.Label>{_t("search-comment.author")}</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder={_t("search-comment.author-placeholder")}
+            value={search.author}
+            onChange={(e) => setSearch({ ...search, author: e.target.value })}
+            // onKeyDown={this.textInputDown}
+          />
+        </Form.Group>
+        <Form.Group controlId="form-type">
+          <Form.Label>{_t("search-comment.type")}</Form.Label>
+          <Form.Control
+            as="select"
+            onChange={(e) => setSearch({ ...search, type: e.target.value })}
+            value={search.type}
+          >
+            {Object.values(SearchType).map((x) => (
+              <option value={x} key={x}>
+                {_t(`search-comment.type-${x}`)}
+              </option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+        <Form.Group controlId="form-category">
+          <Form.Label>{_t("search-comment.category")}</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder={_t("search-comment.category-placeholder")}
+            onChange={(e) => setSearch({ ...search, category: e.target.value })}
+            value={search.category}
+            // onKeyDown={this.textInputDown}
+          />
+        </Form.Group>
+        <Form.Group controlId="form-date">
+          <Form.Label>{_t("search-comment.date")}</Form.Label>
+          <Form.Control
+            as="select"
+            onChange={(e) => setSearch({ ...search, date: e.target.value })}
+            value={search.date}
+          >
+            {Object.values(DateOpt).map((x) => (
+              <option value={x} key={x}>
+                {_t(`search-comment.date-${x}`)}
+              </option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+        <Form.Group controlId="form-sort">
+          <Form.Label>{_t("search-comment.sort")}</Form.Label>
+          <Form.Control
+            as="select"
+            onChange={(e) => setSearch({ ...search, sort: e.target.value })}
+            value={search.sort}
+          >
+            {Object.values(SearchSort).map((x) => (
+              <option value={x} key={x}>
+                {_t(`search-comment.sort-${x}`)}
+              </option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+      </div>
+      <Form.Check
+        id="hide-low"
+        type="checkbox"
+        label={_t("search-comment.hide-low")}
+        onChange={(e) => setSearch({ ...search, hideLow: e.target.checked })}
+        value={search.hideLow}
+        className="mt-2 mb-4"
+      />
+      <Button
+        className="align-self-start"
+        disabled={Object.keys(search).length === 0}
+        onClick={handleAddColumn}
+      >
+        {_t("decks.add")}
+      </Button>
+    </div>
+  );
+
   return (
-    <div className="d-flex flex-column align-items-center mt-5">
+    <div
+      className={`d-flex flex-column align-items-center mt-${
+        selectedValue === _t("decks.search") ? "3" : "5"
+      }`}
+    >
       {/* {selectedValue === "Search" ? <><SearchComment /></> : <> */}
-      {selectedValue === _t("decks.search") || selectedValue === _t("decks.topic") ? (
+      {selectedValue === _t("decks.topic") ? (
         <>Coming soon!</>
+      ) : selectedValue === _t("decks.search") ? (
+        searchForm
       ) : (
         <>
           <Form.Group>
             <Form.Label>
               {selectedValue === _t("decks.community")
                 ? _t("decks.community")
+                : selectedValue === _t("decks.search")
+                ? _t("search-comment.author")
                 : _t("decks.username")}
             </Form.Label>
 
