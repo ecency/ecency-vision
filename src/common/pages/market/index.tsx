@@ -11,6 +11,7 @@ import NavBarElectron from "../../../desktop/app/components/navbar";
 import { NavBar } from "../../components/navbar";
 import Meta from "../../components/meta";
 import { ModeSelector } from "./mode-selector";
+import { SwapMode } from "./swap-mode";
 
 const MarketPage = (props: PageProps) => {
   const [mode, setMode] = useState<MarketMode>(get(MARKET_MODE_LS_TOKEN, MarketMode.SWAP));
@@ -47,6 +48,7 @@ const MarketPage = (props: PageProps) => {
               set(MARKET_MODE_LS_TOKEN, mode);
             }}
           />
+          {mode === MarketMode.SWAP && <SwapMode {...props} />}
           {mode === MarketMode.LIMIT && <LimitMarketMode {...props} />}
         </div>
       </div>
