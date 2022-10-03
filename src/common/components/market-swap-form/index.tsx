@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { swapSvg } from "../../img/svg";
 import { SwapAmountControl } from "./swap-amount-control";
+import { MarketInfo } from "./market-info";
 
 export const MarketSwapForm = () => {
   const [from, setFrom] = useState("");
@@ -13,7 +14,8 @@ export const MarketSwapForm = () => {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="market-swap-form p-3">
+    <div className="market-swap-form p-4">
+      <div className="text-primary font-weight-bold mb-4">{_t("market.swap-title")}</div>
       <Form
         onSubmit={(e) => {
           e.preventDefault();
@@ -28,13 +30,8 @@ export const MarketSwapForm = () => {
           </div>
         </div>
         <SwapAmountControl labelKey="market.to" value={to} setValue={(v) => setTo(v)} />
-        <Button
-          size="lg"
-          block={true}
-          type="submit"
-          disabled={disabled || loading}
-          className="mt-4"
-        >
+        <MarketInfo className="mt-4" />
+        <Button block={true} type="submit" disabled={disabled || loading} className="py-3 mt-4">
           {loading ? _t("market.swapping") : _t("market.continue")}
         </Button>
       </Form>

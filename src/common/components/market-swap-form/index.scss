@@ -1,5 +1,19 @@
 .market-swap-form {
+  border-radius: calc(1rem + 8px);
+
+  @include themify(day) {
+    background-color: $white;
+  }
+
+  @include themify(night) {
+    background-color: $dark-two;
+  }
+
   .form-group {
+    border-radius: 1rem;
+  }
+
+  .list-group {
     border-radius: 1rem;
   }
 
@@ -11,6 +25,10 @@
 
     &:focus, &:active {
       background: transparent;
+    }
+
+    @include themify(night) {
+      color: $white;
     }
   }
 
@@ -32,7 +50,7 @@
       }
 
       @include themify(night) {
-        background-color: $dark-seven;
+        background-color: $dark-two;
       }
     }
   }

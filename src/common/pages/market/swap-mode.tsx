@@ -5,8 +5,8 @@ import { PageProps } from "../common";
 
 export const SwapMode = (props: PageProps) => {
   return (
-    <Row className="justify-content-center">
-      <Col xs={12} sm={10} md={8} lg={6}>
+    <Row className="justify-content-center pb-5">
+      <Col xs={12} md={10} lg={8} xl={6}>
         <MarketSwapForm />
       </Col>
     </Row>

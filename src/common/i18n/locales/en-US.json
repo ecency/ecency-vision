@@ -372,7 +372,12 @@
     "from": "From",
     "to": "To",
     "swap": "Swap",
-    "continue": "Continue"
+    "continue": "Continue",
+    "balance": "Balance",
+    "fee": "Fee",
+    "fee-free": "Free",
+    "order-book-impact": "Order book impact",
+    "swap-title": "Swap your funds"
   },
   "list-style": {
     "title": "Toggle list style"

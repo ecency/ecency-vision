@@ -32,7 +32,7 @@ const MarketPage = (props: PageProps) => {
     <>
       <Meta title={title} description={description} />
       <Feedback activeUser={props.activeUser} />
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center market-page">
         <div className="w-sm-75 p-3 p-sm-0">
           <div style={{ marginBottom: "6rem" }}>{navbar}</div>
           <div className="mb-5 text-center">
