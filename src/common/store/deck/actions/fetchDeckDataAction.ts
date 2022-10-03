@@ -8,7 +8,8 @@ import { setDataAct, setReloadingAct } from "../acts";
 import { fetchTransactions } from "../../transactions/fetchTransactions";
 
 export const fetchDeckData =
-  (title: string) => async (dispatch: Dispatch, getState: () => { deck: DeckState }) => {
+  (title: string, data?: any) =>
+  async (dispatch: Dispatch, getState: () => { deck: DeckState }) => {
     const [deckType, account] = title.split(" @");
     const decks = getState().deck.items;
     const deckToUpdate = decks.find((d: IdentifiableDeckModel) => d.header.title === title);
@@ -34,6 +35,11 @@ export const fetchDeckData =
           // @ts-ignore
           res = await getNotifications(...deckToUpdate.dataParams);
           dispatch(setDataAct({ title, data: res.map((item) => ({ ...item, deck: true })) }));
+          break;
+        case _t("decks.search").toLocaleLowerCase():
+          // @ts-ignore
+          res = data;
+          dispatch(setDataAct({ title, data: res }));
           break;
         case _t("decks.trending-topics").toLocaleLowerCase():
           res = await getAllTrendingTags();

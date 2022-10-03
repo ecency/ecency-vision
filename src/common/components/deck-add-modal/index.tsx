@@ -323,11 +323,7 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue, decks }: any) =>
         value={search.hideLow}
         className="mt-2 mb-4"
       />
-      <Button
-        className="align-self-start"
-        disabled={Object.keys(search).length === 0}
-        onClick={handleAddColumn}
-      >
+      <Button className="align-self-start" disabled={!search.phrase} onClick={handleAddColumn}>
         {_t("decks.add")}
       </Button>
     </div>

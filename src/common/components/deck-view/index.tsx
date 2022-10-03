@@ -8,7 +8,8 @@ import {
   person,
   plusEncircled,
   wallet,
-  trelloSvg
+  trelloSvg,
+  magnifySvg
 } from "../../img/svg";
 import { pageMapDispatchToProps, pageMapStateToProps } from "../../pages/common";
 import { DeckAddModal } from "../deck-add-modal";
@@ -21,6 +22,15 @@ import NotificationListItem from "../notifications/notification-list-item";
 import { _t } from "../../i18n";
 import { error } from "../feedback";
 import { IdentifiableDeckModel } from "./types";
+import moment, { Moment } from "moment";
+import { search, SearchResult } from "../../api/search-api";
+
+enum DateOpt {
+  W = "week",
+  M = "month",
+  Y = "year",
+  A = "all"
+}
 
 const DeckViewContainer = ({
   global,
@@ -39,25 +49,69 @@ const DeckViewContainer = ({
   const [user, setUser] = useState(null);
   const [fetched, setFetched] = useState(true);
 
-  const onSelectColumn = async (account: string, contentType: string) => {
+  const buildQuery = (search: any) => {
+    const { phrase, author, type, category, tags } = search;
+
+    let q = phrase;
+
+    if (author) {
+      q += ` author:${author}`;
+    }
+
+    if (type) {
+      q += ` type:${type}`;
+    }
+
+    if (category) {
+      q += ` category:${category}`;
+    }
+
+    if (tags) {
+      q += ` tag:${tags}`;
+    }
+
+    return q;
+  };
+
+  const onSelectColumn = async (account: any, contentType: string) => {
     setOpenModal(false);
     setLoadingNewContent(true);
     setUser(rest.activeUser && rest.activeUser.username);
     if (contentType) {
-      let title = `${contentType} @${account}`;
+      let title = `${contentType} @${account.phrase}`;
       if (contentType === _t("decks.notifications")) {
         const dataParams = [user || account, null, null, account];
         createDeck([NotificationListItem, title, notifications, dataParams], user);
         fetchDeckData(title);
         setLoadingNewContent(false);
       } else if (contentType === _t("decks.search")) {
-        debugger;
-        const dataParams: any[] = [];
-        const title = `${account}`;
+        const { date, sort, hideLow } = account;
+        let q = buildQuery(account);
 
-        createDeck([HotListItem, title, hot, dataParams], user);
-        fetchDeckData(title);
-        setLoadingNewContent(false);
+        let sinceDate: undefined | Moment;
+
+        switch (date) {
+          case DateOpt.W:
+            sinceDate = moment().subtract("1", "week");
+            break;
+          case DateOpt.M:
+            sinceDate = moment().subtract("1", "month");
+            break;
+          case DateOpt.Y:
+            sinceDate = moment().subtract("1", "year");
+            break;
+          default:
+            sinceDate = undefined;
+        }
+        const since = sinceDate ? sinceDate.format("YYYY-MM-DDTHH:mm:ss") : undefined;
+        const hideLow_ = hideLow ? "1" : "0";
+        search(q, sort, hideLow_, since).then((r) => {
+          let newResults: SearchResult[];
+          newResults = [...r.results];
+          createDeck([SearchListItem, title, magnifySvg], user);
+          fetchDeckData(title, newResults);
+          setLoadingNewContent(false);
+        });
       } else if (contentType === _t("decks.wallet")) {
         createDeck([TransactionRow, title, wallet, []], user);
         setLoadingNewContent(false);
