@@ -63,7 +63,7 @@
     "more-results": "Mais resultados",
     "close": "Fechar",
     "loading": "Carregando",
-    "stop": "Stop"
+    "stop": "Parar"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -95,7 +95,7 @@
     "filter-month": "Este mês",
     "filter-year": "Este ano",
     "filter-alltime": "Desde o início",
-    "filter-no-reblog": "Exclude reblog",
+    "filter-no-reblog": "Excluir reblog",
     "filter-with-reblog": "Include reblog"
   },
   "navbar": {
@@ -433,7 +433,7 @@
     "reveal-muted-long-description": "Mostrar respostas adicionais, incluindo aquelas que contém conteúdo ofensivo",
     "reveal": "Revelar comentário",
     "no-conversation": "No conversation yet, be first to reply",
-    "start-conversation": "Start conversation"
+    "start-conversation": "Iniciar conversa"
   },
   "community": {
     "page-description": "{{f}} tópicos",
