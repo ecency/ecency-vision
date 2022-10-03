@@ -3,6 +3,17 @@
     border-radius: 1rem;
   }
 
+  .amount-control {
+    background: transparent;
+    border: none;
+    font-size: 3rem;
+    border-radius: 0;
+
+    &:focus, &:active {
+      background: transparent;
+    }
+  }
+
   .swap-button-container {
     display: flex;
     justify-content: center;
