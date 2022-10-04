@@ -6,10 +6,10 @@ import { getAllTrendingTags } from "../../../api/hive";
 import { getAccountPosts, getPostsRanked } from "../../../api/bridge";
 import { setDataAct, setReloadingAct } from "../acts";
 import { fetchTransactions } from "../../transactions/fetchTransactions";
+import { search } from "../../../api/search-api";
 
 export const fetchDeckData =
-  (title: string, data?: any) =>
-  async (dispatch: Dispatch, getState: () => { deck: DeckState }) => {
+  (title: string) => async (dispatch: Dispatch, getState: () => { deck: DeckState }) => {
     const [deckType, account] = title.split(" @");
     const decks = getState().deck.items;
     const deckToUpdate = decks.find((d: IdentifiableDeckModel) => d.header.title === title);
@@ -37,9 +37,17 @@ export const fetchDeckData =
           dispatch(setDataAct({ title, data: res.map((item) => ({ ...item, deck: true })) }));
           break;
         case _t("decks.search").toLocaleLowerCase():
-          // @ts-ignore
-          res = data;
-          dispatch(setDataAct({ title, data: res }));
+          if (deckToUpdate.dataParams) {
+            const searchParams = deckToUpdate.dataParams[0];
+            // @ts-ignore
+            res = await search(
+              searchParams.q,
+              searchParams.sort || "popularity",
+              searchParams.hideLow_,
+              searchParams.since
+            );
+            dispatch(setDataAct({ title, data: res.results }));
+          }
           break;
         case _t("decks.trending-topics").toLocaleLowerCase():
           res = await getAllTrendingTags();

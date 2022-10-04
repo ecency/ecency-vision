@@ -120,7 +120,6 @@ interface ApiError {
 }
 
 const handleError = (error: any) => {
-  debugger;
   return { error: "api error", data: error };
 };
 
@@ -161,9 +160,7 @@ export const getAllTrendingTags = (
     .then((tags: TrendingTag[]) => {
       return tags.filter((x) => x.name !== "").filter((x) => !isCommunity(x.name));
     })
-    .catch((reason) => {
-      debugger;
-    });
+    .catch((reason) => {});
 
 export const lookupAccounts = (q: string, limit = 50): Promise<string[]> =>
   client.database.call("lookup_accounts", [q, limit]);

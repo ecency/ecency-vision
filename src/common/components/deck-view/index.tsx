@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import {
   communities,
   globalTrending,
@@ -23,7 +23,6 @@ import { _t } from "../../i18n";
 import { error } from "../feedback";
 import { IdentifiableDeckModel } from "./types";
 import moment, { Moment } from "moment";
-import { search, SearchResult } from "../../api/search-api";
 
 enum DateOpt {
   W = "week",
@@ -105,13 +104,9 @@ const DeckViewContainer = ({
         }
         const since = sinceDate ? sinceDate.format("YYYY-MM-DDTHH:mm:ss") : undefined;
         const hideLow_ = hideLow ? "1" : "0";
-        search(q, sort, hideLow_, since).then((r) => {
-          let newResults: SearchResult[];
-          newResults = [...r.results];
-          createDeck([SearchListItem, title, magnifySvg], user);
-          fetchDeckData(title, newResults);
-          setLoadingNewContent(false);
-        });
+        createDeck([SearchListItem, title, magnifySvg, [{ q, sort, hideLow_, since }]], user);
+        fetchDeckData(title);
+        setLoadingNewContent(false);
       } else if (contentType === _t("decks.wallet")) {
         createDeck([TransactionRow, title, wallet, []], user);
         setLoadingNewContent(false);

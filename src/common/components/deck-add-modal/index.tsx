@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, InputGroup, Modal, ModalBody, Row } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal, ModalBody } from "react-bootstrap";
 import { getCommunities } from "../../api/bridge";
 import { lookupAccounts } from "../../api/hive";
 import { formatError } from "../../api/operations";
@@ -21,6 +21,19 @@ import { error } from "../feedback";
 import SuggestionList from "../suggestion-list";
 import userAvatar from "../user-avatar";
 const ModalHeader = Modal.Header;
+
+enum DateOpt {
+  W = "week",
+  M = "month",
+  Y = "year",
+  A = "all"
+}
+
+enum SearchSort {
+  POPULARITY = "popularity",
+  NEWEST = "newest",
+  RELEVANCE = "relevance"
+}
 
 const comingSoon = isElectron() ? "./img/coming-soon.png" : require("../../img/coming-soon.png");
 
@@ -102,7 +115,7 @@ const communityContentTypes = [
 
 const AddColumn = ({ setSelectedValue, onSelect, selectedValue, decks }: any) => {
   const [to, setTo] = useState("");
-  const [search, setSearch] = useState<any>({});
+  const [search, setSearch] = useState<any>({ date: DateOpt.A });
   const [contentType, setContentType] = useState("");
   const [toSelected, setToSelected] = useState("");
   const [toData, setToData] = useState<any>([]);
@@ -215,19 +228,6 @@ const AddColumn = ({ setSelectedValue, onSelect, selectedValue, decks }: any) =>
   };
 
   let type = selectedValue === _t("decks.community") ? communityContentTypes : contentTypes;
-
-  enum DateOpt {
-    W = "week",
-    M = "month",
-    Y = "year",
-    A = "all"
-  }
-
-  enum SearchSort {
-    POPULARITY = "popularity",
-    NEWEST = "newest",
-    RELEVANCE = "relevance"
-  }
 
   const searchForm = (
     <div className="advanced-section">
