@@ -1,17 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { swapSvg } from "../../img/svg";
 import { SwapAmountControl } from "./swap-amount-control";
 import { MarketInfo } from "./market-info";
+import { MarketAsset, MarketPairs } from "./market-pair";
 
 export const MarketSwapForm = () => {
   const [from, setFrom] = useState("");
-  const [fromAsset, setFromAsset] = useState("HIVE");
   const [to, setTo] = useState("");
-  const [toAsset, setToAsset] = useState("HBD($)");
+  const [fromAsset, setFromAsset] = useState(MarketAsset.HIVE);
+  const [toAsset, setToAsset] = useState(MarketAsset.HBD);
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [availableAssets, setAvailableAssets] = useState<MarketAsset[]>([]);
+
+  useEffect(() => {
+    const nextAvailableAssets = MarketPairs[toAsset].filter((asset) => asset !== fromAsset);
+    if (!nextAvailableAssets.includes(toAsset)) {
+      setToAsset(nextAvailableAssets[0]);
+    }
+    setAvailableAssets(nextAvailableAssets);
+  }, [fromAsset]);
 
   return (
     <div className="market-swap-form p-4">
@@ -21,7 +31,14 @@ export const MarketSwapForm = () => {
           e.preventDefault();
         }}
       >
-        <SwapAmountControl labelKey="market.from" value={from} setValue={(v) => setFrom(v)} />
+        <SwapAmountControl
+          asset={fromAsset}
+          availableAssets={MarketPairs[fromAsset]}
+          labelKey="market.from"
+          value={from}
+          setValue={(v) => setFrom(v)}
+          setAsset={(v) => setFromAsset(v)}
+        />
         <div className="swap-button-container">
           <div className="overlay">
             <Button variant="" className="swap-button border">
@@ -29,7 +46,14 @@ export const MarketSwapForm = () => {
             </Button>
           </div>
         </div>
-        <SwapAmountControl labelKey="market.to" value={to} setValue={(v) => setTo(v)} />
+        <SwapAmountControl
+          asset={toAsset}
+          availableAssets={availableAssets}
+          labelKey="market.to"
+          value={to}
+          setValue={(v) => setTo(v)}
+          setAsset={(v) => setToAsset(v)}
+        />
         <MarketInfo className="mt-4" />
         <Button block={true} type="submit" disabled={disabled || loading} className="py-3 mt-4">
           {loading ? _t("market.swapping") : _t("market.continue")}
