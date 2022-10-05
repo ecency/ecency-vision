@@ -340,7 +340,7 @@ export class WalletHive extends BaseComponent<Props, State> {
         ? account.savings_hbd_seconds_last_update
         : account.savings_hbd_last_interest_payment
     );
-    const lastIPaymentDiffH = hourDiff(
+    const remainingHours = hourDiff(
       account.savings_hbd_last_interest_payment == "1970-01-01T00:00:00"
         ? account.savings_hbd_seconds_last_update
         : account.savings_hbd_last_interest_payment
@@ -349,7 +349,6 @@ export class WalletHive extends BaseComponent<Props, State> {
       (Number(hbd) / 100) * (w.savingBalanceHbd / (12 * 30)) * lastIPaymentDiff;
     const estimatedInterest = formattedNumber(interestAmount, { suffix: "$" });
     const remainingDays = 30 - lastIPaymentDiff;
-    const remainingHours = lastIPaymentDiffH;
 
     const totalHP = formattedNumber(vestsToHp(w.vestingShares, hivePerMVests), { suffix: "HP" });
     const totalDelegated = formattedNumber(vestsToHp(w.vestingSharesDelegated, hivePerMVests), {
@@ -743,7 +742,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                   <div className="unclaimed-rewards" style={{ marginBottom: "0" }}>
                     <div className="rewards" style={{ height: "40px" }}>
                       <a
-                        className={`claim-btn ${remainingDays >= 0 ? "disabled" : ""}`}
+                        className={`claim-btn ${remainingHours > 0 ? "disabled" : ""}`}
                         onClick={this.toggleClaimInterest}
                       >
                         {remainingDays > 0
