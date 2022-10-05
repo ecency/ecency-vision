@@ -23,6 +23,10 @@ export const MarketSwapForm = () => {
     setAvailableAssets(nextAvailableAssets);
   }, [fromAsset]);
 
+  const swap = () => {
+    setFromAsset(toAsset);
+  };
+
   return (
     <div className="market-swap-form p-4">
       <div className="text-primary font-weight-bold mb-4">{_t("market.swap-title")}</div>
@@ -41,7 +45,7 @@ export const MarketSwapForm = () => {
         />
         <div className="swap-button-container">
           <div className="overlay">
-            <Button variant="" className="swap-button border">
+            <Button variant="" className="swap-button border" onClick={swap}>
               {swapSvg}
             </Button>
           </div>
