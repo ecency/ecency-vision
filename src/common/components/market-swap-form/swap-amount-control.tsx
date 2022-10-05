@@ -1,7 +1,8 @@
 import { Form, InputGroup } from "react-bootstrap";
 import { _t } from "../../i18n";
-import React, { useEffect, useState } from "react";
-import { MarketAsset, MarketPairs } from "./market-pair";
+import React from "react";
+import { MarketAsset } from "./market-pair";
+import numeral from "numeral";
 
 interface Props {
   value: string;
@@ -20,6 +21,30 @@ export const SwapAmountControl = ({
   availableAssets,
   setAsset
 }: Props) => {
+  // Format to x,xxx.xxx
+  const formatValue = (newValue: string) => {
+    const isInt = /[0-9.]*/.test(newValue);
+    if (isInt) {
+      const isFirstPoint = newValue[0] === ".";
+      if (isFirstPoint) {
+        return "";
+      }
+
+      const isLastPoint = newValue[newValue.length - 1] === ".";
+      if (isLastPoint) {
+        return newValue;
+      }
+
+      const [integerPart, fractionalPart] = newValue.split(".");
+      console.log(integerPart, fractionalPart);
+      return (
+        numeral(integerPart).format("0,0") +
+        (fractionalPart ? "." + fractionalPart.slice(0, 3) : "")
+      );
+    }
+    return value;
+  };
+
   return (
     <Form.Group className="px-3 pt-3 pb-5 mb-0 border">
       <Form.Label>{_t(labelKey)}</Form.Label>
@@ -28,8 +53,8 @@ export const SwapAmountControl = ({
           <Form.Control
             className="amount-control pl-0"
             value={value}
-            placeholder="0.0"
-            onChange={(e) => setValue(e.target.value)}
+            placeholder="0.000"
+            onChange={(e) => setValue(formatValue(e.target.value))}
           />
           <small className="usd-balance bold text-secondary">$0.000</small>
         </div>
