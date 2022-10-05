@@ -627,7 +627,7 @@
     "hive-dollars-apr-rate": "La tasa de interés APR para HBD($) es {{value}}%",
     "hive-dollars-apr-claim": "Interés estimado desde el último pago {{value}}:",
     "hive-dollars-apr-day": "Reclamar en {{value}} días",
-    "hive-dollars-apr-hour": "Claim in {{value}} hours",
+    "hive-dollars-apr-hour": "Reclamar en {{value}} horas",
     "hive-dollars-apr-now": "Reclamar ahora",
     "hive-power-delegated": "Hive Power delegado",
     "hive-power-received": "Hive power recibido",
