@@ -45,7 +45,13 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
   }
 
   handleChange = (event: any) => {
-    const scHeight: number = event.target.scrollHeight;
+    let scHeight: number = event.target.scrollHeight;
+    let reduceScHeight : number = scHeight - 20 || scHeight - 24;
+    // console.log(event.target.rows)
+
+    if (reduceScHeight) {
+      scHeight = reduceScHeight;
+    }
  
     const isMobile = typeof window !== "undefined" && window.innerWidth < 570;
     if (isMobile) {
