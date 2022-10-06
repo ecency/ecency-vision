@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import { FormControl } from 'react-bootstrap';
+import { FormControl } from "react-bootstrap";
 
-import BaseComponent from '../base';
-import SearchBox from '../search-box';
+import BaseComponent from "../base";
+import SearchBox from "../search-box";
 
-import { _t } from '../../i18n';
+import { _t } from "../../i18n";
 
-import { insertOrReplace } from '../../util/input-util';
+import { insertOrReplace } from "../../util/input-util";
 
-import _ from 'lodash';
-import axios from 'axios';
-import { GIPHY_API, GIPHY_SEARCH_API, fetchGif } from '../../api/misc';
+import _ from "lodash";
+import axios from "axios";
+import { GIPHY_API, GIPHY_SEARCH_API, fetchGif } from "../../api/misc";
 
 interface Props {
   fallback?: (e: string) => void;
@@ -31,10 +31,10 @@ interface State {
 export default class GifPicker extends BaseComponent<Props> {
   state: State = {
     data: [],
-    filter: '',
+    filter: "",
     filteredData: [],
-    limit: '50',
-    offset: '0',
+    limit: "50",
+    offset: "0",
     total_count: 0,
   };
   _target: HTMLInputElement | null = null;
@@ -53,28 +53,28 @@ export default class GifPicker extends BaseComponent<Props> {
     }
   };
   componentDidMount() {
-    const gifWrapper = document.querySelector('.emoji-picker');
-    gifWrapper?.addEventListener('scroll', this.handleScroll);
+    const gifWrapper = document.querySelector(".emoji-picker");
+    gifWrapper?.addEventListener("scroll", this.handleScroll);
     this.getGifsData(null, this.state.limit, this.state.offset);
 
     this.watchTarget(); // initial
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('focus', this.watchTarget, true);
+    if (typeof window !== "undefined") {
+      window.addEventListener("focus", this.watchTarget, true);
     }
   }
 
   componentWillUnmount() {
-    const gifWrapper = document.querySelector('#gif-wrapper');
+    const gifWrapper = document.querySelector("#gif-wrapper");
     super.componentWillUnmount();
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('focus', this.watchTarget, true);
+    if (typeof window !== "undefined") {
+      window.removeEventListener("focus", this.watchTarget, true);
     }
-    gifWrapper?.removeEventListener('scroll', this.handleScroll);
+    gifWrapper?.removeEventListener("scroll", this.handleScroll);
   }
 
   watchTarget = () => {
-    if (document.activeElement?.classList.contains('accepts-emoji')) {
+    if (document.activeElement?.classList.contains("accepts-emoji")) {
       this._target = document.activeElement as HTMLInputElement;
     }
   };
@@ -116,8 +116,8 @@ export default class GifPicker extends BaseComponent<Props> {
   };
 
   itemClicked = (url: string) => {
-    let _url = url.split('.gif');
-    let gifUrl = _url[0] + '.gif';
+    let _url = url.split(".gif");
+    let gifUrl = _url[0] + ".gif";
     if (this._target) {
       insertOrReplace(this._target, gifUrl);
     } else {
@@ -139,9 +139,9 @@ export default class GifPicker extends BaseComponent<Props> {
   renderEmoji = (gifData: any[] | null) => {
     return gifData?.map((_gif, i) => {
       return (
-        <div className='emoji gifs' key={_gif?.id || i}>
+        <div className="emoji gifs" key={_gif?.id || i}>
           <img
-            loading='lazy'
+            loading="lazy"
             src={_gif?.images?.fixed_height?.url}
             alt="can't fetch :("
             onClick={() => {
@@ -160,22 +160,22 @@ export default class GifPicker extends BaseComponent<Props> {
     }
 
     return (
-      <div className='emoji-picker gif' onScroll={this.handleScroll}>
+      <div className="emoji-picker gif" onScroll={this.handleScroll}>
         <SearchBox
-          autoComplete='off'
-          autoCorrect='off'
-          autoCapitalize='off'
-          spellCheck='false'
-          placeholder={_t('gif-picker.filter-placeholder')}
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck="false"
+          placeholder={_t("gif-picker.filter-placeholder")}
           onChange={this.filterChanged}
         />
 
         {(() => {
           if (filter) {
             return (
-              <div className='gif-cat-list gif-cat-list' id='gif-wrapper'>
-                <div className='gif-cat gif-cat'>
-                  <div className='gif-list gif-list'>
+              <div className="gif-cat-list gif-cat-list" id="gif-wrapper">
+                <div className="gif-cat gif-cat">
+                  <div className="gif-list gif-list">
                     {this.renderEmoji(filteredData)}
                   </div>
                 </div>
@@ -183,9 +183,9 @@ export default class GifPicker extends BaseComponent<Props> {
             );
           } else {
             return (
-              <div className='gif-cat-list gif-cat-list' id='gif-wrapper'>
-                <div className='gif-cat gif-cat'>
-                  <div className='gif-list gif-list'>
+              <div className="gif-cat-list gif-cat-list" id="gif-wrapper">
+                <div className="gif-cat gif-cat">
+                  <div className="gif-list gif-list">
                     {this.renderEmoji(data)}
                   </div>
                 </div>
