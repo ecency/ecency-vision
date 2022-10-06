@@ -159,7 +159,12 @@ class EntryPage extends BaseComponent<Props, State> {
     let replyDraft = ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`);
     replyDraft = (replyDraft && replyDraft.trim()) || "";
 
-    this.setState({ isMounted: true, selection: replyDraft });
+    const wordsWithoutSpace: any = entry?.body.trim()?.split(/\s+/);
+    const totalCount: number = wordsWithoutSpace.length;
+    const wordPerMinuite: number = 225;
+    const readTime: number = Math.ceil(totalCount / wordPerMinuite); 
+    
+    this.setState({ isMounted: true, selection: replyDraft, readTime, wordCount: totalCount });
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
@@ -337,14 +342,14 @@ class EntryPage extends BaseComponent<Props, State> {
     bridgeApi
       .getPost(author, permlink)
       .then((entry) => {
-        if (entry) {
-          reducerFn(entry);
-          const wordsWithoutSpace: any = entry?.body && entry?.body.trim()?.split(/\s+/);
-          const totalCount: number = wordsWithoutSpace?.length;
-          const wordPerMinuite: number = 225;
-          const readTime: number = Math.ceil(totalCount / wordPerMinuite);
-          this.stateSet({ loading: false, readTime, wordCount: totalCount });
-        }
+        // if (entry) {
+        //   reducerFn(entry);
+        //   const wordsWithoutSpace: any = entry?.body && entry?.body.trim()?.split(/\s+/);
+        //   const totalCount: number = wordsWithoutSpace?.length;
+        //   const wordPerMinuite: number = 225;
+        //   const readTime: number = Math.ceil(totalCount / wordPerMinuite);
+        //   this.stateSet({ loading: false, readTime, wordCount: totalCount });
+        // }
 
         if (isCommunity(category)) {
           this.stateSet({ loading: false });
