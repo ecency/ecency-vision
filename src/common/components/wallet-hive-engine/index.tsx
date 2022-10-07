@@ -11,8 +11,7 @@ import HiveEngineToken, { HiveEngineTokenEntryDelta } from "../../helper/hive-en
 import LinearProgress from "../linear-progress";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import WalletMenu from "../wallet-menu";
-import Transfer, { TransferMode, TransferAsset } from "../transfer";
-
+import Transfer, { TransferMode } from "../transfer-he";
 import {
   claimRewards,
   getHiveEngineTokenBalances,
@@ -48,6 +47,7 @@ interface TokenProps {
 }
 
 import { _t } from "../../i18n";
+type TransferAsset = string;
 
 interface Props {
   global: Global;

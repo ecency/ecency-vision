@@ -93,6 +93,7 @@ export default class HiveEngineToken {
     this.stake += stakeDelta ?? 0;
     this.delegationsIn += delegationsInDelta ?? 0;
     this.delegationsOut += delegationsOutDelta ?? 0;
+    this.stakedBalance = this.stake + this.delegationsIn - this.delegationsOut;
   }
 
   balanced = (): string => {

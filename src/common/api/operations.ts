@@ -1,5 +1,6 @@
 import hs from "hivesigner";
 import { APP_URL } from "../../client_config";
+import { HIVE_API_NAME } from "./hive";
 
 import {
   AccountUpdateOperation,
@@ -315,7 +316,56 @@ export const claimRewardBalance = (
 
   return broadcastPostingOperations(username, opArray);
 };
-
+export const claimRewardBalanceHiveEngineAssetJSON = (
+  from: string,
+  to: string,
+  amount: string
+): string => {
+  const [quantity, token_name] = amount.split(/ /);
+  const json = JSON.stringify({
+    symbol: token_name
+  });
+  return json;
+};
+interface ClaimTokenParams {
+  id: "scot_claim_token";
+  json: string;
+  required_auths: [];
+  required_posting_auths: [string];
+}
+export const claimHiveEngineRewardBalance = (from: string, to: string, amount: string) => {
+  const params: ClaimTokenParams = {
+    id: "scot_claim_token",
+    json: claimRewardBalanceHiveEngineAssetJSON(from, to, amount),
+    required_auths: [],
+    required_posting_auths: [from]
+  };
+  const opArray: Operation[] = [["custom_json", params]];
+  return broadcastPostingOperations(from, opArray);
+};
+/*
+export const HECustomJSONWithPostingKey = (key: PrivateKey, from:string, json: string): Promise<TransactionConfirmation> => {
+    const op = {
+        id: "ssc-mainnet-hive",
+        json,
+        required_auths: [],
+        required_posting_auths: [from]
+    };
+    return hiveClient.broadcast.json(op, key);
+}
+export const HECustomJSONPostingKc = (from:string, json: string, description: string): Promise<TxResponse> => {
+    return keychain.customJson(from, "ssc-mainnet-hive", "Posting", json, description);
+}
+export const HECustomJSONPostingHot = (from:string, json: string, destination: string) => {
+    const params = {
+        authority: "posting",
+        required_auths: `[]`,
+        required_posting_auths: `["${from}"]`,
+        id: "ssc-mainnet-hive",
+        json
+    }
+    hotSign("custom-json", params, destination);
+}*/
 export const transfer = (
   from: string,
   key: PrivateKey,
@@ -450,7 +500,6 @@ export const transferToSavingsKc = (from: string, to: string, amount: string, me
       memo
     }
   ];
-
   return keychain.broadcast(from, [op], "Active");
 };
 
@@ -863,49 +912,106 @@ export const collateralizedConvertKc = (owner: string, amount: string) => {
   return keychain.broadcast(owner, [op], "Active");
 };
 
+export const createTransferToVestingOp = (from: string, to: string, amount: string): Operation => {
+  const parts = amount.split(/ /);
+  const currency = parts[parts.length - 1];
+  const quantity = parts[0].replace(/,/g, "");
+  console.log(from, to, amount);
+  if (currency === HIVE_API_NAME) {
+    return [
+      "transfer_to_vesting",
+      {
+        from,
+        to,
+        amount
+      }
+    ];
+  } else {
+    return [
+      "custom_json",
+      {
+        id: "ssc-mainnet-hive",
+        required_auths: [from],
+        required_posting_auths: [],
+        json: JSON.stringify({
+          contractName: "tokens",
+          contractAction: "stake",
+          contractPayload: {
+            symbol: currency,
+            to: to,
+            quantity: quantity
+          }
+        })
+      }
+    ];
+  }
+};
+
 export const transferToVesting = (
   from: string,
   key: PrivateKey,
   to: string,
   amount: string
 ): Promise<TransactionConfirmation> => {
-  const op: Operation = [
-    "transfer_to_vesting",
-    {
-      from,
-      to,
-      amount
-    }
-  ];
+  const op: Operation = createTransferToVestingOp(from, to, amount);
 
   return hiveClient.broadcast.sendOperations([op], key);
 };
 
 export const transferToVestingHot = (from: string, to: string, amount: string) => {
-  const op: Operation = [
-    "transfer_to_vesting",
-    {
-      from,
-      to,
-      amount
-    }
-  ];
+  const op: Operation = createTransferToVestingOp(from, to, amount);
 
   const params: Parameters = { callback: `${APP_URL}/@${from}/wallet` };
   return hs.sendOperation(op, params, () => {});
 };
 
 export const transferToVestingKc = (from: string, to: string, amount: string) => {
-  const op: Operation = [
-    "transfer_to_vesting",
-    {
-      from,
-      to,
-      amount
-    }
-  ];
-
+  const op: Operation = createTransferToVestingOp(from, to, amount);
   return keychain.broadcast(from, [op], "Active");
+};
+
+export const createDelegateVestingSharesOp = (
+  delegator: string,
+  delegatee: string,
+  vestingShares: string
+): Operation => {
+  if (!/[0-9]+(.[0-9]+)? [A-Z][A-Z0-9]+/.test(vestingShares)) {
+    throw new Error(`Invalid vestingShares Amount specified: "${vestingShares}"`);
+  }
+  const parts = vestingShares.split(/ /);
+  const currency = parts[parts.length - 1];
+  const quantity = parts[0].replace(/,/g, "");
+  if (currency === "HP" || currency === "HIVE") {
+    throw new Error(`Invalid parameter: ${currency} can be an HiveEngine asset or VESTS`);
+  }
+  if (currency === "VESTS") {
+    return [
+      "delegate_vesting_shares",
+      {
+        delegator,
+        delegatee,
+        vesting_shares: vestingShares
+      }
+    ];
+  } else {
+    return [
+      "custom_json",
+      {
+        id: "ssc-mainnet-hive",
+        required_auths: [delegator],
+        required_posting_auths: [],
+        json: JSON.stringify({
+          contractName: "tokens",
+          contractAction: "delegate",
+          contractPayload: {
+            symbol: currency,
+            to: delegatee,
+            quantity: quantity
+          }
+        })
+      }
+    ];
+  }
 };
 
 export const delegateVestingShares = (
@@ -914,15 +1020,7 @@ export const delegateVestingShares = (
   delegatee: string,
   vestingShares: string
 ): Promise<TransactionConfirmation> => {
-  const op: Operation = [
-    "delegate_vesting_shares",
-    {
-      delegator,
-      delegatee,
-      vesting_shares: vestingShares
-    }
-  ];
-
+  const op: Operation = createDelegateVestingSharesOp(delegator, delegatee, vestingShares);
   return hiveClient.broadcast.sendOperations([op], key);
 };
 
@@ -931,15 +1029,10 @@ export const delegateVestingSharesHot = (
   delegatee: string,
   vestingShares: string
 ) => {
-  const op: Operation = [
-    "delegate_vesting_shares",
-    {
-      delegator,
-      delegatee,
-      vesting_shares: vestingShares
-    }
-  ];
-
+  const op: Operation = createDelegateVestingSharesOp(delegator, delegatee, vestingShares);
+  const parts = vestingShares.split(/ /);
+  const currency = parts[parts.length - 1];
+  const quantity = parts[0].replace(/,/g, "");
   const params: Parameters = { callback: `${APP_URL}/@${delegator}/wallet` };
   return hs.sendOperation(op, params, () => {});
 };
@@ -949,15 +1042,7 @@ export const delegateVestingSharesKc = (
   delegatee: string,
   vestingShares: string
 ) => {
-  const op: Operation = [
-    "delegate_vesting_shares",
-    {
-      delegator,
-      delegatee,
-      vesting_shares: vestingShares
-    }
-  ];
-
+  const op: Operation = createDelegateVestingSharesOp(delegator, delegatee, vestingShares);
   return keychain.broadcast(delegator, [op], "Active");
 };
 
