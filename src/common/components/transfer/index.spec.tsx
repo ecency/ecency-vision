@@ -139,49 +139,6 @@ describe("(3) Transfer POINT", () => {
   });
 });
 
-describe("(3) Transfer Proof of Brain", () => {
-  const mode: TransferMode = "transfer";
-  const asset: TransferAsset = "POB";
-  const tokens = [
-    new HiveEngineToken({
-      symbol: "POB",
-      name: "Proof of Brain",
-      icon: "https://i.postimg.cc/02vXm7Rb/poblogo.png",
-      precision: 8,
-      stakingEnabled: true,
-      delegationEnabled: true,
-      balance: "485.9438739",
-      stake: "94782.30057459",
-      delegationsIn: "0",
-      delegationsOut: "4.00000001"
-    })
-  ];
-
-  const props = {
-    ...defProps,
-    mode,
-    asset,
-    tokens
-  };
-
-  const component = TestRenderer.create(<Transfer {...props} />);
-  const instance: any = component.getInstance();
-
-  it("(1) Step 1", () => {
-    expect(component.toJSON()).toMatchSnapshot();
-  });
-
-  it("(2) Step 2", () => {
-    instance.setState({ step: 2, to: "bar" });
-    expect(component.toJSON()).toMatchSnapshot();
-  });
-
-  it("(4) Step 4", () => {
-    instance.setState({ step: 4 });
-    expect(component.toJSON()).toMatchSnapshot();
-  });
-});
-
 describe("(4) Transfer to Savings - HBD", () => {
   const mode: TransferMode = "transfer-saving";
   const asset: TransferAsset = "HBD";

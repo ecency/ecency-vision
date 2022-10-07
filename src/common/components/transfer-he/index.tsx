@@ -912,7 +912,10 @@ export class Transfer extends BaseComponent<Props, State> {
                       {": "}
                     </span>
                     <span className="balance-num" onClick={this.copyBalance}>
-                      {formattedNumber(this.props.assetBalance, { fractionDigits: precision })}{" "}
+                      {formattedNumber(this.props.assetBalance, {
+                        maximumFractionDigits: precision,
+                        minimumFractionDigits: 0
+                      })}{" "}
                       {asset}
                     </span>
                     {asset === "HP" && (

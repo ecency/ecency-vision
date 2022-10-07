@@ -23,6 +23,7 @@ const defProps = {
   account: {
     name: "user1"
   },
+  _to: "",
   activeUser: {
     username: "foo",
     data: {
@@ -42,7 +43,8 @@ const defProps = {
   setSigningKey: () => {},
   fetchPoints: () => {},
   updateWalletValues: () => {},
-  onHide: () => {}
+  onHide: () => {},
+  tokens: []
 };
 
 describe("(1) Hive Engine - Transfer", () => {

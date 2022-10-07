@@ -1391,12 +1391,12 @@ exports[`(4) Hive Engine - Stake (1) Step 1 1`] = `
                 </span>
               </div>
               <input
-                autoFocus={true}
+                autoFocus={false}
                 className="form-control"
                 onChange={[Function]}
                 placeholder="username"
                 type="text"
-                value=""
+                value="foo"
               />
             </div>
             <div />

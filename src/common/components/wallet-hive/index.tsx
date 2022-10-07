@@ -865,8 +865,6 @@ export class WalletHive extends BaseComponent<Props, State> {
             mode={transferMode!}
             asset={transferAsset!}
             onHide={this.closeTransferDialog}
-            assetBalance={0}
-            tokens={[]}
           />
         )}
 
