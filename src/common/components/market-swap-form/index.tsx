@@ -25,6 +25,8 @@ export const MarketSwapForm = () => {
 
   const swap = () => {
     setFromAsset(toAsset);
+    setTo(from);
+    setFrom(to);
   };
 
   return (

@@ -36,7 +36,6 @@ export const SwapAmountControl = ({
       }
 
       const [integerPart, fractionalPart] = newValue.split(".");
-      console.log(integerPart, fractionalPart);
       return (
         numeral(integerPart).format("0,0") +
         (fractionalPart ? "." + fractionalPart.slice(0, 3) : "")
