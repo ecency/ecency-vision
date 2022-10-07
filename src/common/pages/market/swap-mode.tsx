@@ -7,7 +7,7 @@ export const SwapMode = (props: PageProps) => {
   return (
     <Row className="justify-content-center pb-5">
       <Col xs={12} md={10} lg={8} xl={6}>
-        <MarketSwapForm />
+        <MarketSwapForm activeUser={props.activeUser} />
       </Col>
     </Row>
   );

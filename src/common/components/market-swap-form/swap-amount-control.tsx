@@ -5,6 +5,7 @@ import { MarketAsset } from "./market-pair";
 import numeral from "numeral";
 
 interface Props {
+  balance: string;
   value: string;
   setValue: (value: string) => void;
   labelKey: string;
@@ -19,7 +20,8 @@ export const SwapAmountControl = ({
   labelKey,
   asset,
   availableAssets,
-  setAsset
+  setAsset,
+  balance
 }: Props) => {
   // Format to x,xxx.xxx
   const formatValue = (newValue: string) => {
@@ -70,10 +72,14 @@ export const SwapAmountControl = ({
                 </option>
               ))}
             </select>
-            <small className="balance d-block text-secondary">
-              {_t("market.balance")}:
-              <span className="text-primary font-weight-bold cursor-pointer ml-1">0.000</span>
-            </small>
+            {balance ? (
+              <small className="balance d-block text-secondary text-nowrap">
+                {_t("market.balance")}:
+                <span className="text-primary font-weight-bold cursor-pointer ml-1">{balance}</span>
+              </small>
+            ) : (
+              <></>
+            )}
           </div>
         </InputGroup.Append>
       </div>

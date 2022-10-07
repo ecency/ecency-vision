@@ -5,12 +5,22 @@ import { swapSvg } from "../../img/svg";
 import { SwapAmountControl } from "./swap-amount-control";
 import { MarketInfo } from "./market-info";
 import { MarketAsset, MarketPairs } from "./market-pair";
+import { ActiveUser } from "../../store/active-user/types";
+import { getBalance } from "./get-balance";
 
-export const MarketSwapForm = () => {
+interface Props {
+  activeUser: ActiveUser | null;
+}
+
+export const MarketSwapForm = ({ activeUser }: Props) => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+
   const [fromAsset, setFromAsset] = useState(MarketAsset.HIVE);
   const [toAsset, setToAsset] = useState(MarketAsset.HBD);
+
+  const [balance, setBalance] = useState("");
+
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
   const [availableAssets, setAvailableAssets] = useState<MarketAsset[]>([]);
@@ -21,6 +31,9 @@ export const MarketSwapForm = () => {
       setToAsset(nextAvailableAssets[0]);
     }
     setAvailableAssets(nextAvailableAssets);
+    if (activeUser) {
+      setBalance(getBalance(fromAsset, activeUser));
+    }
   }, [fromAsset]);
 
   const swap = () => {
@@ -39,6 +52,7 @@ export const MarketSwapForm = () => {
       >
         <SwapAmountControl
           asset={fromAsset}
+          balance={balance}
           availableAssets={MarketPairs[fromAsset]}
           labelKey="market.from"
           value={from}
