@@ -626,8 +626,8 @@
     "hive-power-apr-rate": "हाइव पावर के लिए एपीआर ब्याज दर {{value}}% है",
     "hive-dollars-apr-rate": "एच बी डी($) के लिए APR ब्याज दर {{value}}% है",
     "hive-dollars-apr-claim": "पिछले भुगतान के बाद से अनुमानित ब्याज {{value}}:",
-    "hive-dollars-apr-day": "Claim in {{value}} days",
-    "hive-dollars-apr-hour": "Claim in {{value}} hours",
+    "hive-dollars-apr-day": "{{value}} दिनों में दावा करें",
+    "hive-dollars-apr-hour": "{{value}} घंटों में दावा करें",
     "hive-dollars-apr-now": "अब दावा करो",
     "hive-power-delegated": "प्रत्यायोजित हाइव पावर",
     "hive-power-received": "हाइव पावर प्राप्त किया",
@@ -713,7 +713,7 @@
         "2": "इंस्टेंट लॉक | 4 सप्ताह का अनलॉक",
         "3": "सर्वसम्मति बनाने के लिए नोड सेवा खातों का प्रतिनिधि (डीपीओस)",
         "4": "लारेंक्स शक्ति (एल. पी.) ने {{rate}}% पर एसपीके टोकन अर्जित किया",
-        "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at {{rate}}%"
+        "5": "प्रत्यायोजित एल. पी. (डीएलपी) प्रतिनिधि और प्रतिनिधि दोनों के लिए {{rate}}% पर SPK टोकन अर्जित करता है"
       },
       "larynx-locked-benefits": {
         "title": "Benefits of LARYNX Locked",
