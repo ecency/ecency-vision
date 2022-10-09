@@ -6,8 +6,9 @@ import { SwapAmountControl } from "./swap-amount-control";
 import { MarketInfo } from "./market-info";
 import { MarketAsset, MarketPairs } from "./market-pair";
 import { ActiveUser } from "../../store/active-user/types";
-import { getBalance } from "./get-balance";
-import { getMarketRate } from "./get-market-rate";
+import { getBalance } from "./api/get-balance";
+import { getMarketRate } from "./api/get-market-rate";
+import { getCGMarket } from "./api/coingecko-api";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -21,7 +22,10 @@ export const MarketSwapForm = ({ activeUser }: Props) => {
   const [toAsset, setToAsset] = useState(MarketAsset.HBD);
 
   const [balance, setBalance] = useState("");
+
   const [marketRate, setMarketRate] = useState(0);
+  const [usdFromMarketRate, setUsdFromMarketRate] = useState(0);
+  const [usdToMarketRate, setUsdToMarketRate] = useState(0);
 
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -43,24 +47,31 @@ export const MarketSwapForm = ({ activeUser }: Props) => {
 
   useEffect(() => {
     const nextAvailableAssets = MarketPairs[toAsset].filter((asset) => asset !== fromAsset);
-    if (!nextAvailableAssets.includes(toAsset)) setToAsset(nextAvailableAssets[0]);
+    if (!nextAvailableAssets.includes(toAsset)) {
+      setToAsset(nextAvailableAssets[0]);
+      fetchMarket();
+    }
 
     setAvailableAssets(nextAvailableAssets);
     if (activeUser) setBalance(getBalance(fromAsset, activeUser));
-
-    fetchMarket();
   }, [fromAsset]);
 
   const swap = () => {
     setFromAsset(toAsset);
     setTo(from);
     setFrom(to);
+    setUsdFromMarketRate(usdToMarketRate);
+    setUsdToMarketRate(usdFromMarketRate);
   };
 
   const fetchMarket = async () => {
     setLoading(true);
     setMarketRate(await getMarketRate(fromAsset));
     setLoading(false);
+
+    const [fromUsdRate, toUsdRate] = await getCGMarket(fromAsset, toAsset);
+    setUsdFromMarketRate(fromUsdRate);
+    setUsdToMarketRate(toUsdRate);
   };
 
   return (
@@ -82,6 +93,7 @@ export const MarketSwapForm = ({ activeUser }: Props) => {
             setTo(marketRate * +v.replace(/,/gm, "") + "");
           }}
           setAsset={(v) => setFromAsset(v)}
+          usdRate={usdFromMarketRate}
         />
         <div className="swap-button-container">
           <div className="overlay">
@@ -100,12 +112,14 @@ export const MarketSwapForm = ({ activeUser }: Props) => {
             setFrom(+v.replace(/,/gm, "") / marketRate + "");
           }}
           setAsset={(v) => setToAsset(v)}
+          usdRate={usdToMarketRate}
         />
         <MarketInfo
           className="mt-4"
           marketRate={marketRate}
           toAsset={toAsset}
           fromAsset={fromAsset}
+          usdFromMarketRate={usdFromMarketRate}
         />
         <Button block={true} type="submit" disabled={disabled || loading} className="py-3 mt-4">
           {loading ? _t("market.swapping") : _t("market.continue")}

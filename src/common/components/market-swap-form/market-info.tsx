@@ -8,14 +8,21 @@ interface Props {
   marketRate: number;
   fromAsset: MarketAsset;
   toAsset: MarketAsset;
+  usdFromMarketRate: number;
 }
 
-export const MarketInfo = ({ className, toAsset, fromAsset, marketRate }: Props) => {
+export const MarketInfo = ({
+  className,
+  toAsset,
+  fromAsset,
+  marketRate,
+  usdFromMarketRate
+}: Props) => {
   return (
     <div>
       <small className={"market-info font-weight-bold d-block mb-4 " + className}>
         1 {fromAsset} = {marketRate.toFixed(3)} {toAsset}
-        <span className="text-secondary ml-1">($0.123)</span>
+        <span className="text-secondary ml-1">(${usdFromMarketRate.toFixed(3)})</span>
       </small>
 
       <ListGroup>

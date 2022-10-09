@@ -1,6 +1,6 @@
 import { Form, InputGroup } from "react-bootstrap";
 import { _t } from "../../i18n";
-import React, { useEffect } from "react";
+import React from "react";
 import { MarketAsset } from "./market-pair";
 import numeral from "numeral";
 
@@ -12,6 +12,7 @@ interface Props {
   asset: MarketAsset;
   availableAssets: MarketAsset[];
   setAsset: (asset: MarketAsset) => void;
+  usdRate: number;
 }
 
 export const SwapAmountControl = ({
@@ -21,7 +22,8 @@ export const SwapAmountControl = ({
   asset,
   availableAssets,
   setAsset,
-  balance
+  balance,
+  usdRate
 }: Props) => {
   // Format to x,xxx.xxx
   const formatValue = (newValue: string) => {
@@ -57,7 +59,9 @@ export const SwapAmountControl = ({
             placeholder="0.000"
             onChange={(e) => setValue(formatValue(e.target.value))}
           />
-          <small className="usd-balance bold text-secondary">$0.000</small>
+          <small className="usd-balance bold text-secondary">
+            ${formatValue(+value.replace(/,/gm, "") * usdRate + "")}
+          </small>
         </div>
         <InputGroup.Append>
           <div className="d-flex flex-column align-items-end">

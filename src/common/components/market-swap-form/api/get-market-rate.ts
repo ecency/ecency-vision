@@ -1,5 +1,5 @@
-import { MarketAsset } from "./market-pair";
-import { getMarketStatistics } from "../../api/hive";
+import { MarketAsset } from "../market-pair";
+import { getMarketStatistics } from "../../../api/hive";
 
 export const getMarketRate = async (asset: MarketAsset): Promise<number> => {
   if (asset === MarketAsset.HIVE) {
