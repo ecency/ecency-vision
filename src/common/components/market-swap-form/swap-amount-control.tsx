@@ -1,11 +1,11 @@
 import { Form, InputGroup } from "react-bootstrap";
 import { _t } from "../../i18n";
-import React from "react";
+import React, { useEffect } from "react";
 import { MarketAsset } from "./market-pair";
 import numeral from "numeral";
 
 interface Props {
-  balance: string;
+  balance?: string;
   value: string;
   setValue: (value: string) => void;
   labelKey: string;
@@ -53,7 +53,7 @@ export const SwapAmountControl = ({
         <div>
           <Form.Control
             className="amount-control pl-0"
-            value={value}
+            value={formatValue(value)}
             placeholder="0.000"
             onChange={(e) => setValue(formatValue(e.target.value))}
           />

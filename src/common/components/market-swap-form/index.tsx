@@ -7,6 +7,7 @@ import { MarketInfo } from "./market-info";
 import { MarketAsset, MarketPairs } from "./market-pair";
 import { ActiveUser } from "../../store/active-user/types";
 import { getBalance } from "./get-balance";
+import { getMarketRate } from "./get-market-rate";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -20,26 +21,46 @@ export const MarketSwapForm = ({ activeUser }: Props) => {
   const [toAsset, setToAsset] = useState(MarketAsset.HBD);
 
   const [balance, setBalance] = useState("");
+  const [marketRate, setMarketRate] = useState(0);
 
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
   const [availableAssets, setAvailableAssets] = useState<MarketAsset[]>([]);
 
+  let interval: any;
+
+  useEffect(() => {
+    fetchMarket();
+    // interval = setInterval(() => fetchMarket(), 20000);
+    return () => {
+      // clearInterval(interval);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (activeUser) setBalance(getBalance(fromAsset, activeUser));
+  }, [activeUser]);
+
   useEffect(() => {
     const nextAvailableAssets = MarketPairs[toAsset].filter((asset) => asset !== fromAsset);
-    if (!nextAvailableAssets.includes(toAsset)) {
-      setToAsset(nextAvailableAssets[0]);
-    }
+    if (!nextAvailableAssets.includes(toAsset)) setToAsset(nextAvailableAssets[0]);
+
     setAvailableAssets(nextAvailableAssets);
-    if (activeUser) {
-      setBalance(getBalance(fromAsset, activeUser));
-    }
+    if (activeUser) setBalance(getBalance(fromAsset, activeUser));
+
+    fetchMarket();
   }, [fromAsset]);
 
   const swap = () => {
     setFromAsset(toAsset);
     setTo(from);
     setFrom(to);
+  };
+
+  const fetchMarket = async () => {
+    setLoading(true);
+    setMarketRate(await getMarketRate(fromAsset));
+    setLoading(false);
   };
 
   return (
@@ -56,7 +77,10 @@ export const MarketSwapForm = ({ activeUser }: Props) => {
           availableAssets={MarketPairs[fromAsset]}
           labelKey="market.from"
           value={from}
-          setValue={(v) => setFrom(v)}
+          setValue={(v) => {
+            setFrom(v);
+            setTo(marketRate * +v.replace(/,/gm, "") + "");
+          }}
           setAsset={(v) => setFromAsset(v)}
         />
         <div className="swap-button-container">
@@ -71,10 +95,18 @@ export const MarketSwapForm = ({ activeUser }: Props) => {
           availableAssets={availableAssets}
           labelKey="market.to"
           value={to}
-          setValue={(v) => setTo(v)}
+          setValue={(v) => {
+            setTo(v);
+            setFrom(+v.replace(/,/gm, "") / marketRate + "");
+          }}
           setAsset={(v) => setToAsset(v)}
         />
-        <MarketInfo className="mt-4" />
+        <MarketInfo
+          className="mt-4"
+          marketRate={marketRate}
+          toAsset={toAsset}
+          fromAsset={fromAsset}
+        />
         <Button block={true} type="submit" disabled={disabled || loading} className="py-3 mt-4">
           {loading ? _t("market.swapping") : _t("market.continue")}
         </Button>
