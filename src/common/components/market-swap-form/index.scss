@@ -55,6 +55,23 @@
     }
   }
 
+  .title {
+    height: 24px;
+  }
+
+  .loading-market-svg {
+    transform-origin: center;
+    animation: rotate 1s linear infinite;
+    opacity: .5;
+    width: 24px;
+    height: 24px;
+  }
+
+  @keyframes rotate {
+    to { transform: rotate(-360deg); }
+  }
+
+
   .swap-button {
     width: 64px;
     height: 64px;

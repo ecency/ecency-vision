@@ -1,8 +1,10 @@
+@use "sass:math";
+
 .switch-toggler {
   $width: 48px;
   $height: 24px;
 
-  border-radius: $height / 2;
+  border-radius: math.div($height, 2);
   height: $height;
   width: $width;
   display: flex;
@@ -40,7 +42,7 @@
   .switcher {
     width: $height - 8px;
     height: $height - 8px;
-    border-radius: ($height - 8px) / 2;
+    border-radius: math.div(($height - 8px), 2);
     transition: .2s ease-in-out;
     transform: translateX(4px);
     z-index: 9;

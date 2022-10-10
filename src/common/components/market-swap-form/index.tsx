@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { _t } from "../../i18n";
-import { swapSvg } from "../../img/svg";
+import { swapSvg, syncSvg } from "../../img/svg";
 import { SwapAmountControl } from "./swap-amount-control";
 import { MarketInfo } from "./market-info";
 import { MarketAsset, MarketPairs } from "./market-pair";
@@ -65,9 +65,9 @@ export const MarketSwapForm = ({ activeUser }: Props) => {
   };
 
   const fetchMarket = async () => {
-    setLoading(true);
+    setDisabled(true);
     setMarketRate(await getMarketRate(fromAsset));
-    setLoading(false);
+    setDisabled(false);
 
     const [fromUsdRate, toUsdRate] = await getCGMarket(fromAsset, toAsset);
     setUsdFromMarketRate(fromUsdRate);
@@ -76,7 +76,10 @@ export const MarketSwapForm = ({ activeUser }: Props) => {
 
   return (
     <div className="market-swap-form p-4">
-      <div className="text-primary font-weight-bold mb-4">{_t("market.swap-title")}</div>
+      <div className="d-flex align-items-center title mb-4">
+        <div className="text-primary font-weight-bold">{_t("market.swap-title")}</div>
+        {disabled ? <i className="loading-market-svg ml-2 text-primary">{syncSvg}</i> : <></>}
+      </div>
       <Form
         onSubmit={(e) => {
           e.preventDefault();

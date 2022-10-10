@@ -377,7 +377,8 @@
     "fee": "Fee",
     "fee-free": "Free",
     "order-book-impact": "Order book impact",
-    "swap-title": "Swap your funds"
+    "swap-title": "Swap your funds",
+    "fetching-market": "Fetching market..."
   },
   "list-style": {
     "title": "Toggle list style"
