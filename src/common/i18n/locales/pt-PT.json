@@ -605,9 +605,9 @@
     "nsfw": "Mostrar conteúdo adulto",
     "referral-link": "Link de referência",
     "theme": "Theme Settings",
-    "theme-system-default": "System Default",
-    "theme-day": "Day mode",
-    "theme-night": "Night mode",
+    "theme-system-default": "Padrão do Sistema",
+    "theme-day": "Modo dia",
+    "theme-night": "Modo noite",
     "updated": "Preferências atualizadas!"
   },
   "wallet": {
@@ -649,12 +649,12 @@
     "withdraw-routes": "Rotas de Saque",
     "calculating": "Calculando",
     "converting-hbd-amount": "Convertendo em HIVE",
-    "converting-hive-amount": "Converting to HBD",
+    "converting-hive-amount": "Convertendo para HBD",
     "withdrawing-amount": "Sacando da Poupança",
     "reserved-amount": "Reservado em ordem aberta no Câmbio",
     "spk": {
       "claim": {
-        "title": "Claim",
+        "title": "Reivindicar",
         "unclaimed-rewards": "Unclaimed rewards"
       },
       "delegate": {
@@ -693,7 +693,7 @@
         "optional": "optional",
         "title": "Send SPK",
         "memo": "Memo",
-        "next": "Next",
+        "next": "Seguinte",
         "subtitle": "Move funds to another SPK wallet",
         "warning": "Transferring more than available balance"
       },
