@@ -1,20 +1,58 @@
-import { MarketSwappingMethods, SwappingMethod } from "./api/swapping";
+import { MarketSwappingMethods, swapByHs, SwappingMethod } from "./api/swapping";
 import { _t } from "../../i18n";
 import { Button } from "react-bootstrap";
 import React from "react";
 import { MarketAsset } from "./market-pair";
 import { Global } from "../../store/global/types";
 import { hsLogoSvg, kcLogoSvg } from "../../img/svg";
+import { formatError } from "../../api/operations";
+import { ActiveUser } from "../../store/active-user/types";
+import { getAccountFull } from "../../api/hive";
+import { error } from "../feedback";
 
 interface Props {
   disabled: boolean;
+  fromAmount: string;
+  toAmount: string;
+  marketRate: number;
   asset: MarketAsset;
   global: Global;
+  loading: boolean;
+  setLoading: (value: boolean) => void;
+  activeUser: ActiveUser | null;
+  addAccount: any;
+  updateActiveUser: any;
 }
 
-export const SignMethods = ({ disabled, asset, global }: Props) => {
-  const hsLogo = global.isElectron ? "./img/hive-signer.svg" : require("../../img/hive-signer.svg");
-  const keyChainLogo = global.isElectron ? "./img/keychain.png" : require("../../img/keychain.png");
+export const SignMethods = ({
+  disabled,
+  fromAmount,
+  toAmount,
+  asset,
+  loading,
+  setLoading,
+  activeUser,
+  addAccount,
+  updateActiveUser
+}: Props) => {
+  const onSwapByHs = async () => {
+    setLoading(true);
+    try {
+      await swapByHs({
+        activeUser,
+        fromAsset: asset,
+        fromAmount,
+        toAmount
+      });
+      const account = await getAccountFull(activeUser!.username);
+      addAccount(account);
+      updateActiveUser(account);
+    } catch (e) {
+      error(...formatError(e));
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div>
@@ -26,7 +64,12 @@ export const SignMethods = ({ disabled, asset, global }: Props) => {
         <></>
       )}
       {MarketSwappingMethods[asset].includes(SwappingMethod.HS) ? (
-        <Button block={true} disabled={disabled} className="py-3 mt-4 hs-button">
+        <Button
+          block={true}
+          disabled={disabled}
+          className="py-3 mt-4 hs-button"
+          onClick={onSwapByHs}
+        >
           <i className="sign-logo mr-3">{hsLogoSvg}</i>
           {_t("market.swap-by", { method: "Hivesigner" })}
         </Button>

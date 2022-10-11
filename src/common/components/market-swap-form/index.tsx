@@ -17,9 +17,11 @@ import { MarketSwapFormHeader } from "./market-swap-form-header";
 interface Props {
   activeUser: ActiveUser | null;
   global: Global;
+  addAccount: any;
+  updateActiveUser: any;
 }
 
-export const MarketSwapForm = ({ activeUser, global }: Props) => {
+export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUser }: Props) => {
   const [step, setStep] = useState(MarketSwapFormStep.FORM);
 
   const [from, setFrom] = useState("");
@@ -155,7 +157,19 @@ export const MarketSwapForm = ({ activeUser, global }: Props) => {
             <></>
           )}
           {step === MarketSwapFormStep.SIGN ? (
-            <SignMethods global={global} disabled={disabled || loading} asset={fromAsset} />
+            <SignMethods
+              global={global}
+              disabled={disabled || loading}
+              asset={fromAsset}
+              activeUser={activeUser}
+              loading={loading}
+              setLoading={setLoading}
+              updateActiveUser={updateActiveUser}
+              addAccount={addAccount}
+              fromAmount={from}
+              toAmount={to}
+              marketRate={marketRate}
+            />
           ) : (
             <></>
           )}
