@@ -5,6 +5,7 @@ import { MarketAsset } from "./market-pair";
 import numeral from "numeral";
 
 interface Props {
+  className?: string;
   balance?: string;
   value: string;
   setValue: (value: string) => void;
@@ -13,6 +14,7 @@ interface Props {
   availableAssets: MarketAsset[];
   setAsset: (asset: MarketAsset) => void;
   usdRate: number;
+  disabled: boolean;
 }
 
 export const SwapAmountControl = ({
@@ -23,7 +25,9 @@ export const SwapAmountControl = ({
   availableAssets,
   setAsset,
   balance,
-  usdRate
+  usdRate,
+  disabled,
+  className
 }: Props) => {
   // Format to x,xxx.xxx
   const formatValue = (newValue: string) => {
@@ -49,13 +53,14 @@ export const SwapAmountControl = ({
   };
 
   return (
-    <Form.Group className="px-3 pt-3 pb-5 mb-0 border">
+    <Form.Group className={"px-3 pt-3 pb-5 mb-0 border " + className}>
       <Form.Label>{_t(labelKey)}</Form.Label>
       <div className="d-flex align-items-center">
         <div>
           <Form.Control
             className="amount-control pl-0"
             value={formatValue(value)}
+            disabled={disabled}
             placeholder="0.000"
             onChange={(e) => setValue(formatValue(e.target.value))}
           />
@@ -66,6 +71,7 @@ export const SwapAmountControl = ({
         <InputGroup.Append>
           <div className="d-flex flex-column align-items-end">
             <select
+              disabled={disabled}
               value={asset}
               className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2"
               onChange={(e) => setAsset(e.target.value as MarketAsset)}

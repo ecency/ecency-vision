@@ -9,12 +9,19 @@ import { ActiveUser } from "../../store/active-user/types";
 import { getBalance } from "./api/get-balance";
 import { getMarketRate } from "./api/get-market-rate";
 import { getCGMarket } from "./api/coingecko-api";
+import { MarketSwapFormStep } from "./form-step";
+import { SignMethods } from "./sign-methods";
+import { Global } from "../../store/global/types";
+import { MarketSwapFormHeader } from "./market-swap-form-header";
 
 interface Props {
   activeUser: ActiveUser | null;
+  global: Global;
 }
 
-export const MarketSwapForm = ({ activeUser }: Props) => {
+export const MarketSwapForm = ({ activeUser, global }: Props) => {
+  const [step, setStep] = useState(MarketSwapFormStep.FORM);
+
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
 
@@ -74,18 +81,22 @@ export const MarketSwapForm = ({ activeUser }: Props) => {
     setUsdToMarketRate(toUsdRate);
   };
 
+  const submit = () => {
+    if (step === MarketSwapFormStep.FORM) setStep(MarketSwapFormStep.SIGN);
+    else if (step === MarketSwapFormStep.SIGN) {
+    }
+  };
+
+  const back = () => {
+    if (step === MarketSwapFormStep.SIGN) setStep(MarketSwapFormStep.FORM);
+  };
+
   return (
     <div className="market-swap-form p-4">
-      <div className="d-flex align-items-center title mb-4">
-        <div className="text-primary font-weight-bold">{_t("market.swap-title")}</div>
-        {disabled ? <i className="loading-market-svg ml-2 text-primary">{syncSvg}</i> : <></>}
-      </div>
-      <Form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
+      <MarketSwapFormHeader step={step} loading={loading || disabled} onBack={back} />
+      <Form onSubmit={(e) => submit()}>
         <SwapAmountControl
+          className={step === MarketSwapFormStep.SIGN ? "mb-3" : ""}
           asset={fromAsset}
           balance={balance}
           availableAssets={MarketPairs[fromAsset]}
@@ -97,14 +108,19 @@ export const MarketSwapForm = ({ activeUser }: Props) => {
           }}
           setAsset={(v) => setFromAsset(v)}
           usdRate={usdFromMarketRate}
+          disabled={step === MarketSwapFormStep.SIGN}
         />
-        <div className="swap-button-container">
-          <div className="overlay">
-            <Button variant="" className="swap-button border" onClick={swap}>
-              {swapSvg}
-            </Button>
+        {step === MarketSwapFormStep.FORM ? (
+          <div className="swap-button-container">
+            <div className="overlay">
+              <Button variant="" className="swap-button border" onClick={swap}>
+                {swapSvg}
+              </Button>
+            </div>
           </div>
-        </div>
+        ) : (
+          <></>
+        )}
         <SwapAmountControl
           asset={toAsset}
           availableAssets={availableAssets}
@@ -116,6 +132,7 @@ export const MarketSwapForm = ({ activeUser }: Props) => {
           }}
           setAsset={(v) => setToAsset(v)}
           usdRate={usdToMarketRate}
+          disabled={step === MarketSwapFormStep.SIGN}
         />
         <MarketInfo
           className="mt-4"
@@ -124,9 +141,25 @@ export const MarketSwapForm = ({ activeUser }: Props) => {
           fromAsset={fromAsset}
           usdFromMarketRate={usdFromMarketRate}
         />
-        <Button block={true} type="submit" disabled={disabled || loading} className="py-3 mt-4">
-          {loading ? _t("market.swapping") : _t("market.continue")}
-        </Button>
+        <div>
+          {step === MarketSwapFormStep.FORM ? (
+            <Button
+              block={true}
+              disabled={disabled || loading}
+              className="py-3 mt-4"
+              onClick={() => submit()}
+            >
+              {loading ? _t("market.swapping") : _t("market.continue")}
+            </Button>
+          ) : (
+            <></>
+          )}
+          {step === MarketSwapFormStep.SIGN ? (
+            <SignMethods global={global} disabled={disabled || loading} asset={fromAsset} />
+          ) : (
+            <></>
+          )}
+        </div>
       </Form>
     </div>
   );

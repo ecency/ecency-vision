@@ -372,13 +372,18 @@
     "from": "From",
     "to": "To",
     "swap": "Swap",
+    "swapping": "Swapping...",
+    "more-than-balance": "Amount more than balance. Enter less or equal to a balance",
     "continue": "Continue",
     "balance": "Balance",
     "fee": "Fee",
     "fee-free": "Free",
     "order-book-impact": "Order book impact",
     "swap-title": "Swap your funds",
-    "fetching-market": "Fetching market..."
+    "sign-title": "Sign your transaction",
+    "fetching-market": "Fetching market...",
+    "back": "Back",
+    "swap-by": "Swap by {{method}}"
   },
   "list-style": {
     "title": "Toggle list style"
