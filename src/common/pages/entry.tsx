@@ -114,7 +114,7 @@ interface State {
   postIsDeleted: boolean;
   deletedEntry: { title: string; body: string; tags: any } | null;
   readTime: number;
-  wordCount: number;
+  wordCount: any;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -134,7 +134,7 @@ class EntryPage extends BaseComponent<Props, State> {
     postIsDeleted: false,
     deletedEntry: null,
     readTime: 1,
-    wordCount: 0
+    wordCount:0
   };
 
   commentInput: Ref<HTMLInputElement>;
@@ -159,12 +159,13 @@ class EntryPage extends BaseComponent<Props, State> {
     let replyDraft = ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`);
     replyDraft = (replyDraft && replyDraft.trim()) || "";
 
-    const wordsWithoutSpace: any = entry?.body.trim()?.split(/\s+/);
-    const totalCount: number = wordsWithoutSpace.length;
-    const wordPerMinuite: number = 225;
-    const readTime: number = Math.ceil(totalCount / wordPerMinuite); 
+    // console.log(entry) 
+    // const wordsWithoutSpace: any = entry?.body.trim()?.split(/\s+/);
+    // const totalCount: number = wordsWithoutSpace.length;
+    // const wordPerMinuite: number = 225;
+    // const readTime: number = Math.ceil(totalCount / wordPerMinuite); 
     
-    this.setState({ isMounted: true, selection: replyDraft, readTime, wordCount: totalCount });
+    this.setState({ isMounted: true, selection: replyDraft});
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
@@ -342,14 +343,16 @@ class EntryPage extends BaseComponent<Props, State> {
     bridgeApi
       .getPost(author, permlink)
       .then((entry) => {
-        // if (entry) {
-        //   reducerFn(entry);
-        //   const wordsWithoutSpace: any = entry?.body && entry?.body.trim()?.split(/\s+/);
-        //   const totalCount: number = wordsWithoutSpace?.length;
-        //   const wordPerMinuite: number = 225;
-        //   const readTime: number = Math.ceil(totalCount / wordPerMinuite);
-        //   this.stateSet({ loading: false, readTime, wordCount: totalCount });
-        // }
+        if (entry) {
+          reducerFn(entry);
+          const wordsWithoutSpace: any = entry?.body && entry?.body.trim()?.split(/\s+/);
+          const totalCount: number = wordsWithoutSpace?.length;
+          const wordPerMinuite: number = 225;
+          const readTime: number = Math.ceil(totalCount / wordPerMinuite);
+      
+          this.stateSet({ loading: false, readTime, wordCount: totalCount });
+        } 
+
 
         if (isCommunity(category)) {
           this.stateSet({ loading: false });

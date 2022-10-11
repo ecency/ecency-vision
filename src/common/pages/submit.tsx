@@ -654,13 +654,25 @@ class SubmitPage extends BaseComponent<Props, State> {
   update = async (): Promise<void> => {
     if (!this.validate()) {
       return;
-    }
+    }    
 
     const { activeUser, updateEntry, history } = this.props;
     const { title, tags, body, description, editingEntry } = this.state;
     if (!editingEntry) {
       return;
     }
+    const wordsWithoutSpace: any = body.trim()?.split(/\s+/);
+    const totalCount: number = wordsWithoutSpace.length;
+    const wordPerMinuite: number = 225;
+    const readTime: number = Math.ceil(totalCount / wordPerMinuite);
+
+    const postInfo = {
+      wordCount: totalCount,
+      readTime: readTime
+    };
+
+    localStorage.setItem("postCount", JSON.stringify(postInfo));
+
 
     const { body: oldBody, author, permlink, category, json_metadata } = editingEntry;
     // clean and copy body
