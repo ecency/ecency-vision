@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { match } from "react-router";
 import moment from "moment";
-
 import {
   renderPostBody,
   setProxyBase,
@@ -81,7 +80,6 @@ import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
 import { getPost } from "../api/bridge";
-import { Helmet } from "react-helmet";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 setProxyBase(defaults.imageServer);
@@ -113,7 +111,7 @@ interface State {
   isMounted: boolean;
   postIsDeleted: boolean;
   deletedEntry: { title: string; body: string; tags: any } | null;
-  readTime: number;
+  readTime: any;
   wordCount: any;
 }
 
@@ -133,8 +131,8 @@ class EntryPage extends BaseComponent<Props, State> {
     selection: "",
     postIsDeleted: false,
     deletedEntry: null,
-    readTime: 1,
-    wordCount:0
+    readTime:  1,
+    wordCount:  0,
   };
 
   commentInput: Ref<HTMLInputElement>;
@@ -164,8 +162,10 @@ class EntryPage extends BaseComponent<Props, State> {
     // const totalCount: number = wordsWithoutSpace.length;
     // const wordPerMinuite: number = 225;
     // const readTime: number = Math.ceil(totalCount / wordPerMinuite); 
+    const postStatsData:any = ls.get("postCount");
+    const {wordCount, readTime} = postStatsData;
     
-    this.setState({ isMounted: true, selection: replyDraft});
+    this.setState({ isMounted: true, selection: replyDraft, wordCount, readTime});
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
@@ -349,6 +349,12 @@ class EntryPage extends BaseComponent<Props, State> {
           const totalCount: number = wordsWithoutSpace?.length;
           const wordPerMinuite: number = 225;
           const readTime: number = Math.ceil(totalCount / wordPerMinuite);
+          const postInfo = {
+            wordCount: totalCount,
+            readTime: readTime
+          };
+
+          ls.set("postCount", postInfo);
       
           this.stateSet({ loading: false, readTime, wordCount: totalCount });
         } 
@@ -528,7 +534,6 @@ class EntryPage extends BaseComponent<Props, State> {
       entryIsMuted,
       edit,
       comment,
-      /*commentText,*/ isMounted,
       postIsDeleted,
       deletedEntry,
       showProfileBox,

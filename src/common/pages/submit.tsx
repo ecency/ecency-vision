@@ -15,7 +15,6 @@ import { Button, Col, Form, FormControl, Row, Spinner } from "react-bootstrap";
 import moment, { Moment } from "moment";
 
 import defaults from "../constants/defaults.json";
-
 import {
   postBodySummary,
   proxifyImageSrc,
@@ -671,7 +670,7 @@ class SubmitPage extends BaseComponent<Props, State> {
       readTime: readTime
     };
 
-    localStorage.setItem("postCount", JSON.stringify(postInfo));
+    ls.set("postCount", postInfo);
 
 
     const { body: oldBody, author, permlink, category, json_metadata } = editingEntry;
