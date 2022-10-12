@@ -16,7 +16,9 @@ import {
   claimRewards,
   getHiveEngineTokenBalances,
   getUnclaimedRewards,
-  TokenStatus
+  getTokenDelegations,
+  TokenStatus,
+  DelegationEntry
 } from "../../api/hive-engine";
 import { proxifyImageSrc } from "@ecency/render-helper";
 import {
@@ -47,6 +49,7 @@ interface TokenProps {
 }
 
 import { _t } from "../../i18n";
+
 type TransferAsset = string;
 
 interface Props {
@@ -66,6 +69,7 @@ interface Props {
 interface State {
   tokens: HiveEngineToken[];
   rewards: TokenStatus[];
+  delegationList: Array<DelegationEntry>;
   loading: boolean;
   claiming: boolean;
   claimed: boolean;
@@ -85,7 +89,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     transfer: false,
     transferMode: null,
     transferAsset: null,
-    assetBalance: 0
+    assetBalance: 0,
+    delegationList: []
   };
   _isMounted = false;
 
@@ -93,6 +98,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     this._isMounted = true;
     this._isMounted && this.fetch();
     this._isMounted && this.fetchUnclaimedRewards();
+    this._isMounted && this.fetchDelegationList();
     this.modifyTokenValues = this.modifyTokenValues.bind(this);
   }
 
@@ -128,6 +134,17 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     }
 
     this.setState({ loading: false });
+  };
+
+  fetchDelegationList = async () => {
+    const { account } = this.props;
+    const { name } = account;
+    // This causes an error message but it does exist.
+    return getTokenDelegations(name).then((items) => {
+      if (this._isMounted) {
+        this.setState({ delegationList: items });
+      }
+    });
   };
 
   sort = (items: HiveEngineToken[]) =>
@@ -551,6 +568,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
             assetBalance={this.state.assetBalance}
             tokens={tokens}
             modifyTokenValues={this.modifyTokenValues}
+            delegationList={this.state.delegationList}
           />
         )}
       </div>

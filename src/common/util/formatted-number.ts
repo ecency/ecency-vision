@@ -112,10 +112,7 @@ export default (value: number | string, options: Options | undefined = undefined
     }
   }
   let decimal_location: number = (out.indexOf(".") + out.length + 1) % (out.length + 1);
-  while (
-    out.length - decimal_location - 1 > minFD &&
-    ",0".indexOf(out.charAt(out.length - 1)) != -1
-  ) {
+  while (out.length - decimal_location - 1 > minFD && out.charAt(out.length - 1) === "0") {
     out = out.slice(0, out.length - 1);
   }
 

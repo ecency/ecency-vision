@@ -44,13 +44,14 @@ const defProps = {
   fetchPoints: () => {},
   updateWalletValues: () => {},
   onHide: () => {},
-  tokens: []
+  tokens: [],
+  delegationList: []
 };
 
 describe("(1) Hive Engine - Transfer", () => {
   const mode: TransferMode = "transfer";
-  const asset: string = "";
-  const assetBalance: number = 0.0;
+  const asset: string = "POB";
+  const assetBalance: number = 5000;
 
   const props = {
     ...defProps,
@@ -84,7 +85,7 @@ describe("(1) Hive Engine - Transfer", () => {
 
 describe("(2) Hive Engine - Delegate", () => {
   const mode: TransferMode = "delegate";
-  const asset: string = "";
+  const asset: string = "WEED";
   const assetBalance: number = 0.0;
 
   const props = {
@@ -116,8 +117,8 @@ describe("(2) Hive Engine - Delegate", () => {
 
 describe("(3) Hive Engine - Undelegate", () => {
   const mode: TransferMode = "undelegate";
-  const asset: string = "";
-  const assetBalance: number = 0.0;
+  const asset: string = "LOLZ";
+  const assetBalance: number = 4.0;
 
   const props = {
     ...defProps,
@@ -146,8 +147,8 @@ describe("(3) Hive Engine - Undelegate", () => {
 
 describe("(4) Hive Engine - Stake", () => {
   const mode: TransferMode = "stake";
-  const asset: string = "";
-  const assetBalance: number = 0.0;
+  const asset: string = "BST";
+  const assetBalance: number = 20;
 
   const props = {
     ...defProps,
@@ -176,8 +177,8 @@ describe("(4) Hive Engine - Stake", () => {
 
 describe("(5) Hive Engine - Unstake", () => {
   const mode: TransferMode = "unstake";
-  const asset: string = "";
-  const assetBalance: number = 0.0;
+  const asset: string = "POB";
+  const assetBalance: number = 10000;
 
   const props = {
     ...defProps,

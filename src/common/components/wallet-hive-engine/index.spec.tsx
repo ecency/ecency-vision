@@ -21,6 +21,10 @@ import { FullAccount } from "../../store/accounts/types";
 let MOCK_MODE = 1;
 
 jest.mock("../../api/hive-engine", () => ({
+  getTokenDelegations: () =>
+    new Promise((resolve) => {
+      resolve([]);
+    }),
   getHiveEngineTokenBalances: () =>
     new Promise((resolve) => {
       if (MOCK_MODE === 1) {
