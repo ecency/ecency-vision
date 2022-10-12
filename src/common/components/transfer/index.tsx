@@ -211,6 +211,7 @@ export class Transfer extends BaseComponent<Props, State> {
 
     const { updateActiveUser } = this.props;
     updateActiveUser();
+    this.handleTo();
   }
 
   componentDidUpdate(prevProps: Readonly<Props>) {
