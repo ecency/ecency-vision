@@ -41,8 +41,7 @@ class EntryIndexPage extends Component<Props, State> {
     this.loadEntries();
 
     const filterReblog: any = ls.get("my_reblog");
-      this.setState({noReblog: filterReblog});
-    
+    this.setState({ noReblog: filterReblog });
   }
 
   componentDidUpdate(prevProps: Readonly<PageProps>, prevState: Readonly<State>): void {
@@ -50,7 +49,7 @@ class EntryIndexPage extends Component<Props, State> {
     const { global: pGlobal, activeUser: pActiveUser, entries: pEntries } = prevProps;
 
     ls.set("my_reblog", this.state.noReblog);
-   
+
     if (prevState.noReblog !== this.state.noReblog) {
       if (this.state.noReblog === true) {
         this.loadEntries();
