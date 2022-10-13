@@ -47,9 +47,9 @@ export default class GifPicker extends BaseComponent<Props> {
       gifWrapper.scrollHeight - gifWrapper.scrollTop <= gifWrapper.clientHeight + 1;
     if (bottom) {
       if (!filter && data?.length <= total_count) {
-        return this.getGifsData(null, limit, offset + 50);
+        return this.getGifsDataOnScroll(null, limit, offset + 50);
       }
-      this.delayedSearch(filter, limit, offset + 50);
+      this.delayedSearchOnScroll(filter, limit, offset + 50);
     }
   };
   componentDidMount() {
@@ -88,6 +88,34 @@ export default class GifPicker extends BaseComponent<Props> {
     if (_filter?.length) {
       let _data: State = {
         data: [],
+        filteredData: [...data.data],
+        filter: this.state.filter,
+        limit: data.pagination.limit,
+        offset: data.pagination.offset + 10,
+        total_count: data.pagination.total_count,
+      };
+      this.stateSet(_data);
+      return;
+    }
+    let _data: State = {
+      data: [],
+      filteredData: [...data.data],
+      filter: this.state.filter,
+      limit: data.pagination.limit,
+      offset: data.pagination.offset + 10,
+      total_count: data.pagination.total_count,
+    };
+    this.stateSet(_data);
+  };
+  getSearchedDataOnScroll = async (
+    _filter: string | null,
+    limit: string,
+    offset: string,
+  ) => {
+    const { data } = await fetchGif(_filter, limit, offset);
+    if (_filter?.length) {
+      let _data: State = {
+        data: [],
         filteredData: [...this.state.filteredData, ...data.data],
         filter: this.state.filter,
         limit: data.pagination.limit,
@@ -99,6 +127,22 @@ export default class GifPicker extends BaseComponent<Props> {
   };
 
   getGifsData = async (
+    _filter: string | null,
+    limit: string,
+    offset: string,
+  ) => {
+    const { data } = await fetchGif(_filter, limit, offset);
+    let _data: State = {
+      data: [...data.data],
+      filteredData: [],
+      filter: null,
+      limit: this.state.limit,
+      offset: data.pagination.offset,
+      total_count: data.pagination.total_count,
+    };
+    this.stateSet(_data);
+  };
+  getGifsDataOnScroll = async (
     _filter: string | null,
     limit: string,
     offset: string,
@@ -128,11 +172,16 @@ export default class GifPicker extends BaseComponent<Props> {
   };
 
   delayedSearch = _.debounce(this.getSearchedData, 2000);
+  delayedSearchOnScroll = _.debounce(this.getSearchedDataOnScroll, 2000);
 
   filterChanged = (
     e: React.ChangeEvent<typeof FormControl & HTMLInputElement>,
   ) => {
     this.setState({ filter: e.target.value });
+    if(e.target.value === '') {
+      this.getGifsData(null, this.state.limit, this.state.offset)
+      return
+    }
     this.delayedSearch(e.target.value, this.state.limit, this.state.offset);
   };
 
