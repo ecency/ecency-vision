@@ -1,4 +1,4 @@
-import { MarketSwappingMethods, swapByHs, SwappingMethod } from "./api/swapping";
+import { MarketSwappingMethods, swapByHs, swapByKc, SwappingMethod } from "./api/swapping";
 import { _t } from "../../i18n";
 import { Button } from "react-bootstrap";
 import React from "react";
@@ -11,12 +11,12 @@ import { getAccountFull } from "../../api/hive";
 import { error } from "../feedback";
 
 interface Props {
+  global: Global;
   disabled: boolean;
   fromAmount: string;
   toAmount: string;
   marketRate: number;
   asset: MarketAsset;
-  global: Global;
   loading: boolean;
   setLoading: (value: boolean) => void;
   activeUser: ActiveUser | null;
@@ -33,12 +33,32 @@ export const SignMethods = ({
   setLoading,
   activeUser,
   addAccount,
-  updateActiveUser
+  updateActiveUser,
+  global
 }: Props) => {
   const onSwapByHs = async () => {
     setLoading(true);
     try {
       await swapByHs({
+        activeUser,
+        fromAsset: asset,
+        fromAmount,
+        toAmount
+      });
+      const account = await getAccountFull(activeUser!.username);
+      addAccount(account);
+      updateActiveUser(account);
+    } catch (e) {
+      error(...formatError(e));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onSwapByKc = async () => {
+    setLoading(true);
+    try {
+      await swapByKc({
         activeUser,
         fromAsset: asset,
         fromAmount,
@@ -76,8 +96,13 @@ export const SignMethods = ({
       ) : (
         <></>
       )}
-      {MarketSwappingMethods[asset].includes(SwappingMethod.KC) ? (
-        <Button block={true} disabled={disabled} className="py-3 mt-4 kc-button">
+      {global.hasKeyChain && MarketSwappingMethods[asset].includes(SwappingMethod.KC) ? (
+        <Button
+          block={true}
+          disabled={disabled}
+          className="py-3 mt-4 kc-button"
+          onClick={onSwapByKc}
+        >
           <i className="sign-logo mr-3">{kcLogoSvg}</i>
           {_t("market.swap-by", { method: "Keychain" })}
         </Button>
