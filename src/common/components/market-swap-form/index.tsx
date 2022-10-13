@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { swapSvg, syncSvg } from "../../img/svg";
 import { SwapAmountControl } from "./swap-amount-control";
@@ -55,7 +55,7 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
   }, [activeUser]);
 
   useEffect(() => {
-    const nextAvailableAssets = MarketPairs[toAsset].filter((asset) => asset !== fromAsset);
+    const nextAvailableAssets = MarketPairs[toAsset];
     if (!nextAvailableAssets.includes(toAsset)) {
       setToAsset(nextAvailableAssets[0]);
       fetchMarket();
@@ -66,6 +66,7 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
   }, [fromAsset]);
 
   const swap = () => {
+    setToAsset(fromAsset);
     setFromAsset(toAsset);
     setTo(from);
     setFrom(to);
@@ -93,6 +94,8 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
     if (step === MarketSwapFormStep.SIGN) setStep(MarketSwapFormStep.FORM);
   };
 
+  const numberAmount = (v: string) => +v.replace(/,/gm, "");
+
   return (
     <div className="market-swap-form p-4">
       <MarketSwapFormHeader step={step} loading={loading || disabled} onBack={back} />
@@ -106,7 +109,7 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
           value={from}
           setValue={(v) => {
             setFrom(v);
-            setTo(marketRate * +v.replace(/,/gm, "") + "");
+            setTo(marketRate * numberAmount(v) + "");
           }}
           setAsset={(v) => setFromAsset(v)}
           usdRate={usdFromMarketRate}
@@ -130,7 +133,7 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
           value={to}
           setValue={(v) => {
             setTo(v);
-            setFrom(+v.replace(/,/gm, "") / marketRate + "");
+            setFrom(numberAmount(v) / marketRate + "");
           }}
           setAsset={(v) => setToAsset(v)}
           usdRate={usdToMarketRate}
@@ -147,7 +150,7 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
           {step === MarketSwapFormStep.FORM ? (
             <Button
               block={true}
-              disabled={disabled || loading}
+              disabled={disabled || loading || numberAmount(from) === 0}
               className="py-3 mt-4"
               onClick={() => submit()}
             >
@@ -159,7 +162,7 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
           {step === MarketSwapFormStep.SIGN ? (
             <SignMethods
               global={global}
-              disabled={disabled || loading}
+              disabled={disabled || loading || numberAmount(from) === 0}
               asset={fromAsset}
               activeUser={activeUser}
               loading={loading}
