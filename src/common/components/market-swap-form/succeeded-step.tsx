@@ -1,13 +1,16 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-export const SucceededStep = () => {
+interface Props {
+  onReset: () => void;
+}
+
+export const SucceededStep = ({ onReset }: Props) => {
   return (
     <div className="text-center mt-4">
-      <div className="text-primary success-message">
-        You transaction was successfully completed!
-      </div>
-      <Button variant="primary py-3 px-5 mt-4">Start new one</Button>
+      <Button variant="primary py-3 px-5 mt-4" onClick={() => onReset()}>
+        Start new one
+      </Button>
     </div>
   );
 };

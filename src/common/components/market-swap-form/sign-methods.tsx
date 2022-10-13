@@ -30,6 +30,7 @@ interface Props {
   activeUser: ActiveUser | null;
   addAccount: any;
   updateActiveUser: any;
+  onSuccess: () => void;
 }
 
 export const SignMethods = ({
@@ -42,7 +43,8 @@ export const SignMethods = ({
   activeUser,
   addAccount,
   updateActiveUser,
-  global
+  global,
+  onSuccess
 }: Props) => {
   const [showSignByKey, setShowSignByKey] = useState(false);
 
@@ -84,6 +86,7 @@ export const SignMethods = ({
       const account = await getAccountFull(activeUser!.username);
       addAccount(account);
       updateActiveUser(account);
+      onSuccess();
     } catch (e) {
       error(...formatError(e));
     } finally {

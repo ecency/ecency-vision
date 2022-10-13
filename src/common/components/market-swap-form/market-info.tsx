@@ -26,18 +26,18 @@ export const MarketInfo = ({
       </small>
 
       <ListGroup>
-        <ListGroupItem className="border-bottom-0">
+        <ListGroupItem>
           <div className="d-flex justify-content-between">
             <span>{_t("market.fee")}</span>
             <span className="badge badge-success text-white">{_t("market.fee-free")}</span>
           </div>
         </ListGroupItem>
-        <ListGroupItem>
-          <div className="d-flex justify-content-between">
-            <span>{_t("market.order-book-impact")}</span>
-            <span className="font-weight-bold">0.032%</span>
-          </div>
-        </ListGroupItem>
+        {/*<ListGroupItem>*/}
+        {/*  <div className="d-flex justify-content-between">*/}
+        {/*    <span>{_t("market.order-book-impact")}</span>*/}
+        {/*    <span className="font-weight-bold">0.032%</span>*/}
+        {/*  </div>*/}
+        {/*</ListGroupItem>*/}
       </ListGroup>
     </div>
   );

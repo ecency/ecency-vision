@@ -97,6 +97,13 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
 
   const numberAmount = (v: string) => +v.replace(/,/gm, "");
 
+  const reset = () => {
+    setFrom("0");
+    setTo("0");
+    fetchMarket();
+    setStep(MarketSwapFormStep.FORM);
+  };
+
   return (
     <div className="market-swap-form p-4">
       <MarketSwapFormHeader step={step} loading={loading || disabled} onBack={back} />
@@ -194,11 +201,12 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
               fromAmount={from}
               toAmount={to}
               marketRate={marketRate}
+              onSuccess={() => setStep(MarketSwapFormStep.SUCCESS)}
             />
           ) : (
             <></>
           )}
-          {step === MarketSwapFormStep.SUCCESS ? <SucceededStep /> : <></>}
+          {step === MarketSwapFormStep.SUCCESS ? <SucceededStep onReset={reset} /> : <></>}
         </div>
       </Form>
     </div>
