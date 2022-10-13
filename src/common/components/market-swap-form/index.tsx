@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { _t } from "../../i18n";
-import { swapSvg, syncSvg } from "../../img/svg";
 import { SwapAmountControl } from "./swap-amount-control";
 import { MarketInfo } from "./market-info";
 import { MarketAsset, MarketPairs } from "./market-pair";
@@ -13,6 +12,8 @@ import { MarketSwapFormStep } from "./form-step";
 import { SignMethods } from "./sign-methods";
 import { Global } from "../../store/global/types";
 import { MarketSwapFormHeader } from "./market-swap-form-header";
+import { SucceededStep } from "./succeeded-step";
+import { checkSvg, swapSvg } from "../../img/svg";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -113,14 +114,30 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
           }}
           setAsset={(v) => setFromAsset(v)}
           usdRate={usdFromMarketRate}
-          disabled={step === MarketSwapFormStep.SIGN}
+          disabled={
+            step === MarketSwapFormStep.SIGN ||
+            step === MarketSwapFormStep.SUCCESS ||
+            disabled ||
+            loading
+          }
         />
-        {step === MarketSwapFormStep.FORM ? (
+        {[MarketSwapFormStep.FORM, MarketSwapFormStep.SUCCESS].includes(step) ? (
           <div className="swap-button-container">
             <div className="overlay">
-              <Button variant="" className="swap-button border" onClick={swap}>
-                {swapSvg}
-              </Button>
+              {step === MarketSwapFormStep.FORM ? (
+                <Button variant="" className="swap-button border" onClick={swap}>
+                  {swapSvg}
+                </Button>
+              ) : (
+                <></>
+              )}
+              {step === MarketSwapFormStep.SUCCESS ? (
+                <Button variant="" className="swap-button border text-success">
+                  {checkSvg}
+                </Button>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
         ) : (
@@ -137,7 +154,12 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
           }}
           setAsset={(v) => setToAsset(v)}
           usdRate={usdToMarketRate}
-          disabled={step === MarketSwapFormStep.SIGN}
+          disabled={
+            step === MarketSwapFormStep.SIGN ||
+            step === MarketSwapFormStep.SUCCESS ||
+            disabled ||
+            loading
+          }
         />
         <MarketInfo
           className="mt-4"
@@ -176,6 +198,7 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
           ) : (
             <></>
           )}
+          {step === MarketSwapFormStep.SUCCESS ? <SucceededStep /> : <></>}
         </div>
       </Form>
     </div>

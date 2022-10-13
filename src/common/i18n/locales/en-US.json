@@ -383,7 +383,8 @@
     "sign-title": "Sign your transaction",
     "fetching-market": "Fetching market...",
     "back": "Back",
-    "swap-by": "Swap by {{method}}"
+    "swap-by": "Swap by {{method}}",
+    "success-title": "Transaction completed"
   },
   "list-style": {
     "title": "Toggle list style"

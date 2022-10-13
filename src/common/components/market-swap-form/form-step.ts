@@ -1,4 +1,5 @@
 export enum MarketSwapFormStep {
   FORM = "form",
-  SIGN = "sign"
+  SIGN = "sign",
+  SUCCESS = "success"
 }

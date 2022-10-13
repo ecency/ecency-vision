@@ -87,7 +87,7 @@ export const SwapAmountControl = ({
                 {_t("market.balance")}:
                 <span
                   className="text-primary font-weight-bold cursor-pointer ml-1"
-                  onClick={() => setValue(balance.split(" ")[0])}
+                  onClick={() => (disabled ? null : setValue(balance.split(" ")[0]))}
                 >
                   {balance}
                 </span>
