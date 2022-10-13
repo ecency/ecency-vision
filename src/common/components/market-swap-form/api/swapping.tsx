@@ -2,7 +2,7 @@ import { MarketAsset } from "../market-pair";
 import { PrivateKey } from "@hiveio/dhive";
 import React from "react";
 import { ActiveUser } from "../../../store/active-user/types";
-import { limitOrderCreateHot, limitOrderCreateKc } from "../../../api/operations";
+import { limitOrderCreate, limitOrderCreateHot, limitOrderCreateKc } from "../../../api/operations";
 import { TransactionType } from "../../buy-sell-hive";
 
 export enum SwappingMethod {
@@ -24,7 +24,29 @@ export interface SwapOptions {
   toAmount: string;
 }
 
-export const swapByKey = (key: PrivateKey, options: SwapOptions) => {};
+export const swapByKey = (key: PrivateKey, options: SwapOptions) => {
+  const fromAmount = +options.fromAmount.replace(/,/gm, "");
+  const toAmount = +options.toAmount.replace(/,/gm, "");
+
+  if (options.fromAsset === MarketAsset.HIVE) {
+    return limitOrderCreate(
+      options.activeUser!.username,
+      key,
+      toAmount,
+      fromAmount,
+      TransactionType.Sell
+    );
+  } else if (options.fromAsset === MarketAsset.HBD) {
+    return limitOrderCreate(
+      options.activeUser!.username,
+      key,
+      toAmount,
+      fromAmount,
+      TransactionType.Buy
+    );
+  }
+  return Promise.reject();
+};
 
 export const swapByKc = (options: SwapOptions) => {
   const fromAmount = +options.fromAmount.replace(/,/gm, "");
