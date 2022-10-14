@@ -47,7 +47,6 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
   handleChange = (event: any) => {
     let scHeight: number = event.target.scrollHeight;
     let reduceScHeight : number = scHeight - 20 || scHeight - 24;
-    // console.log(event.target.rows)
 
     if (reduceScHeight) {
       scHeight = reduceScHeight;
@@ -97,7 +96,7 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
         <ReactTextareaAutocomplete
           {...attrs}
           loadingComponent={Loading}
-          containerStyle={{height: !this.state.value ? "60px" : this.state.inputHeight}}
+          containerStyle={{height: !this.state.value ? "80px" : this.state.inputHeight}}
           value={this.state.value}
           placeholder={this.props.placeholder}
           onChange={this.handleChange}
