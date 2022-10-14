@@ -19,8 +19,8 @@ export default class WalletMenu extends Component<Props> {
   render() {
     const { global, username, active } = this.props;
     const logo = global.isElectron
-      ? "./img/logo-small-transparent.png"
-      : require("../../img/logo-small-transparent.png");
+      ? "./img/ecency-logo-small-transparent.png"
+      : require("../../img/ecency-logo-small-transparent.png");
 
     return (
       <div className="wallet-menu">
