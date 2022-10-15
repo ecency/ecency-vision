@@ -53,8 +53,12 @@
     border-radius: 0;
     height: 95%;
     top: 5%;
-
   }
+  @media (max-width:800px) {
+    .modal-content{
+     top: 8% !important;
+    }
+ }
   @media (max-width:1100px) {
     .modal-content{
       margin-top: 5%;
@@ -83,17 +87,31 @@
   @media (min-width:2000px) {
     .modal-content{
     top: 3%;
+    right: 45%;
     }
  }
   @media (min-width:2200px) {
     .modal-content{
     margin-top: 8%;
-    // right: 15%;
+    right: 110%;
     }
  }
-  @media (min-width:2400px) {
+  @media (min-width:2500px) {
     .modal-content{
     top: 0.5%;
+    right: 110%;
+    }
+ }
+  @media (min-width:4000px) {
+    .modal-content{
+    top: 0.5%;
+    right: 235%;
+    }
+ }
+  @media (min-width:5000px) {
+    .modal-content{
+    top: 0.5%;
+    right: 355%;
     }
  }
 
