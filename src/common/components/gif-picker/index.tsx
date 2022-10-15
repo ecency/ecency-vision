@@ -159,15 +159,26 @@ export default class GifPicker extends BaseComponent<Props> {
     this.stateSet(_data);
   };
 
-  itemClicked = (url: string) => {
-    let _url = url.split(".gif");
-    let gifUrl = `![](${_url[0]}.gif)`;
-    if (this._target) {
-      insertOrReplace(this._target, gifUrl);
-    } else {
-      const { fallback } = this.props;
-      if (fallback) fallback(gifUrl);
-    }
+  itemClicked = async (
+    url: string, 
+    _filter?: string | any,
+    limit?: string | any,
+    offset?: string | any,
+    ) => {
+    const { data } = await fetchGif(_filter, limit, offset);
+    const gifTitles: any = [];
+    for (let i=0; i < data.data.length; i++) {
+       gifTitles.push(data.data[i].title);
+    }  
+      const selecteGifTitle: string = gifTitles[_.random(gifTitles.length-1)];
+      let _url = url.split(".gif");
+      let gifUrl = `![${selecteGifTitle}](${_url[0]}.gif)`;
+      if (this._target) {
+        insertOrReplace(this._target, gifUrl);
+      } else {
+        const { fallback } = this.props;
+        if (fallback) fallback(gifUrl);
+      }    
     this.props.changeState(!this.props.shGif);
   };
 
