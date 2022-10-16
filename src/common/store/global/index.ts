@@ -50,6 +50,7 @@ export const initialState: Global = {
   nsfw: false,
   isMobile: false,
   usePrivate: true,
+  hsClientId: "ecency.app",
 };
 
 export default (state: Global = initialState, action: Actions): Global => {

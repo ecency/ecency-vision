@@ -25,7 +25,6 @@ import DropDown from "../../../../common/components/dropdown";
 import SearchSuggester from "../../../../common/components/search-suggester";
 import Updater from "../updater";
 import SwitchLang from "../../../../common/components/switch-lang";
-import {HIVE_SIGNER_APP} from "../../../../client_config";
 
 import NotificationHandler from "../../../../common/components/notification-handler";
 
@@ -383,8 +382,9 @@ export class NavBar extends Component<Props, State> {
     };
 
     render() {
-        const {global, activeUser, history, location, ui, step, match} = this.props;        
+        const {global, activeUser, history, location, ui, step, match} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
+        const {hsClientId} = global;
         const re = new RegExp(communityPattern);
         const tagValue = global.tag ? `/${global.tag}` : ''
         const logoHref = activeUser ? 
@@ -472,7 +472,7 @@ export class NavBar extends Component<Props, State> {
                         {activeUser && <UserNav {...this.props} activeUser={activeUser}/>}
                     </div>
 
-                    {ui.login && <Login {...this.props} hiveSignerApp={HIVE_SIGNER_APP} />}
+                    {ui.login && <Login {...this.props} />}
                     {global.usePrivate && <NotificationHandler {...this.props} />}
                 </div>
                 {global.newVersion && <Updater global={global} dismissNewVersion={this.props.dismissNewVersion}/>}

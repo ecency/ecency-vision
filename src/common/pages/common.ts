@@ -36,10 +36,8 @@ import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter
 import {fetchPoints, resetPoints} from "../store/points";
 import {setSigningKey} from "../store/signing-key";
 import {trackEntryPin, setEntryPin} from "../store/entry-pin-tracker";
-import {HIVE_SIGNER_APP} from "../../client_config";
 
 export interface PageProps {
-    hiveSignerApp: string;
     history: History;
     location: Location;
 
@@ -121,7 +119,6 @@ export interface PageProps {
 }
 
 export const pageMapStateToProps = (state: AppState) => ({
-    hiveSignerApp: HIVE_SIGNER_APP,
     ...state
 });
 

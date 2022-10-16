@@ -47,7 +47,6 @@ import {deleteForeverSvg} from "../../img/svg";
 declare var window: AppWindow;
 
 interface LoginKcProps {
-    hiveSignerApp: string;
     toggleUIProp: (what: ToggleType) => void;
     doLogin: (hsCode: string, postingKey: null | undefined | string, account: Account) => Promise<void>;
     global: Global;
@@ -81,7 +80,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     }
 
     login = async () => {
-        const hiveSignerApp = this.props.hiveSignerApp;
+        const hsClientId = this.props.global.hsClientId;
         const {username} = this.state;
         if (!username) {
             return;
@@ -105,14 +104,14 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
             return;
         }
 
-        const hasPostingPerm = account?.posting!.account_auths.filter(x => x[0] === hiveSignerApp).length > 0;
+        const hasPostingPerm = account?.posting!.account_auths.filter(x => x[0] === hsClientId).length > 0;
 
         if (!hasPostingPerm) {
             const weight = account.posting!.weight_threshold;
 
             this.stateSet({inProgress: true});
             try {
-                await addAccountAuthority(username, hiveSignerApp, "Posting", weight)
+                await addAccountAuthority(username, hsClientId, "Posting", weight)
             } catch (err) {
                 error(_t('login.error-permission'));
                 return;
@@ -127,7 +126,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
 
         let code: string;
         try {
-            code = await makeHsCode(username, signer);
+            code = await makeHsCode(hsClientId, username, signer);
         } catch (err) {
             error(formatError(err));
             this.stateSet({inProgress: false});
@@ -233,7 +232,6 @@ export class UserItem extends Component<UserItemProps> {
 }
 
 interface LoginProps {
-    hiveSignerApp: string;
     history: History;
     global: Global;
     users: User[];
@@ -326,8 +324,9 @@ export class Login extends BaseComponent<LoginProps, State> {
 
     hsLogin = () => {
         const {global, history} = this.props;
+        const {hsClientId} = global;
         if (global.isElectron) {
-            hsLogin().then(r => {
+            hsLogin(hsClientId).then(r => {
                 this.hide();
                 history.push(`/auth?code=${r.code}`);
             }).catch((e) => {
@@ -336,7 +335,7 @@ export class Login extends BaseComponent<LoginProps, State> {
             return;
         }
 
-        window.location.href = getAuthUrl();
+        window.location.href = getAuthUrl(global.hsClientId);
     }
 
     kcLogin = () => {
@@ -345,7 +344,7 @@ export class Login extends BaseComponent<LoginProps, State> {
     }
 
     login = async () => {
-        const hiveSignerApp = this.props.hiveSignerApp;
+        const hsClientId = this.props.global.hsClientId;
         const {username, key} = this.state;
 
         if (username === '' || key === '') {
@@ -414,12 +413,12 @@ export class Login extends BaseComponent<LoginProps, State> {
                 return;
             }
 
-            const hasPostingPerm = account?.posting!.account_auths.filter(x => x[0] === hiveSignerApp).length > 0;
+            const hasPostingPerm = account?.posting!.account_auths.filter(x => x[0] === hsClientId).length > 0;
 
             if (!hasPostingPerm) {
                 this.stateSet({inProgress: true});
                 try {
-                    await grantPostingPermission(thePrivateKey, account, hiveSignerApp)
+                    await grantPostingPermission(thePrivateKey, account, hsClientId)
                 } catch (err) {
                     error(_t('login.error-permission'));
                     return;
@@ -434,7 +433,7 @@ export class Login extends BaseComponent<LoginProps, State> {
             const hash = cryptoUtils.sha256(message);
             return new Promise<string>((resolve) => resolve(thePrivateKey.sign(hash).toString()));
         }
-        const code = await makeHsCode(account.name, signer);
+        const code = await makeHsCode(hsClientId, account.name, signer);
 
         this.stateSet({inProgress: true});
 
@@ -562,7 +561,6 @@ export class Login extends BaseComponent<LoginProps, State> {
 }
 
 interface Props {
-    hiveSignerApp: string;
     history: History;
     location: Location;
     global: Global;

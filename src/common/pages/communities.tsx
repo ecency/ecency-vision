@@ -54,7 +54,6 @@ import {checkSvg, alertCircleSvg, informationVariantSvg, copyContent} from "../i
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import { handleInvalid, handleOnInput } from "../util/input-util";
-import {HIVE_SIGNER_APP} from '../../client_config';
 
 interface State {
     list: Community[];
@@ -310,6 +309,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
     }
 
     makeAuthorities = (keys: { ownerKey: PrivateKey, activeKey: PrivateKey, postingKey: PrivateKey }) => {
+        const {global} = this.props;
+        const {hsClientId} = global;
         const {ownerKey, activeKey, postingKey} = keys;
 
         return {
@@ -317,7 +318,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
             activeAuthority: Authority.from(activeKey.createPublic()),
             postingAuthority: {
                 ...Authority.from(postingKey.createPublic()),
-                account_auths: [[HIVE_SIGNER_APP, 1]]
+                account_auths: [[hsClientId, 1]]
             } as Authority
         }
     }
@@ -339,7 +340,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
     }
 
     submit = async () => {
-        const {activeUser} = this.props;
+        const {activeUser, global} = this.props;
+        const {hsClientId} = global;
         const {username, creatorKey} = this.state;
         if (!activeUser || !creatorKey) return;
 
@@ -365,13 +367,14 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
             const hash = cryptoUtils.sha256(message);
             return new Promise<string>((resolve) => resolve(keys.activeKey.sign(hash).toString()));
         }
-        const code = await makeHsCode(username, signer);
+        const code = await makeHsCode(hsClientId, username, signer);
 
         return this.finalizeSubmit(code);
     }
 
     submitKc = async () => {
-        const {activeUser} = this.props;
+        const {activeUser, global} = this.props;
+        const {hsClientId} = global;
         const {username, fee} = this.state;
         if (!activeUser) return;
 
@@ -385,7 +388,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
             new_account_name: username,
             owner: {weight_threshold: 1, account_auths: [], key_auths: [[keys.ownerKey.createPublic().toString(), 1]]},
             active: {weight_threshold: 1, account_auths: [], key_auths: [[keys.activeKey.createPublic().toString(), 1]]},
-            posting: {weight_threshold: 1, account_auths: [[HIVE_SIGNER_APP, 1]], key_auths: [[keys.postingKey.createPublic().toString(), 1]]},
+            posting: {weight_threshold: 1, account_auths: [[hsClientId, 1]], key_auths: [[keys.postingKey.createPublic().toString(), 1]]},
             memo_key: keys.memoKey.createPublic().toString(),
             json_metadata: ""
         }];
@@ -414,7 +417,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
 
         // create hive signer code from active private key
         const signer = (message: string): Promise<string> => keychain.signBuffer(username, message, "Active").then(r => r.result);
-        const code = await makeHsCode(username, signer);
+        const code = await makeHsCode(hsClientId, username, signer);
 
         return this.finalizeSubmit(code);
     }
@@ -476,6 +479,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
     }
 
     submitHot = async () => {
+        const {global} = this.props;
+        const {hsClientId} = global;
         const {username, title, about} = this.state;
 
         const keys = this.makePrivateKeys();
@@ -487,7 +492,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
             const hash = cryptoUtils.sha256(message);
             return new Promise<string>((resolve) => resolve(keys.activeKey.sign(hash).toString()));
         }
-        const code = await makeHsCode(username, signer);
+        const code = await makeHsCode(hsClientId, username, signer);
         if(code){
             const callback = `${window.location.origin}/communities/create-hs?code=${code}&title=${encodeURIComponent(title)}&about=${encodeURIComponent(about)}`;
             hs.sendOperation(operation, {callback}, () => {

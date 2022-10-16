@@ -71,12 +71,12 @@ const createWindowView = (redirectUrl: string): string => {
     return `data:text/html;charset=UTF-8, ${content}`;
 };
 
-export const hsLogin = (): Promise<{ code: string }> =>
+export const hsLogin = (hsClientId : string): Promise<{ code: string }> =>
     new Promise((resolve, reject) => {
         const win = new window.remote.BrowserWindow(windowSettings);
         win.webContents.setUserAgent(`Chrome/77.0.3835.0`);
 
-        const authUrl = getAuthUrl(REDIR);
+        const authUrl = getAuthUrl(hsClientId, REDIR);
 
         win.loadURL(createWindowView(authUrl));
 

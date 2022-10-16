@@ -45,7 +45,6 @@ import { downVotingPower, votingPower } from "../../api/hive";
 const communityPattern = "^hive-[0-9]{6}$";
 
 interface Props {
-    hiveSignerApp: string;
     history: History;
     location: Location;
     global: Global;
@@ -468,13 +467,12 @@ export class NavBar extends Component<Props, State> {
                     {fragments && activeUser && <Fragments {...this.props} onHide={() => this.setState({fragments:!fragments})} activeUser={activeUser as ActiveUser} />}
                 </div>
             </div>
-        );
+        );                                                                                       
     }
 }
 
 export default (p: Props) => {
     const props: Props = {
-        hiveSignerApp: p.hiveSignerApp,
         history: p.history,
         location: p.location,
         global: p.global,

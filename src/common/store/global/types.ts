@@ -61,6 +61,7 @@ export interface Global {
     nsfw: boolean;
     isMobile: boolean;
     usePrivate: boolean;
+    hsClientId: string;
 }
 
 export enum ActionTypes {

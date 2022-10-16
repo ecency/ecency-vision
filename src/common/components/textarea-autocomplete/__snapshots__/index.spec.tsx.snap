@@ -15,6 +15,7 @@ exports[`(1) Default render 1`] = `
         "currencySymbol": "$",
         "filter": "hot",
         "hasKeyChain": false,
+        "hsClientId": "ecency.app",
         "intro": true,
         "isElectron": false,
         "isMobile": false,
