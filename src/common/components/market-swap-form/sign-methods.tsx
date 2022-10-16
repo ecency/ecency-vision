@@ -31,6 +31,8 @@ interface Props {
   addAccount: any;
   updateActiveUser: any;
   onSuccess: () => void;
+  signingKey: string;
+  setSigningKey: (key: string) => void;
 }
 
 export const SignMethods = ({
@@ -44,7 +46,9 @@ export const SignMethods = ({
   addAccount,
   updateActiveUser,
   global,
-  onSuccess
+  onSuccess,
+  signingKey,
+  setSigningKey
 }: Props) => {
   const [showSignByKey, setShowSignByKey] = useState(false);
 
@@ -98,6 +102,8 @@ export const SignMethods = ({
     <div>
       {showSignByKey ? (
         <SignByKey
+          signingKey={signingKey}
+          setSigningKey={(key) => setSigningKey(key)}
           activeUser={activeUser}
           onKey={(key) => onSwapByKey(key)}
           onBack={() => setShowSignByKey(false)}

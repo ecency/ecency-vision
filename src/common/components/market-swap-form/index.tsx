@@ -20,9 +20,18 @@ interface Props {
   global: Global;
   addAccount: any;
   updateActiveUser: any;
+  signingKey: string;
+  setSigningKey: (key: string) => void;
 }
 
-export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUser }: Props) => {
+export const MarketSwapForm = ({
+  activeUser,
+  global,
+  addAccount,
+  updateActiveUser,
+  signingKey,
+  setSigningKey
+}: Props) => {
   const [step, setStep] = useState(MarketSwapFormStep.FORM);
 
   const [from, setFrom] = useState("");
@@ -38,6 +47,7 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
   const [usdToMarketRate, setUsdToMarketRate] = useState(0);
 
   const [disabled, setDisabled] = useState(false);
+  const [isAmountMoreThanBalance, setIsAmountMoreThanBalance] = useState(false);
   const [loading, setLoading] = useState(false);
   const [availableAssets, setAvailableAssets] = useState<MarketAsset[]>([]);
 
@@ -54,6 +64,10 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
   useEffect(() => {
     if (activeUser) setBalance(getBalance(fromAsset, activeUser));
   }, [activeUser]);
+
+  useEffect(() => {
+    validateBalance();
+  }, [from, balance]);
 
   useEffect(() => {
     const nextAvailableAssets = MarketPairs[toAsset];
@@ -97,6 +111,18 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
 
   const numberAmount = (v: string) => +v.replace(/,/gm, "");
 
+  const validateBalance = () => {
+    if (balance) {
+      let [availableBalance] = balance.split(" ");
+      const amount = numberAmount(from);
+      const availableBalanceAmount = +availableBalance;
+
+      if (!isNaN(availableBalanceAmount)) {
+        setIsAmountMoreThanBalance(amount > availableBalanceAmount);
+      }
+    }
+  };
+
   const reset = () => {
     setFrom("0");
     setTo("0");
@@ -126,6 +152,15 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
             step === MarketSwapFormStep.SUCCESS ||
             disabled ||
             loading
+          }
+          elementAfterBalance={
+            isAmountMoreThanBalance ? (
+              <small className="usd-balance bold text-secondary d-block text-danger mt-3">
+                {_t("market.more-than-balance")}
+              </small>
+            ) : (
+              <></>
+            )
           }
         />
         {[MarketSwapFormStep.FORM, MarketSwapFormStep.SUCCESS].includes(step) ? (
@@ -179,11 +214,11 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
           {step === MarketSwapFormStep.FORM ? (
             <Button
               block={true}
-              disabled={disabled || loading || numberAmount(from) === 0}
+              disabled={disabled || loading || numberAmount(from) === 0 || isAmountMoreThanBalance}
               className="py-3 mt-4"
               onClick={() => submit()}
             >
-              {loading ? _t("market.swapping") : _t("market.continue")}
+              {_t("market.continue")}
             </Button>
           ) : (
             <></>
@@ -202,6 +237,8 @@ export const MarketSwapForm = ({ activeUser, global, addAccount, updateActiveUse
               toAmount={to}
               marketRate={marketRate}
               onSuccess={() => setStep(MarketSwapFormStep.SUCCESS)}
+              signingKey={signingKey}
+              setSigningKey={(key) => setSigningKey(key)}
             />
           ) : (
             <></>

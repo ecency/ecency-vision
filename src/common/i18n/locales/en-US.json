@@ -371,7 +371,7 @@
     "decimal-error": "Only {{decimals}} decimal digits allowed!",
     "from": "From",
     "to": "To",
-    "swap": "Swap",
+    "swap": "Sign",
     "swapping": "Swapping...",
     "more-than-balance": "Amount more than balance. Enter less or equal to a balance",
     "continue": "Continue",
@@ -383,8 +383,9 @@
     "sign-title": "Sign your transaction",
     "fetching-market": "Fetching market...",
     "back": "Back",
-    "swap-by": "Swap by {{method}}",
-    "success-title": "Transaction completed"
+    "swap-by": "Sign by {{method}}",
+    "success-title": "Transaction completed",
+    "more-than-balance": "You've entered more than available balance"
   },
   "list-style": {
     "title": "Toggle list style"

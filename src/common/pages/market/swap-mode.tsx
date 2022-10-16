@@ -12,6 +12,8 @@ export const SwapMode = (props: PageProps) => {
           global={props.global}
           addAccount={props.addAccount}
           updateActiveUser={props.updateActiveUser}
+          signingKey={props.signingKey}
+          setSigningKey={props.setSigningKey}
         />
       </Col>
     </Row>

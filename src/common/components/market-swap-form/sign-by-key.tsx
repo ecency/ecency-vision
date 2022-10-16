@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { keySvg } from "../../img/svg";
 import { _t } from "../../i18n";
@@ -10,10 +10,18 @@ interface Props {
   activeUser: ActiveUser | null;
   onKey: (key: PrivateKey) => void;
   onBack: () => void;
+  signingKey: string;
+  setSigningKey: (key: string) => void;
 }
 
-export const SignByKey = ({ activeUser, onKey, onBack }: Props) => {
+export const SignByKey = ({ activeUser, onKey, onBack, signingKey, setSigningKey }: Props) => {
   const [key, setKey] = useState("");
+
+  useEffect(() => {
+    if (signingKey) {
+      setKey(signingKey);
+    }
+  }, [signingKey]);
 
   const generateKey = () => {
     let pKey: PrivateKey;
@@ -32,6 +40,7 @@ export const SignByKey = ({ activeUser, onKey, onBack }: Props) => {
     }
     setKey(key);
     onKey(pKey);
+    setSigningKey(key);
   };
 
   return (

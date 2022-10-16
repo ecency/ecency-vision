@@ -15,6 +15,7 @@ interface Props {
   setAsset: (asset: MarketAsset) => void;
   usdRate: number;
   disabled: boolean;
+  elementAfterBalance?: JSX.Element;
 }
 
 export const SwapAmountControl = ({
@@ -27,7 +28,8 @@ export const SwapAmountControl = ({
   balance,
   usdRate,
   disabled,
-  className
+  className,
+  elementAfterBalance
 }: Props) => {
   // Format to x,xxx.xxx
   const formatValue = (newValue: string) => {
@@ -98,6 +100,7 @@ export const SwapAmountControl = ({
           </div>
         </InputGroup.Append>
       </div>
+      {elementAfterBalance}
     </Form.Group>
   );
 };
