@@ -51,67 +51,66 @@
   .modal-content {
     border: none;
     border-radius: 0;
-    height: 95%;
-    top: 5%;
+    height: 100%;
   }
-  @media (max-width:800px) {
+  @media (min-width:700px) {
     .modal-content{
-     top: 8% !important;
+     top: 15%;
     }
  }
-  @media (max-width:1100px) {
+  @media (min-width:800px) {
     .modal-content{
-      margin-top: 5%;
+    top: 13%;
     }
  }
-  @media (max-width:1200px) {
+  @media (min-width:1000px) {
     .modal-content{
-      height: 90%;
+    top: 10.7%;
     }
  }
-  @media (max-width:1300px) {
+  @media (min-width:1100px) {
     .modal-content{
-      height: 92%;
+    top: 9.5%;
     }
  }
-  @media (max-width:1400px) {
+  @media (min-width:1300px) {
     .modal-content{
-    top: 6%;
+    top: 8.5%;
     }
  }
+  @media (min-width:1400px) {
+    .modal-content{
+    top: 7.5%;
+    }
+ }
+ @media (min-width:1600px) {
+   .modal-content{
+    top: 7%;
+   }
+}
   @media (min-width:1800px) {
     .modal-content{
-    top: 4%;
+    top: 6.5%;
     }
- }
+  }
   @media (min-width:2000px) {
     .modal-content{
-    top: 3%;
-    right: 45%;
-    }
- }
-  @media (min-width:2200px) {
-    .modal-content{
-    margin-top: 8%;
-    right: 110%;
+    top: 5.5%;
     }
  }
   @media (min-width:2500px) {
     .modal-content{
-    top: 0.5%;
-    right: 110%;
+    top: 4%;
     }
  }
   @media (min-width:4000px) {
     .modal-content{
-    top: 0.5%;
-    right: 235%;
+    top: 3%;
     }
  }
   @media (min-width:5000px) {
     .modal-content{
-    top: 0.5%;
-    right: 355%;
+    top: 2%;
     }
  }
 
