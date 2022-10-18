@@ -35,7 +35,7 @@ export class TrendingTagsCard extends Component<Props> {
     return (
       <div className="trending-tags-card">
         <h2 className="list-header">{_t("trending-tags.title")}</h2>
-        {trendingTags.list.slice(0, 30).map((t) => {
+        {trendingTags.list.sort().slice(0, 30).map((t) => {
           const cls = _c(
             `tag-list-item ${global.tag === t ? "selected-item" : ""} d-flex align-items-center`
           );
