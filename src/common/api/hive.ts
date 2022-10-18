@@ -491,6 +491,7 @@ export const downVotingPower = (account: FullAccount): number => {
 
 export const rcPower = (account: RCAccount): number => {
   const calc = client.rc.calculateRCMana(account);
+  console.log(calc);
   const { percentage } = calc;
   return percentage / 100;
 };

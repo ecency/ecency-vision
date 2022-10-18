@@ -3,6 +3,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { History } from "history";
 
 import { Link } from "react-router-dom";
+import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 
 import { Global } from "../../store/global/types";
 import { Account, FullAccount } from "../../store/accounts/types";
@@ -18,7 +19,7 @@ import formattedNumber from "../../util/formatted-number";
 
 import defaults from "../../constants/defaults.json";
 
-import { votingPower } from "../../api/hive";
+import { findRcAccounts, rcPower, votingPower } from "../../api/hive";
 
 import { _t } from "../../i18n";
 
@@ -48,6 +49,7 @@ export const ProfileCard = (props: Props) => {
   const [isMounted, setIsmounted] = useState(false);
   const [followsActiveUserLoading, setFollowsActiveUserLoading] = useState(false);
   const [subs, setSubs] = useState([] as Subscription[]);
+  const [rcPercent, setRcPercent] = useState(100);
 
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({} as any), []);
@@ -69,6 +71,12 @@ export const ProfileCard = (props: Props) => {
       .catch((e) => {
         setSubs([]);
       });
+    findRcAccounts(account.name).then((r) => {
+      console.log(r);
+      if (r && r[0]) {
+        setRcPercent(rcPower(r[0]));
+      }
+    });
   }, [account]);
 
   useEffect(() => {
@@ -120,8 +128,6 @@ export const ProfileCard = (props: Props) => {
     );
   }
 
-  const vPower = votingPower(account);
-
   const isMyProfile =
     activeUser &&
     activeUser.username === account.name &&
@@ -157,15 +163,6 @@ export const ProfileCard = (props: Props) => {
         <div className="username">{account.name}</div>
       </h1>
 
-      <div className="vpower-line">
-        <div className="vpower-line-inner" style={{ width: `${vPower}%` }} />
-      </div>
-
-      <div className="vpower-percentage">
-        <Tooltip content={_t("profile.voting-power")}>
-          <span>{vPower.toFixed(2)}</span>
-        </Tooltip>
-      </div>
       {loggedIn && !isMyProfile && (
         <div className="d-flex justify-content-center mb-3 d-md-block">
           {followsActiveUserLoading ? (
@@ -182,6 +179,29 @@ export const ProfileCard = (props: Props) => {
           {account.profile?.about && <div className="about">{account.profile.about}</div>}
         </div>
       )}
+
+      <div className="progress">
+        <div
+          className="progress-bar progress-bar-success"
+          role="progressbar"
+          style={{ width: `${rcPercent}%` }}
+        >
+          Available
+        </div>
+        <div
+          className="progress-bar progress-bar-danger"
+          role="progressbar"
+          style={{ width: `${100 - rcPercent}%` }}
+        >
+          Used
+        </div>
+      </div>
+
+      <div className="rc-percentage">
+        <Tooltip content={_t("profile.voting-power")}>
+          <span>Resource Credits</span>
+        </Tooltip>
+      </div>
 
       {account.__loaded && (
         <div className="stats">
