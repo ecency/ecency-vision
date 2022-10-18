@@ -373,7 +373,6 @@
     "to": "To",
     "swap": "Sign",
     "swapping": "Swapping...",
-    "more-than-balance": "Amount more than balance. Enter less or equal to a balance",
     "continue": "Continue",
     "balance": "Balance",
     "fee": "Fee",
@@ -385,7 +384,9 @@
     "back": "Back",
     "swap-by": "Sign by {{method}}",
     "success-title": "Transaction completed",
-    "more-than-balance": "You've entered more than available balance"
+    "more-than-balance": "You've entered more than available balance",
+    "invalid-amount": "Invalid from amount. Please, enter less value",
+    "too-much-slippage": "We highly recommend you to reduce your amount for saving your funds"
   },
   "list-style": {
     "title": "Toggle list style"

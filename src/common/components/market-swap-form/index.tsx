@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { SwapAmountControl } from "./swap-amount-control";
 import { MarketInfo } from "./market-info";
 import { MarketAsset, MarketPairs } from "./market-pair";
 import { ActiveUser } from "../../store/active-user/types";
 import { getBalance } from "./api/get-balance";
-import { getMarketRate } from "./api/get-market-rate";
+import { getMarketRate, MarketRateListener } from "./api/get-market-rate";
 import { getCGMarket } from "./api/coingecko-api";
 import { MarketSwapFormStep } from "./form-step";
 import { SignMethods } from "./sign-methods";
@@ -36,6 +36,7 @@ export const MarketSwapForm = ({
 
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const [isInvalidFrom, setIsInvalidFrom] = useState(false);
 
   const [fromAsset, setFromAsset] = useState(MarketAsset.HIVE);
   const [toAsset, setToAsset] = useState(MarketAsset.HBD);
@@ -51,14 +52,10 @@ export const MarketSwapForm = ({
   const [loading, setLoading] = useState(false);
   const [availableAssets, setAvailableAssets] = useState<MarketAsset[]>([]);
 
-  let interval: any;
+  const [tooMuchSlippage, setTooMuchSlippage] = useState(false);
 
   useEffect(() => {
     fetchMarket();
-    // interval = setInterval(() => fetchMarket(), 20000);
-    return () => {
-      // clearInterval(interval);
-    };
   }, []);
 
   useEffect(() => {
@@ -132,6 +129,15 @@ export const MarketSwapForm = ({
 
   return (
     <div className="market-swap-form p-4">
+      <MarketRateListener
+        amount={from}
+        asset={fromAsset}
+        setToAmount={(v) => setTo(v)}
+        loading={disabled}
+        setLoading={(v) => setDisabled(v)}
+        setInvalidAmount={(v) => setIsInvalidFrom(v)}
+        setTooMuchSlippage={(v) => setTooMuchSlippage(v)}
+      />
       <MarketSwapFormHeader step={step} loading={loading || disabled} onBack={back} />
       <Form onSubmit={(e) => submit()}>
         <SwapAmountControl
@@ -211,6 +217,20 @@ export const MarketSwapForm = ({
           usdFromMarketRate={usdFromMarketRate}
         />
         <div>
+          {isInvalidFrom ? (
+            <Alert variant="warning" className="mt-4">
+              {_t("market.invalid-amount")}
+            </Alert>
+          ) : (
+            <></>
+          )}
+          {tooMuchSlippage ? (
+            <Alert variant="warning" className="mt-4">
+              {_t("market.too-much-slippage")}
+            </Alert>
+          ) : (
+            <></>
+          )}
           {step === MarketSwapFormStep.FORM ? (
             <Button
               block={true}
