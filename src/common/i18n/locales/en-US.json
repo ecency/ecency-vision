@@ -737,6 +737,15 @@
     "balance": "Balance",
     "staked": "Staked"
   },
+  "sort-engine-tokens": {
+    "sort-in-ascending": "Sort in ascending order",
+    "sort-in-descending": "Sort in descending order",
+    "sort-by-balance": "Sort by balance",
+    "sort-by-stake": "Sort by stake",
+    "sort-by-delegations-in": "Sort by delegations in",
+    "sort-by-delegations-out": "Sort by delegations out",
+    "sort-by-precision": "Sort by precision"
+  },
   "withdraw-routes": {
     "title": "Withdraw accounts",
     "account": "Account",

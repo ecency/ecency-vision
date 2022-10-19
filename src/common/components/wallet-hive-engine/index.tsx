@@ -9,7 +9,7 @@ import { ActiveUser } from "../../store/active-user/types";
 import BaseComponent from "../base";
 import HiveEngineToken from "../../helper/hive-engine-wallet";
 import LinearProgress from "../linear-progress";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import WalletMenu from "../wallet-menu";
 
 import Transfer, { TransferMode } from "../transfer-he";
@@ -33,8 +33,10 @@ import {
 import { error, success } from "../feedback";
 import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
+import { SortEngineTokens } from "../sort-engine-tokens";
 
 import { _t } from "../../i18n";
+import { assetSymbolInstance } from "../../helper/test-helper";
 
 interface Props {
   global: Global;
@@ -84,6 +86,70 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
   componentWillUnmount() {
     this._isMounted = false;
+  }
+
+   sortTokensInAscending: any = () => {
+    const symbols: string[] = [];
+    for ( let i = 0; i < this.state.tokens.length; i++ ){
+      symbols.push(this.state.tokens[i].symbol);
+    }
+    const sortedTokens: any = symbols.sort()
+    console.log(sortedTokens)
+  }
+
+  sortTokensInDescending: any = () => {
+    let symbols: string[] = [];
+  for ( let i = 0; i < this.state.tokens.length; i++ ){
+    symbols.push(this.state.tokens[i].symbol);
+  }
+     const descendingTokens: any = symbols.reverse()
+      console.log(descendingTokens)
+  }
+
+  
+  sortTokensbyStake = () => {
+    let stakedBalance: number[] = [];
+  for ( let i = 0; i < this.state.tokens.length; i++ ){
+    stakedBalance.push(this.state.tokens[i].balance);
+  }
+  const sortedTokens: any = stakedBalance.sort()
+    console.log(sortedTokens)
+  }
+
+  sortTokensbyBalance = () => {
+    let balance: number[] = [];
+  for ( let i = 0; i < this.state.tokens.length; i++ ){
+    balance.push(this.state.tokens[i].balance);
+  }
+  const sortedBalance: any = balance.sort()
+    console.log(balance.sort())
+  }
+
+  sortByDelegationIn = () => {
+    let delegationsIn: number[] = [];
+    for ( let i = 0; i < this.state.tokens.length; i++ ){
+      delegationsIn.push(this.state.tokens[i].balance);
+    }
+    const sortedInDelegation: any = delegationsIn.sort()
+    console.log(delegationsIn.sort())
+  }
+
+  sortByDelegationOut = () => {
+    let delegationsOut: number[] = [];
+    for ( let i = 0; i < this.state.tokens.length; i++ ){
+      delegationsOut.push(this.state.tokens[i].balance);
+    }
+    const sortedOutDelegation: any = delegationsOut.sort()
+    console.log(delegationsOut.sort())
+  }
+
+  sortByPrecision = () => {
+    let precision: number[] = [];
+  for ( let i = 0; i < this.state.tokens.length; i++ ){
+    precision.push(this.state.tokens[i].balance);
+  }
+  const sortedPrecision: any = precision.sort()
+    console.log(precision.sort())
   }
 
   openTransferDialog = (mode: TransferMode, asset: string, balance: number) => {
@@ -261,6 +327,18 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                 <div className="description">{_t("wallet-engine.description")}</div>
               </div>
             </div>
+
+            <div className="wallet-info">
+              <SortEngineTokens />
+            </div>
+
+            <>
+            <Button  onClick={() =>
+                    this.sortTokensInAscending()
+                  }>
+              Test sorting
+              </Button>
+            </>
 
             <div className="entry-list">
               {loading ? (
