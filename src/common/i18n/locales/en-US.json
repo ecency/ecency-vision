@@ -186,6 +186,10 @@
   "trending-tags": {
     "title": "Topics"
   },
+  "sort-trending-tags": {
+    "ascending": "Ascending",
+    "descending": "Descending"
+  },
   "selected-tags": {
     "title": "Featured"
   },

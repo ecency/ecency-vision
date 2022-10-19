@@ -11,12 +11,15 @@ import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 import { ActiveUser } from "../../store/active-user/types";
+import { SortTrendingTagss } from "../sort-trending-tags";
 
 interface Props {
   history: History;
   global: Global;
   trendingTags: TrendingTags;
   activeUser: ActiveUser | null;
+  sortTagsInAsc?: any;
+  sortTagsInDsc?: any;
 }
 
 export class TrendingTagsCard extends Component<Props> {
@@ -29,13 +32,24 @@ export class TrendingTagsCard extends Component<Props> {
     history.push("/" + filter + ((activeUser && activeUser.username && "/my") || ""));
   };
 
+    sortTagsInAsc = () => {
+     return this.props.trendingTags.list.sort()
+    }
+  
+     sortTagsInDsc = () => {
+     return this.props.trendingTags.list.reverse()
+    }
+
   render() {
     const { trendingTags, global } = this.props;
 
     return (
       <div className="trending-tags-card">
         <h2 className="list-header">{_t("trending-tags.title")}</h2>
-        {trendingTags.list.sort().slice(0, 30).map((t) => {
+      
+        <SortTrendingTagss />
+       
+        {trendingTags.list.slice(0, 30).map((t) => {
           const cls = _c(
             `tag-list-item ${global.tag === t ? "selected-item" : ""} d-flex align-items-center`
           );
@@ -79,7 +93,9 @@ export default (p: Props) => {
     history: p.history,
     global: p.global,
     trendingTags: p.trendingTags,
-    activeUser: p.activeUser
+    activeUser: p.activeUser,
+    sortTagsInDsc: p.sortTagsInDsc,
+    sortTagsInDAsc: p.sortTagsInAsc
   };
 
   return <TrendingTagsCard {...props} />;
