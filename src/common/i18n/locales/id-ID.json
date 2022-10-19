@@ -529,9 +529,9 @@
     "done-link-label": "Mulai."
   },
   "community-rewards-registration": {
-    "body-text": "Daftarkan komunitas Anda untuk mendapatkan POIN Ecency",
+    "body-text": "Daftarkan komunitas Anda untuk mendapatkan POIN Proof of Brain",
     "btn-next-label": "Daftarkan",
-    "done-body-text": "Pendaftaran selesai. Komunitas Anda akan menerima rewards POIN ketika anggota komunitas Anda mempublikasikan postingan dengan Aplikasi Ecency.",
+    "done-body-text": "Pendaftaran selesai. Komunitas Anda akan menerima rewards POIN ketika anggota komunitas Anda mempublikasikan postingan dengan Aplikasi Proof of Brain.",
     "conflict-body-text": "Komunitas ini telah terdaftar.",
     "min-required-body-text": "Minimum memiliki 100 orang subscriber untuk mendaftar."
   },
@@ -1265,7 +1265,7 @@
     "filter-all": "Semua",
     "filter-active": "Aktif",
     "filter-inactive": "Akan datang",
-    "filter-team": "Proyek Ecency",
+    "filter-team": "Proyek Proof of Brain",
     "return-description": "Ini adalah proposal pengembalian dasar. Setiap proposal dengan suara lebih sedikit tidak akan menerima dana.",
     "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "Vote pada Proposal #{{n}}",
@@ -1553,7 +1553,7 @@
     "download-for-ios": "Unduh untuk IOS",
     "download-for-android": "Unduh untuk Android",
     "our-history": "Sejarah Kami",
-    "our-history-p-one": "<b>Ecency</b>(sebelumnya Esteem) dimulai pada 2016, penciptanya adalah <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> mulai menerapkan aplikasi seluler yang akan merevolusi cara Anda berinteraksi dan berkreasi, membangun, terlibat secara online. Dengan waktu tumbuh menjadi sesuatu yang jauh lebih besar.",
+    "our-history-p-one": "<b>Proof of Brain</b>(sebelumnya Esteem) dimulai pada 2016, penciptanya adalah <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> mulai menerapkan aplikasi seluler yang akan merevolusi cara Anda berinteraksi dan berkreasi, membangun, terlibat secara online. Dengan waktu tumbuh menjadi sesuatu yang jauh lebih besar.",
     "our-history-p-two": "Sejak itu kami terus membangun untuk Web 3.0 dan meningkatkan jaringan sosial berbasis blockchain kami, memastikan aplikasi dapat diakses semudah mungkin, aman, dan dalam banyak bahasa yang digunakan dunia.",
     "our-vision": "Visi Kami",
     "our-vision-p-one": "Kami ingin menghadirkan pengalaman blockchain yang aman dan bermanfaat bagi semua orang. Media sosial tanpa batas dan sensor, di mana hanya Anda yang mengontrol akun dan komunitas Anda sendiri. Diamankan oleh blockchain, didukung oleh orang-orang.",

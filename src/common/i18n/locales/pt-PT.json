@@ -529,9 +529,9 @@
     "done-link-label": "Vamos começar."
   },
   "community-rewards-registration": {
-    "body-text": "Registre sua comunidade para obter PONTOS da Ecency",
+    "body-text": "Registre sua comunidade para obter PONTOS da Proof of Brain",
     "btn-next-label": "Cadastrar",
-    "done-body-text": "Registro concluído. Sua comunidade receberá recompensas em PONTOS quando seus membros postarem utilizando aplicativos de Ecency.",
+    "done-body-text": "Registro concluído. Sua comunidade receberá recompensas em PONTOS quando seus membros postarem utilizando aplicativos de Proof of Brain.",
     "conflict-body-text": "Esta comunidade já está registrada.",
     "min-required-body-text": "Mínimo de 100 assinantes necessários para se registrar."
   },
@@ -1265,7 +1265,7 @@
     "filter-all": "Todos",
     "filter-active": "Ativo",
     "filter-inactive": "Brevemente",
-    "filter-team": "Projetos da Ecency",
+    "filter-team": "Projetos da Proof of Brain",
     "return-description": "Esta é a proposta de base de retorno. Todas as propostas com menos votos não receberão fundos.",
     "threshold-description": "Trata-se de uma proposta com limitações.",
     "votes-dialog-title": "Votos na proposta #{{n}}",
@@ -1553,7 +1553,7 @@
     "download-for-ios": "Baixar para iOS",
     "download-for-android": "Baixar para Android",
     "our-history": "Nossa História",
-    "our-history-p-one": "<b>A Ecency</b> (previamente Esteem) começou em 2016. O fundador <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> iniciou a criação de um aplicativo que revolucionaria a maneira com a qual interagimos online. Com o tempo, o projeto cresceu para algo muito maior.",
+    "our-history-p-one": "<b>A Proof of Brain</b> (previamente Esteem) começou em 2016. O fundador <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> iniciou a criação de um aplicativo que revolucionaria a maneira com a qual interagimos online. Com o tempo, o projeto cresceu para algo muito maior.",
     "our-history-p-two": "Desde então, temos continuado a construir para a Web 3.0 e melhorar nossa rede social em blockchain. Nos certificamos para que os aplicativos estejam seguros, acessíveis e traduzidos para as mais diversas línguas do mundo.",
     "our-vision": "Nossa Visão",
     "our-vision-p-one": "Queremos trazer uma experiência gratificante e segura na blockchain para todas as pessoas. Uma rede social sem qualquer limite ou censura, onde apenas você controla sua própria conta e suas comunidades. Protegido pela blockchain, com a ajuda das pessoas.",
@@ -1576,7 +1576,7 @@
     "enter-your-email-adress": "Digite o seu endereço de e-mail",
     "send": "Enviar",
     "subscribe-paragraph": "Seja o primeiro a saber o que está acontecendo na internet descentralizada.",
-    "copy-rights": "© 2021 Ecency. Todos os direitos reservados.",
+    "copy-rights": "© 2021 Proof of Brain. Todos os direitos reservados.",
     "success-message-subscribe": "Um link de verificação foi enviado para o seu e-mail!",
     "validation-email": "Um email válido é necessário",
     "error-occured": "Ocorreu um erro no servidor."

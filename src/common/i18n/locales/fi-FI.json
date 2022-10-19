@@ -529,9 +529,9 @@
     "done-link-label": "Aloitetaan."
   },
   "community-rewards-registration": {
-    "body-text": "Rekisteröi yhteisösi saadaksesi Ecency POINTS",
+    "body-text": "Rekisteröi yhteisösi saadaksesi Proof of Brain POINTS",
     "btn-next-label": "Rekisteröidy",
-    "done-body-text": "Rekisteröinti onnistui. Yhteisösi saa POINT-palkkioita, kun jäsenesi julkaisevat viestejä Ecency -sovelluksilla.",
+    "done-body-text": "Rekisteröinti onnistui. Yhteisösi saa POINT-palkkioita, kun jäsenesi julkaisevat viestejä Proof of Brain -sovelluksilla.",
     "conflict-body-text": "Tämä yhteisö on jo rekisteröity.",
     "min-required-body-text": "Vähintään 100 tilaajaa vaaditaan rekisteröintiin."
   },
@@ -1265,7 +1265,7 @@
     "filter-all": "Kaikki",
     "filter-active": "Käynnissä",
     "filter-inactive": "Tuleva",
-    "filter-team": "Ecency-projektit",
+    "filter-team": "Proof of Brain-projektit",
     "return-description": "Tämä on yleinen palautusehdotus. Jokainen ehdotus, jossa on vähemmän ääniä, ei saa rahoitusta.",
     "threshold-description": "Tämä on kynnysarvoehdotus.",
     "votes-dialog-title": "Äänet ehdotuksessa #{{n}}",

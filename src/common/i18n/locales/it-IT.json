@@ -529,9 +529,9 @@
     "done-link-label": "Inizia."
   },
   "community-rewards-registration": {
-    "body-text": "Registra la tua community per ottenere PUNTI Ecency",
+    "body-text": "Registra la tua community per ottenere PUNTI Proof of Brain",
     "btn-next-label": "Registra",
-    "done-body-text": "Registrazione completata. La tua community riceverà ricompense in PUNTI quando i suoi membri pubblicano con una delle app Ecency.",
+    "done-body-text": "Registrazione completata. La tua community riceverà ricompense in PUNTI quando i suoi membri pubblicano con una delle app Proof of Brain.",
     "conflict-body-text": "Questa community è già stata registrata.",
     "min-required-body-text": "Necessario un minimo di 100 iscritti per registrarsi."
   },
@@ -1265,7 +1265,7 @@
     "filter-all": "Tutto",
     "filter-active": "Attivo",
     "filter-inactive": "Rimanente",
-    "filter-team": "Progetti Ecency",
+    "filter-team": "Progetti Proof of Brain",
     "return-description": "Questa è la soglia minima per un ritorno dalla proposta. Ogni proposta con meno voti non riceverà fondi.",
     "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "Vota sulla proposta #{{n}}",

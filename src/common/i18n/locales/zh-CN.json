@@ -1265,7 +1265,7 @@
     "filter-all": "全部",
     "filter-active": "活跃",
     "filter-inactive": "即将开始",
-    "filter-team": "Ecency 项目",
+    "filter-team": "Proof of Brain 项目",
     "return-description": "这是基础返回提案。每个票数较少的提案都不会收到资金。",
     "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "对提议#{{n}} 投票",
@@ -1354,7 +1354,7 @@
   "static": {
     "about": {
       "page-title": "关于",
-      "intro-title": "什么是 <span>Ecency</span>",
+      "intro-title": "什么是 <span>Proof of Brain</span>",
       "intro-content": "Ecency是区块链网络美丽的简易的包装界面，让您能够创建自己的帖子。 搜寻您的反馈，投票你喜欢的东西，写评论吧，阅读回复。你的日常社交活动中的所有主要Hive 功能以及钱包动作和其他额外功能，例如搜索， 发现不同的标签等。",
       "faq-title": "常见问答（FAQ）",
       "faqs": "所有常见问题",
@@ -1553,7 +1553,7 @@
     "download-for-ios": "下载IOS版",
     "download-for-android": "下载 Android 版",
     "our-history": "我们的历史",
-    "our-history-p-one": "<b>Ecency</b> (以前的Esteem) 始于2016年。 创建者 <span> <a href=\"/@good-karma\" class=\"push-link\"> @herchkarma </a></span> 开始执行一个移动应用程序，这将使您的互动和创建方式发生革命性的变化， 构建，联机参与。 随着时间的推移，变得更加庞大。",
+    "our-history-p-one": "<b>Proof of Brain</b> (以前的Esteem) 始于2016年。 创建者 <span> <a href=\"/@good-karma\" class=\"push-link\"> @herchkarma </a></span> 开始执行一个移动应用程序，这将使您的互动和创建方式发生革命性的变化， 构建，联机参与。 随着时间的推移，变得更加庞大。",
     "our-history-p-two": "自那时以来，我们一直在继续建造Web3。 并改进我们基于区块链的社交网络，确保应用程序尽可能容易访问、安全并以世界所说的许多语言使用。",
     "our-vision": "我们的愿景",
     "our-vision-p-one": "我们想给所有人带来安全和有回报的区块链体验。 没有任何限制和检查的社交媒体，只有您才能控制您自己的帐户和您的社群。由区块链保护，由人们提供动力。",
@@ -1576,7 +1576,7 @@
     "enter-your-email-adress": "输入您的电子邮件地址",
     "send": "发送",
     "subscribe-paragraph": "首先要知道在去中心化网络上发生了什么。",
-    "copy-rights": "©2021 Ecency. 版权所有。",
+    "copy-rights": "©2021 Proof of Brain. 版权所有。",
     "success-message-subscribe": "验证链接已发送到您的电子邮件帐户！",
     "validation-email": "需要有效的电子邮件",
     "error-occured": "服务器发生错误。"

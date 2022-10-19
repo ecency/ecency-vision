@@ -529,9 +529,9 @@
     "done-link-label": "Започнете."
   },
   "community-rewards-registration": {
-    "body-text": "Регистрирай своята общност за да получиш Ecency ТОЧКИ",
+    "body-text": "Регистрирай своята общност за да получиш Proof of Brain ТОЧКИ",
     "btn-next-label": "Регистрация",
-    "done-body-text": "Регистрацията е завършена. Вашата общност ще получава ТОЧКИ като награди когато членовете на групата правят публикации с приложенията на Ecency.",
+    "done-body-text": "Регистрацията е завършена. Вашата общност ще получава ТОЧКИ като награди когато членовете на групата правят публикации с приложенията на Proof of Brain.",
     "conflict-body-text": "Тази общност е вече регистрирана.",
     "min-required-body-text": "Нужни са минимум 100 члена за да се регистрира."
   },
@@ -1265,7 +1265,7 @@
     "filter-all": "Всички",
     "filter-active": "Активни",
     "filter-inactive": "Предстоящи",
-    "filter-team": "Ecency Проекти",
+    "filter-team": "Proof of Brain Проекти",
     "return-description": "Това е мининималната стойност за осъществяване на предложение. Всяко предложение с по-малко гласове няма да получи средства.",
     "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "Гласове на Предложение #{{n}}",
@@ -1553,7 +1553,7 @@
     "download-for-ios": "Download for IOS",
     "download-for-android": "Download for Android",
     "our-history": "Our History",
-    "our-history-p-one": "<b>Ecency</b> (previously Esteem) started out in 2016, founder <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> started implementing a mobile application that would revolutionize the way you interact and create, build, engage online. With time grew to something much bigger.",
+    "our-history-p-one": "<b>Proof of Brain</b> (previously Esteem) started out in 2016, founder <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> started implementing a mobile application that would revolutionize the way you interact and create, build, engage online. With time grew to something much bigger.",
     "our-history-p-two": "Since then we have been continuing to build for Web 3.0 and improve our blockchain-based social network, making sure apps are as accessible as possible, secure and in many languages the world speaks.",
     "our-vision": "Our Vision",
     "our-vision-p-one": "We want to bring a secure and rewarding blockchain experience to all people. Social media without any limits and censorship, where only you control your own account and your communities. Secured by blockchain, powered by people.",
@@ -1576,7 +1576,7 @@
     "enter-your-email-adress": "Enter your email adress",
     "send": "Send",
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
-    "copy-rights": "©2021 Ecency. All right reserved.",
+    "copy-rights": "©2021 Proof of Brain. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."

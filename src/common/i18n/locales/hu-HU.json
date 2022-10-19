@@ -529,9 +529,9 @@
     "done-link-label": "Kezdés."
   },
   "community-rewards-registration": {
-    "body-text": "Register your community to get Ecency POINTS",
+    "body-text": "Register your community to get Proof of Brain POINTS",
     "btn-next-label": "Register",
-    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Proof of Brain apps.",
     "conflict-body-text": "This community is already registered.",
     "min-required-body-text": "Minimum 100 subscribers required to register."
   },
@@ -1265,7 +1265,7 @@
     "filter-all": "Összes",
     "filter-active": "Aktív",
     "filter-inactive": "Közelgő",
-    "filter-team": "Ecency projektek",
+    "filter-team": "Proof of Brain projektek",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "threshold-description": "This is a threshold proposal.",
     "votes-dialog-title": "#{{n}} javaslat szavazatai",
@@ -1553,7 +1553,7 @@
     "download-for-ios": "Download for IOS",
     "download-for-android": "Download for Android",
     "our-history": "Our History",
-    "our-history-p-one": "<b>Ecency</b> (previously Esteem) started out in 2016, founder <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> started implementing a mobile application that would revolutionize the way you interact and create, build, engage online. With time grew to something much bigger.",
+    "our-history-p-one": "<b>Proof of Brain</b> (previously Esteem) started out in 2016, founder <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> started implementing a mobile application that would revolutionize the way you interact and create, build, engage online. With time grew to something much bigger.",
     "our-history-p-two": "Since then we have been continuing to build for Web 3.0 and improve our blockchain-based social network, making sure apps are as accessible as possible, secure and in many languages the world speaks.",
     "our-vision": "Our Vision",
     "our-vision-p-one": "We want to bring a secure and rewarding blockchain experience to all people. Social media without any limits and censorship, where only you control your own account and your communities. Secured by blockchain, powered by people.",
@@ -1576,7 +1576,7 @@
     "enter-your-email-adress": "Enter your email adress",
     "send": "Send",
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
-    "copy-rights": "©2021 Ecency. All right reserved.",
+    "copy-rights": "©2021 Proof of Brain. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
     "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
