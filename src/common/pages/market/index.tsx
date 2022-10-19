@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../common";
 import { LimitMarketMode } from "./limit-mode";
@@ -14,9 +14,15 @@ import { ModeSelector } from "./mode-selector";
 import { SwapMode } from "./swap-mode";
 
 const MarketPage = (props: PageProps) => {
-  const [mode, setMode] = useState<MarketMode>(get(MARKET_MODE_LS_TOKEN, MarketMode.SWAP));
+  const [mode, setMode] = useState<MarketMode>(MarketMode.SWAP);
   const [title, setTitle] = useState(_t("market.title"));
   const [description, setDescription] = useState(_t("market.description"));
+
+  useEffect(() => {
+    const hash = props.location.hash;
+    if (hash === "#swap") setMode(MarketMode.SWAP);
+    if (hash === "#limit") setMode(MarketMode.LIMIT);
+  }, []);
 
   const navbar = props.global.isElectron ? (
     NavBarElectron({
@@ -32,7 +38,7 @@ const MarketPage = (props: PageProps) => {
     <>
       <Meta title={title} description={description} />
       <Feedback activeUser={props.activeUser} />
-      <div className="d-flex justify-content-center market-page">
+      <div className={"d-flex justify-content-center market-page " + mode}>
         <div className="w-sm-75 p-3 p-sm-0">
           <div style={{ marginBottom: "6rem" }}>{navbar}</div>
           <div className="mb-5 text-center">
