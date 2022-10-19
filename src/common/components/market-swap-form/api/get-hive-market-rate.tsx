@@ -3,7 +3,7 @@ import { getMarketStatistics, getOrderBook, OrdersDataItem } from "../../../api/
 import React, { useEffect, useState } from "react";
 import { error } from "../../feedback";
 
-export const getMarketRate = async (asset: MarketAsset): Promise<number> => {
+export const getHiveMarketRate = async (asset: MarketAsset): Promise<number> => {
   if (asset === MarketAsset.HIVE) {
     const market = await getMarketStatistics();
     return +market.lowest_ask;
@@ -24,7 +24,7 @@ interface Props {
   setTooMuchSlippage: (v: boolean) => void;
 }
 
-export const MarketRateListener = ({
+export const HiveMarketRateListener = ({
   asset,
   amount,
   setToAmount,
@@ -35,8 +35,17 @@ export const MarketRateListener = ({
   const [hiveOrderBook, setHiveOrderBook] = useState<OrdersDataItem[]>([]);
   const [hbdOrderBook, setHbdOrderBook] = useState<OrdersDataItem[]>([]);
 
+  let updateInterval: any;
+
   useEffect(() => {
     fetchHiveOrderBook().then(() => processHiveOrderBook());
+    updateInterval = setInterval(
+      () => fetchHiveOrderBook().then(() => processHiveOrderBook()),
+      60000
+    );
+    return () => {
+      clearInterval(updateInterval);
+    };
   }, []);
 
   useEffect(() => {

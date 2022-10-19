@@ -6,7 +6,7 @@ import { MarketInfo } from "./market-info";
 import { MarketAsset, MarketPairs } from "./market-pair";
 import { ActiveUser } from "../../store/active-user/types";
 import { getBalance } from "./api/get-balance";
-import { getMarketRate, MarketRateListener } from "./api/get-market-rate";
+import { getHiveMarketRate, HiveMarketRateListener } from "./api/get-hive-market-rate";
 import { getCGMarket } from "./api/coingecko-api";
 import { MarketSwapFormStep } from "./form-step";
 import { SignMethods } from "./sign-methods";
@@ -88,7 +88,7 @@ export const MarketSwapForm = ({
 
   const fetchMarket = async () => {
     setDisabled(true);
-    setMarketRate(await getMarketRate(fromAsset));
+    setMarketRate(await getHiveMarketRate(fromAsset));
     setDisabled(false);
 
     const [fromUsdRate, toUsdRate] = await getCGMarket(fromAsset, toAsset);
@@ -98,8 +98,6 @@ export const MarketSwapForm = ({
 
   const submit = () => {
     if (step === MarketSwapFormStep.FORM) setStep(MarketSwapFormStep.SIGN);
-    else if (step === MarketSwapFormStep.SIGN) {
-    }
   };
 
   const back = () => {
@@ -129,7 +127,7 @@ export const MarketSwapForm = ({
 
   return (
     <div className="market-swap-form p-4">
-      <MarketRateListener
+      <HiveMarketRateListener
         amount={from}
         asset={fromAsset}
         setToAmount={(v) => setTo(v)}
