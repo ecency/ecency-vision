@@ -6,7 +6,7 @@ import { MarketInfo } from "./market-info";
 import { MarketAsset, MarketPairs } from "./market-pair";
 import { ActiveUser } from "../../store/active-user/types";
 import { getBalance } from "./api/get-balance";
-import { getHiveMarketRate, HiveMarketRateListener } from "./api/get-hive-market-rate";
+import { getHiveMarketRate, HiveMarketRateListener } from "./api/hive";
 import { getCGMarket } from "./api/coingecko-api";
 import { MarketSwapFormStep } from "./form-step";
 import { SignMethods } from "./sign-methods";
