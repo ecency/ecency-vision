@@ -3,7 +3,7 @@ import { getOrderBook, OrdersDataItem } from "../../../../api/hive";
 import React, { useEffect, useState } from "react";
 import { error } from "../../../feedback";
 
-namespace HiveMarket {
+export namespace HiveMarket {
   interface ProcessingResult {
     tooMuchSlippage?: boolean;
     invalidAmount?: boolean;
@@ -11,7 +11,7 @@ namespace HiveMarket {
     emptyOrderBook?: boolean;
   }
 
-  export function calculatePrice(intAmount: number, book: OrdersDataItem[], asset: "hive" | "hbd") {
+  function calculatePrice(intAmount: number, book: OrdersDataItem[], asset: "hive" | "hbd") {
     let available = 0;
     let index = 0;
     while (available < intAmount && book.length > index + 1) {
@@ -65,7 +65,7 @@ namespace HiveMarket {
     if (!availableInOrderBook) return { emptyOrderBook: true };
 
     const slippage = Math.abs(price - firstPrice);
-    tooMuchSlippage = slippage > 0.001;
+    tooMuchSlippage = slippage > 0.01;
 
     if (intAmount > availableInOrderBook) {
       invalidAmount = true;
@@ -74,6 +74,20 @@ namespace HiveMarket {
       invalidAmount = false;
     }
     return { toAmount: resultToAmount, tooMuchSlippage, invalidAmount };
+  }
+
+  export async function getNewAmount(toAmount: string, fromAmount: string, asset: MarketAsset) {
+    const book = await HiveMarket.fetchHiveOrderBook();
+    const { toAmount: newToAmount } = HiveMarket.processHiveOrderBook(
+      book?.bids ?? [],
+      book?.asks ?? [],
+      fromAmount,
+      asset
+    );
+    if (newToAmount) {
+      return newToAmount;
+    }
+    return toAmount;
   }
 }
 

@@ -17,6 +17,7 @@ import { getAccountFull } from "../../api/hive";
 import { error } from "../feedback";
 import { SignByKey } from "./sign-by-key";
 import { PrivateKey } from "@hiveio/dhive";
+import { HiveMarket } from "./api/hive";
 
 interface Props {
   global: Global;
@@ -57,12 +58,12 @@ export const SignMethods = ({
       activeUser,
       fromAsset: asset,
       fromAmount,
-      toAmount
+      toAmount: await HiveMarket.getNewAmount(toAmount, fromAmount, asset)
     });
   };
 
   const onSwapByKey = async (key: PrivateKey) => {
-    await swapAction(
+    await swapAction((toAmount) =>
       swapByKey(key, {
         activeUser,
         fromAsset: asset,
@@ -73,7 +74,7 @@ export const SignMethods = ({
   };
 
   const onSwapByKc = async () => {
-    await swapAction(
+    await swapAction((toAmount) =>
       swapByKc({
         activeUser,
         fromAsset: asset,
@@ -83,10 +84,10 @@ export const SignMethods = ({
     );
   };
 
-  const swapAction = async (action: Promise<any>) => {
+  const swapAction = async (action: (toAmount: string) => Promise<any>) => {
     setLoading(true);
     try {
-      await action;
+      await action(await HiveMarket.getNewAmount(toAmount, fromAmount, asset));
       const account = await getAccountFull(activeUser!.username);
       addAccount(account);
       updateActiveUser(account);

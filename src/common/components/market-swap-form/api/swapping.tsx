@@ -40,8 +40,8 @@ export const swapByKey = (key: PrivateKey, options: SwapOptions) => {
     return limitOrderCreate(
       options.activeUser!.username,
       key,
-      toAmount,
       fromAmount,
+      toAmount,
       TransactionType.Buy
     );
   }
@@ -62,8 +62,8 @@ export const swapByKc = (options: SwapOptions) => {
   } else if (options.fromAsset === MarketAsset.HBD) {
     return limitOrderCreateKc(
       options.activeUser!.username,
-      toAmount,
       fromAmount,
+      toAmount,
       TransactionType.Buy
     );
   }
@@ -84,8 +84,8 @@ export const swapByHs = (options: SwapOptions) => {
   } else if (options.fromAsset === MarketAsset.HBD) {
     return limitOrderCreateHot(
       options.activeUser!.username,
-      toAmount,
       fromAmount,
+      toAmount,
       TransactionType.Buy
     );
   }
