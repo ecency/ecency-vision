@@ -33,11 +33,13 @@ export class TrendingTagsCard extends Component<Props> {
   };
 
     sortTagsInAsc = () => {
-     return this.props.trendingTags.list.sort()
+      console.log("sorted Asc")
+     return this.props.trendingTags.list.sort();
     }
   
      sortTagsInDsc = () => {
-     return this.props.trendingTags.list.reverse()
+      console.log("sorted Dsc")
+     return this.props.trendingTags.list.reverse();
     }
 
   render() {
@@ -47,7 +49,10 @@ export class TrendingTagsCard extends Component<Props> {
       <div className="trending-tags-card">
         <h2 className="list-header">{_t("trending-tags.title")}</h2>
       
-        <SortTrendingTagss />
+        <SortTrendingTagss
+        sortTagsInAsc={this.sortTagsInAsc}
+        sortTagsInDsc={this.sortTagsInDsc}
+        />
        
         {trendingTags.list.slice(0, 30).map((t) => {
           const cls = _c(

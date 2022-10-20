@@ -2,9 +2,25 @@ import React, { useState, useEffect } from "react"
 import DropDown, { MenuItem } from "../dropdown";
 import { _t } from "../../i18n";
 import { Button } from "react-bootstrap";
-// import  sortTagsInDsc from "../trending-tags-card";
 
 export const SortTrendingTagss = (props: any) => {
+
+    const {
+        sortTagsInAsc,
+        sortTagsInDsc
+      } = props;
+    
+
+    let dropDownItems: MenuItem[] = [
+        {
+          label: <span>{_t("sort-trending-tags.ascending")}</span>,
+        onClick: () => sortTagsInAsc()
+        },
+        {
+          label: <span>{_t("sort-trending-tags.descending")}</span>,
+        onClick: () => sortTagsInDsc()
+        }
+      ];
 
   return (
 
@@ -14,26 +30,19 @@ export const SortTrendingTagss = (props: any) => {
       {(() => {
         let dropDownConfig: any;
           dropDownConfig = {
-            history: "",
-            label: "",
-            items: [
-              {
-                label: _t("sort-trending-tags.ascending"),
-                onClick: () => {
-                    
-                }
-              },
-              {
-                label: _t("sort-trending-tags.descending"),
-                onClick: () => {
-                
-                }
-              }
-            ]
+            history: null,
+            label:  (
+                    sortTagsInAsc() 
+                    ? _t("sort-trending-tags.ascending")
+                    : sortTagsInDsc()
+                    ? _t("sort-trending-tags.descending")
+                    : null 
+            ),
+            items: dropDownItems
           };
         return (
           <div className="amount-actions">
-           <DropDown {...dropDownConfig} label={"Sort tags"} float="top" />
+           <DropDown {...dropDownConfig} header="" float="top" />
           </div>
         );
       })()}
