@@ -32,12 +32,18 @@ export class TrendingTagsCard extends Component<Props> {
     history.push("/" + filter + ((activeUser && activeUser.username && "/my") || ""));
   };
 
-    sortTagsInAsc = () => {
-      return this.props.trendingTags.list.sort();
-    }
+  sortTagsInAsc = () => {
+    const tags: any = this.props.trendingTags.list
+    // console.log(this.props.trendingTags.list)
+    tags.sort();
+    this.setState({trendingTags: tags});
+  }
   
      sortTagsInDsc = () => {
-      return this.props.trendingTags.list.reverse();
+    const tags = this.props.trendingTags.list
+    // console.log(tags.sort((a, b) => (a > b ? -1 : 1)))
+    tags.sort((a, b) => (a > b ? -1 : 1))
+    this.setState({trendingTags: tags});
     }
 
   render() {
