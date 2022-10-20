@@ -117,13 +117,13 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
   sortTokensbyBalance = () => {
 
     const byBalance = this.state.tokens.sort((a: any, b: any) => {
-      if (a.balances > b.balances)
+      if (a.balance > b.balance)
       return 1;
-    if (a.balances < b.balances)
+    if (a.balance < b.balance)
       return -1;
     return 0;
     });
-
+      console.log(this.state.tokens)
     this.setState({ tokens: byBalance })
   }
 

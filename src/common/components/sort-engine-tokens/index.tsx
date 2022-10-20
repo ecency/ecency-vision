@@ -40,13 +40,13 @@ export const SortEngineTokens = (props: any) => {
               {
                 label: _t("sort-engine-tokens.sort-by-balance"),
                 onClick: () => {
-                  sortTokensbyStake()
+                  sortTokensbyBalance()
                 }
               },
               {
                 label: _t("sort-engine-tokens.sort-by-stake"),
                 onClick: () => {
-                  sortTokensbyBalance()
+                  sortTokensbyStake()
                 }
               },
               {
