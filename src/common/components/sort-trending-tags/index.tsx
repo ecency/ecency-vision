@@ -9,35 +9,33 @@ export const SortTrendingTagss = (props: any) => {
         sortTagsInAsc,
         sortTagsInDsc
       } = props;
-    
+      
+      const [label, setLabel] = useState("sort tags");    
 
     let dropDownItems: MenuItem[] = [
         {
           label: <span>{_t("sort-trending-tags.ascending")}</span>,
-        onClick: () => sortTagsInAsc()
+        onClick: () => { sortTagsInAsc()
+        setLabel(`${_t("sort-trending-tags.ascending")}`)
+      }
         },
         {
           label: <span>{_t("sort-trending-tags.descending")}</span>,
-        onClick: () => sortTagsInDsc()
-        }
+        onClick: () => { sortTagsInDsc()
+          setLabel(`${_t("sort-trending-tags.descending")}`)
+        }}
       ];
 
   return (
 
+    <div  className="sort-dropdown">
     <div>
-    <div>
-        <Button  className="sort-btn" style={{backgroundColor: "#2e3d51"}}>
+        {/* <Button  className="sort-btn" style={{backgroundColor: "#2e3d51"}}> */}
       {(() => {
         let dropDownConfig: any;
           dropDownConfig = {
             history: null,
-            label:  (
-                    sortTagsInAsc() 
-                    ? _t("sort-trending-tags.ascending")
-                    : sortTagsInDsc()
-                    ? _t("sort-trending-tags.descending")
-                    : null 
-            ),
+            label:  label,
             items: dropDownItems
           };
         return (
@@ -46,9 +44,9 @@ export const SortTrendingTagss = (props: any) => {
           </div>
         );
       })()}
-        </Button>
+        {/* </Button> */}
 
     </div>
     </div>
-  )
-}
+  );
+};

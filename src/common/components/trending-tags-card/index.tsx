@@ -33,13 +33,11 @@ export class TrendingTagsCard extends Component<Props> {
   };
 
     sortTagsInAsc = () => {
-      console.log("sorted Asc")
-     return this.props.trendingTags.list.sort();
+      return this.props.trendingTags.list.sort();
     }
   
      sortTagsInDsc = () => {
-      console.log("sorted Dsc")
-     return this.props.trendingTags.list.reverse();
+      return this.props.trendingTags.list.reverse();
     }
 
   render() {
