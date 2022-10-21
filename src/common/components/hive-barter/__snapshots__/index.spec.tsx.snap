@@ -15,7 +15,8 @@ exports[`(1) Buying render 1`] = `
     </h3>
     <div>
       <small
-        className="d-flex"
+        className="d-flex cursor-pointer"
+        onClick={[Function]}
       >
         <div
           className="mr-1 text-primary"
@@ -148,7 +149,8 @@ exports[`(1) Selling render 1`] = `
     </h3>
     <div>
       <small
-        className="d-flex"
+        className="d-flex cursor-pointer"
+        onClick={[Function]}
       >
         <div
           className="mr-1 text-primary"
