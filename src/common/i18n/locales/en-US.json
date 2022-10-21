@@ -738,13 +738,14 @@
     "staked": "Staked"
   },
   "sort-engine-tokens": {
-    "sort-in-ascending": "Sort in ascending order",
-    "sort-in-descending": "Sort in descending order",
-    "sort-by-balance": "Sort by balance",
-    "sort-by-stake": "Sort by stake",
-    "sort-by-delegations-in": "Sort by delegations in",
-    "sort-by-delegations-out": "Sort by delegations out",
-    "sort-by-precision": "Sort by precision"
+    "sort-in-ascending": "Ascending",
+    "sort-in-descending": "Descending",
+    "sort-by-value": "Value",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Stake",
+    "sort-by-delegations-in": "Delegations in",
+    "sort-by-delegations-out": "Delegations out",
+    "sort-by-precision": "Precision"
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",

@@ -99,7 +99,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     });
       
       this.setState({ tokens: inAscending });
-  }
+  };
 
   sortTokensInDescending: any = () => {
 
@@ -109,10 +109,23 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     if (b.symbol > a.symbol)
       return 1;
     return 0;
-    })
+    });
     
     this.setState({ tokens: inDescending });
-  }
+  };
+
+  sortTokensbyValue = () => {
+
+    const byBalance = this.state.tokens.sort((a: any, b: any) => {
+      if (b.balance < a.balance)
+      return -1;
+    if (b.balance > a.balance)
+      return 1;
+    return 0;
+    });
+  
+    this.setState({ tokens: byBalance })
+  };
 
   sortTokensbyBalance = () => {
 
@@ -123,56 +136,58 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       return -1;
     return 0;
     });
-      console.log(this.state.tokens)
+  
     this.setState({ tokens: byBalance })
-  }
+  };
 
   sortTokensbyStake = () => {
 
     const byStake = this.state.tokens.sort((a: any, b: any) => {
-      if (a.stake > b.stake)
-      return 1;
-    if (a.stake < b.stake)
+      if (b.stake < a.stake)
       return -1;
+    if (b.stake > a.stake)
+      return 1;
     return 0;
     });
 
     this.setState({ tokens: byStake });
-  }
+  };
 
   sortByDelegationIn = () => {
     const byDelegationsIn = this.state.tokens.sort((a: any, b: any) => {
-      if (a.delegationsIn > b.delegationsIn)
-      return 1;
-    if (a.delegationsIn < b.delegationsIn)
+      if (b.delegationsIn < a.delegationsIn)
       return -1;
+    if (b.delegationsIn > a.delegationsIn)
+      return 1;
     return 0;
-    })
+    });
 
     this.setState({ tokens: byDelegationsIn });
-  }
+  };
 
   sortByDelegationOut = () => {
     const byDelegationsOut = this.state.tokens.sort((a: any, b: any) => {
-      if (a.delegationsOut > b.delegationsOut)
-      return 1;
-    if (a.delegationsOut < b.delegationsOut)
+      if (b.delegationsOut < a.delegationsOut)
       return -1;
+    if (b.delegationsOut > a.delegationsOut)
+      return 1;
     return 0;
-    })
+    });
+
     this.setState({ tokens: byDelegationsOut });
-  }
+  };
 
   sortByPrecision = () => {
     const byPrecision = this.state.tokens.sort((a: any, b: any) => {
-      if (a.precision > b.precision)
-      return 1;
-    if (a.precision < b.precision)
+      if (b.precision < a.precision)
       return -1;
+    if (b.precision > a.precision)
+      return 1;
     return 0;
-    })
+    });
+
     this.setState({ tokens: byPrecision })
-  }
+  };
 
   openTransferDialog = (mode: TransferMode, asset: string, balance: number) => {
     this.stateSet({
@@ -354,6 +369,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
               <SortEngineTokens 
               sortTokensInAscending={this.sortTokensInAscending}
               sortTokensInDescending={this.sortTokensInDescending}
+              sortTokensbyValue={this.sortTokensbyValue}
               sortTokensbyStake={this.sortTokensbyStake}
               sortTokensbyBalance={this.sortTokensbyBalance}
               sortByDelegationIn={this.sortByDelegationIn}
