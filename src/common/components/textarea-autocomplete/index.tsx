@@ -46,12 +46,12 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 
   handleChange = (event: any) => {
     let scHeight: number = event.target.scrollHeight;
-    let reduceScHeight : number = scHeight - 20 || scHeight - 24;
+    let reduceScHeight: number = scHeight - 20 || scHeight - 24;
 
     if (reduceScHeight) {
       scHeight = reduceScHeight;
     }
- 
+
     const isMobile = typeof window !== "undefined" && window.innerWidth < 570;
     if (isMobile) {
       const textareaLineHeight = 24;
@@ -96,7 +96,7 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
         <ReactTextareaAutocomplete
           {...attrs}
           loadingComponent={Loading}
-          containerStyle={{height: !this.state.value ? "80px" : this.state.inputHeight}}
+          containerStyle={{ height: !this.state.value ? "80px" : this.state.inputHeight }}
           value={this.state.value}
           placeholder={this.props.placeholder}
           onChange={this.handleChange}
