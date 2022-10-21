@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react"
 import DropDown, { MenuItem } from "../dropdown";
-import { _t } from "../../i18n";
-import { Button } from "react-bootstrap";
+import { _t } from "../../i18n";;
 
-export const SortTrendingTagss = (props: any) => {
+export const SortCommunities = (props: any) => {
 
     const {
-        sortTagsInAsc,
-        sortTagsInDsc
+        sortCommunitiesInAsc,
+        sortCommunitiesInDsc
       } = props;
       
       const [label, setLabel] = useState("sort tags");    
@@ -15,13 +14,13 @@ export const SortTrendingTagss = (props: any) => {
     let dropDownItems: MenuItem[] = [
         {
           label: <span>{_t("sort-trending-tags.ascending")}</span>,
-        onClick: () => { sortTagsInAsc()
+        onClick: () => { sortCommunitiesInAsc()
         setLabel(`${_t("sort-trending-tags.ascending")}`)
       }
         },
         {
           label: <span>{_t("sort-trending-tags.descending")}</span>,
-        onClick: () => { sortTagsInDsc()
+        onClick: () => { sortCommunitiesInDsc()
           setLabel(`${_t("sort-trending-tags.descending")}`)
         }}
       ];
@@ -30,7 +29,6 @@ export const SortTrendingTagss = (props: any) => {
 
     <div  className="sort-dropdown">
     <div>
-        {/* <Button  className="sort-btn" style={{backgroundColor: "#2e3d51"}}> */}
       {(() => {
         let dropDownConfig: any;
           dropDownConfig = {
@@ -44,8 +42,6 @@ export const SortTrendingTagss = (props: any) => {
           </div>
         );
       })()}
-        {/* </Button> */}
-
     </div>
     </div>
   );

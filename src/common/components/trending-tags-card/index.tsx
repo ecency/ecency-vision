@@ -11,15 +11,15 @@ import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 import { ActiveUser } from "../../store/active-user/types";
-import { SortTrendingTagss } from "../sort-trending-tags";
+// import { SortTrendingTagss } from "../sort-trending-tags";
 
 interface Props {
   history: History;
   global: Global;
   trendingTags: TrendingTags;
   activeUser: ActiveUser | null;
-  sortTagsInAsc?: any;
-  sortTagsInDsc?: any;
+  // sortTagsInAsc?: any;
+  // sortTagsInDsc?: any;
 }
 
 export class TrendingTagsCard extends Component<Props> {
@@ -32,19 +32,19 @@ export class TrendingTagsCard extends Component<Props> {
     history.push("/" + filter + ((activeUser && activeUser.username && "/my") || ""));
   };
 
-  sortTagsInAsc = () => {
-    const tags: any = this.props.trendingTags.list
-    // console.log(this.props.trendingTags.list)
-    tags.sort();
-    this.setState({trendingTags: tags});
-  }
+  // sortTagsInAsc = () => {
+  //   const tags: any = this.props.trendingTags.list
+  //   // console.log(this.props.trendingTags.list)
+  //   tags.sort();
+  //   this.setState({trendingTags: tags});
+  // }
   
-     sortTagsInDsc = () => {
-    const tags = this.props.trendingTags.list
-    // console.log(tags.sort((a, b) => (a > b ? -1 : 1)))
-    tags.sort((a, b) => (a > b ? -1 : 1))
-    this.setState({trendingTags: tags});
-    }
+  //    sortTagsInDsc = () => {
+  //   const tags = this.props.trendingTags.list
+  //   // console.log(tags.sort((a, b) => (a > b ? -1 : 1)))
+  //   tags.sort((a, b) => (a > b ? -1 : 1))
+  //   this.setState({trendingTags: tags});
+  //   }
 
   render() {
     const { trendingTags, global } = this.props;
@@ -53,10 +53,10 @@ export class TrendingTagsCard extends Component<Props> {
       <div className="trending-tags-card">
         <h2 className="list-header">{_t("trending-tags.title")}</h2>
       
-        <SortTrendingTagss
+        {/* <SortTrendingTagss
         sortTagsInAsc={this.sortTagsInAsc}
         sortTagsInDsc={this.sortTagsInDsc}
-        />
+        /> */}
        
         {trendingTags.list.slice(0, 30).map((t) => {
           const cls = _c(
@@ -103,8 +103,8 @@ export default (p: Props) => {
     global: p.global,
     trendingTags: p.trendingTags,
     activeUser: p.activeUser,
-    sortTagsInDsc: p.sortTagsInDsc,
-    sortTagsInDAsc: p.sortTagsInAsc
+    // sortTagsInDsc: p.sortTagsInDsc,
+    // sortTagsInDAsc: p.sortTagsInAsc
   };
 
   return <TrendingTagsCard {...props} />;
