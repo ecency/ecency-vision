@@ -149,8 +149,8 @@ export const HiveMarketRateListener = ({
     try {
       const book = await HiveMarket.fetchHiveOrderBook();
       if (book) {
-        setHiveOrderBook(book.bids);
-        setHbdOrderBook(book.asks);
+        setHiveOrderBook(book.asks);
+        setHbdOrderBook(book.bids);
       }
       processOrderBook();
     } finally {
