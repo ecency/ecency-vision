@@ -84,6 +84,7 @@ export const MarketSwapForm = ({
     setFrom(to);
     setUsdFromMarketRate(usdToMarketRate);
     setUsdToMarketRate(usdFromMarketRate);
+    setMarketRate(1 / marketRate);
   };
 
   const fetchMarket = async () => {
@@ -171,7 +172,12 @@ export const MarketSwapForm = ({
           <div className="swap-button-container">
             <div className="overlay">
               {step === MarketSwapFormStep.FORM ? (
-                <Button variant="" className="swap-button border" onClick={swap}>
+                <Button
+                  disabled={disabled || loading}
+                  variant=""
+                  className="swap-button border"
+                  onClick={swap}
+                >
                   {swapSvg}
                 </Button>
               ) : (
