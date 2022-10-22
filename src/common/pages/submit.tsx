@@ -660,17 +660,6 @@ class SubmitPage extends BaseComponent<Props, State> {
     if (!editingEntry) {
       return;
     }
-    const wordsWithoutSpace: any = body.trim()?.split(/\s+/);
-    const totalCount: number = wordsWithoutSpace.length;
-    const wordPerMinuite: number = 225;
-    const readTime: number = Math.ceil(totalCount / wordPerMinuite);
-
-    const postInfo = {
-      wordCount: totalCount,
-      readTime: readTime
-    };
-
-    ls.set("postCount", postInfo);
 
 
     const { body: oldBody, author, permlink, category, json_metadata } = editingEntry;
@@ -1235,4 +1224,4 @@ class SubmitPage extends BaseComponent<Props, State> {
   }
 }
 
-export default connect(pageMapStateToProps, pageMapDispatchToProps)(SubmitPage as any);
+export default connect(pageMapStateToProps, pageMapDispatchToProps,)(SubmitPage as any);

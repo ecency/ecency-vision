@@ -111,8 +111,8 @@ interface State {
   isMounted: boolean;
   postIsDeleted: boolean;
   deletedEntry: { title: string; body: string; tags: any } | null;
-  readTime: any;
-  wordCount: any;
+  readTime: number;
+  wordCount: number;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -146,6 +146,7 @@ class EntryPage extends BaseComponent<Props, State> {
   componentDidMount() {
     this.ensureEntry();
     this.fetchMutedUsers();
+    this.postBodyCount();
     const entry = this.getEntry();
 
     const { location, global } = this.props;
@@ -156,16 +157,8 @@ class EntryPage extends BaseComponent<Props, State> {
     window.addEventListener("resize", this.detect);
     let replyDraft = ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`);
     replyDraft = (replyDraft && replyDraft.trim()) || "";
-
-    // console.log(entry) 
-    // const wordsWithoutSpace: any = entry?.body.trim()?.split(/\s+/);
-    // const totalCount: number = wordsWithoutSpace.length;
-    // const wordPerMinuite: number = 225;
-    // const readTime: number = Math.ceil(totalCount / wordPerMinuite); 
-    const postStatsData:any = ls.get("postCount");
-    const {wordCount, readTime} = postStatsData;
     
-    this.setState({ isMounted: true, selection: replyDraft, wordCount, readTime});
+    this.setState({ isMounted: true, selection: replyDraft});
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
@@ -305,6 +298,17 @@ class EntryPage extends BaseComponent<Props, State> {
     this.stateSet({ editHistory: !editHistory });
   };
 
+  postBodyCount = () => {
+    const entry = this.getEntry();
+   
+    const wordsWithoutSpace: any = entry?.body.trim()?.split(/\s+/);
+    const totalCount: number = wordsWithoutSpace?.length;
+    const wordPerMinuite: number = 225;
+    const readTime: number = Math.ceil(totalCount / wordPerMinuite);
+
+    this.stateSet({ loading: false, readTime, wordCount: totalCount });
+  }
+
   ensureEntry = async () => {
     const { match, addEntry, updateEntry, addCommunity, activeUser, history } = this.props;
     const entry = this.getEntry();
@@ -343,23 +347,6 @@ class EntryPage extends BaseComponent<Props, State> {
     bridgeApi
       .getPost(author, permlink)
       .then((entry) => {
-        if (entry) {
-          reducerFn(entry);
-          const wordsWithoutSpace: any = entry?.body && entry?.body.trim()?.split(/\s+/);
-          const totalCount: number = wordsWithoutSpace?.length;
-          const wordPerMinuite: number = 225;
-          const readTime: number = Math.ceil(totalCount / wordPerMinuite);
-          const postInfo = {
-            wordCount: totalCount,
-            readTime: readTime
-          };
-
-          ls.set("postCount", postInfo);
-      
-          this.stateSet({ loading: false, readTime, wordCount: totalCount });
-        } 
-
-
         if (isCommunity(category)) {
           this.stateSet({ loading: false });
           return bridgeApi.getCommunity(category, activeUser?.username);
