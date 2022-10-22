@@ -146,10 +146,7 @@ export const MarketSwapForm = ({
           availableAssets={MarketPairs[fromAsset]}
           labelKey="market.from"
           value={from}
-          setValue={(v) => {
-            setFrom(v);
-            setTo(marketRate * numberAmount(v) + "");
-          }}
+          setValue={(v) => setFrom(v)}
           setAsset={(v) => setFromAsset(v)}
           usdRate={usdFromMarketRate}
           disabled={
@@ -200,18 +197,10 @@ export const MarketSwapForm = ({
           availableAssets={availableAssets}
           labelKey="market.to"
           value={to}
-          setValue={(v) => {
-            setTo(v);
-            setFrom(numberAmount(v) / marketRate + "");
-          }}
+          setValue={(v) => setTo(v)}
           setAsset={(v) => setToAsset(v)}
           usdRate={usdToMarketRate}
-          disabled={
-            step === MarketSwapFormStep.SIGN ||
-            step === MarketSwapFormStep.SUCCESS ||
-            disabled ||
-            loading
-          }
+          disabled={true}
         />
         <MarketInfo
           className="mt-4"
