@@ -716,16 +716,16 @@
         "5": "प्रत्यायोजित एल. पी. (डीएलपी) प्रतिनिधि और प्रतिनिधि दोनों के लिए {{rate}}% पर SPK टोकन अर्जित करता है"
       },
       "larynx-locked-benefits": {
-        "title": "Benefits of LARYNX Locked",
-        "1": "Proof of Stake Consensus",
-        "2": "Collateral for DEX transactions",
-        "3": "Instant Lock | 4 Week Unlock",
-        "4": "Requires an operating LARYNX node",
-        "5": "Earns 0.100%"
+        "title": "लारेंक्स लॉक्ड​ के लाभ",
+        "1": "प्रूफ ऑफ़ स्टेक सर्वसम्मति",
+        "2": "डैक्स​ लेन-देन के लिए संपार्श्विक",
+        "3": "इंस्टेंट लॉक | 4 सप्ताह का अनलॉक",
+        "4": "सक्रिय लारेंक्स नोड की आवश्यकता है",
+        "5": "कमाएँ 0.100%"
       },
-      "account-value": "Estimated Account Value",
-      "account-value-description": "The approximate US Dollar value for all SPK assets in your account",
-      "larynx-locked": "LARYNX Locked",
+      "account-value": "खाते का अनुमानित मूल्य",
+      "account-value-description": "आपके खाते मे जमा की सभी एसपीके संपत्तियों का अमेरिकी डॉलर मे अनुमानित मुल्य",
+      "larynx-locked": "लारेंक्स लॉक्ड",
       "larynx-locked-description": "Locked tokens provide liquidity to the network, aid in determining consensus, and earn rewards for node runners"
     }
   },
@@ -799,9 +799,9 @@
   },
   "purchase-qr": {
     "scan-code": "Scan the QR code with Ecency mobile app",
-    "select-user": "Please, select an user",
-    "title": "Account boost",
-    "title-points": "Buy points",
+    "select-user": "कृपया, उपयोगकर्ता को चुने",
+    "title": "खाता बूस्ट",
+    "title-points": "अंक खरीदें",
     "copied": "Account boost link copied!",
     "select-type": "Select a type",
     "boost": "Boost",
