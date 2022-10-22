@@ -187,6 +187,7 @@
     "title": "Topics"
   },
   "sort-trending-tags": {
+    "sort": "Sort",
     "ascending": "Ascending",
     "descending": "Descending"
   },

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import DropDown, { MenuItem } from "../dropdown";
-import { _t } from "../../i18n";;
+import { _t } from "../../i18n";
+import { sortSvg } from "../../img/svg";
 
 export const SortCommunities = (props: any) => {
 
@@ -9,7 +10,7 @@ export const SortCommunities = (props: any) => {
         sortCommunitiesInDsc
       } = props;
       
-      const [label, setLabel] = useState("sort tags");    
+      const [label, setLabel] = useState(_t("sort-trending-tags.sort"));    
 
     let dropDownItems: MenuItem[] = [
         {
@@ -38,6 +39,9 @@ export const SortCommunities = (props: any) => {
           };
         return (
           <div className="amount-actions">
+             <span className="sort-svg">
+                  {sortSvg} {" "}
+             </span>
            <DropDown {...dropDownConfig} header="" float="top" />
           </div>
         );
