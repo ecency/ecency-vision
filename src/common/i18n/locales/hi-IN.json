@@ -1115,7 +1115,7 @@
     "voted": "{{source}} ने आपके पोस्ट को वोट किया",
     "mention-post": "{{source}} ने आपको एक पोस्ट में उल्लेख किया है",
     "mention-comment": "{{source}} ने एक टिप्पणी में आपका उल्लेख किया है",
-    "favorite": "{{source}} made new post",
+    "favorite": "{{source}} ने एक नई पोस्ट कि",
     "followed": "{{source}} ने आपका अनुसरण किया",
     "replied": "{{source}} ने आपको उत्तर दिया",
     "reblogged": "{{source}} ने आपके पोस्ट को रिबॉग किया",
@@ -1132,12 +1132,12 @@
     "type-reblogs": "रिब्लॉग्स",
     "type-transfers": "स्थानांतरण",
     "type-delegations": "डेलीगेशन्स",
-    "type-nfavorites": "Favorites",
+    "type-nfavorites": "पसंदीदा",
     "group-title-recent": "ताजा",
-    "vote-str": "{{p}}% voted your post:",
+    "vote-str": "{{p}} % ने आपके पोस्ट को वोट किया",
     "reply-str": "आपके पोस्ट का जवाब दिया:",
     "mention-str": "में आपका उल्लेख किया:",
-    "favorite-str": "made new post",
+    "favorite-str": "नई पोस्ट बनाई",
     "followed-str": "अनुगमन करना",
     "unfollowed-str": "का अनुसरण रद्द",
     "ignored-str": "नज़रअंदाज़ करना",
@@ -1152,7 +1152,7 @@
     "mark-read": "पढ़ा हुआ मार्क करें",
     "mute": "अधिसूचना अलर्ट बंद करें",
     "unmute": "अधिसूचना अलर्ट चालू करें",
-    "settings": "Settings"
+    "settings": "सेटिंग्स"
   },
   "leaderboard": {
     "title-stars": "सर्वाधिक क्रियाशील",
@@ -1238,18 +1238,18 @@
     "proxy-active-current": "आपका वर्तमान प्रॉक्सी है",
     "proxy-active-btn-label": "प्रॉक्सी हटाये",
     "proxy-votes-for": "@{{username}} के लिए वोट",
-    "proxy-active-highlighted": "Your proxy votes are highlighted",
-    "check-witness-highlighted": "votes are highlighted"
+    "proxy-active-highlighted": "आपके प्रतिनिधि वोटो पर प्रकाश डाला गया",
+    "check-witness-highlighted": "वोटो पर प्रकाश डाला गया"
   },
   "referral": {
-    "page-title": "Referrals",
-    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
-    "created": "Created",
-    "list-referral": "Account",
-    "rewarded": "Rewarded",
-    "pending-reward": "Pending Points",
-    "earned-reward": "Earned Points",
-    "delegate-hp": "Delegate HP"
+    "page-title": "रेफरलस",
+    "page-description-long": "यह है आपके द्वारा रेफर किये गए उपभोक्ताओं की सूची।",
+    "created": "बनाया गया",
+    "list-referral": "खाता",
+    "rewarded": "पुरस्कारित",
+    "pending-reward": "लंबित अंक",
+    "earned-reward": "अर्जित अंक",
+    "delegate-hp": "डेलिगेट एचपी"
   },
   "proposals": {
     "page-title": "प्रस्ताव",
