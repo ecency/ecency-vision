@@ -977,9 +977,9 @@
   "collateralized-conversion-requests": {
     "title": "Collateralized Convert requests",
     "request-id": "Request id",
-    "collateral_amount": "Collateral",
+    "collateral_amount": "संपार्श्विक",
     "converted_amount": "Converted",
-    "pending": "Pending"
+    "pending": "लंबित"
   },
   "savings-withdraw": {
     "title": "बचत से निकासी",
@@ -1068,7 +1068,7 @@
     "empty-title-alert": "पोस्ट का शीर्षक दर्ज करें",
     "empty-tags-alert": "पोस्ट टैग दर्ज करें",
     "empty-body-alert": "पोस्ट बॉडी दर्ज करें",
-    "description": "Short description"
+    "description": "संक्षिप्त वर्णन"
   },
   "tag-selector": {
     "placeholder-empty": "टैग। पहला टैग मुख्य श्रेणी है। क्रमित करने योग्य।",
