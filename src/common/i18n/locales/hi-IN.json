@@ -802,12 +802,12 @@
     "select-user": "कृपया, उपयोगकर्ता को चुने",
     "title": "खाता बूस्ट",
     "title-points": "अंक खरीदें",
-    "copied": "Account boost link copied!",
-    "select-type": "Select a type",
-    "boost": "Boost",
-    "points": "Points",
+    "copied": "खाता बूस्ट लिंक कॉपी हुई",
+    "select-type": "एक प्रकार चुने",
+    "boost": "बूस्ट",
+    "points": "अंक",
     "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
-    "points-amount": "{{n}} points"
+    "points-amount": "{{n}} अंक"
   },
   "promote": {
     "title": "बढ़ावा देना",
@@ -819,7 +819,7 @@
     "sub-title": "अपनी पोस्ट का प्रचार करें",
     "amount": "रकम",
     "slider-hint": "राशि समायोजित करने के लिए स्लाइडर को खींचें।",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "आपको प्राप्त होने वाले वोट का वास्तविक मूल्य भिन्न हो सकता है"
   },
   "redeem-common": {
     "balance": "शेष रकम",
@@ -834,7 +834,7 @@
     "transfer-title": "खाते में स्थानांतरण",
     "transfer-title-point": "खाते को उपहार",
     "transfer-sub-title": "फंड्स को दूसरे हाइव अकाउंट में ले जाएं",
-    "stake-hive-engine-title": "Stake token",
+    "stake-hive-engine-title": "स्टेक टोकन",
     "stake-hive-engine-sub-title": "Stake token to earn passive rewards",
     "unstake-hive-engine-title": "Unstake token",
     "unstake-hive-engine-sub-title": "Unstake token you will stop earning passive rewards",
