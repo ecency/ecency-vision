@@ -978,7 +978,7 @@
     "title": "Collateralized Convert requests",
     "request-id": "Request id",
     "collateral_amount": "संपार्श्विक",
-    "converted_amount": "Converted",
+    "converted_amount": "परिवर्तित",
     "pending": "लंबित"
   },
   "savings-withdraw": {
@@ -1406,7 +1406,7 @@
       "what-are-rc-header": "संसाधन क्रेडिट क्या हैं?",
       "what-are-rc-body": "<p>हाइव ब्लॉकचैन पर लेनदेन करने पर शून्य फीस लगती है, ब्लॉकचैन को स्पैम हमलों से बचाने के लिए लेनदेन की दर सीमित होती है। ब्लॉकचेन पर आपके द्वारा की जाने वाली प्रत्येक कार्रवाई में संसाधन क्रेडिट की थोड़ी मात्रा का उपभोग होगा। इसमें पोस्टिंग, कमेंटिंग, वोटिंग, टोकन ट्रांसफर करना आदि शामिल हैं, कंटेंट देखने से रिसोर्स क्रेडिट का उपभोग नहीं होता है। </p> <p> प्रत्येक उपयोगकर्ता के पास प्रत्येक सप्ताह उपयोग करने के लिए सीमित मात्रा में रिसोर्स क्रेडिट होते हैं। उपयोगकर्ता जितना अधिक लेन-देन करता है, उसके पास उतने कम रिसोर्स क्रेडिट होते हैं (जब तक वे रिचार्ज नहीं हो जाते)। अधिक HIVE POWER वाले उपयोगकर्ताओं के पास अधिक संसाधन क्रेडिट होंगे। </p> <p> यदि आप संसाधन क्रेडिट से बाहर निकलते हैं, तो आप ब्लॉकचैन के साथ तब तक लेन-देन नहीं कर पाएंगे, जब तक कि आपके संसाधन क्रेडिट रिचार्ज (स्वचालित रूप से नहीं हो जाते) या आप अतिरिक्त HIT POWER प्राप्त कर लेते हैं अपने संसाधन क्रेडिट संतुलन को बढ़ाने के लिए या आप अस्थायी प्रतिनिधिमंडल प्राप्त करने के लिए <a href=\"/faq#how-boost-account\"> Ecency से Boosting खाते का अनुरोध करें </a> कर सकते हैं।</p>",
       "how-boost-account-header": "खाता बढ़ाने का अनुरोध कैसे करें?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation (553311 VESTS) which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can request account boosting quickly with <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR page</a> just change username and scan QR image with Ecency mobile app.</p>",
+      "how-boost-account-body": "<p>यदि आपके खाते में <a href=\"/faq#what-are-rc\">संसाधन क्रेडिट</a> कम है, तो आप Ecency से खाता बूस्ट करने का अनुरोध कर सकते हैं। आपको 30 दिनों का डेलिगेशन (553311 वेैस्ट) प्राप्त होगा जो आपके खाते को ब्लॉकचैन पर अधिक गतिविधियों को करने के लिए बढ़ावा देगा। यदि हमारी टीम को शक्ति का अनुचित उपयोग मिलता है तो डेलिगेशन को कभी भी वापस लिया जा सकता है। आप जल्दी से जल्दी खाता बूस्ट करने के लिए यहा अनूरोध कर सकते है <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">क्यूआर पृष्ठ</a> केवल अपना यूजरनेम बदले और क्यूआर तसवीर स्कैन करे Ecency मोबाइल ऐप के द्वारा।</p>",
       "what-spam-abuse-header": "स्पैम या दुरुपयोग क्या माना जाता है?",
       "what-spam-abuse-body": "<p><ul><li>साहित्यिक पोस्ट या कॉपी की गई सामग्री।</li><li>कई पोस्ट पर लगभग समान या भौतिक रूप से समान टिप्पणियों को छोड़ना।</li><li>टैग का उपयोग करना जो पोस्ट से संबंधित नहीं हैं।< /li><li>उपयोगकर्ताओं को किसी भी प्रकार की शारीरिक हिंसा के लिए धमकाना।</li><li>किसी और की सामग्री का उपयोग करते समय स्रोतों का हवाला नहीं देना।</li><li>\"काम के लिए सुरक्षित नहीं है\" सामग्री को बिना उपयोग किए पोस्ट करना nsfw” टैग।</li><li>धोखाधड़ी या कपटपूर्ण प्रस्ताव।</li></ul></p>",
       "can-link-post-header": "क्या मैं अपनी वेबसाइट पर इसेंसी टीम से बैकलिंक जोड़ने का अनुरोध कर सकता हूं?",
@@ -1441,9 +1441,9 @@
       "what-hive-witnesses-body": "<p>Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. Community elects them to represent their voice and each user can elect up to 30 witnesses. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses. Witnesses are compensated with Hive Power for each block they create.</p>",
       "how-vote-witnesses-header": "How can I vote for witnesses?",
       "how-vote-witnesses-body": "<p>Visit <a href=\"/witnesses\" class=\"push-link\">Witness page</a> and click voting icon.</p>",
-      "what-are-hive-header": "What are HIVE?",
-      "what-are-hive-body": "<p>HIVE are tradeable tokens that may be transferred at anytime. HIVE can be converted to Hive Power in a process called powering up or staking HIVE. It is a cryptocurrency token, similar to Bitcoin.</p>",
-      "what-are-hive-power-header": "What are HIVE POWER?",
+      "what-are-hive-header": "हाइव क्या है?",
+      "what-are-hive-body": "<p>हाइव ऐसे व्यापार योग्य टोकन है जो किसी भी समय ट्रान्सफर किए जा सकते हैं। हाइव को हाइव पावर मे बदला जा सकता है, इस प्रक्रिया को पावरिंग अप या स्टेकिंग हाईव कहते हैं। बिटकॉइन की तरह ही यह भी एक क्रिप्टोकरेंसी टोकन है।</p>",
+      "what-are-hive-power-header": "हाइव पावर क्या है?",
       "what-are-hive-power-body": "<p>Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other's rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.</p>",
       "what-are-hd-header": "What are HIVE DOLLARS or HBD?",
       "what-are-hd-body": "<p>Hive Dollars (commonly abbreviated HBD) are tokens worth about $1.00 of HIVE. Hive Dollars can be traded with HIVE, and transferred to other accounts for commerce or exchange. Hive Dollars may also be converted into HIVE via a process that takes 3.5 days.</p>",
@@ -1588,15 +1588,15 @@
     "deck": "डेक"
   },
   "top-communities": {
-    "title": "Top communities"
+    "title": "शीर्ष समुदाय"
   },
   "feedback-modal": {
-    "title": "Error details",
-    "question": "How to fix this?",
-    "insufficient-resource-title": "How to get more Resource credits?",
-    "insufficient-resource-purchase": "Purchase account boost or delegation",
-    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
-    "insufficient-resource-wait": "Wait few hours for RC refill",
-    "report": "Report"
+    "title": "गलतियों की जानकारी",
+    "question": "इससे कैसे सही करें?",
+    "insufficient-resource-title": "और अधिक रिसोर्स क्रेडिट्स कैसे प्राप्त करें?",
+    "insufficient-resource-purchase": "खाता बूस्ट या डेलीगेशन्स खरीदे",
+    "insufficient-resource-buy-hive": "HIVE खरीदें और पावर अप करे",
+    "insufficient-resource-wait": "आरसी फिर से भरना के लिए कुछ घंटे प्रतीक्षा करें",
+    "report": "रिपोर्ट"
   }
 }
