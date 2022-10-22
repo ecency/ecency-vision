@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import DropDown, { MenuItem } from "../dropdown";
 import { _t } from "../../i18n";
+import { sortSvg } from "../../img/svg";
 
 export const SortEngineTokens = (props: any) => {
     
@@ -12,10 +13,9 @@ export const SortEngineTokens = (props: any) => {
     sortTokensbyBalance,
     sortByDelegationIn,
     sortByDelegationOut,
-    sortByPrecision
   } = props;
     
-const [sortLabel, setSortLabel] = useState("Sort engine tokens")
+const [sortLabel, setSortLabel] = useState(_t("sort-engine-tokens.sort"))
 
   return (
 
@@ -25,13 +25,13 @@ const [sortLabel, setSortLabel] = useState("Sort engine tokens")
         let dropDownConfig: any;
           dropDownConfig = {
             history: "",
-            label: `${sortLabel}`,
+            label: sortLabel,
             items: [
               {
                 label: _t("sort-engine-tokens.sort-in-ascending"),
                 onClick: () => {
                   sortTokensInAscending()
-                  setSortLabel(_t("sort-engine-tokens.sort-in-ascending"))
+                  setSortLabel( _t("sort-engine-tokens.sort-in-ascending"))
                 }
               },
               {
@@ -75,18 +75,14 @@ const [sortLabel, setSortLabel] = useState("Sort engine tokens")
                   sortByDelegationOut()
                   setSortLabel(_t("sort-engine-tokens.sort-by-delegations-out"))
                 }
-              },
-              {
-                label: _t("sort-engine-tokens.sort-by-precision"),
-                onClick: () => {
-                  sortByPrecision()
-                  setSortLabel(_t("sort-engine-tokens.sort-by-precision"))
-                }
               }
             ]
           };
         return (
           <div className="amount-actions">
+             <span className="sort-svg">
+                  {sortSvg} {" "}
+             </span>
            <DropDown {...dropDownConfig}  float="top" />
           </div>
         );

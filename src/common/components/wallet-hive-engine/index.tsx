@@ -177,18 +177,6 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     this.setState({ tokens: byDelegationsOut });
   };
 
-  sortByPrecision = () => {
-    const byPrecision = this.state.tokens.sort((a: any, b: any) => {
-      if (b.precision < a.precision)
-      return -1;
-    if (b.precision > a.precision)
-      return 1;
-    return 0;
-    });
-
-    this.setState({ tokens: byPrecision })
-  };
-
   openTransferDialog = (mode: TransferMode, asset: string, balance: number) => {
     this.stateSet({
       transfer: true,
@@ -374,7 +362,6 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
               sortTokensbyBalance={this.sortTokensbyBalance}
               sortByDelegationIn={this.sortByDelegationIn}
               sortByDelegationOut={this.sortByDelegationOut}
-              sortByPrecision={this.sortByPrecision}
               />
             </div>
 
