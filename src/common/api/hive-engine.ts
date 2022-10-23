@@ -148,3 +148,24 @@ export const stakeTokens = async (
 
   return broadcastPostingJSON(account, "ssc-mainnet-hive", json);
 };
+
+
+export const getMetrics = async () => {
+  const data = {
+    method: 'find',
+    params: {
+      contract: 'market',
+      table: 'metrics',
+      query: {},
+      offset: 0,
+      limit: 1000
+    },
+  };
+  
+const result = await axios
+    .post(HIVE_ENGINE_RPC_URL, data, {
+      headers: { "Content-type": "application/json" }
+    })
+    return console.log(result)
+    
+};

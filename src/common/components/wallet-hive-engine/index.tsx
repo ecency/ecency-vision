@@ -33,6 +33,7 @@ import {
 import { error, success } from "../feedback";
 import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
+import { EngineTokensEstimated } from "../engine-tokens-estimated";
 
 import { _t } from "../../i18n";
 
@@ -261,6 +262,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                 <div className="description">{_t("wallet-engine.description")}</div>
               </div>
             </div>
+
+            <EngineTokensEstimated />
 
             <div className="entry-list">
               {loading ? (
