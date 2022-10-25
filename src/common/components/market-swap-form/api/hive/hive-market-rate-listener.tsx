@@ -31,12 +31,12 @@ export namespace HiveMarket {
   }
 
   export function processHiveOrderBook(
-    hiveOrderBook: OrdersDataItem[],
-    hbdOrderBook: OrdersDataItem[],
+    buyOrderBook: OrdersDataItem[],
+    sellOrderBook: OrdersDataItem[],
     amount: string,
     asset: string
   ): ProcessingResult {
-    if (hiveOrderBook.length <= 0 || hbdOrderBook.length <= 0) return { emptyOrderBook: true };
+    if (buyOrderBook.length <= 0 || sellOrderBook.length <= 0) return { emptyOrderBook: true };
 
     const intAmount = +amount.replace(/,/gm, "");
 
@@ -50,16 +50,16 @@ export namespace HiveMarket {
 
     if (asset === MarketAsset.HIVE) {
       availableInOrderBook =
-        hbdOrderBook.map((item) => item.hive).reduce((acc, item) => acc + item, 0) / 1000;
-      price = calculatePrice(intAmount, hbdOrderBook, "hive");
+        buyOrderBook.map((item) => item.hive).reduce((acc, item) => acc + item, 0) / 1000;
+      price = calculatePrice(intAmount, buyOrderBook, "hive");
       toAmount = intAmount * price + "";
-      firstPrice = +hbdOrderBook[0].real_price;
+      firstPrice = +buyOrderBook[0].real_price;
     } else if (asset === MarketAsset.HBD) {
       availableInOrderBook =
-        hiveOrderBook.map((item) => item.hbd).reduce((acc, item) => acc + item, 0) / 1000;
-      price = calculatePrice(intAmount, hiveOrderBook, "hbd");
+        sellOrderBook.map((item) => item.hbd).reduce((acc, item) => acc + item, 0) / 1000;
+      price = calculatePrice(intAmount, sellOrderBook, "hbd");
       toAmount = intAmount / price + "";
-      firstPrice = +hiveOrderBook[0].real_price;
+      firstPrice = +sellOrderBook[0].real_price;
     }
 
     if (!availableInOrderBook) return { emptyOrderBook: true };
@@ -109,8 +109,8 @@ export const HiveMarketRateListener = ({
   setInvalidAmount,
   setTooMuchSlippage
 }: Props) => {
-  const [hiveOrderBook, setHiveOrderBook] = useState<OrdersDataItem[]>([]);
-  const [hbdOrderBook, setHbdOrderBook] = useState<OrdersDataItem[]>([]);
+  const [buyOrderBook, setBuyOrderBook] = useState<OrdersDataItem[]>([]);
+  const [sellOrderBook, setSellOrderBook] = useState<OrdersDataItem[]>([]);
 
   let updateInterval: any;
 
@@ -132,8 +132,8 @@ export const HiveMarketRateListener = ({
 
   const processOrderBook = () => {
     const { tooMuchSlippage, invalidAmount, toAmount } = HiveMarket.processHiveOrderBook(
-      hiveOrderBook,
-      hbdOrderBook,
+      buyOrderBook,
+      sellOrderBook,
       amount,
       asset
     );
@@ -149,8 +149,8 @@ export const HiveMarketRateListener = ({
     try {
       const book = await HiveMarket.fetchHiveOrderBook();
       if (book) {
-        setHiveOrderBook(book.asks);
-        setHbdOrderBook(book.bids);
+        setBuyOrderBook(book.asks);
+        setSellOrderBook(book.bids);
       }
       processOrderBook();
     } finally {
