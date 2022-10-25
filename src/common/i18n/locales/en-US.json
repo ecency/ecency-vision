@@ -386,7 +386,9 @@
     "success-title": "Transaction completed",
     "more-than-balance": "You've entered more than available balance",
     "invalid-amount": "Invalid from amount. Please, enter less value",
-    "too-much-slippage": "We highly recommend you to reduce your amount for saving your funds"
+    "too-much-slippage": "We highly recommend you to reduce your amount for saving your funds",
+    "auth-required-title": "Authorization required",
+    "auth-required-desc": "You have to be authorized to swap own funds"
   },
   "list-style": {
     "title": "Toggle list style"
