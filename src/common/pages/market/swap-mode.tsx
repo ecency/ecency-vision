@@ -4,6 +4,7 @@ import { Button, Col, Row } from "react-bootstrap";
 import { PageProps } from "../common";
 import { _t } from "../../i18n";
 import { Link } from "react-router-dom";
+import { MarketSwapActiveOrders } from "../../components/market-swap-active-orders";
 
 export const SwapMode = (props: PageProps) => {
   return (
@@ -34,6 +35,11 @@ export const SwapMode = (props: PageProps) => {
               </Link>
             </div>
           </div>
+        ) : (
+          <></>
+        )}
+        {props.activeUser ? (
+          <MarketSwapActiveOrders global={props.global} activeUser={props.activeUser} />
         ) : (
           <></>
         )}

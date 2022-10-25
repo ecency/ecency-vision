@@ -16,7 +16,7 @@ export const MarketSwapFormHeader = ({ step, loading, onBack }: Props) => {
   useEffect(() => {
     if (step === MarketSwapFormStep.FORM) setTitle(_t("market.swap-title"));
     else if (step === MarketSwapFormStep.SIGN) setTitle(_t("market.sign-title"));
-    else if (step === MarketSwapFormStep.SUCCESS) setTitle("market.success-title");
+    else if (step === MarketSwapFormStep.SUCCESS) setTitle(_t("market.success-title"));
   }, [step]);
 
   return (
