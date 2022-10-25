@@ -263,7 +263,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
               </div>
             </div>
 
-            <EngineTokensEstimated />
+            <EngineTokensEstimated account={account} />
 
             <div className="entry-list">
               {loading ? (

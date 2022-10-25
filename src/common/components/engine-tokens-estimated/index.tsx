@@ -1,16 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import { _t } from "../../i18n";
-import { getMetrics } from "../../api/hive-engine";
-import { Button } from 'react-bootstrap';
+import { getMetrics, getHiveEngineTokenBalances } from "../../api/hive-engine";
 
-export const EngineTokensEstimated = () => {
+export const EngineTokensEstimated = (props: any) => {
+
+  const { account } = props;
 
     useEffect(() => {
         // Testing metrics data
-        getMetrics();
-    });
+        getTokenData();
+      });
 
-    
+    const getTokenData = async () => {  
+     const AllMarketTokens = await getMetrics();
+     const userTokens: any = await getHiveEngineTokenBalances(account.name);
+
+      let mappedBalanceMetrics = userTokens.map((item: { symbol: any; }) => {
+        let eachMetric = AllMarketTokens.find((m: { symbol: any; }) => m.symbol === item.symbol)
+        return {
+        ...item,
+        ...eachMetric
+         };
+    });
+ console.log(mappedBalanceMetrics) 
+    };
 
   return (
     <div className="balance-row estimated alternative" >
@@ -25,4 +38,4 @@ export const EngineTokensEstimated = () => {
     </div>
   </div>
   )
-}
+};
