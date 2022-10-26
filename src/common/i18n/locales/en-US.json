@@ -611,6 +611,12 @@
     "updated": "Preference updated!"
   },
   "wallet": {
+    "staked": "staked {{symbol}}",
+    "token-power-delegated": "staked {{symbol}} delegated to other users",
+    "token-power-received": "staked {{symbol}} delegated to you by other users",
+    "token-description": "liquid {{symbol}} tokens that can be transfered at any time",
+    "staked-description": "staked tokens that must be unstaked for transfers but allow influence over the token distribution",
+    "othertokens": "Other Hive Engine tokens",
     "unclaimed-rewards": "Unclaimed rewards",
     "claim-reward-balance": "Claim reward balance",
     "claim-reward-balance-ok": "Reward balance claimed",

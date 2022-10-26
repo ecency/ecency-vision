@@ -104,3 +104,7 @@ export default class HiveEngineToken {
     return formattedNumber(this.balance, { fractionDigits: this.precision });
   };
 }
+
+export function isUndefined(x: any): x is undefined {
+  return x === undefined;
+}

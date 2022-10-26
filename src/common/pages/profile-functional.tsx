@@ -28,6 +28,7 @@ import ProfileReferrals from "../components/profile-referrals";
 import WalletHive from "../components/wallet-hive";
 import WalletHiveEngine from "../components/wallet-hive-engine";
 import WalletEcency from "../components/wallet-ecency";
+import WalletHiveEngineDetail from "../components/wallet-hive-engine-detail";
 import ScrollToTop from "../components/scroll-to-top";
 import SearchListItem from "../components/search-list-item";
 import SearchBox from "../components/search-box";
@@ -48,11 +49,11 @@ import { withPersistentScroll } from "../components/with-persistent-scroll";
 import useAsyncEffect from "use-async-effect";
 import { usePrevious } from "../util/use-previous";
 import WalletSpk from "../components/wallet-spk";
-
 interface MatchParams {
   username: string;
   section?: string;
   search?: string;
+  token?: string;
 }
 
 interface Props extends PageProps {
