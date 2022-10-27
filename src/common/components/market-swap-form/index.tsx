@@ -156,7 +156,7 @@ export const MarketSwapForm = ({
             loading
           }
           elementAfterBalance={
-            isAmountMoreThanBalance ? (
+            isAmountMoreThanBalance && step === MarketSwapFormStep.FORM ? (
               <small className="usd-balance bold text-secondary d-block text-danger mt-3">
                 {_t("market.more-than-balance")}
               </small>

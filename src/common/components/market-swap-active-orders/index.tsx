@@ -28,7 +28,7 @@ export const MarketSwapActiveOrders = ({ activeUser, global }: Props) => {
 
   return orders.length > 0 ? (
     <>
-      <div className="my-4">
+      <div className="mb-4">
         <FormLabel>
           <small className="font-weight-bold">{_t("market.open-orders")}</small>
         </FormLabel>

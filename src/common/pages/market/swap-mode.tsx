@@ -10,6 +10,12 @@ export const SwapMode = (props: PageProps) => {
   return (
     <Row className="justify-content-center pb-5">
       <Col xs={12} md={10} lg={8} xl={6}>
+        {props.activeUser ? (
+          <MarketSwapActiveOrders global={props.global} activeUser={props.activeUser} />
+        ) : (
+          <></>
+        )}
+
         <MarketSwapForm
           activeUser={props.activeUser}
           global={props.global}
@@ -35,11 +41,6 @@ export const SwapMode = (props: PageProps) => {
               </Link>
             </div>
           </div>
-        ) : (
-          <></>
-        )}
-        {props.activeUser ? (
-          <MarketSwapActiveOrders global={props.global} activeUser={props.activeUser} />
         ) : (
           <></>
         )}
