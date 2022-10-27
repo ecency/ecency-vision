@@ -355,6 +355,7 @@
     "orders": "Orders",
     "date": "Date",
     "open-orders": "Open Orders",
+    "pending-orders": "Pending orders",
     "type": "Type",
     "action": "Action",
     "trade-history": "Trade History",

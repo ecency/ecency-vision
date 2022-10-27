@@ -31,7 +31,7 @@ export const MarketSwapActiveOrders = ({ activeUser, global }: Props) => {
     <>
       <div className="mb-4">
         <FormLabel>
-          <small className="font-weight-bold">{_t("market.open-orders")}</small>
+          <small className="font-weight-bold">{_t("market.pending-orders")}</small>
         </FormLabel>
         <ListGroup className="market-swap-active-orders">
           {orders.map((order) => (
