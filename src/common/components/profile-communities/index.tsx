@@ -54,7 +54,8 @@ export class ProfileCommunities extends BaseComponent<Props, State> {
     return (
       !isEqual(this.props.account, nextProps.account) ||
       !isEqual(this.props.activeUser, nextProps.activeUser) ||
-      !isEqual(this.state, nextState)
+      !isEqual(this.state, nextState) ||
+      this.state.items === nextState.items
     );
   }
 
@@ -68,11 +69,10 @@ export class ProfileCommunities extends BaseComponent<Props, State> {
     return 0;
     });
   
-    console.log(communitiesInAsc)
-   this.setState({items: communitiesInAsc});
+    this.setState({items: communitiesInAsc});
   }
   
-     sortCommunitiesInDsc = () => {
+  sortCommunitiesInDsc = () => {
 
     const communitiesInDsc = this.state.items.sort((a: any, b: any) => {
       if (b[1] < a[1])
@@ -82,8 +82,7 @@ export class ProfileCommunities extends BaseComponent<Props, State> {
     return 0;
     });
   
-    console.log(communitiesInDsc)
-  this.setState({items: communitiesInDsc});
+    this.setState({items: communitiesInDsc});
     }
 
   render() {
