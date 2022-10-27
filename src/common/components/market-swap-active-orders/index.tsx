@@ -22,7 +22,8 @@ export const MarketSwapActiveOrders = ({ activeUser, global }: Props) => {
 
   const fetch = async () => {
     try {
-      setOrders(await getOpenOrder(activeUser.username));
+      const orders = await getOpenOrder(activeUser.username);
+      setOrders(orders.filter((order) => order.orderid.toString().startsWith("9")));
     } catch (e) {}
   };
 
