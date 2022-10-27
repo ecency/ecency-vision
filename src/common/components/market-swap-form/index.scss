@@ -71,7 +71,6 @@
     to { transform: rotate(-360deg); }
   }
 
-
   .swap-button {
     width: 64px;
     height: 64px;
@@ -123,5 +122,42 @@
   .alert {
     padding: 1rem;
     border-radius: 1rem;
+  }
+
+  form, .market-swap-form-header {
+    transition: .3s ease-in-out;
+  }
+}
+
+.blurred {
+  filter: blur(10px);
+}
+
+.market-swap-form-success {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  width: calc(100% - 2rem);
+  height: calc(100% - 1rem);
+  background-color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .title {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .amount {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  i {
+    width: 24px;
+    margin: 0 0.5rem;
+    transform: rotate(90deg);
   }
 }

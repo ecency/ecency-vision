@@ -7,10 +7,11 @@ import { arrowLeftSvg, syncSvg } from "../../img/svg";
 interface Props {
   step: MarketSwapFormStep;
   loading: boolean;
+  className: string;
   onBack: () => void;
 }
 
-export const MarketSwapFormHeader = ({ step, loading, onBack }: Props) => {
+export const MarketSwapFormHeader = ({ step, loading, onBack, className }: Props) => {
   const [title, setTitle] = useState("");
 
   useEffect(() => {
@@ -20,7 +21,7 @@ export const MarketSwapFormHeader = ({ step, loading, onBack }: Props) => {
   }, [step]);
 
   return (
-    <div className="d-flex align-items-center title mb-4">
+    <div className={"market-swap-form-header d-flex align-items-center title mb-4 " + className}>
       {step === MarketSwapFormStep.SIGN ? (
         <Button variant="link" size="sm" disabled={loading} onClick={() => onBack()}>
           {arrowLeftSvg}

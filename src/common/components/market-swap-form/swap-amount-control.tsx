@@ -16,6 +16,7 @@ interface Props {
   usdRate: number;
   disabled: boolean;
   elementAfterBalance?: JSX.Element;
+  showBalance?: boolean;
 }
 
 export const SwapAmountControl = ({
@@ -29,7 +30,8 @@ export const SwapAmountControl = ({
   usdRate,
   disabled,
   className,
-  elementAfterBalance
+  elementAfterBalance,
+  showBalance
 }: Props) => {
   // Format to x,xxx.xxx
   const formatValue = (newValue: string) => {
@@ -84,7 +86,7 @@ export const SwapAmountControl = ({
                 </option>
               ))}
             </select>
-            {balance ? (
+            {balance && showBalance ? (
               <small className="balance d-block text-secondary text-nowrap">
                 {_t("market.balance")}:
                 <span

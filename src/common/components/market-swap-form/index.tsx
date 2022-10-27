@@ -12,8 +12,8 @@ import { MarketSwapFormStep } from "./form-step";
 import { SignMethods } from "./sign-methods";
 import { Global } from "../../store/global/types";
 import { MarketSwapFormHeader } from "./market-swap-form-header";
-import { SucceededStep } from "./succeeded-step";
 import { checkSvg, swapSvg } from "../../img/svg";
+import { MarketSwapFormSuccess } from "./market-swap-form-success";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -137,8 +137,16 @@ export const MarketSwapForm = ({
         setInvalidAmount={(v) => setIsInvalidFrom(v)}
         setTooMuchSlippage={(v) => setTooMuchSlippage(v)}
       />
-      <MarketSwapFormHeader step={step} loading={loading || disabled} onBack={back} />
-      <Form onSubmit={(e) => submit()}>
+      <MarketSwapFormHeader
+        className={step === MarketSwapFormStep.SUCCESS ? "blurred" : ""}
+        step={step}
+        loading={loading || disabled}
+        onBack={back}
+      />
+      <Form
+        className={step === MarketSwapFormStep.SUCCESS ? "blurred" : ""}
+        onSubmit={(e) => submit()}
+      >
         <SwapAmountControl
           className={step === MarketSwapFormStep.SIGN ? "mb-3" : ""}
           asset={fromAsset}
@@ -155,6 +163,7 @@ export const MarketSwapForm = ({
             disabled ||
             loading
           }
+          showBalance={[MarketSwapFormStep.FORM, MarketSwapFormStep.SIGN].includes(step)}
           elementAfterBalance={
             isAmountMoreThanBalance && step === MarketSwapFormStep.FORM ? (
               <small className="usd-balance bold text-secondary d-block text-danger mt-3">
@@ -256,9 +265,19 @@ export const MarketSwapForm = ({
           ) : (
             <></>
           )}
-          {step === MarketSwapFormStep.SUCCESS ? <SucceededStep onReset={reset} /> : <></>}
         </div>
       </Form>
+      {step === MarketSwapFormStep.SUCCESS ? (
+        <MarketSwapFormSuccess
+          from={from}
+          to={to}
+          fromAsset={fromAsset}
+          toAsset={toAsset}
+          onReset={() => reset()}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
