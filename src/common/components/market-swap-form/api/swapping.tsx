@@ -2,7 +2,12 @@ import { MarketAsset } from "../market-pair";
 import { PrivateKey } from "@hiveio/dhive";
 import React from "react";
 import { ActiveUser } from "../../../store/active-user/types";
-import { limitOrderCreate, limitOrderCreateHot, limitOrderCreateKc } from "../../../api/operations";
+import {
+  limitOrderCreate,
+  limitOrderCreateHot,
+  limitOrderCreateKc,
+  OrderIdPrefix
+} from "../../../api/operations";
 import { TransactionType } from "../../buy-sell-hive";
 
 export enum SwappingMethod {
@@ -34,7 +39,8 @@ export const swapByKey = (key: PrivateKey, options: SwapOptions) => {
       key,
       toAmount,
       fromAmount,
-      TransactionType.Sell
+      TransactionType.Sell,
+      OrderIdPrefix.SWAP
     );
   } else if (options.fromAsset === MarketAsset.HBD) {
     return limitOrderCreate(
@@ -42,7 +48,8 @@ export const swapByKey = (key: PrivateKey, options: SwapOptions) => {
       key,
       fromAmount,
       toAmount,
-      TransactionType.Buy
+      TransactionType.Buy,
+      OrderIdPrefix.SWAP
     );
   }
   return Promise.reject();
@@ -57,14 +64,16 @@ export const swapByKc = (options: SwapOptions) => {
       options.activeUser!.username,
       toAmount,
       fromAmount,
-      TransactionType.Sell
+      TransactionType.Sell,
+      OrderIdPrefix.SWAP
     );
   } else if (options.fromAsset === MarketAsset.HBD) {
     return limitOrderCreateKc(
       options.activeUser!.username,
       fromAmount,
       toAmount,
-      TransactionType.Buy
+      TransactionType.Buy,
+      OrderIdPrefix.SWAP
     );
   }
   return Promise.reject();
@@ -79,14 +88,16 @@ export const swapByHs = (options: SwapOptions) => {
       options.activeUser!.username,
       toAmount,
       fromAmount,
-      TransactionType.Sell
+      TransactionType.Sell,
+      OrderIdPrefix.SWAP
     );
   } else if (options.fromAsset === MarketAsset.HBD) {
     return limitOrderCreateHot(
       options.activeUser!.username,
       fromAmount,
       toAmount,
-      TransactionType.Buy
+      TransactionType.Buy,
+      OrderIdPrefix.SWAP
     );
   }
 };
