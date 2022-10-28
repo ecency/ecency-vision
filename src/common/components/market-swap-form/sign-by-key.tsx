@@ -6,7 +6,7 @@ import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
 import { error } from "../feedback";
 import { ActiveUser } from "../../store/active-user/types";
 
-interface Props {
+export interface Props {
   activeUser: ActiveUser | null;
   onKey: (key: PrivateKey) => void;
   onBack: () => void;

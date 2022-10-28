@@ -4,7 +4,7 @@ import React from "react";
 import { MarketAsset } from "./market-pair";
 import numeral from "numeral";
 
-interface Props {
+export interface Props {
   className?: string;
   balance?: string;
   value: string;

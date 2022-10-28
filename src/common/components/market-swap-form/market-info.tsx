@@ -3,7 +3,7 @@ import { _t } from "../../i18n";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { MarketAsset } from "./market-pair";
 
-interface Props {
+export interface Props {
   className: string;
   marketRate: number;
   fromAsset: MarketAsset;
@@ -32,12 +32,6 @@ export const MarketInfo = ({
             <span className="badge badge-success text-white">{_t("market.fee-free")}</span>
           </div>
         </ListGroupItem>
-        {/*<ListGroupItem>*/}
-        {/*  <div className="d-flex justify-content-between">*/}
-        {/*    <span>{_t("market.order-book-impact")}</span>*/}
-        {/*    <span className="font-weight-bold">0.032%</span>*/}
-        {/*  </div>*/}
-        {/*</ListGroupItem>*/}
       </ListGroup>
     </div>
   );

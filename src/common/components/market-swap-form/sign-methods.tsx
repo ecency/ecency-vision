@@ -19,7 +19,7 @@ import { SignByKey } from "./sign-by-key";
 import { PrivateKey } from "@hiveio/dhive";
 import { HiveMarket } from "./api/hive";
 
-interface Props {
+export interface Props {
   global: Global;
   disabled: boolean;
   fromAmount: string;

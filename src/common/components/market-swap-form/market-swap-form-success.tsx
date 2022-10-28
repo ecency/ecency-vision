@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { arrowRightSvg } from "../../img/svg";
 
-interface Props {
+export interface Props {
   from: string;
   fromAsset: string;
   to: string;

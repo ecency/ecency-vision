@@ -4,7 +4,7 @@ import { _t } from "../../i18n";
 import React, { useEffect, useState } from "react";
 import { arrowLeftSvg, syncSvg } from "../../img/svg";
 
-interface Props {
+export interface Props {
   step: MarketSwapFormStep;
   loading: boolean;
   className: string;
