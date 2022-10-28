@@ -3,7 +3,6 @@ import React from "react";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
-import { OperationGroup, Transactions } from "../../store/transactions/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import BaseComponent from "../base";
@@ -22,7 +21,9 @@ import {
   TokenStatus,
   DelegationEntry,
   Unstake,
-  getPendingUnstakes
+  getPendingUnstakes,
+  getFineTransactions,
+  getCoarseTransactions
 } from "../../api/hive-engine";
 import { proxifyImageSrc } from "@ecency/render-helper";
 import {
@@ -41,6 +42,23 @@ import formattedNumber from "../../util/formatted-number";
 import DropDown from "../dropdown";
 import DelegatedVesting from "../delegated-vesting-hive-engine";
 import ReceivedVesting from "../received-vesting";
+import {
+  HEFineTransactionToHiveTransactions,
+  HEToHTransaction
+} from "../../store/transactions/convert";
+import TransactionList from "../transactions";
+import { _t } from "../../i18n";
+import FormattedCurrency from "../formatted-currency";
+import { History, Location } from "history";
+import { TransferMode } from "../transfer-he";
+import { Modal } from "react-bootstrap";
+import {
+  OperationGroup,
+  Transactions,
+  Transaction,
+  HEFineTransaction,
+  HECoarseTransaction
+} from "../../store/transactions/types";
 interface TokenProps {
   symbol: string;
   name: "Payment Token";
@@ -54,12 +72,6 @@ interface TokenProps {
   delegationsOut: number;
   stakedBalance: number;
 }
-import TransactionList from "../transactions";
-import { _t } from "../../i18n";
-import FormattedCurrency from "../formatted-currency";
-import { History, Location } from "history";
-import { TransferMode } from "../transfer-he";
-import { Modal } from "react-bootstrap";
 
 type TransferAsset = string;
 
@@ -90,6 +102,8 @@ interface State {
   nextPowerDown: number;
   delegatedList: boolean;
   receivedList: boolean;
+  transactions: Transactions;
+  converting: number;
 }
 
 export class WalletHiveEngine extends BaseComponent<Props, State> {
@@ -97,11 +111,114 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     loading: true,
     nextPowerDown: 0,
     delegatedList: false,
-    receivedList: false
+    receivedList: false,
+    transactions: { list: [], loading: false, group: "" },
+    converting: 0
   };
   componentDidMount() {
+    const { tokenName, account } = this.props;
     this.fetchTokenUnstakes();
+    this.fetchConvertingAmount();
+    this.fetchHETransactions(tokenName, account.name, "");
   }
+  keepTransaction(group: OperationGroup | "", tx: Transaction): boolean {
+    switch (group) {
+      case "transfers":
+        return [
+          "transfers",
+          "transfer_to_vesting",
+          "transfer_to_saving",
+          "withdraw_vesting",
+          "proposal-pay",
+          "cancel_transfer_from_savings",
+          "producer_reward",
+          "claim_reward_balance"
+        ].includes(tx.type);
+      case "interests":
+        return tx.type === "interest";
+      case "rewards":
+        return tx.type.endsWith("_reward") || tx.type == "tokens_issue";
+      case "market-orders":
+        return tx.type.startsWith("market_") || tx.type === "fill_order";
+      case "stake-operations":
+        return (
+          "transfer_to_saving,withdraw_vesting,tokens_unstakeDone,tokens_stake,withdraw_vesting," +
+          "return_vesting_delegation,tokens_unstakeStart,tokens_CancelUnstake," +
+          "tokens_unstake,tokens_undelegateDone,tokens_delegate," +
+          "tokens_undelegateStart"
+        )
+          .split(/,/)
+          .includes(tx.type);
+    }
+    return true;
+  }
+  compareTransactions(a: Transaction, b: Transaction) {
+    return a.timestamp > b.timestamp ? -1 : 1;
+  }
+  handleFineTransactions(fts: Array<HEFineTransaction>) {
+    const { transactions } = this.state;
+    const { list } = transactions;
+    const ntxs = [...HEFineTransactionToHiveTransactions(fts), ...list]
+      .filter(this.keepTransaction.bind(this, transactions.group))
+      .sort(this.compareTransactions);
+    this.stateSet({
+      transactions: { list: ntxs, loading: false, group: transactions.group }
+    });
+  }
+  handleCoarseTransactions(group: OperationGroup | "", cts: Array<HECoarseTransaction>) {
+    const { transactions } = this.state;
+    try {
+      const txs: Array<Transaction> = cts
+        .map((t) => HEToHTransaction(t))
+        .filter((x) => x != null)
+        // @ts-ignore
+        .filter(this.keepTransaction.bind(this, transactions.group));
+      const { list } = transactions;
+      this.stateSet({
+        transactions: { list: txs, loading: false, group: transactions.group }
+      });
+    } catch (e) {
+      error("Unknown transaction type error.");
+      console.log(e);
+      this.stateSet({
+        transactions: {
+          list: transactions.list,
+          loading: false,
+          group: transactions.group
+        }
+      });
+    }
+  }
+  fetchHETransactions = (symbol: string, name: string, group?: OperationGroup | "") => {
+    const { transactions } = this.state;
+    const { list } = transactions;
+    this.stateSet({
+      transactions: { list: [], loading: true, group: group || "" }
+    });
+    if (group === "rewards")
+      getFineTransactions(symbol, name, group === "rewards" ? 200 : 10, 0)
+        .then(this.handleFineTransactions.bind(this))
+        .catch((e) => {
+          console.log(e);
+        });
+    else
+      getCoarseTransactions(name, 400, symbol, 0)
+        .then(this.handleCoarseTransactions.bind(this, group ? group : ""))
+        .catch(console.log);
+  };
+  fetchConvertingAmount = () => {
+    //    const {account} = this.props;
+    //    getConversionRequests(account.name).then(r => {
+    //      if (r.length === 0) {
+    //        return;
+    //      }
+    //      let converting = 0;
+    //      r.forEach(x => {
+    //        converting += parseAsset(x.amount).amount;
+    //      });
+    //      this.stateSet({converting});
+    //    });
+  };
   toggleDelegatedList = () => {
     const { delegatedList } = this.state;
     this.stateSet({ delegatedList: !delegatedList });
@@ -141,9 +258,10 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       openTransferDialog,
       closeTransferDialog,
       delegationList,
-      hiveEngineToken
+      hiveEngineToken,
+      history
     } = this.props;
-    const { loading, nextPowerDown, delegatedList, receivedList } = this.state;
+    const { loading, nextPowerDown, delegatedList, receivedList, transactions } = this.state;
     const isMyPage = activeUser && activeUser.username === account.name;
 
     if (!account.__loaded) {
@@ -386,6 +504,14 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                 </div>
               </div>
             )}
+            {TransactionList({
+              global,
+              dynamicProps,
+              fetchTransactions: this.fetchHETransactions.bind(this, tokenName),
+              history: history,
+              transactions: transactions,
+              account: account
+            })}
           </div>
         </div>
         {this.state.delegatedList && (
