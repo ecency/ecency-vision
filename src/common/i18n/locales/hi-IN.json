@@ -1518,12 +1518,12 @@
   "chain-error": {
     "min-root-comment": "आप हर पांच मिनट में केवल एक बार पोस्ट कर सकते हैं।",
     "identical-vote": "इस सामग्री पर आपका वर्तमान वोट इस वोट के समान है।",
-    "insufficient-resource": "Insufficient Resource Credits.",
+    "insufficient-resource": "अपर्याप्त रिसोर्स क्रेडिट्स।",
     "delete-comment-with-vote": "सकारात्मक लंबित पुरस्कारों वाली सामग्री को हटाया नहीं जा सकता।",
     "comment-cashout": "उनके पेआउट के बाद की सामग्री को हटाया नहीं जा सकता।",
     "comment-children": "उत्तरों वाली सामग्री को हटाया नहीं जा सकता।",
     "paid-out-post-forbidden": "सशुल्क सामग्री के लिए मतदान उपलब्ध नहीं है।",
-    "missing-authority": "Missing or invalid authority key."
+    "missing-authority": "अनुपस्थित या अमान्य प्राधिकारी चाबी।"
   },
   "landing-page": {
     "welcome-text": "इसेंसी में आपका स्वागत है!",
