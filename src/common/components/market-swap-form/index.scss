@@ -138,12 +138,20 @@
   top: 0;
   left: 1rem;
   width: calc(100% - 2rem);
-  height: calc(100% - 1rem);
-  background-color: rgba(255, 255, 255, 0.4);
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  border-radius: 1rem;
+
+  @include themify(day) {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  @include themify(night) {
+    background-color: rgba(19, 17, 17, 0.4);
+  }
 
   .title {
     font-size: 1rem;
