@@ -51,6 +51,18 @@ Feel free to test it out and submit improvements and pull requests.
 
 * `USE_PRIVATE` -  if instance has private api address and auth (0 or 1 value)
 
+###### For Rebranding
+
+When setting up another service like Ecency with Ecency-vision software:
+* `CLIENT_ID`   -  iff USE_PRIVATE is 0, set this to what account will handle the permissions for posting level operations.
+* `HIVESIGNER_SECRET`  - iff USE_PRIVATE is 0, set this to the "secret" field value in the [Hive Signer profile](https://hivesigner.com/profile) for the user named as your `CLIENT_ID`.  This should be a lengthy lowercase hex string.
+
+##### Edit "default" values
+
+###### For Rebranding
+
+If you are setting up your own website other than Ecency.com, the value `base` **must not** be "https://ecency.com". It should be set to whatever the URL of your webserver's host.  The `base` can be changed in the file `src/common/constants.json`.  Also you should change `name`, `title` and `twitterHandle`.  There are also a lot of static pages that are Ecency specific.
+
 ##### Start website in dev
 `$ yarn start`
 

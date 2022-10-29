@@ -10,8 +10,12 @@ import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler, {healthCheck, iosURI, androidURI, nodeList} from "./handlers/fallback";
 import {entryRssHandler, authorRssHandler} from "./handlers/rss";
+import * as http from "http";
+import * as net from "net";
+
 import * as authApi from "./handlers/auth-api";
 import config from "../config";
+import defaults from "../common/constants/defaults.json";
 
 const server = express();
 
@@ -41,12 +45,14 @@ const stripLastSlash = (req: any, res: any, next: any) => {
         next();
     }
 }
+const configurationError = "Set USE_PRIVATE=1 or define CLIENT_ID and HIVESIGNER_SECRET ENV and make sure base in defaults is set to the base URL for this host"; 
+
 
 const authCheck = (req: any, res: any, next: any) => {
     if (config.hsClientId && config.hsClientSecret && config.usePrivate !== "1") {
         next();
     } else {
-        res.json({error: "Define HIVESIGNER_SECRET ENV variable or set USE_PRIVATE=1"});
+        res.json({error: configurationError});
     }
 }
 
@@ -116,5 +122,12 @@ server
 
     // For all others paths
     .get("*", fallbackHandler);
+
+if (config.hsClientId === "ecency.app" && defaults.base === "https://ecency.com" && config.hsClientSecret.length === 0) {
+  // Use Ecency servers
+} else if (config.hsClientId === "ecency.app" || defaults.base === "https://ecency.com" || config.hsClientSecret.length === 0 || config.usePrivate === '1') {
+  console.error(configurationError, {base: defaults.base, hsClientId: config.hsClientId, hsClientSecret: config.hsClientSecret, usePrivate: config.usePrivate});
+  process.exit(1);
+}
 
 export default server;

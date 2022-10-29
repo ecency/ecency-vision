@@ -80,7 +80,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     }
 
     login = async () => {
-        const hsClientId = this.props.global.hsClientId;
+        const { hsClientId } = this.props.global;
         const {username} = this.state;
         if (!username) {
             return;
