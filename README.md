@@ -97,6 +97,14 @@ docker stack deploy -c docker-compose.yml -c docker-compose.production.yml visio
 
 [![Contributors](https://contrib.rocks/image?repo=ecency/ecency-vision)](https://github.com/ecency/ecency-vision/graphs/contributors)
 
+## Note to DEVS
+
+- Make PRs more clear with description, screenshots or videos, linking to issues, if no issue exist create one that describes PR and mention in PR. Reviewers may or may not run code, but PR should be reviewable even without running, visials helps there. 
+- PR should have title WIP, if it is not ready yet. Once ready, run yarn test and update all tests, make sure linting also done before requesting for review.
+- Creating component?! Make sure to create simple tests, you can check other components for examples.
+- Always make sure component and pages stay fast without unnecessary re-renders because those will slow down app/performance.
+- 
+
 ## Issues
 
 To report a non-critical issue, please file an issue on this GitHub project.
