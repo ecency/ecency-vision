@@ -357,6 +357,9 @@
     "open-orders": "Open Orders",
     "pending-orders": "Pending orders",
     "type": "Type",
+    "mode-limit": "Limit",
+    "mode-swap": "Swap",
+    "mode-advanced": "Advanced",
     "action": "Action",
     "trade-history": "Trade History",
     "stock-params": "Params",
@@ -387,10 +390,10 @@
     "success-title": "Transaction completed",
     "more-than-balance": "You've entered more than available balance",
     "invalid-amount": "Invalid from amount. Please, enter less value",
-    "too-much-slippage": "We highly recommend you to reduce your amount for saving your funds",
+    "too-much-slippage": "We highly recommend you to reduce amount for better pricing!",
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You have to be authorized to swap own funds",
-    "start-new-one": "Start new one",
+    "start-new-one": "Start new Swap",
     "success-swap": "Successfully swapped!"
   },
   "list-style": {

@@ -24,7 +24,7 @@ export const ModeSelector = ({ mode, onSelect }: Props) => {
           window.location.hash = "swap";
         }}
       >
-        {_t("Swap")}
+        {_t("market.mode-swap")}
       </Button>
       <Button
         active={rawMode === MarketMode.LIMIT}
@@ -33,14 +33,14 @@ export const ModeSelector = ({ mode, onSelect }: Props) => {
           window.location.hash = "limit";
         }}
       >
-        {_t("Limit")}
+        {_t("market.mode-limit")}
       </Button>
       <Button
         active={rawMode === MarketMode.ADVANCED}
         onClick={() => onSelect(MarketMode.ADVANCED)}
         disabled={true}
       >
-        {_t("Advanced")}
+        {_t("market.mode-advanced")}
       </Button>
     </ButtonGroup>
   );
