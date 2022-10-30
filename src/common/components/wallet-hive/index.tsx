@@ -422,7 +422,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                           {
                             label: _t("market-data.trade"),
                             onClick: () => {
-                              this.props.history.push("/market");
+                              this.props.history.push("/market#limit");
                             }
                           }
                         ]
@@ -662,7 +662,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                           {
                             label: _t("market-data.trade"),
                             onClick: () => {
-                              this.props.history.push("/market");
+                              this.props.history.push("/market#limit");
                             }
                           }
                         ]

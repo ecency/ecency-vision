@@ -1,0 +1,424 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MarketSwapForm should render correctly existing active user 1`] = `
+<div
+  className="market-swap-form p-4"
+>
+  <div
+    className="market-swap-form-header d-flex align-items-center title mb-4 "
+  >
+    <div
+      className="text-primary font-weight-bold"
+    >
+      Swap your funds
+    </div>
+    <i
+      className="loading-market-svg ml-2 text-primary"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12,18A6,6 0 0,1 6,12C6,11 6.25,10.03 6.7,9.2L5.24,7.74C4.46,8.97 4,10.43 4,12A8,8 0 0,0 12,20V23L16,19L12,15M12,4V1L8,5L12,9V6A6,6 0 0,1 18,12C18,13 17.75,13.97 17.3,14.8L18.76,16.26C19.54,15.03 20,13.57 20,12A8,8 0 0,0 12,4Z"
+          fill="currentColor"
+        />
+      </svg>
+    </i>
+  </div>
+  <form
+    className=""
+    onSubmit={[Function]}
+  >
+    <div
+      className="px-3 pt-3 pb-5 mb-0 border  form-group"
+    >
+      <label
+        className="form-label"
+      >
+        From
+      </label>
+      <div
+        className="d-flex align-items-center"
+      >
+        <div>
+          <input
+            className="amount-control pl-0 form-control"
+            disabled={true}
+            onChange={[Function]}
+            placeholder="0.000"
+            value="0"
+          />
+          <small
+            className="usd-balance bold text-secondary"
+          >
+            $
+            0
+          </small>
+        </div>
+        <div
+          className="input-group-append"
+        >
+          <div
+            className="d-flex flex-column align-items-end"
+          >
+            <select
+              className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2"
+              disabled={true}
+              onChange={[Function]}
+              value="HIVE"
+            >
+              <option
+                value="HIVE"
+              >
+                HIVE
+              </option>
+              <option
+                value="HBD($)"
+              >
+                HBD($)
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="swap-button-container"
+    >
+      <div
+        className="overlay"
+      >
+        <button
+          className="swap-button border btn"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            fill="currentColor"
+            height="28"
+            viewBox="0 0 18 19"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="swap-arrow-down"
+              d="M12.4994 1.49942L12.4994 14.4994L11.2994 12.8994C11.2206 12.7944 11.1219 12.7059 11.0089 12.6389C10.8959 12.572 10.7708 12.528 10.6408 12.5095C10.5108 12.4909 10.3784 12.4981 10.2512 12.5307C10.124 12.5633 10.0045 12.6206 9.89941 12.6994C9.77522 12.7926 9.67441 12.9134 9.60499 13.0522C9.53556 13.1911 9.49941 13.3442 9.49941 13.4994C9.49941 13.7158 9.56959 13.9263 9.69941 14.0994L12.6994 18.0994C12.7927 18.2217 12.913 18.3209 13.0509 18.3891C13.1888 18.4573 13.3406 18.4928 13.4944 18.4928C13.6483 18.4928 13.8 18.4573 13.9379 18.3891C14.0758 18.3209 14.1961 18.2217 14.2894 18.0994L17.2894 14.2394C17.4525 14.0299 17.5257 13.7642 17.4929 13.5007C17.4601 13.2372 17.3239 12.9975 17.1144 12.8344C16.9049 12.6713 16.6392 12.5981 16.3757 12.6309C16.1122 12.6638 15.8725 12.7999 15.7094 13.0094L14.4994 14.5794L14.4994 1.49942C14.4994 1.2342 14.3941 0.97985 14.2065 0.792313C14.019 0.604777 13.7646 0.49942 13.4994 0.49942C13.2342 0.49942 12.9798 0.604777 12.7923 0.792313C12.6048 0.979849 12.4994 1.2342 12.4994 1.49942V1.49942Z"
+            />
+            <path
+              className="swap-arrow-up"
+              d="M5.49942 17.4994L5.49942 4.49943L6.69942 6.09943C6.85855 6.31161 7.09544 6.45187 7.35799 6.48938C7.62055 6.52689 7.88724 6.45856 8.09942 6.29943C8.31159 6.1403 8.45186 5.90341 8.48937 5.64085C8.52687 5.3783 8.45855 5.11161 8.29942 4.89943L5.29942 0.899433C5.20609 0.777126 5.08581 0.678001 4.94792 0.60977C4.81003 0.541539 4.65826 0.506042 4.50442 0.506042C4.35057 0.506042 4.1988 0.541539 4.06091 0.60977C3.92303 0.678001 3.80274 0.777126 3.70942 0.899433L0.709415 4.75943C0.573948 4.93398 0.500104 5.14848 0.499416 5.36943C0.499783 5.52215 0.535124 5.67276 0.602728 5.8097C0.670331 5.94664 0.768401 6.06627 0.889415 6.15943C1.09789 6.32182 1.36216 6.3951 1.62449 6.36325C1.88681 6.33139 2.12587 6.197 2.28942 5.98943L3.49942 4.41943L3.49942 17.4994C3.49942 17.7646 3.60477 18.019 3.79231 18.2065C3.97984 18.3941 4.2342 18.4994 4.49942 18.4994C4.76463 18.4994 5.01899 18.3941 5.20652 18.2065C5.39406 18.019 5.49942 17.7646 5.49942 17.4994Z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div
+      className="px-3 pt-3 pb-5 mb-0 border undefined form-group"
+    >
+      <label
+        className="form-label"
+      >
+        To
+      </label>
+      <div
+        className="d-flex align-items-center"
+      >
+        <div>
+          <input
+            className="amount-control pl-0 form-control"
+            disabled={true}
+            onChange={[Function]}
+            placeholder="0.000"
+            value="0"
+          />
+          <small
+            className="usd-balance bold text-secondary"
+          >
+            $
+            0
+          </small>
+        </div>
+        <div
+          className="input-group-append"
+        >
+          <div
+            className="d-flex flex-column align-items-end"
+          >
+            <select
+              className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2"
+              disabled={true}
+              onChange={[Function]}
+              value="HBD($)"
+            >
+              <option
+                value="HIVE"
+              >
+                HIVE
+              </option>
+              <option
+                value="HBD($)"
+              >
+                HBD($)
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <small
+        className="market-info font-weight-bold d-block mb-4 mt-4"
+      >
+        1 
+        HIVE
+         = 
+        0.000
+         
+        HBD($)
+        <span
+          className="text-secondary ml-1"
+        >
+          ($
+          0.000
+          )
+        </span>
+      </small>
+      <div
+        className="list-group"
+        onKeyDown={[Function]}
+      >
+        <div
+          className="list-group-item"
+          data-rb-event-key={null}
+          disabled={false}
+          onClick={[Function]}
+        >
+          <div
+            className="d-flex justify-content-between"
+          >
+            <span>
+              Fee
+            </span>
+            <span
+              className="badge badge-success text-white"
+            >
+              Free
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button
+        className="py-3 mt-4 btn btn-primary btn-block"
+        disabled={true}
+        onClick={[Function]}
+        type="button"
+      >
+        Continue
+      </button>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`MarketSwapForm should render correctly null active user 1`] = `
+<div
+  className="market-swap-form p-4"
+>
+  <div
+    className="market-swap-form-header d-flex align-items-center title mb-4 "
+  >
+    <div
+      className="text-primary font-weight-bold"
+    >
+      
+    </div>
+  </div>
+  <form
+    className=""
+    onSubmit={[Function]}
+  >
+    <div
+      className="px-3 pt-3 pb-5 mb-0 border  form-group"
+    >
+      <label
+        className="form-label"
+      >
+        From
+      </label>
+      <div
+        className="d-flex align-items-center"
+      >
+        <div>
+          <input
+            className="amount-control pl-0 form-control"
+            disabled={false}
+            onChange={[Function]}
+            placeholder="0.000"
+            value="0"
+          />
+          <small
+            className="usd-balance bold text-secondary"
+          >
+            $
+            0
+          </small>
+        </div>
+        <div
+          className="input-group-append"
+        >
+          <div
+            className="d-flex flex-column align-items-end"
+          >
+            <select
+              className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2"
+              disabled={false}
+              onChange={[Function]}
+              value="HIVE"
+            >
+              <option
+                value="HIVE"
+              >
+                HIVE
+              </option>
+              <option
+                value="HBD($)"
+              >
+                HBD($)
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="swap-button-container"
+    >
+      <div
+        className="overlay"
+      >
+        <button
+          className="swap-button border btn"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            fill="currentColor"
+            height="28"
+            viewBox="0 0 18 19"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="swap-arrow-down"
+              d="M12.4994 1.49942L12.4994 14.4994L11.2994 12.8994C11.2206 12.7944 11.1219 12.7059 11.0089 12.6389C10.8959 12.572 10.7708 12.528 10.6408 12.5095C10.5108 12.4909 10.3784 12.4981 10.2512 12.5307C10.124 12.5633 10.0045 12.6206 9.89941 12.6994C9.77522 12.7926 9.67441 12.9134 9.60499 13.0522C9.53556 13.1911 9.49941 13.3442 9.49941 13.4994C9.49941 13.7158 9.56959 13.9263 9.69941 14.0994L12.6994 18.0994C12.7927 18.2217 12.913 18.3209 13.0509 18.3891C13.1888 18.4573 13.3406 18.4928 13.4944 18.4928C13.6483 18.4928 13.8 18.4573 13.9379 18.3891C14.0758 18.3209 14.1961 18.2217 14.2894 18.0994L17.2894 14.2394C17.4525 14.0299 17.5257 13.7642 17.4929 13.5007C17.4601 13.2372 17.3239 12.9975 17.1144 12.8344C16.9049 12.6713 16.6392 12.5981 16.3757 12.6309C16.1122 12.6638 15.8725 12.7999 15.7094 13.0094L14.4994 14.5794L14.4994 1.49942C14.4994 1.2342 14.3941 0.97985 14.2065 0.792313C14.019 0.604777 13.7646 0.49942 13.4994 0.49942C13.2342 0.49942 12.9798 0.604777 12.7923 0.792313C12.6048 0.979849 12.4994 1.2342 12.4994 1.49942V1.49942Z"
+            />
+            <path
+              className="swap-arrow-up"
+              d="M5.49942 17.4994L5.49942 4.49943L6.69942 6.09943C6.85855 6.31161 7.09544 6.45187 7.35799 6.48938C7.62055 6.52689 7.88724 6.45856 8.09942 6.29943C8.31159 6.1403 8.45186 5.90341 8.48937 5.64085C8.52687 5.3783 8.45855 5.11161 8.29942 4.89943L5.29942 0.899433C5.20609 0.777126 5.08581 0.678001 4.94792 0.60977C4.81003 0.541539 4.65826 0.506042 4.50442 0.506042C4.35057 0.506042 4.1988 0.541539 4.06091 0.60977C3.92303 0.678001 3.80274 0.777126 3.70942 0.899433L0.709415 4.75943C0.573948 4.93398 0.500104 5.14848 0.499416 5.36943C0.499783 5.52215 0.535124 5.67276 0.602728 5.8097C0.670331 5.94664 0.768401 6.06627 0.889415 6.15943C1.09789 6.32182 1.36216 6.3951 1.62449 6.36325C1.88681 6.33139 2.12587 6.197 2.28942 5.98943L3.49942 4.41943L3.49942 17.4994C3.49942 17.7646 3.60477 18.019 3.79231 18.2065C3.97984 18.3941 4.2342 18.4994 4.49942 18.4994C4.76463 18.4994 5.01899 18.3941 5.20652 18.2065C5.39406 18.019 5.49942 17.7646 5.49942 17.4994Z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div
+      className="px-3 pt-3 pb-5 mb-0 border undefined form-group"
+    >
+      <label
+        className="form-label"
+      >
+        To
+      </label>
+      <div
+        className="d-flex align-items-center"
+      >
+        <div>
+          <input
+            className="amount-control pl-0 form-control"
+            disabled={true}
+            onChange={[Function]}
+            placeholder="0.000"
+            value="0"
+          />
+          <small
+            className="usd-balance bold text-secondary"
+          >
+            $
+            0
+          </small>
+        </div>
+        <div
+          className="input-group-append"
+        >
+          <div
+            className="d-flex flex-column align-items-end"
+          >
+            <select
+              className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2"
+              disabled={true}
+              onChange={[Function]}
+              value="HBD($)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <small
+        className="market-info font-weight-bold d-block mb-4 mt-4"
+      >
+        1 
+        HIVE
+         = 
+        0.000
+         
+        HBD($)
+        <span
+          className="text-secondary ml-1"
+        >
+          ($
+          0.000
+          )
+        </span>
+      </small>
+      <div
+        className="list-group"
+        onKeyDown={[Function]}
+      >
+        <div
+          className="list-group-item"
+          data-rb-event-key={null}
+          disabled={false}
+          onClick={[Function]}
+        >
+          <div
+            className="d-flex justify-content-between"
+          >
+            <span>
+              Fee
+            </span>
+            <span
+              className="badge badge-success text-white"
+            >
+              Free
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button
+        className="py-3 mt-4 btn btn-primary btn-block"
+        disabled={true}
+        onClick={[Function]}
+        type="button"
+      >
+        Continue
+      </button>
+    </div>
+  </form>
+</div>
+`;
