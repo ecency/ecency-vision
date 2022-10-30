@@ -41,7 +41,7 @@ exports[`MarkSwapFormSuccess should render hbd -> hive 1`] = `
     onClick={[Function]}
     type="button"
   >
-    Start new one
+    Start new Swap
   </button>
 </div>
 `;
@@ -87,7 +87,7 @@ exports[`MarkSwapFormSuccess should render hive -> hbd 1`] = `
     onClick={[Function]}
     type="button"
   >
-    Start new one
+    Start new Swap
   </button>
 </div>
 `;
