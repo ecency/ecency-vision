@@ -141,7 +141,7 @@ export const MarketSwapForm = ({
         className={step === MarketSwapFormStep.SUCCESS ? "blurred" : ""}
         step={step}
         loading={loading || disabled}
-        onBack={() => stepBack()}
+        onBack={stepBack}
       />
       <Form
         className={step === MarketSwapFormStep.SUCCESS ? "blurred" : ""}
