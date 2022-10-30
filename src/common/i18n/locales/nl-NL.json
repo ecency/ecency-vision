@@ -394,7 +394,7 @@
     "auth-required-title": "Autorisatie vereist",
     "auth-required-desc": "U dient gemachtigd te zijn om eigen tegoeden te wisselen",
     "start-new-one": "Start nieuwe omwisseling",
-    "success-swap": "Successfully swapped!"
+    "success-swap": "Omwisselen gelukt!"
   },
   "list-style": {
     "title": "Schakelaar stijl"
