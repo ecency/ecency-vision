@@ -101,7 +101,7 @@ export const MarketSwapForm = ({
     if (step === MarketSwapFormStep.FORM) setStep(MarketSwapFormStep.SIGN);
   };
 
-  const back = () => {
+  const stepBack = () => {
     if (step === MarketSwapFormStep.SIGN) setStep(MarketSwapFormStep.FORM);
   };
 
@@ -141,7 +141,7 @@ export const MarketSwapForm = ({
         className={step === MarketSwapFormStep.SUCCESS ? "blurred" : ""}
         step={step}
         loading={loading || disabled}
-        onBack={back}
+        onBack={() => stepBack()}
       />
       <Form
         className={step === MarketSwapFormStep.SUCCESS ? "blurred" : ""}
