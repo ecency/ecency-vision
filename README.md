@@ -54,8 +54,8 @@ Feel free to test it out and submit improvements and pull requests.
 ###### For Rebranding
 
 When setting up another service like Ecency with Ecency-vision software:
-* `CLIENT_ID`   -  iff USE_PRIVATE is 0, set this to what account will handle the permissions for posting level operations.
-* `HIVESIGNER_SECRET`  - iff USE_PRIVATE is 0, set this to the "secret" field value in the [Hive Signer profile](https://hivesigner.com/profile) for the user named as your `CLIENT_ID`.  This should be a lengthy lowercase hex string.
+* `HIVESIGNER_ID`   -  iff USE_PRIVATE is 0, set this to what account will handle the permissions for posting level operations.
+* `HIVESIGNER_SECRET`  - iff USE_PRIVATE is 0, set this to the "secret" field value in the [Hive Signer profile](https://hivesigner.com/profile) for the user named as your `HIVESIGNER_ID`.  This should be a lengthy lowercase hex string.
 
 ##### Edit "default" values
 

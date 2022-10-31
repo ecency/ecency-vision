@@ -45,7 +45,7 @@ const stripLastSlash = (req: any, res: any, next: any) => {
         next();
     }
 }
-const configurationError = "Set USE_PRIVATE=1 or define CLIENT_ID and HIVESIGNER_SECRET ENV and make sure base in defaults is set to the base URL for this host"; 
+const configurationError = "Set USE_PRIVATE=1 or define HIVESIGNER_ID and HIVESIGNER_SECRET ENV and make sure base in defaults is set to the base URL for this host"; 
 
 
 const authCheck = (req: any, res: any, next: any) => {
