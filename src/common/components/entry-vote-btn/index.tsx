@@ -294,7 +294,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   autoFocus={true}
                   type="range"
                   custom={true}
-                  step={0.1}
+                  step={5}
                   min={0}
                   max={100}
                   value={upSliderVal}
@@ -348,7 +348,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 <Form.Control
                   type="range"
                   custom={true}
-                  step={0.1}
+                  step={5}
                   min={-100}
                   max={-1}
                   value={downSliderVal}
