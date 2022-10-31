@@ -253,6 +253,13 @@ export class DialogContent extends Component<NotificationProps, any> {
     const { notifications } = this.props;
     const { list, loading, filter, hasMore, unread } = notifications;
 
+    const handleScroll = (event: React.UIEvent<HTMLElement>) => {
+      var element = event.currentTarget;
+      if (element.scrollHeight - element.scrollTop === element.clientHeight && hasMore) {
+        this.loadMore();
+      }
+    };
+
     return (
       <div className="notification-list">
         <div className="list-header">
@@ -362,23 +369,17 @@ export class DialogContent extends Component<NotificationProps, any> {
         )}
 
         {list.length > 0 && (
-          <div className="list-body">
+          <div className="list-body" onScroll={handleScroll}>
             {list.map((n) => (
               <Fragment key={n.id}>
                 {n.gkf && <div className="group-title">{date2key(n.gk)}</div>}
+
                 <NotificationListItem {...this.props} notification={n} />
               </Fragment>
             ))}
-
-            {hasMore && (
-              <div className="load-more">
-                <Button disabled={loading} block={true} onClick={this.loadMore}>
-                  Load More
-                </Button>
-              </div>
-            )}
           </div>
         )}
+
         {loading && list.length > 0 && <LinearProgress />}
       </div>
     );
