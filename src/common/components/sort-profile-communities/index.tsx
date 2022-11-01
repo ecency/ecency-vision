@@ -14,13 +14,13 @@ export const SortCommunities = (props: any) => {
 
     let dropDownItems: MenuItem[] = [
         {
-          label: <span>{_t("sort-trending-tags.ascending")}</span>,
+          label: <span id="ascending">{_t("sort-trending-tags.ascending")}</span>,
         onClick: () => { sortCommunitiesInAsc()
         setLabel(`${_t("sort-trending-tags.ascending")}`)
       }
         },
         {
-          label: <span>{_t("sort-trending-tags.descending")}</span>,
+          label: <span id="descending">{_t("sort-trending-tags.descending")}</span>,
         onClick: () => { sortCommunitiesInDsc()
           setLabel(`${_t("sort-trending-tags.descending")}`)
         }}
