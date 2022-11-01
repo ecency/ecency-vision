@@ -69,6 +69,7 @@ interface VoteDialogState {
 }
 
 export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
+  sliderLabelData: Array<number> = [10, 20, 30, 40, 50, 60, 70, 80, 90];
   state: VoteDialogState = {
     upSliderVal: getVoteValue(
       "up",
@@ -261,6 +262,38 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     }
   };
 
+  displaySliderOptions = (sign: boolean) => {
+    return this.sliderLabelData.map((option: number) => {
+      if (sign == true) {
+        let sliderMarginOffset = (option / 100) * 6.25;
+        return (
+          <div key={option} className="options">
+            <p
+              key={option}
+              style={{ marginLeft: sliderMarginOffset }}
+              onClick={() => this.setState({ upSliderVal: option })}
+            >
+              {option}
+            </p>
+          </div>
+        );
+      } else {
+        let sliderMarginOffset = option / 10 - 5;
+        return (
+          <div key={option} className="options">
+            <p
+              key={option}
+              style={{ marginLeft: sliderMarginOffset }}
+              onClick={() => this.setState({ downSliderVal: -option })}
+            >
+              {-option}
+            </p>
+          </div>
+        );
+      }
+    });
+  };
+
   render() {
     const {
       upSliderVal,
@@ -274,7 +307,8 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const {
       entry: { post_id, id }
     } = this.props;
-
+    const positiveOptionsMetaData = this.displaySliderOptions(true);
+    const negativeOptionsMetaData = this.displaySliderOptions(false);
     return (
       <>
         {mode === "up" && (
@@ -291,6 +325,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               </div>
               <div className="slider slider-up">
                 <Form.Control
+                  list="slider-range-values"
                   autoFocus={true}
                   type="range"
                   custom={true}
@@ -301,6 +336,24 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   onChange={this.upSliderChanged}
                   id={`${post_id || id}`}
                 />
+
+                <datalist id="slider-range-values">
+                  <div className="options">
+                    <p
+                      style={{ justifyContent: "flex-start !important" }}
+                      onClick={() => this.setState({ upSliderVal: 0 })}
+                    >
+                      0
+                    </p>
+                  </div>
+                  {positiveOptionsMetaData}
+                  <p
+                    style={{ fontSize: "15px" }}
+                    onClick={() => this.setState({ upSliderVal: 100 })}
+                  >
+                    100
+                  </p>
+                </datalist>
               </div>
               <div className="percentage">{`${upSliderVal && upSliderVal.toFixed(1)}%`}</div>
               <div
@@ -347,6 +400,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               <div className="slider slider-down">
                 <Form.Control
                   type="range"
+                  list="slider-range-values"
                   custom={true}
                   step={0.1}
                   min={-100}
@@ -356,6 +410,23 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   id={`${post_id || id}`}
                   className="reverse-range"
                 />
+                <datalist id="slider-range-values">
+                  <div className="options">
+                    <p
+                      style={{ justifyContent: "flex-start !important" }}
+                      onClick={() => this.setState({ downSliderVal: -1.0 })}
+                    >
+                      -1
+                    </p>
+                  </div>
+                  {negativeOptionsMetaData}
+                  <p
+                    style={{ fontSize: "15px" }}
+                    onClick={() => this.setState({ downSliderVal: -100 })}
+                  >
+                    -100
+                  </p>
+                </datalist>
               </div>
               <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
               <div

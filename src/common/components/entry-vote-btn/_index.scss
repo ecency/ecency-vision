@@ -39,6 +39,7 @@
   .percentage {
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: flex-end;
   }
 
@@ -463,4 +464,26 @@ p {
 
 .reverse-range {
   transform: rotateY(180deg);
+}
+
+datalist {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  @media screen and (max-width: 421px) {
+    display: none;
+  }
+
+}
+.options{
+  display: flex;
+  max-width: 10%;
+  flex-direction: row;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.options p {
+    font-size: 15px;
 }
