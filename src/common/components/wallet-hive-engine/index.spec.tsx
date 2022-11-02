@@ -92,6 +92,16 @@ jest.mock("../../api/hive-engine", () => ({
         ]);
       }
     }),
+  getMetrics: () =>
+    new Promise((resolve) => {
+      if (MOCK_MODE === 1 || MOCK_MODE === 2 || MOCK_MODE === 4) {
+        resolve([]);
+      }
+
+      if (MOCK_MODE === 3) {
+        resolve([]);
+      }
+    }),
   getUnclaimedRewards: () =>
     new Promise((resolve) => {
       if (MOCK_MODE === 1 || MOCK_MODE === 2 || MOCK_MODE === 4) {
