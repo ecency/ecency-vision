@@ -1,12 +1,14 @@
 import { b64uEnc } from "../util/b64";
-import { HIVE_SIGNER_APP, APP_URL } from "../../client_config";
+import { base } from "../constants/defaults.json";
 
-export const getAuthUrl = (redir: string = `${window.location.origin}/auth`) => {
-  const app = HIVE_SIGNER_APP;
+export const getAuthUrl = (
+  hsClientId: string,
+  redir: string = `${window.location.origin}/auth`
+) => {
   const scope =
     "vote,comment,delete_comment,comment_options,custom_json,claim_reward_balance,offline";
 
-  return `https://hivesigner.com/oauth2/authorize?client_id=${app}&redirect_uri=${encodeURIComponent(
+  return `https://hivesigner.com/oauth2/authorize?client_id=${hsClientId}&redirect_uri=${encodeURIComponent(
     redir
   )}&response_type=code&scope=${encodeURIComponent(scope)}`;
 };
@@ -48,13 +50,14 @@ export const validateToken = (code: string): boolean => {
 };
 
 export const makeHsCode = async (
+  hsClientId: string,
   account: string,
   signer: (message: string) => Promise<string>
 ): Promise<string> => {
   const timestamp = new Date().getTime() / 1000;
 
   const messageObj: HiveSignerMessage = {
-    signed_message: { type: "code", app: HIVE_SIGNER_APP },
+    signed_message: { type: "code", app: hsClientId },
     authors: [account],
     timestamp
   };
@@ -77,7 +80,7 @@ export const buildHotSignUrl = (
 ): any => {
   const _params = {
     ...params,
-    redirect_uri: `${APP_URL}/${redirect}`
+    redirect_uri: `${base}/${redirect}`
   };
 
   const queryString = new URLSearchParams(_params).toString();

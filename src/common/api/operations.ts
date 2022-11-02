@@ -1,5 +1,5 @@
 import hs from "hivesigner";
-import { APP_URL } from "../../client_config";
+import { base } from "../constants/defaults.json";
 import { HIVE_API_NAME } from "./hive";
 
 import {
@@ -394,7 +394,7 @@ export const transferHot = (from: string, to: string, amount: string, memo: stri
     }
   ];
 
-  const params: Parameters = { callback: `${APP_URL}/@${from}/wallet` };
+  const params: Parameters = { callback: `${base}/@${from}/wallet` };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -486,7 +486,7 @@ export const transferToSavingsHot = (from: string, to: string, amount: string, m
     }
   ];
 
-  const params: Parameters = { callback: `${APP_URL}/@${from}/wallet` };
+  const params: Parameters = { callback: `${base}/@${from}/wallet` };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -574,7 +574,7 @@ export const limitOrderCreateHot = (
     }
   ];
 
-  const params: Parameters = { callback: `${APP_URL}/market` };
+  const params: Parameters = { callback: `${base}/market` };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -587,7 +587,7 @@ export const limitOrderCancelHot = (owner: string, orderid: number) => {
     }
   ];
 
-  const params: Parameters = { callback: `${APP_URL}/market` };
+  const params: Parameters = { callback: `${base}/market` };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -658,7 +658,7 @@ export const convertHot = (owner: string, amount: string) => {
     }
   ];
 
-  const params: Parameters = { callback: `${APP_URL}/@${owner}/wallet` };
+  const params: Parameters = { callback: `${base}/@${owner}/wallet` };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -777,7 +777,7 @@ export const transferFromSavingsHot = (from: string, to: string, amount: string,
     }
   ];
 
-  const params: Parameters = { callback: `${APP_URL}/@${from}/wallet` };
+  const params: Parameters = { callback: `${base}/@${from}/wallet` };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -845,7 +845,7 @@ export const claimInterestHot = (from: string, to: string, amount: string, memo:
     }
   ];
 
-  const params: Parameters = { callback: `${APP_URL}/@${from}/wallet` };
+  const params: Parameters = { callback: `${base}/@${from}/wallet` };
   return hs.sendOperations([op, cop], params, () => {});
 };
 
@@ -961,7 +961,7 @@ export const transferToVesting = (
 export const transferToVestingHot = (from: string, to: string, amount: string) => {
   const op: Operation = createTransferToVestingOp(from, to, amount);
 
-  const params: Parameters = { callback: `${APP_URL}/@${from}/wallet` };
+  const params: Parameters = { callback: `${base}/@${from}/wallet` };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -1033,7 +1033,7 @@ export const delegateVestingSharesHot = (
   const parts = vestingShares.split(/ /);
   const currency = parts[parts.length - 1];
   const quantity = parts[0].replace(/,/g, "");
-  const params: Parameters = { callback: `${APP_URL}/@${delegator}/wallet` };
+  const params: Parameters = { callback: `${base}/@${delegator}/wallet` };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -1157,7 +1157,7 @@ export const setWithdrawVestingRouteHot = (
     }
   ];
 
-  const params: Parameters = { callback: `${APP_URL}/@${from}/wallet` };
+  const params: Parameters = { callback: `${base}/@${from}/wallet` };
   return hs.sendOperation(op, params, () => {});
 };
 

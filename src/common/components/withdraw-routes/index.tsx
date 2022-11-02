@@ -25,6 +25,7 @@ import {
 
 import { deleteForeverSvg } from "../../img/svg";
 import { handleInvalid, handleOnInput } from "../../util/input-util";
+import { base } from "../../constants/defaults.json";
 
 interface Props {
   global: Global;

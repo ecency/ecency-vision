@@ -36,6 +36,7 @@ import formattedNumber from "../../util/formatted-number";
 
 import _c from "../../util/fix-class-names";
 import MyPagination from "../pagination";
+import { base } from "../../constants/defaults.json";
 
 interface Props {
   history: History;
