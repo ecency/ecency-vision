@@ -198,37 +198,37 @@ export default class SuggestionList extends Component<Props> {
         >
           {children}
           <ClickAwayListener onClickAway={() => this.setState({ showList: false })}>
-            {showList && modeItems
-              ? !!modeItems && modeItems.length > 0 && modeItemsUI
-              : showList &&
-                items.length > 0 && (
-                  <div className="suggestion-list">
-                    {header && <div className="list-header">{header}</div>}
-                    <div className="list-body">
-                      {items.map((x, i) => {
-                        const content = renderer ? renderer(x) : x;
-                        return (
-                          <a
-                            href="#"
-                            key={i}
-                            className="list-item"
-                            onClick={(e: React.MouseEvent) => {
-                              e.preventDefault();
-                              const { onSelect } = this.props;
-                              if (onSelect) {
-                                onSelect(x);
-                              }
+            {showList && modeItems && modeItems?.length > 0 ? modeItemsUI : <></>}
+            {showList && !modeItems && items.length > 0 ? (
+              <div className="suggestion-list">
+                {header && <div className="list-header">{header}</div>}
+                <div className="list-body">
+                  {items.map((x, i) => {
+                    const content = renderer ? renderer(x) : x;
+                    return (
+                      <a
+                        href="#"
+                        key={i}
+                        className="list-item"
+                        onClick={(e: React.MouseEvent) => {
+                          e.preventDefault();
+                          const { onSelect } = this.props;
+                          if (onSelect) {
+                            onSelect(x);
+                          }
 
-                              this.setState({ showList: false });
-                            }}
-                          >
-                            {content}
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
+                          this.setState({ showList: false });
+                        }}
+                      >
+                        {content}
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
           </ClickAwayListener>
         </div>
       </>
