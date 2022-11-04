@@ -55,6 +55,11 @@ export interface CommentOptions {
   extensions: Array<[0, { beneficiaries: BeneficiaryRoute[] }]>;
 }
 
+export enum OrderIdPrefix {
+  EMPTY = "",
+  SWAP = "9"
+}
+
 export type RewardType = "default" | "sp" | "dp";
 
 const handleChainError = (strErr: string): [string | null, ErrorTypes] => {
@@ -458,7 +463,8 @@ export const limitOrderCreate = (
   key: PrivateKey,
   amount_to_sell: any,
   min_to_receive: any,
-  orderType: TransactionType
+  orderType: TransactionType,
+  idPrefix = OrderIdPrefix.EMPTY
 ): Promise<TransactionConfirmation> => {
   let expiration: any = new Date(Date.now());
   expiration.setDate(expiration.getDate() + 27);
@@ -467,7 +473,11 @@ export const limitOrderCreate = (
   const op: Operation = [
     "limit_order_create",
     {
-      orderid: Math.floor(Date.now() / 1000),
+      orderid: Number(
+        `${idPrefix}${Math.floor(Date.now() / 1000)
+          .toString()
+          .slice(1)}`
+      ),
       owner: owner,
       amount_to_sell: `${
         orderType === TransactionType.Buy ? amount_to_sell.toFixed(3) : min_to_receive.toFixed(3)
@@ -503,7 +513,8 @@ export const limitOrderCreateHot = (
   owner: string,
   amount_to_sell: any,
   min_to_receive: any,
-  orderType: TransactionType
+  orderType: TransactionType,
+  idPrefix = OrderIdPrefix.EMPTY
 ) => {
   let expiration: any = new Date();
   expiration.setDate(expiration.getDate() + 27);
@@ -511,7 +522,11 @@ export const limitOrderCreateHot = (
   const op: Operation = [
     "limit_order_create",
     {
-      orderid: Math.floor(Date.now() / 1000),
+      orderid: Number(
+        `${idPrefix}${Math.floor(Date.now() / 1000)
+          .toString()
+          .slice(1)}`
+      ),
       owner: owner,
       amount_to_sell: `${
         orderType === TransactionType.Buy ? amount_to_sell.toFixed(3) : min_to_receive.toFixed(3)
@@ -524,7 +539,9 @@ export const limitOrderCreateHot = (
     }
   ];
 
-  const params: Parameters = { callback: `https://ecency.com/market` };
+  const params: Parameters = {
+    callback: `https://ecency.com/market${idPrefix === OrderIdPrefix.SWAP ? "#swap" : ""}`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -545,7 +562,8 @@ export const limitOrderCreateKc = (
   owner: string,
   amount_to_sell: any,
   min_to_receive: any,
-  orderType: TransactionType
+  orderType: TransactionType,
+  idPrefix: OrderIdPrefix = OrderIdPrefix.EMPTY
 ) => {
   let expiration: any = new Date();
   expiration.setDate(expiration.getDate() + 27);
@@ -553,7 +571,11 @@ export const limitOrderCreateKc = (
   const op: Operation = [
     "limit_order_create",
     {
-      orderid: Math.floor(Date.now() / 1000),
+      orderid: Number(
+        `${idPrefix}${Math.floor(Date.now() / 1000)
+          .toString()
+          .slice(1)}`
+      ),
       owner: owner,
       amount_to_sell: `${
         orderType === TransactionType.Buy ? amount_to_sell.toFixed(3) : min_to_receive.toFixed(3)
