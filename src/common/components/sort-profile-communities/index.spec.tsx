@@ -17,4 +17,9 @@ describe("profile community sorting component", () => {
     descendingLabel.props.onClick();
     expect(descendingLabel).toBeFalsy;
   });
+  
+  it("matches snapshot", () => {
+    const main = component.toJSON()
+    expect(main).toMatchSnapshot()
+  })
 });
