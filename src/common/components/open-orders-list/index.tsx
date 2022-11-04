@@ -102,7 +102,7 @@ export class List extends BaseComponent<Props, State> {
                       key={orderid}
                       onClick={(e) => {
                         e.preventDefault();
-                        history.push(`/market`);
+                        history.push(`/market#limit`);
                       }}
                     >
                       <td>{orderid}</td>

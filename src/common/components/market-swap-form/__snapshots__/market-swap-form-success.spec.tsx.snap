@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MarkSwapFormSuccess should render hbd -> hive 1`] = `
+<div
+  className="market-swap-form-success"
+>
+  <div
+    className="title text-primary"
+  >
+    Successfully swapped!
+  </div>
+  <div
+    className="amount d-flex flex-column align-items-center text-center my-4"
+  >
+    <span>
+      1
+       
+      HBD($)
+    </span>
+    <i
+      className="my-3"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+          fill="currentColor"
+        />
+      </svg>
+    </i>
+    <span>
+      1.000
+       
+      HIVE
+    </span>
+  </div>
+  <button
+    className="btn btn-primary py-3 px-5 mt-4"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Start new Swap
+  </button>
+</div>
+`;
+
+exports[`MarkSwapFormSuccess should render hive -> hbd 1`] = `
+<div
+  className="market-swap-form-success"
+>
+  <div
+    className="title text-primary"
+  >
+    Successfully swapped!
+  </div>
+  <div
+    className="amount d-flex flex-column align-items-center text-center my-4"
+  >
+    <span>
+      1
+       
+      HIVE
+    </span>
+    <i
+      className="my-3"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+          fill="currentColor"
+        />
+      </svg>
+    </i>
+    <span>
+      1.000
+       
+      HBD($)
+    </span>
+  </div>
+  <button
+    className="btn btn-primary py-3 px-5 mt-4"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Start new Swap
+  </button>
+</div>
+`;
