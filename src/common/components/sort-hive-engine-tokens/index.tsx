@@ -28,49 +28,49 @@ const [sortLabel, setSortLabel] = useState(_t("sort-engine-tokens.sort"))
             label: sortLabel,
             items: [
               {
-                label: _t("sort-engine-tokens.sort-in-ascending"),
+                label: <span id="ascending">{_t("sort-engine-tokens.sort-in-ascending")}</span>,
                 onClick: () => {
                   sortTokensInAscending()
                   setSortLabel( _t("sort-engine-tokens.sort-in-ascending"))
                 }
               },
               {
-                label: _t("sort-engine-tokens.sort-in-descending"),
+                label: <span id="descending">{_t("sort-engine-tokens.sort-in-descending")}</span>,
                 onClick: () => {
                   sortTokensInDescending()
                   setSortLabel(_t("sort-engine-tokens.sort-in-descending"))
                 }
               },
               {
-                label: _t("sort-engine-tokens.sort-by-value"),
+                label: <span id="by-value">{_t("sort-engine-tokens.sort-by-value")}</span>,
                 onClick: () => {
                   sortTokensbyValue()
                   setSortLabel(_t("sort-engine-tokens.sort-by-value"))
                 }
               },
               {
-                label: _t("sort-engine-tokens.sort-by-balance"),
+                label: <span id="by-balance">{_t("sort-engine-tokens.sort-by-balance")}</span>,
                 onClick: () => {
                   sortTokensbyBalance()
                   setSortLabel(_t("sort-engine-tokens.sort-by-balance"))
                 }
               },
               {
-                label: _t("sort-engine-tokens.sort-by-stake"),
+                label: <span id="by-stake">{_t("sort-engine-tokens.sort-by-stake")}</span>,
                 onClick: () => {
                   sortTokensbyStake()
                   setSortLabel(_t("sort-engine-tokens.sort-by-stake"))
                 }
               },
               {
-                label: _t("sort-engine-tokens.sort-by-delegations-in"),
+                label: <span id="delegations-in">{_t("sort-engine-tokens.sort-by-delegations-in")}</span>,
                 onClick: () => {
                   sortByDelegationIn()
                   setSortLabel(_t("sort-engine-tokens.sort-by-delegations-in"))
                 }
               },
               {
-                label: _t("sort-engine-tokens.sort-by-delegations-out"),
+                label: <span id="delegations-out">{_t("sort-engine-tokens.sort-by-delegations-out")}</span>,
                 onClick: () => {
                   sortByDelegationOut()
                   setSortLabel(_t("sort-engine-tokens.sort-by-delegations-out"))
