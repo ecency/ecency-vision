@@ -27,6 +27,7 @@ import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
 
 import { checkAllSvg } from "../../img/svg";
+import { base } from "../../constants/defaults.json";
 
 interface Props {
   global: Global;

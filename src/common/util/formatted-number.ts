@@ -64,12 +64,17 @@ export default (value: number | string, options: Options | undefined = undefined
     if (value < 0) {
       addNegativeSignFlag = true;
     }
-    let satoshis: number = Math.round(unity * value) * (addNegativeSignFlag ? -1 : 1);
+    let satoshis: number = Math.floor(unity * value) * (addNegativeSignFlag ? -1 : 1);
     if (satoshis == 0) {
       addNegativeSignFlag = false;
     }
     if (debugLog) console.log({ satoshis, out });
-    while (satoshis != 0 && out.length < minFD) {
+    // virtual decimal digits
+    let vdecimalDigits = 0;
+    for (; satoshis % 10 == 0 && vdecimalDigits < maxFD - minFD; ++vdecimalDigits) {
+      satoshis /= 10;
+    }
+    while (vdecimalDigits + out.length < maxFD) {
       out = (satoshis % 10) + out;
       satoshis /= 10;
       satoshis = Math.floor(satoshis);

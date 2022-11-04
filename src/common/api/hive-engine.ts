@@ -42,7 +42,46 @@ export interface TokenStatus {
   precision: number;
 }
 
+export interface Unstake {
+  _id: number;
+  account: string;
+  symbol: string;
+  quantity: string;
+  quantityLeft: string;
+  nextTransactionTimestamp: number;
+  numberTransactionsLeft: string;
+  millisecPerPeriod: string;
+  txID: string;
+}
+
+import { HECoarseTransaction, HEFineTransaction } from "../store/transactions/types";
+
 const HIVE_ENGINE_RPC_URL = "https://api.hive-engine.com/rpc/contracts";
+
+export const getPendingUnstakes = (account: string, tokenName: string): Promise<Array<Unstake>> => {
+  const data = {
+    jsonrpc: "2.0",
+    method: "find",
+    params: {
+      contract: "tokens",
+      table: "pendingUnstakes",
+      query: {
+        account: account,
+        token: tokenName
+      }
+    },
+    id: 1
+  };
+
+  return axios
+    .post(HIVE_ENGINE_RPC_URL, data, {
+      headers: { "Content-type": "application/json" }
+    })
+    .then((r) => r.data.result)
+    .catch((e) => {
+      return [];
+    });
+};
 
 export const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
   const data = {
@@ -90,6 +129,22 @@ const getTokens = (tokens: string[]): Promise<Token[]> => {
     .catch((e) => {
       return [];
     });
+};
+
+export const getHiveEngineTokenBalance = async (
+  account: string,
+  tokenName: string
+): Promise<HiveEngineToken> => {
+  // commented just to try removing the non-existing unknowing HiveEngineTokenBalance type
+  // ): Promise<HiveEngineTokenBalance[]> => {
+  let balances = await getTokenBalances(account);
+  const tokens = await getTokens([tokenName]);
+
+  const balance = balances.find((balance) => balance.symbol == tokenName);
+  const token = tokens[0];
+  const tokenMetadata = token && (JSON.parse(token!.metadata) as TokenMetadata);
+
+  return new HiveEngineToken({ ...balance, ...token, ...tokenMetadata } as any);
 };
 
 export const getHiveEngineTokenBalances = async (account: string): Promise<HiveEngineToken[]> => {
@@ -182,4 +237,46 @@ export async function getTokenDelegations(account: string): Promise<Array<Delega
       console.log(e.message);
       return [];
     });
+}
+
+// Exclude author and curation reward details
+export async function getCoarseTransactions(
+  account: string,
+  limit: number,
+  symbol: string,
+  offset: number = 0
+) {
+  const response = await axios({
+    url: "https://accounts.hive-engine.com/accountHistory",
+    method: "GET",
+    params: {
+      account,
+      limit,
+      offset,
+      type: "user",
+      symbol
+    }
+  });
+  return response.data;
+}
+
+// Include virtual transactions like curation and author reward details.
+export async function getFineTransactions(
+  symbol: string,
+  account: string,
+  limit: number,
+  offset: number
+): Promise<Array<HEFineTransaction>> {
+  return axios({
+    url: `https://scot-api.hive-engine.com/get_account_history`,
+    method: "GET",
+    params: {
+      account,
+      token: symbol,
+      limit,
+      offset
+    }
+  }).then((response) => {
+    return response.data;
+  });
 }

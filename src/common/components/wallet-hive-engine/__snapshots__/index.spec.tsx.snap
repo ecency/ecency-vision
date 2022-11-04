@@ -190,6 +190,26 @@ exports[`(2) Render with some hive engine tokens 1`] = `
         <div
           className="entry-list-body"
         >
+          <span
+            onClick={[Function]}
+          >
+            <img
+              alt="PIZZA"
+              className="tiny-image"
+              onError={[Function]}
+              src="https://images.ecency.com/p/3W72119s5BjVs3HydwUQEFR8AX8qeAgo5bzGeBm1Z97PoTy3MZXBcU4dHbscesjnrTfYqRnK5SzfhSYmuC72yxZ4h1S8WRzei3xyiS6WMKQuEqhbYBH45L.png?format=match&mode=fit"
+            />
+          </span>
+          <span
+            onClick={[Function]}
+          >
+            <img
+              alt="POB"
+              className="tiny-image"
+              onError={[Function]}
+              src="https://images.ecency.com/p/PB8ro82ZpZP35bVGjGoE93K3E4U5KX8KtMBJ2ri7FNATqDaPEut9xHWgvGv6BTaMCo6hfe1xpWWm8boHg2sF5xFppQLrBqWLJGnp3idmz4VWXr2A.png?format=match&mode=fit"
+            />
+          </span>
           <div
             className="entry-list-item"
           >
@@ -232,6 +252,7 @@ exports[`(2) Render with some hive engine tokens 1`] = `
                   >
                     <span
                       className="info-icon mr-0 mr-md-2"
+                      onClick={[Function]}
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -289,6 +310,7 @@ exports[`(2) Render with some hive engine tokens 1`] = `
                   >
                     <span
                       className="info-icon mr-0 mr-md-2"
+                      onClick={[Function]}
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -449,7 +471,7 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
           <span
             className="reward-type"
           >
-            0.008,835,86 POB
+            0.008,835,85 POB
           </span>
         </div>
       </div>
@@ -477,6 +499,26 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
         <div
           className="entry-list-body"
         >
+          <span
+            onClick={[Function]}
+          >
+            <img
+              alt="PIZZA"
+              className="tiny-image"
+              onError={[Function]}
+              src="https://images.ecency.com/p/3W72119s5BjVs3HydwUQEFR8AX8qeAgo5bzGeBm1Z97PoTy3MZXBcU4dHbscesjnrTfYqRnK5SzfhSYmuC72yxZ4h1S8WRzei3xyiS6WMKQuEqhbYBH45L.png?format=match&mode=fit"
+            />
+          </span>
+          <span
+            onClick={[Function]}
+          >
+            <img
+              alt="POB"
+              className="tiny-image"
+              onError={[Function]}
+              src="https://images.ecency.com/p/PB8ro82ZpZP35bVGjGoE93K3E4U5KX8KtMBJ2ri7FNATqDaPEut9xHWgvGv6BTaMCo6hfe1xpWWm8boHg2sF5xFppQLrBqWLJGnp3idmz4VWXr2A.png?format=match&mode=fit"
+            />
+          </span>
           <div
             className="entry-list-item"
           >
@@ -519,6 +561,7 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
                   >
                     <span
                       className="info-icon mr-0 mr-md-2"
+                      onClick={[Function]}
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -576,6 +619,7 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
                   >
                     <span
                       className="info-icon mr-0 mr-md-2"
+                      onClick={[Function]}
                     >
                       <svg
                         viewBox="0 0 24 24"

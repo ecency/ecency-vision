@@ -179,6 +179,15 @@
   width: 20px;
 }
 
+.tiny-image {
+   width: 20px;
+   max-height: 30px;
+}
+
+.tiny-image:hover {
+   width: 25px;
+}
+
 .author-down-arrow {
   display: none;
 

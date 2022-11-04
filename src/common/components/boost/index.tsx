@@ -29,6 +29,7 @@ import _c from "../../util/fix-class-names";
 import formattedNumber from "../../util/formatted-number";
 
 import { checkAllSvg } from "../../img/svg";
+import { base } from "../../constants/defaults.json";
 
 interface Props {
   global: Global;

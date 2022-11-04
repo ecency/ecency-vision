@@ -1,0 +1,25 @@
+.wallet-hive {
+  @include wallet;
+
+  .next-power-down {
+    align-items: center;
+    box-sizing: content-box;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    text-align: center;
+
+    @media (min-width: $lg-break) {
+      justify-content: flex-start;
+      text-align: initial;
+    }
+
+    @include themify(day) {
+      color: $steel-grey;
+    }
+
+    @include themify(night) {
+      color: $metallic-blue;
+    }
+  }
+}

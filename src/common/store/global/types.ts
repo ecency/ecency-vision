@@ -68,6 +68,7 @@ export interface Global {
   nsfw: boolean;
   isMobile: boolean;
   usePrivate: boolean;
+  hsClientId: string;
   lastIndexPath: string | null;
 }
 

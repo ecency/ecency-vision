@@ -180,7 +180,7 @@ exports[`(1) Default render 1`] = `
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
-        $ 125.10
+        $ 125.09
       </div>
       <div
         className="entry-votes notranslate"
@@ -432,7 +432,7 @@ exports[`(2) Grid view 1`] = `
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
-        $ 125.10
+        $ 125.09
       </div>
       <div
         className="entry-votes notranslate"
@@ -714,7 +714,7 @@ exports[`(3) Nsfw 1`] = `
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
-        $ 125.10
+        $ 125.09
       </div>
       <div
         className="entry-votes notranslate"
@@ -995,7 +995,7 @@ exports[`(4) Nsfw with active user 1`] = `
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
-        $ 125.10
+        $ 125.09
       </div>
       <div
         className="entry-votes notranslate"
@@ -1273,7 +1273,7 @@ exports[`(5) Nsfw but allowed 1`] = `
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
-        $ 125.10
+        $ 125.09
       </div>
       <div
         className="entry-votes notranslate"
@@ -1583,7 +1583,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
-        $ 5.95
+        $ 5.94
       </div>
       <div
         className="entry-votes notranslate"

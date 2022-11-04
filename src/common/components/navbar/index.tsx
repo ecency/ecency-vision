@@ -65,7 +65,6 @@ import { PurchaseQrDialog } from "../purchase-qr";
 //const logo = require('../../img/logo-circle.svg');
 
 interface Props {
-  hiveSignerApp: string;
   history: History;
   location: Location;
   global: Global;
@@ -647,7 +646,6 @@ export class NavBar extends Component<Props, State> {
 
 export default (p: Props) => {
   const props: Props = {
-    hiveSignerApp: p.hiveSignerApp,
     history: p.history,
     location: p.location,
     global: p.global,

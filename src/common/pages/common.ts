@@ -18,7 +18,6 @@ import { Discussion as DiscussionType, SortOrder } from "../store/discussion/typ
 import { Transactions, OperationGroup } from "../store/transactions/types";
 import { Points } from "../store/points/types";
 import { EntryPinTracker } from "../store/entry-pin-tracker/types";
-import { HIVE_SIGNER_APP } from "../../client_config";
 
 import {
   toggleTheme,
@@ -173,8 +172,7 @@ export interface PageProps {
 }
 
 export const pageMapStateToProps = (state: AppState) => ({
-  ...state,
-  hiveSignerApp: HIVE_SIGNER_APP
+  ...state
 });
 
 export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>

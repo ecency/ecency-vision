@@ -211,7 +211,7 @@ exports[`(1) Default render 1`] = `
           <span
             title="1957.888055 VESTS"
           >
-            1.006 HP
+            1.005 HP
           </span>
         </div>
       </div>
@@ -531,7 +531,7 @@ exports[`(2) With active user 1`] = `
           <span
             title="1957.888055 VESTS"
           >
-            1.006 HP
+            1.005 HP
           </span>
         </div>
       </div>
@@ -879,7 +879,7 @@ exports[`(3) With delegator active user 1`] = `
           <span
             title="1957.888055 VESTS"
           >
-            1.006 HP
+            1.005 HP
           </span>
           <a
             className="undelegate"

@@ -8,15 +8,35 @@ import { ErrorTypes } from "../../enums";
 import { ActiveUser } from "../../store/active-user/types";
 import { _t } from "../../i18n";
 
-export const error = (message: string, errorType = ErrorTypes.COMMON) => {
-  const detail: ErrorFeedbackObject = {
-    id: random(),
-    type: "error",
-    message,
-    errorType
-  };
-  const ev = new CustomEvent("feedback", { detail });
-  window.dispatchEvent(ev);
+function isString(x: any): x is string {
+  return typeof x === "string";
+}
+
+function isComposedErrorPair(
+  value: string | [string, ErrorTypes.COMMON | ErrorTypes.INSUFFICIENT_RESOURCE_CREDITS]
+): value is [string, ErrorTypes.COMMON | ErrorTypes.INSUFFICIENT_RESOURCE_CREDITS] {
+  return (
+    (value.length === 2 && typeof value[0] === "string" && value[1] === ErrorTypes.COMMON) ||
+    value[1] === ErrorTypes.INSUFFICIENT_RESOURCE_CREDITS
+  );
+}
+
+export const error = (
+  message: string | [string, ErrorTypes.COMMON | ErrorTypes.INSUFFICIENT_RESOURCE_CREDITS],
+  errorType = ErrorTypes.COMMON
+) => {
+  if (isString(message)) {
+    const detail: ErrorFeedbackObject = {
+      id: random(),
+      type: "error",
+      message,
+      errorType
+    };
+    const ev = new CustomEvent("feedback", { detail });
+    window.dispatchEvent(ev);
+  } else {
+    error(message[0], message[1]);
+  }
 };
 
 export const success = (message: string) => {

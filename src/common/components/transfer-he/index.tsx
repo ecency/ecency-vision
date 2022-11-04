@@ -60,6 +60,7 @@ import { dateToFullRelative } from "../../helper/parse-date";
 export type TransferMode = "transfer" | "delegate" | "undelegate" | "stake" | "unstake";
 export type TransferAsset = string;
 import { DelegationEntry } from "../../api/hive-engine";
+import { base } from "../../constants/defaults.json";
 interface AssetSwitchProps {
   options: TransferAsset[];
   selected: TransferAsset;

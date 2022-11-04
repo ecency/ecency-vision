@@ -97,7 +97,7 @@ exports[`(1) Dialog (2) Down vote 1`] = `
   <div
     className="estimated"
   >
-    $ 0.000
+    $ -0.001
   </div>
   <div
     className="slider slider-down"
