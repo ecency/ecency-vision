@@ -46,28 +46,6 @@ Feel free to test it out and submit improvements and pull requests.
 
 `$ nano src/config.ts`
 
-##### Edit client config file or define environment variables
-
-`$ cp src/client_config_defaults.ts src/client_config.ts`
-`$ nano src/client_config.ts`
-
-##### Client Config Constants
-
-These are for values that the server or client code may both use. It must not be sensitive information yet it should be
-system-wide, and constant for this installation or site.
-
-###### HIVE_SIGNER_APP
-
-This can be left as 'ecency.app'. Unless you want to change the account proxy, you should leave this as is.
-
-###### APP_URL
-
-This should be the URL of the site. If you are running this testing, it should be "http://localhost" so hiveSigner redirects you back to localhost. The default is 'https://ecency.com'.
-
-###### APP_DOMAIN
-
-This should be the URL of the site without the protocol part. The default is "ecency.com".
-
 ##### Environment variables
 
 - `USE_PRIVATE` - if instance has private api address and auth (0 or 1 value)
@@ -83,6 +61,8 @@ When setting up another service like Ecency with Ecency-vision software:
 ##### Edit "default" values
 
 ###### For Rebranding
+
+Also for _URLs other than https://ecency.com_...
 
 If you are setting up your own website other than Ecency.com, the value `base` **must not** be "https://ecency.com". It should be set to whatever the URL of your webserver's host. The `base` can be changed in the file `src/common/constants.json`. Also you should change `name`, `title` and `twitterHandle`. There are also a lot of static pages that are Ecency specific.
 
