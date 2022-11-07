@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render loader on loading 1`] = `
+<div
+  className="market-swap-form-header d-flex align-items-center title mb-4 "
+>
+  <div
+    className="text-primary font-weight-bold"
+  >
+    Swap your funds
+  </div>
+  <i
+    className="loading-market-svg ml-2 text-primary"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M12,18A6,6 0 0,1 6,12C6,11 6.25,10.03 6.7,9.2L5.24,7.74C4.46,8.97 4,10.43 4,12A8,8 0 0,0 12,20V23L16,19L12,15M12,4V1L8,5L12,9V6A6,6 0 0,1 18,12C18,13 17.75,13.97 17.3,14.8L18.76,16.26C19.54,15.03 20,13.57 20,12A8,8 0 0,0 12,4Z"
+        fill="currentColor"
+      />
+    </svg>
+  </i>
+</div>
+`;
+
+exports[`should render sign title 1`] = `
+<div
+  className="market-swap-form-header d-flex align-items-center title mb-4 "
+>
+  <button
+    className="btn btn-link btn-sm"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+        fill="currentColor"
+      />
+    </svg>
+  </button>
+  <div
+    className="text-primary font-weight-bold"
+  >
+    Sign your transaction
+  </div>
+</div>
+`;
+
+exports[`should render success title 1`] = `
+<div
+  className="market-swap-form-header d-flex align-items-center title mb-4 "
+>
+  <div
+    className="text-primary font-weight-bold"
+  >
+    
+  </div>
+</div>
+`;
+
+exports[`should render swap title 1`] = `
+<div
+  className="market-swap-form-header d-flex align-items-center title mb-4 "
+>
+  <div
+    className="text-primary font-weight-bold"
+  >
+    
+  </div>
+</div>
+`;
