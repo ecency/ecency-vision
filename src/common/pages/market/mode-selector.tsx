@@ -37,8 +37,10 @@ export const ModeSelector = ({ mode, onSelect }: Props) => {
       </Button>
       <Button
         active={rawMode === MarketMode.ADVANCED}
-        onClick={() => onSelect(MarketMode.ADVANCED)}
-        disabled={true}
+        onClick={() => {
+          onSelect(MarketMode.ADVANCED);
+          window.location.hash = "advanced";
+        }}
       >
         {_t("market.mode-advanced")}
       </Button>

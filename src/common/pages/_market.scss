@@ -68,4 +68,10 @@ thead, .pagination {
             }
         }
     }
+
+    &.ADVANCED {
+        .advanced-mode-layout {
+            display: grid;
+        }
+    }
 }

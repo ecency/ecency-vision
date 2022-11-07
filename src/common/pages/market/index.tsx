@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../common";
 import { LimitMarketMode } from "./limit-mode";
 import { MARKET_MODE_LS_TOKEN, MarketMode } from "./market-mode";
-import { get, set } from "../../util/local-storage";
+import { set } from "../../util/local-storage";
 import Feedback from "../../components/feedback";
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
@@ -12,6 +12,7 @@ import { NavBar } from "../../components/navbar";
 import Meta from "../../components/meta";
 import { ModeSelector } from "./mode-selector";
 import { SwapMode } from "./swap-mode";
+import { AdvancedMode } from "./advanced-mode";
 
 const MarketPage = (props: PageProps) => {
   const [mode, setMode] = useState<MarketMode>(MarketMode.SWAP);
@@ -56,6 +57,7 @@ const MarketPage = (props: PageProps) => {
           />
           {mode === MarketMode.SWAP && <SwapMode {...props} />}
           {mode === MarketMode.LIMIT && <LimitMarketMode {...props} />}
+          {mode === MarketMode.ADVANCED && <AdvancedMode {...props} />}
         </div>
       </div>
     </>
