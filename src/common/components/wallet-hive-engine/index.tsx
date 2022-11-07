@@ -35,6 +35,7 @@ import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
 
 import { _t } from "../../i18n";
+import { HiveEngineChart } from "../hive-engine-chart";
 
 interface Props {
   global: Global;
@@ -260,6 +261,10 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                 <div className="title">{_t("wallet-engine.title")}</div>
                 <div className="description">{_t("wallet-engine.description")}</div>
               </div>
+            </div>
+
+            <div className="d-flex justify-content-center">
+              <HiveEngineChart items={tokens}/>
             </div>
 
             <div className="entry-list">
@@ -520,6 +525,9 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
             assetBalance={this.state.assetBalance}
           />
         )}
+        {/* <div>
+         <HiveEngineChart items={tokens}/>
+        </div> */}
       </div>
     );
   }
