@@ -73,5 +73,33 @@ thead, .pagination {
         .advanced-mode-layout {
             display: grid;
         }
+
+        .advanced-mode-toolbar {
+            .trading-pair {
+                font-size: 1.25rem;
+            }
+
+            .amount {
+                font-size: 1.35rem;
+                font-weight: 500;
+            }
+
+            .usd-value {
+                font-weight: 500;
+            }
+
+            .change-price {
+                label {
+                    font-size: 0.875rem;
+                    font-weight: 500;
+                    opacity: 0.75;
+                    color: $secondary;
+                }
+
+                div {
+                    font-weight: 500;
+                }
+            }
+        }
     }
 }

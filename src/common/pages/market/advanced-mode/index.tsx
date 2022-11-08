@@ -7,6 +7,7 @@ import { StakeSellWidget } from "../../../components/market-advanced-mode/stake-
 import { PairsWidget } from "../../../components/market-advanced-mode/pairs-widget";
 import { TradingFormWidget } from "../../../components/market-advanced-mode/trading-form-widget";
 import { TradingViewWidget } from "../../../components/market-advanced-mode/trading-view-widget";
+import { AdvancedModeToolbar } from "./advanced-mode-toolbar";
 
 interface Props {}
 
@@ -23,6 +24,7 @@ export const AdvancedMode = ({}: Props) => {
 
   return (
     <div className="advanced-mode">
+      <AdvancedModeToolbar />
       <div className="advanced-mode-layout" style={{ gridTemplateColumns: getGridColumns() }}>
         {layout.columns.map((column, key) => (
           <div key={key}>
