@@ -31,6 +31,7 @@ import { Skeleton } from "../skeleton";
 import { dateToFormatted } from "../../helper/parse-date";
 import isCommunity from "../../helper/is-community";
 import { Subscription } from "../../store/subscriptions/types";
+import { ResourceCreditsInfo } from "../rc-info"
 
 interface Props {
   global: Global;
@@ -71,8 +72,8 @@ export const ProfileCard = (props: Props) => {
       .catch((e) => {
         setSubs([]);
       });
-    findRcAccounts(account.name).then((r) => {
-      console.log(r);
+    findRcAccounts(account.name).then((r: RCAccount[]) => {
+      // console.log(r);
       if (r && r[0]) {
         setRcPercent(rcPower(r[0]));
       }
@@ -180,11 +181,11 @@ export const ProfileCard = (props: Props) => {
         </div>
       )}
 
-      <div className="progress">
+      {/* <div className="progress" onClick={showRcInfo}>
         <div
           className="progress-bar progress-bar-success"
           role="progressbar"
-          style={{ width: `${rcPercent}%` }}
+          style={{ width: `${rcPercent}%`,  cursor:"pointer"}}
         >
           Available
         </div>
@@ -193,10 +194,17 @@ export const ProfileCard = (props: Props) => {
           role="progressbar"
           style={{ width: `${100 - rcPercent}%` }}
         >
-          Used
+         {`${100 - rcPercent}%`} Used
         </div>
-      </div>
+      </div> */}
 
+      <div>
+      <ResourceCreditsInfo 
+      rcPercent={rcPercent} 
+      account={account}
+      />
+      </div>
+        
       <div className="rc-percentage">
         <Tooltip content={_t("profile.voting-power")}>
           <span>Resource Credits</span>

@@ -609,6 +609,17 @@
     "link-copied": "Search link copied to clipboard",
     "no-posts-found": "Found nothing!"
   },
+  "rc-info": {
+    "available": "Available",
+    "used": "Used",
+    "resource-credits": "Rescouce credit",
+    "resource-credit": "Rescouce credit:",
+    "delegated": "Delegated:",
+    "received-delegations": "Received delegations:",
+    "delegation-button": "RC Delegations",
+    "rc-available": "Available:",
+    "rc-used": "Used:"
+  },
   "profile-edit": {
     "title": "Profile",
     "name": "Display Name",
