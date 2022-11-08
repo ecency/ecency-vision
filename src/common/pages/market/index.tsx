@@ -40,21 +40,29 @@ const MarketPage = (props: PageProps) => {
       <Meta title={title} description={description} />
       <Feedback activeUser={props.activeUser} />
       <div className={"d-flex justify-content-center market-page " + mode}>
-        <div className="w-sm-75 p-3 p-sm-0">
+        <div className={mode !== MarketMode.ADVANCED ? "w-sm-75 p-3 p-sm-0" : "w-100"}>
           <div style={{ marginBottom: "6rem" }}>{navbar}</div>
-          <div className="mb-5 text-center">
-            <h2>{_t("market.title")}</h2>
-            <Tsx k="market.description">
-              <div className="header-description" />
-            </Tsx>
-          </div>
-          <ModeSelector
-            mode={mode}
-            onSelect={(mode) => {
-              setMode(mode);
-              set(MARKET_MODE_LS_TOKEN, mode);
-            }}
-          />
+          {mode !== MarketMode.ADVANCED ? (
+            <div className="mb-5 text-center">
+              <h2>{_t("market.title")}</h2>
+              <Tsx k="market.description">
+                <div className="header-description" />
+              </Tsx>
+            </div>
+          ) : (
+            <></>
+          )}
+          {mode !== MarketMode.ADVANCED ? (
+            <ModeSelector
+              mode={mode}
+              onSelect={(mode) => {
+                setMode(mode);
+                set(MARKET_MODE_LS_TOKEN, mode);
+              }}
+            />
+          ) : (
+            <></>
+          )}
           {mode === MarketMode.SWAP && <SwapMode {...props} />}
           {mode === MarketMode.LIMIT && <LimitMarketMode {...props} />}
           {mode === MarketMode.ADVANCED && <AdvancedMode {...props} />}

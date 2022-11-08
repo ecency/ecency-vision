@@ -7,7 +7,7 @@ interface Props {
 
 export const MarketAdvancedModeWidget = ({ children }: Props) => {
   return (
-    <div className="market-advanced-mode-widget deck">
+    <div className="market-advanced-mode-widget">
       <MarketAdvancedModeWidgetHeader title="test" />
       {children}
     </div>
