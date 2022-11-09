@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Layout, Widget } from "./layout.type";
-import { DEFAULT_LAYOUT } from "./default-layouts.const";
+import { Layout, Widget } from "./types/layout.type";
+import { DEFAULT_LAYOUT } from "./consts/default-layouts.const";
 import { HistoryWidget } from "../../../components/market-advanced-mode/history-widget";
 import { StakeBuyWidget } from "../../../components/market-advanced-mode/stake-buy-widget";
 import { StakeSellWidget } from "../../../components/market-advanced-mode/stake-sell-widget";
@@ -8,11 +8,20 @@ import { PairsWidget } from "../../../components/market-advanced-mode/pairs-widg
 import { TradingFormWidget } from "../../../components/market-advanced-mode/trading-form-widget";
 import { TradingViewWidget } from "../../../components/market-advanced-mode/trading-view-widget";
 import { AdvancedModeToolbar } from "./advanced-mode-toolbar";
+import { MarketAsset } from "../../../components/market-swap-form/market-pair";
+import { MarketObserver } from "./pairs";
+import { DayChange } from "./types/day-change.type";
+import { DAY_CHANGE_DEFAULT } from "./consts/day-change.const";
 
 interface Props {}
 
 export const AdvancedMode = ({}: Props) => {
   const [layout, setLayout] = useState<Layout>(DEFAULT_LAYOUT);
+  const [fromAsset, setFromAsset] = useState(MarketAsset.HIVE);
+  const [toAsset, setToAsset] = useState(MarketAsset.HBD);
+  const [dayChange, setDayChange] = useState<DayChange>(DAY_CHANGE_DEFAULT);
+  const [price, setPrice] = useState(0);
+  const [usdPrice, setUsdPrice] = useState(0);
 
   const getGridColumns = () => {
     let cssGridColumns = "";
@@ -24,7 +33,14 @@ export const AdvancedMode = ({}: Props) => {
 
   return (
     <div className="advanced-mode">
-      <AdvancedModeToolbar />
+      <MarketObserver fromAsset={fromAsset} toAsset={toAsset} />
+      <AdvancedModeToolbar
+        fromAsset={fromAsset}
+        toAsset={toAsset}
+        dayChange={dayChange}
+        price={price}
+        usdPrice={usdPrice}
+      />
       <div className="advanced-mode-layout" style={{ gridTemplateColumns: getGridColumns() }}>
         {layout.columns.map((column, key) => (
           <div key={key}>

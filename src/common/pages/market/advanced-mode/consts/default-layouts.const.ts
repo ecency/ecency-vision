@@ -1,4 +1,4 @@
-import { Layout, Widget } from "./layout.type";
+import { Layout, Widget } from "../types/layout.type";
 
 export const DEFAULT_LAYOUT: Layout = {
   columns: [

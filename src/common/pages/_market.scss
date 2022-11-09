@@ -75,12 +75,14 @@ thead, .pagination {
         }
 
         .advanced-mode-toolbar {
+            align-items: center;
+
             .trading-pair {
                 font-size: 1.25rem;
             }
 
             .amount {
-                font-size: 1.35rem;
+                font-size: 1.4rem;
                 font-weight: 500;
             }
 
