@@ -9,6 +9,7 @@
   },
   "locale": "en-US",
   "base": "https://ecency.com",
+  "site": "https://www.proofofbrain.blog",
   "imageServer": "https://images.ecency.com",
   "nwsServer": "wss://enotify.esteem.app",
   "name": "Proof of Brain",
