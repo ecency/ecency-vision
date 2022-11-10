@@ -199,15 +199,16 @@ export const ProfileCard = (props: Props) => {
       </div> */}
 
       <div>
-      <ResourceCreditsInfo 
-      rcPercent={rcPercent} 
-      account={account}
+        <ResourceCreditsInfo 
+          {...props}
+          rcPercent={rcPercent} 
+          account={account}
       />
       </div>
         
       <div className="rc-percentage">
         <Tooltip content={_t("profile.voting-power")}>
-          <span>Resource Credits</span>
+          <span>{_t("rc-info.resource-credits")}</span>
         </Tooltip>
       </div>
 

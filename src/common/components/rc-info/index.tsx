@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Button, Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { findRcAccounts } from "../../api/hive";
+import { ResourceCreditsDelegation } from "../rc-delegation"
+import activeUser from '../../store/active-user';
 
 
 export const ResourceCreditsInfo = (props: any) => {
@@ -9,8 +11,9 @@ export const ResourceCreditsInfo = (props: any) => {
     const [delegated, setDelegated] = useState();
     const [receivedDelegation, setReceivedDelegation] = useState();
     const [resourceCredit, setresourceCredit] = useState();
+    const [showDelegationModal, setShowDelegationModal] = useState(false)
 
-    const { rcPercent, account } = props;
+    const { rcPercent, account, activeUser } = props;
 
     useEffect(() => {
         findRcAccounts(account.name).then((r) => {
@@ -32,6 +35,26 @@ export const ResourceCreditsInfo = (props: any) => {
     const hideModal = () => {
         setShowRcInfo(false);
     };
+
+    const showDelegation = () => {
+      setShowDelegationModal(true);
+      setShowRcInfo(false);
+    }
+
+    const hideDelegation = () => {
+      setShowDelegationModal(false);
+    }
+
+    
+    const formHeader1 = (
+      <div className="transaction-form-header">
+        <div className="step-no">1</div>
+        <div className="box-titles">
+          <div className="main-title">Delegate</div>
+          <div className="sub-title">Delegate Resource Credit</div>
+        </div>
+      </div>
+    );
   return (
     <div>
         <div className="progress" onClick={showModal}>
@@ -72,12 +95,33 @@ export const ResourceCreditsInfo = (props: any) => {
         <p>{_t("rc-info.delegated")} {delegated}</p>
         <p>{_t("rc-info.received-delegations")} {receivedDelegation}</p>
         <div className="d-flex justify-content-center">
-            <Button>
+            <Button onClick={showDelegation}>
              {_t("rc-info.delegation-button")}
             </Button> 
         </div>
       </Modal.Body>
     </Modal>
+    <div>
+    <Modal
+      animation={false}
+      show={showDelegationModal}
+      centered={true}
+      onHide={hideDelegation}
+      keyboard={false}
+      className="transfer-dialog modal-thin-header"
+      size="lg"
+    >
+      <Modal.Header closeButton={true}>
+        <Modal.Title>
+          {/* {formHeader1} */}
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+      <ResourceCreditsDelegation activeUser={activeUser} resourceCredit={resourceCredit} />
+      </Modal.Body>
+    </Modal>
+    </div>
+     
     </div>
   );
 };
