@@ -263,10 +263,6 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
               </div>
             </div>
 
-            <div className="d-flex justify-content-center">
-              <HiveEngineChart items={tokens}/>
-            </div>
-
             <div className="entry-list">
               {loading ? (
                 <div className="dialog-placeholder">
@@ -299,7 +295,11 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                           />
                           {b.symbol}
                         </div>
-
+                             
+                        <div className="d-flex">
+                          <HiveEngineChart items={tokens}/>
+                        </div>
+                        
                         <div className="ml-auto d-flex flex-column justify-between">
                           <div className="d-flex mb-1 align-self-end">
                             <div className="entry-body mr-md-2">
@@ -525,9 +525,6 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
             assetBalance={this.state.assetBalance}
           />
         )}
-        {/* <div>
-         <HiveEngineChart items={tokens}/>
-        </div> */}
       </div>
     );
   }
