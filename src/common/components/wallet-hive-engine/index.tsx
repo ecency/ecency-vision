@@ -297,7 +297,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                         </div>
                              
                         <div className="d-flex">
-                          <HiveEngineChart items={tokens}/>
+                          <HiveEngineChart items={b}/>
                         </div>
                         
                         <div className="ml-auto d-flex flex-column justify-between">

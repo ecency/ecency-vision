@@ -1,39 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Theme } from "../../store/global/types";
-// import ReactHighcharts from "react-highcharts";
-const ReactHighcharts = require("react-highcharts/dist/ReactHighstock");
-// import { Line } from 'react-chartjs-2'
-// import {
-//   Chart as ChartJS,
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Filler,
-//   Legend,
-// } from 'chart.js';
-// import { trackEntryPin } from '../../store/entry-pin-tracker';
+import ReactHighcharts from "react-highcharts"
 import moment from 'moment';
 import { _t } from '../../i18n';
 
-// ChartJS.register(
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Filler,
-//   Legend
-// );
-
 export const HiveEngineChart = (props: any) => {
-const { items } = props
-// console.log(items)
-const symbols = items.map((a: { symbol: any }) => a.symbol)
+const { items, theme } = props
+console.log(items)
 
 const [close, setClose]: any = useState([])
 const [timeStamp, setTimeStamp]: any = useState([]);
@@ -41,45 +15,25 @@ const [tokenSymbol, setTokenSymbol] = useState("SWAP.HIVE")
 const [prices, setPrices] = useState()
 
 useEffect(() => {
-  getMarketData(tokenSymbol);
-})
+  const getMarketData = async (symbol: any) => {
+      const { data: history } = await axios.get(
+          `https://info-api.tribaldex.com/market/ohlcv`,
+          {
+            params: { symbol: items.symbol, interval: 'daily' },
+          },
+          );
+          const close = history.map((token: any) =>  token.close)
+          const closePrice = close.map((a: any) => Number(a))
+          console.log(closePrice)
+          const timeStamp = history.map((token: any) => token.timestamp)
+          const date = timeStamp.map((a: any) => new Date(a * 1000).toLocaleDateString("en-US"));
+          setTimeStamp(date)
+          setPrices(closePrice)
+          setTokenSymbol(symbol)
+  }
+        getMarketData(tokenSymbol);
+}, [tokenSymbol])
 
-    const getMarketData = async (symbol: any) => {
-        const { data: history } = await axios.get(
-            `https://info-api.tribaldex.com/market/ohlcv`,
-            {
-              params: { symbol, interval: 'daily' },
-            },
-            );
-            console.log(history)
-            const close = history.map((token: any) =>  token.close)
-            // console.log(close)
-            const closePrice = close.map((a: any) => Number(a))
-            console.log(closePrice)
-            const timeStamp = history.map((token: any) => token.timestamp)
-            // console.log(timeStamp)
-            const date = timeStamp.map((a: any) => new Date(a * 1000).toLocaleDateString("en-US"));
-            setTimeStamp(date)
-            setPrices(closePrice)
-    }
-
-    // const data = {
-    //   labels: timeStamp,
-    //   datasets: [{
-    //   label: "Close",
-    //   fill: true,
-    //   borderColor: 'rgb(53, 162, 235)',
-    //   backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    //   data: close
-    //   }]
-    //   }
-      
-      // const options: any = {
-      //   series: [
-      //     name: "Tokens",
-      //     data: closed
-      //   ] 
-      // }
 
       const config: any = {
         title: {
@@ -90,16 +44,45 @@ useEffect(() => {
           enabled: false
         },
         chart: {
-          height: 280,
+          height: '70',
+          width: '800',
           zoomType: "x",
-          // backgroundColor: theme === Theme.night ? "#161d26" : ""
+          backgroundColor: "transparent",
+          border: "none",
+          style: {
+            fontFamily: "inherit",
+            border: 'none'
+          },
+          plotBorderColor: "transparent",
+          plotBorderWidth: 0,
+          plotBackgroundColor: "transparent",
+          plotShadow: true,
+          type: "area",
+          spacingBottom: 0,
+          spacingTop: 0,
+          spacingLeft: 0,
+          spacingRight: 0,
+          marginTop: 0,
+          marginBottom: 0,
+          marginLeft: 60,
         },
         plotOptions: {
           area: {
             // fillColor: theme === Theme.night ? "#2e3d51" : "#f3f7fb",
-            lineColor: "#81acef",
-            lineWidth: 3
+            lineColor: "transparent",
+            lineWidth: 399
+          },
+          series: {
+            marker: {
+              enabled: false,
+              states: {
+                hover: {
+                  enabled: false
+                }
+              }
+            }
           }
+          
         },
         tooltip: {
           valueDecimals: 2,
@@ -120,29 +103,35 @@ useEffect(() => {
           lineColor: "transparent",
           // categories: timeStamp,
           labels: {
-            enabled: false
+            enabled: false,
+            style: {
+              color: 'red'
+            }
           },
           title: {
             text: null
           },
           minorTickLength: 0,
           tickLength: 0,
+          grid: {
+            enabled: false
+          },
           gridLineWidth: 0
         },
-        // yAxis: {
-        //   lineWidth: 0,
-        //   minorGridLineWidth: 0,
-        //   lineColor: "transparent",
-        //   title: {
-        //     text: null
-        //   },
-        //   labels: {
-        //     enabled: false
-        //   },
-        //   minorTickLength: 0,
-        //   tickLength: 0,
-        //   gridLineWidth: 0
-        // },
+        yAxis: {
+          lineWidth: 0,
+          minorGridLineWidth: 0,
+          lineColor: "transparent",
+          title: {
+            text: null
+          },
+          labels: {
+            enabled: false
+          },
+          minorTickLength: 0,
+          tickLength: 0,
+          gridLineWidth: 0
+        },
         series: [
           {
             name: "tokens",
@@ -152,29 +141,98 @@ useEffect(() => {
           }
         ]
       };
-  
 
-      // let config = {
-      //   xAxis: {
-      //     categories: timeStamp
-      //   },
-      //   series: [{
-      //     data: prices
-      //   }]
-      // };
+        const defaultOptions = {
+    chart: {
+      renderTo: true,
+      backgroundColor: null,
+      borderWidth: 0,
+      type: 'area',
+      margin: [2, 0, 2, 0],
+      width: 120,
+      height: 20,
+      style: {
+        overflow: 'visible'
+      },
+      // small optimalization, saves 1-2 ms each sparkline
+      skipClone: true
+    },
+    title: {
+      text: ''
+    },
+    credits: {
+      enabled: false
+    },
+    xAxis: {
+      labels: {
+        enabled: false
+      },
+      title: {
+        text: null
+      },
+      startOnTick: false,
+      endOnTick: false,
+      tickPositions: []
+    },
+    yAxis: {
+      endOnTick: false,
+      startOnTick: false,
+      labels: {
+        enabled: false
+      },
+      title: {
+        text: null
+      },
+      tickPositions: [0]
+    },
+    legend: {
+      enabled: false
+    },
+    tooltip: {
+      hideDelay: 0,
+      outside: true,
+      shared: true
+    },
+    plotOptions: {
+      series: {
+        animation: false,
+        lineWidth: 1,
+        shadow: false,
+        states: {
+          hover: {
+            lineWidth: 1
+          }
+        },
+        marker: {
+          radius: 1,
+          states: {
+            hover: {
+              radius: 2
+            }
+          }
+        },
+        fillOpacity: 0.25
+      },
+      column: {
+        negativeColor: '#910000',
+        borderColor: 'silver'
+      }
+    }
+  };
+
 
   return (
     <div className="market-graph" style={{width: 500}}>
         <div className="graph">
           <ReactHighcharts config={config} />
         </div>
-        <div className="info">
+        {/* <div className="info">
           <div className="price">
             <span className="coin">{tokenSymbol}</span> 
             <span className="value">prices</span>
           </div>
           <div className="tooltip" />
-        </div>
+        </div> */}
       </div>
   )
 }
