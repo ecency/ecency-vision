@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [16.x]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -57,14 +57,16 @@ jobs:
       uses: appleboy/ssh-action@master
       env:
         USE_PRIVATE: ${{secrets.USE_PRIVATE}}
+        REDIS_URL: ${{secrets.REDIS_URL}}
       with:
         host: ${{ secrets.SSH_HOST_EU }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        envs: USE_PRIVATE
+        envs: USE_PRIVATE, REDIS_URL
         script: |
           export USE_PRIVATE=$USE_PRIVATE
+          export REDIS_URL=$REDIS_URL
           cd ~/vision-production
           git pull origin master
           docker pull ecency/vision:latest
@@ -78,14 +80,16 @@ jobs:
       uses: appleboy/ssh-action@master
       env:
         USE_PRIVATE: ${{secrets.USE_PRIVATE}}
+        REDIS_URL: ${{secrets.REDIS_URL}}
       with:
         host: ${{ secrets.SSH_HOST_US }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        envs: USE_PRIVATE
+        envs: USE_PRIVATE, REDIS_URL
         script: |
           export USE_PRIVATE=$USE_PRIVATE
+          export REDIS_URL=$REDIS_URL
           cd ~/vision-production
           git pull origin master
           docker pull ecency/vision:latest
@@ -99,14 +103,16 @@ jobs:
       uses: appleboy/ssh-action@master
       env:
         USE_PRIVATE: ${{secrets.USE_PRIVATE}}
+        REDIS_URL: ${{secrets.REDIS_URL}}
       with:
         host: ${{ secrets.SSH_HOST_SG }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        envs: USE_PRIVATE
+        envs: USE_PRIVATE, REDIS_URL
         script: |
           export USE_PRIVATE=$USE_PRIVATE
+          export REDIS_URL=$REDIS_URL
           cd ~/vision-production
           git pull origin master
           docker pull ecency/vision:latest

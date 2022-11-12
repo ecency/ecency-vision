@@ -1,7 +1,6 @@
-import {combineReducers} from "redux";
-import {connectRouter} from "connected-react-router";
-import {createBrowserHistory, createMemoryHistory, History} from "history";
-
+import { combineReducers } from "redux";
+import { connectRouter } from "connected-react-router";
+import { createBrowserHistory, createMemoryHistory, History } from "history";
 
 import isEqual from "react-fast-compare";
 
@@ -22,93 +21,96 @@ import notifications from "./notifications";
 import points from "./points";
 import signingKey from "./signing-key";
 import entryPinTracker from "./entry-pin-tracker";
+import persistentPageScroll from "./persistent-page-scroll";
+import deck from "./deck";
 
 import filterTagExtract from "../helper/filter-tag-extract";
 
 let reducers = {
-    global,
-    dynamicProps,
-    trendingTags,
-    entries,
-    accounts,
-    communities,
-    transactions,
-    users,
-    activeUser,
-    reblogs,
-    discussion,
-    ui,
-    subscriptions,
-    notifications,
-    points,
-    signingKey,
-    entryPinTracker
+  global,
+  dynamicProps,
+  trendingTags,
+  entries,
+  accounts,
+  communities,
+  transactions,
+  users,
+  activeUser,
+  reblogs,
+  discussion,
+  ui,
+  subscriptions,
+  notifications,
+  points,
+  signingKey,
+  entryPinTracker,
+  deck,
+  persistentPageScroll
 };
 
 export let history: History | undefined;
 
 // create browser history on client side
 if (typeof window !== "undefined") {
-    if (window.location.href.startsWith('file://')) {
-        // electron
-        history = createMemoryHistory();
-    } else {
-        // web
-        history = createBrowserHistory();
+  if (window.location.href.startsWith("file://")) {
+    // electron
+    history = createMemoryHistory();
+  } else {
+    // web
+    history = createBrowserHistory();
+  }
+
+  // We need a customised history object since history pushes new state for same path.
+  // See: https://github.com/ReactTraining/history/issues/470
+  // We don't want LOCATION_CHANGE triggered for same path because of structure of out "entries" reducer.
+
+  // get ref of current push function
+  const _push = history.push;
+
+  let prevPath: string = history.location.pathname;
+  // update previous path once history change
+  history.listen((location) => {
+    prevPath = location.pathname;
+  });
+
+  // create a new push function that compares new path and previous path.
+  history.push = (pathname: History.Path, state: History.LocationState = {}) => {
+    // compare filter & tag resolution of paths
+    // this control required because "/" == "/hot" and "/@username" == "/@username/posts"
+    const ftCur = filterTagExtract(pathname);
+    const ftPrev = filterTagExtract(prevPath);
+
+    if (ftCur && ftPrev) {
+      if (isEqual(ftCur, ftPrev)) {
+        return;
+      }
     }
 
-    // We need a customised history object since history pushes new state for same path.
-    // See: https://github.com/ReactTraining/history/issues/470
-    // We don't want LOCATION_CHANGE triggered for same path because of structure of out "entries" reducer.
-
-    // get ref of current push function
-    const _push = history.push;
-
-    let prevPath: string = history.location.pathname;
-    // update previous path once history change
-    history.listen(location => {
-        prevPath = location.pathname;
-    });
-
-    // create a new push function that compares new path and previous path.
-    history.push = (pathname: History.Path, state: History.LocationState = {}) => {
-
-        // compare filter & tag resolution of paths
-        // this control required because "/" == "/hot" and "/@username" == "/@username/posts"
-        const ftCur = filterTagExtract(pathname);
-        const ftPrev = filterTagExtract(prevPath);
-
-        if (ftCur && ftPrev) {
-            if (isEqual(ftCur, ftPrev)) {
-                return;
-            }
-        }
-
-        // simple path compare
-        if (pathname === prevPath) {
-            return;
-        }
-        _push(pathname.includes("//")?"/":pathname, state);
+    // simple path compare
+    if (pathname === prevPath) {
+      return;
     }
+    _push(pathname.includes("//") ? "/" : pathname, state);
+  };
 
-    // scroll to top on every push action
-    history.listen((location, action) => {
-        if (action === "PUSH") {
-            // Don't scroll to top with anchor links
-            if (history!.location.hash !== "") {
-                return;
-            }
+  // scroll to top on every push action
+  history.listen((location, action) => {
+    if (action === "PUSH") {
+      // Don't scroll to top with anchor links
+      if (history!.location.hash !== "") {
+        return;
+      }
 
-            setTimeout(() => {
-                window.scrollTo({
-                    top: 0
-                });
-            }, 100);
-        }
-    });
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0
+        });
+      }, 100);
+    }
+  });
 
-    // @ts-ignore
-    reducers = {router: connectRouter(history), ...reducers};
+  // @ts-ignore
+  reducers = { router: connectRouter(history), ...reducers };
 }
 
 const rootReducer = combineReducers(reducers);

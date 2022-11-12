@@ -183,7 +183,7 @@ exports[`(2) Hot filter 1`] = `
           className="view-feed"
         >
           <span
-            className="view-layout"
+            className="view-layout "
           >
             <svg
               viewBox="0 0 24 24"
@@ -196,7 +196,7 @@ exports[`(2) Hot filter 1`] = `
           </span>
            
           <span
-            className="menu-down-icon"
+            className="menu-down-icon "
           >
             <svg
               viewBox="0 0 24 24"

@@ -10,15 +10,15 @@ jest.mock("../../api/misc", () => ({
   getEmojiData: () =>
     new Promise((resolve) => {
       resolve(emojiData);
-    }),
+    })
 }));
 
 jest.mock("../../util/local-storage", () => ({
-  get: () => ["dog2", "wink"],
+  get: () => ["dog2", "wink"]
 }));
 
 const detailProps = {
-  fallback: () => {},
+  fallback: () => {}
 };
 
 const component = renderer.create(<EmojiPicker {...detailProps} />);

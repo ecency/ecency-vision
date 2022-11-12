@@ -75,6 +75,12 @@
     .the-menu {
       right: 0;
     }
+
+    &.with-padding {
+      .the-menu {
+        right: 16px;
+      }
+    }
   }
 
   .menu-inner {
@@ -133,6 +139,8 @@
         align-items: center;
 
         .item-icon {
+          display: flex;
+
           svg {
             height: 14px;
             margin-right: 6px;
@@ -154,7 +162,7 @@
         }
       }
 
-      &:hover:not(.active) {
+      &:hover:not(.active, .static) {
         @include themify(day) {
           background: lighten($dark-sky-blue, 40);
           color: $dark-sky-blue;

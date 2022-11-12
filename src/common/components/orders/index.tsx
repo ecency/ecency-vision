@@ -7,18 +7,9 @@ import { useState } from "react";
 import moment from "moment";
 import { _t } from "../../i18n";
 
-const buyColumns = [
-  `${_t("market.price")}`,
-  `HIVE`,
-  `${_t("market.total")} HBD ($)`,
-];
+const buyColumns = [`${_t("market.price")}`, `HIVE`, `${_t("market.total")} HBD ($)`];
 
-const tradeColumns = [
-  `${_t("market.date")}`,
-  `${_t("market.price")}`,
-  `HIVE`,
-  `HBD ($)`,
-];
+const tradeColumns = [`${_t("market.date")}`, `${_t("market.price")}`, `HIVE`, `HBD ($)`];
 
 export interface MappedData {
   key1: string | number;
@@ -32,7 +23,7 @@ interface Props {
   type: 1 | 2 | 3;
   loading: boolean;
   data: OrdersDataItem[] | TradeDataItem[];
-  onPriceClick?: (value: string | number) => void;
+  onPriceClick?: (value: MappedData) => void;
 }
 
 export const Orders = ({ type, loading, data, onPriceClick }: Props) => {
@@ -46,7 +37,7 @@ export const Orders = ({ type, loading, data, onPriceClick }: Props) => {
         return {
           key3: (item as OrdersDataItem).hbd / 1000,
           key2: (item as OrdersDataItem).order_price.quote.replace("HIVE", ""),
-          key1: parseFloat((item as OrdersDataItem).real_price).toFixed(6),
+          key1: parseFloat((item as OrdersDataItem).real_price).toFixed(6)
         };
       });
       break;
@@ -57,7 +48,7 @@ export const Orders = ({ type, loading, data, onPriceClick }: Props) => {
         return {
           key3: (item as OrdersDataItem).hbd / 1000,
           key2: (item as OrdersDataItem).order_price.quote.replace("HBD", ""),
-          key1: parseFloat((item as OrdersDataItem).real_price).toFixed(6),
+          key1: parseFloat((item as OrdersDataItem).real_price).toFixed(6)
         };
       });
       break;
@@ -71,16 +62,22 @@ export const Orders = ({ type, loading, data, onPriceClick }: Props) => {
           let price = hbd / hive;
           let type = item.current_pays.indexOf("HBD") !== -1 ? "bid" : "ask";
           let stringPrice = price.toFixed(6);
-          
+
           return {
             key5: type,
-            key4: type === "bid" ? (item as TradeDataItem).current_pays.replace(" HBD","") : (item as TradeDataItem).open_pays.replace(" HBD",""),
-            key3: type === "ask" ? (item as TradeDataItem).current_pays.replace(" HIVE","") : (item as TradeDataItem).open_pays.replace(" HIVE",""),
+            key4:
+              type === "bid"
+                ? (item as TradeDataItem).current_pays.replace(" HBD", "")
+                : (item as TradeDataItem).open_pays.replace(" HBD", ""),
+            key3:
+              type === "ask"
+                ? (item as TradeDataItem).current_pays.replace(" HIVE", "")
+                : (item as TradeDataItem).open_pays.replace(" HIVE", ""),
             key2: stringPrice,
             key1: moment
               .utc((item as TradeDataItem).date)
               .local()
-              .fromNow(),
+              .fromNow()
           };
         })
         .reverse();
@@ -110,17 +107,11 @@ export const Orders = ({ type, loading, data, onPriceClick }: Props) => {
             <tr
               key={`${item.key1}-${index}`}
               className={type === 1 || type === 2 ? "pointer" : ""}
-              onClick={() => (onPriceClick ? onPriceClick(item.key1) : {})}
+              onClick={() => (onPriceClick ? onPriceClick(item) : {})}
             >
               <td>{item.key1}</td>
               <td
-                className={
-                  type === 3
-                    ? item.key5 === "bid"
-                      ? "text-success"
-                      : "text-danger"
-                    : ""
-                }
+                className={type === 3 ? (item.key5 === "bid" ? "text-success" : "text-danger") : ""}
               >
                 {item.key2}
               </td>

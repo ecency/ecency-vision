@@ -262,6 +262,11 @@ exports[`(1) Default render 1`] = `
             Русский
           </option>
           <option
+            value="uz-UZ"
+          >
+            O'zbekcha
+          </option>
+          <option
             value="zh-CN"
           >
             简体字
@@ -350,6 +355,40 @@ exports[`(1) Default render 1`] = `
             </button>
           </div>
         </div>
+      </div>
+    </div>
+    <div
+      className="col-xl-4 col-lg-6"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Theme Settings
+        </label>
+        <select
+          className="form-control"
+          onChange={[Function]}
+          type="text"
+        >
+          <option
+            value="system"
+          >
+            System Default
+          </option>
+          <option
+            value="day"
+          >
+            Day mode
+          </option>
+          <option
+            value="night"
+          >
+            Night mode
+          </option>
+        </select>
       </div>
     </div>
   </div>

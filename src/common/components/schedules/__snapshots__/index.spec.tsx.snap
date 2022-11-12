@@ -478,7 +478,7 @@ exports[`(2) With data 1`] = `
               className="date"
               title="2020-01-01 23:12:00"
             >
-              3 days ago
+              3d ago
             </span>
           </div>
         </div>

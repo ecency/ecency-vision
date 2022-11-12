@@ -15,17 +15,19 @@ interface Props {
   published?: string;
   modified?: string;
   rss?: string;
+  amp?: string;
 }
 
 const capitalize = (s: string) => {
   return s.charAt(0).toUpperCase() + s.slice(1);
-}
+};
 
 const title_ = (s: string): string => `${s} | ${capitalize(defaults.name)}`;
 
 export default class Meta extends Component<Props> {
   render() {
-    const { title, description, url, canonical, tag, keywords, published, modified, rss } = this.props;
+    const { title, description, url, canonical, tag, keywords, published, modified, rss, amp } =
+      this.props;
     let { image } = this.props;
 
     if (!image) {
@@ -77,13 +79,24 @@ export default class Meta extends Component<Props> {
         {url && (
           <Helmet>
             <meta property="og:url" content={`${defaults.base}${url}`} />
-            <meta itemProp="mainEntityOfPage" itemScope={true} itemType="http://schema.org/WebPage" itemID={`${defaults.base}${url}`}/>
+            <meta
+              itemProp="mainEntityOfPage"
+              itemScope={true}
+              itemType="http://schema.org/WebPage"
+              itemID={`${defaults.base}${url}`}
+            />
           </Helmet>
         )}
 
         {canonical && (
           <Helmet>
             <link rel="canonical" href={canonical} />
+          </Helmet>
+        )}
+
+        {amp && (
+          <Helmet>
+            <link rel="amphtml" href={amp} />
           </Helmet>
         )}
 

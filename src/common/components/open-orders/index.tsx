@@ -1,14 +1,12 @@
-import moment from "moment";
 import React from "react";
 import { useState } from "react";
 import { Table } from "react-bootstrap";
 import { OpenOrdersData } from "../../api/hive";
-import BuySellHiveDialog, {
-  TransactionType,
-} from "../buy-sell-hive";
+import BuySellHiveDialog, { TransactionType } from "../buy-sell-hive";
 import { _t } from "../../i18n";
 import { Skeleton } from "../skeleton";
 import { ActiveUser } from "../../store/active-user/types";
+import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 
 const columns = [
   `${_t("market.date")}`,
@@ -16,7 +14,7 @@ const columns = [
   `${_t("market.price")}`,
   `HIVE`,
   `HBD ($)`,
-  `${_t("market.action")}`,
+  `${_t("market.action")}`
 ];
 
 interface Props {
@@ -24,7 +22,7 @@ interface Props {
   loading: boolean;
   username: string;
   onTransactionSuccess: () => void;
-  activeUser: ActiveUser
+  activeUser: ActiveUser;
 }
 
 export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: Props) => {
@@ -37,13 +35,13 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: 
       {isModalOpen ? (
         <>
           <BuySellHiveDialog
-                Ttype={TransactionType.Cancel}
-                onHide={() => setIsModalOpen(0)}
-                global={global}
-                onTransactionSuccess={onTransactionSuccess}
-                activeUser={activeUser}
-                orderid={isModalOpen}
-        />
+            Ttype={TransactionType.Cancel}
+            onHide={() => setIsModalOpen(0)}
+            global={global}
+            onTransactionSuccess={onTransactionSuccess}
+            activeUser={activeUser}
+            orderid={isModalOpen}
+          />
         </>
       ) : null}
       <h5>{_t("market.open-orders")}</h5>
@@ -57,21 +55,21 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: 
         </thead>
         <tbody>
           {data.map((item) => {
-            let date = moment
-              .utc(item.created)
-              .local()
-              .format()
-              .replace("T", " ");
-            date = date.substring(0, date.indexOf("+"));
             return (
               <tr key={item.id}>
-                <td>{date}</td>
-                <td>
-                  {item.sell_price.base.indexOf("HIVE") > 0 ? "Sell" : "Buy"}
-                </td>
+                <td title={dateToFormatted(item.created)}>{dateToFullRelative(item.created)}</td>
+                <td>{item.sell_price.base.indexOf("HIVE") > 0 ? "Sell" : "Buy"}</td>
                 <td>{parseFloat(item.real_price).toFixed(6)}</td>
-                <td>{item.sell_price.base.indexOf("HIVE") > 0 ? item.sell_price.base.replace("HIVE","") : item.sell_price.quote.replace("HIVE","")}</td>
-                <td>{item.sell_price.base.indexOf("HIVE") > 0 ? item.sell_price.quote.replace("HBD","") : item.sell_price.base.replace("HBD","")}</td>
+                <td>
+                  {item.sell_price.base.indexOf("HIVE") > 0
+                    ? item.sell_price.base.replace("HIVE", "")
+                    : item.sell_price.quote.replace("HIVE", "")}
+                </td>
+                <td>
+                  {item.sell_price.base.indexOf("HIVE") > 0
+                    ? item.sell_price.quote.replace("HBD", "")
+                    : item.sell_price.base.replace("HBD", "")}
+                </td>
                 <td className="p-2">
                   <div
                     className="rounded text-white bg-primary p-1 d-inline pointer"

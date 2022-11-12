@@ -1,364 +1,358 @@
 [
   {
     "name": "noumantahir",
-    "contributes": [
-      "Developer (Mobile)"
-    ]
+    "contributes": ["Developer (Mobile)"]
   },
   {
     "name": "ghazanfar89",
-    "contributes": [
-      "Developer (Web)"
-    ]
+    "contributes": ["Developer (Web)"]
   },
   {
     "name": "zetrix",
-    "contributes": [
-      "Designer (Web/Mobile)"
-    ]
+    "contributes": ["Designer (Web/Mobile)"]
   },
   {
     "name": "serkanakman",
-    "contributes": [
-      "Developer (Web)"
-    ]
+    "contributes": ["Developer (Web)"]
   },
   {
     "name": "furkankilic",
-    "contributes": [
-      "Developer (Mobile)"
-    ]
+    "contributes": ["Developer (Mobile)"]
   },
   {
     "name": "mistikk",
-    "contributes": [
-      "Developer (Mobile)"
-    ]
+    "contributes": ["Developer (Mobile)"]
   },
   {
     "name": "u-e",
-    "contributes": [
-      "Developer (Mobile)"
-    ]
+    "contributes": ["Developer (Mobile)"]
   },
   {
     "name": "hsynterkr",
-    "contributes": [
-      "Developer (Mobile)"
-    ]
+    "contributes": ["Developer (Mobile)"]
   },
   {
     "name": "davidke20",
-    "contributes":[
-      "Translation (Chinese)"
-    ]
+    "contributes": ["Translation (Chinese)"]
   },
   {
     "name": "bhattg",
-    "contributes": [
-      "Translation (Hindi)"
-    ]
+    "contributes": ["Translation (Hindi)"]
   },
   {
     "name": "pedrobrito2004",
-    "contributes": [
-      "Translation (Spanish)"
-    ]
+    "contributes": ["Translation (Spanish)"]
   },
   {
     "name": "anaboadas",
-    "contributes": [
-      "Translation (Spanish)"
-    ]
+    "contributes": ["Translation (Spanish)"]
   },
   {
     "name": "inteligentzia",
-    "contributes": [
-      "Translation (Spanish)"
-    ]
+    "contributes": ["Translation (Spanish)"]
   },
   {
     "name": "jza",
-    "contributes": [
-      "Translation (Spanish)"
-    ]
+    "contributes": ["Translation (Spanish)"]
   },
   {
     "name": "micefy",
-    "contributes": [
-      "Translation (Finnish)"
-    ]
+    "contributes": ["Translation (Finnish)"]
   },
   {
     "name": "oks2crypto",
-    "contributes": [
-      "Translation (Serbian)"
-    ]
+    "contributes": ["Translation (Serbian)"]
   },
   {
     "name": "trumpikas",
-    "contributes": [
-      "Translation (Estonian)"
-    ]
+    "contributes": ["Translation (Estonian)"]
   },
   {
     "name": "c21c",
-    "contributes": [
-      "Translation (Ukrainian)"
-    ]
+    "contributes": ["Translation (Ukrainian)"]
   },
   {
     "name": "prolinuxua",
-    "contributes": [
-      "Translation (Ukrainian)"
-    ]
+    "contributes": ["Translation (Ukrainian)"]
   },
   {
     "name": "erikaflynn",
-    "contributes": [
-      "Translation (Ukrainian, Russian)"
-    ]
+    "contributes": ["Translation (Ukrainian, Russian)"]
   },
   {
     "name": "bahagia-arbi",
-    "contributes": [
-      "Translation (Indonesian)"
-    ]
+    "contributes": ["Translation (Indonesian)"]
   },
   {
     "name": "zoneboy",
-    "contributes": [
-      "Translation (Nigerian Pidgin)"
-    ]
+    "contributes": ["Translation (Nigerian Pidgin)"]
   },
   {
     "name": "erikah",
-    "contributes": [
-      "Translation (Hungarian, Romanian)"
-    ]
+    "contributes": ["Translation (Hungarian, Romanian)"]
   },
   {
     "name": "louis88",
-    "contributes": [
-      "Translation (German)"
-    ]
+    "contributes": ["Translation (German)"]
   },
   {
     "name": "xmauron3",
-    "contributes": [
-      "Translation (Portuguese)"
-    ]
+    "contributes": ["Translation (Portuguese)"]
   },
   {
     "name": "charlie777pt",
-    "contributes": [
-      "Translation (Portuguese)"
-    ]
+    "contributes": ["Translation (Portuguese)"]
   },
   {
     "name": "cryptobdschool",
-    "contributes": [
-      "Translation (Bengali)"
-    ]
+    "contributes": ["Translation (Bengali)"]
   },
   {
     "name": "dragon8king",
-    "contributes": [
-      "Translation (Chinese)"
-    ]
+    "contributes": ["Translation (Chinese)"]
   },
   {
     "name": "tomoyan",
-    "contributes": [
-      "Translation (Japanese)"
-    ]
+    "contributes": ["Translation (Japanese)"]
   },
   {
     "name": "irisworld",
-    "contributes": [
-      "Translation (Russian, Korean)"
-    ]
+    "contributes": ["Translation (Russian, Korean)"]
   },
   {
     "name": "dakeshi",
-    "contributes": [
-      "Translation (Korean)"
-    ]
+    "contributes": ["Translation (Korean)"]
   },
   {
     "name": "joeypark",
-    "contributes": [
-      "Translation (Korean)"
-    ]
+    "contributes": ["Translation (Korean)"]
   },
   {
     "name": "crazy-unicorn",
-    "contributes": [
-      "Translation (French)"
-    ]
+    "contributes": ["Translation (French)"]
   },
   {
     "name": "roozeec",
-    "contributes": [
-      "Translation (French)"
-    ]
+    "contributes": ["Translation (French)"]
   },
   {
     "name": "pjo",
-    "contributes": [
-      "Translation (Lithuanian)"
-    ]
+    "contributes": ["Translation (Lithuanian)"]
   },
   {
     "name": "cibrani",
-    "contributes": [
-      "Translation (Kurdish)"
-    ]
+    "contributes": ["Translation (Kurdish)"]
   },
   {
     "name": "dunsky",
-    "contributes": [
-      "Translation (Russian)"
-    ]
+    "contributes": ["Translation (Russian)"]
   },
   {
     "name": "lenancie",
-    "contributes": [
-      "Translation (Vietnamese)"
-    ]
+    "contributes": ["Translation (Vietnamese)"]
   },
   {
     "name": "factism",
-    "contributes": [
-      "Translation (Yoruba)"
-    ]
+    "contributes": ["Translation (Yoruba)"]
   },
   {
     "name": "deepresearch",
-    "contributes": [
-      "Translation (Polish)"
-    ]
+    "contributes": ["Translation (Polish)"]
   },
   {
     "name": "gtg",
-    "contributes": [
-      "Proofread (Polish)"
-    ]
+    "contributes": ["Proofread (Polish)"]
   },
   {
     "name": "davidesimoncini",
-    "contributes":[
-      "Translation (Italian)"
-    ]
+    "contributes": ["Translation (Italian)"]
   },
   {
     "name": "iliyan90",
-    "contributes":[
-      "Translation (Bulgarian)"
-    ]
+    "contributes": ["Translation (Bulgarian)"]
   },
   {
     "name": "ivangeevo",
-    "contributes":[
-      "Translation (Bulgarian)"
-    ]
+    "contributes": ["Translation (Bulgarian)"]
   },
   {
     "name": "venan",
-    "contributes":[
-      "Translation (Bulgarian)"
-    ]
+    "contributes": ["Translation (Bulgarian)"]
   },
   {
     "name": "acidyo",
-    "contributes":[
-      "Onboarding"
-    ]
+    "contributes": ["Onboarding"]
   },
   {
     "name": "bluemist",
-    "contributes":[
-      "Onboarding"
-    ]
+    "contributes": ["Onboarding"]
   },
   {
     "name": "melinda010100",
-    "contributes":[
-      "Thought Leader"
-    ]
+    "contributes": ["Thought Leader"]
   },
   {
     "name": "jznsamuel",
-    "contributes":[
-      "Thought Leader"
-    ]
+    "contributes": ["Thought Leader"]
   },
   {
     "name": "dodolzk",
-    "contributes":[
-      "Translation (Indonesian)"
-    ]
+    "contributes": ["Translation (Indonesian)"]
   },
   {
     "name": "seckorama",
-    "contributes":[
-      "Curator"
-    ]
+    "contributes": ["Curator"]
   },
   {
     "name": "yandot",
-    "contributes":[
-      "Curator"
-    ]
+    "contributes": ["Curator"]
   },
   {
     "name": "iamjadeline",
-    "contributes":[
-      "Curator"
-    ]
+    "contributes": ["Curator"]
   },
   {
     "name": "sultan-indo",
-    "contributes":[
-      "Curator"
-    ]
+    "contributes": ["Curator"]
   },
   {
     "name": "stevenson7",
-    "contributes":[
-      "Curator"
-    ]
+    "contributes": ["Curator"]
   },
   {
     "name": "nicanor-mosquera",
-    "contributes":[
-      "Curator"
-    ]
+    "contributes": ["Curator"]
   },
   {
     "name": "tpkidkai",
-    "contributes":[
-      "Curator"
-    ]
+    "contributes": ["Curator"]
   },
   {
     "name": "dayatsiaulia",
-    "contributes":[
-      "Curator"
-    ]
+    "contributes": ["Curator"]
   },
   {
     "name": "foxkoit",
-    "contributes":[
-      "Thought Leader"
-    ]
+    "contributes": ["Thought Leader"]
   },
   {
     "name": "forykw",
-    "contributes":[
-      "Tester",
-      "Troubleshooter",
-      "Developer"
-    ]
+    "contributes": ["Tester", "Troubleshooter", "Developer"]
+  },
+  {
+    "name": "damla",
+    "contributes": ["Translation (Turkish)"]
+  },
+  {
+    "name": "jywahaha",
+    "contributes": ["Translation (Chinese)"]
+  },
+  {
+    "name": "sudeginsiu",
+    "contributes": ["Translation (Lithuanian and Russian)"]
+  },
+  {
+    "name": "lofone",
+    "contributes": ["Translation (Acehnese)", "Guest Curator"]
+  },
+  {
+    "name": "fiatgirl",
+    "contributes": ["Translation (Dutch)"]
+  },
+  {
+    "name": "yaziris",
+    "contributes": ["Translation (Arabian)"]
+  },
+  {
+    "name": "shahinF27",
+    "contributes": ["Translation (Azerbaijani)"]
+  },
+  {
+    "name": "dzoji",
+    "contributes": ["Translation (Bosnian)"]
+  },
+  {
+    "name": "therealflaws",
+    "contributes": ["Translation (Spanish)"]
+  },
+  {
+    "name": "teooo",
+    "contributes": ["Translation (Lithuanian)"]
+  },
+  {
+    "name": "samostically",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "infinitytcg",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "luizeba",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "ziabutt3836",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "suncooper",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "weone",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "beeber",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "unklebonehead",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "fsc69",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "mypathtofire",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "underlock",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "jane1289",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "chaosmagic23",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "missingnins",
+    "contributes": ["Translation (Malay)"]
+  },
+  {
+    "name": "susurrodmisterio",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "brittandjosie",
+    "contributes": ["Thought Leader"]
+  },
+  {
+    "name": "luizeba",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "palomap3",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "solox",
+    "contributes": ["Translation (Russian)"]
   }
 ]

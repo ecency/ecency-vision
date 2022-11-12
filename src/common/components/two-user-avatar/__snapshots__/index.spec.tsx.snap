@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserAvatar (1) Should render small size 1`] = `
+<div
+  className="route d-flex"
+>
+  <span
+    className="two-user-avatar small"
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+      }
+    }
+  />
+  <span
+    className="two-user-avatar small"
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/demo/avatar/small)",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`UserAvatar (2) Should render normal size 1`] = `
+<div
+  className="route d-flex"
+>
+  <span
+    className="two-user-avatar normal"
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
+      }
+    }
+  />
+  <span
+    className="two-user-avatar normal"
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/demo/avatar/small)",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`UserAvatar (3) Should render medium size 1`] = `
+<div
+  className="route d-flex"
+>
+  <span
+    className="two-user-avatar medium"
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/medium)",
+      }
+    }
+  />
+  <span
+    className="two-user-avatar medium"
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/demo/avatar/medium)",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`UserAvatar (4) Should render large size 1`] = `
+<div
+  className="route d-flex"
+>
+  <span
+    className="two-user-avatar large"
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/medium)",
+      }
+    }
+  />
+  <span
+    className="two-user-avatar large"
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/demo/avatar/medium)",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`UserAvatar (5) Should render xlarge size 1`] = `
+<div
+  className="route d-flex"
+>
+  <span
+    className="two-user-avatar xLarge"
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/large)",
+      }
+    }
+  />
+  <span
+    className="two-user-avatar xLarge"
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/demo/avatar/large)",
+      }
+    }
+  />
+</div>
+`;

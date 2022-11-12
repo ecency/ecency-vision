@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render market rate 1`] = `
+<div>
+  <small
+    className="market-info font-weight-bold d-block mb-4 "
+  >
+    1 
+    HBD($)
+     = 
+    2.000
+     
+    HIVE
+    <span
+      className="text-secondary ml-1"
+    >
+      ($
+      12.000
+      )
+    </span>
+  </small>
+  <div
+    className="list-group"
+    onKeyDown={[Function]}
+  >
+    <div
+      className="list-group-item"
+      data-rb-event-key={null}
+      disabled={false}
+      onClick={[Function]}
+    >
+      <div
+        className="d-flex justify-content-between"
+      >
+        <span>
+          Fee
+        </span>
+        <span
+          className="badge badge-success text-white"
+        >
+          Free
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

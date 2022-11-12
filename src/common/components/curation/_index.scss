@@ -125,6 +125,7 @@
 
       .avatar {
         width: 40px;
+        height: 40px;
         display: none;
         @media (min-width: $sm-break) {
           display: block;

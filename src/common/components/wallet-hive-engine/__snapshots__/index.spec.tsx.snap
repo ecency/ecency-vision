@@ -29,6 +29,99 @@ exports[`(1) Render an empty list when no tokens found 1`] = `
         </div>
       </div>
       <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Tokens Value
+          </div>
+          <div
+            className="description"
+          >
+            The approximate US Dollar value for all engine tokens in your wallet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            <span>
+               
+              $0.00
+               
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="wallet-info"
+      >
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            <div
+              className="amount-actions"
+            >
+              <span
+                className="sort-svg"
+              >
+                <svg
+                  className="bi bi-sort-down-alt"
+                  color="#357ce6"
+                  fill="currentColor"
+                  height="20"
+                  viewBox="0 0 16 16"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"
+                  />
+                </svg>
+                 
+              </span>
+              <div
+                className="custom-dropdown float-top"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Sort
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
         className="entry-list"
       >
         <div
@@ -121,6 +214,36 @@ exports[`(1) Render an empty list when no tokens found 1`] = `
           </svg>
         </span>
       </a>
+      <a
+        className="menu-item spk"
+        href="/@user1/spk"
+        onClick={[Function]}
+      >
+        <span
+          className="title"
+        >
+          SPK
+        </span>
+        <span
+          className="sub-title"
+        >
+          Tokens
+        </span>
+        <span
+          className="platform-logo"
+        >
+          <svg
+            viewBox="0 0 512 512"
+          >
+            <path
+              clipRule="evenodd"
+              d="M508.297 4.47022L426.843 94.3876L512 207.049L432.661 208.107L382.942 140.933L367.603 155.743V208.107H299.901V144.107C299.901 144.107 291.967 150.454 279.273 153.627C266.579 156.801 253.355 156.801 253.355 156.801H213.686V208.107H145.455V199.644C145.455 199.644 131.702 212.338 90.4463 212.867C49.1901 213.396 0 190.652 0 190.652L23.2727 141.462C23.2727 141.462 62.9421 161.561 90.4463 159.446C117.95 157.33 114.777 148.867 114.777 148.867C114.777 138.25 96.648 134.663 73.3864 130.06C68.8348 129.159 64.0868 128.22 59.2397 127.181C29.6198 120.834 4.2314 107.237 4.2314 68.4702C4.2314 -13.5133 123.769 0.23893 131.702 1.8257C139.636 3.41246 143.868 4.47022 143.868 4.47022H253.355C253.355 4.47022 263.405 4.47022 279.802 8.70172C296.198 12.9332 299.901 18.7512 299.901 18.7512V4.47022H367.603V75.8752L435.306 4.47022H508.297ZM145.455 64.2389V91.2141C145.455 91.2141 126.942 85.3959 110.545 80.6356C106.006 79.3176 100.979 78.405 96.0835 77.5162C83.2978 75.195 71.405 73.0359 71.405 64.2389C71.405 52.0736 92.0331 51.0158 107.901 52.6025C123.769 54.1893 145.455 64.2389 145.455 64.2389ZM214.215 57.8918V104.966H246.479C259.438 101.925 266.05 92.8009 266.05 81.1645C266.05 71.6041 261.818 61.0654 246.479 57.8918H214.215Z"
+              fill="currentColor"
+              fillRule="evenodd"
+            />
+          </svg>
+        </span>
+      </a>
     </div>
   </div>
 </div>
@@ -155,6 +278,99 @@ exports[`(2) Render with some hive engine tokens 1`] = `
         </div>
       </div>
       <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Tokens Value
+          </div>
+          <div
+            className="description"
+          >
+            The approximate US Dollar value for all engine tokens in your wallet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            <span>
+               
+              $NaN
+               
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="wallet-info"
+      >
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            <div
+              className="amount-actions"
+            >
+              <span
+                className="sort-svg"
+              >
+                <svg
+                  className="bi bi-sort-down-alt"
+                  color="#357ce6"
+                  fill="currentColor"
+                  height="20"
+                  viewBox="0 0 16 16"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"
+                  />
+                </svg>
+                 
+              </span>
+              <div
+                className="custom-dropdown float-top"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Sort
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
         className="entry-list"
       >
         <div
@@ -175,37 +391,45 @@ exports[`(2) Render with some hive engine tokens 1`] = `
               PIZZA
             </div>
             <div
-              className="ml-auto mr-1"
+              className="ml-auto d-flex flex-column justify-between"
             >
               <div
-                className="d-flex align-items-center"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                onMouseOut={[Function]}
-                onMouseOver={[Function]}
+                className="d-flex mb-1 align-self-end"
               >
-                <span
-                  className="info-icon mr-0 mr-md-2"
+                <div
+                  className="entry-body mr-md-2"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <span
+                    className="item-balance"
                   >
-                    <path
-                      d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    1.0
+                  </span>
+                </div>
+                <div
+                  className="ml-1"
+                >
+                  <div
+                    className="d-flex align-items-center"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                  >
+                    <span
+                      className="info-icon mr-0 mr-md-2"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div
-              className="entry-body mr-md-2"
-            >
-              <span
-                className="item-balance"
-              >
-                1.0
-              </span>
             </div>
           </div>
           <div
@@ -223,37 +447,45 @@ exports[`(2) Render with some hive engine tokens 1`] = `
               POB
             </div>
             <div
-              className="ml-auto mr-1"
+              className="ml-auto d-flex flex-column justify-between"
             >
               <div
-                className="d-flex align-items-center"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                onMouseOut={[Function]}
-                onMouseOver={[Function]}
+                className="d-flex mb-1 align-self-end"
               >
-                <span
-                  className="info-icon mr-0 mr-md-2"
+                <div
+                  className="entry-body mr-md-2"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <span
+                    className="item-balance"
                   >
-                    <path
-                      d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    0
+                  </span>
+                </div>
+                <div
+                  className="ml-1"
+                >
+                  <div
+                    className="d-flex align-items-center"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                  >
+                    <span
+                      className="info-icon mr-0 mr-md-2"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div
-              className="entry-body mr-md-2"
-            >
-              <span
-                className="item-balance"
-              >
-                0
-              </span>
             </div>
           </div>
         </div>
@@ -338,6 +570,36 @@ exports[`(2) Render with some hive engine tokens 1`] = `
             <path
               d="M 226.63385,494.21287 A 38.3444,37.175214 0 0 0 153.83361,475.22554 257.02086,249.18385 0 0 1 103.53493,447.0743 38.334092,37.165221 0 0 0 50.192923,395.44372 253.78942,246.05095 0 0 1 21.179508,346.66625 38.3444,37.175214 0 0 0 1.66458,276.06583 a 254.27646,246.52314 0 0 1 0,-56.32245 38.334092,37.165221 0 0 0 19.576775,-70.59294 256.99767,249.16137 0 0 1 29.034029,-48.77497 38.3444,37.175214 0 0 0 53.256966,-51.73051 254.23523,246.48315 0 0 1 50.30899,-28.111257 38.3444,37.175214 0 0 0 72.83374,-18.9198855 254.18884,246.43819 0 0 1 58.08353,0 38.334092,37.165221 0 0 0 72.78993,18.9873395 257.52851,249.67603 0 0 1 50.29867,28.143736 38.3444,37.175214 0 0 0 53.35748,51.630577 254.03681,246.29078 0 0 1 28.99538,48.79496 38.3444,37.175214 0 0 0 19.51235,70.59293 253.70438,245.9685 0 0 1 0,56.35244 38.334092,37.165221 0 0 0 -19.58451,70.57044 257.22186,249.37873 0 0 1 -29.0366,48.76749 38.3444,37.175214 0 0 0 -53.25697,51.7305 253.44927,245.72117 0 0 1 -50.3296,28.11126 38.3444,37.175214 0 0 0 -72.81055,18.91989 252.9545,245.24149 0 0 1 -58.07322,0 z M 63.98196,247.91459 A 191.72201,185.87607 0 1 0 255.70396,62.03853 191.72201,185.87607 0 0 0 63.98196,247.91459 Z M 192.92274,388.54083 353.40745,282.97622 256.9383,212.2159 328.06098,111.68043 A 158.05726,153.23783 0 0 1 192.92274,388.54083 Z M 112.80407,182.5157 A 158.05984,153.24032 0 0 1 319.96175,107.90295 L 159.19101,213.45507 256.30438,282.98621 185.06832,384.9932 A 158.05984,153.24032 0 0 1 112.80407,182.5157 Z"
               fill="currentColor"
+            />
+          </svg>
+        </span>
+      </a>
+      <a
+        className="menu-item spk"
+        href="/@user1/spk"
+        onClick={[Function]}
+      >
+        <span
+          className="title"
+        >
+          SPK
+        </span>
+        <span
+          className="sub-title"
+        >
+          Tokens
+        </span>
+        <span
+          className="platform-logo"
+        >
+          <svg
+            viewBox="0 0 512 512"
+          >
+            <path
+              clipRule="evenodd"
+              d="M508.297 4.47022L426.843 94.3876L512 207.049L432.661 208.107L382.942 140.933L367.603 155.743V208.107H299.901V144.107C299.901 144.107 291.967 150.454 279.273 153.627C266.579 156.801 253.355 156.801 253.355 156.801H213.686V208.107H145.455V199.644C145.455 199.644 131.702 212.338 90.4463 212.867C49.1901 213.396 0 190.652 0 190.652L23.2727 141.462C23.2727 141.462 62.9421 161.561 90.4463 159.446C117.95 157.33 114.777 148.867 114.777 148.867C114.777 138.25 96.648 134.663 73.3864 130.06C68.8348 129.159 64.0868 128.22 59.2397 127.181C29.6198 120.834 4.2314 107.237 4.2314 68.4702C4.2314 -13.5133 123.769 0.23893 131.702 1.8257C139.636 3.41246 143.868 4.47022 143.868 4.47022H253.355C253.355 4.47022 263.405 4.47022 279.802 8.70172C296.198 12.9332 299.901 18.7512 299.901 18.7512V4.47022H367.603V75.8752L435.306 4.47022H508.297ZM145.455 64.2389V91.2141C145.455 91.2141 126.942 85.3959 110.545 80.6356C106.006 79.3176 100.979 78.405 96.0835 77.5162C83.2978 75.195 71.405 73.0359 71.405 64.2389C71.405 52.0736 92.0331 51.0158 107.901 52.6025C123.769 54.1893 145.455 64.2389 145.455 64.2389ZM214.215 57.8918V104.966H246.479C259.438 101.925 266.05 92.8009 266.05 81.1645C266.05 71.6041 261.818 61.0654 246.479 57.8918H214.215Z"
+              fill="currentColor"
+              fillRule="evenodd"
             />
           </svg>
         </span>
@@ -394,6 +656,99 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
         </div>
       </div>
       <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Tokens Value
+          </div>
+          <div
+            className="description"
+          >
+            The approximate US Dollar value for all engine tokens in your wallet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            <span>
+               
+              $NaN
+               
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="wallet-info"
+      >
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            <div
+              className="amount-actions"
+            >
+              <span
+                className="sort-svg"
+              >
+                <svg
+                  className="bi bi-sort-down-alt"
+                  color="#357ce6"
+                  fill="currentColor"
+                  height="20"
+                  viewBox="0 0 16 16"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"
+                  />
+                </svg>
+                 
+              </span>
+              <div
+                className="custom-dropdown float-top"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Sort
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
         className="entry-list"
       >
         <div
@@ -414,37 +769,45 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
               PIZZA
             </div>
             <div
-              className="ml-auto mr-1"
+              className="ml-auto d-flex flex-column justify-between"
             >
               <div
-                className="d-flex align-items-center"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                onMouseOut={[Function]}
-                onMouseOver={[Function]}
+                className="d-flex mb-1 align-self-end"
               >
-                <span
-                  className="info-icon mr-0 mr-md-2"
+                <div
+                  className="entry-body mr-md-2"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <span
+                    className="item-balance"
                   >
-                    <path
-                      d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    1.0
+                  </span>
+                </div>
+                <div
+                  className="ml-1"
+                >
+                  <div
+                    className="d-flex align-items-center"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                  >
+                    <span
+                      className="info-icon mr-0 mr-md-2"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div
-              className="entry-body mr-md-2"
-            >
-              <span
-                className="item-balance"
-              >
-                1.0
-              </span>
             </div>
           </div>
           <div
@@ -462,37 +825,45 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
               POB
             </div>
             <div
-              className="ml-auto mr-1"
+              className="ml-auto d-flex flex-column justify-between"
             >
               <div
-                className="d-flex align-items-center"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                onMouseOut={[Function]}
-                onMouseOver={[Function]}
+                className="d-flex mb-1 align-self-end"
               >
-                <span
-                  className="info-icon mr-0 mr-md-2"
+                <div
+                  className="entry-body mr-md-2"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <span
+                    className="item-balance"
                   >
-                    <path
-                      d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    0
+                  </span>
+                </div>
+                <div
+                  className="ml-1"
+                >
+                  <div
+                    className="d-flex align-items-center"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                  >
+                    <span
+                      className="info-icon mr-0 mr-md-2"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div
-              className="entry-body mr-md-2"
-            >
-              <span
-                className="item-balance"
-              >
-                0
-              </span>
             </div>
           </div>
         </div>
@@ -577,6 +948,36 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
             <path
               d="M 226.63385,494.21287 A 38.3444,37.175214 0 0 0 153.83361,475.22554 257.02086,249.18385 0 0 1 103.53493,447.0743 38.334092,37.165221 0 0 0 50.192923,395.44372 253.78942,246.05095 0 0 1 21.179508,346.66625 38.3444,37.175214 0 0 0 1.66458,276.06583 a 254.27646,246.52314 0 0 1 0,-56.32245 38.334092,37.165221 0 0 0 19.576775,-70.59294 256.99767,249.16137 0 0 1 29.034029,-48.77497 38.3444,37.175214 0 0 0 53.256966,-51.73051 254.23523,246.48315 0 0 1 50.30899,-28.111257 38.3444,37.175214 0 0 0 72.83374,-18.9198855 254.18884,246.43819 0 0 1 58.08353,0 38.334092,37.165221 0 0 0 72.78993,18.9873395 257.52851,249.67603 0 0 1 50.29867,28.143736 38.3444,37.175214 0 0 0 53.35748,51.630577 254.03681,246.29078 0 0 1 28.99538,48.79496 38.3444,37.175214 0 0 0 19.51235,70.59293 253.70438,245.9685 0 0 1 0,56.35244 38.334092,37.165221 0 0 0 -19.58451,70.57044 257.22186,249.37873 0 0 1 -29.0366,48.76749 38.3444,37.175214 0 0 0 -53.25697,51.7305 253.44927,245.72117 0 0 1 -50.3296,28.11126 38.3444,37.175214 0 0 0 -72.81055,18.91989 252.9545,245.24149 0 0 1 -58.07322,0 z M 63.98196,247.91459 A 191.72201,185.87607 0 1 0 255.70396,62.03853 191.72201,185.87607 0 0 0 63.98196,247.91459 Z M 192.92274,388.54083 353.40745,282.97622 256.9383,212.2159 328.06098,111.68043 A 158.05726,153.23783 0 0 1 192.92274,388.54083 Z M 112.80407,182.5157 A 158.05984,153.24032 0 0 1 319.96175,107.90295 L 159.19101,213.45507 256.30438,282.98621 185.06832,384.9932 A 158.05984,153.24032 0 0 1 112.80407,182.5157 Z"
               fill="currentColor"
+            />
+          </svg>
+        </span>
+      </a>
+      <a
+        className="menu-item spk"
+        href="/@user1/spk"
+        onClick={[Function]}
+      >
+        <span
+          className="title"
+        >
+          SPK
+        </span>
+        <span
+          className="sub-title"
+        >
+          Tokens
+        </span>
+        <span
+          className="platform-logo"
+        >
+          <svg
+            viewBox="0 0 512 512"
+          >
+            <path
+              clipRule="evenodd"
+              d="M508.297 4.47022L426.843 94.3876L512 207.049L432.661 208.107L382.942 140.933L367.603 155.743V208.107H299.901V144.107C299.901 144.107 291.967 150.454 279.273 153.627C266.579 156.801 253.355 156.801 253.355 156.801H213.686V208.107H145.455V199.644C145.455 199.644 131.702 212.338 90.4463 212.867C49.1901 213.396 0 190.652 0 190.652L23.2727 141.462C23.2727 141.462 62.9421 161.561 90.4463 159.446C117.95 157.33 114.777 148.867 114.777 148.867C114.777 138.25 96.648 134.663 73.3864 130.06C68.8348 129.159 64.0868 128.22 59.2397 127.181C29.6198 120.834 4.2314 107.237 4.2314 68.4702C4.2314 -13.5133 123.769 0.23893 131.702 1.8257C139.636 3.41246 143.868 4.47022 143.868 4.47022H253.355C253.355 4.47022 263.405 4.47022 279.802 8.70172C296.198 12.9332 299.901 18.7512 299.901 18.7512V4.47022H367.603V75.8752L435.306 4.47022H508.297ZM145.455 64.2389V91.2141C145.455 91.2141 126.942 85.3959 110.545 80.6356C106.006 79.3176 100.979 78.405 96.0835 77.5162C83.2978 75.195 71.405 73.0359 71.405 64.2389C71.405 52.0736 92.0331 51.0158 107.901 52.6025C123.769 54.1893 145.455 64.2389 145.455 64.2389ZM214.215 57.8918V104.966H246.479C259.438 101.925 266.05 92.8009 266.05 81.1645C266.05 71.6041 261.818 61.0654 246.479 57.8918H214.215Z"
+              fill="currentColor"
+              fillRule="evenodd"
             />
           </svg>
         </span>
@@ -615,6 +1016,99 @@ exports[`(4) Render an empty list if tokens equals zero 1`] = `
         </div>
       </div>
       <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Tokens Value
+          </div>
+          <div
+            className="description"
+          >
+            The approximate US Dollar value for all engine tokens in your wallet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            <span>
+               
+              $NaN
+               
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="wallet-info"
+      >
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            <div
+              className="amount-actions"
+            >
+              <span
+                className="sort-svg"
+              >
+                <svg
+                  className="bi bi-sort-down-alt"
+                  color="#357ce6"
+                  fill="currentColor"
+                  height="20"
+                  viewBox="0 0 16 16"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"
+                  />
+                </svg>
+                 
+              </span>
+              <div
+                className="custom-dropdown float-top"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Sort
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
         className="entry-list"
       >
         <div
@@ -707,6 +1201,36 @@ exports[`(4) Render an empty list if tokens equals zero 1`] = `
           </svg>
         </span>
       </a>
+      <a
+        className="menu-item spk"
+        href="/@user1/spk"
+        onClick={[Function]}
+      >
+        <span
+          className="title"
+        >
+          SPK
+        </span>
+        <span
+          className="sub-title"
+        >
+          Tokens
+        </span>
+        <span
+          className="platform-logo"
+        >
+          <svg
+            viewBox="0 0 512 512"
+          >
+            <path
+              clipRule="evenodd"
+              d="M508.297 4.47022L426.843 94.3876L512 207.049L432.661 208.107L382.942 140.933L367.603 155.743V208.107H299.901V144.107C299.901 144.107 291.967 150.454 279.273 153.627C266.579 156.801 253.355 156.801 253.355 156.801H213.686V208.107H145.455V199.644C145.455 199.644 131.702 212.338 90.4463 212.867C49.1901 213.396 0 190.652 0 190.652L23.2727 141.462C23.2727 141.462 62.9421 161.561 90.4463 159.446C117.95 157.33 114.777 148.867 114.777 148.867C114.777 138.25 96.648 134.663 73.3864 130.06C68.8348 129.159 64.0868 128.22 59.2397 127.181C29.6198 120.834 4.2314 107.237 4.2314 68.4702C4.2314 -13.5133 123.769 0.23893 131.702 1.8257C139.636 3.41246 143.868 4.47022 143.868 4.47022H253.355C253.355 4.47022 263.405 4.47022 279.802 8.70172C296.198 12.9332 299.901 18.7512 299.901 18.7512V4.47022H367.603V75.8752L435.306 4.47022H508.297ZM145.455 64.2389V91.2141C145.455 91.2141 126.942 85.3959 110.545 80.6356C106.006 79.3176 100.979 78.405 96.0835 77.5162C83.2978 75.195 71.405 73.0359 71.405 64.2389C71.405 52.0736 92.0331 51.0158 107.901 52.6025C123.769 54.1893 145.455 64.2389 145.455 64.2389ZM214.215 57.8918V104.966H246.479C259.438 101.925 266.05 92.8009 266.05 81.1645C266.05 71.6041 261.818 61.0654 246.479 57.8918H214.215Z"
+              fill="currentColor"
+              fillRule="evenodd"
+            />
+          </svg>
+        </span>
+      </a>
     </div>
   </div>
 </div>
@@ -737,6 +1261,99 @@ exports[`(5) usePrivate = false 1`] = `
             className="description"
           >
             Hive Engine is a smart contracts side-chain platform for the Hive blockchain.
+          </div>
+        </div>
+      </div>
+      <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Tokens Value
+          </div>
+          <div
+            className="description"
+          >
+            The approximate US Dollar value for all engine tokens in your wallet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            <span>
+               
+              $NaN
+               
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="wallet-info"
+      >
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            <div
+              className="amount-actions"
+            >
+              <span
+                className="sort-svg"
+              >
+                <svg
+                  className="bi bi-sort-down-alt"
+                  color="#357ce6"
+                  fill="currentColor"
+                  height="20"
+                  viewBox="0 0 16 16"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"
+                  />
+                </svg>
+                 
+              </span>
+              <div
+                className="custom-dropdown float-top"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Sort
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -805,6 +1422,36 @@ exports[`(5) usePrivate = false 1`] = `
             <path
               d="M 226.63385,494.21287 A 38.3444,37.175214 0 0 0 153.83361,475.22554 257.02086,249.18385 0 0 1 103.53493,447.0743 38.334092,37.165221 0 0 0 50.192923,395.44372 253.78942,246.05095 0 0 1 21.179508,346.66625 38.3444,37.175214 0 0 0 1.66458,276.06583 a 254.27646,246.52314 0 0 1 0,-56.32245 38.334092,37.165221 0 0 0 19.576775,-70.59294 256.99767,249.16137 0 0 1 29.034029,-48.77497 38.3444,37.175214 0 0 0 53.256966,-51.73051 254.23523,246.48315 0 0 1 50.30899,-28.111257 38.3444,37.175214 0 0 0 72.83374,-18.9198855 254.18884,246.43819 0 0 1 58.08353,0 38.334092,37.165221 0 0 0 72.78993,18.9873395 257.52851,249.67603 0 0 1 50.29867,28.143736 38.3444,37.175214 0 0 0 53.35748,51.630577 254.03681,246.29078 0 0 1 28.99538,48.79496 38.3444,37.175214 0 0 0 19.51235,70.59293 253.70438,245.9685 0 0 1 0,56.35244 38.334092,37.165221 0 0 0 -19.58451,70.57044 257.22186,249.37873 0 0 1 -29.0366,48.76749 38.3444,37.175214 0 0 0 -53.25697,51.7305 253.44927,245.72117 0 0 1 -50.3296,28.11126 38.3444,37.175214 0 0 0 -72.81055,18.91989 252.9545,245.24149 0 0 1 -58.07322,0 z M 63.98196,247.91459 A 191.72201,185.87607 0 1 0 255.70396,62.03853 191.72201,185.87607 0 0 0 63.98196,247.91459 Z M 192.92274,388.54083 353.40745,282.97622 256.9383,212.2159 328.06098,111.68043 A 158.05726,153.23783 0 0 1 192.92274,388.54083 Z M 112.80407,182.5157 A 158.05984,153.24032 0 0 1 319.96175,107.90295 L 159.19101,213.45507 256.30438,282.98621 185.06832,384.9932 A 158.05984,153.24032 0 0 1 112.80407,182.5157 Z"
               fill="currentColor"
+            />
+          </svg>
+        </span>
+      </a>
+      <a
+        className="menu-item spk"
+        href="/@user1/spk"
+        onClick={[Function]}
+      >
+        <span
+          className="title"
+        >
+          SPK
+        </span>
+        <span
+          className="sub-title"
+        >
+          Tokens
+        </span>
+        <span
+          className="platform-logo"
+        >
+          <svg
+            viewBox="0 0 512 512"
+          >
+            <path
+              clipRule="evenodd"
+              d="M508.297 4.47022L426.843 94.3876L512 207.049L432.661 208.107L382.942 140.933L367.603 155.743V208.107H299.901V144.107C299.901 144.107 291.967 150.454 279.273 153.627C266.579 156.801 253.355 156.801 253.355 156.801H213.686V208.107H145.455V199.644C145.455 199.644 131.702 212.338 90.4463 212.867C49.1901 213.396 0 190.652 0 190.652L23.2727 141.462C23.2727 141.462 62.9421 161.561 90.4463 159.446C117.95 157.33 114.777 148.867 114.777 148.867C114.777 138.25 96.648 134.663 73.3864 130.06C68.8348 129.159 64.0868 128.22 59.2397 127.181C29.6198 120.834 4.2314 107.237 4.2314 68.4702C4.2314 -13.5133 123.769 0.23893 131.702 1.8257C139.636 3.41246 143.868 4.47022 143.868 4.47022H253.355C253.355 4.47022 263.405 4.47022 279.802 8.70172C296.198 12.9332 299.901 18.7512 299.901 18.7512V4.47022H367.603V75.8752L435.306 4.47022H508.297ZM145.455 64.2389V91.2141C145.455 91.2141 126.942 85.3959 110.545 80.6356C106.006 79.3176 100.979 78.405 96.0835 77.5162C83.2978 75.195 71.405 73.0359 71.405 64.2389C71.405 52.0736 92.0331 51.0158 107.901 52.6025C123.769 54.1893 145.455 64.2389 145.455 64.2389ZM214.215 57.8918V104.966H246.479C259.438 101.925 266.05 92.8009 266.05 81.1645C266.05 71.6041 261.818 61.0654 246.479 57.8918H214.215Z"
+              fill="currentColor"
+              fillRule="evenodd"
             />
           </svg>
         </span>

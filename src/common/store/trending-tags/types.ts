@@ -14,7 +14,7 @@ export interface TrendingTags {
 export enum ActionTypes {
   FETCH = "@trending-tags/FETCH",
   FETCHED = "@trending-tags/FETCHED",
-  FETCH_ERROR = "@trending-tags/FETCH_ERROR",
+  FETCH_ERROR = "@trending-tags/FETCH_ERROR"
 }
 
 export interface FetchAction {

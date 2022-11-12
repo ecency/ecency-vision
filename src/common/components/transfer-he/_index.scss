@@ -1,0 +1,218 @@
+// do not wrap this. transfer also works in other dialogs.
+
+.transfer-dialog-content {
+
+  .transaction-form-body.powering-down {
+    text-align: center;
+    @include themify(day) {
+      color: $steel-grey;
+    }
+
+    @include themify(night) {
+      color: $metallic-blue;
+    }
+  }
+
+  .power-down-estimation, .balance {
+    margin-top: 16px;
+    font-weight: 300;
+    padding-left: 20px;
+  }
+
+  .balance {
+    margin-top: 16px;
+    font-weight: 300;
+    padding-left: 20px;
+
+    @media (min-width: $sm-break) {
+      display: flex;
+      align-items: center;
+    }
+
+    @include themify(day) {
+      color: $charcoal-grey;
+    }
+
+    @include themify(night) {
+      color: $pinkish-grey;
+    }
+
+    .balance-num {
+      color: $dark-sky-blue;
+      cursor: pointer;
+      margin-left: 2px;
+    }
+
+    .balance-hp-hint {
+      font-size: 90%;
+      opacity: 0.8;
+
+
+      @media (min-width: $sm-break) {
+        margin-left: 10px;
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .power-down-estimation {
+    color: $green1;
+  }
+
+  .confirmation {
+    margin-bottom: 30px;
+
+    .confirm-title {
+      color: $dark-sky-blue;
+      font-size: 20px;
+      font-weight: 500;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    .users {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+
+      .from-user,
+      .to-user,
+      .arrow {
+        height: 100px;
+        width: 100px;
+      }
+
+      .from-user,
+      .to-user {
+        cursor: pointer;
+
+        .user-avatar {
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      .arrow {
+        align-items: center;
+        color: $silver;
+        display: flex;
+        justify-content: center;
+        opacity: 0.4;
+
+        svg {
+          height: 60px;
+          width: 60px;
+        }
+      }
+    }
+
+    .amount {
+      color: $dark-sky-blue;
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .amount-vests {
+      color: $dark-sky-blue;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .memo {
+      color: $warm-grey;
+      font-size: 16px;
+      text-align: center;
+      word-break: break-all;
+    }
+  }
+
+  .success {
+    font-size: 16px;
+    margin-bottom: 30px;
+    text-align: center;
+
+    @include themify(day) {
+      color: $charcoal-grey;
+    }
+
+    @include themify(night) {
+      color: $pinkish-grey;
+    }
+
+    .amount {
+      color: $dark-sky-blue;
+    }
+
+    .from-user,
+    .to-user {
+      font-weight: 700;
+    }
+  }
+
+  .asset-switch {
+    flex-grow: 1;
+    margin-left: 4px;
+
+    .selected {
+      border-width: 0px;
+    }
+
+    .asset {
+      border-radius: 25px;
+      padding: 3px 3px;
+      font-size: 14px;
+      cursor: pointer;
+
+      @media (min-width: $sm-break) {
+        padding: 3px 6px;
+        font-size: 16px;
+      }
+
+      @include themify(day) {
+        color: $steel-grey;
+      }
+
+      @include themify(night) {
+        color: $silver;
+      }
+
+      &:not(:last-child) {
+        margin-right: 4px;
+
+        @media (min-width: $sm-break) {
+          margin-right: 8px;
+        }
+      }
+
+      &.selected {
+        background-color: $silver;
+
+        @include themify(day) {
+          color: $white;
+        }
+
+        @include themify(night) {
+          color: $dark;
+        }
+      }
+    }
+  }
+
+  .tr-form-text {
+    padding-left: 20px;
+  }
+
+  .override-warning {
+    font-size: 10px;
+    margin-left: 20px;
+  }
+
+  .text-muted {
+    color: $steel-grey !important;
+    @include themify(night) {
+      color: $metallic-blue !important;
+    }
+  }
+}

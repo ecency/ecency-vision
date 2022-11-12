@@ -2,30 +2,30 @@
  * Webpack config for production electron main process
  */
 
-import path from 'path';
-import webpack from 'webpack';
-import { merge } from 'webpack-merge';
-import TerserPlugin from 'terser-webpack-plugin';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import baseConfig from './webpack.config.base';
-import CheckNodeEnv from '../internals/scripts/CheckNodeEnv';
-import DeleteSourceMaps from '../internals/scripts/DeleteSourceMaps';
+import path from "path";
+import webpack from "webpack";
+import { merge } from "webpack-merge";
+import TerserPlugin from "terser-webpack-plugin";
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
+import baseConfig from "./webpack.config.base";
+import CheckNodeEnv from "../internals/scripts/CheckNodeEnv";
+import DeleteSourceMaps from "../internals/scripts/DeleteSourceMaps";
 
-CheckNodeEnv('production');
+CheckNodeEnv("production");
 DeleteSourceMaps();
 
 export default merge(baseConfig, {
-  devtool: process.env.DEBUG_PROD === 'true' ? 'source-map' : 'none',
+  devtool: process.env.DEBUG_PROD === "true" ? "source-map" : "none",
 
-  mode: 'production',
+  mode: "production",
 
-  target: 'electron-main',
+  target: "electron-main",
 
-  entry: './app/main.dev.ts',
+  entry: "./app/main.dev.ts",
 
   output: {
-    path: path.join(__dirname, '..'),
-    filename: './app/main.prod.js',
+    path: path.join(__dirname, ".."),
+    filename: "./app/main.prod.js"
   },
 
   optimization: {
@@ -35,16 +35,15 @@ export default merge(baseConfig, {
           new TerserPlugin({
             parallel: true,
             sourceMap: true,
-            cache: true,
-          }),
-        ],
+            cache: true
+          })
+        ]
   },
 
   plugins: [
     new BundleAnalyzerPlugin({
-      analyzerMode:
-        process.env.OPEN_ANALYZER === 'true' ? 'server' : 'disabled',
-      openAnalyzer: process.env.OPEN_ANALYZER === 'true',
+      analyzerMode: process.env.OPEN_ANALYZER === "true" ? "server" : "disabled",
+      openAnalyzer: process.env.OPEN_ANALYZER === "true"
     }),
 
     /**
@@ -57,11 +56,11 @@ export default merge(baseConfig, {
      * development checks
      */
     new webpack.EnvironmentPlugin({
-      NODE_ENV: 'production',
+      NODE_ENV: "production",
       DEBUG_PROD: false,
       START_MINIMIZED: false,
-      E2E_BUILD: false,
-    }),
+      E2E_BUILD: false
+    })
   ],
 
   /**
@@ -71,6 +70,6 @@ export default merge(baseConfig, {
    */
   node: {
     __dirname: false,
-    __filename: false,
-  },
+    __filename: false
+  }
 });

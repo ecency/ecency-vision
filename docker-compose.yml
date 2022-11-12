@@ -5,6 +5,7 @@ services:
     image: ecency/vision:development
     environment:
       - USE_PRIVATE
+      - REDIS_URL
     ports:
       - "3000:3000"
     deploy:
