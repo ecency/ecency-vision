@@ -763,6 +763,10 @@
     "balance": "الرصيد",
     "staked": "مرهون"
   },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
+  },
   "withdraw-routes": {
     "title": "سحب الحسابات",
     "account": "الحساب",
