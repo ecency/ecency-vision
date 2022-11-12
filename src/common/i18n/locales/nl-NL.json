@@ -779,8 +779,8 @@
     "sort-by-delegations-out": "Delegations out"
   },
   "wallet-engine-estimated": {
-    "title": "Estimated Tokens Value",
-    "description": "The approximate US Dollar value for all engine tokens in your wallet."
+    "title": "Geschatte Tokens Waarde",
+    "description": "De geschatte waarde voor alle engine tokens in uw portemonnee in US-dollar."
   },
   "withdraw-routes": {
     "title": "Opname rekeningen",
