@@ -187,9 +187,9 @@
     "title": "Temas"
   },
   "sort-trending-tags": {
-    "sort": "Sort",
-    "ascending": "Ascending",
-    "descending": "Descending"
+    "sort": "Ordenar",
+    "ascending": "Ascendente",
+    "descending": "Descendente"
   },
   "selected-tags": {
     "title": "Destacado"
@@ -769,18 +769,18 @@
     "staked": "Depositados"
   },
   "sort-engine-tokens": {
-    "sort": "Sort",
-    "sort-in-ascending": "Ascending",
-    "sort-in-descending": "Descending",
-    "sort-by-value": "Value",
+    "sort": "Ordenar",
+    "sort-in-ascending": "Ascendente",
+    "sort-in-descending": "Descendente",
+    "sort-by-value": "Valor",
     "sort-by-balance": "Balance",
-    "sort-by-stake": "Stake",
-    "sort-by-delegations-in": "Delegations in",
-    "sort-by-delegations-out": "Delegations out"
+    "sort-by-stake": "Estaca",
+    "sort-by-delegations-in": "Delegaciones recibidas",
+    "sort-by-delegations-out": "Delegaciones emitidas"
   },
   "wallet-engine-estimated": {
-    "title": "Estimated Tokens Value",
-    "description": "The approximate US Dollar value for all engine tokens in your wallet."
+    "title": "Valor de fichas estimadas",
+    "description": "El valor aproximado en Dólar de EE.UU. para todos las fichas del motor en tu cartera."
   },
   "withdraw-routes": {
     "title": "Cuentas de retirada",
