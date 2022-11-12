@@ -186,6 +186,11 @@
   "trending-tags": {
     "title": "विषय"
   },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
+  },
   "selected-tags": {
     "title": "विशेष रुप से प्रदर्शित"
   },
@@ -762,6 +767,16 @@
     "token": "टोकन",
     "balance": "शेष रकम",
     "staked": "दांव पर लगा दिया"
+  },
+  "sort-engine-tokens": {
+    "sort": "Sort",
+    "sort-in-ascending": "Ascending",
+    "sort-in-descending": "Descending",
+    "sort-by-value": "Value",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Stake",
+    "sort-by-delegations-in": "Delegations in",
+    "sort-by-delegations-out": "Delegations out"
   },
   "wallet-engine-estimated": {
     "title": "Estimated Tokens Value",
