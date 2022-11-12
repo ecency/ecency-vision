@@ -54,6 +54,7 @@ interface Props {
 
 interface State {
   tokens: HiveEngineToken[];
+  utokens: HiveEngineToken[];
   rewards: TokenStatus[];
   loading: boolean;
   claiming: boolean;
@@ -67,6 +68,7 @@ interface State {
 export class WalletHiveEngine extends BaseComponent<Props, State> {
   state: State = {
     tokens: [],
+    utokens: [],
     rewards: [],
     loading: true,
     claiming: false,
@@ -178,6 +180,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     let items;
     try {
       items = await getHiveEngineTokenBalances(account.name);
+      this.setState({ utokens: items });
       items = items.filter((token) => token.balance !== 0 || token.stakedBalance !== 0);
       items = this.sort(items);
       this._isMounted && this.setState({ tokens: items });
@@ -242,7 +245,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
   render() {
     const { global, dynamicProps, account, activeUser } = this.props;
-    const { rewards, tokens, loading, claiming, claimed } = this.state;
+    const { rewards, tokens, loading, claiming, claimed, utokens } = this.state;
     const hasUnclaimedRewards = rewards.length > 0;
     const hasMultipleUnclaimedRewards = rewards.length > 1;
     const isMyPage = activeUser && activeUser.username === account.name;
@@ -334,7 +337,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
               </div>
             </div>
 
-            <EngineTokensEstimated account={account} />
+            <EngineTokensEstimated tokens={utokens} dynamicProps={dynamicProps} />
 
             <div className="wallet-info">
               <SortEngineTokens
