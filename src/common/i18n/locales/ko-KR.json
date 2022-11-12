@@ -763,6 +763,10 @@
     "balance": "잔액",
     "staked": "스테이킹됨"
   },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
+  },
   "withdraw-routes": {
     "title": "출금 계정",
     "account": "계정",
