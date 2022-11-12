@@ -33,7 +33,11 @@ export const AdvancedMode = ({}: Props) => {
 
   return (
     <div className="advanced-mode">
-      <MarketObserver fromAsset={fromAsset} toAsset={toAsset} />
+      <MarketObserver
+        fromAsset={fromAsset}
+        toAsset={toAsset}
+        onDayChange={(dayChange) => setDayChange(dayChange)}
+      />
       <AdvancedModeToolbar
         fromAsset={fromAsset}
         toAsset={toAsset}
