@@ -45,6 +45,7 @@ import EntryBodyExtra from "../components/entry-body-extra";
 import EntryTipBtn from "../components/entry-tip-btn";
 import EntryMenu from "../components/entry-menu";
 import AuthorInfoCard from "../components/author-info-card";
+import ReadTime from "../components/entry-read-time";
 
 import * as bridgeApi from "../api/bridge";
 import { comment, formatError } from "../api/operations";
@@ -111,8 +112,6 @@ interface State {
   isMounted: boolean;
   postIsDeleted: boolean;
   deletedEntry: { title: string; body: string; tags: any } | null;
-  readTime: number;
-  wordCount: number;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -130,9 +129,7 @@ class EntryPage extends BaseComponent<Props, State> {
     isMounted: false,
     selection: "",
     postIsDeleted: false,
-    deletedEntry: null,
-    readTime: 1,
-    wordCount: 0
+    deletedEntry: null
   };
 
   commentInput: Ref<HTMLInputElement>;
@@ -146,7 +143,6 @@ class EntryPage extends BaseComponent<Props, State> {
   componentDidMount() {
     this.ensureEntry();
     this.fetchMutedUsers();
-    this.postBodyCount();
     const entry = this.getEntry();
 
     const { location, global } = this.props;
@@ -296,17 +292,6 @@ class EntryPage extends BaseComponent<Props, State> {
   toggleEditHistory = () => {
     const { editHistory } = this.state;
     this.stateSet({ editHistory: !editHistory });
-  };
-
-  postBodyCount = () => {
-    const entry = this.getEntry();
-
-    const wordsWithoutSpace: any = entry?.body.trim()?.split(/\s+/);
-    const totalCount: number = wordsWithoutSpace?.length;
-    const wordPerMinuite: number = 225;
-    const readTime: number = Math.ceil(totalCount / wordPerMinuite);
-
-    this.stateSet({ loading: false, readTime, wordCount: totalCount });
   };
 
   ensureEntry = async () => {
@@ -678,19 +663,7 @@ class EntryPage extends BaseComponent<Props, State> {
         <MdHandler global={this.props.global} history={this.props.history} />
         {navBar}
         <div className={containerClasses}>
-          <>
-            {!global.isMobile && showWordCount && (
-              <div id="word-count" className="visible hide-xl">
-                <p>
-                  {_t("entry.post-word-count")} {this.state.wordCount}
-                </p>
-                <p>
-                  {_t("entry.post-read-time")} {this.state.readTime}{" "}
-                  {_t("entry.post-read-minuites")}
-                </p>
-              </div>
-            )}
-          </>
+          <ReadTime global={this.props.global} entry={entry} isVisible={showWordCount} />
 
           <div className="the-entry">
             {originalEntry && (
@@ -1042,34 +1015,7 @@ class EntryPage extends BaseComponent<Props, State> {
                               </div>
                               <span className="flex-spacer" />
 
-                              <div className="post-info">
-                                <OverlayTrigger
-                                  delay={{ show: 0, hide: 300 }}
-                                  key={"bottom"}
-                                  placement={"bottom"}
-                                  overlay={
-                                    <Tooltip id={`tooltip-word-count`}>
-                                      <div className="tooltip-inner">
-                                        <div className="profile-info-tooltip-content">
-                                          <p>
-                                            {_t("entry.post-word-count")} {this.state.wordCount}
-                                          </p>
-                                          <p>
-                                            {_t("entry.post-read-time")} {this.state.readTime}{" "}
-                                            {_t("entry.post-read-minuites")}
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </Tooltip>
-                                  }
-                                >
-                                  <div className="d-flex align-items-center">
-                                    <span className="info-icon mr-0 mr-md-2">
-                                      {informationVariantSvg}
-                                    </span>
-                                  </div>
-                                </OverlayTrigger>
-                              </div>
+                              <ReadTime global={this.props.global} entry={entry} toolTip={true} />
 
                               {!isComment &&
                                 global.usePrivate &&
