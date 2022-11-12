@@ -60,6 +60,68 @@ exports[`(1) Render an empty list when no tokens found 1`] = `
         </div>
       </div>
       <div
+        className="wallet-info"
+      >
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            <div
+              className="amount-actions"
+            >
+              <span
+                className="sort-svg"
+              >
+                <svg
+                  className="bi bi-sort-down-alt"
+                  color="#357ce6"
+                  fill="currentColor"
+                  height="20"
+                  viewBox="0 0 16 16"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"
+                  />
+                </svg>
+                 
+              </span>
+              <div
+                className="custom-dropdown float-top"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Sort
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
         className="entry-list"
       >
         <div
@@ -243,6 +305,68 @@ exports[`(2) Render with some hive engine tokens 1`] = `
               Calculating...
                
             </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="wallet-info"
+      >
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            <div
+              className="amount-actions"
+            >
+              <span
+                className="sort-svg"
+              >
+                <svg
+                  className="bi bi-sort-down-alt"
+                  color="#357ce6"
+                  fill="currentColor"
+                  height="20"
+                  viewBox="0 0 16 16"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"
+                  />
+                </svg>
+                 
+              </span>
+              <div
+                className="custom-dropdown float-top"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Sort
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -563,6 +687,68 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
         </div>
       </div>
       <div
+        className="wallet-info"
+      >
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            <div
+              className="amount-actions"
+            >
+              <span
+                className="sort-svg"
+              >
+                <svg
+                  className="bi bi-sort-down-alt"
+                  color="#357ce6"
+                  fill="currentColor"
+                  height="20"
+                  viewBox="0 0 16 16"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"
+                  />
+                </svg>
+                 
+              </span>
+              <div
+                className="custom-dropdown float-top"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Sort
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
         className="entry-list"
       >
         <div
@@ -861,6 +1047,68 @@ exports[`(4) Render an empty list if tokens equals zero 1`] = `
         </div>
       </div>
       <div
+        className="wallet-info"
+      >
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            <div
+              className="amount-actions"
+            >
+              <span
+                className="sort-svg"
+              >
+                <svg
+                  className="bi bi-sort-down-alt"
+                  color="#357ce6"
+                  fill="currentColor"
+                  height="20"
+                  viewBox="0 0 16 16"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"
+                  />
+                </svg>
+                 
+              </span>
+              <div
+                className="custom-dropdown float-top"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Sort
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
         className="entry-list"
       >
         <div
@@ -1044,6 +1292,68 @@ exports[`(5) usePrivate = false 1`] = `
               Calculating...
                
             </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="wallet-info"
+      >
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            <div
+              className="amount-actions"
+            >
+              <span
+                className="sort-svg"
+              >
+                <svg
+                  className="bi bi-sort-down-alt"
+                  color="#357ce6"
+                  fill="currentColor"
+                  height="20"
+                  viewBox="0 0 16 16"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"
+                  />
+                </svg>
+                 
+              </span>
+              <div
+                className="custom-dropdown float-top"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn"
+                >
+                  <div
+                    className="label"
+                  >
+                    Sort
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
