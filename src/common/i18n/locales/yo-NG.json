@@ -186,6 +186,11 @@
   "trending-tags": {
     "title": "Topics"
   },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
+  },
   "selected-tags": {
     "title": "Featured"
   },
@@ -355,11 +360,11 @@
     "orders": "Orders",
     "date": "Date",
     "open-orders": "Open Orders",
-    "pending-orders": "Pending orders",
+    "pending-orders": "Àwọn ìrà-ọjà àìyanjú",
     "type": "Type",
-    "mode-limit": "Limit",
+    "mode-limit": "Gbèdéke",
     "mode-swap": "Ìpàrọ̀",
-    "mode-advanced": "Advanced",
+    "mode-advanced": "Iwájú",
     "action": "Action",
     "trade-history": "Trade History",
     "stock-params": "Params",
@@ -378,23 +383,23 @@
     "swap": "Àmì",
     "swapping": "Ń páàrọ̀...",
     "continue": "Tẹ́síwájú",
-    "balance": "Dọ́gba",
-    "fee": "Fee",
-    "fee-free": "Free",
-    "order-book-impact": "Order book impact",
-    "swap-title": "Swap your funds",
-    "sign-title": "Sign your transaction",
-    "fetching-market": "Fetching market...",
-    "back": "Back",
-    "swap-by": "Sign by {{method}}",
-    "success-title": "Transaction completed",
-    "more-than-balance": "You've entered more than available balance",
-    "invalid-amount": "Invalid from amount. Please, enter less value",
-    "too-much-slippage": "We highly recommend you to reduce amount for better pricing!",
-    "auth-required-title": "Authorization required",
-    "auth-required-desc": "You have to be authorized to swap own funds",
-    "start-new-one": "Start new Swap",
-    "success-swap": "Successfully swapped!"
+    "balance": "Ìyókù",
+    "fee": "Owó",
+    "fee-free": "Ọ̀fẹ́",
+    "order-book-impact": "Ipa Ìwé ìrà-ọjà",
+    "swap-title": "Pààrọ̀ owó rẹ",
+    "sign-title": "Fí ìdánimọ̀ sí ìdúnãdúrà rẹ",
+    "fetching-market": "Ọjà pípọn...",
+    "back": "Ẹ̀hìn",
+    "swap-by": "{{method}} fi àmì síi",
+    "success-title": "Ìdúnãdúrà tí yanjú",
+    "more-than-balance": "O ti kọ ju iye tó wà nínú àsùnwòn rẹ",
+    "invalid-amount": "Iye tí kò ní ìtumọ̀. Jọ̀wọ́ kọ iye tó dínkù",
+    "too-much-slippage": "A rọ̀ ọ́ láti dín iye tí o kọ́ kù fún iye owó tó sunhàn!",
+    "auth-required-title": "Ó nílò ìfọwọ́sí",
+    "auth-required-desc": "O nílò ìfọwọ́sí láti lè pààrọ̀ owó",
+    "start-new-one": "Bẹ̀rẹ̀ ìpààrọ̀ ọ̀tun",
+    "success-swap": "Ìpààrọ̀ tí yanjú!"
   },
   "list-style": {
     "title": "Toggle list style"
@@ -763,9 +768,19 @@
     "balance": "Balance",
     "staked": "Staked"
   },
+  "sort-engine-tokens": {
+    "sort": "Se ìyanjú",
+    "sort-in-ascending": "Ń lọ sókè",
+    "sort-in-descending": "Ń lọ sílẹ̀",
+    "sort-by-value": "Iye",
+    "sort-by-balance": "Ìyókù",
+    "sort-by-stake": "Owó ìfidúró",
+    "sort-by-delegations-in": "Awọn ìsojú nínú",
+    "sort-by-delegations-out": "Àwọn ìṣojú níta"
+  },
   "wallet-engine-estimated": {
-    "title": "Estimated Tokens Value",
-    "description": "The approximate US Dollar value for all engine tokens in your wallet."
+    "title": "Iye tókìnì tí a ṣe òdiwọ̀n",
+    "description": "Ìpájúdé iye gbogbo owo dọ́là fún tókìnì ẹ́ńjìnì nínú àsùnwòn rẹ."
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",
