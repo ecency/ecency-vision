@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { _t } from "../../i18n";
-import { getMetrics, getHiveEngineTokenBalances } from "../../api/hive-engine";
-import { getDynamicProps } from "../../api/hive";
+import { getMetrics } from "../../api/hive-engine";
 
 export const EngineTokensEstimated = (props: any) => {
-  const { account } = props;
+  const { tokens: userTokens, dynamicProps } = props;
   const [estimated, setEstimated] = useState(`${_t("wallet.calculating")}...`);
 
   useEffect(() => {
     getEstimatedUsdValue();
-  }, []);
+  }, [userTokens]);
 
   const getEstimatedUsdValue = async () => {
     const AllMarketTokens = await getMetrics();
-    const userTokens: any = await getHiveEngineTokenBalances(account.name);
-    const dynamicProps = await getDynamicProps();
 
     const pricePerHive = dynamicProps.base / dynamicProps.quote;
 
