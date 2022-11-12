@@ -763,6 +763,10 @@
     "balance": "Saldo",
     "staked": "Gestaked"
   },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
+  },
   "withdraw-routes": {
     "title": "Opname rekeningen",
     "account": "Rekening",
