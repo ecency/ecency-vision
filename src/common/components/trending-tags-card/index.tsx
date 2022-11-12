@@ -38,7 +38,7 @@ export class TrendingTagsCard extends Component<Props> {
   //   tags.sort();
   //   this.setState({trendingTags: tags});
   // }
-  
+
   //    sortTagsInDsc = () => {
   //   const tags = this.props.trendingTags.list
   //   // console.log(tags.sort((a, b) => (a > b ? -1 : 1)))
@@ -52,12 +52,12 @@ export class TrendingTagsCard extends Component<Props> {
     return (
       <div className="trending-tags-card">
         <h2 className="list-header">{_t("trending-tags.title")}</h2>
-      
+
         {/* <SortTrendingTagss
         sortTagsInAsc={this.sortTagsInAsc}
         sortTagsInDsc={this.sortTagsInDsc}
         /> */}
-       
+
         {trendingTags.list.slice(0, 30).map((t) => {
           const cls = _c(
             `tag-list-item ${global.tag === t ? "selected-item" : ""} d-flex align-items-center`
@@ -102,7 +102,7 @@ export default (p: Props) => {
     history: p.history,
     global: p.global,
     trendingTags: p.trendingTags,
-    activeUser: p.activeUser,
+    activeUser: p.activeUser
     // sortTagsInDsc: p.sortTagsInDsc,
     // sortTagsInDAsc: p.sortTagsInAsc
   };

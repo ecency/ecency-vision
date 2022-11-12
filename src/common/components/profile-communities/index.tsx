@@ -60,30 +60,24 @@ export class ProfileCommunities extends BaseComponent<Props, State> {
   }
 
   sortCommunitiesInAsc = () => {
-
     const communitiesInAsc = this.state.items.sort((a: any, b: any) => {
-      if (a[1] > b[1])
-      return 1;
-    if (a[1] < b[1])
-      return -1;
-    return 0;
+      if (a[1] > b[1]) return 1;
+      if (a[1] < b[1]) return -1;
+      return 0;
     });
-  
-    this.setState({items: communitiesInAsc});
-  }
-  
-  sortCommunitiesInDsc = () => {
 
+    this.setState({ items: communitiesInAsc });
+  };
+
+  sortCommunitiesInDsc = () => {
     const communitiesInDsc = this.state.items.sort((a: any, b: any) => {
-      if (b[1] < a[1])
-      return -1;
-    if (b[1] > a[1])
-      return 1;
-    return 0;
+      if (b[1] < a[1]) return -1;
+      if (b[1] > a[1]) return 1;
+      return 0;
     });
-  
-    this.setState({items: communitiesInDsc});
-    }
+
+    this.setState({ items: communitiesInDsc });
+  };
 
   render() {
     const { activeUser, account } = this.props;
