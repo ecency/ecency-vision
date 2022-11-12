@@ -653,14 +653,13 @@ class SubmitPage extends BaseComponent<Props, State> {
   update = async (): Promise<void> => {
     if (!this.validate()) {
       return;
-    }    
+    }
 
     const { activeUser, updateEntry, history } = this.props;
     const { title, tags, body, description, editingEntry } = this.state;
     if (!editingEntry) {
       return;
     }
-
 
     const { body: oldBody, author, permlink, category, json_metadata } = editingEntry;
     // clean and copy body
@@ -1224,4 +1223,4 @@ class SubmitPage extends BaseComponent<Props, State> {
   }
 }
 
-export default connect(pageMapStateToProps, pageMapDispatchToProps,)(SubmitPage as any);
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(SubmitPage as any);

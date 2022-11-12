@@ -37,7 +37,6 @@ import {
 import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
 import { _t } from "../../i18n";
-import { assetSymbolInstance } from "../../helper/test-helper";
 
 interface Props {
   global: Global;
@@ -89,66 +88,51 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     this._isMounted = false;
   }
 
-   sortTokensInAscending: any = () => {
-
+  sortTokensInAscending: any = () => {
     const inAscending = this.state.tokens.sort((a: any, b: any) => {
-      if (a.symbol > b.symbol)
-      return 1;
-    if (a.symbol < b.symbol)
-      return -1;
-    return 0;
+      if (a.symbol > b.symbol) return 1;
+      if (a.symbol < b.symbol) return -1;
+      return 0;
     });
-      
-      this.setState({ tokens: inAscending });
+
+    this.setState({ tokens: inAscending });
   };
 
   sortTokensInDescending: any = () => {
-
     const inDescending = this.state.tokens.sort((a: any, b: any) => {
-      if (b.symbol < a.symbol)
-      return -1;
-    if (b.symbol > a.symbol)
-      return 1;
-    return 0;
+      if (b.symbol < a.symbol) return -1;
+      if (b.symbol > a.symbol) return 1;
+      return 0;
     });
-    
+
     this.setState({ tokens: inDescending });
   };
 
   sortTokensbyValue = () => {
-
     const byBalance = this.state.tokens.sort((a: any, b: any) => {
-      if (b.balance < a.balance)
-      return -1;
-    if (b.balance > a.balance)
-      return 1;
-    return 0;
+      if (b.balance < a.balance) return -1;
+      if (b.balance > a.balance) return 1;
+      return 0;
     });
-  
-    this.setState({ tokens: byBalance })
+
+    this.setState({ tokens: byBalance });
   };
 
   sortTokensbyBalance = () => {
-
     const byBalance = this.state.tokens.sort((a: any, b: any) => {
-      if (a.balance > b.balance)
-      return 1;
-    if (a.balance < b.balance)
-      return -1;
-    return 0;
+      if (a.balance > b.balance) return 1;
+      if (a.balance < b.balance) return -1;
+      return 0;
     });
-  
-    this.setState({ tokens: byBalance })
+
+    this.setState({ tokens: byBalance });
   };
 
   sortTokensbyStake = () => {
-
     const byStake = this.state.tokens.sort((a: any, b: any) => {
-      if (b.stake < a.stake)
-      return -1;
-    if (b.stake > a.stake)
-      return 1;
-    return 0;
+      if (b.stake < a.stake) return -1;
+      if (b.stake > a.stake) return 1;
+      return 0;
     });
 
     this.setState({ tokens: byStake });
@@ -156,11 +140,9 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
   sortByDelegationIn = () => {
     const byDelegationsIn = this.state.tokens.sort((a: any, b: any) => {
-      if (b.delegationsIn < a.delegationsIn)
-      return -1;
-    if (b.delegationsIn > a.delegationsIn)
-      return 1;
-    return 0;
+      if (b.delegationsIn < a.delegationsIn) return -1;
+      if (b.delegationsIn > a.delegationsIn) return 1;
+      return 0;
     });
 
     this.setState({ tokens: byDelegationsIn });
@@ -168,11 +150,9 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
   sortByDelegationOut = () => {
     const byDelegationsOut = this.state.tokens.sort((a: any, b: any) => {
-      if (b.delegationsOut < a.delegationsOut)
-      return -1;
-    if (b.delegationsOut > a.delegationsOut)
-      return 1;
-    return 0;
+      if (b.delegationsOut < a.delegationsOut) return -1;
+      if (b.delegationsOut > a.delegationsOut) return 1;
+      return 0;
     });
 
     this.setState({ tokens: byDelegationsOut });
@@ -357,14 +337,14 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
             <EngineTokensEstimated account={account} />
 
             <div className="wallet-info">
-              <SortEngineTokens 
-              sortTokensInAscending={this.sortTokensInAscending}
-              sortTokensInDescending={this.sortTokensInDescending}
-              sortTokensbyValue={this.sortTokensbyValue}
-              sortTokensbyStake={this.sortTokensbyStake}
-              sortTokensbyBalance={this.sortTokensbyBalance}
-              sortByDelegationIn={this.sortByDelegationIn}
-              sortByDelegationOut={this.sortByDelegationOut}
+              <SortEngineTokens
+                sortTokensInAscending={this.sortTokensInAscending}
+                sortTokensInDescending={this.sortTokensInDescending}
+                sortTokensbyValue={this.sortTokensbyValue}
+                sortTokensbyStake={this.sortTokensbyStake}
+                sortTokensbyBalance={this.sortTokensbyBalance}
+                sortByDelegationIn={this.sortByDelegationIn}
+                sortByDelegationOut={this.sortByDelegationOut}
               />
             </div>
 
