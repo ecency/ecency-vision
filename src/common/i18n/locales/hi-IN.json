@@ -763,6 +763,10 @@
     "balance": "शेष रकम",
     "staked": "दांव पर लगा दिया"
   },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
+  },
   "withdraw-routes": {
     "title": "निकाशी खाता",
     "account": "खाता",
