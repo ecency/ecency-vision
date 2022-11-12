@@ -9,7 +9,7 @@ export const EngineTokensEstimated = (props: any) => {
 
   useEffect(() => {
     getEstimatedUsdValue();
-  });
+  }, []);
 
   const getEstimatedUsdValue = async () => {
     const AllMarketTokens = await getMetrics();
@@ -44,7 +44,7 @@ export const EngineTokensEstimated = (props: any) => {
       style: "currency",
       currency: "USD"
     });
-    return setEstimated(usd_total_value);
+    setEstimated(usd_total_value);
   };
   return (
     <div className="balance-row estimated alternative">
