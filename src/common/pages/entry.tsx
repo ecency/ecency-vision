@@ -131,8 +131,8 @@ class EntryPage extends BaseComponent<Props, State> {
     selection: "",
     postIsDeleted: false,
     deletedEntry: null,
-    readTime:  1,
-    wordCount:  0,
+    readTime: 1,
+    wordCount: 0
   };
 
   commentInput: Ref<HTMLInputElement>;
@@ -157,8 +157,8 @@ class EntryPage extends BaseComponent<Props, State> {
     window.addEventListener("resize", this.detect);
     let replyDraft = ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`);
     replyDraft = (replyDraft && replyDraft.trim()) || "";
-    
-    this.setState({ isMounted: true, selection: replyDraft});
+
+    this.setState({ isMounted: true, selection: replyDraft });
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
@@ -300,14 +300,14 @@ class EntryPage extends BaseComponent<Props, State> {
 
   postBodyCount = () => {
     const entry = this.getEntry();
-   
+
     const wordsWithoutSpace: any = entry?.body.trim()?.split(/\s+/);
     const totalCount: number = wordsWithoutSpace?.length;
     const wordPerMinuite: number = 225;
     const readTime: number = Math.ceil(totalCount / wordPerMinuite);
 
     this.stateSet({ loading: false, readTime, wordCount: totalCount });
-  }
+  };
 
   ensureEntry = async () => {
     const { match, addEntry, updateEntry, addCommunity, activeUser, history } = this.props;

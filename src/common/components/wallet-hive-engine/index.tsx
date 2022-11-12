@@ -1,4 +1,5 @@
 import React from "react";
+import { proxifyImageSrc } from "@ecency/render-helper";
 
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
@@ -9,10 +10,12 @@ import { ActiveUser } from "../../store/active-user/types";
 import BaseComponent from "../base";
 import HiveEngineToken from "../../helper/hive-engine-wallet";
 import LinearProgress from "../linear-progress";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import WalletMenu from "../wallet-menu";
-
+import { SortEngineTokens } from "../sort-hive-engine-tokens";
+import { EngineTokensEstimated } from "../engine-tokens-estimated";
 import Transfer, { TransferMode } from "../transfer-he";
+import { error, success } from "../feedback";
 
 import {
   claimRewards,
@@ -20,7 +23,7 @@ import {
   getUnclaimedRewards,
   TokenStatus
 } from "../../api/hive-engine";
-import { proxifyImageSrc } from "@ecency/render-helper";
+
 import {
   informationVariantSvg,
   plusCircle,
@@ -30,11 +33,9 @@ import {
   delegateOutlineSvg,
   undelegateOutlineSvg
 } from "../../img/svg";
-import { error, success } from "../feedback";
+
 import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
-import { EngineTokensEstimated } from "../engine-tokens-estimated";
-
 import { _t } from "../../i18n";
 
 interface Props {
@@ -86,6 +87,76 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
   componentWillUnmount() {
     this._isMounted = false;
   }
+
+  sortTokensInAscending: any = () => {
+    const inAscending = this.state.tokens.sort((a: any, b: any) => {
+      if (a.symbol > b.symbol) return 1;
+      if (a.symbol < b.symbol) return -1;
+      return 0;
+    });
+
+    this.setState({ tokens: inAscending });
+  };
+
+  sortTokensInDescending: any = () => {
+    const inDescending = this.state.tokens.sort((a: any, b: any) => {
+      if (b.symbol < a.symbol) return -1;
+      if (b.symbol > a.symbol) return 1;
+      return 0;
+    });
+
+    this.setState({ tokens: inDescending });
+  };
+
+  sortTokensbyValue = () => {
+    const byBalance = this.state.tokens.sort((a: any, b: any) => {
+      if (b.balance < a.balance) return -1;
+      if (b.balance > a.balance) return 1;
+      return 0;
+    });
+
+    this.setState({ tokens: byBalance });
+  };
+
+  sortTokensbyBalance = () => {
+    const byBalance = this.state.tokens.sort((a: any, b: any) => {
+      if (a.balance > b.balance) return 1;
+      if (a.balance < b.balance) return -1;
+      return 0;
+    });
+
+    this.setState({ tokens: byBalance });
+  };
+
+  sortTokensbyStake = () => {
+    const byStake = this.state.tokens.sort((a: any, b: any) => {
+      if (b.stake < a.stake) return -1;
+      if (b.stake > a.stake) return 1;
+      return 0;
+    });
+
+    this.setState({ tokens: byStake });
+  };
+
+  sortByDelegationIn = () => {
+    const byDelegationsIn = this.state.tokens.sort((a: any, b: any) => {
+      if (b.delegationsIn < a.delegationsIn) return -1;
+      if (b.delegationsIn > a.delegationsIn) return 1;
+      return 0;
+    });
+
+    this.setState({ tokens: byDelegationsIn });
+  };
+
+  sortByDelegationOut = () => {
+    const byDelegationsOut = this.state.tokens.sort((a: any, b: any) => {
+      if (b.delegationsOut < a.delegationsOut) return -1;
+      if (b.delegationsOut > a.delegationsOut) return 1;
+      return 0;
+    });
+
+    this.setState({ tokens: byDelegationsOut });
+  };
 
   openTransferDialog = (mode: TransferMode, asset: string, balance: number) => {
     this.stateSet({
@@ -264,6 +335,18 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
             </div>
 
             <EngineTokensEstimated account={account} />
+
+            <div className="wallet-info">
+              <SortEngineTokens
+                sortTokensInAscending={this.sortTokensInAscending}
+                sortTokensInDescending={this.sortTokensInDescending}
+                sortTokensbyValue={this.sortTokensbyValue}
+                sortTokensbyStake={this.sortTokensbyStake}
+                sortTokensbyBalance={this.sortTokensbyBalance}
+                sortByDelegationIn={this.sortByDelegationIn}
+                sortByDelegationOut={this.sortByDelegationOut}
+              />
+            </div>
 
             <div className="entry-list">
               {loading ? (
