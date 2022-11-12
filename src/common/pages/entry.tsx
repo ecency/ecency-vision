@@ -81,7 +81,6 @@ import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
 import { getPost } from "../api/bridge";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 setProxyBase(defaults.imageServer);
 
