@@ -763,6 +763,10 @@
     "balance": "Bilancio",
     "staked": "Scommesso"
   },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
+  },
   "withdraw-routes": {
     "title": "Account beneficianti delle ricompense assegnate",
     "account": "Account",
