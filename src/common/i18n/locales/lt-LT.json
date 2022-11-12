@@ -763,6 +763,10 @@
     "balance": "Likutis",
     "staked": "Statyti"
   },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
+  },
   "withdraw-routes": {
     "title": "Išsiimti sąskaitas",
     "account": "Paskyra",
