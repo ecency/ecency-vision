@@ -763,6 +763,10 @@
     "balance": "Balance",
     "staked": "Staked"
   },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
+  },
   "withdraw-routes": {
     "title": "Акаунти за теглене",
     "account": "Акаунт",
