@@ -1,4 +1,5 @@
 import React from "react";
+import { proxifyImageSrc } from "@ecency/render-helper";
 
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
@@ -11,8 +12,10 @@ import HiveEngineToken from "../../helper/hive-engine-wallet";
 import LinearProgress from "../linear-progress";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import WalletMenu from "../wallet-menu";
-
+import { SortEngineTokens } from "../sort-hive-engine-tokens";
+import { EngineTokensEstimated } from "../engine-tokens-estimated";
 import Transfer, { TransferMode } from "../transfer-he";
+import { error, success } from "../feedback";
 
 import {
   claimRewards,
@@ -20,7 +23,7 @@ import {
   getUnclaimedRewards,
   TokenStatus
 } from "../../api/hive-engine";
-import { proxifyImageSrc } from "@ecency/render-helper";
+
 import {
   informationVariantSvg,
   plusCircle,
@@ -30,11 +33,9 @@ import {
   delegateOutlineSvg,
   undelegateOutlineSvg
 } from "../../img/svg";
-import { error, success } from "../feedback";
+
 import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
-import { SortEngineTokens } from "../sort-hive-engine-tokens";
-
 import { _t } from "../../i18n";
 import { assetSymbolInstance } from "../../helper/test-helper";
 
@@ -352,6 +353,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                 <div className="description">{_t("wallet-engine.description")}</div>
               </div>
             </div>
+
+            <EngineTokensEstimated account={account} />
 
             <div className="wallet-info">
               <SortEngineTokens 

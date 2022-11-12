@@ -186,6 +186,11 @@
   "trending-tags": {
     "title": "Topics"
   },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
+  },
   "selected-tags": {
     "title": "Featured"
   },
@@ -746,6 +751,10 @@
     "sort-by-stake": "Stake",
     "sort-by-delegations-in": "Delegations in",
     "sort-by-delegations-out": "Delegations out"
+  },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",

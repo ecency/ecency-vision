@@ -12,6 +12,7 @@ import fallbackHandler, { healthCheck, iosURI, androidURI, nodeList } from "./ha
 import { entryRssHandler, authorRssHandler } from "./handlers/rss";
 import * as authApi from "./handlers/auth-api";
 import { cleanURL, authCheck, stripLastSlash } from "./util";
+import { coingeckoHandler } from "./handlers/coingecko.handler";
 
 const server = express();
 
@@ -83,7 +84,8 @@ server
 
   // Health check script for docker swarm
   .get("^/healthcheck.json$", healthCheck)
-
+  // CoinGecko market rate API
+  .get("^/coingecko/api/v3/simple/price$", coingeckoHandler)
   // For all others paths
   .get("*", fallbackHandler);
 

@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { match } from "react-router";
 import moment from "moment";
-
 import {
   renderPostBody,
   setProxyBase,
@@ -81,7 +80,6 @@ import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
 import { getPost } from "../api/bridge";
-import { Helmet } from "react-helmet";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 setProxyBase(defaults.imageServer);
@@ -133,8 +131,8 @@ class EntryPage extends BaseComponent<Props, State> {
     selection: "",
     postIsDeleted: false,
     deletedEntry: null,
-    readTime: 1,
-    wordCount: 0
+    readTime:  1,
+    wordCount:  0,
   };
 
   commentInput: Ref<HTMLInputElement>;
@@ -148,6 +146,7 @@ class EntryPage extends BaseComponent<Props, State> {
   componentDidMount() {
     this.ensureEntry();
     this.fetchMutedUsers();
+    this.postBodyCount();
     const entry = this.getEntry();
 
     const { location, global } = this.props;
@@ -158,8 +157,8 @@ class EntryPage extends BaseComponent<Props, State> {
     window.addEventListener("resize", this.detect);
     let replyDraft = ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`);
     replyDraft = (replyDraft && replyDraft.trim()) || "";
-
-    this.setState({ isMounted: true, selection: replyDraft });
+    
+    this.setState({ isMounted: true, selection: replyDraft});
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevStates: State): void {
@@ -299,6 +298,17 @@ class EntryPage extends BaseComponent<Props, State> {
     this.stateSet({ editHistory: !editHistory });
   };
 
+  postBodyCount = () => {
+    const entry = this.getEntry();
+   
+    const wordsWithoutSpace: any = entry?.body.trim()?.split(/\s+/);
+    const totalCount: number = wordsWithoutSpace?.length;
+    const wordPerMinuite: number = 225;
+    const readTime: number = Math.ceil(totalCount / wordPerMinuite);
+
+    this.stateSet({ loading: false, readTime, wordCount: totalCount });
+  }
+
   ensureEntry = async () => {
     const { match, addEntry, updateEntry, addCommunity, activeUser, history } = this.props;
     const entry = this.getEntry();
@@ -337,15 +347,6 @@ class EntryPage extends BaseComponent<Props, State> {
     bridgeApi
       .getPost(author, permlink)
       .then((entry) => {
-        if (entry) {
-          reducerFn(entry);
-          const wordsWithoutSpace: any = entry?.body && entry?.body.trim()?.split(/\s+/);
-          const totalCount: number = wordsWithoutSpace?.length;
-          const wordPerMinuite: number = 225;
-          const readTime: number = Math.ceil(totalCount / wordPerMinuite);
-          this.stateSet({ loading: false, readTime, wordCount: totalCount });
-        }
-
         if (isCommunity(category)) {
           this.stateSet({ loading: false });
           return bridgeApi.getCommunity(category, activeUser?.username);
@@ -520,7 +521,6 @@ class EntryPage extends BaseComponent<Props, State> {
       entryIsMuted,
       edit,
       comment,
-      /*commentText,*/ isMounted,
       postIsDeleted,
       deletedEntry,
       showProfileBox,
