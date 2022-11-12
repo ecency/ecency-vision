@@ -763,6 +763,10 @@
     "balance": "Bakiye",
     "staked": "Stake edilmiş"
   },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
+  },
   "withdraw-routes": {
     "title": "Çekim Hesapları",
     "account": "Hesap",
