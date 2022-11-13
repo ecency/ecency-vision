@@ -371,7 +371,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
             <EngineTokensEstimated tokens={utokens} dynamicProps={dynamicProps} />
 
-            {tokens.length <= 3 && (
+            {tokens.length >= 3 && (
               <div className="wallet-info">
                 <SortEngineTokens
                   sortTokensInAscending={this.sortTokensInAscending}
