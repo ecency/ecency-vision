@@ -528,9 +528,8 @@ export class EditorToolbar extends Component<Props> {
               </div>
               {this.state.shGif && (
                 <GifPicker
-                  shGif
+                  shGif={true}
                   changeState={(gifState) => {
-                    let { shGif } = this.state;
                     this.setState({ shGif: gifState });
                   }}
                   fallback={(e) => {
