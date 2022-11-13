@@ -77,7 +77,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     transfer: false,
     transferMode: null,
     transferAsset: null,
-    assetBalance: 0,
+    assetBalance: 0
   };
   _isMounted = false;
 
@@ -112,8 +112,10 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
   };
 
   sortTokensbyValue = async () => {
-    const allUserTokens = await this.tokenUsdValue(); 
-    const tokensInWallet = allUserTokens.filter((a: any) => a.balance !== 0 || a.stakedBalance !== 0);
+    const allUserTokens = await this.tokenUsdValue();
+    const tokensInWallet = allUserTokens.filter(
+      (a: any) => a.balance !== 0 || a.stakedBalance !== 0
+    );
     const byValue = tokensInWallet.sort((a: any, b: any) => {
       if (b.usd_value < a.usd_value) return -1;
       if (b.usd_value > a.usd_value) return 1;
@@ -163,27 +165,31 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
   };
 
   tokenUsdValue = async () => {
-    const { account, dynamicProps} = this.props
+    const { account, dynamicProps } = this.props;
     const allMarketTokens = await getMetrics();
     const userTokens: any = await getHiveEngineTokenBalances(account.name);
     const pricePerHive = dynamicProps.base / dynamicProps.quote;
 
     let balanceMetrics: any = userTokens.map((item: any) => {
-      let eachMetric = allMarketTokens.find((m: any) =>m.symbol === item.symbol);
+      let eachMetric = allMarketTokens.find((m: any) => m.symbol === item.symbol);
       return {
-      ...item,
-      ...eachMetric
-       };
-     });
-     let tokensUsdValues: any = balanceMetrics.map((w: any) =>{ 
-      const usd_value = w.symbol === "SWAP.HIVE" ? Number(pricePerHive * w.balance) : 
-      w.lastPrice === 0 ? 0 : Number(w.lastPrice * pricePerHive * w.balance).toFixed(10);        
+        ...item,
+        ...eachMetric
+      };
+    });
+    let tokensUsdValues: any = balanceMetrics.map((w: any) => {
+      const usd_value =
+        w.symbol === "SWAP.HIVE"
+          ? Number(pricePerHive * w.balance)
+          : w.lastPrice === 0
+          ? 0
+          : Number(w.lastPrice * pricePerHive * w.balance).toFixed(10);
       return {
         ...w,
         usd_value
-      }
-     });
-      return tokensUsdValues;
+      };
+    });
+    return tokensUsdValues;
   };
 
   openTransferDialog = (mode: TransferMode, asset: string, balance: number) => {
@@ -365,17 +371,19 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
             <EngineTokensEstimated tokens={utokens} dynamicProps={dynamicProps} />
 
-            <div className="wallet-info">
-              <SortEngineTokens
-                sortTokensInAscending={this.sortTokensInAscending}
-                sortTokensInDescending={this.sortTokensInDescending}
-                sortTokensbyValue={this.sortTokensbyValue}
-                sortTokensbyStake={this.sortTokensbyStake}
-                sortTokensbyBalance={this.sortTokensbyBalance}
-                sortByDelegationIn={this.sortByDelegationIn}
-                sortByDelegationOut={this.sortByDelegationOut}
-              />
-            </div>
+            {tokens.length <= 3 && (
+              <div className="wallet-info">
+                <SortEngineTokens
+                  sortTokensInAscending={this.sortTokensInAscending}
+                  sortTokensInDescending={this.sortTokensInDescending}
+                  sortTokensbyValue={this.sortTokensbyValue}
+                  sortTokensbyStake={this.sortTokensbyStake}
+                  sortTokensbyBalance={this.sortTokensbyBalance}
+                  sortByDelegationIn={this.sortByDelegationIn}
+                  sortByDelegationOut={this.sortByDelegationOut}
+                />
+              </div>
+            )}
 
             <div className="entry-list">
               {loading ? (
