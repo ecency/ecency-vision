@@ -1,17 +1,17 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { _t } from '../../i18n';
-import './_index.scss';
-import { getCommunities, getSubscriptions } from '../../api/bridge';
-import { Community } from '../../store/communities/types';
-import LinearProgress from '../linear-progress';
-import CommunityListItem from '../community-list-item';
-import { History } from 'history';
-import { Global } from '../../store/global/types';
-import { User } from '../../store/users/types';
-import { ActiveUser } from '../../store/active-user/types';
-import { ToggleType, UI } from '../../store/ui/types';
-import { Subscription } from '../../store/subscriptions/types';
-import { Account } from '../../store/accounts/types';
+import React, { Fragment, useEffect, useState } from "react";
+import { _t } from "../../i18n";
+import "./_index.scss";
+import { getCommunities, getSubscriptions } from "../../api/bridge";
+import { Community } from "../../store/communities/types";
+import LinearProgress from "../linear-progress";
+import CommunityListItem from "../community-list-item";
+import { History } from "history";
+import { Global } from "../../store/global/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { ToggleType, UI } from "../../store/ui/types";
+import { Subscription } from "../../store/subscriptions/types";
+import { Account } from "../../store/accounts/types";
 
 interface Props {
   history: History;
@@ -41,7 +41,7 @@ export const TopCommunitiesWidget = (props: Props) => {
     setLoading(true);
 
     try {
-      const response = await getCommunities('', 10, null, 'rank');
+      const response = await getCommunities("", 10, null, "rank");
       if (response) {
         setList(setRandomItems(response));
       }
@@ -54,7 +54,7 @@ export const TopCommunitiesWidget = (props: Props) => {
     const result: Community[] = [];
     while (result.length < 5) {
       const index = Math.floor(Math.random() * (items.length - 1));
-      if (result.every(item => items[index].id !== item.id)) {
+      if (result.every((item) => items[index].id !== item.id)) {
         result.push(items[index]);
       }
     }
@@ -69,24 +69,28 @@ export const TopCommunitiesWidget = (props: Props) => {
         updateSubscriptions(response);
       }
     }
-  }
+  };
 
-  return <div className="top-communities-widget">
-    <div className="top-communities-widget-header">
-      <div className="title d-flex align-items-center">{_t('top-communities.title')}</div>
-      {loading && <LinearProgress/>}
-      <div className="list-items">
-        {list.length === 0 && !loading && <div className="no-results">{_t('communities.no-results')}</div>}
-        {list.map((x, i) => (
-          <Fragment key={i}>
-            {CommunityListItem({
-              ...props,
-              community: x,
-              small: true
-            })}
-          </Fragment>
-        ))}
+  return (
+    <div className="top-communities-widget">
+      <div className="top-communities-widget-header">
+        <div className="title d-flex align-items-center">{_t("top-communities.title")}</div>
+        {loading && <LinearProgress />}
+        <div className="list-items">
+          {list.length === 0 && !loading && (
+            <div className="no-results">{_t("communities.no-results")}</div>
+          )}
+          {list.map((x, i) => (
+            <Fragment key={i}>
+              {CommunityListItem({
+                ...props,
+                community: x,
+                small: true
+              })}
+            </Fragment>
+          ))}
+        </div>
       </div>
     </div>
-  </div>
-}
+  );
+};

@@ -56,11 +56,11 @@ export default class HiveEngineToken {
     }
 
     return `(${formattedNumber(this.stake, {
-      fractionDigits: this.precision,
+      fractionDigits: this.precision
     })} + ${formattedNumber(this.delegationsIn, {
-      fractionDigits: this.precision,
+      fractionDigits: this.precision
     })} - ${formattedNumber(this.delegationsOut, {
-      fractionDigits: this.precision,
+      fractionDigits: this.precision
     })})`;
   };
 
@@ -73,14 +73,14 @@ export default class HiveEngineToken {
       return this.stakedBalance.toString();
     }
 
-    return formattedNumber(this.stakedBalance, {fractionDigits: this.precision});
-  }
+    return formattedNumber(this.stakedBalance, { fractionDigits: this.precision });
+  };
 
   balanced = (): string => {
     if (this.balance < 0.0001) {
       return this.balance.toString();
     }
 
-    return formattedNumber(this.balance, {fractionDigits: this.precision});
-  }
+    return formattedNumber(this.balance, { fractionDigits: this.precision });
+  };
 }

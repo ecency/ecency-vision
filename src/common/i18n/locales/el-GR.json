@@ -62,7 +62,8 @@
     "price": "Τιμή",
     "more-results": "Περισσότερα αποτελέσματα",
     "close": "Κλείσιμο",
-    "loading": "Φόρτωση"
+    "loading": "Φόρτωση",
+    "stop": "Stop"
   },
   "confirm": {
     "title": "Είστε σίγουρος;",
@@ -93,7 +94,9 @@
     "filter-week": "Αυτή την εβδομάδα",
     "filter-month": "Αυτό τον μήνα",
     "filter-year": "Αυτό το έτος",
-    "filter-alltime": "All time"
+    "filter-alltime": "All time",
+    "filter-no-reblog": "Exclude reblog",
+    "filter-with-reblog": "Include reblog"
   },
   "navbar": {
     "discover": "Ανακαλύψτε",
@@ -137,7 +140,8 @@
     "light": "light",
     "dark": "dark",
     "switch-to": "Αλλαγή",
-    "vote-power": "Δύναμη ψήφου:"
+    "vote-power": "Δύναμη ψήφου:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Φιλοδοξία στο μεγαλείο",
@@ -164,8 +168,8 @@
     "sign-up-text-2": "Εγγραφείτε τώρα!"
   },
   "sign-up": {
-    "header": "Καλώς ήλθατε στο Ecency",
-    "description": "Κέντρο της ελευθερίας του λόγου και της επιβράβευσης των κοινοτήτων!",
+    "header": "Rewarding communities",
+    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
     "bottom-description": "Κάθε λογαριασμός δημιουργείται σε blockchain και μόνο εσείς έχετε τον έλεγχο αυτού του λογαριασμού. Ένας λογαριασμός για να διαχειριστείτε τα πάντα στο Blockchain και την Ecency.",
     "learn-more": "Μάθετε περισσότερα για τα οφέλη στο <a href=\"/faq#how-to-join\">FAQ μας</a>",
     "username": "Διαλέξτε όνομα χρήστη",
@@ -186,9 +190,9 @@
     "title": "Προτεινόμενα"
   },
   "entry-list-item": {
-    "cross-posted": "cross-posted",
+    "cross-posted": "διασταυρούμενη δημοσίευση",
     "cross-posted-to": "σε",
-    "reblogged": "{{n}} reblogged",
+    "reblogged": "{{n}} αναδημοσιεύτηκε",
     "promoted": "Προωθήθηκε",
     "pinned": "Καρφιτσωμένη Δημοσίευση",
     "replies": "1 απάντηση. Κάντε κλικ για να απαντήσετε.",
@@ -246,7 +250,7 @@
     "boost": "Ενίσχυση"
   },
   "cross-post": {
-    "title": "Cross Post",
+    "title": "Διασταυρούμενη Δημοσίευση",
     "community-placeholder": "Διαλέξτε μια κοινότητα",
     "message-placeholder": "Ξεκινήστε μία συζήτηση με ένα μήνυμα",
     "submit-label": "Επιβεβαίωση",
@@ -264,7 +268,7 @@
     "payout-date": "Πληρωμή",
     "beneficiary": "Δικαιούχος",
     "breakdown": "Ανάλυση",
-    "max-accepted": "Max accepted"
+    "max-accepted": "Μέγιστο αποδεκτό"
   },
   "entry-index": {
     "feed": "Ροή",
@@ -320,24 +324,24 @@
     "update-n-seconds": "Κάθε {{sec}} δευτ",
     "update-n-minutes": "Κάθε {{min}} λεπτά",
     "update-n-hours": "Κάθε {{hour}} ώρες",
-    "update-custom": "Custom interval...",
+    "update-custom": "Προσαρμοσμένο διάστημα...",
     "update-interval-value-error": "Το διάστημα πρέπει να είναι μεταξύ 30 δευτερολέπτων και 24 ωρών",
     "update-interval-placeholder": "Επιλέξτε ένα διάστημα",
-    "update-custom-interval-in-minutes-placeholder": "Enter interval in minutes",
+    "update-custom-interval-in-minutes-placeholder": "Εισάγετε χρονικό διάστημα σε λεπτά",
     "filters": "Φίλτρα",
     "history": "Ιστορικό",
     "type": "Τύπος"
   },
   "market-data": {
     "title": "Τιμή αγοράς",
-    "trade": "Trade token",
+    "trade": "Συναλλαγές ψηφιακών νομισμάτων",
     "credits": "δεδομένα από <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "market": {
-    "title": "Token exchange",
-    "description": "Decentralized exchange to Buy and Sell tokens on Hive blockchain. To learn more, read our <a href=\"/faq#how-exchange-work\">FAQ</a>.",
+    "title": "Ανταλλαγή ψηφιακών νομισμάτων",
+    "description": "Αποκεντρωμένη ανταλλαγή με αγορά και πώληση νομισμάτων στο Hive blockchain. Για να μάθετε περισσότερα, διαβάστε τις <a href=\"/faq#how-exchange-work\">Συχνές Ερωτήσεις</a>.",
     "last-price": "Τελευταία Τιμή",
-    "volume": "24h volume",
+    "volume": "24ωρος όγκος",
     "bid": "Bid",
     "spread": "Spread",
     "ask": "Ask",
@@ -358,13 +362,13 @@
     "stock-info": "Stock information",
     "barter": "Exchange tokens",
     "stock-values": "Values",
-    "transaction-low": "Total amount exceeds your available balance. Please add more funds or try with smaller amount.",
-    "confirm-cancel": "Are you sure? You are cancelling order #{{orderid}}!",
-    "confirm-buy": "You're trading {{amount}} HIVE for {{price}} HBD/HIVE and total will be {{total}} HBD.",
-    "confirm-sell": "Values",
-    "transaction-succeeded": "Transaction submitted",
-    "lowest-ask": "Lowest ask",
-    "decimal-error": "Only {{decimals}} decimal digits allowed!"
+    "transaction-low": "Το συνολικό ποσό υπερβαίνει το διαθέσιμο υπόλοιπό σας. Προσθέστε περισσότερα κεφάλαια ή δοκιμάστε με μικρότερο ποσό.",
+    "confirm-cancel": "Είστε σίγουροι? Ακυρώνετε την παραγγελία #{{orderid}}!",
+    "confirm-buy": "Συναλλάσσεται {{amount}} HIVE για {{price}} HBD/HIVE και το σύνολο θα είναι {{total}} HBD.",
+    "confirm-sell": "Αξίες",
+    "transaction-succeeded": "Η συναλλαγή υποβλήθηκε",
+    "lowest-ask": "Χαμηλότερη ζήτηση",
+    "decimal-error": "Επιτρέπονται μόνο {{decimals}} δεκαδικά ψηφία!"
   },
   "list-style": {
     "title": "Αλλαγή στιλ λίστας"
@@ -381,23 +385,26 @@
   },
   "entry": {
     "via-app": "μέσω<span class=\"app-name\">{{app}}</span>",
-    "author-reputation": "Author's reputation",
+    "author-reputation": "Φήμη του συγγραφέα",
     "comment-entry-title": "Βλέπετε ένα μοναδικό νήμα απο: ",
     "comment-entry-go-root": "Δείτε το πλήρες κείμενο",
     "comment-entry-go-parent": "Δείτε το άμεσο σχόλιο",
-    "hidden-warning": "This content got low rating by people.",
-    "delete-disabled": "Content after their payout cannot be deleted.",
-    "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
-    "lowrep-warning": "Author of this content has low reputation.",
-    "deleted-content-warning": "This content was deleted by the author. You can see it from Blockchain ",
-    "comments-hidden": "Author of this post is muted by you.",
-    "address-copy": "Copy link",
-    "address-copied": "Link copied to clipboard",
-    "content-copied": "Content copied to clipboard",
-    "browse-original": "Open original post",
-    "cross-post-by": "Cross post by",
-    "cross-post-community": "community",
-    "community-in": "in"
+    "hidden-warning": "Αυτό το περιεχόμενο πήρε χαμηλή αξιολόγηση από άτομα.",
+    "delete-disabled": "Το περιεχόμενο μετά την πληρωμή του δεν μπορεί να διαγραφεί.",
+    "muted-warning": "Αυτό το περιεχόμενο είναι σε σίγαση από τους {{community}} συντονιστές επειδή δεν ακολουθεί τις οδηγίες της κοινότητας.",
+    "lowrep-warning": "Ο συγγραφέας αυτού του περιεχομένου έχει χαμηλή αξιολόγηση.",
+    "deleted-content-warning": "Αυτό το περιεχόμενο διαγράφηκε από τον συγγραφέα. Μπορείτε να το δείτε από το Blockchain ",
+    "comments-hidden": "Ο συγγραφέας αυτής της ανάρτησης είναι σε σίγαση από εσάς.",
+    "address-copy": "Αντιγραφή συνδέσμου",
+    "address-copied": "Ο σύνδεσμος αντιγράφτηκε στο πρόχειρο",
+    "content-copied": "Το περιεχόμενο αντιγράφηκε στο πρόχειρο",
+    "browse-original": "Εμφάνιση αρχικής δημοσίευσης",
+    "cross-post-by": "Διασταυρούμενη δημοσίευση από",
+    "cross-post-community": "κοινότητα",
+    "community-in": "σε",
+    "post-word-count": "Words:",
+    "post-read-time": "Reading:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "Ιστορικό Επεξεργασίας",
@@ -405,14 +412,14 @@
     "version": "Εκδοχή {{n}}"
   },
   "similar-entries": {
-    "title": "Read next"
+    "title": "Ανάγνωση επόμενου"
   },
   "comment": {
     "body-placeholder": "Γράψτε την απάντηση σας εδώ",
     "preview": "Προεπισκόπηση"
   },
   "discussion": {
-    "join": "Join the conversation now",
+    "join": "Μπες στην συζήτηση τώρα",
     "btn-join": "Συμμετοχή",
     "replies": "1 Σχόλιο",
     "n-replies": "{{n}} Σχόλια",
@@ -422,9 +429,11 @@
     "order-votes": "Ψήφοι",
     "order-created": "Ηλικία",
     "read-more": "...διαβάστε περισσότερες απαντήσεις...",
-    "reveal-muted": "Muted author - Reveal comment",
-    "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
-    "reveal": "Εμφάνιση σχολίου"
+    "reveal-muted": "Συγγραφέας σε σίγαση - Αποκάλυψη σχολίου",
+    "reveal-muted-long-description": "Εμφάνιση πρόσθετων απαντήσεων, συμπεριλαμβανομένων εκείνων που μπορεί να περιέχουν προσβλητικό περιεχόμενο",
+    "reveal": "Εμφάνιση σχολίου",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} θέματα",
@@ -455,8 +464,8 @@
     "team": "Ηγεσία",
     "edit": "Επεξεργασία Ιδιοτήτων",
     "edit-team": "Επεξεργασία ρόλών",
-    "community-rewards": "Community Rewards",
-    "profile-image": "Profile image",
+    "community-rewards": "Ανταμοιβές Κοινότητας",
+    "profile-image": "Εικόνα προφίλ",
     "profile-image-edit": "Επεξεργαστείτε την φωτογραφία προφίλ",
     "profile-image-updated": "Η φωτογραφία προφίλ ενημερώθηκε!"
   },
@@ -475,7 +484,7 @@
     "description": "Περιγραφή",
     "rules": "Κανόνες",
     "rules-help": "Ένα ανά γραμμή",
-    "validation-title": "Title is required."
+    "validation-title": "Απαιτείται τίτλος."
   },
   "communities": {
     "title": "Κοινότητες",
@@ -496,7 +505,7 @@
     "title": "Τίτλος",
     "about": "Σχετικά",
     "description": "Δημιουργήστε μια καλύτερη, αποκεντρωμένη, αμετάβλητη που επιβραβεύει κοινότητα",
-    "fee": "Creation fee",
+    "fee": "Τέλος δημιουργίας",
     "creator": "Δημιουργός",
     "username": "Community username",
     "username-available": "Διαθέσιμο.",
@@ -547,11 +556,15 @@
     "section-communities": "Κοινότητες",
     "section-wallet": "Πορτοφόλι",
     "section-settings": "Ρυθμίσεις",
+    "section-referrals": "Referrals",
     "section-permission": "Άδεια",
     "communities-title": "Συμμετοχή",
     "create-community": "Δημιουργήστε μια κοινότητα",
     "witnesses": "Μάρτυρες",
-    "proposals": "Προτάσεις"
+    "proposals": "Προτάσεις",
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Joined: {{n}}",
@@ -591,6 +604,10 @@
     "language": "Γλώσσα",
     "nsfw": "Show NSFW content",
     "referral-link": "Referral link",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Οι προτιμήσεις ενημερώθηκαν!"
   },
   "wallet": {
@@ -619,7 +636,7 @@
     "hive-dollars-description": "Μάρκες αξίας περίπου $1.00 του HIVE.",
     "savings": "ΑΠΟΤΑΜΙΕΎΣΕΙΣ",
     "savings-description": "Διαθέσιμο υπόλοιπο που υπόκειται σε χρόνο αναμονής ανάληψης 3 ημερών.",
-    "next-power-down": "Το επόμενο power down είναι σε {{time}}, {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Μεταφορά",
     "transfer-to-savings": "Μεταφορά στην αποταμίευση",
     "convert": "Μετατροπή",
@@ -629,24 +646,101 @@
     "delegate": "Εξουσιoδοτήστε",
     "power-down": "Power Down",
     "withdraw-routes": "Οδοί Ανάληψης",
-    "calculating": "Calculating",
-    "converting-hbd-amount": "Converting to HIVE",
-    "withdrawing-amount": "Withdrawing from Savings",
-    "reserved-amount": "Reserved for Open order in Market"
+    "calculating": "Υπολογισμός",
+    "converting-hbd-amount": "Μετατροπή σε HIVE",
+    "converting-hive-amount": "Converting to HBD",
+    "withdrawing-amount": "Απόσυρση από αποταμίευση",
+    "reserved-amount": "Δεσμευμένη για Ανοικτή Παραγγελία στην Αγορά",
+    "spk": {
+      "claim": {
+        "title": "Claim",
+        "unclaimed-rewards": "Unclaimed rewards"
+      },
+      "delegate": {
+        "title": "Delegate",
+        "subtitle": "Delegate tokens",
+        "node-operator-placeholder": "Select a node operator",
+        "delegated-larynx-power": {
+          "title": "Delegated LARYNX Power"
+        }
+      },
+      "power-up": {
+        "title": "Power up",
+        "subtitle": "Power up to earn passive rewards"
+      },
+      "power-down": {
+        "title": "Power down",
+        "subtitle": "Power down to earn passive rewards",
+        "in-progress": "A power down is scheduled to happen in {{date}} ({{count}} installments remaining)"
+      },
+      "lock": {
+        "title": "Lock Liquidity",
+        "subtitle": "Locking Larynx for liquidity reward",
+        "button": "Lock liquidity"
+      },
+      "unlock": {
+        "title": "Unlock Liquidity",
+        "subtitle": "Unlock LARYNX to liquid form",
+        "button": "Unlock liquidity"
+      },
+      "send": {
+        "balance": "Balance",
+        "button": "Send",
+        "from": "From",
+        "to": "To",
+        "amount": "Amount",
+        "optional": "optional",
+        "title": "Send SPK",
+        "memo": "Memo",
+        "next": "Next",
+        "subtitle": "Move funds to another SPK wallet",
+        "warning": "Transferring more than available balance"
+      },
+      "token": "SPK Token",
+      "token-description": "The governance token for the SPK network.",
+      "larynx-air": "LARYNX Airdrop Claim",
+      "larynx-air-description": "This months claimable tokens based on a January 6th HIVE blockchain snapshot.",
+      "larynx-air-warning": "Tokens not claimed, do not roll over to next month.",
+      "larynx-already-claimed": "Already claimed.",
+      "larynx-token": "LARYNX Token",
+      "larynx-token-description": "The mining token for the SPK network.",
+      "larynx-power": "LARYNX Power",
+      "larynx-power-description": "Powered tokens used to mine SPK",
+      "larynx-power-benefits": {
+        "title": "Benefits of LARYNX Power",
+        "1": "Earns SPK governance tokens",
+        "2": "Instant Lock | 4 Week Unlock",
+        "3": "Delegate to node service accounts to build consensus (DPoS)",
+        "4": "LARYNX POWER (LP) earns SPK tokens at {{rate}}%",
+        "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at {{rate}}%"
+      },
+      "larynx-locked-benefits": {
+        "title": "Benefits of LARYNX Locked",
+        "1": "Proof of Stake Consensus",
+        "2": "Collateral for DEX transactions",
+        "3": "Instant Lock | 4 Week Unlock",
+        "4": "Requires an operating LARYNX node",
+        "5": "Earns 0.100%"
+      },
+      "account-value": "Estimated Account Value",
+      "account-value-description": "The approximate US Dollar value for all SPK assets in your account",
+      "larynx-locked": "LARYNX Locked",
+      "larynx-locked-description": "Locked tokens provide liquidity to the network, aid in determining consensus, and earn rewards for node runners"
+    }
   },
   "wallet-engine": {
-    "title": "Hive Engine Tokens",
+    "title": "Hive Engine Νομίσματα",
     "description": "Hive Engine is a smart contracts side-chain platform for the Hive blockchain.",
-    "no-results": "No tokens found.",
-    "token": "Token",
-    "balance": "Balance",
+    "no-results": "Δεν βρέθηκαν νομίσματα.",
+    "token": "Νόμισμα",
+    "balance": "Υπόλοιπο",
     "staked": "Staked"
   },
   "withdraw-routes": {
     "title": "Λογαριασμοί Ανάληψης",
     "account": "Λογαριασμός",
     "percent": "Ποσοστό",
-    "validation-account": "Account is required.",
+    "validation-account": "Απαιτείται λογαριασμός.",
     "validation-percent": "Percentage is required.",
     "auto-power-up": "Αυτομάτως κάνε power up"
   },
@@ -701,6 +795,18 @@
     "slider-hint": "Σύρετε τον ολισθητή για να ρυθμίσετε το ποσό.",
     "submit": "Αγορά",
     "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
+  },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "title-points": "Buy points",
+    "copied": "Account boost link copied!",
+    "select-type": "Select a type",
+    "boost": "Boost",
+    "points": "Points",
+    "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
+    "points-amount": "{{n}} points"
   },
   "promote": {
     "title": "Προώθηση",
@@ -781,9 +887,20 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> εξουσιοδότηση από<span class=\"from-user\">{{from}}</span>to<span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Το Powerd down έχει ολοκληρωθεί<span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
+    "claim-summary": "Claimed and added to your savings balance",
+    "powerup-summary": "Power up completed successfully",
+    "powerdown-summary": "Power down completed successfully",
     "reset": "Επαναφορά αρχικών ρυθμίσεων",
     "powering-down": "Αυτήν τη στιγμή είστε σε κατάσταση power down.",
-    "stop-power-down": "Διακοπή"
+    "stop-power-down": "Διακοπή",
+    "claim-title": "Claim",
+    "powerup-title": "Power Up",
+    "powerdown-title": "Power down",
+    "lock-title": "Lock liquidity",
+    "unlock-title": "Unlock liquidity",
+    "lock-summary": "Locking completed as <span class=\"amount\">{{amount}}</span>",
+    "unlock-summary": "Unlocking completed as <span class=\"amount\">{{amount}}</span>"
   },
   "trx-common": {
     "insufficient-funds": "Ανεπαρκές χρηματικό υπόλοιπο",
@@ -833,7 +950,8 @@
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
     "type-limit_order_create": "New trade created",
     "type-limit_order_cancel": "Open trade cancelled",
-    "type-effective_comment_vote": "Effective vote"
+    "type-effective_comment_vote": "Effective vote",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Υπογραφή",
@@ -853,6 +971,13 @@
     "title": "Convert requests",
     "request-id": "Request id",
     "amount": "Amount",
+    "pending": "Pending"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Collateralized Convert requests",
+    "request-id": "Request id",
+    "collateral_amount": "Collateral",
+    "converted_amount": "Converted",
     "pending": "Pending"
   },
   "savings-withdraw": {
@@ -989,6 +1114,7 @@
     "voted": "{{source}} ψήφισε την δημοσίευση σας",
     "mention-post": "{{source}} σας ανέφερε σε μια δημοσίευση",
     "mention-comment": "{{source}} σας ανέφερε σε ένα σχόλιο",
+    "favorite": "{{source}} made new post",
     "followed": "{{source}} σας ακολούθησε",
     "replied": "{{source}} σας απάντησε",
     "reblogged": "{{source}} πρόβαλλε την δημοσίευση σας",
@@ -1005,10 +1131,12 @@
     "type-reblogs": "Αναδημοσιεύσεις",
     "type-transfers": "Μεταφορές",
     "type-delegations": "Delegations",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "Recent",
-    "vote-str": "{{p}}% του αρέσει η δημοσίευση σας:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "απάντησε στην δημοσίευση σας:",
     "mention-str": "σε ανέφερε σε:",
+    "favorite-str": "made new post",
     "followed-str": "ακολούθησε",
     "unfollowed-str": "σταμάτησε να ακολουθεί",
     "ignored-str": "αγνόηση",
@@ -1022,7 +1150,8 @@
     "mark-all-read": "Σήμανση όλων ως αναγνωσμένων",
     "mark-read": "Σήμανση ως αναγνωσμένο",
     "mute": "Απενεργοποίηση ειδοποιήσεων",
-    "unmute": "Ενεργοποίηση ειδοποιήσεων"
+    "unmute": "Ενεργοποίηση ειδοποιήσεων",
+    "settings": "Settings"
   },
   "leaderboard": {
     "title-stars": "Most active",
@@ -1107,7 +1236,19 @@
     "proxy-active-description": "Έχετε ορίσει μεσολαβητή. Αν θέλετε να ψηφίζετε μόνοι σας για witness, παρακαλούμε αφαιρέστε τον μεσολαβητή σας.",
     "proxy-active-current": "Ο τρέχων μεσολαβητής σας είναι ο",
     "proxy-active-btn-label": "Αφαίρεση μεσολαβητή",
-    "proxy-votes-for": "@{{username}} ψηφίζει για"
+    "proxy-votes-for": "@{{username}} ψηφίζει για",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Προτάσεις",
@@ -1264,7 +1405,7 @@
       "what-are-rc-header": "What are Resource Credits?",
       "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
       "how-boost-account-header": "How to request account boosting?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can find account boosting feature in Points options.</p>",
+      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation (553311 VESTS) which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can request account boosting quickly with <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR page</a> just change username and scan QR image with Ecency mobile app.</p>",
       "what-spam-abuse-header": "Τι θεωρείται spam, ανεπιθύμητο ή κατάχρηση;",
       "what-spam-abuse-body": "<p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Μπορώ να ζητήσω την προσθήκη backlink στην ιστοσελίδα μου από την ομάδα Ecency;",
@@ -1314,7 +1455,7 @@
       "why-different-keys-header": "Why are there different keys?",
       "why-different-keys-body": "<p>There are different keys with the appropriate permissions for what you are doing. <ul><li>Posting keys - this key should be used for social networking actions, like posting, commenting and voting. This key has a limited set of permissions and it is not able to be used for monetary actions. So you can't lose money if someone else gets access to this key.</li><li>Active key - this key has additional permissions for more sensitive monetary-related actions, like transferring and exchanging tokens. When performing a wallet related action, you may be prompted to authenticate with your Active key. You should only enter your Active Key into apps which you trust because anyone with access to this key can take your tokens. Do yourself a favor and store this key safely to avoid losing tokens in the future.</li><li>Owner key - is the most powerful key because it can change any key of an account, including the owner key. Ideally it is meant to be stored offline, and only used to recover a compromised account.</li></ul></p>",
       "stolen-hive-hbd-header": "What can I do if my HIVE or Hive dollar tokens stolen or sent to wrong account?",
-      "stolen-hive-hbd-body": "<p>There is nothing to do if your liquid tokens are stolen or sent to wrong acoount but if your tokens are in Hive Power it is impossible to be hacked more than 1/13 per week and if your tkens are in savings they need to a three-day wait period for them to become transferable. Staking/powering up or transferring funds into savings might be more safer.</>",
+      "stolen-hive-hbd-body": "<p>There is nothing to do if your liquid tokens are stolen or sent to wrong acoount but if your tokens are in Hive Power it is impossible to be hacked more than 1/13 per week and if your tokens are in savings they need to a three-day wait period for them to become transferable. Staking/powering up or transferring funds into savings might be more safer.</>",
       "what-are-tags-header": "What are tags or topics?",
       "what-are-tags-body": "<p>A tag is a piece of information that describes the content that it is assigned to. They help search engines identify the content of pages online and using that information, produce the best results for a given search. All tags must be lowercase letters. Spaces aren't allowed, but hyphenated words with a single dash are allowed.</p>",
       "how-use-tags-header": "How to use tags?",
@@ -1324,7 +1465,7 @@
       "what-links-show-header": "What do the Trending, Hot, New, Rising and Controversial links show?",
       "what-links-show-body": "<p>This is the way of sorting content on Ecency. <ul><li>Trending - Widely mentioned or discussed posts.</li><li>Hot - Popular posts in last couple hours.</li><li>New - The newest posts sorted by the published time.</li><li>Rising - Posts that have more comments and votes compare to others.</li><li>Controversial - Has a relatively equal number of upvotes and downvotes.</li></ul></p>",
       "what-my-rewards-header": "What kind of rewards I have in my wallet?",
-      "what-my-rewards-body": "<p>There are two kind of rewards are shown in your wallet: <ul><li>Curation rewards - The rewards earned for upvoting posts and comments.</li><li>Author rewards - The rewards earned by your own posts and comments.</li><li>Points rewards - Social actions and interactions also rewarded with Ecency points.</li></ul><p/>",
+      "what-my-rewards-body": "<p>There are three kind of rewards are shown in your wallet: <ul><li>Curation rewards - The rewards earned for upvoting posts and comments.</li><li>Author rewards - The rewards earned by your own posts and comments.</li><li>Points rewards - Social actions and interactions also rewarded with Ecency points.</li></ul><p/>",
       "what-information-profile-header": "What kind of information is shown on my profile?",
       "what-information-profile-body": "<p>The first information shown near your image is your reputation score and display name, description. Below information about followers and following, registration date on Ecency. You have the option to add extra information on Ecency settings such as about information, profile image, cover image, your location.</p>",
       "what-can-post-header": "What can I post on Ecency?",
@@ -1342,7 +1483,15 @@
       "what-voting-power-header": "What is voting power?",
       "what-voting-power-body": "<p>Your voting power goes down a little bit every time you vote. It begins with 100% voting power and by voting you use small amount of voting power. The more you vote the fewer influence you have, meaning efficiency of your vote will decay. Daily 10 votes are recommended to utilize efficiency and curation rewards better.</p>",
       "how-many-vote-header": "How many times can I vote with my voting power?",
-      "how-many-vote-body": "<p>Every 100% vote you cast will use 2% of your remaining voting mana. Your voting mana will recharge by 20% each day. You can vote more than 10 times per day, but each vote will be worth less, and it will take longer to reach full voting power again.</p>"
+      "how-many-vote-body": "<p>Every 100% vote you cast will use 2% of your remaining voting mana. Your voting mana will recharge by 20% each day. You can vote more than 10 times per day, but each vote will be worth less, and it will take longer to reach full voting power again.</p>",
+      "what-is-hivesigner-header": "What is Hivesigner?",
+      "what-is-hivesigner-body": "<p>When you were signing up on Hive you were given lots of keys that are hard to remember. The work of this Hivesigner is, it gives you the access to create your own password that you can remember and to provide a protection not to use your active key when logging into Hive platforms.</p>",
+      "what-is-keychain-header": "What is Keychain?",
+      "what-is-keychain-body": "<p>Hive Keychain is a wallet browser extension for the Hive blockchain and cryptocurrency and allows users to securely log into and access multiple Hive-based platforms. It is available for Chrome, Brave and Firefox.</p>",
+      "videos-pictures-stored-header": "Are pictures and video stored on the blockchain?",
+      "videos-pictures-stored-body": "<p>Media content such as pictures, videos etc. are typically not stored directly on a blockchain. When you add pictures or video you are only adding a source reference to where they are located. Meaning you can add video content from other locations. As of right now, when you upload a photo, this gets hosted on a regular web server.</p>",
+      "value-hive-hbd-header": "What determines the value of HIVE and HBD?",
+      "value-hive-hbd-body": "<p>The value of HIVE comes from the demand and supply of the token. HIVE will always be in demand based on the way the system is designed and there will always be supply for HIVE. As long as the Hive blockchain exist with continuous development and users being active, there will always be demand and supply for HIVE, adding value to the token.</p>"
     }
   },
   "contributors": {
@@ -1368,11 +1517,12 @@
   "chain-error": {
     "min-root-comment": "You may only post once every five minutes.",
     "identical-vote": "Your current vote on this content is identical to this vote.",
-    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
     "comment-cashout": "Content after their payout cannot be deleted.",
     "comment-children": "Cannot delete a content with replies.",
-    "paid-out-post-forbidden": "Voting for paid out content is not available."
+    "paid-out-post-forbidden": "Voting for paid out content is not available.",
+    "missing-authority": "Missing or invalid authority key."
   },
   "landing-page": {
     "welcome-text": "Welcome to Ecency!",
@@ -1438,5 +1588,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }

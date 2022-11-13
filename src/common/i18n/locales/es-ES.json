@@ -62,7 +62,8 @@
     "price": "Precio",
     "more-results": "Más resultados",
     "close": "Cerrar",
-    "loading": "Cargando"
+    "loading": "Cargando",
+    "stop": "Detener"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -93,7 +94,9 @@
     "filter-week": "Esta semana",
     "filter-month": "Este mes",
     "filter-year": "Este año",
-    "filter-alltime": "Todos los tiempos"
+    "filter-alltime": "Todos los tiempos",
+    "filter-no-reblog": "Excluir re-publicación",
+    "filter-with-reblog": "Incluir re-publicación"
   },
   "navbar": {
     "discover": "Descubrir",
@@ -137,7 +140,8 @@
     "light": "claro",
     "dark": "oscuro",
     "switch-to": "Cambiar",
-    "vote-power": "Poder de voto:"
+    "vote-power": "Poder de voto:",
+    "boost": "Impulsar"
   },
   "intro": {
     "title": "Aspira a la grandeza",
@@ -164,8 +168,8 @@
     "sign-up-text-2": "¡Regístrate ahora!"
   },
   "sign-up": {
-    "header": "Bienvenido a Ecency",
-    "description": "Hogar de comunidades de libre comunicación y de recompensa por ello!",
+    "header": "Recompensando comunidades",
+    "description": "¡Valorar la Libertad de expresión, Estar en Avance, Alcanzar la libertad financiera!",
     "bottom-description": "Cada cuenta es creada en un blockchain y sólo tú tienes el control sobre esa cuenta. Una cuenta para administrar todo en Blockchain y Ecency.",
     "learn-more": "Obtenga más información sobre los beneficios en nuestras <a href=\"/faq#how-to-join\">Preguntas frecuentes</a>",
     "username": "Elige un nombre de usuario",
@@ -397,7 +401,10 @@
     "browse-original": "Abrir publicación original",
     "cross-post-by": "Publicación cruzada por",
     "cross-post-community": "comunidad",
-    "community-in": "en"
+    "community-in": "en",
+    "post-word-count": "Palabras:",
+    "post-read-time": "Leyendo:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "Editar historial",
@@ -424,7 +431,9 @@
     "read-more": "Ver más respuestas...",
     "reveal-muted": "Autor silenciado - Revelar comentario",
     "reveal-muted-long-description": "Mostrar respuestas adicionales, incluyendo aquellas que pueden tener contenido ofensivo",
-    "reveal": "Revelar comentario"
+    "reveal": "Revelar comentario",
+    "no-conversation": "Aún no hay conversación, se el primero en responder",
+    "start-conversation": "Iniciar conversación"
   },
   "community": {
     "page-description": "{{f}} temas",
@@ -547,11 +556,15 @@
     "section-communities": "Comunidades",
     "section-wallet": "Monedero",
     "section-settings": "Ajustes",
+    "section-referrals": "Referidos",
     "section-permission": "Permisos",
     "communities-title": "Membresía",
     "create-community": "Crear una Comunidad",
     "witnesses": "Testigos",
-    "proposals": "Propuestas"
+    "proposals": "Propuestas",
+    "referrals": "Referidos",
+    "go-community": "Página de la comunidad",
+    "com-mod": "Moderador de estas comunidades"
   },
   "profile-info": {
     "joined": "Se unió: {{n}}",
@@ -591,6 +604,10 @@
     "language": "Idioma",
     "nsfw": "Mostrar contenido NSFW",
     "referral-link": "Enlace de referido",
+    "theme": "Configuración del Tema",
+    "theme-system-default": "Predeterminado del Sistema",
+    "theme-day": "Modo Día",
+    "theme-night": "Modo Noche",
     "updated": "Preferencias actualizadas!"
   },
   "wallet": {
@@ -619,7 +636,7 @@
     "hive-dollars-description": "Fichas por valor de alrededor de $ 1.00 de HIVE.",
     "savings": "AHORROS",
     "savings-description": "El balance está sujeto a 3 días de espera para la retirada.",
-    "next-power-down": "El siguiente apagado será en {{time}}, {{amount}}",
+    "next-power-down": "El siguiente apagado es {{time}}, (~{{amount}}, {{weeks}} semanas restantes)",
     "transfer": "Transferir",
     "transfer-to-savings": "Transferir a ahorros",
     "convert": "Convertir",
@@ -631,8 +648,85 @@
     "withdraw-routes": "Rutas de Retiro",
     "calculating": "Calculando",
     "converting-hbd-amount": "Convirtiendo a HIVE",
+    "converting-hive-amount": "Convirtiendo a HBD",
     "withdrawing-amount": "Retiro de ahorros",
-    "reserved-amount": "Reservado para Orden Abierta en Mercado"
+    "reserved-amount": "Reservado para Orden Abierta en Mercado",
+    "spk": {
+      "claim": {
+        "title": "Reclamar",
+        "unclaimed-rewards": "Recompensas no reclamadas"
+      },
+      "delegate": {
+        "title": "Delegar",
+        "subtitle": "Tokens deselegados",
+        "node-operator-placeholder": "Seleccione un operador de nodo",
+        "delegated-larynx-power": {
+          "title": "Poder LARYNX Delegado"
+        }
+      },
+      "power-up": {
+        "title": "Power up",
+        "subtitle": "Pon Tokens en estaca para ganar recompensas pasivas"
+      },
+      "power-down": {
+        "title": "Apagar",
+        "subtitle": "Apaga para ganar recompensas pasivas",
+        "in-progress": "Está programado que suceda un apagado en {{date}} ({{count}} cuotas restantes)"
+      },
+      "lock": {
+        "title": "Bloquear liquidez",
+        "subtitle": "Bloquear Larynx por recompensa de liquidez",
+        "button": "Bloquear liquidez"
+      },
+      "unlock": {
+        "title": "Desbloquear liquidez",
+        "subtitle": "Desbloquear LARYNX a forma líquida",
+        "button": "Desbloquear liquidez"
+      },
+      "send": {
+        "balance": "Balance",
+        "button": "Enviar",
+        "from": "Desde",
+        "to": "A",
+        "amount": "Cantidad",
+        "optional": "opcional",
+        "title": "Enviar SPK",
+        "memo": "Memo",
+        "next": "Siguiente",
+        "subtitle": "Mover fondos a otra cartera SPK",
+        "warning": "Transfiriendo más que el saldo disponible"
+      },
+      "token": "Token SPK",
+      "token-description": "El token de gobernanza para la red SPK.",
+      "larynx-air": "Reclamo de Airdrop de LARYNX",
+      "larynx-air-description": "Este mes se cobran fichas basadas en un snapshot del 6 de enero del HIVE.",
+      "larynx-air-warning": "Los tokens no reclamados, no se prorrogan hasta el mes próximo.",
+      "larynx-already-claimed": "Ya reclamado.",
+      "larynx-token": "Token LARYNX",
+      "larynx-token-description": "El token de minería de la red SPK.",
+      "larynx-power": "Poder LARYNX",
+      "larynx-power-description": "Tokens en Poder usados para extraer SPK",
+      "larynx-power-benefits": {
+        "title": "Beneficios de energía LARYNX",
+        "1": "Gana tokens de gobernanza SPK",
+        "2": "Bloqueo instantáneo | Desbloqueo de 4 semanas",
+        "3": "Delegar a cuentas de nodo de servicio para crear consenso (DPoS)",
+        "4": "POWER LARYNX (LP) gana tokens SPK al {{rate}}%",
+        "5": "El LP Delegado (DLP) gana las fichas SPK tanto para el delegador como para el delegado en {{rate}}%"
+      },
+      "larynx-locked-benefits": {
+        "title": "Beneficios de LARYNX bloqueado",
+        "1": "Prueba del Consenso de Estaca",
+        "2": "Collateral para transacciones DEX",
+        "3": "Bloqueo instantáneo | Desbloqueo de 4 semanas",
+        "4": "Requiere un nodo LARYNX operativo",
+        "5": "Gana 0.100%"
+      },
+      "account-value": "Valor de cuenta aproximado",
+      "account-value-description": "El valor aproximado del dólar estadounidense para todos los activos de SPK en su cuenta",
+      "larynx-locked": "LARYNX bloqueado",
+      "larynx-locked-description": "Las fichas bloqueadas proporcionan liquidez a la red, ayudan a determinar el consenso y obtienen recompensas para los corredores de nodos"
+    }
   },
   "wallet-engine": {
     "title": "Motor de Tokens de Hive",
@@ -701,6 +795,18 @@
     "slider-hint": "Arrastra el deslizador para ajustar la cantidad.",
     "submit": "Comprar",
     "purchase-message": "O envía cualquier cantidad a @esteem.app con `points` como nota en el memo para comprar puntos."
+  },
+  "purchase-qr": {
+    "scan-code": "Escanear el código QR con la aplicación móvil Ecency",
+    "select-user": "Por favor, selecciona un usuario",
+    "title": "Impulsar la cuenta",
+    "title-points": "Comprar puntos",
+    "copied": "¡Enlace de impulso de la cuenta copiado!",
+    "select-type": "Selecciona un tipo",
+    "boost": "Impulsar",
+    "points": "Puntos",
+    "boost-info": "Ecency tiene derecho a revocar delegaciones/impulsos si la estaca se utiliza incorrectamente",
+    "points-amount": "{{n}} puntos"
   },
   "promote": {
     "title": "Promocionar",
@@ -781,9 +887,20 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegado de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> retirar delegación de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Apagado completado como <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interés reclamado y añadido a su saldo de ahorros",
+    "claim-summary": "Reclamado y añadido a su saldo de ahorros",
+    "powerup-summary": "Power up completado con éxito",
+    "powerdown-summary": "Apagado completado con éxito",
     "reset": "Reestablecer",
     "powering-down": "Actualmente estas apagando.",
-    "stop-power-down": "Detener"
+    "stop-power-down": "Detener",
+    "claim-title": "Reclamar",
+    "powerup-title": "Power up",
+    "powerdown-title": "Apagar",
+    "lock-title": "Bloquear liquidez",
+    "unlock-title": "Desbloquear liquidez",
+    "lock-summary": "Bloqueo completado como <span class=\"amount\">{{amount}}</span>",
+    "unlock-summary": "Desbloqueo completado como <span class=\"amount\">{{amount}}</span>"
   },
   "trx-common": {
     "insufficient-funds": "Fondos insuficientes",
@@ -833,7 +950,8 @@
     "type-update_proposal_vote-detail": "ID de la propuesta: <strong>{{pid}}</strong>",
     "type-limit_order_create": "Nueva operación creada",
     "type-limit_order_cancel": "Operación abierta cancelada",
-    "type-effective_comment_vote": "Voto efectivo"
+    "type-effective_comment_vote": "Voto efectivo",
+    "type-account_witness_proxy": "Actualización del proxy de gobernanza"
   },
   "key-or-hot": {
     "sign": "Firmar",
@@ -853,6 +971,13 @@
     "title": "Solicitudes de conversión",
     "request-id": "Id de solicitud",
     "amount": "Cantidad",
+    "pending": "Pendiente"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Peticiones de conversión colateralizadas",
+    "request-id": "Id de solicitud",
+    "collateral_amount": "Colateral",
+    "converted_amount": "Convertido",
     "pending": "Pendiente"
   },
   "savings-withdraw": {
@@ -989,6 +1114,7 @@
     "voted": "{{source}} votó tu publicación",
     "mention-post": "{{source}} te ha mencionado en una publicación",
     "mention-comment": "{{source}} te mencionó en un comentario",
+    "favorite": "{{source}} hizo una nueva publicación",
     "followed": "{{source}} te siguió",
     "replied": "{{source}} te respondió",
     "reblogged": "{{source}} ha reblogueado tu publicación",
@@ -1005,10 +1131,12 @@
     "type-reblogs": "Reblogueos",
     "type-transfers": "Transacciones",
     "type-delegations": "Delegaciones",
+    "type-nfavorites": "Favoritos",
     "group-title-recent": "Recientes",
-    "vote-str": "A {{p}}% le gusta tu publicación:",
+    "vote-str": "{{p}}% votó tu publicación:",
     "reply-str": "contestó a tu publicación:",
     "mention-str": "te mencionó en:",
+    "favorite-str": "crear nuevo post",
     "followed-str": "seguido",
     "unfollowed-str": "dejar de seguir",
     "ignored-str": "ignorar",
@@ -1022,7 +1150,8 @@
     "mark-all-read": "Marcar todo como leído",
     "mark-read": "Marcar como leído",
     "mute": "Desactivar notificaciones",
-    "unmute": "Activar notificaciones"
+    "unmute": "Activar notificaciones",
+    "settings": "Configuraciones"
   },
   "leaderboard": {
     "title-stars": "Más activo",
@@ -1107,7 +1236,19 @@
     "proxy-active-description": "Has seleccionado un proxy de votación. Si quieres volver a habilitar el voto manual, por favor borra el proxy.",
     "proxy-active-current": "Tu proxy actual es",
     "proxy-active-btn-label": "Borrar proxy",
-    "proxy-votes-for": "@{{username}} votos para"
+    "proxy-votes-for": "@{{username}} votos para",
+    "proxy-active-highlighted": "Tus votos de proxy están resaltados",
+    "check-witness-highlighted": "votos resaltados"
+  },
+  "referral": {
+    "page-title": "Referidos",
+    "page-description-long": "Aquí hay una lista de todos los usuarios que tú has referido a la aplicación Ecency.",
+    "created": "Creado",
+    "list-referral": "Cuenta",
+    "rewarded": "Recompensado",
+    "pending-reward": "Puntos pendientes",
+    "earned-reward": "Puntos ganados",
+    "delegate-hp": "HP Delegando"
   },
   "proposals": {
     "page-title": "Propuestas",
@@ -1264,7 +1405,7 @@
       "what-are-rc-header": "¿Qué son los Créditos de Recursos?",
       "what-are-rc-body": "<p>La transacción en la cadena de bloques de Hive tiene cero comisiones, se utiliza la limitación de tasa de transacción para proteger la cadena de bloques de ataques de spam. Cada acción que hagas en la cadena de bloques consumirá una pequeña cantidad de Créditos de Recursos. Esto incluye publicar, comentar, votar, transferir tokens, etc. Ver contenido no consume créditos de recursos.</p><p>Cada usuario tiene una cantidad limitada de Créditos de Recursos para usar cada semana. Cuantas más transacciones haga un usuario, menos créditos de recursos le quedarán (hasta que recarguen). Los usuarios con más HIVE POWER tendrán más créditos de recursos.</p><p>Si te quedas sin créditos de Recursos, no podrás hacer ninguna transacción con la cadena de bloques hasta que tus Créditos de Recurso recarguen (sucede automáticamente) o adquirirás HIVE POWER adicional para aumentar tu saldo de Crédito de Recursos, o puedes <a href=\"/faq#how-boost-account\">solicitar que la cuenta de Optimización de Ecency</a> te proporcione una delegación temporal.</p>",
       "how-boost-account-header": "¿Cómo solicitar la optimización de la cuenta?",
-      "how-boost-account-body": "<p>Si tu cuenta tiene un bajo monto de <a href=\"/faq#what-are-rc\">Créditos de Recursos</a>, puedes solicitar que la cuenta reciba impulso de parte de Ecency. Recibirás una delegación temporal que debería impulsar tu cuenta para realizar más actividades en la blockchain. Puedes encontrar la función de potenciar la cuenta en las Opciones de Puntos.</p>",
+      "how-boost-account-body": "<p>Si tu cuenta tiene pocos <a href=\"/faq#what-are-rc\">Créditos de Recursos</a>, puedes solicitar un impulso a la cuenta desde Ecency. Recibirás una delegación de 30 días (553311 VESTS) que debería impulsar tu cuenta para realizar más actividades en blockchain. La delegación podría retirarse en cualquier momento si nuestro equipo considera que el uso del poder es inapropiado. Puedes solicitar que la cuenta se optimice rápidamente con <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">página de QR</a>, simplemente cambia el nombre de usuario y escanea la imagen QR con la aplicación móvil Ecency.</p>",
       "what-spam-abuse-header": "¿Qué se considera spam o abuso?",
       "what-spam-abuse-body": "<p><ul><li>Publicaciones plagiarizadas o contenido copiado.</li><li>Dejar comentarios casi idénticos o materialmente similares en múltiples publicaciones.</li><li>Uso de etiquetas que no están relacionadas con la publicación.</li><li>Amenazar a los usuarios con cualquier tipo de violencia física.</li><li>No citar fuentes cuando se utiliza el material de otra persona.</li><li>Publicando contenido ‘no seguro para el trabajo’ sin usar la etiqueta “nsfw”.</li><li>Ofertas fraudulentas o estafas.</li></ul></p>",
       "can-link-post-header": "¿Puedo solicitar al equipo de Ecency agregar un vínculo de retroceso a mi sitio web?",
@@ -1314,7 +1455,7 @@
       "why-different-keys-header": "¿Por qué hay diferentes llaves?",
       "why-different-keys-body": "<p>Hay diferentes claves con los permisos apropiados para lo que estás haciendo. <ul><li>Clave de Publicación - esta clave debe ser usada para acciones de redes sociales, como publicar, comentar y votar. Esta clave tiene un conjunto limitado de permisos y no se puede utilizar para acciones monetarias. Así que no se puede perder dinero si alguien más tiene acceso a esta clave.</li><li>Clave activa - esta clave tiene permisos adicionales para acciones más sensibles relacionadas con lo monetario, como transferir e intercambiar tokens. Al realizar una acción relacionada con una cartera, se te puede pedir que te autentifiques con su clave activa. Solamente debes introducir tu Clave Activa en aplicaciones en las que confías porque cualquiera con acceso a esta clave puede tomar tus tokens. Hazte un favor y almacena esta clave de forma segura para evitar perder fichas en el futuro.</li><li>Clave de propietario - es la clave más poderosa porque puede cambiar cualquier clave de una cuenta, incluyendo la clave de propietario. Idealmente, está pensado para ser almacenada fuera de línea, y solo se utiliza para recuperar una cuenta comprometida.</li></ul></p>",
       "stolen-hive-hbd-header": "¿Qué puedo hacer si mis tokens de HIVE o de Hive dollars son robados o enviados a una cuenta incorrecta?",
-      "stolen-hive-hbd-body": "<p>No hay nada que hacer si tus tokens de liquidez son robadas o enviadas a una couenta incorrecta, pero si tus fichas están en Hive Power, es imposible que sean hackeadas más de 1/13 por semana y si tus fichas están ahorradas, necesitan un período de espera de tres días para que sean transferibles. Estacar/potenciar o transferir fondos a ahorros puede ser más seguro.</>",
+      "stolen-hive-hbd-body": "<p>No hay nada que hacer si tus fichas de líquido son robadas o enviadas a una cuenta incorrecta, pero si tus fichas están estacadas en Hive Power es imposible que sean hackeadas más de 1/13 por semana y si tus fichas están ahorradas, necesitan un período de espera de tres días para que se puedan transferir. Estacar/potenciar o transferir fondos a ahorros puede ser más seguro.</>",
       "what-are-tags-header": "¿Qué son las etiquetas o temas?",
       "what-are-tags-body": "<p>Una etiqueta es una pieza de información que describe el contenido al que se le asigna. Ayudan a los motores de búsqueda a identificar el contenido de las páginas en línea y a utilizar esa información, producen los mejores resultados para una búsqueda determinada. Todas las etiquetas deben ser letras minúsculas. Los espacios no están permitidos, pero se permiten palabras separadas por guiones, con un solo guión.</p>",
       "how-use-tags-header": "¿Cómo usar etiquetas?",
@@ -1324,7 +1465,7 @@
       "what-links-show-header": "¿Qué muestran los enlaces de Tendencias, Calientes, Nuevos, Ascendientes y Controversiales?",
       "what-links-show-body": "<p>Esta es la forma de ordenar contenido en Ecency. <ul><li>Tendencias - Anteriormente publicado o discutido.</li><li>Caliente - Mensajes populares en las últimas horas.</li><li>Nuevos - Los mensajes más recientes ordenados por el tiempo de publicado.</li><li>Ascendente - Mensajes que tienen más comentarios y votos comparados con otros.</li><li>Controversial - Tiene un número relativamente igual de votos positivos y negativos.</li></ul></p>",
       "what-my-rewards-header": "¿Qué tipo de recompensas tengo en mi cartera?",
-      "what-my-rewards-body": "<p>Hay dos tipos de recompensas en tu monedero: <ul><li>Recompensas de curación - Las recompensas ganadas por votar publicaciones y comentarios.</li><li>Recompensas de autor - Las recompensas ganadas por tus propias publicaciones y comentarios.</li><li>Recompensas de Puntos - Acciones sociales e interacciones también recompensadas con puntos de Ecency.</li></ul><p/>",
+      "what-my-rewards-body": "<p>Hay tres tipos de recompensas en tu monedero: <ul><li>Recompensas de Curación - Las recompensas ganadas por votar publicaciones y comentarios.</li><li>Recompensas de autor - Las recompensas ganadas por tus propios posts y comentarios.</li><li>Recompensas de Puntos - Acciones sociales e interacciones también recompensadas con puntos de Ecency.</li></ul><p/>",
       "what-information-profile-header": "¿Qué tipo de información se muestra en mi perfil?",
       "what-information-profile-body": "<p>La primera información que se muestra cerca de su imagen es su puntaje de reputación y tu nombre, abajo la descripción. Debajo de eso, la información sobre seguidores y a quien sigues, fecha de registro en Ecency. Tienes la opción de añadir información adicional en la configuración de Ecency, como información sobre la imagen, imagen de perfil, imagen de portada, tu ubicación.</p>",
       "what-can-post-header": "¿Qué puedo publicar en Ecency?",
@@ -1342,7 +1483,15 @@
       "what-voting-power-header": "¿Qué es el poder de voto?",
       "what-voting-power-body": "<p>Tu poder de voto disminuye un poco cada vez que votas. Comienza con un poder de voto del 100% y al votar usas una pequeña cantidad de poder de voto. Cuanto más votas menos influencia tienen, lo que significa que la eficiencia de su voto se deteriorará. Se recomiendan 10 votos diarios para utilizar mejor eficiencia y recompensas de curación.</p>",
       "how-many-vote-header": "¿Cuántas veces puedo votar con mi poder de voto?",
-      "how-many-vote-body": "<p>Cada voto al 100% de votos que otorgues usará el 2% del total de tu maná de voto restante. Tu maná de voto recargará un 20% cada día. Puedes votar más de 10 veces al día, pero cada voto valdrá menos y tomará más tiempo alcanzar el pleno poder de votación de nuevo.</p>"
+      "how-many-vote-body": "<p>Cada voto al 100% de votos que otorgues usará el 2% del total de tu maná de voto restante. Tu maná de voto recargará un 20% cada día. Puedes votar más de 10 veces al día, pero cada voto valdrá menos y tomará más tiempo alcanzar el pleno poder de votación de nuevo.</p>",
+      "what-is-hivesigner-header": "¿Qué es Hivesigner?",
+      "what-is-hivesigner-body": "<p>Cuando estabas registrándote en Hive, recibiste un montón de claves difíciles de recordar. El trabajo de este Hivesigner es, darte acceso a crear tu propia contraseña que puedas recordar y proporcionar una protección para no usar tu clave activa al iniciar sesión en las plataformas Hive.</p>",
+      "what-is-keychain-header": "¿Qué es Keychain?",
+      "what-is-keychain-body": "<p>Hive Keychain es una extensión del navegador para el monedero en la blockchain y criptomoneda de Hive, permite a los usuarios iniciar sesión de forma segura y acceder a múltiples plataformas basadas en Hive. Está disponible para Chrome, Brave y Firefox.</p>",
+      "videos-pictures-stored-header": "¿Las imágenes y el vídeo se almacenan en la blockchain?",
+      "videos-pictures-stored-body": "<p>El contenido multimedia como imágenes, vídeos, etc. normalmente no se almacenan directamente en una blockchain. Cuando añades fotos o vídeos, solamente estás añadiendo una referencia de origen a donde se encuentran. Puedes añadir contenido de vídeo desde otras ubicaciones. A partir de ahora, cuando subas una foto, esta se alojará en un servidor web normal.</p>",
+      "value-hive-hbd-header": "¿Qué determina el valor del HIVE y del HBD?",
+      "value-hive-hbd-body": "<p>El valor del HIVE proviene de la demanda y oferta del token. El HIVE siempre será demandado según la forma en que el sistema está diseñado y siempre habrá oferta para el HIVE. Mientras la blockchain de Hive exista con el desarrollo continuo y los usuarios estén activos, siempre habrá demanda y oferta para el HIVE, añadiendo valor al token.</p>"
     }
   },
   "contributors": {
@@ -1368,11 +1517,12 @@
   "chain-error": {
     "min-root-comment": "Sólo puedes publicar una vez cada cinco minutos.",
     "identical-vote": "Tu voto actual sobre este contenido es idéntico a esta votación.",
-    "insufficient-resource": "Créditos de recursos insuficientes. Por favor espere para transaccionar o Incrementa tus HIVE por Power Up.",
+    "insufficient-resource": "Créditos de Recursos insuficientes.",
     "delete-comment-with-vote": "No se puede eliminar un contenido con recompensas positivas pendientes.",
     "comment-cashout": "El contenido después de su pago no puede ser eliminado.",
     "comment-children": "No se puede eliminar un contenido con respuestas.",
-    "paid-out-post-forbidden": "La votación por el contenido pagado no está disponible."
+    "paid-out-post-forbidden": "La votación por el contenido pagado no está disponible.",
+    "missing-authority": "Clave de autoridad no válida o faltante."
   },
   "landing-page": {
     "welcome-text": "¡Bienvenido a Ecency!",
@@ -1438,5 +1588,14 @@
   },
   "top-communities": {
     "title": "Comunidades populares"
+  },
+  "feedback-modal": {
+    "title": "Detalles del error",
+    "question": "¿Cómo arreglar esto?",
+    "insufficient-resource-title": "¿Cómo obtener más créditos de Recursos?",
+    "insufficient-resource-purchase": "Comprar potenciador de cuenta o delegación",
+    "insufficient-resource-buy-hive": "Comprar HIVE y aumentar poder",
+    "insufficient-resource-wait": "Espere unas horas para la recarga de RC",
+    "report": "Reporte"
   }
 }

@@ -1,10 +1,8 @@
 import React from "react";
 
-import Wallet from "./index";
+import WalletHiveEngine from "./index";
 
 import TestRenderer from "react-test-renderer";
-
-import { createBrowserHistory } from "history";
 
 import { initialState as transactionsInitialState } from "../../store/transactions/index";
 
@@ -46,7 +44,7 @@ jest.mock("../../api/hive-engine", () => ({
             hasDelegations: () => false,
             delegations: () => "",
             staked: () => "8.10882833",
-            balanced: () => "0",
+            balanced: () => "0"
           },
           {
             symbol: "PIZZA",
@@ -63,8 +61,8 @@ jest.mock("../../api/hive-engine", () => ({
             hasDelegations: () => true,
             delegations: () => "(0.11 + 1.12 - 0.10)",
             staked: () => "1.13",
-            balanced: () => "1.0",
-          },
+            balanced: () => "1.0"
+          }
         ]);
       }
 
@@ -87,58 +85,58 @@ jest.mock("../../api/hive-engine", () => ({
             hasDelegations: () => false,
             delegations: () => "",
             staked: () => "0",
-            balanced: () => "0",
+            balanced: () => "0"
           }
         ]);
       }
     }),
-    getUnclaimedRewards: () => new Promise((resolve) => {
-      if (MOCK_MODE === 1 || MOCK_MODE === 2 || MOCK_MODE === 4) {
+  getMetrics: () =>
+    new Promise((resolve) => {
+      if (MOCK_MODE === 1 || MOCK_MODE === 2 || MOCK_MODE === 3 || MOCK_MODE === 4) {
+        resolve([]);
+      }
+    }),
+  getUnclaimedRewards: () =>
+    new Promise((resolve) => {
+      if (MOCK_MODE === 1 || MOCK_MODE === 2 || MOCK_MODE === 4) {
         resolve([]);
       }
 
       if (MOCK_MODE === 3) {
-        resolve([{
-          pending_token: 883586,
-          precision: 8,
-          symbol: "POB",
-        }]);
+        resolve([
+          {
+            pending_token: 883586,
+            precision: 8,
+            symbol: "POB"
+          }
+        ]);
       }
     })
 }));
 
 const account: FullAccount = {
   ...fullAccountInstance,
-  name: "user1",
+  name: "user1"
 };
 
 const defProps = {
-  history: createBrowserHistory(),
   global: globalInstance,
   dynamicProps: dynamicPropsIntance1,
-  users: [],
-  activeUser: {...activeUserInstance},
+  activeUser: { ...activeUserInstance },
   account,
   transactions: transactionsInitialState,
-  signingKey: '',
-  addAccount: () => {
-  },
-  updateActiveUser: () => {
-  },
-  setSigningKey: () => {
-  },
-  fetchTransactions: () => {
-  },
-  fetchPoints: () => {
-  },
-  updateWalletValues: () => {
-  }
+  signingKey: "",
+  addAccount: () => {},
+  updateActiveUser: () => {},
+  setSigningKey: () => {},
+  fetchPoints: () => {},
+  updateWalletValues: () => {}
 };
 
 it("(1) Render an empty list when no tokens found", async () => {
   const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
-      <Wallet {...defProps} />
+      <WalletHiveEngine {...defProps} />
     </StaticRouter>
   );
   await allOver();
@@ -150,7 +148,7 @@ it("(2) Render with some hive engine tokens", async () => {
 
   const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
-      <Wallet {...defProps} />
+      <WalletHiveEngine {...defProps} />
     </StaticRouter>
   );
   await allOver();
@@ -162,7 +160,7 @@ it("(3) Render with an unclaimed rewards", async () => {
 
   const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
-      <Wallet {...defProps} />
+      <WalletHiveEngine {...defProps} />
     </StaticRouter>
   );
   await allOver();
@@ -174,7 +172,7 @@ it("(4) Render an empty list if tokens equals zero", async () => {
 
   const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
-      <Wallet {...defProps} />
+      <WalletHiveEngine {...defProps} />
     </StaticRouter>
   );
   await allOver();
@@ -186,12 +184,12 @@ it("(5) usePrivate = false", async () => {
     ...defProps,
     global: {
       ...globalInstance,
-      usePrivate: false,
-    },
+      usePrivate: false
+    }
   };
   const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
-      <Wallet {...props} />
+      <WalletHiveEngine {...props} />
     </StaticRouter>
   );
   await allOver();

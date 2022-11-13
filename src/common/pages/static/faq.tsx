@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from '../common';
-import { removeDiacritics } from '../../store/diacritics';
-import { _t, langOptions } from '../../i18n';
-import i18n from 'i18next';
-import * as ls from '../../util/local-storage';
-import Feedback, { success } from '../../components/feedback';
-import clipboard from '../../util/clipboard';
-import { apiBase } from '../../api/helper';
-import Meta from '../../components/meta';
-import ScrollToTop from '../../components/scroll-to-top';
-import Theme from '../../components/theme';
-import NavBarElectron from '../../../desktop/app/components/navbar';
-import { Button, Form, InputGroup } from 'react-bootstrap';
-import { copyContent } from '../../img/svg';
-import { Link } from 'react-router-dom';
-import { Tsx } from '../../i18n/helper';
-import { faqKeysGeneral } from '../../constants';
-import NavBar from '../../components/navbar';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../common";
+import { removeDiacritics } from "../../store/diacritics";
+import { _t, langOptions } from "../../i18n";
+import i18n from "i18next";
+import * as ls from "../../util/local-storage";
+import Feedback, { success } from "../../components/feedback";
+import clipboard from "../../util/clipboard";
+import { apiBase } from "../../api/helper";
+import Meta from "../../components/meta";
+import ScrollToTop from "../../components/scroll-to-top";
+import Theme from "../../components/theme";
+import NavBarElectron from "../../../desktop/app/components/navbar";
+import { Button, Form, InputGroup } from "react-bootstrap";
+import { copyContent } from "../../img/svg";
+import { Link } from "react-router-dom";
+import { Tsx } from "../../i18n/helper";
+import { faqKeysGeneral } from "../../constants";
+import NavBar from "../../components/navbar";
+import { connect } from "react-redux";
 
 interface FAQPageState {
   search: string;
@@ -25,28 +25,30 @@ interface FAQPageState {
 }
 
 class FaqPage extends Component<PageProps, FAQPageState> {
-  constructor(props:PageProps){
+  constructor(props: PageProps) {
     super(props);
-    let searchFromUrl:any = props.location.search.split("&lang=")[0].replace("?q=","");
-    searchFromUrl = removeDiacritics(searchFromUrl)
+    let searchFromUrl: any = props.location.search.split("&lang=")[0].replace("?q=", "");
+    searchFromUrl = removeDiacritics(searchFromUrl);
     const languageFromUrl = props.location.search.split("&lang=")[1];
-    const languageFromList = langOptions.find(item => item.code.split("-")[0] === languageFromUrl);
+    const languageFromList = langOptions.find(
+      (item) => item.code.split("-")[0] === languageFromUrl
+    );
 
-    if(languageFromList){
+    if (languageFromList) {
       props.setLang(languageFromList.code);
-      i18n.changeLanguage(languageFromList.code)
+      i18n.changeLanguage(languageFromList.code);
     }
     this.state = {
       search: searchFromUrl || "",
-      currentLanguage:props.global.lang
-    }
+      currentLanguage: props.global.lang
+    };
 
-    if(languageFromList && props.global.lang !== languageFromList.code){
-      ls.set("current-language", props.global.lang)
+    if (languageFromList && props.global.lang !== languageFromList.code) {
+      ls.set("current-language", props.global.lang);
     }
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     const currentLang = ls.get("current-language");
     this.props.setLang(currentLang);
     i18n.changeLanguage(currentLang);
@@ -54,58 +56,63 @@ class FaqPage extends Component<PageProps, FAQPageState> {
 
   copyToClipboard = (text: string) => {
     success(_t("static.faq.search-link-copied"));
-    clipboard(text)
-  }
+    clipboard(text);
+  };
 
   render() {
-    const {search} = this.state;
+    const { search } = this.state;
     //  Meta config
     const metaProps = {
-      title: _t('static.faq.page-title')
+      title: _t("static.faq.page-title")
     };
 
-    const {global} = this.props;
-    const imgs = apiBase(`/assets/ecency-faq.${this.props.global.canUseWebp ? 'webp' : 'jpg'}`);
+    const { global } = this.props;
+    const imgs = apiBase(`/assets/ecency-faq.${this.props.global.canUseWebp ? "webp" : "jpg"}`);
     let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
     let faqKeys = [...faqKeysGeneral];
     let searchResult: string[] = [];
-    if(search && search.length > 0){
-      faqKeys.map(x => {
-        let isSearchValid = _t(`static.faq.${x}-body`).toLocaleLowerCase().includes(search.toLocaleLowerCase());
-        if(isSearchValid){
-          searchResult.push(x)
+    if (search && search.length > 0) {
+      faqKeys.map((x) => {
+        let isSearchValid = _t(`static.faq.${x}-body`)
+          .toLocaleLowerCase()
+          .includes(search.toLocaleLowerCase());
+        if (isSearchValid) {
+          searchResult.push(x);
         }
-
-      })
+      });
     }
-    let dataToShow = (search.length > 0 && searchResult.length > 0) ? searchResult : faqKeys;
+    let dataToShow = search.length > 0 && searchResult.length > 0 ? searchResult : faqKeys;
 
     return (
       <>
         <Meta {...metaProps} />
-        <ScrollToTop/>
-        <Feedback />
-        <Theme global={this.props.global}/>
-        {global.isElectron ?
-          NavBarElectron({
-            ...this.props,
-          }) :
-          NavBar({...this.props})}
+        <ScrollToTop />
+        <Feedback activeUser={this.props.activeUser} />
+        <Theme global={this.props.global} />
+        {global.isElectron
+          ? NavBarElectron({
+              ...this.props
+            })
+          : NavBar({ ...this.props })}
 
-        <div className={"app-content static-page faq-page" + containerClasses} itemScope={true} itemType="https://schema.org/FAQPage">
+        <div
+          className={"app-content static-page faq-page" + containerClasses}
+          itemScope={true}
+          itemType="https://schema.org/FAQPage"
+        >
           <div className="static-content">
             <div className="position-relative rounded">
-              <img src={imgs} className="rounded"/>
+              <img src={imgs} className="rounded" />
               <div className="position-absolute search-container d-flex justify-content-center align-items-center flex-column rounded p-3">
-                <h1 className="text-white faq-title text-center mb-3">{_t('static.faq.page-title')}</h1>
-                <InputGroup
-                  className="mb-3 w-75"
-                >
+                <h1 className="text-white faq-title text-center mb-3">
+                  {_t("static.faq.page-title")}
+                </h1>
+                <InputGroup className="mb-3 w-75">
                   <Form.Control
                     placeholder={`${_t("static.faq.search-placeholder")}`}
                     className="w-75"
-                    onChange={e=>{
-                      this.setState({search: e.target.value});
+                    onChange={(e) => {
+                      this.setState({ search: e.target.value });
                     }}
                     value={search}
                     autoFocus={true}
@@ -116,33 +123,69 @@ class FaqPage extends Component<PageProps, FAQPageState> {
                       size="sm"
                       className="copy-to-clipboard"
                       disabled={search.length === 0}
-                      onClick={() => {this.copyToClipboard(`https://ecency.com/faq?q=${search}&lang=${global.lang.split("-")[0]}`);}}
+                      onClick={() => {
+                        this.copyToClipboard(
+                          `https://ecency.com/faq?q=${search}&lang=${global.lang.split("-")[0]}`
+                        );
+                      }}
                     >
                       {copyContent}
                     </Button>
                   </InputGroup.Append>
                 </InputGroup>
-                {search.length > 0 && <Form.Text className="text-white mt-2 mt-sm-3 w-75 text-center helper-text">
-                  {searchResult.length > 0 ? _t("static.faq.search", {search: `"${search}"`}) :
-                    <div className="text-not-found">{_t("static.faq.search-not-found")}<Link to="https://discord.me/ecency" target="_blank">Discord</Link>.</div>}
-                </Form.Text>}
+                {search.length > 0 && (
+                  <Form.Text className="text-white mt-2 mt-sm-3 w-75 text-center helper-text">
+                    {searchResult.length > 0 ? (
+                      _t("static.faq.search", { search: `"${search}"` })
+                    ) : (
+                      <div className="text-not-found">
+                        {_t("static.faq.search-not-found")}
+                        <Link to="https://discord.me/ecency" target="_blank">
+                          Discord
+                        </Link>
+                        .
+                      </div>
+                    )}
+                  </Form.Text>
+                )}
               </div>
             </div>
-            <h3>{_t('static.faq.page-sub-title')}</h3>
+            <h3>{_t("static.faq.page-sub-title")}</h3>
             <ul className="table-contents">
-              {dataToShow.map(x => {
-                return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>;
+              {dataToShow.map((x) => {
+                return (
+                  <li key={x}>
+                    <a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a>
+                  </li>
+                );
               })}
             </ul>
             <div className="faq-list">
               {dataToShow.map((x) => {
-                return <div key={x} className="faq-item" itemScope={true} itemProp="mainEntity" itemType="https://schema.org/Question">
-                  <span className="anchor" id={x}/>
-                  <h4 className="faq-item-header" itemProp="name">{_t(`static.faq.${x}-header`)}</h4>
-                  <div itemScope={true} itemProp="acceptedAnswer" itemType="https://schema.org/Answer" id="content">
-                    <Tsx k={`static.faq.${x}-body`}><div className="faq-item-body" itemProp="text" /></Tsx>
+                return (
+                  <div
+                    key={x}
+                    className="faq-item"
+                    itemScope={true}
+                    itemProp="mainEntity"
+                    itemType="https://schema.org/Question"
+                  >
+                    <span className="anchor" id={x} />
+                    <h4 className="faq-item-header" itemProp="name">
+                      {_t(`static.faq.${x}-header`)}
+                    </h4>
+                    <div
+                      itemScope={true}
+                      itemProp="acceptedAnswer"
+                      itemType="https://schema.org/Answer"
+                      id="content"
+                    >
+                      <Tsx k={`static.faq.${x}-body`}>
+                        <div className="faq-item-body" itemProp="text" />
+                      </Tsx>
+                    </div>
                   </div>
-                </div>
+                );
               })}
             </div>
           </div>

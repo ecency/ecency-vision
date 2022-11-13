@@ -1,8 +1,8 @@
-import { DeckState } from '../types';
+import { DeckState } from "../types";
 
 export function deleteAllDecksReducer(state: DeckState): DeckState {
   return {
     ...state,
-    items: [],
+    items: []
   };
 }

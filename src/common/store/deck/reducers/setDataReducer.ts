@@ -1,6 +1,6 @@
-import { DeckState, SetDataAction } from '../types';
+import { DeckState, SetDataAction } from "../types";
 
-export function setDataReducer(state: DeckState, actionData: SetDataAction['data']): DeckState {
+export function setDataReducer(state: DeckState, actionData: SetDataAction["data"]): DeckState {
   const { title, data } = actionData;
   const deck = state.items.find((d) => d.header.title === title);
 

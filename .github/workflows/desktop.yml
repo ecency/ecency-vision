@@ -20,7 +20,7 @@ jobs:
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 16
 
       - name: npm install, lint and/or test
         run: |
@@ -39,4 +39,5 @@ jobs:
           mac_certs_password: ${{ secrets.mac_certs_password }}
           windows_certs: ${{ secrets.windows_certs }}
           windows_certs_password: ${{ secrets.windows_certs_password }}
+          args: "--publish always"
           

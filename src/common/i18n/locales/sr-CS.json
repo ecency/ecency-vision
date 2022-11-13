@@ -62,7 +62,8 @@
     "price": "Price",
     "more-results": "More results",
     "close": "Close",
-    "loading": "Loading"
+    "loading": "Loading",
+    "stop": "Stop"
   },
   "confirm": {
     "title": "Da li ste sigurni?",
@@ -93,7 +94,9 @@
     "filter-week": "This week",
     "filter-month": "This month",
     "filter-year": "This year",
-    "filter-alltime": "All time"
+    "filter-alltime": "All time",
+    "filter-no-reblog": "Exclude reblog",
+    "filter-with-reblog": "Include reblog"
   },
   "navbar": {
     "discover": "Otkrijte",
@@ -137,7 +140,8 @@
     "light": "light",
     "dark": "dark",
     "switch-to": "Switch",
-    "vote-power": "Snaga glasa:"
+    "vote-power": "Snaga glasa:",
+    "boost": "Boost"
   },
   "intro": {
     "title": "Težite najboljem",
@@ -164,8 +168,8 @@
     "sign-up-text-2": "Registruj se sad!"
   },
   "sign-up": {
-    "header": "Welcome to Ecency",
-    "description": "Home of Free speech and Rewarding communities!",
+    "header": "Rewarding communities",
+    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
     "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
     "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Izaberite korisničko ime",
@@ -397,7 +401,10 @@
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
-    "community-in": "in"
+    "community-in": "in",
+    "post-word-count": "Words:",
+    "post-read-time": "Reading:",
+    "post-read-minuites": "min"
   },
   "edit-history": {
     "title": "Uredi istoriju",
@@ -424,7 +431,9 @@
     "read-more": "...pročitajte još odgovora...",
     "reveal-muted": "Muted author - Reveal comment",
     "reveal-muted-long-description": "Show additional replies, including those that may contain offensive content",
-    "reveal": "Prikaži komentar"
+    "reveal": "Prikaži komentar",
+    "no-conversation": "No conversation yet, be first to reply",
+    "start-conversation": "Start conversation"
   },
   "community": {
     "page-description": "{{f}} teme",
@@ -547,11 +556,15 @@
     "section-communities": "Zajednice",
     "section-wallet": "Novčanik",
     "section-settings": "Подешавања",
+    "section-referrals": "Referrals",
     "section-permission": "Permission",
     "communities-title": "Članstvo",
     "create-community": "Napravite zajednicu",
     "witnesses": "Svedoci (witnesses)",
-    "proposals": "Predlozi"
+    "proposals": "Predlozi",
+    "referrals": "Referrals",
+    "go-community": "Community page",
+    "com-mod": "Moderator of these communities"
   },
   "profile-info": {
     "joined": "Joined: {{n}}",
@@ -591,6 +604,10 @@
     "language": "Jezik",
     "nsfw": "Show NSFW content",
     "referral-link": "Referral link",
+    "theme": "Theme Settings",
+    "theme-system-default": "System Default",
+    "theme-day": "Day mode",
+    "theme-night": "Night mode",
     "updated": "Podešavanja su ažurirana!"
   },
   "wallet": {
@@ -619,7 +636,7 @@
     "hive-dollars-description": "Tokeni vredni oko $1.00 u HIVE-u.",
     "savings": "Štednja",
     "savings-description": "Saldo je podložan trodnevnom periodu čekanja za povlačenje sredstava.",
-    "next-power-down": "Sledeće smanjenje snage je {{time}} {{amount}}",
+    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
     "transfer": "Prenos",
     "transfer-to-savings": "Premestite u ušteđevinu",
     "convert": "Pretvori",
@@ -631,8 +648,85 @@
     "withdraw-routes": "Povucite rute",
     "calculating": "Calculating",
     "converting-hbd-amount": "Converting to HIVE",
+    "converting-hive-amount": "Converting to HBD",
     "withdrawing-amount": "Withdrawing from Savings",
-    "reserved-amount": "Reserved for Open order in Market"
+    "reserved-amount": "Reserved for Open order in Market",
+    "spk": {
+      "claim": {
+        "title": "Claim",
+        "unclaimed-rewards": "Unclaimed rewards"
+      },
+      "delegate": {
+        "title": "Delegate",
+        "subtitle": "Delegate tokens",
+        "node-operator-placeholder": "Select a node operator",
+        "delegated-larynx-power": {
+          "title": "Delegated LARYNX Power"
+        }
+      },
+      "power-up": {
+        "title": "Power up",
+        "subtitle": "Power up to earn passive rewards"
+      },
+      "power-down": {
+        "title": "Power down",
+        "subtitle": "Power down to earn passive rewards",
+        "in-progress": "A power down is scheduled to happen in {{date}} ({{count}} installments remaining)"
+      },
+      "lock": {
+        "title": "Lock Liquidity",
+        "subtitle": "Locking Larynx for liquidity reward",
+        "button": "Lock liquidity"
+      },
+      "unlock": {
+        "title": "Unlock Liquidity",
+        "subtitle": "Unlock LARYNX to liquid form",
+        "button": "Unlock liquidity"
+      },
+      "send": {
+        "balance": "Balance",
+        "button": "Send",
+        "from": "From",
+        "to": "To",
+        "amount": "Amount",
+        "optional": "optional",
+        "title": "Send SPK",
+        "memo": "Memo",
+        "next": "Next",
+        "subtitle": "Move funds to another SPK wallet",
+        "warning": "Transferring more than available balance"
+      },
+      "token": "SPK Token",
+      "token-description": "The governance token for the SPK network.",
+      "larynx-air": "LARYNX Airdrop Claim",
+      "larynx-air-description": "This months claimable tokens based on a January 6th HIVE blockchain snapshot.",
+      "larynx-air-warning": "Tokens not claimed, do not roll over to next month.",
+      "larynx-already-claimed": "Already claimed.",
+      "larynx-token": "LARYNX Token",
+      "larynx-token-description": "The mining token for the SPK network.",
+      "larynx-power": "LARYNX Power",
+      "larynx-power-description": "Powered tokens used to mine SPK",
+      "larynx-power-benefits": {
+        "title": "Benefits of LARYNX Power",
+        "1": "Earns SPK governance tokens",
+        "2": "Instant Lock | 4 Week Unlock",
+        "3": "Delegate to node service accounts to build consensus (DPoS)",
+        "4": "LARYNX POWER (LP) earns SPK tokens at {{rate}}%",
+        "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at {{rate}}%"
+      },
+      "larynx-locked-benefits": {
+        "title": "Benefits of LARYNX Locked",
+        "1": "Proof of Stake Consensus",
+        "2": "Collateral for DEX transactions",
+        "3": "Instant Lock | 4 Week Unlock",
+        "4": "Requires an operating LARYNX node",
+        "5": "Earns 0.100%"
+      },
+      "account-value": "Estimated Account Value",
+      "account-value-description": "The approximate US Dollar value for all SPK assets in your account",
+      "larynx-locked": "LARYNX Locked",
+      "larynx-locked-description": "Locked tokens provide liquidity to the network, aid in determining consensus, and earn rewards for node runners"
+    }
   },
   "wallet-engine": {
     "title": "Hive Engine Tokens",
@@ -701,6 +795,18 @@
     "slider-hint": "Prevucite klizač da biste prilagodili količinu.",
     "submit": "Kupovina",
     "purchase-message": "Or send any amount to @esteem.app with `points` as a memo to purchase Points."
+  },
+  "purchase-qr": {
+    "scan-code": "Scan the QR code with Ecency mobile app",
+    "select-user": "Please, select an user",
+    "title": "Account boost",
+    "title-points": "Buy points",
+    "copied": "Account boost link copied!",
+    "select-type": "Select a type",
+    "boost": "Boost",
+    "points": "Points",
+    "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
+    "points-amount": "{{n}} points"
   },
   "promote": {
     "title": "Promoviši",
@@ -781,9 +887,20 @@
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegirano od <span class=\"from-user\">{{from}}</span> za <span class=\"to-user\">{{to}}</span>",
     "undelegate-summary": "<span class=\"amount\">{{amount}}</span> undelegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Smanjenje snage izvršeno kao <span class=\"amount\">{{amount}}</span>",
+    "claim-interest-summary": "Interest claimed and added to your savings balance",
+    "claim-summary": "Claimed and added to your savings balance",
+    "powerup-summary": "Power up completed successfully",
+    "powerdown-summary": "Power down completed successfully",
     "reset": "Resetuj",
     "powering-down": "Trenutno smanjujete snagu.",
-    "stop-power-down": "Zaustavi"
+    "stop-power-down": "Zaustavi",
+    "claim-title": "Claim",
+    "powerup-title": "Power Up",
+    "powerdown-title": "Power down",
+    "lock-title": "Lock liquidity",
+    "unlock-title": "Unlock liquidity",
+    "lock-summary": "Locking completed as <span class=\"amount\">{{amount}}</span>",
+    "unlock-summary": "Unlocking completed as <span class=\"amount\">{{amount}}</span>"
   },
   "trx-common": {
     "insufficient-funds": "Nedovoljno sredstava",
@@ -833,7 +950,8 @@
     "type-update_proposal_vote-detail": "Proposal id: <strong>{{pid}}</strong>",
     "type-limit_order_create": "New trade created",
     "type-limit_order_cancel": "Open trade cancelled",
-    "type-effective_comment_vote": "Effective vote"
+    "type-effective_comment_vote": "Effective vote",
+    "type-account_witness_proxy": "Governance proxy update"
   },
   "key-or-hot": {
     "sign": "Potpis",
@@ -853,6 +971,13 @@
     "title": "Convert requests",
     "request-id": "Request id",
     "amount": "Amount",
+    "pending": "Pending"
+  },
+  "collateralized-conversion-requests": {
+    "title": "Collateralized Convert requests",
+    "request-id": "Request id",
+    "collateral_amount": "Collateral",
+    "converted_amount": "Converted",
     "pending": "Pending"
   },
   "savings-withdraw": {
@@ -989,6 +1114,7 @@
     "voted": "{{source}} je glasao tvoju objavu",
     "mention-post": "{{source}} vas je spomenuo u objavi",
     "mention-comment": "{{source}} vas je spomenuo u komentaru",
+    "favorite": "{{source}} made new post",
     "followed": "{{source}} vas je zapratio",
     "replied": "{{source}} vam je odgovorio",
     "reblogged": "{{source}} je podelio vašu objavu",
@@ -1005,10 +1131,12 @@
     "type-reblogs": "Deljenja",
     "type-transfers": "Prenosi",
     "type-delegations": "Delegations",
+    "type-nfavorites": "Favorites",
     "group-title-recent": "Recent",
-    "vote-str": "{{p}}% se sviđa vaša objava:",
+    "vote-str": "{{p}}% voted your post:",
     "reply-str": "je odgovorio na vaš post:",
     "mention-str": "spomenuo vas je u:",
+    "favorite-str": "made new post",
     "followed-str": "zapraćen",
     "unfollowed-str": "otpraćen",
     "ignored-str": "ignorisan",
@@ -1022,7 +1150,8 @@
     "mark-all-read": "Označi svе kao pročitano",
     "mark-read": "Označi kao pročitano",
     "mute": "Isključite obaveštenja",
-    "unmute": "Uključite obaveštenja"
+    "unmute": "Uključite obaveštenja",
+    "settings": "Settings"
   },
   "leaderboard": {
     "title-stars": "Most active",
@@ -1107,7 +1236,19 @@
     "proxy-active-description": "Podesili ste glasački proxy. Ukoliko želite da ponovo omogućite ručno glasanje, molimo uklonite proxy.",
     "proxy-active-current": "Vaš trenutni proxy je",
     "proxy-active-btn-label": "Uklonite proxy",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-votes-for": "@{{username}} votes for",
+    "proxy-active-highlighted": "Your proxy votes are highlighted",
+    "check-witness-highlighted": "votes are highlighted"
+  },
+  "referral": {
+    "page-title": "Referrals",
+    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
+    "created": "Created",
+    "list-referral": "Account",
+    "rewarded": "Rewarded",
+    "pending-reward": "Pending Points",
+    "earned-reward": "Earned Points",
+    "delegate-hp": "Delegate HP"
   },
   "proposals": {
     "page-title": "Predlozi",
@@ -1264,7 +1405,7 @@
       "what-are-rc-header": "Šta su resurs krediti?",
       "what-are-rc-body": "<p>Transakcija na Hive blockhain-u imaju nula naknada, stopa transakcija se ograničava kako bi se blockchain zaštitio od neželjenih napada. Svaka akcija koju preduzmete na blockchain-u potrošiće malu količinu resurs kredita. To uključuje objavljivanje, komentarisanje, glasanje, prenos tokena, itd. Pregled sadržaja ne troši resurs kredite.</p><p>Svaki korisnik ima ograničenu količinu resursa za korišćenje svake nedelje. Što više transakcija korisnik izvrši, manje resursa će mu ostati (dok se ne dopuni). Korisnici sa više Hive snage imaće više resurs kredita. </p><p>Ukoliko vam ponestane resurs kredita, nećete moći izvršavati prenose sa blockchain-a sve dok se vaši resurs krediti ne napune (automatski) ili dok ne steknete dodatnu Hive snagu da biste povećali stanje svog resurs kredita ili možete <a href=\"/faq#how-boost-account\">zatražiti pojačanje naloga od Ecency radi dobijanja privremena delegacije.</p>",
       "how-boost-account-header": "Kako da zatražite pojačanje?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can find account boosting feature in Points options.</p>",
+      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation (553311 VESTS) which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can request account boosting quickly with <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR page</a> just change username and scan QR image with Ecency mobile app.</p>",
       "what-spam-abuse-header": "Šta se smatra neželjenom poštom ili zloupotrebom?",
       "what-spam-abuse-body": "<p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Mogu li zatražiti dodavanje povratne veze na svoju veb stranicu od Ecency tima?",
@@ -1314,7 +1455,7 @@
       "why-different-keys-header": "Why are there different keys?",
       "why-different-keys-body": "<p>There are different keys with the appropriate permissions for what you are doing. <ul><li>Posting keys - this key should be used for social networking actions, like posting, commenting and voting. This key has a limited set of permissions and it is not able to be used for monetary actions. So you can't lose money if someone else gets access to this key.</li><li>Active key - this key has additional permissions for more sensitive monetary-related actions, like transferring and exchanging tokens. When performing a wallet related action, you may be prompted to authenticate with your Active key. You should only enter your Active Key into apps which you trust because anyone with access to this key can take your tokens. Do yourself a favor and store this key safely to avoid losing tokens in the future.</li><li>Owner key - is the most powerful key because it can change any key of an account, including the owner key. Ideally it is meant to be stored offline, and only used to recover a compromised account.</li></ul></p>",
       "stolen-hive-hbd-header": "What can I do if my HIVE or Hive dollar tokens stolen or sent to wrong account?",
-      "stolen-hive-hbd-body": "<p>There is nothing to do if your liquid tokens are stolen or sent to wrong acoount but if your tokens are in Hive Power it is impossible to be hacked more than 1/13 per week and if your tkens are in savings they need to a three-day wait period for them to become transferable. Staking/powering up or transferring funds into savings might be more safer.</>",
+      "stolen-hive-hbd-body": "<p>There is nothing to do if your liquid tokens are stolen or sent to wrong acoount but if your tokens are in Hive Power it is impossible to be hacked more than 1/13 per week and if your tokens are in savings they need to a three-day wait period for them to become transferable. Staking/powering up or transferring funds into savings might be more safer.</>",
       "what-are-tags-header": "What are tags or topics?",
       "what-are-tags-body": "<p>A tag is a piece of information that describes the content that it is assigned to. They help search engines identify the content of pages online and using that information, produce the best results for a given search. All tags must be lowercase letters. Spaces aren't allowed, but hyphenated words with a single dash are allowed.</p>",
       "how-use-tags-header": "How to use tags?",
@@ -1324,7 +1465,7 @@
       "what-links-show-header": "What do the Trending, Hot, New, Rising and Controversial links show?",
       "what-links-show-body": "<p>This is the way of sorting content on Ecency. <ul><li>Trending - Widely mentioned or discussed posts.</li><li>Hot - Popular posts in last couple hours.</li><li>New - The newest posts sorted by the published time.</li><li>Rising - Posts that have more comments and votes compare to others.</li><li>Controversial - Has a relatively equal number of upvotes and downvotes.</li></ul></p>",
       "what-my-rewards-header": "What kind of rewards I have in my wallet?",
-      "what-my-rewards-body": "<p>There are two kind of rewards are shown in your wallet: <ul><li>Curation rewards - The rewards earned for upvoting posts and comments.</li><li>Author rewards - The rewards earned by your own posts and comments.</li><li>Points rewards - Social actions and interactions also rewarded with Ecency points.</li></ul><p/>",
+      "what-my-rewards-body": "<p>There are three kind of rewards are shown in your wallet: <ul><li>Curation rewards - The rewards earned for upvoting posts and comments.</li><li>Author rewards - The rewards earned by your own posts and comments.</li><li>Points rewards - Social actions and interactions also rewarded with Ecency points.</li></ul><p/>",
       "what-information-profile-header": "What kind of information is shown on my profile?",
       "what-information-profile-body": "<p>The first information shown near your image is your reputation score and display name, description. Below information about followers and following, registration date on Ecency. You have the option to add extra information on Ecency settings such as about information, profile image, cover image, your location.</p>",
       "what-can-post-header": "What can I post on Ecency?",
@@ -1342,7 +1483,15 @@
       "what-voting-power-header": "What is voting power?",
       "what-voting-power-body": "<p>Your voting power goes down a little bit every time you vote. It begins with 100% voting power and by voting you use small amount of voting power. The more you vote the fewer influence you have, meaning efficiency of your vote will decay. Daily 10 votes are recommended to utilize efficiency and curation rewards better.</p>",
       "how-many-vote-header": "How many times can I vote with my voting power?",
-      "how-many-vote-body": "<p>Every 100% vote you cast will use 2% of your remaining voting mana. Your voting mana will recharge by 20% each day. You can vote more than 10 times per day, but each vote will be worth less, and it will take longer to reach full voting power again.</p>"
+      "how-many-vote-body": "<p>Every 100% vote you cast will use 2% of your remaining voting mana. Your voting mana will recharge by 20% each day. You can vote more than 10 times per day, but each vote will be worth less, and it will take longer to reach full voting power again.</p>",
+      "what-is-hivesigner-header": "What is Hivesigner?",
+      "what-is-hivesigner-body": "<p>When you were signing up on Hive you were given lots of keys that are hard to remember. The work of this Hivesigner is, it gives you the access to create your own password that you can remember and to provide a protection not to use your active key when logging into Hive platforms.</p>",
+      "what-is-keychain-header": "What is Keychain?",
+      "what-is-keychain-body": "<p>Hive Keychain is a wallet browser extension for the Hive blockchain and cryptocurrency and allows users to securely log into and access multiple Hive-based platforms. It is available for Chrome, Brave and Firefox.</p>",
+      "videos-pictures-stored-header": "Are pictures and video stored on the blockchain?",
+      "videos-pictures-stored-body": "<p>Media content such as pictures, videos etc. are typically not stored directly on a blockchain. When you add pictures or video you are only adding a source reference to where they are located. Meaning you can add video content from other locations. As of right now, when you upload a photo, this gets hosted on a regular web server.</p>",
+      "value-hive-hbd-header": "What determines the value of HIVE and HBD?",
+      "value-hive-hbd-body": "<p>The value of HIVE comes from the demand and supply of the token. HIVE will always be in demand based on the way the system is designed and there will always be supply for HIVE. As long as the Hive blockchain exist with continuous development and users being active, there will always be demand and supply for HIVE, adding value to the token.</p>"
     }
   },
   "contributors": {
@@ -1368,11 +1517,12 @@
   "chain-error": {
     "min-root-comment": "You may only post once every five minutes.",
     "identical-vote": "Your current vote on this content is identical to this vote.",
-    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
+    "insufficient-resource": "Insufficient Resource Credits.",
     "delete-comment-with-vote": "Cannot delete a content with positive pending rewards.",
     "comment-cashout": "Content after their payout cannot be deleted.",
     "comment-children": "Cannot delete a content with replies.",
-    "paid-out-post-forbidden": "Voting for paid out content is not available."
+    "paid-out-post-forbidden": "Voting for paid out content is not available.",
+    "missing-authority": "Missing or invalid authority key."
   },
   "landing-page": {
     "welcome-text": "Welcome to Ecency!",
@@ -1438,5 +1588,14 @@
   },
   "top-communities": {
     "title": "Top communities"
+  },
+  "feedback-modal": {
+    "title": "Error details",
+    "question": "How to fix this?",
+    "insufficient-resource-title": "How to get more Resource credits?",
+    "insufficient-resource-purchase": "Purchase account boost or delegation",
+    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
+    "insufficient-resource-wait": "Wait few hours for RC refill",
+    "report": "Report"
   }
 }

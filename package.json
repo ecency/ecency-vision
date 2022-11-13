@@ -1,17 +1,23 @@
 {
   "name": "ecency-vision",
-  "version": "3.0.24",
+  "version": "3.0.29",
   "private": true,
   "license": "MIT",
   "scripts": {
     "start": "razzle start",
     "build": "razzle build --noninteractive",
     "test": "TZ=UTC razzle test --env=jsdom",
+    "prepare": "husky install",
+    "format": "prettier --ignore-unknown --write './src/**/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "precommit": "lint-staged",
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@ecency/render-helper": "^2.2.18",
+    "@ecency/render-helper": "^2.2.21",
     "@ecency/render-helper-amp": "^1.1.0",
+    "@firebase/analytics": "^0.8.0",
+    "@firebase/app": "^0.7.28",
+    "@firebase/messaging": "^0.9.16",
     "@hiveio/dhive": "^1.2.1",
     "@hiveio/hivescript": "^1.2.7",
     "@loadable/component": "^5.15.2",
@@ -43,12 +49,13 @@
     "js-cookie": "^2.2.1",
     "loadable-ts-transformer": "^1.0.0-alpha.3",
     "medium-zoom": "^1.0.6",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "node-cache": "^5.1.0",
     "node-html-parser": "^5.3.3",
     "node-sass": "^6.0.1",
     "numeral": "^2.0.6",
     "path-to-regexp": "^6.1.0",
+    "qrcode": "^1.5.1",
     "qs": "^6.9.4",
     "query-string": "^6.13.1",
     "react": "^16.8.6",
@@ -85,6 +92,7 @@
     "@types/loadable__server": "^5.12.6",
     "@types/node": "^12.6.6",
     "@types/path-to-regexp": "^1.7.0",
+    "@types/qrcode": "^1.4.2",
     "@types/react": "^16.8.23",
     "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-dom": "^16.8.4",
@@ -98,10 +106,13 @@
     "@types/webpack-env": "^1.14.0",
     "babel-preset-razzle": "^4.0.5",
     "html-webpack-plugin": "4.5.2",
+    "husky": "^8.0.1",
     "jest": "^26.0.0",
+    "lint-staged": "^13.0.3",
     "mini-css-extract-plugin": "0.9.0",
     "mockdate": "^3.0.2",
     "postcss": "8.2.13",
+    "prettier": "^2.7.1",
     "razzle": "^4.0.5",
     "razzle-dev-utils": "^4.0.5",
     "razzle-plugin-scss": "^4.0.5",
@@ -118,6 +129,11 @@
   "resolutions": {
     "jest": "^26.0.0",
     "@types/react": "^16.8.23"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css,md,json}": [
+      "yarn format"
+    ]
   },
   "jest": {
     "transform": {

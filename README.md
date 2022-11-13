@@ -32,26 +32,31 @@ Feel free to test it out and submit improvements and pull requests.
 - node ^12.0.0
 - yarn
 
-##### Clone 
+##### Clone
+
 `$ git clone https://github.com/ecency/ecency-vision`
 
 `$ cd ecency-vision`
 
 ##### Install dependencies
+
 `$ yarn`
 
 ##### Edit config file or define environment variables
+
 `$ nano src/config.ts`
 
 ##### Environment variables
 
-* `USE_PRIVATE` -  if instance has private api address and auth (0 or 1 value)
-* `REDIS_URL` - support for caching amp pages
+- `USE_PRIVATE` - if instance has private api address and auth (0 or 1 value)
+- `REDIS_URL` - support for caching amp pages
 
 ##### Start website in dev
+
 `$ yarn start`
 
 ##### Start desktop in dev
+
 `$ cd src/desktop`
 `$ yarn`
 `$ yarn dev`
@@ -72,7 +77,9 @@ docker run -it --rm -p 3000:3000 ecency/vision:latest
 ```
 
 Configure the instance using following environment variables:
- * `USE_PRIVATE`
+
+- `USE_PRIVATE`
+- `REDIS_URL`
 
 ```bash
 docker run -it --rm -p 3000:3000 -e USE_PRIVATE=1 ecency/vision:latest
@@ -90,6 +97,13 @@ docker stack deploy -c docker-compose.yml -c docker-compose.production.yml visio
 
 [![Contributors](https://contrib.rocks/image?repo=ecency/ecency-vision)](https://github.com/ecency/ecency-vision/graphs/contributors)
 
+## Note to DEVS
+
+- Make PRs more clear with description, screenshots or videos, linking to issues, if no issue exist create one that describes PR and mention in PR. Reviewers may or may not run code, but PR should be reviewable even without running, visials helps there. 
+- PR should have title WIP, if it is not ready yet. Once ready, run yarn test and update all tests, make sure linting also done before requesting for review.
+- Creating component?! Make sure to create simple tests, you can check other components for examples.
+- Always make sure component and pages stay fast without unnecessary re-renders because those will slow down app/performance.
+- 
 
 ## Issues
 
@@ -99,7 +113,7 @@ If you find a security issue please report details to: security@ecency.com
 
 We will evaluate the risk and make a patch available before filing the issue.
 
-[//]: # 'LINKS'
+[//]: # "LINKS"
 [ecency_vision]: https://ecency.com
 [ecency_desktop]: https://desktop.ecency.com
 [ecency_alpha]: https://alpha.ecency.com

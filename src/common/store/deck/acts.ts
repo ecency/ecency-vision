@@ -8,41 +8,41 @@ import {
   SetDataFiltersAction,
   SetReloadingAction,
   UpdateIntervalAction
-} from './types';
+} from "./types";
 
-export const createAct = (data: CreateAction['data']): CreateAction => ({
+export const createAct = (data: CreateAction["data"]): CreateAction => ({
   type: ActionTypes.CREATE,
-  data,
+  data
 });
 
-export const setDataAct = (data: SetDataAction['data']): SetDataAction => ({
+export const setDataAct = (data: SetDataAction["data"]): SetDataAction => ({
   type: ActionTypes.SET_DATA,
-  data,
+  data
 });
 
-export const setReloadingAct = (data: SetReloadingAction['data']): SetReloadingAction => ({
+export const setReloadingAct = (data: SetReloadingAction["data"]): SetReloadingAction => ({
   type: ActionTypes.SET_RELOADING,
-  data,
+  data
 });
 
-export const reorderAct = (data: ReOrderAction['data']): ReOrderAction => ({
+export const reorderAct = (data: ReOrderAction["data"]): ReOrderAction => ({
   type: ActionTypes.REORDER,
-  data,
+  data
 });
 
-export const deleteAct = (data: DeleteAction['data']): DeleteAction => ({
+export const deleteAct = (data: DeleteAction["data"]): DeleteAction => ({
   type: ActionTypes.DELETE,
-  data,
+  data
 });
 
-export const updateIntervalAct = (data: UpdateIntervalAction['data']): UpdateIntervalAction => ({
+export const updateIntervalAct = (data: UpdateIntervalAction["data"]): UpdateIntervalAction => ({
   type: ActionTypes.UPDATE_INTERVAL,
-  data,
+  data
 });
 
-export const setDataFiltersAct = (data: SetDataFiltersAction['data']): SetDataFiltersAction => ({
+export const setDataFiltersAct = (data: SetDataFiltersAction["data"]): SetDataFiltersAction => ({
   type: ActionTypes.SET_DATA_FILTERS,
-  data,
+  data
 });
 
 export const deleteAllAct = (): DeleteAllAction => ({

@@ -740,6 +740,10 @@
             .amount-btn {
               border-bottom: 1px dashed $steel-grey;
               cursor: pointer;
+
+              &.primary {
+                border-bottom: 1px dashed $primary;
+              }
             }
           }
         }

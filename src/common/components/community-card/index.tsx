@@ -1,18 +1,18 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
-import {Button, Modal} from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 
-import {History} from "history";
+import { History } from "history";
 
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import isEqual from "react-fast-compare";
 
-import {Global} from "../../store/global/types";
-import {Account, FullAccount} from "../../store/accounts/types";
-import {Community, roleMap, ROLES} from "../../store/communities/types";
-import {ActiveUser} from "../../store/active-user/types";
-import {User} from "../../store/users/types";
+import { Global } from "../../store/global/types";
+import { Account, FullAccount } from "../../store/accounts/types";
+import { Community, roleMap, ROLES } from "../../store/communities/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { User } from "../../store/users/types";
 
 import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
@@ -21,296 +21,383 @@ import CommunitySettings from "../community-settings";
 import CommunityRewardsRegistrationDialog from "../community-rewards-registration";
 import ImageUploadDialog from "../image-upload";
 import Tooltip from "../tooltip";
-import {error, success} from "../feedback";
+import { error, success } from "../feedback";
 
-import {_t} from "../../i18n";
+import { _t } from "../../i18n";
 
-import {getAccount} from "../../api/hive";
-import {updateProfile} from "../../api/operations";
+import { getAccount } from "../../api/hive";
+import { updateProfile } from "../../api/operations";
 
 import ln2list from "../../util/nl2list";
 
-import {accountGroupSvg, informationOutlineSvg, scriptTextOutlineSvg, pencilOutlineSvg} from "../../img/svg";
-
+import {
+  accountGroupSvg,
+  informationOutlineSvg,
+  scriptTextOutlineSvg,
+  pencilOutlineSvg
+} from "../../img/svg";
+import { renderPostBody } from "@ecency/render-helper";
 
 interface EditPicProps {
-    activeUser: ActiveUser;
-    community?: Community;
-    account: FullAccount;
-    addAccount: (data: Account) => void;
-    onUpdate: () => void
+  activeUser: ActiveUser;
+  community?: Community;
+  account: FullAccount;
+  addAccount: (data: Account) => void;
+  onUpdate: () => void;
 }
 
 interface EditPicState {
-    account: Account | null;
-    dialog: boolean;
-    inProgress: boolean;
+  account: Account | null;
+  dialog: boolean;
+  inProgress: boolean;
 }
 
 export class EditPic extends BaseComponent<EditPicProps, EditPicState> {
-    state: EditPicState = {
-        account: null,
-        dialog: false,
-        inProgress: false
+  state: EditPicState = {
+    account: null,
+    dialog: false,
+    inProgress: false
+  };
+
+  toggleDialog = () => {
+    const { dialog } = this.state;
+    this.stateSet({ dialog: !dialog });
+  };
+
+  save = (url: string) => {
+    const { account } = this.props;
+    if (account.profile?.profile_image === url) {
+      this.toggleDialog();
+      return;
     }
 
-    toggleDialog = () => {
-        const {dialog} = this.state;
-        this.stateSet({dialog: !dialog})
-    }
+    this.stateSet({ inProgress: true });
 
-    save = (url: string) => {
-        const {account} = this.props;
-        if (account.profile?.profile_image === url) {
-            this.toggleDialog();
-            return;
-        }
+    const { addAccount, onUpdate } = this.props;
+    const { profile } = account;
 
-        this.stateSet({inProgress: true});
+    const newProfile = {
+      name: profile?.name || "",
+      about: profile?.about || "",
+      cover_image: profile?.cover_image || "",
+      profile_image: url,
+      website: profile?.website || "",
+      location: profile?.location || "",
+      pinned: profile?.pinned || ""
+    };
 
-        const {addAccount, onUpdate} = this.props;
-        const {profile} = account;
+    updateProfile(account, newProfile)
+      .then((r) => {
+        success(_t("community-card.profile-image-updated"));
+        return getAccount(account.name);
+      })
+      .then((account) => {
+        // update reducer
+        addAccount(account);
 
-        const newProfile = {
-            name: profile?.name || '',
-            about: profile?.about || '',
-            cover_image: profile?.cover_image || '',
-            profile_image: url,
-            website: profile?.website || '',
-            location: profile?.location || '',
-            pinned: profile?.pinned || ''
-        };
+        // close dialog
+        this.toggleDialog();
+        onUpdate();
+      })
+      .catch(() => {
+        error(_t("g.server-error"));
+      })
+      .finally(() => {
+        this.stateSet({ inProgress: false });
+      });
+  };
 
-        updateProfile(account, newProfile).then(r => {
-            success(_t('community-card.profile-image-updated'));
-            return getAccount(account.name);
-        }).then((account) => {
-            // update reducer
-            addAccount(account);
+  render() {
+    const { activeUser, account } = this.props;
+    const { dialog, inProgress } = this.state;
 
-            // close dialog
-            this.toggleDialog();
-            onUpdate();
-        }).catch(() => {
-            error(_t('g.server-error'));
-        }).finally(() => {
-            this.stateSet({inProgress: false});
-        });
-    }
-
-    render() {
-        const {activeUser, account} = this.props;
-        const {dialog, inProgress} = this.state;
-
-        return <>
-            <Tooltip content={_t('community-card.profile-image-edit')}>
-                <div className="edit-button" onClick={this.toggleDialog}>{pencilOutlineSvg}</div>
-            </Tooltip>
-            {dialog && (
-                <ImageUploadDialog
-                    activeUser={activeUser!}
-                    title={_t('community-card.profile-image')}
-                    defImage={account.profile?.profile_image || ""}
-                    inProgress={inProgress}
-                    onDone={this.save}
-                    onHide={this.toggleDialog}
-                />
-            )}
-        </>
-    }
+    return (
+      <>
+        <Tooltip content={_t("community-card.profile-image-edit")}>
+          <div className="edit-button" onClick={this.toggleDialog}>
+            {pencilOutlineSvg}
+          </div>
+        </Tooltip>
+        {dialog && (
+          <ImageUploadDialog
+            activeUser={activeUser!}
+            title={_t("community-card.profile-image")}
+            defImage={account.profile?.profile_image || ""}
+            inProgress={inProgress}
+            onDone={this.save}
+            onHide={this.toggleDialog}
+          />
+        )}
+      </>
+    );
+  }
 }
 
 interface Props {
-    history: History;
-    global: Global;
-    community: Community;
-    account: Account;
-    users: User[];
-    activeUser: ActiveUser | null;
-    signingKey: string;
-    setSigningKey: (key: string) => void;
-    addAccount: (data: Account) => void;
-    addCommunity: (data: Community) => void;
+  history: History;
+  global: Global;
+  community: Community;
+  account: Account;
+  users: User[];
+  activeUser: ActiveUser | null;
+  signingKey: string;
+  setSigningKey: (key: string) => void;
+  addAccount: (data: Account) => void;
+  addCommunity: (data: Community) => void;
 }
 
 interface DialogInfo {
-    title: string;
-    content: JSX.Element | null;
+  title: string;
+  content: JSX.Element | null;
 }
 
 interface State {
-    info: DialogInfo | null;
-    settings: boolean;
-    rewards: boolean;
-    useNewImage: boolean;
+  info: DialogInfo | null;
+  settings: boolean;
+  rewards: boolean;
+  useNewImage: boolean;
 }
 
 export class CommunityCard extends Component<Props, State> {
-    state: State = {
-        info: null,
-        settings: false,
-        rewards: false,
-        useNewImage: false
-    }
+  state: State = {
+    info: null,
+    settings: false,
+    rewards: false,
+    useNewImage: false
+  };
 
-    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
-        return !isEqual(this.props.community, nextProps.community)
-            || !isEqual(this.props.users, nextProps.users)
-            || !isEqual(this.props.account, nextProps.account)
-            || !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username)
-            || !isEqual(this.state, nextState)
-    }
+  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
+    return (
+      !isEqual(this.props.community, nextProps.community) ||
+      !isEqual(this.props.users, nextProps.users) ||
+      !isEqual(this.props.account, nextProps.account) ||
+      !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
+      !isEqual(this.state, nextState)
+    );
+  }
 
-    toggleInfo = (info: DialogInfo | null) => {
-        this.setState({info});
-    }
+  toggleInfo = (info: DialogInfo | null) => {
+    this.setState({ info });
+  };
 
-    toggleSettings = () => {
-        const {settings} = this.state;
-        this.setState({settings: !settings});
-    }
+  toggleSettings = () => {
+    const { settings } = this.state;
+    this.setState({ settings: !settings });
+  };
 
-    toggleRewards = () => {
-        const {rewards} = this.state;
-        this.setState({rewards: !rewards});
-    }
+  toggleRewards = () => {
+    const { rewards } = this.state;
+    this.setState({ rewards: !rewards });
+  };
 
-    render() {
-        const {info, settings, rewards, useNewImage} = this.state;
-        const {global, community, activeUser, users, account} = this.props;
+  render() {
+    const { info, settings, rewards, useNewImage } = this.state;
+    const { global, community, activeUser, users, account } = this.props;
 
-        const role = community.team.find(x => x[0] === activeUser?.username);
-        const roleInTeam = role ? role[1] : null;
-        const canEditTeam = !!(roleInTeam && roleMap[roleInTeam]);
-        const canEditCommunity = !!(roleInTeam && [ROLES.OWNER.toString(), ROLES.ADMIN.toString()].includes(roleInTeam));
+    const role = community.team.find((x) => x[0] === activeUser?.username);
+    const roleInTeam = role ? role[1] : null;
+    const canEditTeam = !!(roleInTeam && roleMap[roleInTeam]);
+    const canEditCommunity = !!(
+      roleInTeam && [ROLES.OWNER.toString(), ROLES.ADMIN.toString()].includes(roleInTeam)
+    );
 
-        const description: JSX.Element | null = community.description.trim() !== "" ?
-            <>{ln2list(community.description).map((x, i) => (
-                <p key={i}>{x}</p>
-            ))}</> : null;
+    const description: JSX.Element | null =
+      community.description.trim() !== "" ? (
+        <div
+          className="preview-body markdown-view"
+          dangerouslySetInnerHTML={{ __html: renderPostBody(community.description, true) }}
+        />
+      ) : null;
 
-        const rules: JSX.Element | null = community.flag_text.trim() !== "" ?
-            <>{ln2list(community.flag_text).map((x, i) => (
-                <p key={i}>{'- '}{x}</p>
-            ))}</> : null;
+    const rules: JSX.Element | null =
+      community.flag_text.trim() !== "" ? (
+        <>
+          {ln2list(community.flag_text).map((x, i) => (
+            <p key={i}>
+              {"- "}
+              {x}
+            </p>
+          ))}
+        </>
+      ) : null;
 
-        const team: JSX.Element = <>{
-            community.team.map((m, i) => {
-                if (m[0].startsWith("hive-")) {
-                    return null;
-                }
+    const team: JSX.Element = (
+      <>
+        {community.team.map((m, i) => {
+          if (m[0].startsWith("hive-")) {
+            return null;
+          }
 
-                return (
-                    <div className="team-member" key={i}>
-                        {ProfileLink({...this.props, username: m[0], children: <a className="username">{`@${m[0]}`}</a>})}
-                        <span className="role">{m[1]}</span>
-                        {m[2] !== "" && <span className="extra">{m[2]}</span>}
-                    </div>
-                );
-            })}</>;
-
-        const canUpdatePic = activeUser && !!users.find(x => x.username === community.name);
-
-        return (
-            <div className="community-card">
-                <div className="community-avatar">
-                    {canUpdatePic && (<EditPic {...this.props} account={account as FullAccount} activeUser={activeUser!} onUpdate={() => {
-                        this.setState({useNewImage: true});
-                    }}/>)}
-                    {UserAvatar({
-                        ...this.props,
-                        username: community.name,
-                        size: "xLarge",
-                        src: account.__loaded && useNewImage ? account.profile?.profile_image : undefined
-                    })}
-                </div>
-                <div className="community-info">
-                    <h1>
-                        <div className="title">{community.title}</div>
-                    </h1>
-                    <div className="about">{community.about}</div>
-                    {community.is_nsfw && <span className="nsfw">nsfw</span>}
-                </div>
-                <div className="community-sections">
-                    {description && (
-                        <div className="community-section">
-                            <div className="section-header" onClick={() => {
-                                this.toggleInfo({title: _t('community-card.description'), content: description});
-                            }}>
-                                {informationOutlineSvg} {_t('community-card.description')}
-                            </div>
-                            <div className="section-content">{description}</div>
-                        </div>
-                    )}
-                    {rules && (
-                        <div className="community-section">
-                            <div className="section-header" onClick={() => {
-                                this.toggleInfo({title: _t('community-card.rules'), content: rules});
-                            }}>
-                                {scriptTextOutlineSvg} {_t('community-card.rules')}
-                            </div>
-                            <div className="section-content">{rules}</div>
-                        </div>
-                    )}
-                    <div className="community-section section-team">
-                        <div className="section-header" onClick={() => {
-                            this.toggleInfo({title: _t('community-card.team'), content: team});
-                        }}>
-                            {accountGroupSvg} {_t('community-card.team')}
-                        </div>
-                        <div className="section-content">{team}</div>
-                    </div>
-                </div>
-
-                {(canEditCommunity || canEditTeam) && (
-                    <div className="community-controls">
-                        {canEditCommunity && (<p className="community-control" onClick={this.toggleSettings}>
-                            <Button size="sm">{_t('community-card.edit')}</Button>
-                        </p>)}
-                        {canEditTeam && (<p className="community-control">
-                            <Link className="btn btn-sm btn-primary" to={`/roles/${community.name}`}>{_t('community-card.edit-team')}</Link>
-                        </p>)}
-                    </div>
-                )}
-                {(global.usePrivate && roleInTeam === ROLES.OWNER.toString()) && (
-                    <p className="community-rewards"><a href="#" onClick={(e) => {
-                        e.preventDefault();
-                        this.toggleRewards();
-                    }}>{_t('community-card.community-rewards')}</a></p>
-                )}
-                {info && (
-                    <Modal show={true} centered={true} onHide={() => {
-                        this.toggleInfo(null);
-                    }} animation={false} className="community-info-dialog">
-                        <Modal.Header closeButton={true}>
-                            <Modal.Title>{info.title}</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body><div className="description-wrapper">{info.content}</div></Modal.Body>
-                    </Modal>
-                )}
-
-                {settings && <CommunitySettings {...this.props} activeUser={activeUser!} community={community} onHide={this.toggleSettings}/>}
-
-                {rewards && <CommunityRewardsRegistrationDialog  {...this.props} activeUser={activeUser!} community={community} onHide={this.toggleRewards}/>}
+          return (
+            <div className="team-member" key={i}>
+              {ProfileLink({
+                ...this.props,
+                username: m[0],
+                children: <a className="username">{`@${m[0]}`}</a>
+              })}
+              <span className="role">{m[1]}</span>
+              {m[2] !== "" && <span className="extra">{m[2]}</span>}
             </div>
-        );
-    }
+          );
+        })}
+      </>
+    );
+
+    const canUpdatePic = activeUser && !!users.find((x) => x.username === community.name);
+
+    return (
+      <div className="community-card">
+        <div className="community-avatar">
+          {canUpdatePic && (
+            <EditPic
+              {...this.props}
+              account={account as FullAccount}
+              activeUser={activeUser!}
+              onUpdate={() => {
+                this.setState({ useNewImage: true });
+              }}
+            />
+          )}
+          {UserAvatar({
+            ...this.props,
+            username: community.name,
+            size: "xLarge",
+            src: account.__loaded && useNewImage ? account.profile?.profile_image : undefined
+          })}
+        </div>
+        <div className="community-info">
+          <h1>
+            <div className="title">{community.title}</div>
+          </h1>
+          <div className="about">{community.about}</div>
+          {community.is_nsfw && <span className="nsfw">nsfw</span>}
+        </div>
+        <div className="community-sections">
+          {description && (
+            <div className="community-section">
+              <div
+                className="section-header"
+                onClick={() => {
+                  this.toggleInfo({
+                    title: _t("community-card.description"),
+                    content: description
+                  });
+                }}
+              >
+                {informationOutlineSvg} {_t("community-card.description")}
+              </div>
+              <div className="section-content">{description}</div>
+            </div>
+          )}
+          {rules && (
+            <div className="community-section">
+              <div
+                className="section-header"
+                onClick={() => {
+                  this.toggleInfo({ title: _t("community-card.rules"), content: rules });
+                }}
+              >
+                {scriptTextOutlineSvg} {_t("community-card.rules")}
+              </div>
+              <div className="section-content">{rules}</div>
+            </div>
+          )}
+          <div className="community-section section-team">
+            <div
+              className="section-header"
+              onClick={() => {
+                this.toggleInfo({ title: _t("community-card.team"), content: team });
+              }}
+            >
+              {accountGroupSvg} {_t("community-card.team")}
+            </div>
+            <div className="section-content">{team}</div>
+          </div>
+        </div>
+
+        {(canEditCommunity || canEditTeam) && (
+          <div className="community-controls">
+            {canEditCommunity && (
+              <p className="community-control" onClick={this.toggleSettings}>
+                <Button size="sm">{_t("community-card.edit")}</Button>
+              </p>
+            )}
+            {canEditTeam && (
+              <p className="community-control">
+                <Link className="btn btn-sm btn-primary" to={`/roles/${community.name}`}>
+                  {_t("community-card.edit-team")}
+                </Link>
+              </p>
+            )}
+          </div>
+        )}
+        {global.usePrivate && roleInTeam === ROLES.OWNER.toString() && (
+          <p className="community-rewards">
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                this.toggleRewards();
+              }}
+            >
+              {_t("community-card.community-rewards")}
+            </a>
+          </p>
+        )}
+        {info && (
+          <Modal
+            show={true}
+            centered={true}
+            onHide={() => {
+              this.toggleInfo(null);
+            }}
+            animation={false}
+            className="community-info-dialog"
+          >
+            <Modal.Header closeButton={true}>
+              <Modal.Title>{info.title}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="description-wrapper">{info.content}</div>
+            </Modal.Body>
+          </Modal>
+        )}
+
+        {settings && (
+          <CommunitySettings
+            {...this.props}
+            activeUser={activeUser!}
+            community={community}
+            onHide={this.toggleSettings}
+          />
+        )}
+
+        {rewards && (
+          <CommunityRewardsRegistrationDialog
+            {...this.props}
+            activeUser={activeUser!}
+            community={community}
+            onHide={this.toggleRewards}
+          />
+        )}
+      </div>
+    );
+  }
 }
 
 export default (p: Props) => {
-    const props: Props = {
-        history: p.history,
-        global: p.global,
-        community: p.community,
-        account: p.account,
-        users: p.users,
-        signingKey: p.signingKey,
-        setSigningKey: p.setSigningKey,
-        activeUser: p.activeUser,
-        addAccount: p.addAccount,
-        addCommunity: p.addCommunity
-    }
+  const props: Props = {
+    history: p.history,
+    global: p.global,
+    community: p.community,
+    account: p.account,
+    users: p.users,
+    signingKey: p.signingKey,
+    setSigningKey: p.setSigningKey,
+    activeUser: p.activeUser,
+    addAccount: p.addAccount,
+    addCommunity: p.addCommunity
+  };
 
-    return <CommunityCard {...props} />;
-}
-
+  return <CommunityCard {...props} />;
+};

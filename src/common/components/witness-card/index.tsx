@@ -1,23 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { dateToRelative } from '../../helper/parse-date';
+import { dateToRelative } from "../../helper/parse-date";
 import { _t } from "../../i18n";
 import { openInNewSvg } from "../../img/svg";
 import WitnessVoteBtn from "../witness-vote-btn";
 
-export const WitnessCard = ({
-  voted,
-  row,
-  witness,
-  onSuccess,
-  ...other
-}: any) => {
+export const WitnessCard = ({ voted, row, witness, onSuccess, ...other }: any) => {
   return (
     <div className="p-3 mb-3 border rounded">
       <div className="d-flex align-items-center justify-content-between">
         <div>
           <h3>
-            <Link to={`/@${row.name}`}><b>{row.name}</b></Link>
+            <Link to={`/@${row.name}`}>
+              <b>{row.name}</b>
+            </Link>
             {row.witnessBy && (
               <div className={"notranslate"}>
                 <small>by {row.witnessBy}</small>
@@ -27,7 +23,9 @@ export const WitnessCard = ({
         </div>
         <div>
           <img
-            src={`https://images.ecency.com/${other.global.canUseWebp ? "webp/" : ""}u/${row.name}/avatar/medium`}
+            src={`https://images.ecency.com/${other.global.canUseWebp ? "webp/" : ""}u/${
+              row.name
+            }/avatar/medium`}
             alt=""
             className="rounded-circle avatar mr-3"
           />
@@ -35,7 +33,9 @@ export const WitnessCard = ({
       </div>
       <div className="d-flex">
         <div className="mr-3 d-flex">
-          <div className="mr-2"><b>{_t("witnesses.list-rank")} :</b></div>
+          <div className="mr-2">
+            <b>{_t("witnesses.list-rank")} :</b>
+          </div>
           <div>{row.rank}</div>
         </div>
 
@@ -44,7 +44,7 @@ export const WitnessCard = ({
             ...other,
             voted,
             witness,
-            onSuccess,
+            onSuccess
           })}
         </div>
       </div>
@@ -64,15 +64,14 @@ export const WitnessCard = ({
       <div className="d-flex align-items-center my-2 justify-content-between">
         <div className="witness-feed">
           <span className="inner">
-            ${row.feed.replace(" HBD", "")} |{" "}
-            {dateToRelative(row.priceAge)}
+            ${row.feed.replace(" HBD", "")} | {dateToRelative(row.priceAge)}
           </span>
         </div>
-      <div className="d-flex align-items-center">
-        <div className="witness-version">
-          <span className="inner">{row.version}</span>
+        <div className="d-flex align-items-center">
+          <div className="witness-version">
+            <span className="inner">{row.version}</span>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );

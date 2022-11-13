@@ -62,11 +62,11 @@
   }
   @include themify(day) {
     background: $white-two;
-  } 
+  }
   border-width: 0px;
   resize: none;
   outline: none;
-  min-height: 60px;
+  min-height: 80px;
   padding: 4px;
   line-height: 1.5;
   font-size: 1rem;

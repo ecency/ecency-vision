@@ -186,6 +186,9 @@ exports[`(2) Render with loaded data 1`] = `
       </a>
     </div>
   </div>
+  <div
+    className="btn-controls"
+  />
 </div>
 `;
 

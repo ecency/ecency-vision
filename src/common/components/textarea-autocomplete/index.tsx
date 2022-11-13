@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import ReactTextareaAutocomplete from "@webscopeio/react-textarea-autocomplete";
 import "@webscopeio/react-textarea-autocomplete/style.css";
 
@@ -7,15 +7,16 @@ import UserAvatar from "../user-avatar";
 import { _t } from "../../i18n";
 
 import { lookupAccounts } from "../../api/hive";
-import { searchPath } from '../../api/search-api';
-import { isMobile } from '../../util/is-mobile';
-import NoSSR from '../../util/no-ssr';
+import { searchPath } from "../../api/search-api";
+import { isMobile } from "../../util/is-mobile";
+import NoSSR from "../../util/no-ssr";
 
 interface State {
-	value: string;
-	rows: number;
-	minrows: number;
-	maxrows: number;
+  value: string;
+  rows: number;
+  minrows: number;
+  maxrows: number;
+  inputHeight: number;
 }
 
 const Loading = () => <div>{_t("g.loading")}</div>;
@@ -23,115 +24,153 @@ const Loading = () => <div>{_t("g.loading")}</div>;
 let timer: any = null;
 
 export default class TextareaAutocomplete extends BaseComponent<any, State> {
-	constructor(props: any) {
-		super(props);
-		this.state = {
-			value: this.props.value,
-			rows: this.props.minrows || 10,
-			minrows: this.props.minrows || 10,
-			maxrows: this.props.maxrows || 20,
-		};
-	}
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      value: this.props.value,
+      rows: this.props.minrows || 10,
+      minrows: this.props.minrows || 10,
+      maxrows: this.props.maxrows || 20,
+      inputHeight: this.props.inputHeight
+    };
+  }
 
-	componentDidUpdate(prevProps: any){
-		if(this.props.value !== prevProps.value){
-			this.setState({value: this.props.value})
-		}
-	}
+  componentDidUpdate(prevProps: any) {
+    if (this.props.value !== prevProps.value) {
+      this.setState({ value: this.props.value });
+    }
+    if (this.props.inputHeight !== prevProps.inputHeight) {
+      this.setState({ inputHeight: this.props.inputHeight });
+    }
+  }
 
-	handleChange = (event: any) => {
-		const isMobile = typeof window !== 'undefined' && window.innerWidth < 570;
-		if (isMobile) {
-			const textareaLineHeight = 24;
-			const { minrows, maxrows } = this.state;
+  handleChange = (event: any) => {
+    let scHeight: number = event.target.scrollHeight;
+    let reduceScHeight: number = scHeight - 20 || scHeight - 24;
 
-			const previousRows = event.target.rows;
-			event.target.rows = minrows; // reset number of rows in textarea 
+    if (reduceScHeight) {
+      scHeight = reduceScHeight;
+    }
 
-			const currentRows = ~~(event.target.scrollHeight / textareaLineHeight);
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 570;
+    if (isMobile) {
+      const textareaLineHeight = 24;
+      const { minrows, maxrows } = this.state;
 
-			if (currentRows === previousRows) {
-				event.target.rows = currentRows;
-			}
+      const previousRows = event.target.rows;
+      event.target.rows = minrows; // reset number of rows in textarea
 
-			if (currentRows >= maxrows) {
-				event.target.rows = maxrows;
-				event.target.scrollTop = event.target.scrollHeight;
-			}
-			this.setState({
-				rows: currentRows < maxrows ? currentRows : maxrows
-			});
-		}
+      const currentRows = ~~(event.target.scrollHeight / textareaLineHeight);
 
-		this.setState({
-			value: event.target.value
-		});
-		this.props.onChange(event)
-	};
+      if (currentRows === previousRows) {
+        event.target.rows = currentRows;
+      }
 
-	render() {
-		const {activeUser, rows, isComment, disableRows, ...other} = this.props;
-		const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 992;
-		const attrs = { ...other };
+      if (currentRows >= maxrows) {
+        event.target.rows = maxrows;
+        event.target.scrollTop = event.target.scrollHeight;
+      }
+      this.setState({
+        rows: currentRows < maxrows ? currentRows : maxrows
+      });
+    }
 
-		if ((!disableRows || !isDesktop) && typeof window !== 'undefined') {
-			attrs.rows = isComment ? rows : this.state.rows;
-		}
+    this.setState({
+      value: event.target.value,
+      inputHeight: scHeight
+    });
+    this.props.onChange(event);
+  };
 
-		return (
-			<NoSSR>
-				<ReactTextareaAutocomplete
-					{...attrs}
-					loadingComponent={Loading}
-					value={this.state.value}
-					placeholder={this.props.placeholder}
-					onChange={this.handleChange}
-					{...(isComment ? {} : {boundariesElement: ".body-input"})}
-					minChar={2}
-					trigger={{
-						["@"]: {
-							dataProvider: token => {
-								clearTimeout(timer);
-								return new Promise((resolve) => {
-									timer = setTimeout(async () => {
-										if(token.includes("/")){
-											let ignoreList = ['engine','wallet','points','communities','settings','permissions','comments','replies','blog','posts','feed','referrals','followers','following']
-											let searchIsInvalid = ignoreList.some(item => token.includes(`/${item}`))
-											if(!searchIsInvalid){
-												searchPath(activeUser, token).then(resp => {
-												resolve(resp)
-											})
-										} else {
-											resolve([])
-										}
-										}
-										else {
-											let suggestions = await lookupAccounts(token, 5)
-											resolve(suggestions)
-										}
-									}, 300);
-								});
-							},
-							component: (props: any) => {
-								let textToShow: string = props.entity.includes("/") ? props.entity.split("/")[1] : props.entity;
-								let charLimit = isMobile() ? 16 : 30
+  render() {
+    const { activeUser, rows, isComment, disableRows, ...other } = this.props;
+    const isDesktop = typeof window !== "undefined" && window.innerWidth >= 992;
+    const attrs = { ...other };
 
-								if(textToShow.length > charLimit && props.entity.includes("/")){
-									textToShow = textToShow.substring(0, charLimit - 5) + "..." + textToShow.substring(textToShow.length - 6, textToShow.length-1)
-								}
+    if ((!disableRows || !isDesktop) && typeof window !== "undefined") {
+      attrs.rows = isComment ? rows : this.state.rows;
+    }
 
-								return (
-									<>
-										{props.entity.includes("/") ? null : UserAvatar({ global: this.props.global, username: props.entity, size: "small" })}
-										<span style={{ marginLeft: "8px" }}>{textToShow}</span>
-									</>
-								)
-							},
-							output: (item: any, trigger) => `@${item}`
-						}
-					}}
-				/>
-			</NoSSR>
-		);
-	}
+    return (
+      <NoSSR>
+        <ReactTextareaAutocomplete
+          {...attrs}
+          loadingComponent={Loading}
+          containerStyle={{ height: !this.state.value ? "80px" : this.state.inputHeight }}
+          value={this.state.value}
+          placeholder={this.props.placeholder}
+          onChange={this.handleChange}
+          {...(isComment ? {} : { boundariesElement: ".body-input" })}
+          minChar={2}
+          trigger={{
+            ["@"]: {
+              dataProvider: (token) => {
+                clearTimeout(timer);
+                return new Promise((resolve) => {
+                  timer = setTimeout(async () => {
+                    if (token.includes("/")) {
+                      let ignoreList = [
+                        "engine",
+                        "wallet",
+                        "points",
+                        "communities",
+                        "settings",
+                        "permissions",
+                        "comments",
+                        "replies",
+                        "blog",
+                        "posts",
+                        "feed",
+                        "referrals",
+                        "followers",
+                        "following"
+                      ];
+                      let searchIsInvalid = ignoreList.some((item) => token.includes(`/${item}`));
+                      if (!searchIsInvalid) {
+                        searchPath(activeUser, token).then((resp) => {
+                          resolve(resp);
+                        });
+                      } else {
+                        resolve([]);
+                      }
+                    } else {
+                      let suggestions = await lookupAccounts(token, 5);
+                      resolve(suggestions);
+                    }
+                  }, 300);
+                });
+              },
+              component: (props: any) => {
+                let textToShow: string = props.entity.includes("/")
+                  ? props.entity.split("/")[1]
+                  : props.entity;
+                let charLimit = isMobile() ? 16 : 30;
+
+                if (textToShow.length > charLimit && props.entity.includes("/")) {
+                  textToShow =
+                    textToShow.substring(0, charLimit - 5) +
+                    "..." +
+                    textToShow.substring(textToShow.length - 6, textToShow.length - 1);
+                }
+
+                return (
+                  <>
+                    {props.entity.includes("/")
+                      ? null
+                      : UserAvatar({
+                          global: this.props.global,
+                          username: props.entity,
+                          size: "small"
+                        })}
+                    <span style={{ marginLeft: "8px" }}>{textToShow}</span>
+                  </>
+                );
+              },
+              output: (item: any, trigger) => `@${item}`
+            }
+          }}
+        />
+      </NoSSR>
+    );
+  }
 }

@@ -52,7 +52,7 @@ exports[`(1) NotificationListItem (1) Vote  1`] = `
         <span
           className="item-action"
         >
-          100% likes your post:
+          100% voted your post:
         </span>
       </div>
       <div
@@ -457,7 +457,6 @@ exports[`(1) NotificationListItem (7) Transfer  1`] = `
           className="item-action"
         >
           sent you
-           
            
           <span
             className="transfer-amount"
