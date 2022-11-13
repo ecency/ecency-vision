@@ -86,7 +86,7 @@ export class Comment extends Component<Props, State> {
     text: "",
     preview: "",
     showEmoji: false,
-    showGif: false,
+    showGif: false
   };
 
   timer: any = null;
@@ -164,7 +164,9 @@ export class Comment extends Component<Props, State> {
       <>
         <div
           className="comment-box"
-          onMouseEnter={() => !showEmoji && !showGif && this.setState({showEmoji: true, showGif: true})}
+          onMouseEnter={() =>
+            !showEmoji && !showGif && this.setState({ showEmoji: true, showGif: true })
+          }
         >
           {EditorToolbar({ ...this.props, sm: true, showEmoji })}
           <div className="comment-body">
