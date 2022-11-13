@@ -331,6 +331,9 @@ class EntryPage extends BaseComponent<Props, State> {
     bridgeApi
       .getPost(author, permlink)
       .then((entry) => {
+        if (entry) {
+          reducerFn(entry);
+        }
         if (isCommunity(category)) {
           this.stateSet({ loading: false });
           return bridgeApi.getCommunity(category, activeUser?.username);
@@ -537,6 +540,7 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     const entry = this.getEntry();
+    debugger;
     if (postIsDeleted) {
       const { username, permlink } = match.params;
       const author = username.replace("@", "");
