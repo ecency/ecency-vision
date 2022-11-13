@@ -540,7 +540,6 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     const entry = this.getEntry();
-    debugger;
     if (postIsDeleted) {
       const { username, permlink } = match.params;
       const author = username.replace("@", "");
