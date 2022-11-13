@@ -43,7 +43,6 @@ import _c from "../../util/fix-class-names";
 
 import { deleteForeverSvg } from "../../img/svg";
 
-
 declare var window: AppWindow;
 
 interface LoginKcProps {
@@ -108,20 +107,20 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
       return;
     }
 
-    const hasPostingPerm = account?.posting!.account_auths.
-      filter(x => x[0] === hsClientId).length > 0;
+    const hasPostingPerm =
+      account?.posting!.account_auths.filter((x) => x[0] === hsClientId).length > 0;
 
     if (!hasPostingPerm) {
       const weight = account.posting!.weight_threshold;
 
-      this.stateSet({inProgress: true});
+      this.stateSet({ inProgress: true });
       try {
-        await addAccountAuthority(username, hsClientId, "Posting", weight)
+        await addAccountAuthority(username, hsClientId, "Posting", weight);
       } catch (err) {
-        error(_t('login.error-permission'));
+        error(_t("login.error-permission"));
         return;
       } finally {
-        this.stateSet({inProgress: false});
+        this.stateSet({ inProgress: false });
       }
     }
 
@@ -364,7 +363,7 @@ export class Login extends BaseComponent<LoginProps, State> {
 
   hsLogin = () => {
     const { global, history } = this.props;
-    const {hsClientId} = global;
+    const { hsClientId } = global;
     if (global.isElectron) {
       hsLogin(hsClientId)
         .then((r) => {
@@ -473,7 +472,7 @@ export class Login extends BaseComponent<LoginProps, State> {
       const hash = cryptoUtils.sha256(message);
       return new Promise<string>((resolve) => resolve(thePrivateKey.sign(hash).toString()));
     };
-    const code = await makeHsCode(account.name, signer);
+    const code = await makeHsCode(hsClientId, account.name, signer);
 
     this.stateSet({ inProgress: true });
 

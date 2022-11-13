@@ -91,10 +91,24 @@ server
   // For all others paths
   .get("*", fallbackHandler);
 
-if (config.hsClientId === "ecency.app" && defaults.base === "https://ecency.com" && config.hsClientSecret.length === 0) {
+if (
+  config.hsClientId === "ecency.app" &&
+  defaults.base === "https://ecency.com" &&
+  config.hsClientSecret.length === 0
+) {
   // Use Ecency servers
-} else if (config.hsClientId === "ecency.app" || defaults.base === "https://ecency.com" || config.hsClientSecret.length === 0 || config.usePrivate === '1') {
-  console.error(configurationError, {base: defaults.base, hsClientId: config.hsClientId, hsClientSecret: config.hsClientSecret, usePrivate: config.usePrivate});
+} else if (
+  config.hsClientId === "ecency.app" ||
+  defaults.base === "https://ecency.com" ||
+  config.hsClientSecret.length === 0 ||
+  config.usePrivate === "1"
+) {
+  console.error("configurationError:", {
+    base: defaults.base,
+    hsClientId: config.hsClientId,
+    hsClientSecret: config.hsClientSecret,
+    usePrivate: config.usePrivate
+  });
   process.exit(1);
 }
 
