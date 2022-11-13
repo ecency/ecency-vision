@@ -508,19 +508,6 @@ export class EditorToolbar extends Component<Props> {
             </div>
           </Tooltip>
 
-          <Tooltip content={_t("editor-toolbar.emoji")}>
-            <div className="editor-tool" role="none">
-              {emoticonHappyOutlineSvg}
-              {showEmoji && (
-                <EmojiPicker
-                  fallback={(e) => {
-                    this.insertText(e, "");
-                  }}
-                />
-              )}
-            </div>
-          </Tooltip>
-
           <Tooltip content={_t("Gif")}>
             <div className="editor-tool" role="none">
               <div className="editor-tool-gif-icon" onClick={this.toggleGif}>
