@@ -388,6 +388,11 @@ export class Login extends BaseComponent<LoginProps, State> {
     const { hsClientId } = this.props.global;
     const { username, key } = this.state;
 
+    if (username === "" || key === "") {
+      error(_t("login.error-fields-required"));
+      return;
+    }
+
     // Warn if the code is a public key
     try {
       PublicKey.fromString(key);
@@ -452,12 +457,12 @@ export class Login extends BaseComponent<LoginProps, State> {
       }
 
       const hasPostingPerm =
-        account?.posting!.account_auths.filter((x) => x[0] === "ecency.app").length > 0;
+        account?.posting!.account_auths.filter((x) => x[0] === hsClientId).length > 0;
 
       if (!hasPostingPerm) {
         this.stateSet({ inProgress: true });
         try {
-          await grantPostingPermission(thePrivateKey, account, "ecency.app");
+          await grantPostingPermission(thePrivateKey, account, hsClientId);
         } catch (err) {
           error(_t("login.error-permission"));
           return;
