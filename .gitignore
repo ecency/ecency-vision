@@ -18,4 +18,3 @@ src/config.ts
 .vscode
 
 dev.sh
-src/client_config.ts
