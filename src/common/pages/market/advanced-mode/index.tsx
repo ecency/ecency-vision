@@ -12,6 +12,7 @@ import { MarketAsset } from "../../../components/market-swap-form/market-pair";
 import { MarketObserver } from "./pairs";
 import { DayChange } from "./types/day-change.type";
 import { DAY_CHANGE_DEFAULT } from "./consts/day-change.const";
+import { OrdersData } from "../../../api/hive";
 
 interface Props {}
 
@@ -22,6 +23,7 @@ export const AdvancedMode = ({}: Props) => {
   const [dayChange, setDayChange] = useState<DayChange>(DAY_CHANGE_DEFAULT);
   const [price, setPrice] = useState(0);
   const [usdPrice, setUsdPrice] = useState(0);
+  const [history, setHistory] = useState<OrdersData | null>(null);
 
   const getGridColumns = () => {
     let cssGridColumns = "";
@@ -37,6 +39,7 @@ export const AdvancedMode = ({}: Props) => {
         fromAsset={fromAsset}
         toAsset={toAsset}
         onDayChange={(dayChange) => setDayChange(dayChange)}
+        onHistoryChange={(history) => setHistory(history)}
       />
       <AdvancedModeToolbar
         fromAsset={fromAsset}
@@ -51,7 +54,9 @@ export const AdvancedMode = ({}: Props) => {
             {column.rows.map((row, key) => {
               switch (row.widgetType) {
                 case Widget.History:
-                  return <HistoryWidget />;
+                  return (
+                    <HistoryWidget fromAsset={fromAsset} toAsset={toAsset} history={history} />
+                  );
                 case Widget.StakeBuy:
                   return <StakeBuyWidget />;
                 case Widget.StakeSell:

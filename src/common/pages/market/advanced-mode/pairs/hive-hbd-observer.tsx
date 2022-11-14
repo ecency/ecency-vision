@@ -1,15 +1,24 @@
 import React, { useEffect } from "react";
-import { getMarketStatistics } from "../../../../api/hive";
+import { getMarketStatistics, getOrderBook, OrdersData } from "../../../../api/hive";
 import { DayChange } from "../types/day-change.type";
 
 interface Props {
   onDayChange: (dayChange: DayChange) => void;
+  onHistoryChange: (history: OrdersData) => void;
 }
 
-export const HiveHbdObserver = ({ onDayChange }: Props) => {
+export const HiveHbdObserver = ({ onDayChange, onHistoryChange }: Props) => {
   useEffect(() => {
     fetchStats();
+    fetchHistory();
   }, []);
+
+  const fetchHistory = async () => {
+    try {
+      const history = await getOrderBook(100);
+      onHistoryChange(history);
+    } catch (e) {}
+  };
 
   const fetchStats = async () => {
     try {

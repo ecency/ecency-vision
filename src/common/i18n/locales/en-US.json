@@ -394,7 +394,15 @@
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You have to be authorized to swap own funds",
     "start-new-one": "Start new Swap",
-    "success-swap": "Successfully swapped!"
+    "success-swap": "Successfully swapped!",
+    "advanced": {
+      "history": "History",
+      "history-widget": {
+        "price": "Price",
+        "amount": "Amount",
+        "time": "Time"
+      }
+    }
   },
   "list-style": {
     "title": "Toggle list style"

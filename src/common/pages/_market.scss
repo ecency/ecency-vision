@@ -103,5 +103,30 @@ thead, .pagination {
                 }
             }
         }
+
+        .history-widget-content {
+            padding-top: 0.5rem;
+            padding-left: 0.69rem;
+
+            .scrollable {
+                max-height: 400px;
+                overflow-y: auto;
+            }
+
+            .history-widget-row {
+                padding: 0.15rem 0;
+                display: grid;
+                gap: 1rem;
+                font-size: 0.75rem;
+                font-weight: 500;
+                grid-template-columns: 1fr 1fr 1fr;
+
+                &.history-widget-header {
+                    padding: 0.5rem 0;
+                    font-weight: 400;
+                    font-size: 0.75rem;
+                }
+            }
+        }
     }
 }

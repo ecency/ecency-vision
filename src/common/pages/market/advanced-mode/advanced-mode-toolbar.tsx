@@ -22,7 +22,7 @@ export const AdvancedModeToolbar = ({ fromAsset, toAsset, dayChange, usdPrice, p
   };
 
   return (
-    <div className="advanced-mode-toolbar d-flex border-bottom border-top px-3 py-2">
+    <div className="advanced-mode-toolbar d-flex border-bottom border-top px-3 py-3">
       <div className="trading-pair pr-3 py-2">
         <b>
           {fromAsset}/{toAsset}
@@ -30,7 +30,7 @@ export const AdvancedModeToolbar = ({ fromAsset, toAsset, dayChange, usdPrice, p
       </div>
       <div className="pair-info d-flex border-left px-3">
         <div className="price">
-          <div className="amount text-success">{price}</div>
+          <div className="amount text-success">{formattedNumber(dayChange.price)}</div>
           <div className="usd-value">${usdPrice}</div>
         </div>
         <div className="day-change-price change-price px-3">

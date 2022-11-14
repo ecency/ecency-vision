@@ -23,6 +23,7 @@ const MarketPage = (props: PageProps) => {
     const hash = props.location.hash;
     if (hash === "#swap") setMode(MarketMode.SWAP);
     if (hash === "#limit") setMode(MarketMode.LIMIT);
+    if (hash === "#advanced") setMode(MarketMode.ADVANCED);
   }, []);
 
   const navbar = props.global.isElectron ? (
