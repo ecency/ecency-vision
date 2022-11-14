@@ -357,7 +357,7 @@ class EntryPage extends BaseComponent<Props, State> {
         }
       })
       .finally(() => {
-        this.stateSet({ isMounted: true });
+        this.stateSet({ isMounted: true, loading: false });
       });
   };
 
