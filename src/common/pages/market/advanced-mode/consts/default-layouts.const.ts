@@ -4,7 +4,7 @@ export const DEFAULT_LAYOUT: Layout = {
   columns: [
     {
       size: "collapsed",
-      rows: [{ widgetType: Widget.StakeSell }, { widgetType: Widget.StakeBuy }]
+      rows: [{ widgetType: Widget.Stake }]
     },
     {
       size: "expanded",

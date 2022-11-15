@@ -68,10 +68,10 @@ export const HistoryWidget = ({ history, fromAsset, toAsset }: Props) => {
         <div className="history-widget-content">
           <div className="history-widget-row history-widget-header">
             <div>
-              {_t("market.advanced.history-widget.price")}({fromAsset})
+              {_t("market.advanced.history-widget.price")}({toAsset})
             </div>
             <div>
-              {_t("market.advanced.history-widget.amount")}({toAsset})
+              {_t("market.advanced.history-widget.amount")}({fromAsset})
             </div>
             <div>{_t("market.advanced.history-widget.time")}</div>
           </div>

@@ -2,8 +2,7 @@ export enum Widget {
   TradingView,
   History,
   TradingForm,
-  StakeBuy,
-  StakeSell,
+  Stake,
   Pairs
 }
 

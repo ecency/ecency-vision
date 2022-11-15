@@ -397,6 +397,7 @@
     "success-swap": "Successfully swapped!",
     "advanced": {
       "history": "History",
+      "stake": "Stake",
       "history-widget": {
         "price": "Price",
         "amount": "Amount",

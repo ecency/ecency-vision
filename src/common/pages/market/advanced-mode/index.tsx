@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Layout, Widget } from "./types/layout.type";
 import { DEFAULT_LAYOUT } from "./consts/default-layouts.const";
 import { HistoryWidget } from "../../../components/market-advanced-mode/history-widget";
-import { StakeBuyWidget } from "../../../components/market-advanced-mode/stake-buy-widget";
-import { StakeSellWidget } from "../../../components/market-advanced-mode/stake-sell-widget";
+import { StakeWidget } from "../../../components/market-advanced-mode/stake-widget";
 import { PairsWidget } from "../../../components/market-advanced-mode/pairs-widget";
 import { TradingFormWidget } from "../../../components/market-advanced-mode/trading-form-widget";
 import { TradingViewWidget } from "../../../components/market-advanced-mode/trading-view-widget";
@@ -57,10 +56,8 @@ export const AdvancedMode = ({}: Props) => {
                   return (
                     <HistoryWidget fromAsset={fromAsset} toAsset={toAsset} history={history} />
                   );
-                case Widget.StakeBuy:
-                  return <StakeBuyWidget />;
-                case Widget.StakeSell:
-                  return <StakeSellWidget />;
+                case Widget.Stake:
+                  return <StakeWidget fromAsset={fromAsset} toAsset={toAsset} history={history} />;
                 case Widget.Pairs:
                   return <PairsWidget />;
                 case Widget.TradingForm:

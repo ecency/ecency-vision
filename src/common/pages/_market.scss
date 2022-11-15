@@ -128,5 +128,28 @@ thead, .pagination {
                 }
             }
         }
+
+        .market-stake-widget-sell, .market-stake-widget-buy {
+            .history-widget-row {
+                position: relative;
+
+                .progress {
+                    position: absolute;
+                    width: 100%;
+                    opacity: 0.15;
+                    height: 19.2px;
+                }
+
+                &.sell .progress {
+                    right: 0;
+                    background-color: $danger;
+                }
+
+                &.buy .progress {
+                    left: 0;
+                    background-color: $success;
+                }
+            }
+        }
     }
 }
