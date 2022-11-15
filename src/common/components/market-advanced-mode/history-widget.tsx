@@ -79,7 +79,7 @@ export const HistoryWidget = ({ history, fromAsset, toAsset }: Props) => {
             {items.map((item, key) => (
               <div className="history-widget-row" key={key}>
                 <div className={item.action === "buy" ? "text-success" : "text-danger"}>
-                  {item.price}
+                  {(item.price / item.amount).toFixed(5)}
                 </div>
                 <div>{item.amount}</div>
                 <div>{getDate(item.date)}</div>
