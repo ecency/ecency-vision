@@ -8,6 +8,7 @@ import { Button, Form, FormControl, Spinner, Row, Col } from "react-bootstrap";
 
 import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
 
+import * as ls from "../../common/util/local-storage";
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
@@ -45,11 +46,18 @@ class SignUpPage extends Component<PageProps, State> {
   };
 
   componentDidMount() {
-    const { location } = this.props;
+    const { location, history } = this.props;
     const qs = queryString.parse(location.search);
     if (qs.referral) {
       const referral = qs.referral as string;
       this.setState({ referral, lockReferral: true });
+    }
+    if (ls.get("referral")) {
+      const referral = ls.get("referral");
+      history.push(`/signup?referral=${referral}`);
+      this.setState({ referral: referral });
+    } else {
+      history.push("/signup");
     }
   }
 
@@ -79,6 +87,7 @@ class SignUpPage extends Component<PageProps, State> {
           error(resp.data.message);
         } else {
           this.setState({ done: true });
+          ls.remove("referral");
         }
       })
       .catch((err) => {
