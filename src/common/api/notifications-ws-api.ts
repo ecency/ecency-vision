@@ -31,6 +31,8 @@ export class NotificationsWebSocket {
           : _t("notification.mention-comment", { source });
       case "favorites":
         return _t("notification.favorite", { source });
+      case "bookmarks":
+        return _t("notification.bookmark", { source });
       case "follow":
         return _t("notification.followed", { source });
       case "reply":
