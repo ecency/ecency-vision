@@ -380,7 +380,7 @@
     "decimal-error": "Разрешены только {{decimals}} знаков после запятой!",
     "from": "От",
     "to": "Кому",
-    "swap": "Sign",
+    "sign": "Sign",
     "swapping": "Swapping...",
     "continue": "Продолжить",
     "balance": "Баланс",
@@ -399,7 +399,8 @@
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You have to be authorized to swap own funds",
     "start-new-one": "Начать новый обмен",
-    "success-swap": "Successfully swapped!"
+    "success-swap": "Successfully swapped!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "Переключить стиль списка"
