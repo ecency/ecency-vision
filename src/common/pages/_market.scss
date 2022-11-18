@@ -130,26 +130,56 @@ thead, .pagination {
         }
 
         .market-stake-widget-sell, .market-stake-widget-buy {
+            overflow-y: auto;
+
             .history-widget-row {
                 position: relative;
 
-                .progress {
+                .history-widget-row-progress {
                     position: absolute;
                     width: 100%;
                     opacity: 0.15;
                     height: 19.2px;
                 }
 
-                &.sell .progress {
+                &.sell .history-widget-row-progress {
                     right: 0;
                     background-color: $danger;
                 }
 
-                &.buy .progress {
-                    left: 0;
+                &.buy .history-widget-row-progress {
+                    right: 0;
                     background-color: $success;
                 }
             }
+        }
+
+        .stake-widget-header-options {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding-left: 8px;
+
+            .stake-widget-header-view-type {
+                display: flex;
+            }
+
+            .btn {
+                padding: 0 4px;
+                opacity: .5;
+
+                &.active {
+                    opacity: 1;
+                }
+            }
+
+            select {
+                width: auto;
+            }
+        }
+
+        .market-stake-widget-sell {
+            max-height: calc(100vh - 96px - 80px);
         }
     }
 }

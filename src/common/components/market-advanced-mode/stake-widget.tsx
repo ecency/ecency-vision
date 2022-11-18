@@ -4,6 +4,7 @@ import { _t } from "../../i18n";
 import { OrdersData, OrdersDataItem } from "../../api/hive";
 import { MarketAsset } from "../market-swap-form/market-pair";
 import formattedNumber from "../../util/formatted-number";
+import { StakeWidgetHeaderOptions, StakeWidgetViewType } from "./stake-widget-header-options";
 
 interface Props {
   history: OrdersData | null;
@@ -23,24 +24,33 @@ export const StakeWidget = ({ history, fromAsset, toAsset }: Props) => {
   const [buys, setBuys] = useState<StakeItem[]>([]);
   const [maxBuy, setMaxBuy] = useState(0);
   const [fraction, setFraction] = useState(0.00001);
+  const [viewType, setViewType] = useState(StakeWidgetViewType.All);
 
   const rowsCount = 17;
 
   useEffect(() => {
-    if (!history) return;
-
-    const sells = buildStakeItems(history.asks, "desc");
-    setSells(sells.slice(sells.length - 1 - rowsCount, sells.length));
-    setMaxSell(
-      Math.max(...sells.slice(sells.length - 1 - rowsCount, sells.length).map((i) => i.amount))
-    );
-
-    const buys = buildStakeItems(history.bids, "desc");
-    setBuys(buys.slice(0, rowsCount));
-    setMaxBuy(Math.max(...buys.slice(0, rowsCount).map((i) => i.amount)));
+    buildAllStakeItems(fraction);
   }, [history]);
 
-  const buildStakeItems = (h: OrdersDataItem[], sort: "asc" | "desc"): StakeItem[] =>
+  const buildAllStakeItems = (fraction: number, unlimited?: boolean) => {
+    if (!history) return;
+
+    let sells = buildStakeItems(history.asks, "desc", fraction);
+    if (!unlimited) sells = sells.slice(sells.length - 1 - rowsCount, sells.length);
+    setSells(sells);
+    setMaxSell(Math.min(5000, Math.max(...sells.map((i) => i.amount))));
+
+    let buys = buildStakeItems(history.bids, "desc", fraction);
+    if (!unlimited) buys = buys.slice(0, rowsCount);
+    setBuys(buys);
+    setMaxBuy(Math.min(5000, Math.max(...buys.map((i) => i.amount))));
+  };
+
+  const buildStakeItems = (
+    h: OrdersDataItem[],
+    sort: "asc" | "desc",
+    fraction: number
+  ): StakeItem[] =>
     Array.from(
       h
         // Group order items by fractions
@@ -78,11 +88,25 @@ export const StakeWidget = ({ history, fromAsset, toAsset }: Props) => {
 
   return (
     <MarketAdvancedModeWidget
-      title={_t("market.advanced.stake")}
+      className="market-advanced-mode-stake-widget"
+      headerOptions={
+        <StakeWidgetHeaderOptions
+          fraction={fraction}
+          onFractionChange={(value) => {
+            setFraction(value);
+            buildAllStakeItems(value);
+          }}
+          viewType={viewType}
+          onViewTypeChange={(value) => {
+            setViewType(value);
+            if (value !== viewType) buildAllStakeItems(fraction, value !== StakeWidgetViewType.All);
+          }}
+        />
+      }
       children={
         <div className="market-stake-widget">
           <div className="market-stake-widget-sell">
-            <div className="history-widget-content">
+            <div className="market-stake-widget-content history-widget-content">
               <div className="history-widget-row history-widget-header">
                 <div>
                   {_t("market.advanced.history-widget.price")}({toAsset})
@@ -93,34 +117,36 @@ export const StakeWidget = ({ history, fromAsset, toAsset }: Props) => {
                 <div>{_t("market.advanced.history-widget.time")}</div>
               </div>
               <div>
-                {sells.map((sell, key) => (
-                  <div className="history-widget-row sell" key={key}>
-                    <div
-                      className="progress"
-                      style={{ width: (sell.amount / maxSell) * 100 + "%" }}
-                    />
-                    <div className="text-danger">{sell.price}</div>
-                    <div>{sell.amount.toFixed(2)}</div>
-                    <div>{formattedNumber(sell.total, { fractionDigits: 2 })}</div>
-                  </div>
-                ))}
+                {[StakeWidgetViewType.All, StakeWidgetViewType.Sell].includes(viewType) &&
+                  sells.map((sell, key) => (
+                    <div className="history-widget-row sell" key={key}>
+                      <div
+                        className="history-widget-row-progress"
+                        style={{ width: (sell.amount / maxSell) * 100 + "%" }}
+                      />
+                      <div className="text-danger">{sell.price}</div>
+                      <div>{sell.amount.toFixed(2)}</div>
+                      <div>{formattedNumber(sell.total, { fractionDigits: 2 })}</div>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
           <div className="market-stake-widget-buy">
-            <div className="history-widget-content">
+            <div className="market-stake-widget-sell history-widget-content">
               <div>
-                {buys.map((buy, key) => (
-                  <div className="history-widget-row buy" key={key}>
-                    <div
-                      className="progress"
-                      style={{ width: (buy.amount / maxBuy) * 100 + "%" }}
-                    />
-                    <div className="text-success">{buy.price}</div>
-                    <div>{buy.amount.toFixed(2)}</div>
-                    <div>{formattedNumber(buy.total, { fractionDigits: 2 })}</div>
-                  </div>
-                ))}
+                {[StakeWidgetViewType.All, StakeWidgetViewType.Buy].includes(viewType) &&
+                  buys.map((buy, key) => (
+                    <div className="history-widget-row buy" key={key}>
+                      <div
+                        className="history-widget-row-progress"
+                        style={{ width: (buy.amount / maxBuy) * 100 + "%" }}
+                      />
+                      <div className="text-success">{buy.price}</div>
+                      <div>{buy.amount.toFixed(2)}</div>
+                      <div>{formattedNumber(buy.total, { fractionDigits: 2 })}</div>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
