@@ -380,7 +380,7 @@
     "decimal-error": "Only {{decimals}} decimal digits allowed!",
     "from": "Láti",
     "to": "Sí",
-    "swap": "Àmì",
+    "sign": "Sign",
     "swapping": "Ń páàrọ̀...",
     "continue": "Tẹ́síwájú",
     "balance": "Ìyókù",
@@ -399,7 +399,8 @@
     "auth-required-title": "Ó nílò ìfọwọ́sí",
     "auth-required-desc": "O nílò ìfọwọ́sí láti lè pààrọ̀ owó",
     "start-new-one": "Bẹ̀rẹ̀ ìpààrọ̀ ọ̀tun",
-    "success-swap": "Ìpààrọ̀ tí yanjú!"
+    "success-swap": "Ìpààrọ̀ tí yanjú!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "Toggle list style"
