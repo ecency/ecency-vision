@@ -380,7 +380,7 @@
     "decimal-error": "Only {{decimals}} decimal digits allowed!",
     "from": "From",
     "to": "To",
-    "swap": "Sign",
+    "sign": "Sign",
     "swapping": "Swapping...",
     "continue": "Continue",
     "balance": "Balance",
@@ -399,7 +399,8 @@
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You have to be authorized to swap own funds",
     "start-new-one": "Start new Swap",
-    "success-swap": "Successfully swapped!"
+    "success-swap": "Successfully swapped!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "토글 리스트 스타일"
