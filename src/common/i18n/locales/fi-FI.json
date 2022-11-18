@@ -380,7 +380,7 @@
     "decimal-error": "Vain {{decimals}} desimaaliluvut sallittu!",
     "from": "Lähettäjä",
     "to": "Vastaanottaja",
-    "swap": "Allekirjoita",
+    "sign": "Sign",
     "swapping": "Vaihdetaan...",
     "continue": "Jatka",
     "balance": "Saldo",
@@ -399,7 +399,8 @@
     "auth-required-title": "Valtuutus vaaditaan",
     "auth-required-desc": "Sinulla on oltava valtuudet vaihtaaksesi omia varojasi",
     "start-new-one": "Aloita uusi Vaihto",
-    "success-swap": "Vaihdettu onnistuneesti!"
+    "success-swap": "Vaihdettu onnistuneesti!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "Vaihda listaustyyliä"
