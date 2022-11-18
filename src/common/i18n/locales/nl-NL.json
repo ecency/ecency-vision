@@ -380,7 +380,7 @@
     "decimal-error": "Only {{decimals}} decimal digits allowed!",
     "from": "Van",
     "to": "Tot",
-    "sign": "Sign",
+    "sign": "Onderteken",
     "swapping": "Ruilen...",
     "continue": "Doorgaan",
     "balance": "Saldo",
@@ -400,7 +400,7 @@
     "auth-required-desc": "U dient gemachtigd te zijn om eigen tegoeden te wisselen",
     "start-new-one": "Start nieuwe omwisseling",
     "success-swap": "Omwisselen gelukt!",
-    "signing": "Signing.."
+    "signing": "Bezig met ondertekenen.."
   },
   "list-style": {
     "title": "Schakelaar stijl"
