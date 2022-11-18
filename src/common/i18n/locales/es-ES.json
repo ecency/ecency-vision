@@ -380,7 +380,7 @@
     "decimal-error": "¡Sólo se permiten {{decimals}} dígitos decimales!",
     "from": "Desde",
     "to": "A",
-    "swap": "Firmar",
+    "sign": "Sign",
     "swapping": "Intercambiando...",
     "continue": "Continuar",
     "balance": "Balance",
@@ -399,7 +399,8 @@
     "auth-required-title": "Se requiere autorización",
     "auth-required-desc": "Tienes que estar autorizado para intercambiar fondos propios",
     "start-new-one": "Iniciar nuevo Intercambio",
-    "success-swap": "¡Intercambiado con éxito!"
+    "success-swap": "¡Intercambiado con éxito!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "Alternar estilo de líneas"
