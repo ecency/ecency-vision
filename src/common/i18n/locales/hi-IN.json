@@ -380,7 +380,7 @@
     "decimal-error": "केवल {{decimals}} दशमलव अंकों की अनुमति है!",
     "from": "इससे",
     "to": "इसमें",
-    "swap": "साइन करें",
+    "sign": "Sign",
     "swapping": "आदान-प्रदान हो रहा है",
     "continue": "जारी रखें",
     "balance": "शेष राशि",
@@ -399,7 +399,8 @@
     "auth-required-title": "Authorization required",
     "auth-required-desc": "You have to be authorized to swap own funds",
     "start-new-one": "Start new Swap",
-    "success-swap": "Successfully swapped!"
+    "success-swap": "Successfully swapped!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "टॉगल सूची शैली"
