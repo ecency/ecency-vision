@@ -93,7 +93,7 @@ class SignUpPage extends Component<PageProps, State> {
       });
   };
 
-  captchaCheck = (value: string) => {
+  captchaCheck = (value: string | null) => {
     if (value) {
       this.setState({ isVerified: true });
     }
