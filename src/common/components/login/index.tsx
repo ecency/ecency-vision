@@ -386,7 +386,7 @@ export class Login extends BaseComponent<LoginProps, State> {
     toggleUIProp("loginKc");
   };
 
-  captchaCheck = (value: string) => {
+  captchaCheck = (value: string | null) => {
     if (value) {
       this.setState({ isVerified: true });
     }
