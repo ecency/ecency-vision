@@ -48,8 +48,24 @@ Feel free to test it out and submit improvements and pull requests.
 
 ##### Environment variables
 
-- `USE_PRIVATE` - if instance has private api address and auth (0 or 1 value)
+* `USE_PRIVATE`        -  if instance has private api address and auth (0 or 1 value)
+* `HIVESIGNER_ID`      -  This is a special application Hive account.  If unset, "ecency.app" is the account used.
+* `HIVESIGNER_SECRET`  -  This is a secret your site shares with HIVE_SIGNER in order to communicate securely.
 - `REDIS_URL` - support for caching amp pages
+
+###### Hive Signer Variables
+
+When setting up another service like Ecency with Ecency-vision software:
+1. You may leave `HIVESIGNER_ID` and `HIVESIGNER_SECRET` environment variables unset and optionally set USE_PRIVATE=1 and leave "base" in the constants/defaults.json set to "https://ecency.com".  Your new site will contain more features as it will use Ecency's private API.  This is by far the easiest option.
+2. You may change `base` to the URL of your own site, but you will have to set environment variables `HIVESIGNER_ID` and `HIVESIGNER_SECRET`; set USE_PRIVATE=0 as well as configure your the `HIVESIGNER_ID` account at the [Hive Signer website.](https://hivesigner.com/profile).  Hive Signer will need a `secret`, in the form of a long lowercase hexadecimal number.  The HIVESIGNER_SECRET should be set to this value.
+
+###### Hive Signer Login Process
+
+In order to validate a login, and do posting level operations, this software relies on Hive Signer.  A user @alice will use login credentials to login to the site via one of several methods, but the site will communicate with Hive Signer and ask it to do all posting operations on behalf of @alice.  Hive Signer can and will do this because both @alice will have given posting authority to the `HIVESIGNER_ID` user and the `HIVESIGNER_ID` user will have given its posting authority to Hive Signer.
+
+##### Edit "default" values
+
+If you are setting up your own website other than Ecency.com, you can still leave the value `base` as "https://ecency.com". However, you should change `name`, `title` and `twitterHandle`.  There are also a lot of static pages that are Ecency specific.
 
 ##### Start website in dev
 

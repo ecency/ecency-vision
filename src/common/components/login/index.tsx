@@ -85,6 +85,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
   };
 
   login = async () => {
+    const { hsClientId } = this.props.global;
     const { username } = this.state;
     if (!username) {
       return;
@@ -109,14 +110,14 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     }
 
     const hasPostingPerm =
-      account?.posting!.account_auths.filter((x) => x[0] === "ecency.app").length > 0;
+      account?.posting!.account_auths.filter((x) => x[0] === hsClientId).length > 0;
 
     if (!hasPostingPerm) {
       const weight = account.posting!.weight_threshold;
 
       this.stateSet({ inProgress: true });
       try {
-        await addAccountAuthority(username, "ecency.app", "Posting", weight);
+        await addAccountAuthority(username, hsClientId, "Posting", weight);
       } catch (err) {
         error(_t("login.error-permission"));
         return;
@@ -132,7 +133,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
 
     let code: string;
     try {
-      code = await makeHsCode(username, signer);
+      code = await makeHsCode(hsClientId, username, signer);
     } catch (err) {
       error(...formatError(err));
       this.stateSet({ inProgress: false });
@@ -366,8 +367,9 @@ export class Login extends BaseComponent<LoginProps, State> {
 
   hsLogin = () => {
     const { global, history } = this.props;
+    const { hsClientId } = global;
     if (global.isElectron) {
-      hsLogin()
+      hsLogin(hsClientId)
         .then((r) => {
           this.hide();
           history.push(`/auth?code=${r.code}`);
@@ -378,7 +380,7 @@ export class Login extends BaseComponent<LoginProps, State> {
       return;
     }
 
-    window.location.href = getAuthUrl();
+    window.location.href = getAuthUrl(hsClientId);
   };
 
   kcLogin = () => {
@@ -393,6 +395,7 @@ export class Login extends BaseComponent<LoginProps, State> {
   };
 
   login = async () => {
+    const { hsClientId } = this.props.global;
     const { username, key } = this.state;
 
     if (username === "" || key === "") {
@@ -464,12 +467,12 @@ export class Login extends BaseComponent<LoginProps, State> {
       }
 
       const hasPostingPerm =
-        account?.posting!.account_auths.filter((x) => x[0] === "ecency.app").length > 0;
+        account?.posting!.account_auths.filter((x) => x[0] === hsClientId).length > 0;
 
       if (!hasPostingPerm) {
         this.stateSet({ inProgress: true });
         try {
-          await grantPostingPermission(thePrivateKey, account, "ecency.app");
+          await grantPostingPermission(thePrivateKey, account, hsClientId);
         } catch (err) {
           error(_t("login.error-permission"));
           return;
@@ -484,7 +487,7 @@ export class Login extends BaseComponent<LoginProps, State> {
       const hash = cryptoUtils.sha256(message);
       return new Promise<string>((resolve) => resolve(thePrivateKey.sign(hash).toString()));
     };
-    const code = await makeHsCode(account.name, signer);
+    const code = await makeHsCode(hsClientId, account.name, signer);
 
     this.stateSet({ inProgress: true });
 
