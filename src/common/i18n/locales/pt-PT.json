@@ -63,7 +63,7 @@
     "more-results": "Mais resultados",
     "close": "Fechar",
     "loading": "Carregando",
-    "stop": "Stop"
+    "stop": "Parar"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -95,7 +95,7 @@
     "filter-month": "Este mês",
     "filter-year": "Este ano",
     "filter-alltime": "Desde o início",
-    "filter-no-reblog": "Exclude reblog",
+    "filter-no-reblog": "Excluir reblog",
     "filter-with-reblog": "Include reblog"
   },
   "navbar": {
@@ -185,6 +185,11 @@
   },
   "trending-tags": {
     "title": "Tópicos"
+  },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
   },
   "selected-tags": {
     "title": "Destaque"
@@ -355,7 +360,11 @@
     "orders": "Ordens",
     "date": "Data",
     "open-orders": "Ordens Ativas",
+    "pending-orders": "Pending orders",
     "type": "Tipo",
+    "mode-limit": "Limit",
+    "mode-swap": "Swap",
+    "mode-advanced": "Advanced",
     "action": "Ação",
     "trade-history": "Histórico de Compra e Venda",
     "stock-params": "Parâmetros",
@@ -368,7 +377,30 @@
     "confirm-sell": "Valores",
     "transaction-succeeded": "Transação submetida",
     "lowest-ask": "Oferta mais baixa",
-    "decimal-error": "Somente {{decimals}} dígitos decimais permitidos!"
+    "decimal-error": "Somente {{decimals}} dígitos decimais permitidos!",
+    "from": "From",
+    "to": "To",
+    "sign": "Sign",
+    "swapping": "Swapping...",
+    "continue": "Continue",
+    "balance": "Balance",
+    "fee": "Fee",
+    "fee-free": "Free",
+    "order-book-impact": "Order book impact",
+    "swap-title": "Swap your funds",
+    "sign-title": "Sign your transaction",
+    "fetching-market": "Fetching market...",
+    "back": "Back",
+    "swap-by": "Sign by {{method}}",
+    "success-title": "Transaction completed",
+    "more-than-balance": "You've entered more than available balance",
+    "invalid-amount": "Invalid from amount. Please, enter less value",
+    "too-much-slippage": "We highly recommend you to reduce amount for better pricing!",
+    "auth-required-title": "Authorization required",
+    "auth-required-desc": "You have to be authorized to swap own funds",
+    "start-new-one": "Start new Swap",
+    "success-swap": "Successfully swapped!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "Alternar estilo da lista"
@@ -433,7 +465,7 @@
     "reveal-muted-long-description": "Mostrar respostas adicionais, incluindo aquelas que contém conteúdo ofensivo",
     "reveal": "Revelar comentário",
     "no-conversation": "No conversation yet, be first to reply",
-    "start-conversation": "Start conversation"
+    "start-conversation": "Iniciar conversa"
   },
   "community": {
     "page-description": "{{f}} tópicos",
@@ -605,9 +637,9 @@
     "nsfw": "Mostrar conteúdo adulto",
     "referral-link": "Link de referência",
     "theme": "Theme Settings",
-    "theme-system-default": "System Default",
-    "theme-day": "Day mode",
-    "theme-night": "Night mode",
+    "theme-system-default": "Padrão do Sistema",
+    "theme-day": "Modo dia",
+    "theme-night": "Modo noite",
     "updated": "Preferências atualizadas!"
   },
   "wallet": {
@@ -626,7 +658,8 @@
     "hive-power-apr-rate": "A porcentagem de rendimento anual para Hive Power é {{value}}%",
     "hive-dollars-apr-rate": "A porcentagem de rendimento para HBD($) é {{value}}%",
     "hive-dollars-apr-claim": "Rendimentos estimados desde o último pagamento {{value}}:",
-    "hive-dollars-apr-when": "Reivindicação em {{value}} dias",
+    "hive-dollars-apr-day": "Reivindicar em {{value}} dias",
+    "hive-dollars-apr-hour": "Reivindicar em {{value}} horas",
     "hive-dollars-apr-now": "Reivindicar agora",
     "hive-power-delegated": "Hive Power Delegado",
     "hive-power-received": "Hive Power Recebido",
@@ -648,12 +681,12 @@
     "withdraw-routes": "Rotas de Saque",
     "calculating": "Calculando",
     "converting-hbd-amount": "Convertendo em HIVE",
-    "converting-hive-amount": "Converting to HBD",
+    "converting-hive-amount": "Convertendo para HBD",
     "withdrawing-amount": "Sacando da Poupança",
     "reserved-amount": "Reservado em ordem aberta no Câmbio",
     "spk": {
       "claim": {
-        "title": "Claim",
+        "title": "Reivindicar",
         "unclaimed-rewards": "Unclaimed rewards"
       },
       "delegate": {
@@ -687,16 +720,16 @@
         "balance": "Balance",
         "button": "Send",
         "from": "From",
-        "to": "To",
-        "amount": "Amount",
-        "optional": "optional",
-        "title": "Send SPK",
+        "to": "Para",
+        "amount": "Quantia",
+        "optional": "opcional",
+        "title": "Enviar SPK",
         "memo": "Memo",
-        "next": "Next",
+        "next": "Seguinte",
         "subtitle": "Move funds to another SPK wallet",
         "warning": "Transferring more than available balance"
       },
-      "token": "SPK Token",
+      "token": "Token SPK",
       "token-description": "The governance token for the SPK network.",
       "larynx-air": "LARYNX Airdrop Claim",
       "larynx-air-description": "This months claimable tokens based on a January 6th HIVE blockchain snapshot.",
@@ -735,6 +768,20 @@
     "token": "Token",
     "balance": "Balanço",
     "staked": "Guardado"
+  },
+  "sort-engine-tokens": {
+    "sort": "Sort",
+    "sort-in-ascending": "Ascending",
+    "sort-in-descending": "Descending",
+    "sort-by-value": "Value",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Stake",
+    "sort-by-delegations-in": "Delegations in",
+    "sort-by-delegations-out": "Delegations out"
+  },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
   },
   "withdraw-routes": {
     "title": "Contas de saque",
@@ -1115,6 +1162,7 @@
     "mention-post": "{{source}} mencionou-te numa publicação",
     "mention-comment": "{{source}} mencionou-te num comentário",
     "favorite": "{{source}} made new post",
+    "bookmark": "{{source}} replied to bookmarked content",
     "followed": "{{source}} segui-te",
     "replied": "{{source}} respondeu-te",
     "reblogged": "{{source}} re-publicou a sua publicação",
@@ -1132,11 +1180,13 @@
     "type-transfers": "Transferências",
     "type-delegations": "Delegações",
     "type-nfavorites": "Favorites",
+    "type-nbookmarks": "Bookmarks",
     "group-title-recent": "Recente",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "respondeu à sua publicação:",
     "mention-str": "mencionou-te em:",
     "favorite-str": "made new post",
+    "bookmark-str": "replied to bookmarked content",
     "followed-str": "seguiu",
     "unfollowed-str": "deixou de seguir",
     "ignored-str": "ignorado",
