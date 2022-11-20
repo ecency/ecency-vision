@@ -152,6 +152,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
     activeKey: PrivateKey;
     postingKey: PrivateKey;
   }) => {
+    const { global } = this.props;
+    const { hsClientId } = global;
     const { ownerKey, activeKey, postingKey } = keys;
 
     return {
@@ -159,7 +161,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
       activeAuthority: Authority.from(activeKey.createPublic()),
       postingAuthority: {
         ...Authority.from(postingKey.createPublic()),
-        account_auths: [["ecency.app", 1]]
+        account_auths: [[hsClientId, 1]]
       } as Authority
     };
   };
@@ -247,7 +249,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         },
         posting: {
           weight_threshold: 1,
-          account_auths: [["ecency.app", 1]],
+          account_auths: [[hsClientId, 1]],
           key_auths: [[keys.postingKey.createPublic().toString(), 1]]
         },
         memo_key: keys.memoKey.createPublic().toString(),
