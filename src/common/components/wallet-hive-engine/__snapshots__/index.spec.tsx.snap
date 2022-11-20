@@ -29,6 +29,37 @@ exports[`(1) Render an empty list when no tokens found 1`] = `
         </div>
       </div>
       <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Tokens Value
+          </div>
+          <div
+            className="description"
+          >
+            The approximate US Dollar value for all engine tokens in your wallet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            <span>
+               
+              $0.00
+               
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
         className="entry-list"
       >
         <div
@@ -181,6 +212,37 @@ exports[`(2) Render with some hive engine tokens 1`] = `
             className="description"
           >
             Hive Engine is a smart contracts side-chain platform for the Hive blockchain.
+          </div>
+        </div>
+      </div>
+      <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Tokens Value
+          </div>
+          <div
+            className="description"
+          >
+            The approximate US Dollar value for all engine tokens in your wallet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            <span>
+               
+              $NaN
+               
+            </span>
           </div>
         </div>
       </div>
@@ -470,6 +532,37 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
         </div>
       </div>
       <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Tokens Value
+          </div>
+          <div
+            className="description"
+          >
+            The approximate US Dollar value for all engine tokens in your wallet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            <span>
+               
+              $NaN
+               
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
         className="entry-list"
       >
         <div
@@ -737,6 +830,37 @@ exports[`(4) Render an empty list if tokens equals zero 1`] = `
         </div>
       </div>
       <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Tokens Value
+          </div>
+          <div
+            className="description"
+          >
+            The approximate US Dollar value for all engine tokens in your wallet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            <span>
+               
+              $NaN
+               
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
         className="entry-list"
       >
         <div
@@ -889,6 +1013,37 @@ exports[`(5) usePrivate = false 1`] = `
             className="description"
           >
             Hive Engine is a smart contracts side-chain platform for the Hive blockchain.
+          </div>
+        </div>
+      </div>
+      <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Tokens Value
+          </div>
+          <div
+            className="description"
+          >
+            The approximate US Dollar value for all engine tokens in your wallet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            <span>
+               
+              $NaN
+               
+            </span>
           </div>
         </div>
       </div>

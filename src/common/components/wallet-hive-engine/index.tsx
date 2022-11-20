@@ -1,4 +1,5 @@
 import React from "react";
+import { proxifyImageSrc } from "@ecency/render-helper";
 
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
@@ -9,18 +10,21 @@ import { ActiveUser } from "../../store/active-user/types";
 import BaseComponent from "../base";
 import HiveEngineToken from "../../helper/hive-engine-wallet";
 import LinearProgress from "../linear-progress";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import WalletMenu from "../wallet-menu";
-
+import { SortEngineTokens } from "../sort-hive-engine-tokens";
+import { EngineTokensEstimated } from "../engine-tokens-estimated";
 import Transfer, { TransferMode } from "../transfer-he";
+import { error, success } from "../feedback";
 
 import {
   claimRewards,
   getHiveEngineTokenBalances,
   getUnclaimedRewards,
-  TokenStatus
+  TokenStatus,
+  getMetrics
 } from "../../api/hive-engine";
-import { proxifyImageSrc } from "@ecency/render-helper";
+
 import {
   informationVariantSvg,
   plusCircle,
@@ -30,10 +34,9 @@ import {
   delegateOutlineSvg,
   undelegateOutlineSvg
 } from "../../img/svg";
-import { error, success } from "../feedback";
+
 import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
-
 import { _t } from "../../i18n";
 
 interface Props {
@@ -52,6 +55,7 @@ interface Props {
 
 interface State {
   tokens: HiveEngineToken[];
+  utokens: HiveEngineToken[];
   rewards: TokenStatus[];
   loading: boolean;
   claiming: boolean;
@@ -65,6 +69,7 @@ interface State {
 export class WalletHiveEngine extends BaseComponent<Props, State> {
   state: State = {
     tokens: [],
+    utokens: [],
     rewards: [],
     loading: true,
     claiming: false,
@@ -86,6 +91,107 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     this._isMounted = false;
   }
 
+  sortTokensInAscending: any = () => {
+    const inAscending = this.state.tokens.sort((a: any, b: any) => {
+      if (a.symbol > b.symbol) return 1;
+      if (a.symbol < b.symbol) return -1;
+      return 0;
+    });
+
+    this.setState({ tokens: inAscending });
+  };
+
+  sortTokensInDescending: any = () => {
+    const inDescending = this.state.tokens.sort((a: any, b: any) => {
+      if (b.symbol < a.symbol) return -1;
+      if (b.symbol > a.symbol) return 1;
+      return 0;
+    });
+
+    this.setState({ tokens: inDescending });
+  };
+
+  sortTokensbyValue = async () => {
+    const allUserTokens = await this.tokenUsdValue();
+    const tokensInWallet = allUserTokens.filter(
+      (a: any) => a.balance !== 0 || a.stakedBalance !== 0
+    );
+    const byValue = tokensInWallet.sort((a: any, b: any) => {
+      if (b.usd_value < a.usd_value) return -1;
+      if (b.usd_value > a.usd_value) return 1;
+      return 0;
+    });
+    this.setState({ tokens: byValue });
+  };
+
+  sortTokensbyBalance = () => {
+    const byBalance = this.state.tokens.sort((a: any, b: any) => {
+      if (b.balance < a.balance) return -1;
+      if (b.balance > a.balance) return 1;
+      return 0;
+    });
+
+    this.setState({ tokens: byBalance });
+  };
+
+  sortTokensbyStake = () => {
+    const byStake = this.state.tokens.sort((a: any, b: any) => {
+      if (b.stake < a.stake) return -1;
+      if (b.stake > a.stake) return 1;
+      return 0;
+    });
+
+    this.setState({ tokens: byStake });
+  };
+
+  sortByDelegationIn = () => {
+    const byDelegationsIn = this.state.tokens.sort((a: any, b: any) => {
+      if (b.delegationsIn < a.delegationsIn) return -1;
+      if (b.delegationsIn > a.delegationsIn) return 1;
+      return 0;
+    });
+
+    this.setState({ tokens: byDelegationsIn });
+  };
+
+  sortByDelegationOut = () => {
+    const byDelegationsOut = this.state.tokens.sort((a: any, b: any) => {
+      if (b.delegationsOut < a.delegationsOut) return -1;
+      if (b.delegationsOut > a.delegationsOut) return 1;
+      return 0;
+    });
+
+    this.setState({ tokens: byDelegationsOut });
+  };
+
+  tokenUsdValue = async () => {
+    const { account, dynamicProps } = this.props;
+    const allMarketTokens = await getMetrics();
+    const userTokens: any = await getHiveEngineTokenBalances(account.name);
+    const pricePerHive = dynamicProps.base / dynamicProps.quote;
+
+    let balanceMetrics: any = userTokens.map((item: any) => {
+      let eachMetric = allMarketTokens.find((m: any) => m.symbol === item.symbol);
+      return {
+        ...item,
+        ...eachMetric
+      };
+    });
+    let tokensUsdValues: any = balanceMetrics.map((w: any) => {
+      const usd_value =
+        w.symbol === "SWAP.HIVE"
+          ? Number(pricePerHive * w.balance)
+          : w.lastPrice === 0
+          ? 0
+          : Number(w.lastPrice * pricePerHive * w.balance).toFixed(10);
+      return {
+        ...w,
+        usd_value
+      };
+    });
+    return tokensUsdValues;
+  };
+
   openTransferDialog = (mode: TransferMode, asset: string, balance: number) => {
     this.stateSet({
       transfer: true,
@@ -106,6 +212,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     let items;
     try {
       items = await getHiveEngineTokenBalances(account.name);
+      this.setState({ utokens: items });
       items = items.filter((token) => token.balance !== 0 || token.stakedBalance !== 0);
       items = this.sort(items);
       this._isMounted && this.setState({ tokens: items });
@@ -170,7 +277,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
   render() {
     const { global, dynamicProps, account, activeUser } = this.props;
-    const { rewards, tokens, loading, claiming, claimed } = this.state;
+    const { rewards, tokens, loading, claiming, claimed, utokens } = this.state;
     const hasUnclaimedRewards = rewards.length > 0;
     const hasMultipleUnclaimedRewards = rewards.length > 1;
     const isMyPage = activeUser && activeUser.username === account.name;
@@ -261,6 +368,22 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                 <div className="description">{_t("wallet-engine.description")}</div>
               </div>
             </div>
+
+            <EngineTokensEstimated tokens={utokens} dynamicProps={dynamicProps} />
+
+            {tokens.length >= 3 && (
+              <div className="wallet-info">
+                <SortEngineTokens
+                  sortTokensInAscending={this.sortTokensInAscending}
+                  sortTokensInDescending={this.sortTokensInDescending}
+                  sortTokensbyValue={this.sortTokensbyValue}
+                  sortTokensbyStake={this.sortTokensbyStake}
+                  sortTokensbyBalance={this.sortTokensbyBalance}
+                  sortByDelegationIn={this.sortByDelegationIn}
+                  sortByDelegationOut={this.sortByDelegationOut}
+                />
+              </div>
+            )}
 
             <div className="entry-list">
               {loading ? (

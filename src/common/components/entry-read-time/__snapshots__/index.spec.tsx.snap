@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="visible hide-xl"
+  id="word-count"
+>
+  <p>
+    Words:
+     
+    0
+  </p>
+  <p>
+    Reading:
+     
+    0
+     
+    min
+  </p>
+</div>
+`;

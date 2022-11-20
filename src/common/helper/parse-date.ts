@@ -43,6 +43,13 @@ export const dayDiff = (d: string) => {
   return Math.floor((utc2 - utc1) / _MS_PER_DAY);
 };
 
+export const hourDiff = (d: string) => {
+  const isTimeZoned = d.indexOf(".") !== -1 || d.indexOf("+") !== -1 ? d : `${d}.000Z`;
+  let diff = (new Date().getTime() - new Date(isTimeZoned).getTime()) / 1000;
+  diff /= 60 * 60;
+  return Math.abs(Math.round(diff));
+};
+
 const parseDate = (d: string): Date => new Date(`${d}.000Z`);
 
 export default parseDate;

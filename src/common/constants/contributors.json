@@ -338,5 +338,21 @@
   {
     "name": "susurrodmisterio",
     "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "brittandjosie",
+    "contributes": ["Thought Leader"]
+  },
+  {
+    "name": "luizeba",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "palomap3",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "solox",
+    "contributes": ["Translation (Russian)"]
   }
 ]

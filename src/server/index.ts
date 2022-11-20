@@ -12,6 +12,9 @@ import fallbackHandler, { healthCheck, iosURI, androidURI, nodeList } from "./ha
 import { entryRssHandler, authorRssHandler } from "./handlers/rss";
 import * as authApi from "./handlers/auth-api";
 import { cleanURL, authCheck, stripLastSlash } from "./util";
+import { coingeckoHandler } from "./handlers/coingecko.handler";
+import config from "../config";
+import defaults from "../common/constants/defaults.json";
 
 const server = express();
 
@@ -83,8 +86,30 @@ server
 
   // Health check script for docker swarm
   .get("^/healthcheck.json$", healthCheck)
-
+  // CoinGecko market rate API
+  .get("^/coingecko/api/v3/simple/price$", coingeckoHandler)
   // For all others paths
   .get("*", fallbackHandler);
+
+if (
+  config.hsClientId === "ecency.app" &&
+  defaults.base === "https://ecency.com" &&
+  config.hsClientSecret.length === 0
+) {
+  // Use Ecency servers
+} else if (
+  config.hsClientId === "ecency.app" ||
+  defaults.base === "https://ecency.com" ||
+  config.hsClientSecret.length === 0 ||
+  config.usePrivate === "1"
+) {
+  console.error("configurationError:", {
+    base: defaults.base,
+    hsClientId: config.hsClientId,
+    hsClientSecret: config.hsClientSecret,
+    usePrivate: config.usePrivate
+  });
+  process.exit(1);
+}
 
 export default server;
