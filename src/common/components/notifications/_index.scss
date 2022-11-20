@@ -103,11 +103,14 @@
 
       &.not-read {
         @include themify(day) {
-          background: $duck-egg-blue;
+          background-color: $duck-egg-blue;
+          &:hover {
+            background-color: $powder-blue;
+          }
         }
 
         @include themify(night) {
-          background: darken($metallic-blue, 16);
+          background-color: darken($metallic-blue, 16);
         }
       }
 

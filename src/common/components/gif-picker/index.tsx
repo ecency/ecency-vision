@@ -10,8 +10,7 @@ import { _t } from "../../i18n";
 import { insertOrReplace } from "../../util/input-util";
 
 import _ from "lodash";
-import axios from "axios";
-import { GIPHY_API, GIPHY_SEARCH_API, fetchGif } from "../../api/misc";
+import { fetchGif } from "../../api/misc";
 
 interface Props {
   fallback?: (e: string) => void;
@@ -35,7 +34,7 @@ export default class GifPicker extends BaseComponent<Props> {
     filteredData: [],
     limit: "50",
     offset: "0",
-    total_count: 0,
+    total_count: 0
   };
   _target: HTMLInputElement | null = null;
 
@@ -43,8 +42,7 @@ export default class GifPicker extends BaseComponent<Props> {
     const gifWrapper = e.target;
     const { offset, limit, total_count, filter, data } = this.state;
     // Added one to the div height while making comparison to account for the scrollbar height
-    const bottom =
-      gifWrapper.scrollHeight - gifWrapper.scrollTop <= gifWrapper.clientHeight + 1;
+    const bottom = gifWrapper.scrollHeight - gifWrapper.scrollTop <= gifWrapper.clientHeight + 1;
     if (bottom) {
       if (!filter && data?.length <= total_count) {
         return this.getGifsDataOnScroll(null, limit, offset + 50);
@@ -79,11 +77,7 @@ export default class GifPicker extends BaseComponent<Props> {
     }
   };
 
-  getSearchedData = async (
-    _filter: string | null,
-    limit: string,
-    offset: string,
-  ) => {
+  getSearchedData = async (_filter: string | null, limit: string, offset: string) => {
     const { data } = await fetchGif(_filter, limit, offset);
     if (_filter?.length) {
       let _data: State = {
@@ -92,7 +86,7 @@ export default class GifPicker extends BaseComponent<Props> {
         filter: this.state.filter,
         limit: data.pagination.limit,
         offset: data.pagination.offset + 10,
-        total_count: data.pagination.total_count,
+        total_count: data.pagination.total_count
       };
       this.stateSet(_data);
       return;
@@ -103,15 +97,11 @@ export default class GifPicker extends BaseComponent<Props> {
       filter: this.state.filter,
       limit: data.pagination.limit,
       offset: data.pagination.offset + 10,
-      total_count: data.pagination.total_count,
+      total_count: data.pagination.total_count
     };
     this.stateSet(_data);
   };
-  getSearchedDataOnScroll = async (
-    _filter: string | null,
-    limit: string,
-    offset: string,
-  ) => {
+  getSearchedDataOnScroll = async (_filter: string | null, limit: string, offset: string) => {
     const { data } = await fetchGif(_filter, limit, offset);
     if (_filter?.length) {
       let _data: State = {
@@ -120,17 +110,13 @@ export default class GifPicker extends BaseComponent<Props> {
         filter: this.state.filter,
         limit: data.pagination.limit,
         offset: data.pagination.offset + 10,
-        total_count: data.pagination.total_count,
+        total_count: data.pagination.total_count
       };
       this.stateSet(_data);
     }
   };
 
-  getGifsData = async (
-    _filter: string | null,
-    limit: string,
-    offset: string,
-  ) => {
+  getGifsData = async (_filter: string | null, limit: string, offset: string) => {
     const { data } = await fetchGif(_filter, limit, offset);
     let _data: State = {
       data: [...data.data],
@@ -138,15 +124,11 @@ export default class GifPicker extends BaseComponent<Props> {
       filter: null,
       limit: this.state.limit,
       offset: data.pagination.offset,
-      total_count: data.pagination.total_count,
+      total_count: data.pagination.total_count
     };
     this.stateSet(_data);
   };
-  getGifsDataOnScroll = async (
-    _filter: string | null,
-    limit: string,
-    offset: string,
-  ) => {
+  getGifsDataOnScroll = async (_filter: string | null, limit: string, offset: string) => {
     const { data } = await fetchGif(_filter, limit, offset);
     let _data: State = {
       data: [...this.state.data, ...data.data],
@@ -154,44 +136,42 @@ export default class GifPicker extends BaseComponent<Props> {
       filter: null,
       limit: this.state.limit,
       offset: data.pagination.offset,
-      total_count: data.pagination.total_count,
+      total_count: data.pagination.total_count
     };
     this.stateSet(_data);
   };
 
   itemClicked = async (
-    url: string, 
+    url: string,
     _filter?: string | any,
     limit?: string | any,
-    offset?: string | any,
-    ) => {
+    offset?: string | any
+  ) => {
     const { data } = await fetchGif(_filter, limit, offset);
     const gifTitles: any = [];
-    for (let i=0; i < data.data.length; i++) {
-       gifTitles.push(data.data[i].title);
-    }  
-      const selecteGifTitle: string = gifTitles[_.random(gifTitles.length-1)];
-      let _url = url.split(".gif");
-      let gifUrl = `![${selecteGifTitle}](${_url[0]}.gif)`;
-      if (this._target) {
-        insertOrReplace(this._target, gifUrl);
-      } else {
-        const { fallback } = this.props;
-        if (fallback) fallback(gifUrl);
-      }    
+    for (let i = 0; i < data.data.length; i++) {
+      gifTitles.push(data.data[i].title);
+    }
+    const selecteGifTitle: string = gifTitles[_.random(gifTitles.length - 1)];
+    let _url = url.split(".gif");
+    let gifUrl = `![${selecteGifTitle}](${_url[0]}.gif)`;
+    if (this._target) {
+      insertOrReplace(this._target, gifUrl);
+    } else {
+      const { fallback } = this.props;
+      if (fallback) fallback(gifUrl);
+    }
     this.props.changeState(!this.props.shGif);
   };
 
   delayedSearch = _.debounce(this.getSearchedData, 2000);
   delayedSearchOnScroll = _.debounce(this.getSearchedDataOnScroll, 2000);
 
-  filterChanged = (
-    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>,
-  ) => {
+  filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     this.setState({ filter: e.target.value });
-    if(e.target.value === '') {
-      this.getGifsData(null, this.state.limit, this.state.offset)
-      return
+    if (e.target.value === "") {
+      this.getGifsData(null, this.state.limit, this.state.offset);
+      return;
     }
     this.delayedSearch(e.target.value, this.state.limit, this.state.offset);
   };
@@ -235,9 +215,7 @@ export default class GifPicker extends BaseComponent<Props> {
             return (
               <div className="gif-cat-list gif-cat-list" id="gif-wrapper">
                 <div className="gif-cat gif-cat">
-                  <div className="gif-list gif-list">
-                    {this.renderEmoji(filteredData)}
-                  </div>
+                  <div className="gif-list gif-list">{this.renderEmoji(filteredData)}</div>
                 </div>
               </div>
             );
@@ -245,9 +223,7 @@ export default class GifPicker extends BaseComponent<Props> {
             return (
               <div className="gif-cat-list gif-cat-list" id="gif-wrapper">
                 <div className="gif-cat gif-cat">
-                  <div className="gif-list gif-list">
-                    {this.renderEmoji(data)}
-                  </div>
+                  <div className="gif-list gif-list">{this.renderEmoji(data)}</div>
                 </div>
               </div>
             );
