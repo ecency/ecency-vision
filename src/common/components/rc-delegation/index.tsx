@@ -387,13 +387,13 @@ export const ResourceCreditsDelegation = (props: any) => {
         {formHeader3}
         <div className="transaction-form">
           {/* leading to a blank page at the moment , will have to check */}
-          {/* {KeyOrHot({
+          {KeyOrHot({
             ...props,
             inProgress,
             onKey: sign,
             onHot: signHs,
             onKc: signKc
-          })} */}
+          })}
           <p className="text-center">
             <a
               href="#"
