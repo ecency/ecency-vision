@@ -1,14 +1,9 @@
 import React from "react";
-
 import { FormControl } from "react-bootstrap";
-
 import BaseComponent from "../base";
 import SearchBox from "../search-box";
-
 import { _t } from "../../i18n";
-
 import { insertOrReplace } from "../../util/input-util";
-
 import _ from "lodash";
 import { fetchGif } from "../../api/misc";
 
@@ -229,6 +224,7 @@ export default class GifPicker extends BaseComponent<Props> {
             );
           }
         })()}
+        <span className="d-flex justify-content-end text-semi-bold">{_t("gif-picker.credits")}</span>
       </div>
     );
   }
