@@ -45,7 +45,7 @@ class SignUpPage extends Component<PageProps, State> {
     lockReferral: false,
     inProgress: false,
     done: false,
-    isVerified: false
+    isVerified: this.props.global.isElectron ? true : false
   };
 
   componentDidMount() {
@@ -218,13 +218,15 @@ class SignUpPage extends Component<PageProps, State> {
                           disabled={lockReferral}
                         />
                       </Form.Group>
-                      <div style={{ marginTop: "16px", marginBottom: "5px" }}>
-                        <ReCAPTCHA
-                          sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
-                          onChange={this.captchaCheck}
-                          size="normal"
-                        />
-                      </div>
+                      {!global.isElectron && (
+                        <div style={{ marginTop: "16px", marginBottom: "5px" }}>
+                          <ReCAPTCHA
+                            sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
+                            onChange={this.captchaCheck}
+                            size="normal"
+                          />
+                        </div>
+                      )}
                       <div className="d-flex justify-content-center">
                         <Button
                           variant="primary"

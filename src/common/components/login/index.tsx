@@ -290,7 +290,7 @@ export class Login extends BaseComponent<LoginProps, State> {
     username: "",
     key: "",
     inProgress: false,
-    isVerified: false
+    isVerified: this.props.global.isElectron ? true : false
   };
 
   shouldComponentUpdate(nextProps: Readonly<LoginProps>, nextState: Readonly<State>): boolean {
@@ -596,13 +596,15 @@ export class Login extends BaseComponent<LoginProps, State> {
               onKeyDown={this.inputKeyDown}
             />
           </Form.Group>
-          <div className="google-recaptcha">
-            <ReCAPTCHA
-              sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
-              onChange={this.captchaCheck}
-              size="normal"
-            />
-          </div>
+          {!global.isElectron && (
+            <div className="google-recaptcha">
+              <ReCAPTCHA
+                sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
+                onChange={this.captchaCheck}
+                size="normal"
+              />
+            </div>
+          )}
           <p className="login-form-text">
             {_t("login.login-info-1")}{" "}
             <a
