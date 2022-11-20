@@ -247,11 +247,6 @@ exports[`(1) Default render 1`] = `
   >
     <div
       className="rta  "
-      style={
-        Object {
-          "height": "80px",
-        }
-      }
     >
       <textarea
         acceptCharset="UTF-8"
@@ -561,11 +556,6 @@ exports[`(2) Cancellable, in progress 1`] = `
   >
     <div
       className="rta  "
-      style={
-        Object {
-          "height": "80px",
-        }
-      }
     >
       <textarea
         acceptCharset="UTF-8"
