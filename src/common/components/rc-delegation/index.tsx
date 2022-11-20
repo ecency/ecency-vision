@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { _t } from "../../i18n";
 import { Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
 import SuggestionList from "../suggestion-list";
@@ -12,6 +12,7 @@ import badActors from "@hiveio/hivescript/bad-actors.json";
 import { error } from "../feedback";
 import { formatError } from '../../api/operations';
 import { Tsx } from "../../i18n/helper";
+import _ from "lodash";
 import {
   DelegatedVestingShare,
   getAccount,
@@ -36,12 +37,15 @@ export const ResourceCreditsDelegation = (props: any) => {
 
     useEffect(() => {
       checkAmount();
-    })
+      return () => console.log('unmounting')
+    }, [])
 
     const toChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-        const { value: to } = e.target;
-        setTo(to);
-        handleTo()
+        const { value } = e.target;
+        console.log(value, 'base change')
+        setTo(value);
+        delayedSearch(value)
+        // handleTo(value)
       };
 
     const amountChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
@@ -125,35 +129,33 @@ export const ResourceCreditsDelegation = (props: any) => {
       setAmountError("uuuuuuu")
     };
 
-    const handleTo = () => {
-      let _timer: any = null
+    const handleTo = (value:string) => {
+      setInProgress(true);
 
-      if (_timer) {
-        clearTimeout(_timer);
-      }
+
       // console.log(_timer)
+      console.log(value, 'in timer space')
 
-      if (to === "") {
+      if (value === "") {
         setToWarning("")
         setToError("")
         setToData(null)
         return;
       }
-      _timer = setTimeout(() => {
-        if (badActors.includes(to)) {
+        if (badActors.includes(value)) {
          setToWarning(_t("transfer.to-bad-actor"))
         } else {
           setToWarning("")
         }    
-        setInProgress(true);
         setToData(null);         
-        return getAccount(to)
+        return getAccount(value)
           .then((resp) => {
             if (resp) {
-              console.log(resp)
+              console.log({resp})
               setToError("");
               setToData(resp);
-
+              // const { activeUser } = props
+  
               // activeUser && activeUser.username &&
               //   // Should update this to rc_delegation
               //   getVestingDelegations(activeUser.username, to, 1000).then((res) => {
@@ -175,20 +177,22 @@ export const ResourceCreditsDelegation = (props: any) => {
               //       setAmount(previousAmount ? previousAmount.toString() : "0.001")                 
               //   });
            
-            } else {
+            } 
+            else {
               console.log("not found")
                 setToError(_t("transfer.to-not-found"))
               };
               return resp;
             })         
           .catch((err) => {
+            console.log(err)
             error(...formatError(err));
           })
           .finally(() => {
            setInProgress(false);
           }); 
-      }, 500);
     }
+    const delayedSearch = useCallback(_.debounce(handleTo, 3000, { leading: true }), []);
 
     const formHeader1 = (
       <div className="transaction-form-header">
@@ -332,7 +336,7 @@ export const ResourceCreditsDelegation = (props: any) => {
               <Form.Group as={Row}>
                 <Col sm={{ span: 10, offset: 2 }}>
                   
-                  <Button disabled={!canSubmit()} onClick={next}>
+                  <Button disabled={canSubmit()} onClick={next}>
                     {_t("g.next")}
                   </Button>
                 </Col>
@@ -382,7 +386,7 @@ export const ResourceCreditsDelegation = (props: any) => {
         <div className="transaction-form">
         {formHeader3}
         <div className="transaction-form">
-          {/* leading to a blanck page at the moment , will have to check */}
+          {/* leading to a blank page at the moment , will have to check */}
           {/* {KeyOrHot({
             ...props,
             inProgress,
@@ -406,7 +410,7 @@ export const ResourceCreditsDelegation = (props: any) => {
       </div>
       )}
 
-      {/* {step === 4 && (
+      {step === 4 && (
         <div className="transaction-form">
         {formHeader4}
         <div className="transaction-form-body">
@@ -425,8 +429,8 @@ export const ResourceCreditsDelegation = (props: any) => {
             <Button onClick={finish}>{_t("g.finish")}</Button>
           </div>
         </div>
-      </div>>
-      )} */}
+      </div>
+      )}
 
     </div>
   )

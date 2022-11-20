@@ -612,13 +612,13 @@
   "rc-info": {
     "available": "Available",
     "used": "Used",
-    "resource-credits": "Rescource credits",
-    "resource-credit": "Rescource credit:",
-    "delegated": "Delegated:",
-    "received-delegations": "Received delegations:",
+    "resource-credits": "Rescource Credits Info",
+    "resource-credit": "Rescource Credit",
+    "delegated": "Delegations Out",
+    "received-delegations": "Delegations In",
     "delegation-button": "RC Delegations",
-    "rc-available": "Available:",
-    "rc-used": "Used:"
+    "rc-available": "Percentage Available",
+    "rc-used": "Percentage Used"
   },
   "profile-edit": {
     "title": "Profile",

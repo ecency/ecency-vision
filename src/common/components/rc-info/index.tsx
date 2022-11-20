@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Card, Row, Col, CardGroup } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { findRcAccounts } from "../../api/hive";
 import { ResourceCreditsDelegation } from "../rc-delegation"
-import activeUser from '../../store/active-user';
+// import activeUser from '../../store/active-user';
+// import { Card } from "react-bootstrap"
 
 
 export const ResourceCreditsInfo = (props: any) => {
@@ -73,13 +74,14 @@ export const ResourceCreditsInfo = (props: any) => {
           {_t("rc-info.used")}
         </div>
       </div>
-        <Modal
+        <Modal size='lg' width={'90%'}
       animation={false}
       show={showRcInfo}
       centered={true}
       onHide={hideModal}
       keyboard={false}
       className="purchase-qr-dialog"
+      dialogClassName="modal-90w"
     >
       <Modal.Header closeButton={true}>
         <Modal.Title>
@@ -89,11 +91,67 @@ export const ResourceCreditsInfo = (props: any) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>{_t("rc-info.resource-credit")} {resourceCredit}</p>
-        <p>{_t("rc-info.rc-available")} {`${rcPercent}%`}</p>
-        <p>{_t("rc-info.rc-used")} {`${(100 - rcPercent).toFixed(2)}%`}</p>
-        <p>{_t("rc-info.delegated")} {delegated}</p>
-        <p>{_t("rc-info.received-delegations")} {receivedDelegation}</p>
+        <Row>
+          <Col>
+          <Card className="d-flex justify-content-center">
+          <Card.Header>{_t("rc-info.resource-credit")}</Card.Header>
+          <Card.Body>
+            {/* <Card.Title> Balance: </Card.Title> */}
+            <Card.Text className="justify-content-center">
+               {resourceCredit}
+            </Card.Text>
+          </Card.Body>
+          </Card>
+          </Col>  
+
+          <Col>
+          <Card className="d-flex justify-content-center">
+          <Card.Header>{_t("rc-info.rc-available")}</Card.Header>
+          <Card.Body>
+            {/* <Card.Title> Balance: </Card.Title> */}
+            <Card.Text>
+               {`${rcPercent}%`}
+            </Card.Text>
+          </Card.Body>
+          </Card>
+          </Col>
+
+          <Col>
+          <Card className="d-flex justify-content-center">            
+          <Card.Header>{_t("rc-info.rc-used")}</Card.Header>
+          <Card.Body>
+            {/* <Card.Title> Balance: </Card.Title> */}
+            <Card.Text>
+               {`${(100 - rcPercent).toFixed(2)}%`}
+            </Card.Text>
+          </Card.Body>
+          </Card>
+          </Col>
+
+          <Col>
+          <Card className="d-flex justify-content-center">            
+          <Card.Header>{_t("rc-info.delegated")}</Card.Header>
+          <Card.Body>
+            {/* <Card.Title> Balance: </Card.Title> */}
+            <Card.Text>
+               {delegated}
+            </Card.Text>
+          </Card.Body>
+          </Card>
+          </Col>
+
+          <Col>
+          <Card className="d-flex justify-content-center">            
+          <Card.Header>{_t("rc-info.received-delegations")}</Card.Header>
+          <Card.Body>
+            {/* <Card.Title> Balance: </Card.Title> */}
+            <Card.Text>
+               {receivedDelegation}
+            </Card.Text>
+          </Card.Body>
+          </Card>
+          </Col>
+        </Row>  
         <div className="d-flex justify-content-center">
             <Button onClick={showDelegation}>
              {_t("rc-info.delegation-button")}
