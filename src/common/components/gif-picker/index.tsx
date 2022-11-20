@@ -224,7 +224,7 @@ export default class GifPicker extends BaseComponent<Props> {
             );
           }
         })()}
-        <span className="d-flex justify-content-end text-semi-bold">{_t("gif-picker.credits")}</span>
+        <span className="d-flex justify-content-end">{_t("gif-picker.credits")}</span>
       </div>
     );
   }
