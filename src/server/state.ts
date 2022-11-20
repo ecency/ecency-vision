@@ -40,7 +40,8 @@ export const makePreloadedState = async (req: express.Request): Promise<AppState
       req.headers["user-agent"] &&
       ["iOS", "AndroidOS"].includes(getOperatingSystem(req.headers["user-agent"]))
     ),
-    usePrivate: Boolean(parseInt(config.usePrivate, 10))
+    usePrivate: Boolean(parseInt(config.usePrivate, 10)),
+    hsClientId: config.hsClientId
   };
 
   const dynamicProps = await getDynamicProps();

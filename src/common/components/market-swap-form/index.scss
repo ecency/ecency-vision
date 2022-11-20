@@ -1,0 +1,175 @@
+.market-swap-form {
+  border-radius: calc(1rem + 8px);
+
+  input.form-control:disabled {
+    background-color: transparent;
+  }
+
+  @include themify(day) {
+    background-color: $white;
+  }
+
+  @include themify(night) {
+    background-color: $dark-two;
+  }
+
+  .form-group {
+    border-radius: 1rem;
+  }
+
+  .amount-control {
+    background: transparent;
+    border: none;
+    font-size: 3rem;
+    border-radius: 0;
+
+    &:focus, &:active {
+      background: transparent;
+    }
+
+    @include themify(night) {
+      color: $white;
+    }
+
+    @media (max-width: $md-break) {
+      font-size: 6vw;
+    }
+  }
+
+  .swap-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 16px;
+
+    .overlay {
+      min-width: 80px;
+      max-width: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include themify(day) {
+        background-color: $white;
+      }
+
+      @include themify(night) {
+        background-color: $dark-two;
+      }
+    }
+  }
+
+  .title {
+    height: 24px;
+  }
+
+  .loading-market-svg {
+    transform-origin: center;
+    animation: rotate 1s linear infinite;
+    opacity: .5;
+    width: 24px;
+    height: 24px;
+  }
+
+  @keyframes rotate {
+    to { transform: rotate(-360deg); }
+  }
+
+  .swap-button {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: $primary;
+
+    &:hover, &:active, &:focus {
+      color: darken($primary, 5);
+    }
+
+    .swap-arrow-up, .swap-arrow-down {
+      transition: .3s;
+    }
+
+    &:hover {
+      .swap-arrow-up {
+        transform: translateY(-4px);
+      }
+
+      .swap-arrow-down {
+        transform: translateY(4px);
+      }
+    }
+  }
+
+  .sign-logo {
+    width: 16px;
+  }
+
+  .hs-button {
+    color: $white;
+
+    @include button-variant($hs-color, $hs-color);
+  }
+
+  .kc-button {
+    color: $white;
+
+    @include button-variant($kc-color, $kc-color);
+  }
+
+  .success-message {
+    font-size: 1.25rem;
+  }
+
+  .alert {
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  form, .market-swap-form-header {
+    transition: .3s ease-in-out;
+  }
+}
+
+.blurred {
+  filter: blur(10px);
+}
+
+.market-swap-form-success {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  width: calc(100% - 2rem);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 1rem;
+
+  @include themify(day) {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  @include themify(night) {
+    background-color: rgba(19, 17, 17, 0.4);
+  }
+
+  .title {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .amount {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  i {
+    width: 24px;
+    margin: 0 0.5rem;
+    transform: rotate(90deg);
+  }
+}

@@ -1,8 +1,7 @@
 import { b64uEnc } from "../util/b64";
-import { HIVE_SIGNER_APP, APP_URL } from "../../client_config";
+import { APP_URL } from "../../client_config";
 
-export const getAuthUrl = (redir: string = `${window.location.origin}/auth`) => {
-  const app = HIVE_SIGNER_APP;
+export const getAuthUrl = (app: string, redir: string = `${window.location.origin}/auth`) => {
   const scope =
     "vote,comment,delete_comment,comment_options,custom_json,claim_reward_balance,offline";
 
@@ -48,13 +47,14 @@ export const validateToken = (code: string): boolean => {
 };
 
 export const makeHsCode = async (
+  hsClientId: string,
   account: string,
   signer: (message: string) => Promise<string>
 ): Promise<string> => {
   const timestamp = new Date().getTime() / 1000;
 
   const messageObj: HiveSignerMessage = {
-    signed_message: { type: "code", app: HIVE_SIGNER_APP },
+    signed_message: { type: "code", app: hsClientId },
     authors: [account],
     timestamp
   };

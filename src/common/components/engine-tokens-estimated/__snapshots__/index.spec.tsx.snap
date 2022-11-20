@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="balance-row estimated alternative"
+>
+  <div
+    className="balance-info"
+  >
+    <div
+      className="title"
+    >
+      Estimated Tokens Value
+    </div>
+    <div
+      className="description"
+    >
+      The approximate US Dollar value for all engine tokens in your wallet.
+    </div>
+  </div>
+  <div
+    className="balance-values"
+  >
+    <div
+      className="amount amount-bold"
+    >
+      <span>
+         
+        Calculating...
+         
+      </span>
+    </div>
+  </div>
+</div>
+`;

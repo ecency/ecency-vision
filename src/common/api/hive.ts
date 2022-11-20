@@ -153,8 +153,9 @@ export const getOpenOrder = (user: string): Promise<OpenOrdersData[]> =>
   client.call("condenser_api", "get_open_orders", [user]);
 
 export const getTradeHistory = (limit: number = 1000): Promise<OrdersDataItem[]> => {
-  let today = moment(Date.now()).subtract(10, "h").format().split("+")[0];
-  return client.call("condenser_api", "get_trade_history", [today, "1969-12-31T23:59:59", limit]);
+  let todayEarlier = moment(Date.now()).subtract(10, "h").format().split("+")[0];
+  let todayNow = moment(Date.now()).format().split("+")[0];
+  return client.call("condenser_api", "get_trade_history", [todayEarlier, todayNow, limit]);
 };
 
 export const getActiveVotes = (author: string, permlink: string): Promise<Vote[]> =>

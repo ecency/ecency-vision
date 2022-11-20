@@ -187,7 +187,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
   };
 
   submit = async () => {
-    const { activeUser } = this.props;
+    const { activeUser, global } = this.props;
+    const { hsClientId } = global;
     const { username, creatorKey } = this.state;
     if (!activeUser || !creatorKey) return;
 
@@ -213,13 +214,14 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
       const hash = cryptoUtils.sha256(message);
       return new Promise<string>((resolve) => resolve(keys.activeKey.sign(hash).toString()));
     };
-    const code = await makeHsCode(username, signer);
+    const code = await makeHsCode(hsClientId, username, signer);
 
     return this.finalizeSubmit(code);
   };
 
   submitKc = async () => {
-    const { activeUser } = this.props;
+    const { activeUser, global } = this.props;
+    const { hsClientId } = global;
     const { username, fee } = this.state;
     if (!activeUser) return;
 
@@ -277,7 +279,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
     // create hive signer code from active private key
     const signer = (message: string): Promise<string> =>
       keychain.signBuffer(username, message, "Active").then((r) => r.result);
-    const code = await makeHsCode(username, signer);
+    const code = await makeHsCode(hsClientId, username, signer);
 
     return this.finalizeSubmit(code);
   };
@@ -347,6 +349,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
 
   submitHot = async () => {
     const { username, title, about } = this.state;
+    const { hsClientId } = this.props.global;
 
     const keys = this.makePrivateKeys();
     const auths = this.makeAuthorities(keys);
@@ -357,7 +360,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
       const hash = cryptoUtils.sha256(message);
       return new Promise<string>((resolve) => resolve(keys.activeKey.sign(hash).toString()));
     };
-    const code = await makeHsCode(username, signer);
+    const code = await makeHsCode(hsClientId, username, signer);
     if (code) {
       const callback = `${
         window.location.origin

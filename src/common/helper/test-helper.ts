@@ -151,7 +151,8 @@ export const globalInstance: Global = {
   nsfw: false,
   newVersion: null,
   usePrivate: true,
-  lastIndexPath: null
+  lastIndexPath: null,
+  hsClientId: "ecency.app"
 };
 
 export const TrendingTagsInstance: TrendingTags = {

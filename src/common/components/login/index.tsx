@@ -35,6 +35,8 @@ import { formatError, grantPostingPermission, revokePostingPermission } from "..
 
 import { getRefreshToken } from "../../helper/user-token";
 
+import ReCAPTCHA from "react-google-recaptcha";
+
 import { addAccountAuthority, removeAccountAuthority, signBuffer } from "../../helper/keychain";
 
 import { _t } from "../../i18n";
@@ -46,7 +48,6 @@ import { deleteForeverSvg } from "../../img/svg";
 declare var window: AppWindow;
 
 interface LoginKcProps {
-  hiveSignerApp: string;
   toggleUIProp: (what: ToggleType) => void;
   doLogin: (
     hsCode: string,
@@ -84,6 +85,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
   };
 
   login = async () => {
+    const { hsClientId } = this.props.global;
     const { username } = this.state;
     if (!username) {
       return;
@@ -108,14 +110,14 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     }
 
     const hasPostingPerm =
-      account?.posting!.account_auths.filter((x) => x[0] === "ecency.app").length > 0;
+      account?.posting!.account_auths.filter((x) => x[0] === hsClientId).length > 0;
 
     if (!hasPostingPerm) {
       const weight = account.posting!.weight_threshold;
 
       this.stateSet({ inProgress: true });
       try {
-        await addAccountAuthority(username, "ecency.app", "Posting", weight);
+        await addAccountAuthority(username, hsClientId, "Posting", weight);
       } catch (err) {
         error(_t("login.error-permission"));
         return;
@@ -131,7 +133,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
 
     let code: string;
     try {
-      code = await makeHsCode(username, signer);
+      code = await makeHsCode(hsClientId, username, signer);
     } catch (err) {
       error(...formatError(err));
       this.stateSet({ inProgress: false });
@@ -261,7 +263,6 @@ export class UserItem extends Component<UserItemProps> {
 }
 
 interface LoginProps {
-  hiveSignerApp: string;
   history: History;
   global: Global;
   users: User[];
@@ -281,13 +282,15 @@ interface State {
   username: string;
   key: string;
   inProgress: boolean;
+  isVerified: boolean;
 }
 
 export class Login extends BaseComponent<LoginProps, State> {
   state: State = {
     username: "",
     key: "",
-    inProgress: false
+    inProgress: false,
+    isVerified: this.props.global.isElectron ? true : false
   };
 
   shouldComponentUpdate(nextProps: Readonly<LoginProps>, nextState: Readonly<State>): boolean {
@@ -364,8 +367,9 @@ export class Login extends BaseComponent<LoginProps, State> {
 
   hsLogin = () => {
     const { global, history } = this.props;
+    const { hsClientId } = global;
     if (global.isElectron) {
-      hsLogin()
+      hsLogin(hsClientId)
         .then((r) => {
           this.hide();
           history.push(`/auth?code=${r.code}`);
@@ -376,7 +380,7 @@ export class Login extends BaseComponent<LoginProps, State> {
       return;
     }
 
-    window.location.href = getAuthUrl();
+    window.location.href = getAuthUrl(hsClientId);
   };
 
   kcLogin = () => {
@@ -384,8 +388,14 @@ export class Login extends BaseComponent<LoginProps, State> {
     toggleUIProp("loginKc");
   };
 
+  captchaCheck = (value: string | null) => {
+    if (value) {
+      this.setState({ isVerified: true });
+    }
+  };
+
   login = async () => {
-    const hiveSignerApp = this.props.hiveSignerApp;
+    const { hsClientId } = this.props.global;
     const { username, key } = this.state;
 
     if (username === "" || key === "") {
@@ -457,12 +467,12 @@ export class Login extends BaseComponent<LoginProps, State> {
       }
 
       const hasPostingPerm =
-        account?.posting!.account_auths.filter((x) => x[0] === "ecency.app").length > 0;
+        account?.posting!.account_auths.filter((x) => x[0] === hsClientId).length > 0;
 
       if (!hasPostingPerm) {
         this.stateSet({ inProgress: true });
         try {
-          await grantPostingPermission(thePrivateKey, account, "ecency.app");
+          await grantPostingPermission(thePrivateKey, account, hsClientId);
         } catch (err) {
           error(_t("login.error-permission"));
           return;
@@ -477,7 +487,7 @@ export class Login extends BaseComponent<LoginProps, State> {
       const hash = cryptoUtils.sha256(message);
       return new Promise<string>((resolve) => resolve(thePrivateKey.sign(hash).toString()));
     };
-    const code = await makeHsCode(account.name, signer);
+    const code = await makeHsCode(hsClientId, account.name, signer);
 
     this.stateSet({ inProgress: true });
 
@@ -512,7 +522,7 @@ export class Login extends BaseComponent<LoginProps, State> {
   };
 
   render() {
-    const { username, key, inProgress } = this.state;
+    const { username, key, inProgress, isVerified } = this.state;
     const { users, activeUser, global, userListRef } = this.props;
     const logo = global.isElectron ? "./img/logo-circle.svg" : require("../../img/logo-circle.svg");
     const hsLogo = global.isElectron
@@ -586,6 +596,15 @@ export class Login extends BaseComponent<LoginProps, State> {
               onKeyDown={this.inputKeyDown}
             />
           </Form.Group>
+          {!global.isElectron && (
+            <div className="google-recaptcha">
+              <ReCAPTCHA
+                sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
+                onChange={this.captchaCheck}
+                size="normal"
+              />
+            </div>
+          )}
           <p className="login-form-text">
             {_t("login.login-info-1")}{" "}
             <a
@@ -604,7 +623,7 @@ export class Login extends BaseComponent<LoginProps, State> {
               {_t("login.login-info-2")}
             </a>
           </p>
-          <Button disabled={inProgress} block={true} onClick={this.login}>
+          <Button disabled={inProgress || !isVerified} block={true} onClick={this.login}>
             {inProgress && username && key && spinner}
             {_t("g.login")}
           </Button>
@@ -658,7 +677,6 @@ export class Login extends BaseComponent<LoginProps, State> {
 }
 
 interface Props {
-  hiveSignerApp: string;
   history: History;
   location: Location;
   global: Global;

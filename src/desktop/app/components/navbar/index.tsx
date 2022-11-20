@@ -26,7 +26,6 @@ import DropDown from "../../../../common/components/dropdown";
 import SearchSuggester from "../../../../common/components/search-suggester";
 import Updater from "../updater";
 import SwitchLang from "../../../../common/components/switch-lang";
-import { HIVE_SIGNER_APP } from "../../../../client_config";
 
 import NotificationHandler from "../../../../common/components/notification-handler";
 
@@ -337,7 +336,6 @@ interface Props {
   fetchNotificationsSettings: (username: string) => void;
   updateNotificationsSettings: typeof updateNotificationsSettings;
   setNotificationsSettingsItem: typeof setNotificationsSettingsItem;
-  hiveSignerApp: string;
 }
 
 interface State {
@@ -537,7 +535,6 @@ export class NavBar extends Component<Props, State> {
 
 export default (p: Props) => {
   const props: Props = {
-    hiveSignerApp: HIVE_SIGNER_APP,
     history: p.history,
     location: p.location,
     global: p.global,

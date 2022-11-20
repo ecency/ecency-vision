@@ -1,0 +1,86 @@
+@use "sass:math";
+
+.switch-toggler {
+  $width: 48px;
+  $height: 24px;
+
+  border-radius: math.div($height, 2);
+  height: $height;
+  width: $width;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: .4s ease-in-out;
+  overflow: hidden;
+
+  @include themify(day) {
+    background-color: $input-bg;
+  }
+
+  @include themify(night) {
+    background-color: $input-bg;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: $width;
+    height: $height;
+    opacity: 0;
+    transition: .2s ease-in-out;
+
+    @include themify(day) {
+      background-image: linear-gradient(to left, $dusk-blue, $dark-sky-blue);
+    }
+
+    @include themify(night) {
+      background-image: linear-gradient(to left, $dark-indigo, $dusky-blue);
+    }
+  }
+
+  .switcher {
+    width: $height - 8px;
+    height: $height - 8px;
+    border-radius: math.div(($height - 8px), 2);
+    transition: .2s ease-in-out;
+    transform: translateX(4px);
+    z-index: 9;
+
+    @include themify(day) {
+      background-color: $white;
+    }
+
+    @include themify(night) {
+      background-color: $dark-six;
+    }
+  }
+
+  &:hover {
+    .switcher {
+      transform: translateX(8px);
+    }
+  }
+
+  &.switched {
+    background: unset;
+
+    &::after {
+      opacity: 1;
+    }
+
+    &:hover {
+      .switcher {
+        transform: translateX($height);
+      }
+    }
+
+    .switcher {
+      transform: translateX($height + 4px);
+
+      @include themify(night) {
+        background-color: $faded-blue;
+      }
+    }
+  }
+}

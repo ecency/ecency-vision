@@ -48,6 +48,11 @@ Array [
         value=""
       />
     </div>
+    <div
+      className="google-recaptcha"
+    >
+      <div />
+    </div>
     <p
       className="login-form-text"
     >
@@ -62,7 +67,7 @@ Array [
     </p>
     <button
       className="btn btn-primary btn-block"
-      disabled={false}
+      disabled={true}
       onClick={[Function]}
       type="button"
     >
@@ -236,6 +241,11 @@ Array [
         value=""
       />
     </div>
+    <div
+      className="google-recaptcha"
+    >
+      <div />
+    </div>
     <p
       className="login-form-text"
     >
@@ -250,7 +260,7 @@ Array [
     </p>
     <button
       className="btn btn-primary btn-block"
-      disabled={false}
+      disabled={true}
       onClick={[Function]}
       type="button"
     >
@@ -427,6 +437,11 @@ Array [
         value=""
       />
     </div>
+    <div
+      className="google-recaptcha"
+    >
+      <div />
+    </div>
     <p
       className="login-form-text"
     >
@@ -441,7 +456,7 @@ Array [
     </p>
     <button
       className="btn btn-primary btn-block"
-      disabled={false}
+      disabled={true}
       onClick={[Function]}
       type="button"
     >
@@ -520,6 +535,11 @@ Array [
         value=""
       />
     </div>
+    <div
+      className="google-recaptcha"
+    >
+      <div />
+    </div>
     <p
       className="login-form-text"
     >
@@ -534,7 +554,7 @@ Array [
     </p>
     <button
       className="btn btn-primary btn-block"
-      disabled={false}
+      disabled={true}
       onClick={[Function]}
       type="button"
     >
