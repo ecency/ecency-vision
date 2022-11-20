@@ -186,6 +186,11 @@
   "trending-tags": {
     "title": "Topik"
   },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
+  },
   "selected-tags": {
     "title": "Unggulan"
   },
@@ -355,7 +360,11 @@
     "orders": "Orders",
     "date": "Date",
     "open-orders": "Open Orders",
+    "pending-orders": "Pending orders",
     "type": "Type",
+    "mode-limit": "Limit",
+    "mode-swap": "Swap",
+    "mode-advanced": "Advanced",
     "action": "Action",
     "trade-history": "Trade History",
     "stock-params": "Params",
@@ -368,7 +377,30 @@
     "confirm-sell": "Values",
     "transaction-succeeded": "Transaction submitted",
     "lowest-ask": "Lowest ask",
-    "decimal-error": "Only {{decimals}} decimal digits allowed!"
+    "decimal-error": "Only {{decimals}} decimal digits allowed!",
+    "from": "From",
+    "to": "To",
+    "sign": "Sign",
+    "swapping": "Swapping...",
+    "continue": "Continue",
+    "balance": "Balance",
+    "fee": "Fee",
+    "fee-free": "Free",
+    "order-book-impact": "Order book impact",
+    "swap-title": "Swap your funds",
+    "sign-title": "Sign your transaction",
+    "fetching-market": "Fetching market...",
+    "back": "Back",
+    "swap-by": "Sign by {{method}}",
+    "success-title": "Transaction completed",
+    "more-than-balance": "You've entered more than available balance",
+    "invalid-amount": "Invalid from amount. Please, enter less value",
+    "too-much-slippage": "We highly recommend you to reduce amount for better pricing!",
+    "auth-required-title": "Authorization required",
+    "auth-required-desc": "You have to be authorized to swap own funds",
+    "start-new-one": "Start new Swap",
+    "success-swap": "Successfully swapped!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "Pengaleeh gaya daftar"
@@ -626,7 +658,8 @@
     "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
-    "hive-dollars-apr-when": "Claim in {{value}} days",
+    "hive-dollars-apr-day": "Claim in {{value}} days",
+    "hive-dollars-apr-hour": "Claim in {{value}} hours",
     "hive-dollars-apr-now": "Claim now",
     "hive-power-delegated": "Delegated Hive Power",
     "hive-power-received": "Received Hive Power",
@@ -735,6 +768,20 @@
     "token": "Token",
     "balance": "Balance",
     "staked": "Staked"
+  },
+  "sort-engine-tokens": {
+    "sort": "Sort",
+    "sort-in-ascending": "Ascending",
+    "sort-in-descending": "Descending",
+    "sort-by-value": "Value",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Stake",
+    "sort-by-delegations-in": "Delegations in",
+    "sort-by-delegations-out": "Delegations out"
+  },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",
@@ -1115,6 +1162,7 @@
     "mention-post": "{{source}} mentioned you in a post",
     "mention-comment": "{{source}} mentioned you in a comment",
     "favorite": "{{source}} made new post",
+    "bookmark": "{{source}} replied to bookmarked content",
     "followed": "{{source}} followed you",
     "replied": "{{source}} replied you",
     "reblogged": "{{source}} reblogged your post",
@@ -1132,11 +1180,13 @@
     "type-transfers": "Transfers",
     "type-delegations": "Delegations",
     "type-nfavorites": "Favorites",
+    "type-nbookmarks": "Bookmarks",
     "group-title-recent": "Recent",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "replied to your post:",
     "mention-str": "mentioned you in:",
     "favorite-str": "made new post",
+    "bookmark-str": "replied to bookmarked content",
     "followed-str": "followed",
     "unfollowed-str": "unfollowed",
     "ignored-str": "ignored",

@@ -9,6 +9,7 @@ describe("SignByKey", function () {
       onBack: jest.fn(),
       onKey: jest.fn(),
       signingKey: "",
+      isLoading: false,
       setSigningKey: jest.fn()
     };
     const component = renderer.create(<SignByKey {...props} />);

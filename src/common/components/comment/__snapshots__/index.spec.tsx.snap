@@ -247,11 +247,6 @@ exports[`(1) Default render 1`] = `
   >
     <div
       className="rta  "
-      style={
-        Object {
-          "height": "80px",
-        }
-      }
     >
       <textarea
         acceptCharset="UTF-8"
@@ -267,6 +262,7 @@ exports[`(1) Default render 1`] = `
             "currencySymbol": "$",
             "filter": "hot",
             "hasKeyChain": false,
+            "hsClientId": "ecency.app",
             "intro": true,
             "isElectron": false,
             "isMobile": false,
@@ -560,11 +556,6 @@ exports[`(2) Cancellable, in progress 1`] = `
   >
     <div
       className="rta  "
-      style={
-        Object {
-          "height": "80px",
-        }
-      }
     >
       <textarea
         acceptCharset="UTF-8"
@@ -580,6 +571,7 @@ exports[`(2) Cancellable, in progress 1`] = `
             "currencySymbol": "$",
             "filter": "hot",
             "hasKeyChain": false,
+            "hsClientId": "ecency.app",
             "intro": true,
             "isElectron": false,
             "isMobile": false,

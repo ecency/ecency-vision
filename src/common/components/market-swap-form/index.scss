@@ -30,6 +30,10 @@
     @include themify(night) {
       color: $white;
     }
+
+    @media (max-width: $md-break) {
+      font-size: 6vw;
+    }
   }
 
   .swap-button-container {
