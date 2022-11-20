@@ -55,12 +55,12 @@ export const SignMethods = ({
   const [isSignByKeyLoading, setIsSignByKeyLoading] = useState(false);
   const [isSignByHsLoading, setIsSignByHsLoading] = useState(false);
 
-  const onSwapByHs = async () => {
+  const onSwapByHs = () => {
     swapByHs({
       activeUser,
       fromAsset: asset,
       fromAmount,
-      toAmount: await HiveMarket.getNewAmount(toAmount, fromAmount, asset)
+      toAmount
     });
   };
 

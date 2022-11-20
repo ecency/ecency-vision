@@ -540,7 +540,7 @@ export const limitOrderCreateHot = (
   ];
 
   const params: Parameters = {
-    callback: `https://ecency.com/market${idPrefix === OrderIdPrefix.SWAP ? "#swap" : ""}`
+    callback: `https://ecency.com/market`
   };
   return hs.sendOperation(op, params, () => {});
 };
