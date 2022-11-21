@@ -1081,6 +1081,10 @@
     "filter-no-match": "Nicio potrivire",
     "recently-used": "Utilizat recent"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Crează un articol",
     "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
