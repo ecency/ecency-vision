@@ -66,10 +66,14 @@ interface VoteDialogState {
   showRemove: boolean;
   wrongValueDown: boolean;
   initialVoteValues: { up: any; down: any };
+  upSliderLineWidth: number;
+  downSliderLineWidth: number;
+  sliderLabelData: Array<number>;
 }
 
+const initialSliderLabelList: Array<number> = [10, 20, 30, 40, 50, 60, 70, 80, 90];
+
 export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
-  sliderLabelData: Array<number> = [10, 20, 30, 40, 50, 60, 70, 80, 90];
   state: VoteDialogState = {
     upSliderVal: getVoteValue(
       "up",
@@ -98,12 +102,39 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
         this.props.activeUser?.username! + "-" + this.props.entry.post_id,
         getVoteValue("downPrevious", this.props.activeUser?.username!, -1)
       )
-    }
+    },
+    upSliderLineWidth: 0,
+    downSliderLineWidth: 0,
+    sliderLabelData: initialSliderLabelList
   };
+  private upSliderRef: React.RefObject<HTMLInputElement>;
+  private downSliderRef: React.RefObject<HTMLInputElement>;
+  constructor(props: VoteDialogProps) {
+    super(props);
+    this.upSliderRef = React.createRef();
+    this.downSliderRef = React.createRef();
+  }
 
   componentDidMount(): void {
     this.cleanUpLS();
+    this.setSliderOptionsAndWidth();
+    window.addEventListener("resize", this.setSliderOptionsAndWidth);
   }
+
+  setSliderOptionsAndWidth = (): void => {
+    if (this.upSliderRef.current?.offsetWidth) {
+      this.setState({ upSliderLineWidth: this.upSliderRef.current?.offsetWidth });
+    }
+    if (this.downSliderRef.current?.offsetWidth) {
+      this.setState({ downSliderLineWidth: this.downSliderRef.current?.offsetWidth });
+    }
+
+    if (window.innerWidth < 1600) {
+      this.setState({ sliderLabelData: [25, 50, 75] });
+    } else {
+      this.setState({ sliderLabelData: initialSliderLabelList });
+    }
+  };
 
   estimate = (percent: number): number => {
     const { entry, activeUser, dynamicProps } = this.props;
@@ -197,6 +228,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
   changeMode = (m: Mode) => {
     this.setState({ mode: m });
+    this.setSliderOptionsAndWidth();
   };
   //TODO: Delete this after 3.0.22 release
   cleanUpLS = () => {
@@ -262,36 +294,53 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     }
   };
 
-  displaySliderOptions = (sign: boolean) => {
-    return this.sliderLabelData.map((option: number) => {
-      if (sign == true) {
-        let sliderMarginOffset = (option / 100) * 6.25;
-        return (
-          <div key={option} className="options">
-            <p
-              key={option}
-              style={{ marginLeft: sliderMarginOffset }}
-              onClick={() => this.setState({ upSliderVal: option })}
-            >
-              {option}
-            </p>
-          </div>
-        );
+  displaySliderOptions = (sign: boolean, mode: string) => {
+    return this.state.sliderLabelData.map((option: number) => {
+      let sliderMarginOffset = (option / 100) * 6.25;
+      var markerColour: string;
+      if (mode == "up") {
+        markerColour = this.state.upSliderVal >= option ? "#357ce6" : "#b7b2b2";
       } else {
-        let sliderMarginOffset = option / 10 - 5;
-        return (
-          <div key={option} className="options">
-            <p
-              key={option}
-              style={{ marginLeft: sliderMarginOffset }}
-              onClick={() => this.setState({ downSliderVal: -option })}
-            >
-              {-option}
-            </p>
-          </div>
-        );
+        markerColour = Math.abs(this.state.downSliderVal) >= option ? "#e54e24" : "#b7b2b2";
       }
+
+      var sldierOptionsWidth = this.state.sliderLabelData[0] == 10 ? "10%" : "25%";
+
+      return (
+        <div key={option} className="options" style={{ maxWidth: sldierOptionsWidth }}>
+          <span
+            className="dots"
+            style={{
+              marginLeft: "9px",
+              width: "10px",
+              height: "10px",
+              background: markerColour,
+              borderRadius: "8px",
+              display: "block",
+              position: "absolute",
+              top: "21px",
+              pointerEvents: "none"
+            }}
+            onClick={() => this.setState({ upSliderVal: option })}
+          ></span>
+          <p
+            key={option}
+            style={{ marginLeft: sliderMarginOffset }}
+            onClick={() => this.setSliderValueOnLabelClick(sign, option)}
+          >
+            {sign ? option : -option}
+          </p>
+        </div>
+      );
     });
+  };
+
+  setSliderValueOnLabelClick = (sign: boolean, value: number): void => {
+    if (sign) {
+      this.setState({ upSliderVal: value });
+    } else {
+      this.setState({ downSliderVal: -value });
+    }
   };
 
   render() {
@@ -307,8 +356,10 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const {
       entry: { post_id, id }
     } = this.props;
-    const positiveOptionsMetaData = this.displaySliderOptions(true);
-    const negativeOptionsMetaData = this.displaySliderOptions(false);
+
+    var upSliderWidth = (this.state.upSliderLineWidth * upSliderVal) / 100 - 5;
+    var downSliderWidth = (this.state.downSliderLineWidth * Math.abs(downSliderVal)) / 100 - 5;
+
     return (
       <>
         {mode === "up" && (
@@ -323,6 +374,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               <div className="estimated">
                 <FormattedCurrency {...this.props} value={this.estimate(upSliderVal)} fixAt={3} />
               </div>
+              <span className="line-slider" style={{ width: upSliderWidth }}></span>
               <div className="slider slider-up">
                 <Form.Control
                   list="slider-range-values"
@@ -335,6 +387,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   value={upSliderVal}
                   onChange={this.upSliderChanged}
                   id={`${post_id || id}`}
+                  ref={this.upSliderRef}
                 />
 
                 <datalist id="slider-range-values">
@@ -346,7 +399,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                       0
                     </p>
                   </div>
-                  {positiveOptionsMetaData}
+                  {this.displaySliderOptions(true, mode)}
                   <p
                     style={{ fontSize: "15px" }}
                     onClick={() => this.setState({ upSliderVal: 100 })}
@@ -397,6 +450,10 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               <div className="estimated">
                 <FormattedCurrency {...this.props} value={this.estimate(downSliderVal)} fixAt={3} />
               </div>
+              <span
+                className="line-slider negative-line-slider"
+                style={{ width: downSliderWidth - 11 }}
+              ></span>
               <div className="slider slider-down">
                 <Form.Control
                   type="range"
@@ -409,6 +466,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   onChange={this.downSliderChanged}
                   id={`${post_id || id}`}
                   className="reverse-range"
+                  ref={this.downSliderRef}
                 />
                 <datalist id="slider-range-values">
                   <div className="options">
@@ -419,7 +477,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                       -1
                     </p>
                   </div>
-                  {negativeOptionsMetaData}
+                  {this.displaySliderOptions(false, mode)}
                   <p
                     style={{ fontSize: "15px" }}
                     onClick={() => this.setState({ downSliderVal: -100 })}

@@ -478,7 +478,6 @@ datalist {
 }
 .options{
   display: flex;
-  max-width: 10%;
   flex-direction: row;
   flex: 1;
   justify-content: flex-start;
@@ -486,4 +485,20 @@ datalist {
 
 .options p {
     font-size: 15px;
+}
+
+.line-slider{
+  position: absolute;
+  top: 24px;
+  height: 3px;
+  background: #357ce6;
+  left: 115px;
+  pointer-events: none;
+  
+}
+
+.negative-line-slider{
+  background: #e54e24;
+  z-index: 100;
+  
 }
