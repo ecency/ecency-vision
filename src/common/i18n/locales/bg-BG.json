@@ -1081,6 +1081,10 @@
     "filter-no-match": "Няма съвпадение",
     "recently-used": "Наскоро използвани"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Създай публикация",
     "page-description": "Публикувай статия, спечели награди, нецензурирани, незаглушавани, децентрализирани съдържания!",
