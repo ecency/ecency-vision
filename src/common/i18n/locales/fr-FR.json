@@ -1081,6 +1081,10 @@
     "filter-no-match": "Aucune correspondance",
     "recently-used": "Utilisé récemment"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Créer un post",
     "page-description": "Publiez un article, gagnez des récompenses, non censuré, immuable et décentralisé !",
