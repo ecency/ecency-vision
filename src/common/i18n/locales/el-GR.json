@@ -1081,6 +1081,10 @@
     "filter-no-match": "Καμία αντιστοιχία",
     "recently-used": "Πρόσφατα χρησιμοποιημένο"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Δημιουργία ανάρτησης",
     "page-description": "Δημοσιεύστε ένα άρθρο, κερδίστε ανταμοιβές, χωρίς λογοκρισία, αμετάβλητο, αποκεντρωμένο περιεχόμενο!",
