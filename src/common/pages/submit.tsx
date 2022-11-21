@@ -15,7 +15,6 @@ import { Button, Col, Form, FormControl, Row, Spinner } from "react-bootstrap";
 import moment, { Moment } from "moment";
 
 import defaults from "../constants/defaults.json";
-
 import {
   postBodySummary,
   proxifyImageSrc,

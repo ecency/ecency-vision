@@ -29,6 +29,7 @@
 @import "../common/components/entry-index-menu";
 @import "../common/components/entry-votes";
 @import "../common/components/trending-tags-card";
+@import "../common/components/sort-profile-communities/";
 @import "../common/components/selected-tags-card";
 @import "../common/components/community-list-item";
 @import "../common/components/profile-card";
@@ -44,6 +45,7 @@
 @import "../common/components/discussion";
 @import "../common/components/editor-toolbar";
 @import "../common/components/emoji-picker";
+@import "../common/components/gif-picker";
 @import "../common/components/tag-selector";
 @import "../common/components/community-selector";
 @import "../common/components/feedback";
@@ -125,6 +127,9 @@
 @import "../common/components/open-orders-list/";
 @import "../common/components/savings-withdraw/";
 @import "../common/components/wallet-spk/wallet-spk-delegated-power-dialog";
+@import "../common/components/switch/";
+@import "../common/components/market-swap-form/";
+@import "../common/components/market-swap-active-orders/";
 
 @import "../desktop/app/components/navbar";
 @import "../desktop/app/components/updater";

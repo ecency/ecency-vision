@@ -82,6 +82,8 @@ export class TagSelector extends Component<Props, State> {
 
   onBlur = () => {
     this.setState({ hasFocus: false });
+    const { value } = this.state;
+    this.add(value);
   };
 
   onChange = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {

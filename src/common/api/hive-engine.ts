@@ -280,3 +280,33 @@ export async function getFineTransactions(
     return response.data;
   });
 }
+
+export const getMetrics: any = async (symbol?: any, account?: any) => {
+  const data = {
+    jsonrpc: "2.0",
+    method: "find",
+    params: {
+      contract: "market",
+      table: "metrics",
+      query: {
+        symbol: symbol,
+        account: account
+      }
+    },
+    id: 1
+  };
+
+  // const result = await axios
+  //     .post(HIVE_ENGINE_RPC_URL, data, {
+  //       headers: { "Content-type": "application/json" }
+  //     })
+  //     return result;
+  return axios
+    .post(HIVE_ENGINE_RPC_URL, data, {
+      headers: { "Content-type": "application/json" }
+    })
+    .then((r) => r.data.result)
+    .catch((e) => {
+      return [];
+    });
+};

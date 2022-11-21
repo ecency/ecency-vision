@@ -8,6 +8,8 @@ import { Button, Form, FormControl, Spinner, Row, Col } from "react-bootstrap";
 
 import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "./common";
 
+import ReCAPTCHA from "react-google-recaptcha";
+
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
@@ -30,6 +32,7 @@ interface State {
   lockReferral: boolean;
   inProgress: boolean;
   done: boolean;
+  isVerified: boolean;
 }
 
 class SignUpPage extends Component<PageProps, State> {
@@ -41,7 +44,8 @@ class SignUpPage extends Component<PageProps, State> {
     referral: "",
     lockReferral: false,
     inProgress: false,
-    done: false
+    done: false,
+    isVerified: this.props.global.isElectron ? true : false
   };
 
   componentDidMount() {
@@ -89,6 +93,12 @@ class SignUpPage extends Component<PageProps, State> {
       });
   };
 
+  captchaCheck = (value: string | null) => {
+    if (value) {
+      this.setState({ isVerified: true });
+    }
+  };
+
   render() {
     const { global } = this.props;
 
@@ -102,7 +112,7 @@ class SignUpPage extends Component<PageProps, State> {
       title: _t("sign-up.header")
     };
 
-    const { username, email, referral, lockReferral, inProgress, done } = this.state;
+    const { username, email, referral, lockReferral, inProgress, done, isVerified } = this.state;
     const spinner = (
       <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />
     );
@@ -208,8 +218,22 @@ class SignUpPage extends Component<PageProps, State> {
                           disabled={lockReferral}
                         />
                       </Form.Group>
+                      {!global.isElectron && (
+                        <div style={{ marginTop: "16px", marginBottom: "5px" }}>
+                          <ReCAPTCHA
+                            sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
+                            onChange={this.captchaCheck}
+                            size="normal"
+                          />
+                        </div>
+                      )}
                       <div className="d-flex justify-content-center">
-                        <Button variant="primary" block={true} type="submit" disabled={inProgress}>
+                        <Button
+                          variant="primary"
+                          block={true}
+                          type="submit"
+                          disabled={inProgress || !isVerified}
+                        >
                           {inProgress && spinner} {_t("sign-up.submit")}
                         </Button>
                       </div>

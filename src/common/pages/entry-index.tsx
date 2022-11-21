@@ -13,6 +13,7 @@ import { PageProps } from "./common";
 import { DeckView } from "../components/deck-view";
 import { Entry } from "../store/entries/types";
 import { TopCommunitiesWidget } from "../components/top-communities-widget";
+import * as ls from "../util/local-storage";
 
 interface Props extends PageProps {
   loading: boolean;
@@ -38,11 +39,17 @@ class EntryIndexPage extends Component<Props, State> {
     fetchEntries(global.filter, global.tag, false);
     fetchTrendingTags();
     this.loadEntries();
+
+    const filterReblog: any = ls.get("my_reblog");
+    this.setState({ noReblog: filterReblog });
   }
 
   componentDidUpdate(prevProps: Readonly<PageProps>, prevState: Readonly<State>): void {
     const { global, fetchEntries, activeUser } = this.props;
     const { global: pGlobal, activeUser: pActiveUser, entries: pEntries } = prevProps;
+
+    ls.set("my_reblog", this.state.noReblog);
+
     if (prevState.noReblog !== this.state.noReblog) {
       if (this.state.noReblog === true) {
         this.loadEntries();
