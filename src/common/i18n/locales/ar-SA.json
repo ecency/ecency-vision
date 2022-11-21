@@ -1081,6 +1081,10 @@
     "filter-no-match": "لا يوجد تطابق",
     "recently-used": "مستخدم حديثاً"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "إنشاء منشور",
     "page-description": "انشر مقالة، احصل على مكافأة، محتوى غير مراقب، غير قابل للتغيير، لامركزي!",
