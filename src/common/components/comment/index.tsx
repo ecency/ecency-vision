@@ -78,13 +78,15 @@ interface State {
   text: string;
   preview: string;
   showEmoji: boolean;
+  showGif: boolean;
 }
 
 export class Comment extends Component<Props, State> {
   state: State = {
     text: "",
     preview: "",
-    showEmoji: false
+    showEmoji: false,
+    showGif: false
   };
 
   timer: any = null;
@@ -155,14 +157,16 @@ export class Comment extends Component<Props, State> {
 
   render() {
     const { inProgress, cancellable, autoFocus, submitText, inputRef, activeUser } = this.props;
-    const { text, preview, showEmoji } = this.state;
+    const { text, preview, showEmoji, showGif } = this.state;
     const rows = text.split(/\r\n|\r|\n|<br>/).length;
 
     return (
       <>
         <div
           className="comment-box"
-          onMouseEnter={() => !showEmoji && this.setState({ showEmoji: true })}
+          onMouseEnter={() =>
+            !showEmoji && !showGif && this.setState({ showEmoji: true, showGif: true })
+          }
         >
           {EditorToolbar({ ...this.props, sm: true, showEmoji })}
           <div className="comment-body">
