@@ -53,3 +53,21 @@ export const geLatestDesktopTag = (): Promise<string> =>
     .get("https://api.github.com/repos/ecency/ecency-vision/releases/latest")
     .then((r) => r.data)
     .then((r) => r.tag_name);
+
+export const GIPHY_API_KEY = "DQ7mV4VsZ749GcCBZEunztICJ5nA4Vef";
+export const GIPHY_API = `https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_API_KEY}&limit=10&offset=0`;
+export const GIPHY_SEARCH_API = `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&limit=40&offset=0&q=`;
+
+export const fetchGif = async (query: string | null, limit: string, offset: string) => {
+  let gifs;
+  if (query) {
+    gifs = await axios(
+      `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&limit=${limit}&offset=${offset}&q=${query}`
+    );
+  } else {
+    gifs = await axios(
+      `https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_API_KEY}&limit=${limit}&offset=${offset}`
+    );
+  }
+  return gifs;
+};
