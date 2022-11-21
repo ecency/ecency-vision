@@ -1081,6 +1081,10 @@
     "filter-no-match": "Atitikmenų nėra",
     "recently-used": "Neseniai Naudota"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Sukurti įrašą",
     "page-description": "Paskelbkite straipsnį, uždirbkite atlygį, necenzūruotą, nekintamą, decentralizuotą turinį!",
