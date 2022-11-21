@@ -1081,6 +1081,10 @@
     "filter-no-match": "कोई मेल नहीं",
     "recently-used": "अभी-अभी उपयोग हुवा"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "पोस्ट तैयार करें",
     "page-description": "एक लेख प्रकाशित करें, इनाम अर्जित करें, बिना सेंसर किए, अपरिवर्तनीय, विकेंद्रीकृत सामग्री!",
