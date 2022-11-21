@@ -1081,6 +1081,10 @@
     "filter-no-match": "Eşleşme yok",
     "recently-used": "Son Kullanılan"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Bir gönderi oluştur",
     "page-description": "Makale yayınlayın, ödül kazanın, sansürsüz, kalıcı, merkeziyetsiz içerik!",
