@@ -1081,6 +1081,10 @@
     "filter-no-match": "Жодного збігу",
     "recently-used": "Нещодавно використані"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Створити допис",
     "page-description": "Опублікуйте статтю, заробіть винагороду, без цензури, незмінний, децентралізований вміст!",
