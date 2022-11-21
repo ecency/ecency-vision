@@ -7,12 +7,12 @@ import { _t } from '../../i18n';
 
 export const HiveEngineChart = (props: any) => {
 const { items, theme } = props
-console.log(items)
+// console.log(items)
 
 const [close, setClose]: any = useState([])
 const [timeStamp, setTimeStamp]: any = useState([]);
 const [tokenSymbol, setTokenSymbol] = useState("SWAP.HIVE")
-const [prices, setPrices] = useState()
+const [prices, setPrices]: any = useState([])
 
 useEffect(() => {
   const getMarketData = async (symbol: any) => {
@@ -24,7 +24,7 @@ useEffect(() => {
           );
           const close = history.map((token: any) =>  token.close)
           const closePrice = close.map((a: any) => Number(a))
-          console.log(closePrice)
+          // console.log(closePrice)
           const timeStamp = history.map((token: any) => token.timestamp)
           const date = timeStamp.map((a: any) => new Date(a * 1000).toLocaleDateString("en-US"));
           setTimeStamp(date)
@@ -32,8 +32,7 @@ useEffect(() => {
           setTokenSymbol(symbol)
   }
         getMarketData(tokenSymbol);
-}, [tokenSymbol])
-
+},[])
 
       const config: any = {
         title: {
@@ -45,7 +44,7 @@ useEffect(() => {
         },
         chart: {
           height: '70',
-          width: '800',
+          width: '600',
           zoomType: "x",
           backgroundColor: "transparent",
           border: "none",
@@ -64,7 +63,7 @@ useEffect(() => {
           spacingRight: 0,
           marginTop: 0,
           marginBottom: 0,
-          marginLeft: 60,
+          // marginLeft: 60,
         },
         plotOptions: {
           area: {
@@ -135,7 +134,7 @@ useEffect(() => {
         series: [
           {
             name: "tokens",
-            data: prices,
+            data: prices.length === 0 ? [0,0] : prices,
             type: "line",
             enableMouseTracking: true
           }
@@ -147,7 +146,7 @@ useEffect(() => {
       renderTo: true,
       backgroundColor: null,
       borderWidth: 0,
-      type: 'area',
+      type: 'line',
       margin: [2, 0, 2, 0],
       width: 120,
       height: 20,
@@ -222,17 +221,10 @@ useEffect(() => {
 
 
   return (
-    <div className="market-graph" style={{width: 500}}>
+    <div className="market-graph d-flex justify-items-center ml-5" >
         <div className="graph">
           <ReactHighcharts config={config} />
-        </div>
-        {/* <div className="info">
-          <div className="price">
-            <span className="coin">{tokenSymbol}</span> 
-            <span className="value">prices</span>
-          </div>
-          <div className="tooltip" />
-        </div> */}
+        </div>      
       </div>
   )
 }
