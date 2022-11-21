@@ -1081,6 +1081,10 @@
     "filter-no-match": "Nema podudaranja",
     "recently-used": "Nеdavno korišćеno"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Napiši objavu",
     "page-description": "Objavite članak, zaradite nagradu, necenzurisani, nepromenljivi, decentralizovani sadržaj!",
