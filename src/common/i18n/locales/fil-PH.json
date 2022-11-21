@@ -1081,6 +1081,10 @@
     "filter-no-match": "Walang katugma",
     "recently-used": "Nagamit kamakailan lang"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Gumawa ng post",
     "page-description": "Maglathala ng artikulo, kumita ng gantimpala, censored, hindi nababago, decentralisadong nilalaman!",
