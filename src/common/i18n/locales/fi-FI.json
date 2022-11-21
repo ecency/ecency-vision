@@ -1081,6 +1081,10 @@
     "filter-no-match": "Ei tuloksia",
     "recently-used": "Äskettäin käytetyt"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Luo artikkeli",
     "page-description": "Julkaise artikkeli, ansaitse palkintoja, sensuroimaton, muuttumaton ja hajautettu sisältö!",
