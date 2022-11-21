@@ -473,15 +473,15 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                           </div>
 
                           <div>
-                            {priceChange.map((x: any, i: any) =>{
-                            const changeValue = parseFloat(x.priceChangePercent)
+                            {priceChange?.map((x: any, i: any) =>{
+                            const changeValue = parseFloat(x?.priceChangePercent)
                             return (
                             <span key={i} className={`d-flex justify-content-end ${changeValue < 0 ? 
                               "text-danger" : "text-success"}`}>
-                              {x.symbol === b.symbol && (
-                              <span>{ changeValue < 0 ? priceDownSvg : priceUpSvg }</span>
+                              {x?.symbol === b.symbol && (
+                              <span className="mr-1">{ changeValue < 0 ? priceDownSvg : priceUpSvg }</span>
                               )}
-                              {x.symbol === b.symbol ? x.priceChangePercent : null}
+                              {x?.symbol === b.symbol ? x?.priceChangePercent : null}
                             </span>)}
                           )}                       
                           </div>                        
