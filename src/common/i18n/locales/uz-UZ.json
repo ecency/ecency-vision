@@ -1081,6 +1081,10 @@
     "filter-no-match": "Topilmadi",
     "recently-used": "Yaqinda foydalanilganlar"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Post Yaratish",
     "page-description": "Maqolalarni nashr eting, mukofotlarga ega bo'ling, senzurasiz, doimiy, markazlashtirilmagan kontent!",
