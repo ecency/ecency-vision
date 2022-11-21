@@ -1081,6 +1081,10 @@
     "filter-no-match": "无匹配结果",
     "recently-used": "最近使用"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "创建一个帖子",
     "page-description": "发布一篇文章，赚取奖励，未知的、不可变的、去中心化的内容！",
