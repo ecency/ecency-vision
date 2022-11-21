@@ -1081,6 +1081,10 @@
     "filter-no-match": "Nincs találat",
     "recently-used": "Legutóbb használt"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Bejegyzés létrehozása",
     "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
