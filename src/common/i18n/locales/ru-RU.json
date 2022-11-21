@@ -1081,6 +1081,10 @@
     "filter-no-match": "Нет совпадений",
     "recently-used": "Недавно использованные"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Создать пост",
     "page-description": "Публикуйте статью, получайте вознаграждение, создавайте контент без цензуры, неизменяемый и децентрализованный!",
