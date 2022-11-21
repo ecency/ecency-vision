@@ -12,9 +12,9 @@ import HiveEngineToken, { HiveEngineTokenEntryDelta } from "../../helper/hive-en
 import LinearProgress from "../linear-progress";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import WalletMenu from "../wallet-menu";
+import Transfer, { TransferMode } from "../transfer-he";
 import { SortEngineTokens } from "../sort-hive-engine-tokens";
 import { EngineTokensEstimated } from "../engine-tokens-estimated";
-import Transfer, { TransferMode } from "../transfer-he";
 import { error, success } from "../feedback";
 
 import {
@@ -23,7 +23,6 @@ import {
   getUnclaimedRewards,
   getTokenDelegations,
   DelegationEntry,
-  TokenStatus,
   getMetrics
 } from "../../api/hive-engine";
 
@@ -40,6 +39,7 @@ import {
 
 import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
+
 import DropDown from "../dropdown";
 import WalletHiveEngineDetail from "../wallet-hive-engine-detail";
 interface TokenProps {
