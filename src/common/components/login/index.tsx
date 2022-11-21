@@ -623,7 +623,11 @@ export class Login extends BaseComponent<LoginProps, State> {
               {_t("login.login-info-2")}
             </a>
           </p>
-          <Button disabled={inProgress || !isVerified} block={true} onClick={this.login}>
+          <Button
+            disabled={!global.isElectron && (inProgress || !isVerified)}
+            block={true}
+            onClick={this.login}
+          >
             {inProgress && username && key && spinner}
             {_t("g.login")}
           </Button>
