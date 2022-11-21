@@ -495,7 +495,6 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                 <div className="no-results">{_t("wallet-engine.no-results")}</div>
               ) : transferAsset ? (
                 <div>
-                  {tokenMenu}
                   {hiveEngineToken && (
                     <WalletHiveEngineDetail
                       {...this.props}
@@ -511,7 +510,6 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                 </div>
               ) : (
                 <div className="entry-list-body">
-                  {tokenMenu}
                   {tokens.map((b, i) => {
                     const imageSrc = proxifyImageSrc(
                       b.icon,
@@ -533,7 +531,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                               target.src = fallbackImage;
                             }}
                           />
-                          {b.symbol}
+                          <button className="card-link">{b.symbol}</button>
                         </a>
 
                         <div
