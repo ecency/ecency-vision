@@ -1081,6 +1081,10 @@
     "filter-no-match": "Tidak cocok",
     "recently-used": "Baru saja digunakan"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Buat sebuah postingan",
     "page-description": "Publikasikan sebuah artikel, dapatkan rewardnya, tidak disensor, tak dapat dihapus, kontennya terdesentralisasi!",
