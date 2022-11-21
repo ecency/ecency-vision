@@ -32,7 +32,9 @@ import {
   lockOutlineSvg,
   unlockOutlineSvg,
   delegateOutlineSvg,
-  undelegateOutlineSvg
+  undelegateOutlineSvg,
+  priceUpSvg,
+  priceDownSvg
 } from "../../img/svg";
 
 import { formatError } from "../../api/operations";
@@ -64,6 +66,7 @@ interface State {
   transferMode: null | TransferMode;
   transferAsset: null | string;
   assetBalance: number;
+  priceChange: any;
 }
 
 export class WalletHiveEngine extends BaseComponent<Props, State> {
@@ -77,7 +80,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     transfer: false,
     transferMode: null,
     transferAsset: null,
-    assetBalance: 0
+    assetBalance: 0,
+    priceChange: 0
   };
   _isMounted = false;
 
@@ -85,6 +89,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     this._isMounted = true;
     this._isMounted && this.fetch();
     this._isMounted && this.fetchUnclaimedRewards();
+    this._isMounted && this.priceChangePercent();
   }
 
   componentWillUnmount() {
@@ -192,6 +197,11 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     return tokensUsdValues;
   };
 
+  priceChangePercent = async () => {
+    const allMarketTokens = await getMetrics();
+    this.setState({ priceChange: allMarketTokens});
+  }
+
   openTransferDialog = (mode: TransferMode, asset: string, balance: number) => {
     this.stateSet({
       transfer: true,
@@ -277,7 +287,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
   render() {
     const { global, dynamicProps, account, activeUser } = this.props;
-    const { rewards, tokens, loading, claiming, claimed, utokens } = this.state;
+    const { rewards, tokens, loading, claiming, claimed, utokens, priceChange } = this.state;
     const hasUnclaimedRewards = rewards.length > 0;
     const hasMultipleUnclaimedRewards = rewards.length > 1;
     const isMyPage = activeUser && activeUser.username === account.name;
@@ -461,6 +471,21 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                               </OverlayTrigger>
                             </div>
                           </div>
+
+                          <div>
+                            {priceChange.map((x: any, i: any) =>{
+                            const changeValue = parseFloat(x.priceChangePercent)
+                            return (
+                            <span key={i} className={`d-flex justify-content-end ${changeValue < 0 ? 
+                              "text-danger" : "text-success"}`}>
+                              {x.symbol === b.symbol && (
+                              <span>{ changeValue < 0 ? priceDownSvg : priceUpSvg }</span>
+                              )}
+                              {x.symbol === b.symbol ? x.priceChangePercent : null}
+                            </span>)}
+                          )}                       
+                          </div>                        
+
                           {isMyPage && (
                             <div className="d-flex justify-between ml-auto">
                               <div className="mr-1">
