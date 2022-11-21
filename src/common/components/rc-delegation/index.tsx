@@ -10,7 +10,7 @@ import amountFormatCheck from "../../helper/amount-format-check";
 import formattedNumber from "../../util/formatted-number";
 import badActors from "@hiveio/hivescript/bad-actors.json";
 import { error } from "../feedback";
-import { formatError } from '../../api/operations';
+import { delegateRCKc, delegateRC, delegateRCHot, formatError } from '../../api/operations';
 import { Tsx } from "../../i18n/helper";
 import _ from "lodash";
 import {
@@ -19,30 +19,31 @@ import {
   getAccountFull,
   getVestingDelegations
 } from "../../api/hive";
-
+import { PrivateKey } from '@hiveio/dhive';
 
 export const ResourceCreditsDelegation = (props: any) => {
-
     const { resourceCredit, activeUser } = props
     
-    const [to, setTo]: any = useState();
-    const [amount, setAmount]: any = useState();
-    const [inProgress, setInProgress] = useState(false);
-    const [step, setStep] = useState(1);
-    const [amountError, setAmountError]: any = useState();
-    const [toError, setToError]: any = useState();
-    const [toWarning, setToWarning]: any = useState();
-    const [toData, setToData]: any = useState();
-    const [delegationList, setDelegationList]: any = useState();
+    const [to, setTo] = useState<string>('');
+    const [amount, setAmount] = useState<string>('');
+    const [inProgress, setInProgress] = useState<boolean>(false);
+    const [step, setStep] = useState<number>(1);
+    const [amountError, setAmountError] = useState<string>('');
+    const [toError, setToError] = useState<string>('');
+    const [toWarning, setToWarning] = useState<string>('');
+    const [toData, setToData] = useState<any>('');
+    const [asset] = useState<string>('RC');
+    const [delegationList, setDelegationList] = useState<any>([]);
 
     useEffect(() => {
-      checkAmount();
+      // checkAmount();
+      console.log({props})
       return () => console.log('unmounting')
-    }, [])
+    }, []);
 
     const toChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const { value } = e.target;
-        console.log(value, 'base change')
+        setInProgress(true)
         setTo(value);
         delayedSearch(value)
         // handleTo(value)
@@ -52,7 +53,7 @@ export const ResourceCreditsDelegation = (props: any) => {
         const { value: amount } = e.target;
         setAmount(amount)
       };
-
+      
     const  formatNumber = (num: number | string, precision: number) => {
       const format = `0.${"0".repeat(precision)}`;
   
@@ -73,32 +74,40 @@ export const ResourceCreditsDelegation = (props: any) => {
       setStep(3)
     };
 
-    const sign = () => {
-      console.log("sign")
-    }
-
+    const sign = (key: PrivateKey) => {
+      const { activeUser } = props;
+      const username = activeUser?.username!;
+      const max_rc = `${amount}`;
+      let promise: Promise<any> = delegateRC(username, key, to, max_rc);
+      console.log('sign', promise)
+    };
+    
     const signKc = () => {
-      console.log("signKc")
-    }
+      const { activeUser } = props;
+      const username = activeUser?.username!;
+      const max_rc = `${amount}`;
+      let promise: Promise<any> = delegateRCKc(username, to, max_rc);
+      console.log("signKc", promise)
+    };
 
     const signHs = () => {
-      console.log("signHs")
-    }
+      const { activeUser } = props;
+      const username = activeUser?.username!;
+      const max_rc = `${amount}`;
+      delegateRCHot(username, to, max_rc);
+      console.log("signHs", username, to, max_rc)
+    };
 
     const reset = () => {
       console.log("reset")
-    }
+    };
 
     const finish = () => {
       console.log('finish')
-    }
-
-    const canSubmit = () => {
-      return (
-      toData && !toError && !amountError && !inProgress && parseFloat(amount) > 0
-      );
     };
 
+    const canSubmit = toData && !toError && !amountError && !inProgress && parseFloat(amount) > 0;
+    
     const checkAmount = () => {
   
       if (amount === "") {
@@ -132,10 +141,8 @@ export const ResourceCreditsDelegation = (props: any) => {
     const handleTo = (value:string) => {
       setInProgress(true);
 
-
       // console.log(_timer)
       console.log(value, 'in timer space')
-
       if (value === "") {
         setToWarning("")
         setToError("")
@@ -153,30 +160,7 @@ export const ResourceCreditsDelegation = (props: any) => {
             if (resp) {
               console.log({resp})
               setToError("");
-              setToData(resp);
-              // const { activeUser } = props
-  
-              // activeUser && activeUser.username &&
-              //   // Should update this to rc_delegation
-              //   getVestingDelegations(activeUser.username, to, 1000).then((res) => {
-              //     const delegateAccount =
-              //       res &&
-              //       res.length > 0 &&
-              //       res!.find(
-              //         (item) =>
-              //           (item as any).delegatee === to &&
-              //           (item as any).delegator === activeUser.username
-              //       );
-              //     const previousAmount = delegateAccount
-              //       ? Number(
-              //           formattedNumber(Number(resourceCredit))
-              //         )
-              //       : "";
-                 
-              //       setDelegationList(res as any[])
-              //       setAmount(previousAmount ? previousAmount.toString() : "0.001")                 
-              //   });
-           
+              setToData(resp);           
             } 
             else {
               console.log("not found")
@@ -191,7 +175,8 @@ export const ResourceCreditsDelegation = (props: any) => {
           .finally(() => {
            setInProgress(false);
           }); 
-    }
+    };
+
     const delayedSearch = useCallback(_.debounce(handleTo, 3000, { leading: true }), []);
 
     const formHeader1 = (
@@ -213,7 +198,7 @@ export const ResourceCreditsDelegation = (props: any) => {
         </div>
       </div>
     );
-
+    
     const formHeader3 = (
       <div className="transaction-form-header">
         <div className="step-no">3</div>
@@ -296,7 +281,7 @@ export const ResourceCreditsDelegation = (props: any) => {
                       placeholder={_t("transfer.amount-placeholder")}
                       value={amount}
                       onChange={amountChanged}
-                      className={amount > Number(resourceCredit) && amountError ? "is-invalid" : ""}
+                      className={Number(amount) > Number(resourceCredit) && amountError ? "is-invalid" : ""}
                     //   autoFocus={mode !== "transfer"}
                     />
                   </InputGroup>
@@ -305,7 +290,9 @@ export const ResourceCreditsDelegation = (props: any) => {
                   )} */}
                 </Col>
               </Form.Group>
+
                 {amountError && Number(amount) > Number(resourceCredit) && <FormText msg={amountError} type="danger" />}
+
               <Row>
                 <Col lg={{ span: 10, offset: 2 }}>
                   <div className="balance">
@@ -336,7 +323,7 @@ export const ResourceCreditsDelegation = (props: any) => {
               <Form.Group as={Row}>
                 <Col sm={{ span: 10, offset: 2 }}>
                   
-                  <Button disabled={canSubmit()} onClick={next}>
+                  <Button disabled={!canSubmit} onClick={next}>
                     {_t("g.next")}
                   </Button>
                 </Col>
@@ -344,6 +331,7 @@ export const ResourceCreditsDelegation = (props: any) => {
        </Form>
       </div>
       )}
+
       {step ===2 && (
        <div className="transaction-form">
        {formHeader2}
@@ -367,7 +355,6 @@ export const ResourceCreditsDelegation = (props: any) => {
              {amount} RC
            </div>
          </div>
-
          <div className="d-flex justify-content-center">
            <Button variant="outline-secondary" disabled={inProgress} onClick={back}>
              {_t("g.back")}
@@ -385,11 +372,10 @@ export const ResourceCreditsDelegation = (props: any) => {
       {step === 3 && (
         <div className="transaction-form">
         {formHeader3}
-        <div className="transaction-form">
-          {/* leading to a blank page at the moment , will have to check */}
+        <div className="transaction-form">        
           {KeyOrHot({
             ...props,
-            inProgress,
+            inProgress: true,
             onKey: sign,
             onHot: signHs,
             onKc: signKc
@@ -399,7 +385,6 @@ export const ResourceCreditsDelegation = (props: any) => {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-
                 setStep(2);
               }}
             >
@@ -409,7 +394,7 @@ export const ResourceCreditsDelegation = (props: any) => {
         </div>
       </div>
       )}
-
+      
       {step === 4 && (
         <div className="transaction-form">
         {formHeader4}
@@ -431,13 +416,11 @@ export const ResourceCreditsDelegation = (props: any) => {
         </div>
       </div>
       )}
-
     </div>
   )
 };
 
 const FormText = (props: { msg: any; type: any; }) => {
-  // {msg: any, type: "danger" | "warning" | "muted"}
   const { msg, type } = props
     return (
       <Row>
@@ -449,3 +432,4 @@ const FormText = (props: { msg: any; type: any; }) => {
       </Row>
     );
   }
+  

@@ -873,6 +873,63 @@ export const delegateVestingSharesKc = (
   return keychain.broadcast(delegator, [op], "Active");
 };
 
+export const delegateRC = (
+  delegator: string,
+  key: PrivateKey,
+  delegatee: string,
+  max_rc: string
+): Promise<TransactionConfirmation> => {
+  const json = JSON.stringify({
+      from: delegator,
+      delegatee: [delegatee],
+      max_rc
+  });
+
+  const op = {
+    id: "delegate_rc",
+    json,
+    required_auths: [delegator],
+    required_posting_auths: []
+  };
+
+  return hiveClient.broadcast.json(op, key);
+};
+
+export const delegateRCHot = (
+  delegator: string,
+  delegatee: string,
+  max_rc: string
+) => {
+  const params = {
+    authority: "active",
+    required_auths: `["${delegator}"]`,
+    required_posting_auths: "[]",
+    id: "delegate_rc",
+    json: JSON.stringify({
+      from: delegator,
+      delegatee: [delegatee],
+      max_rc
+    })
+  };
+  
+  return hotSign("custom-json", params, `@${delegator}/wallet`);
+};
+
+export const delegateRCKc = (
+  delegator: string,
+  delegatee: string,
+  max_rc: string
+) => {
+   const json = JSON.stringify({
+      from: delegator,
+      delegatee: [delegatee],
+      max_rc,
+  });
+  console.log(json)
+  
+  return keychain.customJson(delegator, "delegate_rc", "Posting", json, "RC Delegate");
+};
+
 export const withdrawVesting = (
   account: string,
   key: PrivateKey,

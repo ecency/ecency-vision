@@ -1,33 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Modal, Card, Row, Col, CardGroup } from "react-bootstrap";
+import { Button, Modal, Card, Row, Col } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { findRcAccounts } from "../../api/hive";
 import { ResourceCreditsDelegation } from "../rc-delegation"
-// import activeUser from '../../store/active-user';
-// import { Card } from "react-bootstrap"
-
 
 export const ResourceCreditsInfo = (props: any) => {
+
     const [showRcInfo, setShowRcInfo] = useState(false);
     const [delegated, setDelegated] = useState();
     const [receivedDelegation, setReceivedDelegation] = useState();
     const [resourceCredit, setresourceCredit] = useState();
     const [showDelegationModal, setShowDelegationModal] = useState(false)
-
     const { rcPercent, account, activeUser } = props;
 
     useEffect(() => {
         findRcAccounts(account.name).then((r) => {
             const delegated = r.map((a: any) => a.delegated_rc);
             setDelegated(delegated[0]);
-
             const availableResourceCredit: any = r.map((a: any) => a.rc_manabar.current_mana);
             setresourceCredit(availableResourceCredit);
-
             const receivedDel: any = r.map((a: any) => a.received_delegated_rc);
             setReceivedDelegation(receivedDel);
           })
-    });
+    }, []);
 
     const showModal = () => {
         setShowRcInfo(true);
@@ -41,11 +36,10 @@ export const ResourceCreditsInfo = (props: any) => {
       setShowDelegationModal(true);
       setShowRcInfo(false);
     }
-
+    
     const hideDelegation = () => {
       setShowDelegationModal(false);
     }
-
     
     const formHeader1 = (
       <div className="transaction-form-header">
@@ -56,25 +50,27 @@ export const ResourceCreditsInfo = (props: any) => {
         </div>
       </div>
     );
+
   return (
-    <div>
+      <div>
         <div className="progress" onClick={showModal}>
-        <div
+          <div
           className="progress-bar progress-bar-success"
           role="progressbar"
           style={{ width: `${rcPercent}%`,  cursor:"pointer" }}
-        >
+          >
           {_t("rc-info.available")}
-        </div>
-        <div
+          </div>
+          <div
           className="progress-bar progress-bar-danger"
           role="progressbar"
           style={{ width: `${100 - rcPercent}%`, cursor:"pointer" }}
-        >
+          >
           {_t("rc-info.used")}
-        </div>
+          </div>
       </div>
-        <Modal size='lg' width={'90%'}
+
+    <Modal size='lg' width={'90%'}
       animation={false}
       show={showRcInfo}
       centered={true}
@@ -82,7 +78,7 @@ export const ResourceCreditsInfo = (props: any) => {
       keyboard={false}
       className="purchase-qr-dialog"
       dialogClassName="modal-90w"
-    >
+      >
       <Modal.Header closeButton={true}>
         <Modal.Title>
           <span className="d-flex justify-content-center">
@@ -93,65 +89,66 @@ export const ResourceCreditsInfo = (props: any) => {
       <Modal.Body>
         <Row>
           <Col>
-          <Card className="d-flex justify-content-center">
-          <Card.Header>{_t("rc-info.resource-credit")}</Card.Header>
-          <Card.Body>
+            <Card className="d-flex justify-content-center">
+            <Card.Header>{_t("rc-info.resource-credit")}</Card.Header>
+            <Card.Body>
             {/* <Card.Title> Balance: </Card.Title> */}
             <Card.Text className="justify-content-center">
                {resourceCredit}
             </Card.Text>
-          </Card.Body>
-          </Card>
+            </Card.Body>
+            </Card>
           </Col>  
 
           <Col>
-          <Card className="d-flex justify-content-center">
-          <Card.Header>{_t("rc-info.rc-available")}</Card.Header>
-          <Card.Body>
+            <Card className="d-flex justify-content-center">
+            <Card.Header>{_t("rc-info.rc-available")}</Card.Header>
+            <Card.Body>
             {/* <Card.Title> Balance: </Card.Title> */}
             <Card.Text>
                {`${rcPercent}%`}
             </Card.Text>
-          </Card.Body>
-          </Card>
+            </Card.Body>
+            </Card>
           </Col>
 
           <Col>
-          <Card className="d-flex justify-content-center">            
-          <Card.Header>{_t("rc-info.rc-used")}</Card.Header>
-          <Card.Body>
+            <Card className="d-flex justify-content-center">            
+            <Card.Header>{_t("rc-info.rc-used")}</Card.Header>
+            <Card.Body>
             {/* <Card.Title> Balance: </Card.Title> */}
             <Card.Text>
                {`${(100 - rcPercent).toFixed(2)}%`}
             </Card.Text>
-          </Card.Body>
-          </Card>
+            </Card.Body>
+            </Card>
           </Col>
 
           <Col>
-          <Card className="d-flex justify-content-center">            
-          <Card.Header>{_t("rc-info.delegated")}</Card.Header>
-          <Card.Body>
+            <Card className="d-flex justify-content-center">            
+            <Card.Header>{_t("rc-info.delegated")}</Card.Header>
+            <Card.Body>
             {/* <Card.Title> Balance: </Card.Title> */}
             <Card.Text>
                {delegated}
             </Card.Text>
-          </Card.Body>
-          </Card>
+            </Card.Body>
+            </Card>
           </Col>
 
           <Col>
-          <Card className="d-flex justify-content-center">            
-          <Card.Header>{_t("rc-info.received-delegations")}</Card.Header>
-          <Card.Body>
+            <Card className="d-flex justify-content-center">            
+            <Card.Header>{_t("rc-info.received-delegations")}</Card.Header>
+            <Card.Body>
             {/* <Card.Title> Balance: </Card.Title> */}
             <Card.Text>
                {receivedDelegation}
             </Card.Text>
-          </Card.Body>
-          </Card>
+            </Card.Body>
+            </Card>
           </Col>
         </Row>  
+
         <div className="d-flex justify-content-center">
             <Button onClick={showDelegation}>
              {_t("rc-info.delegation-button")}
@@ -175,11 +172,10 @@ export const ResourceCreditsInfo = (props: any) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <ResourceCreditsDelegation activeUser={activeUser} resourceCredit={resourceCredit} />
+      <ResourceCreditsDelegation {...props} activeUser={activeUser} resourceCredit={resourceCredit} />
       </Modal.Body>
     </Modal>
-    </div>
-     
+    </div>     
     </div>
   );
 };
