@@ -1,5 +1,5 @@
 import { b64uEnc } from "../util/b64";
-import { APP_URL } from "../../client_config";
+import { appURL as APP_URL } from "../constants/defaults.json";
 
 export const getAuthUrl = (app: string, redir: string = `${window.location.origin}/auth`) => {
   const scope =

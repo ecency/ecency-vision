@@ -13,7 +13,7 @@ import isCommunity from "../helper/is-community";
 
 import TESTNET_SERVERS from "../constants/servers-testnet.json";
 import MAINNET_SERVERS from "../constants/servers.json";
-import { TEST_NET } from "../../client_config";
+import { testnet as TEST_NET } from "../constants/defaults.json";
 import { dataLimit } from "./bridge";
 import moment from "moment";
 

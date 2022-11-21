@@ -322,7 +322,11 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       });
   };
 
-  setActiveToken(newToken: string) {
+  setActiveToken(newToken: string, e: any) {
+    if (e) {
+      // @ts-ignore
+      e.preventDefault();
+    }
     this.setState({ transferAsset: newToken });
   }
 
@@ -519,7 +523,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                     const setThisActiveToken = this.setActiveToken.bind(this, b.symbol);
                     return (
                       <div className="entry-list-item" key={i}>
-                        <div className="entry-header" onClick={setThisActiveToken}>
+                        <a className="entry-header" onClick={setThisActiveToken}>
                           <img
                             alt={b.symbol}
                             src={imageSrc}
@@ -530,7 +534,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                             }}
                           />
                           {b.symbol}
-                        </div>
+                        </a>
 
                         <div
                           className={

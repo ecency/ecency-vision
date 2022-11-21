@@ -1,5 +1,5 @@
 import hs from "hivesigner";
-import { APP_URL } from "../../client_config";
+import { appURL as APP_URL } from "../constants/defaults.json";
 import { HIVE_API_NAME } from "./hive";
 
 import {
