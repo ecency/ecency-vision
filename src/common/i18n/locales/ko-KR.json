@@ -1081,6 +1081,10 @@
     "filter-no-match": "검색 결과 없음",
     "recently-used": "최근 사용"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "글쓰기",
     "page-description": "글을 게시하고, 보상을 받고, 무수정, 불변, 탈중앙화된 콘텐츠를 얻으세요!",
