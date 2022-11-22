@@ -156,6 +156,7 @@
     "login-info-1": "Ми не зберігаємо ваші приватні ключі.",
     "login-info-2": "Детальніше",
     "error-fields-required": "Будь ласка, введіть ім'я користувача та приватний ключ",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Ви ввели публічний ключ. Потрібен пароль/WIF",
     "error-user-fetch": "Не вдалося отримати дані користувача",
     "error-user-not-found": "Користувач не існує",
