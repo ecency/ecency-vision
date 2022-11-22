@@ -56,10 +56,6 @@ Feel free to test it out and submit improvements and pull requests.
 These are for values that the server or client code may both use. It must not be sensitive information yet it should be
 system-wide, and constant for this installation or site.
 
-###### APP_URL
-
-This should be the URL of the site. If you are running this testing, it should be "http://localhost" so hiveSigner redirects you back to localhost. The default is 'https://ecency.com'.
-
 ###### APP_DOMAIN
 
 This should be the URL of the site without the protocol part. The default is "ecency.com".
@@ -86,6 +82,8 @@ In order to validate a login, and do posting level operations, this software rel
 ##### Edit "default" values
 
 If you are setting up your own website other than Ecency.com, you can still leave the value `base` as "https://ecency.com". However, you should change `name`, `title` and `twitterHandle`. There are also a lot of static pages that are Ecency specific.
+The 'appURL' member should be the URL of the front end you are running. If you are running this testing, it should be "http://localhost" so hiveSigner redirects you back to localhost. The default is 'https://ecency.com'.
+The testnet member should be set to false, unless you want to use a Hive testnet
 
 ##### Start website in dev
 
