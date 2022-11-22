@@ -156,6 +156,7 @@
     "login-info-1": "Мы не храним ваши приватные ключи.",
     "login-info-2": "Подробнее",
     "error-fields-required": "Пожалуйста, введите имя пользователя и приватный ключ",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Вы ввели публичный ключ, а нужен приватный или пароль",
     "error-user-fetch": "Данные пользователя не могут быть получены",
     "error-user-not-found": "Пользователь не существует",
