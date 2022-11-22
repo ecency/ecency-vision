@@ -156,6 +156,7 @@
     "login-info-1": "نحن لا نخزن مفاتيحك الخاصة.",
     "login-info-2": "مزيد من المعلومات",
     "error-fields-required": "الرجاء إدخال اسم المستخدم والمفتاح الخاص",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "لقد أدخلت مفتاحًا عامًا. مطلوب كلمة المرور/WIF",
     "error-user-fetch": "تعذر جلب بيانات المستخدم",
     "error-user-not-found": "المستخدم غير موجود",
