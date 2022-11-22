@@ -472,7 +472,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                             </div>
                           </div>
 
-                          <div>
+                          <div className="mr-3">
                             {priceChange?.map((x: any, i: any) =>{
                             const changeValue = parseFloat(x?.priceChangePercent)
                             return (
