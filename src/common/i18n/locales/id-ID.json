@@ -156,6 +156,7 @@
     "login-info-1": "Kami tidak menyimpan private key Anda.",
     "login-info-2": "Info lebih lanjut",
     "error-fields-required": "Silahkan masukkan nama pengguna dan private key",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Anda memasukkan Public Key. Password/WIF yang diperlukan",
     "error-user-fetch": "Data pengguna tidak dapat diambil",
     "error-user-not-found": "Pengguna tidak ada",
