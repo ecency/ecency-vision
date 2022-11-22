@@ -70,7 +70,9 @@ In order to validate a login, and do posting level operations, this software rel
 
 Also for URLs other than https://ecency.com\_...
 
-If you are setting up your own website other than Ecency.com, the value `base` **must not** be "https://ecency.com". It should be set to whatever the URL of your webserver's host. The `base` can be changed in the file `src/common/constants.json`. Also you should change `name`, `title` and `twitterHandle`. There are also a lot of static pages that are Ecency specific.
+If you are setting up your own website other than Ecency.com, you can still leave the value `base` as "https://ecency.com". However, you should change `name`, `title` and `twitterHandle`. There are also a lot of static pages that are Ecency specific.
+The 'appURL' member should be the URL of the front end you are running. If you are running this testing, it should be "http://localhost" so hiveSigner redirects you back to localhost. The default is 'https://ecency.com'.
+The testnet member should be set to false, unless you want to use a Hive testnet
 
 ##### Start website in dev
 
