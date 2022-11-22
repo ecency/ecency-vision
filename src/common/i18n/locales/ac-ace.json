@@ -156,6 +156,7 @@
     "login-info-1": "Kamoe hana meukubah gunci pribadi droeneuh.",
     "login-info-2": "Info leubeeh lee",
     "error-fields-required": "Tulong neu peutamoeng nan nyang neu pakek ngon gunci pribadi",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Droeneuh peutameung gunci umum. Nyang perlee password/WIF",
     "error-user-fetch": "Data nyang neu pakek hana jeut cok",
     "error-user-not-found": "Hana nyang pakek",
