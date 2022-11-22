@@ -1082,8 +1082,8 @@
     "recently-used": "Usada recientemente"
   },
   "gif-picker": {
-    "filter-placeholder": "Filter",
-    "credits": "Powered by GIPHY"
+    "filter-placeholder": "Filtro",
+    "credits": "Con tecnología de GIPHY"
   },
   "submit": {
     "page-title": "Crear un post",
