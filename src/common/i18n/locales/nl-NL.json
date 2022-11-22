@@ -156,7 +156,7 @@
     "login-info-1": "We slaan je privé sleutels niet op.",
     "login-info-2": "Meer info",
     "error-fields-required": "Voer aub gebruikersnaam en prive sleutel in",
-    "captcha-check-required": "Please verify if you are a human",
+    "captcha-check-required": "Bevestig dat u geen robot bent",
     "error-public-key": "Je gebruikte de openbare sleutel. Wachtwoord/ WIF benodigd",
     "error-user-fetch": "Gebruikersgegevens konden niet worden opgehaald",
     "error-user-not-found": "Gebruiker bestaat niet",
