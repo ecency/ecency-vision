@@ -156,6 +156,7 @@
     "login-info-1": "Biz sizning shaxsiy kalitingizni saqlamaymiz.",
     "login-info-2": "Ko'proq ma'lumot",
     "error-fields-required": "Iltimos foydalanuvchi nomi va shaxsiy kalitingizni kiriting",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Siz ochiq kalitni kiritdingiz. Parol/WIF talab qilinadi",
     "error-user-fetch": "Foydalanuvchi maʼlumotlarini olib boʻlmadi",
     "error-user-not-found": "Foydalanuvchi mavjud emas",
