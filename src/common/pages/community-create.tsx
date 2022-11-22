@@ -35,6 +35,7 @@ import { connect } from "react-redux";
 import NavBar from "../components/navbar";
 import LoginRequired from "../components/login-required";
 import KeyOrHot from "../components/key-or-hot";
+import { base } from "../constants/defaults.json";
 
 const namePattern = "^hive-[1]\\d{4,6}$";
 interface CreateState {
@@ -153,13 +154,15 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
     postingKey: PrivateKey;
   }) => {
     const { ownerKey, activeKey, postingKey } = keys;
+    const { global } = this.props;
+    const { hsClientId } = global;
 
     return {
       ownerAuthority: Authority.from(ownerKey.createPublic()),
       activeAuthority: Authority.from(activeKey.createPublic()),
       postingAuthority: {
         ...Authority.from(postingKey.createPublic()),
-        account_auths: [["ecency.app", 1]]
+        account_auths: [[hsClientId, 1]]
       } as Authority
     };
   };
@@ -188,8 +191,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
 
   submit = async () => {
     const { activeUser, global } = this.props;
-    const { hsClientId } = global;
     const { username, creatorKey } = this.state;
+    const { hsClientId } = global;
     if (!activeUser || !creatorKey) return;
 
     this.stateSet({ inProgress: true, progress: _t("communities-create.progress-account") });
@@ -247,7 +250,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         },
         posting: {
           weight_threshold: 1,
-          account_auths: [["ecency.app", 1]],
+          account_auths: [[hsClientId, 1]],
           key_auths: [[keys.postingKey.createPublic().toString(), 1]]
         },
         memo_key: keys.memoKey.createPublic().toString(),
@@ -348,9 +351,9 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
   };
 
   submitHot = async () => {
+    const { global } = this.props;
+    const { hsClientId } = global;
     const { username, title, about } = this.state;
-    const { hsClientId } = this.props.global;
-
     const keys = this.makePrivateKeys();
     const auths = this.makeAuthorities(keys);
     const operation = this.makeOperation(auths, keys.memoKey);

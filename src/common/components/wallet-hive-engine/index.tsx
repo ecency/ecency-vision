@@ -22,9 +22,9 @@ import {
   getHiveEngineTokenBalances,
   getUnclaimedRewards,
   getTokenDelegations,
-  TokenStatus,
   DelegationEntry,
-  getMetrics
+  getMetrics,
+  TokenStatus
 } from "../../api/hive-engine";
 
 import {
@@ -521,7 +521,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                     const setThisActiveToken = this.setActiveToken.bind(this, b.symbol);
                     return (
                       <div className="entry-list-item" key={i}>
-                        <a className="entry-header" onClick={setThisActiveToken}>
+                        <div className="entry-header">
                           <img
                             alt={b.symbol}
                             src={imageSrc}
@@ -531,8 +531,10 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                               target.src = fallbackImage;
                             }}
                           />
-                          <button className="card-link">{b.symbol}</button>
-                        </a>
+                          <button className="card-link" onClick={setThisActiveToken}>
+                            {b.symbol}
+                          </button>
+                        </div>
 
                         <div
                           className={

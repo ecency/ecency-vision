@@ -4,7 +4,6 @@ npm-debug.log*
 .DS_Store
 .idea
 cache
-
 coverage
 node_modules
 build
@@ -13,11 +12,7 @@ public/static
 .env.development.local
 .env.test.local
 .env.production.local
-
-src/config.ts
 .vscode
-
 dev.sh
-src/client_config.ts
 *~
 *.marks

@@ -1,5 +1,6 @@
 import hs from "hivesigner";
-import { appURL as APP_URL } from "../constants/defaults.json";
+// so far using browser only front end code to determine the redirect URL hasn't broken any tests
+// import { appURL } from "../constants/defaults.json";
 import { HIVE_API_NAME } from "./hive";
 
 import {
@@ -399,7 +400,9 @@ export const transferHot = (from: string, to: string, amount: string, memo: stri
     }
   ];
 
-  const params: Parameters = { callback: `${APP_URL}/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -491,7 +494,9 @@ export const transferToSavingsHot = (from: string, to: string, amount: string, m
     }
   ];
 
-  const params: Parameters = { callback: `${APP_URL}/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -590,7 +595,9 @@ export const limitOrderCreateHot = (
   ];
 
   const params: Parameters = {
-    callback: `${APP_URL}/market${idPrefix === OrderIdPrefix.SWAP ? "#swap" : ""}`
+    callback: `${document.location.protocol}//${document.location.host}/market${
+      idPrefix === OrderIdPrefix.SWAP ? "#swap" : ""
+    }`
   };
   return hs.sendOperation(op, params, () => {});
 };
@@ -604,7 +611,9 @@ export const limitOrderCancelHot = (owner: string, orderid: number) => {
     }
   ];
 
-  const params: Parameters = { callback: `${APP_URL}/market` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/market`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -680,7 +689,9 @@ export const convertHot = (owner: string, amount: string) => {
     }
   ];
 
-  const params: Parameters = { callback: `${APP_URL}/@${owner}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${owner}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -799,7 +810,9 @@ export const transferFromSavingsHot = (from: string, to: string, amount: string,
     }
   ];
 
-  const params: Parameters = { callback: `${APP_URL}/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -867,7 +880,9 @@ export const claimInterestHot = (from: string, to: string, amount: string, memo:
     }
   ];
 
-  const params: Parameters = { callback: `${APP_URL}/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperations([op, cop], params, () => {});
 };
 
@@ -983,7 +998,9 @@ export const transferToVesting = (
 export const transferToVestingHot = (from: string, to: string, amount: string) => {
   const op: Operation = createTransferToVestingOp(from, to, amount);
 
-  const params: Parameters = { callback: `${APP_URL}/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -1055,7 +1072,9 @@ export const delegateVestingSharesHot = (
   const parts = vestingShares.split(/ /);
   const currency = parts[parts.length - 1];
   const quantity = parts[0].replace(/,/g, "");
-  const params: Parameters = { callback: `${APP_URL}/@${delegator}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${delegator}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -1179,7 +1198,9 @@ export const setWithdrawVestingRouteHot = (
     }
   ];
 
-  const params: Parameters = { callback: `${APP_URL}/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 

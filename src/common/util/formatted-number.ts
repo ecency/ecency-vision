@@ -9,6 +9,7 @@ interface Options {
   prefix?: string;
   suffix?: string;
   debug?: boolean;
+  truncate?: boolean;
 }
 function count0s(s: string) {
   let counter = 0;
@@ -31,7 +32,8 @@ export default (value: number | string, options: Options | undefined = undefined
     prefix: "",
     suffix: "",
     debug: false,
-    separators: true
+    separators: true,
+    truncate: false
   };
   if (options) {
     opts = { ...opts, ...options };
@@ -45,7 +47,7 @@ export default (value: number | string, options: Options | undefined = undefined
       prefix: options?.prefix,
       suffix: options?.suffix
     });
-  const { prefix, suffix, debug, separators } = opts;
+  const { prefix, suffix, debug, separators, truncate } = opts;
   const minFD: number = options?.minimumFractionDigits ?? options?.fractionDigits ?? 3;
   const maxFD: number = options?.maximumFractionDigits ?? options?.fractionDigits ?? 3;
   if (debugLog) {
@@ -64,7 +66,8 @@ export default (value: number | string, options: Options | undefined = undefined
     if (value < 0) {
       addNegativeSignFlag = true;
     }
-    let satoshis: number = Math.floor(unity * value) * (addNegativeSignFlag ? -1 : 1);
+    let satoshis: number =
+      Math.floor(unity * value + (truncate ? 0 : 0.5)) * (addNegativeSignFlag ? -1 : 1);
     if (satoshis == 0) {
       addNegativeSignFlag = false;
     }

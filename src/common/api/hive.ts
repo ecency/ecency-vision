@@ -11,24 +11,19 @@ import parseAsset from "../helper/parse-asset";
 import { vestsToRshares } from "../helper/vesting";
 import isCommunity from "../helper/is-community";
 
-import TESTNET_SERVERS from "../constants/servers-testnet.json";
 import MAINNET_SERVERS from "../constants/servers.json";
-import { testnet as TEST_NET } from "../constants/defaults.json";
 import { dataLimit } from "./bridge";
 import moment from "moment";
 
-const SERVERS = TEST_NET ? TESTNET_SERVERS : MAINNET_SERVERS;
-export const CHAIN_ID = TEST_NET
-  ? "18dcf0a285365fc58b71f18b3d3fec954aa0c141c44e4e5cb4cf777b9eab274e"
-  : DEFAULT_CHAIN_ID.toString("hex");
-export const ADDRESS_PREFIX = TEST_NET ? "TST" : DEFAULT_ADDRESS_PREFIX;
-export const HIVE_API_NAME = TEST_NET ? "TESTS" : "HIVE";
-export const DOLLAR_API_NAME = TEST_NET ? "TBD" : "HBD";
+export const CHAIN_ID = DEFAULT_CHAIN_ID.toString("hex");
+export const ADDRESS_PREFIX = DEFAULT_ADDRESS_PREFIX;
+export const HIVE_API_NAME = "HIVE";
+export const DOLLAR_API_NAME = "HBD";
 export const HIVE_LANGUAGE_KEY = HIVE_API_NAME.toLowerCase();
-export const HIVE_HUMAN_NAME = TEST_NET ? "Tests" : "Hive";
-export const HIVE_HUMAN_NAME_UPPERCASE = TEST_NET ? "TESTS" : "HIVE";
+export const HIVE_HUMAN_NAME = "Hive";
+export const HIVE_HUMAN_NAME_UPPERCASE = "HIVE";
 export const DOLLAR_HUMAN_NAME = DOLLAR_API_NAME;
-export const client = new Client(SERVERS, {
+export const client = new Client(MAINNET_SERVERS, {
   timeout: 4000,
   failoverThreshold: 10,
   consoleOnFailover: true,

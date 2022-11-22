@@ -5,7 +5,7 @@ import WalletHiveEngine from "./index";
 import TestRenderer from "react-test-renderer";
 
 import { initialState as transactionsInitialState } from "../../store/transactions/index";
-
+import { createBrowserHistory } from "history";
 import {
   globalInstance,
   dynamicPropsIntance1,
@@ -15,7 +15,6 @@ import {
 } from "../../helper/test-helper";
 import { StaticRouter } from "react-router-dom";
 import { FullAccount } from "../../store/accounts/types";
-import { createBrowserHistory } from "history";
 
 let MOCK_MODE = 1;
 

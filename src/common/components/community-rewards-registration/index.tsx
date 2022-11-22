@@ -22,6 +22,7 @@ import {
 import { getRewardedCommunities } from "../../api/private-api";
 
 import { _t } from "../../i18n";
+import { base } from "../../constants/defaults.json";
 
 interface Props {
   global: Global;
