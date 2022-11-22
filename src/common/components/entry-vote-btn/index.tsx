@@ -122,12 +122,19 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   }
 
   setSliderOptionsAndWidth = (): void => {
-    if (this.upSliderRef.current?.offsetWidth) {
-      this.setState({ upSliderLineWidth: this.upSliderRef.current?.offsetWidth });
-    }
-    if (this.downSliderRef.current?.offsetWidth) {
-      this.setState({ downSliderLineWidth: this.downSliderRef.current?.offsetWidth });
-    }
+    const upTimeout = setTimeout(() => {
+      if (this.upSliderRef.current?.offsetWidth) {
+        this.setState({ upSliderLineWidth: this.upSliderRef.current?.offsetWidth });
+        clearTimeout(upTimeout);
+      }
+    }, 5);
+
+    const downTimeout = setTimeout(() => {
+      if (this.downSliderRef.current?.offsetWidth) {
+        this.setState({ downSliderLineWidth: this.downSliderRef.current?.offsetWidth });
+        clearTimeout(downTimeout);
+      }
+    }, 5);
 
     if (window.innerWidth < 1600) {
       this.setState({ sliderLabelData: [25, 50, 75] });
@@ -309,18 +316,8 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       return (
         <div key={option} className="options" style={{ maxWidth: sldierOptionsWidth }}>
           <span
-            className="dots"
-            style={{
-              marginLeft: "9px",
-              width: "10px",
-              height: "10px",
-              background: markerColour,
-              borderRadius: "8px",
-              display: "block",
-              position: "absolute",
-              top: "21px",
-              pointerEvents: "none"
-            }}
+            className={"dots" + (mode == "down" ? " dots-negative" : "")}
+            style={{ background: markerColour }}
             onClick={() => this.setState({ upSliderVal: option })}
           ></span>
           <p
@@ -391,21 +388,9 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 />
 
                 <datalist id="slider-range-values">
-                  <div className="options">
-                    <p
-                      style={{ justifyContent: "flex-start !important" }}
-                      onClick={() => this.setState({ upSliderVal: 0 })}
-                    >
-                      0
-                    </p>
-                  </div>
+                  <div className="options"></div>
                   {this.displaySliderOptions(true, mode)}
-                  <p
-                    style={{ fontSize: "15px" }}
-                    onClick={() => this.setState({ upSliderVal: 100 })}
-                  >
-                    100
-                  </p>
+                  <div className="options"></div>
                 </datalist>
               </div>
               <div className="percentage">{`${upSliderVal && upSliderVal.toFixed(1)}%`}</div>
@@ -452,7 +437,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               </div>
               <span
                 className="line-slider negative-line-slider"
-                style={{ width: downSliderWidth - 11 }}
+                style={{ width: downSliderWidth }}
               ></span>
               <div className="slider slider-down">
                 <Form.Control
@@ -469,21 +454,9 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   ref={this.downSliderRef}
                 />
                 <datalist id="slider-range-values">
-                  <div className="options">
-                    <p
-                      style={{ justifyContent: "flex-start !important" }}
-                      onClick={() => this.setState({ downSliderVal: -1.0 })}
-                    >
-                      -1
-                    </p>
-                  </div>
+                  <div className="options"></div>
                   {this.displaySliderOptions(false, mode)}
-                  <p
-                    style={{ fontSize: "15px" }}
-                    onClick={() => this.setState({ downSliderVal: -100 })}
-                  >
-                    -100
-                  </p>
+                  <div className="options"></div>
                 </datalist>
               </div>
               <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>

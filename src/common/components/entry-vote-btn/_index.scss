@@ -489,7 +489,7 @@ datalist {
 
 .line-slider{
   position: absolute;
-  top: 24px;
+  top: 24.5px;
   height: 3px;
   background: #357ce6;
   left: 115px;
@@ -500,5 +500,20 @@ datalist {
 .negative-line-slider{
   background: #e54e24;
   z-index: 100;
-  
+  top: 25.5px !important ;
+}
+
+.dots{
+  margin-left: 9px;
+  width: 10px;
+  height: 10px;
+  border-radius: 8px;
+  display: block;
+  position: absolute;
+  top: 21.3px;
+  pointer-events: none;
+}
+
+.dots-negative{
+  top: 21.5px !important; 
 }
