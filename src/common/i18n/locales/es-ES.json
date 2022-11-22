@@ -156,6 +156,7 @@
     "login-info-1": "No almacenamos sus claves privadas.",
     "login-info-2": "Más información",
     "error-fields-required": "Por favor introduce el usuario y la contraseña",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Has introducido una clave pública. La contraseña / WIF es requerida",
     "error-user-fetch": "Los datos del usuario no se pudieron recuperar",
     "error-user-not-found": "El usuario no existe",
