@@ -15,7 +15,6 @@ import {
 } from "../../helper/test-helper";
 import { StaticRouter } from "react-router-dom";
 import { FullAccount } from "../../store/accounts/types";
-import { createBrowserHistory } from "history";
 
 let MOCK_MODE = 1;
 

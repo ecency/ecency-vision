@@ -23,7 +23,8 @@ import {
   getUnclaimedRewards,
   getTokenDelegations,
   DelegationEntry,
-  getMetrics
+  getMetrics,
+  TokenStatus
 } from "../../api/hive-engine";
 
 import {
