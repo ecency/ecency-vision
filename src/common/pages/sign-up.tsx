@@ -79,6 +79,10 @@ class SignUpPage extends Component<PageProps, State> {
     signUp(username, email, referral)
       .then((resp) => {
         this.setState({ inProgress: false });
+        if (!this.state.isVerified) {
+          error(_t("login.checkbox-checked-required"));
+          return;
+        }
         if (resp && resp.data && resp.data.code) {
           error(resp.data.message);
         } else {
