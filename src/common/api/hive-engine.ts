@@ -148,3 +148,13 @@ export const stakeTokens = async (
 
   return broadcastPostingJSON(account, "ssc-mainnet-hive", json);
 };
+
+export const getMarketData = async (symbol: any) => {
+  const { data: history } = await axios.get(
+      `https://info-api.tribaldex.com/market/ohlcv`,
+      {
+        params: { symbol, interval: 'daily' },
+      },
+      );
+      return history;
+    }

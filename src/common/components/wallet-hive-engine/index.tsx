@@ -296,9 +296,9 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                           {b.symbol}
                         </div>
                              
-                        <div className="d-flex">
+                        {!global?.isMobile && (<div className="d-flex">
                           <HiveEngineChart items={b}/>
-                        </div>
+                        </div>)}
                         
                         <div className="ml-auto d-flex flex-column justify-between">
                           <div className="d-flex mb-1 align-self-end">
