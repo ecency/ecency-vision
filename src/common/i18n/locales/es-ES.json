@@ -186,6 +186,11 @@
   "trending-tags": {
     "title": "Temas"
   },
+  "sort-trending-tags": {
+    "sort": "Ordenar",
+    "ascending": "Ascendente",
+    "descending": "Descendente"
+  },
   "selected-tags": {
     "title": "Destacado"
   },
@@ -355,7 +360,11 @@
     "orders": "Órdenes",
     "date": "Fecha",
     "open-orders": "Órdenes abiertas",
+    "pending-orders": "Órdenes Pendientes",
     "type": "Tipo",
+    "mode-limit": "Límite",
+    "mode-swap": "Intercambiar",
+    "mode-advanced": "Avanzado",
     "action": "Acción",
     "trade-history": "Historial de Intercambios",
     "stock-params": "Parámetros",
@@ -368,7 +377,30 @@
     "confirm-sell": "Valores",
     "transaction-succeeded": "Transacción enviada",
     "lowest-ask": "Pedido más bajo",
-    "decimal-error": "¡Sólo se permiten {{decimals}} dígitos decimales!"
+    "decimal-error": "¡Sólo se permiten {{decimals}} dígitos decimales!",
+    "from": "Desde",
+    "to": "A",
+    "sign": "Firmar",
+    "swapping": "Intercambiando...",
+    "continue": "Continuar",
+    "balance": "Balance",
+    "fee": "Comisión",
+    "fee-free": "Gratis",
+    "order-book-impact": "Impacto de la cartera de pedidos",
+    "swap-title": "Intercambiar tus fondos",
+    "sign-title": "Firmar tu transacción",
+    "fetching-market": "Obteniendo mercado...",
+    "back": "Regresar",
+    "swap-by": "Firmar por {{method}}",
+    "success-title": "Transacción completada",
+    "more-than-balance": "Ha introducido más que el saldo disponible",
+    "invalid-amount": "Invalidado por la cantidad. Por favor, introduce un valor menor",
+    "too-much-slippage": "¡Te recomendamos que reduzcas la cantidad para un mejor precio!",
+    "auth-required-title": "Se requiere autorización",
+    "auth-required-desc": "Tienes que estar autorizado para intercambiar fondos propios",
+    "start-new-one": "Iniciar nuevo Intercambio",
+    "success-swap": "¡Intercambiado con éxito!",
+    "signing": "Firmando.."
   },
   "list-style": {
     "title": "Alternar estilo de líneas"
@@ -626,7 +658,8 @@
     "hive-power-apr-rate": "La tasa de interés APR para Hive Power es de {{value}}%",
     "hive-dollars-apr-rate": "La tasa de interés APR para HBD($) es {{value}}%",
     "hive-dollars-apr-claim": "Interés estimado desde el último pago {{value}}:",
-    "hive-dollars-apr-when": "Reclamar en {{value}} días",
+    "hive-dollars-apr-day": "Reclamar en {{value}} días",
+    "hive-dollars-apr-hour": "Reclamar en {{value}} horas",
     "hive-dollars-apr-now": "Reclamar ahora",
     "hive-power-delegated": "Hive Power delegado",
     "hive-power-received": "Hive power recibido",
@@ -735,6 +768,20 @@
     "token": "Token",
     "balance": "Balance",
     "staked": "Depositados"
+  },
+  "sort-engine-tokens": {
+    "sort": "Ordenar",
+    "sort-in-ascending": "Ascendente",
+    "sort-in-descending": "Descendente",
+    "sort-by-value": "Valor",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Estaca",
+    "sort-by-delegations-in": "Delegaciones recibidas",
+    "sort-by-delegations-out": "Delegaciones emitidas"
+  },
+  "wallet-engine-estimated": {
+    "title": "Valor de fichas estimadas",
+    "description": "El valor aproximado en Dólar de EE.UU. para todos las fichas del motor en tu cartera."
   },
   "withdraw-routes": {
     "title": "Cuentas de retirada",
@@ -1115,6 +1162,7 @@
     "mention-post": "{{source}} te ha mencionado en una publicación",
     "mention-comment": "{{source}} te mencionó en un comentario",
     "favorite": "{{source}} hizo una nueva publicación",
+    "bookmark": "{{source}} respondió a una publicación marcada como favorita",
     "followed": "{{source}} te siguió",
     "replied": "{{source}} te respondió",
     "reblogged": "{{source}} ha reblogueado tu publicación",
@@ -1132,11 +1180,13 @@
     "type-transfers": "Transacciones",
     "type-delegations": "Delegaciones",
     "type-nfavorites": "Favoritos",
+    "type-nbookmarks": "Marcadores",
     "group-title-recent": "Recientes",
     "vote-str": "{{p}}% votó tu publicación:",
     "reply-str": "contestó a tu publicación:",
     "mention-str": "te mencionó en:",
     "favorite-str": "crear nuevo post",
+    "bookmark-str": "respondió a una publicación marcada como favorita",
     "followed-str": "seguido",
     "unfollowed-str": "dejar de seguir",
     "ignored-str": "ignorar",

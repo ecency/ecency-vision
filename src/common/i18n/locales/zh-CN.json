@@ -186,6 +186,11 @@
   "trending-tags": {
     "title": "主题"
   },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
+  },
   "selected-tags": {
     "title": "精选"
   },
@@ -355,7 +360,11 @@
     "orders": "Orders",
     "date": "Date",
     "open-orders": "Open Orders",
+    "pending-orders": "Pending orders",
     "type": "Type",
+    "mode-limit": "Limit",
+    "mode-swap": "Swap",
+    "mode-advanced": "Advanced",
     "action": "Action",
     "trade-history": "Trade History",
     "stock-params": "Params",
@@ -368,7 +377,30 @@
     "confirm-sell": "Values",
     "transaction-succeeded": "Transaction submitted",
     "lowest-ask": "Lowest ask",
-    "decimal-error": "Only {{decimals}} decimal digits allowed!"
+    "decimal-error": "Only {{decimals}} decimal digits allowed!",
+    "from": "From",
+    "to": "To",
+    "sign": "Sign",
+    "swapping": "Swapping...",
+    "continue": "Continue",
+    "balance": "Balance",
+    "fee": "Fee",
+    "fee-free": "Free",
+    "order-book-impact": "Order book impact",
+    "swap-title": "Swap your funds",
+    "sign-title": "Sign your transaction",
+    "fetching-market": "Fetching market...",
+    "back": "Back",
+    "swap-by": "Sign by {{method}}",
+    "success-title": "Transaction completed",
+    "more-than-balance": "You've entered more than available balance",
+    "invalid-amount": "Invalid from amount. Please, enter less value",
+    "too-much-slippage": "We highly recommend you to reduce amount for better pricing!",
+    "auth-required-title": "Authorization required",
+    "auth-required-desc": "You have to be authorized to swap own funds",
+    "start-new-one": "Start new Swap",
+    "success-swap": "Successfully swapped!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "切换列表样式"
@@ -626,7 +658,8 @@
     "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
-    "hive-dollars-apr-when": "Claim in {{value}} days",
+    "hive-dollars-apr-day": "Claim in {{value}} days",
+    "hive-dollars-apr-hour": "Claim in {{value}} hours",
     "hive-dollars-apr-now": "Claim now",
     "hive-power-delegated": "已委托的 Hive Power",
     "hive-power-received": "已接收的 Hive Power",
@@ -735,6 +768,20 @@
     "token": "Token",
     "balance": "Balance",
     "staked": "Staked"
+  },
+  "sort-engine-tokens": {
+    "sort": "Sort",
+    "sort-in-ascending": "Ascending",
+    "sort-in-descending": "Descending",
+    "sort-by-value": "Value",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Stake",
+    "sort-by-delegations-in": "Delegations in",
+    "sort-by-delegations-out": "Delegations out"
+  },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
   },
   "withdraw-routes": {
     "title": "提取账户",
@@ -1115,6 +1162,7 @@
     "mention-post": "{{source}} 在帖子中提到了你",
     "mention-comment": "{{source}} 在评论中提到你",
     "favorite": "{{source}} made new post",
+    "bookmark": "{{source}} replied to bookmarked content",
     "followed": "{{source}} 关注你",
     "replied": "{{source}} 回复了你",
     "reblogged": "{{source}} 转发了您的帖子",
@@ -1132,11 +1180,13 @@
     "type-transfers": "转账",
     "type-delegations": "Delegations",
     "type-nfavorites": "Favorites",
+    "type-nbookmarks": "Bookmarks",
     "group-title-recent": "最近",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "回复了您的文章:",
     "mention-str": "提到了您:",
     "favorite-str": "made new post",
+    "bookmark-str": "replied to bookmarked content",
     "followed-str": "已关注",
     "unfollowed-str": "取消关注",
     "ignored-str": "已忽略",
