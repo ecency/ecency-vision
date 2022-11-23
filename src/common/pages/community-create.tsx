@@ -154,13 +154,15 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
     postingKey: PrivateKey;
   }) => {
     const { ownerKey, activeKey, postingKey } = keys;
+    const { global } = this.props;
+    const { hsClientId } = global;
 
     return {
       ownerAuthority: Authority.from(ownerKey.createPublic()),
       activeAuthority: Authority.from(activeKey.createPublic()),
       postingAuthority: {
         ...Authority.from(postingKey.createPublic()),
-        account_auths: [["ecency.app", 1]]
+        account_auths: [[hsClientId, 1]]
       } as Authority
     };
   };
@@ -221,7 +223,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
   };
 
   submitKc = async () => {
-    const { global, activeUser } = this.props;
+    const { activeUser, global } = this.props;
     const { hsClientId } = global;
     const { username, fee } = this.state;
     if (!activeUser) return;
@@ -248,7 +250,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         },
         posting: {
           weight_threshold: 1,
-          account_auths: [["ecency.app", 1]],
+          account_auths: [[hsClientId, 1]],
           key_auths: [[keys.postingKey.createPublic().toString(), 1]]
         },
         memo_key: keys.memoKey.createPublic().toString(),

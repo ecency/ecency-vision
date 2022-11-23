@@ -29,6 +29,37 @@ exports[`(1) Render an empty list when no tokens found 1`] = `
         </div>
       </div>
       <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Tokens Value
+          </div>
+          <div
+            className="description"
+          >
+            The approximate US Dollar value for all engine tokens in your wallet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            <span>
+               
+              $0.00
+               
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
         className="entry-list"
       >
         <div
@@ -185,37 +216,47 @@ exports[`(2) Render with some hive engine tokens 1`] = `
         </div>
       </div>
       <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Tokens Value
+          </div>
+          <div
+            className="description"
+          >
+            The approximate US Dollar value for all engine tokens in your wallet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            <span>
+               
+              $NaN
+               
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
         className="entry-list"
       >
         <div
           className="entry-list-body"
         >
-          <span
-            onClick={[Function]}
-          >
-            <img
-              alt="PIZZA"
-              className="tiny-image"
-              onError={[Function]}
-              src="https://images.ecency.com/p/3W72119s5BjVs3HydwUQEFR8AX8qeAgo5bzGeBm1Z97PoTy3MZXBcU4dHbscesjnrTfYqRnK5SzfhSYmuC72yxZ4h1S8WRzei3xyiS6WMKQuEqhbYBH45L.png?format=match&mode=fit"
-            />
-          </span>
-          <span
-            onClick={[Function]}
-          >
-            <img
-              alt="POB"
-              className="tiny-image"
-              onError={[Function]}
-              src="https://images.ecency.com/p/PB8ro82ZpZP35bVGjGoE93K3E4U5KX8KtMBJ2ri7FNATqDaPEut9xHWgvGv6BTaMCo6hfe1xpWWm8boHg2sF5xFppQLrBqWLJGnp3idmz4VWXr2A.png?format=match&mode=fit"
-            />
-          </span>
           <div
             className="entry-list-item"
           >
             <div
               className="entry-header"
-              onClick={[Function]}
             >
               <img
                 alt="PIZZA"
@@ -223,7 +264,12 @@ exports[`(2) Render with some hive engine tokens 1`] = `
                 onError={[Function]}
                 src="https://images.ecency.com/p/3W72119s5BjVs3HydwUQEFR8AX8qeAgo5bzGeBm1Z97PoTy3MZXBcU4dHbscesjnrTfYqRnK5SzfhSYmuC72yxZ4h1S8WRzei3xyiS6WMKQuEqhbYBH45L.png?format=match&mode=fit"
               />
-              PIZZA
+              <button
+                className="card-link"
+                onClick={[Function]}
+              >
+                PIZZA
+              </button>
             </div>
             <div
               className="ml-auto d-flex flex-column justify-between"
@@ -273,7 +319,6 @@ exports[`(2) Render with some hive engine tokens 1`] = `
           >
             <div
               className="entry-header"
-              onClick={[Function]}
             >
               <img
                 alt="POB"
@@ -281,7 +326,12 @@ exports[`(2) Render with some hive engine tokens 1`] = `
                 onError={[Function]}
                 src="https://images.ecency.com/p/PB8ro82ZpZP35bVGjGoE93K3E4U5KX8KtMBJ2ri7FNATqDaPEut9xHWgvGv6BTaMCo6hfe1xpWWm8boHg2sF5xFppQLrBqWLJGnp3idmz4VWXr2A.png?format=match&mode=fit"
               />
-              POB
+              <button
+                className="card-link"
+                onClick={[Function]}
+              >
+                POB
+              </button>
             </div>
             <div
               className="ml-auto d-flex flex-column justify-between"
@@ -471,7 +521,7 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
           <span
             className="reward-type"
           >
-            0.008,835,85 POB
+            0.008,835,86 POB
           </span>
         </div>
       </div>
@@ -494,37 +544,47 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
         </div>
       </div>
       <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Tokens Value
+          </div>
+          <div
+            className="description"
+          >
+            The approximate US Dollar value for all engine tokens in your wallet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            <span>
+               
+              $NaN
+               
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
         className="entry-list"
       >
         <div
           className="entry-list-body"
         >
-          <span
-            onClick={[Function]}
-          >
-            <img
-              alt="PIZZA"
-              className="tiny-image"
-              onError={[Function]}
-              src="https://images.ecency.com/p/3W72119s5BjVs3HydwUQEFR8AX8qeAgo5bzGeBm1Z97PoTy3MZXBcU4dHbscesjnrTfYqRnK5SzfhSYmuC72yxZ4h1S8WRzei3xyiS6WMKQuEqhbYBH45L.png?format=match&mode=fit"
-            />
-          </span>
-          <span
-            onClick={[Function]}
-          >
-            <img
-              alt="POB"
-              className="tiny-image"
-              onError={[Function]}
-              src="https://images.ecency.com/p/PB8ro82ZpZP35bVGjGoE93K3E4U5KX8KtMBJ2ri7FNATqDaPEut9xHWgvGv6BTaMCo6hfe1xpWWm8boHg2sF5xFppQLrBqWLJGnp3idmz4VWXr2A.png?format=match&mode=fit"
-            />
-          </span>
           <div
             className="entry-list-item"
           >
             <div
               className="entry-header"
-              onClick={[Function]}
             >
               <img
                 alt="PIZZA"
@@ -532,7 +592,12 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
                 onError={[Function]}
                 src="https://images.ecency.com/p/3W72119s5BjVs3HydwUQEFR8AX8qeAgo5bzGeBm1Z97PoTy3MZXBcU4dHbscesjnrTfYqRnK5SzfhSYmuC72yxZ4h1S8WRzei3xyiS6WMKQuEqhbYBH45L.png?format=match&mode=fit"
               />
-              PIZZA
+              <button
+                className="card-link"
+                onClick={[Function]}
+              >
+                PIZZA
+              </button>
             </div>
             <div
               className="ml-auto d-flex flex-column justify-between"
@@ -582,7 +647,6 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
           >
             <div
               className="entry-header"
-              onClick={[Function]}
             >
               <img
                 alt="POB"
@@ -590,7 +654,12 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
                 onError={[Function]}
                 src="https://images.ecency.com/p/PB8ro82ZpZP35bVGjGoE93K3E4U5KX8KtMBJ2ri7FNATqDaPEut9xHWgvGv6BTaMCo6hfe1xpWWm8boHg2sF5xFppQLrBqWLJGnp3idmz4VWXr2A.png?format=match&mode=fit"
               />
-              POB
+              <button
+                className="card-link"
+                onClick={[Function]}
+              >
+                POB
+              </button>
             </div>
             <div
               className="ml-auto d-flex flex-column justify-between"
@@ -785,6 +854,37 @@ exports[`(4) Render an empty list if tokens equals zero 1`] = `
         </div>
       </div>
       <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Tokens Value
+          </div>
+          <div
+            className="description"
+          >
+            The approximate US Dollar value for all engine tokens in your wallet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            <span>
+               
+              $NaN
+               
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
         className="entry-list"
       >
         <div
@@ -937,6 +1037,37 @@ exports[`(5) usePrivate = false 1`] = `
             className="description"
           >
             Hive Engine is a smart contracts side-chain platform for the Hive blockchain.
+          </div>
+        </div>
+      </div>
+      <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Tokens Value
+          </div>
+          <div
+            className="description"
+          >
+            The approximate US Dollar value for all engine tokens in your wallet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            <span>
+               
+              $NaN
+               
+            </span>
           </div>
         </div>
       </div>

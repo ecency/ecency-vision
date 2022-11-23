@@ -115,7 +115,7 @@ exports[`(1) Default Render 1`] = `
               onClick={[Function]}
               title="Received Hive Power"
             >
-              + 5.094 HP
+              + 5.095 HP
             </span>
           </div>
           <div
@@ -261,7 +261,7 @@ exports[`(1) Default Render 1`] = `
           <div
             className="amount amount-bold"
           >
-            $ 11,264.461
+            $ 11,264.462
           </div>
         </div>
       </div>
@@ -583,7 +583,7 @@ exports[`(2) Render with converting HBD 1`] = `
               onClick={[Function]}
               title="Received Hive Power"
             >
-              + 5.094 HP
+              + 5.095 HP
             </span>
           </div>
           <div
@@ -755,7 +755,7 @@ exports[`(2) Render with converting HBD 1`] = `
           <div
             className="amount amount-bold"
           >
-            $ 12,464.461
+            $ 12,464.462
           </div>
         </div>
       </div>
@@ -1076,7 +1076,7 @@ exports[`(3) usePrivate = false 1`] = `
               className="amount"
               title="Received Hive Power"
             >
-              + 5.094 HP
+              + 5.095 HP
             </span>
           </div>
           <div
@@ -1248,7 +1248,7 @@ exports[`(3) usePrivate = false 1`] = `
           <div
             className="amount amount-bold"
           >
-            $ 12,464.461
+            $ 12,464.462
           </div>
         </div>
       </div>

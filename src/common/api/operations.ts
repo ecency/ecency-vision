@@ -1,5 +1,6 @@
 import hs from "hivesigner";
-import { base } from "../constants/defaults.json";
+// so far using browser only front end code to determine the redirect URL hasn't broken any tests
+// import { appURL } from "../constants/defaults.json";
 import { HIVE_API_NAME } from "./hive";
 
 import {
@@ -55,6 +56,11 @@ export interface CommentOptions {
   max_accepted_payout: string;
   percent_hbd: number;
   extensions: Array<[0, { beneficiaries: BeneficiaryRoute[] }]>;
+}
+
+export enum OrderIdPrefix {
+  EMPTY = "",
+  SWAP = "9"
 }
 
 export type RewardType = "default" | "sp" | "dp";
@@ -394,7 +400,9 @@ export const transferHot = (from: string, to: string, amount: string, memo: stri
     }
   ];
 
-  const params: Parameters = { callback: `${base}/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -486,7 +494,9 @@ export const transferToSavingsHot = (from: string, to: string, amount: string, m
     }
   ];
 
-  const params: Parameters = { callback: `${base}/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -508,7 +518,8 @@ export const limitOrderCreate = (
   key: PrivateKey,
   amount_to_sell: any,
   min_to_receive: any,
-  orderType: TransactionType
+  orderType: TransactionType,
+  idPrefix = OrderIdPrefix.EMPTY
 ): Promise<TransactionConfirmation> => {
   let expiration: any = new Date(Date.now());
   expiration.setDate(expiration.getDate() + 27);
@@ -517,7 +528,11 @@ export const limitOrderCreate = (
   const op: Operation = [
     "limit_order_create",
     {
-      orderid: Math.floor(Date.now() / 1000),
+      orderid: Number(
+        `${idPrefix}${Math.floor(Date.now() / 1000)
+          .toString()
+          .slice(1)}`
+      ),
       owner: owner,
       amount_to_sell: `${
         orderType === TransactionType.Buy ? amount_to_sell.toFixed(3) : min_to_receive.toFixed(3)
@@ -553,7 +568,8 @@ export const limitOrderCreateHot = (
   owner: string,
   amount_to_sell: any,
   min_to_receive: any,
-  orderType: TransactionType
+  orderType: TransactionType,
+  idPrefix = OrderIdPrefix.EMPTY
 ) => {
   let expiration: any = new Date();
   expiration.setDate(expiration.getDate() + 27);
@@ -561,7 +577,11 @@ export const limitOrderCreateHot = (
   const op: Operation = [
     "limit_order_create",
     {
-      orderid: Math.floor(Date.now() / 1000),
+      orderid: Number(
+        `${idPrefix}${Math.floor(Date.now() / 1000)
+          .toString()
+          .slice(1)}`
+      ),
       owner: owner,
       amount_to_sell: `${
         orderType === TransactionType.Buy ? amount_to_sell.toFixed(3) : min_to_receive.toFixed(3)
@@ -574,7 +594,11 @@ export const limitOrderCreateHot = (
     }
   ];
 
-  const params: Parameters = { callback: `${base}/market` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/market${
+      idPrefix === OrderIdPrefix.SWAP ? "#swap" : ""
+    }`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -587,7 +611,9 @@ export const limitOrderCancelHot = (owner: string, orderid: number) => {
     }
   ];
 
-  const params: Parameters = { callback: `${base}/market` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/market`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -595,7 +621,8 @@ export const limitOrderCreateKc = (
   owner: string,
   amount_to_sell: any,
   min_to_receive: any,
-  orderType: TransactionType
+  orderType: TransactionType,
+  idPrefix: OrderIdPrefix = OrderIdPrefix.EMPTY
 ) => {
   let expiration: any = new Date();
   expiration.setDate(expiration.getDate() + 27);
@@ -603,7 +630,11 @@ export const limitOrderCreateKc = (
   const op: Operation = [
     "limit_order_create",
     {
-      orderid: Math.floor(Date.now() / 1000),
+      orderid: Number(
+        `${idPrefix}${Math.floor(Date.now() / 1000)
+          .toString()
+          .slice(1)}`
+      ),
       owner: owner,
       amount_to_sell: `${
         orderType === TransactionType.Buy ? amount_to_sell.toFixed(3) : min_to_receive.toFixed(3)
@@ -658,7 +689,9 @@ export const convertHot = (owner: string, amount: string) => {
     }
   ];
 
-  const params: Parameters = { callback: `${base}/@${owner}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${owner}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -777,7 +810,9 @@ export const transferFromSavingsHot = (from: string, to: string, amount: string,
     }
   ];
 
-  const params: Parameters = { callback: `${base}/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -845,7 +880,9 @@ export const claimInterestHot = (from: string, to: string, amount: string, memo:
     }
   ];
 
-  const params: Parameters = { callback: `${base}/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperations([op, cop], params, () => {});
 };
 
@@ -961,7 +998,9 @@ export const transferToVesting = (
 export const transferToVestingHot = (from: string, to: string, amount: string) => {
   const op: Operation = createTransferToVestingOp(from, to, amount);
 
-  const params: Parameters = { callback: `${base}/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -1033,7 +1072,9 @@ export const delegateVestingSharesHot = (
   const parts = vestingShares.split(/ /);
   const currency = parts[parts.length - 1];
   const quantity = parts[0].replace(/,/g, "");
-  const params: Parameters = { callback: `${base}/@${delegator}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${delegator}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 
@@ -1157,7 +1198,9 @@ export const setWithdrawVestingRouteHot = (
     }
   ];
 
-  const params: Parameters = { callback: `${base}/@${from}/wallet` };
+  const params: Parameters = {
+    callback: `${document.location.protocol}//${document.location.host}/@${from}/wallet`
+  };
   return hs.sendOperation(op, params, () => {});
 };
 

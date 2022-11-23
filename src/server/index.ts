@@ -12,8 +12,9 @@ import fallbackHandler, { healthCheck, iosURI, androidURI, nodeList } from "./ha
 import { entryRssHandler, authorRssHandler } from "./handlers/rss";
 import * as http from "http";
 import * as net from "net";
-
 import * as authApi from "./handlers/auth-api";
+import { cleanURL, authCheck, stripLastSlash } from "./util";
+import { coingeckoHandler } from "./handlers/coingecko.handler";
 import config from "../config";
 import defaults from "../common/constants/defaults.json";
 
@@ -21,38 +22,8 @@ const server = express();
 
 const entryFilters = Object.values(EntryFilter);
 const profileFilters = Object.values(ProfileFilter);
-
-const cleanURL = (req: any, res: any, next: any) => {
-  if (req.url.includes("//")) {
-    res.redirect(req.url.replace(new RegExp("/{2,}", "g"), "/"));
-  }
-  if (req.url.includes("-hs?code")) {
-    next();
-  } else if (req.url !== req.url.toLowerCase() && !req.url.includes("auth?code")) {
-    res.redirect(301, req.url.toLowerCase());
-  } else {
-    next();
-  }
-};
-
-const stripLastSlash = (req: any, res: any, next: any) => {
-  if (req.path.substr(-1) === "/" && req.path.length > 1) {
-    let query = req.url.slice(req.path.length);
-    res.redirect(301, req.path.slice(0, -1) + query);
-  } else {
-    next();
-  }
-};
 const configurationError =
   "Set USE_PRIVATE=1 or define HIVESIGNER_ID and HIVESIGNER_SECRET ENV and make sure base in defaults is set to the base URL for this host";
-
-const authCheck = (req: any, res: any, next: any) => {
-  if (config.hsClientId && config.hsClientSecret && config.usePrivate !== "1") {
-    next();
-  } else {
-    res.json({ error: configurationError });
-  }
-};
 
 server
   .disable("x-powered-by")
@@ -119,7 +90,8 @@ server
 
   // Health check script for docker swarm
   .get("^/healthcheck.json$", healthCheck)
-
+  // CoinGecko market rate API
+  .get("^/coingecko/api/v3/simple/price$", coingeckoHandler)
   // For all others paths
   .get("*", fallbackHandler);
 

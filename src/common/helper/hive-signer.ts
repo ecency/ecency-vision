@@ -1,5 +1,5 @@
 import { b64uEnc } from "../util/b64";
-import { base } from "../constants/defaults.json";
+import { appURL } from "../constants/defaults.json";
 
 export const getAuthUrl = (
   hsClientId: string,
@@ -80,7 +80,7 @@ export const buildHotSignUrl = (
 ): any => {
   const _params = {
     ...params,
-    redirect_uri: `${base}/${redirect}`
+    redirect_uri: `${appURL}/${redirect}`
   };
 
   const queryString = new URLSearchParams(_params).toString();

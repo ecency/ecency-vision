@@ -10,6 +10,8 @@
   "locale": "en-US",
   "base": "https://ecency.com",
   "site": "https://www.proofofbrain.blog",
+  "appURL": "https://www.proofofbrain.blog",
+  "testnet": false,
   "imageServer": "https://images.ecency.com",
   "nwsServer": "wss://enotify.esteem.app",
   "name": "Proof of Brain",
