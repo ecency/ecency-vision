@@ -398,6 +398,8 @@
     "advanced": {
       "history": "History",
       "stake": "Stake",
+      "pairs": "Pairs",
+      "form": "Trading form",
       "history-widget": {
         "price": "Price",
         "amount": "Amount",

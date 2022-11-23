@@ -12,7 +12,7 @@ export const DEFAULT_LAYOUT: Layout = {
     },
     {
       size: "collapsed",
-      rows: [{ widgetType: Widget.Pairs }, { widgetType: Widget.History }]
+      rows: [{ widgetType: Widget.History }]
     }
   ]
 };

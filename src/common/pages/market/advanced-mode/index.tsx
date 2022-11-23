@@ -12,10 +12,16 @@ import { MarketObserver } from "./pairs";
 import { DayChange } from "./types/day-change.type";
 import { DAY_CHANGE_DEFAULT } from "./consts/day-change.const";
 import { OrdersData } from "../../../api/hive";
+import { ActiveUser } from "../../../store/active-user/types";
+import { Global } from "../../../store/global/types";
+import { UserBalanceObserver } from "./user-balance-observer";
 
-interface Props {}
+interface Props {
+  activeUser: ActiveUser | null;
+  global: Global;
+}
 
-export const AdvancedMode = ({}: Props) => {
+export const AdvancedMode = ({ activeUser, global }: Props) => {
   const [layout, setLayout] = useState<Layout>(DEFAULT_LAYOUT);
   const [fromAsset, setFromAsset] = useState(MarketAsset.HIVE);
   const [toAsset, setToAsset] = useState(MarketAsset.HBD);
@@ -23,6 +29,8 @@ export const AdvancedMode = ({}: Props) => {
   const [price, setPrice] = useState(0);
   const [usdPrice, setUsdPrice] = useState(0);
   const [history, setHistory] = useState<OrdersData | null>(null);
+  const [buyBalance, setBuyBalance] = useState<string>("0");
+  const [sellBalance, setSellBalance] = useState<string>("0");
 
   const getGridColumns = () => {
     let cssGridColumns = "";
@@ -39,6 +47,12 @@ export const AdvancedMode = ({}: Props) => {
         toAsset={toAsset}
         onDayChange={(dayChange) => setDayChange(dayChange)}
         onHistoryChange={(history) => setHistory(history)}
+      />
+      <UserBalanceObserver
+        activeUser={activeUser}
+        fromAsset={fromAsset}
+        setBuyBalance={(v) => setBuyBalance(v)}
+        setSellBalance={(v) => setSellBalance(v)}
       />
       <AdvancedModeToolbar
         fromAsset={fromAsset}
@@ -61,7 +75,15 @@ export const AdvancedMode = ({}: Props) => {
                 case Widget.Pairs:
                   return <PairsWidget />;
                 case Widget.TradingForm:
-                  return <TradingFormWidget />;
+                  return (
+                    <TradingFormWidget
+                      activeUser={activeUser}
+                      global={global}
+                      dayChange={dayChange}
+                      buyBalance={buyBalance}
+                      sellBalance={sellBalance}
+                    />
+                  );
                 case Widget.TradingView:
                   return <TradingViewWidget />;
                 default:
