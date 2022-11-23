@@ -91,8 +91,7 @@ export const ResourceCreditsInfo = (props: any) => {
           <Col>
             <Card className="d-flex justify-content-center">
             <Card.Header>{_t("rc-info.resource-credit")}</Card.Header>
-            <Card.Body>
-            {/* <Card.Title> Balance: </Card.Title> */}
+            <Card.Body className="card-body">
             <Card.Text className="justify-content-center">
                {resourceCredit}
             </Card.Text>
@@ -103,8 +102,7 @@ export const ResourceCreditsInfo = (props: any) => {
           <Col>
             <Card className="d-flex justify-content-center">
             <Card.Header>{_t("rc-info.rc-available")}</Card.Header>
-            <Card.Body>
-            {/* <Card.Title> Balance: </Card.Title> */}
+            <Card.Body className="card-body">
             <Card.Text>
                {`${rcPercent}%`}
             </Card.Text>
@@ -115,8 +113,7 @@ export const ResourceCreditsInfo = (props: any) => {
           <Col>
             <Card className="d-flex justify-content-center">            
             <Card.Header>{_t("rc-info.rc-used")}</Card.Header>
-            <Card.Body>
-            {/* <Card.Title> Balance: </Card.Title> */}
+            <Card.Body className="card-body">
             <Card.Text>
                {`${(100 - rcPercent).toFixed(2)}%`}
             </Card.Text>
@@ -127,8 +124,7 @@ export const ResourceCreditsInfo = (props: any) => {
           <Col>
             <Card className="d-flex justify-content-center">            
             <Card.Header>{_t("rc-info.delegated")}</Card.Header>
-            <Card.Body>
-            {/* <Card.Title> Balance: </Card.Title> */}
+            <Card.Body className="card-body">
             <Card.Text>
                {delegated}
             </Card.Text>
@@ -139,8 +135,7 @@ export const ResourceCreditsInfo = (props: any) => {
           <Col>
             <Card className="d-flex justify-content-center">            
             <Card.Header>{_t("rc-info.received-delegations")}</Card.Header>
-            <Card.Body>
-            {/* <Card.Title> Balance: </Card.Title> */}
+            <Card.Body className="card-body">
             <Card.Text>
                {receivedDelegation}
             </Card.Text>
@@ -149,7 +144,7 @@ export const ResourceCreditsInfo = (props: any) => {
           </Col>
         </Row>  
 
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center mt-3">
             <Button onClick={showDelegation}>
              {_t("rc-info.delegation-button")}
             </Button> 
@@ -172,7 +167,7 @@ export const ResourceCreditsInfo = (props: any) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <ResourceCreditsDelegation {...props} activeUser={activeUser} resourceCredit={resourceCredit} />
+      <ResourceCreditsDelegation {...props} activeUser={activeUser} resourceCredit={resourceCredit} hideDelegation={hideDelegation}  />
       </Modal.Body>
     </Modal>
     </div>     

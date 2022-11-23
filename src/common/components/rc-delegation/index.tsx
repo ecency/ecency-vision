@@ -24,7 +24,7 @@ import { PrivateKey } from '@hiveio/dhive';
 import { setSigningKey } from "../../store/signing-key";
 
 export const ResourceCreditsDelegation = (props: any) => {
-    const { resourceCredit, activeUser } = props
+    const { resourceCredit, activeUser, hideDelegation } = props
     
     const [to, setTo] = useState<string>('');
     const [amount, setAmount] = useState<string>('');
@@ -123,7 +123,7 @@ export const ResourceCreditsDelegation = (props: any) => {
     };
 
     const finish = () => {
-      console.log('finish')
+      hideDelegation();
     };
 
     const canSubmit = toData && !toError && !amountError && !inProgress && parseFloat(amount) > 0;
@@ -161,8 +161,6 @@ export const ResourceCreditsDelegation = (props: any) => {
     const handleTo = (value:string) => {
       setInProgress(true);
 
-      // console.log(_timer)
-      console.log(value, 'in timer space')
       if (value === "") {
         setToWarning("")
         setToError("")
