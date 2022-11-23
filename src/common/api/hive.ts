@@ -352,6 +352,16 @@ export const getVestingDelegations = (
 ): Promise<DelegatedVestingShare[]> =>
   client.database.call("get_vesting_delegations", [username, from, limit]);
 
+export const getRCDelegations = async (
+  from: string,
+  to: string = "",
+  limit: number = 50
+): Promise<any[]> => { 
+   const data = await client.call('rc_api', 'list_rc_direct_delegations', {start:[from, to], limit: limit});
+  console.log(data)
+  return data;      
+}
+
 export interface Witness {
   total_missed: number;
   url: string;

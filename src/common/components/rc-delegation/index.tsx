@@ -17,7 +17,8 @@ import {
   DelegatedVestingShare,
   getAccount,
   getAccountFull,
-  getVestingDelegations
+  getVestingDelegations,
+  getRCDelegations
 } from "../../api/hive";
 import { PrivateKey } from '@hiveio/dhive';
 
@@ -36,6 +37,7 @@ export const ResourceCreditsDelegation = (props: any) => {
     const [delegationList, setDelegationList] = useState<any>([]);
 
     useEffect(() => {
+      getRCDelegations(activeUser.username, "")
       // checkAmount();
       console.log({props})
       return () => console.log('unmounting')
