@@ -306,6 +306,9 @@ exports[`(2) Render with some hive engine tokens 1`] = `
                   </div>
                 </div>
               </div>
+              <div
+                className="mr-3"
+              />
             </div>
           </div>
           <div
@@ -362,6 +365,9 @@ exports[`(2) Render with some hive engine tokens 1`] = `
                   </div>
                 </div>
               </div>
+              <div
+                className="mr-3"
+              />
             </div>
           </div>
         </div>
@@ -622,6 +628,9 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
                   </div>
                 </div>
               </div>
+              <div
+                className="mr-3"
+              />
             </div>
           </div>
           <div
@@ -678,6 +687,9 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
                   </div>
                 </div>
               </div>
+              <div
+                className="mr-3"
+              />
             </div>
           </div>
         </div>
