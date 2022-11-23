@@ -21,6 +21,7 @@ import {
   getRCDelegations
 } from "../../api/hive";
 import { PrivateKey } from '@hiveio/dhive';
+import { setSigningKey } from "../../store/signing-key";
 
 export const ResourceCreditsDelegation = (props: any) => {
     const { resourceCredit, activeUser } = props
@@ -39,6 +40,7 @@ export const ResourceCreditsDelegation = (props: any) => {
     useEffect(() => {
       getRCDelegations(activeUser.username, "")
       // checkAmount();
+      getRCDelegations(activeUser.username, '')
       console.log({props})
       return () => console.log('unmounting')
     }, []);
@@ -64,6 +66,7 @@ export const ResourceCreditsDelegation = (props: any) => {
 
     const next = () => {
       // const fixedAmount = formatNumber(amount, 3);
+      setInProgress(false)
       setStep(2);
       // setAmount(fixedAmount)
       };
@@ -73,6 +76,7 @@ export const ResourceCreditsDelegation = (props: any) => {
       };
 
     const confirm = () => {
+      setInProgress(false)
       setStep(3)
     };
 
@@ -80,24 +84,38 @@ export const ResourceCreditsDelegation = (props: any) => {
       const { activeUser } = props;
       const username = activeUser?.username!;
       const max_rc = `${amount}`;
-      let promise: Promise<any> = delegateRC(username, key, to, max_rc);
-      console.log('sign', promise)
-    };
+      delegateRC(username, key, to, max_rc).then(
+        (res: any) => {
+          console.log({res})
+          return res;
+        }
+      ).catch((e: any) => {
+        console.log({e})
+        return e;
+      });
+    }
     
     const signKc = () => {
       const { activeUser } = props;
       const username = activeUser?.username!;
       const max_rc = `${amount}`;
-      let promise: Promise<any> = delegateRCKc(username, to, max_rc);
-      console.log("signKc", promise)
-    };
+      delegateRCKc(username, to, max_rc).then(
+        (res: any) => {
+          setStep(4);
+        }
+      ).catch((err: any) => {
+        console.log('err', err)
+        setStep(4);
+      });
+    }
 
     const signHs = () => {
       const { activeUser } = props;
       const username = activeUser?.username!;
       const max_rc = `${amount}`;
-      delegateRCHot(username, to, max_rc);
+      delegateRCHot(username, to, max_rc)
       console.log("signHs", username, to, max_rc)
+      setStep(4);
     };
 
     const reset = () => {
@@ -156,7 +174,8 @@ export const ResourceCreditsDelegation = (props: any) => {
         } else {
           setToWarning("")
         }    
-        setToData(null);         
+        setToData(null);   
+        getRCDelegations(activeUser.username, value)      
         return getAccount(value)
           .then((resp) => {
             if (resp) {
@@ -377,7 +396,8 @@ export const ResourceCreditsDelegation = (props: any) => {
         <div className="transaction-form">        
           {KeyOrHot({
             ...props,
-            inProgress: true,
+            inProgress,
+            setSigningKey,
             onKey: sign,
             onHot: signHs,
             onKc: signKc
@@ -434,4 +454,3 @@ const FormText = (props: { msg: any; type: any; }) => {
       </Row>
     );
   }
-  
