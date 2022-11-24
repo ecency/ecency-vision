@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, MouseEventHandler } from "react";
 
 import { Form, FormControl } from "react-bootstrap";
 
@@ -27,6 +27,7 @@ import _c from "../../util/fix-class-names";
 import { chevronDownSvgForSlider, chevronUpSvgForSlider, chevronUpSvgForVote } from "../../img/svg";
 import ClickAwayListener from "../clickaway-listener";
 import { _t } from "../../i18n";
+import VotingSlider from "../entry-vote-slider";
 
 const setVoteValue = (
   type: "up" | "down" | "downPrevious" | "upPrevious",
@@ -69,6 +70,7 @@ interface VoteDialogState {
   upSliderLineWidth: number;
   downSliderLineWidth: number;
   sliderLabelData: Array<number>;
+  moving: Boolean;
 }
 
 const initialSliderLabelList: Array<number> = [10, 20, 30, 40, 50, 60, 70, 80, 90];
@@ -105,7 +107,8 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     },
     upSliderLineWidth: 0,
     downSliderLineWidth: 0,
-    sliderLabelData: initialSliderLabelList
+    sliderLabelData: initialSliderLabelList,
+    moving: false
   };
   private upSliderRef: React.RefObject<HTMLInputElement>;
   private downSliderRef: React.RefObject<HTMLInputElement>;
@@ -197,10 +200,8 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     return voteValue * sign;
   };
 
-  upSliderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-    const {
-      target: { id, value }
-    } = e;
+  // upSliderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  upSliderChanged = (value: number) => {
     const upSliderVal = Number(value);
     const { initialVoteValues } = this.state;
     const { upVoted } = this.props;
@@ -215,10 +216,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     });
   };
 
-  downSliderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-    const {
-      target: { id, value }
-    } = e;
+  // downSliderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+  downSliderChanged = (value: number) => {
+    //   const {
+    //     target: { id, value }
+    //   } = e;
     const downSliderVal = Number(value);
     const { initialVoteValues } = this.state;
     const { upVoted, downVoted } = this.props;
@@ -301,45 +303,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     }
   };
 
-  displaySliderOptions = (sign: boolean, mode: string) => {
-    return this.state.sliderLabelData.map((option: number) => {
-      let sliderMarginOffset = (option / 100) * 6.25;
-      var markerColour: string;
-      if (mode == "up") {
-        markerColour = this.state.upSliderVal >= option ? "#357ce6" : "#b7b2b2";
-      } else {
-        markerColour = Math.abs(this.state.downSliderVal) >= option ? "#e54e24" : "#b7b2b2";
-      }
-
-      var sldierOptionsWidth = this.state.sliderLabelData[0] == 10 ? "10%" : "25%";
-
-      return (
-        <div key={option} className="options" style={{ maxWidth: sldierOptionsWidth }}>
-          <span
-            className={"dots" + (mode == "down" ? " dots-negative" : "")}
-            style={{ background: markerColour }}
-            onClick={() => this.setState({ upSliderVal: option })}
-          ></span>
-          <p
-            key={option}
-            style={{ marginLeft: sliderMarginOffset }}
-            onClick={() => this.setSliderValueOnLabelClick(sign, option)}
-          >
-            {sign ? option : -option}
-          </p>
-        </div>
-      );
-    });
-  };
-
-  setSliderValueOnLabelClick = (sign: boolean, value: number): void => {
-    if (sign) {
-      this.setState({ upSliderVal: value });
-    } else {
-      this.setState({ downSliderVal: -value });
-    }
-  };
-
   render() {
     const {
       upSliderVal,
@@ -353,9 +316,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const {
       entry: { post_id, id }
     } = this.props;
-
-    var upSliderWidth = (this.state.upSliderLineWidth * upSliderVal) / 100 - 5;
-    var downSliderWidth = (this.state.downSliderLineWidth * Math.abs(downSliderVal)) / 100 - 5;
 
     return (
       <>
@@ -371,27 +331,8 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               <div className="estimated">
                 <FormattedCurrency {...this.props} value={this.estimate(upSliderVal)} fixAt={3} />
               </div>
-              <span className="line-slider" style={{ width: upSliderWidth }}></span>
               <div className="slider slider-up">
-                <Form.Control
-                  list="slider-range-values"
-                  autoFocus={true}
-                  type="range"
-                  custom={true}
-                  step={0.1}
-                  min={0}
-                  max={100}
-                  value={upSliderVal}
-                  onChange={this.upSliderChanged}
-                  id={`${post_id || id}`}
-                  ref={this.upSliderRef}
-                />
-
-                <datalist id="slider-range-values">
-                  <div className="options"></div>
-                  {this.displaySliderOptions(true, mode)}
-                  <div className="options"></div>
-                </datalist>
+                <VotingSlider value={upSliderVal} setVoteValue={this.upSliderChanged} mode={mode} />
               </div>
               <div className="percentage">{`${upSliderVal && upSliderVal.toFixed(1)}%`}</div>
               <div
@@ -435,29 +376,12 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               <div className="estimated">
                 <FormattedCurrency {...this.props} value={this.estimate(downSliderVal)} fixAt={3} />
               </div>
-              <span
-                className="line-slider negative-line-slider"
-                style={{ width: downSliderWidth }}
-              ></span>
               <div className="slider slider-down">
-                <Form.Control
-                  type="range"
-                  list="slider-range-values"
-                  custom={true}
-                  step={0.1}
-                  min={-100}
-                  max={-1}
+                <VotingSlider
                   value={downSliderVal}
-                  onChange={this.downSliderChanged}
-                  id={`${post_id || id}`}
-                  className="reverse-range"
-                  ref={this.downSliderRef}
+                  setVoteValue={this.downSliderChanged}
+                  mode={mode}
                 />
-                <datalist id="slider-range-values">
-                  <div className="options"></div>
-                  {this.displaySliderOptions(false, mode)}
-                  <div className="options"></div>
-                </datalist>
               </div>
               <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
               <div

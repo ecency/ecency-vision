@@ -1,0 +1,50 @@
+.slide{
+    height: 11px;
+    border-radius: 15px;
+    width: 100%;
+    background-color: #e7e7e7;
+    cursor: pointer;
+}
+
+.slider-dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 8px;
+    display: block;
+    // position: absolute;
+    // top: 21.3px;
+    pointer-events: none;
+  }
+  .pointer-dot{
+    width: 15px !important;
+    height: 15px !important;
+    top: -2.5px;
+    position: relative;
+  }
+
+  .dots-container{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: -15px;
+    pointer-events: none;
+  }
+
+  .label-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    text-align: left;
+  }
+
+  .slider-line{
+    height: 3px;
+    max-width: 100%;
+    pointer-events: none;
+    position: relative;
+    top: 7px;
+  }
+
+  .dots-negative{
+    top: 21.5px !important; 
+  }
