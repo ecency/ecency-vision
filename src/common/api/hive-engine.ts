@@ -43,7 +43,7 @@ export interface TokenStatus {
   precision: number;
 }
 
-const HIVE_ENGINE_RPC_URL = "https://api.hive-engine.com/rpc/contracts";
+const HIVE_ENGINE_RPC_URL = engine.engineRpcUrl;
 
 export const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
   const data = {
@@ -108,9 +108,10 @@ export const getHiveEngineTokenBalances = async (account: string): Promise<HiveE
 };
 
 export const getUnclaimedRewards = async (account: string): Promise<TokenStatus[]> => {
+  const rewardsUrl = engine.engineRewardsUrl;
   return (
     axios
-      .get(`https://scot-api.hive-engine.com/@${account}?hive=1`)
+      .get(`${rewardsUrl}/@${account}?hive=1`)
       .then((r) => r.data)
       .then((r) => Object.values(r))
       .then((r) => r.filter((t) => (t as TokenStatus).pending_token > 0)) as any
