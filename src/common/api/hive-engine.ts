@@ -2,6 +2,7 @@ import axios from "axios";
 import HiveEngineToken from "../helper/hive-engine-wallet";
 import { TransactionConfirmation } from "@hiveio/dhive";
 import { broadcastPostingJSON } from "./operations";
+import engine from "../constants/engine.json";
 
 interface TokenBalance {
   symbol: string;
@@ -180,8 +181,9 @@ export const getMetrics: any = async (symbol?: any, account?: any) => {
   };  
   
 export const getMarketData = async (symbol: any) => {
+  const url: any = engine.chartApi
   const { data: history } = await axios.get(
-    `https://info-api.tribaldex.com/market/ohlcv`,
+    `${url}`,
     {
       params: { symbol, interval: 'daily' },
     },
