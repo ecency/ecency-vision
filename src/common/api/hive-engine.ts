@@ -164,13 +164,13 @@ export const getMetrics: any = async (symbol?: any, account?: any) => {
     },
     id: 1
   };
-  
+
   // const result = await axios
   //     .post(HIVE_ENGINE_RPC_URL, data, {
-    //       headers: { "Content-type": "application/json" }
-    //     })
-    //     return result;
-    return axios
+  //       headers: { "Content-type": "application/json" }
+  //     })
+  //     return result;
+  return axios
     .post(HIVE_ENGINE_RPC_URL, data, {
       headers: { "Content-type": "application/json" }
     })
@@ -178,15 +178,12 @@ export const getMetrics: any = async (symbol?: any, account?: any) => {
     .catch((e) => {
       return [];
     });
-  };  
-  
+};
+
 export const getMarketData = async (symbol: any) => {
-  const url: any = engine.chartApi
-  const { data: history } = await axios.get(
-    `${url}`,
-    {
-      params: { symbol, interval: 'daily' },
-    },
-    );
-    return history;
-  };
+  const url: any = engine.chartApi;
+  const { data: history } = await axios.get(`${url}`, {
+    params: { symbol, interval: "daily" }
+  });
+  return history;
+};
