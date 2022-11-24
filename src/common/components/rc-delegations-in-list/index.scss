@@ -1,0 +1,29 @@
+.list-content {
+    height: 500px;
+    overflow: auto;
+    margin-top: 1px;
+  
+    .loading {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 1px;
+    }
+  
+    .list {
+      .list-search-box {
+        padding: 10px 0;
+        max-width: 300px;
+        margin: 0 auto 10px auto;
+      }
+  
+      @include user-grid-list(1, 2, 3);
+    }
+  
+    .load-more {
+      padding: 20px;
+      text-align: center;
+    }
+  }
+  

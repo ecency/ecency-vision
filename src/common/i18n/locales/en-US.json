@@ -618,7 +618,8 @@
     "received-delegations": "Delegations In",
     "delegation-button": "RC Delegations",
     "rc-available": "Percentage Available",
-    "rc-used": "Percentage Used"
+    "rc-used": "Percentage Used",
+    "delegatees": "Your delegatees are listed"
   },
   "profile-edit": {
     "title": "Profile",

@@ -38,10 +38,7 @@ export const ResourceCreditsDelegation = (props: any) => {
     const [delegationList, setDelegationList] = useState<any>([]);
 
     useEffect(() => {
-      getRCDelegations(activeUser.username, "")
       // checkAmount();
-      getRCDelegations(activeUser.username, '')
-      console.log({props})
       return () => console.log('unmounting')
     }, []);
 
@@ -158,7 +155,7 @@ export const ResourceCreditsDelegation = (props: any) => {
       setAmountError("uuuuuuu")
     };
 
-    const handleTo = (value:string) => {
+    const handleTo = async (value:string) => {
       setInProgress(true);
 
       if (value === "") {
@@ -173,7 +170,17 @@ export const ResourceCreditsDelegation = (props: any) => {
           setToWarning("")
         }    
         setToData(null);   
-        getRCDelegations(activeUser.username, value)      
+        const delegationsOutList: any = await getRCDelegations(activeUser.username, "")
+        const delegatedTo = await delegationsOutList.rc_direct_delegations.map((to: any) => to.to)
+        const delegatedToamount = delegationsOutList.rc_direct_delegations.map((amount: any) => amount.delegated_rc);
+        
+        const delegationsInList: any = await getRCDelegations(value, "");
+        console.log(delegationsInList)
+        const delegatedFrom: any = await delegationsInList.rc_direct_delegations.map((from: any) => from.from);
+        console.log(delegatedFrom)
+        const delegatedFromAmount: any = await delegationsInList.rc_direct_delegations.map((amount: any) => amount.delegated_rc);
+        console.log(delegatedFromAmount)
+
         return getAccount(value)
           .then((resp) => {
             if (resp) {

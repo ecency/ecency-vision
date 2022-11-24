@@ -3,6 +3,7 @@ import { Button, Modal, Card, Row, Col } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { findRcAccounts } from "../../api/hive";
 import { ResourceCreditsDelegation } from "../rc-delegation"
+import { RcDelegationsInList } from '../rc-delegations-in-list';
 
 export const ResourceCreditsInfo = (props: any) => {
 
@@ -11,10 +12,13 @@ export const ResourceCreditsInfo = (props: any) => {
     const [receivedDelegation, setReceivedDelegation] = useState();
     const [resourceCredit, setresourceCredit] = useState();
     const [showDelegationModal, setShowDelegationModal] = useState(false)
+    const [showDelegationsList, setShowDelegationsList] = useState(false)
+
     const { rcPercent, account, activeUser } = props;
 
     useEffect(() => {
         findRcAccounts(account.name).then((r) => {
+          console.log(r)
             const delegated = r.map((a: any) => a.delegated_rc);
             setDelegated(delegated[0]);
             const availableResourceCredit: any = r.map((a: any) => a.rc_manabar.current_mana);
@@ -35,21 +39,29 @@ export const ResourceCreditsInfo = (props: any) => {
     const showDelegation = () => {
       setShowDelegationModal(true);
       setShowRcInfo(false);
-    }
+    };
     
     const hideDelegation = () => {
       setShowDelegationModal(false);
-    }
+    };
+
+    const showList = () => {
+      setShowDelegationsList(true)
+  };
+
+    const hideList = () => {
+      setShowDelegationsList(false)
+  };
     
-    const formHeader1 = (
-      <div className="transaction-form-header">
-        <div className="step-no">1</div>
-        <div className="box-titles">
-          <div className="main-title">Delegate</div>
-          <div className="sub-title">Delegate Resource Credit</div>
-        </div>
-      </div>
-    );
+    // const formHeader1 = (
+    //   <div className="transaction-form-header">
+    //     <div className="step-no">1</div>
+    //     <div className="box-titles">
+    //       <div className="main-title">Delegate</div>
+    //       <div className="sub-title">Delegate Resource Credit</div>
+    //     </div>
+    //   </div>
+    // );
 
   return (
       <div>
@@ -121,7 +133,7 @@ export const ResourceCreditsInfo = (props: any) => {
             </Card>
           </Col>
 
-          <Col>
+          <Col onClick={showList} className="cursor-pointer">
             <Card className="d-flex justify-content-center">            
             <Card.Header>{_t("rc-info.delegated")}</Card.Header>
             <Card.Body className="card-body">
@@ -151,6 +163,22 @@ export const ResourceCreditsInfo = (props: any) => {
         </div>
       </Modal.Body>
     </Modal>
+
+    <Modal 
+    onHide={hideList} 
+    show={showDelegationsList} 
+    centered={true} 
+    animation={false} 
+    size="lg">
+    <Modal.Header closeButton={true}>
+      <Modal.Title>{_t("rc-info.delegatees")}</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+    <RcDelegationsInList activeUser={activeUser} />    </Modal.Body>
+  </Modal>
+
+    
+          
     <div>
     <Modal
       animation={false}
