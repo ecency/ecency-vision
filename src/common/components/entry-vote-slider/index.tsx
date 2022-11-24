@@ -93,7 +93,7 @@ const VotingSlider = (props: Props) => {
     return (
       <>
         <div className="dots-container">
-          <div style={{ width }}></div>
+          <div style={{ width }} />
 
           {sliderOptions.map((option: number) => {
             var backgroundClr: string;
@@ -104,7 +104,7 @@ const VotingSlider = (props: Props) => {
             }
             return (
               <div style={{ width }} key={option}>
-                <span className="slider-dot" style={{ background: backgroundClr }}></span>
+                <span className="slider-dot" style={{ background: backgroundClr }} />
               </div>
             );
           })}
@@ -119,7 +119,7 @@ const VotingSlider = (props: Props) => {
     return (
       <>
         <div className="label-container">
-          <div style={{ width }}></div>
+          <div style={{ width }} />
           {sliderOptions.map((option: number) => {
             return (
               <div style={{ width }} key={option}>
@@ -142,7 +142,7 @@ const VotingSlider = (props: Props) => {
           width: sliderVal.toString() + "%",
           background: props.mode == "up" ? "#357ce6" : "rgba(191, 48, 48)"
         }}
-      ></div>
+      />
       <div
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
@@ -160,7 +160,7 @@ const VotingSlider = (props: Props) => {
             left: sliderVal.toString() + "%",
             background: props.mode == "up" ? "#357ce6" : "rgba(191, 48, 48)"
           }}
-        ></span>
+        />
         {displayDots()}
       </div>
       {displayOptions()}
