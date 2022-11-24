@@ -40,6 +40,7 @@ import {
 import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
 import { _t } from "../../i18n";
+import { HiveEngineChart } from "../hive-engine-chart";
 
 interface Props {
   global: Global;
@@ -427,7 +428,11 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                           />
                           {b.symbol}
                         </div>
-
+                             
+                        {!global?.isMobile && (<div className="d-flex">
+                          <HiveEngineChart items={b}/>
+                        </div>)}
+                        
                         <div className="ml-auto d-flex flex-column justify-between">
                           <div className="d-flex mb-1 align-self-end">
                             <div className="entry-body mr-md-2">

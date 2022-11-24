@@ -2,6 +2,7 @@ import axios from "axios";
 import HiveEngineToken from "../helper/hive-engine-wallet";
 import { TransactionConfirmation } from "@hiveio/dhive";
 import { broadcastPostingJSON } from "./operations";
+import engine from "../constants/engine.json";
 
 interface TokenBalance {
   symbol: string;
@@ -163,13 +164,13 @@ export const getMetrics: any = async (symbol?: any, account?: any) => {
     },
     id: 1
   };
-
+  
   // const result = await axios
   //     .post(HIVE_ENGINE_RPC_URL, data, {
-  //       headers: { "Content-type": "application/json" }
-  //     })
-  //     return result;
-  return axios
+    //       headers: { "Content-type": "application/json" }
+    //     })
+    //     return result;
+    return axios
     .post(HIVE_ENGINE_RPC_URL, data, {
       headers: { "Content-type": "application/json" }
     })
@@ -177,4 +178,15 @@ export const getMetrics: any = async (symbol?: any, account?: any) => {
     .catch((e) => {
       return [];
     });
-};
+  };  
+  
+export const getMarketData = async (symbol: any) => {
+  const url: any = engine.chartApi
+  const { data: history } = await axios.get(
+    `${url}`,
+    {
+      params: { symbol, interval: 'daily' },
+    },
+    );
+    return history;
+  };
