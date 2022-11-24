@@ -135,7 +135,7 @@ const VotingSlider = (props: Props) => {
   };
 
   return (
-    <>
+    <div style={{ height: "20px", paddingRight: "13px" }}>
       <div
         className="slider-line"
         style={{
@@ -164,7 +164,7 @@ const VotingSlider = (props: Props) => {
         {displayDots()}
       </div>
       {displayOptions()}
-    </>
+    </div>
   );
 };
 
