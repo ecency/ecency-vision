@@ -17,6 +17,7 @@ export interface Props {
   disabled: boolean;
   elementAfterBalance?: JSX.Element;
   showBalance?: boolean;
+  hideChevron?: boolean;
 }
 
 export const SwapAmountControl = ({
@@ -31,7 +32,8 @@ export const SwapAmountControl = ({
   disabled,
   className,
   elementAfterBalance,
-  showBalance
+  showBalance,
+  hideChevron
 }: Props) => {
   // Format to x,xxx.xxx
   const formatValue = (newValue: string) => {
@@ -77,7 +79,10 @@ export const SwapAmountControl = ({
             <select
               disabled={disabled}
               value={asset}
-              className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2"
+              className={
+                "form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 " +
+                (hideChevron ? "hide-chevron" : "")
+              }
               onChange={(e) => setAsset(e.target.value as MarketAsset)}
             >
               {availableAssets.map((pairAsset) => (

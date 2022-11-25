@@ -156,6 +156,7 @@
     "login-info-1": "Mi nem tároljuk a kulcsaidat.",
     "login-info-2": "Több infó",
     "error-fields-required": "Kérjük add meg felhasználóneved és jelszavad/wif-ed",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "A nyilvános kulcsot adtad meg. Jelszó/WIF szükséges",
     "error-user-fetch": "A felhasználó adatait nem sikerült betölteni",
     "error-user-not-found": "A felhasználó nem létezik",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "Szűrés",
     "filter-no-match": "Nincs találat",
     "recently-used": "Legutóbb használt"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "Bejegyzés létrehozása",

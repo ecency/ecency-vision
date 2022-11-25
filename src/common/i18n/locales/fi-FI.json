@@ -156,6 +156,7 @@
     "login-info-1": "Emme tallenna yksityisiä avaimiasi.",
     "login-info-2": "Lisätietoja",
     "error-fields-required": "Syötä käyttäjänimi ja yksityinen avain",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Lisäsit public keyn. Vaaditaan salasana/WIF",
     "error-user-fetch": "Käyttäjätietoja ei voitu ladata",
     "error-user-not-found": "Käyttäjää ei ole olemassa",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "Suodata",
     "filter-no-match": "Ei tuloksia",
     "recently-used": "Äskettäin käytetyt"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "Luo artikkeli",

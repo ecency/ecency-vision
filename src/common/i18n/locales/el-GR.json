@@ -156,6 +156,7 @@
     "login-info-1": "Δεν αποθηκεύουμε τα ιδιωτικά κλειδιά σας.",
     "login-info-2": "Περισσότερες πληροφορίες",
     "error-fields-required": "Παρακαλώ γράψτε όνομα χρήστη και ιδιωτικό κλειδί",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Εισαγάγατε ένα δημόσιο κλειδί. Απαιτείται κωδικός πρόσβασης / WIF",
     "error-user-fetch": "Δεν είναι δυνατή η ανάκτηση δεδομένων χρήστη",
     "error-user-not-found": "Ο Χρήστης δεν υπάρχει",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "Φίλτρο",
     "filter-no-match": "Καμία αντιστοιχία",
     "recently-used": "Πρόσφατα χρησιμοποιημένο"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "Δημιουργία ανάρτησης",

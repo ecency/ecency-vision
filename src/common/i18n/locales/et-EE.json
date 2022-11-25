@@ -156,6 +156,7 @@
     "login-info-1": "Me ei hoiusta sinu privaatseid võtmeid.",
     "login-info-2": "Lisateave",
     "error-fields-required": "Palun sisesta kasutajanimi ja privaatvõti",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Sisestasid avaliku võtme. Parool/WIF nõutud",
     "error-user-fetch": "Kasutaja infot ei saadud kätte",
     "error-user-not-found": "Kasutajat ei eksisteeri",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "Filter",
     "filter-no-match": "No match",
     "recently-used": "Recently Used"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "Create a post",

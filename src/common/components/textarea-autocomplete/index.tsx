@@ -16,7 +16,6 @@ interface State {
   rows: number;
   minrows: number;
   maxrows: number;
-  //inputHeight: number;
 }
 
 const Loading = () => <div>{_t("g.loading")}</div>;
@@ -31,7 +30,6 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
       rows: this.props.minrows || 10,
       minrows: this.props.minrows || 10,
       maxrows: this.props.maxrows || 20
-      //inputHeight: this.props.inputHeight
     };
   }
 
@@ -39,19 +37,9 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
     if (this.props.value !== prevProps.value) {
       this.setState({ value: this.props.value });
     }
-    /*if (this.props.inputHeight !== prevProps.inputHeight) {
-      this.setState({ inputHeight: this.props.inputHeight });
-    }*/
   }
 
   handleChange = (event: any) => {
-    /*let scHeight: number = event.target.scrollHeight;
-    let reduceScHeight: number = scHeight - 20 || scHeight - 24;
-
-    if (reduceScHeight) {
-      scHeight = reduceScHeight;
-    }
-*/
     const isMobile = typeof window !== "undefined" && window.innerWidth < 570;
     if (isMobile) {
       const textareaLineHeight = 24;
@@ -77,7 +65,6 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
 
     this.setState({
       value: event.target.value
-      //inputHeight: scHeight
     });
     this.props.onChange(event);
   };
@@ -96,7 +83,6 @@ export default class TextareaAutocomplete extends BaseComponent<any, State> {
         <ReactTextareaAutocomplete
           {...attrs}
           loadingComponent={Loading}
-          //containerStyle={{ height: !this.state.value ? "80px" : this.state.inputHeight }}
           value={this.state.value}
           placeholder={this.props.placeholder}
           onChange={this.handleChange}
