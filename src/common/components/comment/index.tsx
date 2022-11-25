@@ -129,10 +129,10 @@ export class Comment extends Component<Props, State> {
   textChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
     const { value: text } = e.target;
     let scHeight: number = e.target.scrollHeight;
-    let reduceScHeight : number = scHeight - 20 || scHeight - 24;
+    let reduceScHeight: number = scHeight - 20 || scHeight - 24;
     if (reduceScHeight) {
       scHeight = reduceScHeight;
-    };
+    }
     this.setState({ text, inputHeight: scHeight }, () => {
       this.updateLsCommentDraft(text);
       this.updatePreview();
@@ -181,7 +181,7 @@ export class Comment extends Component<Props, State> {
               className={`the-editor accepts-emoji ${text.length > 20 ? "expanded" : ""}`}
               as="textarea"
               placeholder={_t("comment.body-placeholder")}
-              containerStyle={{height: !text ? "80px" : inputHeight}}
+              containerStyle={{ height: !text ? "80px" : inputHeight }}
               value={text}
               onChange={this.textChanged}
               disabled={inProgress}

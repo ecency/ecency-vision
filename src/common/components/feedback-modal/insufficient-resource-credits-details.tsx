@@ -1,5 +1,4 @@
 import React from "react";
-import "./insufficient-resource-credits-details.scss";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
 import { _t } from "../../i18n";
