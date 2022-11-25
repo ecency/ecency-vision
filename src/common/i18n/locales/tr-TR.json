@@ -156,6 +156,7 @@
     "login-info-1": "Özel anahtarlarınızı sistemimizde tutmuyoruz.",
     "login-info-2": "Detaylar",
     "error-fields-required": "Lütfen kullanıcı adınızı ve şifrenizi girin",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Halka açık bir anahtar girdiniz. Şifre/WIF gerekli",
     "error-user-fetch": "Kullanıcı bilgileri alınamadı",
     "error-user-not-found": "Bu kullanıcı mevcut değil",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "Filtre",
     "filter-no-match": "Eşleşme yok",
     "recently-used": "Son Kullanılan"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "Bir gönderi oluştur",

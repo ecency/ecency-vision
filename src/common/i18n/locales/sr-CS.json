@@ -156,6 +156,7 @@
     "login-info-1": "Mi ne čuvamo vaše privatne ključeve.",
     "login-info-2": "Više informacija",
     "error-fields-required": "Molimo Vas da unesete korisničko ime i privatan ključ",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Uneli ste javni ključ. Potrebno je da unesete lozinku/WIF",
     "error-user-fetch": "Nemoguće je dobiti korisničke podatke",
     "error-user-not-found": "Korisnik ne postoji",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "Filter",
     "filter-no-match": "Nema podudaranja",
     "recently-used": "Nеdavno korišćеno"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "Napiši objavu",

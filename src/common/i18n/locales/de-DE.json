@@ -156,6 +156,7 @@
     "login-info-1": "Wir speichern keine Private Keys.",
     "login-info-2": "Mehr Infos",
     "error-fields-required": "Bitte Benutzername und Private Key eingeben",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Du hast einen öffentlichen Schlüssel verwendet. Passwort/WIF erforderlich",
     "error-user-fetch": "Benutzerdaten konnten nicht abgerufen werden",
     "error-user-not-found": "Benutzer existiert nicht",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "Filter",
     "filter-no-match": "Keine Treffer",
     "recently-used": "Zuletzt verwendet"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "Beitrag erstellen",

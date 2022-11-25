@@ -156,6 +156,7 @@
     "login-info-1": "Mes nelaikome jūsų privačių raktų.",
     "login-info-2": "Daugiau Informacijos",
     "error-fields-required": "Prašome įvesti vartotojo vardą ir privatųjį raktą",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Įvedėte public key. Reikia Slaptažodžio/WIF",
     "error-user-fetch": "Nepavyko pakrauti vartotojo duomenų",
     "error-user-not-found": "Vartotojas neegzistuoja",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "Filtruoti",
     "filter-no-match": "Atitikmenų nėra",
     "recently-used": "Neseniai Naudota"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "Sukurti įrašą",

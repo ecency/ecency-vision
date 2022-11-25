@@ -156,6 +156,7 @@
     "login-info-1": "Ние не съхраняваме личните ви ключове.",
     "login-info-2": "Повече информация",
     "error-fields-required": "Моля въведете потребителското си име и личния си ключ",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Вие въведохте публичен ключ. Нужна е парола/WIF",
     "error-user-fetch": "Данните за потребителят немогат да бъдат заредени",
     "error-user-not-found": "Потребителят не съществува",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "Филтрирай",
     "filter-no-match": "Няма съвпадение",
     "recently-used": "Наскоро използвани"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "Създай публикация",
