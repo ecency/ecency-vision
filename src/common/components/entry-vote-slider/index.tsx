@@ -128,13 +128,6 @@ const VotingSlider = (props: Props) => {
   return (
     <div style={{ height: "20px", paddingRight: "13px" }}>
       <div
-        className="slider-line"
-        style={{
-          width: sliderVal.toString() + "%",
-          background: props.mode == "up" ? "#357ce6" : "rgba(191, 48, 48)"
-        }}
-      />
-      <div
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMovement}
@@ -145,14 +138,24 @@ const VotingSlider = (props: Props) => {
         ref={sliderRef}
         className="slide"
       >
-        <span
-          className="slider-dot pointer-dot"
-          style={{
-            left: sliderVal.toString() + "%",
-            background: props.mode == "up" ? "#357ce6" : "rgba(191, 48, 48)"
-          }}
-        />
-        {displayDots()}
+        <div className="slide-background-line">
+          <div
+            className="slider-line"
+            style={{
+              width: sliderVal.toString() + "%",
+              background: props.mode == "up" ? "#357ce6" : "rgba(191, 48, 48)",
+              zIndex: 100
+            }}
+          />
+          <span
+            className="slider-dot pointer-dot"
+            style={{
+              left: sliderVal.toString() + "%",
+              background: props.mode == "up" ? "#357ce6" : "rgba(191, 48, 48)"
+            }}
+          />
+          {displayDots()}
+        </div>
       </div>
       {displayOptions()}
     </div>
