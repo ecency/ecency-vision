@@ -156,6 +156,7 @@
     "login-info-1": "Hindi namin iniimbak ang iyong pribadong susi.",
     "login-info-2": "Mga iba pang impormasyon",
     "error-fields-required": "Pakilagay ang iyong bansag at pribadong susi",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Ang inilagay mo ay isang pampublikong susi. Password/WIF ang kailangan",
     "error-user-fetch": "Ang datos ng gumagamit ay hindi makuha",
     "error-user-not-found": "Ang gumagamit ay hindi umiiral",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "Salaan",
     "filter-no-match": "Walang katugma",
     "recently-used": "Nagamit kamakailan lang"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "Gumawa ng post",

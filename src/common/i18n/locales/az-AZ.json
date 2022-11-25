@@ -156,6 +156,7 @@
     "login-info-1": "Gizli açarlarınızı saxlamırıq.",
     "login-info-2": "Ətraflı məlumat",
     "error-fields-required": "Zəhmət olmasa istifadəçi adı və gizli açarı daxil edin",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "İctimai açar daxil etdiniz. Şifrə/WIF tələb olunur",
     "error-user-fetch": "İstifadəçi verilənləri alına bilmədi",
     "error-user-not-found": "İstifadəçi mövcud deyil",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "Filter",
     "filter-no-match": "No match",
     "recently-used": "Recently Used"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "Create a post",

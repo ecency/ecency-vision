@@ -156,6 +156,7 @@
     "login-info-1": "We don't store your private keys.",
     "login-info-2": "Mai mult",
     "error-fields-required": "Introdu numele de utilizator și parola",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Ai introdus o cheie publică. Este necesară parola/WIF",
     "error-user-fetch": "Date utilizator nu au putut fi încărcate",
     "error-user-not-found": "Utilizatorul nu există",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "Filtrează",
     "filter-no-match": "Nicio potrivire",
     "recently-used": "Utilizat recent"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "Crează un articol",

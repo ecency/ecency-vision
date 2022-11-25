@@ -156,6 +156,7 @@
     "login-info-1": "我们不保存您的私钥。",
     "login-info-2": "更多信息",
     "error-fields-required": "请输入用户名和私钥",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "您输入的是公钥。但这里需要 密码 / WIF。",
     "error-user-fetch": "无法获取用户数据",
     "error-user-not-found": "用户不存在",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "筛选",
     "filter-no-match": "无匹配结果",
     "recently-used": "最近使用"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "创建一个帖子",

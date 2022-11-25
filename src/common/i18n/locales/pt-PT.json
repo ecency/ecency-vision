@@ -156,6 +156,7 @@
     "login-info-1": "Nós não armazenamos suas chaves privadas.",
     "login-info-2": "Mais informação",
     "error-fields-required": "Por favor insira um nome de usuário e palavra passe /WIF",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Você inseriu uma chave pública. Senha/WIF obrigatório",
     "error-user-fetch": "Dados de usuário não foram encontrados",
     "error-user-not-found": "Usuário não existe",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "Filtro",
     "filter-no-match": "Sem correspondência",
     "recently-used": "Recentemente Utilizado"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "Criar uma publicação",

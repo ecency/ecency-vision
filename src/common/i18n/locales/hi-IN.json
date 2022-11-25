@@ -156,6 +156,7 @@
     "login-info-1": "हम आपकी निजी कुंजियाँ संग्रहीत नहीं करते हैं।",
     "login-info-2": "अधिक जानकारी",
     "error-fields-required": "कृपया उपयोगकर्ता नाम और निजी कुंजी दर्ज करें",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "आपने सार्वजनिक कुंजी डाला| पासवर्ड/डब्लूएआईएफ की जरुरत है",
     "error-user-fetch": "उपयोगकर्ता डेटा प्राप्त नहीं किया जा सका",
     "error-user-not-found": "उपयोगकर्ता उपलब्ध नहीं है",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "फ़िल्टर",
     "filter-no-match": "कोई मेल नहीं",
     "recently-used": "अभी-अभी उपयोग हुवा"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "पोस्ट तैयार करें",

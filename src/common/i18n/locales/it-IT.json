@@ -156,6 +156,7 @@
     "login-info-1": "Noi non memorizziamo le tue chiavi private.",
     "login-info-2": "Più informazioni",
     "error-fields-required": "Inserisci nome utente e chiave privata",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Hai inserito una chiave pubblica. Password o WIF richiesta",
     "error-user-fetch": "I dati dell'utente non possono essere recuperati",
     "error-user-not-found": "L'utente non esiste",
@@ -1080,6 +1081,10 @@
     "filter-placeholder": "Filtro",
     "filter-no-match": "Nessuna corrispondenza",
     "recently-used": "Usato recentemente"
+  },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
   },
   "submit": {
     "page-title": "Crea un post",

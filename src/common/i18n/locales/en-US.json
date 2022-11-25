@@ -156,6 +156,7 @@
     "login-info-1": "We don't store your private keys.",
     "login-info-2": "More info",
     "error-fields-required": "Please enter username and private key",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "You entered a public key. Password/WIF required",
     "error-user-fetch": "User data could not be fetched",
     "error-user-not-found": "User does not exist",
