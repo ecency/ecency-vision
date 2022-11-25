@@ -109,12 +109,15 @@ const VotingSlider = (props: Props) => {
 
     return (
       <>
-        <div className="label-container">
+        <div className="label-container" style={{ pointerEvents: moving ? "none" : "all" }}>
           <div style={{ width }} />
           {sliderOptions.map((option: number) => {
             return (
               <div style={{ width }} key={option}>
-                <p style={{ marginLeft: "-4px" }} onClick={() => setSliderValue(option)}>
+                <p
+                  style={{ marginLeft: "-4px", pointerEvents: moving ? "none" : "all" }}
+                  onClick={() => setSliderValue(option)}
+                >
                   {props.mode == "up" ? option : -option}
                 </p>
               </div>
@@ -126,14 +129,7 @@ const VotingSlider = (props: Props) => {
   };
 
   return (
-    <div style={{ height: "20px", paddingRight: "13px" }}>
-      <div
-        className="slider-line"
-        style={{
-          width: sliderVal.toString() + "%",
-          background: props.mode == "up" ? "#357ce6" : "rgba(191, 48, 48)"
-        }}
-      />
+    <div style={{ height: "40px", paddingRight: "13px" }}>
       <div
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
@@ -145,14 +141,24 @@ const VotingSlider = (props: Props) => {
         ref={sliderRef}
         className="slide"
       >
-        <span
-          className="slider-dot pointer-dot"
-          style={{
-            left: sliderVal.toString() + "%",
-            background: props.mode == "up" ? "#357ce6" : "rgba(191, 48, 48)"
-          }}
-        />
-        {displayDots()}
+        <div className="slide-background-line">
+          <div
+            className="slider-line"
+            style={{
+              width: sliderVal.toString() + "%",
+              background: props.mode == "up" ? "#357ce6" : "rgba(191, 48, 48)",
+              zIndex: 100
+            }}
+          />
+          <span
+            className="slider-dot pointer-dot"
+            style={{
+              left: sliderVal.toString() + "%",
+              background: props.mode == "up" ? "#357ce6" : "rgba(191, 48, 48)"
+            }}
+          />
+          {displayDots()}
+        </div>
       </div>
       {displayOptions()}
     </div>
