@@ -8,6 +8,7 @@ import accountReputation from "./account-reputation";
 import isElectron from "../util/is-electron";
 
 import { version } from "../../../package.json";
+import { appURL } from "../constants/defaults.json";
 
 export interface TempEntryProps {
   author: FullAccount;
@@ -25,6 +26,9 @@ export const correctIsoDate = (d: string): string => d.split(".")[0];
 export default (p: TempEntryProps): Entry => {
   const now = moment(Date.now());
   const payout = moment(Date.now()).add(7, "days");
+  // even though http is a bad idea across the internet generally speaking,
+  // we may need http for testing the code across a lan or on a single host.
+  const appName = appURL.replace(/(https?:\/\/)?(www\.)?/, "");
 
   const category = p.tags[0];
 
@@ -43,7 +47,7 @@ export default (p: TempEntryProps): Entry => {
     depth: 0,
     is_paidout: false,
     json_metadata: {
-      app: `ecency/${version}-${isElectron() ? "surfer" : "vision"}`,
+      app: `${appName}/${version}-${isElectron() ? "surfer" : "vision"}`,
       format: "markdown+html",
       tags: p.tags,
       description: p.description
