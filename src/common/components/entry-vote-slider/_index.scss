@@ -1,7 +1,8 @@
 .slide {
-  height: 20px;
+  height: 50px;
   width: 100%;
   cursor: pointer;
+  margin-top: 11px;
 }
 
 .slide-background-line{
@@ -54,7 +55,9 @@
   width: 100%;
   text-align: left;
   font-size: 12px;
-  margin-left: 2px
+  margin-left: 2px;
+  position: relative;
+  top: -31px;
 }
 
 .dots-negative{

@@ -109,12 +109,15 @@ const VotingSlider = (props: Props) => {
 
     return (
       <>
-        <div className="label-container">
+        <div className="label-container" style={{ pointerEvents: moving ? "none" : "all" }}>
           <div style={{ width }} />
           {sliderOptions.map((option: number) => {
             return (
               <div style={{ width }} key={option}>
-                <p style={{ marginLeft: "-4px" }} onClick={() => setSliderValue(option)}>
+                <p
+                  style={{ marginLeft: "-4px", pointerEvents: moving ? "none" : "all" }}
+                  onClick={() => setSliderValue(option)}
+                >
                   {props.mode == "up" ? option : -option}
                 </p>
               </div>
@@ -126,7 +129,7 @@ const VotingSlider = (props: Props) => {
   };
 
   return (
-    <div style={{ height: "24px", paddingRight: "13px" }}>
+    <div style={{ height: "40px", paddingRight: "13px" }}>
       <div
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
