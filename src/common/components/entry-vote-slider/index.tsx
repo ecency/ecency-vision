@@ -126,7 +126,7 @@ const VotingSlider = (props: Props) => {
   };
 
   return (
-    <div style={{ height: "20px", paddingRight: "13px" }}>
+    <div style={{ height: "24px", paddingRight: "13px" }}>
       <div
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
