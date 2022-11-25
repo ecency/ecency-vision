@@ -173,3 +173,8 @@
     transform: rotate(90deg);
   }
 }
+
+.form-control.hide-chevron {
+  background-image: none;
+  padding-right: 0.75rem !important;
+}
