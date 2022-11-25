@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect, ReactElement } from "react";
-import "./_index.scss";
 
 interface Props {
   value: number;
