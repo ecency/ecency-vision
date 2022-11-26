@@ -36,6 +36,7 @@ module.exports = (api) => {
       [require("@babel/plugin-proposal-pipeline-operator"), { proposal: "minimal" }],
       [require("@babel/plugin-proposal-nullish-coalescing-operator"), { loose: false }],
       require("@babel/plugin-proposal-do-expressions"),
+      [require("@babel/plugin-proposal-private-methods"), { loose: true }],
 
       // Stage 2
       [require("@babel/plugin-proposal-decorators"), { legacy: true }],
@@ -48,7 +49,6 @@ module.exports = (api) => {
       require("@babel/plugin-syntax-dynamic-import"),
       require("@babel/plugin-syntax-import-meta"),
       [require("@babel/plugin-proposal-class-properties"), { loose: true }],
-      [require("@babel/plugin-proposal-private-methods"), { loose: true }],
       require("@babel/plugin-proposal-json-strings"),
 
       ...(development ? developmentPlugins : productionPlugins)
