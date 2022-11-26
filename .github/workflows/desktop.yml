@@ -33,8 +33,6 @@ jobs:
         with:
           # GitHub token, automatically provided to the action
           # (No need to define this secret in the repo settings)
-          env:
-            NODE_OPTIONS: '--max_old_space_size=4096'
           github_token: ${{ secrets.github_token }}
           package_root: "./src/desktop/"
           mac_certs: ${{ secrets.mac_certs }}
@@ -42,4 +40,6 @@ jobs:
           windows_certs: ${{ secrets.windows_certs }}
           windows_certs_password: ${{ secrets.windows_certs_password }}
           args: "--publish always"
+          env:
+            NODE_OPTIONS: '--max_old_space_size=4096'
           
