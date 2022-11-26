@@ -6,6 +6,7 @@
   "author": "Ecency <hello@ecency.com>",
   "version": "3.0.29",
   "copyright": "© 2020, Ecency",
+  "license": "MIT",
   "homepage": "https://ecency.com",
   "scripts": {
     "build": "concurrently \"yarn build-main\" \"yarn build-renderer\"",
