@@ -17,7 +17,9 @@
     "start-renderer-dev": "cross-env NODE_ENV=development webpack-dev-server --config configs/webpack.config.renderer.dev.babel.js",
     "package": "yarn build && electron-builder build --publish never",
     "package-all": "yarn build && electron-builder build -wml",
-    "package-mac": "yarn build && electron-builder build -m --publish always",
+    "publish-mac": "yarn build && electron-builder build -m --publish always",
+    "publish-win": "yarn build && electron-builder build -w --publish always",
+    "publish-unix": "yarn build && electron-builder build -l --publish always",
     "publish-all": "yarn build && electron-builder build -wml --publish always"
   },
   "build": {

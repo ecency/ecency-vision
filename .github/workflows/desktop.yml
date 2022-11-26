@@ -40,6 +40,7 @@ jobs:
           windows_certs: ${{ secrets.windows_certs }}
           windows_certs_password: ${{ secrets.windows_certs_password }}
           args: "--publish always"
+          max_attempts: "5"
         env:
           NODE_OPTIONS: '--max_old_space_size=4096'
           
