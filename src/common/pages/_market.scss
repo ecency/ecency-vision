@@ -70,6 +70,8 @@ thead, .pagination {
     }
 
     &.ADVANCED {
+        margin-top: -2.5rem;
+
         .advanced-mode-layout {
             display: grid;
         }
@@ -109,7 +111,7 @@ thead, .pagination {
             padding-left: 0.69rem;
 
             .scrollable {
-                max-height: 400px;
+                max-height: calc(100vh - 96px - 80px);
                 overflow-y: auto;
             }
 

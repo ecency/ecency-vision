@@ -47,10 +47,10 @@ export const HistoryWidget = ({ history, fromAsset, toAsset }: Props) => {
   }, [history]);
 
   const getDate = (date: Moment) => {
-    const now = moment();
-    const isSameDay = now.day() === date.day();
-    const isSameMonth = now.month() === date.month();
-    const isSameYear = now.year() === date.year();
+    const now = moment(new Date());
+    const isSameDay = now.isSame(date, "days");
+    const isSameMonth = now.isSame(date, "months");
+    const isSameYear = now.isSame(date, "years");
 
     if (isSameDay && isSameMonth && isSameYear) {
       return date.format("HH:mm:ss");
