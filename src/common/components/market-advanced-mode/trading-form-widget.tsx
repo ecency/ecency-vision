@@ -12,6 +12,7 @@ interface Props {
   sellBalance: string;
   dayChange: DayChange;
   global: Global;
+  price: number;
 }
 
 export const TradingFormWidget = ({
@@ -19,16 +20,17 @@ export const TradingFormWidget = ({
   buyBalance,
   sellBalance,
   dayChange,
-  global
+  global,
+  price
 }: Props) => {
   const [loading, setLoading] = useState(false);
   const [buyPeakValue, setBuyPeakValue] = useState(0);
   const [sellPeakValue, setSellPeakValue] = useState(0);
 
   useEffect(() => {
-    // setBuyPeakValue(dayChange.price);
-    // setSellPeakValue(dayChange.price);
-  }, [dayChange]);
+    setBuyPeakValue(price);
+    setSellPeakValue(price);
+  }, [price]);
 
   return (
     <MarketAdvancedModeWidget

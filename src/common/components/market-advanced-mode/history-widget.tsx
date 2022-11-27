@@ -9,6 +9,7 @@ interface Props {
   fromAsset: MarketAsset;
   toAsset: MarketAsset;
   history: OrdersData | null;
+  onItemClick: (value: number) => void;
 }
 
 interface Item {
@@ -18,7 +19,7 @@ interface Item {
   date: Moment;
 }
 
-export const HistoryWidget = ({ history, fromAsset, toAsset }: Props) => {
+export const HistoryWidget = ({ history, fromAsset, toAsset, onItemClick }: Props) => {
   const [items, setItems] = useState<Item[]>([]);
 
   useEffect(() => {
@@ -77,7 +78,11 @@ export const HistoryWidget = ({ history, fromAsset, toAsset }: Props) => {
           </div>
           <div className="scrollable">
             {items.map((item, key) => (
-              <div className="history-widget-row" key={key}>
+              <div
+                className="history-widget-row"
+                key={key}
+                onClick={() => onItemClick(item.price / item.amount)}
+              >
                 <div className={item.action === "buy" ? "text-success" : "text-danger"}>
                   {(item.price / item.amount).toFixed(5)}
                 </div>

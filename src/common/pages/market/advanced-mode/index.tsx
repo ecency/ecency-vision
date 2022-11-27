@@ -68,7 +68,12 @@ export const AdvancedMode = ({ activeUser, global }: Props) => {
               switch (row.widgetType) {
                 case Widget.History:
                   return (
-                    <HistoryWidget fromAsset={fromAsset} toAsset={toAsset} history={history} />
+                    <HistoryWidget
+                      fromAsset={fromAsset}
+                      toAsset={toAsset}
+                      history={history}
+                      onItemClick={(v) => setPrice(v)}
+                    />
                   );
                 case Widget.Stake:
                   return <StakeWidget fromAsset={fromAsset} toAsset={toAsset} history={history} />;
@@ -82,6 +87,7 @@ export const AdvancedMode = ({ activeUser, global }: Props) => {
                       dayChange={dayChange}
                       buyBalance={buyBalance}
                       sellBalance={sellBalance}
+                      price={price}
                     />
                   );
                 case Widget.TradingView:
