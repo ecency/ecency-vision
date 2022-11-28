@@ -107,12 +107,12 @@ export class Preferences extends BaseComponent<Props, State> {
     setShowSelfVote(parsedValue);
     success(_t("preferences.updated"));
   };
-  /*
+
   showRewardSplitChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const { setShowRewardSplit } = this.props;
     const { value } = e.target;
 
-    setRewardSplit(JSON.parse(value));
+    setShowRewardSplit(JSON.parse(value));
     success(_t("preferences.updated"));
   };
 
@@ -122,10 +122,10 @@ export class Preferences extends BaseComponent<Props, State> {
     try {
       setLowRewardThreshold(JSON.parse(value));
     } catch (e) {
-        console.log(value, "Couldn't get it done boss");
+      console.log(value, "Couldn't get it done boss");
     }
     success(_t("preferences.updated"));
-  };*/
+  };
 
   copyToClipboard = (text: string) => {
     const textField = document.createElement("textarea");
@@ -144,6 +144,8 @@ export class Preferences extends BaseComponent<Props, State> {
       theme = "system";
     }
     this.showSelfVoteChanged = this.showSelfVoteChanged.bind(this);
+    this.showRewardSplitChanged = this.showRewardSplitChanged.bind(this);
+    this.lowRewardThresholdChanged = this.lowRewardThresholdChanged.bind(this);
 
     this.setState({ ...this.state, defaultTheme: theme });
   }
@@ -296,6 +298,7 @@ export class Preferences extends BaseComponent<Props, State> {
                       type="text"
                       value={JSON.stringify(global.showRewardSplit)}
                       as="select"
+                      onChange={this.showRewardSplitChanged}
                     >
                       <option value={"true"}>{_t("preferences.show-reward-split-true")}</option>
                       <option value={"false"}>{_t("preferences.show-reward-split-false")}</option>
@@ -305,7 +308,11 @@ export class Preferences extends BaseComponent<Props, State> {
                 <Col lg={6} xl={4}>
                   <Form.Group>
                     <Form.Label>{_t("preferences.low-reward-threshold")}</Form.Label>
-                    <Form.Control type="text" value={global.lowRewardThreshold} />
+                    <Form.Control
+                      type="text"
+                      defaultValue={global.lowRewardThreshold}
+                      onChange={this.lowRewardThresholdChanged}
+                    />
                   </Form.Group>
                 </Col>
               </>
@@ -326,7 +333,10 @@ export default (p: Props) => {
     setCurrency: p.setCurrency,
     setLang: p.setLang,
     setNsfw: p.setNsfw,
-    toggleTheme: p.toggleTheme
+    toggleTheme: p.toggleTheme,
+    setShowSelfVote: p.setShowSelfVote,
+    setShowRewardSplit: p.setShowRewardSplit,
+    setLowRewardThreshold: p.setLowRewardThreshold
   };
 
   return <Preferences {...props} />;

@@ -634,6 +634,8 @@
   "preferences": {
     "show-self-vote": "Show Self Vote flag",
     "show-reward-split": "Show Hive Power/Hive Dollar Breakdown",
+    "low-reward-threshold": "Low maximum accepted reward threshold",
+    "low-reward-threshold-info": "The maximum accepted reward for a post will be displayed when this maximum is less than or equal to this threshold value",
     "title": "Preferences",
     "notifications": "Notification alerts",
     "currency": "Currency",
