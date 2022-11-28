@@ -417,6 +417,7 @@
     "sort-percent": "Percentage"
   },
   "entry": {
+    "self_voted": "self voted",
     "via-app": "via <span class=\"app-name\">{{app}}</span>",
     "author-reputation": "Author's reputation",
     "comment-entry-title": "You are viewing a single comment's thread from: ",

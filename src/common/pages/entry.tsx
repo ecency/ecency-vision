@@ -76,12 +76,12 @@ import dmca from "../constants/dmca.json";
 
 import { getFollowing } from "../api/hive";
 import { history } from "../store";
-import { deleteForeverSvg, pencilOutlineSvg, informationVariantSvg } from "../img/svg";
+import { deleteForeverSvg, pencilOutlineSvg } from "../img/svg";
 import entryDeleteBtn from "../components/entry-delete-btn";
 import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
 import { getPost } from "../api/bridge";
-
+import formattedNumber from "../util/formatted-number";
 setProxyBase(defaults.imageServer);
 
 interface MatchParams {
@@ -514,6 +514,7 @@ class EntryPage extends BaseComponent<Props, State> {
       showWordCount
     } = this.state;
     const { global, history, match, location } = this.props;
+    const { showSelfVote, showRewardSplit, lowRewardThreshold } = global;
 
     let navBar = global.isElectron
       ? NavBarElectron({
@@ -540,6 +541,23 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     const entry = this.getEntry();
+    const { self_vote, hp_portion, max_payout, appShort, app } = (() => {
+      if (entry === undefined) {
+        return { self_vote: true, hp_portion: 50, max_payout: 1000000, appShort: "?", app: "?" };
+      }
+      try {
+        const self_vote_entry = entry.active_votes.find((x) => x.voter == entry.author);
+        const self_vote = self_vote_entry ? self_vote_entry.rshares : false;
+        const hp_portion = 100 * (1 - entry.percent_hbd / 20000);
+        const max_payout: number = parseFloat(entry.max_accepted_payout);
+        const app = appName(entry.json_metadata.app);
+        const appShort = app.split("/")[0].split(" ")[0];
+        return { self_vote, hp_portion, max_payout, appShort, app };
+      } catch (e) {
+        return { self_vote: true, hp_portion: 50, max_payout: 1000000, appShort: "?", app: "?" };
+      }
+    })();
+
     if (postIsDeleted) {
       const { username, permlink } = match.params;
       const author = username.replace("@", "");
@@ -622,8 +640,6 @@ class EntryPage extends BaseComponent<Props, State> {
     if (entry.category && tags && tags[0] !== entry.category) {
       tags.splice(0, 0, entry.category);
     }
-    const app = appName(entry.json_metadata.app);
-    const appShort = app.split("/")[0].split(" ")[0];
 
     const { activeUser } = this.props;
 
@@ -1085,7 +1101,6 @@ class EntryPage extends BaseComponent<Props, State> {
                         {showProfileBox && <AuthorInfoCard {...this.props} entry={entry} />}
                       </div>
                     )}
-
                     <div className="entry-footer">
                       <div className="entry-tags">
                         {tags &&
@@ -1163,7 +1178,27 @@ class EntryPage extends BaseComponent<Props, State> {
                             </div>
                           </>
                         )}
+                        <span className="separator" />
+                        {showSelfVote && self_vote && (
+                          <b className="self-voted">{_t("entry.self_voted")}</b>
+                        )}
+                        <span className="separator" />
+                        {showRewardSplit && max_payout > 0 && (
+                          <div>
+                            <i className="hp-portion">{hp_portion}% HP</i>
+                          </div>
+                        )}
+                        <span className="separator" />
+                        {max_payout > 0 && max_payout < lowRewardThreshold && (
+                          <span>
+                            <div>
+                              &le;{" "}
+                              {formattedNumber(max_payout, { suffix: "HBD", fractionDigits: 0 })}{" "}
+                            </div>
+                          </span>
+                        )}
                       </div>
+
                       <div className="entry-controls" ref={setRef}>
                         {EntryVoteBtn({
                           ...this.props,

@@ -3,12 +3,24 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 import { _t } from "../../i18n";
 import { informationVariantSvg } from "../../img/svg";
+import appName from "../../helper/app-name";
 
 export const ReadTime = (props: any) => {
   const { entry, global, isVisible, toolTip } = props;
+  const { showSelfVote, showRewardSplit, lowRewardThreshold } = global;
 
   const [readTime, setReadTime] = useState(0);
   const [wordCount, setWordCount] = useState(0);
+
+  const self_vote_entry = entry.active_votes.find(
+    // @ts-ignore
+    (x) => x.voter == entry.author
+  );
+  const self_vote = self_vote_entry ? true : false;
+  const hp_portion = 100 * (1 - entry.percent_hbd / 20000);
+  const max_payout: number = parseFloat(entry.max_accepted_payout);
+  const app = appName(entry.json_metadata.app);
+  const appShort = app.split("/")[0].split(" ")[0];
 
   useEffect(() => {
     calculateExtras();
@@ -38,6 +50,9 @@ export const ReadTime = (props: any) => {
                 <p>
                   {_t("entry.post-read-time")} {readTime} {_t("entry.post-read-minuites")}
                 </p>
+                {self_vote && <p className="post-selfvoted">{_t("entry.self_voted")}</p>}
+                {max_payout > 0 && <p className="post-hpportion">{hp_portion}% HP</p>}
+                {max_payout > 0 && max_payout < lowRewardThreshold && <p>&le; {max_payout} HBD</p>}
               </div>
             </div>
           </Tooltip>

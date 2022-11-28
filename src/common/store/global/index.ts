@@ -49,7 +49,10 @@ export const initialState: Global = {
   isMobile: false,
   usePrivate: true,
   hsClientId: "ecency.app",
-  lastIndexPath: null
+  lastIndexPath: null,
+  showSelfVote: defaults.showSelfVote,
+  showRewardSplit: defaults.showRewardSplit,
+  lowRewardThreshold: defaults.lowRewardThreshold
 };
 
 export default (state: Global = initialState, action: Actions): Global => {

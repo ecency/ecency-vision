@@ -70,6 +70,9 @@ export interface Global {
   usePrivate: boolean;
   hsClientId: string;
   lastIndexPath: string | null;
+  showSelfVote: boolean;
+  showRewardSplit: boolean;
+  lowRewardThreshold: number;
 }
 
 export enum ActionTypes {

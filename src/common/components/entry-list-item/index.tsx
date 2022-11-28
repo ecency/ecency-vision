@@ -45,12 +45,12 @@ import {
   menuDownSvg
 } from "../../img/svg";
 
-import defaults from "../../constants/defaults.json";
+import defaults from "./../../constants/defaults.json";
 import { ProfilePopover } from "../profile-popover";
 import { match } from "react-router-dom";
 import { getPost } from "../../api/bridge";
 import { SearchResult } from "../../api/search-api";
-
+import appName from "./../../helper/app-name";
 setProxyBase(defaults.imageServer);
 
 interface MatchParams {
@@ -207,7 +207,7 @@ export default class EntryListItem extends Component<Props, State> {
     // const account = accounts?.find((x) => x.name === accountUsername) as FullAccount
     const pageAccount = account as FullAccount;
     const pinned = account && pageAccount.profile?.pinned;
-
+    const { showSelfVote, showRewardSplit, lowRewardThreshold } = global;
     const fallbackImage = global.isElectron
       ? "./img/fallback.png"
       : require("../../img/fallback.png");
@@ -286,6 +286,13 @@ export default class EntryListItem extends Component<Props, State> {
 
     const cls = `entry-list-item ${promoted ? "promoted-item" : ""} ${global.filter}`;
 
+    const self_vote_entry = entry.active_votes.find((x) => x.voter == entry.author);
+    const self_vote = self_vote_entry ? self_vote_entry.rshares : false;
+    const hp_portion = 100 * (1 - entry.percent_hbd / 20000);
+    const max_payout: number = parseFloat(entry.max_accepted_payout);
+    const app = appName(entry.json_metadata.app);
+    const appShort = app.split("/")[0].split(" ")[0];
+
     return mounted ? (
       <div className={_c(cls)} id={(entry.author + entry.permlink).replace(/[0-9]/g, "")}>
         {(() => {
@@ -361,6 +368,24 @@ export default class EntryListItem extends Component<Props, State> {
             <span className="date" title={dateFormatted}>
               {dateRelative}
             </span>
+            {showSelfVote && self_vote && <div className="post-info">{_t("entry.self_voted")}</div>}
+            {showRewardSplit && max_payout > 0 && <div className="post-info">{hp_portion}% HP</div>}
+            {app && (
+              <>
+                <span className="separator" />
+                <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">
+                  <meta itemProp="name" content={entry.author} />
+                </span>
+                <div className="app" title={app}>
+                  <Tsx k="entry.via-app" args={{ app: appShort }}>
+                    <a href="/faq#source-label" />
+                  </Tsx>
+                </div>
+              </>
+            )}
+            {max_payout > 0 && max_payout < lowRewardThreshold && (
+              <div className="post-info">&le; {max_payout} HBD</div>
+            )}
           </div>
           <div className="item-header-features">
             {isPinned && (
