@@ -1,4 +1,11 @@
-import React, { useState, useRef, useEffect, ReactElement } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  ReactElement,
+  MouseEventHandler,
+  TouchEventHandler
+} from "react";
 
 interface Props {
   value: number;
@@ -9,6 +16,8 @@ interface Props {
 const VotingSlider = (props: Props) => {
   const sliderRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const [moving, setMoving] = useState(false);
+  const [mouseX, setmouseX] = useState(0);
+  const [mouseY, setMouseY] = useState(0);
   const [sliderVal, setSliderVal] = useState(Math.abs(props.value));
   const tenOptions = [10, 20, 30, 40, 50, 60, 70, 80, 90];
   const fiveOptions = [25, 50, 75];
@@ -19,14 +28,14 @@ const VotingSlider = (props: Props) => {
 
   useEffect(() => {
     const addResizeEventListner = (): void =>
-      window.addEventListener("resize", () => {
-        setSliderOptions(window.innerWidth > 1600 ? tenOptions : fiveOptions);
-      });
+      window.addEventListener("resize", _wondowResizeHandler, true);
 
     addResizeEventListner();
 
     return () => {
-      window.removeEventListener("resize", () => {});
+      console.log("RETURN USEEFFECT");
+      window.removeEventListener("resize", _wondowResizeHandler, true);
+      window.removeEventListener("mouseup", _windowMouseUP, true);
     };
   }, []);
 
@@ -34,48 +43,75 @@ const VotingSlider = (props: Props) => {
     setSliderVal(Math.abs(props.value));
   }, [props.value]);
 
+  useEffect(() => {
+    if (moving) {
+      window.addEventListener("mousemove", _mousemoveEventHandler, true);
+      window.addEventListener("mouseup", _windowMouseUP, true);
+
+      document.body.classList.add("no-select");
+    } else {
+      document.body.classList.remove("no-select");
+    }
+  }, [moving]);
+
+  useEffect(() => {
+    const el: HTMLDivElement | null = sliderRef.current;
+    const rect: DOMRect | undefined = el?.getBoundingClientRect();
+
+    if (rect && el) {
+      const x = mouseX - rect?.left;
+      const sliderValueFixed: number = parseFloat(((x / el?.offsetWidth) * 100).toFixed(1));
+      setSliderValue(sliderValueFixed);
+    }
+  }, [mouseX]);
+
   const setSliderValue = (value: number): void => {
-    if (value < 0 || value > 100) return;
+    if (value > 100) value = 100;
+    if (value < 0) value = 0;
+
     setSliderVal(Math.abs(value));
     props.setVoteValue(props.mode == "up" ? value : -value);
   };
+  const _wondowResizeHandler = () => {
+    setSliderOptions(window.innerWidth > 1600 ? tenOptions : fiveOptions);
+  };
 
-  const _handleMouseMovement = (event: any) => {
+  const _windowMouseUP = () => {
+    console.log("MOVE UP");
+    window.removeEventListener("mousemove", _mousemoveEventHandler, true);
+  };
+
+  const _mousemoveEventHandler: any = (event: MouseEvent): void => {
+    console.log("mouse move");
+    setmouseX(event.clientX);
+    setMouseY(event.clientY);
+  };
+
+  const handleMouseDown = (event: any) => {
+    setMoving(true);
+    _mousemoveEventHandler(event);
+  };
+
+  const handleMouseUp = (event: any): void => {
+    setMoving(false);
+  };
+
+  const _handleTouchMovement = (touch: Touch) => {
     const el: HTMLDivElement | null = sliderRef.current;
     const rect: DOMRect | undefined = el?.getBoundingClientRect();
-    if (event && rect && el) {
-      const x = event?.clientX - rect?.left;
+    if (rect && el) {
+      const x = touch.clientX - rect?.left;
       const sliderValueFixed: number = parseFloat(((x / el?.offsetWidth) * 100).toFixed(1));
       setSliderValue(sliderValueFixed);
     }
   };
 
-  const handleMouseMovement = (event: any) => {
-    if (moving == true) {
-      if (event.type == "touchmove") {
-        event = event.touches[0];
-      }
-      _handleMouseMovement(event);
-    }
+  const handleTouchMovement = (event: any) => {
+    _handleTouchMovement(event.touches[0]);
   };
 
-  const handleMouseDown = (event: any) => {
-    setMoving(true);
-    if (event.type == "touchstart" || event.type == "touchend") {
-      event = event.touches[0];
-    }
-    _handleMouseMovement(event);
-  };
-
-  const handleMouseUp = (event: any): void => {
-    if (event.type == "touchstart" || event.type == "touchend") {
-      event = event.touches[0];
-    }
-    setMoving(false);
-  };
-
-  const handleMouseLeave = (): void => {
-    setMoving(false);
+  const handleTouchStart = (event: any) => {
+    _handleTouchMovement(event.touches[0]);
   };
 
   const displayDots = (): ReactElement => {
@@ -133,11 +169,11 @@ const VotingSlider = (props: Props) => {
       <div
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMovement}
-        onMouseLeave={handleMouseLeave}
-        onTouchMove={handleMouseMovement}
-        onTouchStart={handleMouseDown}
-        onTouchEnd={handleMouseDown}
+        // onMouseMove={handleMouseMovement}
+        // onMouseLeave={handleMouseLeave}
+        onTouchMove={handleTouchMovement}
+        onTouchStart={handleTouchStart}
+        // onTouchEnd={handleMouseDown}
         ref={sliderRef}
         className="slide"
       >
