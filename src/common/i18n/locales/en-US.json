@@ -632,6 +632,8 @@
     "uploaded": "Image uploaded"
   },
   "preferences": {
+    "show-self-vote": "Show Self Vote flag",
+    "show-reward-split": "Show Hive Power/Hive Dollar Breakdown",
     "title": "Preferences",
     "notifications": "Notification alerts",
     "currency": "Currency",
@@ -642,6 +644,10 @@
     "theme-system-default": "System Default",
     "theme-day": "Day mode",
     "theme-night": "Night mode",
+    "show-self-vote-true": "On",
+    "show-self-vote-false": "Off",
+    "show-reward-split-true": "On",
+    "show-reward-split-false": "Off",
     "updated": "Preference updated!"
   },
   "wallet": {

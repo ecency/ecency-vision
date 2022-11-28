@@ -29,7 +29,10 @@ import {
   setCurrency,
   setLang,
   setNsfw,
-  setLastIndexPath
+  setLastIndexPath,
+  setShowSelfVote,
+  setShowRewardSplit,
+  setLowRewardThreshold
 } from "../store/global";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { updateSubscriptions } from "../store/subscriptions";
@@ -87,6 +90,9 @@ export interface PageProps {
   setLang: (lang: string) => void;
   setNsfw: (value: boolean) => void;
   setLastIndexPath: (path: string | null) => void;
+  setShowSelfVote: (value: boolean) => void;
+  setShowRewardSplit: (value: boolean) => void;
+  setLowRewardThreshold: (value: number) => void;
 
   dynamicProps: DynamicProps;
 
@@ -186,6 +192,9 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       setLang,
       setNsfw,
       setLastIndexPath,
+      setShowSelfVote,
+      setShowRewardSplit,
+      setLowRewardThreshold,
       dismissNewVersion,
       fetchTrendingTags,
       updateSubscriptions,

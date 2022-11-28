@@ -17,5 +17,5 @@
   "twitterHandle": "@ecency_official",
   "showSelfVote": true,
   "showRewardSplit": true,
-  "lowRewardThreshold": 100
+  "lowRewardThreshold": 1000000000
 }
