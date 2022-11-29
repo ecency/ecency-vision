@@ -7,6 +7,7 @@ import React, {
   MouseEventHandler,
   TouchEventHandler
 } from "react";
+import { setWithdrawVestingRouteHot } from "../../api/operations";
 
 interface Props {
   value: number;
@@ -65,21 +66,6 @@ const VotingSlider = (props: Props) => {
       window.removeEventListener("keydown", checkKeyPress);
     };
   }, [checkKeyPress]);
-
-  const checkKeyRelease = useCallback((e: KeyboardEvent): void => {
-    e.preventDefault();
-    const { key } = e;
-    if (key == "ArrowUp" || key == "ArrowRight" || key == "ArrowDown" || key == "ArrowLeft") {
-      setshowOptions(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("keyup", checkKeyRelease);
-    return () => {
-      window.removeEventListener("keyup", checkKeyRelease);
-    };
-  }, [checkKeyRelease]);
 
   useEffect(() => {
     const moveUseEffect = (): void => {
@@ -141,7 +127,6 @@ const VotingSlider = (props: Props) => {
 
   const handleMouseUp = (event: any): void => {
     setMoving(false);
-    setshowOptions(false);
   };
 
   const _handleTouchMovement = (touch: Touch) => {
@@ -159,6 +144,7 @@ const VotingSlider = (props: Props) => {
   };
 
   const handleTouchStart = (event: any) => {
+    setshowOptions(true);
     _handleTouchMovement(event.touches[0]);
   };
 
