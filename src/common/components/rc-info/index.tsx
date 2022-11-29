@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Modal, Card, Row, Col } from "react-bootstrap";
+import { Button, Card, Row, Col, Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { findRcAccounts } from "../../api/hive";
 import { ResourceCreditsDelegation } from "../rc-delegation"
@@ -18,15 +18,30 @@ export const ResourceCreditsInfo = (props: any) => {
 
     useEffect(() => {
         findRcAccounts(account.name).then((r) => {
-          console.log(r)
-            const delegated = r.map((a: any) => a.delegated_rc);
-            setDelegated(delegated[0]);
+            const outGoing = r.map((a: any) => a.delegated_rc);
+            const delegated = outGoing[0]
+            const formatOutGoing: any =  rcFormatter(delegated)
+            setDelegated(formatOutGoing);
             const availableResourceCredit: any = r.map((a: any) => a.rc_manabar.current_mana);
-            setresourceCredit(availableResourceCredit);
-            const receivedDel: any = r.map((a: any) => a.received_delegated_rc);
-            setReceivedDelegation(receivedDel);
+            const formatRc: any = rcFormatter(Number(availableResourceCredit));
+            setresourceCredit(formatRc);
+            const inComing: any = r.map((a: any) => Number(a.received_delegated_rc));
+            const formatIncoming = rcFormatter(inComing);
+            setReceivedDelegation(formatIncoming);
           })
     }, []);
+
+    const rcFormatter = (num: number) => {
+      const result: any = 
+      Math.abs(num) > 999 && Math.abs(num) < 1000000 ? 
+      Math.sign(num) * parseFloat((Math.abs(num)/1000).toFixed(2)) + 'k' : 
+      Math.abs(num) > 999999 && Math.abs(num) < 1000000000 ? 
+      Math.sign(num) * parseFloat((Math.abs(num)/1000000).toFixed(2)) + "m" : 
+      Math.abs(num) > 999999999 && Math.abs(num) < 1000000000000000 ? 
+      Math.sign(num) * parseFloat((Math.abs(num)/1000000000).toFixed(2)) + "b" : 
+      Math.sign(num)*Math.abs(num);
+      return result
+  }
 
     const showModal = () => {
         setShowRcInfo(true);
@@ -52,17 +67,6 @@ export const ResourceCreditsInfo = (props: any) => {
     const hideList = () => {
       setShowDelegationsList(false)
   };
-    
-    // const formHeader1 = (
-    //   <div className="transaction-form-header">
-    //     <div className="step-no">1</div>
-    //     <div className="box-titles">
-    //       <div className="main-title">Delegate</div>
-    //       <div className="sub-title">Delegate Resource Credit</div>
-    //     </div>
-    //   </div>
-    // );
-
   return (
       <div>
         <div className="progress" onClick={showModal}>
@@ -155,7 +159,6 @@ export const ResourceCreditsInfo = (props: any) => {
             </Card>
           </Col>
         </Row>  
-
         <div className="d-flex justify-content-center mt-3">
             <Button onClick={showDelegation}>
              {_t("rc-info.delegation-button")}
@@ -174,10 +177,15 @@ export const ResourceCreditsInfo = (props: any) => {
       <Modal.Title>{_t("rc-info.delegatees")}</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-    <RcDelegationsInList activeUser={activeUser} />    </Modal.Body>
-  </Modal>
-
-    
+    <RcDelegationsInList 
+    activeUser={activeUser} 
+    rcFormatter={rcFormatter} 
+    delegated={delegated} 
+    showDelegation={showDelegation} 
+    hideList={hideList}
+    />    
+    </Modal.Body>
+  </Modal>    
           
     <div>
     <Modal
@@ -195,7 +203,12 @@ export const ResourceCreditsInfo = (props: any) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <ResourceCreditsDelegation {...props} activeUser={activeUser} resourceCredit={resourceCredit} hideDelegation={hideDelegation}  />
+      <ResourceCreditsDelegation 
+      {...props} 
+      activeUser={activeUser} 
+      resourceCredit={resourceCredit} 
+      hideDelegation={hideDelegation} 
+      />
       </Modal.Body>
     </Modal>
     </div>     

@@ -877,7 +877,7 @@ export const delegateRC = (
   delegator: string,
   key: PrivateKey,
   delegatees: string,
-  max_rc: string
+  max_rc: string | number
 ): Promise<TransactionConfirmation> => {
   const json = JSON.stringify(['delegate_rc', {
             from: delegator,
@@ -898,7 +898,7 @@ export const delegateRC = (
 export const delegateRCHot = (
   delegator: string,
   delegatees: string,
-  max_rc: string
+  max_rc: string | number
 ) => {
   const params = {
     authority: "active",
@@ -918,7 +918,7 @@ export const delegateRCHot = (
 export const delegateRCKc = (
   delegator: string,
   delegatees: string,
-  max_rc: string
+  max_rc: string | number
 ) => {
    const json = JSON.stringify(['delegate_rc', {
             from: delegator,
