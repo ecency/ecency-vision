@@ -213,7 +213,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
   changeMode = (m: Mode) => {
     this.setState({ mode: m });
-    this.setSliderOptionsAndWidth();
   };
   //TODO: Delete this after 3.0.22 release
   cleanUpLS = () => {
