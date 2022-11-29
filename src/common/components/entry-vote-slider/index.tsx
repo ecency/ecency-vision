@@ -33,25 +33,33 @@ const VotingSlider = (props: Props) => {
     addResizeEventListner();
 
     return () => {
-      console.log("RETURN USEEFFECT");
-      window.removeEventListener("resize", _wondowResizeHandler, true);
       window.removeEventListener("mouseup", _windowMouseUP, true);
+      window.removeEventListener("resize", _wondowResizeHandler, true);
     };
   }, []);
 
   useEffect(() => {
-    setSliderVal(Math.abs(props.value));
+    const setValueEffect = (): void => {
+      setSliderVal(Math.abs(props.value));
+    };
+    setValueEffect();
   }, [props.value]);
 
   useEffect(() => {
-    if (moving) {
-      window.addEventListener("mousemove", _mousemoveEventHandler, true);
-      window.addEventListener("mouseup", _windowMouseUP, true);
+    const moveUseEffect = (): void => {
+      if (moving) {
+        window.addEventListener("mousemove", _mousemoveEventHandler, true);
+        window.addEventListener("mouseup", _windowMouseUP, true);
 
-      document.body.classList.add("no-select");
-    } else {
-      document.body.classList.remove("no-select");
-    }
+        document.body.classList.add("no-select");
+      } else {
+        document.body.classList.remove("no-select");
+      }
+    };
+    moveUseEffect();
+    return () => {
+      window.removeEventListener("mouseup", _windowMouseUP, true);
+    };
   }, [moving]);
 
   useEffect(() => {
@@ -77,12 +85,10 @@ const VotingSlider = (props: Props) => {
   };
 
   const _windowMouseUP = () => {
-    console.log("MOVE UP");
     window.removeEventListener("mousemove", _mousemoveEventHandler, true);
   };
 
   const _mousemoveEventHandler: any = (event: MouseEvent): void => {
-    console.log("mouse move");
     setmouseX(event.clientX);
     setMouseY(event.clientY);
   };
@@ -124,7 +130,7 @@ const VotingSlider = (props: Props) => {
 
           {sliderOptions.map((option: number) => {
             var backgroundClr: string;
-            if (sliderVal >= option) {
+            if (sliderVal >= option - 2) {
               backgroundClr = props.mode == "up" ? "#357ce6" : "rgba(191, 48, 48, 0.8)";
             } else {
               backgroundClr = "#d4cfcf";
@@ -169,11 +175,8 @@ const VotingSlider = (props: Props) => {
       <div
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
-        // onMouseMove={handleMouseMovement}
-        // onMouseLeave={handleMouseLeave}
         onTouchMove={handleTouchMovement}
         onTouchStart={handleTouchStart}
-        // onTouchEnd={handleMouseDown}
         ref={sliderRef}
         className="slide"
       >

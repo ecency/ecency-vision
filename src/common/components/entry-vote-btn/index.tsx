@@ -120,31 +120,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
   componentDidMount(): void {
     this.cleanUpLS();
-    this.setSliderOptionsAndWidth();
-    window.addEventListener("resize", this.setSliderOptionsAndWidth);
   }
-
-  setSliderOptionsAndWidth = (): void => {
-    const upTimeout = setTimeout(() => {
-      if (this.upSliderRef.current?.offsetWidth) {
-        this.setState({ upSliderLineWidth: this.upSliderRef.current?.offsetWidth });
-        clearTimeout(upTimeout);
-      }
-    }, 5);
-
-    const downTimeout = setTimeout(() => {
-      if (this.downSliderRef.current?.offsetWidth) {
-        this.setState({ downSliderLineWidth: this.downSliderRef.current?.offsetWidth });
-        clearTimeout(downTimeout);
-      }
-    }, 5);
-
-    if (window.innerWidth < 1600) {
-      this.setState({ sliderLabelData: [25, 50, 75] });
-    } else {
-      this.setState({ sliderLabelData: initialSliderLabelList });
-    }
-  };
 
   estimate = (percent: number): number => {
     const { entry, activeUser, dynamicProps } = this.props;
