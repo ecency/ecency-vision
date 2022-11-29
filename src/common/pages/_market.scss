@@ -72,6 +72,20 @@ thead, .pagination {
     &.ADVANCED {
         .advanced-mode-layout {
             display: grid;
+
+            .layout-row {
+                display: flex;
+                width: 100%;
+            }
+
+            .layout-col.expanded {
+                width: 100%;
+            }
+
+            .layout-col.collapsed {
+                width: auto;
+                min-width: 350px;
+            }
         }
 
         .advanced-mode-toolbar {

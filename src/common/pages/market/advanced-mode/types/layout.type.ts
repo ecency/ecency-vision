@@ -1,22 +1,24 @@
 export enum Widget {
-  TradingView,
-  History,
-  TradingForm,
-  Stake,
-  Pairs
+  TradingView = "tv",
+  History = "hs",
+  TradingForm = "tf",
+  Stake = "st",
+  Pairs = "pr",
+  OpenOrders = "oo"
 }
 
 export type ColumnSize = "collapsed" | "expanded";
 
-export interface LayoutRow {
-  widgetType: Widget;
+export interface LayoutColumn {
+  widgetType?: Widget;
+  size: ColumnSize;
+  rows: LayoutRow[];
 }
 
-export interface LayoutColumn {
-  rows: LayoutRow[];
-  size: ColumnSize;
+export interface LayoutRow {
+  columns: LayoutColumn[];
 }
 
 export interface Layout {
-  columns: LayoutColumn[];
+  rows: LayoutRow[];
 }

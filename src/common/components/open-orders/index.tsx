@@ -23,9 +23,10 @@ interface Props {
   username: string;
   onTransactionSuccess: () => void;
   activeUser: ActiveUser;
+  compat?: boolean;
 }
 
-export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: Props) => {
+export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser, compat }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState<number>(0);
 
   return loading ? (
@@ -44,7 +45,7 @@ export const OpenOrders = ({ data, loading, onTransactionSuccess, activeUser }: 
           />
         </>
       ) : null}
-      <h5>{_t("market.open-orders")}</h5>
+      {compat ? <></> : <h5>{_t("market.open-orders")}</h5>}
       <Table striped={true} bordered={true} hover={true} size="sm">
         <thead>
           <tr>

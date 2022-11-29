@@ -15,6 +15,8 @@ import { OrdersData } from "../../../api/hive";
 import { ActiveUser } from "../../../store/active-user/types";
 import { Global } from "../../../store/global/types";
 import { UserBalanceObserver } from "./user-balance-observer";
+import { OpenOrdersWidget } from "../../../components/market-advanced-mode/open-orders-widget";
+import { WidgetLayoutBuilder } from "./widget-layout-builder";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -31,14 +33,6 @@ export const AdvancedMode = ({ activeUser, global }: Props) => {
   const [history, setHistory] = useState<OrdersData | null>(null);
   const [buyBalance, setBuyBalance] = useState<string>("0");
   const [sellBalance, setSellBalance] = useState<string>("0");
-
-  const getGridColumns = () => {
-    let cssGridColumns = "";
-    layout.columns.forEach((column) => {
-      cssGridColumns += column.size === "expanded" ? "2fr " : "1fr ";
-    });
-    return cssGridColumns.trim();
-  };
 
   return (
     <div className="advanced-mode">
@@ -61,43 +55,20 @@ export const AdvancedMode = ({ activeUser, global }: Props) => {
         price={price}
         usdPrice={usdPrice}
       />
-      <div className="advanced-mode-layout" style={{ gridTemplateColumns: getGridColumns() }}>
-        {layout.columns.map((column, key) => (
-          <div key={key}>
-            {column.rows.map((row, key) => {
-              switch (row.widgetType) {
-                case Widget.History:
-                  return (
-                    <HistoryWidget
-                      fromAsset={fromAsset}
-                      toAsset={toAsset}
-                      history={history}
-                      onItemClick={(v) => setPrice(v)}
-                    />
-                  );
-                case Widget.Stake:
-                  return <StakeWidget fromAsset={fromAsset} toAsset={toAsset} history={history} />;
-                case Widget.Pairs:
-                  return <PairsWidget />;
-                case Widget.TradingForm:
-                  return (
-                    <TradingFormWidget
-                      activeUser={activeUser}
-                      global={global}
-                      dayChange={dayChange}
-                      buyBalance={buyBalance}
-                      sellBalance={sellBalance}
-                      price={price}
-                    />
-                  );
-                case Widget.TradingView:
-                  return <TradingViewWidget />;
-                default:
-                  return <></>;
-              }
-            })}
-          </div>
-        ))}
+      <div className="advanced-mode-layout">
+        <WidgetLayoutBuilder
+          layout={layout}
+          activeUser={activeUser}
+          global={global}
+          price={price}
+          toAsset={toAsset}
+          fromAsset={fromAsset}
+          sellBalance={sellBalance}
+          buyBalance={buyBalance}
+          history={history}
+          dayChange={dayChange}
+          setPrice={setPrice}
+        />
       </div>
     </div>
   );

@@ -400,6 +400,7 @@
       "stake": "Stake",
       "pairs": "Pairs",
       "form": "Trading form",
+      "open-orders": "Open orders",
       "history-widget": {
         "price": "Price",
         "amount": "Amount",
