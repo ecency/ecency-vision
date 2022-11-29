@@ -14,7 +14,10 @@ it("(1) Default render", () => {
     setCurrency: () => {},
     setLang: () => {},
     setNsfw: () => {},
-    toggleTheme: () => {}
+    toggleTheme: () => {},
+    setShowSelfVote: () => {},
+    setShowRewardSplit: () => {},
+    setLowRewardThreshold: () => {}
   };
 
   const component = renderer.create(<Preferences {...props} activeUser={activeUserInstance} />);

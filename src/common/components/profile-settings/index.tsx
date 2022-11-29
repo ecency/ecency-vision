@@ -24,6 +24,9 @@ interface Props {
   setLang: (lang: string) => void;
   setNsfw: (value: boolean) => void;
   toggleTheme: (theme_key?: string) => void;
+  setShowSelfVote: (value: boolean) => void;
+  setShowRewardSplit: (value: boolean) => void;
+  setLowRewardThreshold: (value: number) => void;
 }
 
 export class ProfileSettings extends Component<Props> {
@@ -68,7 +71,10 @@ export default (p: Props) => {
     setCurrency: p.setCurrency,
     setLang: p.setLang,
     setNsfw: p.setNsfw,
-    toggleTheme: p.toggleTheme
+    toggleTheme: p.toggleTheme,
+    setShowSelfVote: p.setShowSelfVote,
+    setShowRewardSplit: p.setShowRewardSplit,
+    setLowRewardThreshold: p.setLowRewardThreshold
   };
 
   return <ProfileSettings {...props} />;

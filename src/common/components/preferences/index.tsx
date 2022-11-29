@@ -22,6 +22,9 @@ interface Props {
   setNsfw: (value: boolean) => void;
   activeUser: ActiveUser;
   toggleTheme: (theme_key?: string) => void;
+  setShowSelfVote: (value: boolean) => void;
+  setShowRewardSplit: (value: boolean) => void;
+  setLowRewardThreshold: (value: number) => void;
 }
 
 interface State {
@@ -98,6 +101,34 @@ export class Preferences extends BaseComponent<Props, State> {
     success(_t("preferences.updated"));
   };
 
+  showSelfVoteChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+    const { setShowSelfVote } = this.props;
+    const { value } = e.target;
+    console.log(value);
+    const parsedValue = JSON.parse(value);
+    setShowSelfVote(parsedValue);
+    success(_t("preferences.updated"));
+  };
+
+  showRewardSplitChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+    const { setShowRewardSplit } = this.props;
+    const { value } = e.target;
+
+    setShowRewardSplit(JSON.parse(value));
+    success(_t("preferences.updated"));
+  };
+
+  lowRewardThresholdChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+    const { setLowRewardThreshold } = this.props;
+    const { value } = e.target;
+    try {
+      setLowRewardThreshold(JSON.parse(value));
+    } catch (e) {
+      console.log(value, "Couldn't get it done boss");
+    }
+    success(_t("preferences.updated"));
+  };
+
   copyToClipboard = (text: string) => {
     const textField = document.createElement("textarea");
     textField.innerText = text;
@@ -114,6 +145,10 @@ export class Preferences extends BaseComponent<Props, State> {
     if (use_system_theme) {
       theme = "system";
     }
+    this.showSelfVoteChanged = this.showSelfVoteChanged.bind(this);
+    this.showRewardSplitChanged = this.showRewardSplitChanged.bind(this);
+    this.lowRewardThresholdChanged = this.lowRewardThresholdChanged.bind(this);
+
     this.setState({ ...this.state, defaultTheme: theme });
   }
 
@@ -244,6 +279,44 @@ export class Preferences extends BaseComponent<Props, State> {
                     </Form.Control>
                   </Form.Group>
                 </Col>
+                <Col lg={6} xl={4}>
+                  <Form.Group>
+                    <Form.Label>{_t("preferences.show-self-vote")}</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={JSON.stringify(global.showSelfVote)}
+                      as="select"
+                      onChange={this.showSelfVoteChanged}
+                    >
+                      <option value={"true"}>{_t("preferences.show-self-vote-true")}</option>
+                      <option value={"false"}>{_t("preferences.show-self-vote-false")}</option>
+                    </Form.Control>
+                  </Form.Group>
+                </Col>
+                <Col lg={6} xl={4}>
+                  <Form.Group>
+                    <Form.Label>{_t("preferences.show-reward-split")}</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={JSON.stringify(global.showRewardSplit)}
+                      as="select"
+                      onChange={this.showRewardSplitChanged}
+                    >
+                      <option value={"true"}>{_t("preferences.show-reward-split-true")}</option>
+                      <option value={"false"}>{_t("preferences.show-reward-split-false")}</option>
+                    </Form.Control>
+                  </Form.Group>
+                </Col>
+                <Col lg={6} xl={4}>
+                  <Form.Group>
+                    <Form.Label>{_t("preferences.low-reward-threshold")}</Form.Label>
+                    <Form.Control
+                      type="text"
+                      defaultValue={global.lowRewardThreshold}
+                      onChange={this.lowRewardThresholdChanged}
+                    />
+                  </Form.Group>
+                </Col>
               </>
             )}
           </Form.Row>
@@ -262,7 +335,10 @@ export default (p: Props) => {
     setCurrency: p.setCurrency,
     setLang: p.setLang,
     setNsfw: p.setNsfw,
-    toggleTheme: p.toggleTheme
+    toggleTheme: p.toggleTheme,
+    setShowSelfVote: p.setShowSelfVote,
+    setShowRewardSplit: p.setShowRewardSplit,
+    setLowRewardThreshold: p.setLowRewardThreshold
   };
 
   return <Preferences {...props} />;

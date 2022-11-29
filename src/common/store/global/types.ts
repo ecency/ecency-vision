@@ -70,6 +70,9 @@ export interface Global {
   usePrivate: boolean;
   hsClientId: string;
   lastIndexPath: string | null;
+  showSelfVote: boolean;
+  showRewardSplit: boolean;
+  lowRewardThreshold: number;
 }
 
 export enum ActionTypes {
@@ -83,7 +86,10 @@ export enum ActionTypes {
   LANG_SET = "@global/LANG_SET",
   NEW_VERSION_CHANGE = "@global/NEW_VERSION_CHANGE",
   NSFW_SET = "@global/NSFW_SET",
-  SET_LAST_INDEX_PATH = "@global/SET_LAST_INDEX_PATH"
+  SET_LAST_INDEX_PATH = "@global/SET_LAST_INDEX_PATH",
+  SET_SHOW_SELF_VOTE = "@global/SET_SHOW_SELF_VOTE",
+  SET_SHOW_REWARD_SPLIT = "@global/SET_SHOW_REWARD_SPLIT",
+  SET_LOW_REWARD_THRESHOLD = "@global/SET_LOW_REWARD_THRESHOLD"
 }
 
 export interface ThemeChangeAction {
@@ -139,6 +145,21 @@ export interface SetLastIndexPathAction {
   path: string | null;
 }
 
+export interface SetShowSelfVoteAction {
+  type: ActionTypes.SET_SHOW_SELF_VOTE;
+  showSelfVote: boolean;
+}
+
+export interface SetShowRewardSplitAction {
+  type: ActionTypes.SET_SHOW_REWARD_SPLIT;
+  showRewardSplit: boolean;
+}
+
+export interface SetLowRewardThresholdAction {
+  type: ActionTypes.SET_LOW_REWARD_THRESHOLD;
+  lowRewardThreshold: number;
+}
+
 export type Actions =
   | LocationChangeAction
   | ThemeChangeAction
@@ -151,4 +172,7 @@ export type Actions =
   | LangSetAction
   | NsfwSetAction
   | HasKeyChainAction
-  | SetLastIndexPathAction;
+  | SetLastIndexPathAction
+  | SetShowSelfVoteAction
+  | SetShowRewardSplitAction
+  | SetLowRewardThresholdAction;

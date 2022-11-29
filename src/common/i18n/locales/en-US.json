@@ -417,6 +417,7 @@
     "sort-percent": "Percentage"
   },
   "entry": {
+    "self_voted": "self voted",
     "via-app": "via <span class=\"app-name\">{{app}}</span>",
     "author-reputation": "Author's reputation",
     "comment-entry-title": "You are viewing a single comment's thread from: ",
@@ -631,6 +632,10 @@
     "uploaded": "Image uploaded"
   },
   "preferences": {
+    "show-self-vote": "Show Self Vote flag",
+    "show-reward-split": "Show Hive Power/Hive Dollar Breakdown",
+    "low-reward-threshold": "Low maximum accepted reward threshold",
+    "low-reward-threshold-info": "The maximum accepted reward for a post will be displayed when this maximum is less than or equal to this threshold value",
     "title": "Preferences",
     "notifications": "Notification alerts",
     "currency": "Currency",
@@ -641,6 +646,10 @@
     "theme-system-default": "System Default",
     "theme-day": "Day mode",
     "theme-night": "Night mode",
+    "show-self-vote-true": "On",
+    "show-self-vote-false": "Off",
+    "show-reward-split-true": "On",
+    "show-reward-split-false": "Off",
     "updated": "Preference updated!"
   },
   "wallet": {
