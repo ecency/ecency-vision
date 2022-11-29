@@ -67,10 +67,6 @@ interface VoteDialogState {
   showRemove: boolean;
   wrongValueDown: boolean;
   initialVoteValues: { up: any; down: any };
-  upSliderLineWidth: number;
-  downSliderLineWidth: number;
-  sliderLabelData: Array<number>;
-  moving: Boolean;
 }
 
 const initialSliderLabelList: Array<number> = [10, 20, 30, 40, 50, 60, 70, 80, 90];
@@ -104,19 +100,8 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
         this.props.activeUser?.username! + "-" + this.props.entry.post_id,
         getVoteValue("downPrevious", this.props.activeUser?.username!, -1)
       )
-    },
-    upSliderLineWidth: 0,
-    downSliderLineWidth: 0,
-    sliderLabelData: initialSliderLabelList,
-    moving: false
+    }
   };
-  private upSliderRef: React.RefObject<HTMLInputElement>;
-  private downSliderRef: React.RefObject<HTMLInputElement>;
-  constructor(props: VoteDialogProps) {
-    super(props);
-    this.upSliderRef = React.createRef();
-    this.downSliderRef = React.createRef();
-  }
 
   componentDidMount(): void {
     this.cleanUpLS();
