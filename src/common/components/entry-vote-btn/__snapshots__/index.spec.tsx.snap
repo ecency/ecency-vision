@@ -33,162 +33,99 @@ exports[`(1) Dialog (1) Up vote 1`] = `
     <div
       style={
         Object {
-          "height": "20px",
+          "height": "40px",
           "paddingRight": "13px",
         }
       }
     >
       <div
-        className="slider-line"
-        style={
-          Object {
-            "background": "#357ce6",
-            "width": "100%",
-          }
-        }
-      />
-      <div
         className="slide"
         onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseMove={[Function]}
         onMouseUp={[Function]}
-        onTouchEnd={[Function]}
         onTouchMove={[Function]}
         onTouchStart={[Function]}
       >
-        <span
-          className="slider-dot pointer-dot"
-          style={
-            Object {
-              "background": "#357ce6",
-              "left": "100%",
-            }
-          }
-        />
         <div
-          className="dots-container"
+          className="slide-background-line"
         >
           <div
+            className="slider-line"
             style={
               Object {
-                "width": "25%",
+                "background": "#357ce6",
+                "width": "100%",
+                "zIndex": 100,
+              }
+            }
+          />
+          <span
+            className="slider-dot pointer-dot"
+            style={
+              Object {
+                "background": "#357ce6",
+                "left": "100%",
               }
             }
           />
           <div
-            style={
-              Object {
-                "width": "25%",
-              }
-            }
+            className="dots-container"
           >
-            <span
-              className="slider-dot"
+            <div
               style={
                 Object {
-                  "background": "#357ce6",
+                  "width": "25%",
                 }
               }
             />
-          </div>
-          <div
-            style={
-              Object {
-                "width": "25%",
-              }
-            }
-          >
-            <span
-              className="slider-dot"
+            <div
               style={
                 Object {
-                  "background": "#357ce6",
+                  "width": "25%",
                 }
               }
-            />
-          </div>
-          <div
-            style={
-              Object {
-                "width": "25%",
-              }
-            }
-          >
-            <span
-              className="slider-dot"
+            >
+              <span
+                className="slider-dot"
+                style={
+                  Object {
+                    "background": "#357ce6",
+                  }
+                }
+              />
+            </div>
+            <div
               style={
                 Object {
-                  "background": "#357ce6",
+                  "width": "25%",
                 }
               }
-            />
+            >
+              <span
+                className="slider-dot"
+                style={
+                  Object {
+                    "background": "#357ce6",
+                  }
+                }
+              />
+            </div>
+            <div
+              style={
+                Object {
+                  "width": "25%",
+                }
+              }
+            >
+              <span
+                className="slider-dot"
+                style={
+                  Object {
+                    "background": "#357ce6",
+                  }
+                }
+              />
+            </div>
           </div>
-        </div>
-      </div>
-      <div
-        className="label-container"
-      >
-        <div
-          style={
-            Object {
-              "width": "25%",
-            }
-          }
-        />
-        <div
-          style={
-            Object {
-              "width": "25%",
-            }
-          }
-        >
-          <p
-            onClick={[Function]}
-            style={
-              Object {
-                "marginLeft": "-4px",
-              }
-            }
-          >
-            25
-          </p>
-        </div>
-        <div
-          style={
-            Object {
-              "width": "25%",
-            }
-          }
-        >
-          <p
-            onClick={[Function]}
-            style={
-              Object {
-                "marginLeft": "-4px",
-              }
-            }
-          >
-            50
-          </p>
-        </div>
-        <div
-          style={
-            Object {
-              "width": "25%",
-            }
-          }
-        >
-          <p
-            onClick={[Function]}
-            style={
-              Object {
-                "marginLeft": "-4px",
-              }
-            }
-          >
-            75
-          </p>
         </div>
       </div>
     </div>
@@ -256,162 +193,99 @@ exports[`(1) Dialog (2) Down vote 1`] = `
     <div
       style={
         Object {
-          "height": "20px",
+          "height": "40px",
           "paddingRight": "13px",
         }
       }
     >
       <div
-        className="slider-line"
-        style={
-          Object {
-            "background": "rgba(191, 48, 48)",
-            "width": "1%",
-          }
-        }
-      />
-      <div
         className="slide"
         onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseMove={[Function]}
         onMouseUp={[Function]}
-        onTouchEnd={[Function]}
         onTouchMove={[Function]}
         onTouchStart={[Function]}
       >
-        <span
-          className="slider-dot pointer-dot"
-          style={
-            Object {
-              "background": "rgba(191, 48, 48)",
-              "left": "1%",
-            }
-          }
-        />
         <div
-          className="dots-container"
+          className="slide-background-line"
         >
           <div
+            className="slider-line"
             style={
               Object {
-                "width": "25%",
+                "background": "rgba(191, 48, 48)",
+                "width": "1%",
+                "zIndex": 100,
+              }
+            }
+          />
+          <span
+            className="slider-dot pointer-dot"
+            style={
+              Object {
+                "background": "rgba(191, 48, 48)",
+                "left": "1%",
               }
             }
           />
           <div
-            style={
-              Object {
-                "width": "25%",
-              }
-            }
+            className="dots-container"
           >
-            <span
-              className="slider-dot"
+            <div
               style={
                 Object {
-                  "background": "#d4cfcf",
+                  "width": "25%",
                 }
               }
             />
-          </div>
-          <div
-            style={
-              Object {
-                "width": "25%",
-              }
-            }
-          >
-            <span
-              className="slider-dot"
+            <div
               style={
                 Object {
-                  "background": "#d4cfcf",
+                  "width": "25%",
                 }
               }
-            />
-          </div>
-          <div
-            style={
-              Object {
-                "width": "25%",
-              }
-            }
-          >
-            <span
-              className="slider-dot"
+            >
+              <span
+                className="slider-dot"
+                style={
+                  Object {
+                    "background": "#d4cfcf",
+                  }
+                }
+              />
+            </div>
+            <div
               style={
                 Object {
-                  "background": "#d4cfcf",
+                  "width": "25%",
                 }
               }
-            />
+            >
+              <span
+                className="slider-dot"
+                style={
+                  Object {
+                    "background": "#d4cfcf",
+                  }
+                }
+              />
+            </div>
+            <div
+              style={
+                Object {
+                  "width": "25%",
+                }
+              }
+            >
+              <span
+                className="slider-dot"
+                style={
+                  Object {
+                    "background": "#d4cfcf",
+                  }
+                }
+              />
+            </div>
           </div>
-        </div>
-      </div>
-      <div
-        className="label-container"
-      >
-        <div
-          style={
-            Object {
-              "width": "25%",
-            }
-          }
-        />
-        <div
-          style={
-            Object {
-              "width": "25%",
-            }
-          }
-        >
-          <p
-            onClick={[Function]}
-            style={
-              Object {
-                "marginLeft": "-4px",
-              }
-            }
-          >
-            -25
-          </p>
-        </div>
-        <div
-          style={
-            Object {
-              "width": "25%",
-            }
-          }
-        >
-          <p
-            onClick={[Function]}
-            style={
-              Object {
-                "marginLeft": "-4px",
-              }
-            }
-          >
-            -50
-          </p>
-        </div>
-        <div
-          style={
-            Object {
-              "width": "25%",
-            }
-          }
-        >
-          <p
-            onClick={[Function]}
-            style={
-              Object {
-                "marginLeft": "-4px",
-              }
-            }
-          >
-            -75
-          </p>
         </div>
       </div>
     </div>
