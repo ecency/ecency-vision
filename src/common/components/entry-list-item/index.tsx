@@ -51,6 +51,7 @@ import { match } from "react-router-dom";
 import { getPost } from "../../api/bridge";
 import { SearchResult } from "../../api/search-api";
 import appName from "./../../helper/app-name";
+import formattedNumber from "../../util/formatted-number";
 setProxyBase(defaults.imageServer);
 
 interface MatchParams {
@@ -368,11 +369,10 @@ export default class EntryListItem extends Component<Props, State> {
             <span className="date" title={dateFormatted}>
               {dateRelative}
             </span>
-            {showSelfVote && self_vote && <div className="post-info">{_t("entry.self_voted")}</div>}
-            {showRewardSplit && max_payout > 0 && <div className="post-info">{hp_portion}% HP</div>}
+            {showSelfVote && self_vote && <>&ensp;{_t("entry.self_voted")}</>}
+            {showRewardSplit && max_payout > 0 && <>&ensp;{hp_portion}% HP</>}
             {app && (
               <>
-                <span className="separator" />
                 <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">
                   <meta itemProp="name" content={entry.author} />
                 </span>
@@ -383,8 +383,8 @@ export default class EntryListItem extends Component<Props, State> {
                 </div>
               </>
             )}
-            {max_payout > 0 && max_payout < lowRewardThreshold && (
-              <div className="post-info">&le; {max_payout} HBD</div>
+            {max_payout > 0 && max_payout <= lowRewardThreshold && (
+              <>&ensp; &le; {formattedNumber(max_payout, { fractionDigits: 0, suffix: "HBD" })}</>
             )}
           </div>
           <div className="item-header-features">

@@ -190,8 +190,7 @@ export const clientStoreTasks = (store: Store<AppState>) => {
   // Show Self Votes
   const showRewardSplit = ls.get("showRewardSplit");
   if (typeof showRewardSplit === "boolean") {
-    console.log({ showRewardSplit });
-    store.dispatch(setShowRewardSplitAct(setShowRewardSplit));
+    store.dispatch(setShowRewardSplitAct(showRewardSplit));
   }
 
   // Show Self Votes

@@ -23,6 +23,8 @@ interface Props {
   activeUser: ActiveUser;
   toggleTheme: (theme_key?: string) => void;
   setShowSelfVote: (value: boolean) => void;
+  setShowRewardSplit: (value: boolean) => void;
+  setLowRewardThreshold: (value: number) => void;
 }
 
 interface State {
