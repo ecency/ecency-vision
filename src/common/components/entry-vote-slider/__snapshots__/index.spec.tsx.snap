@@ -4,20 +4,11 @@ exports[`(1) Default render 1`] = `
 <div
   style={
     Object {
-      "height": "20px",
+      "height": "40px",
       "paddingRight": "13px",
     }
   }
 >
-  <div
-    className="slider-line"
-    style={
-      Object {
-        "background": "#357ce6",
-        "width": "100%",
-      }
-    }
-  />
   <div
     className="slide"
     onMouseDown={[Function]}
@@ -28,77 +19,96 @@ exports[`(1) Default render 1`] = `
     onTouchMove={[Function]}
     onTouchStart={[Function]}
   >
-    <span
-      className="slider-dot pointer-dot"
-      style={
-        Object {
-          "background": "#357ce6",
-          "left": "100%",
-        }
-      }
-    />
     <div
-      className="dots-container"
+      className="slide-background-line"
     >
       <div
+        className="slider-line"
         style={
           Object {
-            "width": "25%",
+            "background": "#357ce6",
+            "width": "100%",
+            "zIndex": 100,
+          }
+        }
+      />
+      <span
+        className="slider-dot pointer-dot"
+        style={
+          Object {
+            "background": "#357ce6",
+            "left": "100%",
           }
         }
       />
       <div
-        style={
-          Object {
-            "width": "25%",
-          }
-        }
+        className="dots-container"
       >
-        <span
-          className="slider-dot"
+        <div
           style={
             Object {
-              "background": "#357ce6",
+              "width": "25%",
             }
           }
         />
-      </div>
-      <div
-        style={
-          Object {
-            "width": "25%",
-          }
-        }
-      >
-        <span
-          className="slider-dot"
+        <div
           style={
             Object {
-              "background": "#357ce6",
+              "width": "25%",
             }
           }
-        />
-      </div>
-      <div
-        style={
-          Object {
-            "width": "25%",
-          }
-        }
-      >
-        <span
-          className="slider-dot"
+        >
+          <span
+            className="slider-dot"
+            style={
+              Object {
+                "background": "#357ce6",
+              }
+            }
+          />
+        </div>
+        <div
           style={
             Object {
-              "background": "#357ce6",
+              "width": "25%",
             }
           }
-        />
+        >
+          <span
+            className="slider-dot"
+            style={
+              Object {
+                "background": "#357ce6",
+              }
+            }
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "width": "25%",
+            }
+          }
+        >
+          <span
+            className="slider-dot"
+            style={
+              Object {
+                "background": "#357ce6",
+              }
+            }
+          />
+        </div>
       </div>
     </div>
   </div>
   <div
     className="label-container"
+    style={
+      Object {
+        "pointerEvents": "all",
+      }
+    }
   >
     <div
       style={
@@ -119,6 +129,7 @@ exports[`(1) Default render 1`] = `
         style={
           Object {
             "marginLeft": "-4px",
+            "pointerEvents": "all",
           }
         }
       >
@@ -137,6 +148,7 @@ exports[`(1) Default render 1`] = `
         style={
           Object {
             "marginLeft": "-4px",
+            "pointerEvents": "all",
           }
         }
       >
@@ -155,6 +167,7 @@ exports[`(1) Default render 1`] = `
         style={
           Object {
             "marginLeft": "-4px",
+            "pointerEvents": "all",
           }
         }
       >

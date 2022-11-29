@@ -270,6 +270,11 @@ exports[`(1) Default render 1`] = `
   >
     <div
       className="rta  "
+      style={
+        Object {
+          "height": "80px",
+        }
+      }
     >
       <textarea
         acceptCharset="UTF-8"
@@ -292,10 +297,13 @@ exports[`(1) Default render 1`] = `
             "lang": "en-US",
             "lastIndexPath": null,
             "listStyle": "row",
+            "lowRewardThreshold": 100,
             "newVersion": null,
             "notifications": true,
             "nsfw": false,
             "searchIndexCount": 10000000,
+            "showRewardSplit": true,
+            "showSelfVote": true,
             "tag": "",
             "theme": "day",
             "usePrivate": true,
@@ -602,6 +610,11 @@ exports[`(2) Cancellable, in progress 1`] = `
   >
     <div
       className="rta  "
+      style={
+        Object {
+          "height": "80px",
+        }
+      }
     >
       <textarea
         acceptCharset="UTF-8"
@@ -624,10 +637,13 @@ exports[`(2) Cancellable, in progress 1`] = `
             "lang": "en-US",
             "lastIndexPath": null,
             "listStyle": "row",
+            "lowRewardThreshold": 100,
             "newVersion": null,
             "notifications": true,
             "nsfw": false,
             "searchIndexCount": 10000000,
+            "showRewardSplit": true,
+            "showSelfVote": true,
             "tag": "",
             "theme": "day",
             "usePrivate": true,

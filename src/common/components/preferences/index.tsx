@@ -102,7 +102,7 @@ export class Preferences extends BaseComponent<Props, State> {
   };
 
   showSelfVoteChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-    const { setShowSelfVote } = this.props.global;
+    const { setShowSelfVote } = this.props;
     const { value } = e.target;
     console.log(value);
     const parsedValue = JSON.parse(value);

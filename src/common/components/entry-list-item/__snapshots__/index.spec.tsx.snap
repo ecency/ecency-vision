@@ -92,6 +92,32 @@ exports[`(1) Default render 1`] = `
       >
         5d
       </span>
+       
+      50
+      % HP
+      <span
+        itemProp="publisher"
+        itemScope={true}
+        itemType="http://schema.org/Person"
+      >
+        <meta
+          content="good-karma"
+          itemProp="name"
+        />
+      </span>
+      <div
+        className="app"
+        title="esteem/2.2.7-surfer"
+      >
+        <a
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "via <span class=\\"app-name\\">esteem</span>",
+            }
+          }
+          href="/faq#source-label"
+        />
+      </div>
     </div>
     <div
       className="item-header-features"
@@ -345,6 +371,32 @@ exports[`(2) Grid view 1`] = `
       >
         5d
       </span>
+       
+      50
+      % HP
+      <span
+        itemProp="publisher"
+        itemScope={true}
+        itemType="http://schema.org/Person"
+      >
+        <meta
+          content="good-karma"
+          itemProp="name"
+        />
+      </span>
+      <div
+        className="app"
+        title="esteem/2.2.7-surfer"
+      >
+        <a
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "via <span class=\\"app-name\\">esteem</span>",
+            }
+          }
+          href="/faq#source-label"
+        />
+      </div>
     </div>
     <div
       className="item-header-features"
@@ -622,6 +674,32 @@ exports[`(3) Nsfw 1`] = `
       >
         5d
       </span>
+       
+      50
+      % HP
+      <span
+        itemProp="publisher"
+        itemScope={true}
+        itemType="http://schema.org/Person"
+      >
+        <meta
+          content="good-karma"
+          itemProp="name"
+        />
+      </span>
+      <div
+        className="app"
+        title="esteem/2.2.7-surfer"
+      >
+        <a
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "via <span class=\\"app-name\\">esteem</span>",
+            }
+          }
+          href="/faq#source-label"
+        />
+      </div>
     </div>
     <div
       className="item-header-features"
@@ -904,6 +982,32 @@ exports[`(4) Nsfw with active user 1`] = `
       >
         5d
       </span>
+       
+      50
+      % HP
+      <span
+        itemProp="publisher"
+        itemScope={true}
+        itemType="http://schema.org/Person"
+      >
+        <meta
+          content="good-karma"
+          itemProp="name"
+        />
+      </span>
+      <div
+        className="app"
+        title="esteem/2.2.7-surfer"
+      >
+        <a
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "via <span class=\\"app-name\\">esteem</span>",
+            }
+          }
+          href="/faq#source-label"
+        />
+      </div>
     </div>
     <div
       className="item-header-features"
@@ -1185,6 +1289,32 @@ exports[`(5) Nsfw but allowed 1`] = `
       >
         5d
       </span>
+       
+      50
+      % HP
+      <span
+        itemProp="publisher"
+        itemScope={true}
+        itemType="http://schema.org/Person"
+      >
+        <meta
+          content="good-karma"
+          itemProp="name"
+        />
+      </span>
+      <div
+        className="app"
+        title="esteem/2.2.7-surfer"
+      >
+        <a
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "via <span class=\\"app-name\\">esteem</span>",
+            }
+          }
+          href="/faq#source-label"
+        />
+      </div>
     </div>
     <div
       className="item-header-features"
@@ -1495,6 +1625,32 @@ exports[`(6) Cross post. Bottom menu 1`] = `
       >
         10M
       </span>
+       
+      50
+      % HP
+      <span
+        itemProp="publisher"
+        itemScope={true}
+        itemType="http://schema.org/Person"
+      >
+        <meta
+          content="regenerette"
+          itemProp="name"
+        />
+      </span>
+      <div
+        className="app"
+        title="leofinance/0.2"
+      >
+        <a
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "via <span class=\\"app-name\\">leofinance</span>",
+            }
+          }
+          href="/faq#source-label"
+        />
+      </div>
     </div>
     <div
       className="item-header-features"
