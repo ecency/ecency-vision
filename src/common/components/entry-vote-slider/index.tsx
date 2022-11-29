@@ -21,17 +21,13 @@ const VotingSlider = (props: Props) => {
   const [showOptions, setshowOptions] = useState(false);
   const [mouseX, setmouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
-  const [sliderVal, setSliderVal] = useState(0);
+  const [sliderVal, setSliderVal] = useState(Math.abs(props.value));
   const tenOptions = [10, 20, 30, 40, 50, 60, 70, 80, 90];
   const fiveOptions = [25, 50, 75];
 
   const [sliderOptions, setSliderOptions] = useState(
     window.innerWidth > 1600 ? tenOptions : fiveOptions
   );
-
-  useEffect(() => {
-    setSliderValue(props.value);
-  }, [props.value]);
 
   useEffect(() => {
     const addEventListnersOnMount = (): void => {
@@ -100,11 +96,9 @@ const VotingSlider = (props: Props) => {
   const setSliderValue = (value: number): void => {
     if (value > 100) value = 100;
     if (value < 0) value = 0;
-
     value = parseFloat(value.toFixed(1));
-
-    setSliderVal(Math.abs(value));
     props.setVoteValue(props.mode == "up" ? value : -value);
+    setSliderVal(Math.abs(value));
   };
   const _wondowResizeHandler = () => {
     setSliderOptions(window.innerWidth > 1600 ? tenOptions : fiveOptions);
