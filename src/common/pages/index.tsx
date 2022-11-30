@@ -79,6 +79,7 @@ const Index = (props: PageProps) => {
       props.location?.pathname?.startsWith("/payout_comments") ||
       props.location?.pathname?.startsWith("/rising") ||
       props.location?.pathname?.startsWith("/purchase") ||
+      props.location?.pathname?.startsWith("/promoted") ||
       props.location?.pathname?.startsWith("/controversial");
 
     if (showLandingPage !== nextShowLandingPage) {

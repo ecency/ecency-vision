@@ -402,7 +402,10 @@ export class Login extends BaseComponent<LoginProps, State> {
       error(_t("login.error-fields-required"));
       return;
     }
-
+    if (!this.state.isVerified) {
+      error(_t("login.captcha-check-required"));
+      return;
+    }
     // Warn if the code is a public key
     try {
       PublicKey.fromString(key);

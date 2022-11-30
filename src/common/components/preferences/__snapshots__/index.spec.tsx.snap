@@ -81,6 +81,11 @@ exports[`(1) Default render 1`] = `
             EUR
           </option>
           <option
+            value="brl"
+          >
+            BRL
+          </option>
+          <option
             value="rub"
           >
             RUB

@@ -1,0 +1,82 @@
+[
+  {
+    "id": 101,
+    "title": "1 Hey! Hurry up and get your Discount",
+    "description": "Our store is giving 50% discount on the sale. Grab your tokens and availed that opportunity.",
+    "button_text": "Learn More",
+    "button_link": "/created",
+    "path": ["/hot", "/created", "/rising"]
+  },
+  {
+    "id": 102,
+    "title": "2 Are you want to buy Winter Outfit?",
+    "description": "Outfitter Brand is giving upto 25% off. Hurry Up! and buy your winter cloths.",
+    "button_text": "Get Token",
+    "button_link": "https://www.google.com/",
+    "path": "/hot"
+  },
+  {
+    "id": 103,
+    "title": "3 Congratulations to the newly promoted employee",
+    "description": "The statement should make the promoted employee feel special and recognized without being overly distracting.",
+    "button_text": "Learn More",
+    "button_link": "https://www.google.com/",
+    "path": "/trending"
+  },
+  {
+    "id": 104,
+    "title": "4 A call for coworkers to congratulate the team member",
+    "description": "Recognizing employees for their hard work is the most important objective of a promotion announcement.",
+    "button_text": "See More",
+    "button_link": "https://www.google.com/",
+    "path": "/created"
+  },
+  {
+    "id": 105,
+    "title": "5 The employee’s career story and achievements",
+    "description": "Are you managing an employee who’s about to be promoted or internally transferred?",
+    "button_text": "Learn More",
+    "button_link": "https://www.google.com/",
+    "path": "/rising"
+  },
+  {
+    "id": 106,
+    "title": "6 The employee’s career story and achievements",
+    "description": "Are you managing an employee who’s about to be promoted or internally transferred?",
+    "button_text": "Learn More",
+    "button_link": "https://www.google.com/",
+    "path": "/controversial"
+  },
+  {
+    "id": 107,
+    "title": "7 The employee’s career story and achievements",
+    "description": "Are you managing an employee who’s about to be promoted or internally transferred?",
+    "button_text": "Learn More",
+    "button_link": "https://www.google.com/",
+    "path": "/trending"
+  },
+  {
+    "id": 108,
+    "title": "8 The employee’s career story and achievements",
+    "description": "Are you managing an employee who’s about to be promoted or internally transferred?",
+    "button_text": "Learn More",
+    "button_link": "https://www.google.com/",
+    "path": "/created"
+  },
+  {
+    "id": 109,
+    "title": "9 The employee’s career story and achievements",
+    "description": "Are you managing an employee who’s about to be promoted or internally transferred?",
+    "button_text": "Learn More",
+    "button_link": "https://www.google.com/",
+    "path": "/@[\\w.\\d-]+/(posts|wallet|points|engine|permissions|spk)"
+  },
+  {
+    "id": 110,
+    "title": "10 The employee’s career story and achievements",
+    "description": "Are you managing an employee who’s about to be promoted or internally transferred?",
+    "button_text": "Learn More",
+    "button_link": "https://www.google.com/",
+    "path": "/([\\w\\.\\d-]+)/(@[\\w\\.\\d-]+)/([\\w\\.\\d-]+)"
+  }
+]

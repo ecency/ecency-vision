@@ -169,7 +169,7 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
               var createdAt = momentObj.format("YYYY/MM/DD");
               return (
                 <tr key={i}>
-                  <td>
+                  <td className="align-middle">
                     <div className="witness-rank">
                       <span className="rank-number">{createdAt}</span>
                     </div>

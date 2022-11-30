@@ -42,6 +42,7 @@ import parseAsset from "../helper/parse-asset";
 import parseDate from "../helper/parse-date";
 
 import { closeSvg } from "../img/svg";
+import moment from "moment";
 
 enum Filter {
   ALL = "all",

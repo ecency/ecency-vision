@@ -156,6 +156,7 @@
     "login-info-1": "Nós não armazenamos suas chaves privadas.",
     "login-info-2": "Mais informação",
     "error-fields-required": "Por favor insira um nome de usuário e palavra passe /WIF",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Você inseriu uma chave pública. Senha/WIF obrigatório",
     "error-user-fetch": "Dados de usuário não foram encontrados",
     "error-user-not-found": "Usuário não existe",
@@ -1081,6 +1082,10 @@
     "filter-no-match": "Sem correspondência",
     "recently-used": "Recentemente Utilizado"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Criar uma publicação",
     "page-description": "Publique um artigo, ganhe recompensa, sem censura, conteúdo imutável e descentralizado!",
@@ -1499,9 +1504,9 @@
       "what-delegated-hp-header": "O que é Hive Power delegado?",
       "what-delegated-hp-body": "<p>Poder Hive pode ser delegado por um usuário a outro. Quando um usuário recebe uma delegação de Poder Hive, seus Créditos de Recurso, votos de conteúdo e recompensas de curadoria são calculadas como se a delegação constituisse seu próprio Poder Hive. Usuários recebedores de delegações não podem diminuir ou sacar o Poder Hive delegado por outra conta, já que ele pertence ao dono original.</p>",
       "what-powering-up-header": "O que é fazer Power Up?",
-      "what-powering up-body": "<p>Você pode realizar o Power Up dos seus tokens Hive, transformando-os em Poder Hive a qualquer momento. Isso significa que seus HIVE tokens serão guardados na sua carteira como Hive Power, o que aumenta seu poder de voto e créditos de recursos disponíveis na rede. Obtendo mais Poder Hive também aumenta a quantidade de recompensas por curadoria e rendimentos dos tokens. Mais HP (Hive Power) também garante uma maior influência para aprovar as testemunhas da Hive.</p>",
+      "what-powering-up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
       "what-powering-down-header": "O que significa fazer Power Down?",
-      "what-powering-up-body": "<p>O Hive Power pode ser reduzido gradualmente. Esse processo se chama Power Down e dura 13 semanas. Quando você reliza esse procedimento, seu Poder Hive não se torna disponível imediatamente. A conversão é dividida em 13 partes iguais e será transferida para sua carteira semanalmente. A primeira porção se torna disponível após uma semana do Power Down iniciar.</p>",
+      "what-powering-down-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
       "why-different-keys-header": "Por que existem várias chaves?",
       "why-different-keys-body": "<p>Existem diferentes chaves, e cada uma delas possui as permissões apropriadas para o que você precisa fazer. <ul><li>Chave de Postagem - essa chave deverá ser usada para interações sociais na rede, como publicações, comentários e votos. Essa chave possui um número limitado de permissões e não é capaz de ser utilizada para ações monetárias. Portanto, caso alguém obtenha acesso a sua chave de postagem, você não perderá dinheiro.</li><li>Chave Ativa - essa chave possui permissões adicionais para utilização monetária da conta, como realização de transferências e trocas de tokens. Quando realizar um procedimento na sua carteira, você poderá ser requisitado a introduzir sua Chave Ativa. Você apenas deve utilizar sua Chave Ativa em aplicativos de confiança, pois qualquer um que obtiver acesso a essa chave poderá transferir seus tokens. Faça um favor a si mesmo e guarde essa chave com cuidado para evitar perder seus tokens no futuro.</li><li>Chave de Proprietário - é a mais poderosa das chaves, pois ela possui permissões para modificar qualquer chave de uma conta, incluindo a si mesma. O ideal é mantê-la de forma Off-line, e apenas ser usada para recuperar uma conta comprometida.</li></ul></p>",
       "stolen-hive-hbd-header": "O que eu posso fazer se os meus HIVE tokens ou Hive Dollars forem roubados ou enviados para uma conta errada?",

@@ -156,6 +156,7 @@
     "login-info-1": "Мы не храним ваши приватные ключи.",
     "login-info-2": "Подробнее",
     "error-fields-required": "Пожалуйста, введите имя пользователя и приватный ключ",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Вы ввели публичный ключ, а нужен приватный или пароль",
     "error-user-fetch": "Данные пользователя не могут быть получены",
     "error-user-not-found": "Пользователь не существует",
@@ -1081,6 +1082,10 @@
     "filter-no-match": "Нет совпадений",
     "recently-used": "Недавно использованные"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Создать пост",
     "page-description": "Публикуйте статью, получайте вознаграждение, создавайте контент без цензуры, неизменяемый и децентрализованный!",
@@ -1499,9 +1504,9 @@
       "what-delegated-hp-header": "Что такое делегирование Hive Power?",
       "what-delegated-hp-body": "<p>Hive Power может быть делегирована другим пользователем. Когда пользователю делегирована Hive Power, его ресурсные кредиты, голоса за контент и вознаграждения за курирование рассчитываются так, как если бы это была его собственная Hive Power. Однако пользователи не могут включить понижение или вывести делегированную ему силу, поскольку Hive Power по-прежнему принадлежит первоначальному владельцу.</p>",
       "what-powering-up-header": "Что значит повысить силу?",
-      "what-powering up-body": "<p>Вы можете преобразовать заработанные токены Hive в Hive Power в любое время. Это означает, что ваши HIVE хранятся в кошельке и конвертируется в HIVE Power, что увеличивает вашу силу голоса и ресурсные кредиты в блокчейне. Наличие HP увеличивает количество наград за кураторство. Наличие большего количества HP, даёт владельцу возможность увеличить влияния на развитие проекта путём выбора свидетелей HIVE.</p>",
+      "what-powering-up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
       "what-powering-down-header": "Как понизить силу?",
-      "what-powering-up-body": "<p>Hive Power можно отключить в тех же кошельках, где его можно включить. Когда вы включите понижение силы, HIVE Power не будет сразу доступен как HIVE. Он конвертируется в 13 равных частей и еженедельно переводится в ваш кошелёк HIVE, причем первая часть становится доступной только через неделю после начала понижения.</p>",
+      "what-powering-down-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
       "why-different-keys-header": "Почему ключи разные?",
       "why-different-keys-body": "<p>Существуют разные ключи с соответствующими разрешениями для того, что вы делаете.<ul><li> Ключи публикации — этот ключ следует использовать для действий в социальных сетях, таких как публикация, комментирование и голосование. Этот ключ имеет ограниченный набор разрешений и не может использоваться для денежных действий. Таким образом, вы не можете потерять деньги, если кто-то другой получит доступ к этому ключу.</li><li> Активный ключ — этот ключ имеет дополнительные разрешения для более конфиденциальных денежных действий, таких как передача и обмен токенов. При выполнении действия, связанного с кошельком, вам может быть предложено пройти аутентификацию с помощью вашего активного ключа. Вы должны вводить свой активный ключ только в приложения, которым вы доверяете, потому что любой, у кого есть доступ к этому ключу, может получить ваши токены. Сделайте себе одолжение и сохраните этот ключ в безопасном месте, чтобы не потерять токены в будущем.</li><li> Ключ владельца - это самый мощный ключ, потому что он может изменить любой ключ учетной записи, включая ключ владельца. В идеале он должен храниться в автономном режиме и использоваться только для восстановления скомпрометированной учетной записи.</li></ul></p>",
       "stolen-hive-hbd-header": "Что я могу сделать, если мои токены Hive dollar или Hive украдены или отправлены на неправильный счет?",

@@ -156,6 +156,7 @@
     "login-info-1": "No almacenamos sus claves privadas.",
     "login-info-2": "Más información",
     "error-fields-required": "Por favor introduce el usuario y la contraseña",
+    "captcha-check-required": "Por favor, verifica que eres humano",
     "error-public-key": "Has introducido una clave pública. La contraseña / WIF es requerida",
     "error-user-fetch": "Los datos del usuario no se pudieron recuperar",
     "error-user-not-found": "El usuario no existe",
@@ -1081,6 +1082,10 @@
     "filter-no-match": "Sin coincidencia",
     "recently-used": "Usada recientemente"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filtro",
+    "credits": "Con tecnología de GIPHY"
+  },
   "submit": {
     "page-title": "Crear un post",
     "page-description": "¡Publica un artículo, monetiza, sin censura, inmutable y descentralizado!",
@@ -1499,9 +1504,9 @@
       "what-delegated-hp-header": "¿Qué es el Hive Power delegado?",
       "what-delegated-hp-body": "<p>Hive Power puede ser delegado a usuarios por otro usuario. Cuando el usuario es delegado con Hive Power - sus Créditos de Recursos, votos de contenido y recompensas de curación se calculan como si fuera su propio Hive Power. Sin embargo, los usuarios no pueden apagar o retirar fondos delegados de Hive Power porque todavía pertenece al propietario original.</p>",
       "what-powering-up-header": "¿Qué es aumentar el poder?",
-      "what-powering up-body": "<p>Puedes aumentar el poder tu HIVE ganado como Hive Power en cualquier momento. Significa que tu HIVE se mantiene en tu billetera y se convierte en HIVE Power, lo que aumenta tu poder de voto y tus créditos de recursos en la cadena de bloques. Tener más Poder de Colmena también incrementa la cantidad de recompensas de curación y nuevos tokens que puedes ganar. Más HP también otorga más influencia en la aprobación de testigos de la Colmena.</p>",
+      "what-powering-up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
       "what-powering-down-header": "¿Qué es apagar el poder?",
-      "what-powering-up-body": "<p>El Hive Power se puede apagar en las mismas carteras donde se puede encender. Cuando se apaga, el Hive Power no estará disponible como HIVE inmediatamente. Se convierte en 13 partes iguales y se transfiere a tu cartera HIVE semanalmente, la primera parte solamente estando disponible una semana después de que se iniciara el apagado.</p>",
+      "what-powering-down-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
       "why-different-keys-header": "¿Por qué hay diferentes llaves?",
       "why-different-keys-body": "<p>Hay diferentes claves con los permisos apropiados para lo que estás haciendo. <ul><li>Clave de Publicación - esta clave debe ser usada para acciones de redes sociales, como publicar, comentar y votar. Esta clave tiene un conjunto limitado de permisos y no se puede utilizar para acciones monetarias. Así que no se puede perder dinero si alguien más tiene acceso a esta clave.</li><li>Clave activa - esta clave tiene permisos adicionales para acciones más sensibles relacionadas con lo monetario, como transferir e intercambiar tokens. Al realizar una acción relacionada con una cartera, se te puede pedir que te autentifiques con su clave activa. Solamente debes introducir tu Clave Activa en aplicaciones en las que confías porque cualquiera con acceso a esta clave puede tomar tus tokens. Hazte un favor y almacena esta clave de forma segura para evitar perder fichas en el futuro.</li><li>Clave de propietario - es la clave más poderosa porque puede cambiar cualquier clave de una cuenta, incluyendo la clave de propietario. Idealmente, está pensado para ser almacenada fuera de línea, y solo se utiliza para recuperar una cuenta comprometida.</li></ul></p>",
       "stolen-hive-hbd-header": "¿Qué puedo hacer si mis tokens de HIVE o de Hive dollars son robados o enviados a una cuenta incorrecta?",

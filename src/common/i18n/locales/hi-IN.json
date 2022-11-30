@@ -156,6 +156,7 @@
     "login-info-1": "हम आपकी निजी कुंजियाँ संग्रहीत नहीं करते हैं।",
     "login-info-2": "अधिक जानकारी",
     "error-fields-required": "कृपया उपयोगकर्ता नाम और निजी कुंजी दर्ज करें",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "आपने सार्वजनिक कुंजी डाला| पासवर्ड/डब्लूएआईएफ की जरुरत है",
     "error-user-fetch": "उपयोगकर्ता डेटा प्राप्त नहीं किया जा सका",
     "error-user-not-found": "उपयोगकर्ता उपलब्ध नहीं है",
@@ -1081,6 +1082,10 @@
     "filter-no-match": "कोई मेल नहीं",
     "recently-used": "अभी-अभी उपयोग हुवा"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "पोस्ट तैयार करें",
     "page-description": "एक लेख प्रकाशित करें, इनाम अर्जित करें, बिना सेंसर किए, अपरिवर्तनीय, विकेंद्रीकृत सामग्री!",
@@ -1499,9 +1504,9 @@
       "what-delegated-hp-header": "What is delegated Hive Power?",
       "what-delegated-hp-body": "<p>Hive Power can be delegated to users by another user. When user is delegated Hive Power - their Resource Credits, content votes, and curation rewards are calculated as if it were their own Hive Power. Users are not able to power down or cash out delegated Hive Power however, as it still belongs to the original owner.</p>",
       "what-powering-up-header": "What is powering up?",
-      "what-powering up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
+      "what-powering-up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
       "what-powering-down-header": "What is powering down?",
-      "what-powering-up-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
+      "what-powering-down-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
       "why-different-keys-header": "Why are there different keys?",
       "why-different-keys-body": "<p>There are different keys with the appropriate permissions for what you are doing. <ul><li>Posting keys - this key should be used for social networking actions, like posting, commenting and voting. This key has a limited set of permissions and it is not able to be used for monetary actions. So you can't lose money if someone else gets access to this key.</li><li>Active key - this key has additional permissions for more sensitive monetary-related actions, like transferring and exchanging tokens. When performing a wallet related action, you may be prompted to authenticate with your Active key. You should only enter your Active Key into apps which you trust because anyone with access to this key can take your tokens. Do yourself a favor and store this key safely to avoid losing tokens in the future.</li><li>Owner key - is the most powerful key because it can change any key of an account, including the owner key. Ideally it is meant to be stored offline, and only used to recover a compromised account.</li></ul></p>",
       "stolen-hive-hbd-header": "What can I do if my HIVE or Hive dollar tokens stolen or sent to wrong account?",

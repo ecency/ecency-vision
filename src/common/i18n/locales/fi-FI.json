@@ -156,6 +156,7 @@
     "login-info-1": "Emme tallenna yksityisiä avaimiasi.",
     "login-info-2": "Lisätietoja",
     "error-fields-required": "Syötä käyttäjänimi ja yksityinen avain",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Lisäsit public keyn. Vaaditaan salasana/WIF",
     "error-user-fetch": "Käyttäjätietoja ei voitu ladata",
     "error-user-not-found": "Käyttäjää ei ole olemassa",
@@ -1081,6 +1082,10 @@
     "filter-no-match": "Ei tuloksia",
     "recently-used": "Äskettäin käytetyt"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Luo artikkeli",
     "page-description": "Julkaise artikkeli, ansaitse palkintoja, sensuroimaton, muuttumaton ja hajautettu sisältö!",
@@ -1499,9 +1504,9 @@
       "what-delegated-hp-header": "Mikä on valtuutettu Hive Power?",
       "what-delegated-hp-body": "<p>Hive Poweria voidaan siirtää toisille käyttäjille. Kun käyttäjä on valtuutettu Hive Powerilla - heidän resurssihyvitykset, sisältöäänet ja tarkistuspalkkiot lasketaan ikään kuin se olisi heidän oma Hive Power. Käyttäjät eivät kuitenkaan pysty heikentämään tai käyttämään valtuutettua Hive Poweria, koska se kuuluu edelleen alkuperäiselle omistajalle.</p>",
       "what-powering-up-header": "Mitä vahvistaminen on?",
-      "what-powering up-body": "<p>Voit vahvistaa ansaittuja Hive-merkkejä Hive Poweriksi milloin tahansa. Se tarkoittaa, että HIVE pidetään lompakossa ja muunnetaan HIVE Poweriksi, joka lisää äänivaltaa ja resurssihyvityksiä lohkoketjussa. Halliten enemmän Hive Poweria lisäät myös tarkastuspalkkioita ja uusia omia ansaintamerkkejä. Enemmän HP lisää myös vaikutusvaltaa Hiven todistajille.</p>",
+      "what-powering-up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
       "what-powering-down-header": "Mitä heikentäminen on?",
-      "what-powering-up-body": "<p>Hive Poweria voidaan heikentää samoissa lompakoissa, joissa sitä voidaan vahvistaa. Heikentämisessä HIVE Power ei ole käytettävissä HIVEnä välittömästi. Se muunnetaan 13 yhtä suureen osaan ja siirretään viikoittain HIVE-lompakkoon, ensimmäinen osa on saatavilla vasta viikon kuluttua tehon alentamisen aloittamisesta.</p>",
+      "what-powering-down-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
       "why-different-keys-header": "Miksi on olemassa erilaisia avaimia?",
       "why-different-keys-body": "<p>On olemassa erilaisia avaimia, joilla on asianmukaiset oikeudet riippuen tarkoituksesta. <ul><li>Julkaisuavaimet - tätä avainta tulisi käyttää sosiaalisen verkostoitumisen toimintaan, kuten julkaisemiseen, kommentointiin ja äänestämiseen. Tällä avaimella on rajalliset luvat, eikä sitä voida käyttää rahapoliittisissa toimissa. Joten et voi menettää rahaa, jos joku muu saa pääsyn tähän avaimeen.</li><li>Aktiivinen avain - tällä avaimella on lisäoikeudet arkaluonteisempiin rahaan liittyviin toimiin, kuten merkkien siirtämiseen ja vaihtamiseen. Kun suoritat lompakkoon liittyvää toimintoa, sinua saatetaan kehottaa todentamaan aktiivisella avaimellasi. Sinun pitäisi syöttää Active Key sovelluksiin, joihin luotat, koska kuka tahansa, jolla on pääsy tähän avaimeen, voi ottaa merkkisi. Tee hyvin ja tallenna tämä avain turvallisesti välttäen polettien menettämisen tulevaisuudessa.</li><li>Omistaja-avain - on tehokkain avain, koska sillä voi muuttaa mitä tahansa tilin avainta, mukaan lukien omistajaavaimen. Ihannetapauksessa se on tarkoitettu tallennettavaksi offline-tilaan, sekä sitä käytetään vain tilin palauttamiseen.</li></ul></p>",
       "stolen-hive-hbd-header": "Mitä voin tehdä, jos HIVE tai Hive dollar on varastettu tai lähetetty väärä määrä?",

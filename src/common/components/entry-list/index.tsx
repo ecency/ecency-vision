@@ -101,10 +101,13 @@ export class EntryListContent extends Component<Props, State> {
   }
 
   render() {
-    const { entries, promotedEntries, global, activeUser, loading } = this.props;
+    const { entries, promotedEntries, global, activeUser, loading, location } = this.props;
     const { filter, tag } = global;
     const { mutedUsers, loadingMutedUsers } = this.state;
     let dataToRender = entries;
+    if (location.pathname.includes("/promoted")) {
+      dataToRender = promotedEntries;
+    }
 
     let mutedList: string[] = [];
     if (mutedUsers && mutedUsers.length > 0 && activeUser && activeUser.username) {
@@ -146,15 +149,27 @@ export class EntryListContent extends Component<Props, State> {
 
               let isPostMuted =
                 (activeUser && activeUser.username && mutedList.includes(e.author)) || false;
-              l.push(
-                <EntryListItem
-                  key={`${e.author}-${e.permlink}`}
-                  {...this.props}
-                  entry={e}
-                  order={i}
-                  muted={isPostMuted}
-                />
-              );
+              if (location.pathname.includes("/promoted")) {
+                l.push(
+                  <EntryListItem
+                    key={`${e.author}-${e.permlink}`}
+                    {...Object.assign({}, { ...this.props }, { entry: e })}
+                    promoted={true}
+                    order={i}
+                    muted={isPostMuted}
+                  />
+                );
+              } else {
+                l.push(
+                  <EntryListItem
+                    key={`${e.author}-${e.permlink}`}
+                    {...this.props}
+                    entry={e}
+                    order={i}
+                    muted={isPostMuted}
+                  />
+                );
+              }
               return [...l];
             })}
           </>
