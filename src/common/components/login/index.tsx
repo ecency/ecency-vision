@@ -403,7 +403,7 @@ export class Login extends BaseComponent<LoginProps, State> {
       return;
     }
     if (!this.state.isVerified) {
-      error(_t("login.checkbox-checked-required"));
+      error(_t("login.captcha-check-required"));
       return;
     }
     // Warn if the code is a public key

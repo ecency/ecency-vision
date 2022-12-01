@@ -67,10 +67,6 @@ interface VoteDialogState {
   showRemove: boolean;
   wrongValueDown: boolean;
   initialVoteValues: { up: any; down: any };
-  upSliderLineWidth: number;
-  downSliderLineWidth: number;
-  sliderLabelData: Array<number>;
-  moving: Boolean;
 }
 
 const initialSliderLabelList: Array<number> = [10, 20, 30, 40, 50, 60, 70, 80, 90];
@@ -104,47 +100,12 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
         this.props.activeUser?.username! + "-" + this.props.entry.post_id,
         getVoteValue("downPrevious", this.props.activeUser?.username!, -1)
       )
-    },
-    upSliderLineWidth: 0,
-    downSliderLineWidth: 0,
-    sliderLabelData: initialSliderLabelList,
-    moving: false
+    }
   };
-  private upSliderRef: React.RefObject<HTMLInputElement>;
-  private downSliderRef: React.RefObject<HTMLInputElement>;
-  constructor(props: VoteDialogProps) {
-    super(props);
-    this.upSliderRef = React.createRef();
-    this.downSliderRef = React.createRef();
-  }
 
   componentDidMount(): void {
     this.cleanUpLS();
-    this.setSliderOptionsAndWidth();
-    window.addEventListener("resize", this.setSliderOptionsAndWidth);
   }
-
-  setSliderOptionsAndWidth = (): void => {
-    const upTimeout = setTimeout(() => {
-      if (this.upSliderRef.current?.offsetWidth) {
-        this.setState({ upSliderLineWidth: this.upSliderRef.current?.offsetWidth });
-        clearTimeout(upTimeout);
-      }
-    }, 5);
-
-    const downTimeout = setTimeout(() => {
-      if (this.downSliderRef.current?.offsetWidth) {
-        this.setState({ downSliderLineWidth: this.downSliderRef.current?.offsetWidth });
-        clearTimeout(downTimeout);
-      }
-    }, 5);
-
-    if (window.innerWidth < 1600) {
-      this.setState({ sliderLabelData: [25, 50, 75] });
-    } else {
-      this.setState({ sliderLabelData: initialSliderLabelList });
-    }
-  };
 
   estimate = (percent: number): number => {
     const { entry, activeUser, dynamicProps } = this.props;
@@ -237,7 +198,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
   changeMode = (m: Mode) => {
     this.setState({ mode: m });
-    this.setSliderOptionsAndWidth();
   };
   //TODO: Delete this after 3.0.22 release
   cleanUpLS = () => {
