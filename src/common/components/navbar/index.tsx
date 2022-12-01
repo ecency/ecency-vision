@@ -134,7 +134,7 @@ export class NavBar extends Component<Props, State> {
     // referral check / redirect
     const { location, history } = this.props;
     const qs = queryString.parse(location.search);
-    if (!location.pathname.startsWith("/signup") && qs.referral) {
+    if (location.pathname.startsWith("/signup") && qs.referral) {
       history.push(`/signup?referral=${qs.referral}`);
     }
     window

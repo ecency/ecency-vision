@@ -204,9 +204,13 @@ export class EntryMenu extends BaseComponent<Props, State> {
   };
 
   copyAddress = () => {
-    const { entry } = this.props;
-
-    const u = `https://ecency.com/${entry.category}/@${entry.author}/${entry.permlink}`;
+    const { entry, activeUser } = this.props;
+    let u;
+    if (activeUser?.username) {
+      u = `https://ecency.com/${entry.category}/@${entry.author}/${entry.permlink}?referral=${activeUser.username}`;
+    } else {
+      u = `https://ecency.com/${entry.category}/@${entry.author}/${entry.permlink}`;
+    }
     clipboard(u);
     success(_t("entry.address-copied"));
   };
