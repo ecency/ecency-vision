@@ -80,7 +80,7 @@ class SignUpPage extends Component<PageProps, State> {
       .then((resp) => {
         this.setState({ inProgress: false });
         if (!this.state.isVerified) {
-          error(_t("login.checkbox-checked-required"));
+          error(_t("login.captcha-check-required"));
           return;
         }
         if (resp && resp.data && resp.data.code) {
