@@ -1,4 +1,13 @@
-import React, { useState, useRef, useEffect, ReactElement } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  ReactElement,
+  useCallback,
+  MouseEventHandler,
+  TouchEventHandler
+} from "react";
+import { setWithdrawVestingRouteHot } from "../../api/operations";
 
 interface Props {
   value: number;
@@ -9,6 +18,9 @@ interface Props {
 const VotingSlider = (props: Props) => {
   const sliderRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const [moving, setMoving] = useState(false);
+  const [showOptions, setshowOptions] = useState(false);
+  const [mouseX, setmouseX] = useState(0);
+  const [mouseY, setMouseY] = useState(0);
   const [sliderVal, setSliderVal] = useState(Math.abs(props.value));
   const tenOptions = [10, 20, 30, 40, 50, 60, 70, 80, 90];
   const fiveOptions = [25, 50, 75];
@@ -18,64 +30,116 @@ const VotingSlider = (props: Props) => {
   );
 
   useEffect(() => {
-    const addResizeEventListner = (): void =>
-      window.addEventListener("resize", () => {
-        setSliderOptions(window.innerWidth > 1600 ? tenOptions : fiveOptions);
-      });
-
-    addResizeEventListner();
+    const addEventListnersOnMount = (): void => {
+      window.addEventListener("resize", _wondowResizeHandler, true);
+    };
+    addEventListnersOnMount();
 
     return () => {
-      window.removeEventListener("resize", () => {});
+      window.removeEventListener("mouseup", _windowMouseUP, true);
+      window.removeEventListener("resize", _wondowResizeHandler, true);
     };
   }, []);
 
+  const checkKeyPress = useCallback(
+    (e: KeyboardEvent): void => {
+      e.preventDefault();
+      const { key } = e;
+      if (key == "ArrowUp" || key == "ArrowRight") {
+        setSliderValue(sliderVal + 0.1);
+        setshowOptions(true);
+      } else if (key == "ArrowDown" || key == "ArrowLeft") {
+        setSliderValue(sliderVal - 0.1);
+        setshowOptions(true);
+      }
+    },
+    [sliderVal]
+  );
+
   useEffect(() => {
-    setSliderVal(Math.abs(props.value));
-  }, [props.value]);
+    window.addEventListener("keydown", checkKeyPress);
+    return () => {
+      window.removeEventListener("keydown", checkKeyPress);
+    };
+  }, [checkKeyPress]);
+
+  useEffect(() => {
+    const moveUseEffect = (): void => {
+      if (moving) {
+        window.addEventListener("mousemove", _mousemoveEventHandler, true);
+        window.addEventListener("mouseup", _windowMouseUP, true);
+
+        document.body.classList.add("no-select");
+      } else {
+        document.body.classList.remove("no-select");
+      }
+    };
+    moveUseEffect();
+    return () => {
+      window.removeEventListener("mouseup", _windowMouseUP, true);
+    };
+  }, [moving]);
+
+  useEffect(() => {
+    if (moving) {
+      const el: HTMLDivElement | null = sliderRef.current;
+      const rect: DOMRect | undefined = el?.getBoundingClientRect();
+
+      if (rect && el) {
+        const x = mouseX - rect?.left;
+        const sliderValueFixed: number = parseFloat(((x / el?.offsetWidth) * 100).toFixed(1));
+        setSliderValue(sliderValueFixed);
+      }
+    }
+  }, [mouseX]);
 
   const setSliderValue = (value: number): void => {
-    if (value < 0 || value > 100) return;
-    setSliderVal(Math.abs(value));
+    if (value > 100) value = 100;
+    if (value < 0) value = 0;
+    value = parseFloat(value.toFixed(1));
     props.setVoteValue(props.mode == "up" ? value : -value);
+    setSliderVal(Math.abs(value));
+  };
+  const _wondowResizeHandler = () => {
+    setSliderOptions(window.innerWidth > 1600 ? tenOptions : fiveOptions);
   };
 
-  const _handleMouseMovement = (event: any) => {
+  const _windowMouseUP: any = () => {
+    window.removeEventListener("mousemove", _mousemoveEventHandler, true);
+  };
+
+  const _mousemoveEventHandler: any = (event: MouseEvent): void => {
+    setmouseX(event.clientX);
+    setMouseY(event.clientY);
+  };
+
+  const handleMouseDown = (event: any) => {
+    setMoving(true);
+    setshowOptions(true);
+    _mousemoveEventHandler(event);
+  };
+
+  const handleMouseUp = (event: any): void => {
+    setMoving(false);
+  };
+
+  const _handleTouchMovement = (touch: Touch) => {
     const el: HTMLDivElement | null = sliderRef.current;
     const rect: DOMRect | undefined = el?.getBoundingClientRect();
-    if (event && rect && el) {
-      const x = event?.clientX - rect?.left;
+    if (rect && el) {
+      const x = touch.clientX - rect?.left;
       const sliderValueFixed: number = parseFloat(((x / el?.offsetWidth) * 100).toFixed(1));
       setSliderValue(sliderValueFixed);
     }
   };
 
-  const handleMouseMovement = (event: any) => {
-    if (moving == true) {
-      if (event.type == "touchmove") {
-        event = event.touches[0];
-      }
-      _handleMouseMovement(event);
-    }
+  const handleTouchMovement = (event: any) => {
+    _handleTouchMovement(event.touches[0]);
   };
 
-  const handleMouseDown = (event: any) => {
-    setMoving(true);
-    if (event.type == "touchstart" || event.type == "touchend") {
-      event = event.touches[0];
-    }
-    _handleMouseMovement(event);
-  };
-
-  const handleMouseUp = (event: any): void => {
-    if (event.type == "touchstart" || event.type == "touchend") {
-      event = event.touches[0];
-    }
-    setMoving(false);
-  };
-
-  const handleMouseLeave = (): void => {
-    setMoving(false);
+  const handleTouchStart = (event: any) => {
+    setshowOptions(true);
+    _handleTouchMovement(event.touches[0]);
   };
 
   const displayDots = (): ReactElement => {
@@ -88,7 +152,7 @@ const VotingSlider = (props: Props) => {
 
           {sliderOptions.map((option: number) => {
             var backgroundClr: string;
-            if (sliderVal >= option) {
+            if (sliderVal >= option - 2) {
               backgroundClr = props.mode == "up" ? "#357ce6" : "rgba(191, 48, 48, 0.8)";
             } else {
               backgroundClr = "#d4cfcf";
@@ -109,21 +173,23 @@ const VotingSlider = (props: Props) => {
 
     return (
       <>
-        <div className="label-container" style={{ pointerEvents: moving ? "none" : "all" }}>
-          <div style={{ width }} />
-          {sliderOptions.map((option: number) => {
-            return (
-              <div style={{ width }} key={option}>
-                <p
-                  style={{ marginLeft: "-4px", pointerEvents: moving ? "none" : "all" }}
-                  onClick={() => setSliderValue(option)}
-                >
-                  {props.mode == "up" ? option : -option}
-                </p>
-              </div>
-            );
-          })}
-        </div>
+        {showOptions && (
+          <div className="label-container" style={{ pointerEvents: moving ? "none" : "all" }}>
+            <div style={{ width }} />
+            {sliderOptions.map((option: number) => {
+              return (
+                <div style={{ width }} key={option}>
+                  <p
+                    style={{ marginLeft: "-4px", pointerEvents: moving ? "none" : "all" }}
+                    onClick={() => setSliderValue(option)}
+                  >
+                    {props.mode == "up" ? option : -option}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </>
     );
   };
@@ -133,11 +199,8 @@ const VotingSlider = (props: Props) => {
       <div
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMovement}
-        onMouseLeave={handleMouseLeave}
-        onTouchMove={handleMouseMovement}
-        onTouchStart={handleMouseDown}
-        onTouchEnd={handleMouseDown}
+        onTouchMove={handleTouchMovement}
+        onTouchStart={handleTouchStart}
         ref={sliderRef}
         className="slide"
       >

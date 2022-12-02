@@ -20,7 +20,8 @@ export enum EntryFilter {
   payout_comments = "payout_comments",
   muted = "muted",
   controversial = "controversial",
-  rising = "rising"
+  rising = "rising",
+  promoted = "promoted"
 }
 
 export enum ProfileFilter {
@@ -46,7 +47,8 @@ export enum AllFilter {
   feed = "feed",
   no_reblog = "no_reblog",
   controversial = "controversial",
-  rising = "rising"
+  rising = "rising",
+  promoted = "promoted"
 }
 
 export interface Global {
