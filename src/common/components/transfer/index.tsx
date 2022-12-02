@@ -73,6 +73,7 @@ import { arrowRightSvg } from "../../img/svg";
 import formattedNumber from "../../util/formatted-number";
 import activeUser from "../../store/active-user";
 import { dateToFullRelative } from "../../helper/parse-date";
+import { formatNumber } from "../../helper/format-number";
 
 export type TransferMode =
   | "transfer"
@@ -219,12 +220,6 @@ export class Transfer extends BaseComponent<Props, State> {
       this.checkAmount();
     }
   }
-
-  formatNumber = (num: number | string, precision: number) => {
-    const format = `0.${"0".repeat(precision)}`;
-
-    return numeral(num).format(format, Math.floor); // round to floor
-  };
 
   assetChanged = (asset: TransferAsset) => {
     this.stateSet({ asset }, () => {
@@ -401,7 +396,7 @@ export class Transfer extends BaseComponent<Props, State> {
   };
 
   formatBalance = (balance: number): string => {
-    return this.formatNumber(balance, 3);
+    return formatNumber(balance, 3);
   };
 
   hpToVests = (hp: number): string => {
@@ -409,7 +404,7 @@ export class Transfer extends BaseComponent<Props, State> {
     const { hivePerMVests } = dynamicProps;
     const vests = hpToVests(hp, hivePerMVests);
 
-    return `${this.formatNumber(vests, 6)} VESTS`;
+    return `${formatNumber(vests, 6)} VESTS`;
   };
 
   canSubmit = () => {
@@ -422,7 +417,7 @@ export class Transfer extends BaseComponent<Props, State> {
   next = () => {
     // make sure 3 decimals in amount
     const { amount } = this.state;
-    const fixedAmount = this.formatNumber(amount, 3);
+    const fixedAmount = formatNumber(amount, 3);
 
     this.stateSet({ step: 2, amount: fixedAmount });
   };
@@ -812,7 +807,7 @@ export class Transfer extends BaseComponent<Props, State> {
                   {" "}
                   {_t("wallet.next-power-down", {
                     time: dateToFullRelative(w.nextVestingWithdrawalDate.toString()),
-                    amount: `${this.formatNumber(w.nextVestingSharesWithdrawalHive, 3)} HIVE`,
+                    amount: `${formatNumber(w.nextVestingSharesWithdrawalHive, 3)} HIVE`,
                     weeks: w.weeksLeft
                   })}
                 </p>
@@ -939,7 +934,7 @@ export class Transfer extends BaseComponent<Props, State> {
                         return (
                           <div className="power-down-estimation">
                             {_t("transfer.power-down-estimated", {
-                              n: `${this.formatNumber(hive, 3)} HIVE`
+                              n: `${formatNumber(hive, 3)} HIVE`
                             })}
                           </div>
                         );
