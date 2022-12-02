@@ -418,7 +418,8 @@ export const Item = (props: ItemProps) => {
                     {EntryVoteBtn({
                       ...props,
                       entry,
-                      afterVote: afterVote
+                      afterVote: afterVote,
+                      isPostSlider: false
                     })}
                     {EntryPayout({
                       ...props,
