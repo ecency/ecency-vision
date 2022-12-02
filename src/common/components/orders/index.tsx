@@ -47,7 +47,7 @@ export const Orders = ({ type, loading, data, onPriceClick }: Props) => {
       mappedData = (data as OrdersDataItem[]).map((item: OrdersDataItem) => {
         return {
           key3: (item as OrdersDataItem).hbd / 1000,
-          key2: (item as OrdersDataItem).order_price.quote.replace("HBD", ""),
+          key2: (item as OrdersDataItem).order_price.base.replace("HBD", ""),
           key1: parseFloat((item as OrdersDataItem).real_price).toFixed(6)
         };
       });
@@ -59,8 +59,8 @@ export const Orders = ({ type, loading, data, onPriceClick }: Props) => {
         .map((item: TradeDataItem) => {
           let hbd = parseFloat(item.current_pays.split(" ")[0]);
           let hive = parseFloat(item.open_pays.toString().split(" ")[0]);
-          let price = hbd / hive;
           let type = item.current_pays.indexOf("HBD") !== -1 ? "bid" : "ask";
+          let price = type === "bid" ? hbd / hive : hive / hbd;
           let stringPrice = price.toFixed(6);
 
           return {
