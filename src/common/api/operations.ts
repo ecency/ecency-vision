@@ -531,7 +531,7 @@ export const limitOrderCreate = (
       orderid: Number(
         `${idPrefix}${Math.floor(Date.now() / 1000)
           .toString()
-          .slice(1)}`
+          .slice(2)}`
       ),
       owner: owner,
       amount_to_sell: `${
@@ -580,7 +580,7 @@ export const limitOrderCreateHot = (
       orderid: Number(
         `${idPrefix}${Math.floor(Date.now() / 1000)
           .toString()
-          .slice(1)}`
+          .slice(2)}`
       ),
       owner: owner,
       amount_to_sell: `${
@@ -633,7 +633,7 @@ export const limitOrderCreateKc = (
       orderid: Number(
         `${idPrefix}${Math.floor(Date.now() / 1000)
           .toString()
-          .slice(1)}`
+          .slice(2)}`
       ),
       owner: owner,
       amount_to_sell: `${

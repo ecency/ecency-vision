@@ -12,10 +12,7 @@ exports[`(1) Default render 1`] = `
   <div
     className="slide"
     onMouseDown={[Function]}
-    onMouseLeave={[Function]}
-    onMouseMove={[Function]}
     onMouseUp={[Function]}
-    onTouchEnd={[Function]}
     onTouchMove={[Function]}
     onTouchStart={[Function]}
   >

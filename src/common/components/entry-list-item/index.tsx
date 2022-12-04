@@ -373,6 +373,7 @@ export default class EntryListItem extends Component<Props, State> {
             {showRewardSplit && max_payout > 0 && <>&ensp;{hp_portion}% HP</>}
             {app && (
               <>
+                &ensp;
                 <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">
                   <meta itemProp="name" content={entry.author} />
                 </span>
@@ -384,7 +385,7 @@ export default class EntryListItem extends Component<Props, State> {
               </>
             )}
             {max_payout > 0 && max_payout <= lowRewardThreshold && (
-              <>&ensp; &le; {formattedNumber(max_payout, { fractionDigits: 0, suffix: "HBD" })}</>
+              <>&ensp; &le; {formattedNumber(max_payout, { fractionDigits: 3, suffix: "HBD" })}</>
             )}
           </div>
           <div className="item-header-features">

@@ -141,6 +141,11 @@ class EntryPage extends BaseComponent<Props, State> {
 
   componentDidMount() {
     this.ensureEntry();
+    const { history } = this.props;
+    if (history?.location.search.includes("?referral")) {
+      const userName = history.location.search.split("=")[1];
+      ls.set("referral", userName);
+    }
     this.fetchMutedUsers();
     const entry = this.getEntry();
 
