@@ -34,7 +34,7 @@ exports[`SwapAmountControl should be able to render element after balance 1`] = 
         className="d-flex flex-column align-items-end"
       >
         <select
-          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2"
+          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 "
           disabled={false}
           onChange={[Function]}
           value="HIVE"
@@ -100,7 +100,7 @@ exports[`SwapAmountControl should be able to show available assets list 1`] = `
         className="d-flex flex-column align-items-end"
       >
         <select
-          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2"
+          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 "
           disabled={false}
           onChange={[Function]}
           value="HIVE"
@@ -156,7 +156,7 @@ exports[`SwapAmountControl should render balance showing 1`] = `
         className="d-flex flex-column align-items-end"
       >
         <select
-          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2"
+          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 "
           disabled={false}
           onChange={[Function]}
           value="HIVE"
@@ -219,7 +219,7 @@ exports[`SwapAmountControl should render correctly 1`] = `
         className="d-flex flex-column align-items-end"
       >
         <select
-          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2"
+          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 "
           disabled={false}
           onChange={[Function]}
           value="HIVE"
@@ -270,7 +270,7 @@ exports[`SwapAmountControl should render disabled state 1`] = `
         className="d-flex flex-column align-items-end"
       >
         <select
-          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2"
+          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 "
           disabled={true}
           onChange={[Function]}
           value="HIVE"
@@ -321,7 +321,7 @@ exports[`SwapAmountControl should render label 1`] = `
         className="d-flex flex-column align-items-end"
       >
         <select
-          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2"
+          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 "
           disabled={false}
           onChange={[Function]}
           value="HIVE"
@@ -372,7 +372,7 @@ exports[`SwapAmountControl should set className 1`] = `
         className="d-flex flex-column align-items-end"
       >
         <select
-          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2"
+          className="form-control form-control py-2 border-0 h-auto font-weight-bold w-auto mb-2 "
           disabled={false}
           onChange={[Function]}
           value="HIVE"

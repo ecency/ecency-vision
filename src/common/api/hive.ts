@@ -195,6 +195,7 @@ export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
         savings_hbd_balance: x.savings_hbd_balance,
         savings_hbd_last_interest_payment: x.savings_hbd_last_interest_payment,
         savings_hbd_seconds_last_update: x.savings_hbd_seconds_last_update,
+        savings_hbd_seconds: x.savings_hbd_seconds,
         next_vesting_withdrawal: x.next_vesting_withdrawal,
         vesting_shares: x.vesting_shares,
         delegated_vesting_shares: x.delegated_vesting_shares,
