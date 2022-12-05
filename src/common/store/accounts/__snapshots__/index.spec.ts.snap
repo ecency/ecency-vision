@@ -124,6 +124,7 @@ Array [
     "savings_balance": "1.000 HIVE",
     "savings_hbd_balance": "0.002 HBD",
     "savings_hbd_last_interest_payment": "2021-03-18T15:42:03",
+    "savings_hbd_seconds": "1235678",
     "savings_hbd_seconds_last_update": "2021-03-18T15:42:03",
     "to_withdraw": "87017000000",
     "vesting_shares": "151590.952150 VESTS",

@@ -88,6 +88,7 @@ export const fullAccountInstance: FullAccount = {
   hbd_balance: "0.311 HBD",
   savings_balance: "1.000 HIVE",
   savings_hbd_balance: "0.002 HBD",
+  savings_hbd_seconds: "1235678",
   next_vesting_withdrawal: "1969-12-31T23:59:59",
   vesting_shares: "151590.952150 VESTS",
   delegated_vesting_shares: "145395.758709 VESTS",
