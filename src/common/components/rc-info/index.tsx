@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Card, Row, Col, Modal } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { findRcAccounts } from "../../api/hive";
 import { ResourceCreditsDelegation } from "../rc-delegation"
@@ -97,68 +97,39 @@ export const ResourceCreditsInfo = (props: any) => {
       >
       <Modal.Header closeButton={true}>
         <Modal.Title>
-          <span className="d-flex justify-content-center">
+          <span>
             {_t("rc-info.resource-credits")}
           </span>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Row>
-          <Col>
-            <Card className="d-flex justify-content-center">
-            <Card.Header>{_t("rc-info.resource-credit")}</Card.Header>
-            <Card.Body className="card-body">
-            <Card.Text className="justify-content-center">
-               {resourceCredit}
-            </Card.Text>
-            </Card.Body>
-            </Card>
-          </Col>  
+        <div className="container">
+          <div className="rc-info">
+            <p className="h4">{_t("rc-info.resource-credit")}</p>
+            <p>{resourceCredit}</p>          
+          </div>
 
-          <Col>
-            <Card className="d-flex justify-content-center">
-            <Card.Header>{_t("rc-info.rc-available")}</Card.Header>
-            <Card.Body className="card-body">
-            <Card.Text>
-               {`${rcPercent}%`}
-            </Card.Text>
-            </Card.Body>
-            </Card>
-          </Col>
+          <div className="rc-info">
+            <p className="h4">{_t("rc-info.rc-available")}</p>
+            <p>{`${rcPercent}%`}</p>          
+          </div>
 
-          <Col>
-            <Card className="d-flex justify-content-center">            
-            <Card.Header>{_t("rc-info.rc-used")}</Card.Header>
-            <Card.Body className="card-body">
-            <Card.Text>
-               {`${(100 - rcPercent).toFixed(2)}%`}
-            </Card.Text>
-            </Card.Body>
-            </Card>
-          </Col>
+          <div className="rc-info">
+            <p className="h4">{_t("rc-info.rc-used")}</p>
+            <p>{`${(100 - rcPercent).toFixed(2)}%`}</p>          
+          </div>
 
-          <Col onClick={showList} className="cursor-pointer">
-            <Card className="d-flex justify-content-center">            
-            <Card.Header>{_t("rc-info.delegated")}</Card.Header>
-            <Card.Body className="card-body">
-            <Card.Text>
-               {delegated}
-            </Card.Text>
-            </Card.Body>
-            </Card>
-          </Col>
+          <div onClick={showList} className="cursor-pointer rc-info">
+            <p className="h4">{_t("rc-info.delegated")}</p>
+            <p>{delegated}</p>          
+          </div>
 
-          <Col>
-            <Card className="d-flex justify-content-center">            
-            <Card.Header>{_t("rc-info.received-delegations")}</Card.Header>
-            <Card.Body className="card-body">
-            <Card.Text>
-               {receivedDelegation}
-            </Card.Text>
-            </Card.Body>
-            </Card>
-          </Col>
-        </Row>  
+          <div className="cursor-pointer rc-info">
+            <p className="h4">{_t("rc-info.received-delegations")}</p>
+            <p>{receivedDelegation}</p>            
+          </div>
+        </div>
+       
         <div className="d-flex justify-content-center mt-3">
             <Button onClick={showDelegation}>
              {_t("rc-info.delegation-button")}

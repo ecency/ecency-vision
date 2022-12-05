@@ -6,31 +6,31 @@ import { _t } from '../../i18n';
 import LinearProgress from '../linear-progress';
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
+import { useParams } from 'react-router';
 
 export const RcDelegationsInList = (props: any) => {
-
   const limit = 50;
+  const params: any = useParams();
 
-  const { resourceCredit, activeUser, hideDelegation, rcFormatter, showDelegation } = props
+  const { activeUser, rcFormatter, showDelegation } = props
 
   const [outGoingList, setOutGoingList]: any = useState();
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(false);
+  const [search, setsearch] = useState("")
 
   useEffect (() => {
-    console.log(activeUser)
-    getRcList()
+    getRcList();   
   }, [])
 
   const getRcList = async () => {
     setLoading(true)
-    const delegationsOutList: any = await getRCDelegations(activeUser.username, "")
-        const delegationsOutInfo = delegationsOutList.rc_direct_delegations
-        console.log(delegationsOutInfo)
+    const paramsAccount = params.username.substring(1)
+    const delegationsOutList: any = await getRCDelegations(paramsAccount, "")
+        const delegationsOutInfo = delegationsOutList.rc_direct_delegations;
         setOutGoingList(delegationsOutInfo);
         setLoading(false);
-        setHasMore(delegationsOutInfo.length > limit);
-        
+        setHasMore(delegationsOutInfo.length > limit);        
         return delegationsOutInfo;
   };
 
@@ -44,15 +44,16 @@ export const RcDelegationsInList = (props: any) => {
         <div className="list">
             <div className="list-search-box">
               <FormControl     
-                // value={search}
+                value={search}
                 placeholder="search list"
-                // onChange={this.searchChanged}
-                // onKeyDown={this.searchKeyDown}
+                onChange={(e) => setsearch(e.target.value)}
               />
             </div>
 
             <div className="list-body">
-               {outGoingList?.map((list: any, i: any) =>(
+               {outGoingList?.filter((list: any) => 
+               list.to.toLowerCase().startsWith(search)
+               ).map((list: any, i: any) =>(
                  <div className="list-item" key={i}>
                  <div className="item-main">
                    {ProfileLink({
@@ -67,7 +68,7 @@ export const RcDelegationsInList = (props: any) => {
                        children: <a className="item-name notransalte">{list.to}</a>
                      })}
                       {activeUser && (<div>
-                      <span className="item-reputation">{rcFormatter(list.delegated_rc)}</span>          
+                      <span className="item-reputation">{rcFormatter(list.delegated_rc)}</span>     
                       <a className="item-reputation cursor-pointer"
                       onClick={showDelegation}
                       >{_t("rc-info.update")}</a>          
@@ -81,15 +82,12 @@ export const RcDelegationsInList = (props: any) => {
                ))
                }             
             </div>
-            {/* {!inSearch && data.length > 1 && ( */}
             <div className="load-more">
               <Button disabled={loading || !hasMore}>
                 {_t("g.load-more")}
               </Button>
             </div>
-          {/* )} */}
-          </div>
+          </div>      
     </div>
-  )
- 
+  ) 
 }

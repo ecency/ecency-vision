@@ -1,3 +1,30 @@
-.card-body {
-    min-height: 80px !important;
+.container {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 10px;
+}
+
+.rc-info {
+    padding: 20px;
+    border: 0.5px solid;
+}
+
+@media (max-width: 1000px) {
+    .container {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 10px;
+    }
+}
+@media (max-width: 500px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 10px;
+    }
+}
+@media (max-width: 320px) {
+    .container {
+        grid-template-columns: 1fr;
+        row-gap: 10px;
+    }
 }

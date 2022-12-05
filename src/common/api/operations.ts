@@ -917,7 +917,7 @@ export const delegateRCHot = (
 
 export const delegateRCKc = (
   delegator: string,
-  delegatees: string,
+  delegatees: string | any,
   max_rc: string | number
 ) => {
    const json = JSON.stringify(['delegate_rc', {
