@@ -34,8 +34,9 @@ export default class HiveWallet {
 
   public estimatedValue: number = 0;
   public toWithdraw: number = 0;
-  public withdrawn: Number = 0;
-  public weeksLeft: Number = 0;
+  public withdrawn: number = 0;
+  public weeksLeft: number = 0;
+  public savingHbdSeconds: number = 0;
 
   constructor(account: Account, dynamicProps: DynamicProps, convertingHBD: number = 0) {
     const { hivePerMVests, base, quote } = dynamicProps;
@@ -50,7 +51,7 @@ export default class HiveWallet {
 
     this.hbdBalance = parseAsset(account.hbd_balance).amount;
     this.savingBalanceHbd = parseAsset(account.savings_hbd_balance).amount;
-
+    this.savingHbdSeconds = Number(account.savings_hbd_seconds);
     this.rewardHiveBalance = parseAsset(account.reward_hive_balance).amount;
     this.rewardHbdBalance = parseAsset(account.reward_hbd_balance).amount;
     this.rewardVestingHive = parseAsset(account.reward_vesting_hive).amount;
