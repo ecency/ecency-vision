@@ -5,8 +5,11 @@ import { HiveBarter } from "../hive-barter";
 import { ActiveUser } from "../../store/active-user/types";
 import { Global } from "../../store/global/types";
 import { DayChange } from "../../pages/market/advanced-mode/types/day-change.type";
+import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
+import { History } from "history";
 
 interface Props {
+  history: History;
   activeUser: ActiveUser | null;
   buyBalance: string;
   sellBalance: string;
@@ -21,7 +24,8 @@ export const TradingFormWidget = ({
   sellBalance,
   dayChange,
   global,
-  price
+  price,
+  history
 }: Props) => {
   const [loading, setLoading] = useState(false);
   const [buyPeakValue, setBuyPeakValue] = useState(0);
@@ -34,6 +38,8 @@ export const TradingFormWidget = ({
 
   return (
     <MarketAdvancedModeWidget
+      type={Widget.TradingForm}
+      history={history}
       title={_t("market.advanced.form")}
       children={
         <div>
@@ -75,6 +81,7 @@ export const TradingFormWidget = ({
           )}
         </div>
       }
+      widgetTypeChanged={() => {}}
     />
   );
 };

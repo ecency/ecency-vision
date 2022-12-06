@@ -17,13 +17,15 @@ import { Global } from "../../../store/global/types";
 import { UserBalanceObserver } from "./user-balance-observer";
 import { OpenOrdersWidget } from "../../../components/market-advanced-mode/open-orders-widget";
 import { WidgetLayoutBuilder } from "./widget-layout-builder";
+import { History } from "history";
 
 interface Props {
   activeUser: ActiveUser | null;
   global: Global;
+  browserHistory: History;
 }
 
-export const AdvancedMode = ({ activeUser, global }: Props) => {
+export const AdvancedMode = ({ activeUser, global, browserHistory }: Props) => {
   const [layout, setLayout] = useState<Layout>(DEFAULT_LAYOUT);
   const [fromAsset, setFromAsset] = useState(MarketAsset.HIVE);
   const [toAsset, setToAsset] = useState(MarketAsset.HBD);
@@ -57,6 +59,7 @@ export const AdvancedMode = ({ activeUser, global }: Props) => {
       />
       <div className="advanced-mode-layout">
         <WidgetLayoutBuilder
+          browserHistory={browserHistory}
           layout={layout}
           activeUser={activeUser}
           global={global}

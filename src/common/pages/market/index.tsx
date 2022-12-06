@@ -66,7 +66,9 @@ const MarketPage = (props: PageProps) => {
           )}
           {mode === MarketMode.SWAP && <SwapMode {...props} />}
           {mode === MarketMode.LIMIT && <LimitMarketMode {...props} />}
-          {mode === MarketMode.ADVANCED && <AdvancedMode {...props} />}
+          {mode === MarketMode.ADVANCED && (
+            <AdvancedMode {...props} browserHistory={props.history} />
+          )}
         </div>
       </div>
     </>

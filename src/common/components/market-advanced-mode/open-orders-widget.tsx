@@ -4,12 +4,15 @@ import { OpenOrders } from "../open-orders";
 import { ActiveUser } from "../../store/active-user/types";
 import { _t } from "../../i18n";
 import { MarketAdvancedModeWidget } from "./market-advanced-mode-widget";
+import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
+import { History } from "history";
 
 interface Props {
   activeUser: ActiveUser | null;
+  history: History;
 }
 
-export const OpenOrdersWidget = ({ activeUser }: Props) => {
+export const OpenOrdersWidget = ({ activeUser, history }: Props) => {
   const [openOrdersData, setOpenOrdersData] = useState<OpenOrdersData[]>([]);
   const [openOrdersDataLoading, setOpenOrdersDataLoading] = useState(false);
 
@@ -29,6 +32,8 @@ export const OpenOrdersWidget = ({ activeUser }: Props) => {
 
   return (
     <MarketAdvancedModeWidget
+      history={history}
+      type={Widget.OpenOrders}
       title={_t("market.advanced.open-orders")}
       children={
         <OpenOrders
@@ -40,6 +45,7 @@ export const OpenOrdersWidget = ({ activeUser }: Props) => {
           compat={true}
         />
       }
+      widgetTypeChanged={() => {}}
     />
   );
 };

@@ -41,7 +41,7 @@ export const MarketAdvancedModeWidgetHeader = ({ title, headerOptions, settings 
       </div>
       {settings ? (
         <Accordion.Collapse eventKey="0">
-          <Card.Body className="p-0">{settings}</Card.Body>
+          <Card.Body className="p-0 market-advanced-mode-widget-settings">{settings}</Card.Body>
         </Accordion.Collapse>
       ) : (
         <></>

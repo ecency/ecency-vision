@@ -196,5 +196,15 @@ thead, .pagination {
         .market-stake-widget-sell {
             max-height: calc(100vh - 96px - 80px);
         }
+
+        .market-advanced-mode-widget {
+            .custom-dropdown .label {
+                font-size: 14px;
+            }
+        }
+
+        .market-advanced-mode-widget-settings {
+            background-color: $white-three;
+        }
     }
 }

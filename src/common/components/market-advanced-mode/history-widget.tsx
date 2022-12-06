@@ -4,10 +4,13 @@ import { _t } from "../../i18n";
 import { OrdersData } from "../../api/hive";
 import moment, { Moment } from "moment";
 import { MarketAsset } from "../market-swap-form/market-pair";
+import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
+import { History } from "history";
 
 interface Props {
   fromAsset: MarketAsset;
   toAsset: MarketAsset;
+  browserHistory: History;
   history: OrdersData | null;
   onItemClick: (value: number) => void;
 }
@@ -19,7 +22,13 @@ interface Item {
   date: Moment;
 }
 
-export const HistoryWidget = ({ history, fromAsset, toAsset, onItemClick }: Props) => {
+export const HistoryWidget = ({
+  history,
+  browserHistory,
+  fromAsset,
+  toAsset,
+  onItemClick
+}: Props) => {
   const [items, setItems] = useState<Item[]>([]);
 
   useEffect(() => {
@@ -64,6 +73,8 @@ export const HistoryWidget = ({ history, fromAsset, toAsset, onItemClick }: Prop
 
   return (
     <MarketAdvancedModeWidget
+      history={browserHistory}
+      type={Widget.History}
       title={_t("market.advanced.history")}
       children={
         <div className="history-widget-content">
@@ -93,6 +104,7 @@ export const HistoryWidget = ({ history, fromAsset, toAsset, onItemClick }: Prop
           </div>
         </div>
       }
+      widgetTypeChanged={() => {}}
     />
   );
 };

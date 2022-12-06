@@ -5,8 +5,11 @@ import { OrdersData, OrdersDataItem } from "../../api/hive";
 import { MarketAsset } from "../market-swap-form/market-pair";
 import formattedNumber from "../../util/formatted-number";
 import { StakeWidgetHeaderOptions, StakeWidgetViewType } from "./stake-widget-header-options";
+import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
+import { History } from "history";
 
 interface Props {
+  browserHistory: History;
   history: OrdersData | null;
   fromAsset: MarketAsset;
   toAsset: MarketAsset;
@@ -18,7 +21,7 @@ interface StakeItem {
   total: number;
 }
 
-export const StakeWidget = ({ history, fromAsset, toAsset }: Props) => {
+export const StakeWidget = ({ history, fromAsset, toAsset, browserHistory }: Props) => {
   const [sells, setSells] = useState<StakeItem[]>([]);
   const [maxSell, setMaxSell] = useState(0);
   const [buys, setBuys] = useState<StakeItem[]>([]);
@@ -88,6 +91,8 @@ export const StakeWidget = ({ history, fromAsset, toAsset }: Props) => {
 
   return (
     <MarketAdvancedModeWidget
+      history={browserHistory}
+      type={Widget.Stake}
       className="market-advanced-mode-stake-widget"
       headerOptions={
         <StakeWidgetHeaderOptions
@@ -152,6 +157,7 @@ export const StakeWidget = ({ history, fromAsset, toAsset }: Props) => {
           </div>
         </div>
       }
+      widgetTypeChanged={() => {}}
     />
   );
 };

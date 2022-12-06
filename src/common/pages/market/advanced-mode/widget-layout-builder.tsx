@@ -11,6 +11,7 @@ import { ActiveUser } from "../../../store/active-user/types";
 import { MarketAsset } from "../../../components/market-swap-form/market-pair";
 import { OrdersData } from "../../../api/hive";
 import { DayChange } from "./types/day-change.type";
+import { History } from "history";
 
 interface Props {
   layout: Layout;
@@ -24,6 +25,7 @@ interface Props {
   buyBalance: string;
   sellBalance: string;
   price: number;
+  browserHistory: History;
 }
 
 export const WidgetLayoutBuilder = ({
@@ -37,6 +39,7 @@ export const WidgetLayoutBuilder = ({
   dayChange,
   buyBalance,
   sellBalance,
+  browserHistory,
   price
 }: Props) => {
   const makeRow = (row: LayoutRow): JSX.Element => {
@@ -53,6 +56,7 @@ export const WidgetLayoutBuilder = ({
           return (
             <div className={"layout-col " + col.size}>
               <HistoryWidget
+                browserHistory={browserHistory}
                 fromAsset={fromAsset}
                 toAsset={toAsset}
                 history={history}
@@ -63,19 +67,25 @@ export const WidgetLayoutBuilder = ({
         case Widget.Stake:
           return (
             <div className={"layout-col " + col.size}>
-              <StakeWidget fromAsset={fromAsset} toAsset={toAsset} history={history} />
+              <StakeWidget
+                browserHistory={browserHistory}
+                fromAsset={fromAsset}
+                toAsset={toAsset}
+                history={history}
+              />
             </div>
           );
         case Widget.Pairs:
           return (
             <div className={"layout-col " + col.size}>
-              <PairsWidget />
+              <PairsWidget history={browserHistory} />
             </div>
           );
         case Widget.TradingForm:
           return (
             <div className={"layout-col " + col.size}>
               <TradingFormWidget
+                history={browserHistory}
                 activeUser={activeUser}
                 global={global}
                 dayChange={dayChange}
@@ -88,13 +98,13 @@ export const WidgetLayoutBuilder = ({
         case Widget.TradingView:
           return (
             <div className={"layout-col " + col.size}>
-              <TradingViewWidget />
+              <TradingViewWidget history={browserHistory} />
             </div>
           );
         case Widget.OpenOrders:
           return (
             <div className={"layout-col " + col.size}>
-              <OpenOrdersWidget activeUser={activeUser} />
+              <OpenOrdersWidget history={browserHistory} activeUser={activeUser} />
             </div>
           );
         default:
