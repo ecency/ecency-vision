@@ -15,7 +15,8 @@
   "title": "Ecency - smart, decentralized, rewarding social network without limits",
   "description": "Discover and build a community, niche and be rewarded for blogs, votes, contributions and reward esteemed friends and followers.",
   "twitterHandle": "@ecency_official",
-  "showSelfVote": true,
-  "showRewardSplit": true,
-  "lowRewardThreshold": 1000000000
+  "showSelfVote": false,
+  "showRewardSplit": false,
+  "lowRewardThreshold": 1000000000,
+  "showFrontEnd": false
 }

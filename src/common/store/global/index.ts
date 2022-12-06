@@ -24,7 +24,8 @@ import {
   ThemeChangeAction,
   SetShowSelfVoteAction,
   SetShowRewardSplitAction,
-  SetLowRewardThresholdAction
+  SetLowRewardThresholdAction,
+  SetShowFrontEndAction
 } from "./types";
 import { CommonActionTypes } from "../common";
 import * as ls from "../../util/local-storage";
@@ -55,7 +56,8 @@ export const initialState: Global = {
   lastIndexPath: null,
   showSelfVote: defaults.showSelfVote,
   showRewardSplit: defaults.showRewardSplit,
-  lowRewardThreshold: defaults.lowRewardThreshold
+  lowRewardThreshold: defaults.lowRewardThreshold,
+  showFrontEnd: defaults.showFrontEnd
 };
 
 export default (state: Global = initialState, action: Actions): Global => {
@@ -122,6 +124,10 @@ export default (state: Global = initialState, action: Actions): Global => {
     case ActionTypes.SET_LOW_REWARD_THRESHOLD: {
       const { lowRewardThreshold } = action;
       return { ...state, lowRewardThreshold };
+    }
+    case ActionTypes.SET_SHOW_FRONT_END: {
+      const { showFrontEnd } = action;
+      return { ...state, showFrontEnd };
     }
     default:
       return state;
@@ -252,6 +258,11 @@ export const setLowRewardThreshold = (value: number) => (dispatch: Dispatch) => 
   dispatch(setLowRewardThresholdAct(value));
 };
 
+export const setShowFrontEnd = (value: boolean) => (dispatch: Dispatch) => {
+  ls.set("showFrontEnd", value);
+  dispatch(setShowFrontEndAct(value));
+};
+
 /* Action Creators */
 export const themeChangeAct = (theme: Theme): ThemeChangeAction => {
   return {
@@ -348,5 +359,12 @@ export const setLowRewardThresholdAct = (value: number): SetLowRewardThresholdAc
   return {
     type: ActionTypes.SET_LOW_REWARD_THRESHOLD,
     lowRewardThreshold: value
+  };
+};
+
+export const setShowFrontEndAct = (value: boolean): SetShowFrontEndAction => {
+  return {
+    type: ActionTypes.SET_SHOW_FRONT_END,
+    showFrontEnd: value
   };
 };

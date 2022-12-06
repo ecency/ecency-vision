@@ -155,7 +155,8 @@ export const globalInstance: Global = {
   hsClientId: "ecency.app",
   showSelfVote: true,
   showRewardSplit: true,
-  lowRewardThreshold: 100
+  lowRewardThreshold: 100,
+  showFrontEnd: true
 };
 
 export const TrendingTagsInstance: TrendingTags = {

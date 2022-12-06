@@ -32,7 +32,8 @@ import {
   setLastIndexPath,
   setShowSelfVote,
   setShowRewardSplit,
-  setLowRewardThreshold
+  setLowRewardThreshold,
+  setShowFrontEnd
 } from "../store/global";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { updateSubscriptions } from "../store/subscriptions";
@@ -93,6 +94,7 @@ export interface PageProps {
   setShowSelfVote: (value: boolean) => void;
   setShowRewardSplit: (value: boolean) => void;
   setLowRewardThreshold: (value: number) => void;
+  setShowFrontEnd: (value: boolean) => void;
 
   dynamicProps: DynamicProps;
 
@@ -195,6 +197,7 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       setShowSelfVote,
       setShowRewardSplit,
       setLowRewardThreshold,
+      setShowFrontEnd,
       dismissNewVersion,
       fetchTrendingTags,
       updateSubscriptions,

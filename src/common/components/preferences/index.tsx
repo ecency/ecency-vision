@@ -25,6 +25,7 @@ interface Props {
   setShowSelfVote: (value: boolean) => void;
   setShowRewardSplit: (value: boolean) => void;
   setLowRewardThreshold: (value: number) => void;
+  setShowFrontEnd: (value: boolean) => void;
 }
 
 interface State {
@@ -118,6 +119,14 @@ export class Preferences extends BaseComponent<Props, State> {
     success(_t("preferences.updated"));
   };
 
+  showFrontEndChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+    const { setShowFrontEnd } = this.props;
+    const { value } = e.target;
+
+    setShowFrontEnd(JSON.parse(value));
+    success(_t("preferences.updated"));
+  };
+
   lowRewardThresholdChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const { setLowRewardThreshold } = this.props;
     const { value } = e.target;
@@ -148,7 +157,7 @@ export class Preferences extends BaseComponent<Props, State> {
     this.showSelfVoteChanged = this.showSelfVoteChanged.bind(this);
     this.showRewardSplitChanged = this.showRewardSplitChanged.bind(this);
     this.lowRewardThresholdChanged = this.lowRewardThresholdChanged.bind(this);
-
+    this.showFrontEndChanged = this.showFrontEndChanged.bind(this);
     this.setState({ ...this.state, defaultTheme: theme });
   }
 
@@ -279,6 +288,7 @@ export class Preferences extends BaseComponent<Props, State> {
                     </Form.Control>
                   </Form.Group>
                 </Col>
+                <div className="preferences-header">{_t("preferences.entry-item-options")}</div>
                 <Col lg={6} xl={4}>
                   <Form.Group>
                     <Form.Label>{_t("preferences.show-self-vote")}</Form.Label>
@@ -317,6 +327,20 @@ export class Preferences extends BaseComponent<Props, State> {
                     />
                   </Form.Group>
                 </Col>
+                <Col lg={6} xl={4}>
+                  <Form.Group>
+                    <Form.Label>{_t("preferences.show-front-end")}</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={JSON.stringify(global.showFrontEnd)}
+                      as="select"
+                      onChange={this.showFrontEndChanged}
+                    >
+                      <option value={"true"}>{_t("preferences.show-reward-split-true")}</option>
+                      <option value={"false"}>{_t("preferences.show-reward-split-false")}</option>
+                    </Form.Control>
+                  </Form.Group>
+                </Col>
               </>
             )}
           </Form.Row>
@@ -338,7 +362,8 @@ export default (p: Props) => {
     toggleTheme: p.toggleTheme,
     setShowSelfVote: p.setShowSelfVote,
     setShowRewardSplit: p.setShowRewardSplit,
-    setLowRewardThreshold: p.setLowRewardThreshold
+    setLowRewardThreshold: p.setLowRewardThreshold,
+    setShowFrontEnd: p.setShowFrontEnd
   };
 
   return <Preferences {...props} />;

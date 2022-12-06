@@ -208,7 +208,7 @@ export default class EntryListItem extends Component<Props, State> {
     // const account = accounts?.find((x) => x.name === accountUsername) as FullAccount
     const pageAccount = account as FullAccount;
     const pinned = account && pageAccount.profile?.pinned;
-    const { showSelfVote, showRewardSplit, lowRewardThreshold } = global;
+    const { showSelfVote, showRewardSplit, lowRewardThreshold, showFrontEnd } = global;
     const fallbackImage = global.isElectron
       ? "./img/fallback.png"
       : require("../../img/fallback.png");
@@ -287,7 +287,7 @@ export default class EntryListItem extends Component<Props, State> {
 
     const cls = `entry-list-item ${promoted ? "promoted-item" : ""} ${global.filter}`;
 
-    const self_vote_entry = entry.active_votes.find((x) => x.voter == entry.author);
+    const self_vote_entry = entry.active_votes?.find((x) => x.voter == entry.author);
     const self_vote = self_vote_entry ? self_vote_entry.rshares : false;
     const hp_portion = 100 * (1 - entry.percent_hbd / 20000);
     const max_payout: number = parseFloat(entry.max_accepted_payout);
@@ -371,7 +371,7 @@ export default class EntryListItem extends Component<Props, State> {
             </span>
             {showSelfVote && self_vote && <>&ensp;{_t("entry.self_voted")}</>}
             {showRewardSplit && max_payout > 0 && <>&ensp;{hp_portion}% HP</>}
-            {app && (
+            {showFrontEnd && app && (
               <>
                 &ensp;
                 <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">

@@ -551,7 +551,7 @@ class EntryPage extends BaseComponent<Props, State> {
         return { self_vote: true, hp_portion: 50, max_payout: 1000000, appShort: "?", app: "?" };
       }
       try {
-        const self_vote_entry = entry.active_votes.find((x) => x.voter == entry.author);
+        const self_vote_entry = entry.active_votes?.find((x) => x.voter == entry.author);
         const self_vote = self_vote_entry ? self_vote_entry.rshares : false;
         const hp_portion = 100 * (1 - entry.percent_hbd / 20000);
         const max_payout: number = parseFloat(entry.max_accepted_payout);
