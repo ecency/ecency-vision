@@ -13,6 +13,7 @@ export const ResourceCreditsInfo = (props: any) => {
     const [resourceCredit, setresourceCredit] = useState();
     const [showDelegationModal, setShowDelegationModal] = useState(false)
     const [showDelegationsList, setShowDelegationsList] = useState(false)
+    const [listMode, setListMode] = useState("")
 
     const { rcPercent, account, activeUser } = props;
 
@@ -34,11 +35,11 @@ export const ResourceCreditsInfo = (props: any) => {
     const rcFormatter = (num: number) => {
       const result: any = 
       Math.abs(num) > 999 && Math.abs(num) < 1000000 ? 
-      Math.sign(num) * parseFloat((Math.abs(num)/1000).toFixed(2)) + 'k' : 
+      `${Math.sign(num) * parseFloat((Math.abs(num)/1000).toFixed(2))}k` : 
       Math.abs(num) > 999999 && Math.abs(num) < 1000000000 ? 
-      Math.sign(num) * parseFloat((Math.abs(num)/1000000).toFixed(2)) + "m" : 
+      `${Math.sign(num) * parseFloat((Math.abs(num)/1000000).toFixed(2))}m` : 
       Math.abs(num) > 999999999 && Math.abs(num) < 1000000000000000 ? 
-      Math.sign(num) * parseFloat((Math.abs(num)/1000000000).toFixed(2)) + "b" : 
+      `${Math.sign(num) * parseFloat((Math.abs(num)/1000000000).toFixed(2))}b` : 
       Math.sign(num)*Math.abs(num);
       return result
   }
@@ -60,8 +61,14 @@ export const ResourceCreditsInfo = (props: any) => {
       setShowDelegationModal(false);
     };
 
-    const showList = () => {
+    const showIncomingList = () => {
       setShowDelegationsList(true)
+      setListMode("in")
+    }
+
+    const showOutGoingList = () => {
+      setShowDelegationsList(true)
+      setListMode("out")
   };
 
     const hideList = () => {
@@ -119,12 +126,12 @@ export const ResourceCreditsInfo = (props: any) => {
             <p>{`${(100 - rcPercent).toFixed(2)}%`}</p>          
           </div>
 
-          <div onClick={showList} className="cursor-pointer rc-info">
+          <div onClick={showOutGoingList} className="cursor-pointer rc-info">
             <p className="h4">{_t("rc-info.delegated")}</p>
             <p>{delegated}</p>          
           </div>
 
-          <div className="cursor-pointer rc-info">
+          <div onClick={showIncomingList} className="cursor-pointer rc-info">
             <p className="h4">{_t("rc-info.received-delegations")}</p>
             <p>{receivedDelegation}</p>            
           </div>
@@ -154,6 +161,7 @@ export const ResourceCreditsInfo = (props: any) => {
     delegated={delegated} 
     showDelegation={showDelegation} 
     hideList={hideList}
+    listMode={listMode}
     />    
     </Modal.Body>
   </Modal>    

@@ -18,7 +18,7 @@ import {
   getAccount,
   getAccountFull,
   getVestingDelegations,
-  getRCDelegations
+  getOutgoingRc
 } from "../../api/hive";
 import { PrivateKey } from '@hiveio/dhive';
 import { setSigningKey } from "../../store/signing-key";
@@ -170,11 +170,11 @@ export const ResourceCreditsDelegation = (props: any) => {
           setToWarning("")
         }    
         setToData(null);   
-        const delegationsOutList: any = await getRCDelegations(activeUser.username, "")
+        const delegationsOutList: any = await getOutgoingRc(activeUser.username, "")
         const delegatedTo = await delegationsOutList.rc_direct_delegations.map((to: any) => to.to)
         const delegatedToamount = delegationsOutList.rc_direct_delegations.map((amount: any) => amount.delegated_rc);
         
-        const delegationsInList: any = await getRCDelegations(value, "");
+        const delegationsInList: any = await getOutgoingRc(value, "");
         console.log(delegationsInList)
         const delegatedFrom: any = await delegationsInList.rc_direct_delegations.map((from: any) => from.from);
         console.log(delegatedFrom)
