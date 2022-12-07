@@ -21,6 +21,9 @@ Object {
   "image": Array [
     "http://www.xx.com/a.png",
   ],
+  "thumbnails": Array [
+    "http://www.xx.com/a.png",
+  ],
   "users": Array [
     "lorem",
     "ipsum",
@@ -36,6 +39,10 @@ Object {
   ],
   "links": Array [
     "http://www.google.com/foo/bar",
+  ],
+  "thumbnails": Array [
+    "http://www.xx.com/a.png",
+    "https://img.esteem.ws/h74zrad2fh.jpg",
   ],
   "users": Array [
     "lorem",
