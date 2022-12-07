@@ -70,7 +70,7 @@ export const extractMetaData = (body: string): MetaData => {
   }
   if (matchedImages.length) {
     out.image = matchedImages.slice(0, 10);
-    //out.thumbnails = matchedImages;
+    out.thumbnails = matchedImages;
   }
 
   if (mUsers) {
