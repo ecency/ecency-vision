@@ -2,40 +2,31 @@ import React, { Component } from "react";
 
 import { Modal } from "react-bootstrap";
 
-import { Global } from "../../store/global/types";
-import { DynamicProps } from "../../store/dynamic-props/types";
-import { ActiveUser } from "../../store/active-user/types";
 import { Account } from "../../store/accounts/types";
 import { Entry } from "../../store/entries/types";
-import { User } from "../../store/users/types";
-import { ToggleType, UI } from "../../store/ui/types";
 import { Transactions } from "../../store/transactions/types";
-
+import { match } from "react-router";
 import LoginRequired from "../login-required";
 import { Transfer } from "../transfer";
 import Tooltip from "../tooltip";
-
+import { connect } from "react-redux";
+import { PageProps, pageMapDispatchToProps, pageMapStateToProps } from "../../pages/common";
 import { _t } from "../../i18n";
 
 import { giftOutlineSvg } from "../../img/svg";
 
-interface Props {
-  global: Global;
-  dynamicProps: DynamicProps;
-  users: User[];
-  ui: UI;
-  activeUser: ActiveUser | null;
-  entry: Entry;
-  signingKey: string;
+interface MatchParams {
+  category: string;
+  permlink: string;
+  username: string;
+}
+
+interface Props extends PageProps {
+  match: match<MatchParams>;
   account: Account;
-  fetchPoints: (username: string, type?: number) => void;
+  entry: Entry;
   updateWalletValues: () => void;
-  addAccount: (data: Account) => void;
-  setActiveUser: (username: string | null) => void;
-  updateActiveUser: (data?: Account) => void;
-  deleteUser: (username: string) => void;
-  toggleUIProp: (what: ToggleType) => void;
-  setSigningKey: (key: string) => void;
+  setTipDialogMounted: (d: boolean) => void;
 }
 
 interface DialogProps extends Props {
@@ -43,6 +34,14 @@ interface DialogProps extends Props {
 }
 
 export class TippingDialog extends Component<DialogProps> {
+  componentDidMount(): void {
+    this.props.setTipDialogMounted(true);
+  }
+
+  componentWillUnmount(): void {
+    this.props.setTipDialogMounted(false);
+  }
+
   render() {
     const { global, entry, activeUser } = this.props;
 
@@ -125,25 +124,4 @@ export class EntryTipBtn extends Component<Props, State> {
   }
 }
 
-export default (p: Props) => {
-  const props = {
-    global: p.global,
-    dynamicProps: p.dynamicProps,
-    users: p.users,
-    ui: p.ui,
-    account: p.account,
-    fetchPoints: p.fetchPoints,
-    updateWalletValues: p.updateWalletValues,
-    activeUser: p.activeUser,
-    entry: p.entry,
-    signingKey: p.signingKey,
-    addAccount: p.addAccount,
-    setActiveUser: p.setActiveUser,
-    updateActiveUser: p.updateActiveUser,
-    deleteUser: p.deleteUser,
-    toggleUIProp: p.toggleUIProp,
-    setSigningKey: p.setSigningKey
-  };
-
-  return <EntryTipBtn {...props} />;
-};
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(EntryTipBtn as any);

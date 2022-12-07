@@ -1183,10 +1183,8 @@ class EntryPage extends BaseComponent<Props, State> {
                           ...this.props,
                           entry
                         })}
-                        {EntryTipBtn({
-                          ...this.props,
-                          entry
-                        })}
+                        {<EntryTipBtn {...{ entry }} />}
+
                         {!ownEntry && (
                           <>
                             {EntryReblogBtn({

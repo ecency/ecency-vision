@@ -10,6 +10,7 @@ import { ActiveUser } from "../../store/active-user/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { UI, ToggleType } from "../../store/ui/types";
 
+import EntryTipBtn from "../entry-tip-btn";
 import BaseComponent from "../base";
 import FormattedCurrency from "../formatted-currency";
 import LoginRequired from "../login-required";
@@ -28,6 +29,7 @@ import { chevronDownSvgForSlider, chevronUpSvgForSlider, chevronUpSvgForVote } f
 import ClickAwayListener from "../clickaway-listener";
 import { _t } from "../../i18n";
 import VotingSlider from "../entry-vote-slider";
+import moment from "moment";
 
 const setVoteValue = (
   type: "up" | "down" | "downPrevious" | "upPrevious",
@@ -54,7 +56,9 @@ interface VoteDialogProps {
   entry: Entry;
   downVoted: boolean;
   upVoted: boolean;
+  dateFormatted?: string;
   onClick: (percent: number, estimated: number) => void;
+  setTipDialogMounted: (d: boolean) => void;
 }
 
 interface VoteDialogState {
@@ -276,7 +280,12 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const {
       entry: { post_id, id }
     } = this.props;
-
+    const { entry } = this.props;
+    const { dateFormatted } = this.props;
+    const past = moment(dateFormatted);
+    const now = moment(new Date());
+    const duration = moment.duration(now.diff(past));
+    const days = duration.asDays();
     return (
       <>
         {mode === "up" && (
@@ -369,6 +378,23 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             )}
           </>
         )}
+        {days >= 7.0 ? (
+          <div className="vote-error" style={{ display: "block" }}>
+            <p className="erro-msg">{_t("entry-list-item.old-post-error")}</p>
+            <p style={{ display: "flex", justifyContent: "center" }}>
+              {_t("entry-list-item.old-post-error-suggestion")}
+              <p>
+                {
+                  <EntryTipBtn
+                    {...{ entry, setTipDialogMounted: this.props.setTipDialogMounted }}
+                  />
+                }
+              </p>
+            </p>
+          </div>
+        ) : (
+          <></>
+        )}
       </>
     );
   }
@@ -381,6 +407,7 @@ interface Props {
   users: User[];
   activeUser: ActiveUser | null;
   ui: UI;
+  dateFormatted?: string;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
@@ -391,12 +418,14 @@ interface Props {
 interface State {
   dialog: boolean;
   inProgress: boolean;
+  tipDialog: boolean;
 }
 
 export class EntryVoteBtn extends BaseComponent<Props, State> {
   state: State = {
     dialog: false,
-    inProgress: false
+    inProgress: false,
+    tipDialog: false
   };
 
   vote = (percent: number, estimated: number) => {
@@ -452,10 +481,14 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     this.stateSet({ dialog: false });
   };
 
+  setTipDialogMounted = (d: boolean) => {
+    this.setState({ tipDialog: d });
+  };
+
   render() {
     const { activeUser } = this.props;
     const { active_votes: votes } = this.props.entry;
-    const { dialog, inProgress } = this.state;
+    const { dialog, inProgress, tipDialog } = this.state;
     const { upVoted, downVoted } = this.isVoted();
 
     let cls = _c(`btn-vote btn-up-vote ${inProgress ? "in-progress" : ""}`);
@@ -493,7 +526,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
             <div>
               <ClickAwayListener
                 onClickAway={() => {
-                  dialog && this.setState({ dialog: false });
+                  !tipDialog && dialog && this.setState({ dialog: false });
                 }}
               >
                 <div className="entry-vote-btn" onClick={() => this.toggleDialog()}>
@@ -514,6 +547,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                               onClick={this.vote}
                               upVoted={upVoted}
                               downVoted={downVoted}
+                              setTipDialogMounted={this.setTipDialogMounted}
                             />
                           </span>
                         </div>
@@ -538,6 +572,7 @@ export default (p: Props) => {
     users: p.users,
     activeUser: p.activeUser,
     ui: p.ui,
+    dateFormatted: p.dateFormatted,
     setActiveUser: p.setActiveUser,
     updateActiveUser: p.updateActiveUser,
     deleteUser: p.deleteUser,
