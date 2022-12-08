@@ -1,6 +1,7 @@
 @import "variables";
 @import "mixins";
 @import "animation";
+@import "animations";
 
 @import "../common/components/404";
 @import "../common/components/navbar";
@@ -54,7 +55,7 @@
 @import "../common/components/feedback-modal";
 @import "../common/components/login";
 @import "../common/components/comment";
-@import "../common/components/comment-engagement"; 
+@import "../common/components/comment-engagement";
 @import "../common/components/transfer";
 @import "../common/components/or-divider";
 @import "../common/components/notifications";
