@@ -17,7 +17,8 @@ it("(1) Default render", () => {
     toggleTheme: () => {},
     setShowSelfVote: () => {},
     setShowRewardSplit: () => {},
-    setLowRewardThreshold: () => {}
+    setLowRewardThreshold: () => {},
+    setShowFrontEnd: (v: boolean) => {}
   };
 
   const component = renderer.create(<Preferences {...props} activeUser={activeUserInstance} />);

@@ -652,7 +652,8 @@
     "show-self-vote-false": "Off",
     "show-reward-split-true": "On",
     "show-reward-split-false": "Off",
-    "updated": "Preference updated!"
+    "updated": "Preference updated!",
+    "not-a-number": "entered value isn't a number"
   },
   "wallet": {
     "unclaimed-rewards": "Unclaimed rewards",

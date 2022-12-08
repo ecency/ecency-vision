@@ -4,7 +4,7 @@ import { Col, Form, FormControl, InputGroup, Button } from "react-bootstrap";
 
 import { Global, Theme } from "../../store/global/types";
 import BaseComponent from "../base";
-import { success } from "../feedback";
+import { success, error } from "../feedback";
 import { _t, langOptions } from "../../i18n";
 import { getCurrencyRate } from "../../api/misc";
 import currencySymbol from "../../helper/currency-symbol";
@@ -105,7 +105,6 @@ export class Preferences extends BaseComponent<Props, State> {
   showSelfVoteChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const { setShowSelfVote } = this.props;
     const { value } = e.target;
-    console.log(value);
     const parsedValue = JSON.parse(value);
     setShowSelfVote(parsedValue);
     success(_t("preferences.updated"));
@@ -114,7 +113,6 @@ export class Preferences extends BaseComponent<Props, State> {
   showRewardSplitChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const { setShowRewardSplit } = this.props;
     const { value } = e.target;
-
     setShowRewardSplit(JSON.parse(value));
     success(_t("preferences.updated"));
   };
@@ -128,14 +126,20 @@ export class Preferences extends BaseComponent<Props, State> {
   };
 
   lowRewardThresholdChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-    const { setLowRewardThreshold } = this.props;
+    const { setLowRewardThreshold, global } = this.props;
+    const { lowRewardThreshold } = global;
     const { value } = e.target;
+    console.log({ lowRewardThreshold });
     try {
-      setLowRewardThreshold(JSON.parse(value));
+      const newValue = JSON.parse(value);
+      if (typeof newValue !== "number") {
+        throw new Error("parsed value but not a number");
+      }
+      setLowRewardThreshold(newValue);
+      success(_t("preferences.updated"));
     } catch (e) {
-      console.log(value, "Couldn't get it done boss");
+      error(_t("preferences.not-a-number"));
     }
-    success(_t("preferences.updated"));
   };
 
   copyToClipboard = (text: string) => {
@@ -154,10 +158,6 @@ export class Preferences extends BaseComponent<Props, State> {
     if (use_system_theme) {
       theme = "system";
     }
-    this.showSelfVoteChanged = this.showSelfVoteChanged.bind(this);
-    this.showRewardSplitChanged = this.showRewardSplitChanged.bind(this);
-    this.lowRewardThresholdChanged = this.lowRewardThresholdChanged.bind(this);
-    this.showFrontEndChanged = this.showFrontEndChanged.bind(this);
     this.setState({ ...this.state, defaultTheme: theme });
   }
 

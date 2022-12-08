@@ -287,10 +287,11 @@ export default class EntryListItem extends Component<Props, State> {
 
     const cls = `entry-list-item ${promoted ? "promoted-item" : ""} ${global.filter}`;
 
-    const self_vote_entry = entry.active_votes?.find((x) => x.voter == entry.author);
-    const self_vote = self_vote_entry ? self_vote_entry.rshares : false;
-    const hp_portion = 100 * (1 - entry.percent_hbd / 20000);
-    const max_payout: number = parseFloat(entry.max_accepted_payout);
+    const selfVoteEntryRShares =
+      entry.active_votes?.find((x) => x.voter == entry.author)?.rshares ?? 0;
+    const selfVote = selfVoteEntryRShares > 0;
+    const HPPortion = 100 * (1 - entry.percent_hbd / 20000);
+    const maxPayout: number = parseFloat(entry.max_accepted_payout);
     const app = appName(entry.json_metadata.app);
     const appShort = app.split("/")[0].split(" ")[0];
 
@@ -369,8 +370,8 @@ export default class EntryListItem extends Component<Props, State> {
             <span className="date" title={dateFormatted}>
               {dateRelative}
             </span>
-            {showSelfVote && self_vote && <>&ensp;{_t("entry.self_voted")}</>}
-            {showRewardSplit && max_payout > 0 && <>&ensp;{hp_portion}% HP</>}
+            {showSelfVote && selfVote && <>&ensp;{_t("entry.self_voted")}</>}
+            {showRewardSplit && maxPayout > 0 && <>&ensp;{HPPortion}% HP</>}
             {showFrontEnd && app && (
               <>
                 &ensp;
@@ -384,8 +385,8 @@ export default class EntryListItem extends Component<Props, State> {
                 </div>
               </>
             )}
-            {max_payout > 0 && max_payout <= lowRewardThreshold && (
-              <>&ensp; &le; {formattedNumber(max_payout, { fractionDigits: 3, suffix: "HBD" })}</>
+            {maxPayout > 0 && maxPayout <= lowRewardThreshold && (
+              <>&ensp; &le; {formattedNumber(maxPayout, { fractionDigits: 3, suffix: "HBD" })}</>
             )}
           </div>
           <div className="item-header-features">
