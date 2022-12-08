@@ -43,7 +43,7 @@ const getVoteValue = (
   type: "up" | "down" | "downPrevious" | "upPrevious",
   username: string,
   def: number,
-  isPostSlider: boolean
+  isPostSlider?: boolean
 ): number => {
   const postUpSliderDefaultValue = ls.get("post_upSlider_value");
   const postDownSliderDefaultValue = ls.get("post_downSlider_value");
@@ -75,7 +75,7 @@ interface VoteDialogProps {
   downVoted: boolean;
   upVoted: boolean;
   onClick: (percent: number, estimated: number) => void;
-  isPostSlider: boolean;
+  isPostSlider?: boolean;
 }
 
 interface VoteDialogState {
