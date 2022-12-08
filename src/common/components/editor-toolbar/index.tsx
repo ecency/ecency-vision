@@ -63,6 +63,11 @@ interface State {
   shGif: boolean;
 }
 
+export const detectEvent = (eventType: string) => {
+  const ev = new Event(eventType);
+  window.dispatchEvent(ev);
+};
+
 export class EditorToolbar extends Component<Props> {
   state: State = {
     gallery: false,
@@ -96,7 +101,7 @@ export class EditorToolbar extends Component<Props> {
     this.setState({ fragments: !fragments });
   };
 
-  toggleImage = (e?: React.MouseEvent<HTMLElement>) => {
+  toggleImage = (e?: React.MouseEvent<HTMLElement> | Event) => {
     if (e) {
       e.stopPropagation();
     }
@@ -112,7 +117,7 @@ export class EditorToolbar extends Component<Props> {
     this.setState({ mobileImage: !mobileImage });
   };
 
-  toggleLink = (e?: React.MouseEvent<HTMLElement>) => {
+  toggleLink = (e?: React.MouseEvent<HTMLElement> | Event) => {
     if (e) {
       e.stopPropagation();
     }
@@ -130,6 +135,13 @@ export class EditorToolbar extends Component<Props> {
   };
 
   componentDidMount() {
+    window.addEventListener("bold", this.bold);
+    window.addEventListener("italic", this.italic);
+    window.addEventListener("table", this.table);
+    window.addEventListener("link", this.toggleLink);
+    window.addEventListener("codeBlock", this.code);
+    window.addEventListener("blockquote", this.quote);
+    window.addEventListener("image", this.toggleImage);
     setTimeout(() => {
       const el = this.getTargetEl();
       if (el) {
@@ -147,6 +159,13 @@ export class EditorToolbar extends Component<Props> {
       el.removeEventListener("drop", this.drop);
       el.removeEventListener("paste", this.onPaste);
     }
+    window.removeEventListener("bold", this.bold);
+    window.removeEventListener("italic", this.italic);
+    window.removeEventListener("table", this.table);
+    window.removeEventListener("link", this.toggleLink);
+    window.removeEventListener("codeBlock", this.code);
+    window.removeEventListener("blockquote", this.quote);
+    window.removeEventListener("image", this.toggleImage);
   }
 
   getTargetEl = (): HTMLInputElement | null => {
@@ -271,7 +290,7 @@ export class EditorToolbar extends Component<Props> {
     this.insertText(`![${text}`, `](${url})`);
   };
 
-  table = (e: React.MouseEvent<HTMLElement>) => {
+  table = (e: React.MouseEvent<HTMLElement> | Event) => {
     e.stopPropagation();
     const t =
       "\n|\tColumn 1\t|\tColumn 2\t|\tColumn 3\t|\n" +
