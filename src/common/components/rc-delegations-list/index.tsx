@@ -9,7 +9,7 @@ import UserAvatar from "../user-avatar";
 import { useParams } from 'react-router';
 import { getIncomingRc } from '../../api/hive';
 
-export const RcDelegationsInList = (props: any) => {
+export const RcDelegationsList = (props: any) => {
   const limit = 21;
   const params: any = useParams();
 

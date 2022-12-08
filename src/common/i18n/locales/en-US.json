@@ -619,7 +619,8 @@
     "delegation-button": "RC Delegations",
     "rc-available": "Available",
     "rc-used": "Used",
-    "delegatees": "Outgoing",
+    "outgoing": "Outgoing",
+    "incoming": "Incoming",
     "delete": "delete",
     "update": "update"
   },

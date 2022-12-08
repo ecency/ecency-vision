@@ -3,7 +3,7 @@ import { Button, Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { findRcAccounts } from "../../api/hive";
 import { ResourceCreditsDelegation } from "../rc-delegation"
-import { RcDelegationsInList } from '../rc-delegations-list';
+import { RcDelegationsList } from '../rc-delegations-list';
 
 export const ResourceCreditsInfo = (props: any) => {
 
@@ -152,10 +152,12 @@ export const ResourceCreditsInfo = (props: any) => {
     animation={false} 
     size="lg">
     <Modal.Header closeButton={true}>
-      <Modal.Title>{_t("rc-info.delegatees")}</Modal.Title>
+      <Modal.Title>
+        {listMode === "in" ? _t("rc-info.incoming") :_t("rc-info.outgoing")}
+      </Modal.Title>
     </Modal.Header>
     <Modal.Body>
-    <RcDelegationsInList 
+    <RcDelegationsList 
     activeUser={activeUser} 
     rcFormatter={rcFormatter} 
     delegated={delegated} 
@@ -178,7 +180,6 @@ export const ResourceCreditsInfo = (props: any) => {
     >
       <Modal.Header closeButton={true}>
         <Modal.Title>
-          {/* {formHeader1} */}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
