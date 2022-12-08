@@ -42,6 +42,7 @@ import parseAsset from "../helper/parse-asset";
 import parseDate from "../helper/parse-date";
 
 import { closeSvg } from "../img/svg";
+import moment from "moment";
 
 enum Filter {
   ALL = "all",
@@ -424,7 +425,7 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
       url: `/proposals/${proposal.id}`,
       canonical: `/proposals/${proposal.id}`,
       published: parseDate(entry.created).toISOString(),
-      modified: parseDate(entry.updated).toISOString(),
+      modified: moment(entry.updated).isValid() ? moment(entry.updated).toISOString() : "",
       image: catchPostImage(entry.body, 600, 500, global.canUseWebp ? "webp" : "match")
     };
     let containerClasses = global.isElectron
