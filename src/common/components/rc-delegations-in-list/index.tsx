@@ -10,7 +10,7 @@ import { useParams } from 'react-router';
 import { getIncomingRc } from '../../api/hive';
 
 export const RcDelegationsInList = (props: any) => {
-  const limit = 50;
+  const limit = 30;
   const params: any = useParams();
 
   const { activeUser, rcFormatter, showDelegation, listMode } = props
@@ -19,7 +19,8 @@ export const RcDelegationsInList = (props: any) => {
   const [incoming, setIncoming]: any = useState();
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(false);
-  const [search, setsearch] = useState("")
+  const [search, setsearch] = useState("");
+  const [loadList, setLoadList] = useState(limit);
 
   useEffect (() => {
     getOutGoingRcList();   
@@ -49,6 +50,10 @@ export const RcDelegationsInList = (props: any) => {
         return incomingInfo;
   };
 
+  const loadMore = () => {
+    setLoadList(loadList + limit)
+  }
+
   return (   
       <div className="list-content">
           {loading && (
@@ -66,7 +71,7 @@ export const RcDelegationsInList = (props: any) => {
             </div>
 
             {listMode === "out" && <div className="list-body"> 
-               {outGoingList?.filter((list: any) => 
+               {outGoingList?.slice(0, loadList).filter((list: any) => 
                list.to.toLowerCase().startsWith(search) || list.to.toLowerCase().includes(search)
                ).map((list: any, i: any) =>(
                  <div className="list-item" key={i}>
@@ -99,7 +104,7 @@ export const RcDelegationsInList = (props: any) => {
             </div>}
 
             {listMode === "in" && <div className="list-body"> 
-               {incoming?.filter((list: any) => 
+               {incoming?.slice(0, loadList).filter((list: any) => 
                list.sender.toLowerCase().startsWith(search) || list.sender.toLowerCase().includes(search)
                ).map((list: any, i: any) =>(
                  <div className="list-item" key={i}>
@@ -124,7 +129,7 @@ export const RcDelegationsInList = (props: any) => {
             </div>}
 
             <div className="load-more">
-              <Button disabled={loading || !hasMore}>
+              <Button disabled={loading || !hasMore} onClick={loadMore}>
                 {_t("g.load-more")}
               </Button>
             </div>
