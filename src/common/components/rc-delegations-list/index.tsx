@@ -10,7 +10,7 @@ import { useParams } from 'react-router';
 import { getIncomingRc } from '../../api/hive';
 
 export const RcDelegationsInList = (props: any) => {
-  const limit = 30;
+  const limit = 21;
   const params: any = useParams();
 
   const { activeUser, rcFormatter, showDelegation, listMode } = props

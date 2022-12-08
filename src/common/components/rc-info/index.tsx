@@ -3,7 +3,7 @@ import { Button, Modal } from "react-bootstrap";
 import { _t } from "../../i18n";
 import { findRcAccounts } from "../../api/hive";
 import { ResourceCreditsDelegation } from "../rc-delegation"
-import { RcDelegationsInList } from '../rc-delegations-in-list';
+import { RcDelegationsInList } from '../rc-delegations-list';
 
 export const ResourceCreditsInfo = (props: any) => {
 
