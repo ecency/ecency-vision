@@ -74,6 +74,7 @@ export const MarketSwapForm = ({
     }
 
     setAvailableAssets(nextAvailableAssets);
+    setToAsset(nextAvailableAssets.filter((asset) => asset !== fromAsset)[0]);
     if (activeUser) setBalance(getBalance(fromAsset, activeUser));
   }, [fromAsset]);
 
@@ -210,6 +211,7 @@ export const MarketSwapForm = ({
           setAsset={(v) => setToAsset(v)}
           usdRate={usdToMarketRate}
           disabled={true}
+          hideChevron={true}
         />
         <MarketInfo
           className="mt-4"

@@ -4,7 +4,7 @@
   }
 }
 
-@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1){
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1) {
   overflow: hidden;
   position: relative;
   line-height: $lineHeight;
@@ -89,12 +89,12 @@
               content: ")";
             }
           }
-          
+
           &:hover {
             @include themify(day) {
               background: $duck-egg-blue;
             }
-  
+
             @include themify(night) {
               background: $metallic-blue;
             }
@@ -352,6 +352,10 @@
     height: 14px;
   }
 
+  //animation for upvote in progress
+  //from the file _animations.scss
+  // example of rotation with fading:
+  //animation: rotate-scale-up 1s linear both, anim-fadein-out 1s infinite;
   &.in-progress {
     animation: anim-fadein-out 1s infinite;
     pointer-events: none;
@@ -410,7 +414,7 @@
   }
 }
 
-@mixin user-grid-list($xs-col:1, $sm-col:2, $lg-col:3) {
+@mixin user-grid-list($xs-col: 1, $sm-col: 2, $lg-col: 3) {
   .list-body {
     display: grid;
     grid-gap: 10px;
@@ -441,7 +445,6 @@
         align-items: center;
 
         .item-info {
-
           .item-name {
             font-weight: 500;
             margin: 0 6px;
@@ -527,7 +530,6 @@
 }
 
 @mixin side-tag-list {
-
   .list-header {
     font-size: 18px;
     font-weight: 700;
@@ -538,11 +540,11 @@
     line-height: 100%;
 
     @include themify(day) {
-      color: darken($silver, 35)
+      color: darken($silver, 35);
     }
 
     @include themify(night) {
-      color: darken($silver, 10)
+      color: darken($silver, 10);
     }
   }
 

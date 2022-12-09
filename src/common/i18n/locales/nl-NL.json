@@ -156,6 +156,7 @@
     "login-info-1": "We slaan je privé sleutels niet op.",
     "login-info-2": "Meer info",
     "error-fields-required": "Voer aub gebruikersnaam en prive sleutel in",
+    "captcha-check-required": "Bevestig dat u geen robot bent",
     "error-public-key": "Je gebruikte de openbare sleutel. Wachtwoord/ WIF benodigd",
     "error-user-fetch": "Gebruikersgegevens konden niet worden opgehaald",
     "error-user-not-found": "Gebruiker bestaat niet",
@@ -185,6 +186,11 @@
   },
   "trending-tags": {
     "title": "Onderwerpen"
+  },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
   },
   "selected-tags": {
     "title": "Uitgelicht"
@@ -355,7 +361,11 @@
     "orders": "Orders",
     "date": "Datum",
     "open-orders": "Open Orders",
+    "pending-orders": "Openstaande bestellingen",
     "type": "Type",
+    "mode-limit": "Limiet",
+    "mode-swap": "Ruilen",
+    "mode-advanced": "Geavanceerd",
     "action": "Action",
     "trade-history": "Trade History",
     "stock-params": "Params",
@@ -368,7 +378,30 @@
     "confirm-sell": "Values",
     "transaction-succeeded": "Transaction submitted",
     "lowest-ask": "Lowest ask",
-    "decimal-error": "Only {{decimals}} decimal digits allowed!"
+    "decimal-error": "Only {{decimals}} decimal digits allowed!",
+    "from": "Van",
+    "to": "Tot",
+    "sign": "Onderteken",
+    "swapping": "Ruilen...",
+    "continue": "Doorgaan",
+    "balance": "Saldo",
+    "fee": "Transactiekosten",
+    "fee-free": "Gratis",
+    "order-book-impact": "Orderportefeuille invloed",
+    "swap-title": "Fondsen omwisselen",
+    "sign-title": "Transactie ondertekenen",
+    "fetching-market": "Synchroniseren met markt servers...",
+    "back": "Terug",
+    "swap-by": "Onderteken door {{method}}",
+    "success-title": "Transactie voltooid",
+    "more-than-balance": "Je hebt meer dan je beschikbare saldo ingevoerd",
+    "invalid-amount": "Ongeldig bedrag. Verlaag de waarde",
+    "too-much-slippage": "We raden u ten zeerste aan het aantal te verlagen voor betere prijzen!",
+    "auth-required-title": "Autorisatie vereist",
+    "auth-required-desc": "U dient gemachtigd te zijn om eigen tegoeden te wisselen",
+    "start-new-one": "Start nieuwe omwisseling",
+    "success-swap": "Omwisselen gelukt!",
+    "signing": "Bezig met ondertekenen.."
   },
   "list-style": {
     "title": "Schakelaar stijl"
@@ -626,7 +659,8 @@
     "hive-power-apr-rate": "Effectieve rente voor Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "Effectieve rente voor HBD($) is {{value}}%",
     "hive-dollars-apr-claim": "Geschatte rente sinds laatste betaling {{value}}:",
-    "hive-dollars-apr-when": "Claim in {{value}} dagen",
+    "hive-dollars-apr-day": "Claim in {{value}} dag(en)",
+    "hive-dollars-apr-hour": "Claim in {{value}} (u)ur(en)",
     "hive-dollars-apr-now": "Claim nu",
     "hive-power-delegated": "Gedelegeerde HIVE Power",
     "hive-power-received": "Ontvangen HIVE Power",
@@ -735,6 +769,20 @@
     "token": "Token",
     "balance": "Saldo",
     "staked": "Gestaked"
+  },
+  "sort-engine-tokens": {
+    "sort": "Sort",
+    "sort-in-ascending": "Ascending",
+    "sort-in-descending": "Descending",
+    "sort-by-value": "Value",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Stake",
+    "sort-by-delegations-in": "Delegations in",
+    "sort-by-delegations-out": "Delegations out"
+  },
+  "wallet-engine-estimated": {
+    "title": "Geschatte Tokens Waarde",
+    "description": "De geschatte waarde voor alle engine tokens in uw portemonnee in US-dollar."
   },
   "withdraw-routes": {
     "title": "Opname rekeningen",
@@ -1034,6 +1082,10 @@
     "filter-no-match": "No match",
     "recently-used": "Recently Used"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Ook mogelijk gemaakt door Giphy"
+  },
   "submit": {
     "page-title": "Create a post",
     "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
@@ -1115,6 +1167,7 @@
     "mention-post": "{{source}} mentioned you in a post",
     "mention-comment": "{{source}} mentioned you in a comment",
     "favorite": "{{source}} heeft een nieuw blog geplaatst",
+    "bookmark": "{{source}} reageerde op gemarkeerde inhoud",
     "followed": "{{source}} followed you",
     "replied": "{{source}} replied you",
     "reblogged": "{{source}} reblogged your post",
@@ -1132,11 +1185,13 @@
     "type-transfers": "Transfers",
     "type-delegations": "Delegations",
     "type-nfavorites": "Favorieten",
+    "type-nbookmarks": "Bookmarks",
     "group-title-recent": "Recent",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "replied to your post:",
     "mention-str": "mentioned you in:",
     "favorite-str": "nieuw blog gemaakt",
+    "bookmark-str": "reageerde op gemarkeerde inhoud",
     "followed-str": "followed",
     "unfollowed-str": "unfollowed",
     "ignored-str": "ignored",
@@ -1449,9 +1504,9 @@
       "what-delegated-hp-header": "Wat is gedelegeerde Hive Power?",
       "what-delegated-hp-body": "<p>Hive Power can be delegated to users by another user. When user is delegated Hive Power - their Resource Credits, content votes, and curation rewards are calculated as if it were their own Hive Power. Users are not able to power down or cash out delegated Hive Power however, as it still belongs to the original owner.</p>",
       "what-powering-up-header": "What is powering up?",
-      "what-powering up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
+      "what-powering-up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
       "what-powering-down-header": "What is powering down?",
-      "what-powering-up-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
+      "what-powering-down-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
       "why-different-keys-header": "Waarom zijn er verschillende sleutels?",
       "why-different-keys-body": "<p>Er zijn verschillende sleutels met de juiste permissies voor wat je doet. <ul><li>Posting sleutels - deze sleutel moet worden gebruikt voor sociale netwerkacties, zoals berichten, commentaar en stemmen. Deze sleutel heeft een beperkte permissie en kan niet worden gebruikt voor monetaire acties. Je kunt dus geen geld verliezen als iemand anders toegang krijgt tot deze sleutel.</li><li>Actieve sleutel - deze sleutel heeft extra machtigingen voor meer gevoelige monetaire-gerelateerde acties, zoals het overdragen en uitwisselen van tokens. Bij het uitvoeren van een gerelateerde portemonnee kan gevraagd worden om zich te verifiëren met uw Actieve sleutel. U dient alleen uw Actieve sleutel in te voeren in apps die u vertrouwt, omdat iedereen met toegang tot deze sleutel uw tokens kan nemen. Doe jezelf een plezier en sla deze sleutel veilig op om te voorkomen dat tokens in de toekomst verloren gaan.</li><li>Eigenaar sleutel - is de meest krachtige sleutel omdat deze elke sleutel van een account kan veranderen, inclusief de eigenaar sleutel. Idealiter is het bedoeld om offline opgeslagen te worden en alleen gebruikt om een in gevaar gebracht account te herstellen.</li></ul></p>",
       "stolen-hive-hbd-header": "Wat kan ik doen als mijn HIVE of Hive dollartokens gestolen of naar het verkeerde account verzonden worden?",

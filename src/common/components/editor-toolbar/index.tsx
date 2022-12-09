@@ -8,6 +8,7 @@ import { Global } from "../../store/global/types";
 
 import Tooltip from "../tooltip";
 import EmojiPicker from "../emoji-picker";
+import GifPicker from "../gif-picker";
 import Gallery from "../gallery";
 import Fragments from "../fragments";
 import AddImage from "../add-image";
@@ -40,7 +41,8 @@ import {
   imageSvg,
   gridSvg,
   emoticonHappyOutlineSvg,
-  textShortSvg
+  textShortSvg,
+  gifIcon
 } from "../../img/svg";
 
 interface Props {
@@ -49,6 +51,7 @@ interface Props {
   activeUser: ActiveUser | null;
   sm?: boolean;
   showEmoji?: boolean;
+  showGif?: boolean;
 }
 
 interface State {
@@ -57,6 +60,7 @@ interface State {
   image: boolean;
   link: boolean;
   mobileImage: boolean;
+  shGif: boolean;
 }
 
 export class EditorToolbar extends Component<Props> {
@@ -65,7 +69,8 @@ export class EditorToolbar extends Component<Props> {
     fragments: false,
     image: false,
     link: false,
-    mobileImage: false
+    mobileImage: false,
+    shGif: false
   };
 
   holder = React.createRef<HTMLDivElement>();
@@ -76,6 +81,7 @@ export class EditorToolbar extends Component<Props> {
       !isEqual(this.props.users, nextProps.users) ||
       !isEqual(this.props.activeUser, nextProps.activeUser) ||
       !isEqual(this.props.showEmoji, nextProps.showEmoji) ||
+      !isEqual(this.props.showGif, nextProps.showGif) ||
       !isEqual(this.state, nextState)
     );
   }
@@ -113,6 +119,14 @@ export class EditorToolbar extends Component<Props> {
     const { link } = this.state;
 
     this.setState({ link: !link });
+  };
+
+  toggleGif = (e?: React.MouseEvent<HTMLElement>) => {
+    const { shGif } = this.state;
+    if (e) {
+      e.stopPropagation();
+    }
+    this.setState({ shGif: !shGif });
   };
 
   componentDidMount() {
@@ -351,7 +365,7 @@ export class EditorToolbar extends Component<Props> {
 
   render() {
     const { gallery, fragments, image, link, mobileImage } = this.state;
-    const { global, sm, activeUser, showEmoji = true } = this.props;
+    const { global, sm, activeUser, showEmoji = true, showGif } = this.props;
 
     return (
       <>
@@ -493,6 +507,26 @@ export class EditorToolbar extends Component<Props> {
               )}
             </div>
           </Tooltip>
+
+          <Tooltip content={_t("Gif")}>
+            <div className="editor-tool" role="none">
+              <div className="editor-tool-gif-icon" onClick={this.toggleGif}>
+                {gifIcon}
+              </div>
+              {this.state.shGif && (
+                <GifPicker
+                  shGif={true}
+                  changeState={(gifState) => {
+                    this.setState({ shGif: gifState });
+                  }}
+                  fallback={(e) => {
+                    this.insertText(e, "");
+                  }}
+                />
+              )}
+            </div>
+          </Tooltip>
+
           {global.usePrivate && (
             <Tooltip content={_t("editor-toolbar.fragments")}>
               <div className="editor-tool" onClick={this.toggleFragments}>
@@ -582,7 +616,8 @@ export default (props: Props) => {
     users: props.users,
     activeUser: props.activeUser,
     sm: props.sm,
-    showEmoji: props.showEmoji
+    showEmoji: props.showEmoji,
+    showGif: props.showGif
   };
   return <EditorToolbar {...p} />;
 };
