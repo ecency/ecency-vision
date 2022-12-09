@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Button, FormControl } from 'react-bootstrap'
-import { getOutgoingRc } from "../../api/hive";
+import { getOutgoingRc, getIncomingRc } from "../../api/hive";
 import { delegateRCKc } from '../../api/operations';
 import { _t } from '../../i18n';
 import LinearProgress from '../linear-progress';
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import { useParams } from 'react-router';
-import { getIncomingRc } from '../../api/hive';
 
 export const RcDelegationsList = (props: any) => {
   const limit = 21;

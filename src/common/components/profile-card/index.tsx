@@ -181,23 +181,6 @@ export const ProfileCard = (props: Props) => {
         </div>
       )}
 
-      {/* <div className="progress" onClick={showRcInfo}>
-        <div
-          className="progress-bar progress-bar-success"
-          role="progressbar"
-          style={{ width: `${rcPercent}%`,  cursor:"pointer"}}
-        >
-          Available
-        </div>
-        <div
-          className="progress-bar progress-bar-danger"
-          role="progressbar"
-          style={{ width: `${100 - rcPercent}%` }}
-        >
-         {`${100 - rcPercent}%`} Used
-        </div>
-      </div> */}
-
       <div>
         <ResourceCreditsInfo 
           {...props}
@@ -206,7 +189,7 @@ export const ProfileCard = (props: Props) => {
       />
       </div>
         
-      <div className="rc-percentage">
+      <div className="rc-percentage mt-1 d-flex justify-content-center">
         <Tooltip content={_t("profile.voting-power")}>
           <span>{_t("rc-info.resource-credits")}</span>
         </Tooltip>
