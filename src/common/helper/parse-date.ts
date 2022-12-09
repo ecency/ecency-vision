@@ -56,6 +56,7 @@ export const secondDiff = (d: string) => {
   return Math.abs(Math.round(diff));
 };
 
-const parseDate = (d: string): Date => new Date(`${d}.000Z`);
+const parseDate = (d: string): Date =>
+  moment(d).isValid() ? moment(d).utc().toDate() : new Date();
 
 export default parseDate;
