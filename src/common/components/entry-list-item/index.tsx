@@ -45,12 +45,13 @@ import {
   menuDownSvg
 } from "../../img/svg";
 
-import defaults from "../../constants/defaults.json";
+import defaults from "./../../constants/defaults.json";
 import { ProfilePopover } from "../profile-popover";
 import { match } from "react-router-dom";
 import { getPost } from "../../api/bridge";
 import { SearchResult } from "../../api/search-api";
-
+import appName from "./../../helper/app-name";
+import formattedNumber from "../../util/formatted-number";
 setProxyBase(defaults.imageServer);
 
 interface MatchParams {
@@ -207,7 +208,7 @@ export default class EntryListItem extends Component<Props, State> {
     // const account = accounts?.find((x) => x.name === accountUsername) as FullAccount
     const pageAccount = account as FullAccount;
     const pinned = account && pageAccount.profile?.pinned;
-
+    const { showSelfVote, showRewardSplit, lowRewardThreshold, showFrontEnd } = global;
     const fallbackImage = global.isElectron
       ? "./img/fallback.png"
       : require("../../img/fallback.png");
@@ -286,6 +287,14 @@ export default class EntryListItem extends Component<Props, State> {
 
     const cls = `entry-list-item ${promoted ? "promoted-item" : ""} ${global.filter}`;
 
+    const selfVoteEntryRShares =
+      entry.active_votes?.find((x) => x.voter == entry.author)?.rshares ?? 0;
+    const selfVote = selfVoteEntryRShares > 0;
+    const HPPortion = 100 * (1 - entry.percent_hbd / 20000);
+    const maxPayout: number = parseFloat(entry.max_accepted_payout);
+    const app = appName(entry.json_metadata.app);
+    const appShort = app.split("/")[0].split(" ")[0];
+
     return mounted ? (
       <div className={_c(cls)} id={(entry.author + entry.permlink).replace(/[0-9]/g, "")}>
         {(() => {
@@ -361,6 +370,24 @@ export default class EntryListItem extends Component<Props, State> {
             <span className="date" title={dateFormatted}>
               {dateRelative}
             </span>
+            {showSelfVote && selfVote && <>&ensp;{_t("entry.self_voted")}</>}
+            {showRewardSplit && maxPayout > 0 && <>&ensp;{HPPortion}% HP</>}
+            {showFrontEnd && app && (
+              <>
+                &ensp;
+                <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">
+                  <meta itemProp="name" content={entry.author} />
+                </span>
+                <div className="app" title={app}>
+                  <Tsx k="entry.via-app" args={{ app: appShort }}>
+                    <a href="/faq#source-label" />
+                  </Tsx>
+                </div>
+              </>
+            )}
+            {maxPayout > 0 && maxPayout <= lowRewardThreshold && (
+              <>&ensp; &le; {formattedNumber(maxPayout, { fractionDigits: 3, suffix: "HBD" })}</>
+            )}
           </div>
           <div className="item-header-features">
             {isPinned && (

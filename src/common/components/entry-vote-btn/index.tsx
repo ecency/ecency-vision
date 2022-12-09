@@ -545,8 +545,8 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                               activeUser={activeUser as any}
                               isPostSlider={this.props.isPostSlider}
                               onClick={this.vote}
-                              upVoted={upVoted}
-                              downVoted={downVoted}
+                              upVoted={upVoted ? true : false}
+                              downVoted={downVoted ? true : false}
                             />
                           </span>
                         </div>

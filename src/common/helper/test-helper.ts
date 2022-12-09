@@ -153,7 +153,11 @@ export const globalInstance: Global = {
   newVersion: null,
   usePrivate: true,
   lastIndexPath: null,
-  hsClientId: "ecency.app"
+  hsClientId: "ecency.app",
+  showSelfVote: true,
+  showRewardSplit: true,
+  lowRewardThreshold: 100,
+  showFrontEnd: true
 };
 
 export const TrendingTagsInstance: TrendingTags = {

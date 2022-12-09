@@ -21,7 +21,11 @@ import {
   NsfwSetAction,
   SetLastIndexPathAction,
   Theme,
-  ThemeChangeAction
+  ThemeChangeAction,
+  SetShowSelfVoteAction,
+  SetShowRewardSplitAction,
+  SetLowRewardThresholdAction,
+  SetShowFrontEndAction
 } from "./types";
 import { CommonActionTypes } from "../common";
 import * as ls from "../../util/local-storage";
@@ -49,7 +53,11 @@ export const initialState: Global = {
   isMobile: false,
   usePrivate: true,
   hsClientId: "ecency.app",
-  lastIndexPath: null
+  lastIndexPath: null,
+  showSelfVote: defaults.showSelfVote,
+  showRewardSplit: defaults.showRewardSplit,
+  lowRewardThreshold: defaults.lowRewardThreshold,
+  showFrontEnd: defaults.showFrontEnd
 };
 
 export default (state: Global = initialState, action: Actions): Global => {
@@ -104,6 +112,22 @@ export default (state: Global = initialState, action: Actions): Global => {
     }
     case ActionTypes.SET_LAST_INDEX_PATH: {
       return { ...state, lastIndexPath: action.path };
+    }
+    case ActionTypes.SET_SHOW_SELF_VOTE: {
+      const { showSelfVote } = action;
+      return { ...state, showSelfVote };
+    }
+    case ActionTypes.SET_SHOW_REWARD_SPLIT: {
+      const { showRewardSplit } = action;
+      return { ...state, showRewardSplit };
+    }
+    case ActionTypes.SET_LOW_REWARD_THRESHOLD: {
+      const { lowRewardThreshold } = action;
+      return { ...state, lowRewardThreshold };
+    }
+    case ActionTypes.SET_SHOW_FRONT_END: {
+      const { showFrontEnd } = action;
+      return { ...state, showFrontEnd };
     }
     default:
       return state;
@@ -219,6 +243,26 @@ export const setLastIndexPath = (path: string | null) => (dispatch: Dispatch) =>
   dispatch(setLastIndexPathAct(path));
 };
 
+export const setShowSelfVote = (value: boolean) => (dispatch: Dispatch) => {
+  ls.set("showSelfVote", value);
+  dispatch(setShowSelfVoteAct(value));
+};
+
+export const setShowRewardSplit = (value: boolean) => (dispatch: Dispatch) => {
+  ls.set("showRewardSplit", value);
+  dispatch(setShowRewardSplitAct(value));
+};
+
+export const setLowRewardThreshold = (value: number) => (dispatch: Dispatch) => {
+  ls.set("lowRewardThreshold", value);
+  dispatch(setLowRewardThresholdAct(value));
+};
+
+export const setShowFrontEnd = (value: boolean) => (dispatch: Dispatch) => {
+  ls.set("showFrontEnd", value);
+  dispatch(setShowFrontEndAct(value));
+};
+
 /* Action Creators */
 export const themeChangeAct = (theme: Theme): ThemeChangeAction => {
   return {
@@ -296,3 +340,31 @@ export const setLastIndexPathAct = (path: string | null): SetLastIndexPathAction
   type: ActionTypes.SET_LAST_INDEX_PATH,
   path
 });
+
+export const setShowSelfVoteAct = (value: boolean): SetShowSelfVoteAction => {
+  return {
+    type: ActionTypes.SET_SHOW_SELF_VOTE,
+    showSelfVote: value
+  };
+};
+
+export const setShowRewardSplitAct = (value: boolean): SetShowRewardSplitAction => {
+  return {
+    type: ActionTypes.SET_SHOW_REWARD_SPLIT,
+    showRewardSplit: value
+  };
+};
+
+export const setLowRewardThresholdAct = (value: number): SetLowRewardThresholdAction => {
+  return {
+    type: ActionTypes.SET_LOW_REWARD_THRESHOLD,
+    lowRewardThreshold: value
+  };
+};
+
+export const setShowFrontEndAct = (value: boolean): SetShowFrontEndAction => {
+  return {
+    type: ActionTypes.SET_SHOW_FRONT_END,
+    showFrontEnd: value
+  };
+};

@@ -164,3 +164,85 @@ it("(6) Cross post. Bottom menu", async () => {
   await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });
+
+it("(7) Default render with flags off", async () => {
+  const renderer = await TestRenderer.create(
+    <StaticRouter location="/" context={{}}>
+      <EntryListItem
+        {...defProps}
+        global={{ ...defProps.global, showSelfVote: false, showRewardSplit: false }}
+      />
+    </StaticRouter>
+  );
+  await allOver();
+  expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(8) Default render with flags off", async () => {
+  const renderer = await TestRenderer.create(
+    <StaticRouter location="/" context={{}}>
+      <EntryListItem
+        {...defProps}
+        global={{ ...defProps.global, showSelfVote: false, showRewardSplit: false }}
+      />
+    </StaticRouter>
+  );
+  await allOver();
+  expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(9) Up to 50 HBD accepted with nsfw on flags off", async () => {
+  const props = {
+    ...defProps,
+    entry: {
+      ...entryInstance1,
+      json_metadata: {
+        ...entryInstance1.json_metadata,
+        tags: [...entryInstance1.json_metadata.tags, "nsfw"]
+      },
+      max_accepted_payout: "50"
+    },
+    global: {
+      ...globalInstance,
+      nsfw: true,
+      showSelfVote: false,
+      showRewardSplit: false,
+      lowRewardThreshold: 1000
+    }
+  };
+  const renderer = await TestRenderer.create(
+    <StaticRouter location="/" context={{}}>
+      <EntryListItem {...props} />
+    </StaticRouter>
+  );
+  await allOver();
+  expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(10) Nsfw on with other flags off.  Maximum accepted reward 50 HBD but threshold at 10", async () => {
+  const props = {
+    ...defProps,
+    entry: {
+      ...entryInstance1,
+      json_metadata: {
+        ...entryInstance1.json_metadata,
+        tags: [...entryInstance1.json_metadata.tags, "nsfw"]
+      },
+      max_accepted_payout: "50"
+    },
+    global: {
+      ...globalInstance,
+      nsfw: true,
+      showSelfVote: false,
+      showRewardSplit: false,
+      lowRewardThreshold: 10
+    }
+  };
+  const renderer = await TestRenderer.create(
+    <StaticRouter location="/" context={{}}>
+      <EntryListItem {...props} />
+    </StaticRouter>
+  );
+  await allOver();
+  expect(renderer.toJSON()).toMatchSnapshot();
+});

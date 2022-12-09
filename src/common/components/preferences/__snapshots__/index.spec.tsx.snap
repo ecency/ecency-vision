@@ -396,6 +396,120 @@ exports[`(1) Default render 1`] = `
         </select>
       </div>
     </div>
+    <div
+      className="preferences-header"
+    >
+      Entry Item Options
+    </div>
+    <div
+      className="col-xl-4 col-lg-6"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Show Self Vote flag
+        </label>
+        <select
+          className="form-control"
+          onChange={[Function]}
+          type="text"
+          value="true"
+        >
+          <option
+            value="true"
+          >
+            On
+          </option>
+          <option
+            value="false"
+          >
+            Off
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      className="col-xl-4 col-lg-6"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Show Hive Power/Hive Dollar Breakdown
+        </label>
+        <select
+          className="form-control"
+          onChange={[Function]}
+          type="text"
+          value="true"
+        >
+          <option
+            value="true"
+          >
+            On
+          </option>
+          <option
+            value="false"
+          >
+            Off
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      className="col-xl-4 col-lg-6"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Low maximum accepted reward threshold
+        </label>
+        <input
+          className="form-control"
+          defaultValue={100}
+          onChange={[Function]}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="col-xl-4 col-lg-6"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Show front end name
+        </label>
+        <select
+          className="form-control"
+          onChange={[Function]}
+          type="text"
+          value="true"
+        >
+          <option
+            value="true"
+          >
+            On
+          </option>
+          <option
+            value="false"
+          >
+            Off
+          </option>
+        </select>
+      </div>
+    </div>
   </div>
 </div>
 `;

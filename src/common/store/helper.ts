@@ -19,7 +19,10 @@ import {
   setCurrencyAct as setCurrency,
   muteNotificationsAct as muteNotifications,
   setLangAct as setLang,
-  setNsfwAct as setNsfw
+  setNsfwAct as setNsfw,
+  setShowSelfVoteAct as setShowSelfVote,
+  setShowRewardSplitAct,
+  setLowRewardThresholdAct
 } from "./global";
 
 import { getCurrencyRate } from "../api/misc";
@@ -176,5 +179,23 @@ export const clientStoreTasks = (store: Store<AppState>) => {
   // NSFW
   if (ls.get("nsfw") === true) {
     store.dispatch(setNsfw(true));
+  }
+
+  // Show Self Votes
+  const showSelfVote = ls.get("showSelfVote");
+  if (typeof showSelfVote === "boolean") {
+    store.dispatch(setShowSelfVote(showSelfVote));
+  }
+
+  // Show Self Votes
+  const showRewardSplit = ls.get("showRewardSplit");
+  if (typeof showRewardSplit === "boolean") {
+    store.dispatch(setShowRewardSplitAct(showRewardSplit));
+  }
+
+  // Show Self Votes
+  const lowRewardThreshold = ls.get("lowRewardThreshold");
+  if (typeof lowRewardThreshold === "number") {
+    store.dispatch(setLowRewardThresholdAct(lowRewardThreshold));
   }
 };
