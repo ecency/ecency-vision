@@ -425,7 +425,7 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
       url: `/proposals/${proposal.id}`,
       canonical: `/proposals/${proposal.id}`,
       published: parseDate(entry.created).toISOString(),
-      modified: moment(entry.updated).isValid() ? moment(entry.updated).toISOString() : "",
+      modified: parseDate(entry.updated).toISOString(),
       image: catchPostImage(entry.body, 600, 500, global.canUseWebp ? "webp" : "match")
     };
     let containerClasses = global.isElectron
