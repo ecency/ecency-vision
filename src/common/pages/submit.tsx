@@ -669,13 +669,21 @@ class SubmitPage extends BaseComponent<Props, State> {
       newBody = patch;
     }
 
-    const jsonMeta = Object.assign(
+    let jsonMeta = Object.assign(
       {},
       json_metadata,
       this.buildMetadata(),
       { tags },
       { description }
     );
+
+    let promissesGetImagesDimensions = [];
+    jsonMeta.image.forEach((element) => {
+      promissesGetImagesDimensions.push(this.getHeightAndWidthFromDataUrl(element));
+    });
+    if (promissesGetImagesDimensions.length > 0) {
+      jsonMeta.image_ratio = await Promise.all(promissesGetImagesDimensions);
+    }
 
     this.stateSet({ posting: true });
 
