@@ -844,8 +844,37 @@ class SubmitPage extends BaseComponent<Props, State> {
       meta.image = [...new Set(meta.image)];
     }
     const summary = description === null ? postBodySummary(this.state.body, 200) : description;
-    return makeJsonMetaData(meta, tags, summary, version);
+    let promissesGetImagesDimensions = [];
+    meta.image.forEach((element) => {
+      promissesGetImagesDimensions.push(this.getHeightAndWidthFromDataUrl(element));
+    });
+    if (promissesGetImagesDimensions.length > 0) {
+      Promise.all(promissesGetImagesDimensions).then((values) => {
+        setTimeout(() => {
+          meta.image_ratio = { ...values };
+          console.log("meta");
+          console.log(meta);
+          //weirdly the images are on meta but they are not published to the blockchain
+          return makeJsonMetaData(meta, tags, summary, version);
+        });
+      });
+    } else {
+      return makeJsonMetaData(meta, tags, summary, version);
+    }
   };
+
+  getHeightAndWidthFromDataUrl = (dataURL) =>
+    new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        resolve({
+          height: img.height,
+          width: img.width,
+          url: dataURL
+        });
+      };
+      img.src = dataURL;
+    });
 
   render() {
     const {
