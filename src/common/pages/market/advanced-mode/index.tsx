@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-import { Layout, Widget } from "./types/layout.type";
+import { Layout } from "./types/layout.type";
 import { DEFAULT_LAYOUT } from "./consts/default-layouts.const";
-import { HistoryWidget } from "../../../components/market-advanced-mode/history-widget";
-import { StakeWidget } from "../../../components/market-advanced-mode/stake-widget";
-import { PairsWidget } from "../../../components/market-advanced-mode/pairs-widget";
-import { TradingFormWidget } from "../../../components/market-advanced-mode/trading-form-widget";
-import { TradingViewWidget } from "../../../components/market-advanced-mode/trading-view-widget";
 import { AdvancedModeToolbar } from "./advanced-mode-toolbar";
 import { MarketAsset } from "../../../components/market-swap-form/market-pair";
 import { MarketObserver } from "./pairs";
@@ -15,9 +10,10 @@ import { OrdersData } from "../../../api/hive";
 import { ActiveUser } from "../../../store/active-user/types";
 import { Global } from "../../../store/global/types";
 import { UserBalanceObserver } from "./user-balance-observer";
-import { OpenOrdersWidget } from "../../../components/market-advanced-mode/open-orders-widget";
 import { WidgetLayoutBuilder } from "./widget-layout-builder";
 import { History } from "history";
+import { useLocalStorage } from "react-use";
+import { PREFIX } from "../../../util/local-storage";
 
 interface Props {
   activeUser: ActiveUser | null;
@@ -26,7 +22,10 @@ interface Props {
 }
 
 export const AdvancedMode = ({ activeUser, global, browserHistory }: Props) => {
-  const [layout, setLayout] = useState<Layout>(DEFAULT_LAYOUT);
+  // AMML – advanced mode market layout
+  const [lsLayout, setLsLayout] = useLocalStorage<Layout>(PREFIX + "_amml");
+
+  const [layout, setLayout] = useState<Layout>(lsLayout ?? DEFAULT_LAYOUT);
   const [fromAsset, setFromAsset] = useState(MarketAsset.HIVE);
   const [toAsset, setToAsset] = useState(MarketAsset.HBD);
   const [dayChange, setDayChange] = useState<DayChange>(DAY_CHANGE_DEFAULT);
@@ -71,7 +70,10 @@ export const AdvancedMode = ({ activeUser, global, browserHistory }: Props) => {
           history={history}
           dayChange={dayChange}
           setPrice={setPrice}
-          setLayout={setLayout}
+          setLayout={(layout) => {
+            setLayout(layout);
+            setLsLayout(layout);
+          }}
         />
       </div>
     </div>
