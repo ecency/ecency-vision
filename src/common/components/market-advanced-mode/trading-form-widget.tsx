@@ -87,7 +87,7 @@ export const TradingFormWidget = ({
             <div className="market-advanced-mode-trading-form-login-required-widget">
               <div className="auth-required d-flex justify-content-center align-items-center flex-column">
                 <div className="font-weight-bold mb-3">{_t("market.auth-required-title")}</div>
-                <div className="mb-3">{_t("market.auth-required-desc")}</div>
+                <div className="mb-3">{_t("market.advanced.trading-form-auth-required")}</div>
                 <div className="d-flex">
                   <Button
                     variant="outline-primary"

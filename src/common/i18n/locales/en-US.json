@@ -401,6 +401,8 @@
       "pairs": "Pairs",
       "form": "Trading form",
       "open-orders": "Open orders",
+      "trading-form-auth-required": "You have to been authorized for trade",
+      "open-orders-auth-required": "You have to been authorized for see open orders",
       "history-widget": {
         "price": "Price",
         "amount": "Amount",

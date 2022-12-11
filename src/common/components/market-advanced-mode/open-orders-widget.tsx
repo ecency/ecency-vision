@@ -6,14 +6,23 @@ import { _t } from "../../i18n";
 import { MarketAdvancedModeWidget } from "./market-advanced-mode-widget";
 import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
 import { History } from "history";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { ToggleType } from "../../store/ui/types";
 
 interface Props {
   activeUser: ActiveUser | null;
   history: History;
   widgetTypeChanged: (type: Widget) => void;
+  toggleUIProp: (when: ToggleType) => void;
 }
 
-export const OpenOrdersWidget = ({ activeUser, history, widgetTypeChanged }: Props) => {
+export const OpenOrdersWidget = ({
+  activeUser,
+  history,
+  widgetTypeChanged,
+  toggleUIProp
+}: Props) => {
   const [openOrdersData, setOpenOrdersData] = useState<OpenOrdersData[]>([]);
   const [openOrdersDataLoading, setOpenOrdersDataLoading] = useState(false);
 
@@ -37,14 +46,35 @@ export const OpenOrdersWidget = ({ activeUser, history, widgetTypeChanged }: Pro
       type={Widget.OpenOrders}
       title={_t("market.advanced.open-orders")}
       children={
-        <OpenOrders
-          onTransactionSuccess={updateOpenData}
-          data={openOrdersData || []}
-          loading={openOrdersDataLoading}
-          username={(activeUser && activeUser.username) || ""}
-          activeUser={activeUser!}
-          compat={true}
-        />
+        activeUser ? (
+          <OpenOrders
+            onTransactionSuccess={updateOpenData}
+            data={openOrdersData || []}
+            loading={openOrdersDataLoading}
+            username={(activeUser && activeUser.username) || ""}
+            activeUser={activeUser!}
+            compat={true}
+          />
+        ) : (
+          <div className="market-advanced-mode-trading-form-login-required-widget">
+            <div className="auth-required d-flex justify-content-center align-items-center flex-column">
+              <div className="font-weight-bold mb-3">{_t("market.auth-required-title")}</div>
+              <div className="mb-3">{_t("market.advanced.open-orders-auth-required")}</div>
+              <div className="d-flex">
+                <Button
+                  variant="outline-primary"
+                  className="mr-2"
+                  onClick={() => toggleUIProp("login")}
+                >
+                  {_t("g.login")}
+                </Button>
+                <Link to="/signup">
+                  <Button variant="primary">{_t("g.signup")}</Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )
       }
       widgetTypeChanged={widgetTypeChanged}
     />

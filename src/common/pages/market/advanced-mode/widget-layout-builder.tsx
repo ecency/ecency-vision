@@ -125,6 +125,7 @@ export const WidgetLayoutBuilder = ({
                 history={browserHistory}
                 activeUser={activeUser}
                 widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
+                toggleUIProp={toggleUIProp}
               />
             </div>
           );
