@@ -14,14 +14,16 @@ import { WidgetLayoutBuilder } from "./widget-layout-builder";
 import { History } from "history";
 import { useLocalStorage } from "react-use";
 import { PREFIX } from "../../../util/local-storage";
+import { ToggleType } from "../../../store/ui/types";
 
 interface Props {
   activeUser: ActiveUser | null;
   global: Global;
   browserHistory: History;
+  toggleUIProp: (what: ToggleType) => void;
 }
 
-export const AdvancedMode = ({ activeUser, global, browserHistory }: Props) => {
+export const AdvancedMode = ({ activeUser, global, browserHistory, toggleUIProp }: Props) => {
   // AMML – advanced mode market layout
   const [lsLayout, setLsLayout] = useLocalStorage<Layout>(PREFIX + "_amml");
 
@@ -74,6 +76,7 @@ export const AdvancedMode = ({ activeUser, global, browserHistory }: Props) => {
             setLayout(layout);
             setLsLayout(layout);
           }}
+          toggleUIProp={toggleUIProp}
         />
       </div>
     </div>

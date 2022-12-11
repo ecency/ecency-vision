@@ -13,6 +13,7 @@ import { OrdersData } from "../../../api/hive";
 import { DayChange } from "./types/day-change.type";
 import { History } from "history";
 import { updateWidgetType } from "./utils";
+import { ToggleType } from "../../../store/ui/types";
 
 interface Props {
   layout: Layout;
@@ -28,6 +29,7 @@ interface Props {
   price: number;
   browserHistory: History;
   setLayout: (value: Layout) => void;
+  toggleUIProp: (value: ToggleType) => void;
 }
 
 export const WidgetLayoutBuilder = ({
@@ -43,7 +45,8 @@ export const WidgetLayoutBuilder = ({
   sellBalance,
   browserHistory,
   price,
-  setLayout
+  setLayout,
+  toggleUIProp
 }: Props) => {
   const onWidgetTypeChanged = (uuid: string, previousType: Widget | undefined, newType: Widget) => {
     setLayout(updateWidgetType(layout, uuid, previousType, newType));
@@ -102,6 +105,7 @@ export const WidgetLayoutBuilder = ({
                 sellBalance={sellBalance}
                 price={price}
                 widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
+                toggleUIProp={toggleUIProp}
               />
             </div>
           );

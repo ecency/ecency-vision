@@ -7,6 +7,9 @@ import { Global } from "../../store/global/types";
 import { DayChange } from "../../pages/market/advanced-mode/types/day-change.type";
 import { Widget } from "../../pages/market/advanced-mode/types/layout.type";
 import { History } from "history";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { ToggleType } from "../../store/ui/types";
 
 interface Props {
   history: History;
@@ -17,6 +20,7 @@ interface Props {
   global: Global;
   price: number;
   widgetTypeChanged: (type: Widget) => void;
+  toggleUIProp: (value: ToggleType) => void;
 }
 
 export const TradingFormWidget = ({
@@ -27,7 +31,8 @@ export const TradingFormWidget = ({
   global,
   price,
   history,
-  widgetTypeChanged
+  widgetTypeChanged,
+  toggleUIProp
 }: Props) => {
   const [loading, setLoading] = useState(false);
   const [buyPeakValue, setBuyPeakValue] = useState(0);
@@ -79,7 +84,24 @@ export const TradingFormWidget = ({
               />
             </div>
           ) : (
-            <></>
+            <div className="market-advanced-mode-trading-form-login-required-widget">
+              <div className="auth-required d-flex justify-content-center align-items-center flex-column">
+                <div className="font-weight-bold mb-3">{_t("market.auth-required-title")}</div>
+                <div className="mb-3">{_t("market.auth-required-desc")}</div>
+                <div className="d-flex">
+                  <Button
+                    variant="outline-primary"
+                    className="mr-2"
+                    onClick={() => toggleUIProp("login")}
+                  >
+                    {_t("g.login")}
+                  </Button>
+                  <Link to="/signup">
+                    <Button variant="primary">{_t("g.signup")}</Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
           )}
         </div>
       }
