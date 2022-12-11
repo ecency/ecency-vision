@@ -16,6 +16,7 @@ interface Props {
   dayChange: DayChange;
   global: Global;
   price: number;
+  widgetTypeChanged: (type: Widget) => void;
 }
 
 export const TradingFormWidget = ({
@@ -25,7 +26,8 @@ export const TradingFormWidget = ({
   dayChange,
   global,
   price,
-  history
+  history,
+  widgetTypeChanged
 }: Props) => {
   const [loading, setLoading] = useState(false);
   const [buyPeakValue, setBuyPeakValue] = useState(0);
@@ -81,7 +83,7 @@ export const TradingFormWidget = ({
           )}
         </div>
       }
-      widgetTypeChanged={() => {}}
+      widgetTypeChanged={widgetTypeChanged}
     />
   );
 };

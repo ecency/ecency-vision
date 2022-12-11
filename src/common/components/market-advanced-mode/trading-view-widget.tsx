@@ -6,16 +6,17 @@ import { History } from "history";
 
 interface Props {
   history: History;
+  widgetTypeChanged: (type: Widget) => void;
 }
 
-export const TradingViewWidget = ({ history }: Props) => {
+export const TradingViewWidget = ({ history, widgetTypeChanged }: Props) => {
   return (
     <MarketAdvancedModeWidget
       history={history}
       type={Widget.TradingView}
       title={_t("market.advanced.chart")}
       children={<>Its trading view</>}
-      widgetTypeChanged={() => {}}
+      widgetTypeChanged={widgetTypeChanged}
     />
   );
 };

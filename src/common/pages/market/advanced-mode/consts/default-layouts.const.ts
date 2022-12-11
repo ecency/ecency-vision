@@ -1,4 +1,5 @@
 import { Layout, Widget } from "../types/layout.type";
+import { v4 } from "uuid";
 
 export const DEFAULT_LAYOUT: Layout = {
   rows: [
@@ -7,17 +8,20 @@ export const DEFAULT_LAYOUT: Layout = {
         {
           widgetType: Widget.Stake,
           size: "collapsed",
-          rows: []
+          rows: [],
+          uuid: v4()
         },
         {
           size: "expanded",
+          uuid: v4(),
           rows: [
             {
               columns: [
                 {
                   widgetType: Widget.TradingView,
                   size: "expanded",
-                  rows: []
+                  rows: [],
+                  uuid: v4()
                 }
               ]
             },
@@ -26,7 +30,8 @@ export const DEFAULT_LAYOUT: Layout = {
                 {
                   widgetType: Widget.TradingForm,
                   size: "expanded",
-                  rows: []
+                  rows: [],
+                  uuid: v4()
                 }
               ]
             }
@@ -34,13 +39,15 @@ export const DEFAULT_LAYOUT: Layout = {
         },
         {
           size: "collapsed",
+          uuid: v4(),
           rows: [
             {
               columns: [
                 {
                   widgetType: Widget.History,
                   size: "expanded",
-                  rows: []
+                  rows: [],
+                  uuid: v4()
                 }
               ]
             }
@@ -53,7 +60,8 @@ export const DEFAULT_LAYOUT: Layout = {
         {
           widgetType: Widget.OpenOrders,
           size: "expanded",
-          rows: []
+          rows: [],
+          uuid: v4()
         }
       ]
     }

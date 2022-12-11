@@ -13,6 +13,7 @@ interface Props {
   history: OrdersData | null;
   fromAsset: MarketAsset;
   toAsset: MarketAsset;
+  widgetTypeChanged: (type: Widget) => void;
 }
 
 interface StakeItem {
@@ -21,7 +22,13 @@ interface StakeItem {
   total: number;
 }
 
-export const StakeWidget = ({ history, fromAsset, toAsset, browserHistory }: Props) => {
+export const StakeWidget = ({
+  history,
+  fromAsset,
+  toAsset,
+  browserHistory,
+  widgetTypeChanged
+}: Props) => {
   const [sells, setSells] = useState<StakeItem[]>([]);
   const [maxSell, setMaxSell] = useState(0);
   const [buys, setBuys] = useState<StakeItem[]>([]);
@@ -157,7 +164,7 @@ export const StakeWidget = ({ history, fromAsset, toAsset, browserHistory }: Pro
           </div>
         </div>
       }
-      widgetTypeChanged={() => {}}
+      widgetTypeChanged={widgetTypeChanged}
     />
   );
 };

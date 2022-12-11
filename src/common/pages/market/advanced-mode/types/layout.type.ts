@@ -12,6 +12,7 @@ export type ColumnSize = "collapsed" | "expanded";
 export interface LayoutColumn {
   widgetType?: Widget;
   size: ColumnSize;
+  uuid: string;
   rows: LayoutRow[];
 }
 

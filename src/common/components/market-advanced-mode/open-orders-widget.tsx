@@ -10,9 +10,10 @@ import { History } from "history";
 interface Props {
   activeUser: ActiveUser | null;
   history: History;
+  widgetTypeChanged: (type: Widget) => void;
 }
 
-export const OpenOrdersWidget = ({ activeUser, history }: Props) => {
+export const OpenOrdersWidget = ({ activeUser, history, widgetTypeChanged }: Props) => {
   const [openOrdersData, setOpenOrdersData] = useState<OpenOrdersData[]>([]);
   const [openOrdersDataLoading, setOpenOrdersDataLoading] = useState(false);
 
@@ -45,7 +46,7 @@ export const OpenOrdersWidget = ({ activeUser, history }: Props) => {
           compat={true}
         />
       }
-      widgetTypeChanged={() => {}}
+      widgetTypeChanged={widgetTypeChanged}
     />
   );
 };

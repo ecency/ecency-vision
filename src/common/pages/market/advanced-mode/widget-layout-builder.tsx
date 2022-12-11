@@ -12,6 +12,7 @@ import { MarketAsset } from "../../../components/market-swap-form/market-pair";
 import { OrdersData } from "../../../api/hive";
 import { DayChange } from "./types/day-change.type";
 import { History } from "history";
+import { updateWidgetType } from "./utils";
 
 interface Props {
   layout: Layout;
@@ -26,6 +27,7 @@ interface Props {
   sellBalance: string;
   price: number;
   browserHistory: History;
+  setLayout: (value: Layout) => void;
 }
 
 export const WidgetLayoutBuilder = ({
@@ -40,8 +42,13 @@ export const WidgetLayoutBuilder = ({
   buyBalance,
   sellBalance,
   browserHistory,
-  price
+  price,
+  setLayout
 }: Props) => {
+  const onWidgetTypeChanged = (uuid: string, previousType: Widget | undefined, newType: Widget) => {
+    setLayout(updateWidgetType(layout, uuid, previousType, newType));
+  };
+
   const makeRow = (row: LayoutRow): JSX.Element => {
     return <div className="layout-row">{row.columns.map((col) => makeCol(col))}</div>;
   };
@@ -61,6 +68,7 @@ export const WidgetLayoutBuilder = ({
                 toAsset={toAsset}
                 history={history}
                 onItemClick={(v) => setPrice(v)}
+                widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
               />
             </div>
           );
@@ -72,6 +80,7 @@ export const WidgetLayoutBuilder = ({
                 fromAsset={fromAsset}
                 toAsset={toAsset}
                 history={history}
+                widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
               />
             </div>
           );
@@ -92,19 +101,27 @@ export const WidgetLayoutBuilder = ({
                 buyBalance={buyBalance}
                 sellBalance={sellBalance}
                 price={price}
+                widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
               />
             </div>
           );
         case Widget.TradingView:
           return (
             <div className={"layout-col " + col.size}>
-              <TradingViewWidget history={browserHistory} />
+              <TradingViewWidget
+                history={browserHistory}
+                widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
+              />
             </div>
           );
         case Widget.OpenOrders:
           return (
             <div className={"layout-col " + col.size}>
-              <OpenOrdersWidget history={browserHistory} activeUser={activeUser} />
+              <OpenOrdersWidget
+                history={browserHistory}
+                activeUser={activeUser}
+                widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
+              />
             </div>
           );
         default:

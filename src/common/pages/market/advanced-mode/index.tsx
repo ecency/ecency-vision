@@ -71,6 +71,7 @@ export const AdvancedMode = ({ activeUser, global, browserHistory }: Props) => {
           history={history}
           dayChange={dayChange}
           setPrice={setPrice}
+          setLayout={setLayout}
         />
       </div>
     </div>

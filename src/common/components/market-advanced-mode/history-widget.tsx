@@ -13,6 +13,7 @@ interface Props {
   browserHistory: History;
   history: OrdersData | null;
   onItemClick: (value: number) => void;
+  widgetTypeChanged: (type: Widget) => void;
 }
 
 interface Item {
@@ -27,7 +28,8 @@ export const HistoryWidget = ({
   browserHistory,
   fromAsset,
   toAsset,
-  onItemClick
+  onItemClick,
+  widgetTypeChanged
 }: Props) => {
   const [items, setItems] = useState<Item[]>([]);
 
@@ -104,7 +106,7 @@ export const HistoryWidget = ({
           </div>
         </div>
       }
-      widgetTypeChanged={() => {}}
+      widgetTypeChanged={widgetTypeChanged}
     />
   );
 };
