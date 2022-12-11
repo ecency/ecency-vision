@@ -46,7 +46,7 @@ export const TradingFormWidget = ({
       children={
         <div>
           {activeUser ? (
-            <div className="d-flex">
+            <div className="market-advanced-mode-trading-form-widget d-flex">
               <HiveBarter
                 isInline={true}
                 type={1}
