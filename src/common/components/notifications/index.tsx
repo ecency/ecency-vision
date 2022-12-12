@@ -73,6 +73,7 @@ export class DialogContent extends Component<NotificationProps, any> {
         [NotifyTypes.FOLLOW]: false,
         [NotifyTypes.MENTION]: false,
         [NotifyTypes.FAVORITES]: false,
+        [NotifyTypes.BOOKMARKS]: false,
         [NotifyTypes.VOTE]: false,
         [NotifyTypes.RE_BLOG]: false,
         [NotifyTypes.TRANSFERS]: false,
@@ -342,6 +343,10 @@ export class DialogContent extends Component<NotificationProps, any> {
                 getNotificationSettingsItem(
                   _t(`notifications.type-nfavorites`),
                   NotifyTypes.FAVORITES
+                ),
+                getNotificationSettingsItem(
+                  _t(`notifications.type-nbookmarks`),
+                  NotifyTypes.BOOKMARKS
                 ),
                 getNotificationSettingsItem(_t(`notifications.type-reblogs`), NotifyTypes.RE_BLOG),
                 getNotificationSettingsItem(_t(`notifications.type-follows`), NotifyTypes.FOLLOW),

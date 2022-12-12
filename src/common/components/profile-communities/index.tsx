@@ -112,10 +112,12 @@ export class ProfileCommunities extends BaseComponent<Props, State> {
             <>
               <h2>{_t("profile.communities-title")}</h2>
 
-              <SortCommunities
-                sortCommunitiesInAsc={this.sortCommunitiesInAsc}
-                sortCommunitiesInDsc={this.sortCommunitiesInDsc}
-              />
+              {items.length >= 3 && (
+                <SortCommunities
+                  sortCommunitiesInAsc={this.sortCommunitiesInAsc}
+                  sortCommunitiesInDsc={this.sortCommunitiesInDsc}
+                />
+              )}
 
               <ul className="community-list">
                 {items.map((i, k) => {

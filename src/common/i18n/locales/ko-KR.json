@@ -156,6 +156,7 @@
     "login-info-1": "우리는 귀하의 개인 키를 저장하지 않습니다.",
     "login-info-2": "더 보기",
     "error-fields-required": "사용자 이름과 개인 키를 입력하세요",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "공개 키를 입력했습니다. 비밀번호/WIF를 입력해주세요",
     "error-user-fetch": "사용자 데이터를 조회할 수 없습니다",
     "error-user-not-found": "존재하지 않는 사용자입니다",
@@ -185,6 +186,11 @@
   },
   "trending-tags": {
     "title": "주제"
+  },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
   },
   "selected-tags": {
     "title": "추천"
@@ -355,7 +361,11 @@
     "orders": "Orders",
     "date": "Date",
     "open-orders": "Open Orders",
+    "pending-orders": "Pending orders",
     "type": "Type",
+    "mode-limit": "Limit",
+    "mode-swap": "Swap",
+    "mode-advanced": "Advanced",
     "action": "Action",
     "trade-history": "Trade History",
     "stock-params": "Params",
@@ -368,7 +378,30 @@
     "confirm-sell": "Values",
     "transaction-succeeded": "Transaction submitted",
     "lowest-ask": "Lowest ask",
-    "decimal-error": "Only {{decimals}} decimal digits allowed!"
+    "decimal-error": "Only {{decimals}} decimal digits allowed!",
+    "from": "From",
+    "to": "To",
+    "sign": "Sign",
+    "swapping": "Swapping...",
+    "continue": "Continue",
+    "balance": "Balance",
+    "fee": "Fee",
+    "fee-free": "Free",
+    "order-book-impact": "Order book impact",
+    "swap-title": "Swap your funds",
+    "sign-title": "Sign your transaction",
+    "fetching-market": "Fetching market...",
+    "back": "Back",
+    "swap-by": "Sign by {{method}}",
+    "success-title": "Transaction completed",
+    "more-than-balance": "You've entered more than available balance",
+    "invalid-amount": "Invalid from amount. Please, enter less value",
+    "too-much-slippage": "We highly recommend you to reduce amount for better pricing!",
+    "auth-required-title": "Authorization required",
+    "auth-required-desc": "You have to be authorized to swap own funds",
+    "start-new-one": "Start new Swap",
+    "success-swap": "Successfully swapped!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "토글 리스트 스타일"
@@ -626,7 +659,8 @@
     "hive-power-apr-rate": "Hive Power의 APR은 {{value}}%입니다.",
     "hive-dollars-apr-rate": "HBD($) 의 APR은 {{value}}%입니다.",
     "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
-    "hive-dollars-apr-when": "Claim in {{value}} days",
+    "hive-dollars-apr-day": "Claim in {{value}} days",
+    "hive-dollars-apr-hour": "Claim in {{value}} hours",
     "hive-dollars-apr-now": "Claim now",
     "hive-power-delegated": "임대한 하이브 파워",
     "hive-power-received": "임대받은 하이브 파워",
@@ -735,6 +769,20 @@
     "token": "토큰",
     "balance": "잔액",
     "staked": "스테이킹됨"
+  },
+  "sort-engine-tokens": {
+    "sort": "Sort",
+    "sort-in-ascending": "Ascending",
+    "sort-in-descending": "Descending",
+    "sort-by-value": "Value",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Stake",
+    "sort-by-delegations-in": "Delegations in",
+    "sort-by-delegations-out": "Delegations out"
+  },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
   },
   "withdraw-routes": {
     "title": "출금 계정",
@@ -1034,6 +1082,10 @@
     "filter-no-match": "검색 결과 없음",
     "recently-used": "최근 사용"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "글쓰기",
     "page-description": "글을 게시하고, 보상을 받고, 무수정, 불변, 탈중앙화된 콘텐츠를 얻으세요!",
@@ -1115,6 +1167,7 @@
     "mention-post": "{{source}}님이 게시글에서 당신을 언급했습니다",
     "mention-comment": "{{source}}님이 댓글에서 당신을 언급했습니다",
     "favorite": "{{source}} made new post",
+    "bookmark": "{{source}} replied to bookmarked content",
     "followed": "{{source}}님이 팔로우를 시작했습니다",
     "replied": "{{source}}님이 댓글을 남겼습니다",
     "reblogged": "{{source}}님이 당신 글을 리블로그했습니다",
@@ -1132,11 +1185,13 @@
     "type-transfers": "송금",
     "type-delegations": "Delegations",
     "type-nfavorites": "Favorites",
+    "type-nbookmarks": "Bookmarks",
     "group-title-recent": "최근",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "댓글을 남겼습니다:",
     "mention-str": "당신을 언급했습니다:",
     "favorite-str": "made new post",
+    "bookmark-str": "replied to bookmarked content",
     "followed-str": "팔로우됨",
     "unfollowed-str": "팔로우 취소",
     "ignored-str": "무시",

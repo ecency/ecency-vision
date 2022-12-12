@@ -156,6 +156,7 @@
     "login-info-1": "Δεν αποθηκεύουμε τα ιδιωτικά κλειδιά σας.",
     "login-info-2": "Περισσότερες πληροφορίες",
     "error-fields-required": "Παρακαλώ γράψτε όνομα χρήστη και ιδιωτικό κλειδί",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Εισαγάγατε ένα δημόσιο κλειδί. Απαιτείται κωδικός πρόσβασης / WIF",
     "error-user-fetch": "Δεν είναι δυνατή η ανάκτηση δεδομένων χρήστη",
     "error-user-not-found": "Ο Χρήστης δεν υπάρχει",
@@ -185,6 +186,11 @@
   },
   "trending-tags": {
     "title": "Θέματα"
+  },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
   },
   "selected-tags": {
     "title": "Προτεινόμενα"
@@ -355,7 +361,11 @@
     "orders": "Εντολές",
     "date": "Ημερομηνία",
     "open-orders": "Ανοιχτές Εντολές",
+    "pending-orders": "Pending orders",
     "type": "Τύπος",
+    "mode-limit": "Limit",
+    "mode-swap": "Swap",
+    "mode-advanced": "Advanced",
     "action": "Ενέργεια",
     "trade-history": "Ιστορικό Συναλλαγών",
     "stock-params": "Παράμετροι",
@@ -368,7 +378,30 @@
     "confirm-sell": "Αξίες",
     "transaction-succeeded": "Η συναλλαγή υποβλήθηκε",
     "lowest-ask": "Χαμηλότερη ζήτηση",
-    "decimal-error": "Επιτρέπονται μόνο {{decimals}} δεκαδικά ψηφία!"
+    "decimal-error": "Επιτρέπονται μόνο {{decimals}} δεκαδικά ψηφία!",
+    "from": "From",
+    "to": "To",
+    "sign": "Sign",
+    "swapping": "Swapping...",
+    "continue": "Continue",
+    "balance": "Balance",
+    "fee": "Fee",
+    "fee-free": "Free",
+    "order-book-impact": "Order book impact",
+    "swap-title": "Swap your funds",
+    "sign-title": "Sign your transaction",
+    "fetching-market": "Fetching market...",
+    "back": "Back",
+    "swap-by": "Sign by {{method}}",
+    "success-title": "Transaction completed",
+    "more-than-balance": "You've entered more than available balance",
+    "invalid-amount": "Invalid from amount. Please, enter less value",
+    "too-much-slippage": "We highly recommend you to reduce amount for better pricing!",
+    "auth-required-title": "Authorization required",
+    "auth-required-desc": "You have to be authorized to swap own funds",
+    "start-new-one": "Start new Swap",
+    "success-swap": "Successfully swapped!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "Αλλαγή στιλ λίστας"
@@ -626,7 +659,8 @@
     "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
-    "hive-dollars-apr-when": "Claim in {{value}} days",
+    "hive-dollars-apr-day": "Claim in {{value}} days",
+    "hive-dollars-apr-hour": "Claim in {{value}} hours",
     "hive-dollars-apr-now": "Claim now",
     "hive-power-delegated": "Κατ 'εξουσιοδότηση Hive Power",
     "hive-power-received": "Hive Power που έχει ληφθεί",
@@ -735,6 +769,20 @@
     "token": "Νόμισμα",
     "balance": "Υπόλοιπο",
     "staked": "Staked"
+  },
+  "sort-engine-tokens": {
+    "sort": "Sort",
+    "sort-in-ascending": "Ascending",
+    "sort-in-descending": "Descending",
+    "sort-by-value": "Value",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Stake",
+    "sort-by-delegations-in": "Delegations in",
+    "sort-by-delegations-out": "Delegations out"
+  },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
   },
   "withdraw-routes": {
     "title": "Λογαριασμοί Ανάληψης",
@@ -1034,6 +1082,10 @@
     "filter-no-match": "Καμία αντιστοιχία",
     "recently-used": "Πρόσφατα χρησιμοποιημένο"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Δημιουργία ανάρτησης",
     "page-description": "Δημοσιεύστε ένα άρθρο, κερδίστε ανταμοιβές, χωρίς λογοκρισία, αμετάβλητο, αποκεντρωμένο περιεχόμενο!",
@@ -1115,6 +1167,7 @@
     "mention-post": "{{source}} σας ανέφερε σε μια δημοσίευση",
     "mention-comment": "{{source}} σας ανέφερε σε ένα σχόλιο",
     "favorite": "{{source}} made new post",
+    "bookmark": "{{source}} replied to bookmarked content",
     "followed": "{{source}} σας ακολούθησε",
     "replied": "{{source}} σας απάντησε",
     "reblogged": "{{source}} πρόβαλλε την δημοσίευση σας",
@@ -1132,11 +1185,13 @@
     "type-transfers": "Μεταφορές",
     "type-delegations": "Delegations",
     "type-nfavorites": "Favorites",
+    "type-nbookmarks": "Bookmarks",
     "group-title-recent": "Recent",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "απάντησε στην δημοσίευση σας:",
     "mention-str": "σε ανέφερε σε:",
     "favorite-str": "made new post",
+    "bookmark-str": "replied to bookmarked content",
     "followed-str": "ακολούθησε",
     "unfollowed-str": "σταμάτησε να ακολουθεί",
     "ignored-str": "αγνόηση",

@@ -134,9 +134,16 @@ const defProps = {
 };
 
 it("(1) Render an empty list when no tokens found", async () => {
+  const props = {
+    ...defProps,
+    global: {
+      ...globalInstance,
+      isMobile: true
+    }
+  };
   const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
-      <WalletHiveEngine {...defProps} />
+      <WalletHiveEngine {...props} />
     </StaticRouter>
   );
   await allOver();
@@ -145,10 +152,16 @@ it("(1) Render an empty list when no tokens found", async () => {
 
 it("(2) Render with some hive engine tokens", async () => {
   MOCK_MODE = 2;
-
+  const props = {
+    ...defProps,
+    global: {
+      ...globalInstance,
+      isMobile: true
+    }
+  };
   const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
-      <WalletHiveEngine {...defProps} />
+      <WalletHiveEngine {...props} />
     </StaticRouter>
   );
   await allOver();
@@ -157,10 +170,16 @@ it("(2) Render with some hive engine tokens", async () => {
 
 it("(3) Render with an unclaimed rewards", async () => {
   MOCK_MODE = 3;
-
+  const props = {
+    ...defProps,
+    global: {
+      ...globalInstance,
+      isMobile: true
+    }
+  };
   const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
-      <WalletHiveEngine {...defProps} />
+      <WalletHiveEngine {...props} />
     </StaticRouter>
   );
   await allOver();
@@ -169,10 +188,16 @@ it("(3) Render with an unclaimed rewards", async () => {
 
 it("(4) Render an empty list if tokens equals zero", async () => {
   MOCK_MODE = 4;
-
+  const props = {
+    ...defProps,
+    global: {
+      ...globalInstance,
+      isMobile: true
+    }
+  };
   const renderer = await TestRenderer.create(
     <StaticRouter location="/" context={{}}>
-      <WalletHiveEngine {...defProps} />
+      <WalletHiveEngine {...props} />
     </StaticRouter>
   );
   await allOver();
@@ -184,7 +209,8 @@ it("(5) usePrivate = false", async () => {
     ...defProps,
     global: {
       ...globalInstance,
-      usePrivate: false
+      usePrivate: false,
+      isMobile: true
     }
   };
   const renderer = await TestRenderer.create(

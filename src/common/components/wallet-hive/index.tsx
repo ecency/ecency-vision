@@ -340,11 +340,13 @@ export class WalletHive extends BaseComponent<Props, State> {
         ? account.savings_hbd_seconds_last_update
         : account.savings_hbd_last_interest_payment
     );
-    const remainingHours = hourDiff(
-      account.savings_hbd_last_interest_payment == "1970-01-01T00:00:00"
-        ? account.savings_hbd_seconds_last_update
-        : account.savings_hbd_last_interest_payment
-    );
+    const remainingHours =
+      720 -
+      hourDiff(
+        account.savings_hbd_last_interest_payment == "1970-01-01T00:00:00"
+          ? account.savings_hbd_seconds_last_update
+          : account.savings_hbd_last_interest_payment
+      );
     const interestAmount =
       (Number(hbd) / 100) * (w.savingBalanceHbd / (12 * 30)) * lastIPaymentDiff;
     const estimatedInterest = formattedNumber(interestAmount, { suffix: "$" });

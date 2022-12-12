@@ -11,10 +11,18 @@ export interface Props {
   onKey: (key: PrivateKey) => void;
   onBack: () => void;
   signingKey: string;
+  isLoading: boolean;
   setSigningKey: (key: string) => void;
 }
 
-export const SignByKey = ({ activeUser, onKey, onBack, signingKey, setSigningKey }: Props) => {
+export const SignByKey = ({
+  activeUser,
+  onKey,
+  onBack,
+  signingKey,
+  setSigningKey,
+  isLoading
+}: Props) => {
   const [key, setKey] = useState("");
 
   useEffect(() => {
@@ -55,6 +63,7 @@ export const SignByKey = ({ activeUser, onKey, onBack, signingKey, setSigningKey
           autoFocus={true}
           autoComplete="off"
           placeholder={_t("key-or-hot.key-placeholder")}
+          disabled={isLoading}
           onChange={(e) => setKey(e.target.value)}
         />
       </InputGroup>
@@ -67,8 +76,9 @@ export const SignByKey = ({ activeUser, onKey, onBack, signingKey, setSigningKey
           variant="primary"
           className="py-3 mt-4 flex-1"
           onClick={() => generateKey()}
+          disabled={isLoading}
         >
-          {_t("market.swap")}
+          {isLoading ? _t("market.signing") : _t("market.sign")}
         </Button>
       </div>
     </div>

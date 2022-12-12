@@ -38,7 +38,8 @@
   .slider,
   .percentage {
     display: flex;
-    align-items: center;
+    // align-items: center;
+    flex-direction: column;
     justify-content: flex-end;
   }
 
@@ -253,6 +254,9 @@
   left: -12px;
   top: -19px;
 
+  @media screen and (max-width: 1700px) {
+    width: 50vw;
+  }
   @media screen and (max-width: 1100px) {
     width: 65vw;
   }
@@ -402,6 +406,7 @@
   color: $red;
   display: flex;
   justify-content: center;
+  margin-top: 10px;
 p {
   margin:0px;
 }
@@ -463,4 +468,15 @@ p {
 
 .reverse-range {
   transform: rotateY(180deg);
+}
+
+datalist {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  @media screen and (max-width: 421px) {
+    display: none;
+  }
+
 }

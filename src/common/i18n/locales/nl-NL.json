@@ -156,6 +156,7 @@
     "login-info-1": "We slaan je privé sleutels niet op.",
     "login-info-2": "Meer info",
     "error-fields-required": "Voer aub gebruikersnaam en prive sleutel in",
+    "captcha-check-required": "Bevestig dat u geen robot bent",
     "error-public-key": "Je gebruikte de openbare sleutel. Wachtwoord/ WIF benodigd",
     "error-user-fetch": "Gebruikersgegevens konden niet worden opgehaald",
     "error-user-not-found": "Gebruiker bestaat niet",
@@ -185,6 +186,11 @@
   },
   "trending-tags": {
     "title": "Onderwerpen"
+  },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
   },
   "selected-tags": {
     "title": "Uitgelicht"
@@ -355,7 +361,11 @@
     "orders": "Orders",
     "date": "Datum",
     "open-orders": "Open Orders",
+    "pending-orders": "Openstaande bestellingen",
     "type": "Type",
+    "mode-limit": "Limiet",
+    "mode-swap": "Ruilen",
+    "mode-advanced": "Geavanceerd",
     "action": "Action",
     "trade-history": "Trade History",
     "stock-params": "Params",
@@ -368,7 +378,30 @@
     "confirm-sell": "Values",
     "transaction-succeeded": "Transaction submitted",
     "lowest-ask": "Lowest ask",
-    "decimal-error": "Only {{decimals}} decimal digits allowed!"
+    "decimal-error": "Only {{decimals}} decimal digits allowed!",
+    "from": "Van",
+    "to": "Tot",
+    "sign": "Onderteken",
+    "swapping": "Ruilen...",
+    "continue": "Doorgaan",
+    "balance": "Saldo",
+    "fee": "Transactiekosten",
+    "fee-free": "Gratis",
+    "order-book-impact": "Orderportefeuille invloed",
+    "swap-title": "Fondsen omwisselen",
+    "sign-title": "Transactie ondertekenen",
+    "fetching-market": "Synchroniseren met markt servers...",
+    "back": "Terug",
+    "swap-by": "Onderteken door {{method}}",
+    "success-title": "Transactie voltooid",
+    "more-than-balance": "Je hebt meer dan je beschikbare saldo ingevoerd",
+    "invalid-amount": "Ongeldig bedrag. Verlaag de waarde",
+    "too-much-slippage": "We raden u ten zeerste aan het aantal te verlagen voor betere prijzen!",
+    "auth-required-title": "Autorisatie vereist",
+    "auth-required-desc": "U dient gemachtigd te zijn om eigen tegoeden te wisselen",
+    "start-new-one": "Start nieuwe omwisseling",
+    "success-swap": "Omwisselen gelukt!",
+    "signing": "Bezig met ondertekenen.."
   },
   "list-style": {
     "title": "Schakelaar stijl"
@@ -626,7 +659,8 @@
     "hive-power-apr-rate": "Effectieve rente voor Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "Effectieve rente voor HBD($) is {{value}}%",
     "hive-dollars-apr-claim": "Geschatte rente sinds laatste betaling {{value}}:",
-    "hive-dollars-apr-when": "Claim in {{value}} dagen",
+    "hive-dollars-apr-day": "Claim in {{value}} dag(en)",
+    "hive-dollars-apr-hour": "Claim in {{value}} (u)ur(en)",
     "hive-dollars-apr-now": "Claim nu",
     "hive-power-delegated": "Gedelegeerde HIVE Power",
     "hive-power-received": "Ontvangen HIVE Power",
@@ -735,6 +769,20 @@
     "token": "Token",
     "balance": "Saldo",
     "staked": "Gestaked"
+  },
+  "sort-engine-tokens": {
+    "sort": "Sort",
+    "sort-in-ascending": "Ascending",
+    "sort-in-descending": "Descending",
+    "sort-by-value": "Value",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Stake",
+    "sort-by-delegations-in": "Delegations in",
+    "sort-by-delegations-out": "Delegations out"
+  },
+  "wallet-engine-estimated": {
+    "title": "Geschatte Tokens Waarde",
+    "description": "De geschatte waarde voor alle engine tokens in uw portemonnee in US-dollar."
   },
   "withdraw-routes": {
     "title": "Opname rekeningen",
@@ -1034,6 +1082,10 @@
     "filter-no-match": "No match",
     "recently-used": "Recently Used"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Ook mogelijk gemaakt door Giphy"
+  },
   "submit": {
     "page-title": "Create a post",
     "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
@@ -1115,6 +1167,7 @@
     "mention-post": "{{source}} mentioned you in a post",
     "mention-comment": "{{source}} mentioned you in a comment",
     "favorite": "{{source}} heeft een nieuw blog geplaatst",
+    "bookmark": "{{source}} reageerde op gemarkeerde inhoud",
     "followed": "{{source}} followed you",
     "replied": "{{source}} replied you",
     "reblogged": "{{source}} reblogged your post",
@@ -1132,11 +1185,13 @@
     "type-transfers": "Transfers",
     "type-delegations": "Delegations",
     "type-nfavorites": "Favorieten",
+    "type-nbookmarks": "Bookmarks",
     "group-title-recent": "Recent",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "replied to your post:",
     "mention-str": "mentioned you in:",
     "favorite-str": "nieuw blog gemaakt",
+    "bookmark-str": "reageerde op gemarkeerde inhoud",
     "followed-str": "followed",
     "unfollowed-str": "unfollowed",
     "ignored-str": "ignored",

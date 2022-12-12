@@ -78,13 +78,17 @@ interface State {
   text: string;
   preview: string;
   showEmoji: boolean;
+  showGif: boolean;
+  inputHeight: number;
 }
 
 export class Comment extends Component<Props, State> {
   state: State = {
     text: "",
     preview: "",
-    showEmoji: false
+    showEmoji: false,
+    showGif: false,
+    inputHeight: 0
   };
 
   timer: any = null;
@@ -124,7 +128,12 @@ export class Comment extends Component<Props, State> {
 
   textChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
     const { value: text } = e.target;
-    this.setState({ text }, () => {
+    let scHeight: number = e.target.scrollHeight;
+    let reduceScHeight: number = scHeight - 20 || scHeight - 24;
+    if (reduceScHeight) {
+      scHeight = reduceScHeight;
+    }
+    this.setState({ text, inputHeight: scHeight }, () => {
       this.updateLsCommentDraft(text);
       this.updatePreview();
     });
@@ -155,14 +164,16 @@ export class Comment extends Component<Props, State> {
 
   render() {
     const { inProgress, cancellable, autoFocus, submitText, inputRef, activeUser } = this.props;
-    const { text, preview, showEmoji } = this.state;
+    const { text, preview, showEmoji, showGif, inputHeight } = this.state;
     const rows = text.split(/\r\n|\r|\n|<br>/).length;
 
     return (
       <>
         <div
           className="comment-box"
-          onMouseEnter={() => !showEmoji && this.setState({ showEmoji: true })}
+          onMouseEnter={() =>
+            !showEmoji && !showGif && this.setState({ showEmoji: true, showGif: true })
+          }
         >
           {EditorToolbar({ ...this.props, sm: true, showEmoji })}
           <div className="comment-body">
@@ -170,6 +181,7 @@ export class Comment extends Component<Props, State> {
               className={`the-editor accepts-emoji ${text.length > 20 ? "expanded" : ""}`}
               as="textarea"
               placeholder={_t("comment.body-placeholder")}
+              containerStyle={{ height: !text ? "80px" : inputHeight }}
               value={text}
               onChange={this.textChanged}
               disabled={inProgress}

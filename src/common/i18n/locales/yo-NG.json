@@ -156,6 +156,7 @@
     "login-info-1": "We don't store your private keys.",
     "login-info-2": "More info",
     "error-fields-required": "Please enter username and private key",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "You entered a public key. Password/WIF required",
     "error-user-fetch": "User data could not be fetched",
     "error-user-not-found": "User does not exist",
@@ -185,6 +186,11 @@
   },
   "trending-tags": {
     "title": "Topics"
+  },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
   },
   "selected-tags": {
     "title": "Featured"
@@ -355,7 +361,11 @@
     "orders": "Orders",
     "date": "Date",
     "open-orders": "Open Orders",
+    "pending-orders": "Àwọn ìrà-ọjà àìyanjú",
     "type": "Type",
+    "mode-limit": "Gbèdéke",
+    "mode-swap": "Ìpàrọ̀",
+    "mode-advanced": "Iwájú",
     "action": "Action",
     "trade-history": "Trade History",
     "stock-params": "Params",
@@ -368,7 +378,30 @@
     "confirm-sell": "Values",
     "transaction-succeeded": "Transaction submitted",
     "lowest-ask": "Lowest ask",
-    "decimal-error": "Only {{decimals}} decimal digits allowed!"
+    "decimal-error": "Only {{decimals}} decimal digits allowed!",
+    "from": "Láti",
+    "to": "Sí",
+    "sign": "Sign",
+    "swapping": "Ń páàrọ̀...",
+    "continue": "Tẹ́síwájú",
+    "balance": "Ìyókù",
+    "fee": "Owó",
+    "fee-free": "Ọ̀fẹ́",
+    "order-book-impact": "Ipa Ìwé ìrà-ọjà",
+    "swap-title": "Pààrọ̀ owó rẹ",
+    "sign-title": "Fí ìdánimọ̀ sí ìdúnãdúrà rẹ",
+    "fetching-market": "Ọjà pípọn...",
+    "back": "Ẹ̀hìn",
+    "swap-by": "{{method}} fi àmì síi",
+    "success-title": "Ìdúnãdúrà tí yanjú",
+    "more-than-balance": "O ti kọ ju iye tó wà nínú àsùnwòn rẹ",
+    "invalid-amount": "Iye tí kò ní ìtumọ̀. Jọ̀wọ́ kọ iye tó dínkù",
+    "too-much-slippage": "A rọ̀ ọ́ láti dín iye tí o kọ́ kù fún iye owó tó sunhàn!",
+    "auth-required-title": "Ó nílò ìfọwọ́sí",
+    "auth-required-desc": "O nílò ìfọwọ́sí láti lè pààrọ̀ owó",
+    "start-new-one": "Bẹ̀rẹ̀ ìpààrọ̀ ọ̀tun",
+    "success-swap": "Ìpààrọ̀ tí yanjú!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "Toggle list style"
@@ -626,7 +659,8 @@
     "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
-    "hive-dollars-apr-when": "Claim in {{value}} days",
+    "hive-dollars-apr-day": "Claim in {{value}} days",
+    "hive-dollars-apr-hour": "Claim in {{value}} hours",
     "hive-dollars-apr-now": "Claim now",
     "hive-power-delegated": "Delegated Hive Power",
     "hive-power-received": "Received Hive Power",
@@ -735,6 +769,20 @@
     "token": "Token",
     "balance": "Balance",
     "staked": "Staked"
+  },
+  "sort-engine-tokens": {
+    "sort": "Se ìyanjú",
+    "sort-in-ascending": "Ń lọ sókè",
+    "sort-in-descending": "Ń lọ sílẹ̀",
+    "sort-by-value": "Iye",
+    "sort-by-balance": "Ìyókù",
+    "sort-by-stake": "Owó ìfidúró",
+    "sort-by-delegations-in": "Awọn ìsojú nínú",
+    "sort-by-delegations-out": "Àwọn ìṣojú níta"
+  },
+  "wallet-engine-estimated": {
+    "title": "Iye tókìnì tí a ṣe òdiwọ̀n",
+    "description": "Ìpájúdé iye gbogbo owo dọ́là fún tókìnì ẹ́ńjìnì nínú àsùnwòn rẹ."
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",
@@ -1034,6 +1082,10 @@
     "filter-no-match": "No match",
     "recently-used": "Recently Used"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Create a post",
     "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
@@ -1115,6 +1167,7 @@
     "mention-post": "{{source}} mentioned you in a post",
     "mention-comment": "{{source}} mentioned you in a comment",
     "favorite": "{{source}} made new post",
+    "bookmark": "{{source}} replied to bookmarked content",
     "followed": "{{source}} followed you",
     "replied": "{{source}} replied you",
     "reblogged": "{{source}} reblogged your post",
@@ -1132,11 +1185,13 @@
     "type-transfers": "Transfers",
     "type-delegations": "Delegations",
     "type-nfavorites": "Favorites",
+    "type-nbookmarks": "Bookmarks",
     "group-title-recent": "Recent",
     "vote-str": "Dìbò fún àròkọ re:",
     "reply-str": "replied to your post:",
     "mention-str": "mentioned you in:",
     "favorite-str": "made new post",
+    "bookmark-str": "replied to bookmarked content",
     "followed-str": "followed",
     "unfollowed-str": "unfollowed",
     "ignored-str": "ignored",

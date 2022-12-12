@@ -156,6 +156,7 @@
     "login-info-1": "Kami tidak menyimpan private key Anda.",
     "login-info-2": "Info lebih lanjut",
     "error-fields-required": "Silahkan masukkan nama pengguna dan private key",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Anda memasukkan Public Key. Password/WIF yang diperlukan",
     "error-user-fetch": "Data pengguna tidak dapat diambil",
     "error-user-not-found": "Pengguna tidak ada",
@@ -185,6 +186,11 @@
   },
   "trending-tags": {
     "title": "Topik"
+  },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
   },
   "selected-tags": {
     "title": "Sorotan"
@@ -355,7 +361,11 @@
     "orders": "Orders",
     "date": "Date",
     "open-orders": "Open Orders",
+    "pending-orders": "Pending orders",
     "type": "Type",
+    "mode-limit": "Limit",
+    "mode-swap": "Swap",
+    "mode-advanced": "Advanced",
     "action": "Action",
     "trade-history": "Trade History",
     "stock-params": "Params",
@@ -368,7 +378,30 @@
     "confirm-sell": "Values",
     "transaction-succeeded": "Transaction submitted",
     "lowest-ask": "Lowest ask",
-    "decimal-error": "Only {{decimals}} decimal digits allowed!"
+    "decimal-error": "Only {{decimals}} decimal digits allowed!",
+    "from": "From",
+    "to": "To",
+    "sign": "Sign",
+    "swapping": "Swapping...",
+    "continue": "Continue",
+    "balance": "Balance",
+    "fee": "Fee",
+    "fee-free": "Free",
+    "order-book-impact": "Order book impact",
+    "swap-title": "Swap your funds",
+    "sign-title": "Sign your transaction",
+    "fetching-market": "Fetching market...",
+    "back": "Back",
+    "swap-by": "Sign by {{method}}",
+    "success-title": "Transaction completed",
+    "more-than-balance": "You've entered more than available balance",
+    "invalid-amount": "Invalid from amount. Please, enter less value",
+    "too-much-slippage": "We highly recommend you to reduce amount for better pricing!",
+    "auth-required-title": "Authorization required",
+    "auth-required-desc": "You have to be authorized to swap own funds",
+    "start-new-one": "Start new Swap",
+    "success-swap": "Successfully swapped!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "Gaya daftar kotak"
@@ -626,7 +659,8 @@
     "hive-power-apr-rate": "Suku bunga APR untuk Hive Power adalah {{value}} %",
     "hive-dollars-apr-rate": "Suku bunga APR untuk HBD adalah {{value}} %",
     "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
-    "hive-dollars-apr-when": "Claim in {{value}} days",
+    "hive-dollars-apr-day": "Claim in {{value}} days",
+    "hive-dollars-apr-hour": "Claim in {{value}} hours",
     "hive-dollars-apr-now": "Claim now",
     "hive-power-delegated": "Hive Power yang Didelagasikan",
     "hive-power-received": "Hive Power yang Diterima",
@@ -735,6 +769,20 @@
     "token": "Token",
     "balance": "Saldo",
     "staked": "Staking"
+  },
+  "sort-engine-tokens": {
+    "sort": "Sort",
+    "sort-in-ascending": "Ascending",
+    "sort-in-descending": "Descending",
+    "sort-by-value": "Value",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Stake",
+    "sort-by-delegations-in": "Delegations in",
+    "sort-by-delegations-out": "Delegations out"
+  },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
   },
   "withdraw-routes": {
     "title": "Akun penarikan",
@@ -1034,6 +1082,10 @@
     "filter-no-match": "Tidak cocok",
     "recently-used": "Baru saja digunakan"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Buat sebuah postingan",
     "page-description": "Publikasikan sebuah artikel, dapatkan rewardnya, tidak disensor, tak dapat dihapus, kontennya terdesentralisasi!",
@@ -1115,6 +1167,7 @@
     "mention-post": "{{source}} menyebut Anda dalam sebuah postingan",
     "mention-comment": "{{source}} menyebut Anda dalam sebuah komentar",
     "favorite": "{{source}} made new post",
+    "bookmark": "{{source}} replied to bookmarked content",
     "followed": "{{source}} mengikuti anda",
     "replied": "{{source}} membalas anda",
     "reblogged": "{{source}} menampilkan kembali postingan Anda",
@@ -1132,11 +1185,13 @@
     "type-transfers": "Transfer",
     "type-delegations": "Delegations",
     "type-nfavorites": "Favorites",
+    "type-nbookmarks": "Bookmarks",
     "group-title-recent": "Terbaru",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "membalas postingan Anda:",
     "mention-str": "menyebut Anda dalam:",
     "favorite-str": "made new post",
+    "bookmark-str": "replied to bookmarked content",
     "followed-str": "diikuti",
     "unfollowed-str": "berhenti diikuti",
     "ignored-str": "diabaikan",

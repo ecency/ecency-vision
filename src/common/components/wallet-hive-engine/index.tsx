@@ -21,7 +21,8 @@ import {
   claimRewards,
   getHiveEngineTokenBalances,
   getUnclaimedRewards,
-  TokenStatus
+  TokenStatus,
+  getMetrics
 } from "../../api/hive-engine";
 
 import {
@@ -31,12 +32,15 @@ import {
   lockOutlineSvg,
   unlockOutlineSvg,
   delegateOutlineSvg,
-  undelegateOutlineSvg
+  undelegateOutlineSvg,
+  priceUpSvg,
+  priceDownSvg
 } from "../../img/svg";
 
 import { formatError } from "../../api/operations";
 import formattedNumber from "../../util/formatted-number";
 import { _t } from "../../i18n";
+import { HiveEngineChart } from "../hive-engine-chart";
 
 interface Props {
   global: Global;
@@ -63,6 +67,7 @@ interface State {
   transferMode: null | TransferMode;
   transferAsset: null | string;
   assetBalance: number;
+  allTokens: any;
 }
 
 export class WalletHiveEngine extends BaseComponent<Props, State> {
@@ -76,7 +81,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     transfer: false,
     transferMode: null,
     transferAsset: null,
-    assetBalance: 0
+    assetBalance: 0,
+    allTokens: null
   };
   _isMounted = false;
 
@@ -84,6 +90,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     this._isMounted = true;
     this._isMounted && this.fetch();
     this._isMounted && this.fetchUnclaimedRewards();
+    this._isMounted && this.priceChangePercent();
   }
 
   componentWillUnmount() {
@@ -110,20 +117,23 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     this.setState({ tokens: inDescending });
   };
 
-  sortTokensbyValue = () => {
-    const byBalance = this.state.tokens.sort((a: any, b: any) => {
-      if (b.balance < a.balance) return -1;
-      if (b.balance > a.balance) return 1;
+  sortTokensbyValue = async () => {
+    const allUserTokens = await this.tokenUsdValue();
+    const tokensInWallet = allUserTokens.filter(
+      (a: any) => a.balance !== 0 || a.stakedBalance !== 0
+    );
+    const byValue = tokensInWallet.sort((a: any, b: any) => {
+      if (b.usd_value < a.usd_value) return -1;
+      if (b.usd_value > a.usd_value) return 1;
       return 0;
     });
-
-    this.setState({ tokens: byBalance });
+    this.setState({ tokens: byValue });
   };
 
   sortTokensbyBalance = () => {
     const byBalance = this.state.tokens.sort((a: any, b: any) => {
-      if (a.balance > b.balance) return 1;
-      if (a.balance < b.balance) return -1;
+      if (b.balance < a.balance) return -1;
+      if (b.balance > a.balance) return 1;
       return 0;
     });
 
@@ -158,6 +168,39 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     });
 
     this.setState({ tokens: byDelegationsOut });
+  };
+
+  tokenUsdValue = async () => {
+    const { account, dynamicProps } = this.props;
+    const { allTokens } = this.state;
+    const userTokens: any = await getHiveEngineTokenBalances(account.name);
+    const pricePerHive = dynamicProps.base / dynamicProps.quote;
+
+    let balanceMetrics: any = userTokens.map((item: any) => {
+      let eachMetric = allTokens.find((m: any) => m.symbol === item.symbol);
+      return {
+        ...item,
+        ...eachMetric
+      };
+    });
+    let tokensUsdValues: any = balanceMetrics.map((w: any) => {
+      const usd_value =
+        w.symbol === "SWAP.HIVE"
+          ? Number(pricePerHive * w.balance)
+          : w.lastPrice === 0
+          ? 0
+          : Number(w.lastPrice * pricePerHive * w.balance).toFixed(10);
+      return {
+        ...w,
+        usd_value
+      };
+    });
+    return tokensUsdValues;
+  };
+
+  priceChangePercent = async () => {
+    const allMarketTokens = await getMetrics();
+    this.setState({ allTokens: allMarketTokens });
   };
 
   openTransferDialog = (mode: TransferMode, asset: string, balance: number) => {
@@ -245,7 +288,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
   render() {
     const { global, dynamicProps, account, activeUser } = this.props;
-    const { rewards, tokens, loading, claiming, claimed, utokens } = this.state;
+    const { rewards, tokens, loading, claiming, claimed, utokens, allTokens } = this.state;
     const hasUnclaimedRewards = rewards.length > 0;
     const hasMultipleUnclaimedRewards = rewards.length > 1;
     const isMyPage = activeUser && activeUser.username === account.name;
@@ -339,17 +382,19 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
 
             <EngineTokensEstimated tokens={utokens} dynamicProps={dynamicProps} />
 
-            <div className="wallet-info">
-              <SortEngineTokens
-                sortTokensInAscending={this.sortTokensInAscending}
-                sortTokensInDescending={this.sortTokensInDescending}
-                sortTokensbyValue={this.sortTokensbyValue}
-                sortTokensbyStake={this.sortTokensbyStake}
-                sortTokensbyBalance={this.sortTokensbyBalance}
-                sortByDelegationIn={this.sortByDelegationIn}
-                sortByDelegationOut={this.sortByDelegationOut}
-              />
-            </div>
+            {tokens.length >= 3 && (
+              <div className="wallet-info">
+                <SortEngineTokens
+                  sortTokensInAscending={this.sortTokensInAscending}
+                  sortTokensInDescending={this.sortTokensInDescending}
+                  sortTokensbyValue={this.sortTokensbyValue}
+                  sortTokensbyStake={this.sortTokensbyStake}
+                  sortTokensbyBalance={this.sortTokensbyBalance}
+                  sortByDelegationIn={this.sortByDelegationIn}
+                  sortByDelegationOut={this.sortByDelegationOut}
+                />
+              </div>
+            )}
 
             <div className="entry-list">
               {loading ? (
@@ -383,6 +428,12 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                           />
                           {b.symbol}
                         </div>
+
+                        {!global?.isMobile && (
+                          <div className="d-flex">
+                            <HiveEngineChart items={b} />
+                          </div>
+                        )}
 
                         <div className="ml-auto d-flex flex-column justify-between">
                           <div className="d-flex mb-1 align-self-end">
@@ -427,6 +478,28 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
                               </OverlayTrigger>
                             </div>
                           </div>
+
+                          <div className="mr-3">
+                            {allTokens?.map((x: any, i: any) => {
+                              const changeValue = parseFloat(x?.priceChangePercent);
+                              return (
+                                <span
+                                  key={i}
+                                  className={`d-flex justify-content-end ${
+                                    changeValue < 0 ? "text-danger" : "text-success"
+                                  }`}
+                                >
+                                  {x?.symbol === b.symbol && (
+                                    <span className="mr-1">
+                                      {changeValue < 0 ? priceDownSvg : priceUpSvg}
+                                    </span>
+                                  )}
+                                  {x?.symbol === b.symbol ? x?.priceChangePercent : null}
+                                </span>
+                              );
+                            })}
+                          </div>
+
                           {isMyPage && (
                             <div className="d-flex justify-between ml-auto">
                               <div className="mr-1">

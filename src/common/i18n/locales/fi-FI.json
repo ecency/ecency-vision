@@ -156,6 +156,7 @@
     "login-info-1": "Emme tallenna yksityisiä avaimiasi.",
     "login-info-2": "Lisätietoja",
     "error-fields-required": "Syötä käyttäjänimi ja yksityinen avain",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Lisäsit public keyn. Vaaditaan salasana/WIF",
     "error-user-fetch": "Käyttäjätietoja ei voitu ladata",
     "error-user-not-found": "Käyttäjää ei ole olemassa",
@@ -185,6 +186,11 @@
   },
   "trending-tags": {
     "title": "Aiheet"
+  },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
   },
   "selected-tags": {
     "title": "Suositellut"
@@ -355,7 +361,11 @@
     "orders": "Tilaukset",
     "date": "Päivämäärä",
     "open-orders": "Avoimet Tilaukset",
+    "pending-orders": "Odottavat tilaukset",
     "type": "Tyyppi",
+    "mode-limit": "Raja",
+    "mode-swap": "Vaihda",
+    "mode-advanced": "Lisäasetukset",
     "action": "Toiminta",
     "trade-history": "Kauppahistoria",
     "stock-params": "Parametrit",
@@ -368,7 +378,30 @@
     "confirm-sell": "Arvot",
     "transaction-succeeded": "Tapahtuma lähetetty",
     "lowest-ask": "Matalin kysely",
-    "decimal-error": "Vain {{decimals}} desimaaliluvut sallittu!"
+    "decimal-error": "Vain {{decimals}} desimaaliluvut sallittu!",
+    "from": "Lähettäjä",
+    "to": "Vastaanottaja",
+    "sign": "Sign",
+    "swapping": "Vaihdetaan...",
+    "continue": "Jatka",
+    "balance": "Saldo",
+    "fee": "Kulut",
+    "fee-free": "Ilmainen",
+    "order-book-impact": "Order book impact",
+    "swap-title": "Vaihda varojasi",
+    "sign-title": "Allekirjoita tapahtuma",
+    "fetching-market": "Haetaan markkinoita...",
+    "back": "Takaisin",
+    "swap-by": "Allekirjoita {{method}}",
+    "success-title": "Siirto suoritettu",
+    "more-than-balance": "Olet syöttänyt enemmän, kuin on käytettävissä olevaa saldoa",
+    "invalid-amount": "Invalid from amount. Please, enter less value",
+    "too-much-slippage": "Suosittelemme sinua vähentämään määrää paremman hinnoittelun vuoksi!",
+    "auth-required-title": "Valtuutus vaaditaan",
+    "auth-required-desc": "Sinulla on oltava valtuudet vaihtaaksesi omia varojasi",
+    "start-new-one": "Aloita uusi Vaihto",
+    "success-swap": "Vaihdettu onnistuneesti!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "Vaihda listaustyyliä"
@@ -432,8 +465,8 @@
     "reveal-muted": "Mykistetty tekijä - paljasta kommentti",
     "reveal-muted-long-description": "Näytä lisävastaukset, mukaan lukien ne, jotka voivat sisältää loukkaavaa sisältöä",
     "reveal": "Näytä kommentti",
-    "no-conversation": "No conversation yet, be first to reply",
-    "start-conversation": "Start conversation"
+    "no-conversation": "Ei vielä keskusteluita, vastaa ensimmäisenä",
+    "start-conversation": "Aloita keskustelu"
   },
   "community": {
     "page-description": "{{f}} aiheet",
@@ -626,7 +659,8 @@
     "hive-power-apr-rate": "Hive Powerin APR-korko on {{value}}%",
     "hive-dollars-apr-rate": "HBD($) APR-korko on {{value}}%",
     "hive-dollars-apr-claim": "Arvioitu korko viimeisen maksun {{value}} jälkeen:",
-    "hive-dollars-apr-when": "Lunasta {{value}} päivän kuluttua",
+    "hive-dollars-apr-day": "Lunasta {{value}} päivän kuluttua",
+    "hive-dollars-apr-hour": "Lunasta {{value}} tunnin kuluttua",
     "hive-dollars-apr-now": "Lunasta nyt",
     "hive-power-delegated": "Valtuutettu Hive Power",
     "hive-power-received": "Vastaanotettu Hive Power",
@@ -700,7 +734,7 @@
       "token-description": "SPK-verkoston hallinnoinnin merkki.",
       "larynx-air": "LARYNX Airdrop Lunastus",
       "larynx-air-description": "Tämän kuun lunastettavat merkit perustuvat 6. tammikuuta HIVE-lohkoketjun tilannekuvaan.",
-      "larynx-air-warning": "Tokens not claimed, do not roll over to next month.",
+      "larynx-air-warning": "Merkkejä lunastamatta, älä kieräytä ensi kuuksi.",
       "larynx-already-claimed": "Lunastettu aiemmin.",
       "larynx-token": "LARYNX Merkki",
       "larynx-token-description": "SPK-verkoston louhintamerkki.",
@@ -735,6 +769,20 @@
     "token": "Merkki",
     "balance": "Saldo",
     "staked": "Panostettu"
+  },
+  "sort-engine-tokens": {
+    "sort": "Sort",
+    "sort-in-ascending": "Ascending",
+    "sort-in-descending": "Descending",
+    "sort-by-value": "Value",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Stake",
+    "sort-by-delegations-in": "Delegations in",
+    "sort-by-delegations-out": "Delegations out"
+  },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
   },
   "withdraw-routes": {
     "title": "Palauta tilit",
@@ -1034,6 +1082,10 @@
     "filter-no-match": "Ei tuloksia",
     "recently-used": "Äskettäin käytetyt"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Luo artikkeli",
     "page-description": "Julkaise artikkeli, ansaitse palkintoja, sensuroimaton, muuttumaton ja hajautettu sisältö!",
@@ -1115,6 +1167,7 @@
     "mention-post": "{{source}} mainitsi sinut julkaisussa",
     "mention-comment": "{{source}} mainitsi sinut kommentissa",
     "favorite": "{{source}} teki uuden julkaisun",
+    "bookmark": "{{source}} replied to bookmarked content",
     "followed": "{{source}} seurasi sinua",
     "replied": "{{source}} vastasi",
     "reblogged": "{{source}} jakoi julkaisusi",
@@ -1131,12 +1184,14 @@
     "type-reblogs": "Jaot",
     "type-transfers": "Siirrot",
     "type-delegations": "Valtuutukset",
-    "type-nfavorites": "Favorites",
+    "type-nfavorites": "Suosikit",
+    "type-nbookmarks": "Bookmarks",
     "group-title-recent": "Viimeisimmät",
     "vote-str": "{{p}} äänesti julkaisuasi:",
     "reply-str": "vastasi julkaisuusi:",
     "mention-str": "mainitsi sinut:",
     "favorite-str": "teki uuden julkaisun",
+    "bookmark-str": "replied to bookmarked content",
     "followed-str": "seurasi",
     "unfollowed-str": "lopetti seuraamisen",
     "ignored-str": "sivuutetut",

@@ -35,6 +35,8 @@ import { formatError, grantPostingPermission, revokePostingPermission } from "..
 
 import { getRefreshToken } from "../../helper/user-token";
 
+import ReCAPTCHA from "react-google-recaptcha";
+
 import { addAccountAuthority, removeAccountAuthority, signBuffer } from "../../helper/keychain";
 
 import { _t } from "../../i18n";
@@ -280,13 +282,15 @@ interface State {
   username: string;
   key: string;
   inProgress: boolean;
+  isVerified: boolean;
 }
 
 export class Login extends BaseComponent<LoginProps, State> {
   state: State = {
     username: "",
     key: "",
-    inProgress: false
+    inProgress: false,
+    isVerified: this.props.global.isElectron ? true : false
   };
 
   shouldComponentUpdate(nextProps: Readonly<LoginProps>, nextState: Readonly<State>): boolean {
@@ -384,6 +388,12 @@ export class Login extends BaseComponent<LoginProps, State> {
     toggleUIProp("loginKc");
   };
 
+  captchaCheck = (value: string | null) => {
+    if (value) {
+      this.setState({ isVerified: true });
+    }
+  };
+
   login = async () => {
     const { hsClientId } = this.props.global;
     const { username, key } = this.state;
@@ -392,7 +402,10 @@ export class Login extends BaseComponent<LoginProps, State> {
       error(_t("login.error-fields-required"));
       return;
     }
-
+    if (!this.state.isVerified) {
+      error(_t("login.checkbox-checked-required"));
+      return;
+    }
     // Warn if the code is a public key
     try {
       PublicKey.fromString(key);
@@ -512,7 +525,7 @@ export class Login extends BaseComponent<LoginProps, State> {
   };
 
   render() {
-    const { username, key, inProgress } = this.state;
+    const { username, key, inProgress, isVerified } = this.state;
     const { users, activeUser, global, userListRef } = this.props;
     const logo = global.isElectron ? "./img/logo-circle.svg" : require("../../img/logo-circle.svg");
     const hsLogo = global.isElectron
@@ -586,6 +599,15 @@ export class Login extends BaseComponent<LoginProps, State> {
               onKeyDown={this.inputKeyDown}
             />
           </Form.Group>
+          {!global.isElectron && (
+            <div className="google-recaptcha">
+              <ReCAPTCHA
+                sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
+                onChange={this.captchaCheck}
+                size="normal"
+              />
+            </div>
+          )}
           <p className="login-form-text">
             {_t("login.login-info-1")}{" "}
             <a
@@ -604,7 +626,7 @@ export class Login extends BaseComponent<LoginProps, State> {
               {_t("login.login-info-2")}
             </a>
           </p>
-          <Button disabled={inProgress} block={true} onClick={this.login}>
+          <Button disabled={inProgress || !isVerified} block={true} onClick={this.login}>
             {inProgress && username && key && spinner}
             {_t("g.login")}
           </Button>

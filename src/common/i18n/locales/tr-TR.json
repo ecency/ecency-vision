@@ -156,6 +156,7 @@
     "login-info-1": "Özel anahtarlarınızı sistemimizde tutmuyoruz.",
     "login-info-2": "Detaylar",
     "error-fields-required": "Lütfen kullanıcı adınızı ve şifrenizi girin",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Halka açık bir anahtar girdiniz. Şifre/WIF gerekli",
     "error-user-fetch": "Kullanıcı bilgileri alınamadı",
     "error-user-not-found": "Bu kullanıcı mevcut değil",
@@ -185,6 +186,11 @@
   },
   "trending-tags": {
     "title": "Konular"
+  },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
   },
   "selected-tags": {
     "title": "Öne Çıkanlar"
@@ -355,7 +361,11 @@
     "orders": "Orders",
     "date": "Date",
     "open-orders": "Open Orders",
+    "pending-orders": "Pending orders",
     "type": "Type",
+    "mode-limit": "Limit",
+    "mode-swap": "Swap",
+    "mode-advanced": "Advanced",
     "action": "Action",
     "trade-history": "Trade History",
     "stock-params": "Params",
@@ -368,7 +378,30 @@
     "confirm-sell": "Values",
     "transaction-succeeded": "Transaction submitted",
     "lowest-ask": "Lowest ask",
-    "decimal-error": "Yalnızca {{decimals}} ondalık basamağa izin verilir!"
+    "decimal-error": "Yalnızca {{decimals}} ondalık basamağa izin verilir!",
+    "from": "From",
+    "to": "To",
+    "sign": "Sign",
+    "swapping": "Swapping...",
+    "continue": "Continue",
+    "balance": "Balance",
+    "fee": "Fee",
+    "fee-free": "Free",
+    "order-book-impact": "Order book impact",
+    "swap-title": "Swap your funds",
+    "sign-title": "Sign your transaction",
+    "fetching-market": "Fetching market...",
+    "back": "Back",
+    "swap-by": "Sign by {{method}}",
+    "success-title": "Transaction completed",
+    "more-than-balance": "You've entered more than available balance",
+    "invalid-amount": "Invalid from amount. Please, enter less value",
+    "too-much-slippage": "We highly recommend you to reduce amount for better pricing!",
+    "auth-required-title": "Authorization required",
+    "auth-required-desc": "You have to be authorized to swap own funds",
+    "start-new-one": "Start new Swap",
+    "success-swap": "Successfully swapped!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "Liste biçimine geçiş"
@@ -626,7 +659,8 @@
     "hive-power-apr-rate": "APR interest rate for Hive Power is {{value}}%",
     "hive-dollars-apr-rate": "APR interest rate for HBD($) is {{value}}%",
     "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
-    "hive-dollars-apr-when": "Claim in {{value}} days",
+    "hive-dollars-apr-day": "Claim in {{value}} days",
+    "hive-dollars-apr-hour": "Claim in {{value}} hours",
     "hive-dollars-apr-now": "Claim now",
     "hive-power-delegated": "Delegasyon Yapılmış Hive Power",
     "hive-power-received": "Alınan Hive Power",
@@ -735,6 +769,20 @@
     "token": "Token",
     "balance": "Bakiye",
     "staked": "Stake edilmiş"
+  },
+  "sort-engine-tokens": {
+    "sort": "Sort",
+    "sort-in-ascending": "Ascending",
+    "sort-in-descending": "Descending",
+    "sort-by-value": "Value",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Stake",
+    "sort-by-delegations-in": "Delegations in",
+    "sort-by-delegations-out": "Delegations out"
+  },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
   },
   "withdraw-routes": {
     "title": "Çekim Hesapları",
@@ -1034,6 +1082,10 @@
     "filter-no-match": "Eşleşme yok",
     "recently-used": "Son Kullanılan"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Bir gönderi oluştur",
     "page-description": "Makale yayınlayın, ödül kazanın, sansürsüz, kalıcı, merkeziyetsiz içerik!",
@@ -1115,6 +1167,7 @@
     "mention-post": "{{source}} bir gönderide sizden bahsetti",
     "mention-comment": "{{source}} bir yorumda sizden bahsetti",
     "favorite": "{{source}} made new post",
+    "bookmark": "{{source}} replied to bookmarked content",
     "followed": "{{source}} seni takip etti",
     "replied": "{{source}} sana cevap verdi",
     "reblogged": "{{source}} gönderini yeniden yayınladı",
@@ -1132,11 +1185,13 @@
     "type-transfers": "Transferler",
     "type-delegations": "Delegations",
     "type-nfavorites": "Favorites",
+    "type-nbookmarks": "Bookmarks",
     "group-title-recent": "Son",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "gönderini yanıtladı:",
     "mention-str": "senden bahsetti:",
     "favorite-str": "made new post",
+    "bookmark-str": "replied to bookmarked content",
     "followed-str": "takip etti",
     "unfollowed-str": "takibi bıraktı",
     "ignored-str": "engelledi",

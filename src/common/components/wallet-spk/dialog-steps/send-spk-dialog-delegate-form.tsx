@@ -42,6 +42,7 @@ export const SendSpkDialogDelegateForm = ({
   useEffect(() => {
     if (username) {
       setDelegatedAlready(0);
+      setAmount("0");
       fetchUserDetails(activeUser?.username);
     }
   }, [username]);
@@ -52,6 +53,7 @@ export const SendSpkDialogDelegateForm = ({
       const totalDelegated = Object.entries(wallet.granting).find(([name]) => name === username);
       if (totalDelegated) {
         setDelegatedAlready(totalDelegated[1] / 1000);
+        setAmount((totalDelegated[1] / 1000).toFixed(3));
       }
     }
   };
