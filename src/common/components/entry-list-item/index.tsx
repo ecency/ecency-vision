@@ -543,6 +543,7 @@ export default class EntryListItem extends Component<Props, State> {
           <div className="item-controls">
             {EntryVoteBtn({
               ...this.props,
+              isPostSlider: true,
               afterVote: this.afterVote
             })}
             {EntryPayout({

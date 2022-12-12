@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-
 import { _t } from "../../i18n";
 import { informationVariantSvg } from "../../img/svg";
 import appName from "../../helper/app-name";
@@ -25,12 +24,20 @@ export const ReadTime = (props: any) => {
   }, [entry]);
 
   const calculateExtras = async () => {
-    const wordsWithoutSpace: any = entry?.body.trim()?.split(/\s+/);
-    const totalCount: number = wordsWithoutSpace?.length;
+    const entryCount = countWords(entry.body)
     const wordPerMinuite: number = 225;
-    setWordCount(totalCount);
-    setReadTime(Math.ceil(totalCount / wordPerMinuite));
+    setWordCount(entryCount);
+    setReadTime(Math.ceil(entryCount / wordPerMinuite));
   };
+
+  const countWords = (entry: string) =>{
+    const cjkEntry = new RegExp("[\u4E00-\u9FFF]","g");
+    entry = entry.replace(cjkEntry," {CJK} ");   
+    const splitEntry: any =  entry.trim().split(/\s+/);
+    const cjkCount = splitEntry.filter((e: string) => e === "{CJK}");
+    const count: any = splitEntry.includes("{CJK}") ? cjkCount.length : splitEntry.length;
+    return count;
+}
 
   return toolTip ? (
     <div className="post-info">

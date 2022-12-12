@@ -39,6 +39,7 @@ describe("(1) Dialog", () => {
     entry: entryInstance1,
     downVoted: false,
     upVoted: false,
+    isPostSlider: false,
     onClick: () => {}
   };
 
@@ -62,6 +63,7 @@ describe("(2) Btn - No active user", () => {
     entry: entryInstance1,
     users: [],
     activeUser: null,
+    isPostSlider: false,
     ui: UiInstance,
     setActiveUser: () => {},
     updateActiveUser: () => {},
@@ -86,6 +88,7 @@ describe("(3) Btn - Up voted", () => {
       { username: "user1", accessToken: "s", refreshToken: "b", expiresIn: 1, postingKey: null }
     ],
     activeUser: activeUserMaker("user1"),
+    isPostSlider: false,
     ui: UiInstance,
     setActiveUser: () => {},
     updateActiveUser: () => {},
