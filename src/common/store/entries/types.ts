@@ -30,7 +30,8 @@ export interface JsonMetadata {
 }
 
 export interface Entry {
-  active_votes: EntryVote[];
+  // sadly the field below isn't always present.
+  active_votes?: EntryVote[];
   author: string;
   author_payout_value: string;
   author_reputation: number;

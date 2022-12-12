@@ -27,6 +27,7 @@ interface Props {
   setShowSelfVote: (value: boolean) => void;
   setShowRewardSplit: (value: boolean) => void;
   setLowRewardThreshold: (value: number) => void;
+  setShowFrontEnd: (value: boolean) => void;
 }
 
 export class ProfileSettings extends Component<Props> {
@@ -74,7 +75,8 @@ export default (p: Props) => {
     toggleTheme: p.toggleTheme,
     setShowSelfVote: p.setShowSelfVote,
     setShowRewardSplit: p.setShowRewardSplit,
-    setLowRewardThreshold: p.setLowRewardThreshold
+    setLowRewardThreshold: p.setLowRewardThreshold,
+    setShowFrontEnd: p.setShowFrontEnd
   };
 
   return <ProfileSettings {...props} />;

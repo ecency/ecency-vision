@@ -636,6 +636,8 @@
     "show-reward-split": "Show Hive Power/Hive Dollar Breakdown",
     "low-reward-threshold": "Low maximum accepted reward threshold",
     "low-reward-threshold-info": "The maximum accepted reward for a post will be displayed when this maximum is less than or equal to this threshold value",
+    "show-front-end": "Show front end name",
+    "entry-item-options": "Entry Item Options",
     "title": "Preferences",
     "notifications": "Notification alerts",
     "currency": "Currency",
@@ -650,7 +652,8 @@
     "show-self-vote-false": "Off",
     "show-reward-split-true": "On",
     "show-reward-split-false": "Off",
-    "updated": "Preference updated!"
+    "updated": "Preference updated!",
+    "not-a-number": "entered value isn't a number"
   },
   "wallet": {
     "staked": "staked {{symbol}}",
