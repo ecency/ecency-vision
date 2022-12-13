@@ -826,7 +826,7 @@ class SubmitPage extends BaseComponent<Props, State> {
 
   buildMetadata = () => {
     const { tags, body, description, selectedThumbnail, selectionTouched } = this.state;
-    const meta = extractMetaData(body);
+    const { thumbnails, ...meta } = extractMetaData(body);
     let localThumbnail = ls.get("draft_selected_image");
 
     if (meta.image) {

@@ -23,6 +23,8 @@ import parseAsset from "../../helper/parse-asset";
 
 import * as ss from "../../util/session-storage";
 
+import * as ls from "../../util/local-storage";
+
 import _c from "../../util/fix-class-names";
 
 import { chevronDownSvgForSlider, chevronUpSvgForSlider, chevronUpSvgForVote } from "../../img/svg";
@@ -42,9 +44,27 @@ const setVoteValue = (
 const getVoteValue = (
   type: "up" | "down" | "downPrevious" | "upPrevious",
   username: string,
-  def: number
+  def: number,
+  isPostSlider?: boolean
 ): number => {
-  return ss.get(`vote-value-${type}-${username}`, def);
+  const postUpSliderDefaultValue = ls.get("post_upSlider_value");
+  const postDownSliderDefaultValue = ls.get("post_downSlider_value");
+  const commentUpSliderDefaultValue = ls.get("comment_upSlider_value");
+  const commentDownSliderDefaultValue = ls.get("comment_downSlider_value");
+
+  if (isPostSlider) {
+    if (type === "up") {
+      return ss.get(`vote-value-${type}-${username}`, postUpSliderDefaultValue ?? def);
+    } else {
+      return ss.get(`vote-value-${type}-${username}`, postDownSliderDefaultValue ?? def);
+    }
+  } else {
+    if (type === "up") {
+      return ss.get(`vote-value-${type}-${username}`, commentUpSliderDefaultValue ?? def);
+    } else {
+      return ss.get(`vote-value-${type}-${username}`, commentDownSliderDefaultValue ?? def);
+    }
+  }
 };
 
 type Mode = "up" | "down";
@@ -59,6 +79,7 @@ interface VoteDialogProps {
   dateFormatted?: string;
   onClick: (percent: number, estimated: number) => void;
   setTipDialogMounted: (d: boolean) => void;
+  isPostSlider?: boolean;
 }
 
 interface VoteDialogState {
@@ -73,19 +94,19 @@ interface VoteDialogState {
   initialVoteValues: { up: any; down: any };
 }
 
-const initialSliderLabelList: Array<number> = [10, 20, 30, 40, 50, 60, 70, 80, 90];
-
 export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   state: VoteDialogState = {
     upSliderVal: getVoteValue(
       "up",
       this.props.activeUser?.username! + "-" + this.props.entry.post_id,
-      getVoteValue("upPrevious", this.props.activeUser?.username!, 100)
+      getVoteValue("upPrevious", this.props.activeUser?.username!, 100, this.props.isPostSlider),
+      this.props.isPostSlider
     ),
     downSliderVal: getVoteValue(
       "down",
       this.props.activeUser?.username! + "-" + this.props.entry.post_id,
-      getVoteValue("downPrevious", this.props.activeUser?.username!, -1)
+      getVoteValue("downPrevious", this.props.activeUser?.username!, -1, this.props.isPostSlider),
+      this.props.isPostSlider
     ),
     estimated: 0,
     mode: this.props.downVoted ? "down" : "up",
@@ -97,12 +118,14 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       up: getVoteValue(
         "up",
         this.props.activeUser?.username! + "-" + this.props.entry.post_id,
-        getVoteValue("upPrevious", this.props.activeUser?.username!, 100)
+        getVoteValue("upPrevious", this.props.activeUser?.username!, 100, this.props.isPostSlider),
+        this.props.isPostSlider
       ),
       down: getVoteValue(
         "down",
         this.props.activeUser?.username! + "-" + this.props.entry.post_id,
-        getVoteValue("downPrevious", this.props.activeUser?.username!, -1)
+        getVoteValue("downPrevious", this.props.activeUser?.username!, -1, this.props.isPostSlider),
+        this.props.isPostSlider
       )
     }
   };
@@ -242,6 +265,10 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       setVoteValue("up", `${activeUser?.username!}-${post_id}`, upSliderVal);
       setVoteValue("upPrevious", `${activeUser?.username!}-${post_id}`, upSliderVal);
       this.setState({ wrongValueUp: false, wrongValueDown: false });
+      ls.set(
+        this.props.isPostSlider ? "post_upSlider_value" : "comment_upSlider_value",
+        upSliderVal
+      );
     } else if (upVoted && initialVoteValues.up === upSliderVal) {
       this.setState({ wrongValueUp: true, wrongValueDown: false });
     }
@@ -262,6 +289,10 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       this.setState({ wrongValueDown: false, wrongValueUp: false });
       setVoteValue("down", `${activeUser?.username!}-${post_id}`, downSliderVal);
       setVoteValue("downPrevious", `${activeUser?.username!}-${post_id}`, downSliderVal);
+      ls.set(
+        this.props.isPostSlider ? "post_downSlider_value" : "comment_downSlider_value",
+        downSliderVal
+      );
     } else if (downVoted && initialVoteValues.down === downSliderVal) {
       this.setState({ wrongValueDown: true, wrongValueUp: false });
     }
@@ -408,6 +439,7 @@ interface Props {
   activeUser: ActiveUser | null;
   ui: UI;
   dateFormatted?: string;
+  isPostSlider: boolean;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
@@ -544,6 +576,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                             <VoteDialog
                               {...this.props}
                               activeUser={activeUser as any}
+                              isPostSlider={this.props.isPostSlider}
                               onClick={this.vote}
                               upVoted={upVoted}
                               downVoted={downVoted}
@@ -573,6 +606,7 @@ export default (p: Props) => {
     activeUser: p.activeUser,
     ui: p.ui,
     dateFormatted: p.dateFormatted,
+    isPostSlider: p.isPostSlider,
     setActiveUser: p.setActiveUser,
     updateActiveUser: p.updateActiveUser,
     deleteUser: p.deleteUser,

@@ -1172,6 +1172,7 @@ class EntryPage extends BaseComponent<Props, State> {
                       <div className="entry-controls" ref={setRef}>
                         {EntryVoteBtn({
                           ...this.props,
+                          isPostSlider: true,
                           entry,
                           afterVote: this.afterVote
                         })}

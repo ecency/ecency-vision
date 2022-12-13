@@ -48,7 +48,7 @@ import parseAsset from "../../helper/parse-asset";
 import { _t } from "../../i18n";
 
 import { plusCircle } from "../../img/svg";
-import { dayDiff, dateToFullRelative, hourDiff } from "../../helper/parse-date";
+import { dayDiff, dateToFullRelative, hourDiff, secondDiff } from "../../helper/parse-date";
 
 interface Props {
   history: History;
@@ -327,7 +327,7 @@ export class WalletHive extends BaseComponent<Props, State> {
       return null;
     }
 
-    const { hivePerMVests } = dynamicProps;
+    const { hivePerMVests, hbdInterestRate } = dynamicProps;
     const isMyPage = activeUser && activeUser.username === account.name;
     const w = new HiveWallet(account, dynamicProps, converting);
 
@@ -347,9 +347,14 @@ export class WalletHive extends BaseComponent<Props, State> {
           ? account.savings_hbd_seconds_last_update
           : account.savings_hbd_last_interest_payment
       );
-    const interestAmount =
-      (Number(hbd) / 100) * (w.savingBalanceHbd / (12 * 30)) * lastIPaymentDiff;
-    const estimatedInterest = formattedNumber(interestAmount, { suffix: "$" });
+
+    const secondsSincePayment = secondDiff(account.savings_hbd_seconds_last_update);
+
+    const pendingSeconds = w.savingBalanceHbd * secondsSincePayment;
+    const secondsToEstimate = w.savingHbdSeconds / 1000 + pendingSeconds;
+    const estimatedUIn = (secondsToEstimate / (60 * 60 * 24 * 365)) * (hbdInterestRate / 10000);
+
+    const estimatedInterest = formattedNumber(estimatedUIn, { suffix: "$" });
     const remainingDays = 30 - lastIPaymentDiff;
 
     const totalHP = formattedNumber(vestsToHp(w.vestingShares, hivePerMVests), { suffix: "HP" });

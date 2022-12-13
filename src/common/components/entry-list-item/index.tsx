@@ -521,6 +521,8 @@ export default class EntryListItem extends Component<Props, State> {
               ...this.props,
               afterVote: this.afterVote,
               dateFormatted: this.state.dateFormatted
+              isPostSlider: true,
+              afterVote: this.afterVote
             })}
             {EntryPayout({
               ...this.props,
