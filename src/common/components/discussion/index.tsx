@@ -66,6 +66,7 @@ import { ProfilePopover } from "../profile-popover";
 interface ItemBodyProps {
   entry: Entry;
   global: Global;
+  isRawContent: boolean;
 }
 
 export class ItemBody extends Component<ItemBodyProps> {
@@ -74,15 +75,21 @@ export class ItemBody extends Component<ItemBodyProps> {
   }
 
   render() {
-    const { entry, global } = this.props;
+    const { entry, global, isRawContent } = this.props;
 
     const renderedBody = { __html: renderPostBody(entry.body, false, global.canUseWebp) };
 
     return (
-      <div
-        className="item-body markdown-view mini-markdown"
-        dangerouslySetInnerHTML={renderedBody}
-      />
+      <>
+        {!this.props.isRawContent ? (
+          <div
+            className="item-body markdown-view mini-markdown"
+            dangerouslySetInnerHTML={renderedBody}
+          />
+        ) : (
+          <pre className="item-body markdown-view mini-markdown">{entry.body}</pre>
+        )}
+      </>
     );
   }
 }
@@ -95,6 +102,7 @@ interface ItemProps {
   users: User[];
   activeUser: ActiveUser | null;
   discussion: DiscussionType;
+  isRawContent: boolean;
   entry: Entry;
   community: Community | null;
   ui: UI;
@@ -138,6 +146,7 @@ export const Item = (props: ItemProps) => {
   } = props;
 
   useEffect(() => {
+    // console.log('Item Props',props.entry.body);
     setIsMounted(true);
     isMounted && fetchMutedUsers();
     checkLsDraft();
@@ -379,6 +388,7 @@ export const Item = (props: ItemProps) => {
             const isLowReputation =
               entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
             const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry;
+            const { isRawContent } = props;
 
             return (
               <>
@@ -410,7 +420,7 @@ export const Item = (props: ItemProps) => {
                   </div>
                 )}
 
-                <ItemBody global={global} entry={entry} />
+                <ItemBody global={global} entry={entry} isRawContent={isRawContent} />
                 {props.hideControls ? (
                   <></>
                 ) : (
@@ -504,6 +514,7 @@ interface ListProps {
   users: User[];
   activeUser: ActiveUser | null;
   discussion: DiscussionType;
+  isRawContent: boolean;
   parent: Entry;
   community: Community | null;
   ui: UI;
@@ -537,6 +548,7 @@ export class List extends Component<ListProps> {
   }
 
   componentDidMount() {
+    // console.log('List props',this.props.discussion);
     this.setState({ isMounted: true });
     document.getElementsByTagName("html")[0].style.position = "relative";
     this.state.isMounted && this.fetchMutedUsers();
@@ -593,6 +605,7 @@ export class List extends Component<ListProps> {
     if (!activeUser) {
       data = filtered;
     }
+    // console.log(data[0].body);
     return (
       <div className="discussion-list">
         {data.map((d) => (
@@ -626,6 +639,7 @@ interface Props {
   parent: Entry;
   community: Community | null;
   discussion: DiscussionType;
+  isRawContent: boolean;
   ui: UI;
   addAccount: (data: Account) => void;
   setActiveUser: (username: string | null) => void;
@@ -653,6 +667,7 @@ export class Discussion extends Component<Props, State> {
   };
 
   componentDidMount() {
+    // console.log("Discussion props",this.props);
     this.setState({ isMounted: true });
     const { activeUser } = this.props;
     if (activeUser) {
@@ -798,6 +813,7 @@ export default (p: Props) => {
     parent: p.parent,
     community: p.community,
     discussion: p.discussion,
+    isRawContent: p.isRawContent,
     ui: p.ui,
     addAccount: p.addAccount,
     setActiveUser: p.setActiveUser,

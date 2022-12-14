@@ -103,6 +103,7 @@ interface State {
   edit: boolean;
   comment: string;
   editHistory: boolean;
+  isRawContent: boolean;
   showProfileBox: boolean;
   showWordCount: boolean;
   entryIsMuted: boolean;
@@ -120,6 +121,7 @@ class EntryPage extends BaseComponent<Props, State> {
     edit: false,
     showIfNsfw: false,
     editHistory: false,
+    isRawContent: false,
     comment: "",
     isCommented: false,
     showProfileBox: false,
@@ -152,6 +154,9 @@ class EntryPage extends BaseComponent<Props, State> {
     const { location, global } = this.props;
     if (global.usePrivate && location.search === "?history") {
       this.toggleEditHistory();
+    }
+    if (location.search === "?raw") {
+      this.setState({ isRawContent: true });
     }
     window.addEventListener("scroll", this.detect);
     window.addEventListener("resize", this.detect);
@@ -1041,35 +1046,43 @@ class EntryPage extends BaseComponent<Props, State> {
                           </div>
                           <meta itemProp="headline name" content={entry.title} />
 
-                          {!edit ? (
+                          {!this.state.isRawContent ? (
                             <>
-                              <SelectionPopover
-                                postUrl={entry.url}
-                                onQuotesClick={(text: string) => {
-                                  this.setState({ selection: `>${text}\n\n` });
-                                  (this.commentInput! as any).current!.focus();
-                                }}
-                              >
-                                <div
-                                  itemProp="articleBody"
-                                  className="entry-body markdown-view user-selectable"
-                                  dangerouslySetInnerHTML={renderedBody}
-                                />
-                              </SelectionPopover>
+                              {!edit ? (
+                                <>
+                                  <SelectionPopover
+                                    postUrl={entry.url}
+                                    onQuotesClick={(text: string) => {
+                                      this.setState({ selection: `>${text}\n\n` });
+                                      (this.commentInput! as any).current!.focus();
+                                    }}
+                                  >
+                                    <div
+                                      itemProp="articleBody"
+                                      className="entry-body markdown-view user-selectable"
+                                      dangerouslySetInnerHTML={renderedBody}
+                                    />
+                                  </SelectionPopover>
+                                </>
+                              ) : (
+                                Comment({
+                                  ...this.props,
+                                  defText: entry.body,
+                                  submitText: _t("g.update"),
+                                  cancellable: true,
+                                  onSubmit: this.updateReply,
+                                  onCancel: this.toggleEdit,
+                                  inProgress: replying,
+                                  autoFocus: true,
+                                  inputRef: this.commentInput,
+                                  entry: entry
+                                })
+                              )}
                             </>
                           ) : (
-                            Comment({
-                              ...this.props,
-                              defText: entry.body,
-                              submitText: _t("g.update"),
-                              cancellable: true,
-                              onSubmit: this.updateReply,
-                              onCancel: this.toggleEdit,
-                              inProgress: replying,
-                              autoFocus: true,
-                              inputRef: this.commentInput,
-                              entry: entry
-                            })
+                            <pre className="entry-body markdown-view user-selectable">
+                              {entry.body}
+                            </pre>
                           )}
 
                           {/* <SelectionPopover postUrl={entry.url} onQuotesClick={(text:string) => {this.setState({selection: `>${text}\n\n`}); (this.commentInput! as any).current!.focus();}}>
@@ -1255,7 +1268,8 @@ class EntryPage extends BaseComponent<Props, State> {
                       ...this.props,
                       parent: entry,
                       community,
-                      hideControls: false
+                      hideControls: false,
+                      isRawContent: this.state.isRawContent
                     })}
                   </>
                 );
