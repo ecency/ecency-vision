@@ -16,6 +16,10 @@
     "name": "EUR"
   },
   {
+    "id": "brl",
+    "name": "BRL"
+  },
+  {
     "id": "rub",
     "name": "RUB"
   },

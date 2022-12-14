@@ -38,6 +38,15 @@ export interface WsFavoriteNotification extends BaseWsNotification {
   };
 }
 
+export interface WsBookmarkNotification extends BaseWsNotification {
+  type: "bookmarks";
+  extra: {
+    permlink: string;
+    is_post: 0 | 1;
+    title: string | null;
+  };
+}
+
 export interface WsFollowNotification extends BaseWsNotification {
   type: "follow";
   extra: {
@@ -99,6 +108,7 @@ export type WsNotification =
   | WsVoteNotification
   | WsMentionNotification
   | WsFavoriteNotification
+  | WsBookmarkNotification
   | WsFollowNotification
   | WsReplyNotification
   | WsReblogNotification
@@ -187,6 +197,15 @@ export interface ApiFavoriteNotification extends BaseAPiNotification {
   title: string | null;
 }
 
+export interface ApiBookmarkNotification extends BaseAPiNotification {
+  type: "bookmarks";
+  author: string;
+  account: string;
+  permlink: string;
+  post: boolean;
+  title: string | null;
+}
+
 export interface ApiSpinNotification extends BaseAPiNotification {
   type: "spin";
 }
@@ -216,6 +235,7 @@ export type ApiNotification =
   | ApiVoteNotification
   | ApiMentionNotification
   | ApiFavoriteNotification
+  | ApiBookmarkNotification
   | ApiFollowNotification
   | ApiReblogNotification
   | ApiReplyNotification
@@ -229,6 +249,7 @@ export enum NotificationFilter {
   VOTES = "rvotes",
   MENTIONS = "mentions",
   FAVORITES = "nfavorites",
+  BOOKMARKS = "nbookmarks",
   FOLLOWS = "follows",
   REPLIES = "replies",
   REBLOGS = "reblogs",

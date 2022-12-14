@@ -43,8 +43,8 @@
     "trending": "फ़ीड",
     "created": "फ़ीड",
     "muted": "म्यूट किए गए",
-    "controversial": "controversial",
-    "rising": "rising",
+    "controversial": "विवादास्पद",
+    "rising": "उभरता हुवा",
     "found": "मिला",
     "feed": "फ़ीड",
     "blog": "ब्लॉगस",
@@ -63,7 +63,7 @@
     "more-results": "और नतीजे",
     "close": "बंद करें",
     "loading": "लोड हो रहा है",
-    "stop": "Stop"
+    "stop": "रुको"
   },
   "confirm": {
     "title": "क्या आपको यकीन है?",
@@ -82,21 +82,21 @@
     "filter-feed-subscriptions": "समुदाय",
     "filter-global": "ग्लोबल",
     "filter-community": "मेरा समुदाय",
-    "filter-controversial": "Controversial",
-    "filter-rising": "Rising",
+    "filter-controversial": "विवादास्पद",
+    "filter-rising": "उभरता हुवा",
     "filter-global-part1": "इस फ़ीड में शामिल हैं ",
     "filter-global-part2": " पूरे मंच पर चर्चा",
     "filter-global-part3": " आपके सब्सक्राइब किए गए समुदायों से चर्चा। इस फ़ीड को भरने के लिए आप और समुदायों में शामिल हो सकते हैं।",
     "filter-global-part4": " आपके द्वारा अनुसरण किए जाने वाले लोगों से चर्चा। इस फ़ीड को भरने के लिए आप और लोगों को फ़ॉलो कर सकते हैं।",
     "filter-global-discover": "लोगों को खोजें",
     "filter-global-join-communities": "समुदायों में शामिल हों",
-    "filter-today": "Today",
-    "filter-week": "This week",
-    "filter-month": "This month",
-    "filter-year": "This year",
-    "filter-alltime": "All time",
-    "filter-no-reblog": "Exclude reblog",
-    "filter-with-reblog": "Include reblog"
+    "filter-today": "आज",
+    "filter-week": "इस सप्ताह",
+    "filter-month": "इस महीने",
+    "filter-year": "इस वर्ष",
+    "filter-alltime": "पूरा समय",
+    "filter-no-reblog": "रीब्लॉग बहिष्कृत करें",
+    "filter-with-reblog": "रीब्लॉग शामिल करें"
   },
   "navbar": {
     "discover": "खोजिए",
@@ -141,7 +141,7 @@
     "dark": "डार्क",
     "switch-to": "स्विच",
     "vote-power": "वोट पावर:",
-    "boost": "Boost"
+    "boost": "बूस्ट"
   },
   "intro": {
     "title": "महाप्राण की आकांक्षा",
@@ -156,6 +156,7 @@
     "login-info-1": "हम आपकी निजी कुंजियाँ संग्रहीत नहीं करते हैं।",
     "login-info-2": "अधिक जानकारी",
     "error-fields-required": "कृपया उपयोगकर्ता नाम और निजी कुंजी दर्ज करें",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "आपने सार्वजनिक कुंजी डाला| पासवर्ड/डब्लूएआईएफ की जरुरत है",
     "error-user-fetch": "उपयोगकर्ता डेटा प्राप्त नहीं किया जा सका",
     "error-user-not-found": "उपयोगकर्ता उपलब्ध नहीं है",
@@ -168,8 +169,8 @@
     "sign-up-text-2": "अभी साइनअप करें!"
   },
   "sign-up": {
-    "header": "Rewarding communities",
-    "description": "Value Freespeech, Be in Charge, Achieve Financial freedom!",
+    "header": "पुरस्कृत समुदाय",
+    "description": "मूल्य मुक्त भाषण, प्रभारी बनें, वित्तीय स्वतंत्रता प्राप्त करें!",
     "bottom-description": "प्रत्येक खाता एक ब्लॉकचेन पर बनाया गया है और केवल उस खाते पर आपका नियंत्रण है। ब्लॉकचेन और इसेंसी पर सब कुछ प्रबंधित करने के लिए एक खाता।",
     "learn-more": "हमारे लाभ के बारे में अधिक जानें <a href=\"/faq#how-to-join\">अकसर किये गए सवाल</a>",
     "username": "एक उपयोगकर्ता नाम चुनें",
@@ -186,13 +187,18 @@
   "trending-tags": {
     "title": "विषय"
   },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
+  },
   "selected-tags": {
     "title": "विशेष रुप से प्रदर्शित"
   },
   "entry-list-item": {
     "cross-posted": "पोस्ट की गई",
     "cross-posted-to": "को",
-    "reblogged": "{{n}} reblogged",
+    "reblogged": "{{n}} रीब्लॉगड",
     "promoted": "प्रचारित",
     "pinned": "पिन की गई पोस्ट",
     "replies": "१ प्रतिक्रिया| क्लिक करें जबाब के लिए|",
@@ -282,7 +288,7 @@
     "pp": "गोपनीयता नीति"
   },
   "decks": {
-    "users": "User",
+    "users": "यूज़र",
     "header-info": "अतिरिक्त विकल्प देखने के लिए मुझे क्लिक करें",
     "username": "यूजरनेम",
     "content-type": "कांटेंट प्रकार",
@@ -298,7 +304,7 @@
     "replies": "जवाब",
     "posts": "पोस्टस",
     "comments": "विवेचनाऐं",
-    "column": "column",
+    "column": "स्तंभ",
     "hot": "लोकप्रीय",
     "muted": "म्यूट है",
     "new": "नया",
@@ -310,27 +316,27 @@
     "created": "नया",
     "go-back": "पीछे जाएँ",
     "deck-exists": "आप जिस डेक को जोड़ने का प्रयास कर रहे हैं वह पहले से मौजूद है!",
-    "limit-warning": "Maximum 10 decks are allowed. Delete any deck to add another.",
-    "empty-decks": "Click + icon to add Decks",
+    "limit-warning": "अधिकतम 10 डेक की अनुमति है। दूसरा जोड़ने के लिए कोई भी डेक हटाएं।",
+    "empty-decks": "डेक जोड़ने के लिए + आइकन पर क्लिक करें",
     "select-column-type": "आप कौन सा डेक प्रकार जोड़ना चाहते हैं?",
     "topic": "अनुकूल",
-    "refresh": "Auto refresh for {{title}} saved.",
-    "settings": "Settings",
-    "refresh-time": "Refresh time",
-    "hours": "hours",
-    "save": "Save",
-    "update-interval": "Update interval",
-    "update-interval-min": "In minutes",
-    "update-n-seconds": "Every {{sec}} sec",
-    "update-n-minutes": "Every {{min}} min",
-    "update-n-hours": "Every {{hour}} h",
-    "update-custom": "Custom interval...",
-    "update-interval-value-error": "Interval should be between 30 seconds and 24 hours",
-    "update-interval-placeholder": "Select an interval",
-    "update-custom-interval-in-minutes-placeholder": "Enter interval in minutes",
-    "filters": "Filters",
-    "history": "History",
-    "type": "Type"
+    "refresh": "{{title}} के लिए स्वतः रीफ़्रेश सहेजा गया।",
+    "settings": "समायोजन",
+    "refresh-time": "ताज़ा करने का समय",
+    "hours": "घंटे",
+    "save": "रक्षित करें",
+    "update-interval": "अंतराल अपडेट करें",
+    "update-interval-min": "मिनट्स में",
+    "update-n-seconds": "प्रत्येक {{sec}} सेकंड",
+    "update-n-minutes": "प्रत्येक {{min}} मिनट",
+    "update-n-hours": "प्रत्येक {{hour}} एच",
+    "update-custom": "कस्टम अंतराल...",
+    "update-interval-value-error": "अंतराल 30 सेकंड और 24 घंटे के बीच होना चाहिए",
+    "update-interval-placeholder": "एक अंतराल चुनें",
+    "update-custom-interval-in-minutes-placeholder": "मिनटसर्वल में अंतराल दर्ज करें",
+    "filters": "फिल्टरस",
+    "history": "इतिहास",
+    "type": "प्रकार"
   },
   "market-data": {
     "title": "बाजार मूल्य",
@@ -355,7 +361,11 @@
     "orders": "आदेश",
     "date": "तारीख",
     "open-orders": "खुला ऑर्डर्स",
+    "pending-orders": "लंबित ऑर्डर्स",
     "type": "प्रकार",
+    "mode-limit": "सीमा",
+    "mode-swap": "विनिमय",
+    "mode-advanced": "उन्नत",
     "action": "कार्य",
     "trade-history": "व्यापार इतिहास",
     "stock-params": "पैरामीटर",
@@ -368,7 +378,30 @@
     "confirm-sell": "Values",
     "transaction-succeeded": "लेन-देन सबमिट किया गया",
     "lowest-ask": "न्यूनतम पूछें",
-    "decimal-error": "केवल {{decimals}} दशमलव अंकों की अनुमति है!"
+    "decimal-error": "केवल {{decimals}} दशमलव अंकों की अनुमति है!",
+    "from": "इससे",
+    "to": "इसमें",
+    "sign": "Sign",
+    "swapping": "आदान-प्रदान हो रहा है",
+    "continue": "जारी रखें",
+    "balance": "शेष राशि",
+    "fee": "शुल्क",
+    "fee-free": "निःशुल्क",
+    "order-book-impact": "Order book impact",
+    "swap-title": "Swap your funds",
+    "sign-title": "Sign your transaction",
+    "fetching-market": "Fetching market...",
+    "back": "Back",
+    "swap-by": "Sign by {{method}}",
+    "success-title": "Transaction completed",
+    "more-than-balance": "You've entered more than available balance",
+    "invalid-amount": "Invalid from amount. Please, enter less value",
+    "too-much-slippage": "We highly recommend you to reduce amount for better pricing!",
+    "auth-required-title": "Authorization required",
+    "auth-required-desc": "You have to be authorized to swap own funds",
+    "start-new-one": "Start new Swap",
+    "success-swap": "Successfully swapped!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "टॉगल सूची शैली"
@@ -402,9 +435,9 @@
     "cross-post-by": "द्वारा क्रॉस पोस्ट",
     "cross-post-community": "समुदाय",
     "community-in": "में",
-    "post-word-count": "Words:",
-    "post-read-time": "Reading:",
-    "post-read-minuites": "min"
+    "post-word-count": "शब्दों:",
+    "post-read-time": "पढ़ना:",
+    "post-read-minuites": "मिन"
   },
   "edit-history": {
     "title": "इतिहास संपादित करें",
@@ -432,8 +465,8 @@
     "reveal-muted": "मौन लेखक - टिप्पणी प्रकट करें",
     "reveal-muted-long-description": "आपत्तिजनक सामग्री वाले उत्तरों सहित अतिरिक्त उत्तर दिखाएं",
     "reveal": "आलोचना प्रत्यक्ष करो",
-    "no-conversation": "No conversation yet, be first to reply",
-    "start-conversation": "Start conversation"
+    "no-conversation": "अभी तक कोई बातचीत नहीं हुई है, जवाब देने के लिए पहले बनें",
+    "start-conversation": "चर्चा शुरू करें"
   },
   "community": {
     "page-description": "{{f}} विषय",
@@ -556,15 +589,15 @@
     "section-communities": "समुदाय",
     "section-wallet": "बटुआ",
     "section-settings": "सेटिंग्स",
-    "section-referrals": "Referrals",
+    "section-referrals": "रेफरलस",
     "section-permission": "अनुमति",
     "communities-title": "सदस्यता",
     "create-community": "एक समुदाय बनाएँ",
     "witnesses": "गवाहों",
     "proposals": "प्रस्ताव",
-    "referrals": "Referrals",
-    "go-community": "Community page",
-    "com-mod": "Moderator of these communities"
+    "referrals": "रेफरलस",
+    "go-community": "समुदाय पृष्ठ",
+    "com-mod": "इन समुदायों के मॉडरेटर"
   },
   "profile-info": {
     "joined": "में शामिल हो गए {{n}}",
@@ -604,10 +637,10 @@
     "language": "भाषा",
     "nsfw": "NSFW सामग्री दिखाएं",
     "referral-link": "रेफ़रल लिंक",
-    "theme": "Theme Settings",
-    "theme-system-default": "System Default",
-    "theme-day": "Day mode",
-    "theme-night": "Night mode",
+    "theme": "विषय सेटिंग",
+    "theme-system-default": "सिस्टम निर्धारित",
+    "theme-day": "दिन मोड",
+    "theme-night": "रात्रि मोड",
     "updated": "वरीयता अद्यतन!"
   },
   "wallet": {
@@ -625,9 +658,10 @@
     "hive-power-description": "हाइव पावर प्रभावशाली टोकन हैं जो लंबे समय तक रखने और सामग्री पर मतदान करने के लिए अधिक शक्ति अर्जित करते हैं। एक व्यक्ति जितना अधिक हाइव पावर रखता है, उतना ही वह दूसरे के पुरस्कारों को प्रभावित कर सकता है और सटीक मतदान के लिए पुरस्कार अर्जित कर सकता है। हाइव पावर एचआईवीई टोकन है जिसे 13 सप्ताह में बिना दांव पर लगाया जा सकता है।",
     "hive-power-apr-rate": "हाइव पावर के लिए एपीआर ब्याज दर {{value}}% है",
     "hive-dollars-apr-rate": "एच बी डी($) के लिए APR ब्याज दर {{value}}% है",
-    "hive-dollars-apr-claim": "Estimated interest since last payment {{value}}:",
-    "hive-dollars-apr-when": "Claim in {{value}} days",
-    "hive-dollars-apr-now": "Claim now",
+    "hive-dollars-apr-claim": "पिछले भुगतान के बाद से अनुमानित ब्याज {{value}}:",
+    "hive-dollars-apr-day": "{{value}} दिनों में दावा करें",
+    "hive-dollars-apr-hour": "{{value}} घंटों में दावा करें",
+    "hive-dollars-apr-now": "अब दावा करो",
     "hive-power-delegated": "प्रत्यायोजित हाइव पावर",
     "hive-power-received": "हाइव पावर प्राप्त किया",
     "next-power-down-amount": "अगली पावर डाउन राशि",
@@ -636,7 +670,7 @@
     "hive-dollars-description": "हाइव के $ 1.00 के टोकन।",
     "savings": "बचत",
     "savings-description": "शेष 3 दिन की प्रतीक्षा अवधि के अधीन।",
-    "next-power-down": "The next power down is {{time}}, (~{{amount}}, {{weeks}} weeks remaining)",
+    "next-power-down": "अगला पावर डाउन {{time}} है, (~{{amount}}, {{weeks}} सप्ताह शेष)",
     "transfer": "स्थानांतरण",
     "transfer-to-savings": "बचत खाते में स्थांतरण करें",
     "convert": "बदलें",
@@ -648,83 +682,83 @@
     "withdraw-routes": "निकाशी मार्ग",
     "calculating": "गिना जा रहा है",
     "converting-hbd-amount": "हाइव में परिवर्तित हो रहा हैं",
-    "converting-hive-amount": "Converting to HBD",
+    "converting-hive-amount": "एचबीडी में कनवर्ट हो रहा है",
     "withdrawing-amount": "बचत से निकासी",
     "reserved-amount": "बाजार में खुले आदेश के लिए आरक्षित",
     "spk": {
       "claim": {
-        "title": "Claim",
-        "unclaimed-rewards": "Unclaimed rewards"
+        "title": "दावा करें",
+        "unclaimed-rewards": "दावा न किए गए पुरस्कार"
       },
       "delegate": {
-        "title": "Delegate",
-        "subtitle": "Delegate tokens",
-        "node-operator-placeholder": "Select a node operator",
+        "title": "प्रतिनिधि",
+        "subtitle": "प्रतिनिधि टोकन",
+        "node-operator-placeholder": "एक नोड ऑपरेटर चुनें",
         "delegated-larynx-power": {
-          "title": "Delegated LARYNX Power"
+          "title": "प्रत्यायोजित लारेंक्स शक्ति"
         }
       },
       "power-up": {
-        "title": "Power up",
-        "subtitle": "Power up to earn passive rewards"
+        "title": "पावर उप",
+        "subtitle": "निष्क्रिय पुरस्कार अर्जित करने की शक्ति"
       },
       "power-down": {
-        "title": "Power down",
-        "subtitle": "Power down to earn passive rewards",
-        "in-progress": "A power down is scheduled to happen in {{date}} ({{count}} installments remaining)"
+        "title": "पावर नीचे करे",
+        "subtitle": "एक नोड ऑपरेटर चुनें",
+        "in-progress": "{{date}} ({{count}} की किश्तें बाकी हैं) में बिजली बंद होने वाली है।"
       },
       "lock": {
-        "title": "Lock Liquidity",
-        "subtitle": "Locking Larynx for liquidity reward",
-        "button": "Lock liquidity"
+        "title": "लॉक लिक्विडिटी",
+        "subtitle": "तरलता इनाम के लिए लारेंक्स को लॉक करना",
+        "button": "लॉक लिक्विडिटी"
       },
       "unlock": {
-        "title": "Unlock Liquidity",
-        "subtitle": "Unlock LARYNX to liquid form",
-        "button": "Unlock liquidity"
+        "title": "तरलता अनलॉक करें",
+        "subtitle": "लारेंक्स को तरल रूप में अनलॉक करें",
+        "button": "तरलता अनलॉक करें"
       },
       "send": {
-        "balance": "Balance",
-        "button": "Send",
-        "from": "From",
-        "to": "To",
-        "amount": "Amount",
-        "optional": "optional",
-        "title": "Send SPK",
-        "memo": "Memo",
-        "next": "Next",
-        "subtitle": "Move funds to another SPK wallet",
-        "warning": "Transferring more than available balance"
+        "balance": "शेष रकम",
+        "button": "भेजें",
+        "from": "से",
+        "to": "को",
+        "amount": "राशी",
+        "optional": "विकल्प",
+        "title": "एसपीके भेजें",
+        "memo": "ज्ञापन",
+        "next": "अगला",
+        "subtitle": "किसी अन्य एसपीके वॉलेट में धनराशि स्थानांतरित करें",
+        "warning": "उपलब्ध शेष राशि से अधिक स्थानांतरित करना"
       },
-      "token": "SPK Token",
-      "token-description": "The governance token for the SPK network.",
-      "larynx-air": "LARYNX Airdrop Claim",
-      "larynx-air-description": "This months claimable tokens based on a January 6th HIVE blockchain snapshot.",
-      "larynx-air-warning": "Tokens not claimed, do not roll over to next month.",
-      "larynx-already-claimed": "Already claimed.",
-      "larynx-token": "LARYNX Token",
-      "larynx-token-description": "The mining token for the SPK network.",
-      "larynx-power": "LARYNX Power",
-      "larynx-power-description": "Powered tokens used to mine SPK",
+      "token": "एसपीके टोकन",
+      "token-description": "एसपीके नेटवर्क के लिए शासन टोकन।",
+      "larynx-air": "लारेंक्स एयरड्रॉप दावा",
+      "larynx-air-description": "इस महीने 6 जनवरी के एचआईवीई ब्लॉकचैन स्नैपशॉट के आधार पर दावा योग्य टोकन।",
+      "larynx-air-warning": "टोकन का दावा नहीं किया गया है, अगले महीने तक रोल ओवर न करें।",
+      "larynx-already-claimed": "पहले ही दावा किया है।",
+      "larynx-token": "लारेंक्स टोकन",
+      "larynx-token-description": "एसपीके नेटवर्क के लिए खनन टोकन।",
+      "larynx-power": "लारेंक्स पावर",
+      "larynx-power-description": "एसपीके को माइन करने के लिए इस्तेमाल किए जाने वाले पावर्ड टोकन",
       "larynx-power-benefits": {
-        "title": "Benefits of LARYNX Power",
-        "1": "Earns SPK governance tokens",
-        "2": "Instant Lock | 4 Week Unlock",
-        "3": "Delegate to node service accounts to build consensus (DPoS)",
-        "4": "LARYNX POWER (LP) earns SPK tokens at {{rate}}%",
-        "5": "Delegated LP (DLP) earns SPK tokens for both delegator and delegate at {{rate}}%"
+        "title": "लारेंक्स शक्ति के लाभ",
+        "1": "एसपीके शासन टोकन अर्जित करता है",
+        "2": "इंस्टेंट लॉक | 4 सप्ताह का अनलॉक",
+        "3": "सर्वसम्मति बनाने के लिए नोड सेवा खातों का प्रतिनिधि (डीपीओस)",
+        "4": "लारेंक्स शक्ति (एल. पी.) ने {{rate}}% पर एसपीके टोकन अर्जित किया",
+        "5": "प्रत्यायोजित एल. पी. (डीएलपी) प्रतिनिधि और प्रतिनिधि दोनों के लिए {{rate}}% पर SPK टोकन अर्जित करता है"
       },
       "larynx-locked-benefits": {
-        "title": "Benefits of LARYNX Locked",
-        "1": "Proof of Stake Consensus",
-        "2": "Collateral for DEX transactions",
-        "3": "Instant Lock | 4 Week Unlock",
-        "4": "Requires an operating LARYNX node",
-        "5": "Earns 0.100%"
+        "title": "लारेंक्स लॉक्ड​ के लाभ",
+        "1": "प्रूफ ऑफ़ स्टेक सर्वसम्मति",
+        "2": "डैक्स​ लेन-देन के लिए संपार्श्विक",
+        "3": "इंस्टेंट लॉक | 4 सप्ताह का अनलॉक",
+        "4": "सक्रिय लारेंक्स नोड की आवश्यकता है",
+        "5": "कमाएँ 0.100%"
       },
-      "account-value": "Estimated Account Value",
-      "account-value-description": "The approximate US Dollar value for all SPK assets in your account",
-      "larynx-locked": "LARYNX Locked",
+      "account-value": "खाते का अनुमानित मूल्य",
+      "account-value-description": "आपके खाते मे जमा की सभी एसपीके संपत्तियों का अमेरिकी डॉलर मे अनुमानित मुल्य",
+      "larynx-locked": "लारेंक्स लॉक्ड",
       "larynx-locked-description": "Locked tokens provide liquidity to the network, aid in determining consensus, and earn rewards for node runners"
     }
   },
@@ -735,6 +769,20 @@
     "token": "टोकन",
     "balance": "शेष रकम",
     "staked": "दांव पर लगा दिया"
+  },
+  "sort-engine-tokens": {
+    "sort": "Sort",
+    "sort-in-ascending": "Ascending",
+    "sort-in-descending": "Descending",
+    "sort-by-value": "Value",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Stake",
+    "sort-by-delegations-in": "Delegations in",
+    "sort-by-delegations-out": "Delegations out"
+  },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
   },
   "withdraw-routes": {
     "title": "निकाशी खाता",
@@ -798,15 +846,15 @@
   },
   "purchase-qr": {
     "scan-code": "Scan the QR code with Ecency mobile app",
-    "select-user": "Please, select an user",
-    "title": "Account boost",
-    "title-points": "Buy points",
-    "copied": "Account boost link copied!",
-    "select-type": "Select a type",
-    "boost": "Boost",
-    "points": "Points",
+    "select-user": "कृपया, उपयोगकर्ता को चुने",
+    "title": "खाता बूस्ट",
+    "title-points": "अंक खरीदें",
+    "copied": "खाता बूस्ट लिंक कॉपी हुई",
+    "select-type": "एक प्रकार चुने",
+    "boost": "बूस्ट",
+    "points": "अंक",
     "boost-info": "Ecency has right to revoke delegations/boosts if stake is used improperly",
-    "points-amount": "{{n}} points"
+    "points-amount": "{{n}} अंक"
   },
   "promote": {
     "title": "बढ़ावा देना",
@@ -818,7 +866,7 @@
     "sub-title": "अपनी पोस्ट का प्रचार करें",
     "amount": "रकम",
     "slider-hint": "राशि समायोजित करने के लिए स्लाइडर को खींचें।",
-    "hint": "Actual value of vote you receive may vary"
+    "hint": "आपको प्राप्त होने वाले वोट का वास्तविक मूल्य भिन्न हो सकता है"
   },
   "redeem-common": {
     "balance": "शेष रकम",
@@ -833,8 +881,8 @@
     "transfer-title": "खाते में स्थानांतरण",
     "transfer-title-point": "खाते को उपहार",
     "transfer-sub-title": "फंड्स को दूसरे हाइव अकाउंट में ले जाएं",
-    "stake-hive-engine-title": "Stake token",
-    "stake-hive-engine-sub-title": "Stake token to earn passive rewards",
+    "stake-hive-engine-title": "स्टेक टोकन",
+    "stake-hive-engine-sub-title": "निष्क्रिय पुरस्कार अर्जित करने के लिये टोकन स्टेक करे",
     "unstake-hive-engine-title": "Unstake token",
     "unstake-hive-engine-sub-title": "Unstake token you will stop earning passive rewards",
     "transfer-saving-title": "बचत में स्थानांतरण",
@@ -847,13 +895,13 @@
     "convert-sub-title": "केवल तभी अनुशंसित किया जाता है जब एचबीडी $1 से कम हो। आपको 3.5 दिनों में $1 का हाइव मिलेगा।",
     "delegate-title": "प्रतिनिधि",
     "delegate-sub-title": "प्रतिनिधि हाइव पावर",
-    "delegate-hive-engine-title": "Delegate",
-    "delegate-hive-engine-sub-title": "Delegate Tokens",
+    "delegate-hive-engine-title": "डेलीगेट​",
+    "delegate-hive-engine-sub-title": "डेलीगेट​ टोकन",
     "undelegate-hive-engine-title": "Undelegate",
     "undelegate-hive-engine-sub-title": "Undelegate Tokens to add them back to your Hive Engine balance",
     "power-down-title": "शक्तिक्षय करें",
     "power-down-sub-title": "पावर डाउन हाइव पावर",
-    "claim-interest-title": "Claim HBD Interest",
+    "claim-interest-title": "एचबीडी ब्याज अर्जित करे",
     "claim-interest-sub-title": "Withdraw small amount that will be cancelled right away",
     "from": "से",
     "to": "को",
@@ -894,11 +942,11 @@
     "reset": "रीसेट करें",
     "powering-down": "आप वर्तमान में शक्ति प्राप्त कर रहे हैं।",
     "stop-power-down": "रुको",
-    "claim-title": "Claim",
-    "powerup-title": "Power Up",
-    "powerdown-title": "Power down",
-    "lock-title": "Lock liquidity",
-    "unlock-title": "Unlock liquidity",
+    "claim-title": "अर्जित करे",
+    "powerup-title": "पावर अप करे",
+    "powerdown-title": "पावर डाउन",
+    "lock-title": "लॉक लिक्विडिटी",
+    "unlock-title": "तरलता अनलॉक करें",
     "lock-summary": "Locking completed as <span class=\"amount\">{{amount}}</span>",
     "unlock-summary": "Unlocking completed as <span class=\"amount\">{{amount}}</span>"
   },
@@ -951,7 +999,7 @@
     "type-limit_order_create": "नया व्यापार बनाया",
     "type-limit_order_cancel": "खुला व्यापार रद्द",
     "type-effective_comment_vote": "प्रभावी वोट",
-    "type-account_witness_proxy": "Governance proxy update"
+    "type-account_witness_proxy": "शासन प्रॉक्सी अपडेट"
   },
   "key-or-hot": {
     "sign": "साइन करें",
@@ -974,11 +1022,11 @@
     "pending": "लंबित"
   },
   "collateralized-conversion-requests": {
-    "title": "Collateralized Convert requests",
-    "request-id": "Request id",
-    "collateral_amount": "Collateral",
-    "converted_amount": "Converted",
-    "pending": "Pending"
+    "title": "संपार्श्विक रूपांतरण अनुरोध",
+    "request-id": "अनुरोध आईडी",
+    "collateral_amount": "संपार्श्विक",
+    "converted_amount": "परिवर्तित",
+    "pending": "लंबित"
   },
   "savings-withdraw": {
     "title": "बचत से निकासी",
@@ -1034,6 +1082,10 @@
     "filter-no-match": "कोई मेल नहीं",
     "recently-used": "अभी-अभी उपयोग हुवा"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "पोस्ट तैयार करें",
     "page-description": "एक लेख प्रकाशित करें, इनाम अर्जित करें, बिना सेंसर किए, अपरिवर्तनीय, विकेंद्रीकृत सामग्री!",
@@ -1067,7 +1119,7 @@
     "empty-title-alert": "पोस्ट का शीर्षक दर्ज करें",
     "empty-tags-alert": "पोस्ट टैग दर्ज करें",
     "empty-body-alert": "पोस्ट बॉडी दर्ज करें",
-    "description": "Short description"
+    "description": "संक्षिप्त वर्णन"
   },
   "tag-selector": {
     "placeholder-empty": "टैग। पहला टैग मुख्य श्रेणी है। क्रमित करने योग्य।",
@@ -1114,7 +1166,8 @@
     "voted": "{{source}} ने आपके पोस्ट को वोट किया",
     "mention-post": "{{source}} ने आपको एक पोस्ट में उल्लेख किया है",
     "mention-comment": "{{source}} ने एक टिप्पणी में आपका उल्लेख किया है",
-    "favorite": "{{source}} made new post",
+    "favorite": "{{source}} ने एक नई पोस्ट कि",
+    "bookmark": "{{source}} replied to bookmarked content",
     "followed": "{{source}} ने आपका अनुसरण किया",
     "replied": "{{source}} ने आपको उत्तर दिया",
     "reblogged": "{{source}} ने आपके पोस्ट को रिबॉग किया",
@@ -1131,12 +1184,14 @@
     "type-reblogs": "रिब्लॉग्स",
     "type-transfers": "स्थानांतरण",
     "type-delegations": "डेलीगेशन्स",
-    "type-nfavorites": "Favorites",
+    "type-nfavorites": "पसंदीदा",
+    "type-nbookmarks": "Bookmarks",
     "group-title-recent": "ताजा",
-    "vote-str": "{{p}}% voted your post:",
+    "vote-str": "{{p}} % ने आपके पोस्ट को वोट किया",
     "reply-str": "आपके पोस्ट का जवाब दिया:",
     "mention-str": "में आपका उल्लेख किया:",
-    "favorite-str": "made new post",
+    "favorite-str": "नई पोस्ट बनाई",
+    "bookmark-str": "replied to bookmarked content",
     "followed-str": "अनुगमन करना",
     "unfollowed-str": "का अनुसरण रद्द",
     "ignored-str": "नज़रअंदाज़ करना",
@@ -1151,7 +1206,7 @@
     "mark-read": "पढ़ा हुआ मार्क करें",
     "mute": "अधिसूचना अलर्ट बंद करें",
     "unmute": "अधिसूचना अलर्ट चालू करें",
-    "settings": "Settings"
+    "settings": "सेटिंग्स"
   },
   "leaderboard": {
     "title-stars": "सर्वाधिक क्रियाशील",
@@ -1237,18 +1292,18 @@
     "proxy-active-current": "आपका वर्तमान प्रॉक्सी है",
     "proxy-active-btn-label": "प्रॉक्सी हटाये",
     "proxy-votes-for": "@{{username}} के लिए वोट",
-    "proxy-active-highlighted": "Your proxy votes are highlighted",
-    "check-witness-highlighted": "votes are highlighted"
+    "proxy-active-highlighted": "आपके प्रतिनिधि वोटो पर प्रकाश डाला गया",
+    "check-witness-highlighted": "वोटो पर प्रकाश डाला गया"
   },
   "referral": {
-    "page-title": "Referrals",
-    "page-description-long": "Here is a list of all the users you have referred to the Ecency application.",
-    "created": "Created",
-    "list-referral": "Account",
-    "rewarded": "Rewarded",
-    "pending-reward": "Pending Points",
-    "earned-reward": "Earned Points",
-    "delegate-hp": "Delegate HP"
+    "page-title": "रेफरलस",
+    "page-description-long": "यह है आपके द्वारा रेफर किये गए उपभोक्ताओं की सूची।",
+    "created": "बनाया गया",
+    "list-referral": "खाता",
+    "rewarded": "पुरस्कारित",
+    "pending-reward": "लंबित अंक",
+    "earned-reward": "अर्जित अंक",
+    "delegate-hp": "डेलिगेट एचपी"
   },
   "proposals": {
     "page-title": "प्रस्ताव",
@@ -1405,7 +1460,7 @@
       "what-are-rc-header": "संसाधन क्रेडिट क्या हैं?",
       "what-are-rc-body": "<p>हाइव ब्लॉकचैन पर लेनदेन करने पर शून्य फीस लगती है, ब्लॉकचैन को स्पैम हमलों से बचाने के लिए लेनदेन की दर सीमित होती है। ब्लॉकचेन पर आपके द्वारा की जाने वाली प्रत्येक कार्रवाई में संसाधन क्रेडिट की थोड़ी मात्रा का उपभोग होगा। इसमें पोस्टिंग, कमेंटिंग, वोटिंग, टोकन ट्रांसफर करना आदि शामिल हैं, कंटेंट देखने से रिसोर्स क्रेडिट का उपभोग नहीं होता है। </p> <p> प्रत्येक उपयोगकर्ता के पास प्रत्येक सप्ताह उपयोग करने के लिए सीमित मात्रा में रिसोर्स क्रेडिट होते हैं। उपयोगकर्ता जितना अधिक लेन-देन करता है, उसके पास उतने कम रिसोर्स क्रेडिट होते हैं (जब तक वे रिचार्ज नहीं हो जाते)। अधिक HIVE POWER वाले उपयोगकर्ताओं के पास अधिक संसाधन क्रेडिट होंगे। </p> <p> यदि आप संसाधन क्रेडिट से बाहर निकलते हैं, तो आप ब्लॉकचैन के साथ तब तक लेन-देन नहीं कर पाएंगे, जब तक कि आपके संसाधन क्रेडिट रिचार्ज (स्वचालित रूप से नहीं हो जाते) या आप अतिरिक्त HIT POWER प्राप्त कर लेते हैं अपने संसाधन क्रेडिट संतुलन को बढ़ाने के लिए या आप अस्थायी प्रतिनिधिमंडल प्राप्त करने के लिए <a href=\"/faq#how-boost-account\"> Ecency से Boosting खाते का अनुरोध करें </a> कर सकते हैं।</p>",
       "how-boost-account-header": "खाता बढ़ाने का अनुरोध कैसे करें?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive 30 days delegation (553311 VESTS) which should boost your account to perform more activities on blockchain. Delegation could be withdrawn anytime if our team finds inappropriate use of power. You can request account boosting quickly with <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">QR page</a> just change username and scan QR image with Ecency mobile app.</p>",
+      "how-boost-account-body": "<p>यदि आपके खाते में <a href=\"/faq#what-are-rc\">संसाधन क्रेडिट</a> कम है, तो आप Ecency से खाता बूस्ट करने का अनुरोध कर सकते हैं। आपको 30 दिनों का डेलिगेशन (553311 वेैस्ट) प्राप्त होगा जो आपके खाते को ब्लॉकचैन पर अधिक गतिविधियों को करने के लिए बढ़ावा देगा। यदि हमारी टीम को शक्ति का अनुचित उपयोग मिलता है तो डेलिगेशन को कभी भी वापस लिया जा सकता है। आप जल्दी से जल्दी खाता बूस्ट करने के लिए यहा अनूरोध कर सकते है <a href=\"/purchase?username=demo&type=boost\" class=\"push-link\">क्यूआर पृष्ठ</a> केवल अपना यूजरनेम बदले और क्यूआर तसवीर स्कैन करे Ecency मोबाइल ऐप के द्वारा।</p>",
       "what-spam-abuse-header": "स्पैम या दुरुपयोग क्या माना जाता है?",
       "what-spam-abuse-body": "<p><ul><li>साहित्यिक पोस्ट या कॉपी की गई सामग्री।</li><li>कई पोस्ट पर लगभग समान या भौतिक रूप से समान टिप्पणियों को छोड़ना।</li><li>टैग का उपयोग करना जो पोस्ट से संबंधित नहीं हैं।< /li><li>उपयोगकर्ताओं को किसी भी प्रकार की शारीरिक हिंसा के लिए धमकाना।</li><li>किसी और की सामग्री का उपयोग करते समय स्रोतों का हवाला नहीं देना।</li><li>\"काम के लिए सुरक्षित नहीं है\" सामग्री को बिना उपयोग किए पोस्ट करना nsfw” टैग।</li><li>धोखाधड़ी या कपटपूर्ण प्रस्ताव।</li></ul></p>",
       "can-link-post-header": "क्या मैं अपनी वेबसाइट पर इसेंसी टीम से बैकलिंक जोड़ने का अनुरोध कर सकता हूं?",
@@ -1430,7 +1485,7 @@
       "how-exchange-work-body": "<p>इसेंसी पर टोकन का आदान-प्रदान और व्यापार करना बहुत सरल है। हम आंतरिक सहकर्मी से सहकर्मी, हाइव ब्लॉकचेन में निर्मित विकेंद्रीकृत विनिमय का उपयोग करते हैं। इंटरफ़ेस का उपयोग करने में आसान ऑफ़र करें ताकि आप एक टोकन को दूसरे टोकन का आदान-प्रदान कर सकें, पूरी तरह से विकेन्द्रीकृत तरीके से। खरीदें या बेचें ऑर्डर बनाएं और अन्य लोगों द्वारा आपका ऑर्डर भरने की प्रतीक्षा करें। यदि आप जल्दी से टोकन स्वैप करना चाहते हैं तो आप त्वरित व्यापार के लिए किसी और के खुले आदेश को भर सकते हैं।</p>",
       "how-voting-works-header": "How voting content on Ecency?",
       "how-voting-works-body": "<p>To vote content on Ecency is quite simple, you can learn all about it in following article <a href=\"/hive-125125/@ecency/how-to-vote-content-on\" class=\"push-link\">Voting content</a></p>",
-      "what-reputation-header": "What is Reputation?",
+      "what-reputation-header": "प्रतिष्ठा क्या है?",
       "what-reputation-body": "<p>Every user has a reputation score next to their name. The more value you bring to the community the more reputation score you will have. It is also a mechanism that is designed to help reduce abuse of the Hive platform. Getting upvoted by people increases your reputation and getting downvoted by people with a higher reputation can push your reputation down and make your posts less visible. Users with a lower reputation score are unable to affect your reputation.</p>",
       "improve-reputation-score-header": "How to improve my Reputaion score?",
       "improve-reputation-score-body": "<p>The more upvotes from the users with high reputation you have the higher reputation score you will have. The best way of improving your reputation score is earn upvotes by adding value to the community.</p>",
@@ -1440,25 +1495,25 @@
       "what-hive-witnesses-body": "<p>Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. Community elects them to represent their voice and each user can elect up to 30 witnesses. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses. Witnesses are compensated with Hive Power for each block they create.</p>",
       "how-vote-witnesses-header": "How can I vote for witnesses?",
       "how-vote-witnesses-body": "<p>Visit <a href=\"/witnesses\" class=\"push-link\">Witness page</a> and click voting icon.</p>",
-      "what-are-hive-header": "What are HIVE?",
-      "what-are-hive-body": "<p>HIVE are tradeable tokens that may be transferred at anytime. HIVE can be converted to Hive Power in a process called powering up or staking HIVE. It is a cryptocurrency token, similar to Bitcoin.</p>",
-      "what-are-hive-power-header": "What are HIVE POWER?",
+      "what-are-hive-header": "हाइव क्या है?",
+      "what-are-hive-body": "<p>हाइव ऐसे व्यापार योग्य टोकन है जो किसी भी समय ट्रान्सफर किए जा सकते हैं। हाइव को हाइव पावर मे बदला जा सकता है, इस प्रक्रिया को पावरिंग अप या स्टेकिंग हाईव कहते हैं। बिटकॉइन की तरह ही यह भी एक क्रिप्टोकरेंसी टोकन है।</p>",
+      "what-are-hive-power-header": "हाइव पावर क्या है?",
       "what-are-hive-power-body": "<p>Hive Power are influence tokens that earn more power for holding long term and voting on content. The more Hive Power one holds, the more one can influence other's rewards and earn rewards for accurate voting. Hive Power is staked HIVE token that can be unstaked in 13 weeks.</p>",
       "what-are-hd-header": "What are HIVE DOLLARS or HBD?",
       "what-are-hd-body": "<p>Hive Dollars (commonly abbreviated HBD) are tokens worth about $1.00 of HIVE. Hive Dollars can be traded with HIVE, and transferred to other accounts for commerce or exchange. Hive Dollars may also be converted into HIVE via a process that takes 3.5 days.</p>",
       "what-delegated-hp-header": "What is delegated Hive Power?",
       "what-delegated-hp-body": "<p>Hive Power can be delegated to users by another user. When user is delegated Hive Power - their Resource Credits, content votes, and curation rewards are calculated as if it were their own Hive Power. Users are not able to power down or cash out delegated Hive Power however, as it still belongs to the original owner.</p>",
       "what-powering-up-header": "What is powering up?",
-      "what-powering up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
+      "what-powering-up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
       "what-powering-down-header": "What is powering down?",
-      "what-powering-up-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
+      "what-powering-down-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
       "why-different-keys-header": "Why are there different keys?",
       "why-different-keys-body": "<p>There are different keys with the appropriate permissions for what you are doing. <ul><li>Posting keys - this key should be used for social networking actions, like posting, commenting and voting. This key has a limited set of permissions and it is not able to be used for monetary actions. So you can't lose money if someone else gets access to this key.</li><li>Active key - this key has additional permissions for more sensitive monetary-related actions, like transferring and exchanging tokens. When performing a wallet related action, you may be prompted to authenticate with your Active key. You should only enter your Active Key into apps which you trust because anyone with access to this key can take your tokens. Do yourself a favor and store this key safely to avoid losing tokens in the future.</li><li>Owner key - is the most powerful key because it can change any key of an account, including the owner key. Ideally it is meant to be stored offline, and only used to recover a compromised account.</li></ul></p>",
       "stolen-hive-hbd-header": "What can I do if my HIVE or Hive dollar tokens stolen or sent to wrong account?",
       "stolen-hive-hbd-body": "<p>There is nothing to do if your liquid tokens are stolen or sent to wrong acoount but if your tokens are in Hive Power it is impossible to be hacked more than 1/13 per week and if your tokens are in savings they need to a three-day wait period for them to become transferable. Staking/powering up or transferring funds into savings might be more safer.</>",
-      "what-are-tags-header": "What are tags or topics?",
+      "what-are-tags-header": "टैग्स या विषय क्या है?",
       "what-are-tags-body": "<p>A tag is a piece of information that describes the content that it is assigned to. They help search engines identify the content of pages online and using that information, produce the best results for a given search. All tags must be lowercase letters. Spaces aren't allowed, but hyphenated words with a single dash are allowed.</p>",
-      "how-use-tags-header": "How to use tags?",
+      "how-use-tags-header": "टैग्स का इस्तेमाल कैसे करें?",
       "how-use-tags-body": "<p>Users can create the tags of their choice but by choosing a useful tag users may reveal your post very easy. For example, your first indrotuction post can be popular just by using introduction tag. Be sure that you are using tags that are related to your post otherwise your post may get downvotes for mistagging.</p>",
       "why-publish-gray-header": "Why is the Publish button grayed out?",
       "why-publish-gray-body": "<p>After writing your post you can see that Publish button is still gray, be sure that you chose a good title and at least one valid tag. If you miss them Publish button will be disabled.</p>",
@@ -1517,12 +1572,12 @@
   "chain-error": {
     "min-root-comment": "आप हर पांच मिनट में केवल एक बार पोस्ट कर सकते हैं।",
     "identical-vote": "इस सामग्री पर आपका वर्तमान वोट इस वोट के समान है।",
-    "insufficient-resource": "Insufficient Resource Credits.",
+    "insufficient-resource": "अपर्याप्त रिसोर्स क्रेडिट्स।",
     "delete-comment-with-vote": "सकारात्मक लंबित पुरस्कारों वाली सामग्री को हटाया नहीं जा सकता।",
     "comment-cashout": "उनके पेआउट के बाद की सामग्री को हटाया नहीं जा सकता।",
     "comment-children": "उत्तरों वाली सामग्री को हटाया नहीं जा सकता।",
     "paid-out-post-forbidden": "सशुल्क सामग्री के लिए मतदान उपलब्ध नहीं है।",
-    "missing-authority": "Missing or invalid authority key."
+    "missing-authority": "अनुपस्थित या अमान्य प्राधिकारी चाबी।"
   },
   "landing-page": {
     "welcome-text": "इसेंसी में आपका स्वागत है!",
@@ -1587,15 +1642,15 @@
     "deck": "डेक"
   },
   "top-communities": {
-    "title": "Top communities"
+    "title": "शीर्ष समुदाय"
   },
   "feedback-modal": {
-    "title": "Error details",
-    "question": "How to fix this?",
-    "insufficient-resource-title": "How to get more Resource credits?",
-    "insufficient-resource-purchase": "Purchase account boost or delegation",
-    "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
-    "insufficient-resource-wait": "Wait few hours for RC refill",
-    "report": "Report"
+    "title": "गलतियों की जानकारी",
+    "question": "इससे कैसे सही करें?",
+    "insufficient-resource-title": "और अधिक रिसोर्स क्रेडिट्स कैसे प्राप्त करें?",
+    "insufficient-resource-purchase": "खाता बूस्ट या डेलीगेशन्स खरीदे",
+    "insufficient-resource-buy-hive": "HIVE खरीदें और पावर अप करे",
+    "insufficient-resource-wait": "आरसी फिर से भरना के लिए कुछ घंटे प्रतीक्षा करें",
+    "report": "रिपोर्ट"
   }
 }

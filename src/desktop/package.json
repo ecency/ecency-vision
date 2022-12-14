@@ -4,8 +4,9 @@
   "description": "Ecency desktop application reimagined for Windows, Mac, Linux users, start earning cryptocurrency!",
   "private": false,
   "author": "Ecency <hello@ecency.com>",
-  "version": "3.0.29",
+  "version": "3.0.30",
   "copyright": "© 2020, Ecency",
+  "license": "MIT",
   "homepage": "https://ecency.com",
   "scripts": {
     "build": "concurrently \"yarn build-main\" \"yarn build-renderer\"",
@@ -17,7 +18,9 @@
     "start-renderer-dev": "cross-env NODE_ENV=development webpack-dev-server --config configs/webpack.config.renderer.dev.babel.js",
     "package": "yarn build && electron-builder build --publish never",
     "package-all": "yarn build && electron-builder build -wml",
-    "package-mac": "yarn build && electron-builder build -m --publish always",
+    "publish-mac": "yarn build && electron-builder build -m --publish always",
+    "publish-win": "yarn build && electron-builder build -w --publish always",
+    "publish-unix": "yarn build && electron-builder build -l --publish always",
     "publish-all": "yarn build && electron-builder build -wml --publish always"
   },
   "build": {
@@ -129,7 +132,7 @@
     "cross-env": "^7.0.2",
     "detect-port": "^1.3.0",
     "electron": "^13.0.0",
-    "electron-builder": "^22.3.6",
+    "electron-builder": "22.3.6",
     "electron-devtools-installer": "^2.2.4",
     "mini-css-extract-plugin": "^0.9.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",

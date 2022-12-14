@@ -52,36 +52,48 @@ export const SignMethods = ({
   setSigningKey
 }: Props) => {
   const [showSignByKey, setShowSignByKey] = useState(false);
+  const [isSignByKeyLoading, setIsSignByKeyLoading] = useState(false);
+  const [isSignByHsLoading, setIsSignByHsLoading] = useState(false);
 
-  const onSwapByHs = async () => {
+  const onSwapByHs = () => {
     swapByHs({
       activeUser,
       fromAsset: asset,
       fromAmount,
-      toAmount: await HiveMarket.getNewAmount(toAmount, fromAmount, asset)
+      toAmount
     });
   };
 
   const onSwapByKey = async (key: PrivateKey) => {
-    await swapAction((toAmount) =>
-      swapByKey(key, {
-        activeUser,
-        fromAsset: asset,
-        fromAmount,
-        toAmount
-      })
-    );
+    setIsSignByKeyLoading(true);
+    try {
+      await swapAction((toAmount) =>
+        swapByKey(key, {
+          activeUser,
+          fromAsset: asset,
+          fromAmount,
+          toAmount
+        })
+      );
+    } finally {
+      setIsSignByKeyLoading(false);
+    }
   };
 
   const onSwapByKc = async () => {
-    await swapAction((toAmount) =>
-      swapByKc({
-        activeUser,
-        fromAsset: asset,
-        fromAmount,
-        toAmount
-      })
-    );
+    setIsSignByHsLoading(true);
+    try {
+      await swapAction((toAmount) =>
+        swapByKc({
+          activeUser,
+          fromAsset: asset,
+          fromAmount,
+          toAmount
+        })
+      );
+    } finally {
+      setIsSignByHsLoading(false);
+    }
   };
 
   const swapAction = async (action: (toAmount: string) => Promise<any>) => {
@@ -106,6 +118,7 @@ export const SignMethods = ({
           signingKey={signingKey}
           setSigningKey={(key) => setSigningKey(key)}
           activeUser={activeUser}
+          isLoading={isSignByKeyLoading}
           onKey={(key) => onSwapByKey(key)}
           onBack={() => setShowSignByKey(false)}
         />
@@ -145,7 +158,9 @@ export const SignMethods = ({
               onClick={onSwapByKc}
             >
               <i className="sign-logo mr-3">{kcLogoSvg}</i>
-              {_t("market.swap-by", { method: "Keychain" })}
+              {isSignByHsLoading
+                ? _t("market.signing")
+                : _t("market.swap-by", { method: "Keychain" })}
             </Button>
           ) : (
             <></>

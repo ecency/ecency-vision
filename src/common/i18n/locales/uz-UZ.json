@@ -156,6 +156,7 @@
     "login-info-1": "Biz sizning shaxsiy kalitingizni saqlamaymiz.",
     "login-info-2": "Ko'proq ma'lumot",
     "error-fields-required": "Iltimos foydalanuvchi nomi va shaxsiy kalitingizni kiriting",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Siz ochiq kalitni kiritdingiz. Parol/WIF talab qilinadi",
     "error-user-fetch": "Foydalanuvchi maʼlumotlarini olib boʻlmadi",
     "error-user-not-found": "Foydalanuvchi mavjud emas",
@@ -185,6 +186,11 @@
   },
   "trending-tags": {
     "title": "Mavzular"
+  },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
   },
   "selected-tags": {
     "title": "Tanlanganlar"
@@ -355,7 +361,11 @@
     "orders": "Zakazlar",
     "date": "Sana",
     "open-orders": "Zakazlarni ochish",
+    "pending-orders": "Pending orders",
     "type": "Tur",
+    "mode-limit": "Limit",
+    "mode-swap": "Swap",
+    "mode-advanced": "Advanced",
     "action": "Harakat",
     "trade-history": "Savdo Tarixi",
     "stock-params": "Parametrlar",
@@ -368,7 +378,30 @@
     "confirm-sell": "Qiymatlar",
     "transaction-succeeded": "Transaksiya yuborildi",
     "lowest-ask": "Eng past narx",
-    "decimal-error": "Faqatgina {{decimals}} \no'nlik raqamlarga ruxsat beriladi!"
+    "decimal-error": "Faqatgina {{decimals}} \no'nlik raqamlarga ruxsat beriladi!",
+    "from": "From",
+    "to": "To",
+    "sign": "Sign",
+    "swapping": "Swapping...",
+    "continue": "Continue",
+    "balance": "Balance",
+    "fee": "Fee",
+    "fee-free": "Free",
+    "order-book-impact": "Order book impact",
+    "swap-title": "Swap your funds",
+    "sign-title": "Sign your transaction",
+    "fetching-market": "Fetching market...",
+    "back": "Back",
+    "swap-by": "Sign by {{method}}",
+    "success-title": "Transaction completed",
+    "more-than-balance": "You've entered more than available balance",
+    "invalid-amount": "Invalid from amount. Please, enter less value",
+    "too-much-slippage": "We highly recommend you to reduce amount for better pricing!",
+    "auth-required-title": "Authorization required",
+    "auth-required-desc": "You have to be authorized to swap own funds",
+    "start-new-one": "Start new Swap",
+    "success-swap": "Successfully swapped!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "Ro'yxat stilini o'zgartirish"
@@ -626,7 +659,8 @@
     "hive-power-apr-rate": "Hive Power uchun APR foiz stavkasi{{value}}%",
     "hive-dollars-apr-rate": "HBD ($) uchun APR foiz stavkasi{{value}}%",
     "hive-dollars-apr-claim": "Oxirgi to'lovdan keyin hisoblangan foizlar {{value}}:",
-    "hive-dollars-apr-when": "{{value}} kun ichida olish",
+    "hive-dollars-apr-day": "Claim in {{value}} days",
+    "hive-dollars-apr-hour": "Claim in {{value}} hours",
     "hive-dollars-apr-now": "Hozir olish",
     "hive-power-delegated": "Delegasiyalangan Hive Power",
     "hive-power-received": "Olingan Hive Power",
@@ -735,6 +769,20 @@
     "token": "Token",
     "balance": "Balans",
     "staked": "Muzlatilgan"
+  },
+  "sort-engine-tokens": {
+    "sort": "Sort",
+    "sort-in-ascending": "Ascending",
+    "sort-in-descending": "Descending",
+    "sort-by-value": "Value",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Stake",
+    "sort-by-delegations-in": "Delegations in",
+    "sort-by-delegations-out": "Delegations out"
+  },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
   },
   "withdraw-routes": {
     "title": "Hisoblarni yechib olish",
@@ -1034,6 +1082,10 @@
     "filter-no-match": "Topilmadi",
     "recently-used": "Yaqinda foydalanilganlar"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Post Yaratish",
     "page-description": "Maqolalarni nashr eting, mukofotlarga ega bo'ling, senzurasiz, doimiy, markazlashtirilmagan kontent!",
@@ -1115,6 +1167,7 @@
     "mention-post": "{{source}} sizni postida ko'rsatdi",
     "mention-comment": "{{source}} sizni kommentida ko'rsatdi",
     "favorite": "{{source}} yangi post yaratdi",
+    "bookmark": "{{source}} replied to bookmarked content",
     "followed": "{{source}} sizni kuzatyapti",
     "replied": "{{source}} sizga javob berdi",
     "reblogged": "{{source}} sizni postingizni qayta blogladi",
@@ -1132,11 +1185,13 @@
     "type-transfers": "O'tkazmalar",
     "type-delegations": "Delegatsiyalar",
     "type-nfavorites": "Favorites",
+    "type-nbookmarks": "Bookmarks",
     "group-title-recent": "Yaqinda",
     "vote-str": "{{p}} % postingizga ovoz berdi:",
     "reply-str": "postingizga javob berdi:",
     "mention-str": "sizni eslatib o'tdi:",
     "favorite-str": "yangi post yaratmoq",
+    "bookmark-str": "replied to bookmarked content",
     "followed-str": "kuzatdi",
     "unfollowed-str": "kuzatishni to'xtatish",
     "ignored-str": "rad qildi",
@@ -1449,9 +1504,9 @@
       "what-delegated-hp-header": "Delegatsiyalangan Hive Power nima?",
       "what-delegated-hp-body": "<p>Hive Power foydalanuvchilarga boshqa foydalanuvchi tomonidan berilishi mumkin. Agar foydalanuvchi Hive Power vakolatiga ega bo'lsa - ularning Resurs kreditlari, kontent ovozlari va kuratorlik mukofotlari xuddi Hive Power kabi hisoblab chiqiladi. Foydalanuvchilar berilgan Hive Powerdan foydalana olmaydi yoki naqd pulga aylantira olmaydi, chunki u hali ham asl egasiga tegishli.</p>",
       "what-powering-up-header": "Kuchaytirish qanday jarayon?",
-      "what-powering up-body": "<p>Siz istalgan vaqtda Hive tokenlarini Hive Powerga kuchaytirishingiz mumkin. Bu sizning HIVE hamyoningizda saqlanganligini va HIVE Powerga o'tishini anglatadi, bu sizning ovoz berish kuchingiz va blokcheyndagi resurs kreditlaringizni oshiradi. Ko'proq Hive Powerga ega bo'lish, shuningdek, siz olishingiz mumkin bo'lgan kuratorlik mukofotlari va yangi tokenlar miqdorini oshiradi. Ko'proq HP shuningdek, Hive guvohlarini tasdiqlashda ko'proq ta'sir ko'rsatadi.</p>",
+      "what-powering-up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
       "what-powering-down-header": "Tushirish qanday jarayon?",
-      "what-powering-up-body": "<p>Hive Powerni kuchaytirish mumkin bo'lgan bir xil hamyonlarda tushirish mumkin. Tushirish jarayonida HIVE Power darhol HIVE sifatida mavjud boʻlmaydi. U 13 ta teng qismga aylantiriladi va har hafta HIVE hamyoningizga o'tkaziladi, birinchi qism faqat tushirilgandan bir hafta o'tgach mavjud bo'ladi.</p>",
+      "what-powering-down-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
       "why-different-keys-header": "Nima uchun turli xil kalitlar mavjud?",
       "why-different-keys-body": "<p>Siz qilayotgan ish uchun tegishli ruxsatlarga ega turli xil kalitlar mavjud. <ul><li>E'lon qilish kalitlari - bu kalitdan post qo'yish, fikr bildirish va ovoz berish kabi ijtimoiy tarmoqlardagi amallar uchun foydalanish kerak. Ushbu kalit ba'zi faoliyatlar ichun ishlatiladi ega va uni pul operatsiyalari uchun ishlatib bo'lmaydi. Agar kimdir bu kalitga kirish huquqiga ega boʻlsa, pul yoʻqotib boʻlmaydi.</li><li>Faol kalit – bu kalit tokenlarni oʻtkazish va almashish kabi pul bilan bogʻliq nozikroq amallar uchun qoʻshimcha ruxsatlarga ega. Hamyon bilan bog'liq amalni bajarayotganda sizdan Faol kalit yordamida autentifikatsiya qilish so'ralishi mumkin. Faol kalitingizni faqat oʻzingiz ishonadigan ilovalarga kiritishingiz kerak, chunki bu kalitga kirish huquqiga ega boʻlgan har bir kishi tokenlaringizni olishi mumkin. Kelajakda tokenlarni yo'qotmaslik uchun ushbu kalitni xavfsiz saqlang.</li><li>Egalik kaliti - eng kuchli kalit, chunki u hisobning istalgan kalitini, jumladan, egalik kalitini ham o'zgartirishi mumkin. Ideal holda, u oflayn rejimda saqlanadi va faqat buzilgan hisobni tiklash uchun ishlatiladi.</li></ul></p>",
       "stolen-hive-hbd-header": "Agar mening HIVE yoki Hive dollar tokenlarim o'g'irlangan yoki noto'g'ri hisobga ketgan bo'lsa, nima qilishim mumkin?",

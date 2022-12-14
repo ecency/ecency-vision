@@ -48,6 +48,7 @@ export const initialState: Global = {
   nsfw: false,
   isMobile: false,
   usePrivate: true,
+  hsClientId: "ecency.app",
   lastIndexPath: null
 };
 

@@ -1,6 +1,6 @@
 @import "variables";
 @import "mixins";
-@import "animation";
+@import "animations";
 
 @import "../common/components/404";
 @import "../common/components/navbar";
@@ -14,6 +14,7 @@
 @import "../common/components/deck/";
 @import "../common/components/deck-add-modal/";
 @import "../common/components/entry-vote-btn";
+@import "../common/components/entry-vote-slider";
 @import "../common/components/entry-payout";
 @import "../common/components/entry-reblog-btn";
 @import "../common/components/edit-history";
@@ -29,6 +30,7 @@
 @import "../common/components/entry-index-menu";
 @import "../common/components/entry-votes";
 @import "../common/components/trending-tags-card";
+@import "../common/components/sort-profile-communities/";
 @import "../common/components/selected-tags-card";
 @import "../common/components/community-list-item";
 @import "../common/components/profile-card";
@@ -38,18 +40,21 @@
 @import "../common/components/profile-edit";
 @import "../common/components/wallet-hive";
 @import "../common/components/wallet-hive-engine";
+@import "../common/components/hive-engine-chart";
 @import "../common/components/delegated-vesting";
 @import "../common/components/received-vesting";
 @import "../common/components/transactions";
 @import "../common/components/discussion";
 @import "../common/components/editor-toolbar";
 @import "../common/components/emoji-picker";
+@import "../common/components/gif-picker";
 @import "../common/components/tag-selector";
 @import "../common/components/community-selector";
 @import "../common/components/feedback";
+@import "../common/components/feedback-modal";
 @import "../common/components/login";
 @import "../common/components/comment";
-@import "../common/components/comment-engagement"; 
+@import "../common/components/comment-engagement";
 @import "../common/components/transfer";
 @import "../common/components/or-divider";
 @import "../common/components/notifications";

@@ -50,6 +50,19 @@ export const hourDiff = (d: string) => {
   return Math.abs(Math.round(diff));
 };
 
-const parseDate = (d: string): Date => new Date(`${d}.000Z`);
+export const secondDiff = (d: string) => {
+  const isTimeZoned = d.indexOf(".") !== -1 || d.indexOf("+") !== -1 ? d : `${d}.000Z`;
+  let diff = (new Date().getTime() - new Date(isTimeZoned).getTime()) / 1000;
+  return Math.abs(Math.round(diff));
+};
+
+const parseDate = (d: string): Date => {
+  if (!d) return new Date();
+  try {
+    return moment(d).isValid() ? moment(d).utc().toDate() : new Date();
+  } catch (e) {
+    return new Date();
+  }
+};
 
 export default parseDate;

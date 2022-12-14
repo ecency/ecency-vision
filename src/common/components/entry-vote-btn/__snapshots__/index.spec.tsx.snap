@@ -30,17 +30,105 @@ exports[`(1) Dialog (1) Up vote 1`] = `
   <div
     className="slider slider-up"
   >
-    <input
-      autoFocus={true}
-      className="custom-range"
-      id="86342505"
-      max={100}
-      min={0}
-      onChange={[Function]}
-      step={0.1}
-      type="range"
-      value={100}
-    />
+    <div
+      style={
+        Object {
+          "height": "40px",
+          "paddingRight": "13px",
+        }
+      }
+    >
+      <div
+        className="slide"
+        onMouseDown={[Function]}
+        onMouseUp={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+      >
+        <div
+          className="slide-background-line"
+        >
+          <div
+            className="slider-line"
+            style={
+              Object {
+                "background": "#357ce6",
+                "width": "100%",
+                "zIndex": 100,
+              }
+            }
+          />
+          <span
+            className="slider-dot pointer-dot"
+            style={
+              Object {
+                "background": "#357ce6",
+                "left": "100%",
+              }
+            }
+          />
+          <div
+            className="dots-container"
+          >
+            <div
+              style={
+                Object {
+                  "width": "25%",
+                }
+              }
+            />
+            <div
+              style={
+                Object {
+                  "width": "25%",
+                }
+              }
+            >
+              <span
+                className="slider-dot"
+                style={
+                  Object {
+                    "background": "#357ce6",
+                  }
+                }
+              />
+            </div>
+            <div
+              style={
+                Object {
+                  "width": "25%",
+                }
+              }
+            >
+              <span
+                className="slider-dot"
+                style={
+                  Object {
+                    "background": "#357ce6",
+                  }
+                }
+              />
+            </div>
+            <div
+              style={
+                Object {
+                  "width": "25%",
+                }
+              }
+            >
+              <span
+                className="slider-dot"
+                style={
+                  Object {
+                    "background": "#357ce6",
+                  }
+                }
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div
     className="percentage"
@@ -102,16 +190,105 @@ exports[`(1) Dialog (2) Down vote 1`] = `
   <div
     className="slider slider-down"
   >
-    <input
-      className="reverse-range custom-range"
-      id="86342505"
-      max={-1}
-      min={-100}
-      onChange={[Function]}
-      step={0.1}
-      type="range"
-      value={-1}
-    />
+    <div
+      style={
+        Object {
+          "height": "40px",
+          "paddingRight": "13px",
+        }
+      }
+    >
+      <div
+        className="slide"
+        onMouseDown={[Function]}
+        onMouseUp={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+      >
+        <div
+          className="slide-background-line"
+        >
+          <div
+            className="slider-line"
+            style={
+              Object {
+                "background": "rgba(191, 48, 48)",
+                "width": "1%",
+                "zIndex": 100,
+              }
+            }
+          />
+          <span
+            className="slider-dot pointer-dot"
+            style={
+              Object {
+                "background": "rgba(191, 48, 48)",
+                "left": "1%",
+              }
+            }
+          />
+          <div
+            className="dots-container"
+          >
+            <div
+              style={
+                Object {
+                  "width": "25%",
+                }
+              }
+            />
+            <div
+              style={
+                Object {
+                  "width": "25%",
+                }
+              }
+            >
+              <span
+                className="slider-dot"
+                style={
+                  Object {
+                    "background": "#d4cfcf",
+                  }
+                }
+              />
+            </div>
+            <div
+              style={
+                Object {
+                  "width": "25%",
+                }
+              }
+            >
+              <span
+                className="slider-dot"
+                style={
+                  Object {
+                    "background": "#d4cfcf",
+                  }
+                }
+              />
+            </div>
+            <div
+              style={
+                Object {
+                  "width": "25%",
+                }
+              }
+            >
+              <span
+                className="slider-dot"
+                style={
+                  Object {
+                    "background": "#d4cfcf",
+                  }
+                }
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div
     className="percentage"

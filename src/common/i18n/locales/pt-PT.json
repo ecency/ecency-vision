@@ -63,7 +63,7 @@
     "more-results": "Mais resultados",
     "close": "Fechar",
     "loading": "Carregando",
-    "stop": "Stop"
+    "stop": "Parar"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -95,7 +95,7 @@
     "filter-month": "Este mês",
     "filter-year": "Este ano",
     "filter-alltime": "Desde o início",
-    "filter-no-reblog": "Exclude reblog",
+    "filter-no-reblog": "Excluir reblog",
     "filter-with-reblog": "Include reblog"
   },
   "navbar": {
@@ -156,6 +156,7 @@
     "login-info-1": "Nós não armazenamos suas chaves privadas.",
     "login-info-2": "Mais informação",
     "error-fields-required": "Por favor insira um nome de usuário e palavra passe /WIF",
+    "captcha-check-required": "Please verify if you are a human",
     "error-public-key": "Você inseriu uma chave pública. Senha/WIF obrigatório",
     "error-user-fetch": "Dados de usuário não foram encontrados",
     "error-user-not-found": "Usuário não existe",
@@ -185,6 +186,11 @@
   },
   "trending-tags": {
     "title": "Tópicos"
+  },
+  "sort-trending-tags": {
+    "sort": "Sort",
+    "ascending": "Ascending",
+    "descending": "Descending"
   },
   "selected-tags": {
     "title": "Destaque"
@@ -355,7 +361,11 @@
     "orders": "Ordens",
     "date": "Data",
     "open-orders": "Ordens Ativas",
+    "pending-orders": "Pending orders",
     "type": "Tipo",
+    "mode-limit": "Limit",
+    "mode-swap": "Swap",
+    "mode-advanced": "Advanced",
     "action": "Ação",
     "trade-history": "Histórico de Compra e Venda",
     "stock-params": "Parâmetros",
@@ -368,7 +378,30 @@
     "confirm-sell": "Valores",
     "transaction-succeeded": "Transação submetida",
     "lowest-ask": "Oferta mais baixa",
-    "decimal-error": "Somente {{decimals}} dígitos decimais permitidos!"
+    "decimal-error": "Somente {{decimals}} dígitos decimais permitidos!",
+    "from": "From",
+    "to": "To",
+    "sign": "Sign",
+    "swapping": "Swapping...",
+    "continue": "Continue",
+    "balance": "Balance",
+    "fee": "Fee",
+    "fee-free": "Free",
+    "order-book-impact": "Order book impact",
+    "swap-title": "Swap your funds",
+    "sign-title": "Sign your transaction",
+    "fetching-market": "Fetching market...",
+    "back": "Back",
+    "swap-by": "Sign by {{method}}",
+    "success-title": "Transaction completed",
+    "more-than-balance": "You've entered more than available balance",
+    "invalid-amount": "Invalid from amount. Please, enter less value",
+    "too-much-slippage": "We highly recommend you to reduce amount for better pricing!",
+    "auth-required-title": "Authorization required",
+    "auth-required-desc": "You have to be authorized to swap own funds",
+    "start-new-one": "Start new Swap",
+    "success-swap": "Successfully swapped!",
+    "signing": "Signing.."
   },
   "list-style": {
     "title": "Alternar estilo da lista"
@@ -433,7 +466,7 @@
     "reveal-muted-long-description": "Mostrar respostas adicionais, incluindo aquelas que contém conteúdo ofensivo",
     "reveal": "Revelar comentário",
     "no-conversation": "No conversation yet, be first to reply",
-    "start-conversation": "Start conversation"
+    "start-conversation": "Iniciar conversa"
   },
   "community": {
     "page-description": "{{f}} tópicos",
@@ -605,9 +638,9 @@
     "nsfw": "Mostrar conteúdo adulto",
     "referral-link": "Link de referência",
     "theme": "Theme Settings",
-    "theme-system-default": "System Default",
-    "theme-day": "Day mode",
-    "theme-night": "Night mode",
+    "theme-system-default": "Padrão do Sistema",
+    "theme-day": "Modo dia",
+    "theme-night": "Modo noite",
     "updated": "Preferências atualizadas!"
   },
   "wallet": {
@@ -626,7 +659,8 @@
     "hive-power-apr-rate": "A porcentagem de rendimento anual para Hive Power é {{value}}%",
     "hive-dollars-apr-rate": "A porcentagem de rendimento para HBD($) é {{value}}%",
     "hive-dollars-apr-claim": "Rendimentos estimados desde o último pagamento {{value}}:",
-    "hive-dollars-apr-when": "Reivindicação em {{value}} dias",
+    "hive-dollars-apr-day": "Reivindicar em {{value}} dias",
+    "hive-dollars-apr-hour": "Reivindicar em {{value}} horas",
     "hive-dollars-apr-now": "Reivindicar agora",
     "hive-power-delegated": "Hive Power Delegado",
     "hive-power-received": "Hive Power Recebido",
@@ -648,12 +682,12 @@
     "withdraw-routes": "Rotas de Saque",
     "calculating": "Calculando",
     "converting-hbd-amount": "Convertendo em HIVE",
-    "converting-hive-amount": "Converting to HBD",
+    "converting-hive-amount": "Convertendo para HBD",
     "withdrawing-amount": "Sacando da Poupança",
     "reserved-amount": "Reservado em ordem aberta no Câmbio",
     "spk": {
       "claim": {
-        "title": "Claim",
+        "title": "Reivindicar",
         "unclaimed-rewards": "Unclaimed rewards"
       },
       "delegate": {
@@ -687,16 +721,16 @@
         "balance": "Balance",
         "button": "Send",
         "from": "From",
-        "to": "To",
-        "amount": "Amount",
-        "optional": "optional",
-        "title": "Send SPK",
+        "to": "Para",
+        "amount": "Quantia",
+        "optional": "opcional",
+        "title": "Enviar SPK",
         "memo": "Memo",
-        "next": "Next",
+        "next": "Seguinte",
         "subtitle": "Move funds to another SPK wallet",
         "warning": "Transferring more than available balance"
       },
-      "token": "SPK Token",
+      "token": "Token SPK",
       "token-description": "The governance token for the SPK network.",
       "larynx-air": "LARYNX Airdrop Claim",
       "larynx-air-description": "This months claimable tokens based on a January 6th HIVE blockchain snapshot.",
@@ -735,6 +769,20 @@
     "token": "Token",
     "balance": "Balanço",
     "staked": "Guardado"
+  },
+  "sort-engine-tokens": {
+    "sort": "Sort",
+    "sort-in-ascending": "Ascending",
+    "sort-in-descending": "Descending",
+    "sort-by-value": "Value",
+    "sort-by-balance": "Balance",
+    "sort-by-stake": "Stake",
+    "sort-by-delegations-in": "Delegations in",
+    "sort-by-delegations-out": "Delegations out"
+  },
+  "wallet-engine-estimated": {
+    "title": "Estimated Tokens Value",
+    "description": "The approximate US Dollar value for all engine tokens in your wallet."
   },
   "withdraw-routes": {
     "title": "Contas de saque",
@@ -1034,6 +1082,10 @@
     "filter-no-match": "Sem correspondência",
     "recently-used": "Recentemente Utilizado"
   },
+  "gif-picker": {
+    "filter-placeholder": "Filter",
+    "credits": "Powered by GIPHY"
+  },
   "submit": {
     "page-title": "Criar uma publicação",
     "page-description": "Publique um artigo, ganhe recompensa, sem censura, conteúdo imutável e descentralizado!",
@@ -1115,6 +1167,7 @@
     "mention-post": "{{source}} mencionou-te numa publicação",
     "mention-comment": "{{source}} mencionou-te num comentário",
     "favorite": "{{source}} made new post",
+    "bookmark": "{{source}} replied to bookmarked content",
     "followed": "{{source}} segui-te",
     "replied": "{{source}} respondeu-te",
     "reblogged": "{{source}} re-publicou a sua publicação",
@@ -1132,11 +1185,13 @@
     "type-transfers": "Transferências",
     "type-delegations": "Delegações",
     "type-nfavorites": "Favorites",
+    "type-nbookmarks": "Bookmarks",
     "group-title-recent": "Recente",
     "vote-str": "{{p}}% voted your post:",
     "reply-str": "respondeu à sua publicação:",
     "mention-str": "mencionou-te em:",
     "favorite-str": "made new post",
+    "bookmark-str": "replied to bookmarked content",
     "followed-str": "seguiu",
     "unfollowed-str": "deixou de seguir",
     "ignored-str": "ignorado",
@@ -1449,9 +1504,9 @@
       "what-delegated-hp-header": "O que é Hive Power delegado?",
       "what-delegated-hp-body": "<p>Poder Hive pode ser delegado por um usuário a outro. Quando um usuário recebe uma delegação de Poder Hive, seus Créditos de Recurso, votos de conteúdo e recompensas de curadoria são calculadas como se a delegação constituisse seu próprio Poder Hive. Usuários recebedores de delegações não podem diminuir ou sacar o Poder Hive delegado por outra conta, já que ele pertence ao dono original.</p>",
       "what-powering-up-header": "O que é fazer Power Up?",
-      "what-powering up-body": "<p>Você pode realizar o Power Up dos seus tokens Hive, transformando-os em Poder Hive a qualquer momento. Isso significa que seus HIVE tokens serão guardados na sua carteira como Hive Power, o que aumenta seu poder de voto e créditos de recursos disponíveis na rede. Obtendo mais Poder Hive também aumenta a quantidade de recompensas por curadoria e rendimentos dos tokens. Mais HP (Hive Power) também garante uma maior influência para aprovar as testemunhas da Hive.</p>",
+      "what-powering-up-body": "<p>You can power up your earned Hive tokens to Hive Power at any time. It means your HIVE are kept in your wallet and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. Having more Hive Power also increases the amount of curation rewards and new vested tokens that you can earn. More HP also grants more influence on approving Hive witnesses.</p>",
       "what-powering-down-header": "O que significa fazer Power Down?",
-      "what-powering-up-body": "<p>O Hive Power pode ser reduzido gradualmente. Esse processo se chama Power Down e dura 13 semanas. Quando você reliza esse procedimento, seu Poder Hive não se torna disponível imediatamente. A conversão é dividida em 13 partes iguais e será transferida para sua carteira semanalmente. A primeira porção se torna disponível após uma semana do Power Down iniciar.</p>",
+      "what-powering-down-body": "<p>Hive Power can be powered down in the same wallets where it can be powered up. When you power down, HIVE Power will not be available as HIVE immediately. It is converted in 13 equal parts and transferred into your HIVE wallet weekly, the first portion only being available a week after the power down was initiated.</p>",
       "why-different-keys-header": "Por que existem várias chaves?",
       "why-different-keys-body": "<p>Existem diferentes chaves, e cada uma delas possui as permissões apropriadas para o que você precisa fazer. <ul><li>Chave de Postagem - essa chave deverá ser usada para interações sociais na rede, como publicações, comentários e votos. Essa chave possui um número limitado de permissões e não é capaz de ser utilizada para ações monetárias. Portanto, caso alguém obtenha acesso a sua chave de postagem, você não perderá dinheiro.</li><li>Chave Ativa - essa chave possui permissões adicionais para utilização monetária da conta, como realização de transferências e trocas de tokens. Quando realizar um procedimento na sua carteira, você poderá ser requisitado a introduzir sua Chave Ativa. Você apenas deve utilizar sua Chave Ativa em aplicativos de confiança, pois qualquer um que obtiver acesso a essa chave poderá transferir seus tokens. Faça um favor a si mesmo e guarde essa chave com cuidado para evitar perder seus tokens no futuro.</li><li>Chave de Proprietário - é a mais poderosa das chaves, pois ela possui permissões para modificar qualquer chave de uma conta, incluindo a si mesma. O ideal é mantê-la de forma Off-line, e apenas ser usada para recuperar uma conta comprometida.</li></ul></p>",
       "stolen-hive-hbd-header": "O que eu posso fazer se os meus HIVE tokens ou Hive Dollars forem roubados ou enviados para uma conta errada?",
