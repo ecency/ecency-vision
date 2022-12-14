@@ -609,6 +609,14 @@ class SubmitPage extends BaseComponent<Props, State> {
 
     const [parentPermlink] = tags;
     const jsonMeta = this.buildMetadata();
+    let promissesGetImagesDimensions = [];
+    jsonMeta.image.forEach((element) => {
+      promissesGetImagesDimensions.push(this.getHeightAndWidthFromDataUrl(element));
+    });
+    if (promissesGetImagesDimensions.length > 0) {
+      jsonMeta.image_ratio = await Promise.all(promissesGetImagesDimensions);
+    }
+
     const options = makeCommentOptions(author, permlink, reward, beneficiaries);
     this.stateSet({ posting: true });
     comment(author, "", parentPermlink, permlink, title, cbody, jsonMeta, options, true)
@@ -852,23 +860,8 @@ class SubmitPage extends BaseComponent<Props, State> {
       meta.image = [...new Set(meta.image)];
     }
     const summary = description === null ? postBodySummary(this.state.body, 200) : description;
-    let promissesGetImagesDimensions = [];
-    meta.image.forEach((element) => {
-      promissesGetImagesDimensions.push(this.getHeightAndWidthFromDataUrl(element));
-    });
-    if (promissesGetImagesDimensions.length > 0) {
-      Promise.all(promissesGetImagesDimensions).then((values) => {
-        setTimeout(() => {
-          meta.image_ratio = { ...values };
-          console.log("meta");
-          console.log(meta);
-          //weirdly the images are on meta but they are not published to the blockchain
-          return makeJsonMetaData(meta, tags, summary, version);
-        });
-      });
-    } else {
-      return makeJsonMetaData(meta, tags, summary, version);
-    }
+
+    return makeJsonMetaData(meta, tags, summary, version);
   };
 
   getHeightAndWidthFromDataUrl = (dataURL) =>
