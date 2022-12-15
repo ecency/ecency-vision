@@ -614,7 +614,7 @@ class SubmitPage extends BaseComponent<Props, State> {
       promissesGetImagesDimensions.push(this.getHeightAndWidthFromDataUrl(element));
     });
     if (promissesGetImagesDimensions.length > 0) {
-      jsonMeta.image_ratio = (await Promise.all(promissesGetImagesDimensions)).slice(0, 5);
+      jsonMeta.image_ratio = await Promise.all(promissesGetImagesDimensions.slice(0, 5));
     }
 
     const options = makeCommentOptions(author, permlink, reward, beneficiaries);
@@ -690,7 +690,7 @@ class SubmitPage extends BaseComponent<Props, State> {
       promissesGetImagesDimensions.push(this.getHeightAndWidthFromDataUrl(element));
     });
     if (promissesGetImagesDimensions.length > 0) {
-      jsonMeta.image_ratio = (await Promise.all(promissesGetImagesDimensions)).slice(0, 5);
+      jsonMeta.image_ratio = await Promise.all(promissesGetImagesDimensions.slice(0, 5));
     }
 
     this.stateSet({ posting: true });
