@@ -66,8 +66,8 @@ describe("HiveMarketRateListener", function () {
       "100",
       MarketAsset.HIVE
     );
-    expect(toAmount).toBe("120");
-    expect(tooMuchSlippage).toBeTruthy();
+    expect(Number(toAmount).toFixed(0)).toBe((110).toFixed(0));
+    expect(tooMuchSlippage).toBeFalsy();
   });
 
   it("should fill amount and return right price when sell Hive w/o slippage", function () {
@@ -229,8 +229,8 @@ describe("HiveMarketRateListener", function () {
       "100",
       MarketAsset.HBD
     );
-    expect(toAmount).toBe("89.28571428571428");
-    expect(tooMuchSlippage).toBeTruthy();
+    expect(toAmount).toBe("90.9090909090909");
+    expect(tooMuchSlippage).toBeFalsy();
   });
 
   it("should fill amount and return right price when sell HBD w/o slippage", function () {
