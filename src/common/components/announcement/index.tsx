@@ -4,60 +4,28 @@ import moment from "moment";
 import * as ls from "../../util/local-storage";
 import { upCarouselSvg, downCarouselSvg } from "../../img/svg";
 import { getAnnouncementsData } from "../../api/private-api";
-import { history } from "../../store";
-
-interface AnnouncementObject {
-  id: number;
-  title: string;
-  description: string;
-  button_text: string;
-  button_link: string;
-}
-
-interface LaterAnnouncementObject {
-  id: number;
-  dateTime: Date;
-}
-
-export const mountCheck = (status: any) => {
-  const ev = new CustomEvent("mountStatus", { detail: status });
-  window.dispatchEvent(ev);
-};
+import { Announcement, LaterAnnouncement } from "./types";
+import { useLocation } from "react-router";
 
 const Announcement = () => {
   const activeUser = ls.get("active_user");
-
-  const initialList: AnnouncementObject[] = [];
-  const initialAnnouncement: AnnouncementObject[] = [];
+  const routerLocation = useLocation();
 
   const [show, setShow] = useState(true);
-  const [list, setList] = useState(initialList);
-  const [superList, setSuperlist] = useState(initialList);
+  const [list, setList] = useState<Announcement[]>([]);
+  const [superList, setSuperList] = useState<Announcement[]>([]);
   const [bannerState, setBannerState] = useState(1);
   const [index, setIndex] = useState(0);
-  const [currentAnnouncement, setCurrentAnnouncement] = useState(initialAnnouncement);
+  const [currentAnnouncement, setCurrentAnnouncement] = useState<Announcement[]>([]);
   const [mounted, setMounted] = useState(false);
-  const [location, setLocation] = useState("");
 
   useEffect(() => {
-    getAnnouncements();
-  }, [location]);
-
-  history?.listen((location, action) => {
-    setLocation(location.pathname);
-  });
-
-  useEffect(() => {
-    setLocation(window.location.pathname);
-    getAnnouncements();
+    setMounted(true);
   }, []);
 
   useEffect(() => {
-    window.addEventListener("mountStatus", mountStatus);
-    return () => {
-      window.removeEventListener("mountStatus", mountStatus);
-    };
-  }, [mounted]);
+    getAnnouncements();
+  }, [routerLocation]);
 
   useEffect(() => {
     setCurrentAnnouncement([list[bannerState - 1]]);
@@ -71,28 +39,19 @@ const Announcement = () => {
     }
   }, [list]);
 
-  const mountStatus = (e: Event) => {
-    const status: boolean = (e as CustomEvent).detail;
-    setMounted(status);
-  };
-
   const getAnnouncements = async () => {
-    const data = await getAnnouncementsData(activeUser, 200, location);
-    onAnnouncement(data);
-  };
+    const data = await getAnnouncementsData(activeUser, 200, routerLocation.pathname);
 
-  const onAnnouncement = (detail: AnnouncementObject[]) => {
     const dismissList: number[] = ls.get("dismiss_announcements");
-    const laterList: LaterAnnouncementObject[] = ls.get("later_announcements_detail");
+    const laterList: LaterAnnouncement[] = ls.get("later_announcements_detail");
+    const displayList: Announcement[] = [];
 
-    var displayList: AnnouncementObject[] = [];
-
-    for (const announcement of detail) {
+    data.forEach((announcement) => {
       if (dismissList !== null && dismissList.includes(announcement.id)) {
-        continue;
+        return;
       }
       if (laterList) {
-        var filteredAnnouncement: LaterAnnouncementObject[] = laterList.filter(
+        const filteredAnnouncement: LaterAnnouncement[] = laterList.filter(
           (a) => a.id == announcement.id
         );
 
@@ -120,10 +79,10 @@ const Announcement = () => {
       } else {
         displayList.push(announcement);
       }
-    }
+    });
 
     setList(displayList);
-    setSuperlist(displayList);
+    setSuperList(displayList);
   };
 
   const closeClick = () => {
@@ -177,7 +136,7 @@ const Announcement = () => {
     setIndex(index);
     const newList = list.filter((x) => x.id !== clickedBanner.id);
     setList(newList);
-    var DateTime = moment(new Date());
+    const DateTime = moment(new Date());
     const laterAnnouncementDetail = ls.get("later_announcements_detail");
     if (laterAnnouncementDetail === null) {
       ls.set("later_announcements_detail", [{ id: list[bannerState - 1].id, dateTime: DateTime }]);
