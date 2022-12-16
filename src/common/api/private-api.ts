@@ -564,3 +564,41 @@ export const getReferralsStats = async (username: any): Promise<ReferralStat> =>
     throw error;
   }
 };
+
+export interface Announcement {
+  id: number;
+  title: string;
+  description: string;
+  button_text: string;
+  button_link: string;
+  path: string | Array<string>;
+}
+
+export const getAnnouncementsData = async (path: string): Promise<Announcement[]> => {
+  try {
+    const res = await axios.get(apiBase(`/private-api/announcements`));
+    if (!res.data) {
+      throw new Error("No Announcement found");
+    }
+    const filteredAnnouncements: Announcement[] = [];
+    const addToAnnouncementsList = function (s: string, announcement: Announcement): void {
+      if (path.match(s)) {
+        filteredAnnouncements.push(announcement);
+      }
+    };
+
+    res.data.filter((announcement: Announcement) => {
+      if (typeof announcement.path === "object") {
+        announcement.path.map((p: string) => {
+          addToAnnouncementsList(p, announcement);
+        });
+      } else {
+        addToAnnouncementsList(announcement.path, announcement);
+      }
+    });
+    return filteredAnnouncements;
+  } catch (error) {
+    console.warn(error);
+    throw error;
+  }
+};

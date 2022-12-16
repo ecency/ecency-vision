@@ -1691,3 +1691,37 @@ export const priceUpSvg = (
     />
   </svg>
 );
+
+export const upCarouselSvg = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="40"
+    height="40"
+    viewBox="0 0 24 24"
+    cursor={"pointer"}
+    fill="none"
+    stroke="#656d70"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M15 18l-6-6 6-6" />
+  </svg>
+);
+
+export const downCarouselSvg = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="40"
+    cursor={"pointer"}
+    height="40"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#656d70"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M9 18l6-6-6-6" />
+  </svg>
+);
