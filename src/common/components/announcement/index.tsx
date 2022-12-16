@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import moment from "moment";
 import * as ls from "../../util/local-storage";
-import { upCarouselSvg, downCarouselSvg } from "../../img/svg";
+import { upCarouselSvg, downCarouselSvg, closeSvg } from "../../img/svg";
 import { getAnnouncementsData } from "../../api/private-api";
 import { Announcement, LaterAnnouncement } from "./types";
 import { useLocation } from "react-router";
+import { Button } from "react-bootstrap";
 
 const Announcement = () => {
   const activeUser = ls.get("active_user");
@@ -168,14 +169,16 @@ const Announcement = () => {
             >
               <div className="feedback-announcement">
                 <div className="row">
-                  {/* First Column */}
-                  <div className="column left">
-                    <div className="up-carousel-svg" onClick={upClick}>
-                      {list.length > 1 ? upCarouselSvg : <></>}
+                  {list.length > 1 ? (
+                    <div className="column left">
+                      <div className="up-carousel-svg" onClick={upClick}>
+                        upCarouselSvg
+                      </div>
                     </div>
-                  </div>
-                  {/* Second Column */}
-                  <div className="column center">
+                  ) : (
+                    <></>
+                  )}
+                  <div className="col center">
                     <div className="main">
                       <div className="announcement-title">
                         <p>{x?.title}</p>
@@ -184,30 +187,21 @@ const Announcement = () => {
                     <div className="announcement-message">
                       <p>{x?.description}</p>
                     </div>
-                    <div className="buttons">
-                      <div className="learn-btn action-btn">
-                        <a href={x?.button_link}>
-                          <button>{x?.button_text}</button>
-                        </a>
-                      </div>
-                      <div className="dismiss-btn">
-                        <button onClick={dismissClick}>{"Dismiss"}</button>
-                      </div>
-                      <div className="action-btn">
-                        <button onClick={laterClick}>{"Later"}</button>
-                      </div>
+                    <div className="d-flex actions">
+                      <a href={x?.button_link}>
+                        <Button variant="primary">{x?.button_text}</Button>
+                      </a>
+                      <Button onClick={laterClick} variant="outline-primary">
+                        Later
+                      </Button>
+                      <Button onClick={dismissClick} variant="link">
+                        Dismiss
+                      </Button>
                     </div>
                   </div>
-                  {/* Third Column */}
-                  <div className="column right">
-                    {/* Close Button */}
-                    <button onClick={closeClick} className="close-button">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div className="down-carousel-svg" onClick={downClick}>
-                      {list.length > 1 ? downCarouselSvg : <></>}
-                    </div>
-                  </div>
+                  <Button className="close-btn" variant="link" onClick={closeClick}>
+                    {closeSvg}
+                  </Button>
                 </div>
               </div>
             </div>

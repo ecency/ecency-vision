@@ -39,12 +39,13 @@
   display: flex;
   flex-direction: column;
   width: 500px;
-  padding: 5%;
+  padding: 2.4rem;
   border-radius: 6px;
   margin-top: 5px;
   overflow: auto;
-  background: $white-six;
-  border: 1px solid $white-four;
+  background: $white;
+  box-shadow: 0 6px 20px rgb(0, 0, 0, 0.15);
+  position: relative;
 
   @media (max-width: 580px) {
     width: 360px;
@@ -58,11 +59,13 @@
 }
 
 .announcement-title {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: bold;
 
+  color: $charcoal-grey;
+
   @include themify(day) {
-    color: darken($silver, 35);
+    color: $charcoal-grey;
   }
 
   @include themify(night) {
@@ -75,9 +78,12 @@
 }
 
 .announcement-message {
+  line-height: 1.5;
+
   @media (max-width: 580px) {
     font-size: 0.9rem;
   }
+
   p {
     @include themify(day) {
       color: darken($silver, 35);
@@ -90,95 +96,43 @@
   }
 }
 
-.row {
-  display: flex;
+.feedback-announcement {
+  .row {
+    display: flex;
 
-  @media (max-width: 390px) {
-    flex-wrap: wrap;
-  }
-
-}
-
-.left {
-  width: 10%;
-  display: flex;
-  align-items: center;
-}
-
-.center {
-  width: 80%;
-}
-
-.right {
-  width: 10%;
-  display: flex;
-  align-items: center;
-  justify-content: right;
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.dismiss-btn {
-  display: inline;
-  float: right;
-  button {
-    border: 1px solid $white-six;
-    border-radius: 25px;
-    margin-left: 4px;
-    background-color: #eddf1a;
-    color: $dark;
-    padding: 7px 12px;
-
-    @media (max-width: 580px) {
-      padding: 4px 8px;
-      font-size: 0.9rem;
+    @media (max-width: 390px) {
+      flex-wrap: wrap;
     }
+
   }
-}
 
-.close-button {
-  width: 25px;
-  height: 25px;
-  border: 1px solid $white-six;
-  border-radius: 25px;
-  position: absolute;
-  top: 6%;
-  right: 2.5%;
-  background: $white-four;
-  color: $dark-two;
-}
-
-.main {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.action-btn {
-  display: inline;
-  float: right;
-  button {
-    border: 1px solid $white-six;
-    border-radius: 25px;
-    margin-left: 4px;
-    padding: 7px 12px;
-    background: $white;
-    color: $dark-two;
-
-    @media (max-width: 580px) {
-      padding: 4px 8px;
-      font-size: 0.9rem
-    }
+  .left {
+    width: 10%;
+    display: flex;
+    align-items: center;
   }
-}
 
-.learn-btn{
-  button{
-    color: $white-six;
-    background: $dark-sky-blue;
+  .center {
+    max-width: 80%;
+  }
+
+  .right {
+    max-width: 10%;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .actions {
+    gap: 0.5rem;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
   }
 }
