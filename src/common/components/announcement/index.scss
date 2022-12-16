@@ -55,6 +55,11 @@
     width: fit-content;
     flex-wrap: wrap;
   }
+  @include themify(night) {
+    background: $dark-grey-blue;
+    color: $light-grey;
+    border: solid 1px $dark-two;
+  }
 }
 
 .announcement-title {
