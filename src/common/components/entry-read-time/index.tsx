@@ -14,20 +14,20 @@ export const ReadTime = (props: any) => {
   }, [entry]);
 
   const calculateExtras = async () => {
-    const entryCount = countWords(entry.body)
+    const entryCount = countWords(entry.body);
     const wordPerMinuite: number = 225;
     setWordCount(entryCount);
     setReadTime(Math.ceil(entryCount / wordPerMinuite));
   };
 
-  const countWords = (entry: string) =>{
-    const cjkEntry = new RegExp("[\u4E00-\u9FFF]","g");
-    entry = entry.replace(cjkEntry," {CJK} ");   
-    const splitEntry: any =  entry.trim().split(/\s+/);
+  const countWords = (entry: string) => {
+    const cjkEntry = new RegExp("[\u4E00-\u9FFF]", "g");
+    entry = entry.replace(cjkEntry, " {CJK} ");
+    const splitEntry: any = entry.trim().split(/\s+/);
     const cjkCount = splitEntry.filter((e: string) => e === "{CJK}");
     const count: any = splitEntry.includes("{CJK}") ? cjkCount.length : splitEntry.length;
     return count;
-}
+  };
 
   return toolTip ? (
     <div className="post-info">
