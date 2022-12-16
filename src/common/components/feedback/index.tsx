@@ -8,6 +8,8 @@ import { ErrorTypes } from "../../enums";
 import { ActiveUser } from "../../store/active-user/types";
 import { _t } from "../../i18n";
 
+import { mountCheck } from "../../components/announcement";
+
 export const error = (message: string, errorType = ErrorTypes.COMMON) => {
   const detail: ErrorFeedbackObject = {
     id: random(),
@@ -74,11 +76,11 @@ export default class Feedback extends BaseComponent<Props, State> {
 
   componentWillUnmount() {
     super.componentWillUnmount();
-
     window.removeEventListener("feedback", this.onFeedback);
   }
 
   onFeedback = (e: Event) => {
+    mountCheck(true);
     const detail: FeedbackObject = (e as CustomEvent).detail;
 
     const { list } = this.state;
@@ -93,6 +95,7 @@ export default class Feedback extends BaseComponent<Props, State> {
       const { list } = this.state;
       const newList = list.filter((x) => x.id !== detail.id);
       this.stateSet({ list: newList });
+      mountCheck(false);
     }, 5000);
   };
 

@@ -22,6 +22,7 @@ import i18n from "i18next";
 import { pageMapDispatchToProps, pageMapStateToProps } from "./pages/common";
 import { connect } from "react-redux";
 import loadable from "@loadable/component";
+import Announcement from "./components/announcement";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -80,6 +81,7 @@ const App = ({ setLang }: any) => {
 
   return (
     <>
+      <Announcement />
       <Tracker />
       <Switch>
         <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
