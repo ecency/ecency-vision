@@ -7,9 +7,10 @@ interface Props {
   title?: string;
   headerOptions?: JSX.Element;
   settings?: JSX.Element;
+  icon?: JSX.Element;
 }
 
-export const MarketAdvancedModeWidgetHeader = ({ title, headerOptions, settings }: Props) => {
+export const MarketAdvancedModeWidgetHeader = ({ title, headerOptions, settings, icon }: Props) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -21,7 +22,7 @@ export const MarketAdvancedModeWidgetHeader = ({ title, headerOptions, settings 
             {headerOptions}
             {title ? (
               <div className="d-flex align-items-center ml-3">
-                <div className="icon mr-2">{hot}</div>
+                {icon ? <div className="icon mr-2">{icon}</div> : <></>}
                 <div className="header-title">{title}</div>
               </div>
             ) : (

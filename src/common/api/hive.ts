@@ -12,7 +12,7 @@ import isCommunity from "../helper/is-community";
 
 import SERVERS from "../constants/servers.json";
 import { dataLimit } from "./bridge";
-import moment from "moment";
+import moment, { Moment } from "moment";
 
 export const client = new Client(SERVERS, {
   timeout: 3000,
@@ -102,6 +102,26 @@ export interface OrdersDataItem {
   real_price: string;
 }
 
+export interface MarketCandlestickDataItem {
+  hive: {
+    high: number;
+    low: number;
+    open: number;
+    close: number;
+    volume: number;
+  };
+  id: number;
+  non_hive: {
+    high: number;
+    low: number;
+    open: number;
+    close: number;
+    volume: number;
+  };
+  open: string;
+  seconds: number;
+}
+
 export interface TradeDataItem {
   current_pays: string;
   date: number;
@@ -141,6 +161,18 @@ export const getTradeHistory = (limit: number = 1000): Promise<OrdersDataItem[]>
   let todayNow = moment(Date.now()).format().split("+")[0];
   return client.call("condenser_api", "get_trade_history", [todayEarlier, todayNow, limit]);
 };
+
+export const getMarketHistory = (
+  seconds: number,
+  startDate: Moment,
+  endDate: Moment
+): Promise<MarketCandlestickDataItem[]> => {
+  let todayEarlier = startDate.format().split("+")[0];
+  let todayNow = endDate.format().split("+")[0];
+  return client.call("condenser_api", "get_market_history", [seconds, todayEarlier, todayNow]);
+};
+
+// TODO: get bucket sizes
 
 export const getActiveVotes = (author: string, permlink: string): Promise<Vote[]> =>
   client.database.call("get_active_votes", [author, permlink]);

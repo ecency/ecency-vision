@@ -14,6 +14,7 @@ import { DayChange } from "./types/day-change.type";
 import { History } from "history";
 import { updateWidgetType } from "./utils";
 import { ToggleType } from "../../../store/ui/types";
+import SsrSuspense from "../../../components/ssr-suspense";
 
 interface Props {
   layout: Layout;
@@ -112,10 +113,12 @@ export const WidgetLayoutBuilder = ({
         case Widget.TradingView:
           return (
             <div className={"layout-col " + col.size}>
-              <TradingViewWidget
-                history={browserHistory}
-                widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
-              />
+              <SsrSuspense fallback={<></>}>
+                <TradingViewWidget
+                  history={browserHistory}
+                  widgetTypeChanged={(type) => onWidgetTypeChanged(col.uuid, col.widgetType, type)}
+                />
+              </SsrSuspense>
             </div>
           );
         case Widget.OpenOrders:
