@@ -70,6 +70,10 @@
     "ok": "Confirm",
     "cancel": "Cancel"
   },
+  "announcements": {
+    "dismiss": "Dismiss",
+    "later": "Later"
+  },
   "entry-filter": {
     "filter-trending": "Trending",
     "filter-hot": "Hot",

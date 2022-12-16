@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import moment from "moment";
+
+import { _t } from "../../i18n";
 import * as ls from "../../util/local-storage";
 import { upCarouselSvg, downCarouselSvg } from "../../img/svg";
 import { getAnnouncementsData } from "../../api/private-api";
@@ -257,10 +259,10 @@ const Announcement = () => {
                         </a>
                       </div>
                       <div className="dismiss-btn">
-                        <button onClick={handleDismiss}>{"Dismiss"}</button>
+                        <button onClick={handleDismiss}>{_t("announcements.dismiss")}</button>
                       </div>
                       <div className="action-btn">
-                        <button onClick={handleLater}>{"Later"}</button>
+                        <button onClick={handleLater}>{_t("announcements.later")}</button>
                       </div>
                     </div>
                   </div>
