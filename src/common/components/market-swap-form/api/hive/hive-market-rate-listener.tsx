@@ -12,7 +12,7 @@ export namespace HiveMarket {
   }
 
   function calculatePrice(intAmount: number, book: OrdersDataItem[], asset: "hive" | "hbd") {
-    let available = 0;
+    let available = book[0][asset] / 1000;
     let index = 0;
     while (available < intAmount && book.length > index + 1) {
       available += book[index][asset] / 1000;

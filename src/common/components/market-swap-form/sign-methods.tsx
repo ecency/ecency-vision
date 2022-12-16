@@ -99,7 +99,8 @@ export const SignMethods = ({
   const swapAction = async (action: (toAmount: string) => Promise<any>) => {
     setLoading(true);
     try {
-      await action(await HiveMarket.getNewAmount(toAmount, fromAmount, asset));
+      const amount = await HiveMarket.getNewAmount(toAmount, fromAmount, asset);
+      await action(amount);
       const account = await getAccountFull(activeUser!.username);
       addAccount(account);
       updateActiveUser(account);
