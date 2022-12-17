@@ -18,6 +18,10 @@
   bottom: 60px;
   width: 260px;
 
+  &.visible ~ .announcement-container {
+    bottom: 10rem !important;
+  }
+
   @media (min-width: $md-break) {
     width: 500px;
   }
