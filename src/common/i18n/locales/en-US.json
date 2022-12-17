@@ -72,7 +72,8 @@
   },
   "announcements": {
     "dismiss": "Dismiss",
-    "next": "Next"
+    "next": "Next",
+    "later": "Later"
   },
   "entry-filter": {
     "filter-trending": "Trending",
