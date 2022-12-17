@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import moment from "moment";
+import { Link } from "react-router-dom";
+
 import * as ls from "../../util/local-storage";
 import { closeSvg } from "../../img/svg";
 import { getAnnouncementsData, Announcement as AnnouncementApiData } from "../../api/private-api";
@@ -186,9 +188,9 @@ const Announcement = ({ activeUser }: Props) => {
                       <p>{x?.description}</p>
                     </div>
                     <div className="d-flex actions">
-                      <a href={x?.button_link}>
+                      <Link to={x?.button_link} onClick={dismissClick}>
                         <Button variant="primary">{x?.button_text}</Button>
-                      </a>
+                      </Link>
                       <Button onClick={laterClick} variant="outline-primary">
                         {_t("announcements.later")}
                       </Button>
