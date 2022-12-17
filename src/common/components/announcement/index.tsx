@@ -8,10 +8,13 @@ import { Announcement, LaterAnnouncement } from "./types";
 import { useLocation } from "react-router";
 import { Button } from "react-bootstrap";
 import { _t } from "../../i18n";
-import { connect } from "react-redux";
-import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../../pages/common";
+import { ActiveUser } from "../../store/active-user/types";
 
-const Announcement = ({ activeUser }: PageProps) => {
+interface Props {
+  activeUser: ActiveUser | null;
+}
+
+const Announcement = ({ activeUser }: Props) => {
   const routerLocation = useLocation();
 
   const [allAnnouncements, setAllAnnouncements] = useState<AnnouncementApiData[]>([]);
@@ -220,4 +223,4 @@ const Announcement = ({ activeUser }: PageProps) => {
   );
 };
 
-export default connect(pageMapStateToProps, pageMapDispatchToProps)(Announcement);
+export default Announcement;

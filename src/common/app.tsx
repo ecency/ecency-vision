@@ -67,13 +67,13 @@ const EntryPage = (props: any) => {
 const PurchaseContainer = loadable(() => import("./pages/purchase"));
 const PurchasePage = (props: any) => <PurchaseContainer {...props} />;
 
-const App = ({ setLang }: any) => {
+const App = (props: any) => {
   useEffect(() => {
     let pathname = window.location.pathname;
     if (pathname !== "/faq") {
       const currentLang = ls.get("current-language");
       if (currentLang) {
-        setLang(currentLang);
+        props.setLang(currentLang);
         i18n.changeLanguage(currentLang);
       }
     }
@@ -143,7 +143,7 @@ const App = ({ setLang }: any) => {
         <Route component={NotFound} />
       </Switch>
 
-      <Announcement />
+      <Announcement activeUser={props.activeUser} />
     </>
   );
 };
