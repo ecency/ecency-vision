@@ -70,6 +70,11 @@
     "ok": "Confirmar",
     "cancel": "Cancelar"
   },
+  "announcements": {
+    "dismiss": "Dismiss",
+    "next": "Next",
+    "later": "Later"
+  },
   "entry-filter": {
     "filter-trending": "Tendencias",
     "filter-hot": "Popular",
