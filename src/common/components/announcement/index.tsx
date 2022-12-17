@@ -7,6 +7,7 @@ import { getAnnouncementsData } from "../../api/private-api";
 import { Announcement, LaterAnnouncement } from "./types";
 import { useLocation } from "react-router";
 import { Button } from "react-bootstrap";
+import { _t } from "../../i18n";
 
 const Announcement = () => {
   const activeUser = ls.get("active_user");
@@ -173,11 +174,11 @@ const Announcement = () => {
                         <Button variant="primary">{x?.button_text}</Button>
                       </a>
                       <Button onClick={laterClick} variant="outline-primary">
-                        Later
+                        {_t("announcements.later")}
                       </Button>
                       {list.length > 1 ? (
                         <Button onClick={upClick} variant="link">
-                          Next
+                          {_t("announcements.next")}
                         </Button>
                       ) : (
                         <></>
