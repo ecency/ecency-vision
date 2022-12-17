@@ -3,16 +3,16 @@ import { useEffect } from "react";
 import moment from "moment";
 import * as ls from "../../util/local-storage";
 import { closeSvg } from "../../img/svg";
-import { getAnnouncementsData } from "../../api/private-api";
+import { getAnnouncementsData, Announcement as AnnouncementApiData } from "../../api/private-api";
 import { Announcement, LaterAnnouncement } from "./types";
 import { useLocation } from "react-router";
 import { Button } from "react-bootstrap";
 import { _t } from "../../i18n";
 
 const Announcement = () => {
-  const activeUser = ls.get("active_user");
   const routerLocation = useLocation();
 
+  const [allAnnouncements, setAllAnnouncements] = useState<AnnouncementApiData[]>([]);
   const [show, setShow] = useState(true);
   const [list, setList] = useState<Announcement[]>([]);
   const [superList, setSuperList] = useState<Announcement[]>([]);
@@ -21,8 +21,12 @@ const Announcement = () => {
   const [currentAnnouncement, setCurrentAnnouncement] = useState<Announcement[]>([]);
 
   useEffect(() => {
+    getAnnouncementsData().then((data) => setAllAnnouncements(data));
+  }, []);
+
+  useEffect(() => {
     getAnnouncements();
-  }, [routerLocation]);
+  }, [routerLocation, allAnnouncements]);
 
   useEffect(() => {
     setCurrentAnnouncement([list[bannerState - 1]]);
@@ -36,8 +40,13 @@ const Announcement = () => {
     }
   }, [list]);
 
-  const getAnnouncements = async () => {
-    const data = await getAnnouncementsData(activeUser, 200, routerLocation.pathname);
+  const getAnnouncements = () => {
+    const data = allAnnouncements.filter((announcement) => {
+      if (typeof announcement.path === "object") {
+        return announcement.path.some((aPath) => routerLocation.pathname.match(aPath));
+      }
+      return routerLocation.pathname.match(announcement.path);
+    });
 
     const dismissList: number[] = ls.get("dismiss_announcements");
     const laterList: LaterAnnouncement[] = ls.get("later_announcements_detail");

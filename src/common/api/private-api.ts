@@ -578,22 +578,13 @@ export interface Announcement {
   path: string | Array<string>;
 }
 
-export const getAnnouncementsData = async (
-  username: string,
-  limit: number = dataLimit,
-  path: string
-): Promise<Announcement[]> => {
+export const getAnnouncementsData = async (): Promise<Announcement[]> => {
   try {
     const res = await axios.get<Announcement[]>(apiBase(`/private-api/announcements`));
     if (!res.data) {
       return [];
     }
-    return res.data.filter((announcement) => {
-      if (typeof announcement.path === "object") {
-        return announcement.path.some((aPath) => path.match(aPath));
-      }
-      return path.match(announcement.path);
-    });
+    return res.data;
   } catch (error) {
     console.warn(error);
     throw error;
