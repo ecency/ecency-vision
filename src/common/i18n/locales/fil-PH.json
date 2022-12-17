@@ -70,6 +70,11 @@
     "ok": "Kumpirmahin",
     "cancel": "I-kansela"
   },
+  "announcements": {
+    "dismiss": "Dismiss",
+    "next": "Next",
+    "later": "Later"
+  },
   "entry-filter": {
     "filter-trending": "Uso",
     "filter-hot": "Mainit",
