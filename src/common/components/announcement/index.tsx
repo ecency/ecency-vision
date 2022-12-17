@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import moment from "moment";
 import * as ls from "../../util/local-storage";
-import { upCarouselSvg, downCarouselSvg, closeSvg } from "../../img/svg";
+import { closeSvg } from "../../img/svg";
 import { getAnnouncementsData } from "../../api/private-api";
 import { Announcement, LaterAnnouncement } from "./types";
 import { useLocation } from "react-router";
@@ -18,11 +18,6 @@ const Announcement = () => {
   const [bannerState, setBannerState] = useState(1);
   const [index, setIndex] = useState(0);
   const [currentAnnouncement, setCurrentAnnouncement] = useState<Announcement[]>([]);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     getAnnouncements();
@@ -161,12 +156,7 @@ const Announcement = () => {
         list.length > 0 &&
         currentAnnouncement.map((x, i) => {
           return (
-            <div
-              className={
-                mounted ? "announcement-container feedbackmounted" : "announcement-container"
-              }
-              key={i}
-            >
+            <div className="announcement-container" key={i}>
               <div className="feedback-announcement">
                 <div className="row">
                   <div className="col center">

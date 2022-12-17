@@ -100,7 +100,7 @@ export default class Feedback extends BaseComponent<Props, State> {
     const { list } = this.state;
     const errorType = (x: FeedbackObject) => (x as ErrorFeedbackObject).errorType;
     return (
-      <div className="feedback-container">
+      <div className={"feedback-container" + (list.length > 0 ? " visible" : "")}>
         {list.map((x) => {
           switch (x.type) {
             case "success":

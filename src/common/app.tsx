@@ -81,7 +81,6 @@ const App = ({ setLang }: any) => {
 
   return (
     <>
-      <Announcement />
       <Tracker />
       <Switch>
         <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
@@ -143,6 +142,8 @@ const App = ({ setLang }: any) => {
         <Route exact={true} strict={true} path={routes.CONTRIBUTORS} component={ContributorsPage} />
         <Route component={NotFound} />
       </Switch>
+
+      <Announcement />
     </>
   );
 };

@@ -1,60 +1,39 @@
 @import "../../../style/variables";
 
-@keyframes announcement-anim {
-  0% {
-    opacity: 0.3;
-    margin-bottom: 20px;
-  }
-
-  100% {
-    opacity: 1;
-    margin-bottom: 6px;
-  }
-}
-
-.feedbackmounted {
-  bottom: 110px !important;
-  animation: announcement-anim .5s;
-}
-
 .announcement-container {
   position: fixed;
   z-index: 9000;
-  right: 20px;
-  bottom: 60px;
+  right: 2rem;
+  bottom: 2rem;
   width: 500px;
   border-radius: 6px;
-  animation: announcement-anim .5s;
+  transition: .3s ease-in-out;
 
-  @media (max-width: 580px) {
-    width: 360px;
-  }
-
-  @media (max-width: 390px) {
-    width: fit-content;
+  @include media-breakpoint-down(sm) {
+    max-width: calc(360px - 0.5rem);
+    width: 100%;
+    right: 0.5rem;
+    bottom: 0.5rem;
   }
 }
 
 .feedback-announcement {
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 100%;
   padding: 2.4rem;
   border-radius: 6px;
   margin-top: 5px;
   overflow: auto;
-  background: $white;
   box-shadow: 0 6px 20px rgb(0, 0, 0, 0.15);
   position: relative;
 
-  @media (max-width: 580px) {
-    width: 360px;
-    flex-wrap: wrap;
+  @include themify(day) {
+    background: $white;
   }
 
-  @media (max-width: 390px) {
-    width: fit-content;
-    flex-wrap: wrap;
+  @include themify(night) {
+    background: $dark-two;
   }
 }
 
