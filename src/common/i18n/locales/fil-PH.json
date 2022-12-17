@@ -70,6 +70,11 @@
     "ok": "Kumpirmahin",
     "cancel": "I-kansela"
   },
+  "announcements": {
+    "dismiss": "Dismiss",
+    "next": "Next",
+    "later": "Later"
+  },
   "entry-filter": {
     "filter-trending": "Uso",
     "filter-hot": "Mainit",
@@ -1056,16 +1061,16 @@
     "deleted": "Natanggal sa mga paborito"
   },
   "editor-toolbar": {
-    "bold": "Patabain ang mga letra",
-    "italic": "Ipahilig ang mga letra",
+    "bold": "Bold (Alt + B)",
+    "italic": "Italic (Alt + I)",
     "header": "Ulo",
-    "code": "Code",
-    "quote": "Panipi",
+    "code": "Code (Alt + C)",
+    "quote": "Quote (Alt + M)",
     "ul": "Listahang di nakaayos",
     "ol": "Listahang nakaayos",
-    "link": "Ugnay",
-    "image": "Imahe",
-    "table": "Lamesa",
+    "link": "Link (Alt + K)",
+    "image": "Image (Alt + D)",
+    "table": "Table (Alt + T)",
     "table-3-col": "3 hanay",
     "table-2-col": "2 hanay",
     "table-1-col": "1 hanay",
