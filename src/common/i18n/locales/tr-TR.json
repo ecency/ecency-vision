@@ -70,6 +70,11 @@
     "ok": "Onayla",
     "cancel": "İptal"
   },
+  "announcements": {
+    "dismiss": "Dismiss",
+    "next": "Next",
+    "later": "Later"
+  },
   "entry-filter": {
     "filter-trending": "Popüler",
     "filter-hot": "Sıcak",
