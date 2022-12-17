@@ -70,6 +70,11 @@
     "ok": "Kinnita",
     "cancel": "Tühista"
   },
+  "announcements": {
+    "dismiss": "Dismiss",
+    "next": "Next",
+    "later": "Later"
+  },
   "entry-filter": {
     "filter-trending": "Populaarne",
     "filter-hot": "Kuum",
