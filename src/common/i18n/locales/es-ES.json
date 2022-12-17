@@ -71,9 +71,9 @@
     "cancel": "Cancelar"
   },
   "announcements": {
-    "dismiss": "Dismiss",
-    "next": "Next",
-    "later": "Later"
+    "dismiss": "Descartar",
+    "next": "Siguiente",
+    "later": "Más tarde"
   },
   "entry-filter": {
     "filter-trending": "Tendencias",
