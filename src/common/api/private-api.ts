@@ -576,6 +576,7 @@ export interface Announcement {
   button_text: string;
   button_link: string;
   path: string | Array<string>;
+  auth: boolean;
 }
 
 export const getAnnouncementsData = async (): Promise<Announcement[]> => {

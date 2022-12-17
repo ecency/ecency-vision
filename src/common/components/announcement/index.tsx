@@ -8,8 +8,10 @@ import { Announcement, LaterAnnouncement } from "./types";
 import { useLocation } from "react-router";
 import { Button } from "react-bootstrap";
 import { _t } from "../../i18n";
+import { connect } from "react-redux";
+import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../../pages/common";
 
-const Announcement = () => {
+const Announcement = ({ activeUser }: PageProps) => {
   const routerLocation = useLocation();
 
   const [allAnnouncements, setAllAnnouncements] = useState<AnnouncementApiData[]>([]);
@@ -26,7 +28,7 @@ const Announcement = () => {
 
   useEffect(() => {
     getAnnouncements();
-  }, [routerLocation, allAnnouncements]);
+  }, [routerLocation, allAnnouncements, activeUser]);
 
   useEffect(() => {
     setCurrentAnnouncement([list[bannerState - 1]]);
@@ -41,12 +43,14 @@ const Announcement = () => {
   }, [list]);
 
   const getAnnouncements = () => {
-    const data = allAnnouncements.filter((announcement) => {
-      if (typeof announcement.path === "object") {
-        return announcement.path.some((aPath) => routerLocation.pathname.match(aPath));
-      }
-      return routerLocation.pathname.match(announcement.path);
-    });
+    const data = allAnnouncements
+      .filter((announcement) => (announcement.auth ? !!activeUser : true))
+      .filter((announcement) => {
+        if (typeof announcement.path === "object") {
+          return announcement.path.some((aPath) => routerLocation.pathname.match(aPath));
+        }
+        return routerLocation.pathname.match(announcement.path);
+      });
 
     const dismissList: number[] = ls.get("dismiss_announcements");
     const laterList: LaterAnnouncement[] = ls.get("later_announcements_detail");
@@ -216,4 +220,4 @@ const Announcement = () => {
   );
 };
 
-export default Announcement;
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(Announcement);
