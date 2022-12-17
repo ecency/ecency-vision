@@ -70,6 +70,11 @@
     "ok": "Təsdiqlə",
     "cancel": "İmtina"
   },
+  "announcements": {
+    "dismiss": "Dismiss",
+    "next": "Next",
+    "later": "Later"
+  },
   "entry-filter": {
     "filter-trending": "Trend",
     "filter-hot": "Gündəm",
