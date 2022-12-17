@@ -70,6 +70,11 @@
     "ok": "Подтвердить",
     "cancel": "Отменить"
   },
+  "announcements": {
+    "dismiss": "Dismiss",
+    "next": "Next",
+    "later": "Later"
+  },
   "entry-filter": {
     "filter-trending": "В тренде",
     "filter-hot": "Актуальное",
